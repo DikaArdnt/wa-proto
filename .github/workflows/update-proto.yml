@@ -1,0 +1,70 @@
+name: Check for updates
+
+on:
+   schedule:
+      - cron: '0 * * * *'
+   workflow_dispatch:
+
+permissions:
+   contents: write
+   pull-requests: write
+
+jobs:
+   update-proto:
+      runs-on: ubuntu-latest
+      timeout-minutes: 10
+
+      steps:
+         - name: Checkout repository
+           uses: actions/checkout@v3
+
+         - name: Setup Node
+           uses: actions/setup-node@v4
+           with:
+              node-version: 22.13
+
+         - name: Get npm cache directory
+           id: npm-cache
+           run: echo "dir=$(npm config get cache)" >> $GITHUB_OUTPUT
+
+         - name: Setup npm cache
+           uses: actions/cache@v4
+           with:
+              path: ${{ steps.npm-cache.outputs.dir }}
+              key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+              restore-keys: |
+                 ${{ runner.os }}-node-
+
+         - name: Install Dependencies
+           run: npm install
+
+         - name: Fetch Protobuf
+           id: fetch
+           run: |
+              npm run fetch > logs.txt
+              WA_VERSION=$(cat logs.txt | perl -n -e'/Current version\: (.+)/ && print $1')
+              echo "WA_VERSION=$WA_VERSION" >> $GITHUB_OUTPUT
+              rm logs.txt
+
+         - name: Generate Protobuf
+           run: npm run generate
+
+         - name: Check if version has updated
+           id: check_update
+           run: |
+              WA_VERSION="${{ steps.fetch.outputs.WA_VERSION }}"
+              if [ ! -f "proto/.version" ] || [ "$WA_VERSION" != "$(cat proto/.version)" ]; then
+                 echo "result=updated" >> $GITHUB_OUTPUT
+              else
+                 echo "result=not_updated" >> $GITHUB_OUTPUT
+              fi
+              echo "$WA_VERSION" > proto/.version
+
+         - name: Commit changes
+           if: steps.check_update.outputs.result == 'updated'
+           run: |
+              git config --global user.email "github-actions[bot]@users.noreply.github.com"
+              git config --global user.name "github-actions[bot]"
+              git add .
+              git commit -m "chore: update protobuf to v${{ steps.fetch.outputs.WA_VERSION }}"
+              git push

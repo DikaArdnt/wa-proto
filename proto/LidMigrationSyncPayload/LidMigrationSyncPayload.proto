@@ -1,0 +1,12 @@
+syntax = "proto2";
+package LidMigrationSyncPayload;
+
+message LIDMigrationMappingSyncPayload {
+    repeated LIDMigrationMapping pnToLidMappings = 1;
+}
+
+message LIDMigrationMapping {
+    required uint64 pn = 1;
+    required uint64 assignedLid = 2;
+    optional uint64 latestLid = 3;
+}
