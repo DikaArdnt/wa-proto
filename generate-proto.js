@@ -45,13 +45,13 @@ protoFiles.forEach((file) => {
     execSync(pbtsCommand, { stdio: 'inherit' });
 
     const exportName = fileName.replace(/\.proto$/, '');
-    exportsText += `exports.${exportName} = require('./${exportName}/${exportName}');\n`;
+    exportsText += `exports.${exportName} = require('./${exportName}/${exportName}').${exportName};\n`;
   } catch (err) {
     console.error(`Error generating JS and TS for ${fileName}: ${err.message}`);
   }
 });
 
 // Write index.js file
-fs.writeFileSync(path.resolve(__dirname, 'proto', 'index.js'), exportsText, 'utf8');
+fs.writeFileSync(path.resolve(PROTO_DIR, 'index.js'), exportsText, 'utf8');
 
 console.log('Protobuf generation complete!');
