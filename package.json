@@ -9,11 +9,7 @@
   "scripts": {
     "build": "npm run fetch && npm run generate",
     "fetch": "node index.js",
-    "generate": "node generate-proto.js",
-    "changelog:last": "conventional-changelog -p angular -r 2",
-    "changelog:preview": "conventional-changelog -p angular -u",
-    "changelog:update": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "release": "release-it"
+    "generate": "node generate-proto.js"
   },
   "repository": {
     "type": "git",
@@ -29,17 +25,15 @@
   },
   "homepage": "https://github.com/DikaArdnt/wa-proto#readme",
   "dependencies": {
+    "long": "^5.2.4",
+    "protobufjs": "^7.4.0"
+  },
+  "devDependencies": {
     "acorn": "^8.14.0",
     "acorn-walk": "^8.3.4",
+    "protobufjs-cli": "^1.1.3",
     "request": "^2.88.2",
     "request-promise-core": "^1.1.4",
     "request-promise-native": "^1.0.9"
-  },
-  "devDependencies": {
-    "conventional-changelog-cli": "^5.0.0",
-    "long": "^5.2.4",
-    "protobufjs": "^7.4.0",
-    "protobufjs-cli": "^1.1.3",
-    "release-it": "^18.1.1"
   }
 }

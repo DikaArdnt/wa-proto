@@ -20,9 +20,12 @@ if (protoFiles.length === 0) {
   process.exit(1);
 }
 
+let exportsText = '';
+
 protoFiles.forEach((file) => {
+  const fileName = path.basename(file);
+
   try {
-    const fileName = path.basename(file);
     const outputJS = file.replace(/\.proto$/, '.js');
     const outputTS = file.replace(/\.proto$/, '.d.ts');
 
@@ -31,7 +34,7 @@ protoFiles.forEach((file) => {
       `-t static-module`,
       `-w commonjs`,
       `-o ${outputJS}`,
-      `-r proto`,
+      `-r default`,
       file,
     ].join(' ');
     const pbtsCommand = [`npx pbts`, `-o ${outputTS}`, outputJS].join(' ');
@@ -40,9 +43,15 @@ protoFiles.forEach((file) => {
 
     execSync(pbjsCommand, { stdio: 'inherit' });
     execSync(pbtsCommand, { stdio: 'inherit' });
+
+    const exportName = fileName.replace(/\.proto$/, '');
+    exportsText += `exports.${exportName} = require('./${exportName}/${exportName}');\n`;
   } catch (err) {
     console.error(`Error generating JS and TS for ${fileName}: ${err.message}`);
   }
 });
+
+// Write index.js file
+fs.writeFileSync(path.resolve(__dirname, 'proto', 'index.js'), exportsText, 'utf8');
 
 console.log('Protobuf generation complete!');
