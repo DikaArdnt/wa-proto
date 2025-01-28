@@ -1,8 +1,6 @@
 syntax = "proto2";
 package SignalLocalStorageProtocol;
 
-import "../Protocol/Protocol.proto";
-
 message SenderKeyRecordStructure {
     repeated SenderKeyStateStructure senderKeyStates = 1;
 }
@@ -16,17 +14,14 @@ message SenderKeyStateStructure {
         optional uint32 iteration = 1;
         optional bytes seed = 2;
     }
-    
     message SenderMessageKey {
         optional uint32 iteration = 1;
         optional bytes seed = 2;
     }
-    
     message SenderSigningKey {
         optional bytes public = 1;
         optional bytes private = 2;
     }
-    
 }
 
 message IdentityKeyPairStructure {
@@ -71,21 +66,18 @@ message SessionStructure {
         optional bytes senderRatchetKey = 1;
         optional bytes senderRatchetKeyPrivate = 2;
         optional ChainKey chainKey = 3;
-        repeated Protocol.MessageKey messageKeys = 4;
+        repeated MessageKey messageKeys = 4;
         message ChainKey {
             optional uint32 index = 1;
             optional bytes key = 2;
         }
-        
         message MessageKey {
             optional uint32 index = 1;
             optional bytes cipherKey = 2;
             optional bytes macKey = 3;
             optional bytes iv = 4;
         }
-        
     }
-    
     message PendingKeyExchange {
         optional uint32 sequence = 1;
         optional bytes localBaseKey = 2;
@@ -95,11 +87,9 @@ message SessionStructure {
         optional bytes localIdentityKey = 7;
         optional bytes localIdentityKeyPrivate = 8;
     }
-    
     message PendingPreKey {
         optional uint32 preKeyId = 1;
         optional int32 signedPreKeyId = 3;
         optional bytes baseKey = 2;
     }
-    
 }

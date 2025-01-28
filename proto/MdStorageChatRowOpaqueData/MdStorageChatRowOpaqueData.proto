@@ -28,14 +28,11 @@ message ChatRowOpaqueData {
                 VIDEO = 2;
             }
         }
-        
         message CtwaContextLinkData {
             optional string context = 1;
             optional string sourceUrl = 2;
             optional string icebreaker = 3;
             optional string phone = 4;
         }
-        
     }
-    
 }

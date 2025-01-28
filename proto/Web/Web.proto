@@ -3,7 +3,6 @@ package Web;
 
 import "../E2E/E2E.proto";
 import "../Protocol/Protocol.proto";
-import "../SyncAction/SyncAction.proto";
 
 message StatusMentionMessage {
     optional E2E.Message quotedStatus = 1;
@@ -49,7 +48,7 @@ message MessageAddOnContextInfo {
 }
 
 message PinInChat {
-    optional E2E.Type type = 1;
+    optional Type type = 1;
     optional Protocol.MessageKey key = 2;
     optional int64 senderTimestampMs = 3;
     optional int64 serverTimestampMs = 4;
@@ -194,7 +193,7 @@ message PaymentInfo {
     optional Currency currencyDeprecated = 1;
     optional uint64 amount1000 = 2;
     optional string receiverJid = 3;
-    optional SyncAction.Status status = 4;
+    optional Status status = 4;
     optional uint64 transactionTimestamp = 5;
     optional Protocol.MessageKey requestMessageKey = 6;
     optional uint64 expiryTimestamp = 7;
@@ -267,7 +266,7 @@ message WebMessageInfo {
     required Protocol.MessageKey key = 1;
     optional E2E.Message message = 2;
     optional uint64 messageTimestamp = 3;
-    optional SyncAction.Status status = 4;
+    optional Status status = 4;
     optional string participant = 5;
     optional uint64 messageC2STimestamp = 6;
     optional bool ignore = 16;

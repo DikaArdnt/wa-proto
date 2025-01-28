@@ -26,7 +26,7 @@ message MsgOpaqueData {
     optional string pollUpdateParentKey = 23;
     optional E2E.PollEncValue encPollVote = 24;
     optional bool isSentCagPollCreation = 28;
-    optional E2E.PollContentType pollContentType = 42;
+    optional PollContentType pollContentType = 42;
     optional PollVotesSnapshot pollVotesSnapshot = 41;
     optional string encReactionTargetMessageKey = 25;
     optional bytes encReactionEncPayload = 26;
@@ -50,7 +50,6 @@ message MsgOpaqueData {
         optional string url = 5;
         optional bytes jpegThumbnail = 6;
     }
-    
     enum PollContentType {
         UNKNOWN = 0;
         TEXT = 1;
@@ -60,16 +59,13 @@ message MsgOpaqueData {
         optional string name = 1;
         optional string hash = 2;
     }
-    
     message PollVoteSnapshot {
         optional MsgOpaqueData.PollOption option = 1;
         optional int32 optionVoteCount = 2;
     }
-    
     message PollVotesSnapshot {
         repeated MsgOpaqueData.PollVoteSnapshot pollVotes = 1;
     }
-    
 }
 
 message PollEncValue {

@@ -56,7 +56,6 @@ message VerifiedNameCertificate {
         repeated LocalizedName localizedNames = 8;
         optional uint64 issueTime = 10;
     }
-    
 }
 
 message LocalizedName {

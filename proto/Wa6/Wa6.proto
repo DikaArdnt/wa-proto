@@ -1,10 +1,6 @@
 syntax = "proto2";
 package Wa6;
 
-import "../E2E/E2E.proto";
-import "../SyncAction/SyncAction.proto";
-import "../CompanionReg/CompanionReg.proto";
-
 message ClientPayload {
     optional uint64 username = 1;
     optional bool passive = 3;
@@ -20,7 +16,7 @@ message ClientPayload {
     optional uint32 connectAttemptCount = 16;
     optional uint32 device = 18;
     optional DevicePairingRegistrationData devicePairingData = 19;
-    optional E2E.Product product = 20;
+    optional Product product = 20;
     optional bytes fbCat = 21;
     optional bytes fbUserAgent = 22;
     optional bool oc = 23;
@@ -71,7 +67,6 @@ message ClientPayload {
             FALLBACK = 4;
         }
     }
-    
     message DevicePairingRegistrationData {
         optional bytes eRegid = 1;
         optional bytes eKeytype = 2;
@@ -82,7 +77,6 @@ message ClientPayload {
         optional bytes buildHash = 7;
         optional bytes deviceProps = 8;
     }
-    
     enum IOSAppExtension {
         SHARE_EXTENSION = 0;
         SERVICE_EXTENSION = 1;
@@ -93,7 +87,6 @@ message ClientPayload {
         optional bytes token = 2;
         optional bool enableReadReceipts = 3;
     }
-    
     enum Product {
         WHATSAPP = 0;
         MESSENGER = 1;
@@ -105,8 +98,8 @@ message ClientPayload {
         STANDARD = 1;
     }
     message UserAgent {
-        optional SyncAction.Platform platform = 1;
-        optional CompanionReg.AppVersion appVersion = 2;
+        optional Platform platform = 1;
+        optional AppVersion appVersion = 2;
         optional string mcc = 3;
         optional string mnc = 4;
         optional string osVersion = 5;
@@ -128,7 +121,6 @@ message ClientPayload {
             optional uint32 quaternary = 4;
             optional uint32 quinary = 5;
         }
-        
         enum DeviceType {
             PHONE = 0;
             TABLET = 1;
@@ -181,7 +173,6 @@ message ClientPayload {
             DEBUG = 3;
         }
     }
-    
     message WebInfo {
         optional string refToken = 1;
         optional string version = 2;
@@ -208,9 +199,7 @@ message ClientPayload {
             optional string documentTypes = 10;
             optional bytes features = 11;
         }
-        
     }
-    
 }
 
 message HandshakeMessage {
@@ -221,17 +210,14 @@ message HandshakeMessage {
         optional bytes static = 1;
         optional bytes payload = 2;
     }
-    
     message ClientHello {
         optional bytes ephemeral = 1;
         optional bytes static = 2;
         optional bytes payload = 3;
     }
-    
     message ServerHello {
         optional bytes ephemeral = 1;
         optional bytes static = 2;
         optional bytes payload = 3;
     }
-    
 }

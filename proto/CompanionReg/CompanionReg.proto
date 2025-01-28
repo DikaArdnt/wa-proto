@@ -1,8 +1,6 @@
 syntax = "proto2";
 package CompanionReg;
 
-import "../Wa6/Wa6.proto";
-
 message ClientPairingProps {
     optional bool isChatDbLidMigrated = 1;
     optional bool isSyncdPureLidSession = 2;
@@ -41,7 +39,7 @@ message CompanionEphemeralIdentity {
 
 message DeviceProps {
     optional string os = 1;
-    optional Wa6.AppVersion version = 2;
+    optional AppVersion version = 2;
     optional PlatformType platformType = 3;
     optional bool requireFullSync = 4;
     optional HistorySyncConfig historySyncConfig = 5;
@@ -52,7 +50,6 @@ message DeviceProps {
         optional uint32 quaternary = 4;
         optional uint32 quinary = 5;
     }
-    
     message HistorySyncConfig {
         optional uint32 fullSyncDaysLimit = 1;
         optional uint32 fullSyncSizeMbLimit = 2;
@@ -69,7 +66,6 @@ message DeviceProps {
         optional bool supportAddOnHistorySyncMigration = 13;
         optional bool supportMessageAssociation = 14;
     }
-    
     enum PlatformType {
         UNKNOWN = 0;
         CHROME = 1;

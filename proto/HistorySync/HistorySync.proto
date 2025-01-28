@@ -167,7 +167,7 @@ message Conversation {
 }
 
 message HistorySync {
-    required E2E.HistorySyncType syncType = 1;
+    required HistorySyncType syncType = 1;
     repeated Conversation conversations = 2;
     repeated Web.WebMessageInfo statusV3Messages = 3;
     optional uint32 chunkOrder = 5;
@@ -203,6 +203,7 @@ enum PrivacySystemMessage {
     NE2EE_SELF = 2;
     NE2EE_OTHER = 3;
 }
+
 enum MediaVisibility {
     DEFAULT = 0;
     OFF = 1;

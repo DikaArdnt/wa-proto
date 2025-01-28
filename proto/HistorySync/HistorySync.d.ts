@@ -1861,7 +1861,7 @@ export namespace HistorySync {
     interface IHistorySync {
 
         /** HistorySync syncType */
-        syncType: E2E.Message.HistorySyncNotification.HistorySyncType;
+        syncType: HistorySync.HistorySync.HistorySyncType;
 
         /** HistorySync conversations */
         conversations?: (HistorySync.IConversation[]|null);
@@ -1919,7 +1919,7 @@ export namespace HistorySync {
         constructor(properties?: HistorySync.IHistorySync);
 
         /** HistorySync syncType. */
-        public syncType: E2E.Message.HistorySyncNotification.HistorySyncType;
+        public syncType: HistorySync.HistorySync.HistorySyncType;
 
         /** HistorySync conversations. */
         public conversations: HistorySync.IConversation[];
@@ -3206,7 +3206,7 @@ export namespace Web {
     interface IPinInChat {
 
         /** PinInChat type */
-        type?: (E2E.PaymentBackground.Type|null);
+        type?: (Web.PinInChat.Type|null);
 
         /** PinInChat key */
         key?: (Protocol.IMessageKey|null);
@@ -3231,7 +3231,7 @@ export namespace Web {
         constructor(properties?: Web.IPinInChat);
 
         /** PinInChat type. */
-        public type: E2E.PaymentBackground.Type;
+        public type: Web.PinInChat.Type;
 
         /** PinInChat key. */
         public key?: (Protocol.IMessageKey|null);
@@ -5044,7 +5044,7 @@ export namespace Web {
         receiverJid?: (string|null);
 
         /** PaymentInfo status */
-        status?: (SyncAction.SyncActionValue.MerchantPaymentPartnerAction.Status|null);
+        status?: (Web.PaymentInfo.Status|null);
 
         /** PaymentInfo transactionTimestamp */
         transactionTimestamp?: (number|Long|null);
@@ -5093,7 +5093,7 @@ export namespace Web {
         public receiverJid: string;
 
         /** PaymentInfo status. */
-        public status: SyncAction.SyncActionValue.MerchantPaymentPartnerAction.Status;
+        public status: Web.PaymentInfo.Status;
 
         /** PaymentInfo transactionTimestamp. */
         public transactionTimestamp: (number|Long);
@@ -5377,7 +5377,7 @@ export namespace Web {
         messageTimestamp?: (number|Long|null);
 
         /** WebMessageInfo status */
-        status?: (SyncAction.SyncActionValue.MerchantPaymentPartnerAction.Status|null);
+        status?: (Web.WebMessageInfo.Status|null);
 
         /** WebMessageInfo participant */
         participant?: (string|null);
@@ -5567,7 +5567,7 @@ export namespace Web {
         public messageTimestamp: (number|Long);
 
         /** WebMessageInfo status. */
-        public status: SyncAction.SyncActionValue.MerchantPaymentPartnerAction.Status;
+        public status: Web.WebMessageInfo.Status;
 
         /** WebMessageInfo participant. */
         public participant: string;
@@ -7106,10 +7106,10 @@ export namespace E2E {
         subtextArgb?: (number|null);
 
         /** PaymentBackground mediaData */
-        mediaData?: (Web.IMediaData|null);
+        mediaData?: (E2E.PaymentBackground.IMediaData|null);
 
         /** PaymentBackground type */
-        type?: (Web.PinInChat.Type|null);
+        type?: (E2E.PaymentBackground.Type|null);
     }
 
     /** Represents a PaymentBackground. */
@@ -7146,10 +7146,10 @@ export namespace E2E {
         public subtextArgb: number;
 
         /** PaymentBackground mediaData. */
-        public mediaData?: (Web.IMediaData|null);
+        public mediaData?: (E2E.PaymentBackground.IMediaData|null);
 
         /** PaymentBackground type. */
-        public type: Web.PinInChat.Type;
+        public type: E2E.PaymentBackground.Type;
 
         /**
          * Creates a new PaymentBackground instance using the specified properties.
@@ -14513,7 +14513,7 @@ export namespace E2E {
         conversation?: (string|null);
 
         /** Message senderKeyDistributionMessage */
-        senderKeyDistributionMessage?: (SignalWhisperTextProtocol.ISenderKeyDistributionMessage|null);
+        senderKeyDistributionMessage?: (E2E.Message.ISenderKeyDistributionMessage|null);
 
         /** Message imageMessage */
         imageMessage?: (E2E.Message.IImageMessage|null);
@@ -14552,7 +14552,7 @@ export namespace E2E {
         highlyStructuredMessage?: (E2E.Message.IHighlyStructuredMessage|null);
 
         /** Message fastRatchetKeySenderKeyDistributionMessage */
-        fastRatchetKeySenderKeyDistributionMessage?: (SignalWhisperTextProtocol.ISenderKeyDistributionMessage|null);
+        fastRatchetKeySenderKeyDistributionMessage?: (E2E.Message.ISenderKeyDistributionMessage|null);
 
         /** Message sendPaymentMessage */
         sendPaymentMessage?: (E2E.Message.ISendPaymentMessage|null);
@@ -14766,7 +14766,7 @@ export namespace E2E {
         public conversation: string;
 
         /** Message senderKeyDistributionMessage. */
-        public senderKeyDistributionMessage?: (SignalWhisperTextProtocol.ISenderKeyDistributionMessage|null);
+        public senderKeyDistributionMessage?: (E2E.Message.ISenderKeyDistributionMessage|null);
 
         /** Message imageMessage. */
         public imageMessage?: (E2E.Message.IImageMessage|null);
@@ -14805,7 +14805,7 @@ export namespace E2E {
         public highlyStructuredMessage?: (E2E.Message.IHighlyStructuredMessage|null);
 
         /** Message fastRatchetKeySenderKeyDistributionMessage. */
-        public fastRatchetKeySenderKeyDistributionMessage?: (SignalWhisperTextProtocol.ISenderKeyDistributionMessage|null);
+        public fastRatchetKeySenderKeyDistributionMessage?: (E2E.Message.ISenderKeyDistributionMessage|null);
 
         /** Message sendPaymentMessage. */
         public sendPaymentMessage?: (E2E.Message.ISendPaymentMessage|null);
@@ -16557,7 +16557,7 @@ export namespace E2E {
                 buttonText?: (E2E.Message.ButtonsMessage.Button.IButtonText|null);
 
                 /** Button type */
-                type?: (Web.PinInChat.Type|null);
+                type?: (E2E.Message.ButtonsMessage.Button.Type|null);
 
                 /** Button nativeFlowInfo */
                 nativeFlowInfo?: (E2E.Message.ButtonsMessage.Button.INativeFlowInfo|null);
@@ -16579,7 +16579,7 @@ export namespace E2E {
                 public buttonText?: (E2E.Message.ButtonsMessage.Button.IButtonText|null);
 
                 /** Button type. */
-                public type: Web.PinInChat.Type;
+                public type: E2E.Message.ButtonsMessage.Button.Type;
 
                 /** Button nativeFlowInfo. */
                 public nativeFlowInfo?: (E2E.Message.ButtonsMessage.Button.INativeFlowInfo|null);
@@ -16894,7 +16894,7 @@ export namespace E2E {
             contextInfo?: (E2E.IContextInfo|null);
 
             /** ButtonsResponseMessage type */
-            type?: (Web.PinInChat.Type|null);
+            type?: (E2E.Message.ButtonsResponseMessage.Type|null);
 
             /** ButtonsResponseMessage selectedDisplayText */
             selectedDisplayText?: (string|null);
@@ -16916,7 +16916,7 @@ export namespace E2E {
             public contextInfo?: (E2E.IContextInfo|null);
 
             /** ButtonsResponseMessage type. */
-            public type: Web.PinInChat.Type;
+            public type: E2E.Message.ButtonsResponseMessage.Type;
 
             /** ButtonsResponseMessage selectedDisplayText. */
             public selectedDisplayText?: (string|null);
@@ -17151,7 +17151,7 @@ export namespace E2E {
             durationSecs?: (number|Long|null);
 
             /** CallLogMessage callType */
-            callType?: (SyncAction.CallLogRecord.CallType|null);
+            callType?: (E2E.Message.CallLogMessage.CallType|null);
 
             /** CallLogMessage participants */
             participants?: (E2E.Message.CallLogMessage.ICallParticipant[]|null);
@@ -17176,7 +17176,7 @@ export namespace E2E {
             public durationSecs: (number|Long);
 
             /** CallLogMessage callType. */
-            public callType: SyncAction.CallLogRecord.CallType;
+            public callType: E2E.Message.CallLogMessage.CallType;
 
             /** CallLogMessage participants. */
             public participants: E2E.Message.CallLogMessage.ICallParticipant[];
@@ -20411,7 +20411,7 @@ export namespace E2E {
             directPath?: (string|null);
 
             /** HistorySyncNotification syncType */
-            syncType?: (HistorySync.HistorySync.HistorySyncType|null);
+            syncType?: (E2E.Message.HistorySyncNotification.HistorySyncType|null);
 
             /** HistorySyncNotification chunkOrder */
             chunkOrder?: (number|null);
@@ -20463,7 +20463,7 @@ export namespace E2E {
             public directPath: string;
 
             /** HistorySyncNotification syncType. */
-            public syncType: HistorySync.HistorySync.HistorySyncType;
+            public syncType: E2E.Message.HistorySyncNotification.HistorySyncType;
 
             /** HistorySyncNotification chunkOrder. */
             public chunkOrder: number;
@@ -22612,7 +22612,7 @@ export namespace E2E {
             buttonText?: (string|null);
 
             /** ListMessage listType */
-            listType?: (SyncAction.SyncActionValue.LabelEditAction.ListType|null);
+            listType?: (E2E.Message.ListMessage.ListType|null);
 
             /** ListMessage sections */
             sections?: (E2E.Message.ListMessage.ISection[]|null);
@@ -22646,7 +22646,7 @@ export namespace E2E {
             public buttonText: string;
 
             /** ListMessage listType. */
-            public listType: SyncAction.SyncActionValue.LabelEditAction.ListType;
+            public listType: E2E.Message.ListMessage.ListType;
 
             /** ListMessage sections. */
             public sections: E2E.Message.ListMessage.ISection[];
@@ -23379,7 +23379,7 @@ export namespace E2E {
             title?: (string|null);
 
             /** ListResponseMessage listType */
-            listType?: (SyncAction.SyncActionValue.LabelEditAction.ListType|null);
+            listType?: (E2E.Message.ListResponseMessage.ListType|null);
 
             /** ListResponseMessage singleSelectReply */
             singleSelectReply?: (E2E.Message.ListResponseMessage.ISingleSelectReply|null);
@@ -23404,7 +23404,7 @@ export namespace E2E {
             public title: string;
 
             /** ListResponseMessage listType. */
-            public listType: SyncAction.SyncActionValue.LabelEditAction.ListType;
+            public listType: E2E.Message.ListResponseMessage.ListType;
 
             /** ListResponseMessage singleSelectReply. */
             public singleSelectReply?: (E2E.Message.ListResponseMessage.ISingleSelectReply|null);
@@ -26220,7 +26220,7 @@ export namespace E2E {
             key?: (Protocol.IMessageKey|null);
 
             /** PinInChatMessage type */
-            type?: (Web.PinInChat.Type|null);
+            type?: (E2E.Message.PinInChatMessage.Type|null);
 
             /** PinInChatMessage senderTimestampMs */
             senderTimestampMs?: (number|Long|null);
@@ -26239,7 +26239,7 @@ export namespace E2E {
             public key?: (Protocol.IMessageKey|null);
 
             /** PinInChatMessage type. */
-            public type: Web.PinInChat.Type;
+            public type: E2E.Message.PinInChatMessage.Type;
 
             /** PinInChatMessage senderTimestampMs. */
             public senderTimestampMs: (number|Long);
@@ -27725,7 +27725,7 @@ export namespace E2E {
             key?: (Protocol.IMessageKey|null);
 
             /** ProtocolMessage type */
-            type?: (Web.PinInChat.Type|null);
+            type?: (E2E.Message.ProtocolMessage.Type|null);
 
             /** ProtocolMessage ephemeralExpiration */
             ephemeralExpiration?: (number|null);
@@ -27795,7 +27795,7 @@ export namespace E2E {
             public key?: (Protocol.IMessageKey|null);
 
             /** ProtocolMessage type. */
-            public type: Web.PinInChat.Type;
+            public type: E2E.Message.ProtocolMessage.Type;
 
             /** ProtocolMessage ephemeralExpiration. */
             public ephemeralExpiration: number;
@@ -28415,7 +28415,7 @@ export namespace E2E {
             scheduledTimestampMs?: (number|Long|null);
 
             /** ScheduledCallCreationMessage callType */
-            callType?: (SyncAction.CallLogRecord.CallType|null);
+            callType?: (E2E.Message.ScheduledCallCreationMessage.CallType|null);
 
             /** ScheduledCallCreationMessage title */
             title?: (string|null);
@@ -28434,7 +28434,7 @@ export namespace E2E {
             public scheduledTimestampMs: (number|Long);
 
             /** ScheduledCallCreationMessage callType. */
-            public callType: SyncAction.CallLogRecord.CallType;
+            public callType: E2E.Message.ScheduledCallCreationMessage.CallType;
 
             /** ScheduledCallCreationMessage title. */
             public title: string;
@@ -31206,697 +31206,1410 @@ export namespace Protocol {
     }
 }
 
-/** Namespace SignalWhisperTextProtocol. */
-export namespace SignalWhisperTextProtocol {
+/** Namespace CompanionReg. */
+export namespace CompanionReg {
 
-    /** Properties of a DeviceConsistencyCodeMessage. */
-    interface IDeviceConsistencyCodeMessage {
+    /** Properties of a ClientPairingProps. */
+    interface IClientPairingProps {
 
-        /** DeviceConsistencyCodeMessage generation */
-        generation?: (number|null);
+        /** ClientPairingProps isChatDbLidMigrated */
+        isChatDbLidMigrated?: (boolean|null);
 
-        /** DeviceConsistencyCodeMessage signature */
-        signature?: (Uint8Array|null);
+        /** ClientPairingProps isSyncdPureLidSession */
+        isSyncdPureLidSession?: (boolean|null);
     }
 
-    /** Represents a DeviceConsistencyCodeMessage. */
-    class DeviceConsistencyCodeMessage implements IDeviceConsistencyCodeMessage {
+    /** Represents a ClientPairingProps. */
+    class ClientPairingProps implements IClientPairingProps {
 
         /**
-         * Constructs a new DeviceConsistencyCodeMessage.
+         * Constructs a new ClientPairingProps.
          * @param [properties] Properties to set
          */
-        constructor(properties?: SignalWhisperTextProtocol.IDeviceConsistencyCodeMessage);
+        constructor(properties?: CompanionReg.IClientPairingProps);
 
-        /** DeviceConsistencyCodeMessage generation. */
-        public generation: number;
+        /** ClientPairingProps isChatDbLidMigrated. */
+        public isChatDbLidMigrated: boolean;
 
-        /** DeviceConsistencyCodeMessage signature. */
-        public signature: Uint8Array;
+        /** ClientPairingProps isSyncdPureLidSession. */
+        public isSyncdPureLidSession: boolean;
 
         /**
-         * Creates a new DeviceConsistencyCodeMessage instance using the specified properties.
+         * Creates a new ClientPairingProps instance using the specified properties.
          * @param [properties] Properties to set
-         * @returns DeviceConsistencyCodeMessage instance
+         * @returns ClientPairingProps instance
          */
-        public static create(properties?: SignalWhisperTextProtocol.IDeviceConsistencyCodeMessage): SignalWhisperTextProtocol.DeviceConsistencyCodeMessage;
+        public static create(properties?: CompanionReg.IClientPairingProps): CompanionReg.ClientPairingProps;
 
         /**
-         * Encodes the specified DeviceConsistencyCodeMessage message. Does not implicitly {@link SignalWhisperTextProtocol.DeviceConsistencyCodeMessage.verify|verify} messages.
-         * @param message DeviceConsistencyCodeMessage message or plain object to encode
+         * Encodes the specified ClientPairingProps message. Does not implicitly {@link CompanionReg.ClientPairingProps.verify|verify} messages.
+         * @param message ClientPairingProps message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: SignalWhisperTextProtocol.IDeviceConsistencyCodeMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: CompanionReg.IClientPairingProps, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified DeviceConsistencyCodeMessage message, length delimited. Does not implicitly {@link SignalWhisperTextProtocol.DeviceConsistencyCodeMessage.verify|verify} messages.
-         * @param message DeviceConsistencyCodeMessage message or plain object to encode
+         * Encodes the specified ClientPairingProps message, length delimited. Does not implicitly {@link CompanionReg.ClientPairingProps.verify|verify} messages.
+         * @param message ClientPairingProps message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: SignalWhisperTextProtocol.IDeviceConsistencyCodeMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: CompanionReg.IClientPairingProps, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Decodes a DeviceConsistencyCodeMessage message from the specified reader or buffer.
+         * Decodes a ClientPairingProps message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns DeviceConsistencyCodeMessage
+         * @returns ClientPairingProps
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SignalWhisperTextProtocol.DeviceConsistencyCodeMessage;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): CompanionReg.ClientPairingProps;
 
         /**
-         * Decodes a DeviceConsistencyCodeMessage message from the specified reader or buffer, length delimited.
+         * Decodes a ClientPairingProps message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns DeviceConsistencyCodeMessage
+         * @returns ClientPairingProps
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SignalWhisperTextProtocol.DeviceConsistencyCodeMessage;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): CompanionReg.ClientPairingProps;
 
         /**
-         * Verifies a DeviceConsistencyCodeMessage message.
+         * Verifies a ClientPairingProps message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
         public static verify(message: { [k: string]: any }): (string|null);
 
         /**
-         * Creates a DeviceConsistencyCodeMessage message from a plain object. Also converts values to their respective internal types.
+         * Creates a ClientPairingProps message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
-         * @returns DeviceConsistencyCodeMessage
+         * @returns ClientPairingProps
          */
-        public static fromObject(object: { [k: string]: any }): SignalWhisperTextProtocol.DeviceConsistencyCodeMessage;
+        public static fromObject(object: { [k: string]: any }): CompanionReg.ClientPairingProps;
 
         /**
-         * Creates a plain object from a DeviceConsistencyCodeMessage message. Also converts values to other types if specified.
-         * @param message DeviceConsistencyCodeMessage
+         * Creates a plain object from a ClientPairingProps message. Also converts values to other types if specified.
+         * @param message ClientPairingProps
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: SignalWhisperTextProtocol.DeviceConsistencyCodeMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: CompanionReg.ClientPairingProps, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
-         * Converts this DeviceConsistencyCodeMessage to JSON.
+         * Converts this ClientPairingProps to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the default type url for DeviceConsistencyCodeMessage
+         * Gets the default type url for ClientPairingProps
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    /** Properties of a SenderKeyDistributionMessage. */
-    interface ISenderKeyDistributionMessage {
+    /** Properties of an EncryptedPairingRequest. */
+    interface IEncryptedPairingRequest {
 
-        /** SenderKeyDistributionMessage id */
-        id?: (number|null);
+        /** EncryptedPairingRequest encryptedPayload */
+        encryptedPayload?: (Uint8Array|null);
 
-        /** SenderKeyDistributionMessage iteration */
-        iteration?: (number|null);
-
-        /** SenderKeyDistributionMessage chainKey */
-        chainKey?: (Uint8Array|null);
-
-        /** SenderKeyDistributionMessage signingKey */
-        signingKey?: (Uint8Array|null);
+        /** EncryptedPairingRequest iv */
+        iv?: (Uint8Array|null);
     }
 
-    /** Represents a SenderKeyDistributionMessage. */
-    class SenderKeyDistributionMessage implements ISenderKeyDistributionMessage {
+    /** Represents an EncryptedPairingRequest. */
+    class EncryptedPairingRequest implements IEncryptedPairingRequest {
 
         /**
-         * Constructs a new SenderKeyDistributionMessage.
+         * Constructs a new EncryptedPairingRequest.
          * @param [properties] Properties to set
          */
-        constructor(properties?: SignalWhisperTextProtocol.ISenderKeyDistributionMessage);
+        constructor(properties?: CompanionReg.IEncryptedPairingRequest);
 
-        /** SenderKeyDistributionMessage id. */
-        public id: number;
+        /** EncryptedPairingRequest encryptedPayload. */
+        public encryptedPayload: Uint8Array;
 
-        /** SenderKeyDistributionMessage iteration. */
-        public iteration: number;
-
-        /** SenderKeyDistributionMessage chainKey. */
-        public chainKey: Uint8Array;
-
-        /** SenderKeyDistributionMessage signingKey. */
-        public signingKey: Uint8Array;
+        /** EncryptedPairingRequest iv. */
+        public iv: Uint8Array;
 
         /**
-         * Creates a new SenderKeyDistributionMessage instance using the specified properties.
+         * Creates a new EncryptedPairingRequest instance using the specified properties.
          * @param [properties] Properties to set
-         * @returns SenderKeyDistributionMessage instance
+         * @returns EncryptedPairingRequest instance
          */
-        public static create(properties?: SignalWhisperTextProtocol.ISenderKeyDistributionMessage): SignalWhisperTextProtocol.SenderKeyDistributionMessage;
+        public static create(properties?: CompanionReg.IEncryptedPairingRequest): CompanionReg.EncryptedPairingRequest;
 
         /**
-         * Encodes the specified SenderKeyDistributionMessage message. Does not implicitly {@link SignalWhisperTextProtocol.SenderKeyDistributionMessage.verify|verify} messages.
-         * @param message SenderKeyDistributionMessage message or plain object to encode
+         * Encodes the specified EncryptedPairingRequest message. Does not implicitly {@link CompanionReg.EncryptedPairingRequest.verify|verify} messages.
+         * @param message EncryptedPairingRequest message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: SignalWhisperTextProtocol.ISenderKeyDistributionMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: CompanionReg.IEncryptedPairingRequest, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified SenderKeyDistributionMessage message, length delimited. Does not implicitly {@link SignalWhisperTextProtocol.SenderKeyDistributionMessage.verify|verify} messages.
-         * @param message SenderKeyDistributionMessage message or plain object to encode
+         * Encodes the specified EncryptedPairingRequest message, length delimited. Does not implicitly {@link CompanionReg.EncryptedPairingRequest.verify|verify} messages.
+         * @param message EncryptedPairingRequest message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: SignalWhisperTextProtocol.ISenderKeyDistributionMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: CompanionReg.IEncryptedPairingRequest, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Decodes a SenderKeyDistributionMessage message from the specified reader or buffer.
+         * Decodes an EncryptedPairingRequest message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns SenderKeyDistributionMessage
+         * @returns EncryptedPairingRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SignalWhisperTextProtocol.SenderKeyDistributionMessage;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): CompanionReg.EncryptedPairingRequest;
 
         /**
-         * Decodes a SenderKeyDistributionMessage message from the specified reader or buffer, length delimited.
+         * Decodes an EncryptedPairingRequest message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns SenderKeyDistributionMessage
+         * @returns EncryptedPairingRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SignalWhisperTextProtocol.SenderKeyDistributionMessage;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): CompanionReg.EncryptedPairingRequest;
 
         /**
-         * Verifies a SenderKeyDistributionMessage message.
+         * Verifies an EncryptedPairingRequest message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
         public static verify(message: { [k: string]: any }): (string|null);
 
         /**
-         * Creates a SenderKeyDistributionMessage message from a plain object. Also converts values to their respective internal types.
+         * Creates an EncryptedPairingRequest message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
-         * @returns SenderKeyDistributionMessage
+         * @returns EncryptedPairingRequest
          */
-        public static fromObject(object: { [k: string]: any }): SignalWhisperTextProtocol.SenderKeyDistributionMessage;
+        public static fromObject(object: { [k: string]: any }): CompanionReg.EncryptedPairingRequest;
 
         /**
-         * Creates a plain object from a SenderKeyDistributionMessage message. Also converts values to other types if specified.
-         * @param message SenderKeyDistributionMessage
+         * Creates a plain object from an EncryptedPairingRequest message. Also converts values to other types if specified.
+         * @param message EncryptedPairingRequest
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: SignalWhisperTextProtocol.SenderKeyDistributionMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: CompanionReg.EncryptedPairingRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
-         * Converts this SenderKeyDistributionMessage to JSON.
+         * Converts this EncryptedPairingRequest to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the default type url for SenderKeyDistributionMessage
+         * Gets the default type url for EncryptedPairingRequest
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    /** Properties of a SenderKeyMessage. */
-    interface ISenderKeyMessage {
+    /** Properties of a PairingRequest. */
+    interface IPairingRequest {
 
-        /** SenderKeyMessage id */
-        id?: (number|null);
+        /** PairingRequest companionPublicKey */
+        companionPublicKey?: (Uint8Array|null);
 
-        /** SenderKeyMessage iteration */
-        iteration?: (number|null);
+        /** PairingRequest companionIdentityKey */
+        companionIdentityKey?: (Uint8Array|null);
 
-        /** SenderKeyMessage ciphertext */
-        ciphertext?: (Uint8Array|null);
+        /** PairingRequest advSecret */
+        advSecret?: (Uint8Array|null);
     }
 
-    /** Represents a SenderKeyMessage. */
-    class SenderKeyMessage implements ISenderKeyMessage {
+    /** Represents a PairingRequest. */
+    class PairingRequest implements IPairingRequest {
 
         /**
-         * Constructs a new SenderKeyMessage.
+         * Constructs a new PairingRequest.
          * @param [properties] Properties to set
          */
-        constructor(properties?: SignalWhisperTextProtocol.ISenderKeyMessage);
+        constructor(properties?: CompanionReg.IPairingRequest);
 
-        /** SenderKeyMessage id. */
-        public id: number;
+        /** PairingRequest companionPublicKey. */
+        public companionPublicKey: Uint8Array;
 
-        /** SenderKeyMessage iteration. */
-        public iteration: number;
+        /** PairingRequest companionIdentityKey. */
+        public companionIdentityKey: Uint8Array;
 
-        /** SenderKeyMessage ciphertext. */
-        public ciphertext: Uint8Array;
+        /** PairingRequest advSecret. */
+        public advSecret: Uint8Array;
 
         /**
-         * Creates a new SenderKeyMessage instance using the specified properties.
+         * Creates a new PairingRequest instance using the specified properties.
          * @param [properties] Properties to set
-         * @returns SenderKeyMessage instance
+         * @returns PairingRequest instance
          */
-        public static create(properties?: SignalWhisperTextProtocol.ISenderKeyMessage): SignalWhisperTextProtocol.SenderKeyMessage;
+        public static create(properties?: CompanionReg.IPairingRequest): CompanionReg.PairingRequest;
 
         /**
-         * Encodes the specified SenderKeyMessage message. Does not implicitly {@link SignalWhisperTextProtocol.SenderKeyMessage.verify|verify} messages.
-         * @param message SenderKeyMessage message or plain object to encode
+         * Encodes the specified PairingRequest message. Does not implicitly {@link CompanionReg.PairingRequest.verify|verify} messages.
+         * @param message PairingRequest message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: SignalWhisperTextProtocol.ISenderKeyMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: CompanionReg.IPairingRequest, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified SenderKeyMessage message, length delimited. Does not implicitly {@link SignalWhisperTextProtocol.SenderKeyMessage.verify|verify} messages.
-         * @param message SenderKeyMessage message or plain object to encode
+         * Encodes the specified PairingRequest message, length delimited. Does not implicitly {@link CompanionReg.PairingRequest.verify|verify} messages.
+         * @param message PairingRequest message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: SignalWhisperTextProtocol.ISenderKeyMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: CompanionReg.IPairingRequest, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Decodes a SenderKeyMessage message from the specified reader or buffer.
+         * Decodes a PairingRequest message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns SenderKeyMessage
+         * @returns PairingRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SignalWhisperTextProtocol.SenderKeyMessage;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): CompanionReg.PairingRequest;
 
         /**
-         * Decodes a SenderKeyMessage message from the specified reader or buffer, length delimited.
+         * Decodes a PairingRequest message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns SenderKeyMessage
+         * @returns PairingRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SignalWhisperTextProtocol.SenderKeyMessage;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): CompanionReg.PairingRequest;
 
         /**
-         * Verifies a SenderKeyMessage message.
+         * Verifies a PairingRequest message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
         public static verify(message: { [k: string]: any }): (string|null);
 
         /**
-         * Creates a SenderKeyMessage message from a plain object. Also converts values to their respective internal types.
+         * Creates a PairingRequest message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
-         * @returns SenderKeyMessage
+         * @returns PairingRequest
          */
-        public static fromObject(object: { [k: string]: any }): SignalWhisperTextProtocol.SenderKeyMessage;
+        public static fromObject(object: { [k: string]: any }): CompanionReg.PairingRequest;
 
         /**
-         * Creates a plain object from a SenderKeyMessage message. Also converts values to other types if specified.
-         * @param message SenderKeyMessage
+         * Creates a plain object from a PairingRequest message. Also converts values to other types if specified.
+         * @param message PairingRequest
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: SignalWhisperTextProtocol.SenderKeyMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: CompanionReg.PairingRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
-         * Converts this SenderKeyMessage to JSON.
+         * Converts this PairingRequest to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the default type url for SenderKeyMessage
+         * Gets the default type url for PairingRequest
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    /** Properties of a KeyExchangeMessage. */
-    interface IKeyExchangeMessage {
+    /** Properties of a PrimaryEphemeralIdentity. */
+    interface IPrimaryEphemeralIdentity {
 
-        /** KeyExchangeMessage id */
-        id?: (number|null);
+        /** PrimaryEphemeralIdentity publicKey */
+        publicKey?: (Uint8Array|null);
 
-        /** KeyExchangeMessage baseKey */
-        baseKey?: (Uint8Array|null);
-
-        /** KeyExchangeMessage ratchetKey */
-        ratchetKey?: (Uint8Array|null);
-
-        /** KeyExchangeMessage identityKey */
-        identityKey?: (Uint8Array|null);
-
-        /** KeyExchangeMessage baseKeySignature */
-        baseKeySignature?: (Uint8Array|null);
+        /** PrimaryEphemeralIdentity nonce */
+        nonce?: (Uint8Array|null);
     }
 
-    /** Represents a KeyExchangeMessage. */
-    class KeyExchangeMessage implements IKeyExchangeMessage {
+    /** Represents a PrimaryEphemeralIdentity. */
+    class PrimaryEphemeralIdentity implements IPrimaryEphemeralIdentity {
 
         /**
-         * Constructs a new KeyExchangeMessage.
+         * Constructs a new PrimaryEphemeralIdentity.
          * @param [properties] Properties to set
          */
-        constructor(properties?: SignalWhisperTextProtocol.IKeyExchangeMessage);
+        constructor(properties?: CompanionReg.IPrimaryEphemeralIdentity);
 
-        /** KeyExchangeMessage id. */
-        public id: number;
+        /** PrimaryEphemeralIdentity publicKey. */
+        public publicKey: Uint8Array;
 
-        /** KeyExchangeMessage baseKey. */
-        public baseKey: Uint8Array;
-
-        /** KeyExchangeMessage ratchetKey. */
-        public ratchetKey: Uint8Array;
-
-        /** KeyExchangeMessage identityKey. */
-        public identityKey: Uint8Array;
-
-        /** KeyExchangeMessage baseKeySignature. */
-        public baseKeySignature: Uint8Array;
+        /** PrimaryEphemeralIdentity nonce. */
+        public nonce: Uint8Array;
 
         /**
-         * Creates a new KeyExchangeMessage instance using the specified properties.
+         * Creates a new PrimaryEphemeralIdentity instance using the specified properties.
          * @param [properties] Properties to set
-         * @returns KeyExchangeMessage instance
+         * @returns PrimaryEphemeralIdentity instance
          */
-        public static create(properties?: SignalWhisperTextProtocol.IKeyExchangeMessage): SignalWhisperTextProtocol.KeyExchangeMessage;
+        public static create(properties?: CompanionReg.IPrimaryEphemeralIdentity): CompanionReg.PrimaryEphemeralIdentity;
 
         /**
-         * Encodes the specified KeyExchangeMessage message. Does not implicitly {@link SignalWhisperTextProtocol.KeyExchangeMessage.verify|verify} messages.
-         * @param message KeyExchangeMessage message or plain object to encode
+         * Encodes the specified PrimaryEphemeralIdentity message. Does not implicitly {@link CompanionReg.PrimaryEphemeralIdentity.verify|verify} messages.
+         * @param message PrimaryEphemeralIdentity message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: SignalWhisperTextProtocol.IKeyExchangeMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: CompanionReg.IPrimaryEphemeralIdentity, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified KeyExchangeMessage message, length delimited. Does not implicitly {@link SignalWhisperTextProtocol.KeyExchangeMessage.verify|verify} messages.
-         * @param message KeyExchangeMessage message or plain object to encode
+         * Encodes the specified PrimaryEphemeralIdentity message, length delimited. Does not implicitly {@link CompanionReg.PrimaryEphemeralIdentity.verify|verify} messages.
+         * @param message PrimaryEphemeralIdentity message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: SignalWhisperTextProtocol.IKeyExchangeMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: CompanionReg.IPrimaryEphemeralIdentity, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Decodes a KeyExchangeMessage message from the specified reader or buffer.
+         * Decodes a PrimaryEphemeralIdentity message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns KeyExchangeMessage
+         * @returns PrimaryEphemeralIdentity
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SignalWhisperTextProtocol.KeyExchangeMessage;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): CompanionReg.PrimaryEphemeralIdentity;
 
         /**
-         * Decodes a KeyExchangeMessage message from the specified reader or buffer, length delimited.
+         * Decodes a PrimaryEphemeralIdentity message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns KeyExchangeMessage
+         * @returns PrimaryEphemeralIdentity
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SignalWhisperTextProtocol.KeyExchangeMessage;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): CompanionReg.PrimaryEphemeralIdentity;
 
         /**
-         * Verifies a KeyExchangeMessage message.
+         * Verifies a PrimaryEphemeralIdentity message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
         public static verify(message: { [k: string]: any }): (string|null);
 
         /**
-         * Creates a KeyExchangeMessage message from a plain object. Also converts values to their respective internal types.
+         * Creates a PrimaryEphemeralIdentity message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
-         * @returns KeyExchangeMessage
+         * @returns PrimaryEphemeralIdentity
          */
-        public static fromObject(object: { [k: string]: any }): SignalWhisperTextProtocol.KeyExchangeMessage;
+        public static fromObject(object: { [k: string]: any }): CompanionReg.PrimaryEphemeralIdentity;
 
         /**
-         * Creates a plain object from a KeyExchangeMessage message. Also converts values to other types if specified.
-         * @param message KeyExchangeMessage
+         * Creates a plain object from a PrimaryEphemeralIdentity message. Also converts values to other types if specified.
+         * @param message PrimaryEphemeralIdentity
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: SignalWhisperTextProtocol.KeyExchangeMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: CompanionReg.PrimaryEphemeralIdentity, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
-         * Converts this KeyExchangeMessage to JSON.
+         * Converts this PrimaryEphemeralIdentity to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the default type url for KeyExchangeMessage
+         * Gets the default type url for PrimaryEphemeralIdentity
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    /** Properties of a PreKeySignalMessage. */
-    interface IPreKeySignalMessage {
+    /** Properties of a ProloguePayload. */
+    interface IProloguePayload {
 
-        /** PreKeySignalMessage registrationId */
-        registrationId?: (number|null);
+        /** ProloguePayload companionEphemeralIdentity */
+        companionEphemeralIdentity?: (Uint8Array|null);
 
-        /** PreKeySignalMessage preKeyId */
-        preKeyId?: (number|null);
-
-        /** PreKeySignalMessage signedPreKeyId */
-        signedPreKeyId?: (number|null);
-
-        /** PreKeySignalMessage baseKey */
-        baseKey?: (Uint8Array|null);
-
-        /** PreKeySignalMessage identityKey */
-        identityKey?: (Uint8Array|null);
-
-        /** PreKeySignalMessage message */
-        message?: (Uint8Array|null);
+        /** ProloguePayload commitment */
+        commitment?: (CompanionReg.ICompanionCommitment|null);
     }
 
-    /** Represents a PreKeySignalMessage. */
-    class PreKeySignalMessage implements IPreKeySignalMessage {
+    /** Represents a ProloguePayload. */
+    class ProloguePayload implements IProloguePayload {
 
         /**
-         * Constructs a new PreKeySignalMessage.
+         * Constructs a new ProloguePayload.
          * @param [properties] Properties to set
          */
-        constructor(properties?: SignalWhisperTextProtocol.IPreKeySignalMessage);
+        constructor(properties?: CompanionReg.IProloguePayload);
 
-        /** PreKeySignalMessage registrationId. */
-        public registrationId: number;
+        /** ProloguePayload companionEphemeralIdentity. */
+        public companionEphemeralIdentity: Uint8Array;
 
-        /** PreKeySignalMessage preKeyId. */
-        public preKeyId: number;
-
-        /** PreKeySignalMessage signedPreKeyId. */
-        public signedPreKeyId: number;
-
-        /** PreKeySignalMessage baseKey. */
-        public baseKey: Uint8Array;
-
-        /** PreKeySignalMessage identityKey. */
-        public identityKey: Uint8Array;
-
-        /** PreKeySignalMessage message. */
-        public message: Uint8Array;
+        /** ProloguePayload commitment. */
+        public commitment?: (CompanionReg.ICompanionCommitment|null);
 
         /**
-         * Creates a new PreKeySignalMessage instance using the specified properties.
+         * Creates a new ProloguePayload instance using the specified properties.
          * @param [properties] Properties to set
-         * @returns PreKeySignalMessage instance
+         * @returns ProloguePayload instance
          */
-        public static create(properties?: SignalWhisperTextProtocol.IPreKeySignalMessage): SignalWhisperTextProtocol.PreKeySignalMessage;
+        public static create(properties?: CompanionReg.IProloguePayload): CompanionReg.ProloguePayload;
 
         /**
-         * Encodes the specified PreKeySignalMessage message. Does not implicitly {@link SignalWhisperTextProtocol.PreKeySignalMessage.verify|verify} messages.
-         * @param message PreKeySignalMessage message or plain object to encode
+         * Encodes the specified ProloguePayload message. Does not implicitly {@link CompanionReg.ProloguePayload.verify|verify} messages.
+         * @param message ProloguePayload message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: SignalWhisperTextProtocol.IPreKeySignalMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: CompanionReg.IProloguePayload, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified PreKeySignalMessage message, length delimited. Does not implicitly {@link SignalWhisperTextProtocol.PreKeySignalMessage.verify|verify} messages.
-         * @param message PreKeySignalMessage message or plain object to encode
+         * Encodes the specified ProloguePayload message, length delimited. Does not implicitly {@link CompanionReg.ProloguePayload.verify|verify} messages.
+         * @param message ProloguePayload message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: SignalWhisperTextProtocol.IPreKeySignalMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: CompanionReg.IProloguePayload, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Decodes a PreKeySignalMessage message from the specified reader or buffer.
+         * Decodes a ProloguePayload message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns PreKeySignalMessage
+         * @returns ProloguePayload
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SignalWhisperTextProtocol.PreKeySignalMessage;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): CompanionReg.ProloguePayload;
 
         /**
-         * Decodes a PreKeySignalMessage message from the specified reader or buffer, length delimited.
+         * Decodes a ProloguePayload message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns PreKeySignalMessage
+         * @returns ProloguePayload
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SignalWhisperTextProtocol.PreKeySignalMessage;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): CompanionReg.ProloguePayload;
 
         /**
-         * Verifies a PreKeySignalMessage message.
+         * Verifies a ProloguePayload message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
         public static verify(message: { [k: string]: any }): (string|null);
 
         /**
-         * Creates a PreKeySignalMessage message from a plain object. Also converts values to their respective internal types.
+         * Creates a ProloguePayload message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
-         * @returns PreKeySignalMessage
+         * @returns ProloguePayload
          */
-        public static fromObject(object: { [k: string]: any }): SignalWhisperTextProtocol.PreKeySignalMessage;
+        public static fromObject(object: { [k: string]: any }): CompanionReg.ProloguePayload;
 
         /**
-         * Creates a plain object from a PreKeySignalMessage message. Also converts values to other types if specified.
-         * @param message PreKeySignalMessage
+         * Creates a plain object from a ProloguePayload message. Also converts values to other types if specified.
+         * @param message ProloguePayload
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: SignalWhisperTextProtocol.PreKeySignalMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: CompanionReg.ProloguePayload, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
-         * Converts this PreKeySignalMessage to JSON.
+         * Converts this ProloguePayload to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the default type url for PreKeySignalMessage
+         * Gets the default type url for ProloguePayload
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    /** Properties of a SignalMessage. */
-    interface ISignalMessage {
+    /** Properties of a CompanionCommitment. */
+    interface ICompanionCommitment {
 
-        /** SignalMessage ratchetKey */
-        ratchetKey?: (Uint8Array|null);
-
-        /** SignalMessage counter */
-        counter?: (number|null);
-
-        /** SignalMessage previousCounter */
-        previousCounter?: (number|null);
-
-        /** SignalMessage ciphertext */
-        ciphertext?: (Uint8Array|null);
+        /** CompanionCommitment hash */
+        hash?: (Uint8Array|null);
     }
 
-    /** Represents a SignalMessage. */
-    class SignalMessage implements ISignalMessage {
+    /** Represents a CompanionCommitment. */
+    class CompanionCommitment implements ICompanionCommitment {
 
         /**
-         * Constructs a new SignalMessage.
+         * Constructs a new CompanionCommitment.
          * @param [properties] Properties to set
          */
-        constructor(properties?: SignalWhisperTextProtocol.ISignalMessage);
+        constructor(properties?: CompanionReg.ICompanionCommitment);
 
-        /** SignalMessage ratchetKey. */
-        public ratchetKey: Uint8Array;
-
-        /** SignalMessage counter. */
-        public counter: number;
-
-        /** SignalMessage previousCounter. */
-        public previousCounter: number;
-
-        /** SignalMessage ciphertext. */
-        public ciphertext: Uint8Array;
+        /** CompanionCommitment hash. */
+        public hash: Uint8Array;
 
         /**
-         * Creates a new SignalMessage instance using the specified properties.
+         * Creates a new CompanionCommitment instance using the specified properties.
          * @param [properties] Properties to set
-         * @returns SignalMessage instance
+         * @returns CompanionCommitment instance
          */
-        public static create(properties?: SignalWhisperTextProtocol.ISignalMessage): SignalWhisperTextProtocol.SignalMessage;
+        public static create(properties?: CompanionReg.ICompanionCommitment): CompanionReg.CompanionCommitment;
 
         /**
-         * Encodes the specified SignalMessage message. Does not implicitly {@link SignalWhisperTextProtocol.SignalMessage.verify|verify} messages.
-         * @param message SignalMessage message or plain object to encode
+         * Encodes the specified CompanionCommitment message. Does not implicitly {@link CompanionReg.CompanionCommitment.verify|verify} messages.
+         * @param message CompanionCommitment message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: SignalWhisperTextProtocol.ISignalMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: CompanionReg.ICompanionCommitment, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified SignalMessage message, length delimited. Does not implicitly {@link SignalWhisperTextProtocol.SignalMessage.verify|verify} messages.
-         * @param message SignalMessage message or plain object to encode
+         * Encodes the specified CompanionCommitment message, length delimited. Does not implicitly {@link CompanionReg.CompanionCommitment.verify|verify} messages.
+         * @param message CompanionCommitment message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: SignalWhisperTextProtocol.ISignalMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: CompanionReg.ICompanionCommitment, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Decodes a SignalMessage message from the specified reader or buffer.
+         * Decodes a CompanionCommitment message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns SignalMessage
+         * @returns CompanionCommitment
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SignalWhisperTextProtocol.SignalMessage;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): CompanionReg.CompanionCommitment;
 
         /**
-         * Decodes a SignalMessage message from the specified reader or buffer, length delimited.
+         * Decodes a CompanionCommitment message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns SignalMessage
+         * @returns CompanionCommitment
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SignalWhisperTextProtocol.SignalMessage;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): CompanionReg.CompanionCommitment;
 
         /**
-         * Verifies a SignalMessage message.
+         * Verifies a CompanionCommitment message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
         public static verify(message: { [k: string]: any }): (string|null);
 
         /**
-         * Creates a SignalMessage message from a plain object. Also converts values to their respective internal types.
+         * Creates a CompanionCommitment message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
-         * @returns SignalMessage
+         * @returns CompanionCommitment
          */
-        public static fromObject(object: { [k: string]: any }): SignalWhisperTextProtocol.SignalMessage;
+        public static fromObject(object: { [k: string]: any }): CompanionReg.CompanionCommitment;
 
         /**
-         * Creates a plain object from a SignalMessage message. Also converts values to other types if specified.
-         * @param message SignalMessage
+         * Creates a plain object from a CompanionCommitment message. Also converts values to other types if specified.
+         * @param message CompanionCommitment
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: SignalWhisperTextProtocol.SignalMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: CompanionReg.CompanionCommitment, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
-         * Converts this SignalMessage to JSON.
+         * Converts this CompanionCommitment to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the default type url for SignalMessage
+         * Gets the default type url for CompanionCommitment
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
         public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a CompanionEphemeralIdentity. */
+    interface ICompanionEphemeralIdentity {
+
+        /** CompanionEphemeralIdentity publicKey */
+        publicKey?: (Uint8Array|null);
+
+        /** CompanionEphemeralIdentity deviceType */
+        deviceType?: (CompanionReg.DeviceProps.PlatformType|null);
+
+        /** CompanionEphemeralIdentity ref */
+        ref?: (string|null);
+    }
+
+    /** Represents a CompanionEphemeralIdentity. */
+    class CompanionEphemeralIdentity implements ICompanionEphemeralIdentity {
+
+        /**
+         * Constructs a new CompanionEphemeralIdentity.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: CompanionReg.ICompanionEphemeralIdentity);
+
+        /** CompanionEphemeralIdentity publicKey. */
+        public publicKey: Uint8Array;
+
+        /** CompanionEphemeralIdentity deviceType. */
+        public deviceType: CompanionReg.DeviceProps.PlatformType;
+
+        /** CompanionEphemeralIdentity ref. */
+        public ref: string;
+
+        /**
+         * Creates a new CompanionEphemeralIdentity instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns CompanionEphemeralIdentity instance
+         */
+        public static create(properties?: CompanionReg.ICompanionEphemeralIdentity): CompanionReg.CompanionEphemeralIdentity;
+
+        /**
+         * Encodes the specified CompanionEphemeralIdentity message. Does not implicitly {@link CompanionReg.CompanionEphemeralIdentity.verify|verify} messages.
+         * @param message CompanionEphemeralIdentity message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: CompanionReg.ICompanionEphemeralIdentity, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified CompanionEphemeralIdentity message, length delimited. Does not implicitly {@link CompanionReg.CompanionEphemeralIdentity.verify|verify} messages.
+         * @param message CompanionEphemeralIdentity message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: CompanionReg.ICompanionEphemeralIdentity, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a CompanionEphemeralIdentity message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns CompanionEphemeralIdentity
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): CompanionReg.CompanionEphemeralIdentity;
+
+        /**
+         * Decodes a CompanionEphemeralIdentity message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns CompanionEphemeralIdentity
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): CompanionReg.CompanionEphemeralIdentity;
+
+        /**
+         * Verifies a CompanionEphemeralIdentity message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a CompanionEphemeralIdentity message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns CompanionEphemeralIdentity
+         */
+        public static fromObject(object: { [k: string]: any }): CompanionReg.CompanionEphemeralIdentity;
+
+        /**
+         * Creates a plain object from a CompanionEphemeralIdentity message. Also converts values to other types if specified.
+         * @param message CompanionEphemeralIdentity
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: CompanionReg.CompanionEphemeralIdentity, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this CompanionEphemeralIdentity to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for CompanionEphemeralIdentity
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a DeviceProps. */
+    interface IDeviceProps {
+
+        /** DeviceProps os */
+        os?: (string|null);
+
+        /** DeviceProps version */
+        version?: (CompanionReg.DeviceProps.IAppVersion|null);
+
+        /** DeviceProps platformType */
+        platformType?: (CompanionReg.DeviceProps.PlatformType|null);
+
+        /** DeviceProps requireFullSync */
+        requireFullSync?: (boolean|null);
+
+        /** DeviceProps historySyncConfig */
+        historySyncConfig?: (CompanionReg.DeviceProps.IHistorySyncConfig|null);
+    }
+
+    /** Represents a DeviceProps. */
+    class DeviceProps implements IDeviceProps {
+
+        /**
+         * Constructs a new DeviceProps.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: CompanionReg.IDeviceProps);
+
+        /** DeviceProps os. */
+        public os: string;
+
+        /** DeviceProps version. */
+        public version?: (CompanionReg.DeviceProps.IAppVersion|null);
+
+        /** DeviceProps platformType. */
+        public platformType: CompanionReg.DeviceProps.PlatformType;
+
+        /** DeviceProps requireFullSync. */
+        public requireFullSync: boolean;
+
+        /** DeviceProps historySyncConfig. */
+        public historySyncConfig?: (CompanionReg.DeviceProps.IHistorySyncConfig|null);
+
+        /**
+         * Creates a new DeviceProps instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns DeviceProps instance
+         */
+        public static create(properties?: CompanionReg.IDeviceProps): CompanionReg.DeviceProps;
+
+        /**
+         * Encodes the specified DeviceProps message. Does not implicitly {@link CompanionReg.DeviceProps.verify|verify} messages.
+         * @param message DeviceProps message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: CompanionReg.IDeviceProps, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified DeviceProps message, length delimited. Does not implicitly {@link CompanionReg.DeviceProps.verify|verify} messages.
+         * @param message DeviceProps message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: CompanionReg.IDeviceProps, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a DeviceProps message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns DeviceProps
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): CompanionReg.DeviceProps;
+
+        /**
+         * Decodes a DeviceProps message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns DeviceProps
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): CompanionReg.DeviceProps;
+
+        /**
+         * Verifies a DeviceProps message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a DeviceProps message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns DeviceProps
+         */
+        public static fromObject(object: { [k: string]: any }): CompanionReg.DeviceProps;
+
+        /**
+         * Creates a plain object from a DeviceProps message. Also converts values to other types if specified.
+         * @param message DeviceProps
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: CompanionReg.DeviceProps, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this DeviceProps to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for DeviceProps
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace DeviceProps {
+
+        /** Properties of an AppVersion. */
+        interface IAppVersion {
+
+            /** AppVersion primary */
+            primary?: (number|null);
+
+            /** AppVersion secondary */
+            secondary?: (number|null);
+
+            /** AppVersion tertiary */
+            tertiary?: (number|null);
+
+            /** AppVersion quaternary */
+            quaternary?: (number|null);
+
+            /** AppVersion quinary */
+            quinary?: (number|null);
+        }
+
+        /** Represents an AppVersion. */
+        class AppVersion implements IAppVersion {
+
+            /**
+             * Constructs a new AppVersion.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: CompanionReg.DeviceProps.IAppVersion);
+
+            /** AppVersion primary. */
+            public primary: number;
+
+            /** AppVersion secondary. */
+            public secondary: number;
+
+            /** AppVersion tertiary. */
+            public tertiary: number;
+
+            /** AppVersion quaternary. */
+            public quaternary: number;
+
+            /** AppVersion quinary. */
+            public quinary: number;
+
+            /**
+             * Creates a new AppVersion instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns AppVersion instance
+             */
+            public static create(properties?: CompanionReg.DeviceProps.IAppVersion): CompanionReg.DeviceProps.AppVersion;
+
+            /**
+             * Encodes the specified AppVersion message. Does not implicitly {@link CompanionReg.DeviceProps.AppVersion.verify|verify} messages.
+             * @param message AppVersion message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: CompanionReg.DeviceProps.IAppVersion, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified AppVersion message, length delimited. Does not implicitly {@link CompanionReg.DeviceProps.AppVersion.verify|verify} messages.
+             * @param message AppVersion message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: CompanionReg.DeviceProps.IAppVersion, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes an AppVersion message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns AppVersion
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): CompanionReg.DeviceProps.AppVersion;
+
+            /**
+             * Decodes an AppVersion message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns AppVersion
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): CompanionReg.DeviceProps.AppVersion;
+
+            /**
+             * Verifies an AppVersion message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates an AppVersion message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns AppVersion
+             */
+            public static fromObject(object: { [k: string]: any }): CompanionReg.DeviceProps.AppVersion;
+
+            /**
+             * Creates a plain object from an AppVersion message. Also converts values to other types if specified.
+             * @param message AppVersion
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: CompanionReg.DeviceProps.AppVersion, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this AppVersion to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for AppVersion
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a HistorySyncConfig. */
+        interface IHistorySyncConfig {
+
+            /** HistorySyncConfig fullSyncDaysLimit */
+            fullSyncDaysLimit?: (number|null);
+
+            /** HistorySyncConfig fullSyncSizeMbLimit */
+            fullSyncSizeMbLimit?: (number|null);
+
+            /** HistorySyncConfig storageQuotaMb */
+            storageQuotaMb?: (number|null);
+
+            /** HistorySyncConfig inlineInitialPayloadInE2EeMsg */
+            inlineInitialPayloadInE2EeMsg?: (boolean|null);
+
+            /** HistorySyncConfig recentSyncDaysLimit */
+            recentSyncDaysLimit?: (number|null);
+
+            /** HistorySyncConfig supportCallLogHistory */
+            supportCallLogHistory?: (boolean|null);
+
+            /** HistorySyncConfig supportBotUserAgentChatHistory */
+            supportBotUserAgentChatHistory?: (boolean|null);
+
+            /** HistorySyncConfig supportCagReactionsAndPolls */
+            supportCagReactionsAndPolls?: (boolean|null);
+
+            /** HistorySyncConfig supportBizHostedMsg */
+            supportBizHostedMsg?: (boolean|null);
+
+            /** HistorySyncConfig supportRecentSyncChunkMessageCountTuning */
+            supportRecentSyncChunkMessageCountTuning?: (boolean|null);
+
+            /** HistorySyncConfig supportHostedGroupMsg */
+            supportHostedGroupMsg?: (boolean|null);
+
+            /** HistorySyncConfig supportFbidBotChatHistory */
+            supportFbidBotChatHistory?: (boolean|null);
+
+            /** HistorySyncConfig supportAddOnHistorySyncMigration */
+            supportAddOnHistorySyncMigration?: (boolean|null);
+
+            /** HistorySyncConfig supportMessageAssociation */
+            supportMessageAssociation?: (boolean|null);
+        }
+
+        /** Represents a HistorySyncConfig. */
+        class HistorySyncConfig implements IHistorySyncConfig {
+
+            /**
+             * Constructs a new HistorySyncConfig.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: CompanionReg.DeviceProps.IHistorySyncConfig);
+
+            /** HistorySyncConfig fullSyncDaysLimit. */
+            public fullSyncDaysLimit: number;
+
+            /** HistorySyncConfig fullSyncSizeMbLimit. */
+            public fullSyncSizeMbLimit: number;
+
+            /** HistorySyncConfig storageQuotaMb. */
+            public storageQuotaMb: number;
+
+            /** HistorySyncConfig inlineInitialPayloadInE2EeMsg. */
+            public inlineInitialPayloadInE2EeMsg: boolean;
+
+            /** HistorySyncConfig recentSyncDaysLimit. */
+            public recentSyncDaysLimit: number;
+
+            /** HistorySyncConfig supportCallLogHistory. */
+            public supportCallLogHistory: boolean;
+
+            /** HistorySyncConfig supportBotUserAgentChatHistory. */
+            public supportBotUserAgentChatHistory: boolean;
+
+            /** HistorySyncConfig supportCagReactionsAndPolls. */
+            public supportCagReactionsAndPolls: boolean;
+
+            /** HistorySyncConfig supportBizHostedMsg. */
+            public supportBizHostedMsg: boolean;
+
+            /** HistorySyncConfig supportRecentSyncChunkMessageCountTuning. */
+            public supportRecentSyncChunkMessageCountTuning: boolean;
+
+            /** HistorySyncConfig supportHostedGroupMsg. */
+            public supportHostedGroupMsg: boolean;
+
+            /** HistorySyncConfig supportFbidBotChatHistory. */
+            public supportFbidBotChatHistory: boolean;
+
+            /** HistorySyncConfig supportAddOnHistorySyncMigration. */
+            public supportAddOnHistorySyncMigration: boolean;
+
+            /** HistorySyncConfig supportMessageAssociation. */
+            public supportMessageAssociation: boolean;
+
+            /**
+             * Creates a new HistorySyncConfig instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns HistorySyncConfig instance
+             */
+            public static create(properties?: CompanionReg.DeviceProps.IHistorySyncConfig): CompanionReg.DeviceProps.HistorySyncConfig;
+
+            /**
+             * Encodes the specified HistorySyncConfig message. Does not implicitly {@link CompanionReg.DeviceProps.HistorySyncConfig.verify|verify} messages.
+             * @param message HistorySyncConfig message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: CompanionReg.DeviceProps.IHistorySyncConfig, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified HistorySyncConfig message, length delimited. Does not implicitly {@link CompanionReg.DeviceProps.HistorySyncConfig.verify|verify} messages.
+             * @param message HistorySyncConfig message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: CompanionReg.DeviceProps.IHistorySyncConfig, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a HistorySyncConfig message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns HistorySyncConfig
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): CompanionReg.DeviceProps.HistorySyncConfig;
+
+            /**
+             * Decodes a HistorySyncConfig message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns HistorySyncConfig
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): CompanionReg.DeviceProps.HistorySyncConfig;
+
+            /**
+             * Verifies a HistorySyncConfig message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a HistorySyncConfig message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns HistorySyncConfig
+             */
+            public static fromObject(object: { [k: string]: any }): CompanionReg.DeviceProps.HistorySyncConfig;
+
+            /**
+             * Creates a plain object from a HistorySyncConfig message. Also converts values to other types if specified.
+             * @param message HistorySyncConfig
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: CompanionReg.DeviceProps.HistorySyncConfig, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this HistorySyncConfig to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for HistorySyncConfig
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** PlatformType enum. */
+        enum PlatformType {
+            UNKNOWN = 0,
+            CHROME = 1,
+            FIREFOX = 2,
+            IE = 3,
+            OPERA = 4,
+            SAFARI = 5,
+            EDGE = 6,
+            DESKTOP = 7,
+            IPAD = 8,
+            ANDROID_TABLET = 9,
+            OHANA = 10,
+            ALOHA = 11,
+            CATALINA = 12,
+            TCL_TV = 13,
+            IOS_PHONE = 14,
+            IOS_CATALYST = 15,
+            ANDROID_PHONE = 16,
+            ANDROID_AMBIGUOUS = 17,
+            WEAR_OS = 18,
+            AR_WRIST = 19,
+            AR_DEVICE = 20,
+            UWP = 21,
+            VR = 22,
+            CLOUD_API = 23,
+            SMARTGLASSES = 24
+        }
+    }
+}
+
+/** Namespace MmsRetry. */
+export namespace MmsRetry {
+
+    /** Properties of a ServerErrorReceipt. */
+    interface IServerErrorReceipt {
+
+        /** ServerErrorReceipt stanzaId */
+        stanzaId?: (string|null);
+    }
+
+    /** Represents a ServerErrorReceipt. */
+    class ServerErrorReceipt implements IServerErrorReceipt {
+
+        /**
+         * Constructs a new ServerErrorReceipt.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: MmsRetry.IServerErrorReceipt);
+
+        /** ServerErrorReceipt stanzaId. */
+        public stanzaId: string;
+
+        /**
+         * Creates a new ServerErrorReceipt instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ServerErrorReceipt instance
+         */
+        public static create(properties?: MmsRetry.IServerErrorReceipt): MmsRetry.ServerErrorReceipt;
+
+        /**
+         * Encodes the specified ServerErrorReceipt message. Does not implicitly {@link MmsRetry.ServerErrorReceipt.verify|verify} messages.
+         * @param message ServerErrorReceipt message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: MmsRetry.IServerErrorReceipt, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ServerErrorReceipt message, length delimited. Does not implicitly {@link MmsRetry.ServerErrorReceipt.verify|verify} messages.
+         * @param message ServerErrorReceipt message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: MmsRetry.IServerErrorReceipt, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ServerErrorReceipt message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ServerErrorReceipt
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): MmsRetry.ServerErrorReceipt;
+
+        /**
+         * Decodes a ServerErrorReceipt message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ServerErrorReceipt
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): MmsRetry.ServerErrorReceipt;
+
+        /**
+         * Verifies a ServerErrorReceipt message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ServerErrorReceipt message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ServerErrorReceipt
+         */
+        public static fromObject(object: { [k: string]: any }): MmsRetry.ServerErrorReceipt;
+
+        /**
+         * Creates a plain object from a ServerErrorReceipt message. Also converts values to other types if specified.
+         * @param message ServerErrorReceipt
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: MmsRetry.ServerErrorReceipt, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ServerErrorReceipt to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ServerErrorReceipt
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a MediaRetryNotification. */
+    interface IMediaRetryNotification {
+
+        /** MediaRetryNotification stanzaId */
+        stanzaId?: (string|null);
+
+        /** MediaRetryNotification directPath */
+        directPath?: (string|null);
+
+        /** MediaRetryNotification result */
+        result?: (MmsRetry.MediaRetryNotification.ResultType|null);
+
+        /** MediaRetryNotification messageSecret */
+        messageSecret?: (Uint8Array|null);
+    }
+
+    /** Represents a MediaRetryNotification. */
+    class MediaRetryNotification implements IMediaRetryNotification {
+
+        /**
+         * Constructs a new MediaRetryNotification.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: MmsRetry.IMediaRetryNotification);
+
+        /** MediaRetryNotification stanzaId. */
+        public stanzaId: string;
+
+        /** MediaRetryNotification directPath. */
+        public directPath: string;
+
+        /** MediaRetryNotification result. */
+        public result: MmsRetry.MediaRetryNotification.ResultType;
+
+        /** MediaRetryNotification messageSecret. */
+        public messageSecret: Uint8Array;
+
+        /**
+         * Creates a new MediaRetryNotification instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns MediaRetryNotification instance
+         */
+        public static create(properties?: MmsRetry.IMediaRetryNotification): MmsRetry.MediaRetryNotification;
+
+        /**
+         * Encodes the specified MediaRetryNotification message. Does not implicitly {@link MmsRetry.MediaRetryNotification.verify|verify} messages.
+         * @param message MediaRetryNotification message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: MmsRetry.IMediaRetryNotification, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified MediaRetryNotification message, length delimited. Does not implicitly {@link MmsRetry.MediaRetryNotification.verify|verify} messages.
+         * @param message MediaRetryNotification message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: MmsRetry.IMediaRetryNotification, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a MediaRetryNotification message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns MediaRetryNotification
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): MmsRetry.MediaRetryNotification;
+
+        /**
+         * Decodes a MediaRetryNotification message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns MediaRetryNotification
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): MmsRetry.MediaRetryNotification;
+
+        /**
+         * Verifies a MediaRetryNotification message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a MediaRetryNotification message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns MediaRetryNotification
+         */
+        public static fromObject(object: { [k: string]: any }): MmsRetry.MediaRetryNotification;
+
+        /**
+         * Creates a plain object from a MediaRetryNotification message. Also converts values to other types if specified.
+         * @param message MediaRetryNotification
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: MmsRetry.MediaRetryNotification, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this MediaRetryNotification to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for MediaRetryNotification
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace MediaRetryNotification {
+
+        /** ResultType enum. */
+        enum ResultType {
+            GENERAL_ERROR = 0,
+            SUCCESS = 1,
+            NOT_FOUND = 2,
+            DECRYPTION_ERROR = 3
+        }
     }
 }
 
@@ -31934,7 +32647,7 @@ export namespace SyncAction {
         numberOverride?: (number|null);
 
         /** PatchDebugData senderPlatform */
-        senderPlatform?: (Wa6.ClientPayload.UserAgent.Platform|null);
+        senderPlatform?: (SyncAction.PatchDebugData.Platform|null);
 
         /** PatchDebugData isSenderPrimary */
         isSenderPrimary?: (boolean|null);
@@ -31977,7 +32690,7 @@ export namespace SyncAction {
         public numberOverride: number;
 
         /** PatchDebugData senderPlatform. */
-        public senderPlatform: Wa6.ClientPayload.UserAgent.Platform;
+        public senderPlatform: SyncAction.PatchDebugData.Platform;
 
         /** PatchDebugData isSenderPrimary. */
         public isSenderPrimary: boolean;
@@ -34637,7 +35350,7 @@ export namespace SyncAction {
             isActive?: (boolean|null);
 
             /** LabelEditAction type */
-            type?: (E2E.Message.ListMessage.ListType|null);
+            type?: (SyncAction.SyncActionValue.LabelEditAction.ListType|null);
         }
 
         /** Represents a LabelEditAction. */
@@ -34668,7 +35381,7 @@ export namespace SyncAction {
             public isActive: boolean;
 
             /** LabelEditAction type. */
-            public type: E2E.Message.ListMessage.ListType;
+            public type: SyncAction.SyncActionValue.LabelEditAction.ListType;
 
             /**
              * Creates a new LabelEditAction instance using the specified properties.
@@ -35397,7 +36110,7 @@ export namespace SyncAction {
         interface IMerchantPaymentPartnerAction {
 
             /** MerchantPaymentPartnerAction status */
-            status: Web.PaymentInfo.Status;
+            status: SyncAction.SyncActionValue.MerchantPaymentPartnerAction.Status;
 
             /** MerchantPaymentPartnerAction country */
             country: string;
@@ -35419,7 +36132,7 @@ export namespace SyncAction {
             constructor(properties?: SyncAction.SyncActionValue.IMerchantPaymentPartnerAction);
 
             /** MerchantPaymentPartnerAction status. */
-            public status: Web.PaymentInfo.Status;
+            public status: SyncAction.SyncActionValue.MerchantPaymentPartnerAction.Status;
 
             /** MerchantPaymentPartnerAction country. */
             public country: string;
@@ -38375,7 +39088,7 @@ export namespace SyncAction {
         participants?: (SyncAction.CallLogRecord.IParticipantInfo[]|null);
 
         /** CallLogRecord callType */
-        callType?: (E2E.Message.CallLogMessage.CallType|null);
+        callType?: (SyncAction.CallLogRecord.CallType|null);
     }
 
     /** Represents a CallLogRecord. */
@@ -38430,7 +39143,7 @@ export namespace SyncAction {
         public participants: SyncAction.CallLogRecord.IParticipantInfo[];
 
         /** CallLogRecord callType. */
-        public callType: E2E.Message.CallLogMessage.CallType;
+        public callType: SyncAction.CallLogRecord.CallType;
 
         /**
          * Creates a new CallLogRecord instance using the specified properties.
@@ -38750,2952 +39463,6 @@ export namespace SyncAction {
     }
 }
 
-/** Namespace Wa6. */
-export namespace Wa6 {
-
-    /** Properties of a ClientPayload. */
-    interface IClientPayload {
-
-        /** ClientPayload username */
-        username?: (number|Long|null);
-
-        /** ClientPayload passive */
-        passive?: (boolean|null);
-
-        /** ClientPayload userAgent */
-        userAgent?: (Wa6.ClientPayload.IUserAgent|null);
-
-        /** ClientPayload webInfo */
-        webInfo?: (Wa6.ClientPayload.IWebInfo|null);
-
-        /** ClientPayload pushName */
-        pushName?: (string|null);
-
-        /** ClientPayload sessionId */
-        sessionId?: (number|null);
-
-        /** ClientPayload shortConnect */
-        shortConnect?: (boolean|null);
-
-        /** ClientPayload connectType */
-        connectType?: (Wa6.ClientPayload.ConnectType|null);
-
-        /** ClientPayload connectReason */
-        connectReason?: (Wa6.ClientPayload.ConnectReason|null);
-
-        /** ClientPayload shards */
-        shards?: (number[]|null);
-
-        /** ClientPayload dnsSource */
-        dnsSource?: (Wa6.ClientPayload.IDNSSource|null);
-
-        /** ClientPayload connectAttemptCount */
-        connectAttemptCount?: (number|null);
-
-        /** ClientPayload device */
-        device?: (number|null);
-
-        /** ClientPayload devicePairingData */
-        devicePairingData?: (Wa6.ClientPayload.IDevicePairingRegistrationData|null);
-
-        /** ClientPayload product */
-        product?: (E2E.Message.ListMessage.IProduct|null);
-
-        /** ClientPayload fbCat */
-        fbCat?: (Uint8Array|null);
-
-        /** ClientPayload fbUserAgent */
-        fbUserAgent?: (Uint8Array|null);
-
-        /** ClientPayload oc */
-        oc?: (boolean|null);
-
-        /** ClientPayload lc */
-        lc?: (number|null);
-
-        /** ClientPayload iosAppExtension */
-        iosAppExtension?: (Wa6.ClientPayload.IOSAppExtension|null);
-
-        /** ClientPayload fbAppId */
-        fbAppId?: (number|Long|null);
-
-        /** ClientPayload fbDeviceId */
-        fbDeviceId?: (Uint8Array|null);
-
-        /** ClientPayload pull */
-        pull?: (boolean|null);
-
-        /** ClientPayload paddingBytes */
-        paddingBytes?: (Uint8Array|null);
-
-        /** ClientPayload yearClass */
-        yearClass?: (number|null);
-
-        /** ClientPayload memClass */
-        memClass?: (number|null);
-
-        /** ClientPayload interopData */
-        interopData?: (Wa6.ClientPayload.IInteropData|null);
-
-        /** ClientPayload trafficAnonymization */
-        trafficAnonymization?: (Wa6.ClientPayload.TrafficAnonymization|null);
-    }
-
-    /** Represents a ClientPayload. */
-    class ClientPayload implements IClientPayload {
-
-        /**
-         * Constructs a new ClientPayload.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Wa6.IClientPayload);
-
-        /** ClientPayload username. */
-        public username: (number|Long);
-
-        /** ClientPayload passive. */
-        public passive: boolean;
-
-        /** ClientPayload userAgent. */
-        public userAgent?: (Wa6.ClientPayload.IUserAgent|null);
-
-        /** ClientPayload webInfo. */
-        public webInfo?: (Wa6.ClientPayload.IWebInfo|null);
-
-        /** ClientPayload pushName. */
-        public pushName: string;
-
-        /** ClientPayload sessionId. */
-        public sessionId: number;
-
-        /** ClientPayload shortConnect. */
-        public shortConnect: boolean;
-
-        /** ClientPayload connectType. */
-        public connectType: Wa6.ClientPayload.ConnectType;
-
-        /** ClientPayload connectReason. */
-        public connectReason: Wa6.ClientPayload.ConnectReason;
-
-        /** ClientPayload shards. */
-        public shards: number[];
-
-        /** ClientPayload dnsSource. */
-        public dnsSource?: (Wa6.ClientPayload.IDNSSource|null);
-
-        /** ClientPayload connectAttemptCount. */
-        public connectAttemptCount: number;
-
-        /** ClientPayload device. */
-        public device: number;
-
-        /** ClientPayload devicePairingData. */
-        public devicePairingData?: (Wa6.ClientPayload.IDevicePairingRegistrationData|null);
-
-        /** ClientPayload product. */
-        public product?: (E2E.Message.ListMessage.IProduct|null);
-
-        /** ClientPayload fbCat. */
-        public fbCat: Uint8Array;
-
-        /** ClientPayload fbUserAgent. */
-        public fbUserAgent: Uint8Array;
-
-        /** ClientPayload oc. */
-        public oc: boolean;
-
-        /** ClientPayload lc. */
-        public lc: number;
-
-        /** ClientPayload iosAppExtension. */
-        public iosAppExtension: Wa6.ClientPayload.IOSAppExtension;
-
-        /** ClientPayload fbAppId. */
-        public fbAppId: (number|Long);
-
-        /** ClientPayload fbDeviceId. */
-        public fbDeviceId: Uint8Array;
-
-        /** ClientPayload pull. */
-        public pull: boolean;
-
-        /** ClientPayload paddingBytes. */
-        public paddingBytes: Uint8Array;
-
-        /** ClientPayload yearClass. */
-        public yearClass: number;
-
-        /** ClientPayload memClass. */
-        public memClass: number;
-
-        /** ClientPayload interopData. */
-        public interopData?: (Wa6.ClientPayload.IInteropData|null);
-
-        /** ClientPayload trafficAnonymization. */
-        public trafficAnonymization: Wa6.ClientPayload.TrafficAnonymization;
-
-        /**
-         * Creates a new ClientPayload instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns ClientPayload instance
-         */
-        public static create(properties?: Wa6.IClientPayload): Wa6.ClientPayload;
-
-        /**
-         * Encodes the specified ClientPayload message. Does not implicitly {@link Wa6.ClientPayload.verify|verify} messages.
-         * @param message ClientPayload message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Wa6.IClientPayload, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified ClientPayload message, length delimited. Does not implicitly {@link Wa6.ClientPayload.verify|verify} messages.
-         * @param message ClientPayload message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Wa6.IClientPayload, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a ClientPayload message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns ClientPayload
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Wa6.ClientPayload;
-
-        /**
-         * Decodes a ClientPayload message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns ClientPayload
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Wa6.ClientPayload;
-
-        /**
-         * Verifies a ClientPayload message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a ClientPayload message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns ClientPayload
-         */
-        public static fromObject(object: { [k: string]: any }): Wa6.ClientPayload;
-
-        /**
-         * Creates a plain object from a ClientPayload message. Also converts values to other types if specified.
-         * @param message ClientPayload
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: Wa6.ClientPayload, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this ClientPayload to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for ClientPayload
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    namespace ClientPayload {
-
-        /** ConnectReason enum. */
-        enum ConnectReason {
-            PUSH = 0,
-            USER_ACTIVATED = 1,
-            SCHEDULED = 2,
-            ERROR_RECONNECT = 3,
-            NETWORK_SWITCH = 4,
-            PING_RECONNECT = 5,
-            UNKNOWN = 6
-        }
-
-        /** ConnectType enum. */
-        enum ConnectType {
-            CELLULAR_UNKNOWN = 0,
-            WIFI_UNKNOWN = 1,
-            CELLULAR_EDGE = 100,
-            CELLULAR_IDEN = 101,
-            CELLULAR_UMTS = 102,
-            CELLULAR_EVDO = 103,
-            CELLULAR_GPRS = 104,
-            CELLULAR_HSDPA = 105,
-            CELLULAR_HSUPA = 106,
-            CELLULAR_HSPA = 107,
-            CELLULAR_CDMA = 108,
-            CELLULAR_1XRTT = 109,
-            CELLULAR_EHRPD = 110,
-            CELLULAR_LTE = 111,
-            CELLULAR_HSPAP = 112
-        }
-
-        /** Properties of a DNSSource. */
-        interface IDNSSource {
-
-            /** DNSSource dnsMethod */
-            dnsMethod?: (Wa6.ClientPayload.DNSSource.DNSResolutionMethod|null);
-
-            /** DNSSource appCached */
-            appCached?: (boolean|null);
-        }
-
-        /** Represents a DNSSource. */
-        class DNSSource implements IDNSSource {
-
-            /**
-             * Constructs a new DNSSource.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: Wa6.ClientPayload.IDNSSource);
-
-            /** DNSSource dnsMethod. */
-            public dnsMethod: Wa6.ClientPayload.DNSSource.DNSResolutionMethod;
-
-            /** DNSSource appCached. */
-            public appCached: boolean;
-
-            /**
-             * Creates a new DNSSource instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns DNSSource instance
-             */
-            public static create(properties?: Wa6.ClientPayload.IDNSSource): Wa6.ClientPayload.DNSSource;
-
-            /**
-             * Encodes the specified DNSSource message. Does not implicitly {@link Wa6.ClientPayload.DNSSource.verify|verify} messages.
-             * @param message DNSSource message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: Wa6.ClientPayload.IDNSSource, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified DNSSource message, length delimited. Does not implicitly {@link Wa6.ClientPayload.DNSSource.verify|verify} messages.
-             * @param message DNSSource message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: Wa6.ClientPayload.IDNSSource, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes a DNSSource message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns DNSSource
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Wa6.ClientPayload.DNSSource;
-
-            /**
-             * Decodes a DNSSource message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns DNSSource
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Wa6.ClientPayload.DNSSource;
-
-            /**
-             * Verifies a DNSSource message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates a DNSSource message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns DNSSource
-             */
-            public static fromObject(object: { [k: string]: any }): Wa6.ClientPayload.DNSSource;
-
-            /**
-             * Creates a plain object from a DNSSource message. Also converts values to other types if specified.
-             * @param message DNSSource
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: Wa6.ClientPayload.DNSSource, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this DNSSource to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-
-            /**
-             * Gets the default type url for DNSSource
-             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns The default type url
-             */
-            public static getTypeUrl(typeUrlPrefix?: string): string;
-        }
-
-        namespace DNSSource {
-
-            /** DNSResolutionMethod enum. */
-            enum DNSResolutionMethod {
-                SYSTEM = 0,
-                GOOGLE = 1,
-                HARDCODED = 2,
-                OVERRIDE = 3,
-                FALLBACK = 4
-            }
-        }
-
-        /** Properties of a DevicePairingRegistrationData. */
-        interface IDevicePairingRegistrationData {
-
-            /** DevicePairingRegistrationData eRegid */
-            eRegid?: (Uint8Array|null);
-
-            /** DevicePairingRegistrationData eKeytype */
-            eKeytype?: (Uint8Array|null);
-
-            /** DevicePairingRegistrationData eIdent */
-            eIdent?: (Uint8Array|null);
-
-            /** DevicePairingRegistrationData eSkeyId */
-            eSkeyId?: (Uint8Array|null);
-
-            /** DevicePairingRegistrationData eSkeyVal */
-            eSkeyVal?: (Uint8Array|null);
-
-            /** DevicePairingRegistrationData eSkeySig */
-            eSkeySig?: (Uint8Array|null);
-
-            /** DevicePairingRegistrationData buildHash */
-            buildHash?: (Uint8Array|null);
-
-            /** DevicePairingRegistrationData deviceProps */
-            deviceProps?: (Uint8Array|null);
-        }
-
-        /** Represents a DevicePairingRegistrationData. */
-        class DevicePairingRegistrationData implements IDevicePairingRegistrationData {
-
-            /**
-             * Constructs a new DevicePairingRegistrationData.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: Wa6.ClientPayload.IDevicePairingRegistrationData);
-
-            /** DevicePairingRegistrationData eRegid. */
-            public eRegid: Uint8Array;
-
-            /** DevicePairingRegistrationData eKeytype. */
-            public eKeytype: Uint8Array;
-
-            /** DevicePairingRegistrationData eIdent. */
-            public eIdent: Uint8Array;
-
-            /** DevicePairingRegistrationData eSkeyId. */
-            public eSkeyId: Uint8Array;
-
-            /** DevicePairingRegistrationData eSkeyVal. */
-            public eSkeyVal: Uint8Array;
-
-            /** DevicePairingRegistrationData eSkeySig. */
-            public eSkeySig: Uint8Array;
-
-            /** DevicePairingRegistrationData buildHash. */
-            public buildHash: Uint8Array;
-
-            /** DevicePairingRegistrationData deviceProps. */
-            public deviceProps: Uint8Array;
-
-            /**
-             * Creates a new DevicePairingRegistrationData instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns DevicePairingRegistrationData instance
-             */
-            public static create(properties?: Wa6.ClientPayload.IDevicePairingRegistrationData): Wa6.ClientPayload.DevicePairingRegistrationData;
-
-            /**
-             * Encodes the specified DevicePairingRegistrationData message. Does not implicitly {@link Wa6.ClientPayload.DevicePairingRegistrationData.verify|verify} messages.
-             * @param message DevicePairingRegistrationData message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: Wa6.ClientPayload.IDevicePairingRegistrationData, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified DevicePairingRegistrationData message, length delimited. Does not implicitly {@link Wa6.ClientPayload.DevicePairingRegistrationData.verify|verify} messages.
-             * @param message DevicePairingRegistrationData message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: Wa6.ClientPayload.IDevicePairingRegistrationData, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes a DevicePairingRegistrationData message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns DevicePairingRegistrationData
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Wa6.ClientPayload.DevicePairingRegistrationData;
-
-            /**
-             * Decodes a DevicePairingRegistrationData message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns DevicePairingRegistrationData
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Wa6.ClientPayload.DevicePairingRegistrationData;
-
-            /**
-             * Verifies a DevicePairingRegistrationData message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates a DevicePairingRegistrationData message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns DevicePairingRegistrationData
-             */
-            public static fromObject(object: { [k: string]: any }): Wa6.ClientPayload.DevicePairingRegistrationData;
-
-            /**
-             * Creates a plain object from a DevicePairingRegistrationData message. Also converts values to other types if specified.
-             * @param message DevicePairingRegistrationData
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: Wa6.ClientPayload.DevicePairingRegistrationData, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this DevicePairingRegistrationData to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-
-            /**
-             * Gets the default type url for DevicePairingRegistrationData
-             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns The default type url
-             */
-            public static getTypeUrl(typeUrlPrefix?: string): string;
-        }
-
-        /** IOSAppExtension enum. */
-        enum IOSAppExtension {
-            SHARE_EXTENSION = 0,
-            SERVICE_EXTENSION = 1,
-            INTENTS_EXTENSION = 2
-        }
-
-        /** Properties of an InteropData. */
-        interface IInteropData {
-
-            /** InteropData accountId */
-            accountId?: (number|Long|null);
-
-            /** InteropData token */
-            token?: (Uint8Array|null);
-
-            /** InteropData enableReadReceipts */
-            enableReadReceipts?: (boolean|null);
-        }
-
-        /** Represents an InteropData. */
-        class InteropData implements IInteropData {
-
-            /**
-             * Constructs a new InteropData.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: Wa6.ClientPayload.IInteropData);
-
-            /** InteropData accountId. */
-            public accountId: (number|Long);
-
-            /** InteropData token. */
-            public token: Uint8Array;
-
-            /** InteropData enableReadReceipts. */
-            public enableReadReceipts: boolean;
-
-            /**
-             * Creates a new InteropData instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns InteropData instance
-             */
-            public static create(properties?: Wa6.ClientPayload.IInteropData): Wa6.ClientPayload.InteropData;
-
-            /**
-             * Encodes the specified InteropData message. Does not implicitly {@link Wa6.ClientPayload.InteropData.verify|verify} messages.
-             * @param message InteropData message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: Wa6.ClientPayload.IInteropData, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified InteropData message, length delimited. Does not implicitly {@link Wa6.ClientPayload.InteropData.verify|verify} messages.
-             * @param message InteropData message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: Wa6.ClientPayload.IInteropData, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes an InteropData message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns InteropData
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Wa6.ClientPayload.InteropData;
-
-            /**
-             * Decodes an InteropData message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns InteropData
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Wa6.ClientPayload.InteropData;
-
-            /**
-             * Verifies an InteropData message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates an InteropData message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns InteropData
-             */
-            public static fromObject(object: { [k: string]: any }): Wa6.ClientPayload.InteropData;
-
-            /**
-             * Creates a plain object from an InteropData message. Also converts values to other types if specified.
-             * @param message InteropData
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: Wa6.ClientPayload.InteropData, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this InteropData to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-
-            /**
-             * Gets the default type url for InteropData
-             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns The default type url
-             */
-            public static getTypeUrl(typeUrlPrefix?: string): string;
-        }
-
-        /** Product enum. */
-        enum Product {
-            WHATSAPP = 0,
-            MESSENGER = 1,
-            INTEROP = 2,
-            INTEROP_MSGR = 3
-        }
-
-        /** TrafficAnonymization enum. */
-        enum TrafficAnonymization {
-            OFF = 0,
-            STANDARD = 1
-        }
-
-        /** Properties of a UserAgent. */
-        interface IUserAgent {
-
-            /** UserAgent platform */
-            platform?: (SyncAction.PatchDebugData.Platform|null);
-
-            /** UserAgent appVersion */
-            appVersion?: (CompanionReg.DeviceProps.IAppVersion|null);
-
-            /** UserAgent mcc */
-            mcc?: (string|null);
-
-            /** UserAgent mnc */
-            mnc?: (string|null);
-
-            /** UserAgent osVersion */
-            osVersion?: (string|null);
-
-            /** UserAgent manufacturer */
-            manufacturer?: (string|null);
-
-            /** UserAgent device */
-            device?: (string|null);
-
-            /** UserAgent osBuildNumber */
-            osBuildNumber?: (string|null);
-
-            /** UserAgent phoneId */
-            phoneId?: (string|null);
-
-            /** UserAgent releaseChannel */
-            releaseChannel?: (Wa6.ClientPayload.UserAgent.ReleaseChannel|null);
-
-            /** UserAgent localeLanguageIso6391 */
-            localeLanguageIso6391?: (string|null);
-
-            /** UserAgent localeCountryIso31661Alpha2 */
-            localeCountryIso31661Alpha2?: (string|null);
-
-            /** UserAgent deviceBoard */
-            deviceBoard?: (string|null);
-
-            /** UserAgent deviceExpId */
-            deviceExpId?: (string|null);
-
-            /** UserAgent deviceType */
-            deviceType?: (Wa6.ClientPayload.UserAgent.DeviceType|null);
-
-            /** UserAgent deviceModelType */
-            deviceModelType?: (string|null);
-        }
-
-        /** Represents a UserAgent. */
-        class UserAgent implements IUserAgent {
-
-            /**
-             * Constructs a new UserAgent.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: Wa6.ClientPayload.IUserAgent);
-
-            /** UserAgent platform. */
-            public platform: SyncAction.PatchDebugData.Platform;
-
-            /** UserAgent appVersion. */
-            public appVersion?: (CompanionReg.DeviceProps.IAppVersion|null);
-
-            /** UserAgent mcc. */
-            public mcc: string;
-
-            /** UserAgent mnc. */
-            public mnc: string;
-
-            /** UserAgent osVersion. */
-            public osVersion: string;
-
-            /** UserAgent manufacturer. */
-            public manufacturer: string;
-
-            /** UserAgent device. */
-            public device: string;
-
-            /** UserAgent osBuildNumber. */
-            public osBuildNumber: string;
-
-            /** UserAgent phoneId. */
-            public phoneId: string;
-
-            /** UserAgent releaseChannel. */
-            public releaseChannel: Wa6.ClientPayload.UserAgent.ReleaseChannel;
-
-            /** UserAgent localeLanguageIso6391. */
-            public localeLanguageIso6391: string;
-
-            /** UserAgent localeCountryIso31661Alpha2. */
-            public localeCountryIso31661Alpha2: string;
-
-            /** UserAgent deviceBoard. */
-            public deviceBoard: string;
-
-            /** UserAgent deviceExpId. */
-            public deviceExpId: string;
-
-            /** UserAgent deviceType. */
-            public deviceType: Wa6.ClientPayload.UserAgent.DeviceType;
-
-            /** UserAgent deviceModelType. */
-            public deviceModelType: string;
-
-            /**
-             * Creates a new UserAgent instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns UserAgent instance
-             */
-            public static create(properties?: Wa6.ClientPayload.IUserAgent): Wa6.ClientPayload.UserAgent;
-
-            /**
-             * Encodes the specified UserAgent message. Does not implicitly {@link Wa6.ClientPayload.UserAgent.verify|verify} messages.
-             * @param message UserAgent message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: Wa6.ClientPayload.IUserAgent, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified UserAgent message, length delimited. Does not implicitly {@link Wa6.ClientPayload.UserAgent.verify|verify} messages.
-             * @param message UserAgent message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: Wa6.ClientPayload.IUserAgent, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes a UserAgent message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns UserAgent
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Wa6.ClientPayload.UserAgent;
-
-            /**
-             * Decodes a UserAgent message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns UserAgent
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Wa6.ClientPayload.UserAgent;
-
-            /**
-             * Verifies a UserAgent message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates a UserAgent message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns UserAgent
-             */
-            public static fromObject(object: { [k: string]: any }): Wa6.ClientPayload.UserAgent;
-
-            /**
-             * Creates a plain object from a UserAgent message. Also converts values to other types if specified.
-             * @param message UserAgent
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: Wa6.ClientPayload.UserAgent, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this UserAgent to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-
-            /**
-             * Gets the default type url for UserAgent
-             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns The default type url
-             */
-            public static getTypeUrl(typeUrlPrefix?: string): string;
-        }
-
-        namespace UserAgent {
-
-            /** Properties of an AppVersion. */
-            interface IAppVersion {
-
-                /** AppVersion primary */
-                primary?: (number|null);
-
-                /** AppVersion secondary */
-                secondary?: (number|null);
-
-                /** AppVersion tertiary */
-                tertiary?: (number|null);
-
-                /** AppVersion quaternary */
-                quaternary?: (number|null);
-
-                /** AppVersion quinary */
-                quinary?: (number|null);
-            }
-
-            /** Represents an AppVersion. */
-            class AppVersion implements IAppVersion {
-
-                /**
-                 * Constructs a new AppVersion.
-                 * @param [properties] Properties to set
-                 */
-                constructor(properties?: Wa6.ClientPayload.UserAgent.IAppVersion);
-
-                /** AppVersion primary. */
-                public primary: number;
-
-                /** AppVersion secondary. */
-                public secondary: number;
-
-                /** AppVersion tertiary. */
-                public tertiary: number;
-
-                /** AppVersion quaternary. */
-                public quaternary: number;
-
-                /** AppVersion quinary. */
-                public quinary: number;
-
-                /**
-                 * Creates a new AppVersion instance using the specified properties.
-                 * @param [properties] Properties to set
-                 * @returns AppVersion instance
-                 */
-                public static create(properties?: Wa6.ClientPayload.UserAgent.IAppVersion): Wa6.ClientPayload.UserAgent.AppVersion;
-
-                /**
-                 * Encodes the specified AppVersion message. Does not implicitly {@link Wa6.ClientPayload.UserAgent.AppVersion.verify|verify} messages.
-                 * @param message AppVersion message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encode(message: Wa6.ClientPayload.UserAgent.IAppVersion, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Encodes the specified AppVersion message, length delimited. Does not implicitly {@link Wa6.ClientPayload.UserAgent.AppVersion.verify|verify} messages.
-                 * @param message AppVersion message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encodeDelimited(message: Wa6.ClientPayload.UserAgent.IAppVersion, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Decodes an AppVersion message from the specified reader or buffer.
-                 * @param reader Reader or buffer to decode from
-                 * @param [length] Message length if known beforehand
-                 * @returns AppVersion
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Wa6.ClientPayload.UserAgent.AppVersion;
-
-                /**
-                 * Decodes an AppVersion message from the specified reader or buffer, length delimited.
-                 * @param reader Reader or buffer to decode from
-                 * @returns AppVersion
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Wa6.ClientPayload.UserAgent.AppVersion;
-
-                /**
-                 * Verifies an AppVersion message.
-                 * @param message Plain object to verify
-                 * @returns `null` if valid, otherwise the reason why it is not
-                 */
-                public static verify(message: { [k: string]: any }): (string|null);
-
-                /**
-                 * Creates an AppVersion message from a plain object. Also converts values to their respective internal types.
-                 * @param object Plain object
-                 * @returns AppVersion
-                 */
-                public static fromObject(object: { [k: string]: any }): Wa6.ClientPayload.UserAgent.AppVersion;
-
-                /**
-                 * Creates a plain object from an AppVersion message. Also converts values to other types if specified.
-                 * @param message AppVersion
-                 * @param [options] Conversion options
-                 * @returns Plain object
-                 */
-                public static toObject(message: Wa6.ClientPayload.UserAgent.AppVersion, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                /**
-                 * Converts this AppVersion to JSON.
-                 * @returns JSON object
-                 */
-                public toJSON(): { [k: string]: any };
-
-                /**
-                 * Gets the default type url for AppVersion
-                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns The default type url
-                 */
-                public static getTypeUrl(typeUrlPrefix?: string): string;
-            }
-
-            /** DeviceType enum. */
-            enum DeviceType {
-                PHONE = 0,
-                TABLET = 1,
-                DESKTOP = 2,
-                WEARABLE = 3,
-                VR = 4
-            }
-
-            /** Platform enum. */
-            enum Platform {
-                ANDROID = 0,
-                IOS = 1,
-                WINDOWS_PHONE = 2,
-                BLACKBERRY = 3,
-                BLACKBERRYX = 4,
-                S40 = 5,
-                S60 = 6,
-                PYTHON_CLIENT = 7,
-                TIZEN = 8,
-                ENTERPRISE = 9,
-                SMB_ANDROID = 10,
-                KAIOS = 11,
-                SMB_IOS = 12,
-                WINDOWS = 13,
-                WEB = 14,
-                PORTAL = 15,
-                GREEN_ANDROID = 16,
-                GREEN_IPHONE = 17,
-                BLUE_ANDROID = 18,
-                BLUE_IPHONE = 19,
-                FBLITE_ANDROID = 20,
-                MLITE_ANDROID = 21,
-                IGLITE_ANDROID = 22,
-                PAGE = 23,
-                MACOS = 24,
-                OCULUS_MSG = 25,
-                OCULUS_CALL = 26,
-                MILAN = 27,
-                CAPI = 28,
-                WEAROS = 29,
-                ARDEVICE = 30,
-                VRDEVICE = 31,
-                BLUE_WEB = 32,
-                IPAD = 33,
-                TEST = 34,
-                SMART_GLASSES = 35
-            }
-
-            /** ReleaseChannel enum. */
-            enum ReleaseChannel {
-                RELEASE = 0,
-                BETA = 1,
-                ALPHA = 2,
-                DEBUG = 3
-            }
-        }
-
-        /** Properties of a WebInfo. */
-        interface IWebInfo {
-
-            /** WebInfo refToken */
-            refToken?: (string|null);
-
-            /** WebInfo version */
-            version?: (string|null);
-
-            /** WebInfo webdPayload */
-            webdPayload?: (Wa6.ClientPayload.WebInfo.IWebdPayload|null);
-
-            /** WebInfo webSubPlatform */
-            webSubPlatform?: (Wa6.ClientPayload.WebInfo.WebSubPlatform|null);
-        }
-
-        /** Represents a WebInfo. */
-        class WebInfo implements IWebInfo {
-
-            /**
-             * Constructs a new WebInfo.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: Wa6.ClientPayload.IWebInfo);
-
-            /** WebInfo refToken. */
-            public refToken: string;
-
-            /** WebInfo version. */
-            public version: string;
-
-            /** WebInfo webdPayload. */
-            public webdPayload?: (Wa6.ClientPayload.WebInfo.IWebdPayload|null);
-
-            /** WebInfo webSubPlatform. */
-            public webSubPlatform: Wa6.ClientPayload.WebInfo.WebSubPlatform;
-
-            /**
-             * Creates a new WebInfo instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns WebInfo instance
-             */
-            public static create(properties?: Wa6.ClientPayload.IWebInfo): Wa6.ClientPayload.WebInfo;
-
-            /**
-             * Encodes the specified WebInfo message. Does not implicitly {@link Wa6.ClientPayload.WebInfo.verify|verify} messages.
-             * @param message WebInfo message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: Wa6.ClientPayload.IWebInfo, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified WebInfo message, length delimited. Does not implicitly {@link Wa6.ClientPayload.WebInfo.verify|verify} messages.
-             * @param message WebInfo message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: Wa6.ClientPayload.IWebInfo, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes a WebInfo message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns WebInfo
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Wa6.ClientPayload.WebInfo;
-
-            /**
-             * Decodes a WebInfo message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns WebInfo
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Wa6.ClientPayload.WebInfo;
-
-            /**
-             * Verifies a WebInfo message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates a WebInfo message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns WebInfo
-             */
-            public static fromObject(object: { [k: string]: any }): Wa6.ClientPayload.WebInfo;
-
-            /**
-             * Creates a plain object from a WebInfo message. Also converts values to other types if specified.
-             * @param message WebInfo
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: Wa6.ClientPayload.WebInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this WebInfo to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-
-            /**
-             * Gets the default type url for WebInfo
-             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns The default type url
-             */
-            public static getTypeUrl(typeUrlPrefix?: string): string;
-        }
-
-        namespace WebInfo {
-
-            /** WebSubPlatform enum. */
-            enum WebSubPlatform {
-                WEB_BROWSER = 0,
-                APP_STORE = 1,
-                WIN_STORE = 2,
-                DARWIN = 3,
-                WIN32 = 4,
-                WIN_HYBRID = 5
-            }
-
-            /** Properties of a WebdPayload. */
-            interface IWebdPayload {
-
-                /** WebdPayload usesParticipantInKey */
-                usesParticipantInKey?: (boolean|null);
-
-                /** WebdPayload supportsStarredMessages */
-                supportsStarredMessages?: (boolean|null);
-
-                /** WebdPayload supportsDocumentMessages */
-                supportsDocumentMessages?: (boolean|null);
-
-                /** WebdPayload supportsUrlMessages */
-                supportsUrlMessages?: (boolean|null);
-
-                /** WebdPayload supportsMediaRetry */
-                supportsMediaRetry?: (boolean|null);
-
-                /** WebdPayload supportsE2EImage */
-                supportsE2EImage?: (boolean|null);
-
-                /** WebdPayload supportsE2EVideo */
-                supportsE2EVideo?: (boolean|null);
-
-                /** WebdPayload supportsE2EAudio */
-                supportsE2EAudio?: (boolean|null);
-
-                /** WebdPayload supportsE2EDocument */
-                supportsE2EDocument?: (boolean|null);
-
-                /** WebdPayload documentTypes */
-                documentTypes?: (string|null);
-
-                /** WebdPayload features */
-                features?: (Uint8Array|null);
-            }
-
-            /** Represents a WebdPayload. */
-            class WebdPayload implements IWebdPayload {
-
-                /**
-                 * Constructs a new WebdPayload.
-                 * @param [properties] Properties to set
-                 */
-                constructor(properties?: Wa6.ClientPayload.WebInfo.IWebdPayload);
-
-                /** WebdPayload usesParticipantInKey. */
-                public usesParticipantInKey: boolean;
-
-                /** WebdPayload supportsStarredMessages. */
-                public supportsStarredMessages: boolean;
-
-                /** WebdPayload supportsDocumentMessages. */
-                public supportsDocumentMessages: boolean;
-
-                /** WebdPayload supportsUrlMessages. */
-                public supportsUrlMessages: boolean;
-
-                /** WebdPayload supportsMediaRetry. */
-                public supportsMediaRetry: boolean;
-
-                /** WebdPayload supportsE2EImage. */
-                public supportsE2EImage: boolean;
-
-                /** WebdPayload supportsE2EVideo. */
-                public supportsE2EVideo: boolean;
-
-                /** WebdPayload supportsE2EAudio. */
-                public supportsE2EAudio: boolean;
-
-                /** WebdPayload supportsE2EDocument. */
-                public supportsE2EDocument: boolean;
-
-                /** WebdPayload documentTypes. */
-                public documentTypes: string;
-
-                /** WebdPayload features. */
-                public features: Uint8Array;
-
-                /**
-                 * Creates a new WebdPayload instance using the specified properties.
-                 * @param [properties] Properties to set
-                 * @returns WebdPayload instance
-                 */
-                public static create(properties?: Wa6.ClientPayload.WebInfo.IWebdPayload): Wa6.ClientPayload.WebInfo.WebdPayload;
-
-                /**
-                 * Encodes the specified WebdPayload message. Does not implicitly {@link Wa6.ClientPayload.WebInfo.WebdPayload.verify|verify} messages.
-                 * @param message WebdPayload message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encode(message: Wa6.ClientPayload.WebInfo.IWebdPayload, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Encodes the specified WebdPayload message, length delimited. Does not implicitly {@link Wa6.ClientPayload.WebInfo.WebdPayload.verify|verify} messages.
-                 * @param message WebdPayload message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encodeDelimited(message: Wa6.ClientPayload.WebInfo.IWebdPayload, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Decodes a WebdPayload message from the specified reader or buffer.
-                 * @param reader Reader or buffer to decode from
-                 * @param [length] Message length if known beforehand
-                 * @returns WebdPayload
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Wa6.ClientPayload.WebInfo.WebdPayload;
-
-                /**
-                 * Decodes a WebdPayload message from the specified reader or buffer, length delimited.
-                 * @param reader Reader or buffer to decode from
-                 * @returns WebdPayload
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Wa6.ClientPayload.WebInfo.WebdPayload;
-
-                /**
-                 * Verifies a WebdPayload message.
-                 * @param message Plain object to verify
-                 * @returns `null` if valid, otherwise the reason why it is not
-                 */
-                public static verify(message: { [k: string]: any }): (string|null);
-
-                /**
-                 * Creates a WebdPayload message from a plain object. Also converts values to their respective internal types.
-                 * @param object Plain object
-                 * @returns WebdPayload
-                 */
-                public static fromObject(object: { [k: string]: any }): Wa6.ClientPayload.WebInfo.WebdPayload;
-
-                /**
-                 * Creates a plain object from a WebdPayload message. Also converts values to other types if specified.
-                 * @param message WebdPayload
-                 * @param [options] Conversion options
-                 * @returns Plain object
-                 */
-                public static toObject(message: Wa6.ClientPayload.WebInfo.WebdPayload, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                /**
-                 * Converts this WebdPayload to JSON.
-                 * @returns JSON object
-                 */
-                public toJSON(): { [k: string]: any };
-
-                /**
-                 * Gets the default type url for WebdPayload
-                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns The default type url
-                 */
-                public static getTypeUrl(typeUrlPrefix?: string): string;
-            }
-        }
-    }
-
-    /** Properties of a HandshakeMessage. */
-    interface IHandshakeMessage {
-
-        /** HandshakeMessage clientHello */
-        clientHello?: (Wa6.HandshakeMessage.IClientHello|null);
-
-        /** HandshakeMessage serverHello */
-        serverHello?: (Wa6.HandshakeMessage.IServerHello|null);
-
-        /** HandshakeMessage clientFinish */
-        clientFinish?: (Wa6.HandshakeMessage.IClientFinish|null);
-    }
-
-    /** Represents a HandshakeMessage. */
-    class HandshakeMessage implements IHandshakeMessage {
-
-        /**
-         * Constructs a new HandshakeMessage.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Wa6.IHandshakeMessage);
-
-        /** HandshakeMessage clientHello. */
-        public clientHello?: (Wa6.HandshakeMessage.IClientHello|null);
-
-        /** HandshakeMessage serverHello. */
-        public serverHello?: (Wa6.HandshakeMessage.IServerHello|null);
-
-        /** HandshakeMessage clientFinish. */
-        public clientFinish?: (Wa6.HandshakeMessage.IClientFinish|null);
-
-        /**
-         * Creates a new HandshakeMessage instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns HandshakeMessage instance
-         */
-        public static create(properties?: Wa6.IHandshakeMessage): Wa6.HandshakeMessage;
-
-        /**
-         * Encodes the specified HandshakeMessage message. Does not implicitly {@link Wa6.HandshakeMessage.verify|verify} messages.
-         * @param message HandshakeMessage message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Wa6.IHandshakeMessage, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified HandshakeMessage message, length delimited. Does not implicitly {@link Wa6.HandshakeMessage.verify|verify} messages.
-         * @param message HandshakeMessage message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Wa6.IHandshakeMessage, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a HandshakeMessage message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns HandshakeMessage
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Wa6.HandshakeMessage;
-
-        /**
-         * Decodes a HandshakeMessage message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns HandshakeMessage
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Wa6.HandshakeMessage;
-
-        /**
-         * Verifies a HandshakeMessage message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a HandshakeMessage message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns HandshakeMessage
-         */
-        public static fromObject(object: { [k: string]: any }): Wa6.HandshakeMessage;
-
-        /**
-         * Creates a plain object from a HandshakeMessage message. Also converts values to other types if specified.
-         * @param message HandshakeMessage
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: Wa6.HandshakeMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this HandshakeMessage to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for HandshakeMessage
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    namespace HandshakeMessage {
-
-        /** Properties of a ClientFinish. */
-        interface IClientFinish {
-
-            /** ClientFinish static */
-            "static"?: (Uint8Array|null);
-
-            /** ClientFinish payload */
-            payload?: (Uint8Array|null);
-        }
-
-        /** Represents a ClientFinish. */
-        class ClientFinish implements IClientFinish {
-
-            /**
-             * Constructs a new ClientFinish.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: Wa6.HandshakeMessage.IClientFinish);
-
-            /** ClientFinish static. */
-            public static: Uint8Array;
-
-            /** ClientFinish payload. */
-            public payload: Uint8Array;
-
-            /**
-             * Creates a new ClientFinish instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns ClientFinish instance
-             */
-            public static create(properties?: Wa6.HandshakeMessage.IClientFinish): Wa6.HandshakeMessage.ClientFinish;
-
-            /**
-             * Encodes the specified ClientFinish message. Does not implicitly {@link Wa6.HandshakeMessage.ClientFinish.verify|verify} messages.
-             * @param message ClientFinish message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: Wa6.HandshakeMessage.IClientFinish, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified ClientFinish message, length delimited. Does not implicitly {@link Wa6.HandshakeMessage.ClientFinish.verify|verify} messages.
-             * @param message ClientFinish message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: Wa6.HandshakeMessage.IClientFinish, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes a ClientFinish message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns ClientFinish
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Wa6.HandshakeMessage.ClientFinish;
-
-            /**
-             * Decodes a ClientFinish message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns ClientFinish
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Wa6.HandshakeMessage.ClientFinish;
-
-            /**
-             * Verifies a ClientFinish message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates a ClientFinish message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns ClientFinish
-             */
-            public static fromObject(object: { [k: string]: any }): Wa6.HandshakeMessage.ClientFinish;
-
-            /**
-             * Creates a plain object from a ClientFinish message. Also converts values to other types if specified.
-             * @param message ClientFinish
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: Wa6.HandshakeMessage.ClientFinish, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this ClientFinish to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-
-            /**
-             * Gets the default type url for ClientFinish
-             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns The default type url
-             */
-            public static getTypeUrl(typeUrlPrefix?: string): string;
-        }
-
-        /** Properties of a ClientHello. */
-        interface IClientHello {
-
-            /** ClientHello ephemeral */
-            ephemeral?: (Uint8Array|null);
-
-            /** ClientHello static */
-            "static"?: (Uint8Array|null);
-
-            /** ClientHello payload */
-            payload?: (Uint8Array|null);
-        }
-
-        /** Represents a ClientHello. */
-        class ClientHello implements IClientHello {
-
-            /**
-             * Constructs a new ClientHello.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: Wa6.HandshakeMessage.IClientHello);
-
-            /** ClientHello ephemeral. */
-            public ephemeral: Uint8Array;
-
-            /** ClientHello static. */
-            public static: Uint8Array;
-
-            /** ClientHello payload. */
-            public payload: Uint8Array;
-
-            /**
-             * Creates a new ClientHello instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns ClientHello instance
-             */
-            public static create(properties?: Wa6.HandshakeMessage.IClientHello): Wa6.HandshakeMessage.ClientHello;
-
-            /**
-             * Encodes the specified ClientHello message. Does not implicitly {@link Wa6.HandshakeMessage.ClientHello.verify|verify} messages.
-             * @param message ClientHello message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: Wa6.HandshakeMessage.IClientHello, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified ClientHello message, length delimited. Does not implicitly {@link Wa6.HandshakeMessage.ClientHello.verify|verify} messages.
-             * @param message ClientHello message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: Wa6.HandshakeMessage.IClientHello, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes a ClientHello message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns ClientHello
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Wa6.HandshakeMessage.ClientHello;
-
-            /**
-             * Decodes a ClientHello message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns ClientHello
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Wa6.HandshakeMessage.ClientHello;
-
-            /**
-             * Verifies a ClientHello message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates a ClientHello message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns ClientHello
-             */
-            public static fromObject(object: { [k: string]: any }): Wa6.HandshakeMessage.ClientHello;
-
-            /**
-             * Creates a plain object from a ClientHello message. Also converts values to other types if specified.
-             * @param message ClientHello
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: Wa6.HandshakeMessage.ClientHello, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this ClientHello to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-
-            /**
-             * Gets the default type url for ClientHello
-             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns The default type url
-             */
-            public static getTypeUrl(typeUrlPrefix?: string): string;
-        }
-
-        /** Properties of a ServerHello. */
-        interface IServerHello {
-
-            /** ServerHello ephemeral */
-            ephemeral?: (Uint8Array|null);
-
-            /** ServerHello static */
-            "static"?: (Uint8Array|null);
-
-            /** ServerHello payload */
-            payload?: (Uint8Array|null);
-        }
-
-        /** Represents a ServerHello. */
-        class ServerHello implements IServerHello {
-
-            /**
-             * Constructs a new ServerHello.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: Wa6.HandshakeMessage.IServerHello);
-
-            /** ServerHello ephemeral. */
-            public ephemeral: Uint8Array;
-
-            /** ServerHello static. */
-            public static: Uint8Array;
-
-            /** ServerHello payload. */
-            public payload: Uint8Array;
-
-            /**
-             * Creates a new ServerHello instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns ServerHello instance
-             */
-            public static create(properties?: Wa6.HandshakeMessage.IServerHello): Wa6.HandshakeMessage.ServerHello;
-
-            /**
-             * Encodes the specified ServerHello message. Does not implicitly {@link Wa6.HandshakeMessage.ServerHello.verify|verify} messages.
-             * @param message ServerHello message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: Wa6.HandshakeMessage.IServerHello, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified ServerHello message, length delimited. Does not implicitly {@link Wa6.HandshakeMessage.ServerHello.verify|verify} messages.
-             * @param message ServerHello message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: Wa6.HandshakeMessage.IServerHello, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes a ServerHello message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns ServerHello
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Wa6.HandshakeMessage.ServerHello;
-
-            /**
-             * Decodes a ServerHello message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns ServerHello
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Wa6.HandshakeMessage.ServerHello;
-
-            /**
-             * Verifies a ServerHello message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates a ServerHello message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns ServerHello
-             */
-            public static fromObject(object: { [k: string]: any }): Wa6.HandshakeMessage.ServerHello;
-
-            /**
-             * Creates a plain object from a ServerHello message. Also converts values to other types if specified.
-             * @param message ServerHello
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: Wa6.HandshakeMessage.ServerHello, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this ServerHello to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-
-            /**
-             * Gets the default type url for ServerHello
-             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns The default type url
-             */
-            public static getTypeUrl(typeUrlPrefix?: string): string;
-        }
-    }
-}
-
-/** Namespace CompanionReg. */
-export namespace CompanionReg {
-
-    /** Properties of a ClientPairingProps. */
-    interface IClientPairingProps {
-
-        /** ClientPairingProps isChatDbLidMigrated */
-        isChatDbLidMigrated?: (boolean|null);
-
-        /** ClientPairingProps isSyncdPureLidSession */
-        isSyncdPureLidSession?: (boolean|null);
-    }
-
-    /** Represents a ClientPairingProps. */
-    class ClientPairingProps implements IClientPairingProps {
-
-        /**
-         * Constructs a new ClientPairingProps.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: CompanionReg.IClientPairingProps);
-
-        /** ClientPairingProps isChatDbLidMigrated. */
-        public isChatDbLidMigrated: boolean;
-
-        /** ClientPairingProps isSyncdPureLidSession. */
-        public isSyncdPureLidSession: boolean;
-
-        /**
-         * Creates a new ClientPairingProps instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns ClientPairingProps instance
-         */
-        public static create(properties?: CompanionReg.IClientPairingProps): CompanionReg.ClientPairingProps;
-
-        /**
-         * Encodes the specified ClientPairingProps message. Does not implicitly {@link CompanionReg.ClientPairingProps.verify|verify} messages.
-         * @param message ClientPairingProps message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: CompanionReg.IClientPairingProps, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified ClientPairingProps message, length delimited. Does not implicitly {@link CompanionReg.ClientPairingProps.verify|verify} messages.
-         * @param message ClientPairingProps message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: CompanionReg.IClientPairingProps, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a ClientPairingProps message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns ClientPairingProps
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): CompanionReg.ClientPairingProps;
-
-        /**
-         * Decodes a ClientPairingProps message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns ClientPairingProps
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): CompanionReg.ClientPairingProps;
-
-        /**
-         * Verifies a ClientPairingProps message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a ClientPairingProps message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns ClientPairingProps
-         */
-        public static fromObject(object: { [k: string]: any }): CompanionReg.ClientPairingProps;
-
-        /**
-         * Creates a plain object from a ClientPairingProps message. Also converts values to other types if specified.
-         * @param message ClientPairingProps
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: CompanionReg.ClientPairingProps, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this ClientPairingProps to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for ClientPairingProps
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of an EncryptedPairingRequest. */
-    interface IEncryptedPairingRequest {
-
-        /** EncryptedPairingRequest encryptedPayload */
-        encryptedPayload?: (Uint8Array|null);
-
-        /** EncryptedPairingRequest iv */
-        iv?: (Uint8Array|null);
-    }
-
-    /** Represents an EncryptedPairingRequest. */
-    class EncryptedPairingRequest implements IEncryptedPairingRequest {
-
-        /**
-         * Constructs a new EncryptedPairingRequest.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: CompanionReg.IEncryptedPairingRequest);
-
-        /** EncryptedPairingRequest encryptedPayload. */
-        public encryptedPayload: Uint8Array;
-
-        /** EncryptedPairingRequest iv. */
-        public iv: Uint8Array;
-
-        /**
-         * Creates a new EncryptedPairingRequest instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns EncryptedPairingRequest instance
-         */
-        public static create(properties?: CompanionReg.IEncryptedPairingRequest): CompanionReg.EncryptedPairingRequest;
-
-        /**
-         * Encodes the specified EncryptedPairingRequest message. Does not implicitly {@link CompanionReg.EncryptedPairingRequest.verify|verify} messages.
-         * @param message EncryptedPairingRequest message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: CompanionReg.IEncryptedPairingRequest, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified EncryptedPairingRequest message, length delimited. Does not implicitly {@link CompanionReg.EncryptedPairingRequest.verify|verify} messages.
-         * @param message EncryptedPairingRequest message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: CompanionReg.IEncryptedPairingRequest, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes an EncryptedPairingRequest message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns EncryptedPairingRequest
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): CompanionReg.EncryptedPairingRequest;
-
-        /**
-         * Decodes an EncryptedPairingRequest message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns EncryptedPairingRequest
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): CompanionReg.EncryptedPairingRequest;
-
-        /**
-         * Verifies an EncryptedPairingRequest message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates an EncryptedPairingRequest message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns EncryptedPairingRequest
-         */
-        public static fromObject(object: { [k: string]: any }): CompanionReg.EncryptedPairingRequest;
-
-        /**
-         * Creates a plain object from an EncryptedPairingRequest message. Also converts values to other types if specified.
-         * @param message EncryptedPairingRequest
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: CompanionReg.EncryptedPairingRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this EncryptedPairingRequest to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for EncryptedPairingRequest
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a PairingRequest. */
-    interface IPairingRequest {
-
-        /** PairingRequest companionPublicKey */
-        companionPublicKey?: (Uint8Array|null);
-
-        /** PairingRequest companionIdentityKey */
-        companionIdentityKey?: (Uint8Array|null);
-
-        /** PairingRequest advSecret */
-        advSecret?: (Uint8Array|null);
-    }
-
-    /** Represents a PairingRequest. */
-    class PairingRequest implements IPairingRequest {
-
-        /**
-         * Constructs a new PairingRequest.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: CompanionReg.IPairingRequest);
-
-        /** PairingRequest companionPublicKey. */
-        public companionPublicKey: Uint8Array;
-
-        /** PairingRequest companionIdentityKey. */
-        public companionIdentityKey: Uint8Array;
-
-        /** PairingRequest advSecret. */
-        public advSecret: Uint8Array;
-
-        /**
-         * Creates a new PairingRequest instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns PairingRequest instance
-         */
-        public static create(properties?: CompanionReg.IPairingRequest): CompanionReg.PairingRequest;
-
-        /**
-         * Encodes the specified PairingRequest message. Does not implicitly {@link CompanionReg.PairingRequest.verify|verify} messages.
-         * @param message PairingRequest message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: CompanionReg.IPairingRequest, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified PairingRequest message, length delimited. Does not implicitly {@link CompanionReg.PairingRequest.verify|verify} messages.
-         * @param message PairingRequest message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: CompanionReg.IPairingRequest, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a PairingRequest message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns PairingRequest
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): CompanionReg.PairingRequest;
-
-        /**
-         * Decodes a PairingRequest message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns PairingRequest
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): CompanionReg.PairingRequest;
-
-        /**
-         * Verifies a PairingRequest message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a PairingRequest message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns PairingRequest
-         */
-        public static fromObject(object: { [k: string]: any }): CompanionReg.PairingRequest;
-
-        /**
-         * Creates a plain object from a PairingRequest message. Also converts values to other types if specified.
-         * @param message PairingRequest
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: CompanionReg.PairingRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this PairingRequest to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for PairingRequest
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a PrimaryEphemeralIdentity. */
-    interface IPrimaryEphemeralIdentity {
-
-        /** PrimaryEphemeralIdentity publicKey */
-        publicKey?: (Uint8Array|null);
-
-        /** PrimaryEphemeralIdentity nonce */
-        nonce?: (Uint8Array|null);
-    }
-
-    /** Represents a PrimaryEphemeralIdentity. */
-    class PrimaryEphemeralIdentity implements IPrimaryEphemeralIdentity {
-
-        /**
-         * Constructs a new PrimaryEphemeralIdentity.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: CompanionReg.IPrimaryEphemeralIdentity);
-
-        /** PrimaryEphemeralIdentity publicKey. */
-        public publicKey: Uint8Array;
-
-        /** PrimaryEphemeralIdentity nonce. */
-        public nonce: Uint8Array;
-
-        /**
-         * Creates a new PrimaryEphemeralIdentity instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns PrimaryEphemeralIdentity instance
-         */
-        public static create(properties?: CompanionReg.IPrimaryEphemeralIdentity): CompanionReg.PrimaryEphemeralIdentity;
-
-        /**
-         * Encodes the specified PrimaryEphemeralIdentity message. Does not implicitly {@link CompanionReg.PrimaryEphemeralIdentity.verify|verify} messages.
-         * @param message PrimaryEphemeralIdentity message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: CompanionReg.IPrimaryEphemeralIdentity, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified PrimaryEphemeralIdentity message, length delimited. Does not implicitly {@link CompanionReg.PrimaryEphemeralIdentity.verify|verify} messages.
-         * @param message PrimaryEphemeralIdentity message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: CompanionReg.IPrimaryEphemeralIdentity, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a PrimaryEphemeralIdentity message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns PrimaryEphemeralIdentity
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): CompanionReg.PrimaryEphemeralIdentity;
-
-        /**
-         * Decodes a PrimaryEphemeralIdentity message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns PrimaryEphemeralIdentity
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): CompanionReg.PrimaryEphemeralIdentity;
-
-        /**
-         * Verifies a PrimaryEphemeralIdentity message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a PrimaryEphemeralIdentity message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns PrimaryEphemeralIdentity
-         */
-        public static fromObject(object: { [k: string]: any }): CompanionReg.PrimaryEphemeralIdentity;
-
-        /**
-         * Creates a plain object from a PrimaryEphemeralIdentity message. Also converts values to other types if specified.
-         * @param message PrimaryEphemeralIdentity
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: CompanionReg.PrimaryEphemeralIdentity, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this PrimaryEphemeralIdentity to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for PrimaryEphemeralIdentity
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a ProloguePayload. */
-    interface IProloguePayload {
-
-        /** ProloguePayload companionEphemeralIdentity */
-        companionEphemeralIdentity?: (Uint8Array|null);
-
-        /** ProloguePayload commitment */
-        commitment?: (CompanionReg.ICompanionCommitment|null);
-    }
-
-    /** Represents a ProloguePayload. */
-    class ProloguePayload implements IProloguePayload {
-
-        /**
-         * Constructs a new ProloguePayload.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: CompanionReg.IProloguePayload);
-
-        /** ProloguePayload companionEphemeralIdentity. */
-        public companionEphemeralIdentity: Uint8Array;
-
-        /** ProloguePayload commitment. */
-        public commitment?: (CompanionReg.ICompanionCommitment|null);
-
-        /**
-         * Creates a new ProloguePayload instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns ProloguePayload instance
-         */
-        public static create(properties?: CompanionReg.IProloguePayload): CompanionReg.ProloguePayload;
-
-        /**
-         * Encodes the specified ProloguePayload message. Does not implicitly {@link CompanionReg.ProloguePayload.verify|verify} messages.
-         * @param message ProloguePayload message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: CompanionReg.IProloguePayload, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified ProloguePayload message, length delimited. Does not implicitly {@link CompanionReg.ProloguePayload.verify|verify} messages.
-         * @param message ProloguePayload message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: CompanionReg.IProloguePayload, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a ProloguePayload message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns ProloguePayload
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): CompanionReg.ProloguePayload;
-
-        /**
-         * Decodes a ProloguePayload message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns ProloguePayload
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): CompanionReg.ProloguePayload;
-
-        /**
-         * Verifies a ProloguePayload message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a ProloguePayload message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns ProloguePayload
-         */
-        public static fromObject(object: { [k: string]: any }): CompanionReg.ProloguePayload;
-
-        /**
-         * Creates a plain object from a ProloguePayload message. Also converts values to other types if specified.
-         * @param message ProloguePayload
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: CompanionReg.ProloguePayload, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this ProloguePayload to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for ProloguePayload
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a CompanionCommitment. */
-    interface ICompanionCommitment {
-
-        /** CompanionCommitment hash */
-        hash?: (Uint8Array|null);
-    }
-
-    /** Represents a CompanionCommitment. */
-    class CompanionCommitment implements ICompanionCommitment {
-
-        /**
-         * Constructs a new CompanionCommitment.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: CompanionReg.ICompanionCommitment);
-
-        /** CompanionCommitment hash. */
-        public hash: Uint8Array;
-
-        /**
-         * Creates a new CompanionCommitment instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns CompanionCommitment instance
-         */
-        public static create(properties?: CompanionReg.ICompanionCommitment): CompanionReg.CompanionCommitment;
-
-        /**
-         * Encodes the specified CompanionCommitment message. Does not implicitly {@link CompanionReg.CompanionCommitment.verify|verify} messages.
-         * @param message CompanionCommitment message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: CompanionReg.ICompanionCommitment, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified CompanionCommitment message, length delimited. Does not implicitly {@link CompanionReg.CompanionCommitment.verify|verify} messages.
-         * @param message CompanionCommitment message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: CompanionReg.ICompanionCommitment, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a CompanionCommitment message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns CompanionCommitment
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): CompanionReg.CompanionCommitment;
-
-        /**
-         * Decodes a CompanionCommitment message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns CompanionCommitment
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): CompanionReg.CompanionCommitment;
-
-        /**
-         * Verifies a CompanionCommitment message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a CompanionCommitment message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns CompanionCommitment
-         */
-        public static fromObject(object: { [k: string]: any }): CompanionReg.CompanionCommitment;
-
-        /**
-         * Creates a plain object from a CompanionCommitment message. Also converts values to other types if specified.
-         * @param message CompanionCommitment
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: CompanionReg.CompanionCommitment, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this CompanionCommitment to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for CompanionCommitment
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a CompanionEphemeralIdentity. */
-    interface ICompanionEphemeralIdentity {
-
-        /** CompanionEphemeralIdentity publicKey */
-        publicKey?: (Uint8Array|null);
-
-        /** CompanionEphemeralIdentity deviceType */
-        deviceType?: (CompanionReg.DeviceProps.PlatformType|null);
-
-        /** CompanionEphemeralIdentity ref */
-        ref?: (string|null);
-    }
-
-    /** Represents a CompanionEphemeralIdentity. */
-    class CompanionEphemeralIdentity implements ICompanionEphemeralIdentity {
-
-        /**
-         * Constructs a new CompanionEphemeralIdentity.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: CompanionReg.ICompanionEphemeralIdentity);
-
-        /** CompanionEphemeralIdentity publicKey. */
-        public publicKey: Uint8Array;
-
-        /** CompanionEphemeralIdentity deviceType. */
-        public deviceType: CompanionReg.DeviceProps.PlatformType;
-
-        /** CompanionEphemeralIdentity ref. */
-        public ref: string;
-
-        /**
-         * Creates a new CompanionEphemeralIdentity instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns CompanionEphemeralIdentity instance
-         */
-        public static create(properties?: CompanionReg.ICompanionEphemeralIdentity): CompanionReg.CompanionEphemeralIdentity;
-
-        /**
-         * Encodes the specified CompanionEphemeralIdentity message. Does not implicitly {@link CompanionReg.CompanionEphemeralIdentity.verify|verify} messages.
-         * @param message CompanionEphemeralIdentity message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: CompanionReg.ICompanionEphemeralIdentity, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified CompanionEphemeralIdentity message, length delimited. Does not implicitly {@link CompanionReg.CompanionEphemeralIdentity.verify|verify} messages.
-         * @param message CompanionEphemeralIdentity message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: CompanionReg.ICompanionEphemeralIdentity, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a CompanionEphemeralIdentity message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns CompanionEphemeralIdentity
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): CompanionReg.CompanionEphemeralIdentity;
-
-        /**
-         * Decodes a CompanionEphemeralIdentity message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns CompanionEphemeralIdentity
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): CompanionReg.CompanionEphemeralIdentity;
-
-        /**
-         * Verifies a CompanionEphemeralIdentity message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a CompanionEphemeralIdentity message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns CompanionEphemeralIdentity
-         */
-        public static fromObject(object: { [k: string]: any }): CompanionReg.CompanionEphemeralIdentity;
-
-        /**
-         * Creates a plain object from a CompanionEphemeralIdentity message. Also converts values to other types if specified.
-         * @param message CompanionEphemeralIdentity
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: CompanionReg.CompanionEphemeralIdentity, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this CompanionEphemeralIdentity to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for CompanionEphemeralIdentity
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a DeviceProps. */
-    interface IDeviceProps {
-
-        /** DeviceProps os */
-        os?: (string|null);
-
-        /** DeviceProps version */
-        version?: (Wa6.ClientPayload.UserAgent.IAppVersion|null);
-
-        /** DeviceProps platformType */
-        platformType?: (CompanionReg.DeviceProps.PlatformType|null);
-
-        /** DeviceProps requireFullSync */
-        requireFullSync?: (boolean|null);
-
-        /** DeviceProps historySyncConfig */
-        historySyncConfig?: (CompanionReg.DeviceProps.IHistorySyncConfig|null);
-    }
-
-    /** Represents a DeviceProps. */
-    class DeviceProps implements IDeviceProps {
-
-        /**
-         * Constructs a new DeviceProps.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: CompanionReg.IDeviceProps);
-
-        /** DeviceProps os. */
-        public os: string;
-
-        /** DeviceProps version. */
-        public version?: (Wa6.ClientPayload.UserAgent.IAppVersion|null);
-
-        /** DeviceProps platformType. */
-        public platformType: CompanionReg.DeviceProps.PlatformType;
-
-        /** DeviceProps requireFullSync. */
-        public requireFullSync: boolean;
-
-        /** DeviceProps historySyncConfig. */
-        public historySyncConfig?: (CompanionReg.DeviceProps.IHistorySyncConfig|null);
-
-        /**
-         * Creates a new DeviceProps instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns DeviceProps instance
-         */
-        public static create(properties?: CompanionReg.IDeviceProps): CompanionReg.DeviceProps;
-
-        /**
-         * Encodes the specified DeviceProps message. Does not implicitly {@link CompanionReg.DeviceProps.verify|verify} messages.
-         * @param message DeviceProps message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: CompanionReg.IDeviceProps, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified DeviceProps message, length delimited. Does not implicitly {@link CompanionReg.DeviceProps.verify|verify} messages.
-         * @param message DeviceProps message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: CompanionReg.IDeviceProps, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a DeviceProps message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns DeviceProps
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): CompanionReg.DeviceProps;
-
-        /**
-         * Decodes a DeviceProps message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns DeviceProps
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): CompanionReg.DeviceProps;
-
-        /**
-         * Verifies a DeviceProps message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a DeviceProps message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns DeviceProps
-         */
-        public static fromObject(object: { [k: string]: any }): CompanionReg.DeviceProps;
-
-        /**
-         * Creates a plain object from a DeviceProps message. Also converts values to other types if specified.
-         * @param message DeviceProps
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: CompanionReg.DeviceProps, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this DeviceProps to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for DeviceProps
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    namespace DeviceProps {
-
-        /** Properties of an AppVersion. */
-        interface IAppVersion {
-
-            /** AppVersion primary */
-            primary?: (number|null);
-
-            /** AppVersion secondary */
-            secondary?: (number|null);
-
-            /** AppVersion tertiary */
-            tertiary?: (number|null);
-
-            /** AppVersion quaternary */
-            quaternary?: (number|null);
-
-            /** AppVersion quinary */
-            quinary?: (number|null);
-        }
-
-        /** Represents an AppVersion. */
-        class AppVersion implements IAppVersion {
-
-            /**
-             * Constructs a new AppVersion.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: CompanionReg.DeviceProps.IAppVersion);
-
-            /** AppVersion primary. */
-            public primary: number;
-
-            /** AppVersion secondary. */
-            public secondary: number;
-
-            /** AppVersion tertiary. */
-            public tertiary: number;
-
-            /** AppVersion quaternary. */
-            public quaternary: number;
-
-            /** AppVersion quinary. */
-            public quinary: number;
-
-            /**
-             * Creates a new AppVersion instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns AppVersion instance
-             */
-            public static create(properties?: CompanionReg.DeviceProps.IAppVersion): CompanionReg.DeviceProps.AppVersion;
-
-            /**
-             * Encodes the specified AppVersion message. Does not implicitly {@link CompanionReg.DeviceProps.AppVersion.verify|verify} messages.
-             * @param message AppVersion message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: CompanionReg.DeviceProps.IAppVersion, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified AppVersion message, length delimited. Does not implicitly {@link CompanionReg.DeviceProps.AppVersion.verify|verify} messages.
-             * @param message AppVersion message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: CompanionReg.DeviceProps.IAppVersion, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes an AppVersion message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns AppVersion
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): CompanionReg.DeviceProps.AppVersion;
-
-            /**
-             * Decodes an AppVersion message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns AppVersion
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): CompanionReg.DeviceProps.AppVersion;
-
-            /**
-             * Verifies an AppVersion message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates an AppVersion message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns AppVersion
-             */
-            public static fromObject(object: { [k: string]: any }): CompanionReg.DeviceProps.AppVersion;
-
-            /**
-             * Creates a plain object from an AppVersion message. Also converts values to other types if specified.
-             * @param message AppVersion
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: CompanionReg.DeviceProps.AppVersion, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this AppVersion to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-
-            /**
-             * Gets the default type url for AppVersion
-             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns The default type url
-             */
-            public static getTypeUrl(typeUrlPrefix?: string): string;
-        }
-
-        /** Properties of a HistorySyncConfig. */
-        interface IHistorySyncConfig {
-
-            /** HistorySyncConfig fullSyncDaysLimit */
-            fullSyncDaysLimit?: (number|null);
-
-            /** HistorySyncConfig fullSyncSizeMbLimit */
-            fullSyncSizeMbLimit?: (number|null);
-
-            /** HistorySyncConfig storageQuotaMb */
-            storageQuotaMb?: (number|null);
-
-            /** HistorySyncConfig inlineInitialPayloadInE2EeMsg */
-            inlineInitialPayloadInE2EeMsg?: (boolean|null);
-
-            /** HistorySyncConfig recentSyncDaysLimit */
-            recentSyncDaysLimit?: (number|null);
-
-            /** HistorySyncConfig supportCallLogHistory */
-            supportCallLogHistory?: (boolean|null);
-
-            /** HistorySyncConfig supportBotUserAgentChatHistory */
-            supportBotUserAgentChatHistory?: (boolean|null);
-
-            /** HistorySyncConfig supportCagReactionsAndPolls */
-            supportCagReactionsAndPolls?: (boolean|null);
-
-            /** HistorySyncConfig supportBizHostedMsg */
-            supportBizHostedMsg?: (boolean|null);
-
-            /** HistorySyncConfig supportRecentSyncChunkMessageCountTuning */
-            supportRecentSyncChunkMessageCountTuning?: (boolean|null);
-
-            /** HistorySyncConfig supportHostedGroupMsg */
-            supportHostedGroupMsg?: (boolean|null);
-
-            /** HistorySyncConfig supportFbidBotChatHistory */
-            supportFbidBotChatHistory?: (boolean|null);
-
-            /** HistorySyncConfig supportAddOnHistorySyncMigration */
-            supportAddOnHistorySyncMigration?: (boolean|null);
-
-            /** HistorySyncConfig supportMessageAssociation */
-            supportMessageAssociation?: (boolean|null);
-        }
-
-        /** Represents a HistorySyncConfig. */
-        class HistorySyncConfig implements IHistorySyncConfig {
-
-            /**
-             * Constructs a new HistorySyncConfig.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: CompanionReg.DeviceProps.IHistorySyncConfig);
-
-            /** HistorySyncConfig fullSyncDaysLimit. */
-            public fullSyncDaysLimit: number;
-
-            /** HistorySyncConfig fullSyncSizeMbLimit. */
-            public fullSyncSizeMbLimit: number;
-
-            /** HistorySyncConfig storageQuotaMb. */
-            public storageQuotaMb: number;
-
-            /** HistorySyncConfig inlineInitialPayloadInE2EeMsg. */
-            public inlineInitialPayloadInE2EeMsg: boolean;
-
-            /** HistorySyncConfig recentSyncDaysLimit. */
-            public recentSyncDaysLimit: number;
-
-            /** HistorySyncConfig supportCallLogHistory. */
-            public supportCallLogHistory: boolean;
-
-            /** HistorySyncConfig supportBotUserAgentChatHistory. */
-            public supportBotUserAgentChatHistory: boolean;
-
-            /** HistorySyncConfig supportCagReactionsAndPolls. */
-            public supportCagReactionsAndPolls: boolean;
-
-            /** HistorySyncConfig supportBizHostedMsg. */
-            public supportBizHostedMsg: boolean;
-
-            /** HistorySyncConfig supportRecentSyncChunkMessageCountTuning. */
-            public supportRecentSyncChunkMessageCountTuning: boolean;
-
-            /** HistorySyncConfig supportHostedGroupMsg. */
-            public supportHostedGroupMsg: boolean;
-
-            /** HistorySyncConfig supportFbidBotChatHistory. */
-            public supportFbidBotChatHistory: boolean;
-
-            /** HistorySyncConfig supportAddOnHistorySyncMigration. */
-            public supportAddOnHistorySyncMigration: boolean;
-
-            /** HistorySyncConfig supportMessageAssociation. */
-            public supportMessageAssociation: boolean;
-
-            /**
-             * Creates a new HistorySyncConfig instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns HistorySyncConfig instance
-             */
-            public static create(properties?: CompanionReg.DeviceProps.IHistorySyncConfig): CompanionReg.DeviceProps.HistorySyncConfig;
-
-            /**
-             * Encodes the specified HistorySyncConfig message. Does not implicitly {@link CompanionReg.DeviceProps.HistorySyncConfig.verify|verify} messages.
-             * @param message HistorySyncConfig message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: CompanionReg.DeviceProps.IHistorySyncConfig, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified HistorySyncConfig message, length delimited. Does not implicitly {@link CompanionReg.DeviceProps.HistorySyncConfig.verify|verify} messages.
-             * @param message HistorySyncConfig message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: CompanionReg.DeviceProps.IHistorySyncConfig, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes a HistorySyncConfig message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns HistorySyncConfig
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): CompanionReg.DeviceProps.HistorySyncConfig;
-
-            /**
-             * Decodes a HistorySyncConfig message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns HistorySyncConfig
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): CompanionReg.DeviceProps.HistorySyncConfig;
-
-            /**
-             * Verifies a HistorySyncConfig message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates a HistorySyncConfig message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns HistorySyncConfig
-             */
-            public static fromObject(object: { [k: string]: any }): CompanionReg.DeviceProps.HistorySyncConfig;
-
-            /**
-             * Creates a plain object from a HistorySyncConfig message. Also converts values to other types if specified.
-             * @param message HistorySyncConfig
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: CompanionReg.DeviceProps.HistorySyncConfig, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this HistorySyncConfig to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-
-            /**
-             * Gets the default type url for HistorySyncConfig
-             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns The default type url
-             */
-            public static getTypeUrl(typeUrlPrefix?: string): string;
-        }
-
-        /** PlatformType enum. */
-        enum PlatformType {
-            UNKNOWN = 0,
-            CHROME = 1,
-            FIREFOX = 2,
-            IE = 3,
-            OPERA = 4,
-            SAFARI = 5,
-            EDGE = 6,
-            DESKTOP = 7,
-            IPAD = 8,
-            ANDROID_TABLET = 9,
-            OHANA = 10,
-            ALOHA = 11,
-            CATALINA = 12,
-            TCL_TV = 13,
-            IOS_PHONE = 14,
-            IOS_CATALYST = 15,
-            ANDROID_PHONE = 16,
-            ANDROID_AMBIGUOUS = 17,
-            WEAR_OS = 18,
-            AR_WRIST = 19,
-            AR_DEVICE = 20,
-            UWP = 21,
-            VR = 22,
-            CLOUD_API = 23,
-            SMARTGLASSES = 24
-        }
-    }
-}
-
 /** Namespace DeviceCapabilities. */
 export namespace DeviceCapabilities {
 
@@ -41803,233 +39570,6 @@ export namespace DeviceCapabilities {
             NONE = 0,
             MINIMAL = 1,
             FULL = 2
-        }
-    }
-}
-
-/** Namespace MmsRetry. */
-export namespace MmsRetry {
-
-    /** Properties of a ServerErrorReceipt. */
-    interface IServerErrorReceipt {
-
-        /** ServerErrorReceipt stanzaId */
-        stanzaId?: (string|null);
-    }
-
-    /** Represents a ServerErrorReceipt. */
-    class ServerErrorReceipt implements IServerErrorReceipt {
-
-        /**
-         * Constructs a new ServerErrorReceipt.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: MmsRetry.IServerErrorReceipt);
-
-        /** ServerErrorReceipt stanzaId. */
-        public stanzaId: string;
-
-        /**
-         * Creates a new ServerErrorReceipt instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns ServerErrorReceipt instance
-         */
-        public static create(properties?: MmsRetry.IServerErrorReceipt): MmsRetry.ServerErrorReceipt;
-
-        /**
-         * Encodes the specified ServerErrorReceipt message. Does not implicitly {@link MmsRetry.ServerErrorReceipt.verify|verify} messages.
-         * @param message ServerErrorReceipt message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: MmsRetry.IServerErrorReceipt, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified ServerErrorReceipt message, length delimited. Does not implicitly {@link MmsRetry.ServerErrorReceipt.verify|verify} messages.
-         * @param message ServerErrorReceipt message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: MmsRetry.IServerErrorReceipt, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a ServerErrorReceipt message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns ServerErrorReceipt
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): MmsRetry.ServerErrorReceipt;
-
-        /**
-         * Decodes a ServerErrorReceipt message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns ServerErrorReceipt
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): MmsRetry.ServerErrorReceipt;
-
-        /**
-         * Verifies a ServerErrorReceipt message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a ServerErrorReceipt message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns ServerErrorReceipt
-         */
-        public static fromObject(object: { [k: string]: any }): MmsRetry.ServerErrorReceipt;
-
-        /**
-         * Creates a plain object from a ServerErrorReceipt message. Also converts values to other types if specified.
-         * @param message ServerErrorReceipt
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: MmsRetry.ServerErrorReceipt, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this ServerErrorReceipt to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for ServerErrorReceipt
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a MediaRetryNotification. */
-    interface IMediaRetryNotification {
-
-        /** MediaRetryNotification stanzaId */
-        stanzaId?: (string|null);
-
-        /** MediaRetryNotification directPath */
-        directPath?: (string|null);
-
-        /** MediaRetryNotification result */
-        result?: (MmsRetry.MediaRetryNotification.ResultType|null);
-
-        /** MediaRetryNotification messageSecret */
-        messageSecret?: (Uint8Array|null);
-    }
-
-    /** Represents a MediaRetryNotification. */
-    class MediaRetryNotification implements IMediaRetryNotification {
-
-        /**
-         * Constructs a new MediaRetryNotification.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: MmsRetry.IMediaRetryNotification);
-
-        /** MediaRetryNotification stanzaId. */
-        public stanzaId: string;
-
-        /** MediaRetryNotification directPath. */
-        public directPath: string;
-
-        /** MediaRetryNotification result. */
-        public result: MmsRetry.MediaRetryNotification.ResultType;
-
-        /** MediaRetryNotification messageSecret. */
-        public messageSecret: Uint8Array;
-
-        /**
-         * Creates a new MediaRetryNotification instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns MediaRetryNotification instance
-         */
-        public static create(properties?: MmsRetry.IMediaRetryNotification): MmsRetry.MediaRetryNotification;
-
-        /**
-         * Encodes the specified MediaRetryNotification message. Does not implicitly {@link MmsRetry.MediaRetryNotification.verify|verify} messages.
-         * @param message MediaRetryNotification message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: MmsRetry.IMediaRetryNotification, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified MediaRetryNotification message, length delimited. Does not implicitly {@link MmsRetry.MediaRetryNotification.verify|verify} messages.
-         * @param message MediaRetryNotification message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: MmsRetry.IMediaRetryNotification, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a MediaRetryNotification message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns MediaRetryNotification
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): MmsRetry.MediaRetryNotification;
-
-        /**
-         * Decodes a MediaRetryNotification message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns MediaRetryNotification
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): MmsRetry.MediaRetryNotification;
-
-        /**
-         * Verifies a MediaRetryNotification message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a MediaRetryNotification message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns MediaRetryNotification
-         */
-        public static fromObject(object: { [k: string]: any }): MmsRetry.MediaRetryNotification;
-
-        /**
-         * Creates a plain object from a MediaRetryNotification message. Also converts values to other types if specified.
-         * @param message MediaRetryNotification
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: MmsRetry.MediaRetryNotification, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this MediaRetryNotification to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for MediaRetryNotification
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    namespace MediaRetryNotification {
-
-        /** ResultType enum. */
-        enum ResultType {
-            GENERAL_ERROR = 0,
-            SUCCESS = 1,
-            NOT_FOUND = 2,
-            DECRYPTION_ERROR = 3
         }
     }
 }
