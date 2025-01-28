@@ -14524,6 +14524,7 @@ $root.E2E = (function() {
              * @interface IAIRichResponseImageURL
              * @property {string|null} [imagePreviewUrl] AIRichResponseImageURL imagePreviewUrl
              * @property {string|null} [imageHighResUrl] AIRichResponseImageURL imageHighResUrl
+             * @property {string|null} [sourceUrl] AIRichResponseImageURL sourceUrl
              */
 
             /**
@@ -14558,6 +14559,14 @@ $root.E2E = (function() {
             AIRichResponseImageURL.prototype.imageHighResUrl = "";
 
             /**
+             * AIRichResponseImageURL sourceUrl.
+             * @member {string} sourceUrl
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseImageURL
+             * @instance
+             */
+            AIRichResponseImageURL.prototype.sourceUrl = "";
+
+            /**
              * Creates a new AIRichResponseImageURL instance using the specified properties.
              * @function create
              * @memberof E2E.AIRichResponseMessage.AIRichResponseImageURL
@@ -14585,6 +14594,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.imagePreviewUrl);
                 if (message.imageHighResUrl != null && Object.hasOwnProperty.call(message, "imageHighResUrl"))
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.imageHighResUrl);
+                if (message.sourceUrl != null && Object.hasOwnProperty.call(message, "sourceUrl"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.sourceUrl);
                 return writer;
             };
 
@@ -14625,6 +14636,10 @@ $root.E2E = (function() {
                         }
                     case 2: {
                             message.imageHighResUrl = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.sourceUrl = reader.string();
                             break;
                         }
                     default:
@@ -14668,6 +14683,9 @@ $root.E2E = (function() {
                 if (message.imageHighResUrl != null && message.hasOwnProperty("imageHighResUrl"))
                     if (!$util.isString(message.imageHighResUrl))
                         return "imageHighResUrl: string expected";
+                if (message.sourceUrl != null && message.hasOwnProperty("sourceUrl"))
+                    if (!$util.isString(message.sourceUrl))
+                        return "sourceUrl: string expected";
                 return null;
             };
 
@@ -14687,6 +14705,8 @@ $root.E2E = (function() {
                     message.imagePreviewUrl = String(object.imagePreviewUrl);
                 if (object.imageHighResUrl != null)
                     message.imageHighResUrl = String(object.imageHighResUrl);
+                if (object.sourceUrl != null)
+                    message.sourceUrl = String(object.sourceUrl);
                 return message;
             };
 
@@ -14706,11 +14726,14 @@ $root.E2E = (function() {
                 if (options.defaults) {
                     object.imagePreviewUrl = "";
                     object.imageHighResUrl = "";
+                    object.sourceUrl = "";
                 }
                 if (message.imagePreviewUrl != null && message.hasOwnProperty("imagePreviewUrl"))
                     object.imagePreviewUrl = message.imagePreviewUrl;
                 if (message.imageHighResUrl != null && message.hasOwnProperty("imageHighResUrl"))
                     object.imageHighResUrl = message.imageHighResUrl;
+                if (message.sourceUrl != null && message.hasOwnProperty("sourceUrl"))
+                    object.sourceUrl = message.sourceUrl;
                 return object;
             };
 
@@ -19055,6 +19078,7 @@ $root.E2E = (function() {
                     return "statusAttributionType: enum value expected";
                 case 0:
                 case 1:
+                case 2:
                     break;
                 }
             if (message.urlTrackingMap != null && message.hasOwnProperty("urlTrackingMap")) {
@@ -19236,6 +19260,10 @@ $root.E2E = (function() {
             case "RESHARED_FROM_MENTION":
             case 1:
                 message.statusAttributionType = 1;
+                break;
+            case "RESHARED_FROM_POST":
+            case 2:
+                message.statusAttributionType = 2;
                 break;
             }
             if (object.urlTrackingMap != null) {
@@ -21306,6 +21334,7 @@ $root.E2E = (function() {
              * @property {boolean|null} [cannotBeReactedTo] FeatureEligibilities cannotBeReactedTo
              * @property {boolean|null} [cannotBeRanked] FeatureEligibilities cannotBeRanked
              * @property {boolean|null} [canRequestFeedback] FeatureEligibilities canRequestFeedback
+             * @property {boolean|null} [canBeReshared] FeatureEligibilities canBeReshared
              */
 
             /**
@@ -21348,6 +21377,14 @@ $root.E2E = (function() {
             FeatureEligibilities.prototype.canRequestFeedback = false;
 
             /**
+             * FeatureEligibilities canBeReshared.
+             * @member {boolean} canBeReshared
+             * @memberof E2E.ContextInfo.FeatureEligibilities
+             * @instance
+             */
+            FeatureEligibilities.prototype.canBeReshared = false;
+
+            /**
              * Creates a new FeatureEligibilities instance using the specified properties.
              * @function create
              * @memberof E2E.ContextInfo.FeatureEligibilities
@@ -21377,6 +21414,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 2, wireType 0 =*/16).bool(message.cannotBeRanked);
                 if (message.canRequestFeedback != null && Object.hasOwnProperty.call(message, "canRequestFeedback"))
                     writer.uint32(/* id 3, wireType 0 =*/24).bool(message.canRequestFeedback);
+                if (message.canBeReshared != null && Object.hasOwnProperty.call(message, "canBeReshared"))
+                    writer.uint32(/* id 4, wireType 0 =*/32).bool(message.canBeReshared);
                 return writer;
             };
 
@@ -21423,6 +21462,10 @@ $root.E2E = (function() {
                             message.canRequestFeedback = reader.bool();
                             break;
                         }
+                    case 4: {
+                            message.canBeReshared = reader.bool();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -21467,6 +21510,9 @@ $root.E2E = (function() {
                 if (message.canRequestFeedback != null && message.hasOwnProperty("canRequestFeedback"))
                     if (typeof message.canRequestFeedback !== "boolean")
                         return "canRequestFeedback: boolean expected";
+                if (message.canBeReshared != null && message.hasOwnProperty("canBeReshared"))
+                    if (typeof message.canBeReshared !== "boolean")
+                        return "canBeReshared: boolean expected";
                 return null;
             };
 
@@ -21488,6 +21534,8 @@ $root.E2E = (function() {
                     message.cannotBeRanked = Boolean(object.cannotBeRanked);
                 if (object.canRequestFeedback != null)
                     message.canRequestFeedback = Boolean(object.canRequestFeedback);
+                if (object.canBeReshared != null)
+                    message.canBeReshared = Boolean(object.canBeReshared);
                 return message;
             };
 
@@ -21508,6 +21556,7 @@ $root.E2E = (function() {
                     object.cannotBeReactedTo = false;
                     object.cannotBeRanked = false;
                     object.canRequestFeedback = false;
+                    object.canBeReshared = false;
                 }
                 if (message.cannotBeReactedTo != null && message.hasOwnProperty("cannotBeReactedTo"))
                     object.cannotBeReactedTo = message.cannotBeReactedTo;
@@ -21515,6 +21564,8 @@ $root.E2E = (function() {
                     object.cannotBeRanked = message.cannotBeRanked;
                 if (message.canRequestFeedback != null && message.hasOwnProperty("canRequestFeedback"))
                     object.canRequestFeedback = message.canRequestFeedback;
+                if (message.canBeReshared != null && message.hasOwnProperty("canBeReshared"))
+                    object.canBeReshared = message.canBeReshared;
                 return object;
             };
 
@@ -22139,11 +22190,13 @@ $root.E2E = (function() {
          * @enum {number}
          * @property {number} NONE=0 NONE value
          * @property {number} RESHARED_FROM_MENTION=1 RESHARED_FROM_MENTION value
+         * @property {number} RESHARED_FROM_POST=2 RESHARED_FROM_POST value
          */
         ContextInfo.StatusAttributionType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
             values[valuesById[0] = "NONE"] = 0;
             values[valuesById[1] = "RESHARED_FROM_MENTION"] = 1;
+            values[valuesById[2] = "RESHARED_FROM_POST"] = 2;
             return values;
         })();
 

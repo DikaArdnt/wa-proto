@@ -9077,6 +9077,9 @@ export namespace E2E {
 
             /** AIRichResponseImageURL imageHighResUrl */
             imageHighResUrl?: (string|null);
+
+            /** AIRichResponseImageURL sourceUrl */
+            sourceUrl?: (string|null);
         }
 
         /** Represents a AIRichResponseImageURL. */
@@ -9093,6 +9096,9 @@ export namespace E2E {
 
             /** AIRichResponseImageURL imageHighResUrl. */
             public imageHighResUrl: string;
+
+            /** AIRichResponseImageURL sourceUrl. */
+            public sourceUrl: string;
 
             /**
              * Creates a new AIRichResponseImageURL instance using the specified properties.
@@ -11525,6 +11531,9 @@ export namespace E2E {
 
             /** FeatureEligibilities canRequestFeedback */
             canRequestFeedback?: (boolean|null);
+
+            /** FeatureEligibilities canBeReshared */
+            canBeReshared?: (boolean|null);
         }
 
         /** Represents a FeatureEligibilities. */
@@ -11544,6 +11553,9 @@ export namespace E2E {
 
             /** FeatureEligibilities canRequestFeedback. */
             public canRequestFeedback: boolean;
+
+            /** FeatureEligibilities canBeReshared. */
+            public canBeReshared: boolean;
 
             /**
              * Creates a new FeatureEligibilities instance using the specified properties.
@@ -11866,7 +11878,8 @@ export namespace E2E {
         /** StatusAttributionType enum. */
         enum StatusAttributionType {
             NONE = 0,
-            RESHARED_FROM_MENTION = 1
+            RESHARED_FROM_MENTION = 1,
+            RESHARED_FROM_POST = 2
         }
 
         /** Properties of a UTMInfo. */
