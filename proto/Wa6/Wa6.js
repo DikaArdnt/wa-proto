@@ -1370,6 +1370,7 @@ $root.Wa6 = (function() {
                     case 2:
                     case 3:
                     case 4:
+                    case 5:
                         break;
                     }
                 if (message.appCached != null && message.hasOwnProperty("appCached"))
@@ -1416,6 +1417,10 @@ $root.Wa6 = (function() {
                 case "FALLBACK":
                 case 4:
                     message.dnsMethod = 4;
+                    break;
+                case "MNS":
+                case 5:
+                    message.dnsMethod = 5;
                     break;
                 }
                 if (object.appCached != null)
@@ -1482,6 +1487,7 @@ $root.Wa6 = (function() {
              * @property {number} HARDCODED=2 HARDCODED value
              * @property {number} OVERRIDE=3 OVERRIDE value
              * @property {number} FALLBACK=4 FALLBACK value
+             * @property {number} MNS=5 MNS value
              */
             DNSSource.DNSResolutionMethod = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -1490,6 +1496,7 @@ $root.Wa6 = (function() {
                 values[valuesById[2] = "HARDCODED"] = 2;
                 values[valuesById[3] = "OVERRIDE"] = 3;
                 values[valuesById[4] = "FALLBACK"] = 4;
+                values[valuesById[5] = "MNS"] = 5;
                 return values;
             })();
 
