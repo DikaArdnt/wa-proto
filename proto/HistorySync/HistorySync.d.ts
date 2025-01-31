@@ -9611,7 +9611,8 @@ export namespace E2E {
             HD_VIDEO_DUAL_UPLOAD = 5,
             STATUS_TAPPABLE_MESSAGE = 6,
             MEDIA_POLL = 7,
-            STATUS_ADD_YOURS = 8
+            STATUS_ADD_YOURS = 8,
+            STATUS_NOTIFICATION = 9
         }
     }
 
@@ -9668,6 +9669,9 @@ export namespace E2E {
 
         /** BotMetadata botMetricsMetadata */
         botMetricsMetadata?: (E2E.IBotMetricsMetadata|null);
+
+        /** BotMetadata botLinkedAccountsMetadata */
+        botLinkedAccountsMetadata?: (E2E.IBotLinkedAccountsMetadata|null);
     }
 
     /** Represents a BotMetadata. */
@@ -9729,6 +9733,9 @@ export namespace E2E {
 
         /** BotMetadata botMetricsMetadata. */
         public botMetricsMetadata?: (E2E.IBotMetricsMetadata|null);
+
+        /** BotMetadata botLinkedAccountsMetadata. */
+        public botLinkedAccountsMetadata?: (E2E.IBotLinkedAccountsMetadata|null);
 
         /**
          * Creates a new BotMetadata instance using the specified properties.
@@ -11839,8 +11846,7 @@ export namespace E2E {
         /** AIRichResponseMessageType enum. */
         enum AIRichResponseMessageType {
             AI_RICH_RESPONSE_TYPE_UNKNOWN = 0,
-            AI_RICH_RESPONSE_TYPE_STANDARD = 1,
-            AI_RICH_RESPONSE_TYPE_ARTIFACTS = 2
+            AI_RICH_RESPONSE_TYPE_STANDARD = 1
         }
 
         /** Properties of a AIRichResponseSubMessage. */
@@ -12397,6 +12403,208 @@ export namespace E2E {
 
         /**
          * Gets the default type url for BotMemoryMetadata
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a BotLinkedAccount. */
+    interface IBotLinkedAccount {
+
+        /** BotLinkedAccount type */
+        type?: (E2E.BotLinkedAccount.BotLinkedAccountType|null);
+    }
+
+    /** Represents a BotLinkedAccount. */
+    class BotLinkedAccount implements IBotLinkedAccount {
+
+        /**
+         * Constructs a new BotLinkedAccount.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: E2E.IBotLinkedAccount);
+
+        /** BotLinkedAccount type. */
+        public type: E2E.BotLinkedAccount.BotLinkedAccountType;
+
+        /**
+         * Creates a new BotLinkedAccount instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BotLinkedAccount instance
+         */
+        public static create(properties?: E2E.IBotLinkedAccount): E2E.BotLinkedAccount;
+
+        /**
+         * Encodes the specified BotLinkedAccount message. Does not implicitly {@link E2E.BotLinkedAccount.verify|verify} messages.
+         * @param message BotLinkedAccount message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: E2E.IBotLinkedAccount, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BotLinkedAccount message, length delimited. Does not implicitly {@link E2E.BotLinkedAccount.verify|verify} messages.
+         * @param message BotLinkedAccount message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: E2E.IBotLinkedAccount, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BotLinkedAccount message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BotLinkedAccount
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.BotLinkedAccount;
+
+        /**
+         * Decodes a BotLinkedAccount message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BotLinkedAccount
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.BotLinkedAccount;
+
+        /**
+         * Verifies a BotLinkedAccount message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BotLinkedAccount message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BotLinkedAccount
+         */
+        public static fromObject(object: { [k: string]: any }): E2E.BotLinkedAccount;
+
+        /**
+         * Creates a plain object from a BotLinkedAccount message. Also converts values to other types if specified.
+         * @param message BotLinkedAccount
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: E2E.BotLinkedAccount, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BotLinkedAccount to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for BotLinkedAccount
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace BotLinkedAccount {
+
+        /** BotLinkedAccountType enum. */
+        enum BotLinkedAccountType {
+            BOT_LINKED_ACCOUNT_TYPE_1P = 0
+        }
+    }
+
+    /** Properties of a BotLinkedAccountsMetadata. */
+    interface IBotLinkedAccountsMetadata {
+
+        /** BotLinkedAccountsMetadata accounts */
+        accounts?: (E2E.IBotLinkedAccount[]|null);
+    }
+
+    /** Represents a BotLinkedAccountsMetadata. */
+    class BotLinkedAccountsMetadata implements IBotLinkedAccountsMetadata {
+
+        /**
+         * Constructs a new BotLinkedAccountsMetadata.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: E2E.IBotLinkedAccountsMetadata);
+
+        /** BotLinkedAccountsMetadata accounts. */
+        public accounts: E2E.IBotLinkedAccount[];
+
+        /**
+         * Creates a new BotLinkedAccountsMetadata instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BotLinkedAccountsMetadata instance
+         */
+        public static create(properties?: E2E.IBotLinkedAccountsMetadata): E2E.BotLinkedAccountsMetadata;
+
+        /**
+         * Encodes the specified BotLinkedAccountsMetadata message. Does not implicitly {@link E2E.BotLinkedAccountsMetadata.verify|verify} messages.
+         * @param message BotLinkedAccountsMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: E2E.IBotLinkedAccountsMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BotLinkedAccountsMetadata message, length delimited. Does not implicitly {@link E2E.BotLinkedAccountsMetadata.verify|verify} messages.
+         * @param message BotLinkedAccountsMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: E2E.IBotLinkedAccountsMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BotLinkedAccountsMetadata message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BotLinkedAccountsMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.BotLinkedAccountsMetadata;
+
+        /**
+         * Decodes a BotLinkedAccountsMetadata message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BotLinkedAccountsMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.BotLinkedAccountsMetadata;
+
+        /**
+         * Verifies a BotLinkedAccountsMetadata message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BotLinkedAccountsMetadata message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BotLinkedAccountsMetadata
+         */
+        public static fromObject(object: { [k: string]: any }): E2E.BotLinkedAccountsMetadata;
+
+        /**
+         * Creates a plain object from a BotLinkedAccountsMetadata message. Also converts values to other types if specified.
+         * @param message BotLinkedAccountsMetadata
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: E2E.BotLinkedAccountsMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BotLinkedAccountsMetadata to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for BotLinkedAccountsMetadata
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
@@ -14764,6 +14972,9 @@ export namespace E2E {
 
         /** Message richResponseMessage */
         richResponseMessage?: (E2E.IAIRichResponseMessage|null);
+
+        /** Message statusNotificationMessage */
+        statusNotificationMessage?: (E2E.Message.IStatusNotificationMessage|null);
     }
 
     /** Represents a Message. */
@@ -15017,6 +15228,9 @@ export namespace E2E {
 
         /** Message richResponseMessage. */
         public richResponseMessage?: (E2E.IAIRichResponseMessage|null);
+
+        /** Message statusNotificationMessage. */
+        public statusNotificationMessage?: (E2E.Message.IStatusNotificationMessage|null);
 
         /**
          * Creates a new Message instance using the specified properties.
@@ -28986,6 +29200,125 @@ export namespace E2E {
              * @returns The default type url
              */
             public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a StatusNotificationMessage. */
+        interface IStatusNotificationMessage {
+
+            /** StatusNotificationMessage responseMessageKey */
+            responseMessageKey?: (Protocol.IMessageKey|null);
+
+            /** StatusNotificationMessage originalMessageKey */
+            originalMessageKey?: (Protocol.IMessageKey|null);
+
+            /** StatusNotificationMessage type */
+            type?: (E2E.Message.StatusNotificationMessage.StatusNotificationType|null);
+        }
+
+        /** Represents a StatusNotificationMessage. */
+        class StatusNotificationMessage implements IStatusNotificationMessage {
+
+            /**
+             * Constructs a new StatusNotificationMessage.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IStatusNotificationMessage);
+
+            /** StatusNotificationMessage responseMessageKey. */
+            public responseMessageKey?: (Protocol.IMessageKey|null);
+
+            /** StatusNotificationMessage originalMessageKey. */
+            public originalMessageKey?: (Protocol.IMessageKey|null);
+
+            /** StatusNotificationMessage type. */
+            public type: E2E.Message.StatusNotificationMessage.StatusNotificationType;
+
+            /**
+             * Creates a new StatusNotificationMessage instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns StatusNotificationMessage instance
+             */
+            public static create(properties?: E2E.Message.IStatusNotificationMessage): E2E.Message.StatusNotificationMessage;
+
+            /**
+             * Encodes the specified StatusNotificationMessage message. Does not implicitly {@link E2E.Message.StatusNotificationMessage.verify|verify} messages.
+             * @param message StatusNotificationMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IStatusNotificationMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified StatusNotificationMessage message, length delimited. Does not implicitly {@link E2E.Message.StatusNotificationMessage.verify|verify} messages.
+             * @param message StatusNotificationMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IStatusNotificationMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a StatusNotificationMessage message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns StatusNotificationMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.StatusNotificationMessage;
+
+            /**
+             * Decodes a StatusNotificationMessage message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns StatusNotificationMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.StatusNotificationMessage;
+
+            /**
+             * Verifies a StatusNotificationMessage message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a StatusNotificationMessage message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns StatusNotificationMessage
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.StatusNotificationMessage;
+
+            /**
+             * Creates a plain object from a StatusNotificationMessage message. Also converts values to other types if specified.
+             * @param message StatusNotificationMessage
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.StatusNotificationMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this StatusNotificationMessage to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for StatusNotificationMessage
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace StatusNotificationMessage {
+
+            /** StatusNotificationType enum. */
+            enum StatusNotificationType {
+                UNKNOWN = 0,
+                STATUS_ADD_YOURS = 1,
+                STATUS_RESHARE = 2
+            }
         }
 
         /** Properties of a StickerMessage. */

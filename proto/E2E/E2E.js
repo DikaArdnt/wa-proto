@@ -9077,6 +9077,7 @@ $root.E2E = (function() {
                 case 6:
                 case 7:
                 case 8:
+                case 9:
                     break;
                 }
             if (message.parentMessageKey != null && message.hasOwnProperty("parentMessageKey")) {
@@ -9144,6 +9145,10 @@ $root.E2E = (function() {
             case "STATUS_ADD_YOURS":
             case 8:
                 message.associationType = 8;
+                break;
+            case "STATUS_NOTIFICATION":
+            case 9:
+                message.associationType = 9;
                 break;
             }
             if (object.parentMessageKey != null) {
@@ -9222,6 +9227,7 @@ $root.E2E = (function() {
          * @property {number} STATUS_TAPPABLE_MESSAGE=6 STATUS_TAPPABLE_MESSAGE value
          * @property {number} MEDIA_POLL=7 MEDIA_POLL value
          * @property {number} STATUS_ADD_YOURS=8 STATUS_ADD_YOURS value
+         * @property {number} STATUS_NOTIFICATION=9 STATUS_NOTIFICATION value
          */
         MessageAssociation.AssociationType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -9234,6 +9240,7 @@ $root.E2E = (function() {
             values[valuesById[6] = "STATUS_TAPPABLE_MESSAGE"] = 6;
             values[valuesById[7] = "MEDIA_POLL"] = 7;
             values[valuesById[8] = "STATUS_ADD_YOURS"] = 8;
+            values[valuesById[9] = "STATUS_NOTIFICATION"] = 9;
             return values;
         })();
 
@@ -9263,6 +9270,7 @@ $root.E2E = (function() {
          * @property {E2E.IBotMemoryMetadata|null} [memoryMetadata] BotMetadata memoryMetadata
          * @property {E2E.IBotRenderingMetadata|null} [renderingMetadata] BotMetadata renderingMetadata
          * @property {E2E.IBotMetricsMetadata|null} [botMetricsMetadata] BotMetadata botMetricsMetadata
+         * @property {E2E.IBotLinkedAccountsMetadata|null} [botLinkedAccountsMetadata] BotMetadata botLinkedAccountsMetadata
          */
 
         /**
@@ -9417,6 +9425,14 @@ $root.E2E = (function() {
         BotMetadata.prototype.botMetricsMetadata = null;
 
         /**
+         * BotMetadata botLinkedAccountsMetadata.
+         * @member {E2E.IBotLinkedAccountsMetadata|null|undefined} botLinkedAccountsMetadata
+         * @memberof E2E.BotMetadata
+         * @instance
+         */
+        BotMetadata.prototype.botLinkedAccountsMetadata = null;
+
+        /**
          * Creates a new BotMetadata instance using the specified properties.
          * @function create
          * @memberof E2E.BotMetadata
@@ -9474,6 +9490,8 @@ $root.E2E = (function() {
                 $root.E2E.BotRenderingMetadata.encode(message.renderingMetadata, writer.uint32(/* id 16, wireType 2 =*/130).fork()).ldelim();
             if (message.botMetricsMetadata != null && Object.hasOwnProperty.call(message, "botMetricsMetadata"))
                 $root.E2E.BotMetricsMetadata.encode(message.botMetricsMetadata, writer.uint32(/* id 17, wireType 2 =*/138).fork()).ldelim();
+            if (message.botLinkedAccountsMetadata != null && Object.hasOwnProperty.call(message, "botLinkedAccountsMetadata"))
+                $root.E2E.BotLinkedAccountsMetadata.encode(message.botLinkedAccountsMetadata, writer.uint32(/* id 18, wireType 2 =*/146).fork()).ldelim();
             return writer;
         };
 
@@ -9574,6 +9592,10 @@ $root.E2E = (function() {
                     }
                 case 17: {
                         message.botMetricsMetadata = $root.E2E.BotMetricsMetadata.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 18: {
+                        message.botLinkedAccountsMetadata = $root.E2E.BotLinkedAccountsMetadata.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -9688,6 +9710,11 @@ $root.E2E = (function() {
                 if (error)
                     return "botMetricsMetadata." + error;
             }
+            if (message.botLinkedAccountsMetadata != null && message.hasOwnProperty("botLinkedAccountsMetadata")) {
+                var error = $root.E2E.BotLinkedAccountsMetadata.verify(message.botLinkedAccountsMetadata);
+                if (error)
+                    return "botLinkedAccountsMetadata." + error;
+            }
             return null;
         };
 
@@ -9776,6 +9803,11 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.BotMetadata.botMetricsMetadata: object expected");
                 message.botMetricsMetadata = $root.E2E.BotMetricsMetadata.fromObject(object.botMetricsMetadata);
             }
+            if (object.botLinkedAccountsMetadata != null) {
+                if (typeof object.botLinkedAccountsMetadata !== "object")
+                    throw TypeError(".E2E.BotMetadata.botLinkedAccountsMetadata: object expected");
+                message.botLinkedAccountsMetadata = $root.E2E.BotLinkedAccountsMetadata.fromObject(object.botLinkedAccountsMetadata);
+            }
             return message;
         };
 
@@ -9810,6 +9842,7 @@ $root.E2E = (function() {
                 object.memoryMetadata = null;
                 object.renderingMetadata = null;
                 object.botMetricsMetadata = null;
+                object.botLinkedAccountsMetadata = null;
             }
             if (message.avatarMetadata != null && message.hasOwnProperty("avatarMetadata"))
                 object.avatarMetadata = $root.E2E.BotAvatarMetadata.toObject(message.avatarMetadata, options);
@@ -9845,6 +9878,8 @@ $root.E2E = (function() {
                 object.renderingMetadata = $root.E2E.BotRenderingMetadata.toObject(message.renderingMetadata, options);
             if (message.botMetricsMetadata != null && message.hasOwnProperty("botMetricsMetadata"))
                 object.botMetricsMetadata = $root.E2E.BotMetricsMetadata.toObject(message.botMetricsMetadata, options);
+            if (message.botLinkedAccountsMetadata != null && message.hasOwnProperty("botLinkedAccountsMetadata"))
+                object.botLinkedAccountsMetadata = $root.E2E.BotLinkedAccountsMetadata.toObject(message.botLinkedAccountsMetadata, options);
             return object;
         };
 
@@ -13287,7 +13322,6 @@ $root.E2E = (function() {
                     return "messageType: enum value expected";
                 case 0:
                 case 1:
-                case 2:
                     break;
                 }
             if (message.submessages != null && message.hasOwnProperty("submessages")) {
@@ -13328,10 +13362,6 @@ $root.E2E = (function() {
             case "AI_RICH_RESPONSE_TYPE_STANDARD":
             case 1:
                 message.messageType = 1;
-                break;
-            case "AI_RICH_RESPONSE_TYPE_ARTIFACTS":
-            case 2:
-                message.messageType = 2;
                 break;
             }
             if (object.submessages) {
@@ -15090,13 +15120,11 @@ $root.E2E = (function() {
          * @enum {number}
          * @property {number} AI_RICH_RESPONSE_TYPE_UNKNOWN=0 AI_RICH_RESPONSE_TYPE_UNKNOWN value
          * @property {number} AI_RICH_RESPONSE_TYPE_STANDARD=1 AI_RICH_RESPONSE_TYPE_STANDARD value
-         * @property {number} AI_RICH_RESPONSE_TYPE_ARTIFACTS=2 AI_RICH_RESPONSE_TYPE_ARTIFACTS value
          */
         AIRichResponseMessage.AIRichResponseMessageType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
             values[valuesById[0] = "AI_RICH_RESPONSE_TYPE_UNKNOWN"] = 0;
             values[valuesById[1] = "AI_RICH_RESPONSE_TYPE_STANDARD"] = 1;
-            values[valuesById[2] = "AI_RICH_RESPONSE_TYPE_ARTIFACTS"] = 2;
             return values;
         })();
 
@@ -16523,6 +16551,459 @@ $root.E2E = (function() {
         };
 
         return BotMemoryMetadata;
+    })();
+
+    E2E.BotLinkedAccount = (function() {
+
+        /**
+         * Properties of a BotLinkedAccount.
+         * @memberof E2E
+         * @interface IBotLinkedAccount
+         * @property {E2E.BotLinkedAccount.BotLinkedAccountType|null} [type] BotLinkedAccount type
+         */
+
+        /**
+         * Constructs a new BotLinkedAccount.
+         * @memberof E2E
+         * @classdesc Represents a BotLinkedAccount.
+         * @implements IBotLinkedAccount
+         * @constructor
+         * @param {E2E.IBotLinkedAccount=} [properties] Properties to set
+         */
+        function BotLinkedAccount(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BotLinkedAccount type.
+         * @member {E2E.BotLinkedAccount.BotLinkedAccountType} type
+         * @memberof E2E.BotLinkedAccount
+         * @instance
+         */
+        BotLinkedAccount.prototype.type = 0;
+
+        /**
+         * Creates a new BotLinkedAccount instance using the specified properties.
+         * @function create
+         * @memberof E2E.BotLinkedAccount
+         * @static
+         * @param {E2E.IBotLinkedAccount=} [properties] Properties to set
+         * @returns {E2E.BotLinkedAccount} BotLinkedAccount instance
+         */
+        BotLinkedAccount.create = function create(properties) {
+            return new BotLinkedAccount(properties);
+        };
+
+        /**
+         * Encodes the specified BotLinkedAccount message. Does not implicitly {@link E2E.BotLinkedAccount.verify|verify} messages.
+         * @function encode
+         * @memberof E2E.BotLinkedAccount
+         * @static
+         * @param {E2E.IBotLinkedAccount} message BotLinkedAccount message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotLinkedAccount.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.type != null && Object.hasOwnProperty.call(message, "type"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.type);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BotLinkedAccount message, length delimited. Does not implicitly {@link E2E.BotLinkedAccount.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof E2E.BotLinkedAccount
+         * @static
+         * @param {E2E.IBotLinkedAccount} message BotLinkedAccount message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotLinkedAccount.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BotLinkedAccount message from the specified reader or buffer.
+         * @function decode
+         * @memberof E2E.BotLinkedAccount
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {E2E.BotLinkedAccount} BotLinkedAccount
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotLinkedAccount.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotLinkedAccount();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1: {
+                        message.type = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BotLinkedAccount message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof E2E.BotLinkedAccount
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {E2E.BotLinkedAccount} BotLinkedAccount
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotLinkedAccount.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BotLinkedAccount message.
+         * @function verify
+         * @memberof E2E.BotLinkedAccount
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BotLinkedAccount.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.type != null && message.hasOwnProperty("type"))
+                switch (message.type) {
+                default:
+                    return "type: enum value expected";
+                case 0:
+                    break;
+                }
+            return null;
+        };
+
+        /**
+         * Creates a BotLinkedAccount message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof E2E.BotLinkedAccount
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {E2E.BotLinkedAccount} BotLinkedAccount
+         */
+        BotLinkedAccount.fromObject = function fromObject(object) {
+            if (object instanceof $root.E2E.BotLinkedAccount)
+                return object;
+            var message = new $root.E2E.BotLinkedAccount();
+            switch (object.type) {
+            default:
+                if (typeof object.type === "number") {
+                    message.type = object.type;
+                    break;
+                }
+                break;
+            case "BOT_LINKED_ACCOUNT_TYPE_1P":
+            case 0:
+                message.type = 0;
+                break;
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BotLinkedAccount message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof E2E.BotLinkedAccount
+         * @static
+         * @param {E2E.BotLinkedAccount} message BotLinkedAccount
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BotLinkedAccount.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.type = options.enums === String ? "BOT_LINKED_ACCOUNT_TYPE_1P" : 0;
+            if (message.type != null && message.hasOwnProperty("type"))
+                object.type = options.enums === String ? $root.E2E.BotLinkedAccount.BotLinkedAccountType[message.type] === undefined ? message.type : $root.E2E.BotLinkedAccount.BotLinkedAccountType[message.type] : message.type;
+            return object;
+        };
+
+        /**
+         * Converts this BotLinkedAccount to JSON.
+         * @function toJSON
+         * @memberof E2E.BotLinkedAccount
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BotLinkedAccount.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotLinkedAccount
+         * @function getTypeUrl
+         * @memberof E2E.BotLinkedAccount
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotLinkedAccount.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/E2E.BotLinkedAccount";
+        };
+
+        /**
+         * BotLinkedAccountType enum.
+         * @name E2E.BotLinkedAccount.BotLinkedAccountType
+         * @enum {number}
+         * @property {number} BOT_LINKED_ACCOUNT_TYPE_1P=0 BOT_LINKED_ACCOUNT_TYPE_1P value
+         */
+        BotLinkedAccount.BotLinkedAccountType = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "BOT_LINKED_ACCOUNT_TYPE_1P"] = 0;
+            return values;
+        })();
+
+        return BotLinkedAccount;
+    })();
+
+    E2E.BotLinkedAccountsMetadata = (function() {
+
+        /**
+         * Properties of a BotLinkedAccountsMetadata.
+         * @memberof E2E
+         * @interface IBotLinkedAccountsMetadata
+         * @property {Array.<E2E.IBotLinkedAccount>|null} [accounts] BotLinkedAccountsMetadata accounts
+         */
+
+        /**
+         * Constructs a new BotLinkedAccountsMetadata.
+         * @memberof E2E
+         * @classdesc Represents a BotLinkedAccountsMetadata.
+         * @implements IBotLinkedAccountsMetadata
+         * @constructor
+         * @param {E2E.IBotLinkedAccountsMetadata=} [properties] Properties to set
+         */
+        function BotLinkedAccountsMetadata(properties) {
+            this.accounts = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BotLinkedAccountsMetadata accounts.
+         * @member {Array.<E2E.IBotLinkedAccount>} accounts
+         * @memberof E2E.BotLinkedAccountsMetadata
+         * @instance
+         */
+        BotLinkedAccountsMetadata.prototype.accounts = $util.emptyArray;
+
+        /**
+         * Creates a new BotLinkedAccountsMetadata instance using the specified properties.
+         * @function create
+         * @memberof E2E.BotLinkedAccountsMetadata
+         * @static
+         * @param {E2E.IBotLinkedAccountsMetadata=} [properties] Properties to set
+         * @returns {E2E.BotLinkedAccountsMetadata} BotLinkedAccountsMetadata instance
+         */
+        BotLinkedAccountsMetadata.create = function create(properties) {
+            return new BotLinkedAccountsMetadata(properties);
+        };
+
+        /**
+         * Encodes the specified BotLinkedAccountsMetadata message. Does not implicitly {@link E2E.BotLinkedAccountsMetadata.verify|verify} messages.
+         * @function encode
+         * @memberof E2E.BotLinkedAccountsMetadata
+         * @static
+         * @param {E2E.IBotLinkedAccountsMetadata} message BotLinkedAccountsMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotLinkedAccountsMetadata.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.accounts != null && message.accounts.length)
+                for (var i = 0; i < message.accounts.length; ++i)
+                    $root.E2E.BotLinkedAccount.encode(message.accounts[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BotLinkedAccountsMetadata message, length delimited. Does not implicitly {@link E2E.BotLinkedAccountsMetadata.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof E2E.BotLinkedAccountsMetadata
+         * @static
+         * @param {E2E.IBotLinkedAccountsMetadata} message BotLinkedAccountsMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotLinkedAccountsMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BotLinkedAccountsMetadata message from the specified reader or buffer.
+         * @function decode
+         * @memberof E2E.BotLinkedAccountsMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {E2E.BotLinkedAccountsMetadata} BotLinkedAccountsMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotLinkedAccountsMetadata.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotLinkedAccountsMetadata();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1: {
+                        if (!(message.accounts && message.accounts.length))
+                            message.accounts = [];
+                        message.accounts.push($root.E2E.BotLinkedAccount.decode(reader, reader.uint32()));
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BotLinkedAccountsMetadata message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof E2E.BotLinkedAccountsMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {E2E.BotLinkedAccountsMetadata} BotLinkedAccountsMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotLinkedAccountsMetadata.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BotLinkedAccountsMetadata message.
+         * @function verify
+         * @memberof E2E.BotLinkedAccountsMetadata
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BotLinkedAccountsMetadata.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.accounts != null && message.hasOwnProperty("accounts")) {
+                if (!Array.isArray(message.accounts))
+                    return "accounts: array expected";
+                for (var i = 0; i < message.accounts.length; ++i) {
+                    var error = $root.E2E.BotLinkedAccount.verify(message.accounts[i]);
+                    if (error)
+                        return "accounts." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a BotLinkedAccountsMetadata message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof E2E.BotLinkedAccountsMetadata
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {E2E.BotLinkedAccountsMetadata} BotLinkedAccountsMetadata
+         */
+        BotLinkedAccountsMetadata.fromObject = function fromObject(object) {
+            if (object instanceof $root.E2E.BotLinkedAccountsMetadata)
+                return object;
+            var message = new $root.E2E.BotLinkedAccountsMetadata();
+            if (object.accounts) {
+                if (!Array.isArray(object.accounts))
+                    throw TypeError(".E2E.BotLinkedAccountsMetadata.accounts: array expected");
+                message.accounts = [];
+                for (var i = 0; i < object.accounts.length; ++i) {
+                    if (typeof object.accounts[i] !== "object")
+                        throw TypeError(".E2E.BotLinkedAccountsMetadata.accounts: object expected");
+                    message.accounts[i] = $root.E2E.BotLinkedAccount.fromObject(object.accounts[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BotLinkedAccountsMetadata message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof E2E.BotLinkedAccountsMetadata
+         * @static
+         * @param {E2E.BotLinkedAccountsMetadata} message BotLinkedAccountsMetadata
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BotLinkedAccountsMetadata.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.accounts = [];
+            if (message.accounts && message.accounts.length) {
+                object.accounts = [];
+                for (var j = 0; j < message.accounts.length; ++j)
+                    object.accounts[j] = $root.E2E.BotLinkedAccount.toObject(message.accounts[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this BotLinkedAccountsMetadata to JSON.
+         * @function toJSON
+         * @memberof E2E.BotLinkedAccountsMetadata
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BotLinkedAccountsMetadata.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotLinkedAccountsMetadata
+         * @function getTypeUrl
+         * @memberof E2E.BotLinkedAccountsMetadata
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotLinkedAccountsMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/E2E.BotLinkedAccountsMetadata";
+        };
+
+        return BotLinkedAccountsMetadata;
     })();
 
     E2E.BotPromptSuggestion = (function() {
@@ -22517,6 +22998,7 @@ $root.E2E = (function() {
          * @property {E2E.Message.IFutureProofMessage|null} [statusAddYours] Message statusAddYours
          * @property {E2E.Message.IFutureProofMessage|null} [groupStatusMessage] Message groupStatusMessage
          * @property {E2E.IAIRichResponseMessage|null} [richResponseMessage] Message richResponseMessage
+         * @property {E2E.Message.IStatusNotificationMessage|null} [statusNotificationMessage] Message statusNotificationMessage
          */
 
         /**
@@ -23183,6 +23665,14 @@ $root.E2E = (function() {
         Message.prototype.richResponseMessage = null;
 
         /**
+         * Message statusNotificationMessage.
+         * @member {E2E.Message.IStatusNotificationMessage|null|undefined} statusNotificationMessage
+         * @memberof E2E.Message
+         * @instance
+         */
+        Message.prototype.statusNotificationMessage = null;
+
+        /**
          * Creates a new Message instance using the specified properties.
          * @function create
          * @memberof E2E.Message
@@ -23368,6 +23858,8 @@ $root.E2E = (function() {
                 $root.E2E.Message.FutureProofMessage.encode(message.groupStatusMessage, writer.uint32(/* id 96, wireType 2 =*/770).fork()).ldelim();
             if (message.richResponseMessage != null && Object.hasOwnProperty.call(message, "richResponseMessage"))
                 $root.E2E.AIRichResponseMessage.encode(message.richResponseMessage, writer.uint32(/* id 97, wireType 2 =*/778).fork()).ldelim();
+            if (message.statusNotificationMessage != null && Object.hasOwnProperty.call(message, "statusNotificationMessage"))
+                $root.E2E.Message.StatusNotificationMessage.encode(message.statusNotificationMessage, writer.uint32(/* id 98, wireType 2 =*/786).fork()).ldelim();
             return writer;
         };
 
@@ -23724,6 +24216,10 @@ $root.E2E = (function() {
                     }
                 case 97: {
                         message.richResponseMessage = $root.E2E.AIRichResponseMessage.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 98: {
+                        message.statusNotificationMessage = $root.E2E.Message.StatusNotificationMessage.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -24164,6 +24660,11 @@ $root.E2E = (function() {
                 if (error)
                     return "richResponseMessage." + error;
             }
+            if (message.statusNotificationMessage != null && message.hasOwnProperty("statusNotificationMessage")) {
+                var error = $root.E2E.Message.StatusNotificationMessage.verify(message.statusNotificationMessage);
+                if (error)
+                    return "statusNotificationMessage." + error;
+            }
             return null;
         };
 
@@ -24581,6 +25082,11 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.Message.richResponseMessage: object expected");
                 message.richResponseMessage = $root.E2E.AIRichResponseMessage.fromObject(object.richResponseMessage);
             }
+            if (object.statusNotificationMessage != null) {
+                if (typeof object.statusNotificationMessage !== "object")
+                    throw TypeError(".E2E.Message.statusNotificationMessage: object expected");
+                message.statusNotificationMessage = $root.E2E.Message.StatusNotificationMessage.fromObject(object.statusNotificationMessage);
+            }
             return message;
         };
 
@@ -24679,6 +25185,7 @@ $root.E2E = (function() {
                 object.statusAddYours = null;
                 object.groupStatusMessage = null;
                 object.richResponseMessage = null;
+                object.statusNotificationMessage = null;
             }
             if (message.conversation != null && message.hasOwnProperty("conversation"))
                 object.conversation = message.conversation;
@@ -24842,6 +25349,8 @@ $root.E2E = (function() {
                 object.groupStatusMessage = $root.E2E.Message.FutureProofMessage.toObject(message.groupStatusMessage, options);
             if (message.richResponseMessage != null && message.hasOwnProperty("richResponseMessage"))
                 object.richResponseMessage = $root.E2E.AIRichResponseMessage.toObject(message.richResponseMessage, options);
+            if (message.statusNotificationMessage != null && message.hasOwnProperty("statusNotificationMessage"))
+                object.statusNotificationMessage = $root.E2E.Message.StatusNotificationMessage.toObject(message.statusNotificationMessage, options);
             return object;
         };
 
@@ -61940,6 +62449,306 @@ $root.E2E = (function() {
             };
 
             return SenderKeyDistributionMessage;
+        })();
+
+        Message.StatusNotificationMessage = (function() {
+
+            /**
+             * Properties of a StatusNotificationMessage.
+             * @memberof E2E.Message
+             * @interface IStatusNotificationMessage
+             * @property {Protocol.IMessageKey|null} [responseMessageKey] StatusNotificationMessage responseMessageKey
+             * @property {Protocol.IMessageKey|null} [originalMessageKey] StatusNotificationMessage originalMessageKey
+             * @property {E2E.Message.StatusNotificationMessage.StatusNotificationType|null} [type] StatusNotificationMessage type
+             */
+
+            /**
+             * Constructs a new StatusNotificationMessage.
+             * @memberof E2E.Message
+             * @classdesc Represents a StatusNotificationMessage.
+             * @implements IStatusNotificationMessage
+             * @constructor
+             * @param {E2E.Message.IStatusNotificationMessage=} [properties] Properties to set
+             */
+            function StatusNotificationMessage(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * StatusNotificationMessage responseMessageKey.
+             * @member {Protocol.IMessageKey|null|undefined} responseMessageKey
+             * @memberof E2E.Message.StatusNotificationMessage
+             * @instance
+             */
+            StatusNotificationMessage.prototype.responseMessageKey = null;
+
+            /**
+             * StatusNotificationMessage originalMessageKey.
+             * @member {Protocol.IMessageKey|null|undefined} originalMessageKey
+             * @memberof E2E.Message.StatusNotificationMessage
+             * @instance
+             */
+            StatusNotificationMessage.prototype.originalMessageKey = null;
+
+            /**
+             * StatusNotificationMessage type.
+             * @member {E2E.Message.StatusNotificationMessage.StatusNotificationType} type
+             * @memberof E2E.Message.StatusNotificationMessage
+             * @instance
+             */
+            StatusNotificationMessage.prototype.type = 0;
+
+            /**
+             * Creates a new StatusNotificationMessage instance using the specified properties.
+             * @function create
+             * @memberof E2E.Message.StatusNotificationMessage
+             * @static
+             * @param {E2E.Message.IStatusNotificationMessage=} [properties] Properties to set
+             * @returns {E2E.Message.StatusNotificationMessage} StatusNotificationMessage instance
+             */
+            StatusNotificationMessage.create = function create(properties) {
+                return new StatusNotificationMessage(properties);
+            };
+
+            /**
+             * Encodes the specified StatusNotificationMessage message. Does not implicitly {@link E2E.Message.StatusNotificationMessage.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.Message.StatusNotificationMessage
+             * @static
+             * @param {E2E.Message.IStatusNotificationMessage} message StatusNotificationMessage message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            StatusNotificationMessage.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.responseMessageKey != null && Object.hasOwnProperty.call(message, "responseMessageKey"))
+                    $root.Protocol.MessageKey.encode(message.responseMessageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.originalMessageKey != null && Object.hasOwnProperty.call(message, "originalMessageKey"))
+                    $root.Protocol.MessageKey.encode(message.originalMessageKey, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                if (message.type != null && Object.hasOwnProperty.call(message, "type"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).int32(message.type);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified StatusNotificationMessage message, length delimited. Does not implicitly {@link E2E.Message.StatusNotificationMessage.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.Message.StatusNotificationMessage
+             * @static
+             * @param {E2E.Message.IStatusNotificationMessage} message StatusNotificationMessage message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            StatusNotificationMessage.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a StatusNotificationMessage message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.Message.StatusNotificationMessage
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.Message.StatusNotificationMessage} StatusNotificationMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            StatusNotificationMessage.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.StatusNotificationMessage();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.responseMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 2: {
+                            message.originalMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 3: {
+                            message.type = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a StatusNotificationMessage message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.Message.StatusNotificationMessage
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.Message.StatusNotificationMessage} StatusNotificationMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            StatusNotificationMessage.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a StatusNotificationMessage message.
+             * @function verify
+             * @memberof E2E.Message.StatusNotificationMessage
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            StatusNotificationMessage.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.responseMessageKey != null && message.hasOwnProperty("responseMessageKey")) {
+                    var error = $root.Protocol.MessageKey.verify(message.responseMessageKey);
+                    if (error)
+                        return "responseMessageKey." + error;
+                }
+                if (message.originalMessageKey != null && message.hasOwnProperty("originalMessageKey")) {
+                    var error = $root.Protocol.MessageKey.verify(message.originalMessageKey);
+                    if (error)
+                        return "originalMessageKey." + error;
+                }
+                if (message.type != null && message.hasOwnProperty("type"))
+                    switch (message.type) {
+                    default:
+                        return "type: enum value expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                        break;
+                    }
+                return null;
+            };
+
+            /**
+             * Creates a StatusNotificationMessage message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.Message.StatusNotificationMessage
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.Message.StatusNotificationMessage} StatusNotificationMessage
+             */
+            StatusNotificationMessage.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.Message.StatusNotificationMessage)
+                    return object;
+                var message = new $root.E2E.Message.StatusNotificationMessage();
+                if (object.responseMessageKey != null) {
+                    if (typeof object.responseMessageKey !== "object")
+                        throw TypeError(".E2E.Message.StatusNotificationMessage.responseMessageKey: object expected");
+                    message.responseMessageKey = $root.Protocol.MessageKey.fromObject(object.responseMessageKey);
+                }
+                if (object.originalMessageKey != null) {
+                    if (typeof object.originalMessageKey !== "object")
+                        throw TypeError(".E2E.Message.StatusNotificationMessage.originalMessageKey: object expected");
+                    message.originalMessageKey = $root.Protocol.MessageKey.fromObject(object.originalMessageKey);
+                }
+                switch (object.type) {
+                default:
+                    if (typeof object.type === "number") {
+                        message.type = object.type;
+                        break;
+                    }
+                    break;
+                case "UNKNOWN":
+                case 0:
+                    message.type = 0;
+                    break;
+                case "STATUS_ADD_YOURS":
+                case 1:
+                    message.type = 1;
+                    break;
+                case "STATUS_RESHARE":
+                case 2:
+                    message.type = 2;
+                    break;
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a StatusNotificationMessage message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.Message.StatusNotificationMessage
+             * @static
+             * @param {E2E.Message.StatusNotificationMessage} message StatusNotificationMessage
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            StatusNotificationMessage.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.responseMessageKey = null;
+                    object.originalMessageKey = null;
+                    object.type = options.enums === String ? "UNKNOWN" : 0;
+                }
+                if (message.responseMessageKey != null && message.hasOwnProperty("responseMessageKey"))
+                    object.responseMessageKey = $root.Protocol.MessageKey.toObject(message.responseMessageKey, options);
+                if (message.originalMessageKey != null && message.hasOwnProperty("originalMessageKey"))
+                    object.originalMessageKey = $root.Protocol.MessageKey.toObject(message.originalMessageKey, options);
+                if (message.type != null && message.hasOwnProperty("type"))
+                    object.type = options.enums === String ? $root.E2E.Message.StatusNotificationMessage.StatusNotificationType[message.type] === undefined ? message.type : $root.E2E.Message.StatusNotificationMessage.StatusNotificationType[message.type] : message.type;
+                return object;
+            };
+
+            /**
+             * Converts this StatusNotificationMessage to JSON.
+             * @function toJSON
+             * @memberof E2E.Message.StatusNotificationMessage
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            StatusNotificationMessage.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for StatusNotificationMessage
+             * @function getTypeUrl
+             * @memberof E2E.Message.StatusNotificationMessage
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            StatusNotificationMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.Message.StatusNotificationMessage";
+            };
+
+            /**
+             * StatusNotificationType enum.
+             * @name E2E.Message.StatusNotificationMessage.StatusNotificationType
+             * @enum {number}
+             * @property {number} UNKNOWN=0 UNKNOWN value
+             * @property {number} STATUS_ADD_YOURS=1 STATUS_ADD_YOURS value
+             * @property {number} STATUS_RESHARE=2 STATUS_RESHARE value
+             */
+            StatusNotificationMessage.StatusNotificationType = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "UNKNOWN"] = 0;
+                values[valuesById[1] = "STATUS_ADD_YOURS"] = 1;
+                values[valuesById[2] = "STATUS_RESHARE"] = 2;
+                return values;
+            })();
+
+            return StatusNotificationMessage;
         })();
 
         Message.StickerMessage = (function() {
