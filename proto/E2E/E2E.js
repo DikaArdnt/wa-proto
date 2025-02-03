@@ -10338,6 +10338,7 @@ $root.E2E = (function() {
                     case 20:
                     case 21:
                     case 22:
+                    case 23:
                         break;
                     }
             }
@@ -10455,6 +10456,10 @@ $root.E2E = (function() {
                     case 22:
                         message.capabilities[i] = 22;
                         break;
+                    case "AI_STUDIO_UGC_MEMORY":
+                    case 23:
+                        message.capabilities[i] = 23;
+                        break;
                     }
             }
             return message;
@@ -10535,6 +10540,7 @@ $root.E2E = (function() {
          * @property {number} WA_IG_1P_PLUGIN_RANKING_UPDATE_10=20 WA_IG_1P_PLUGIN_RANKING_UPDATE_10 value
          * @property {number} RICH_RESPONSE_SUB_HEADING=21 RICH_RESPONSE_SUB_HEADING value
          * @property {number} RICH_RESPONSE_GRID_IMAGE=22 RICH_RESPONSE_GRID_IMAGE value
+         * @property {number} AI_STUDIO_UGC_MEMORY=23 AI_STUDIO_UGC_MEMORY value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -10560,6 +10566,7 @@ $root.E2E = (function() {
             values[valuesById[20] = "WA_IG_1P_PLUGIN_RANKING_UPDATE_10"] = 20;
             values[valuesById[21] = "RICH_RESPONSE_SUB_HEADING"] = 21;
             values[valuesById[22] = "RICH_RESPONSE_GRID_IMAGE"] = 22;
+            values[valuesById[23] = "AI_STUDIO_UGC_MEMORY"] = 23;
             return values;
         })();
 
