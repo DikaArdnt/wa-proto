@@ -15301,6 +15301,7 @@ $root.E2E = (function() {
                 case 14:
                 case 15:
                 case 16:
+                case 17:
                     break;
                 }
             return null;
@@ -15390,6 +15391,10 @@ $root.E2E = (function() {
             case "APP_SHORTCUT":
             case 16:
                 message.destinationEntryPoint = 16;
+                break;
+            case "FF_FAMILY":
+            case 17:
+                message.destinationEntryPoint = 17;
                 break;
             }
             return message;
@@ -70383,6 +70388,7 @@ $root.E2E = (function() {
      * @property {number} PROFILE_MESSAGE_BUTTON=14 PROFILE_MESSAGE_BUTTON value
      * @property {number} FORWARD=15 FORWARD value
      * @property {number} APP_SHORTCUT=16 APP_SHORTCUT value
+     * @property {number} FF_FAMILY=17 FF_FAMILY value
      */
     E2E.BotMetricsEntryPoint = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -70402,6 +70408,7 @@ $root.E2E = (function() {
         values[valuesById[14] = "PROFILE_MESSAGE_BUTTON"] = 14;
         values[valuesById[15] = "FORWARD"] = 15;
         values[valuesById[16] = "APP_SHORTCUT"] = 16;
+        values[valuesById[17] = "FF_FAMILY"] = 17;
         return values;
     })();
 
