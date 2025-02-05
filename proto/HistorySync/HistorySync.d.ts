@@ -12520,6 +12520,9 @@ export namespace E2E {
 
         /** BotLinkedAccountsMetadata accounts */
         accounts?: (E2E.IBotLinkedAccount[]|null);
+
+        /** BotLinkedAccountsMetadata acAuthTokens */
+        acAuthTokens?: (Uint8Array|null);
     }
 
     /** Represents a BotLinkedAccountsMetadata. */
@@ -12533,6 +12536,9 @@ export namespace E2E {
 
         /** BotLinkedAccountsMetadata accounts. */
         public accounts: E2E.IBotLinkedAccount[];
+
+        /** BotLinkedAccountsMetadata acAuthTokens. */
+        public acAuthTokens: Uint8Array;
 
         /**
          * Creates a new BotLinkedAccountsMetadata instance using the specified properties.

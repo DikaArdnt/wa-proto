@@ -16801,6 +16801,7 @@ $root.E2E = (function() {
          * @memberof E2E
          * @interface IBotLinkedAccountsMetadata
          * @property {Array.<E2E.IBotLinkedAccount>|null} [accounts] BotLinkedAccountsMetadata accounts
+         * @property {Uint8Array|null} [acAuthTokens] BotLinkedAccountsMetadata acAuthTokens
          */
 
         /**
@@ -16826,6 +16827,14 @@ $root.E2E = (function() {
          * @instance
          */
         BotLinkedAccountsMetadata.prototype.accounts = $util.emptyArray;
+
+        /**
+         * BotLinkedAccountsMetadata acAuthTokens.
+         * @member {Uint8Array} acAuthTokens
+         * @memberof E2E.BotLinkedAccountsMetadata
+         * @instance
+         */
+        BotLinkedAccountsMetadata.prototype.acAuthTokens = $util.newBuffer([]);
 
         /**
          * Creates a new BotLinkedAccountsMetadata instance using the specified properties.
@@ -16854,6 +16863,8 @@ $root.E2E = (function() {
             if (message.accounts != null && message.accounts.length)
                 for (var i = 0; i < message.accounts.length; ++i)
                     $root.E2E.BotLinkedAccount.encode(message.accounts[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.acAuthTokens != null && Object.hasOwnProperty.call(message, "acAuthTokens"))
+                writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.acAuthTokens);
             return writer;
         };
 
@@ -16892,6 +16903,10 @@ $root.E2E = (function() {
                         if (!(message.accounts && message.accounts.length))
                             message.accounts = [];
                         message.accounts.push($root.E2E.BotLinkedAccount.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 2: {
+                        message.acAuthTokens = reader.bytes();
                         break;
                     }
                 default:
@@ -16938,6 +16953,9 @@ $root.E2E = (function() {
                         return "accounts." + error;
                 }
             }
+            if (message.acAuthTokens != null && message.hasOwnProperty("acAuthTokens"))
+                if (!(message.acAuthTokens && typeof message.acAuthTokens.length === "number" || $util.isString(message.acAuthTokens)))
+                    return "acAuthTokens: buffer expected";
             return null;
         };
 
@@ -16963,6 +16981,11 @@ $root.E2E = (function() {
                     message.accounts[i] = $root.E2E.BotLinkedAccount.fromObject(object.accounts[i]);
                 }
             }
+            if (object.acAuthTokens != null)
+                if (typeof object.acAuthTokens === "string")
+                    $util.base64.decode(object.acAuthTokens, message.acAuthTokens = $util.newBuffer($util.base64.length(object.acAuthTokens)), 0);
+                else if (object.acAuthTokens.length >= 0)
+                    message.acAuthTokens = object.acAuthTokens;
             return message;
         };
 
@@ -16981,11 +17004,21 @@ $root.E2E = (function() {
             var object = {};
             if (options.arrays || options.defaults)
                 object.accounts = [];
+            if (options.defaults)
+                if (options.bytes === String)
+                    object.acAuthTokens = "";
+                else {
+                    object.acAuthTokens = [];
+                    if (options.bytes !== Array)
+                        object.acAuthTokens = $util.newBuffer(object.acAuthTokens);
+                }
             if (message.accounts && message.accounts.length) {
                 object.accounts = [];
                 for (var j = 0; j < message.accounts.length; ++j)
                     object.accounts[j] = $root.E2E.BotLinkedAccount.toObject(message.accounts[j], options);
             }
+            if (message.acAuthTokens != null && message.hasOwnProperty("acAuthTokens"))
+                object.acAuthTokens = options.bytes === String ? $util.base64.encode(message.acAuthTokens, 0, message.acAuthTokens.length) : options.bytes === Array ? Array.prototype.slice.call(message.acAuthTokens) : message.acAuthTokens;
             return object;
         };
 
