@@ -3131,6 +3131,9 @@ export namespace Web {
 
         /** WebMessageInfo supportAiCitations */
         supportAiCitations?: (Web.ICitation[]|null);
+
+        /** WebMessageInfo botTargetId */
+        botTargetId?: (string|null);
     }
 
     /** Represents a WebMessageInfo. */
@@ -3324,6 +3327,9 @@ export namespace Web {
 
         /** WebMessageInfo supportAiCitations. */
         public supportAiCitations: Web.ICitation[];
+
+        /** WebMessageInfo botTargetId. */
+        public botTargetId: string;
 
         /**
          * Creates a new WebMessageInfo instance using the specified properties.

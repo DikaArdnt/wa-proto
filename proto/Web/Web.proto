@@ -331,6 +331,7 @@ message WebMessageInfo {
     optional bool isSupportAiMessage = 70;
     repeated string statusMentionSources = 71;
     repeated Citation supportAiCitations = 72;
+    optional string botTargetId = 73;
     enum BizPrivacyStatus {
         E2EE = 0;
         FB = 2;
