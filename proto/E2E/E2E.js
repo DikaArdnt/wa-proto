@@ -9078,6 +9078,8 @@ $root.E2E = (function() {
                 case 7:
                 case 8:
                 case 9:
+                case 10:
+                case 11:
                     break;
                 }
             if (message.parentMessageKey != null && message.hasOwnProperty("parentMessageKey")) {
@@ -9149,6 +9151,14 @@ $root.E2E = (function() {
             case "STATUS_NOTIFICATION":
             case 9:
                 message.associationType = 9;
+                break;
+            case "HD_IMAGE_DUAL_UPLOAD":
+            case 10:
+                message.associationType = 10;
+                break;
+            case "STICKER_ANNOTATION":
+            case 11:
+                message.associationType = 11;
                 break;
             }
             if (object.parentMessageKey != null) {
@@ -9228,6 +9238,8 @@ $root.E2E = (function() {
          * @property {number} MEDIA_POLL=7 MEDIA_POLL value
          * @property {number} STATUS_ADD_YOURS=8 STATUS_ADD_YOURS value
          * @property {number} STATUS_NOTIFICATION=9 STATUS_NOTIFICATION value
+         * @property {number} HD_IMAGE_DUAL_UPLOAD=10 HD_IMAGE_DUAL_UPLOAD value
+         * @property {number} STICKER_ANNOTATION=11 STICKER_ANNOTATION value
          */
         MessageAssociation.AssociationType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -9241,6 +9253,8 @@ $root.E2E = (function() {
             values[valuesById[7] = "MEDIA_POLL"] = 7;
             values[valuesById[8] = "STATUS_ADD_YOURS"] = 8;
             values[valuesById[9] = "STATUS_NOTIFICATION"] = 9;
+            values[valuesById[10] = "HD_IMAGE_DUAL_UPLOAD"] = 10;
+            values[valuesById[11] = "STICKER_ANNOTATION"] = 11;
             return values;
         })();
 
@@ -13442,6 +13456,218 @@ $root.E2E = (function() {
             return typeUrlPrefix + "/E2E.AIRichResponseMessage";
         };
 
+        AIRichResponseMessage.AIRichResponseAbstractData = (function() {
+
+            /**
+             * Properties of a AIRichResponseAbstractData.
+             * @memberof E2E.AIRichResponseMessage
+             * @interface IAIRichResponseAbstractData
+             * @property {Uint8Array|null} [data] AIRichResponseAbstractData data
+             */
+
+            /**
+             * Constructs a new AIRichResponseAbstractData.
+             * @memberof E2E.AIRichResponseMessage
+             * @classdesc Represents a AIRichResponseAbstractData.
+             * @implements IAIRichResponseAbstractData
+             * @constructor
+             * @param {E2E.AIRichResponseMessage.IAIRichResponseAbstractData=} [properties] Properties to set
+             */
+            function AIRichResponseAbstractData(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * AIRichResponseAbstractData data.
+             * @member {Uint8Array} data
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseAbstractData
+             * @instance
+             */
+            AIRichResponseAbstractData.prototype.data = $util.newBuffer([]);
+
+            /**
+             * Creates a new AIRichResponseAbstractData instance using the specified properties.
+             * @function create
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseAbstractData
+             * @static
+             * @param {E2E.AIRichResponseMessage.IAIRichResponseAbstractData=} [properties] Properties to set
+             * @returns {E2E.AIRichResponseMessage.AIRichResponseAbstractData} AIRichResponseAbstractData instance
+             */
+            AIRichResponseAbstractData.create = function create(properties) {
+                return new AIRichResponseAbstractData(properties);
+            };
+
+            /**
+             * Encodes the specified AIRichResponseAbstractData message. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseAbstractData.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseAbstractData
+             * @static
+             * @param {E2E.AIRichResponseMessage.IAIRichResponseAbstractData} message AIRichResponseAbstractData message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            AIRichResponseAbstractData.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.data);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified AIRichResponseAbstractData message, length delimited. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseAbstractData.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseAbstractData
+             * @static
+             * @param {E2E.AIRichResponseMessage.IAIRichResponseAbstractData} message AIRichResponseAbstractData message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            AIRichResponseAbstractData.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a AIRichResponseAbstractData message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseAbstractData
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.AIRichResponseMessage.AIRichResponseAbstractData} AIRichResponseAbstractData
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            AIRichResponseAbstractData.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseAbstractData();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.data = reader.bytes();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a AIRichResponseAbstractData message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseAbstractData
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.AIRichResponseMessage.AIRichResponseAbstractData} AIRichResponseAbstractData
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            AIRichResponseAbstractData.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a AIRichResponseAbstractData message.
+             * @function verify
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseAbstractData
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            AIRichResponseAbstractData.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.data != null && message.hasOwnProperty("data"))
+                    if (!(message.data && typeof message.data.length === "number" || $util.isString(message.data)))
+                        return "data: buffer expected";
+                return null;
+            };
+
+            /**
+             * Creates a AIRichResponseAbstractData message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseAbstractData
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.AIRichResponseMessage.AIRichResponseAbstractData} AIRichResponseAbstractData
+             */
+            AIRichResponseAbstractData.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.AIRichResponseMessage.AIRichResponseAbstractData)
+                    return object;
+                var message = new $root.E2E.AIRichResponseMessage.AIRichResponseAbstractData();
+                if (object.data != null)
+                    if (typeof object.data === "string")
+                        $util.base64.decode(object.data, message.data = $util.newBuffer($util.base64.length(object.data)), 0);
+                    else if (object.data.length >= 0)
+                        message.data = object.data;
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a AIRichResponseAbstractData message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseAbstractData
+             * @static
+             * @param {E2E.AIRichResponseMessage.AIRichResponseAbstractData} message AIRichResponseAbstractData
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            AIRichResponseAbstractData.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    if (options.bytes === String)
+                        object.data = "";
+                    else {
+                        object.data = [];
+                        if (options.bytes !== Array)
+                            object.data = $util.newBuffer(object.data);
+                    }
+                if (message.data != null && message.hasOwnProperty("data"))
+                    object.data = options.bytes === String ? $util.base64.encode(message.data, 0, message.data.length) : options.bytes === Array ? Array.prototype.slice.call(message.data) : message.data;
+                return object;
+            };
+
+            /**
+             * Converts this AIRichResponseAbstractData to JSON.
+             * @function toJSON
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseAbstractData
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            AIRichResponseAbstractData.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for AIRichResponseAbstractData
+             * @function getTypeUrl
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseAbstractData
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            AIRichResponseAbstractData.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.AIRichResponseMessage.AIRichResponseAbstractData";
+            };
+
+            return AIRichResponseAbstractData;
+        })();
+
         AIRichResponseMessage.AIRichResponseCodeMetadata = (function() {
 
             /**
@@ -15153,6 +15379,7 @@ $root.E2E = (function() {
              * @property {E2E.AIRichResponseMessage.IAIRichResponseCodeMetadata|null} [codeMetadata] AIRichResponseSubMessage codeMetadata
              * @property {E2E.AIRichResponseMessage.IAIRichResponseTableMetadata|null} [tableMetadata] AIRichResponseSubMessage tableMetadata
              * @property {E2E.AIRichResponseMessage.IAIRichResponseDynamicMetadata|null} [dynamicMetadata] AIRichResponseSubMessage dynamicMetadata
+             * @property {E2E.AIRichResponseMessage.IAIRichResponseAbstractData|null} [abstractData] AIRichResponseSubMessage abstractData
              */
 
             /**
@@ -15227,6 +15454,14 @@ $root.E2E = (function() {
             AIRichResponseSubMessage.prototype.dynamicMetadata = null;
 
             /**
+             * AIRichResponseSubMessage abstractData.
+             * @member {E2E.AIRichResponseMessage.IAIRichResponseAbstractData|null|undefined} abstractData
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseSubMessage
+             * @instance
+             */
+            AIRichResponseSubMessage.prototype.abstractData = null;
+
+            /**
              * Creates a new AIRichResponseSubMessage instance using the specified properties.
              * @function create
              * @memberof E2E.AIRichResponseMessage.AIRichResponseSubMessage
@@ -15264,6 +15499,8 @@ $root.E2E = (function() {
                     $root.E2E.AIRichResponseMessage.AIRichResponseTableMetadata.encode(message.tableMetadata, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
                 if (message.dynamicMetadata != null && Object.hasOwnProperty.call(message, "dynamicMetadata"))
                     $root.E2E.AIRichResponseMessage.AIRichResponseDynamicMetadata.encode(message.dynamicMetadata, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+                if (message.abstractData != null && Object.hasOwnProperty.call(message, "abstractData"))
+                    $root.E2E.AIRichResponseMessage.AIRichResponseAbstractData.encode(message.abstractData, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
                 return writer;
             };
 
@@ -15324,6 +15561,10 @@ $root.E2E = (function() {
                         }
                     case 7: {
                             message.dynamicMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseDynamicMetadata.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 8: {
+                            message.abstractData = $root.E2E.AIRichResponseMessage.AIRichResponseAbstractData.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -15401,6 +15642,11 @@ $root.E2E = (function() {
                     var error = $root.E2E.AIRichResponseMessage.AIRichResponseDynamicMetadata.verify(message.dynamicMetadata);
                     if (error)
                         return "dynamicMetadata." + error;
+                }
+                if (message.abstractData != null && message.hasOwnProperty("abstractData")) {
+                    var error = $root.E2E.AIRichResponseMessage.AIRichResponseAbstractData.verify(message.abstractData);
+                    if (error)
+                        return "abstractData." + error;
                 }
                 return null;
             };
@@ -15480,6 +15726,11 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.AIRichResponseMessage.AIRichResponseSubMessage.dynamicMetadata: object expected");
                     message.dynamicMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseDynamicMetadata.fromObject(object.dynamicMetadata);
                 }
+                if (object.abstractData != null) {
+                    if (typeof object.abstractData !== "object")
+                        throw TypeError(".E2E.AIRichResponseMessage.AIRichResponseSubMessage.abstractData: object expected");
+                    message.abstractData = $root.E2E.AIRichResponseMessage.AIRichResponseAbstractData.fromObject(object.abstractData);
+                }
                 return message;
             };
 
@@ -15504,6 +15755,7 @@ $root.E2E = (function() {
                     object.codeMetadata = null;
                     object.tableMetadata = null;
                     object.dynamicMetadata = null;
+                    object.abstractData = null;
                 }
                 if (message.messageType != null && message.hasOwnProperty("messageType"))
                     object.messageType = options.enums === String ? $root.E2E.AIRichResponseMessage.AIRichResponseSubMessageType[message.messageType] === undefined ? message.messageType : $root.E2E.AIRichResponseMessage.AIRichResponseSubMessageType[message.messageType] : message.messageType;
@@ -15519,6 +15771,8 @@ $root.E2E = (function() {
                     object.tableMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseTableMetadata.toObject(message.tableMetadata, options);
                 if (message.dynamicMetadata != null && message.hasOwnProperty("dynamicMetadata"))
                     object.dynamicMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseDynamicMetadata.toObject(message.dynamicMetadata, options);
+                if (message.abstractData != null && message.hasOwnProperty("abstractData"))
+                    object.abstractData = $root.E2E.AIRichResponseMessage.AIRichResponseAbstractData.toObject(message.abstractData, options);
                 return object;
             };
 
@@ -18738,6 +18992,7 @@ $root.E2E = (function() {
          * @property {E2E.ContextInfo.IForwardedAIBotMessageInfo|null} [forwardedAiBotMessageInfo] ContextInfo forwardedAiBotMessageInfo
          * @property {E2E.ContextInfo.StatusAttributionType|null} [statusAttributionType] ContextInfo statusAttributionType
          * @property {E2E.IUrlTrackingMap|null} [urlTrackingMap] ContextInfo urlTrackingMap
+         * @property {E2E.ContextInfo.PairedMediaType|null} [pairedMediaType] ContextInfo pairedMediaType
          */
 
         /**
@@ -19094,6 +19349,14 @@ $root.E2E = (function() {
         ContextInfo.prototype.urlTrackingMap = null;
 
         /**
+         * ContextInfo pairedMediaType.
+         * @member {E2E.ContextInfo.PairedMediaType} pairedMediaType
+         * @memberof E2E.ContextInfo
+         * @instance
+         */
+        ContextInfo.prototype.pairedMediaType = 0;
+
+        /**
          * Creates a new ContextInfo instance using the specified properties.
          * @function create
          * @memberof E2E.ContextInfo
@@ -19203,6 +19466,8 @@ $root.E2E = (function() {
                 writer.uint32(/* id 57, wireType 0 =*/456).int32(message.statusAttributionType);
             if (message.urlTrackingMap != null && Object.hasOwnProperty.call(message, "urlTrackingMap"))
                 $root.E2E.UrlTrackingMap.encode(message.urlTrackingMap, writer.uint32(/* id 58, wireType 2 =*/466).fork()).ldelim();
+            if (message.pairedMediaType != null && Object.hasOwnProperty.call(message, "pairedMediaType"))
+                writer.uint32(/* id 59, wireType 0 =*/472).int32(message.pairedMediaType);
             return writer;
         };
 
@@ -19409,6 +19674,10 @@ $root.E2E = (function() {
                         message.urlTrackingMap = $root.E2E.UrlTrackingMap.decode(reader, reader.uint32());
                         break;
                     }
+                case 59: {
+                        message.pairedMediaType = reader.int32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -19612,6 +19881,17 @@ $root.E2E = (function() {
                 if (error)
                     return "urlTrackingMap." + error;
             }
+            if (message.pairedMediaType != null && message.hasOwnProperty("pairedMediaType"))
+                switch (message.pairedMediaType) {
+                default:
+                    return "pairedMediaType: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    break;
+                }
             return null;
         };
 
@@ -19797,6 +20077,34 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.ContextInfo.urlTrackingMap: object expected");
                 message.urlTrackingMap = $root.E2E.UrlTrackingMap.fromObject(object.urlTrackingMap);
             }
+            switch (object.pairedMediaType) {
+            default:
+                if (typeof object.pairedMediaType === "number") {
+                    message.pairedMediaType = object.pairedMediaType;
+                    break;
+                }
+                break;
+            case "NOT_PAIRED_MEDIA":
+            case 0:
+                message.pairedMediaType = 0;
+                break;
+            case "SD_VIDEO_PARENT":
+            case 1:
+                message.pairedMediaType = 1;
+                break;
+            case "HD_VIDEO_CHILD":
+            case 2:
+                message.pairedMediaType = 2;
+                break;
+            case "SD_IMAGE_PARENT":
+            case 3:
+                message.pairedMediaType = 3;
+                break;
+            case "HD_IMAGE_CHILD":
+            case 4:
+                message.pairedMediaType = 4;
+                break;
+            }
             return message;
         };
 
@@ -19880,6 +20188,7 @@ $root.E2E = (function() {
                 object.forwardedAiBotMessageInfo = null;
                 object.statusAttributionType = options.enums === String ? "NONE" : 0;
                 object.urlTrackingMap = null;
+                object.pairedMediaType = options.enums === String ? "NOT_PAIRED_MEDIA" : 0;
             }
             if (message.stanzaId != null && message.hasOwnProperty("stanzaId"))
                 object.stanzaId = message.stanzaId;
@@ -19974,6 +20283,8 @@ $root.E2E = (function() {
                 object.statusAttributionType = options.enums === String ? $root.E2E.ContextInfo.StatusAttributionType[message.statusAttributionType] === undefined ? message.statusAttributionType : $root.E2E.ContextInfo.StatusAttributionType[message.statusAttributionType] : message.statusAttributionType;
             if (message.urlTrackingMap != null && message.hasOwnProperty("urlTrackingMap"))
                 object.urlTrackingMap = $root.E2E.UrlTrackingMap.toObject(message.urlTrackingMap, options);
+            if (message.pairedMediaType != null && message.hasOwnProperty("pairedMediaType"))
+                object.pairedMediaType = options.enums === String ? $root.E2E.ContextInfo.PairedMediaType[message.pairedMediaType] === undefined ? message.pairedMediaType : $root.E2E.ContextInfo.PairedMediaType[message.pairedMediaType] : message.pairedMediaType;
             return object;
         };
 
@@ -22708,6 +23019,26 @@ $root.E2E = (function() {
             })();
 
             return ForwardedNewsletterMessageInfo;
+        })();
+
+        /**
+         * PairedMediaType enum.
+         * @name E2E.ContextInfo.PairedMediaType
+         * @enum {number}
+         * @property {number} NOT_PAIRED_MEDIA=0 NOT_PAIRED_MEDIA value
+         * @property {number} SD_VIDEO_PARENT=1 SD_VIDEO_PARENT value
+         * @property {number} HD_VIDEO_CHILD=2 HD_VIDEO_CHILD value
+         * @property {number} SD_IMAGE_PARENT=3 SD_IMAGE_PARENT value
+         * @property {number} HD_IMAGE_CHILD=4 HD_IMAGE_CHILD value
+         */
+        ContextInfo.PairedMediaType = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "NOT_PAIRED_MEDIA"] = 0;
+            values[valuesById[1] = "SD_VIDEO_PARENT"] = 1;
+            values[valuesById[2] = "HD_VIDEO_CHILD"] = 2;
+            values[valuesById[3] = "SD_IMAGE_PARENT"] = 3;
+            values[valuesById[4] = "HD_IMAGE_CHILD"] = 4;
+            return values;
         })();
 
         /**
