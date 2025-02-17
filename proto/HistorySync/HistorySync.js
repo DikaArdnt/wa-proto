@@ -30706,6 +30706,7 @@ $root.E2E = (function() {
                     case 21:
                     case 22:
                     case 23:
+                    case 24:
                         break;
                     }
             }
@@ -30827,6 +30828,10 @@ $root.E2E = (function() {
                     case 23:
                         message.capabilities[i] = 23;
                         break;
+                    case "RICH_RESPONSE_LATEX":
+                    case 24:
+                        message.capabilities[i] = 24;
+                        break;
                     }
             }
             return message;
@@ -30908,6 +30913,7 @@ $root.E2E = (function() {
          * @property {number} RICH_RESPONSE_SUB_HEADING=21 RICH_RESPONSE_SUB_HEADING value
          * @property {number} RICH_RESPONSE_GRID_IMAGE=22 RICH_RESPONSE_GRID_IMAGE value
          * @property {number} AI_STUDIO_UGC_MEMORY=23 AI_STUDIO_UGC_MEMORY value
+         * @property {number} RICH_RESPONSE_LATEX=24 RICH_RESPONSE_LATEX value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -30934,6 +30940,7 @@ $root.E2E = (function() {
             values[valuesById[21] = "RICH_RESPONSE_SUB_HEADING"] = 21;
             values[valuesById[22] = "RICH_RESPONSE_GRID_IMAGE"] = 22;
             values[valuesById[23] = "AI_STUDIO_UGC_MEMORY"] = 23;
+            values[valuesById[24] = "RICH_RESPONSE_LATEX"] = 24;
             return values;
         })();
 
@@ -33553,6 +33560,7 @@ $root.E2E = (function() {
          * @interface IAIRichResponseMessage
          * @property {E2E.AIRichResponseMessage.AIRichResponseMessageType|null} [messageType] AIRichResponseMessage messageType
          * @property {Array.<E2E.AIRichResponseMessage.IAIRichResponseSubMessage>|null} [submessages] AIRichResponseMessage submessages
+         * @property {E2E.AIRichResponseMessage.IAIRichResponseAbstractData|null} [abstractData] AIRichResponseMessage abstractData
          */
 
         /**
@@ -33588,6 +33596,14 @@ $root.E2E = (function() {
         AIRichResponseMessage.prototype.submessages = $util.emptyArray;
 
         /**
+         * AIRichResponseMessage abstractData.
+         * @member {E2E.AIRichResponseMessage.IAIRichResponseAbstractData|null|undefined} abstractData
+         * @memberof E2E.AIRichResponseMessage
+         * @instance
+         */
+        AIRichResponseMessage.prototype.abstractData = null;
+
+        /**
          * Creates a new AIRichResponseMessage instance using the specified properties.
          * @function create
          * @memberof E2E.AIRichResponseMessage
@@ -33616,6 +33632,8 @@ $root.E2E = (function() {
             if (message.submessages != null && message.submessages.length)
                 for (var i = 0; i < message.submessages.length; ++i)
                     $root.E2E.AIRichResponseMessage.AIRichResponseSubMessage.encode(message.submessages[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.abstractData != null && Object.hasOwnProperty.call(message, "abstractData"))
+                $root.E2E.AIRichResponseMessage.AIRichResponseAbstractData.encode(message.abstractData, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             return writer;
         };
 
@@ -33658,6 +33676,10 @@ $root.E2E = (function() {
                         if (!(message.submessages && message.submessages.length))
                             message.submessages = [];
                         message.submessages.push($root.E2E.AIRichResponseMessage.AIRichResponseSubMessage.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 3: {
+                        message.abstractData = $root.E2E.AIRichResponseMessage.AIRichResponseAbstractData.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -33712,6 +33734,11 @@ $root.E2E = (function() {
                         return "submessages." + error;
                 }
             }
+            if (message.abstractData != null && message.hasOwnProperty("abstractData")) {
+                var error = $root.E2E.AIRichResponseMessage.AIRichResponseAbstractData.verify(message.abstractData);
+                if (error)
+                    return "abstractData." + error;
+            }
             return null;
         };
 
@@ -33753,6 +33780,11 @@ $root.E2E = (function() {
                     message.submessages[i] = $root.E2E.AIRichResponseMessage.AIRichResponseSubMessage.fromObject(object.submessages[i]);
                 }
             }
+            if (object.abstractData != null) {
+                if (typeof object.abstractData !== "object")
+                    throw TypeError(".E2E.AIRichResponseMessage.abstractData: object expected");
+                message.abstractData = $root.E2E.AIRichResponseMessage.AIRichResponseAbstractData.fromObject(object.abstractData);
+            }
             return message;
         };
 
@@ -33771,8 +33803,10 @@ $root.E2E = (function() {
             var object = {};
             if (options.arrays || options.defaults)
                 object.submessages = [];
-            if (options.defaults)
+            if (options.defaults) {
                 object.messageType = options.enums === String ? "AI_RICH_RESPONSE_TYPE_UNKNOWN" : 0;
+                object.abstractData = null;
+            }
             if (message.messageType != null && message.hasOwnProperty("messageType"))
                 object.messageType = options.enums === String ? $root.E2E.AIRichResponseMessage.AIRichResponseMessageType[message.messageType] === undefined ? message.messageType : $root.E2E.AIRichResponseMessage.AIRichResponseMessageType[message.messageType] : message.messageType;
             if (message.submessages && message.submessages.length) {
@@ -33780,6 +33814,8 @@ $root.E2E = (function() {
                 for (var j = 0; j < message.submessages.length; ++j)
                     object.submessages[j] = $root.E2E.AIRichResponseMessage.AIRichResponseSubMessage.toObject(message.submessages[j], options);
             }
+            if (message.abstractData != null && message.hasOwnProperty("abstractData"))
+                object.abstractData = $root.E2E.AIRichResponseMessage.AIRichResponseAbstractData.toObject(message.abstractData, options);
             return object;
         };
 
@@ -35705,6 +35741,550 @@ $root.E2E = (function() {
             return AIRichResponseInlineImageMetadata;
         })();
 
+        AIRichResponseMessage.AIRichResponseLatexMetadata = (function() {
+
+            /**
+             * Properties of a AIRichResponseLatexMetadata.
+             * @memberof E2E.AIRichResponseMessage
+             * @interface IAIRichResponseLatexMetadata
+             * @property {string|null} [text] AIRichResponseLatexMetadata text
+             * @property {Array.<E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.IAIRichResponseLatexExpression>|null} [expressions] AIRichResponseLatexMetadata expressions
+             */
+
+            /**
+             * Constructs a new AIRichResponseLatexMetadata.
+             * @memberof E2E.AIRichResponseMessage
+             * @classdesc Represents a AIRichResponseLatexMetadata.
+             * @implements IAIRichResponseLatexMetadata
+             * @constructor
+             * @param {E2E.AIRichResponseMessage.IAIRichResponseLatexMetadata=} [properties] Properties to set
+             */
+            function AIRichResponseLatexMetadata(properties) {
+                this.expressions = [];
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * AIRichResponseLatexMetadata text.
+             * @member {string} text
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata
+             * @instance
+             */
+            AIRichResponseLatexMetadata.prototype.text = "";
+
+            /**
+             * AIRichResponseLatexMetadata expressions.
+             * @member {Array.<E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.IAIRichResponseLatexExpression>} expressions
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata
+             * @instance
+             */
+            AIRichResponseLatexMetadata.prototype.expressions = $util.emptyArray;
+
+            /**
+             * Creates a new AIRichResponseLatexMetadata instance using the specified properties.
+             * @function create
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata
+             * @static
+             * @param {E2E.AIRichResponseMessage.IAIRichResponseLatexMetadata=} [properties] Properties to set
+             * @returns {E2E.AIRichResponseMessage.AIRichResponseLatexMetadata} AIRichResponseLatexMetadata instance
+             */
+            AIRichResponseLatexMetadata.create = function create(properties) {
+                return new AIRichResponseLatexMetadata(properties);
+            };
+
+            /**
+             * Encodes the specified AIRichResponseLatexMetadata message. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata
+             * @static
+             * @param {E2E.AIRichResponseMessage.IAIRichResponseLatexMetadata} message AIRichResponseLatexMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            AIRichResponseLatexMetadata.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.text != null && Object.hasOwnProperty.call(message, "text"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.text);
+                if (message.expressions != null && message.expressions.length)
+                    for (var i = 0; i < message.expressions.length; ++i)
+                        $root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression.encode(message.expressions[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                return writer;
+            };
+
+            /**
+             * Encodes the specified AIRichResponseLatexMetadata message, length delimited. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata
+             * @static
+             * @param {E2E.AIRichResponseMessage.IAIRichResponseLatexMetadata} message AIRichResponseLatexMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            AIRichResponseLatexMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a AIRichResponseLatexMetadata message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.AIRichResponseMessage.AIRichResponseLatexMetadata} AIRichResponseLatexMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            AIRichResponseLatexMetadata.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.text = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            if (!(message.expressions && message.expressions.length))
+                                message.expressions = [];
+                            message.expressions.push($root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a AIRichResponseLatexMetadata message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.AIRichResponseMessage.AIRichResponseLatexMetadata} AIRichResponseLatexMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            AIRichResponseLatexMetadata.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a AIRichResponseLatexMetadata message.
+             * @function verify
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            AIRichResponseLatexMetadata.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.text != null && message.hasOwnProperty("text"))
+                    if (!$util.isString(message.text))
+                        return "text: string expected";
+                if (message.expressions != null && message.hasOwnProperty("expressions")) {
+                    if (!Array.isArray(message.expressions))
+                        return "expressions: array expected";
+                    for (var i = 0; i < message.expressions.length; ++i) {
+                        var error = $root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression.verify(message.expressions[i]);
+                        if (error)
+                            return "expressions." + error;
+                    }
+                }
+                return null;
+            };
+
+            /**
+             * Creates a AIRichResponseLatexMetadata message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.AIRichResponseMessage.AIRichResponseLatexMetadata} AIRichResponseLatexMetadata
+             */
+            AIRichResponseLatexMetadata.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata)
+                    return object;
+                var message = new $root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata();
+                if (object.text != null)
+                    message.text = String(object.text);
+                if (object.expressions) {
+                    if (!Array.isArray(object.expressions))
+                        throw TypeError(".E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.expressions: array expected");
+                    message.expressions = [];
+                    for (var i = 0; i < object.expressions.length; ++i) {
+                        if (typeof object.expressions[i] !== "object")
+                            throw TypeError(".E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.expressions: object expected");
+                        message.expressions[i] = $root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression.fromObject(object.expressions[i]);
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a AIRichResponseLatexMetadata message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata
+             * @static
+             * @param {E2E.AIRichResponseMessage.AIRichResponseLatexMetadata} message AIRichResponseLatexMetadata
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            AIRichResponseLatexMetadata.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.arrays || options.defaults)
+                    object.expressions = [];
+                if (options.defaults)
+                    object.text = "";
+                if (message.text != null && message.hasOwnProperty("text"))
+                    object.text = message.text;
+                if (message.expressions && message.expressions.length) {
+                    object.expressions = [];
+                    for (var j = 0; j < message.expressions.length; ++j)
+                        object.expressions[j] = $root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression.toObject(message.expressions[j], options);
+                }
+                return object;
+            };
+
+            /**
+             * Converts this AIRichResponseLatexMetadata to JSON.
+             * @function toJSON
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            AIRichResponseLatexMetadata.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for AIRichResponseLatexMetadata
+             * @function getTypeUrl
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            AIRichResponseLatexMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.AIRichResponseMessage.AIRichResponseLatexMetadata";
+            };
+
+            AIRichResponseLatexMetadata.AIRichResponseLatexExpression = (function() {
+
+                /**
+                 * Properties of a AIRichResponseLatexExpression.
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata
+                 * @interface IAIRichResponseLatexExpression
+                 * @property {string|null} [latexExpression] AIRichResponseLatexExpression latexExpression
+                 * @property {string|null} [url] AIRichResponseLatexExpression url
+                 * @property {number|null} [width] AIRichResponseLatexExpression width
+                 * @property {number|null} [height] AIRichResponseLatexExpression height
+                 * @property {number|null} [fontHeight] AIRichResponseLatexExpression fontHeight
+                 */
+
+                /**
+                 * Constructs a new AIRichResponseLatexExpression.
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata
+                 * @classdesc Represents a AIRichResponseLatexExpression.
+                 * @implements IAIRichResponseLatexExpression
+                 * @constructor
+                 * @param {E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.IAIRichResponseLatexExpression=} [properties] Properties to set
+                 */
+                function AIRichResponseLatexExpression(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * AIRichResponseLatexExpression latexExpression.
+                 * @member {string} latexExpression
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @instance
+                 */
+                AIRichResponseLatexExpression.prototype.latexExpression = "";
+
+                /**
+                 * AIRichResponseLatexExpression url.
+                 * @member {string} url
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @instance
+                 */
+                AIRichResponseLatexExpression.prototype.url = "";
+
+                /**
+                 * AIRichResponseLatexExpression width.
+                 * @member {number} width
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @instance
+                 */
+                AIRichResponseLatexExpression.prototype.width = 0;
+
+                /**
+                 * AIRichResponseLatexExpression height.
+                 * @member {number} height
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @instance
+                 */
+                AIRichResponseLatexExpression.prototype.height = 0;
+
+                /**
+                 * AIRichResponseLatexExpression fontHeight.
+                 * @member {number} fontHeight
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @instance
+                 */
+                AIRichResponseLatexExpression.prototype.fontHeight = 0;
+
+                /**
+                 * Creates a new AIRichResponseLatexExpression instance using the specified properties.
+                 * @function create
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @static
+                 * @param {E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.IAIRichResponseLatexExpression=} [properties] Properties to set
+                 * @returns {E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression} AIRichResponseLatexExpression instance
+                 */
+                AIRichResponseLatexExpression.create = function create(properties) {
+                    return new AIRichResponseLatexExpression(properties);
+                };
+
+                /**
+                 * Encodes the specified AIRichResponseLatexExpression message. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression.verify|verify} messages.
+                 * @function encode
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @static
+                 * @param {E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.IAIRichResponseLatexExpression} message AIRichResponseLatexExpression message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                AIRichResponseLatexExpression.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.latexExpression != null && Object.hasOwnProperty.call(message, "latexExpression"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.latexExpression);
+                    if (message.url != null && Object.hasOwnProperty.call(message, "url"))
+                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.url);
+                    if (message.width != null && Object.hasOwnProperty.call(message, "width"))
+                        writer.uint32(/* id 3, wireType 1 =*/25).double(message.width);
+                    if (message.height != null && Object.hasOwnProperty.call(message, "height"))
+                        writer.uint32(/* id 4, wireType 1 =*/33).double(message.height);
+                    if (message.fontHeight != null && Object.hasOwnProperty.call(message, "fontHeight"))
+                        writer.uint32(/* id 5, wireType 1 =*/41).double(message.fontHeight);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified AIRichResponseLatexExpression message, length delimited. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @static
+                 * @param {E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.IAIRichResponseLatexExpression} message AIRichResponseLatexExpression message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                AIRichResponseLatexExpression.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a AIRichResponseLatexExpression message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression} AIRichResponseLatexExpression
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                AIRichResponseLatexExpression.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.latexExpression = reader.string();
+                                break;
+                            }
+                        case 2: {
+                                message.url = reader.string();
+                                break;
+                            }
+                        case 3: {
+                                message.width = reader.double();
+                                break;
+                            }
+                        case 4: {
+                                message.height = reader.double();
+                                break;
+                            }
+                        case 5: {
+                                message.fontHeight = reader.double();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a AIRichResponseLatexExpression message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression} AIRichResponseLatexExpression
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                AIRichResponseLatexExpression.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a AIRichResponseLatexExpression message.
+                 * @function verify
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                AIRichResponseLatexExpression.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.latexExpression != null && message.hasOwnProperty("latexExpression"))
+                        if (!$util.isString(message.latexExpression))
+                            return "latexExpression: string expected";
+                    if (message.url != null && message.hasOwnProperty("url"))
+                        if (!$util.isString(message.url))
+                            return "url: string expected";
+                    if (message.width != null && message.hasOwnProperty("width"))
+                        if (typeof message.width !== "number")
+                            return "width: number expected";
+                    if (message.height != null && message.hasOwnProperty("height"))
+                        if (typeof message.height !== "number")
+                            return "height: number expected";
+                    if (message.fontHeight != null && message.hasOwnProperty("fontHeight"))
+                        if (typeof message.fontHeight !== "number")
+                            return "fontHeight: number expected";
+                    return null;
+                };
+
+                /**
+                 * Creates a AIRichResponseLatexExpression message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression} AIRichResponseLatexExpression
+                 */
+                AIRichResponseLatexExpression.fromObject = function fromObject(object) {
+                    if (object instanceof $root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression)
+                        return object;
+                    var message = new $root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression();
+                    if (object.latexExpression != null)
+                        message.latexExpression = String(object.latexExpression);
+                    if (object.url != null)
+                        message.url = String(object.url);
+                    if (object.width != null)
+                        message.width = Number(object.width);
+                    if (object.height != null)
+                        message.height = Number(object.height);
+                    if (object.fontHeight != null)
+                        message.fontHeight = Number(object.fontHeight);
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a AIRichResponseLatexExpression message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @static
+                 * @param {E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression} message AIRichResponseLatexExpression
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                AIRichResponseLatexExpression.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        object.latexExpression = "";
+                        object.url = "";
+                        object.width = 0;
+                        object.height = 0;
+                        object.fontHeight = 0;
+                    }
+                    if (message.latexExpression != null && message.hasOwnProperty("latexExpression"))
+                        object.latexExpression = message.latexExpression;
+                    if (message.url != null && message.hasOwnProperty("url"))
+                        object.url = message.url;
+                    if (message.width != null && message.hasOwnProperty("width"))
+                        object.width = options.json && !isFinite(message.width) ? String(message.width) : message.width;
+                    if (message.height != null && message.hasOwnProperty("height"))
+                        object.height = options.json && !isFinite(message.height) ? String(message.height) : message.height;
+                    if (message.fontHeight != null && message.hasOwnProperty("fontHeight"))
+                        object.fontHeight = options.json && !isFinite(message.fontHeight) ? String(message.fontHeight) : message.fontHeight;
+                    return object;
+                };
+
+                /**
+                 * Converts this AIRichResponseLatexExpression to JSON.
+                 * @function toJSON
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                AIRichResponseLatexExpression.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for AIRichResponseLatexExpression
+                 * @function getTypeUrl
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                AIRichResponseLatexExpression.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression";
+                };
+
+                return AIRichResponseLatexExpression;
+            })();
+
+            return AIRichResponseLatexMetadata;
+        })();
+
         /**
          * AIRichResponseMessageType enum.
          * @name E2E.AIRichResponseMessage.AIRichResponseMessageType
@@ -35732,7 +36312,7 @@ $root.E2E = (function() {
              * @property {E2E.AIRichResponseMessage.IAIRichResponseCodeMetadata|null} [codeMetadata] AIRichResponseSubMessage codeMetadata
              * @property {E2E.AIRichResponseMessage.IAIRichResponseTableMetadata|null} [tableMetadata] AIRichResponseSubMessage tableMetadata
              * @property {E2E.AIRichResponseMessage.IAIRichResponseDynamicMetadata|null} [dynamicMetadata] AIRichResponseSubMessage dynamicMetadata
-             * @property {E2E.AIRichResponseMessage.IAIRichResponseAbstractData|null} [abstractData] AIRichResponseSubMessage abstractData
+             * @property {E2E.AIRichResponseMessage.IAIRichResponseLatexMetadata|null} [latexMetadata] AIRichResponseSubMessage latexMetadata
              */
 
             /**
@@ -35807,12 +36387,12 @@ $root.E2E = (function() {
             AIRichResponseSubMessage.prototype.dynamicMetadata = null;
 
             /**
-             * AIRichResponseSubMessage abstractData.
-             * @member {E2E.AIRichResponseMessage.IAIRichResponseAbstractData|null|undefined} abstractData
+             * AIRichResponseSubMessage latexMetadata.
+             * @member {E2E.AIRichResponseMessage.IAIRichResponseLatexMetadata|null|undefined} latexMetadata
              * @memberof E2E.AIRichResponseMessage.AIRichResponseSubMessage
              * @instance
              */
-            AIRichResponseSubMessage.prototype.abstractData = null;
+            AIRichResponseSubMessage.prototype.latexMetadata = null;
 
             /**
              * Creates a new AIRichResponseSubMessage instance using the specified properties.
@@ -35852,8 +36432,8 @@ $root.E2E = (function() {
                     $root.E2E.AIRichResponseMessage.AIRichResponseTableMetadata.encode(message.tableMetadata, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
                 if (message.dynamicMetadata != null && Object.hasOwnProperty.call(message, "dynamicMetadata"))
                     $root.E2E.AIRichResponseMessage.AIRichResponseDynamicMetadata.encode(message.dynamicMetadata, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
-                if (message.abstractData != null && Object.hasOwnProperty.call(message, "abstractData"))
-                    $root.E2E.AIRichResponseMessage.AIRichResponseAbstractData.encode(message.abstractData, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+                if (message.latexMetadata != null && Object.hasOwnProperty.call(message, "latexMetadata"))
+                    $root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.encode(message.latexMetadata, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
                 return writer;
             };
 
@@ -35917,7 +36497,7 @@ $root.E2E = (function() {
                             break;
                         }
                     case 8: {
-                            message.abstractData = $root.E2E.AIRichResponseMessage.AIRichResponseAbstractData.decode(reader, reader.uint32());
+                            message.latexMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -35996,10 +36576,10 @@ $root.E2E = (function() {
                     if (error)
                         return "dynamicMetadata." + error;
                 }
-                if (message.abstractData != null && message.hasOwnProperty("abstractData")) {
-                    var error = $root.E2E.AIRichResponseMessage.AIRichResponseAbstractData.verify(message.abstractData);
+                if (message.latexMetadata != null && message.hasOwnProperty("latexMetadata")) {
+                    var error = $root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.verify(message.latexMetadata);
                     if (error)
-                        return "abstractData." + error;
+                        return "latexMetadata." + error;
                 }
                 return null;
             };
@@ -36079,10 +36659,10 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.AIRichResponseMessage.AIRichResponseSubMessage.dynamicMetadata: object expected");
                     message.dynamicMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseDynamicMetadata.fromObject(object.dynamicMetadata);
                 }
-                if (object.abstractData != null) {
-                    if (typeof object.abstractData !== "object")
-                        throw TypeError(".E2E.AIRichResponseMessage.AIRichResponseSubMessage.abstractData: object expected");
-                    message.abstractData = $root.E2E.AIRichResponseMessage.AIRichResponseAbstractData.fromObject(object.abstractData);
+                if (object.latexMetadata != null) {
+                    if (typeof object.latexMetadata !== "object")
+                        throw TypeError(".E2E.AIRichResponseMessage.AIRichResponseSubMessage.latexMetadata: object expected");
+                    message.latexMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.fromObject(object.latexMetadata);
                 }
                 return message;
             };
@@ -36108,7 +36688,7 @@ $root.E2E = (function() {
                     object.codeMetadata = null;
                     object.tableMetadata = null;
                     object.dynamicMetadata = null;
-                    object.abstractData = null;
+                    object.latexMetadata = null;
                 }
                 if (message.messageType != null && message.hasOwnProperty("messageType"))
                     object.messageType = options.enums === String ? $root.E2E.AIRichResponseMessage.AIRichResponseSubMessageType[message.messageType] === undefined ? message.messageType : $root.E2E.AIRichResponseMessage.AIRichResponseSubMessageType[message.messageType] : message.messageType;
@@ -36124,8 +36704,8 @@ $root.E2E = (function() {
                     object.tableMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseTableMetadata.toObject(message.tableMetadata, options);
                 if (message.dynamicMetadata != null && message.hasOwnProperty("dynamicMetadata"))
                     object.dynamicMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseDynamicMetadata.toObject(message.dynamicMetadata, options);
-                if (message.abstractData != null && message.hasOwnProperty("abstractData"))
-                    object.abstractData = $root.E2E.AIRichResponseMessage.AIRichResponseAbstractData.toObject(message.abstractData, options);
+                if (message.latexMetadata != null && message.hasOwnProperty("latexMetadata"))
+                    object.latexMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.toObject(message.latexMetadata, options);
                 return object;
             };
 

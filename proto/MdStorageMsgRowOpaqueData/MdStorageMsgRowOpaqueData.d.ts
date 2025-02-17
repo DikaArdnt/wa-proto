@@ -4965,7 +4965,8 @@ export namespace E2E {
             WA_IG_1P_PLUGIN_RANKING_UPDATE_10 = 20,
             RICH_RESPONSE_SUB_HEADING = 21,
             RICH_RESPONSE_GRID_IMAGE = 22,
-            AI_STUDIO_UGC_MEMORY = 23
+            AI_STUDIO_UGC_MEMORY = 23,
+            RICH_RESPONSE_LATEX = 24
         }
     }
 
@@ -5984,6 +5985,9 @@ export namespace E2E {
 
         /** AIRichResponseMessage submessages */
         submessages?: (E2E.AIRichResponseMessage.IAIRichResponseSubMessage[]|null);
+
+        /** AIRichResponseMessage abstractData */
+        abstractData?: (E2E.AIRichResponseMessage.IAIRichResponseAbstractData|null);
     }
 
     /** Represents a AIRichResponseMessage. */
@@ -6000,6 +6004,9 @@ export namespace E2E {
 
         /** AIRichResponseMessage submessages. */
         public submessages: E2E.AIRichResponseMessage.IAIRichResponseSubMessage[];
+
+        /** AIRichResponseMessage abstractData. */
+        public abstractData?: (E2E.AIRichResponseMessage.IAIRichResponseAbstractData|null);
 
         /**
          * Creates a new AIRichResponseMessage instance using the specified properties.
@@ -6859,6 +6866,233 @@ export namespace E2E {
             }
         }
 
+        /** Properties of a AIRichResponseLatexMetadata. */
+        interface IAIRichResponseLatexMetadata {
+
+            /** AIRichResponseLatexMetadata text */
+            text?: (string|null);
+
+            /** AIRichResponseLatexMetadata expressions */
+            expressions?: (E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.IAIRichResponseLatexExpression[]|null);
+        }
+
+        /** Represents a AIRichResponseLatexMetadata. */
+        class AIRichResponseLatexMetadata implements IAIRichResponseLatexMetadata {
+
+            /**
+             * Constructs a new AIRichResponseLatexMetadata.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.AIRichResponseMessage.IAIRichResponseLatexMetadata);
+
+            /** AIRichResponseLatexMetadata text. */
+            public text: string;
+
+            /** AIRichResponseLatexMetadata expressions. */
+            public expressions: E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.IAIRichResponseLatexExpression[];
+
+            /**
+             * Creates a new AIRichResponseLatexMetadata instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns AIRichResponseLatexMetadata instance
+             */
+            public static create(properties?: E2E.AIRichResponseMessage.IAIRichResponseLatexMetadata): E2E.AIRichResponseMessage.AIRichResponseLatexMetadata;
+
+            /**
+             * Encodes the specified AIRichResponseLatexMetadata message. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.verify|verify} messages.
+             * @param message AIRichResponseLatexMetadata message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.AIRichResponseMessage.IAIRichResponseLatexMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified AIRichResponseLatexMetadata message, length delimited. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.verify|verify} messages.
+             * @param message AIRichResponseLatexMetadata message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.AIRichResponseMessage.IAIRichResponseLatexMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a AIRichResponseLatexMetadata message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns AIRichResponseLatexMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.AIRichResponseMessage.AIRichResponseLatexMetadata;
+
+            /**
+             * Decodes a AIRichResponseLatexMetadata message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns AIRichResponseLatexMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.AIRichResponseMessage.AIRichResponseLatexMetadata;
+
+            /**
+             * Verifies a AIRichResponseLatexMetadata message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a AIRichResponseLatexMetadata message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns AIRichResponseLatexMetadata
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.AIRichResponseMessage.AIRichResponseLatexMetadata;
+
+            /**
+             * Creates a plain object from a AIRichResponseLatexMetadata message. Also converts values to other types if specified.
+             * @param message AIRichResponseLatexMetadata
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.AIRichResponseMessage.AIRichResponseLatexMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this AIRichResponseLatexMetadata to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for AIRichResponseLatexMetadata
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace AIRichResponseLatexMetadata {
+
+            /** Properties of a AIRichResponseLatexExpression. */
+            interface IAIRichResponseLatexExpression {
+
+                /** AIRichResponseLatexExpression latexExpression */
+                latexExpression?: (string|null);
+
+                /** AIRichResponseLatexExpression url */
+                url?: (string|null);
+
+                /** AIRichResponseLatexExpression width */
+                width?: (number|null);
+
+                /** AIRichResponseLatexExpression height */
+                height?: (number|null);
+
+                /** AIRichResponseLatexExpression fontHeight */
+                fontHeight?: (number|null);
+            }
+
+            /** Represents a AIRichResponseLatexExpression. */
+            class AIRichResponseLatexExpression implements IAIRichResponseLatexExpression {
+
+                /**
+                 * Constructs a new AIRichResponseLatexExpression.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.IAIRichResponseLatexExpression);
+
+                /** AIRichResponseLatexExpression latexExpression. */
+                public latexExpression: string;
+
+                /** AIRichResponseLatexExpression url. */
+                public url: string;
+
+                /** AIRichResponseLatexExpression width. */
+                public width: number;
+
+                /** AIRichResponseLatexExpression height. */
+                public height: number;
+
+                /** AIRichResponseLatexExpression fontHeight. */
+                public fontHeight: number;
+
+                /**
+                 * Creates a new AIRichResponseLatexExpression instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns AIRichResponseLatexExpression instance
+                 */
+                public static create(properties?: E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.IAIRichResponseLatexExpression): E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression;
+
+                /**
+                 * Encodes the specified AIRichResponseLatexExpression message. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression.verify|verify} messages.
+                 * @param message AIRichResponseLatexExpression message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.IAIRichResponseLatexExpression, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified AIRichResponseLatexExpression message, length delimited. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression.verify|verify} messages.
+                 * @param message AIRichResponseLatexExpression message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.IAIRichResponseLatexExpression, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a AIRichResponseLatexExpression message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns AIRichResponseLatexExpression
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression;
+
+                /**
+                 * Decodes a AIRichResponseLatexExpression message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns AIRichResponseLatexExpression
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression;
+
+                /**
+                 * Verifies a AIRichResponseLatexExpression message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a AIRichResponseLatexExpression message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns AIRichResponseLatexExpression
+                 */
+                public static fromObject(object: { [k: string]: any }): E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression;
+
+                /**
+                 * Creates a plain object from a AIRichResponseLatexExpression message. Also converts values to other types if specified.
+                 * @param message AIRichResponseLatexExpression
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this AIRichResponseLatexExpression to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for AIRichResponseLatexExpression
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+        }
+
         /** AIRichResponseMessageType enum. */
         enum AIRichResponseMessageType {
             AI_RICH_RESPONSE_TYPE_UNKNOWN = 0,
@@ -6889,8 +7123,8 @@ export namespace E2E {
             /** AIRichResponseSubMessage dynamicMetadata */
             dynamicMetadata?: (E2E.AIRichResponseMessage.IAIRichResponseDynamicMetadata|null);
 
-            /** AIRichResponseSubMessage abstractData */
-            abstractData?: (E2E.AIRichResponseMessage.IAIRichResponseAbstractData|null);
+            /** AIRichResponseSubMessage latexMetadata */
+            latexMetadata?: (E2E.AIRichResponseMessage.IAIRichResponseLatexMetadata|null);
         }
 
         /** Represents a AIRichResponseSubMessage. */
@@ -6923,8 +7157,8 @@ export namespace E2E {
             /** AIRichResponseSubMessage dynamicMetadata. */
             public dynamicMetadata?: (E2E.AIRichResponseMessage.IAIRichResponseDynamicMetadata|null);
 
-            /** AIRichResponseSubMessage abstractData. */
-            public abstractData?: (E2E.AIRichResponseMessage.IAIRichResponseAbstractData|null);
+            /** AIRichResponseSubMessage latexMetadata. */
+            public latexMetadata?: (E2E.AIRichResponseMessage.IAIRichResponseLatexMetadata|null);
 
             /**
              * Creates a new AIRichResponseSubMessage instance using the specified properties.
