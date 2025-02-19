@@ -10792,6 +10792,7 @@ $root.Web = (function() {
                 case 210:
                 case 211:
                 case 212:
+                case 213:
                     break;
                 }
             if (message.clearMedia != null && message.hasOwnProperty("clearMedia"))
@@ -11981,6 +11982,10 @@ $root.Web = (function() {
             case 212:
                 message.messageStubType = 212;
                 break;
+            case "CHANGE_LID":
+            case 213:
+                message.messageStubType = 213;
+                break;
             }
             if (object.clearMedia != null)
                 message.clearMedia = Boolean(object.clearMedia);
@@ -12816,6 +12821,7 @@ $root.Web = (function() {
          * @property {number} STATUS_MENTION=210 STATUS_MENTION value
          * @property {number} USER_CONTROLS_SYSTEM_MESSAGE=211 USER_CONTROLS_SYSTEM_MESSAGE value
          * @property {number} SUPPORT_SYSTEM_MESSAGE=212 SUPPORT_SYSTEM_MESSAGE value
+         * @property {number} CHANGE_LID=213 CHANGE_LID value
          */
         WebMessageInfo.StubType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -13032,6 +13038,7 @@ $root.Web = (function() {
             values[valuesById[210] = "STATUS_MENTION"] = 210;
             values[valuesById[211] = "USER_CONTROLS_SYSTEM_MESSAGE"] = 211;
             values[valuesById[212] = "SUPPORT_SYSTEM_MESSAGE"] = 212;
+            values[valuesById[213] = "CHANGE_LID"] = 213;
             return values;
         })();
 

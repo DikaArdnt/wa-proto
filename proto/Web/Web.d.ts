@@ -3643,7 +3643,8 @@ export namespace Web {
             CAPI_GROUP_NE2EE_SYSTEM_MESSAGE = 209,
             STATUS_MENTION = 210,
             USER_CONTROLS_SYSTEM_MESSAGE = 211,
-            SUPPORT_SYSTEM_MESSAGE = 212
+            SUPPORT_SYSTEM_MESSAGE = 212,
+            CHANGE_LID = 213
         }
     }
 }
