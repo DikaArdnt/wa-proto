@@ -18114,6 +18114,8 @@ $root.Web = (function() {
                 case 211:
                 case 212:
                 case 213:
+                case 214:
+                case 215:
                     break;
                 }
             if (message.clearMedia != null && message.hasOwnProperty("clearMedia"))
@@ -19307,6 +19309,14 @@ $root.Web = (function() {
             case 213:
                 message.messageStubType = 213;
                 break;
+            case "BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_IN_MESSAGE":
+            case 214:
+                message.messageStubType = 214;
+                break;
+            case "BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_OUT_MESSAGE":
+            case 215:
+                message.messageStubType = 215;
+                break;
             }
             if (object.clearMedia != null)
                 message.clearMedia = Boolean(object.clearMedia);
@@ -20143,6 +20153,8 @@ $root.Web = (function() {
          * @property {number} USER_CONTROLS_SYSTEM_MESSAGE=211 USER_CONTROLS_SYSTEM_MESSAGE value
          * @property {number} SUPPORT_SYSTEM_MESSAGE=212 SUPPORT_SYSTEM_MESSAGE value
          * @property {number} CHANGE_LID=213 CHANGE_LID value
+         * @property {number} BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_IN_MESSAGE=214 BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_IN_MESSAGE value
+         * @property {number} BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_OUT_MESSAGE=215 BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_OUT_MESSAGE value
          */
         WebMessageInfo.StubType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -20360,6 +20372,8 @@ $root.Web = (function() {
             values[valuesById[211] = "USER_CONTROLS_SYSTEM_MESSAGE"] = 211;
             values[valuesById[212] = "SUPPORT_SYSTEM_MESSAGE"] = 212;
             values[valuesById[213] = "CHANGE_LID"] = 213;
+            values[valuesById[214] = "BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_IN_MESSAGE"] = 214;
+            values[valuesById[215] = "BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_OUT_MESSAGE"] = 215;
             return values;
         })();
 
@@ -62260,6 +62274,7 @@ $root.E2E = (function() {
                     case 0:
                     case 1:
                     case 2:
+                    case 3:
                         break;
                     }
                 if (message.accessibilityLabel != null && message.hasOwnProperty("accessibilityLabel"))
@@ -62420,6 +62435,10 @@ $root.E2E = (function() {
                 case "AI_MODIFIED":
                 case 2:
                     message.imageSourceType = 2;
+                    break;
+                case "RASTERIZED_TEXT_STATUS":
+                case 3:
+                    message.imageSourceType = 3;
                     break;
                 }
                 if (object.accessibilityLabel != null)
@@ -62650,12 +62669,14 @@ $root.E2E = (function() {
              * @property {number} USER_IMAGE=0 USER_IMAGE value
              * @property {number} AI_GENERATED=1 AI_GENERATED value
              * @property {number} AI_MODIFIED=2 AI_MODIFIED value
+             * @property {number} RASTERIZED_TEXT_STATUS=3 RASTERIZED_TEXT_STATUS value
              */
             ImageMessage.ImageSourceType = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
                 values[valuesById[0] = "USER_IMAGE"] = 0;
                 values[valuesById[1] = "AI_GENERATED"] = 1;
                 values[valuesById[2] = "AI_MODIFIED"] = 2;
+                values[valuesById[3] = "RASTERIZED_TEXT_STATUS"] = 3;
                 return values;
             })();
 

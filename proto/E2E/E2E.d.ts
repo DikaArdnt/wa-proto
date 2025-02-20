@@ -15388,7 +15388,8 @@ export namespace E2E {
             enum ImageSourceType {
                 USER_IMAGE = 0,
                 AI_GENERATED = 1,
-                AI_MODIFIED = 2
+                AI_MODIFIED = 2,
+                RASTERIZED_TEXT_STATUS = 3
             }
         }
 

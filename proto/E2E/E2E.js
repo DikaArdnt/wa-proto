@@ -41900,6 +41900,7 @@ $root.E2E = (function() {
                     case 0:
                     case 1:
                     case 2:
+                    case 3:
                         break;
                     }
                 if (message.accessibilityLabel != null && message.hasOwnProperty("accessibilityLabel"))
@@ -42060,6 +42061,10 @@ $root.E2E = (function() {
                 case "AI_MODIFIED":
                 case 2:
                     message.imageSourceType = 2;
+                    break;
+                case "RASTERIZED_TEXT_STATUS":
+                case 3:
+                    message.imageSourceType = 3;
                     break;
                 }
                 if (object.accessibilityLabel != null)
@@ -42290,12 +42295,14 @@ $root.E2E = (function() {
              * @property {number} USER_IMAGE=0 USER_IMAGE value
              * @property {number} AI_GENERATED=1 AI_GENERATED value
              * @property {number} AI_MODIFIED=2 AI_MODIFIED value
+             * @property {number} RASTERIZED_TEXT_STATUS=3 RASTERIZED_TEXT_STATUS value
              */
             ImageMessage.ImageSourceType = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
                 values[valuesById[0] = "USER_IMAGE"] = 0;
                 values[valuesById[1] = "AI_GENERATED"] = 1;
                 values[valuesById[2] = "AI_MODIFIED"] = 2;
+                values[valuesById[3] = "RASTERIZED_TEXT_STATUS"] = 3;
                 return values;
             })();
 
