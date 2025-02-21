@@ -13096,6 +13096,8 @@ $root.E2E = (function() {
                     case 22:
                     case 23:
                     case 24:
+                    case 25:
+                    case 26:
                         break;
                     }
             }
@@ -13221,6 +13223,14 @@ $root.E2E = (function() {
                     case 24:
                         message.capabilities[i] = 24;
                         break;
+                    case "RICH_RESPONSE_MAPS":
+                    case 25:
+                        message.capabilities[i] = 25;
+                        break;
+                    case "RICH_RESPONSE_INLINE_REELS":
+                    case 26:
+                        message.capabilities[i] = 26;
+                        break;
                     }
             }
             return message;
@@ -13303,6 +13313,8 @@ $root.E2E = (function() {
          * @property {number} RICH_RESPONSE_GRID_IMAGE=22 RICH_RESPONSE_GRID_IMAGE value
          * @property {number} AI_STUDIO_UGC_MEMORY=23 AI_STUDIO_UGC_MEMORY value
          * @property {number} RICH_RESPONSE_LATEX=24 RICH_RESPONSE_LATEX value
+         * @property {number} RICH_RESPONSE_MAPS=25 RICH_RESPONSE_MAPS value
+         * @property {number} RICH_RESPONSE_INLINE_REELS=26 RICH_RESPONSE_INLINE_REELS value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -13330,6 +13342,8 @@ $root.E2E = (function() {
             values[valuesById[22] = "RICH_RESPONSE_GRID_IMAGE"] = 22;
             values[valuesById[23] = "AI_STUDIO_UGC_MEMORY"] = 23;
             values[valuesById[24] = "RICH_RESPONSE_LATEX"] = 24;
+            values[valuesById[25] = "RICH_RESPONSE_MAPS"] = 25;
+            values[valuesById[26] = "RICH_RESPONSE_INLINE_REELS"] = 26;
             return values;
         })();
 
@@ -13343,6 +13357,7 @@ $root.E2E = (function() {
          * @memberof E2E
          * @interface IBotProgressIndicatorMetadata
          * @property {string|null} [progressDescription] BotProgressIndicatorMetadata progressDescription
+         * @property {Array.<E2E.BotProgressIndicatorMetadata.IBotPlanningStepMetadata>|null} [stepsMetadata] BotProgressIndicatorMetadata stepsMetadata
          */
 
         /**
@@ -13354,6 +13369,7 @@ $root.E2E = (function() {
          * @param {E2E.IBotProgressIndicatorMetadata=} [properties] Properties to set
          */
         function BotProgressIndicatorMetadata(properties) {
+            this.stepsMetadata = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -13367,6 +13383,14 @@ $root.E2E = (function() {
          * @instance
          */
         BotProgressIndicatorMetadata.prototype.progressDescription = "";
+
+        /**
+         * BotProgressIndicatorMetadata stepsMetadata.
+         * @member {Array.<E2E.BotProgressIndicatorMetadata.IBotPlanningStepMetadata>} stepsMetadata
+         * @memberof E2E.BotProgressIndicatorMetadata
+         * @instance
+         */
+        BotProgressIndicatorMetadata.prototype.stepsMetadata = $util.emptyArray;
 
         /**
          * Creates a new BotProgressIndicatorMetadata instance using the specified properties.
@@ -13394,6 +13418,9 @@ $root.E2E = (function() {
                 writer = $Writer.create();
             if (message.progressDescription != null && Object.hasOwnProperty.call(message, "progressDescription"))
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.progressDescription);
+            if (message.stepsMetadata != null && message.stepsMetadata.length)
+                for (var i = 0; i < message.stepsMetadata.length; ++i)
+                    $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.encode(message.stepsMetadata[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             return writer;
         };
 
@@ -13430,6 +13457,12 @@ $root.E2E = (function() {
                 switch (tag >>> 3) {
                 case 1: {
                         message.progressDescription = reader.string();
+                        break;
+                    }
+                case 2: {
+                        if (!(message.stepsMetadata && message.stepsMetadata.length))
+                            message.stepsMetadata = [];
+                        message.stepsMetadata.push($root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.decode(reader, reader.uint32()));
                         break;
                     }
                 default:
@@ -13470,6 +13503,15 @@ $root.E2E = (function() {
             if (message.progressDescription != null && message.hasOwnProperty("progressDescription"))
                 if (!$util.isString(message.progressDescription))
                     return "progressDescription: string expected";
+            if (message.stepsMetadata != null && message.hasOwnProperty("stepsMetadata")) {
+                if (!Array.isArray(message.stepsMetadata))
+                    return "stepsMetadata: array expected";
+                for (var i = 0; i < message.stepsMetadata.length; ++i) {
+                    var error = $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.verify(message.stepsMetadata[i]);
+                    if (error)
+                        return "stepsMetadata." + error;
+                }
+            }
             return null;
         };
 
@@ -13487,6 +13529,16 @@ $root.E2E = (function() {
             var message = new $root.E2E.BotProgressIndicatorMetadata();
             if (object.progressDescription != null)
                 message.progressDescription = String(object.progressDescription);
+            if (object.stepsMetadata) {
+                if (!Array.isArray(object.stepsMetadata))
+                    throw TypeError(".E2E.BotProgressIndicatorMetadata.stepsMetadata: array expected");
+                message.stepsMetadata = [];
+                for (var i = 0; i < object.stepsMetadata.length; ++i) {
+                    if (typeof object.stepsMetadata[i] !== "object")
+                        throw TypeError(".E2E.BotProgressIndicatorMetadata.stepsMetadata: object expected");
+                    message.stepsMetadata[i] = $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.fromObject(object.stepsMetadata[i]);
+                }
+            }
             return message;
         };
 
@@ -13503,10 +13555,17 @@ $root.E2E = (function() {
             if (!options)
                 options = {};
             var object = {};
+            if (options.arrays || options.defaults)
+                object.stepsMetadata = [];
             if (options.defaults)
                 object.progressDescription = "";
             if (message.progressDescription != null && message.hasOwnProperty("progressDescription"))
                 object.progressDescription = message.progressDescription;
+            if (message.stepsMetadata && message.stepsMetadata.length) {
+                object.stepsMetadata = [];
+                for (var j = 0; j < message.stepsMetadata.length; ++j)
+                    object.stepsMetadata[j] = $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.toObject(message.stepsMetadata[j], options);
+            }
             return object;
         };
 
@@ -13535,6 +13594,677 @@ $root.E2E = (function() {
             }
             return typeUrlPrefix + "/E2E.BotProgressIndicatorMetadata";
         };
+
+        BotProgressIndicatorMetadata.BotPlanningStepMetadata = (function() {
+
+            /**
+             * Properties of a BotPlanningStepMetadata.
+             * @memberof E2E.BotProgressIndicatorMetadata
+             * @interface IBotPlanningStepMetadata
+             * @property {string|null} [statusTitle] BotPlanningStepMetadata statusTitle
+             * @property {string|null} [statusBody] BotPlanningStepMetadata statusBody
+             * @property {Array.<E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourcesMetadata>|null} [sourcesMetadata] BotPlanningStepMetadata sourcesMetadata
+             * @property {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.PlanningStepStatus|null} [status] BotPlanningStepMetadata status
+             * @property {boolean|null} [isReasoning] BotPlanningStepMetadata isReasoning
+             * @property {boolean|null} [isEnhancedSearch] BotPlanningStepMetadata isEnhancedSearch
+             */
+
+            /**
+             * Constructs a new BotPlanningStepMetadata.
+             * @memberof E2E.BotProgressIndicatorMetadata
+             * @classdesc Represents a BotPlanningStepMetadata.
+             * @implements IBotPlanningStepMetadata
+             * @constructor
+             * @param {E2E.BotProgressIndicatorMetadata.IBotPlanningStepMetadata=} [properties] Properties to set
+             */
+            function BotPlanningStepMetadata(properties) {
+                this.sourcesMetadata = [];
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * BotPlanningStepMetadata statusTitle.
+             * @member {string} statusTitle
+             * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @instance
+             */
+            BotPlanningStepMetadata.prototype.statusTitle = "";
+
+            /**
+             * BotPlanningStepMetadata statusBody.
+             * @member {string} statusBody
+             * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @instance
+             */
+            BotPlanningStepMetadata.prototype.statusBody = "";
+
+            /**
+             * BotPlanningStepMetadata sourcesMetadata.
+             * @member {Array.<E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourcesMetadata>} sourcesMetadata
+             * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @instance
+             */
+            BotPlanningStepMetadata.prototype.sourcesMetadata = $util.emptyArray;
+
+            /**
+             * BotPlanningStepMetadata status.
+             * @member {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.PlanningStepStatus} status
+             * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @instance
+             */
+            BotPlanningStepMetadata.prototype.status = 1;
+
+            /**
+             * BotPlanningStepMetadata isReasoning.
+             * @member {boolean} isReasoning
+             * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @instance
+             */
+            BotPlanningStepMetadata.prototype.isReasoning = false;
+
+            /**
+             * BotPlanningStepMetadata isEnhancedSearch.
+             * @member {boolean} isEnhancedSearch
+             * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @instance
+             */
+            BotPlanningStepMetadata.prototype.isEnhancedSearch = false;
+
+            /**
+             * Creates a new BotPlanningStepMetadata instance using the specified properties.
+             * @function create
+             * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @static
+             * @param {E2E.BotProgressIndicatorMetadata.IBotPlanningStepMetadata=} [properties] Properties to set
+             * @returns {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata} BotPlanningStepMetadata instance
+             */
+            BotPlanningStepMetadata.create = function create(properties) {
+                return new BotPlanningStepMetadata(properties);
+            };
+
+            /**
+             * Encodes the specified BotPlanningStepMetadata message. Does not implicitly {@link E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @static
+             * @param {E2E.BotProgressIndicatorMetadata.IBotPlanningStepMetadata} message BotPlanningStepMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            BotPlanningStepMetadata.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.statusTitle != null && Object.hasOwnProperty.call(message, "statusTitle"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.statusTitle);
+                if (message.statusBody != null && Object.hasOwnProperty.call(message, "statusBody"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.statusBody);
+                if (message.sourcesMetadata != null && message.sourcesMetadata.length)
+                    for (var i = 0; i < message.sourcesMetadata.length; ++i)
+                        $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.encode(message.sourcesMetadata[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    writer.uint32(/* id 4, wireType 0 =*/32).int32(message.status);
+                if (message.isReasoning != null && Object.hasOwnProperty.call(message, "isReasoning"))
+                    writer.uint32(/* id 5, wireType 0 =*/40).bool(message.isReasoning);
+                if (message.isEnhancedSearch != null && Object.hasOwnProperty.call(message, "isEnhancedSearch"))
+                    writer.uint32(/* id 6, wireType 0 =*/48).bool(message.isEnhancedSearch);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified BotPlanningStepMetadata message, length delimited. Does not implicitly {@link E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @static
+             * @param {E2E.BotProgressIndicatorMetadata.IBotPlanningStepMetadata} message BotPlanningStepMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            BotPlanningStepMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a BotPlanningStepMetadata message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata} BotPlanningStepMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            BotPlanningStepMetadata.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.statusTitle = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.statusBody = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            if (!(message.sourcesMetadata && message.sourcesMetadata.length))
+                                message.sourcesMetadata = [];
+                            message.sourcesMetadata.push($root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 4: {
+                            message.status = reader.int32();
+                            break;
+                        }
+                    case 5: {
+                            message.isReasoning = reader.bool();
+                            break;
+                        }
+                    case 6: {
+                            message.isEnhancedSearch = reader.bool();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a BotPlanningStepMetadata message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata} BotPlanningStepMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            BotPlanningStepMetadata.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a BotPlanningStepMetadata message.
+             * @function verify
+             * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            BotPlanningStepMetadata.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.statusTitle != null && message.hasOwnProperty("statusTitle"))
+                    if (!$util.isString(message.statusTitle))
+                        return "statusTitle: string expected";
+                if (message.statusBody != null && message.hasOwnProperty("statusBody"))
+                    if (!$util.isString(message.statusBody))
+                        return "statusBody: string expected";
+                if (message.sourcesMetadata != null && message.hasOwnProperty("sourcesMetadata")) {
+                    if (!Array.isArray(message.sourcesMetadata))
+                        return "sourcesMetadata: array expected";
+                    for (var i = 0; i < message.sourcesMetadata.length; ++i) {
+                        var error = $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.verify(message.sourcesMetadata[i]);
+                        if (error)
+                            return "sourcesMetadata." + error;
+                    }
+                }
+                if (message.status != null && message.hasOwnProperty("status"))
+                    switch (message.status) {
+                    default:
+                        return "status: enum value expected";
+                    case 1:
+                    case 2:
+                    case 3:
+                        break;
+                    }
+                if (message.isReasoning != null && message.hasOwnProperty("isReasoning"))
+                    if (typeof message.isReasoning !== "boolean")
+                        return "isReasoning: boolean expected";
+                if (message.isEnhancedSearch != null && message.hasOwnProperty("isEnhancedSearch"))
+                    if (typeof message.isEnhancedSearch !== "boolean")
+                        return "isEnhancedSearch: boolean expected";
+                return null;
+            };
+
+            /**
+             * Creates a BotPlanningStepMetadata message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata} BotPlanningStepMetadata
+             */
+            BotPlanningStepMetadata.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata)
+                    return object;
+                var message = new $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata();
+                if (object.statusTitle != null)
+                    message.statusTitle = String(object.statusTitle);
+                if (object.statusBody != null)
+                    message.statusBody = String(object.statusBody);
+                if (object.sourcesMetadata) {
+                    if (!Array.isArray(object.sourcesMetadata))
+                        throw TypeError(".E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.sourcesMetadata: array expected");
+                    message.sourcesMetadata = [];
+                    for (var i = 0; i < object.sourcesMetadata.length; ++i) {
+                        if (typeof object.sourcesMetadata[i] !== "object")
+                            throw TypeError(".E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.sourcesMetadata: object expected");
+                        message.sourcesMetadata[i] = $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.fromObject(object.sourcesMetadata[i]);
+                    }
+                }
+                switch (object.status) {
+                default:
+                    if (typeof object.status === "number") {
+                        message.status = object.status;
+                        break;
+                    }
+                    break;
+                case "PLANNED":
+                case 1:
+                    message.status = 1;
+                    break;
+                case "EXECUTING":
+                case 2:
+                    message.status = 2;
+                    break;
+                case "FINISHED":
+                case 3:
+                    message.status = 3;
+                    break;
+                }
+                if (object.isReasoning != null)
+                    message.isReasoning = Boolean(object.isReasoning);
+                if (object.isEnhancedSearch != null)
+                    message.isEnhancedSearch = Boolean(object.isEnhancedSearch);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a BotPlanningStepMetadata message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @static
+             * @param {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata} message BotPlanningStepMetadata
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            BotPlanningStepMetadata.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.arrays || options.defaults)
+                    object.sourcesMetadata = [];
+                if (options.defaults) {
+                    object.statusTitle = "";
+                    object.statusBody = "";
+                    object.status = options.enums === String ? "PLANNED" : 1;
+                    object.isReasoning = false;
+                    object.isEnhancedSearch = false;
+                }
+                if (message.statusTitle != null && message.hasOwnProperty("statusTitle"))
+                    object.statusTitle = message.statusTitle;
+                if (message.statusBody != null && message.hasOwnProperty("statusBody"))
+                    object.statusBody = message.statusBody;
+                if (message.sourcesMetadata && message.sourcesMetadata.length) {
+                    object.sourcesMetadata = [];
+                    for (var j = 0; j < message.sourcesMetadata.length; ++j)
+                        object.sourcesMetadata[j] = $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.toObject(message.sourcesMetadata[j], options);
+                }
+                if (message.status != null && message.hasOwnProperty("status"))
+                    object.status = options.enums === String ? $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.PlanningStepStatus[message.status] === undefined ? message.status : $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.PlanningStepStatus[message.status] : message.status;
+                if (message.isReasoning != null && message.hasOwnProperty("isReasoning"))
+                    object.isReasoning = message.isReasoning;
+                if (message.isEnhancedSearch != null && message.hasOwnProperty("isEnhancedSearch"))
+                    object.isEnhancedSearch = message.isEnhancedSearch;
+                return object;
+            };
+
+            /**
+             * Converts this BotPlanningStepMetadata to JSON.
+             * @function toJSON
+             * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            BotPlanningStepMetadata.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for BotPlanningStepMetadata
+             * @function getTypeUrl
+             * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            BotPlanningStepMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata";
+            };
+
+            BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata = (function() {
+
+                /**
+                 * Properties of a BotPlanningSearchSourcesMetadata.
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+                 * @interface IBotPlanningSearchSourcesMetadata
+                 * @property {string|null} [sourceTitle] BotPlanningSearchSourcesMetadata sourceTitle
+                 * @property {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.BotPlanningSearchSourceProvider|null} [provider] BotPlanningSearchSourcesMetadata provider
+                 * @property {string|null} [sourceUrl] BotPlanningSearchSourcesMetadata sourceUrl
+                 */
+
+                /**
+                 * Constructs a new BotPlanningSearchSourcesMetadata.
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+                 * @classdesc Represents a BotPlanningSearchSourcesMetadata.
+                 * @implements IBotPlanningSearchSourcesMetadata
+                 * @constructor
+                 * @param {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourcesMetadata=} [properties] Properties to set
+                 */
+                function BotPlanningSearchSourcesMetadata(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * BotPlanningSearchSourcesMetadata sourceTitle.
+                 * @member {string} sourceTitle
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
+                 * @instance
+                 */
+                BotPlanningSearchSourcesMetadata.prototype.sourceTitle = "";
+
+                /**
+                 * BotPlanningSearchSourcesMetadata provider.
+                 * @member {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.BotPlanningSearchSourceProvider} provider
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
+                 * @instance
+                 */
+                BotPlanningSearchSourcesMetadata.prototype.provider = 1;
+
+                /**
+                 * BotPlanningSearchSourcesMetadata sourceUrl.
+                 * @member {string} sourceUrl
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
+                 * @instance
+                 */
+                BotPlanningSearchSourcesMetadata.prototype.sourceUrl = "";
+
+                /**
+                 * Creates a new BotPlanningSearchSourcesMetadata instance using the specified properties.
+                 * @function create
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
+                 * @static
+                 * @param {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourcesMetadata=} [properties] Properties to set
+                 * @returns {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata} BotPlanningSearchSourcesMetadata instance
+                 */
+                BotPlanningSearchSourcesMetadata.create = function create(properties) {
+                    return new BotPlanningSearchSourcesMetadata(properties);
+                };
+
+                /**
+                 * Encodes the specified BotPlanningSearchSourcesMetadata message. Does not implicitly {@link E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.verify|verify} messages.
+                 * @function encode
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
+                 * @static
+                 * @param {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourcesMetadata} message BotPlanningSearchSourcesMetadata message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                BotPlanningSearchSourcesMetadata.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.sourceTitle != null && Object.hasOwnProperty.call(message, "sourceTitle"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.sourceTitle);
+                    if (message.provider != null && Object.hasOwnProperty.call(message, "provider"))
+                        writer.uint32(/* id 2, wireType 0 =*/16).int32(message.provider);
+                    if (message.sourceUrl != null && Object.hasOwnProperty.call(message, "sourceUrl"))
+                        writer.uint32(/* id 3, wireType 2 =*/26).string(message.sourceUrl);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified BotPlanningSearchSourcesMetadata message, length delimited. Does not implicitly {@link E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
+                 * @static
+                 * @param {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourcesMetadata} message BotPlanningSearchSourcesMetadata message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                BotPlanningSearchSourcesMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a BotPlanningSearchSourcesMetadata message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata} BotPlanningSearchSourcesMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                BotPlanningSearchSourcesMetadata.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.sourceTitle = reader.string();
+                                break;
+                            }
+                        case 2: {
+                                message.provider = reader.int32();
+                                break;
+                            }
+                        case 3: {
+                                message.sourceUrl = reader.string();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a BotPlanningSearchSourcesMetadata message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata} BotPlanningSearchSourcesMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                BotPlanningSearchSourcesMetadata.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a BotPlanningSearchSourcesMetadata message.
+                 * @function verify
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                BotPlanningSearchSourcesMetadata.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.sourceTitle != null && message.hasOwnProperty("sourceTitle"))
+                        if (!$util.isString(message.sourceTitle))
+                            return "sourceTitle: string expected";
+                    if (message.provider != null && message.hasOwnProperty("provider"))
+                        switch (message.provider) {
+                        default:
+                            return "provider: enum value expected";
+                        case 1:
+                        case 2:
+                        case 3:
+                            break;
+                        }
+                    if (message.sourceUrl != null && message.hasOwnProperty("sourceUrl"))
+                        if (!$util.isString(message.sourceUrl))
+                            return "sourceUrl: string expected";
+                    return null;
+                };
+
+                /**
+                 * Creates a BotPlanningSearchSourcesMetadata message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata} BotPlanningSearchSourcesMetadata
+                 */
+                BotPlanningSearchSourcesMetadata.fromObject = function fromObject(object) {
+                    if (object instanceof $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata)
+                        return object;
+                    var message = new $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata();
+                    if (object.sourceTitle != null)
+                        message.sourceTitle = String(object.sourceTitle);
+                    switch (object.provider) {
+                    default:
+                        if (typeof object.provider === "number") {
+                            message.provider = object.provider;
+                            break;
+                        }
+                        break;
+                    case "OTHER":
+                    case 1:
+                        message.provider = 1;
+                        break;
+                    case "GOOGLE":
+                    case 2:
+                        message.provider = 2;
+                        break;
+                    case "BING":
+                    case 3:
+                        message.provider = 3;
+                        break;
+                    }
+                    if (object.sourceUrl != null)
+                        message.sourceUrl = String(object.sourceUrl);
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a BotPlanningSearchSourcesMetadata message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
+                 * @static
+                 * @param {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata} message BotPlanningSearchSourcesMetadata
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                BotPlanningSearchSourcesMetadata.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        object.sourceTitle = "";
+                        object.provider = options.enums === String ? "OTHER" : 1;
+                        object.sourceUrl = "";
+                    }
+                    if (message.sourceTitle != null && message.hasOwnProperty("sourceTitle"))
+                        object.sourceTitle = message.sourceTitle;
+                    if (message.provider != null && message.hasOwnProperty("provider"))
+                        object.provider = options.enums === String ? $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.BotPlanningSearchSourceProvider[message.provider] === undefined ? message.provider : $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.BotPlanningSearchSourceProvider[message.provider] : message.provider;
+                    if (message.sourceUrl != null && message.hasOwnProperty("sourceUrl"))
+                        object.sourceUrl = message.sourceUrl;
+                    return object;
+                };
+
+                /**
+                 * Converts this BotPlanningSearchSourcesMetadata to JSON.
+                 * @function toJSON
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                BotPlanningSearchSourcesMetadata.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for BotPlanningSearchSourcesMetadata
+                 * @function getTypeUrl
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                BotPlanningSearchSourcesMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata";
+                };
+
+                /**
+                 * BotPlanningSearchSourceProvider enum.
+                 * @name E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.BotPlanningSearchSourceProvider
+                 * @enum {number}
+                 * @property {number} OTHER=1 OTHER value
+                 * @property {number} GOOGLE=2 GOOGLE value
+                 * @property {number} BING=3 BING value
+                 */
+                BotPlanningSearchSourcesMetadata.BotPlanningSearchSourceProvider = (function() {
+                    var valuesById = {}, values = Object.create(valuesById);
+                    values[valuesById[1] = "OTHER"] = 1;
+                    values[valuesById[2] = "GOOGLE"] = 2;
+                    values[valuesById[3] = "BING"] = 3;
+                    return values;
+                })();
+
+                return BotPlanningSearchSourcesMetadata;
+            })();
+
+            /**
+             * PlanningStepStatus enum.
+             * @name E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.PlanningStepStatus
+             * @enum {number}
+             * @property {number} PLANNED=1 PLANNED value
+             * @property {number} EXECUTING=2 EXECUTING value
+             * @property {number} FINISHED=3 FINISHED value
+             */
+            BotPlanningStepMetadata.PlanningStepStatus = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[1] = "PLANNED"] = 1;
+                values[valuesById[2] = "EXECUTING"] = 2;
+                values[valuesById[3] = "FINISHED"] = 3;
+                return values;
+            })();
+
+            return BotPlanningStepMetadata;
+        })();
 
         return BotProgressIndicatorMetadata;
     })();
@@ -18674,6 +19404,643 @@ $root.E2E = (function() {
             return AIRichResponseLatexMetadata;
         })();
 
+        AIRichResponseMessage.AIRichResponseMapMetadata = (function() {
+
+            /**
+             * Properties of a AIRichResponseMapMetadata.
+             * @memberof E2E.AIRichResponseMessage
+             * @interface IAIRichResponseMapMetadata
+             * @property {number|null} [centerLatitude] AIRichResponseMapMetadata centerLatitude
+             * @property {number|null} [centerLongtitude] AIRichResponseMapMetadata centerLongtitude
+             * @property {number|null} [latitudeDelta] AIRichResponseMapMetadata latitudeDelta
+             * @property {number|null} [longtitudeDelta] AIRichResponseMapMetadata longtitudeDelta
+             * @property {Array.<E2E.AIRichResponseMessage.AIRichResponseMapMetadata.IAIRichResponseMapAnnotation>|null} [anotations] AIRichResponseMapMetadata anotations
+             * @property {boolean|null} [showInfoList] AIRichResponseMapMetadata showInfoList
+             */
+
+            /**
+             * Constructs a new AIRichResponseMapMetadata.
+             * @memberof E2E.AIRichResponseMessage
+             * @classdesc Represents a AIRichResponseMapMetadata.
+             * @implements IAIRichResponseMapMetadata
+             * @constructor
+             * @param {E2E.AIRichResponseMessage.IAIRichResponseMapMetadata=} [properties] Properties to set
+             */
+            function AIRichResponseMapMetadata(properties) {
+                this.anotations = [];
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * AIRichResponseMapMetadata centerLatitude.
+             * @member {number} centerLatitude
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @instance
+             */
+            AIRichResponseMapMetadata.prototype.centerLatitude = 0;
+
+            /**
+             * AIRichResponseMapMetadata centerLongtitude.
+             * @member {number} centerLongtitude
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @instance
+             */
+            AIRichResponseMapMetadata.prototype.centerLongtitude = 0;
+
+            /**
+             * AIRichResponseMapMetadata latitudeDelta.
+             * @member {number} latitudeDelta
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @instance
+             */
+            AIRichResponseMapMetadata.prototype.latitudeDelta = 0;
+
+            /**
+             * AIRichResponseMapMetadata longtitudeDelta.
+             * @member {number} longtitudeDelta
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @instance
+             */
+            AIRichResponseMapMetadata.prototype.longtitudeDelta = 0;
+
+            /**
+             * AIRichResponseMapMetadata anotations.
+             * @member {Array.<E2E.AIRichResponseMessage.AIRichResponseMapMetadata.IAIRichResponseMapAnnotation>} anotations
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @instance
+             */
+            AIRichResponseMapMetadata.prototype.anotations = $util.emptyArray;
+
+            /**
+             * AIRichResponseMapMetadata showInfoList.
+             * @member {boolean} showInfoList
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @instance
+             */
+            AIRichResponseMapMetadata.prototype.showInfoList = false;
+
+            /**
+             * Creates a new AIRichResponseMapMetadata instance using the specified properties.
+             * @function create
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @static
+             * @param {E2E.AIRichResponseMessage.IAIRichResponseMapMetadata=} [properties] Properties to set
+             * @returns {E2E.AIRichResponseMessage.AIRichResponseMapMetadata} AIRichResponseMapMetadata instance
+             */
+            AIRichResponseMapMetadata.create = function create(properties) {
+                return new AIRichResponseMapMetadata(properties);
+            };
+
+            /**
+             * Encodes the specified AIRichResponseMapMetadata message. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseMapMetadata.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @static
+             * @param {E2E.AIRichResponseMessage.IAIRichResponseMapMetadata} message AIRichResponseMapMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            AIRichResponseMapMetadata.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.centerLatitude != null && Object.hasOwnProperty.call(message, "centerLatitude"))
+                    writer.uint32(/* id 1, wireType 1 =*/9).double(message.centerLatitude);
+                if (message.centerLongtitude != null && Object.hasOwnProperty.call(message, "centerLongtitude"))
+                    writer.uint32(/* id 2, wireType 1 =*/17).double(message.centerLongtitude);
+                if (message.latitudeDelta != null && Object.hasOwnProperty.call(message, "latitudeDelta"))
+                    writer.uint32(/* id 3, wireType 1 =*/25).double(message.latitudeDelta);
+                if (message.longtitudeDelta != null && Object.hasOwnProperty.call(message, "longtitudeDelta"))
+                    writer.uint32(/* id 4, wireType 1 =*/33).double(message.longtitudeDelta);
+                if (message.anotations != null && message.anotations.length)
+                    for (var i = 0; i < message.anotations.length; ++i)
+                        $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.encode(message.anotations[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                if (message.showInfoList != null && Object.hasOwnProperty.call(message, "showInfoList"))
+                    writer.uint32(/* id 6, wireType 0 =*/48).bool(message.showInfoList);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified AIRichResponseMapMetadata message, length delimited. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseMapMetadata.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @static
+             * @param {E2E.AIRichResponseMessage.IAIRichResponseMapMetadata} message AIRichResponseMapMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            AIRichResponseMapMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a AIRichResponseMapMetadata message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.AIRichResponseMessage.AIRichResponseMapMetadata} AIRichResponseMapMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            AIRichResponseMapMetadata.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.centerLatitude = reader.double();
+                            break;
+                        }
+                    case 2: {
+                            message.centerLongtitude = reader.double();
+                            break;
+                        }
+                    case 3: {
+                            message.latitudeDelta = reader.double();
+                            break;
+                        }
+                    case 4: {
+                            message.longtitudeDelta = reader.double();
+                            break;
+                        }
+                    case 5: {
+                            if (!(message.anotations && message.anotations.length))
+                                message.anotations = [];
+                            message.anotations.push($root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 6: {
+                            message.showInfoList = reader.bool();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a AIRichResponseMapMetadata message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.AIRichResponseMessage.AIRichResponseMapMetadata} AIRichResponseMapMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            AIRichResponseMapMetadata.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a AIRichResponseMapMetadata message.
+             * @function verify
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            AIRichResponseMapMetadata.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.centerLatitude != null && message.hasOwnProperty("centerLatitude"))
+                    if (typeof message.centerLatitude !== "number")
+                        return "centerLatitude: number expected";
+                if (message.centerLongtitude != null && message.hasOwnProperty("centerLongtitude"))
+                    if (typeof message.centerLongtitude !== "number")
+                        return "centerLongtitude: number expected";
+                if (message.latitudeDelta != null && message.hasOwnProperty("latitudeDelta"))
+                    if (typeof message.latitudeDelta !== "number")
+                        return "latitudeDelta: number expected";
+                if (message.longtitudeDelta != null && message.hasOwnProperty("longtitudeDelta"))
+                    if (typeof message.longtitudeDelta !== "number")
+                        return "longtitudeDelta: number expected";
+                if (message.anotations != null && message.hasOwnProperty("anotations")) {
+                    if (!Array.isArray(message.anotations))
+                        return "anotations: array expected";
+                    for (var i = 0; i < message.anotations.length; ++i) {
+                        var error = $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.verify(message.anotations[i]);
+                        if (error)
+                            return "anotations." + error;
+                    }
+                }
+                if (message.showInfoList != null && message.hasOwnProperty("showInfoList"))
+                    if (typeof message.showInfoList !== "boolean")
+                        return "showInfoList: boolean expected";
+                return null;
+            };
+
+            /**
+             * Creates a AIRichResponseMapMetadata message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.AIRichResponseMessage.AIRichResponseMapMetadata} AIRichResponseMapMetadata
+             */
+            AIRichResponseMapMetadata.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata)
+                    return object;
+                var message = new $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata();
+                if (object.centerLatitude != null)
+                    message.centerLatitude = Number(object.centerLatitude);
+                if (object.centerLongtitude != null)
+                    message.centerLongtitude = Number(object.centerLongtitude);
+                if (object.latitudeDelta != null)
+                    message.latitudeDelta = Number(object.latitudeDelta);
+                if (object.longtitudeDelta != null)
+                    message.longtitudeDelta = Number(object.longtitudeDelta);
+                if (object.anotations) {
+                    if (!Array.isArray(object.anotations))
+                        throw TypeError(".E2E.AIRichResponseMessage.AIRichResponseMapMetadata.anotations: array expected");
+                    message.anotations = [];
+                    for (var i = 0; i < object.anotations.length; ++i) {
+                        if (typeof object.anotations[i] !== "object")
+                            throw TypeError(".E2E.AIRichResponseMessage.AIRichResponseMapMetadata.anotations: object expected");
+                        message.anotations[i] = $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.fromObject(object.anotations[i]);
+                    }
+                }
+                if (object.showInfoList != null)
+                    message.showInfoList = Boolean(object.showInfoList);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a AIRichResponseMapMetadata message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @static
+             * @param {E2E.AIRichResponseMessage.AIRichResponseMapMetadata} message AIRichResponseMapMetadata
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            AIRichResponseMapMetadata.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.arrays || options.defaults)
+                    object.anotations = [];
+                if (options.defaults) {
+                    object.centerLatitude = 0;
+                    object.centerLongtitude = 0;
+                    object.latitudeDelta = 0;
+                    object.longtitudeDelta = 0;
+                    object.showInfoList = false;
+                }
+                if (message.centerLatitude != null && message.hasOwnProperty("centerLatitude"))
+                    object.centerLatitude = options.json && !isFinite(message.centerLatitude) ? String(message.centerLatitude) : message.centerLatitude;
+                if (message.centerLongtitude != null && message.hasOwnProperty("centerLongtitude"))
+                    object.centerLongtitude = options.json && !isFinite(message.centerLongtitude) ? String(message.centerLongtitude) : message.centerLongtitude;
+                if (message.latitudeDelta != null && message.hasOwnProperty("latitudeDelta"))
+                    object.latitudeDelta = options.json && !isFinite(message.latitudeDelta) ? String(message.latitudeDelta) : message.latitudeDelta;
+                if (message.longtitudeDelta != null && message.hasOwnProperty("longtitudeDelta"))
+                    object.longtitudeDelta = options.json && !isFinite(message.longtitudeDelta) ? String(message.longtitudeDelta) : message.longtitudeDelta;
+                if (message.anotations && message.anotations.length) {
+                    object.anotations = [];
+                    for (var j = 0; j < message.anotations.length; ++j)
+                        object.anotations[j] = $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.toObject(message.anotations[j], options);
+                }
+                if (message.showInfoList != null && message.hasOwnProperty("showInfoList"))
+                    object.showInfoList = message.showInfoList;
+                return object;
+            };
+
+            /**
+             * Converts this AIRichResponseMapMetadata to JSON.
+             * @function toJSON
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            AIRichResponseMapMetadata.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for AIRichResponseMapMetadata
+             * @function getTypeUrl
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            AIRichResponseMapMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.AIRichResponseMessage.AIRichResponseMapMetadata";
+            };
+
+            AIRichResponseMapMetadata.AIRichResponseMapAnnotation = (function() {
+
+                /**
+                 * Properties of a AIRichResponseMapAnnotation.
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata
+                 * @interface IAIRichResponseMapAnnotation
+                 * @property {number|null} [annotationNumber] AIRichResponseMapAnnotation annotationNumber
+                 * @property {number|null} [latitude] AIRichResponseMapAnnotation latitude
+                 * @property {number|null} [longtitude] AIRichResponseMapAnnotation longtitude
+                 * @property {string|null} [title] AIRichResponseMapAnnotation title
+                 * @property {string|null} [body] AIRichResponseMapAnnotation body
+                 */
+
+                /**
+                 * Constructs a new AIRichResponseMapAnnotation.
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata
+                 * @classdesc Represents a AIRichResponseMapAnnotation.
+                 * @implements IAIRichResponseMapAnnotation
+                 * @constructor
+                 * @param {E2E.AIRichResponseMessage.AIRichResponseMapMetadata.IAIRichResponseMapAnnotation=} [properties] Properties to set
+                 */
+                function AIRichResponseMapAnnotation(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * AIRichResponseMapAnnotation annotationNumber.
+                 * @member {number} annotationNumber
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @instance
+                 */
+                AIRichResponseMapAnnotation.prototype.annotationNumber = 0;
+
+                /**
+                 * AIRichResponseMapAnnotation latitude.
+                 * @member {number} latitude
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @instance
+                 */
+                AIRichResponseMapAnnotation.prototype.latitude = 0;
+
+                /**
+                 * AIRichResponseMapAnnotation longtitude.
+                 * @member {number} longtitude
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @instance
+                 */
+                AIRichResponseMapAnnotation.prototype.longtitude = 0;
+
+                /**
+                 * AIRichResponseMapAnnotation title.
+                 * @member {string} title
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @instance
+                 */
+                AIRichResponseMapAnnotation.prototype.title = "";
+
+                /**
+                 * AIRichResponseMapAnnotation body.
+                 * @member {string} body
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @instance
+                 */
+                AIRichResponseMapAnnotation.prototype.body = "";
+
+                /**
+                 * Creates a new AIRichResponseMapAnnotation instance using the specified properties.
+                 * @function create
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @static
+                 * @param {E2E.AIRichResponseMessage.AIRichResponseMapMetadata.IAIRichResponseMapAnnotation=} [properties] Properties to set
+                 * @returns {E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation} AIRichResponseMapAnnotation instance
+                 */
+                AIRichResponseMapAnnotation.create = function create(properties) {
+                    return new AIRichResponseMapAnnotation(properties);
+                };
+
+                /**
+                 * Encodes the specified AIRichResponseMapAnnotation message. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.verify|verify} messages.
+                 * @function encode
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @static
+                 * @param {E2E.AIRichResponseMessage.AIRichResponseMapMetadata.IAIRichResponseMapAnnotation} message AIRichResponseMapAnnotation message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                AIRichResponseMapAnnotation.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.annotationNumber != null && Object.hasOwnProperty.call(message, "annotationNumber"))
+                        writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.annotationNumber);
+                    if (message.latitude != null && Object.hasOwnProperty.call(message, "latitude"))
+                        writer.uint32(/* id 2, wireType 1 =*/17).double(message.latitude);
+                    if (message.longtitude != null && Object.hasOwnProperty.call(message, "longtitude"))
+                        writer.uint32(/* id 3, wireType 1 =*/25).double(message.longtitude);
+                    if (message.title != null && Object.hasOwnProperty.call(message, "title"))
+                        writer.uint32(/* id 4, wireType 2 =*/34).string(message.title);
+                    if (message.body != null && Object.hasOwnProperty.call(message, "body"))
+                        writer.uint32(/* id 5, wireType 2 =*/42).string(message.body);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified AIRichResponseMapAnnotation message, length delimited. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @static
+                 * @param {E2E.AIRichResponseMessage.AIRichResponseMapMetadata.IAIRichResponseMapAnnotation} message AIRichResponseMapAnnotation message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                AIRichResponseMapAnnotation.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a AIRichResponseMapAnnotation message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation} AIRichResponseMapAnnotation
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                AIRichResponseMapAnnotation.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.annotationNumber = reader.uint32();
+                                break;
+                            }
+                        case 2: {
+                                message.latitude = reader.double();
+                                break;
+                            }
+                        case 3: {
+                                message.longtitude = reader.double();
+                                break;
+                            }
+                        case 4: {
+                                message.title = reader.string();
+                                break;
+                            }
+                        case 5: {
+                                message.body = reader.string();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a AIRichResponseMapAnnotation message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation} AIRichResponseMapAnnotation
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                AIRichResponseMapAnnotation.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a AIRichResponseMapAnnotation message.
+                 * @function verify
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                AIRichResponseMapAnnotation.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.annotationNumber != null && message.hasOwnProperty("annotationNumber"))
+                        if (!$util.isInteger(message.annotationNumber))
+                            return "annotationNumber: integer expected";
+                    if (message.latitude != null && message.hasOwnProperty("latitude"))
+                        if (typeof message.latitude !== "number")
+                            return "latitude: number expected";
+                    if (message.longtitude != null && message.hasOwnProperty("longtitude"))
+                        if (typeof message.longtitude !== "number")
+                            return "longtitude: number expected";
+                    if (message.title != null && message.hasOwnProperty("title"))
+                        if (!$util.isString(message.title))
+                            return "title: string expected";
+                    if (message.body != null && message.hasOwnProperty("body"))
+                        if (!$util.isString(message.body))
+                            return "body: string expected";
+                    return null;
+                };
+
+                /**
+                 * Creates a AIRichResponseMapAnnotation message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation} AIRichResponseMapAnnotation
+                 */
+                AIRichResponseMapAnnotation.fromObject = function fromObject(object) {
+                    if (object instanceof $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation)
+                        return object;
+                    var message = new $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation();
+                    if (object.annotationNumber != null)
+                        message.annotationNumber = object.annotationNumber >>> 0;
+                    if (object.latitude != null)
+                        message.latitude = Number(object.latitude);
+                    if (object.longtitude != null)
+                        message.longtitude = Number(object.longtitude);
+                    if (object.title != null)
+                        message.title = String(object.title);
+                    if (object.body != null)
+                        message.body = String(object.body);
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a AIRichResponseMapAnnotation message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @static
+                 * @param {E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation} message AIRichResponseMapAnnotation
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                AIRichResponseMapAnnotation.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        object.annotationNumber = 0;
+                        object.latitude = 0;
+                        object.longtitude = 0;
+                        object.title = "";
+                        object.body = "";
+                    }
+                    if (message.annotationNumber != null && message.hasOwnProperty("annotationNumber"))
+                        object.annotationNumber = message.annotationNumber;
+                    if (message.latitude != null && message.hasOwnProperty("latitude"))
+                        object.latitude = options.json && !isFinite(message.latitude) ? String(message.latitude) : message.latitude;
+                    if (message.longtitude != null && message.hasOwnProperty("longtitude"))
+                        object.longtitude = options.json && !isFinite(message.longtitude) ? String(message.longtitude) : message.longtitude;
+                    if (message.title != null && message.hasOwnProperty("title"))
+                        object.title = message.title;
+                    if (message.body != null && message.hasOwnProperty("body"))
+                        object.body = message.body;
+                    return object;
+                };
+
+                /**
+                 * Converts this AIRichResponseMapAnnotation to JSON.
+                 * @function toJSON
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                AIRichResponseMapAnnotation.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for AIRichResponseMapAnnotation
+                 * @function getTypeUrl
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                AIRichResponseMapAnnotation.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation";
+                };
+
+                return AIRichResponseMapAnnotation;
+            })();
+
+            return AIRichResponseMapMetadata;
+        })();
+
         /**
          * AIRichResponseMessageType enum.
          * @name E2E.AIRichResponseMessage.AIRichResponseMessageType
@@ -18686,6 +20053,503 @@ $root.E2E = (function() {
             values[valuesById[0] = "AI_RICH_RESPONSE_TYPE_UNKNOWN"] = 0;
             values[valuesById[1] = "AI_RICH_RESPONSE_TYPE_STANDARD"] = 1;
             return values;
+        })();
+
+        AIRichResponseMessage.AIRichResponseReelsMetadata = (function() {
+
+            /**
+             * Properties of a AIRichResponseReelsMetadata.
+             * @memberof E2E.AIRichResponseMessage
+             * @interface IAIRichResponseReelsMetadata
+             * @property {Array.<E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.IAIRichResponseReelMetadata>|null} [reelsMetadata] AIRichResponseReelsMetadata reelsMetadata
+             */
+
+            /**
+             * Constructs a new AIRichResponseReelsMetadata.
+             * @memberof E2E.AIRichResponseMessage
+             * @classdesc Represents a AIRichResponseReelsMetadata.
+             * @implements IAIRichResponseReelsMetadata
+             * @constructor
+             * @param {E2E.AIRichResponseMessage.IAIRichResponseReelsMetadata=} [properties] Properties to set
+             */
+            function AIRichResponseReelsMetadata(properties) {
+                this.reelsMetadata = [];
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * AIRichResponseReelsMetadata reelsMetadata.
+             * @member {Array.<E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.IAIRichResponseReelMetadata>} reelsMetadata
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata
+             * @instance
+             */
+            AIRichResponseReelsMetadata.prototype.reelsMetadata = $util.emptyArray;
+
+            /**
+             * Creates a new AIRichResponseReelsMetadata instance using the specified properties.
+             * @function create
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata
+             * @static
+             * @param {E2E.AIRichResponseMessage.IAIRichResponseReelsMetadata=} [properties] Properties to set
+             * @returns {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata} AIRichResponseReelsMetadata instance
+             */
+            AIRichResponseReelsMetadata.create = function create(properties) {
+                return new AIRichResponseReelsMetadata(properties);
+            };
+
+            /**
+             * Encodes the specified AIRichResponseReelsMetadata message. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata
+             * @static
+             * @param {E2E.AIRichResponseMessage.IAIRichResponseReelsMetadata} message AIRichResponseReelsMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            AIRichResponseReelsMetadata.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.reelsMetadata != null && message.reelsMetadata.length)
+                    for (var i = 0; i < message.reelsMetadata.length; ++i)
+                        $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata.encode(message.reelsMetadata[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                return writer;
+            };
+
+            /**
+             * Encodes the specified AIRichResponseReelsMetadata message, length delimited. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata
+             * @static
+             * @param {E2E.AIRichResponseMessage.IAIRichResponseReelsMetadata} message AIRichResponseReelsMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            AIRichResponseReelsMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a AIRichResponseReelsMetadata message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata} AIRichResponseReelsMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            AIRichResponseReelsMetadata.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            if (!(message.reelsMetadata && message.reelsMetadata.length))
+                                message.reelsMetadata = [];
+                            message.reelsMetadata.push($root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a AIRichResponseReelsMetadata message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata} AIRichResponseReelsMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            AIRichResponseReelsMetadata.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a AIRichResponseReelsMetadata message.
+             * @function verify
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            AIRichResponseReelsMetadata.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.reelsMetadata != null && message.hasOwnProperty("reelsMetadata")) {
+                    if (!Array.isArray(message.reelsMetadata))
+                        return "reelsMetadata: array expected";
+                    for (var i = 0; i < message.reelsMetadata.length; ++i) {
+                        var error = $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata.verify(message.reelsMetadata[i]);
+                        if (error)
+                            return "reelsMetadata." + error;
+                    }
+                }
+                return null;
+            };
+
+            /**
+             * Creates a AIRichResponseReelsMetadata message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata} AIRichResponseReelsMetadata
+             */
+            AIRichResponseReelsMetadata.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata)
+                    return object;
+                var message = new $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata();
+                if (object.reelsMetadata) {
+                    if (!Array.isArray(object.reelsMetadata))
+                        throw TypeError(".E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.reelsMetadata: array expected");
+                    message.reelsMetadata = [];
+                    for (var i = 0; i < object.reelsMetadata.length; ++i) {
+                        if (typeof object.reelsMetadata[i] !== "object")
+                            throw TypeError(".E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.reelsMetadata: object expected");
+                        message.reelsMetadata[i] = $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata.fromObject(object.reelsMetadata[i]);
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a AIRichResponseReelsMetadata message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata
+             * @static
+             * @param {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata} message AIRichResponseReelsMetadata
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            AIRichResponseReelsMetadata.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.arrays || options.defaults)
+                    object.reelsMetadata = [];
+                if (message.reelsMetadata && message.reelsMetadata.length) {
+                    object.reelsMetadata = [];
+                    for (var j = 0; j < message.reelsMetadata.length; ++j)
+                        object.reelsMetadata[j] = $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata.toObject(message.reelsMetadata[j], options);
+                }
+                return object;
+            };
+
+            /**
+             * Converts this AIRichResponseReelsMetadata to JSON.
+             * @function toJSON
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            AIRichResponseReelsMetadata.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for AIRichResponseReelsMetadata
+             * @function getTypeUrl
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            AIRichResponseReelsMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.AIRichResponseMessage.AIRichResponseReelsMetadata";
+            };
+
+            AIRichResponseReelsMetadata.AIRichResponseReelMetadata = (function() {
+
+                /**
+                 * Properties of a AIRichResponseReelMetadata.
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata
+                 * @interface IAIRichResponseReelMetadata
+                 * @property {string|null} [title] AIRichResponseReelMetadata title
+                 * @property {string|null} [profileIconUrl] AIRichResponseReelMetadata profileIconUrl
+                 * @property {string|null} [previewUrl] AIRichResponseReelMetadata previewUrl
+                 * @property {string|null} [videoUrl] AIRichResponseReelMetadata videoUrl
+                 */
+
+                /**
+                 * Constructs a new AIRichResponseReelMetadata.
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata
+                 * @classdesc Represents a AIRichResponseReelMetadata.
+                 * @implements IAIRichResponseReelMetadata
+                 * @constructor
+                 * @param {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.IAIRichResponseReelMetadata=} [properties] Properties to set
+                 */
+                function AIRichResponseReelMetadata(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * AIRichResponseReelMetadata title.
+                 * @member {string} title
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
+                 * @instance
+                 */
+                AIRichResponseReelMetadata.prototype.title = "";
+
+                /**
+                 * AIRichResponseReelMetadata profileIconUrl.
+                 * @member {string} profileIconUrl
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
+                 * @instance
+                 */
+                AIRichResponseReelMetadata.prototype.profileIconUrl = "";
+
+                /**
+                 * AIRichResponseReelMetadata previewUrl.
+                 * @member {string} previewUrl
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
+                 * @instance
+                 */
+                AIRichResponseReelMetadata.prototype.previewUrl = "";
+
+                /**
+                 * AIRichResponseReelMetadata videoUrl.
+                 * @member {string} videoUrl
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
+                 * @instance
+                 */
+                AIRichResponseReelMetadata.prototype.videoUrl = "";
+
+                /**
+                 * Creates a new AIRichResponseReelMetadata instance using the specified properties.
+                 * @function create
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
+                 * @static
+                 * @param {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.IAIRichResponseReelMetadata=} [properties] Properties to set
+                 * @returns {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata} AIRichResponseReelMetadata instance
+                 */
+                AIRichResponseReelMetadata.create = function create(properties) {
+                    return new AIRichResponseReelMetadata(properties);
+                };
+
+                /**
+                 * Encodes the specified AIRichResponseReelMetadata message. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata.verify|verify} messages.
+                 * @function encode
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
+                 * @static
+                 * @param {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.IAIRichResponseReelMetadata} message AIRichResponseReelMetadata message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                AIRichResponseReelMetadata.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.title != null && Object.hasOwnProperty.call(message, "title"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.title);
+                    if (message.profileIconUrl != null && Object.hasOwnProperty.call(message, "profileIconUrl"))
+                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.profileIconUrl);
+                    if (message.previewUrl != null && Object.hasOwnProperty.call(message, "previewUrl"))
+                        writer.uint32(/* id 3, wireType 2 =*/26).string(message.previewUrl);
+                    if (message.videoUrl != null && Object.hasOwnProperty.call(message, "videoUrl"))
+                        writer.uint32(/* id 4, wireType 2 =*/34).string(message.videoUrl);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified AIRichResponseReelMetadata message, length delimited. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
+                 * @static
+                 * @param {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.IAIRichResponseReelMetadata} message AIRichResponseReelMetadata message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                AIRichResponseReelMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a AIRichResponseReelMetadata message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata} AIRichResponseReelMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                AIRichResponseReelMetadata.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.title = reader.string();
+                                break;
+                            }
+                        case 2: {
+                                message.profileIconUrl = reader.string();
+                                break;
+                            }
+                        case 3: {
+                                message.previewUrl = reader.string();
+                                break;
+                            }
+                        case 4: {
+                                message.videoUrl = reader.string();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a AIRichResponseReelMetadata message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata} AIRichResponseReelMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                AIRichResponseReelMetadata.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a AIRichResponseReelMetadata message.
+                 * @function verify
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                AIRichResponseReelMetadata.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.title != null && message.hasOwnProperty("title"))
+                        if (!$util.isString(message.title))
+                            return "title: string expected";
+                    if (message.profileIconUrl != null && message.hasOwnProperty("profileIconUrl"))
+                        if (!$util.isString(message.profileIconUrl))
+                            return "profileIconUrl: string expected";
+                    if (message.previewUrl != null && message.hasOwnProperty("previewUrl"))
+                        if (!$util.isString(message.previewUrl))
+                            return "previewUrl: string expected";
+                    if (message.videoUrl != null && message.hasOwnProperty("videoUrl"))
+                        if (!$util.isString(message.videoUrl))
+                            return "videoUrl: string expected";
+                    return null;
+                };
+
+                /**
+                 * Creates a AIRichResponseReelMetadata message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata} AIRichResponseReelMetadata
+                 */
+                AIRichResponseReelMetadata.fromObject = function fromObject(object) {
+                    if (object instanceof $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata)
+                        return object;
+                    var message = new $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata();
+                    if (object.title != null)
+                        message.title = String(object.title);
+                    if (object.profileIconUrl != null)
+                        message.profileIconUrl = String(object.profileIconUrl);
+                    if (object.previewUrl != null)
+                        message.previewUrl = String(object.previewUrl);
+                    if (object.videoUrl != null)
+                        message.videoUrl = String(object.videoUrl);
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a AIRichResponseReelMetadata message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
+                 * @static
+                 * @param {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata} message AIRichResponseReelMetadata
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                AIRichResponseReelMetadata.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        object.title = "";
+                        object.profileIconUrl = "";
+                        object.previewUrl = "";
+                        object.videoUrl = "";
+                    }
+                    if (message.title != null && message.hasOwnProperty("title"))
+                        object.title = message.title;
+                    if (message.profileIconUrl != null && message.hasOwnProperty("profileIconUrl"))
+                        object.profileIconUrl = message.profileIconUrl;
+                    if (message.previewUrl != null && message.hasOwnProperty("previewUrl"))
+                        object.previewUrl = message.previewUrl;
+                    if (message.videoUrl != null && message.hasOwnProperty("videoUrl"))
+                        object.videoUrl = message.videoUrl;
+                    return object;
+                };
+
+                /**
+                 * Converts this AIRichResponseReelMetadata to JSON.
+                 * @function toJSON
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                AIRichResponseReelMetadata.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for AIRichResponseReelMetadata
+                 * @function getTypeUrl
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                AIRichResponseReelMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata";
+                };
+
+                return AIRichResponseReelMetadata;
+            })();
+
+            return AIRichResponseReelsMetadata;
         })();
 
         AIRichResponseMessage.AIRichResponseSubMessage = (function() {
@@ -18702,6 +20566,8 @@ $root.E2E = (function() {
              * @property {E2E.AIRichResponseMessage.IAIRichResponseTableMetadata|null} [tableMetadata] AIRichResponseSubMessage tableMetadata
              * @property {E2E.AIRichResponseMessage.IAIRichResponseDynamicMetadata|null} [dynamicMetadata] AIRichResponseSubMessage dynamicMetadata
              * @property {E2E.AIRichResponseMessage.IAIRichResponseLatexMetadata|null} [latexMetadata] AIRichResponseSubMessage latexMetadata
+             * @property {E2E.AIRichResponseMessage.IAIRichResponseMapMetadata|null} [mapMetadata] AIRichResponseSubMessage mapMetadata
+             * @property {E2E.AIRichResponseMessage.IAIRichResponseReelsMetadata|null} [reelsMetadata] AIRichResponseSubMessage reelsMetadata
              */
 
             /**
@@ -18784,6 +20650,22 @@ $root.E2E = (function() {
             AIRichResponseSubMessage.prototype.latexMetadata = null;
 
             /**
+             * AIRichResponseSubMessage mapMetadata.
+             * @member {E2E.AIRichResponseMessage.IAIRichResponseMapMetadata|null|undefined} mapMetadata
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseSubMessage
+             * @instance
+             */
+            AIRichResponseSubMessage.prototype.mapMetadata = null;
+
+            /**
+             * AIRichResponseSubMessage reelsMetadata.
+             * @member {E2E.AIRichResponseMessage.IAIRichResponseReelsMetadata|null|undefined} reelsMetadata
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseSubMessage
+             * @instance
+             */
+            AIRichResponseSubMessage.prototype.reelsMetadata = null;
+
+            /**
              * Creates a new AIRichResponseSubMessage instance using the specified properties.
              * @function create
              * @memberof E2E.AIRichResponseMessage.AIRichResponseSubMessage
@@ -18823,6 +20705,10 @@ $root.E2E = (function() {
                     $root.E2E.AIRichResponseMessage.AIRichResponseDynamicMetadata.encode(message.dynamicMetadata, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
                 if (message.latexMetadata != null && Object.hasOwnProperty.call(message, "latexMetadata"))
                     $root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.encode(message.latexMetadata, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+                if (message.mapMetadata != null && Object.hasOwnProperty.call(message, "mapMetadata"))
+                    $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.encode(message.mapMetadata, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
+                if (message.reelsMetadata != null && Object.hasOwnProperty.call(message, "reelsMetadata"))
+                    $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.encode(message.reelsMetadata, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
                 return writer;
             };
 
@@ -18889,6 +20775,14 @@ $root.E2E = (function() {
                             message.latexMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.decode(reader, reader.uint32());
                             break;
                         }
+                    case 9: {
+                            message.mapMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 10: {
+                            message.reelsMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.decode(reader, reader.uint32());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -18935,6 +20829,9 @@ $root.E2E = (function() {
                     case 4:
                     case 5:
                     case 6:
+                    case 7:
+                    case 8:
+                    case 9:
                         break;
                     }
                 if (message.gridImageMetadata != null && message.hasOwnProperty("gridImageMetadata")) {
@@ -18969,6 +20866,16 @@ $root.E2E = (function() {
                     var error = $root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.verify(message.latexMetadata);
                     if (error)
                         return "latexMetadata." + error;
+                }
+                if (message.mapMetadata != null && message.hasOwnProperty("mapMetadata")) {
+                    var error = $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.verify(message.mapMetadata);
+                    if (error)
+                        return "mapMetadata." + error;
+                }
+                if (message.reelsMetadata != null && message.hasOwnProperty("reelsMetadata")) {
+                    var error = $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.verify(message.reelsMetadata);
+                    if (error)
+                        return "reelsMetadata." + error;
                 }
                 return null;
             };
@@ -19020,6 +20927,18 @@ $root.E2E = (function() {
                 case 6:
                     message.messageType = 6;
                     break;
+                case "AI_RICH_RESPONSE_MAP":
+                case 7:
+                    message.messageType = 7;
+                    break;
+                case "AI_RICH_RESPONSE_LATEX":
+                case 8:
+                    message.messageType = 8;
+                    break;
+                case "AI_RICH_RESPONSE_INLINE_REELS":
+                case 9:
+                    message.messageType = 9;
+                    break;
                 }
                 if (object.gridImageMetadata != null) {
                     if (typeof object.gridImageMetadata !== "object")
@@ -19053,6 +20972,16 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.AIRichResponseMessage.AIRichResponseSubMessage.latexMetadata: object expected");
                     message.latexMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.fromObject(object.latexMetadata);
                 }
+                if (object.mapMetadata != null) {
+                    if (typeof object.mapMetadata !== "object")
+                        throw TypeError(".E2E.AIRichResponseMessage.AIRichResponseSubMessage.mapMetadata: object expected");
+                    message.mapMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.fromObject(object.mapMetadata);
+                }
+                if (object.reelsMetadata != null) {
+                    if (typeof object.reelsMetadata !== "object")
+                        throw TypeError(".E2E.AIRichResponseMessage.AIRichResponseSubMessage.reelsMetadata: object expected");
+                    message.reelsMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.fromObject(object.reelsMetadata);
+                }
                 return message;
             };
 
@@ -19078,6 +21007,8 @@ $root.E2E = (function() {
                     object.tableMetadata = null;
                     object.dynamicMetadata = null;
                     object.latexMetadata = null;
+                    object.mapMetadata = null;
+                    object.reelsMetadata = null;
                 }
                 if (message.messageType != null && message.hasOwnProperty("messageType"))
                     object.messageType = options.enums === String ? $root.E2E.AIRichResponseMessage.AIRichResponseSubMessageType[message.messageType] === undefined ? message.messageType : $root.E2E.AIRichResponseMessage.AIRichResponseSubMessageType[message.messageType] : message.messageType;
@@ -19095,6 +21026,10 @@ $root.E2E = (function() {
                     object.dynamicMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseDynamicMetadata.toObject(message.dynamicMetadata, options);
                 if (message.latexMetadata != null && message.hasOwnProperty("latexMetadata"))
                     object.latexMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.toObject(message.latexMetadata, options);
+                if (message.mapMetadata != null && message.hasOwnProperty("mapMetadata"))
+                    object.mapMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.toObject(message.mapMetadata, options);
+                if (message.reelsMetadata != null && message.hasOwnProperty("reelsMetadata"))
+                    object.reelsMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.toObject(message.reelsMetadata, options);
                 return object;
             };
 
@@ -19138,6 +21073,9 @@ $root.E2E = (function() {
          * @property {number} AI_RICH_RESPONSE_TABLE=4 AI_RICH_RESPONSE_TABLE value
          * @property {number} AI_RICH_RESPONSE_CODE=5 AI_RICH_RESPONSE_CODE value
          * @property {number} AI_RICH_RESPONSE_DYNAMIC=6 AI_RICH_RESPONSE_DYNAMIC value
+         * @property {number} AI_RICH_RESPONSE_MAP=7 AI_RICH_RESPONSE_MAP value
+         * @property {number} AI_RICH_RESPONSE_LATEX=8 AI_RICH_RESPONSE_LATEX value
+         * @property {number} AI_RICH_RESPONSE_INLINE_REELS=9 AI_RICH_RESPONSE_INLINE_REELS value
          */
         AIRichResponseMessage.AIRichResponseSubMessageType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -19148,6 +21086,9 @@ $root.E2E = (function() {
             values[valuesById[4] = "AI_RICH_RESPONSE_TABLE"] = 4;
             values[valuesById[5] = "AI_RICH_RESPONSE_CODE"] = 5;
             values[valuesById[6] = "AI_RICH_RESPONSE_DYNAMIC"] = 6;
+            values[valuesById[7] = "AI_RICH_RESPONSE_MAP"] = 7;
+            values[valuesById[8] = "AI_RICH_RESPONSE_LATEX"] = 8;
+            values[valuesById[9] = "AI_RICH_RESPONSE_INLINE_REELS"] = 9;
             return values;
         })();
 
@@ -63172,6 +65113,7 @@ $root.E2E = (function() {
                     case 23:
                     case 24:
                     case 25:
+                    case 26:
                         break;
                     }
                 if (message.ephemeralExpiration != null && message.hasOwnProperty("ephemeralExpiration"))
@@ -63366,6 +65308,10 @@ $root.E2E = (function() {
                 case "STATUS_MENTION_MESSAGE":
                 case 25:
                     message.type = 25;
+                    break;
+                case "STOP_GENERATION_MESSAGE":
+                case 26:
+                    message.type = 26;
                     break;
                 }
                 if (object.ephemeralExpiration != null)
@@ -63606,6 +65552,7 @@ $root.E2E = (function() {
              * @property {number} REMINDER_MESSAGE=23 REMINDER_MESSAGE value
              * @property {number} BOT_MEMU_ONBOARDING_MESSAGE=24 BOT_MEMU_ONBOARDING_MESSAGE value
              * @property {number} STATUS_MENTION_MESSAGE=25 STATUS_MENTION_MESSAGE value
+             * @property {number} STOP_GENERATION_MESSAGE=26 STOP_GENERATION_MESSAGE value
              */
             ProtocolMessage.Type = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -63630,6 +65577,7 @@ $root.E2E = (function() {
                 values[valuesById[23] = "REMINDER_MESSAGE"] = 23;
                 values[valuesById[24] = "BOT_MEMU_ONBOARDING_MESSAGE"] = 24;
                 values[valuesById[25] = "STATUS_MENTION_MESSAGE"] = 25;
+                values[valuesById[26] = "STOP_GENERATION_MESSAGE"] = 26;
                 return values;
             })();
 

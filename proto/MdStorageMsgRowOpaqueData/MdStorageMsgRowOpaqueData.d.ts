@@ -4966,7 +4966,9 @@ export namespace E2E {
             RICH_RESPONSE_SUB_HEADING = 21,
             RICH_RESPONSE_GRID_IMAGE = 22,
             AI_STUDIO_UGC_MEMORY = 23,
-            RICH_RESPONSE_LATEX = 24
+            RICH_RESPONSE_LATEX = 24,
+            RICH_RESPONSE_MAPS = 25,
+            RICH_RESPONSE_INLINE_REELS = 26
         }
     }
 
@@ -4975,6 +4977,9 @@ export namespace E2E {
 
         /** BotProgressIndicatorMetadata progressDescription */
         progressDescription?: (string|null);
+
+        /** BotProgressIndicatorMetadata stepsMetadata */
+        stepsMetadata?: (E2E.BotProgressIndicatorMetadata.IBotPlanningStepMetadata[]|null);
     }
 
     /** Represents a BotProgressIndicatorMetadata. */
@@ -4988,6 +4993,9 @@ export namespace E2E {
 
         /** BotProgressIndicatorMetadata progressDescription. */
         public progressDescription: string;
+
+        /** BotProgressIndicatorMetadata stepsMetadata. */
+        public stepsMetadata: E2E.BotProgressIndicatorMetadata.IBotPlanningStepMetadata[];
 
         /**
          * Creates a new BotProgressIndicatorMetadata instance using the specified properties.
@@ -5065,6 +5073,265 @@ export namespace E2E {
          * @returns The default type url
          */
         public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace BotProgressIndicatorMetadata {
+
+        /** Properties of a BotPlanningStepMetadata. */
+        interface IBotPlanningStepMetadata {
+
+            /** BotPlanningStepMetadata statusTitle */
+            statusTitle?: (string|null);
+
+            /** BotPlanningStepMetadata statusBody */
+            statusBody?: (string|null);
+
+            /** BotPlanningStepMetadata sourcesMetadata */
+            sourcesMetadata?: (E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourcesMetadata[]|null);
+
+            /** BotPlanningStepMetadata status */
+            status?: (E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.PlanningStepStatus|null);
+
+            /** BotPlanningStepMetadata isReasoning */
+            isReasoning?: (boolean|null);
+
+            /** BotPlanningStepMetadata isEnhancedSearch */
+            isEnhancedSearch?: (boolean|null);
+        }
+
+        /** Represents a BotPlanningStepMetadata. */
+        class BotPlanningStepMetadata implements IBotPlanningStepMetadata {
+
+            /**
+             * Constructs a new BotPlanningStepMetadata.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.BotProgressIndicatorMetadata.IBotPlanningStepMetadata);
+
+            /** BotPlanningStepMetadata statusTitle. */
+            public statusTitle: string;
+
+            /** BotPlanningStepMetadata statusBody. */
+            public statusBody: string;
+
+            /** BotPlanningStepMetadata sourcesMetadata. */
+            public sourcesMetadata: E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourcesMetadata[];
+
+            /** BotPlanningStepMetadata status. */
+            public status: E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.PlanningStepStatus;
+
+            /** BotPlanningStepMetadata isReasoning. */
+            public isReasoning: boolean;
+
+            /** BotPlanningStepMetadata isEnhancedSearch. */
+            public isEnhancedSearch: boolean;
+
+            /**
+             * Creates a new BotPlanningStepMetadata instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns BotPlanningStepMetadata instance
+             */
+            public static create(properties?: E2E.BotProgressIndicatorMetadata.IBotPlanningStepMetadata): E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata;
+
+            /**
+             * Encodes the specified BotPlanningStepMetadata message. Does not implicitly {@link E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.verify|verify} messages.
+             * @param message BotPlanningStepMetadata message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.BotProgressIndicatorMetadata.IBotPlanningStepMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified BotPlanningStepMetadata message, length delimited. Does not implicitly {@link E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.verify|verify} messages.
+             * @param message BotPlanningStepMetadata message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.BotProgressIndicatorMetadata.IBotPlanningStepMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a BotPlanningStepMetadata message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns BotPlanningStepMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata;
+
+            /**
+             * Decodes a BotPlanningStepMetadata message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns BotPlanningStepMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata;
+
+            /**
+             * Verifies a BotPlanningStepMetadata message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a BotPlanningStepMetadata message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns BotPlanningStepMetadata
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata;
+
+            /**
+             * Creates a plain object from a BotPlanningStepMetadata message. Also converts values to other types if specified.
+             * @param message BotPlanningStepMetadata
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this BotPlanningStepMetadata to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for BotPlanningStepMetadata
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace BotPlanningStepMetadata {
+
+            /** Properties of a BotPlanningSearchSourcesMetadata. */
+            interface IBotPlanningSearchSourcesMetadata {
+
+                /** BotPlanningSearchSourcesMetadata sourceTitle */
+                sourceTitle?: (string|null);
+
+                /** BotPlanningSearchSourcesMetadata provider */
+                provider?: (E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.BotPlanningSearchSourceProvider|null);
+
+                /** BotPlanningSearchSourcesMetadata sourceUrl */
+                sourceUrl?: (string|null);
+            }
+
+            /** Represents a BotPlanningSearchSourcesMetadata. */
+            class BotPlanningSearchSourcesMetadata implements IBotPlanningSearchSourcesMetadata {
+
+                /**
+                 * Constructs a new BotPlanningSearchSourcesMetadata.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourcesMetadata);
+
+                /** BotPlanningSearchSourcesMetadata sourceTitle. */
+                public sourceTitle: string;
+
+                /** BotPlanningSearchSourcesMetadata provider. */
+                public provider: E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.BotPlanningSearchSourceProvider;
+
+                /** BotPlanningSearchSourcesMetadata sourceUrl. */
+                public sourceUrl: string;
+
+                /**
+                 * Creates a new BotPlanningSearchSourcesMetadata instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns BotPlanningSearchSourcesMetadata instance
+                 */
+                public static create(properties?: E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourcesMetadata): E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata;
+
+                /**
+                 * Encodes the specified BotPlanningSearchSourcesMetadata message. Does not implicitly {@link E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.verify|verify} messages.
+                 * @param message BotPlanningSearchSourcesMetadata message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourcesMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified BotPlanningSearchSourcesMetadata message, length delimited. Does not implicitly {@link E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.verify|verify} messages.
+                 * @param message BotPlanningSearchSourcesMetadata message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourcesMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a BotPlanningSearchSourcesMetadata message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns BotPlanningSearchSourcesMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata;
+
+                /**
+                 * Decodes a BotPlanningSearchSourcesMetadata message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns BotPlanningSearchSourcesMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata;
+
+                /**
+                 * Verifies a BotPlanningSearchSourcesMetadata message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a BotPlanningSearchSourcesMetadata message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns BotPlanningSearchSourcesMetadata
+                 */
+                public static fromObject(object: { [k: string]: any }): E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata;
+
+                /**
+                 * Creates a plain object from a BotPlanningSearchSourcesMetadata message. Also converts values to other types if specified.
+                 * @param message BotPlanningSearchSourcesMetadata
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this BotPlanningSearchSourcesMetadata to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for BotPlanningSearchSourcesMetadata
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            namespace BotPlanningSearchSourcesMetadata {
+
+                /** BotPlanningSearchSourceProvider enum. */
+                enum BotPlanningSearchSourceProvider {
+                    OTHER = 1,
+                    GOOGLE = 2,
+                    BING = 3
+                }
+            }
+
+            /** PlanningStepStatus enum. */
+            enum PlanningStepStatus {
+                PLANNED = 1,
+                EXECUTING = 2,
+                FINISHED = 3
+            }
+        }
     }
 
     /** Properties of a BotModelMetadata. */
@@ -7093,10 +7360,476 @@ export namespace E2E {
             }
         }
 
+        /** Properties of a AIRichResponseMapMetadata. */
+        interface IAIRichResponseMapMetadata {
+
+            /** AIRichResponseMapMetadata centerLatitude */
+            centerLatitude?: (number|null);
+
+            /** AIRichResponseMapMetadata centerLongtitude */
+            centerLongtitude?: (number|null);
+
+            /** AIRichResponseMapMetadata latitudeDelta */
+            latitudeDelta?: (number|null);
+
+            /** AIRichResponseMapMetadata longtitudeDelta */
+            longtitudeDelta?: (number|null);
+
+            /** AIRichResponseMapMetadata anotations */
+            anotations?: (E2E.AIRichResponseMessage.AIRichResponseMapMetadata.IAIRichResponseMapAnnotation[]|null);
+
+            /** AIRichResponseMapMetadata showInfoList */
+            showInfoList?: (boolean|null);
+        }
+
+        /** Represents a AIRichResponseMapMetadata. */
+        class AIRichResponseMapMetadata implements IAIRichResponseMapMetadata {
+
+            /**
+             * Constructs a new AIRichResponseMapMetadata.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.AIRichResponseMessage.IAIRichResponseMapMetadata);
+
+            /** AIRichResponseMapMetadata centerLatitude. */
+            public centerLatitude: number;
+
+            /** AIRichResponseMapMetadata centerLongtitude. */
+            public centerLongtitude: number;
+
+            /** AIRichResponseMapMetadata latitudeDelta. */
+            public latitudeDelta: number;
+
+            /** AIRichResponseMapMetadata longtitudeDelta. */
+            public longtitudeDelta: number;
+
+            /** AIRichResponseMapMetadata anotations. */
+            public anotations: E2E.AIRichResponseMessage.AIRichResponseMapMetadata.IAIRichResponseMapAnnotation[];
+
+            /** AIRichResponseMapMetadata showInfoList. */
+            public showInfoList: boolean;
+
+            /**
+             * Creates a new AIRichResponseMapMetadata instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns AIRichResponseMapMetadata instance
+             */
+            public static create(properties?: E2E.AIRichResponseMessage.IAIRichResponseMapMetadata): E2E.AIRichResponseMessage.AIRichResponseMapMetadata;
+
+            /**
+             * Encodes the specified AIRichResponseMapMetadata message. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseMapMetadata.verify|verify} messages.
+             * @param message AIRichResponseMapMetadata message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.AIRichResponseMessage.IAIRichResponseMapMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified AIRichResponseMapMetadata message, length delimited. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseMapMetadata.verify|verify} messages.
+             * @param message AIRichResponseMapMetadata message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.AIRichResponseMessage.IAIRichResponseMapMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a AIRichResponseMapMetadata message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns AIRichResponseMapMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.AIRichResponseMessage.AIRichResponseMapMetadata;
+
+            /**
+             * Decodes a AIRichResponseMapMetadata message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns AIRichResponseMapMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.AIRichResponseMessage.AIRichResponseMapMetadata;
+
+            /**
+             * Verifies a AIRichResponseMapMetadata message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a AIRichResponseMapMetadata message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns AIRichResponseMapMetadata
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.AIRichResponseMessage.AIRichResponseMapMetadata;
+
+            /**
+             * Creates a plain object from a AIRichResponseMapMetadata message. Also converts values to other types if specified.
+             * @param message AIRichResponseMapMetadata
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.AIRichResponseMessage.AIRichResponseMapMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this AIRichResponseMapMetadata to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for AIRichResponseMapMetadata
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace AIRichResponseMapMetadata {
+
+            /** Properties of a AIRichResponseMapAnnotation. */
+            interface IAIRichResponseMapAnnotation {
+
+                /** AIRichResponseMapAnnotation annotationNumber */
+                annotationNumber?: (number|null);
+
+                /** AIRichResponseMapAnnotation latitude */
+                latitude?: (number|null);
+
+                /** AIRichResponseMapAnnotation longtitude */
+                longtitude?: (number|null);
+
+                /** AIRichResponseMapAnnotation title */
+                title?: (string|null);
+
+                /** AIRichResponseMapAnnotation body */
+                body?: (string|null);
+            }
+
+            /** Represents a AIRichResponseMapAnnotation. */
+            class AIRichResponseMapAnnotation implements IAIRichResponseMapAnnotation {
+
+                /**
+                 * Constructs a new AIRichResponseMapAnnotation.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: E2E.AIRichResponseMessage.AIRichResponseMapMetadata.IAIRichResponseMapAnnotation);
+
+                /** AIRichResponseMapAnnotation annotationNumber. */
+                public annotationNumber: number;
+
+                /** AIRichResponseMapAnnotation latitude. */
+                public latitude: number;
+
+                /** AIRichResponseMapAnnotation longtitude. */
+                public longtitude: number;
+
+                /** AIRichResponseMapAnnotation title. */
+                public title: string;
+
+                /** AIRichResponseMapAnnotation body. */
+                public body: string;
+
+                /**
+                 * Creates a new AIRichResponseMapAnnotation instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns AIRichResponseMapAnnotation instance
+                 */
+                public static create(properties?: E2E.AIRichResponseMessage.AIRichResponseMapMetadata.IAIRichResponseMapAnnotation): E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation;
+
+                /**
+                 * Encodes the specified AIRichResponseMapAnnotation message. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.verify|verify} messages.
+                 * @param message AIRichResponseMapAnnotation message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: E2E.AIRichResponseMessage.AIRichResponseMapMetadata.IAIRichResponseMapAnnotation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified AIRichResponseMapAnnotation message, length delimited. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.verify|verify} messages.
+                 * @param message AIRichResponseMapAnnotation message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: E2E.AIRichResponseMessage.AIRichResponseMapMetadata.IAIRichResponseMapAnnotation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a AIRichResponseMapAnnotation message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns AIRichResponseMapAnnotation
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation;
+
+                /**
+                 * Decodes a AIRichResponseMapAnnotation message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns AIRichResponseMapAnnotation
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation;
+
+                /**
+                 * Verifies a AIRichResponseMapAnnotation message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a AIRichResponseMapAnnotation message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns AIRichResponseMapAnnotation
+                 */
+                public static fromObject(object: { [k: string]: any }): E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation;
+
+                /**
+                 * Creates a plain object from a AIRichResponseMapAnnotation message. Also converts values to other types if specified.
+                 * @param message AIRichResponseMapAnnotation
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this AIRichResponseMapAnnotation to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for AIRichResponseMapAnnotation
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+        }
+
         /** AIRichResponseMessageType enum. */
         enum AIRichResponseMessageType {
             AI_RICH_RESPONSE_TYPE_UNKNOWN = 0,
             AI_RICH_RESPONSE_TYPE_STANDARD = 1
+        }
+
+        /** Properties of a AIRichResponseReelsMetadata. */
+        interface IAIRichResponseReelsMetadata {
+
+            /** AIRichResponseReelsMetadata reelsMetadata */
+            reelsMetadata?: (E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.IAIRichResponseReelMetadata[]|null);
+        }
+
+        /** Represents a AIRichResponseReelsMetadata. */
+        class AIRichResponseReelsMetadata implements IAIRichResponseReelsMetadata {
+
+            /**
+             * Constructs a new AIRichResponseReelsMetadata.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.AIRichResponseMessage.IAIRichResponseReelsMetadata);
+
+            /** AIRichResponseReelsMetadata reelsMetadata. */
+            public reelsMetadata: E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.IAIRichResponseReelMetadata[];
+
+            /**
+             * Creates a new AIRichResponseReelsMetadata instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns AIRichResponseReelsMetadata instance
+             */
+            public static create(properties?: E2E.AIRichResponseMessage.IAIRichResponseReelsMetadata): E2E.AIRichResponseMessage.AIRichResponseReelsMetadata;
+
+            /**
+             * Encodes the specified AIRichResponseReelsMetadata message. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.verify|verify} messages.
+             * @param message AIRichResponseReelsMetadata message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.AIRichResponseMessage.IAIRichResponseReelsMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified AIRichResponseReelsMetadata message, length delimited. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.verify|verify} messages.
+             * @param message AIRichResponseReelsMetadata message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.AIRichResponseMessage.IAIRichResponseReelsMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a AIRichResponseReelsMetadata message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns AIRichResponseReelsMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.AIRichResponseMessage.AIRichResponseReelsMetadata;
+
+            /**
+             * Decodes a AIRichResponseReelsMetadata message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns AIRichResponseReelsMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.AIRichResponseMessage.AIRichResponseReelsMetadata;
+
+            /**
+             * Verifies a AIRichResponseReelsMetadata message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a AIRichResponseReelsMetadata message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns AIRichResponseReelsMetadata
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.AIRichResponseMessage.AIRichResponseReelsMetadata;
+
+            /**
+             * Creates a plain object from a AIRichResponseReelsMetadata message. Also converts values to other types if specified.
+             * @param message AIRichResponseReelsMetadata
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.AIRichResponseMessage.AIRichResponseReelsMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this AIRichResponseReelsMetadata to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for AIRichResponseReelsMetadata
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace AIRichResponseReelsMetadata {
+
+            /** Properties of a AIRichResponseReelMetadata. */
+            interface IAIRichResponseReelMetadata {
+
+                /** AIRichResponseReelMetadata title */
+                title?: (string|null);
+
+                /** AIRichResponseReelMetadata profileIconUrl */
+                profileIconUrl?: (string|null);
+
+                /** AIRichResponseReelMetadata previewUrl */
+                previewUrl?: (string|null);
+
+                /** AIRichResponseReelMetadata videoUrl */
+                videoUrl?: (string|null);
+            }
+
+            /** Represents a AIRichResponseReelMetadata. */
+            class AIRichResponseReelMetadata implements IAIRichResponseReelMetadata {
+
+                /**
+                 * Constructs a new AIRichResponseReelMetadata.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.IAIRichResponseReelMetadata);
+
+                /** AIRichResponseReelMetadata title. */
+                public title: string;
+
+                /** AIRichResponseReelMetadata profileIconUrl. */
+                public profileIconUrl: string;
+
+                /** AIRichResponseReelMetadata previewUrl. */
+                public previewUrl: string;
+
+                /** AIRichResponseReelMetadata videoUrl. */
+                public videoUrl: string;
+
+                /**
+                 * Creates a new AIRichResponseReelMetadata instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns AIRichResponseReelMetadata instance
+                 */
+                public static create(properties?: E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.IAIRichResponseReelMetadata): E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata;
+
+                /**
+                 * Encodes the specified AIRichResponseReelMetadata message. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata.verify|verify} messages.
+                 * @param message AIRichResponseReelMetadata message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.IAIRichResponseReelMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified AIRichResponseReelMetadata message, length delimited. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata.verify|verify} messages.
+                 * @param message AIRichResponseReelMetadata message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.IAIRichResponseReelMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a AIRichResponseReelMetadata message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns AIRichResponseReelMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata;
+
+                /**
+                 * Decodes a AIRichResponseReelMetadata message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns AIRichResponseReelMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata;
+
+                /**
+                 * Verifies a AIRichResponseReelMetadata message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a AIRichResponseReelMetadata message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns AIRichResponseReelMetadata
+                 */
+                public static fromObject(object: { [k: string]: any }): E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata;
+
+                /**
+                 * Creates a plain object from a AIRichResponseReelMetadata message. Also converts values to other types if specified.
+                 * @param message AIRichResponseReelMetadata
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this AIRichResponseReelMetadata to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for AIRichResponseReelMetadata
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
         }
 
         /** Properties of a AIRichResponseSubMessage. */
@@ -7125,6 +7858,12 @@ export namespace E2E {
 
             /** AIRichResponseSubMessage latexMetadata */
             latexMetadata?: (E2E.AIRichResponseMessage.IAIRichResponseLatexMetadata|null);
+
+            /** AIRichResponseSubMessage mapMetadata */
+            mapMetadata?: (E2E.AIRichResponseMessage.IAIRichResponseMapMetadata|null);
+
+            /** AIRichResponseSubMessage reelsMetadata */
+            reelsMetadata?: (E2E.AIRichResponseMessage.IAIRichResponseReelsMetadata|null);
         }
 
         /** Represents a AIRichResponseSubMessage. */
@@ -7159,6 +7898,12 @@ export namespace E2E {
 
             /** AIRichResponseSubMessage latexMetadata. */
             public latexMetadata?: (E2E.AIRichResponseMessage.IAIRichResponseLatexMetadata|null);
+
+            /** AIRichResponseSubMessage mapMetadata. */
+            public mapMetadata?: (E2E.AIRichResponseMessage.IAIRichResponseMapMetadata|null);
+
+            /** AIRichResponseSubMessage reelsMetadata. */
+            public reelsMetadata?: (E2E.AIRichResponseMessage.IAIRichResponseReelsMetadata|null);
 
             /**
              * Creates a new AIRichResponseSubMessage instance using the specified properties.
@@ -7246,7 +7991,10 @@ export namespace E2E {
             AI_RICH_RESPONSE_INLINE_IMAGE = 3,
             AI_RICH_RESPONSE_TABLE = 4,
             AI_RICH_RESPONSE_CODE = 5,
-            AI_RICH_RESPONSE_DYNAMIC = 6
+            AI_RICH_RESPONSE_DYNAMIC = 6,
+            AI_RICH_RESPONSE_MAP = 7,
+            AI_RICH_RESPONSE_LATEX = 8,
+            AI_RICH_RESPONSE_INLINE_REELS = 9
         }
 
         /** Properties of a AIRichResponseTableMetadata. */
@@ -23458,7 +24206,8 @@ export namespace E2E {
                 LID_MIGRATION_MAPPING_SYNC = 22,
                 REMINDER_MESSAGE = 23,
                 BOT_MEMU_ONBOARDING_MESSAGE = 24,
-                STATUS_MENTION_MESSAGE = 25
+                STATUS_MENTION_MESSAGE = 25,
+                STOP_GENERATION_MESSAGE = 26
             }
         }
 
