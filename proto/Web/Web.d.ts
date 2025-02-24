@@ -7625,6 +7625,7 @@ export namespace E2E {
 
         /** BotCapabilityType enum. */
         enum BotCapabilityType {
+            UNKNOWN = 0,
             PROGRESS_INDICATOR = 1,
             RICH_RESPONSE_HEADING = 2,
             RICH_RESPONSE_NESTED_LIST = 3,
@@ -7650,7 +7651,8 @@ export namespace E2E {
             AI_STUDIO_UGC_MEMORY = 23,
             RICH_RESPONSE_LATEX = 24,
             RICH_RESPONSE_MAPS = 25,
-            RICH_RESPONSE_INLINE_REELS = 26
+            RICH_RESPONSE_INLINE_REELS = 26,
+            AGENTIC_PLANNING = 27
         }
     }
 
@@ -8001,6 +8003,7 @@ export namespace E2E {
 
                 /** BotPlanningSearchSourceProvider enum. */
                 enum BotPlanningSearchSourceProvider {
+                    UNKNOWN = 0,
                     OTHER = 1,
                     GOOGLE = 2,
                     BING = 3
@@ -8009,6 +8012,7 @@ export namespace E2E {
 
             /** PlanningStepStatus enum. */
             enum PlanningStepStatus {
+                UNKNOWN = 0,
                 PLANNED = 1,
                 EXECUTING = 2,
                 FINISHED = 3
@@ -12051,6 +12055,9 @@ export namespace E2E {
 
         /** ContextInfo pairedMediaType */
         pairedMediaType?: (E2E.ContextInfo.PairedMediaType|null);
+
+        /** ContextInfo rankingVersion */
+        rankingVersion?: (number|null);
     }
 
     /** Represents a ContextInfo. */
@@ -12190,6 +12197,9 @@ export namespace E2E {
 
         /** ContextInfo pairedMediaType. */
         public pairedMediaType: E2E.ContextInfo.PairedMediaType;
+
+        /** ContextInfo rankingVersion. */
+        public rankingVersion: number;
 
         /**
          * Creates a new ContextInfo instance using the specified properties.
@@ -26715,6 +26725,9 @@ export namespace E2E {
 
             /** ProtocolMessage lidMigrationMappingSyncMessage */
             lidMigrationMappingSyncMessage?: (E2E.ILIDMigrationMappingSyncMessage|null);
+
+            /** ProtocolMessage limitSharing */
+            limitSharing?: (Protocol.ILimitSharing|null);
         }
 
         /** Represents a ProtocolMessage. */
@@ -26785,6 +26798,9 @@ export namespace E2E {
 
             /** ProtocolMessage lidMigrationMappingSyncMessage. */
             public lidMigrationMappingSyncMessage?: (E2E.ILIDMigrationMappingSyncMessage|null);
+
+            /** ProtocolMessage limitSharing. */
+            public limitSharing?: (Protocol.ILimitSharing|null);
 
             /**
              * Creates a new ProtocolMessage instance using the specified properties.
@@ -26889,7 +26905,8 @@ export namespace E2E {
                 REMINDER_MESSAGE = 23,
                 BOT_MEMU_ONBOARDING_MESSAGE = 24,
                 STATUS_MENTION_MESSAGE = 25,
-                STOP_GENERATION_MESSAGE = 26
+                STOP_GENERATION_MESSAGE = 26,
+                LIMIT_SHARING = 27
             }
         }
 
@@ -30259,6 +30276,118 @@ export namespace Protocol {
          * @returns The default type url
          */
         public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a LimitSharing. */
+    interface ILimitSharing {
+
+        /** LimitSharing sharingLimited */
+        sharingLimited?: (boolean|null);
+
+        /** LimitSharing trigger */
+        trigger?: (Protocol.LimitSharing.Trigger|null);
+    }
+
+    /** Represents a LimitSharing. */
+    class LimitSharing implements ILimitSharing {
+
+        /**
+         * Constructs a new LimitSharing.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Protocol.ILimitSharing);
+
+        /** LimitSharing sharingLimited. */
+        public sharingLimited: boolean;
+
+        /** LimitSharing trigger. */
+        public trigger: Protocol.LimitSharing.Trigger;
+
+        /**
+         * Creates a new LimitSharing instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns LimitSharing instance
+         */
+        public static create(properties?: Protocol.ILimitSharing): Protocol.LimitSharing;
+
+        /**
+         * Encodes the specified LimitSharing message. Does not implicitly {@link Protocol.LimitSharing.verify|verify} messages.
+         * @param message LimitSharing message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Protocol.ILimitSharing, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified LimitSharing message, length delimited. Does not implicitly {@link Protocol.LimitSharing.verify|verify} messages.
+         * @param message LimitSharing message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Protocol.ILimitSharing, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a LimitSharing message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns LimitSharing
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Protocol.LimitSharing;
+
+        /**
+         * Decodes a LimitSharing message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns LimitSharing
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Protocol.LimitSharing;
+
+        /**
+         * Verifies a LimitSharing message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a LimitSharing message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns LimitSharing
+         */
+        public static fromObject(object: { [k: string]: any }): Protocol.LimitSharing;
+
+        /**
+         * Creates a plain object from a LimitSharing message. Also converts values to other types if specified.
+         * @param message LimitSharing
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Protocol.LimitSharing, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this LimitSharing to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for LimitSharing
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace LimitSharing {
+
+        /** Trigger enum. */
+        enum Trigger {
+            CHAT_SETTING = 0,
+            BIZ_SUPPORTS_FB_HOSTING = 1
+        }
     }
 }
 

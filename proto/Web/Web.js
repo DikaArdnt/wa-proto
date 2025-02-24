@@ -23383,6 +23383,7 @@ $root.E2E = (function() {
                     switch (message.capabilities[i]) {
                     default:
                         return "capabilities: enum value[] expected";
+                    case 0:
                     case 1:
                     case 2:
                     case 3:
@@ -23409,6 +23410,7 @@ $root.E2E = (function() {
                     case 24:
                     case 25:
                     case 26:
+                    case 27:
                         break;
                     }
             }
@@ -23438,6 +23440,10 @@ $root.E2E = (function() {
                             message.capabilities[i] = object.capabilities[i];
                             break;
                         }
+                    case "UNKNOWN":
+                    case 0:
+                        message.capabilities[i] = 0;
+                        break;
                     case "PROGRESS_INDICATOR":
                     case 1:
                         message.capabilities[i] = 1;
@@ -23542,6 +23548,10 @@ $root.E2E = (function() {
                     case 26:
                         message.capabilities[i] = 26;
                         break;
+                    case "AGENTIC_PLANNING":
+                    case 27:
+                        message.capabilities[i] = 27;
+                        break;
                     }
             }
             return message;
@@ -23600,6 +23610,7 @@ $root.E2E = (function() {
          * BotCapabilityType enum.
          * @name E2E.BotCapabilityMetadata.BotCapabilityType
          * @enum {number}
+         * @property {number} UNKNOWN=0 UNKNOWN value
          * @property {number} PROGRESS_INDICATOR=1 PROGRESS_INDICATOR value
          * @property {number} RICH_RESPONSE_HEADING=2 RICH_RESPONSE_HEADING value
          * @property {number} RICH_RESPONSE_NESTED_LIST=3 RICH_RESPONSE_NESTED_LIST value
@@ -23626,9 +23637,11 @@ $root.E2E = (function() {
          * @property {number} RICH_RESPONSE_LATEX=24 RICH_RESPONSE_LATEX value
          * @property {number} RICH_RESPONSE_MAPS=25 RICH_RESPONSE_MAPS value
          * @property {number} RICH_RESPONSE_INLINE_REELS=26 RICH_RESPONSE_INLINE_REELS value
+         * @property {number} AGENTIC_PLANNING=27 AGENTIC_PLANNING value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "UNKNOWN"] = 0;
             values[valuesById[1] = "PROGRESS_INDICATOR"] = 1;
             values[valuesById[2] = "RICH_RESPONSE_HEADING"] = 2;
             values[valuesById[3] = "RICH_RESPONSE_NESTED_LIST"] = 3;
@@ -23655,6 +23668,7 @@ $root.E2E = (function() {
             values[valuesById[24] = "RICH_RESPONSE_LATEX"] = 24;
             values[valuesById[25] = "RICH_RESPONSE_MAPS"] = 25;
             values[valuesById[26] = "RICH_RESPONSE_INLINE_REELS"] = 26;
+            values[valuesById[27] = "AGENTIC_PLANNING"] = 27;
             return values;
         })();
 
@@ -23966,7 +23980,7 @@ $root.E2E = (function() {
              * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
              * @instance
              */
-            BotPlanningStepMetadata.prototype.status = 1;
+            BotPlanningStepMetadata.prototype.status = 0;
 
             /**
              * BotPlanningStepMetadata isReasoning.
@@ -24135,6 +24149,7 @@ $root.E2E = (function() {
                     switch (message.status) {
                     default:
                         return "status: enum value expected";
+                    case 0:
                     case 1:
                     case 2:
                     case 3:
@@ -24182,6 +24197,10 @@ $root.E2E = (function() {
                         break;
                     }
                     break;
+                case "UNKNOWN":
+                case 0:
+                    message.status = 0;
+                    break;
                 case "PLANNED":
                 case 1:
                     message.status = 1;
@@ -24220,7 +24239,7 @@ $root.E2E = (function() {
                 if (options.defaults) {
                     object.statusTitle = "";
                     object.statusBody = "";
-                    object.status = options.enums === String ? "PLANNED" : 1;
+                    object.status = options.enums === String ? "UNKNOWN" : 0;
                     object.isReasoning = false;
                     object.isEnhancedSearch = false;
                 }
@@ -24308,7 +24327,7 @@ $root.E2E = (function() {
                  * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
                  * @instance
                  */
-                BotPlanningSearchSourcesMetadata.prototype.provider = 1;
+                BotPlanningSearchSourcesMetadata.prototype.provider = 0;
 
                 /**
                  * BotPlanningSearchSourcesMetadata sourceUrl.
@@ -24436,6 +24455,7 @@ $root.E2E = (function() {
                         switch (message.provider) {
                         default:
                             return "provider: enum value expected";
+                        case 0:
                         case 1:
                         case 2:
                         case 3:
@@ -24467,6 +24487,10 @@ $root.E2E = (function() {
                             message.provider = object.provider;
                             break;
                         }
+                        break;
+                    case "UNKNOWN":
+                    case 0:
+                        message.provider = 0;
                         break;
                     case "OTHER":
                     case 1:
@@ -24501,7 +24525,7 @@ $root.E2E = (function() {
                     var object = {};
                     if (options.defaults) {
                         object.sourceTitle = "";
-                        object.provider = options.enums === String ? "OTHER" : 1;
+                        object.provider = options.enums === String ? "UNKNOWN" : 0;
                         object.sourceUrl = "";
                     }
                     if (message.sourceTitle != null && message.hasOwnProperty("sourceTitle"))
@@ -24543,12 +24567,14 @@ $root.E2E = (function() {
                  * BotPlanningSearchSourceProvider enum.
                  * @name E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.BotPlanningSearchSourceProvider
                  * @enum {number}
+                 * @property {number} UNKNOWN=0 UNKNOWN value
                  * @property {number} OTHER=1 OTHER value
                  * @property {number} GOOGLE=2 GOOGLE value
                  * @property {number} BING=3 BING value
                  */
                 BotPlanningSearchSourcesMetadata.BotPlanningSearchSourceProvider = (function() {
                     var valuesById = {}, values = Object.create(valuesById);
+                    values[valuesById[0] = "UNKNOWN"] = 0;
                     values[valuesById[1] = "OTHER"] = 1;
                     values[valuesById[2] = "GOOGLE"] = 2;
                     values[valuesById[3] = "BING"] = 3;
@@ -24562,12 +24588,14 @@ $root.E2E = (function() {
              * PlanningStepStatus enum.
              * @name E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.PlanningStepStatus
              * @enum {number}
+             * @property {number} UNKNOWN=0 UNKNOWN value
              * @property {number} PLANNED=1 PLANNED value
              * @property {number} EXECUTING=2 EXECUTING value
              * @property {number} FINISHED=3 FINISHED value
              */
             BotPlanningStepMetadata.PlanningStepStatus = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "UNKNOWN"] = 0;
                 values[valuesById[1] = "PLANNED"] = 1;
                 values[valuesById[2] = "EXECUTING"] = 2;
                 values[valuesById[3] = "FINISHED"] = 3;
@@ -34567,6 +34595,7 @@ $root.E2E = (function() {
          * @property {E2E.ContextInfo.StatusAttributionType|null} [statusAttributionType] ContextInfo statusAttributionType
          * @property {E2E.IUrlTrackingMap|null} [urlTrackingMap] ContextInfo urlTrackingMap
          * @property {E2E.ContextInfo.PairedMediaType|null} [pairedMediaType] ContextInfo pairedMediaType
+         * @property {number|null} [rankingVersion] ContextInfo rankingVersion
          */
 
         /**
@@ -34931,6 +34960,14 @@ $root.E2E = (function() {
         ContextInfo.prototype.pairedMediaType = 0;
 
         /**
+         * ContextInfo rankingVersion.
+         * @member {number} rankingVersion
+         * @memberof E2E.ContextInfo
+         * @instance
+         */
+        ContextInfo.prototype.rankingVersion = 0;
+
+        /**
          * Creates a new ContextInfo instance using the specified properties.
          * @function create
          * @memberof E2E.ContextInfo
@@ -35042,6 +35079,8 @@ $root.E2E = (function() {
                 $root.E2E.UrlTrackingMap.encode(message.urlTrackingMap, writer.uint32(/* id 58, wireType 2 =*/466).fork()).ldelim();
             if (message.pairedMediaType != null && Object.hasOwnProperty.call(message, "pairedMediaType"))
                 writer.uint32(/* id 59, wireType 0 =*/472).int32(message.pairedMediaType);
+            if (message.rankingVersion != null && Object.hasOwnProperty.call(message, "rankingVersion"))
+                writer.uint32(/* id 60, wireType 0 =*/480).uint32(message.rankingVersion);
             return writer;
         };
 
@@ -35250,6 +35289,10 @@ $root.E2E = (function() {
                     }
                 case 59: {
                         message.pairedMediaType = reader.int32();
+                        break;
+                    }
+                case 60: {
+                        message.rankingVersion = reader.uint32();
                         break;
                     }
                 default:
@@ -35466,6 +35509,9 @@ $root.E2E = (function() {
                 case 4:
                     break;
                 }
+            if (message.rankingVersion != null && message.hasOwnProperty("rankingVersion"))
+                if (!$util.isInteger(message.rankingVersion))
+                    return "rankingVersion: integer expected";
             return null;
         };
 
@@ -35679,6 +35725,8 @@ $root.E2E = (function() {
                 message.pairedMediaType = 4;
                 break;
             }
+            if (object.rankingVersion != null)
+                message.rankingVersion = object.rankingVersion >>> 0;
             return message;
         };
 
@@ -35763,6 +35811,7 @@ $root.E2E = (function() {
                 object.statusAttributionType = options.enums === String ? "NONE" : 0;
                 object.urlTrackingMap = null;
                 object.pairedMediaType = options.enums === String ? "NOT_PAIRED_MEDIA" : 0;
+                object.rankingVersion = 0;
             }
             if (message.stanzaId != null && message.hasOwnProperty("stanzaId"))
                 object.stanzaId = message.stanzaId;
@@ -35859,6 +35908,8 @@ $root.E2E = (function() {
                 object.urlTrackingMap = $root.E2E.UrlTrackingMap.toObject(message.urlTrackingMap, options);
             if (message.pairedMediaType != null && message.hasOwnProperty("pairedMediaType"))
                 object.pairedMediaType = options.enums === String ? $root.E2E.ContextInfo.PairedMediaType[message.pairedMediaType] === undefined ? message.pairedMediaType : $root.E2E.ContextInfo.PairedMediaType[message.pairedMediaType] : message.pairedMediaType;
+            if (message.rankingVersion != null && message.hasOwnProperty("rankingVersion"))
+                object.rankingVersion = message.rankingVersion;
             return object;
         };
 
@@ -75004,6 +75055,7 @@ $root.E2E = (function() {
              * @property {E2E.IMediaNotifyMessage|null} [mediaNotifyMessage] ProtocolMessage mediaNotifyMessage
              * @property {E2E.Message.ICloudAPIThreadControlNotification|null} [cloudApiThreadControlNotification] ProtocolMessage cloudApiThreadControlNotification
              * @property {E2E.ILIDMigrationMappingSyncMessage|null} [lidMigrationMappingSyncMessage] ProtocolMessage lidMigrationMappingSyncMessage
+             * @property {Protocol.ILimitSharing|null} [limitSharing] ProtocolMessage limitSharing
              */
 
             /**
@@ -75182,6 +75234,14 @@ $root.E2E = (function() {
             ProtocolMessage.prototype.lidMigrationMappingSyncMessage = null;
 
             /**
+             * ProtocolMessage limitSharing.
+             * @member {Protocol.ILimitSharing|null|undefined} limitSharing
+             * @memberof E2E.Message.ProtocolMessage
+             * @instance
+             */
+            ProtocolMessage.prototype.limitSharing = null;
+
+            /**
              * Creates a new ProtocolMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.ProtocolMessage
@@ -75245,6 +75305,8 @@ $root.E2E = (function() {
                     $root.E2E.Message.CloudAPIThreadControlNotification.encode(message.cloudApiThreadControlNotification, writer.uint32(/* id 22, wireType 2 =*/178).fork()).ldelim();
                 if (message.lidMigrationMappingSyncMessage != null && Object.hasOwnProperty.call(message, "lidMigrationMappingSyncMessage"))
                     $root.E2E.LIDMigrationMappingSyncMessage.encode(message.lidMigrationMappingSyncMessage, writer.uint32(/* id 23, wireType 2 =*/186).fork()).ldelim();
+                if (message.limitSharing != null && Object.hasOwnProperty.call(message, "limitSharing"))
+                    $root.Protocol.LimitSharing.encode(message.limitSharing, writer.uint32(/* id 24, wireType 2 =*/194).fork()).ldelim();
                 return writer;
             };
 
@@ -75359,6 +75421,10 @@ $root.E2E = (function() {
                             message.lidMigrationMappingSyncMessage = $root.E2E.LIDMigrationMappingSyncMessage.decode(reader, reader.uint32());
                             break;
                         }
+                    case 24: {
+                            message.limitSharing = $root.Protocol.LimitSharing.decode(reader, reader.uint32());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -75425,6 +75491,7 @@ $root.E2E = (function() {
                     case 24:
                     case 25:
                     case 26:
+                    case 27:
                         break;
                     }
                 if (message.ephemeralExpiration != null && message.hasOwnProperty("ephemeralExpiration"))
@@ -75508,6 +75575,11 @@ $root.E2E = (function() {
                     var error = $root.E2E.LIDMigrationMappingSyncMessage.verify(message.lidMigrationMappingSyncMessage);
                     if (error)
                         return "lidMigrationMappingSyncMessage." + error;
+                }
+                if (message.limitSharing != null && message.hasOwnProperty("limitSharing")) {
+                    var error = $root.Protocol.LimitSharing.verify(message.limitSharing);
+                    if (error)
+                        return "limitSharing." + error;
                 }
                 return null;
             };
@@ -75624,6 +75696,10 @@ $root.E2E = (function() {
                 case 26:
                     message.type = 26;
                     break;
+                case "LIMIT_SHARING":
+                case 27:
+                    message.type = 27;
+                    break;
                 }
                 if (object.ephemeralExpiration != null)
                     message.ephemeralExpiration = object.ephemeralExpiration >>> 0;
@@ -75717,6 +75793,11 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.ProtocolMessage.lidMigrationMappingSyncMessage: object expected");
                     message.lidMigrationMappingSyncMessage = $root.E2E.LIDMigrationMappingSyncMessage.fromObject(object.lidMigrationMappingSyncMessage);
                 }
+                if (object.limitSharing != null) {
+                    if (typeof object.limitSharing !== "object")
+                        throw TypeError(".E2E.Message.ProtocolMessage.limitSharing: object expected");
+                    message.limitSharing = $root.Protocol.LimitSharing.fromObject(object.limitSharing);
+                }
                 return message;
             };
 
@@ -75762,6 +75843,7 @@ $root.E2E = (function() {
                     object.mediaNotifyMessage = null;
                     object.cloudApiThreadControlNotification = null;
                     object.lidMigrationMappingSyncMessage = null;
+                    object.limitSharing = null;
                 }
                 if (message.key != null && message.hasOwnProperty("key"))
                     object.key = $root.Protocol.MessageKey.toObject(message.key, options);
@@ -75809,6 +75891,8 @@ $root.E2E = (function() {
                     object.cloudApiThreadControlNotification = $root.E2E.Message.CloudAPIThreadControlNotification.toObject(message.cloudApiThreadControlNotification, options);
                 if (message.lidMigrationMappingSyncMessage != null && message.hasOwnProperty("lidMigrationMappingSyncMessage"))
                     object.lidMigrationMappingSyncMessage = $root.E2E.LIDMigrationMappingSyncMessage.toObject(message.lidMigrationMappingSyncMessage, options);
+                if (message.limitSharing != null && message.hasOwnProperty("limitSharing"))
+                    object.limitSharing = $root.Protocol.LimitSharing.toObject(message.limitSharing, options);
                 return object;
             };
 
@@ -75864,6 +75948,7 @@ $root.E2E = (function() {
              * @property {number} BOT_MEMU_ONBOARDING_MESSAGE=24 BOT_MEMU_ONBOARDING_MESSAGE value
              * @property {number} STATUS_MENTION_MESSAGE=25 STATUS_MENTION_MESSAGE value
              * @property {number} STOP_GENERATION_MESSAGE=26 STOP_GENERATION_MESSAGE value
+             * @property {number} LIMIT_SHARING=27 LIMIT_SHARING value
              */
             ProtocolMessage.Type = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -75889,6 +75974,7 @@ $root.E2E = (function() {
                 values[valuesById[24] = "BOT_MEMU_ONBOARDING_MESSAGE"] = 24;
                 values[valuesById[25] = "STATUS_MENTION_MESSAGE"] = 25;
                 values[valuesById[26] = "STOP_GENERATION_MESSAGE"] = 26;
+                values[valuesById[27] = "LIMIT_SHARING"] = 27;
                 return values;
             })();
 
@@ -85506,6 +85592,266 @@ $root.Protocol = (function() {
         };
 
         return MessageKey;
+    })();
+
+    Protocol.LimitSharing = (function() {
+
+        /**
+         * Properties of a LimitSharing.
+         * @memberof Protocol
+         * @interface ILimitSharing
+         * @property {boolean|null} [sharingLimited] LimitSharing sharingLimited
+         * @property {Protocol.LimitSharing.Trigger|null} [trigger] LimitSharing trigger
+         */
+
+        /**
+         * Constructs a new LimitSharing.
+         * @memberof Protocol
+         * @classdesc Represents a LimitSharing.
+         * @implements ILimitSharing
+         * @constructor
+         * @param {Protocol.ILimitSharing=} [properties] Properties to set
+         */
+        function LimitSharing(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * LimitSharing sharingLimited.
+         * @member {boolean} sharingLimited
+         * @memberof Protocol.LimitSharing
+         * @instance
+         */
+        LimitSharing.prototype.sharingLimited = false;
+
+        /**
+         * LimitSharing trigger.
+         * @member {Protocol.LimitSharing.Trigger} trigger
+         * @memberof Protocol.LimitSharing
+         * @instance
+         */
+        LimitSharing.prototype.trigger = 0;
+
+        /**
+         * Creates a new LimitSharing instance using the specified properties.
+         * @function create
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Protocol.ILimitSharing=} [properties] Properties to set
+         * @returns {Protocol.LimitSharing} LimitSharing instance
+         */
+        LimitSharing.create = function create(properties) {
+            return new LimitSharing(properties);
+        };
+
+        /**
+         * Encodes the specified LimitSharing message. Does not implicitly {@link Protocol.LimitSharing.verify|verify} messages.
+         * @function encode
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Protocol.ILimitSharing} message LimitSharing message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LimitSharing.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.sharingLimited != null && Object.hasOwnProperty.call(message, "sharingLimited"))
+                writer.uint32(/* id 1, wireType 0 =*/8).bool(message.sharingLimited);
+            if (message.trigger != null && Object.hasOwnProperty.call(message, "trigger"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.trigger);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified LimitSharing message, length delimited. Does not implicitly {@link Protocol.LimitSharing.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Protocol.ILimitSharing} message LimitSharing message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LimitSharing.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a LimitSharing message from the specified reader or buffer.
+         * @function decode
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {Protocol.LimitSharing} LimitSharing
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LimitSharing.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.LimitSharing();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1: {
+                        message.sharingLimited = reader.bool();
+                        break;
+                    }
+                case 2: {
+                        message.trigger = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a LimitSharing message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {Protocol.LimitSharing} LimitSharing
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LimitSharing.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a LimitSharing message.
+         * @function verify
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        LimitSharing.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
+                if (typeof message.sharingLimited !== "boolean")
+                    return "sharingLimited: boolean expected";
+            if (message.trigger != null && message.hasOwnProperty("trigger"))
+                switch (message.trigger) {
+                default:
+                    return "trigger: enum value expected";
+                case 0:
+                case 1:
+                    break;
+                }
+            return null;
+        };
+
+        /**
+         * Creates a LimitSharing message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {Protocol.LimitSharing} LimitSharing
+         */
+        LimitSharing.fromObject = function fromObject(object) {
+            if (object instanceof $root.Protocol.LimitSharing)
+                return object;
+            var message = new $root.Protocol.LimitSharing();
+            if (object.sharingLimited != null)
+                message.sharingLimited = Boolean(object.sharingLimited);
+            switch (object.trigger) {
+            default:
+                if (typeof object.trigger === "number") {
+                    message.trigger = object.trigger;
+                    break;
+                }
+                break;
+            case "CHAT_SETTING":
+            case 0:
+                message.trigger = 0;
+                break;
+            case "BIZ_SUPPORTS_FB_HOSTING":
+            case 1:
+                message.trigger = 1;
+                break;
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a LimitSharing message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Protocol.LimitSharing} message LimitSharing
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        LimitSharing.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.sharingLimited = false;
+                object.trigger = options.enums === String ? "CHAT_SETTING" : 0;
+            }
+            if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
+                object.sharingLimited = message.sharingLimited;
+            if (message.trigger != null && message.hasOwnProperty("trigger"))
+                object.trigger = options.enums === String ? $root.Protocol.LimitSharing.Trigger[message.trigger] === undefined ? message.trigger : $root.Protocol.LimitSharing.Trigger[message.trigger] : message.trigger;
+            return object;
+        };
+
+        /**
+         * Converts this LimitSharing to JSON.
+         * @function toJSON
+         * @memberof Protocol.LimitSharing
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        LimitSharing.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for LimitSharing
+         * @function getTypeUrl
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        LimitSharing.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/Protocol.LimitSharing";
+        };
+
+        /**
+         * Trigger enum.
+         * @name Protocol.LimitSharing.Trigger
+         * @enum {number}
+         * @property {number} CHAT_SETTING=0 CHAT_SETTING value
+         * @property {number} BIZ_SUPPORTS_FB_HOSTING=1 BIZ_SUPPORTS_FB_HOSTING value
+         */
+        LimitSharing.Trigger = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "CHAT_SETTING"] = 0;
+            values[valuesById[1] = "BIZ_SUPPORTS_FB_HOSTING"] = 1;
+            return values;
+        })();
+
+        return LimitSharing;
     })();
 
     return Protocol;

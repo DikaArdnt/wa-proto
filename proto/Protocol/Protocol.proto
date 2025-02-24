@@ -7,3 +7,12 @@ message MessageKey {
     optional string id = 3;
     optional string participant = 4;
 }
+
+message LimitSharing {
+    optional bool sharingLimited = 1;
+    optional Trigger trigger = 2;
+    enum Trigger {
+        CHAT_SETTING = 0;
+        BIZ_SUPPORTS_FB_HOSTING = 1;
+    }
+}
