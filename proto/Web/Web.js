@@ -82673,6 +82673,7 @@ $root.E2E = (function() {
              * @property {Array.<E2E.IInteractiveAnnotation>|null} [annotations] VideoMessage annotations
              * @property {string|null} [accessibilityLabel] VideoMessage accessibilityLabel
              * @property {Array.<E2E.IProcessedVideo>|null} [processedVideos] VideoMessage processedVideos
+             * @property {number|null} [externalShareFullVideoDurationInSeconds] VideoMessage externalShareFullVideoDurationInSeconds
              */
 
             /**
@@ -82902,6 +82903,14 @@ $root.E2E = (function() {
             VideoMessage.prototype.processedVideos = $util.emptyArray;
 
             /**
+             * VideoMessage externalShareFullVideoDurationInSeconds.
+             * @member {number} externalShareFullVideoDurationInSeconds
+             * @memberof E2E.Message.VideoMessage
+             * @instance
+             */
+            VideoMessage.prototype.externalShareFullVideoDurationInSeconds = 0;
+
+            /**
              * Creates a new VideoMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.VideoMessage
@@ -82980,6 +82989,8 @@ $root.E2E = (function() {
                 if (message.processedVideos != null && message.processedVideos.length)
                     for (var i = 0; i < message.processedVideos.length; ++i)
                         $root.E2E.ProcessedVideo.encode(message.processedVideos[i], writer.uint32(/* id 27, wireType 2 =*/218).fork()).ldelim();
+                if (message.externalShareFullVideoDurationInSeconds != null && Object.hasOwnProperty.call(message, "externalShareFullVideoDurationInSeconds"))
+                    writer.uint32(/* id 28, wireType 0 =*/224).uint32(message.externalShareFullVideoDurationInSeconds);
                 return writer;
             };
 
@@ -83124,6 +83135,10 @@ $root.E2E = (function() {
                             message.processedVideos.push($root.E2E.ProcessedVideo.decode(reader, reader.uint32()));
                             break;
                         }
+                    case 28: {
+                            message.externalShareFullVideoDurationInSeconds = reader.uint32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -83263,6 +83278,9 @@ $root.E2E = (function() {
                             return "processedVideos." + error;
                     }
                 }
+                if (message.externalShareFullVideoDurationInSeconds != null && message.hasOwnProperty("externalShareFullVideoDurationInSeconds"))
+                    if (!$util.isInteger(message.externalShareFullVideoDurationInSeconds))
+                        return "externalShareFullVideoDurationInSeconds: integer expected";
                 return null;
             };
 
@@ -83410,6 +83428,8 @@ $root.E2E = (function() {
                         message.processedVideos[i] = $root.E2E.ProcessedVideo.fromObject(object.processedVideos[i]);
                     }
                 }
+                if (object.externalShareFullVideoDurationInSeconds != null)
+                    message.externalShareFullVideoDurationInSeconds = object.externalShareFullVideoDurationInSeconds >>> 0;
                 return message;
             };
 
@@ -83505,6 +83525,7 @@ $root.E2E = (function() {
                     }
                     object.staticUrl = "";
                     object.accessibilityLabel = "";
+                    object.externalShareFullVideoDurationInSeconds = 0;
                 }
                 if (message.url != null && message.hasOwnProperty("url"))
                     object.url = message.url;
@@ -83573,6 +83594,8 @@ $root.E2E = (function() {
                     for (var j = 0; j < message.processedVideos.length; ++j)
                         object.processedVideos[j] = $root.E2E.ProcessedVideo.toObject(message.processedVideos[j], options);
                 }
+                if (message.externalShareFullVideoDurationInSeconds != null && message.hasOwnProperty("externalShareFullVideoDurationInSeconds"))
+                    object.externalShareFullVideoDurationInSeconds = message.externalShareFullVideoDurationInSeconds;
                 return object;
             };
 

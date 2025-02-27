@@ -31890,6 +31890,9 @@ export namespace E2E {
 
             /** VideoMessage processedVideos */
             processedVideos?: (E2E.IProcessedVideo[]|null);
+
+            /** VideoMessage externalShareFullVideoDurationInSeconds */
+            externalShareFullVideoDurationInSeconds?: (number|null);
         }
 
         /** Represents a VideoMessage. */
@@ -31978,6 +31981,9 @@ export namespace E2E {
 
             /** VideoMessage processedVideos. */
             public processedVideos: E2E.IProcessedVideo[];
+
+            /** VideoMessage externalShareFullVideoDurationInSeconds. */
+            public externalShareFullVideoDurationInSeconds: number;
 
             /**
              * Creates a new VideoMessage instance using the specified properties.

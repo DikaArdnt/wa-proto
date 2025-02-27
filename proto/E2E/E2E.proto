@@ -2018,6 +2018,7 @@ message Message {
         repeated InteractiveAnnotation annotations = 25;
         optional string accessibilityLabel = 26;
         repeated ProcessedVideo processedVideos = 27;
+        optional uint32 externalShareFullVideoDurationInSeconds = 28;
         enum Attribution {
             NONE = 0;
             GIPHY = 1;
