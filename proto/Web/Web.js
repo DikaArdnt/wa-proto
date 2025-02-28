@@ -23411,6 +23411,7 @@ $root.E2E = (function() {
                     case 25:
                     case 26:
                     case 27:
+                    case 28:
                         break;
                     }
             }
@@ -23552,6 +23553,10 @@ $root.E2E = (function() {
                     case 27:
                         message.capabilities[i] = 27;
                         break;
+                    case "ACCOUNT_LINKING":
+                    case 28:
+                        message.capabilities[i] = 28;
+                        break;
                     }
             }
             return message;
@@ -23638,6 +23643,7 @@ $root.E2E = (function() {
          * @property {number} RICH_RESPONSE_MAPS=25 RICH_RESPONSE_MAPS value
          * @property {number} RICH_RESPONSE_INLINE_REELS=26 RICH_RESPONSE_INLINE_REELS value
          * @property {number} AGENTIC_PLANNING=27 AGENTIC_PLANNING value
+         * @property {number} ACCOUNT_LINKING=28 ACCOUNT_LINKING value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -23669,6 +23675,7 @@ $root.E2E = (function() {
             values[valuesById[25] = "RICH_RESPONSE_MAPS"] = 25;
             values[valuesById[26] = "RICH_RESPONSE_INLINE_REELS"] = 26;
             values[valuesById[27] = "AGENTIC_PLANNING"] = 27;
+            values[valuesById[28] = "ACCOUNT_LINKING"] = 28;
             return values;
         })();
 
@@ -28051,6 +28058,787 @@ $root.E2E = (function() {
             return AIRichResponseCodeMetadata;
         })();
 
+        AIRichResponseMessage.AIRichResponseContentItemsMetadata = (function() {
+
+            /**
+             * Properties of a AIRichResponseContentItemsMetadata.
+             * @memberof E2E.AIRichResponseMessage
+             * @interface IAIRichResponseContentItemsMetadata
+             * @property {Array.<E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.IAIRichResponseContentItemMetadata>|null} [itemsMetadata] AIRichResponseContentItemsMetadata itemsMetadata
+             * @property {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.ContentType|null} [contentType] AIRichResponseContentItemsMetadata contentType
+             */
+
+            /**
+             * Constructs a new AIRichResponseContentItemsMetadata.
+             * @memberof E2E.AIRichResponseMessage
+             * @classdesc Represents a AIRichResponseContentItemsMetadata.
+             * @implements IAIRichResponseContentItemsMetadata
+             * @constructor
+             * @param {E2E.AIRichResponseMessage.IAIRichResponseContentItemsMetadata=} [properties] Properties to set
+             */
+            function AIRichResponseContentItemsMetadata(properties) {
+                this.itemsMetadata = [];
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * AIRichResponseContentItemsMetadata itemsMetadata.
+             * @member {Array.<E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.IAIRichResponseContentItemMetadata>} itemsMetadata
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+             * @instance
+             */
+            AIRichResponseContentItemsMetadata.prototype.itemsMetadata = $util.emptyArray;
+
+            /**
+             * AIRichResponseContentItemsMetadata contentType.
+             * @member {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.ContentType} contentType
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+             * @instance
+             */
+            AIRichResponseContentItemsMetadata.prototype.contentType = 0;
+
+            /**
+             * Creates a new AIRichResponseContentItemsMetadata instance using the specified properties.
+             * @function create
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+             * @static
+             * @param {E2E.AIRichResponseMessage.IAIRichResponseContentItemsMetadata=} [properties] Properties to set
+             * @returns {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata} AIRichResponseContentItemsMetadata instance
+             */
+            AIRichResponseContentItemsMetadata.create = function create(properties) {
+                return new AIRichResponseContentItemsMetadata(properties);
+            };
+
+            /**
+             * Encodes the specified AIRichResponseContentItemsMetadata message. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+             * @static
+             * @param {E2E.AIRichResponseMessage.IAIRichResponseContentItemsMetadata} message AIRichResponseContentItemsMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            AIRichResponseContentItemsMetadata.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.itemsMetadata != null && message.itemsMetadata.length)
+                    for (var i = 0; i < message.itemsMetadata.length; ++i)
+                        $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.encode(message.itemsMetadata[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.contentType != null && Object.hasOwnProperty.call(message, "contentType"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.contentType);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified AIRichResponseContentItemsMetadata message, length delimited. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+             * @static
+             * @param {E2E.AIRichResponseMessage.IAIRichResponseContentItemsMetadata} message AIRichResponseContentItemsMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            AIRichResponseContentItemsMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a AIRichResponseContentItemsMetadata message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata} AIRichResponseContentItemsMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            AIRichResponseContentItemsMetadata.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            if (!(message.itemsMetadata && message.itemsMetadata.length))
+                                message.itemsMetadata = [];
+                            message.itemsMetadata.push($root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 2: {
+                            message.contentType = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a AIRichResponseContentItemsMetadata message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata} AIRichResponseContentItemsMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            AIRichResponseContentItemsMetadata.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a AIRichResponseContentItemsMetadata message.
+             * @function verify
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            AIRichResponseContentItemsMetadata.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.itemsMetadata != null && message.hasOwnProperty("itemsMetadata")) {
+                    if (!Array.isArray(message.itemsMetadata))
+                        return "itemsMetadata: array expected";
+                    for (var i = 0; i < message.itemsMetadata.length; ++i) {
+                        var error = $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.verify(message.itemsMetadata[i]);
+                        if (error)
+                            return "itemsMetadata." + error;
+                    }
+                }
+                if (message.contentType != null && message.hasOwnProperty("contentType"))
+                    switch (message.contentType) {
+                    default:
+                        return "contentType: enum value expected";
+                    case 0:
+                    case 1:
+                        break;
+                    }
+                return null;
+            };
+
+            /**
+             * Creates a AIRichResponseContentItemsMetadata message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata} AIRichResponseContentItemsMetadata
+             */
+            AIRichResponseContentItemsMetadata.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata)
+                    return object;
+                var message = new $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata();
+                if (object.itemsMetadata) {
+                    if (!Array.isArray(object.itemsMetadata))
+                        throw TypeError(".E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.itemsMetadata: array expected");
+                    message.itemsMetadata = [];
+                    for (var i = 0; i < object.itemsMetadata.length; ++i) {
+                        if (typeof object.itemsMetadata[i] !== "object")
+                            throw TypeError(".E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.itemsMetadata: object expected");
+                        message.itemsMetadata[i] = $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.fromObject(object.itemsMetadata[i]);
+                    }
+                }
+                switch (object.contentType) {
+                default:
+                    if (typeof object.contentType === "number") {
+                        message.contentType = object.contentType;
+                        break;
+                    }
+                    break;
+                case "DEFAULT":
+                case 0:
+                    message.contentType = 0;
+                    break;
+                case "CAROUSEL":
+                case 1:
+                    message.contentType = 1;
+                    break;
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a AIRichResponseContentItemsMetadata message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+             * @static
+             * @param {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata} message AIRichResponseContentItemsMetadata
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            AIRichResponseContentItemsMetadata.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.arrays || options.defaults)
+                    object.itemsMetadata = [];
+                if (options.defaults)
+                    object.contentType = options.enums === String ? "DEFAULT" : 0;
+                if (message.itemsMetadata && message.itemsMetadata.length) {
+                    object.itemsMetadata = [];
+                    for (var j = 0; j < message.itemsMetadata.length; ++j)
+                        object.itemsMetadata[j] = $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.toObject(message.itemsMetadata[j], options);
+                }
+                if (message.contentType != null && message.hasOwnProperty("contentType"))
+                    object.contentType = options.enums === String ? $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.ContentType[message.contentType] === undefined ? message.contentType : $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.ContentType[message.contentType] : message.contentType;
+                return object;
+            };
+
+            /**
+             * Converts this AIRichResponseContentItemsMetadata to JSON.
+             * @function toJSON
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            AIRichResponseContentItemsMetadata.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for AIRichResponseContentItemsMetadata
+             * @function getTypeUrl
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            AIRichResponseContentItemsMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata";
+            };
+
+            AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata = (function() {
+
+                /**
+                 * Properties of a AIRichResponseContentItemMetadata.
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+                 * @interface IAIRichResponseContentItemMetadata
+                 * @property {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.IAIRichResponseReelItem|null} [reelItem] AIRichResponseContentItemMetadata reelItem
+                 */
+
+                /**
+                 * Constructs a new AIRichResponseContentItemMetadata.
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+                 * @classdesc Represents a AIRichResponseContentItemMetadata.
+                 * @implements IAIRichResponseContentItemMetadata
+                 * @constructor
+                 * @param {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.IAIRichResponseContentItemMetadata=} [properties] Properties to set
+                 */
+                function AIRichResponseContentItemMetadata(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * AIRichResponseContentItemMetadata reelItem.
+                 * @member {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.IAIRichResponseReelItem|null|undefined} reelItem
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata
+                 * @instance
+                 */
+                AIRichResponseContentItemMetadata.prototype.reelItem = null;
+
+                // OneOf field names bound to virtual getters and setters
+                var $oneOfFields;
+
+                /**
+                 * AIRichResponseContentItemMetadata aIRichResponseContentItem.
+                 * @member {"reelItem"|undefined} aIRichResponseContentItem
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata
+                 * @instance
+                 */
+                Object.defineProperty(AIRichResponseContentItemMetadata.prototype, "aIRichResponseContentItem", {
+                    get: $util.oneOfGetter($oneOfFields = ["reelItem"]),
+                    set: $util.oneOfSetter($oneOfFields)
+                });
+
+                /**
+                 * Creates a new AIRichResponseContentItemMetadata instance using the specified properties.
+                 * @function create
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata
+                 * @static
+                 * @param {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.IAIRichResponseContentItemMetadata=} [properties] Properties to set
+                 * @returns {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata} AIRichResponseContentItemMetadata instance
+                 */
+                AIRichResponseContentItemMetadata.create = function create(properties) {
+                    return new AIRichResponseContentItemMetadata(properties);
+                };
+
+                /**
+                 * Encodes the specified AIRichResponseContentItemMetadata message. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.verify|verify} messages.
+                 * @function encode
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata
+                 * @static
+                 * @param {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.IAIRichResponseContentItemMetadata} message AIRichResponseContentItemMetadata message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                AIRichResponseContentItemMetadata.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.reelItem != null && Object.hasOwnProperty.call(message, "reelItem"))
+                        $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem.encode(message.reelItem, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified AIRichResponseContentItemMetadata message, length delimited. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata
+                 * @static
+                 * @param {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.IAIRichResponseContentItemMetadata} message AIRichResponseContentItemMetadata message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                AIRichResponseContentItemMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a AIRichResponseContentItemMetadata message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata} AIRichResponseContentItemMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                AIRichResponseContentItemMetadata.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.reelItem = $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem.decode(reader, reader.uint32());
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a AIRichResponseContentItemMetadata message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata} AIRichResponseContentItemMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                AIRichResponseContentItemMetadata.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a AIRichResponseContentItemMetadata message.
+                 * @function verify
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                AIRichResponseContentItemMetadata.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    var properties = {};
+                    if (message.reelItem != null && message.hasOwnProperty("reelItem")) {
+                        properties.aIRichResponseContentItem = 1;
+                        {
+                            var error = $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem.verify(message.reelItem);
+                            if (error)
+                                return "reelItem." + error;
+                        }
+                    }
+                    return null;
+                };
+
+                /**
+                 * Creates a AIRichResponseContentItemMetadata message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata} AIRichResponseContentItemMetadata
+                 */
+                AIRichResponseContentItemMetadata.fromObject = function fromObject(object) {
+                    if (object instanceof $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata)
+                        return object;
+                    var message = new $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata();
+                    if (object.reelItem != null) {
+                        if (typeof object.reelItem !== "object")
+                            throw TypeError(".E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.reelItem: object expected");
+                        message.reelItem = $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem.fromObject(object.reelItem);
+                    }
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a AIRichResponseContentItemMetadata message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata
+                 * @static
+                 * @param {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata} message AIRichResponseContentItemMetadata
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                AIRichResponseContentItemMetadata.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (message.reelItem != null && message.hasOwnProperty("reelItem")) {
+                        object.reelItem = $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem.toObject(message.reelItem, options);
+                        if (options.oneofs)
+                            object.aIRichResponseContentItem = "reelItem";
+                    }
+                    return object;
+                };
+
+                /**
+                 * Converts this AIRichResponseContentItemMetadata to JSON.
+                 * @function toJSON
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                AIRichResponseContentItemMetadata.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for AIRichResponseContentItemMetadata
+                 * @function getTypeUrl
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                AIRichResponseContentItemMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata";
+                };
+
+                return AIRichResponseContentItemMetadata;
+            })();
+
+            AIRichResponseContentItemsMetadata.AIRichResponseReelItem = (function() {
+
+                /**
+                 * Properties of a AIRichResponseReelItem.
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+                 * @interface IAIRichResponseReelItem
+                 * @property {string|null} [title] AIRichResponseReelItem title
+                 * @property {string|null} [profileIconUrl] AIRichResponseReelItem profileIconUrl
+                 * @property {string|null} [thumbnailUrl] AIRichResponseReelItem thumbnailUrl
+                 * @property {string|null} [videoUrl] AIRichResponseReelItem videoUrl
+                 */
+
+                /**
+                 * Constructs a new AIRichResponseReelItem.
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata
+                 * @classdesc Represents a AIRichResponseReelItem.
+                 * @implements IAIRichResponseReelItem
+                 * @constructor
+                 * @param {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.IAIRichResponseReelItem=} [properties] Properties to set
+                 */
+                function AIRichResponseReelItem(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * AIRichResponseReelItem title.
+                 * @member {string} title
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @instance
+                 */
+                AIRichResponseReelItem.prototype.title = "";
+
+                /**
+                 * AIRichResponseReelItem profileIconUrl.
+                 * @member {string} profileIconUrl
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @instance
+                 */
+                AIRichResponseReelItem.prototype.profileIconUrl = "";
+
+                /**
+                 * AIRichResponseReelItem thumbnailUrl.
+                 * @member {string} thumbnailUrl
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @instance
+                 */
+                AIRichResponseReelItem.prototype.thumbnailUrl = "";
+
+                /**
+                 * AIRichResponseReelItem videoUrl.
+                 * @member {string} videoUrl
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @instance
+                 */
+                AIRichResponseReelItem.prototype.videoUrl = "";
+
+                /**
+                 * Creates a new AIRichResponseReelItem instance using the specified properties.
+                 * @function create
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @static
+                 * @param {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.IAIRichResponseReelItem=} [properties] Properties to set
+                 * @returns {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem} AIRichResponseReelItem instance
+                 */
+                AIRichResponseReelItem.create = function create(properties) {
+                    return new AIRichResponseReelItem(properties);
+                };
+
+                /**
+                 * Encodes the specified AIRichResponseReelItem message. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem.verify|verify} messages.
+                 * @function encode
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @static
+                 * @param {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.IAIRichResponseReelItem} message AIRichResponseReelItem message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                AIRichResponseReelItem.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.title != null && Object.hasOwnProperty.call(message, "title"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.title);
+                    if (message.profileIconUrl != null && Object.hasOwnProperty.call(message, "profileIconUrl"))
+                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.profileIconUrl);
+                    if (message.thumbnailUrl != null && Object.hasOwnProperty.call(message, "thumbnailUrl"))
+                        writer.uint32(/* id 3, wireType 2 =*/26).string(message.thumbnailUrl);
+                    if (message.videoUrl != null && Object.hasOwnProperty.call(message, "videoUrl"))
+                        writer.uint32(/* id 4, wireType 2 =*/34).string(message.videoUrl);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified AIRichResponseReelItem message, length delimited. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @static
+                 * @param {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.IAIRichResponseReelItem} message AIRichResponseReelItem message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                AIRichResponseReelItem.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a AIRichResponseReelItem message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem} AIRichResponseReelItem
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                AIRichResponseReelItem.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.title = reader.string();
+                                break;
+                            }
+                        case 2: {
+                                message.profileIconUrl = reader.string();
+                                break;
+                            }
+                        case 3: {
+                                message.thumbnailUrl = reader.string();
+                                break;
+                            }
+                        case 4: {
+                                message.videoUrl = reader.string();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a AIRichResponseReelItem message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem} AIRichResponseReelItem
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                AIRichResponseReelItem.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a AIRichResponseReelItem message.
+                 * @function verify
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                AIRichResponseReelItem.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.title != null && message.hasOwnProperty("title"))
+                        if (!$util.isString(message.title))
+                            return "title: string expected";
+                    if (message.profileIconUrl != null && message.hasOwnProperty("profileIconUrl"))
+                        if (!$util.isString(message.profileIconUrl))
+                            return "profileIconUrl: string expected";
+                    if (message.thumbnailUrl != null && message.hasOwnProperty("thumbnailUrl"))
+                        if (!$util.isString(message.thumbnailUrl))
+                            return "thumbnailUrl: string expected";
+                    if (message.videoUrl != null && message.hasOwnProperty("videoUrl"))
+                        if (!$util.isString(message.videoUrl))
+                            return "videoUrl: string expected";
+                    return null;
+                };
+
+                /**
+                 * Creates a AIRichResponseReelItem message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem} AIRichResponseReelItem
+                 */
+                AIRichResponseReelItem.fromObject = function fromObject(object) {
+                    if (object instanceof $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem)
+                        return object;
+                    var message = new $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem();
+                    if (object.title != null)
+                        message.title = String(object.title);
+                    if (object.profileIconUrl != null)
+                        message.profileIconUrl = String(object.profileIconUrl);
+                    if (object.thumbnailUrl != null)
+                        message.thumbnailUrl = String(object.thumbnailUrl);
+                    if (object.videoUrl != null)
+                        message.videoUrl = String(object.videoUrl);
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a AIRichResponseReelItem message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @static
+                 * @param {E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem} message AIRichResponseReelItem
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                AIRichResponseReelItem.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        object.title = "";
+                        object.profileIconUrl = "";
+                        object.thumbnailUrl = "";
+                        object.videoUrl = "";
+                    }
+                    if (message.title != null && message.hasOwnProperty("title"))
+                        object.title = message.title;
+                    if (message.profileIconUrl != null && message.hasOwnProperty("profileIconUrl"))
+                        object.profileIconUrl = message.profileIconUrl;
+                    if (message.thumbnailUrl != null && message.hasOwnProperty("thumbnailUrl"))
+                        object.thumbnailUrl = message.thumbnailUrl;
+                    if (message.videoUrl != null && message.hasOwnProperty("videoUrl"))
+                        object.videoUrl = message.videoUrl;
+                    return object;
+                };
+
+                /**
+                 * Converts this AIRichResponseReelItem to JSON.
+                 * @function toJSON
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                AIRichResponseReelItem.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for AIRichResponseReelItem
+                 * @function getTypeUrl
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                AIRichResponseReelItem.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem";
+                };
+
+                return AIRichResponseReelItem;
+            })();
+
+            /**
+             * ContentType enum.
+             * @name E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.ContentType
+             * @enum {number}
+             * @property {number} DEFAULT=0 DEFAULT value
+             * @property {number} CAROUSEL=1 CAROUSEL value
+             */
+            AIRichResponseContentItemsMetadata.ContentType = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "DEFAULT"] = 0;
+                values[valuesById[1] = "CAROUSEL"] = 1;
+                return values;
+            })();
+
+            return AIRichResponseContentItemsMetadata;
+        })();
+
         AIRichResponseMessage.AIRichResponseDynamicMetadata = (function() {
 
             /**
@@ -30394,503 +31182,6 @@ $root.E2E = (function() {
             return values;
         })();
 
-        AIRichResponseMessage.AIRichResponseReelsMetadata = (function() {
-
-            /**
-             * Properties of a AIRichResponseReelsMetadata.
-             * @memberof E2E.AIRichResponseMessage
-             * @interface IAIRichResponseReelsMetadata
-             * @property {Array.<E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.IAIRichResponseReelMetadata>|null} [reelsMetadata] AIRichResponseReelsMetadata reelsMetadata
-             */
-
-            /**
-             * Constructs a new AIRichResponseReelsMetadata.
-             * @memberof E2E.AIRichResponseMessage
-             * @classdesc Represents a AIRichResponseReelsMetadata.
-             * @implements IAIRichResponseReelsMetadata
-             * @constructor
-             * @param {E2E.AIRichResponseMessage.IAIRichResponseReelsMetadata=} [properties] Properties to set
-             */
-            function AIRichResponseReelsMetadata(properties) {
-                this.reelsMetadata = [];
-                if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
-                            this[keys[i]] = properties[keys[i]];
-            }
-
-            /**
-             * AIRichResponseReelsMetadata reelsMetadata.
-             * @member {Array.<E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.IAIRichResponseReelMetadata>} reelsMetadata
-             * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata
-             * @instance
-             */
-            AIRichResponseReelsMetadata.prototype.reelsMetadata = $util.emptyArray;
-
-            /**
-             * Creates a new AIRichResponseReelsMetadata instance using the specified properties.
-             * @function create
-             * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata
-             * @static
-             * @param {E2E.AIRichResponseMessage.IAIRichResponseReelsMetadata=} [properties] Properties to set
-             * @returns {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata} AIRichResponseReelsMetadata instance
-             */
-            AIRichResponseReelsMetadata.create = function create(properties) {
-                return new AIRichResponseReelsMetadata(properties);
-            };
-
-            /**
-             * Encodes the specified AIRichResponseReelsMetadata message. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.verify|verify} messages.
-             * @function encode
-             * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata
-             * @static
-             * @param {E2E.AIRichResponseMessage.IAIRichResponseReelsMetadata} message AIRichResponseReelsMetadata message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            AIRichResponseReelsMetadata.encode = function encode(message, writer) {
-                if (!writer)
-                    writer = $Writer.create();
-                if (message.reelsMetadata != null && message.reelsMetadata.length)
-                    for (var i = 0; i < message.reelsMetadata.length; ++i)
-                        $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata.encode(message.reelsMetadata[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                return writer;
-            };
-
-            /**
-             * Encodes the specified AIRichResponseReelsMetadata message, length delimited. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.verify|verify} messages.
-             * @function encodeDelimited
-             * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata
-             * @static
-             * @param {E2E.AIRichResponseMessage.IAIRichResponseReelsMetadata} message AIRichResponseReelsMetadata message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            AIRichResponseReelsMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
-            };
-
-            /**
-             * Decodes a AIRichResponseReelsMetadata message from the specified reader or buffer.
-             * @function decode
-             * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @param {number} [length] Message length if known beforehand
-             * @returns {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata} AIRichResponseReelsMetadata
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            AIRichResponseReelsMetadata.decode = function decode(reader, length) {
-                if (!(reader instanceof $Reader))
-                    reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata();
-                while (reader.pos < end) {
-                    var tag = reader.uint32();
-                    switch (tag >>> 3) {
-                    case 1: {
-                            if (!(message.reelsMetadata && message.reelsMetadata.length))
-                                message.reelsMetadata = [];
-                            message.reelsMetadata.push($root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata.decode(reader, reader.uint32()));
-                            break;
-                        }
-                    default:
-                        reader.skipType(tag & 7);
-                        break;
-                    }
-                }
-                return message;
-            };
-
-            /**
-             * Decodes a AIRichResponseReelsMetadata message from the specified reader or buffer, length delimited.
-             * @function decodeDelimited
-             * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @returns {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata} AIRichResponseReelsMetadata
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            AIRichResponseReelsMetadata.decodeDelimited = function decodeDelimited(reader) {
-                if (!(reader instanceof $Reader))
-                    reader = new $Reader(reader);
-                return this.decode(reader, reader.uint32());
-            };
-
-            /**
-             * Verifies a AIRichResponseReelsMetadata message.
-             * @function verify
-             * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata
-             * @static
-             * @param {Object.<string,*>} message Plain object to verify
-             * @returns {string|null} `null` if valid, otherwise the reason why it is not
-             */
-            AIRichResponseReelsMetadata.verify = function verify(message) {
-                if (typeof message !== "object" || message === null)
-                    return "object expected";
-                if (message.reelsMetadata != null && message.hasOwnProperty("reelsMetadata")) {
-                    if (!Array.isArray(message.reelsMetadata))
-                        return "reelsMetadata: array expected";
-                    for (var i = 0; i < message.reelsMetadata.length; ++i) {
-                        var error = $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata.verify(message.reelsMetadata[i]);
-                        if (error)
-                            return "reelsMetadata." + error;
-                    }
-                }
-                return null;
-            };
-
-            /**
-             * Creates a AIRichResponseReelsMetadata message from a plain object. Also converts values to their respective internal types.
-             * @function fromObject
-             * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata
-             * @static
-             * @param {Object.<string,*>} object Plain object
-             * @returns {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata} AIRichResponseReelsMetadata
-             */
-            AIRichResponseReelsMetadata.fromObject = function fromObject(object) {
-                if (object instanceof $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata)
-                    return object;
-                var message = new $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata();
-                if (object.reelsMetadata) {
-                    if (!Array.isArray(object.reelsMetadata))
-                        throw TypeError(".E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.reelsMetadata: array expected");
-                    message.reelsMetadata = [];
-                    for (var i = 0; i < object.reelsMetadata.length; ++i) {
-                        if (typeof object.reelsMetadata[i] !== "object")
-                            throw TypeError(".E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.reelsMetadata: object expected");
-                        message.reelsMetadata[i] = $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata.fromObject(object.reelsMetadata[i]);
-                    }
-                }
-                return message;
-            };
-
-            /**
-             * Creates a plain object from a AIRichResponseReelsMetadata message. Also converts values to other types if specified.
-             * @function toObject
-             * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata
-             * @static
-             * @param {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata} message AIRichResponseReelsMetadata
-             * @param {$protobuf.IConversionOptions} [options] Conversion options
-             * @returns {Object.<string,*>} Plain object
-             */
-            AIRichResponseReelsMetadata.toObject = function toObject(message, options) {
-                if (!options)
-                    options = {};
-                var object = {};
-                if (options.arrays || options.defaults)
-                    object.reelsMetadata = [];
-                if (message.reelsMetadata && message.reelsMetadata.length) {
-                    object.reelsMetadata = [];
-                    for (var j = 0; j < message.reelsMetadata.length; ++j)
-                        object.reelsMetadata[j] = $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata.toObject(message.reelsMetadata[j], options);
-                }
-                return object;
-            };
-
-            /**
-             * Converts this AIRichResponseReelsMetadata to JSON.
-             * @function toJSON
-             * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata
-             * @instance
-             * @returns {Object.<string,*>} JSON object
-             */
-            AIRichResponseReelsMetadata.prototype.toJSON = function toJSON() {
-                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-            };
-
-            /**
-             * Gets the default type url for AIRichResponseReelsMetadata
-             * @function getTypeUrl
-             * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata
-             * @static
-             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns {string} The default type url
-             */
-            AIRichResponseReelsMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-                if (typeUrlPrefix === undefined) {
-                    typeUrlPrefix = "type.googleapis.com";
-                }
-                return typeUrlPrefix + "/E2E.AIRichResponseMessage.AIRichResponseReelsMetadata";
-            };
-
-            AIRichResponseReelsMetadata.AIRichResponseReelMetadata = (function() {
-
-                /**
-                 * Properties of a AIRichResponseReelMetadata.
-                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata
-                 * @interface IAIRichResponseReelMetadata
-                 * @property {string|null} [title] AIRichResponseReelMetadata title
-                 * @property {string|null} [profileIconUrl] AIRichResponseReelMetadata profileIconUrl
-                 * @property {string|null} [previewUrl] AIRichResponseReelMetadata previewUrl
-                 * @property {string|null} [videoUrl] AIRichResponseReelMetadata videoUrl
-                 */
-
-                /**
-                 * Constructs a new AIRichResponseReelMetadata.
-                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata
-                 * @classdesc Represents a AIRichResponseReelMetadata.
-                 * @implements IAIRichResponseReelMetadata
-                 * @constructor
-                 * @param {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.IAIRichResponseReelMetadata=} [properties] Properties to set
-                 */
-                function AIRichResponseReelMetadata(properties) {
-                    if (properties)
-                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-
-                /**
-                 * AIRichResponseReelMetadata title.
-                 * @member {string} title
-                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
-                 * @instance
-                 */
-                AIRichResponseReelMetadata.prototype.title = "";
-
-                /**
-                 * AIRichResponseReelMetadata profileIconUrl.
-                 * @member {string} profileIconUrl
-                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
-                 * @instance
-                 */
-                AIRichResponseReelMetadata.prototype.profileIconUrl = "";
-
-                /**
-                 * AIRichResponseReelMetadata previewUrl.
-                 * @member {string} previewUrl
-                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
-                 * @instance
-                 */
-                AIRichResponseReelMetadata.prototype.previewUrl = "";
-
-                /**
-                 * AIRichResponseReelMetadata videoUrl.
-                 * @member {string} videoUrl
-                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
-                 * @instance
-                 */
-                AIRichResponseReelMetadata.prototype.videoUrl = "";
-
-                /**
-                 * Creates a new AIRichResponseReelMetadata instance using the specified properties.
-                 * @function create
-                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
-                 * @static
-                 * @param {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.IAIRichResponseReelMetadata=} [properties] Properties to set
-                 * @returns {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata} AIRichResponseReelMetadata instance
-                 */
-                AIRichResponseReelMetadata.create = function create(properties) {
-                    return new AIRichResponseReelMetadata(properties);
-                };
-
-                /**
-                 * Encodes the specified AIRichResponseReelMetadata message. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata.verify|verify} messages.
-                 * @function encode
-                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
-                 * @static
-                 * @param {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.IAIRichResponseReelMetadata} message AIRichResponseReelMetadata message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                AIRichResponseReelMetadata.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    if (message.title != null && Object.hasOwnProperty.call(message, "title"))
-                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.title);
-                    if (message.profileIconUrl != null && Object.hasOwnProperty.call(message, "profileIconUrl"))
-                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.profileIconUrl);
-                    if (message.previewUrl != null && Object.hasOwnProperty.call(message, "previewUrl"))
-                        writer.uint32(/* id 3, wireType 2 =*/26).string(message.previewUrl);
-                    if (message.videoUrl != null && Object.hasOwnProperty.call(message, "videoUrl"))
-                        writer.uint32(/* id 4, wireType 2 =*/34).string(message.videoUrl);
-                    return writer;
-                };
-
-                /**
-                 * Encodes the specified AIRichResponseReelMetadata message, length delimited. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
-                 * @static
-                 * @param {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.IAIRichResponseReelMetadata} message AIRichResponseReelMetadata message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                AIRichResponseReelMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-
-                /**
-                 * Decodes a AIRichResponseReelMetadata message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata} AIRichResponseReelMetadata
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                AIRichResponseReelMetadata.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata();
-                    while (reader.pos < end) {
-                        var tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1: {
-                                message.title = reader.string();
-                                break;
-                            }
-                        case 2: {
-                                message.profileIconUrl = reader.string();
-                                break;
-                            }
-                        case 3: {
-                                message.previewUrl = reader.string();
-                                break;
-                            }
-                        case 4: {
-                                message.videoUrl = reader.string();
-                                break;
-                            }
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    return message;
-                };
-
-                /**
-                 * Decodes a AIRichResponseReelMetadata message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata} AIRichResponseReelMetadata
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                AIRichResponseReelMetadata.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-
-                /**
-                 * Verifies a AIRichResponseReelMetadata message.
-                 * @function verify
-                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                AIRichResponseReelMetadata.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (message.title != null && message.hasOwnProperty("title"))
-                        if (!$util.isString(message.title))
-                            return "title: string expected";
-                    if (message.profileIconUrl != null && message.hasOwnProperty("profileIconUrl"))
-                        if (!$util.isString(message.profileIconUrl))
-                            return "profileIconUrl: string expected";
-                    if (message.previewUrl != null && message.hasOwnProperty("previewUrl"))
-                        if (!$util.isString(message.previewUrl))
-                            return "previewUrl: string expected";
-                    if (message.videoUrl != null && message.hasOwnProperty("videoUrl"))
-                        if (!$util.isString(message.videoUrl))
-                            return "videoUrl: string expected";
-                    return null;
-                };
-
-                /**
-                 * Creates a AIRichResponseReelMetadata message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata} AIRichResponseReelMetadata
-                 */
-                AIRichResponseReelMetadata.fromObject = function fromObject(object) {
-                    if (object instanceof $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata)
-                        return object;
-                    var message = new $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata();
-                    if (object.title != null)
-                        message.title = String(object.title);
-                    if (object.profileIconUrl != null)
-                        message.profileIconUrl = String(object.profileIconUrl);
-                    if (object.previewUrl != null)
-                        message.previewUrl = String(object.previewUrl);
-                    if (object.videoUrl != null)
-                        message.videoUrl = String(object.videoUrl);
-                    return message;
-                };
-
-                /**
-                 * Creates a plain object from a AIRichResponseReelMetadata message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
-                 * @static
-                 * @param {E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata} message AIRichResponseReelMetadata
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                AIRichResponseReelMetadata.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    var object = {};
-                    if (options.defaults) {
-                        object.title = "";
-                        object.profileIconUrl = "";
-                        object.previewUrl = "";
-                        object.videoUrl = "";
-                    }
-                    if (message.title != null && message.hasOwnProperty("title"))
-                        object.title = message.title;
-                    if (message.profileIconUrl != null && message.hasOwnProperty("profileIconUrl"))
-                        object.profileIconUrl = message.profileIconUrl;
-                    if (message.previewUrl != null && message.hasOwnProperty("previewUrl"))
-                        object.previewUrl = message.previewUrl;
-                    if (message.videoUrl != null && message.hasOwnProperty("videoUrl"))
-                        object.videoUrl = message.videoUrl;
-                    return object;
-                };
-
-                /**
-                 * Converts this AIRichResponseReelMetadata to JSON.
-                 * @function toJSON
-                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                AIRichResponseReelMetadata.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-
-                /**
-                 * Gets the default type url for AIRichResponseReelMetadata
-                 * @function getTypeUrl
-                 * @memberof E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata
-                 * @static
-                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns {string} The default type url
-                 */
-                AIRichResponseReelMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-                    if (typeUrlPrefix === undefined) {
-                        typeUrlPrefix = "type.googleapis.com";
-                    }
-                    return typeUrlPrefix + "/E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.AIRichResponseReelMetadata";
-                };
-
-                return AIRichResponseReelMetadata;
-            })();
-
-            return AIRichResponseReelsMetadata;
-        })();
-
         AIRichResponseMessage.AIRichResponseSubMessage = (function() {
 
             /**
@@ -30906,7 +31197,7 @@ $root.E2E = (function() {
              * @property {E2E.AIRichResponseMessage.IAIRichResponseDynamicMetadata|null} [dynamicMetadata] AIRichResponseSubMessage dynamicMetadata
              * @property {E2E.AIRichResponseMessage.IAIRichResponseLatexMetadata|null} [latexMetadata] AIRichResponseSubMessage latexMetadata
              * @property {E2E.AIRichResponseMessage.IAIRichResponseMapMetadata|null} [mapMetadata] AIRichResponseSubMessage mapMetadata
-             * @property {E2E.AIRichResponseMessage.IAIRichResponseReelsMetadata|null} [reelsMetadata] AIRichResponseSubMessage reelsMetadata
+             * @property {E2E.AIRichResponseMessage.IAIRichResponseContentItemsMetadata|null} [contentItemsMetadata] AIRichResponseSubMessage contentItemsMetadata
              */
 
             /**
@@ -30997,12 +31288,12 @@ $root.E2E = (function() {
             AIRichResponseSubMessage.prototype.mapMetadata = null;
 
             /**
-             * AIRichResponseSubMessage reelsMetadata.
-             * @member {E2E.AIRichResponseMessage.IAIRichResponseReelsMetadata|null|undefined} reelsMetadata
+             * AIRichResponseSubMessage contentItemsMetadata.
+             * @member {E2E.AIRichResponseMessage.IAIRichResponseContentItemsMetadata|null|undefined} contentItemsMetadata
              * @memberof E2E.AIRichResponseMessage.AIRichResponseSubMessage
              * @instance
              */
-            AIRichResponseSubMessage.prototype.reelsMetadata = null;
+            AIRichResponseSubMessage.prototype.contentItemsMetadata = null;
 
             /**
              * Creates a new AIRichResponseSubMessage instance using the specified properties.
@@ -31046,8 +31337,8 @@ $root.E2E = (function() {
                     $root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.encode(message.latexMetadata, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
                 if (message.mapMetadata != null && Object.hasOwnProperty.call(message, "mapMetadata"))
                     $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.encode(message.mapMetadata, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
-                if (message.reelsMetadata != null && Object.hasOwnProperty.call(message, "reelsMetadata"))
-                    $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.encode(message.reelsMetadata, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
+                if (message.contentItemsMetadata != null && Object.hasOwnProperty.call(message, "contentItemsMetadata"))
+                    $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.encode(message.contentItemsMetadata, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
                 return writer;
             };
 
@@ -31119,7 +31410,7 @@ $root.E2E = (function() {
                             break;
                         }
                     case 10: {
-                            message.reelsMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.decode(reader, reader.uint32());
+                            message.contentItemsMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -31211,10 +31502,10 @@ $root.E2E = (function() {
                     if (error)
                         return "mapMetadata." + error;
                 }
-                if (message.reelsMetadata != null && message.hasOwnProperty("reelsMetadata")) {
-                    var error = $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.verify(message.reelsMetadata);
+                if (message.contentItemsMetadata != null && message.hasOwnProperty("contentItemsMetadata")) {
+                    var error = $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.verify(message.contentItemsMetadata);
                     if (error)
-                        return "reelsMetadata." + error;
+                        return "contentItemsMetadata." + error;
                 }
                 return null;
             };
@@ -31274,7 +31565,7 @@ $root.E2E = (function() {
                 case 8:
                     message.messageType = 8;
                     break;
-                case "AI_RICH_RESPONSE_INLINE_REELS":
+                case "AI_RICH_RESPONSE_CONTENT_ITEMS":
                 case 9:
                     message.messageType = 9;
                     break;
@@ -31316,10 +31607,10 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.AIRichResponseMessage.AIRichResponseSubMessage.mapMetadata: object expected");
                     message.mapMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.fromObject(object.mapMetadata);
                 }
-                if (object.reelsMetadata != null) {
-                    if (typeof object.reelsMetadata !== "object")
-                        throw TypeError(".E2E.AIRichResponseMessage.AIRichResponseSubMessage.reelsMetadata: object expected");
-                    message.reelsMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.fromObject(object.reelsMetadata);
+                if (object.contentItemsMetadata != null) {
+                    if (typeof object.contentItemsMetadata !== "object")
+                        throw TypeError(".E2E.AIRichResponseMessage.AIRichResponseSubMessage.contentItemsMetadata: object expected");
+                    message.contentItemsMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.fromObject(object.contentItemsMetadata);
                 }
                 return message;
             };
@@ -31347,7 +31638,7 @@ $root.E2E = (function() {
                     object.dynamicMetadata = null;
                     object.latexMetadata = null;
                     object.mapMetadata = null;
-                    object.reelsMetadata = null;
+                    object.contentItemsMetadata = null;
                 }
                 if (message.messageType != null && message.hasOwnProperty("messageType"))
                     object.messageType = options.enums === String ? $root.E2E.AIRichResponseMessage.AIRichResponseSubMessageType[message.messageType] === undefined ? message.messageType : $root.E2E.AIRichResponseMessage.AIRichResponseSubMessageType[message.messageType] : message.messageType;
@@ -31367,8 +31658,8 @@ $root.E2E = (function() {
                     object.latexMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.toObject(message.latexMetadata, options);
                 if (message.mapMetadata != null && message.hasOwnProperty("mapMetadata"))
                     object.mapMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.toObject(message.mapMetadata, options);
-                if (message.reelsMetadata != null && message.hasOwnProperty("reelsMetadata"))
-                    object.reelsMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseReelsMetadata.toObject(message.reelsMetadata, options);
+                if (message.contentItemsMetadata != null && message.hasOwnProperty("contentItemsMetadata"))
+                    object.contentItemsMetadata = $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.toObject(message.contentItemsMetadata, options);
                 return object;
             };
 
@@ -31414,7 +31705,7 @@ $root.E2E = (function() {
          * @property {number} AI_RICH_RESPONSE_DYNAMIC=6 AI_RICH_RESPONSE_DYNAMIC value
          * @property {number} AI_RICH_RESPONSE_MAP=7 AI_RICH_RESPONSE_MAP value
          * @property {number} AI_RICH_RESPONSE_LATEX=8 AI_RICH_RESPONSE_LATEX value
-         * @property {number} AI_RICH_RESPONSE_INLINE_REELS=9 AI_RICH_RESPONSE_INLINE_REELS value
+         * @property {number} AI_RICH_RESPONSE_CONTENT_ITEMS=9 AI_RICH_RESPONSE_CONTENT_ITEMS value
          */
         AIRichResponseMessage.AIRichResponseSubMessageType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -31427,7 +31718,7 @@ $root.E2E = (function() {
             values[valuesById[6] = "AI_RICH_RESPONSE_DYNAMIC"] = 6;
             values[valuesById[7] = "AI_RICH_RESPONSE_MAP"] = 7;
             values[valuesById[8] = "AI_RICH_RESPONSE_LATEX"] = 8;
-            values[valuesById[9] = "AI_RICH_RESPONSE_INLINE_REELS"] = 9;
+            values[valuesById[9] = "AI_RICH_RESPONSE_CONTENT_ITEMS"] = 9;
             return values;
         })();
 
