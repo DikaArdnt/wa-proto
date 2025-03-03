@@ -6729,17 +6729,17 @@ export namespace E2E {
             /** AIRichResponseMapMetadata centerLatitude */
             centerLatitude?: (number|null);
 
-            /** AIRichResponseMapMetadata centerLongtitude */
-            centerLongtitude?: (number|null);
+            /** AIRichResponseMapMetadata centerLongitude */
+            centerLongitude?: (number|null);
 
             /** AIRichResponseMapMetadata latitudeDelta */
             latitudeDelta?: (number|null);
 
-            /** AIRichResponseMapMetadata longtitudeDelta */
-            longtitudeDelta?: (number|null);
+            /** AIRichResponseMapMetadata longitudeDelta */
+            longitudeDelta?: (number|null);
 
-            /** AIRichResponseMapMetadata anotations */
-            anotations?: (E2E.AIRichResponseMessage.AIRichResponseMapMetadata.IAIRichResponseMapAnnotation[]|null);
+            /** AIRichResponseMapMetadata annotations */
+            annotations?: (E2E.AIRichResponseMessage.AIRichResponseMapMetadata.IAIRichResponseMapAnnotation[]|null);
 
             /** AIRichResponseMapMetadata showInfoList */
             showInfoList?: (boolean|null);
@@ -6757,17 +6757,17 @@ export namespace E2E {
             /** AIRichResponseMapMetadata centerLatitude. */
             public centerLatitude: number;
 
-            /** AIRichResponseMapMetadata centerLongtitude. */
-            public centerLongtitude: number;
+            /** AIRichResponseMapMetadata centerLongitude. */
+            public centerLongitude: number;
 
             /** AIRichResponseMapMetadata latitudeDelta. */
             public latitudeDelta: number;
 
-            /** AIRichResponseMapMetadata longtitudeDelta. */
-            public longtitudeDelta: number;
+            /** AIRichResponseMapMetadata longitudeDelta. */
+            public longitudeDelta: number;
 
-            /** AIRichResponseMapMetadata anotations. */
-            public anotations: E2E.AIRichResponseMessage.AIRichResponseMapMetadata.IAIRichResponseMapAnnotation[];
+            /** AIRichResponseMapMetadata annotations. */
+            public annotations: E2E.AIRichResponseMessage.AIRichResponseMapMetadata.IAIRichResponseMapAnnotation[];
 
             /** AIRichResponseMapMetadata showInfoList. */
             public showInfoList: boolean;
@@ -6861,8 +6861,8 @@ export namespace E2E {
                 /** AIRichResponseMapAnnotation latitude */
                 latitude?: (number|null);
 
-                /** AIRichResponseMapAnnotation longtitude */
-                longtitude?: (number|null);
+                /** AIRichResponseMapAnnotation longitude */
+                longitude?: (number|null);
 
                 /** AIRichResponseMapAnnotation title */
                 title?: (string|null);
@@ -6886,8 +6886,8 @@ export namespace E2E {
                 /** AIRichResponseMapAnnotation latitude. */
                 public latitude: number;
 
-                /** AIRichResponseMapAnnotation longtitude. */
-                public longtitude: number;
+                /** AIRichResponseMapAnnotation longitude. */
+                public longitude: number;
 
                 /** AIRichResponseMapAnnotation title. */
                 public title: string;

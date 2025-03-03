@@ -30538,10 +30538,10 @@ $root.E2E = (function() {
              * @memberof E2E.AIRichResponseMessage
              * @interface IAIRichResponseMapMetadata
              * @property {number|null} [centerLatitude] AIRichResponseMapMetadata centerLatitude
-             * @property {number|null} [centerLongtitude] AIRichResponseMapMetadata centerLongtitude
+             * @property {number|null} [centerLongitude] AIRichResponseMapMetadata centerLongitude
              * @property {number|null} [latitudeDelta] AIRichResponseMapMetadata latitudeDelta
-             * @property {number|null} [longtitudeDelta] AIRichResponseMapMetadata longtitudeDelta
-             * @property {Array.<E2E.AIRichResponseMessage.AIRichResponseMapMetadata.IAIRichResponseMapAnnotation>|null} [anotations] AIRichResponseMapMetadata anotations
+             * @property {number|null} [longitudeDelta] AIRichResponseMapMetadata longitudeDelta
+             * @property {Array.<E2E.AIRichResponseMessage.AIRichResponseMapMetadata.IAIRichResponseMapAnnotation>|null} [annotations] AIRichResponseMapMetadata annotations
              * @property {boolean|null} [showInfoList] AIRichResponseMapMetadata showInfoList
              */
 
@@ -30554,7 +30554,7 @@ $root.E2E = (function() {
              * @param {E2E.AIRichResponseMessage.IAIRichResponseMapMetadata=} [properties] Properties to set
              */
             function AIRichResponseMapMetadata(properties) {
-                this.anotations = [];
+                this.annotations = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -30570,12 +30570,12 @@ $root.E2E = (function() {
             AIRichResponseMapMetadata.prototype.centerLatitude = 0;
 
             /**
-             * AIRichResponseMapMetadata centerLongtitude.
-             * @member {number} centerLongtitude
+             * AIRichResponseMapMetadata centerLongitude.
+             * @member {number} centerLongitude
              * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata
              * @instance
              */
-            AIRichResponseMapMetadata.prototype.centerLongtitude = 0;
+            AIRichResponseMapMetadata.prototype.centerLongitude = 0;
 
             /**
              * AIRichResponseMapMetadata latitudeDelta.
@@ -30586,20 +30586,20 @@ $root.E2E = (function() {
             AIRichResponseMapMetadata.prototype.latitudeDelta = 0;
 
             /**
-             * AIRichResponseMapMetadata longtitudeDelta.
-             * @member {number} longtitudeDelta
+             * AIRichResponseMapMetadata longitudeDelta.
+             * @member {number} longitudeDelta
              * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata
              * @instance
              */
-            AIRichResponseMapMetadata.prototype.longtitudeDelta = 0;
+            AIRichResponseMapMetadata.prototype.longitudeDelta = 0;
 
             /**
-             * AIRichResponseMapMetadata anotations.
-             * @member {Array.<E2E.AIRichResponseMessage.AIRichResponseMapMetadata.IAIRichResponseMapAnnotation>} anotations
+             * AIRichResponseMapMetadata annotations.
+             * @member {Array.<E2E.AIRichResponseMessage.AIRichResponseMapMetadata.IAIRichResponseMapAnnotation>} annotations
              * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata
              * @instance
              */
-            AIRichResponseMapMetadata.prototype.anotations = $util.emptyArray;
+            AIRichResponseMapMetadata.prototype.annotations = $util.emptyArray;
 
             /**
              * AIRichResponseMapMetadata showInfoList.
@@ -30635,15 +30635,15 @@ $root.E2E = (function() {
                     writer = $Writer.create();
                 if (message.centerLatitude != null && Object.hasOwnProperty.call(message, "centerLatitude"))
                     writer.uint32(/* id 1, wireType 1 =*/9).double(message.centerLatitude);
-                if (message.centerLongtitude != null && Object.hasOwnProperty.call(message, "centerLongtitude"))
-                    writer.uint32(/* id 2, wireType 1 =*/17).double(message.centerLongtitude);
+                if (message.centerLongitude != null && Object.hasOwnProperty.call(message, "centerLongitude"))
+                    writer.uint32(/* id 2, wireType 1 =*/17).double(message.centerLongitude);
                 if (message.latitudeDelta != null && Object.hasOwnProperty.call(message, "latitudeDelta"))
                     writer.uint32(/* id 3, wireType 1 =*/25).double(message.latitudeDelta);
-                if (message.longtitudeDelta != null && Object.hasOwnProperty.call(message, "longtitudeDelta"))
-                    writer.uint32(/* id 4, wireType 1 =*/33).double(message.longtitudeDelta);
-                if (message.anotations != null && message.anotations.length)
-                    for (var i = 0; i < message.anotations.length; ++i)
-                        $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.encode(message.anotations[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                if (message.longitudeDelta != null && Object.hasOwnProperty.call(message, "longitudeDelta"))
+                    writer.uint32(/* id 4, wireType 1 =*/33).double(message.longitudeDelta);
+                if (message.annotations != null && message.annotations.length)
+                    for (var i = 0; i < message.annotations.length; ++i)
+                        $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.encode(message.annotations[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                 if (message.showInfoList != null && Object.hasOwnProperty.call(message, "showInfoList"))
                     writer.uint32(/* id 6, wireType 0 =*/48).bool(message.showInfoList);
                 return writer;
@@ -30685,7 +30685,7 @@ $root.E2E = (function() {
                             break;
                         }
                     case 2: {
-                            message.centerLongtitude = reader.double();
+                            message.centerLongitude = reader.double();
                             break;
                         }
                     case 3: {
@@ -30693,13 +30693,13 @@ $root.E2E = (function() {
                             break;
                         }
                     case 4: {
-                            message.longtitudeDelta = reader.double();
+                            message.longitudeDelta = reader.double();
                             break;
                         }
                     case 5: {
-                            if (!(message.anotations && message.anotations.length))
-                                message.anotations = [];
-                            message.anotations.push($root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.decode(reader, reader.uint32()));
+                            if (!(message.annotations && message.annotations.length))
+                                message.annotations = [];
+                            message.annotations.push($root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.decode(reader, reader.uint32()));
                             break;
                         }
                     case 6: {
@@ -30744,22 +30744,22 @@ $root.E2E = (function() {
                 if (message.centerLatitude != null && message.hasOwnProperty("centerLatitude"))
                     if (typeof message.centerLatitude !== "number")
                         return "centerLatitude: number expected";
-                if (message.centerLongtitude != null && message.hasOwnProperty("centerLongtitude"))
-                    if (typeof message.centerLongtitude !== "number")
-                        return "centerLongtitude: number expected";
+                if (message.centerLongitude != null && message.hasOwnProperty("centerLongitude"))
+                    if (typeof message.centerLongitude !== "number")
+                        return "centerLongitude: number expected";
                 if (message.latitudeDelta != null && message.hasOwnProperty("latitudeDelta"))
                     if (typeof message.latitudeDelta !== "number")
                         return "latitudeDelta: number expected";
-                if (message.longtitudeDelta != null && message.hasOwnProperty("longtitudeDelta"))
-                    if (typeof message.longtitudeDelta !== "number")
-                        return "longtitudeDelta: number expected";
-                if (message.anotations != null && message.hasOwnProperty("anotations")) {
-                    if (!Array.isArray(message.anotations))
-                        return "anotations: array expected";
-                    for (var i = 0; i < message.anotations.length; ++i) {
-                        var error = $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.verify(message.anotations[i]);
+                if (message.longitudeDelta != null && message.hasOwnProperty("longitudeDelta"))
+                    if (typeof message.longitudeDelta !== "number")
+                        return "longitudeDelta: number expected";
+                if (message.annotations != null && message.hasOwnProperty("annotations")) {
+                    if (!Array.isArray(message.annotations))
+                        return "annotations: array expected";
+                    for (var i = 0; i < message.annotations.length; ++i) {
+                        var error = $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.verify(message.annotations[i]);
                         if (error)
-                            return "anotations." + error;
+                            return "annotations." + error;
                     }
                 }
                 if (message.showInfoList != null && message.hasOwnProperty("showInfoList"))
@@ -30782,20 +30782,20 @@ $root.E2E = (function() {
                 var message = new $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata();
                 if (object.centerLatitude != null)
                     message.centerLatitude = Number(object.centerLatitude);
-                if (object.centerLongtitude != null)
-                    message.centerLongtitude = Number(object.centerLongtitude);
+                if (object.centerLongitude != null)
+                    message.centerLongitude = Number(object.centerLongitude);
                 if (object.latitudeDelta != null)
                     message.latitudeDelta = Number(object.latitudeDelta);
-                if (object.longtitudeDelta != null)
-                    message.longtitudeDelta = Number(object.longtitudeDelta);
-                if (object.anotations) {
-                    if (!Array.isArray(object.anotations))
-                        throw TypeError(".E2E.AIRichResponseMessage.AIRichResponseMapMetadata.anotations: array expected");
-                    message.anotations = [];
-                    for (var i = 0; i < object.anotations.length; ++i) {
-                        if (typeof object.anotations[i] !== "object")
-                            throw TypeError(".E2E.AIRichResponseMessage.AIRichResponseMapMetadata.anotations: object expected");
-                        message.anotations[i] = $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.fromObject(object.anotations[i]);
+                if (object.longitudeDelta != null)
+                    message.longitudeDelta = Number(object.longitudeDelta);
+                if (object.annotations) {
+                    if (!Array.isArray(object.annotations))
+                        throw TypeError(".E2E.AIRichResponseMessage.AIRichResponseMapMetadata.annotations: array expected");
+                    message.annotations = [];
+                    for (var i = 0; i < object.annotations.length; ++i) {
+                        if (typeof object.annotations[i] !== "object")
+                            throw TypeError(".E2E.AIRichResponseMessage.AIRichResponseMapMetadata.annotations: object expected");
+                        message.annotations[i] = $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.fromObject(object.annotations[i]);
                     }
                 }
                 if (object.showInfoList != null)
@@ -30817,26 +30817,26 @@ $root.E2E = (function() {
                     options = {};
                 var object = {};
                 if (options.arrays || options.defaults)
-                    object.anotations = [];
+                    object.annotations = [];
                 if (options.defaults) {
                     object.centerLatitude = 0;
-                    object.centerLongtitude = 0;
+                    object.centerLongitude = 0;
                     object.latitudeDelta = 0;
-                    object.longtitudeDelta = 0;
+                    object.longitudeDelta = 0;
                     object.showInfoList = false;
                 }
                 if (message.centerLatitude != null && message.hasOwnProperty("centerLatitude"))
                     object.centerLatitude = options.json && !isFinite(message.centerLatitude) ? String(message.centerLatitude) : message.centerLatitude;
-                if (message.centerLongtitude != null && message.hasOwnProperty("centerLongtitude"))
-                    object.centerLongtitude = options.json && !isFinite(message.centerLongtitude) ? String(message.centerLongtitude) : message.centerLongtitude;
+                if (message.centerLongitude != null && message.hasOwnProperty("centerLongitude"))
+                    object.centerLongitude = options.json && !isFinite(message.centerLongitude) ? String(message.centerLongitude) : message.centerLongitude;
                 if (message.latitudeDelta != null && message.hasOwnProperty("latitudeDelta"))
                     object.latitudeDelta = options.json && !isFinite(message.latitudeDelta) ? String(message.latitudeDelta) : message.latitudeDelta;
-                if (message.longtitudeDelta != null && message.hasOwnProperty("longtitudeDelta"))
-                    object.longtitudeDelta = options.json && !isFinite(message.longtitudeDelta) ? String(message.longtitudeDelta) : message.longtitudeDelta;
-                if (message.anotations && message.anotations.length) {
-                    object.anotations = [];
-                    for (var j = 0; j < message.anotations.length; ++j)
-                        object.anotations[j] = $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.toObject(message.anotations[j], options);
+                if (message.longitudeDelta != null && message.hasOwnProperty("longitudeDelta"))
+                    object.longitudeDelta = options.json && !isFinite(message.longitudeDelta) ? String(message.longitudeDelta) : message.longitudeDelta;
+                if (message.annotations && message.annotations.length) {
+                    object.annotations = [];
+                    for (var j = 0; j < message.annotations.length; ++j)
+                        object.annotations[j] = $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.toObject(message.annotations[j], options);
                 }
                 if (message.showInfoList != null && message.hasOwnProperty("showInfoList"))
                     object.showInfoList = message.showInfoList;
@@ -30877,7 +30877,7 @@ $root.E2E = (function() {
                  * @interface IAIRichResponseMapAnnotation
                  * @property {number|null} [annotationNumber] AIRichResponseMapAnnotation annotationNumber
                  * @property {number|null} [latitude] AIRichResponseMapAnnotation latitude
-                 * @property {number|null} [longtitude] AIRichResponseMapAnnotation longtitude
+                 * @property {number|null} [longitude] AIRichResponseMapAnnotation longitude
                  * @property {string|null} [title] AIRichResponseMapAnnotation title
                  * @property {string|null} [body] AIRichResponseMapAnnotation body
                  */
@@ -30914,12 +30914,12 @@ $root.E2E = (function() {
                 AIRichResponseMapAnnotation.prototype.latitude = 0;
 
                 /**
-                 * AIRichResponseMapAnnotation longtitude.
-                 * @member {number} longtitude
+                 * AIRichResponseMapAnnotation longitude.
+                 * @member {number} longitude
                  * @memberof E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
                  * @instance
                  */
-                AIRichResponseMapAnnotation.prototype.longtitude = 0;
+                AIRichResponseMapAnnotation.prototype.longitude = 0;
 
                 /**
                  * AIRichResponseMapAnnotation title.
@@ -30965,8 +30965,8 @@ $root.E2E = (function() {
                         writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.annotationNumber);
                     if (message.latitude != null && Object.hasOwnProperty.call(message, "latitude"))
                         writer.uint32(/* id 2, wireType 1 =*/17).double(message.latitude);
-                    if (message.longtitude != null && Object.hasOwnProperty.call(message, "longtitude"))
-                        writer.uint32(/* id 3, wireType 1 =*/25).double(message.longtitude);
+                    if (message.longitude != null && Object.hasOwnProperty.call(message, "longitude"))
+                        writer.uint32(/* id 3, wireType 1 =*/25).double(message.longitude);
                     if (message.title != null && Object.hasOwnProperty.call(message, "title"))
                         writer.uint32(/* id 4, wireType 2 =*/34).string(message.title);
                     if (message.body != null && Object.hasOwnProperty.call(message, "body"))
@@ -31014,7 +31014,7 @@ $root.E2E = (function() {
                                 break;
                             }
                         case 3: {
-                                message.longtitude = reader.double();
+                                message.longitude = reader.double();
                                 break;
                             }
                         case 4: {
@@ -31066,9 +31066,9 @@ $root.E2E = (function() {
                     if (message.latitude != null && message.hasOwnProperty("latitude"))
                         if (typeof message.latitude !== "number")
                             return "latitude: number expected";
-                    if (message.longtitude != null && message.hasOwnProperty("longtitude"))
-                        if (typeof message.longtitude !== "number")
-                            return "longtitude: number expected";
+                    if (message.longitude != null && message.hasOwnProperty("longitude"))
+                        if (typeof message.longitude !== "number")
+                            return "longitude: number expected";
                     if (message.title != null && message.hasOwnProperty("title"))
                         if (!$util.isString(message.title))
                             return "title: string expected";
@@ -31094,8 +31094,8 @@ $root.E2E = (function() {
                         message.annotationNumber = object.annotationNumber >>> 0;
                     if (object.latitude != null)
                         message.latitude = Number(object.latitude);
-                    if (object.longtitude != null)
-                        message.longtitude = Number(object.longtitude);
+                    if (object.longitude != null)
+                        message.longitude = Number(object.longitude);
                     if (object.title != null)
                         message.title = String(object.title);
                     if (object.body != null)
@@ -31119,7 +31119,7 @@ $root.E2E = (function() {
                     if (options.defaults) {
                         object.annotationNumber = 0;
                         object.latitude = 0;
-                        object.longtitude = 0;
+                        object.longitude = 0;
                         object.title = "";
                         object.body = "";
                     }
@@ -31127,8 +31127,8 @@ $root.E2E = (function() {
                         object.annotationNumber = message.annotationNumber;
                     if (message.latitude != null && message.hasOwnProperty("latitude"))
                         object.latitude = options.json && !isFinite(message.latitude) ? String(message.latitude) : message.latitude;
-                    if (message.longtitude != null && message.hasOwnProperty("longtitude"))
-                        object.longtitude = options.json && !isFinite(message.longtitude) ? String(message.longtitude) : message.longtitude;
+                    if (message.longitude != null && message.hasOwnProperty("longitude"))
+                        object.longitude = options.json && !isFinite(message.longitude) ? String(message.longitude) : message.longitude;
                     if (message.title != null && message.hasOwnProperty("title"))
                         object.title = message.title;
                     if (message.body != null && message.hasOwnProperty("body"))
