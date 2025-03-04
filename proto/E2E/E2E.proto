@@ -329,6 +329,7 @@ message BotCapabilityMetadata {
         RICH_RESPONSE_INLINE_REELS = 26;
         AGENTIC_PLANNING = 27;
         ACCOUNT_LINKING = 28;
+        STREAMING_DISAGGREGATION = 29;
     }
 }
 

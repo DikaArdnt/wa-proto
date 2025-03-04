@@ -30733,6 +30733,7 @@ $root.E2E = (function() {
                     case 26:
                     case 27:
                     case 28:
+                    case 29:
                         break;
                     }
             }
@@ -30878,6 +30879,10 @@ $root.E2E = (function() {
                     case 28:
                         message.capabilities[i] = 28;
                         break;
+                    case "STREAMING_DISAGGREGATION":
+                    case 29:
+                        message.capabilities[i] = 29;
+                        break;
                     }
             }
             return message;
@@ -30965,6 +30970,7 @@ $root.E2E = (function() {
          * @property {number} RICH_RESPONSE_INLINE_REELS=26 RICH_RESPONSE_INLINE_REELS value
          * @property {number} AGENTIC_PLANNING=27 AGENTIC_PLANNING value
          * @property {number} ACCOUNT_LINKING=28 ACCOUNT_LINKING value
+         * @property {number} STREAMING_DISAGGREGATION=29 STREAMING_DISAGGREGATION value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -30997,6 +31003,7 @@ $root.E2E = (function() {
             values[valuesById[26] = "RICH_RESPONSE_INLINE_REELS"] = 26;
             values[valuesById[27] = "AGENTIC_PLANNING"] = 27;
             values[valuesById[28] = "ACCOUNT_LINKING"] = 28;
+            values[valuesById[29] = "STREAMING_DISAGGREGATION"] = 29;
             return values;
         })();
 

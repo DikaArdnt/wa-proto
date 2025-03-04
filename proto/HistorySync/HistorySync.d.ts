@@ -10186,7 +10186,8 @@ export namespace E2E {
             RICH_RESPONSE_MAPS = 25,
             RICH_RESPONSE_INLINE_REELS = 26,
             AGENTIC_PLANNING = 27,
-            ACCOUNT_LINKING = 28
+            ACCOUNT_LINKING = 28,
+            STREAMING_DISAGGREGATION = 29
         }
     }
 
