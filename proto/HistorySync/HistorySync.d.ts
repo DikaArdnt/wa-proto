@@ -1611,6 +1611,9 @@ export namespace HistorySync {
 
         /** Conversation accountLid */
         accountLid?: (string|null);
+
+        /** Conversation limitSharing */
+        limitSharing?: (boolean|null);
     }
 
     /** Represents a Conversation. */
@@ -1768,6 +1771,9 @@ export namespace HistorySync {
 
         /** Conversation accountLid. */
         public accountLid: string;
+
+        /** Conversation limitSharing. */
+        public limitSharing: boolean;
 
         /**
          * Creates a new Conversation instance using the specified properties.

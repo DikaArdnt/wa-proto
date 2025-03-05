@@ -3844,6 +3844,7 @@ $root.HistorySync = (function() {
          * @property {HistorySync.PrivacySystemMessage|null} [systemMessageToInsert] Conversation systemMessageToInsert
          * @property {boolean|null} [capiCreatedGroup] Conversation capiCreatedGroup
          * @property {string|null} [accountLid] Conversation accountLid
+         * @property {boolean|null} [limitSharing] Conversation limitSharing
          */
 
         /**
@@ -4256,6 +4257,14 @@ $root.HistorySync = (function() {
         Conversation.prototype.accountLid = "";
 
         /**
+         * Conversation limitSharing.
+         * @member {boolean} limitSharing
+         * @memberof HistorySync.Conversation
+         * @instance
+         */
+        Conversation.prototype.limitSharing = false;
+
+        /**
          * Creates a new Conversation instance using the specified properties.
          * @function create
          * @memberof HistorySync.Conversation
@@ -4378,6 +4387,8 @@ $root.HistorySync = (function() {
                 writer.uint32(/* id 48, wireType 0 =*/384).bool(message.capiCreatedGroup);
             if (message.accountLid != null && Object.hasOwnProperty.call(message, "accountLid"))
                 writer.uint32(/* id 49, wireType 2 =*/394).string(message.accountLid);
+            if (message.limitSharing != null && Object.hasOwnProperty.call(message, "limitSharing"))
+                writer.uint32(/* id 50, wireType 0 =*/400).bool(message.limitSharing);
             return writer;
         };
 
@@ -4612,6 +4623,10 @@ $root.HistorySync = (function() {
                         message.accountLid = reader.string();
                         break;
                     }
+                case 50: {
+                        message.limitSharing = reader.bool();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -4829,6 +4844,9 @@ $root.HistorySync = (function() {
             if (message.accountLid != null && message.hasOwnProperty("accountLid"))
                 if (!$util.isString(message.accountLid))
                     return "accountLid: string expected";
+            if (message.limitSharing != null && message.hasOwnProperty("limitSharing"))
+                if (typeof message.limitSharing !== "boolean")
+                    return "limitSharing: boolean expected";
             return null;
         };
 
@@ -5073,6 +5091,8 @@ $root.HistorySync = (function() {
                 message.capiCreatedGroup = Boolean(object.capiCreatedGroup);
             if (object.accountLid != null)
                 message.accountLid = String(object.accountLid);
+            if (object.limitSharing != null)
+                message.limitSharing = Boolean(object.limitSharing);
             return message;
         };
 
@@ -5181,6 +5201,7 @@ $root.HistorySync = (function() {
                 object.systemMessageToInsert = options.enums === String ? "E2EE_MSG" : 1;
                 object.capiCreatedGroup = false;
                 object.accountLid = "";
+                object.limitSharing = false;
             }
             if (message.id != null && message.hasOwnProperty("id"))
                 object.id = message.id;
@@ -5307,6 +5328,8 @@ $root.HistorySync = (function() {
                 object.capiCreatedGroup = message.capiCreatedGroup;
             if (message.accountLid != null && message.hasOwnProperty("accountLid"))
                 object.accountLid = message.accountLid;
+            if (message.limitSharing != null && message.hasOwnProperty("limitSharing"))
+                object.limitSharing = message.limitSharing;
             return object;
         };
 
