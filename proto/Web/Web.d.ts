@@ -7272,6 +7272,9 @@ export namespace E2E {
 
         /** BotMetadata botLinkedAccountsMetadata */
         botLinkedAccountsMetadata?: (E2E.IBotLinkedAccountsMetadata|null);
+
+        /** BotMetadata richResponseSourcesMetadata */
+        richResponseSourcesMetadata?: (E2E.IBotSourcesMetadata|null);
     }
 
     /** Represents a BotMetadata. */
@@ -7336,6 +7339,9 @@ export namespace E2E {
 
         /** BotMetadata botLinkedAccountsMetadata. */
         public botLinkedAccountsMetadata?: (E2E.IBotLinkedAccountsMetadata|null);
+
+        /** BotMetadata richResponseSourcesMetadata. */
+        public richResponseSourcesMetadata?: (E2E.IBotSourcesMetadata|null);
 
         /**
          * Creates a new BotMetadata instance using the specified properties.
@@ -7413,6 +7419,244 @@ export namespace E2E {
          * @returns The default type url
          */
         public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a BotSourcesMetadata. */
+    interface IBotSourcesMetadata {
+
+        /** BotSourcesMetadata sources */
+        sources?: (E2E.BotSourcesMetadata.IBotSourceItem[]|null);
+    }
+
+    /** Represents a BotSourcesMetadata. */
+    class BotSourcesMetadata implements IBotSourcesMetadata {
+
+        /**
+         * Constructs a new BotSourcesMetadata.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: E2E.IBotSourcesMetadata);
+
+        /** BotSourcesMetadata sources. */
+        public sources: E2E.BotSourcesMetadata.IBotSourceItem[];
+
+        /**
+         * Creates a new BotSourcesMetadata instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BotSourcesMetadata instance
+         */
+        public static create(properties?: E2E.IBotSourcesMetadata): E2E.BotSourcesMetadata;
+
+        /**
+         * Encodes the specified BotSourcesMetadata message. Does not implicitly {@link E2E.BotSourcesMetadata.verify|verify} messages.
+         * @param message BotSourcesMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: E2E.IBotSourcesMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BotSourcesMetadata message, length delimited. Does not implicitly {@link E2E.BotSourcesMetadata.verify|verify} messages.
+         * @param message BotSourcesMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: E2E.IBotSourcesMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BotSourcesMetadata message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BotSourcesMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.BotSourcesMetadata;
+
+        /**
+         * Decodes a BotSourcesMetadata message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BotSourcesMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.BotSourcesMetadata;
+
+        /**
+         * Verifies a BotSourcesMetadata message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BotSourcesMetadata message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BotSourcesMetadata
+         */
+        public static fromObject(object: { [k: string]: any }): E2E.BotSourcesMetadata;
+
+        /**
+         * Creates a plain object from a BotSourcesMetadata message. Also converts values to other types if specified.
+         * @param message BotSourcesMetadata
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: E2E.BotSourcesMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BotSourcesMetadata to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for BotSourcesMetadata
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace BotSourcesMetadata {
+
+        /** Properties of a BotSourceItem. */
+        interface IBotSourceItem {
+
+            /** BotSourceItem provider */
+            provider?: (E2E.BotSourcesMetadata.BotSourceItem.SourceProvider|null);
+
+            /** BotSourceItem thumbnailCdnUrl */
+            thumbnailCdnUrl?: (string|null);
+
+            /** BotSourceItem sourceProviderUrl */
+            sourceProviderUrl?: (string|null);
+
+            /** BotSourceItem sourceQuery */
+            sourceQuery?: (string|null);
+
+            /** BotSourceItem faviconCdnUrl */
+            faviconCdnUrl?: (string|null);
+
+            /** BotSourceItem citationNumber */
+            citationNumber?: (number|null);
+        }
+
+        /** Represents a BotSourceItem. */
+        class BotSourceItem implements IBotSourceItem {
+
+            /**
+             * Constructs a new BotSourceItem.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.BotSourcesMetadata.IBotSourceItem);
+
+            /** BotSourceItem provider. */
+            public provider: E2E.BotSourcesMetadata.BotSourceItem.SourceProvider;
+
+            /** BotSourceItem thumbnailCdnUrl. */
+            public thumbnailCdnUrl: string;
+
+            /** BotSourceItem sourceProviderUrl. */
+            public sourceProviderUrl: string;
+
+            /** BotSourceItem sourceQuery. */
+            public sourceQuery: string;
+
+            /** BotSourceItem faviconCdnUrl. */
+            public faviconCdnUrl: string;
+
+            /** BotSourceItem citationNumber. */
+            public citationNumber: number;
+
+            /**
+             * Creates a new BotSourceItem instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns BotSourceItem instance
+             */
+            public static create(properties?: E2E.BotSourcesMetadata.IBotSourceItem): E2E.BotSourcesMetadata.BotSourceItem;
+
+            /**
+             * Encodes the specified BotSourceItem message. Does not implicitly {@link E2E.BotSourcesMetadata.BotSourceItem.verify|verify} messages.
+             * @param message BotSourceItem message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.BotSourcesMetadata.IBotSourceItem, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified BotSourceItem message, length delimited. Does not implicitly {@link E2E.BotSourcesMetadata.BotSourceItem.verify|verify} messages.
+             * @param message BotSourceItem message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.BotSourcesMetadata.IBotSourceItem, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a BotSourceItem message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns BotSourceItem
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.BotSourcesMetadata.BotSourceItem;
+
+            /**
+             * Decodes a BotSourceItem message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns BotSourceItem
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.BotSourcesMetadata.BotSourceItem;
+
+            /**
+             * Verifies a BotSourceItem message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a BotSourceItem message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns BotSourceItem
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.BotSourcesMetadata.BotSourceItem;
+
+            /**
+             * Creates a plain object from a BotSourceItem message. Also converts values to other types if specified.
+             * @param message BotSourceItem
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.BotSourcesMetadata.BotSourceItem, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this BotSourceItem to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for BotSourceItem
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace BotSourceItem {
+
+            /** SourceProvider enum. */
+            enum SourceProvider {
+                UNKNOWN = 0,
+                BING = 1,
+                GOOGLE = 2,
+                SUPPORT = 3
+            }
+        }
     }
 
     /** Properties of a BotImagineMetadata. */
@@ -8634,6 +8878,9 @@ export namespace E2E {
 
         /** BotMetricsMetadata destinationEntryPoint */
         destinationEntryPoint?: (E2E.BotMetricsEntryPoint|null);
+
+        /** BotMetricsMetadata threadOrigin */
+        threadOrigin?: (E2E.BotMetricsThreadEntryPoint|null);
     }
 
     /** Represents a BotMetricsMetadata. */
@@ -8650,6 +8897,9 @@ export namespace E2E {
 
         /** BotMetricsMetadata destinationEntryPoint. */
         public destinationEntryPoint: E2E.BotMetricsEntryPoint;
+
+        /** BotMetricsMetadata threadOrigin. */
+        public threadOrigin: E2E.BotMetricsThreadEntryPoint;
 
         /**
          * Creates a new BotMetricsMetadata instance using the specified properties.
@@ -29673,6 +29923,14 @@ export namespace E2E {
         VOICE = 6
     }
 
+    /** BotMetricsThreadEntryPoint enum. */
+    enum BotMetricsThreadEntryPoint {
+        AI_TAB_THREAD = 1,
+        AI_HOME_THREAD = 2,
+        AI_DEEPLINK_IMMERSIVE_THREAD = 3,
+        AI_DEEPLINK_THREAD = 4
+    }
+
     /** BotMetricsEntryPoint enum. */
     enum BotMetricsEntryPoint {
         FAVICON = 1,
@@ -29691,7 +29949,11 @@ export namespace E2E {
         PROFILE_MESSAGE_BUTTON = 14,
         FORWARD = 15,
         APP_SHORTCUT = 16,
-        FF_FAMILY = 17
+        FF_FAMILY = 17,
+        AI_TAB = 18,
+        AI_HOME = 19,
+        AI_DEEPLINK_IMMERSIVE = 20,
+        AI_DEEPLINK = 21
     }
 }
 

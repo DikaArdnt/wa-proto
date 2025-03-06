@@ -29682,6 +29682,7 @@ $root.E2E = (function() {
          * @property {E2E.IBotRenderingMetadata|null} [renderingMetadata] BotMetadata renderingMetadata
          * @property {E2E.IBotMetricsMetadata|null} [botMetricsMetadata] BotMetadata botMetricsMetadata
          * @property {E2E.IBotLinkedAccountsMetadata|null} [botLinkedAccountsMetadata] BotMetadata botLinkedAccountsMetadata
+         * @property {E2E.IBotSourcesMetadata|null} [richResponseSourcesMetadata] BotMetadata richResponseSourcesMetadata
          */
 
         /**
@@ -29844,6 +29845,14 @@ $root.E2E = (function() {
         BotMetadata.prototype.botLinkedAccountsMetadata = null;
 
         /**
+         * BotMetadata richResponseSourcesMetadata.
+         * @member {E2E.IBotSourcesMetadata|null|undefined} richResponseSourcesMetadata
+         * @memberof E2E.BotMetadata
+         * @instance
+         */
+        BotMetadata.prototype.richResponseSourcesMetadata = null;
+
+        /**
          * Creates a new BotMetadata instance using the specified properties.
          * @function create
          * @memberof E2E.BotMetadata
@@ -29903,6 +29912,8 @@ $root.E2E = (function() {
                 $root.E2E.BotMetricsMetadata.encode(message.botMetricsMetadata, writer.uint32(/* id 17, wireType 2 =*/138).fork()).ldelim();
             if (message.botLinkedAccountsMetadata != null && Object.hasOwnProperty.call(message, "botLinkedAccountsMetadata"))
                 $root.E2E.BotLinkedAccountsMetadata.encode(message.botLinkedAccountsMetadata, writer.uint32(/* id 18, wireType 2 =*/146).fork()).ldelim();
+            if (message.richResponseSourcesMetadata != null && Object.hasOwnProperty.call(message, "richResponseSourcesMetadata"))
+                $root.E2E.BotSourcesMetadata.encode(message.richResponseSourcesMetadata, writer.uint32(/* id 19, wireType 2 =*/154).fork()).ldelim();
             return writer;
         };
 
@@ -30007,6 +30018,10 @@ $root.E2E = (function() {
                     }
                 case 18: {
                         message.botLinkedAccountsMetadata = $root.E2E.BotLinkedAccountsMetadata.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 19: {
+                        message.richResponseSourcesMetadata = $root.E2E.BotSourcesMetadata.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -30126,6 +30141,11 @@ $root.E2E = (function() {
                 if (error)
                     return "botLinkedAccountsMetadata." + error;
             }
+            if (message.richResponseSourcesMetadata != null && message.hasOwnProperty("richResponseSourcesMetadata")) {
+                var error = $root.E2E.BotSourcesMetadata.verify(message.richResponseSourcesMetadata);
+                if (error)
+                    return "richResponseSourcesMetadata." + error;
+            }
             return null;
         };
 
@@ -30219,6 +30239,11 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.BotMetadata.botLinkedAccountsMetadata: object expected");
                 message.botLinkedAccountsMetadata = $root.E2E.BotLinkedAccountsMetadata.fromObject(object.botLinkedAccountsMetadata);
             }
+            if (object.richResponseSourcesMetadata != null) {
+                if (typeof object.richResponseSourcesMetadata !== "object")
+                    throw TypeError(".E2E.BotMetadata.richResponseSourcesMetadata: object expected");
+                message.richResponseSourcesMetadata = $root.E2E.BotSourcesMetadata.fromObject(object.richResponseSourcesMetadata);
+            }
             return message;
         };
 
@@ -30254,6 +30279,7 @@ $root.E2E = (function() {
                 object.renderingMetadata = null;
                 object.botMetricsMetadata = null;
                 object.botLinkedAccountsMetadata = null;
+                object.richResponseSourcesMetadata = null;
             }
             if (message.avatarMetadata != null && message.hasOwnProperty("avatarMetadata"))
                 object.avatarMetadata = $root.E2E.BotAvatarMetadata.toObject(message.avatarMetadata, options);
@@ -30291,6 +30317,8 @@ $root.E2E = (function() {
                 object.botMetricsMetadata = $root.E2E.BotMetricsMetadata.toObject(message.botMetricsMetadata, options);
             if (message.botLinkedAccountsMetadata != null && message.hasOwnProperty("botLinkedAccountsMetadata"))
                 object.botLinkedAccountsMetadata = $root.E2E.BotLinkedAccountsMetadata.toObject(message.botLinkedAccountsMetadata, options);
+            if (message.richResponseSourcesMetadata != null && message.hasOwnProperty("richResponseSourcesMetadata"))
+                object.richResponseSourcesMetadata = $root.E2E.BotSourcesMetadata.toObject(message.richResponseSourcesMetadata, options);
             return object;
         };
 
@@ -30321,6 +30349,596 @@ $root.E2E = (function() {
         };
 
         return BotMetadata;
+    })();
+
+    E2E.BotSourcesMetadata = (function() {
+
+        /**
+         * Properties of a BotSourcesMetadata.
+         * @memberof E2E
+         * @interface IBotSourcesMetadata
+         * @property {Array.<E2E.BotSourcesMetadata.IBotSourceItem>|null} [sources] BotSourcesMetadata sources
+         */
+
+        /**
+         * Constructs a new BotSourcesMetadata.
+         * @memberof E2E
+         * @classdesc Represents a BotSourcesMetadata.
+         * @implements IBotSourcesMetadata
+         * @constructor
+         * @param {E2E.IBotSourcesMetadata=} [properties] Properties to set
+         */
+        function BotSourcesMetadata(properties) {
+            this.sources = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BotSourcesMetadata sources.
+         * @member {Array.<E2E.BotSourcesMetadata.IBotSourceItem>} sources
+         * @memberof E2E.BotSourcesMetadata
+         * @instance
+         */
+        BotSourcesMetadata.prototype.sources = $util.emptyArray;
+
+        /**
+         * Creates a new BotSourcesMetadata instance using the specified properties.
+         * @function create
+         * @memberof E2E.BotSourcesMetadata
+         * @static
+         * @param {E2E.IBotSourcesMetadata=} [properties] Properties to set
+         * @returns {E2E.BotSourcesMetadata} BotSourcesMetadata instance
+         */
+        BotSourcesMetadata.create = function create(properties) {
+            return new BotSourcesMetadata(properties);
+        };
+
+        /**
+         * Encodes the specified BotSourcesMetadata message. Does not implicitly {@link E2E.BotSourcesMetadata.verify|verify} messages.
+         * @function encode
+         * @memberof E2E.BotSourcesMetadata
+         * @static
+         * @param {E2E.IBotSourcesMetadata} message BotSourcesMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotSourcesMetadata.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.sources != null && message.sources.length)
+                for (var i = 0; i < message.sources.length; ++i)
+                    $root.E2E.BotSourcesMetadata.BotSourceItem.encode(message.sources[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BotSourcesMetadata message, length delimited. Does not implicitly {@link E2E.BotSourcesMetadata.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof E2E.BotSourcesMetadata
+         * @static
+         * @param {E2E.IBotSourcesMetadata} message BotSourcesMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotSourcesMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BotSourcesMetadata message from the specified reader or buffer.
+         * @function decode
+         * @memberof E2E.BotSourcesMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {E2E.BotSourcesMetadata} BotSourcesMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotSourcesMetadata.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotSourcesMetadata();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1: {
+                        if (!(message.sources && message.sources.length))
+                            message.sources = [];
+                        message.sources.push($root.E2E.BotSourcesMetadata.BotSourceItem.decode(reader, reader.uint32()));
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BotSourcesMetadata message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof E2E.BotSourcesMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {E2E.BotSourcesMetadata} BotSourcesMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotSourcesMetadata.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BotSourcesMetadata message.
+         * @function verify
+         * @memberof E2E.BotSourcesMetadata
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BotSourcesMetadata.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.sources != null && message.hasOwnProperty("sources")) {
+                if (!Array.isArray(message.sources))
+                    return "sources: array expected";
+                for (var i = 0; i < message.sources.length; ++i) {
+                    var error = $root.E2E.BotSourcesMetadata.BotSourceItem.verify(message.sources[i]);
+                    if (error)
+                        return "sources." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a BotSourcesMetadata message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof E2E.BotSourcesMetadata
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {E2E.BotSourcesMetadata} BotSourcesMetadata
+         */
+        BotSourcesMetadata.fromObject = function fromObject(object) {
+            if (object instanceof $root.E2E.BotSourcesMetadata)
+                return object;
+            var message = new $root.E2E.BotSourcesMetadata();
+            if (object.sources) {
+                if (!Array.isArray(object.sources))
+                    throw TypeError(".E2E.BotSourcesMetadata.sources: array expected");
+                message.sources = [];
+                for (var i = 0; i < object.sources.length; ++i) {
+                    if (typeof object.sources[i] !== "object")
+                        throw TypeError(".E2E.BotSourcesMetadata.sources: object expected");
+                    message.sources[i] = $root.E2E.BotSourcesMetadata.BotSourceItem.fromObject(object.sources[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BotSourcesMetadata message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof E2E.BotSourcesMetadata
+         * @static
+         * @param {E2E.BotSourcesMetadata} message BotSourcesMetadata
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BotSourcesMetadata.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.sources = [];
+            if (message.sources && message.sources.length) {
+                object.sources = [];
+                for (var j = 0; j < message.sources.length; ++j)
+                    object.sources[j] = $root.E2E.BotSourcesMetadata.BotSourceItem.toObject(message.sources[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this BotSourcesMetadata to JSON.
+         * @function toJSON
+         * @memberof E2E.BotSourcesMetadata
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BotSourcesMetadata.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotSourcesMetadata
+         * @function getTypeUrl
+         * @memberof E2E.BotSourcesMetadata
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotSourcesMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/E2E.BotSourcesMetadata";
+        };
+
+        BotSourcesMetadata.BotSourceItem = (function() {
+
+            /**
+             * Properties of a BotSourceItem.
+             * @memberof E2E.BotSourcesMetadata
+             * @interface IBotSourceItem
+             * @property {E2E.BotSourcesMetadata.BotSourceItem.SourceProvider|null} [provider] BotSourceItem provider
+             * @property {string|null} [thumbnailCdnUrl] BotSourceItem thumbnailCdnUrl
+             * @property {string|null} [sourceProviderUrl] BotSourceItem sourceProviderUrl
+             * @property {string|null} [sourceQuery] BotSourceItem sourceQuery
+             * @property {string|null} [faviconCdnUrl] BotSourceItem faviconCdnUrl
+             * @property {number|null} [citationNumber] BotSourceItem citationNumber
+             */
+
+            /**
+             * Constructs a new BotSourceItem.
+             * @memberof E2E.BotSourcesMetadata
+             * @classdesc Represents a BotSourceItem.
+             * @implements IBotSourceItem
+             * @constructor
+             * @param {E2E.BotSourcesMetadata.IBotSourceItem=} [properties] Properties to set
+             */
+            function BotSourceItem(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * BotSourceItem provider.
+             * @member {E2E.BotSourcesMetadata.BotSourceItem.SourceProvider} provider
+             * @memberof E2E.BotSourcesMetadata.BotSourceItem
+             * @instance
+             */
+            BotSourceItem.prototype.provider = 0;
+
+            /**
+             * BotSourceItem thumbnailCdnUrl.
+             * @member {string} thumbnailCdnUrl
+             * @memberof E2E.BotSourcesMetadata.BotSourceItem
+             * @instance
+             */
+            BotSourceItem.prototype.thumbnailCdnUrl = "";
+
+            /**
+             * BotSourceItem sourceProviderUrl.
+             * @member {string} sourceProviderUrl
+             * @memberof E2E.BotSourcesMetadata.BotSourceItem
+             * @instance
+             */
+            BotSourceItem.prototype.sourceProviderUrl = "";
+
+            /**
+             * BotSourceItem sourceQuery.
+             * @member {string} sourceQuery
+             * @memberof E2E.BotSourcesMetadata.BotSourceItem
+             * @instance
+             */
+            BotSourceItem.prototype.sourceQuery = "";
+
+            /**
+             * BotSourceItem faviconCdnUrl.
+             * @member {string} faviconCdnUrl
+             * @memberof E2E.BotSourcesMetadata.BotSourceItem
+             * @instance
+             */
+            BotSourceItem.prototype.faviconCdnUrl = "";
+
+            /**
+             * BotSourceItem citationNumber.
+             * @member {number} citationNumber
+             * @memberof E2E.BotSourcesMetadata.BotSourceItem
+             * @instance
+             */
+            BotSourceItem.prototype.citationNumber = 0;
+
+            /**
+             * Creates a new BotSourceItem instance using the specified properties.
+             * @function create
+             * @memberof E2E.BotSourcesMetadata.BotSourceItem
+             * @static
+             * @param {E2E.BotSourcesMetadata.IBotSourceItem=} [properties] Properties to set
+             * @returns {E2E.BotSourcesMetadata.BotSourceItem} BotSourceItem instance
+             */
+            BotSourceItem.create = function create(properties) {
+                return new BotSourceItem(properties);
+            };
+
+            /**
+             * Encodes the specified BotSourceItem message. Does not implicitly {@link E2E.BotSourcesMetadata.BotSourceItem.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.BotSourcesMetadata.BotSourceItem
+             * @static
+             * @param {E2E.BotSourcesMetadata.IBotSourceItem} message BotSourceItem message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            BotSourceItem.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.provider != null && Object.hasOwnProperty.call(message, "provider"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.provider);
+                if (message.thumbnailCdnUrl != null && Object.hasOwnProperty.call(message, "thumbnailCdnUrl"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.thumbnailCdnUrl);
+                if (message.sourceProviderUrl != null && Object.hasOwnProperty.call(message, "sourceProviderUrl"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.sourceProviderUrl);
+                if (message.sourceQuery != null && Object.hasOwnProperty.call(message, "sourceQuery"))
+                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.sourceQuery);
+                if (message.faviconCdnUrl != null && Object.hasOwnProperty.call(message, "faviconCdnUrl"))
+                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.faviconCdnUrl);
+                if (message.citationNumber != null && Object.hasOwnProperty.call(message, "citationNumber"))
+                    writer.uint32(/* id 6, wireType 0 =*/48).uint32(message.citationNumber);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified BotSourceItem message, length delimited. Does not implicitly {@link E2E.BotSourcesMetadata.BotSourceItem.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.BotSourcesMetadata.BotSourceItem
+             * @static
+             * @param {E2E.BotSourcesMetadata.IBotSourceItem} message BotSourceItem message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            BotSourceItem.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a BotSourceItem message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.BotSourcesMetadata.BotSourceItem
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.BotSourcesMetadata.BotSourceItem} BotSourceItem
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            BotSourceItem.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotSourcesMetadata.BotSourceItem();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.provider = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.thumbnailCdnUrl = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.sourceProviderUrl = reader.string();
+                            break;
+                        }
+                    case 4: {
+                            message.sourceQuery = reader.string();
+                            break;
+                        }
+                    case 5: {
+                            message.faviconCdnUrl = reader.string();
+                            break;
+                        }
+                    case 6: {
+                            message.citationNumber = reader.uint32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a BotSourceItem message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.BotSourcesMetadata.BotSourceItem
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.BotSourcesMetadata.BotSourceItem} BotSourceItem
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            BotSourceItem.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a BotSourceItem message.
+             * @function verify
+             * @memberof E2E.BotSourcesMetadata.BotSourceItem
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            BotSourceItem.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.provider != null && message.hasOwnProperty("provider"))
+                    switch (message.provider) {
+                    default:
+                        return "provider: enum value expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                        break;
+                    }
+                if (message.thumbnailCdnUrl != null && message.hasOwnProperty("thumbnailCdnUrl"))
+                    if (!$util.isString(message.thumbnailCdnUrl))
+                        return "thumbnailCdnUrl: string expected";
+                if (message.sourceProviderUrl != null && message.hasOwnProperty("sourceProviderUrl"))
+                    if (!$util.isString(message.sourceProviderUrl))
+                        return "sourceProviderUrl: string expected";
+                if (message.sourceQuery != null && message.hasOwnProperty("sourceQuery"))
+                    if (!$util.isString(message.sourceQuery))
+                        return "sourceQuery: string expected";
+                if (message.faviconCdnUrl != null && message.hasOwnProperty("faviconCdnUrl"))
+                    if (!$util.isString(message.faviconCdnUrl))
+                        return "faviconCdnUrl: string expected";
+                if (message.citationNumber != null && message.hasOwnProperty("citationNumber"))
+                    if (!$util.isInteger(message.citationNumber))
+                        return "citationNumber: integer expected";
+                return null;
+            };
+
+            /**
+             * Creates a BotSourceItem message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.BotSourcesMetadata.BotSourceItem
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.BotSourcesMetadata.BotSourceItem} BotSourceItem
+             */
+            BotSourceItem.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.BotSourcesMetadata.BotSourceItem)
+                    return object;
+                var message = new $root.E2E.BotSourcesMetadata.BotSourceItem();
+                switch (object.provider) {
+                default:
+                    if (typeof object.provider === "number") {
+                        message.provider = object.provider;
+                        break;
+                    }
+                    break;
+                case "UNKNOWN":
+                case 0:
+                    message.provider = 0;
+                    break;
+                case "BING":
+                case 1:
+                    message.provider = 1;
+                    break;
+                case "GOOGLE":
+                case 2:
+                    message.provider = 2;
+                    break;
+                case "SUPPORT":
+                case 3:
+                    message.provider = 3;
+                    break;
+                }
+                if (object.thumbnailCdnUrl != null)
+                    message.thumbnailCdnUrl = String(object.thumbnailCdnUrl);
+                if (object.sourceProviderUrl != null)
+                    message.sourceProviderUrl = String(object.sourceProviderUrl);
+                if (object.sourceQuery != null)
+                    message.sourceQuery = String(object.sourceQuery);
+                if (object.faviconCdnUrl != null)
+                    message.faviconCdnUrl = String(object.faviconCdnUrl);
+                if (object.citationNumber != null)
+                    message.citationNumber = object.citationNumber >>> 0;
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a BotSourceItem message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.BotSourcesMetadata.BotSourceItem
+             * @static
+             * @param {E2E.BotSourcesMetadata.BotSourceItem} message BotSourceItem
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            BotSourceItem.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.provider = options.enums === String ? "UNKNOWN" : 0;
+                    object.thumbnailCdnUrl = "";
+                    object.sourceProviderUrl = "";
+                    object.sourceQuery = "";
+                    object.faviconCdnUrl = "";
+                    object.citationNumber = 0;
+                }
+                if (message.provider != null && message.hasOwnProperty("provider"))
+                    object.provider = options.enums === String ? $root.E2E.BotSourcesMetadata.BotSourceItem.SourceProvider[message.provider] === undefined ? message.provider : $root.E2E.BotSourcesMetadata.BotSourceItem.SourceProvider[message.provider] : message.provider;
+                if (message.thumbnailCdnUrl != null && message.hasOwnProperty("thumbnailCdnUrl"))
+                    object.thumbnailCdnUrl = message.thumbnailCdnUrl;
+                if (message.sourceProviderUrl != null && message.hasOwnProperty("sourceProviderUrl"))
+                    object.sourceProviderUrl = message.sourceProviderUrl;
+                if (message.sourceQuery != null && message.hasOwnProperty("sourceQuery"))
+                    object.sourceQuery = message.sourceQuery;
+                if (message.faviconCdnUrl != null && message.hasOwnProperty("faviconCdnUrl"))
+                    object.faviconCdnUrl = message.faviconCdnUrl;
+                if (message.citationNumber != null && message.hasOwnProperty("citationNumber"))
+                    object.citationNumber = message.citationNumber;
+                return object;
+            };
+
+            /**
+             * Converts this BotSourceItem to JSON.
+             * @function toJSON
+             * @memberof E2E.BotSourcesMetadata.BotSourceItem
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            BotSourceItem.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for BotSourceItem
+             * @function getTypeUrl
+             * @memberof E2E.BotSourcesMetadata.BotSourceItem
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            BotSourceItem.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.BotSourcesMetadata.BotSourceItem";
+            };
+
+            /**
+             * SourceProvider enum.
+             * @name E2E.BotSourcesMetadata.BotSourceItem.SourceProvider
+             * @enum {number}
+             * @property {number} UNKNOWN=0 UNKNOWN value
+             * @property {number} BING=1 BING value
+             * @property {number} GOOGLE=2 GOOGLE value
+             * @property {number} SUPPORT=3 SUPPORT value
+             */
+            BotSourceItem.SourceProvider = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "UNKNOWN"] = 0;
+                values[valuesById[1] = "BING"] = 1;
+                values[valuesById[2] = "GOOGLE"] = 2;
+                values[valuesById[3] = "SUPPORT"] = 3;
+                return values;
+            })();
+
+            return BotSourceItem;
+        })();
+
+        return BotSourcesMetadata;
     })();
 
     E2E.BotImagineMetadata = (function() {
@@ -33588,6 +34206,7 @@ $root.E2E = (function() {
          * @interface IBotMetricsMetadata
          * @property {string|null} [destinationId] BotMetricsMetadata destinationId
          * @property {E2E.BotMetricsEntryPoint|null} [destinationEntryPoint] BotMetricsMetadata destinationEntryPoint
+         * @property {E2E.BotMetricsThreadEntryPoint|null} [threadOrigin] BotMetricsMetadata threadOrigin
          */
 
         /**
@@ -33622,6 +34241,14 @@ $root.E2E = (function() {
         BotMetricsMetadata.prototype.destinationEntryPoint = 1;
 
         /**
+         * BotMetricsMetadata threadOrigin.
+         * @member {E2E.BotMetricsThreadEntryPoint} threadOrigin
+         * @memberof E2E.BotMetricsMetadata
+         * @instance
+         */
+        BotMetricsMetadata.prototype.threadOrigin = 1;
+
+        /**
          * Creates a new BotMetricsMetadata instance using the specified properties.
          * @function create
          * @memberof E2E.BotMetricsMetadata
@@ -33649,6 +34276,8 @@ $root.E2E = (function() {
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.destinationId);
             if (message.destinationEntryPoint != null && Object.hasOwnProperty.call(message, "destinationEntryPoint"))
                 writer.uint32(/* id 2, wireType 0 =*/16).int32(message.destinationEntryPoint);
+            if (message.threadOrigin != null && Object.hasOwnProperty.call(message, "threadOrigin"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.threadOrigin);
             return writer;
         };
 
@@ -33689,6 +34318,10 @@ $root.E2E = (function() {
                     }
                 case 2: {
                         message.destinationEntryPoint = reader.int32();
+                        break;
+                    }
+                case 3: {
+                        message.threadOrigin = reader.int32();
                         break;
                     }
                 default:
@@ -33750,6 +34383,20 @@ $root.E2E = (function() {
                 case 15:
                 case 16:
                 case 17:
+                case 18:
+                case 19:
+                case 20:
+                case 21:
+                    break;
+                }
+            if (message.threadOrigin != null && message.hasOwnProperty("threadOrigin"))
+                switch (message.threadOrigin) {
+                default:
+                    return "threadOrigin: enum value expected";
+                case 1:
+                case 2:
+                case 3:
+                case 4:
                     break;
                 }
             return null;
@@ -33844,6 +34491,46 @@ $root.E2E = (function() {
             case 17:
                 message.destinationEntryPoint = 17;
                 break;
+            case "AI_TAB":
+            case 18:
+                message.destinationEntryPoint = 18;
+                break;
+            case "AI_HOME":
+            case 19:
+                message.destinationEntryPoint = 19;
+                break;
+            case "AI_DEEPLINK_IMMERSIVE":
+            case 20:
+                message.destinationEntryPoint = 20;
+                break;
+            case "AI_DEEPLINK":
+            case 21:
+                message.destinationEntryPoint = 21;
+                break;
+            }
+            switch (object.threadOrigin) {
+            default:
+                if (typeof object.threadOrigin === "number") {
+                    message.threadOrigin = object.threadOrigin;
+                    break;
+                }
+                break;
+            case "AI_TAB_THREAD":
+            case 1:
+                message.threadOrigin = 1;
+                break;
+            case "AI_HOME_THREAD":
+            case 2:
+                message.threadOrigin = 2;
+                break;
+            case "AI_DEEPLINK_IMMERSIVE_THREAD":
+            case 3:
+                message.threadOrigin = 3;
+                break;
+            case "AI_DEEPLINK_THREAD":
+            case 4:
+                message.threadOrigin = 4;
+                break;
             }
             return message;
         };
@@ -33864,11 +34551,14 @@ $root.E2E = (function() {
             if (options.defaults) {
                 object.destinationId = "";
                 object.destinationEntryPoint = options.enums === String ? "FAVICON" : 1;
+                object.threadOrigin = options.enums === String ? "AI_TAB_THREAD" : 1;
             }
             if (message.destinationId != null && message.hasOwnProperty("destinationId"))
                 object.destinationId = message.destinationId;
             if (message.destinationEntryPoint != null && message.hasOwnProperty("destinationEntryPoint"))
                 object.destinationEntryPoint = options.enums === String ? $root.E2E.BotMetricsEntryPoint[message.destinationEntryPoint] === undefined ? message.destinationEntryPoint : $root.E2E.BotMetricsEntryPoint[message.destinationEntryPoint] : message.destinationEntryPoint;
+            if (message.threadOrigin != null && message.hasOwnProperty("threadOrigin"))
+                object.threadOrigin = options.enums === String ? $root.E2E.BotMetricsThreadEntryPoint[message.threadOrigin] === undefined ? message.threadOrigin : $root.E2E.BotMetricsThreadEntryPoint[message.threadOrigin] : message.threadOrigin;
             return object;
         };
 
@@ -91330,6 +92020,24 @@ $root.E2E = (function() {
     })();
 
     /**
+     * BotMetricsThreadEntryPoint enum.
+     * @name E2E.BotMetricsThreadEntryPoint
+     * @enum {number}
+     * @property {number} AI_TAB_THREAD=1 AI_TAB_THREAD value
+     * @property {number} AI_HOME_THREAD=2 AI_HOME_THREAD value
+     * @property {number} AI_DEEPLINK_IMMERSIVE_THREAD=3 AI_DEEPLINK_IMMERSIVE_THREAD value
+     * @property {number} AI_DEEPLINK_THREAD=4 AI_DEEPLINK_THREAD value
+     */
+    E2E.BotMetricsThreadEntryPoint = (function() {
+        var valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[1] = "AI_TAB_THREAD"] = 1;
+        values[valuesById[2] = "AI_HOME_THREAD"] = 2;
+        values[valuesById[3] = "AI_DEEPLINK_IMMERSIVE_THREAD"] = 3;
+        values[valuesById[4] = "AI_DEEPLINK_THREAD"] = 4;
+        return values;
+    })();
+
+    /**
      * BotMetricsEntryPoint enum.
      * @name E2E.BotMetricsEntryPoint
      * @enum {number}
@@ -91350,6 +92058,10 @@ $root.E2E = (function() {
      * @property {number} FORWARD=15 FORWARD value
      * @property {number} APP_SHORTCUT=16 APP_SHORTCUT value
      * @property {number} FF_FAMILY=17 FF_FAMILY value
+     * @property {number} AI_TAB=18 AI_TAB value
+     * @property {number} AI_HOME=19 AI_HOME value
+     * @property {number} AI_DEEPLINK_IMMERSIVE=20 AI_DEEPLINK_IMMERSIVE value
+     * @property {number} AI_DEEPLINK=21 AI_DEEPLINK value
      */
     E2E.BotMetricsEntryPoint = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -91370,6 +92082,10 @@ $root.E2E = (function() {
         values[valuesById[15] = "FORWARD"] = 15;
         values[valuesById[16] = "APP_SHORTCUT"] = 16;
         values[valuesById[17] = "FF_FAMILY"] = 17;
+        values[valuesById[18] = "AI_TAB"] = 18;
+        values[valuesById[19] = "AI_HOME"] = 19;
+        values[valuesById[20] = "AI_DEEPLINK_IMMERSIVE"] = 20;
+        values[valuesById[21] = "AI_DEEPLINK"] = 21;
         return values;
     })();
 

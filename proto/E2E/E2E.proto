@@ -284,6 +284,25 @@ message BotMetadata {
     optional BotRenderingMetadata renderingMetadata = 16;
     optional BotMetricsMetadata botMetricsMetadata = 17;
     optional BotLinkedAccountsMetadata botLinkedAccountsMetadata = 18;
+    optional BotSourcesMetadata richResponseSourcesMetadata = 19;
+}
+
+message BotSourcesMetadata {
+    repeated BotSourceItem sources = 1;
+    message BotSourceItem {
+        optional SourceProvider provider = 1;
+        optional string thumbnailCdnUrl = 2;
+        optional string sourceProviderUrl = 3;
+        optional string sourceQuery = 4;
+        optional string faviconCdnUrl = 5;
+        optional uint32 citationNumber = 6;
+        enum SourceProvider {
+            UNKNOWN = 0;
+            BING = 1;
+            GOOGLE = 2;
+            SUPPORT = 3;
+        }
+    }
 }
 
 message BotImagineMetadata {
@@ -426,6 +445,7 @@ message BotSessionMetadata {
 message BotMetricsMetadata {
     optional string destinationId = 1;
     optional BotMetricsEntryPoint destinationEntryPoint = 2;
+    optional BotMetricsThreadEntryPoint threadOrigin = 3;
 }
 
 message BotRenderingMetadata {
@@ -2055,6 +2075,13 @@ enum BotSessionSource {
     VOICE = 6;
 }
 
+enum BotMetricsThreadEntryPoint {
+    AI_TAB_THREAD = 1;
+    AI_HOME_THREAD = 2;
+    AI_DEEPLINK_IMMERSIVE_THREAD = 3;
+    AI_DEEPLINK_THREAD = 4;
+}
+
 enum BotMetricsEntryPoint {
     FAVICON = 1;
     CHATLIST = 2;
@@ -2073,4 +2100,8 @@ enum BotMetricsEntryPoint {
     FORWARD = 15;
     APP_SHORTCUT = 16;
     FF_FAMILY = 17;
+    AI_TAB = 18;
+    AI_HOME = 19;
+    AI_DEEPLINK_IMMERSIVE = 20;
+    AI_DEEPLINK = 21;
 }
