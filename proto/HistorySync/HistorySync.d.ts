@@ -1614,6 +1614,9 @@ export namespace HistorySync {
 
         /** Conversation limitSharing */
         limitSharing?: (boolean|null);
+
+        /** Conversation limitSharingSettingTimestamp */
+        limitSharingSettingTimestamp?: (number|Long|null);
     }
 
     /** Represents a Conversation. */
@@ -1774,6 +1777,9 @@ export namespace HistorySync {
 
         /** Conversation limitSharing. */
         public limitSharing: boolean;
+
+        /** Conversation limitSharingSettingTimestamp. */
+        public limitSharingSettingTimestamp: (number|Long);
 
         /**
          * Creates a new Conversation instance using the specified properties.
@@ -9751,7 +9757,8 @@ export namespace E2E {
             STATUS_ADD_YOURS = 8,
             STATUS_NOTIFICATION = 9,
             HD_IMAGE_DUAL_UPLOAD = 10,
-            STICKER_ANNOTATION = 11
+            STICKER_ANNOTATION = 11,
+            MOTION_PHOTO = 12
         }
     }
 

@@ -3845,6 +3845,7 @@ $root.HistorySync = (function() {
          * @property {boolean|null} [capiCreatedGroup] Conversation capiCreatedGroup
          * @property {string|null} [accountLid] Conversation accountLid
          * @property {boolean|null} [limitSharing] Conversation limitSharing
+         * @property {number|Long|null} [limitSharingSettingTimestamp] Conversation limitSharingSettingTimestamp
          */
 
         /**
@@ -4265,6 +4266,14 @@ $root.HistorySync = (function() {
         Conversation.prototype.limitSharing = false;
 
         /**
+         * Conversation limitSharingSettingTimestamp.
+         * @member {number|Long} limitSharingSettingTimestamp
+         * @memberof HistorySync.Conversation
+         * @instance
+         */
+        Conversation.prototype.limitSharingSettingTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
          * Creates a new Conversation instance using the specified properties.
          * @function create
          * @memberof HistorySync.Conversation
@@ -4389,6 +4398,8 @@ $root.HistorySync = (function() {
                 writer.uint32(/* id 49, wireType 2 =*/394).string(message.accountLid);
             if (message.limitSharing != null && Object.hasOwnProperty.call(message, "limitSharing"))
                 writer.uint32(/* id 50, wireType 0 =*/400).bool(message.limitSharing);
+            if (message.limitSharingSettingTimestamp != null && Object.hasOwnProperty.call(message, "limitSharingSettingTimestamp"))
+                writer.uint32(/* id 51, wireType 0 =*/408).int64(message.limitSharingSettingTimestamp);
             return writer;
         };
 
@@ -4627,6 +4638,10 @@ $root.HistorySync = (function() {
                         message.limitSharing = reader.bool();
                         break;
                     }
+                case 51: {
+                        message.limitSharingSettingTimestamp = reader.int64();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -4847,6 +4862,9 @@ $root.HistorySync = (function() {
             if (message.limitSharing != null && message.hasOwnProperty("limitSharing"))
                 if (typeof message.limitSharing !== "boolean")
                     return "limitSharing: boolean expected";
+            if (message.limitSharingSettingTimestamp != null && message.hasOwnProperty("limitSharingSettingTimestamp"))
+                if (!$util.isInteger(message.limitSharingSettingTimestamp) && !(message.limitSharingSettingTimestamp && $util.isInteger(message.limitSharingSettingTimestamp.low) && $util.isInteger(message.limitSharingSettingTimestamp.high)))
+                    return "limitSharingSettingTimestamp: integer|Long expected";
             return null;
         };
 
@@ -5093,6 +5111,15 @@ $root.HistorySync = (function() {
                 message.accountLid = String(object.accountLid);
             if (object.limitSharing != null)
                 message.limitSharing = Boolean(object.limitSharing);
+            if (object.limitSharingSettingTimestamp != null)
+                if ($util.Long)
+                    (message.limitSharingSettingTimestamp = $util.Long.fromValue(object.limitSharingSettingTimestamp)).unsigned = false;
+                else if (typeof object.limitSharingSettingTimestamp === "string")
+                    message.limitSharingSettingTimestamp = parseInt(object.limitSharingSettingTimestamp, 10);
+                else if (typeof object.limitSharingSettingTimestamp === "number")
+                    message.limitSharingSettingTimestamp = object.limitSharingSettingTimestamp;
+                else if (typeof object.limitSharingSettingTimestamp === "object")
+                    message.limitSharingSettingTimestamp = new $util.LongBits(object.limitSharingSettingTimestamp.low >>> 0, object.limitSharingSettingTimestamp.high >>> 0).toNumber();
             return message;
         };
 
@@ -5202,6 +5229,11 @@ $root.HistorySync = (function() {
                 object.capiCreatedGroup = false;
                 object.accountLid = "";
                 object.limitSharing = false;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.limitSharingSettingTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.limitSharingSettingTimestamp = options.longs === String ? "0" : 0;
             }
             if (message.id != null && message.hasOwnProperty("id"))
                 object.id = message.id;
@@ -5330,6 +5362,11 @@ $root.HistorySync = (function() {
                 object.accountLid = message.accountLid;
             if (message.limitSharing != null && message.hasOwnProperty("limitSharing"))
                 object.limitSharing = message.limitSharing;
+            if (message.limitSharingSettingTimestamp != null && message.hasOwnProperty("limitSharingSettingTimestamp"))
+                if (typeof message.limitSharingSettingTimestamp === "number")
+                    object.limitSharingSettingTimestamp = options.longs === String ? String(message.limitSharingSettingTimestamp) : message.limitSharingSettingTimestamp;
+                else
+                    object.limitSharingSettingTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.limitSharingSettingTimestamp) : options.longs === Number ? new $util.LongBits(message.limitSharingSettingTimestamp.low >>> 0, message.limitSharingSettingTimestamp.high >>> 0).toNumber() : message.limitSharingSettingTimestamp;
             return object;
         };
 
@@ -29477,6 +29514,7 @@ $root.E2E = (function() {
                 case 9:
                 case 10:
                 case 11:
+                case 12:
                     break;
                 }
             if (message.parentMessageKey != null && message.hasOwnProperty("parentMessageKey")) {
@@ -29556,6 +29594,10 @@ $root.E2E = (function() {
             case "STICKER_ANNOTATION":
             case 11:
                 message.associationType = 11;
+                break;
+            case "MOTION_PHOTO":
+            case 12:
+                message.associationType = 12;
                 break;
             }
             if (object.parentMessageKey != null) {
@@ -29637,6 +29679,7 @@ $root.E2E = (function() {
          * @property {number} STATUS_NOTIFICATION=9 STATUS_NOTIFICATION value
          * @property {number} HD_IMAGE_DUAL_UPLOAD=10 HD_IMAGE_DUAL_UPLOAD value
          * @property {number} STICKER_ANNOTATION=11 STICKER_ANNOTATION value
+         * @property {number} MOTION_PHOTO=12 MOTION_PHOTO value
          */
         MessageAssociation.AssociationType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -29652,6 +29695,7 @@ $root.E2E = (function() {
             values[valuesById[9] = "STATUS_NOTIFICATION"] = 9;
             values[valuesById[10] = "HD_IMAGE_DUAL_UPLOAD"] = 10;
             values[valuesById[11] = "STICKER_ANNOTATION"] = 11;
+            values[valuesById[12] = "MOTION_PHOTO"] = 12;
             return values;
         })();
 

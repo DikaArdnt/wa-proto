@@ -22133,6 +22133,7 @@ $root.E2E = (function() {
                 case 9:
                 case 10:
                 case 11:
+                case 12:
                     break;
                 }
             if (message.parentMessageKey != null && message.hasOwnProperty("parentMessageKey")) {
@@ -22212,6 +22213,10 @@ $root.E2E = (function() {
             case "STICKER_ANNOTATION":
             case 11:
                 message.associationType = 11;
+                break;
+            case "MOTION_PHOTO":
+            case 12:
+                message.associationType = 12;
                 break;
             }
             if (object.parentMessageKey != null) {
@@ -22293,6 +22298,7 @@ $root.E2E = (function() {
          * @property {number} STATUS_NOTIFICATION=9 STATUS_NOTIFICATION value
          * @property {number} HD_IMAGE_DUAL_UPLOAD=10 HD_IMAGE_DUAL_UPLOAD value
          * @property {number} STICKER_ANNOTATION=11 STICKER_ANNOTATION value
+         * @property {number} MOTION_PHOTO=12 MOTION_PHOTO value
          */
         MessageAssociation.AssociationType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -22308,6 +22314,7 @@ $root.E2E = (function() {
             values[valuesById[9] = "STATUS_NOTIFICATION"] = 9;
             values[valuesById[10] = "HD_IMAGE_DUAL_UPLOAD"] = 10;
             values[valuesById[11] = "STICKER_ANNOTATION"] = 11;
+            values[valuesById[12] = "MOTION_PHOTO"] = 12;
             return values;
         })();
 

@@ -3561,7 +3561,8 @@ export namespace E2E {
             STATUS_ADD_YOURS = 8,
             STATUS_NOTIFICATION = 9,
             HD_IMAGE_DUAL_UPLOAD = 10,
-            STICKER_ANNOTATION = 11
+            STICKER_ANNOTATION = 11,
+            MOTION_PHOTO = 12
         }
     }
 
