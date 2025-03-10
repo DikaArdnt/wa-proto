@@ -24566,11 +24566,11 @@ $root.E2E = (function() {
              * @memberof E2E.BotProgressIndicatorMetadata
              * @interface IBotPlanningStepMetadata
              * @property {string|null} [statusTitle] BotPlanningStepMetadata statusTitle
-             * @property {string|null} [statusBody] BotPlanningStepMetadata statusBody
              * @property {Array.<E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourcesMetadata>|null} [sourcesMetadata] BotPlanningStepMetadata sourcesMetadata
              * @property {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.PlanningStepStatus|null} [status] BotPlanningStepMetadata status
              * @property {boolean|null} [isReasoning] BotPlanningStepMetadata isReasoning
              * @property {boolean|null} [isEnhancedSearch] BotPlanningStepMetadata isEnhancedSearch
+             * @property {Array.<E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningStepSectionMetadata>|null} [sections] BotPlanningStepMetadata sections
              */
 
             /**
@@ -24583,6 +24583,7 @@ $root.E2E = (function() {
              */
             function BotPlanningStepMetadata(properties) {
                 this.sourcesMetadata = [];
+                this.sections = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -24596,14 +24597,6 @@ $root.E2E = (function() {
              * @instance
              */
             BotPlanningStepMetadata.prototype.statusTitle = "";
-
-            /**
-             * BotPlanningStepMetadata statusBody.
-             * @member {string} statusBody
-             * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
-             * @instance
-             */
-            BotPlanningStepMetadata.prototype.statusBody = "";
 
             /**
              * BotPlanningStepMetadata sourcesMetadata.
@@ -24638,6 +24631,14 @@ $root.E2E = (function() {
             BotPlanningStepMetadata.prototype.isEnhancedSearch = false;
 
             /**
+             * BotPlanningStepMetadata sections.
+             * @member {Array.<E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningStepSectionMetadata>} sections
+             * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @instance
+             */
+            BotPlanningStepMetadata.prototype.sections = $util.emptyArray;
+
+            /**
              * Creates a new BotPlanningStepMetadata instance using the specified properties.
              * @function create
              * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
@@ -24663,8 +24664,6 @@ $root.E2E = (function() {
                     writer = $Writer.create();
                 if (message.statusTitle != null && Object.hasOwnProperty.call(message, "statusTitle"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.statusTitle);
-                if (message.statusBody != null && Object.hasOwnProperty.call(message, "statusBody"))
-                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.statusBody);
                 if (message.sourcesMetadata != null && message.sourcesMetadata.length)
                     for (var i = 0; i < message.sourcesMetadata.length; ++i)
                         $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.encode(message.sourcesMetadata[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
@@ -24674,6 +24673,9 @@ $root.E2E = (function() {
                     writer.uint32(/* id 5, wireType 0 =*/40).bool(message.isReasoning);
                 if (message.isEnhancedSearch != null && Object.hasOwnProperty.call(message, "isEnhancedSearch"))
                     writer.uint32(/* id 6, wireType 0 =*/48).bool(message.isEnhancedSearch);
+                if (message.sections != null && message.sections.length)
+                    for (var i = 0; i < message.sections.length; ++i)
+                        $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata.encode(message.sections[i], writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
                 return writer;
             };
 
@@ -24712,10 +24714,6 @@ $root.E2E = (function() {
                             message.statusTitle = reader.string();
                             break;
                         }
-                    case 2: {
-                            message.statusBody = reader.string();
-                            break;
-                        }
                     case 3: {
                             if (!(message.sourcesMetadata && message.sourcesMetadata.length))
                                 message.sourcesMetadata = [];
@@ -24732,6 +24730,12 @@ $root.E2E = (function() {
                         }
                     case 6: {
                             message.isEnhancedSearch = reader.bool();
+                            break;
+                        }
+                    case 7: {
+                            if (!(message.sections && message.sections.length))
+                                message.sections = [];
+                            message.sections.push($root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata.decode(reader, reader.uint32()));
                             break;
                         }
                     default:
@@ -24772,9 +24776,6 @@ $root.E2E = (function() {
                 if (message.statusTitle != null && message.hasOwnProperty("statusTitle"))
                     if (!$util.isString(message.statusTitle))
                         return "statusTitle: string expected";
-                if (message.statusBody != null && message.hasOwnProperty("statusBody"))
-                    if (!$util.isString(message.statusBody))
-                        return "statusBody: string expected";
                 if (message.sourcesMetadata != null && message.hasOwnProperty("sourcesMetadata")) {
                     if (!Array.isArray(message.sourcesMetadata))
                         return "sourcesMetadata: array expected";
@@ -24800,6 +24801,15 @@ $root.E2E = (function() {
                 if (message.isEnhancedSearch != null && message.hasOwnProperty("isEnhancedSearch"))
                     if (typeof message.isEnhancedSearch !== "boolean")
                         return "isEnhancedSearch: boolean expected";
+                if (message.sections != null && message.hasOwnProperty("sections")) {
+                    if (!Array.isArray(message.sections))
+                        return "sections: array expected";
+                    for (var i = 0; i < message.sections.length; ++i) {
+                        var error = $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata.verify(message.sections[i]);
+                        if (error)
+                            return "sections." + error;
+                    }
+                }
                 return null;
             };
 
@@ -24817,8 +24827,6 @@ $root.E2E = (function() {
                 var message = new $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata();
                 if (object.statusTitle != null)
                     message.statusTitle = String(object.statusTitle);
-                if (object.statusBody != null)
-                    message.statusBody = String(object.statusBody);
                 if (object.sourcesMetadata) {
                     if (!Array.isArray(object.sourcesMetadata))
                         throw TypeError(".E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.sourcesMetadata: array expected");
@@ -24857,6 +24865,16 @@ $root.E2E = (function() {
                     message.isReasoning = Boolean(object.isReasoning);
                 if (object.isEnhancedSearch != null)
                     message.isEnhancedSearch = Boolean(object.isEnhancedSearch);
+                if (object.sections) {
+                    if (!Array.isArray(object.sections))
+                        throw TypeError(".E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.sections: array expected");
+                    message.sections = [];
+                    for (var i = 0; i < object.sections.length; ++i) {
+                        if (typeof object.sections[i] !== "object")
+                            throw TypeError(".E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.sections: object expected");
+                        message.sections[i] = $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata.fromObject(object.sections[i]);
+                    }
+                }
                 return message;
             };
 
@@ -24873,19 +24891,18 @@ $root.E2E = (function() {
                 if (!options)
                     options = {};
                 var object = {};
-                if (options.arrays || options.defaults)
+                if (options.arrays || options.defaults) {
                     object.sourcesMetadata = [];
+                    object.sections = [];
+                }
                 if (options.defaults) {
                     object.statusTitle = "";
-                    object.statusBody = "";
                     object.status = options.enums === String ? "UNKNOWN" : 0;
                     object.isReasoning = false;
                     object.isEnhancedSearch = false;
                 }
                 if (message.statusTitle != null && message.hasOwnProperty("statusTitle"))
                     object.statusTitle = message.statusTitle;
-                if (message.statusBody != null && message.hasOwnProperty("statusBody"))
-                    object.statusBody = message.statusBody;
                 if (message.sourcesMetadata && message.sourcesMetadata.length) {
                     object.sourcesMetadata = [];
                     for (var j = 0; j < message.sourcesMetadata.length; ++j)
@@ -24897,6 +24914,11 @@ $root.E2E = (function() {
                     object.isReasoning = message.isReasoning;
                 if (message.isEnhancedSearch != null && message.hasOwnProperty("isEnhancedSearch"))
                     object.isEnhancedSearch = message.isEnhancedSearch;
+                if (message.sections && message.sections.length) {
+                    object.sections = [];
+                    for (var j = 0; j < message.sections.length; ++j)
+                        object.sections[j] = $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata.toObject(message.sections[j], options);
+                }
                 return object;
             };
 
@@ -24925,6 +24947,308 @@ $root.E2E = (function() {
                 }
                 return typeUrlPrefix + "/E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata";
             };
+
+            BotPlanningStepMetadata.BotPlanningSearchSourceMetadata = (function() {
+
+                /**
+                 * Properties of a BotPlanningSearchSourceMetadata.
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+                 * @interface IBotPlanningSearchSourceMetadata
+                 * @property {string|null} [title] BotPlanningSearchSourceMetadata title
+                 * @property {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotSearchSourceProvider|null} [provider] BotPlanningSearchSourceMetadata provider
+                 * @property {string|null} [sourceUrl] BotPlanningSearchSourceMetadata sourceUrl
+                 * @property {string|null} [favIconUrl] BotPlanningSearchSourceMetadata favIconUrl
+                 */
+
+                /**
+                 * Constructs a new BotPlanningSearchSourceMetadata.
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+                 * @classdesc Represents a BotPlanningSearchSourceMetadata.
+                 * @implements IBotPlanningSearchSourceMetadata
+                 * @constructor
+                 * @param {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourceMetadata=} [properties] Properties to set
+                 */
+                function BotPlanningSearchSourceMetadata(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * BotPlanningSearchSourceMetadata title.
+                 * @member {string} title
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata
+                 * @instance
+                 */
+                BotPlanningSearchSourceMetadata.prototype.title = "";
+
+                /**
+                 * BotPlanningSearchSourceMetadata provider.
+                 * @member {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotSearchSourceProvider} provider
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata
+                 * @instance
+                 */
+                BotPlanningSearchSourceMetadata.prototype.provider = 0;
+
+                /**
+                 * BotPlanningSearchSourceMetadata sourceUrl.
+                 * @member {string} sourceUrl
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata
+                 * @instance
+                 */
+                BotPlanningSearchSourceMetadata.prototype.sourceUrl = "";
+
+                /**
+                 * BotPlanningSearchSourceMetadata favIconUrl.
+                 * @member {string} favIconUrl
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata
+                 * @instance
+                 */
+                BotPlanningSearchSourceMetadata.prototype.favIconUrl = "";
+
+                /**
+                 * Creates a new BotPlanningSearchSourceMetadata instance using the specified properties.
+                 * @function create
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata
+                 * @static
+                 * @param {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourceMetadata=} [properties] Properties to set
+                 * @returns {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata} BotPlanningSearchSourceMetadata instance
+                 */
+                BotPlanningSearchSourceMetadata.create = function create(properties) {
+                    return new BotPlanningSearchSourceMetadata(properties);
+                };
+
+                /**
+                 * Encodes the specified BotPlanningSearchSourceMetadata message. Does not implicitly {@link E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata.verify|verify} messages.
+                 * @function encode
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata
+                 * @static
+                 * @param {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourceMetadata} message BotPlanningSearchSourceMetadata message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                BotPlanningSearchSourceMetadata.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.title != null && Object.hasOwnProperty.call(message, "title"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.title);
+                    if (message.provider != null && Object.hasOwnProperty.call(message, "provider"))
+                        writer.uint32(/* id 2, wireType 0 =*/16).int32(message.provider);
+                    if (message.sourceUrl != null && Object.hasOwnProperty.call(message, "sourceUrl"))
+                        writer.uint32(/* id 3, wireType 2 =*/26).string(message.sourceUrl);
+                    if (message.favIconUrl != null && Object.hasOwnProperty.call(message, "favIconUrl"))
+                        writer.uint32(/* id 4, wireType 2 =*/34).string(message.favIconUrl);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified BotPlanningSearchSourceMetadata message, length delimited. Does not implicitly {@link E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata
+                 * @static
+                 * @param {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourceMetadata} message BotPlanningSearchSourceMetadata message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                BotPlanningSearchSourceMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a BotPlanningSearchSourceMetadata message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata} BotPlanningSearchSourceMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                BotPlanningSearchSourceMetadata.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.title = reader.string();
+                                break;
+                            }
+                        case 2: {
+                                message.provider = reader.int32();
+                                break;
+                            }
+                        case 3: {
+                                message.sourceUrl = reader.string();
+                                break;
+                            }
+                        case 4: {
+                                message.favIconUrl = reader.string();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a BotPlanningSearchSourceMetadata message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata} BotPlanningSearchSourceMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                BotPlanningSearchSourceMetadata.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a BotPlanningSearchSourceMetadata message.
+                 * @function verify
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                BotPlanningSearchSourceMetadata.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.title != null && message.hasOwnProperty("title"))
+                        if (!$util.isString(message.title))
+                            return "title: string expected";
+                    if (message.provider != null && message.hasOwnProperty("provider"))
+                        switch (message.provider) {
+                        default:
+                            return "provider: enum value expected";
+                        case 0:
+                        case 1:
+                        case 2:
+                        case 3:
+                            break;
+                        }
+                    if (message.sourceUrl != null && message.hasOwnProperty("sourceUrl"))
+                        if (!$util.isString(message.sourceUrl))
+                            return "sourceUrl: string expected";
+                    if (message.favIconUrl != null && message.hasOwnProperty("favIconUrl"))
+                        if (!$util.isString(message.favIconUrl))
+                            return "favIconUrl: string expected";
+                    return null;
+                };
+
+                /**
+                 * Creates a BotPlanningSearchSourceMetadata message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata} BotPlanningSearchSourceMetadata
+                 */
+                BotPlanningSearchSourceMetadata.fromObject = function fromObject(object) {
+                    if (object instanceof $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata)
+                        return object;
+                    var message = new $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata();
+                    if (object.title != null)
+                        message.title = String(object.title);
+                    switch (object.provider) {
+                    default:
+                        if (typeof object.provider === "number") {
+                            message.provider = object.provider;
+                            break;
+                        }
+                        break;
+                    case "UNKNOWNPROVIDER":
+                    case 0:
+                        message.provider = 0;
+                        break;
+                    case "OTHER":
+                    case 1:
+                        message.provider = 1;
+                        break;
+                    case "GOOGLE":
+                    case 2:
+                        message.provider = 2;
+                        break;
+                    case "BING":
+                    case 3:
+                        message.provider = 3;
+                        break;
+                    }
+                    if (object.sourceUrl != null)
+                        message.sourceUrl = String(object.sourceUrl);
+                    if (object.favIconUrl != null)
+                        message.favIconUrl = String(object.favIconUrl);
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a BotPlanningSearchSourceMetadata message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata
+                 * @static
+                 * @param {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata} message BotPlanningSearchSourceMetadata
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                BotPlanningSearchSourceMetadata.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        object.title = "";
+                        object.provider = options.enums === String ? "UNKNOWNPROVIDER" : 0;
+                        object.sourceUrl = "";
+                        object.favIconUrl = "";
+                    }
+                    if (message.title != null && message.hasOwnProperty("title"))
+                        object.title = message.title;
+                    if (message.provider != null && message.hasOwnProperty("provider"))
+                        object.provider = options.enums === String ? $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotSearchSourceProvider[message.provider] === undefined ? message.provider : $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotSearchSourceProvider[message.provider] : message.provider;
+                    if (message.sourceUrl != null && message.hasOwnProperty("sourceUrl"))
+                        object.sourceUrl = message.sourceUrl;
+                    if (message.favIconUrl != null && message.hasOwnProperty("favIconUrl"))
+                        object.favIconUrl = message.favIconUrl;
+                    return object;
+                };
+
+                /**
+                 * Converts this BotPlanningSearchSourceMetadata to JSON.
+                 * @function toJSON
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                BotPlanningSearchSourceMetadata.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for BotPlanningSearchSourceMetadata
+                 * @function getTypeUrl
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                BotPlanningSearchSourceMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata";
+                };
+
+                return BotPlanningSearchSourceMetadata;
+            })();
 
             BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata = (function() {
 
@@ -25221,6 +25545,296 @@ $root.E2E = (function() {
                 })();
 
                 return BotPlanningSearchSourcesMetadata;
+            })();
+
+            BotPlanningStepMetadata.BotPlanningStepSectionMetadata = (function() {
+
+                /**
+                 * Properties of a BotPlanningStepSectionMetadata.
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+                 * @interface IBotPlanningStepSectionMetadata
+                 * @property {string|null} [sectionTitle] BotPlanningStepSectionMetadata sectionTitle
+                 * @property {string|null} [sectionBody] BotPlanningStepSectionMetadata sectionBody
+                 * @property {Array.<E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourceMetadata>|null} [sourcesMetadata] BotPlanningStepSectionMetadata sourcesMetadata
+                 */
+
+                /**
+                 * Constructs a new BotPlanningStepSectionMetadata.
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+                 * @classdesc Represents a BotPlanningStepSectionMetadata.
+                 * @implements IBotPlanningStepSectionMetadata
+                 * @constructor
+                 * @param {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningStepSectionMetadata=} [properties] Properties to set
+                 */
+                function BotPlanningStepSectionMetadata(properties) {
+                    this.sourcesMetadata = [];
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * BotPlanningStepSectionMetadata sectionTitle.
+                 * @member {string} sectionTitle
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata
+                 * @instance
+                 */
+                BotPlanningStepSectionMetadata.prototype.sectionTitle = "";
+
+                /**
+                 * BotPlanningStepSectionMetadata sectionBody.
+                 * @member {string} sectionBody
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata
+                 * @instance
+                 */
+                BotPlanningStepSectionMetadata.prototype.sectionBody = "";
+
+                /**
+                 * BotPlanningStepSectionMetadata sourcesMetadata.
+                 * @member {Array.<E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourceMetadata>} sourcesMetadata
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata
+                 * @instance
+                 */
+                BotPlanningStepSectionMetadata.prototype.sourcesMetadata = $util.emptyArray;
+
+                /**
+                 * Creates a new BotPlanningStepSectionMetadata instance using the specified properties.
+                 * @function create
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata
+                 * @static
+                 * @param {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningStepSectionMetadata=} [properties] Properties to set
+                 * @returns {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata} BotPlanningStepSectionMetadata instance
+                 */
+                BotPlanningStepSectionMetadata.create = function create(properties) {
+                    return new BotPlanningStepSectionMetadata(properties);
+                };
+
+                /**
+                 * Encodes the specified BotPlanningStepSectionMetadata message. Does not implicitly {@link E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata.verify|verify} messages.
+                 * @function encode
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata
+                 * @static
+                 * @param {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningStepSectionMetadata} message BotPlanningStepSectionMetadata message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                BotPlanningStepSectionMetadata.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.sectionTitle != null && Object.hasOwnProperty.call(message, "sectionTitle"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.sectionTitle);
+                    if (message.sectionBody != null && Object.hasOwnProperty.call(message, "sectionBody"))
+                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.sectionBody);
+                    if (message.sourcesMetadata != null && message.sourcesMetadata.length)
+                        for (var i = 0; i < message.sourcesMetadata.length; ++i)
+                            $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata.encode(message.sourcesMetadata[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified BotPlanningStepSectionMetadata message, length delimited. Does not implicitly {@link E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata
+                 * @static
+                 * @param {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningStepSectionMetadata} message BotPlanningStepSectionMetadata message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                BotPlanningStepSectionMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a BotPlanningStepSectionMetadata message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata} BotPlanningStepSectionMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                BotPlanningStepSectionMetadata.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.sectionTitle = reader.string();
+                                break;
+                            }
+                        case 2: {
+                                message.sectionBody = reader.string();
+                                break;
+                            }
+                        case 3: {
+                                if (!(message.sourcesMetadata && message.sourcesMetadata.length))
+                                    message.sourcesMetadata = [];
+                                message.sourcesMetadata.push($root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata.decode(reader, reader.uint32()));
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a BotPlanningStepSectionMetadata message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata} BotPlanningStepSectionMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                BotPlanningStepSectionMetadata.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a BotPlanningStepSectionMetadata message.
+                 * @function verify
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                BotPlanningStepSectionMetadata.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.sectionTitle != null && message.hasOwnProperty("sectionTitle"))
+                        if (!$util.isString(message.sectionTitle))
+                            return "sectionTitle: string expected";
+                    if (message.sectionBody != null && message.hasOwnProperty("sectionBody"))
+                        if (!$util.isString(message.sectionBody))
+                            return "sectionBody: string expected";
+                    if (message.sourcesMetadata != null && message.hasOwnProperty("sourcesMetadata")) {
+                        if (!Array.isArray(message.sourcesMetadata))
+                            return "sourcesMetadata: array expected";
+                        for (var i = 0; i < message.sourcesMetadata.length; ++i) {
+                            var error = $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata.verify(message.sourcesMetadata[i]);
+                            if (error)
+                                return "sourcesMetadata." + error;
+                        }
+                    }
+                    return null;
+                };
+
+                /**
+                 * Creates a BotPlanningStepSectionMetadata message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata} BotPlanningStepSectionMetadata
+                 */
+                BotPlanningStepSectionMetadata.fromObject = function fromObject(object) {
+                    if (object instanceof $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata)
+                        return object;
+                    var message = new $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata();
+                    if (object.sectionTitle != null)
+                        message.sectionTitle = String(object.sectionTitle);
+                    if (object.sectionBody != null)
+                        message.sectionBody = String(object.sectionBody);
+                    if (object.sourcesMetadata) {
+                        if (!Array.isArray(object.sourcesMetadata))
+                            throw TypeError(".E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata.sourcesMetadata: array expected");
+                        message.sourcesMetadata = [];
+                        for (var i = 0; i < object.sourcesMetadata.length; ++i) {
+                            if (typeof object.sourcesMetadata[i] !== "object")
+                                throw TypeError(".E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata.sourcesMetadata: object expected");
+                            message.sourcesMetadata[i] = $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata.fromObject(object.sourcesMetadata[i]);
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a BotPlanningStepSectionMetadata message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata
+                 * @static
+                 * @param {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata} message BotPlanningStepSectionMetadata
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                BotPlanningStepSectionMetadata.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.arrays || options.defaults)
+                        object.sourcesMetadata = [];
+                    if (options.defaults) {
+                        object.sectionTitle = "";
+                        object.sectionBody = "";
+                    }
+                    if (message.sectionTitle != null && message.hasOwnProperty("sectionTitle"))
+                        object.sectionTitle = message.sectionTitle;
+                    if (message.sectionBody != null && message.hasOwnProperty("sectionBody"))
+                        object.sectionBody = message.sectionBody;
+                    if (message.sourcesMetadata && message.sourcesMetadata.length) {
+                        object.sourcesMetadata = [];
+                        for (var j = 0; j < message.sourcesMetadata.length; ++j)
+                            object.sourcesMetadata[j] = $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata.toObject(message.sourcesMetadata[j], options);
+                    }
+                    return object;
+                };
+
+                /**
+                 * Converts this BotPlanningStepSectionMetadata to JSON.
+                 * @function toJSON
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                BotPlanningStepSectionMetadata.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for BotPlanningStepSectionMetadata
+                 * @function getTypeUrl
+                 * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                BotPlanningStepSectionMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata";
+                };
+
+                return BotPlanningStepSectionMetadata;
+            })();
+
+            /**
+             * BotSearchSourceProvider enum.
+             * @name E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotSearchSourceProvider
+             * @enum {number}
+             * @property {number} UNKNOWNPROVIDER=0 UNKNOWNPROVIDER value
+             * @property {number} OTHER=1 OTHER value
+             * @property {number} GOOGLE=2 GOOGLE value
+             * @property {number} BING=3 BING value
+             */
+            BotPlanningStepMetadata.BotSearchSourceProvider = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "UNKNOWNPROVIDER"] = 0;
+                values[valuesById[1] = "OTHER"] = 1;
+                values[valuesById[2] = "GOOGLE"] = 2;
+                values[valuesById[3] = "BING"] = 3;
+                return values;
             })();
 
             /**

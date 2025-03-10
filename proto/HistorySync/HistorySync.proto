@@ -104,6 +104,13 @@ message HistorySyncMsg {
     optional uint64 msgOrderId = 2;
 }
 
+message Account {
+    optional string lid = 1;
+    optional string username = 2;
+    optional string countryCode = 3;
+    optional bool isUsernameDeleted = 4;
+}
+
 message PhoneNumberToLIDMapping {
     optional string pnJid = 1;
     optional string lidJid = 2;
@@ -185,6 +192,7 @@ message HistorySync {
     repeated PhoneNumberToLIDMapping phoneNumberToLidMappings = 15;
     optional string companionMetaNonce = 16;
     optional bytes shareableChatIdentifierEncryptionKey = 17;
+    repeated Account accounts = 18;
     enum BotAIWaitListState {
         IN_WAITLIST = 0;
         AI_AVAILABLE = 1;

@@ -1359,6 +1359,121 @@ export namespace HistorySync {
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
+    /** Properties of an Account. */
+    interface IAccount {
+
+        /** Account lid */
+        lid?: (string|null);
+
+        /** Account username */
+        username?: (string|null);
+
+        /** Account countryCode */
+        countryCode?: (string|null);
+
+        /** Account isUsernameDeleted */
+        isUsernameDeleted?: (boolean|null);
+    }
+
+    /** Represents an Account. */
+    class Account implements IAccount {
+
+        /**
+         * Constructs a new Account.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: HistorySync.IAccount);
+
+        /** Account lid. */
+        public lid: string;
+
+        /** Account username. */
+        public username: string;
+
+        /** Account countryCode. */
+        public countryCode: string;
+
+        /** Account isUsernameDeleted. */
+        public isUsernameDeleted: boolean;
+
+        /**
+         * Creates a new Account instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Account instance
+         */
+        public static create(properties?: HistorySync.IAccount): HistorySync.Account;
+
+        /**
+         * Encodes the specified Account message. Does not implicitly {@link HistorySync.Account.verify|verify} messages.
+         * @param message Account message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: HistorySync.IAccount, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Account message, length delimited. Does not implicitly {@link HistorySync.Account.verify|verify} messages.
+         * @param message Account message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: HistorySync.IAccount, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an Account message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Account
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): HistorySync.Account;
+
+        /**
+         * Decodes an Account message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Account
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): HistorySync.Account;
+
+        /**
+         * Verifies an Account message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an Account message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Account
+         */
+        public static fromObject(object: { [k: string]: any }): HistorySync.Account;
+
+        /**
+         * Creates a plain object from an Account message. Also converts values to other types if specified.
+         * @param message Account
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: HistorySync.Account, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this Account to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for Account
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
     /** Properties of a PhoneNumberToLIDMapping. */
     interface IPhoneNumberToLIDMapping {
 
@@ -1919,6 +2034,9 @@ export namespace HistorySync {
 
         /** HistorySync shareableChatIdentifierEncryptionKey */
         shareableChatIdentifierEncryptionKey?: (Uint8Array|null);
+
+        /** HistorySync accounts */
+        accounts?: (HistorySync.IAccount[]|null);
     }
 
     /** Represents a HistorySync. */
@@ -1977,6 +2095,9 @@ export namespace HistorySync {
 
         /** HistorySync shareableChatIdentifierEncryptionKey. */
         public shareableChatIdentifierEncryptionKey: Uint8Array;
+
+        /** HistorySync accounts. */
+        public accounts: HistorySync.IAccount[];
 
         /**
          * Creates a new HistorySync instance using the specified properties.
@@ -10559,9 +10680,6 @@ export namespace E2E {
             /** BotPlanningStepMetadata statusTitle */
             statusTitle?: (string|null);
 
-            /** BotPlanningStepMetadata statusBody */
-            statusBody?: (string|null);
-
             /** BotPlanningStepMetadata sourcesMetadata */
             sourcesMetadata?: (E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourcesMetadata[]|null);
 
@@ -10573,6 +10691,9 @@ export namespace E2E {
 
             /** BotPlanningStepMetadata isEnhancedSearch */
             isEnhancedSearch?: (boolean|null);
+
+            /** BotPlanningStepMetadata sections */
+            sections?: (E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningStepSectionMetadata[]|null);
         }
 
         /** Represents a BotPlanningStepMetadata. */
@@ -10587,9 +10708,6 @@ export namespace E2E {
             /** BotPlanningStepMetadata statusTitle. */
             public statusTitle: string;
 
-            /** BotPlanningStepMetadata statusBody. */
-            public statusBody: string;
-
             /** BotPlanningStepMetadata sourcesMetadata. */
             public sourcesMetadata: E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourcesMetadata[];
 
@@ -10601,6 +10719,9 @@ export namespace E2E {
 
             /** BotPlanningStepMetadata isEnhancedSearch. */
             public isEnhancedSearch: boolean;
+
+            /** BotPlanningStepMetadata sections. */
+            public sections: E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningStepSectionMetadata[];
 
             /**
              * Creates a new BotPlanningStepMetadata instance using the specified properties.
@@ -10681,6 +10802,121 @@ export namespace E2E {
         }
 
         namespace BotPlanningStepMetadata {
+
+            /** Properties of a BotPlanningSearchSourceMetadata. */
+            interface IBotPlanningSearchSourceMetadata {
+
+                /** BotPlanningSearchSourceMetadata title */
+                title?: (string|null);
+
+                /** BotPlanningSearchSourceMetadata provider */
+                provider?: (E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotSearchSourceProvider|null);
+
+                /** BotPlanningSearchSourceMetadata sourceUrl */
+                sourceUrl?: (string|null);
+
+                /** BotPlanningSearchSourceMetadata favIconUrl */
+                favIconUrl?: (string|null);
+            }
+
+            /** Represents a BotPlanningSearchSourceMetadata. */
+            class BotPlanningSearchSourceMetadata implements IBotPlanningSearchSourceMetadata {
+
+                /**
+                 * Constructs a new BotPlanningSearchSourceMetadata.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourceMetadata);
+
+                /** BotPlanningSearchSourceMetadata title. */
+                public title: string;
+
+                /** BotPlanningSearchSourceMetadata provider. */
+                public provider: E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotSearchSourceProvider;
+
+                /** BotPlanningSearchSourceMetadata sourceUrl. */
+                public sourceUrl: string;
+
+                /** BotPlanningSearchSourceMetadata favIconUrl. */
+                public favIconUrl: string;
+
+                /**
+                 * Creates a new BotPlanningSearchSourceMetadata instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns BotPlanningSearchSourceMetadata instance
+                 */
+                public static create(properties?: E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourceMetadata): E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata;
+
+                /**
+                 * Encodes the specified BotPlanningSearchSourceMetadata message. Does not implicitly {@link E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata.verify|verify} messages.
+                 * @param message BotPlanningSearchSourceMetadata message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourceMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified BotPlanningSearchSourceMetadata message, length delimited. Does not implicitly {@link E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata.verify|verify} messages.
+                 * @param message BotPlanningSearchSourceMetadata message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourceMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a BotPlanningSearchSourceMetadata message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns BotPlanningSearchSourceMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata;
+
+                /**
+                 * Decodes a BotPlanningSearchSourceMetadata message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns BotPlanningSearchSourceMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata;
+
+                /**
+                 * Verifies a BotPlanningSearchSourceMetadata message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a BotPlanningSearchSourceMetadata message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns BotPlanningSearchSourceMetadata
+                 */
+                public static fromObject(object: { [k: string]: any }): E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata;
+
+                /**
+                 * Creates a plain object from a BotPlanningSearchSourceMetadata message. Also converts values to other types if specified.
+                 * @param message BotPlanningSearchSourceMetadata
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this BotPlanningSearchSourceMetadata to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for BotPlanningSearchSourceMetadata
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
 
             /** Properties of a BotPlanningSearchSourcesMetadata. */
             interface IBotPlanningSearchSourcesMetadata {
@@ -10800,6 +11036,123 @@ export namespace E2E {
                     GOOGLE = 2,
                     BING = 3
                 }
+            }
+
+            /** Properties of a BotPlanningStepSectionMetadata. */
+            interface IBotPlanningStepSectionMetadata {
+
+                /** BotPlanningStepSectionMetadata sectionTitle */
+                sectionTitle?: (string|null);
+
+                /** BotPlanningStepSectionMetadata sectionBody */
+                sectionBody?: (string|null);
+
+                /** BotPlanningStepSectionMetadata sourcesMetadata */
+                sourcesMetadata?: (E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourceMetadata[]|null);
+            }
+
+            /** Represents a BotPlanningStepSectionMetadata. */
+            class BotPlanningStepSectionMetadata implements IBotPlanningStepSectionMetadata {
+
+                /**
+                 * Constructs a new BotPlanningStepSectionMetadata.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningStepSectionMetadata);
+
+                /** BotPlanningStepSectionMetadata sectionTitle. */
+                public sectionTitle: string;
+
+                /** BotPlanningStepSectionMetadata sectionBody. */
+                public sectionBody: string;
+
+                /** BotPlanningStepSectionMetadata sourcesMetadata. */
+                public sourcesMetadata: E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourceMetadata[];
+
+                /**
+                 * Creates a new BotPlanningStepSectionMetadata instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns BotPlanningStepSectionMetadata instance
+                 */
+                public static create(properties?: E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningStepSectionMetadata): E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata;
+
+                /**
+                 * Encodes the specified BotPlanningStepSectionMetadata message. Does not implicitly {@link E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata.verify|verify} messages.
+                 * @param message BotPlanningStepSectionMetadata message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningStepSectionMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified BotPlanningStepSectionMetadata message, length delimited. Does not implicitly {@link E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata.verify|verify} messages.
+                 * @param message BotPlanningStepSectionMetadata message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningStepSectionMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a BotPlanningStepSectionMetadata message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns BotPlanningStepSectionMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata;
+
+                /**
+                 * Decodes a BotPlanningStepSectionMetadata message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns BotPlanningStepSectionMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata;
+
+                /**
+                 * Verifies a BotPlanningStepSectionMetadata message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a BotPlanningStepSectionMetadata message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns BotPlanningStepSectionMetadata
+                 */
+                public static fromObject(object: { [k: string]: any }): E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata;
+
+                /**
+                 * Creates a plain object from a BotPlanningStepSectionMetadata message. Also converts values to other types if specified.
+                 * @param message BotPlanningStepSectionMetadata
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this BotPlanningStepSectionMetadata to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for BotPlanningStepSectionMetadata
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            /** BotSearchSourceProvider enum. */
+            enum BotSearchSourceProvider {
+                UNKNOWNPROVIDER = 0,
+                OTHER = 1,
+                GOOGLE = 2,
+                BING = 3
             }
 
             /** PlanningStepStatus enum. */
