@@ -52,6 +52,7 @@ $root.Wa6 = (function() {
          * @property {number|null} [memClass] ClientPayload memClass
          * @property {Wa6.ClientPayload.IInteropData|null} [interopData] ClientPayload interopData
          * @property {Wa6.ClientPayload.TrafficAnonymization|null} [trafficAnonymization] ClientPayload trafficAnonymization
+         * @property {boolean|null} [lidDbMigrated] ClientPayload lidDbMigrated
          */
 
         /**
@@ -295,6 +296,14 @@ $root.Wa6 = (function() {
         ClientPayload.prototype.trafficAnonymization = 0;
 
         /**
+         * ClientPayload lidDbMigrated.
+         * @member {boolean} lidDbMigrated
+         * @memberof Wa6.ClientPayload
+         * @instance
+         */
+        ClientPayload.prototype.lidDbMigrated = false;
+
+        /**
          * Creates a new ClientPayload instance using the specified properties.
          * @function create
          * @memberof Wa6.ClientPayload
@@ -375,6 +384,8 @@ $root.Wa6 = (function() {
                 $root.Wa6.ClientPayload.InteropData.encode(message.interopData, writer.uint32(/* id 38, wireType 2 =*/306).fork()).ldelim();
             if (message.trafficAnonymization != null && Object.hasOwnProperty.call(message, "trafficAnonymization"))
                 writer.uint32(/* id 40, wireType 0 =*/320).int32(message.trafficAnonymization);
+            if (message.lidDbMigrated != null && Object.hasOwnProperty.call(message, "lidDbMigrated"))
+                writer.uint32(/* id 41, wireType 0 =*/328).bool(message.lidDbMigrated);
             return writer;
         };
 
@@ -526,6 +537,10 @@ $root.Wa6 = (function() {
                     }
                 case 40: {
                         message.trafficAnonymization = reader.int32();
+                        break;
+                    }
+                case 41: {
+                        message.lidDbMigrated = reader.bool();
                         break;
                     }
                 default:
@@ -707,6 +722,9 @@ $root.Wa6 = (function() {
                 case 1:
                     break;
                 }
+            if (message.lidDbMigrated != null && message.hasOwnProperty("lidDbMigrated"))
+                if (typeof message.lidDbMigrated !== "boolean")
+                    return "lidDbMigrated: boolean expected";
             return null;
         };
 
@@ -978,6 +996,8 @@ $root.Wa6 = (function() {
                 message.trafficAnonymization = 1;
                 break;
             }
+            if (object.lidDbMigrated != null)
+                message.lidDbMigrated = Boolean(object.lidDbMigrated);
             return message;
         };
 
@@ -1056,6 +1076,7 @@ $root.Wa6 = (function() {
                 object.memClass = 0;
                 object.interopData = null;
                 object.trafficAnonymization = options.enums === String ? "OFF" : 0;
+                object.lidDbMigrated = false;
             }
             if (message.username != null && message.hasOwnProperty("username"))
                 if (typeof message.username === "number")
@@ -1122,6 +1143,8 @@ $root.Wa6 = (function() {
                 object.interopData = $root.Wa6.ClientPayload.InteropData.toObject(message.interopData, options);
             if (message.trafficAnonymization != null && message.hasOwnProperty("trafficAnonymization"))
                 object.trafficAnonymization = options.enums === String ? $root.Wa6.ClientPayload.TrafficAnonymization[message.trafficAnonymization] === undefined ? message.trafficAnonymization : $root.Wa6.ClientPayload.TrafficAnonymization[message.trafficAnonymization] : message.trafficAnonymization;
+            if (message.lidDbMigrated != null && message.hasOwnProperty("lidDbMigrated"))
+                object.lidDbMigrated = message.lidDbMigrated;
             return object;
         };
 

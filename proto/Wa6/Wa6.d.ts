@@ -89,6 +89,9 @@ export namespace Wa6 {
 
         /** ClientPayload trafficAnonymization */
         trafficAnonymization?: (Wa6.ClientPayload.TrafficAnonymization|null);
+
+        /** ClientPayload lidDbMigrated */
+        lidDbMigrated?: (boolean|null);
     }
 
     /** Represents a ClientPayload. */
@@ -183,6 +186,9 @@ export namespace Wa6 {
 
         /** ClientPayload trafficAnonymization. */
         public trafficAnonymization: Wa6.ClientPayload.TrafficAnonymization;
+
+        /** ClientPayload lidDbMigrated. */
+        public lidDbMigrated: boolean;
 
         /**
          * Creates a new ClientPayload instance using the specified properties.

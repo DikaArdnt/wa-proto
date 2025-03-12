@@ -30,6 +30,7 @@ message ClientPayload {
     optional int32 memClass = 37;
     optional InteropData interopData = 38;
     optional TrafficAnonymization trafficAnonymization = 40;
+    optional bool lidDbMigrated = 41;
     enum ConnectReason {
         PUSH = 0;
         USER_ACTIVATED = 1;

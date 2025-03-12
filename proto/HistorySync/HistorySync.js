@@ -32264,6 +32264,7 @@ $root.E2E = (function() {
              * @memberof E2E.BotProgressIndicatorMetadata
              * @interface IBotPlanningStepMetadata
              * @property {string|null} [statusTitle] BotPlanningStepMetadata statusTitle
+             * @property {string|null} [statusBody] BotPlanningStepMetadata statusBody
              * @property {Array.<E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.IBotPlanningSearchSourcesMetadata>|null} [sourcesMetadata] BotPlanningStepMetadata sourcesMetadata
              * @property {E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.PlanningStepStatus|null} [status] BotPlanningStepMetadata status
              * @property {boolean|null} [isReasoning] BotPlanningStepMetadata isReasoning
@@ -32295,6 +32296,14 @@ $root.E2E = (function() {
              * @instance
              */
             BotPlanningStepMetadata.prototype.statusTitle = "";
+
+            /**
+             * BotPlanningStepMetadata statusBody.
+             * @member {string} statusBody
+             * @memberof E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata
+             * @instance
+             */
+            BotPlanningStepMetadata.prototype.statusBody = "";
 
             /**
              * BotPlanningStepMetadata sourcesMetadata.
@@ -32362,6 +32371,8 @@ $root.E2E = (function() {
                     writer = $Writer.create();
                 if (message.statusTitle != null && Object.hasOwnProperty.call(message, "statusTitle"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.statusTitle);
+                if (message.statusBody != null && Object.hasOwnProperty.call(message, "statusBody"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.statusBody);
                 if (message.sourcesMetadata != null && message.sourcesMetadata.length)
                     for (var i = 0; i < message.sourcesMetadata.length; ++i)
                         $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.encode(message.sourcesMetadata[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
@@ -32410,6 +32421,10 @@ $root.E2E = (function() {
                     switch (tag >>> 3) {
                     case 1: {
                             message.statusTitle = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.statusBody = reader.string();
                             break;
                         }
                     case 3: {
@@ -32474,6 +32489,9 @@ $root.E2E = (function() {
                 if (message.statusTitle != null && message.hasOwnProperty("statusTitle"))
                     if (!$util.isString(message.statusTitle))
                         return "statusTitle: string expected";
+                if (message.statusBody != null && message.hasOwnProperty("statusBody"))
+                    if (!$util.isString(message.statusBody))
+                        return "statusBody: string expected";
                 if (message.sourcesMetadata != null && message.hasOwnProperty("sourcesMetadata")) {
                     if (!Array.isArray(message.sourcesMetadata))
                         return "sourcesMetadata: array expected";
@@ -32525,6 +32543,8 @@ $root.E2E = (function() {
                 var message = new $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata();
                 if (object.statusTitle != null)
                     message.statusTitle = String(object.statusTitle);
+                if (object.statusBody != null)
+                    message.statusBody = String(object.statusBody);
                 if (object.sourcesMetadata) {
                     if (!Array.isArray(object.sourcesMetadata))
                         throw TypeError(".E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.sourcesMetadata: array expected");
@@ -32595,12 +32615,15 @@ $root.E2E = (function() {
                 }
                 if (options.defaults) {
                     object.statusTitle = "";
+                    object.statusBody = "";
                     object.status = options.enums === String ? "UNKNOWN" : 0;
                     object.isReasoning = false;
                     object.isEnhancedSearch = false;
                 }
                 if (message.statusTitle != null && message.hasOwnProperty("statusTitle"))
                     object.statusTitle = message.statusTitle;
+                if (message.statusBody != null && message.hasOwnProperty("statusBody"))
+                    object.statusBody = message.statusBody;
                 if (message.sourcesMetadata && message.sourcesMetadata.length) {
                     object.sourcesMetadata = [];
                     for (var j = 0; j < message.sourcesMetadata.length; ++j)
@@ -32865,7 +32888,7 @@ $root.E2E = (function() {
                             break;
                         }
                         break;
-                    case "UNKNOWNPROVIDER":
+                    case "UNKNOWN_PROVIDER":
                     case 0:
                         message.provider = 0;
                         break;
@@ -32904,7 +32927,7 @@ $root.E2E = (function() {
                     var object = {};
                     if (options.defaults) {
                         object.title = "";
-                        object.provider = options.enums === String ? "UNKNOWNPROVIDER" : 0;
+                        object.provider = options.enums === String ? "UNKNOWN_PROVIDER" : 0;
                         object.sourceUrl = "";
                         object.favIconUrl = "";
                     }
@@ -33521,14 +33544,14 @@ $root.E2E = (function() {
              * BotSearchSourceProvider enum.
              * @name E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotSearchSourceProvider
              * @enum {number}
-             * @property {number} UNKNOWNPROVIDER=0 UNKNOWNPROVIDER value
+             * @property {number} UNKNOWN_PROVIDER=0 UNKNOWN_PROVIDER value
              * @property {number} OTHER=1 OTHER value
              * @property {number} GOOGLE=2 GOOGLE value
              * @property {number} BING=3 BING value
              */
             BotPlanningStepMetadata.BotSearchSourceProvider = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
-                values[valuesById[0] = "UNKNOWNPROVIDER"] = 0;
+                values[valuesById[0] = "UNKNOWN_PROVIDER"] = 0;
                 values[valuesById[1] = "OTHER"] = 1;
                 values[valuesById[2] = "GOOGLE"] = 2;
                 values[valuesById[3] = "BING"] = 3;
@@ -48307,6 +48330,7 @@ $root.E2E = (function() {
          * @property {E2E.Message.IFutureProofMessage|null} [groupStatusMessage] Message groupStatusMessage
          * @property {E2E.IAIRichResponseMessage|null} [richResponseMessage] Message richResponseMessage
          * @property {E2E.Message.IStatusNotificationMessage|null} [statusNotificationMessage] Message statusNotificationMessage
+         * @property {E2E.Message.IFutureProofMessage|null} [limitSharingMessage] Message limitSharingMessage
          */
 
         /**
@@ -48981,6 +49005,14 @@ $root.E2E = (function() {
         Message.prototype.statusNotificationMessage = null;
 
         /**
+         * Message limitSharingMessage.
+         * @member {E2E.Message.IFutureProofMessage|null|undefined} limitSharingMessage
+         * @memberof E2E.Message
+         * @instance
+         */
+        Message.prototype.limitSharingMessage = null;
+
+        /**
          * Creates a new Message instance using the specified properties.
          * @function create
          * @memberof E2E.Message
@@ -49168,6 +49200,8 @@ $root.E2E = (function() {
                 $root.E2E.AIRichResponseMessage.encode(message.richResponseMessage, writer.uint32(/* id 97, wireType 2 =*/778).fork()).ldelim();
             if (message.statusNotificationMessage != null && Object.hasOwnProperty.call(message, "statusNotificationMessage"))
                 $root.E2E.Message.StatusNotificationMessage.encode(message.statusNotificationMessage, writer.uint32(/* id 98, wireType 2 =*/786).fork()).ldelim();
+            if (message.limitSharingMessage != null && Object.hasOwnProperty.call(message, "limitSharingMessage"))
+                $root.E2E.Message.FutureProofMessage.encode(message.limitSharingMessage, writer.uint32(/* id 99, wireType 2 =*/794).fork()).ldelim();
             return writer;
         };
 
@@ -49528,6 +49562,10 @@ $root.E2E = (function() {
                     }
                 case 98: {
                         message.statusNotificationMessage = $root.E2E.Message.StatusNotificationMessage.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 99: {
+                        message.limitSharingMessage = $root.E2E.Message.FutureProofMessage.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -49973,6 +50011,11 @@ $root.E2E = (function() {
                 if (error)
                     return "statusNotificationMessage." + error;
             }
+            if (message.limitSharingMessage != null && message.hasOwnProperty("limitSharingMessage")) {
+                var error = $root.E2E.Message.FutureProofMessage.verify(message.limitSharingMessage);
+                if (error)
+                    return "limitSharingMessage." + error;
+            }
             return null;
         };
 
@@ -50395,6 +50438,11 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.Message.statusNotificationMessage: object expected");
                 message.statusNotificationMessage = $root.E2E.Message.StatusNotificationMessage.fromObject(object.statusNotificationMessage);
             }
+            if (object.limitSharingMessage != null) {
+                if (typeof object.limitSharingMessage !== "object")
+                    throw TypeError(".E2E.Message.limitSharingMessage: object expected");
+                message.limitSharingMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.limitSharingMessage);
+            }
             return message;
         };
 
@@ -50494,6 +50542,7 @@ $root.E2E = (function() {
                 object.groupStatusMessage = null;
                 object.richResponseMessage = null;
                 object.statusNotificationMessage = null;
+                object.limitSharingMessage = null;
             }
             if (message.conversation != null && message.hasOwnProperty("conversation"))
                 object.conversation = message.conversation;
@@ -50659,6 +50708,8 @@ $root.E2E = (function() {
                 object.richResponseMessage = $root.E2E.AIRichResponseMessage.toObject(message.richResponseMessage, options);
             if (message.statusNotificationMessage != null && message.hasOwnProperty("statusNotificationMessage"))
                 object.statusNotificationMessage = $root.E2E.Message.StatusNotificationMessage.toObject(message.statusNotificationMessage, options);
+            if (message.limitSharingMessage != null && message.hasOwnProperty("limitSharingMessage"))
+                object.limitSharingMessage = $root.E2E.Message.FutureProofMessage.toObject(message.limitSharingMessage, options);
             return object;
         };
 
@@ -61185,6 +61236,7 @@ $root.E2E = (function() {
              * @property {number|null} [videoHeight] ExtendedTextMessage videoHeight
              * @property {number|null} [videoWidth] ExtendedTextMessage videoWidth
              * @property {E2E.Message.IMMSThumbnailMetadata|null} [faviconMMSMetadata] ExtendedTextMessage faviconMMSMetadata
+             * @property {E2E.Message.ExtendedTextMessage.ILinkPreviewMetadata|null} [linkPreviewMetadata] ExtendedTextMessage linkPreviewMetadata
              */
 
             /**
@@ -61411,6 +61463,14 @@ $root.E2E = (function() {
             ExtendedTextMessage.prototype.faviconMMSMetadata = null;
 
             /**
+             * ExtendedTextMessage linkPreviewMetadata.
+             * @member {E2E.Message.ExtendedTextMessage.ILinkPreviewMetadata|null|undefined} linkPreviewMetadata
+             * @memberof E2E.Message.ExtendedTextMessage
+             * @instance
+             */
+            ExtendedTextMessage.prototype.linkPreviewMetadata = null;
+
+            /**
              * Creates a new ExtendedTextMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.ExtendedTextMessage
@@ -61486,6 +61546,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 32, wireType 0 =*/256).uint32(message.videoWidth);
                 if (message.faviconMMSMetadata != null && Object.hasOwnProperty.call(message, "faviconMMSMetadata"))
                     $root.E2E.Message.MMSThumbnailMetadata.encode(message.faviconMMSMetadata, writer.uint32(/* id 33, wireType 2 =*/266).fork()).ldelim();
+                if (message.linkPreviewMetadata != null && Object.hasOwnProperty.call(message, "linkPreviewMetadata"))
+                    $root.E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.encode(message.linkPreviewMetadata, writer.uint32(/* id 34, wireType 2 =*/274).fork()).ldelim();
                 return writer;
             };
 
@@ -61622,6 +61684,10 @@ $root.E2E = (function() {
                         }
                     case 33: {
                             message.faviconMMSMetadata = $root.E2E.Message.MMSThumbnailMetadata.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 34: {
+                            message.linkPreviewMetadata = $root.E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -61774,6 +61840,11 @@ $root.E2E = (function() {
                     var error = $root.E2E.Message.MMSThumbnailMetadata.verify(message.faviconMMSMetadata);
                     if (error)
                         return "faviconMMSMetadata." + error;
+                }
+                if (message.linkPreviewMetadata != null && message.hasOwnProperty("linkPreviewMetadata")) {
+                    var error = $root.E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.verify(message.linkPreviewMetadata);
+                    if (error)
+                        return "linkPreviewMetadata." + error;
                 }
                 return null;
             };
@@ -61982,6 +62053,11 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.ExtendedTextMessage.faviconMMSMetadata: object expected");
                     message.faviconMMSMetadata = $root.E2E.Message.MMSThumbnailMetadata.fromObject(object.faviconMMSMetadata);
                 }
+                if (object.linkPreviewMetadata != null) {
+                    if (typeof object.linkPreviewMetadata !== "object")
+                        throw TypeError(".E2E.Message.ExtendedTextMessage.linkPreviewMetadata: object expected");
+                    message.linkPreviewMetadata = $root.E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.fromObject(object.linkPreviewMetadata);
+                }
                 return message;
             };
 
@@ -62059,6 +62135,7 @@ $root.E2E = (function() {
                     object.videoHeight = 0;
                     object.videoWidth = 0;
                     object.faviconMMSMetadata = null;
+                    object.linkPreviewMetadata = null;
                 }
                 if (message.text != null && message.hasOwnProperty("text"))
                     object.text = message.text;
@@ -62115,6 +62192,8 @@ $root.E2E = (function() {
                     object.videoWidth = message.videoWidth;
                 if (message.faviconMMSMetadata != null && message.hasOwnProperty("faviconMMSMetadata"))
                     object.faviconMMSMetadata = $root.E2E.Message.MMSThumbnailMetadata.toObject(message.faviconMMSMetadata, options);
+                if (message.linkPreviewMetadata != null && message.hasOwnProperty("linkPreviewMetadata"))
+                    object.linkPreviewMetadata = $root.E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.toObject(message.linkPreviewMetadata, options);
                 return object;
             };
 
@@ -62186,6 +62265,214 @@ $root.E2E = (function() {
                 values[valuesById[2] = "SUB"] = 2;
                 values[valuesById[3] = "DEFAULT_SUB"] = 3;
                 return values;
+            })();
+
+            ExtendedTextMessage.LinkPreviewMetadata = (function() {
+
+                /**
+                 * Properties of a LinkPreviewMetadata.
+                 * @memberof E2E.Message.ExtendedTextMessage
+                 * @interface ILinkPreviewMetadata
+                 * @property {E2E.Message.IPaymentLinkMetadata|null} [paymentLinkMetadata] LinkPreviewMetadata paymentLinkMetadata
+                 */
+
+                /**
+                 * Constructs a new LinkPreviewMetadata.
+                 * @memberof E2E.Message.ExtendedTextMessage
+                 * @classdesc Represents a LinkPreviewMetadata.
+                 * @implements ILinkPreviewMetadata
+                 * @constructor
+                 * @param {E2E.Message.ExtendedTextMessage.ILinkPreviewMetadata=} [properties] Properties to set
+                 */
+                function LinkPreviewMetadata(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * LinkPreviewMetadata paymentLinkMetadata.
+                 * @member {E2E.Message.IPaymentLinkMetadata|null|undefined} paymentLinkMetadata
+                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
+                 * @instance
+                 */
+                LinkPreviewMetadata.prototype.paymentLinkMetadata = null;
+
+                /**
+                 * Creates a new LinkPreviewMetadata instance using the specified properties.
+                 * @function create
+                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
+                 * @static
+                 * @param {E2E.Message.ExtendedTextMessage.ILinkPreviewMetadata=} [properties] Properties to set
+                 * @returns {E2E.Message.ExtendedTextMessage.LinkPreviewMetadata} LinkPreviewMetadata instance
+                 */
+                LinkPreviewMetadata.create = function create(properties) {
+                    return new LinkPreviewMetadata(properties);
+                };
+
+                /**
+                 * Encodes the specified LinkPreviewMetadata message. Does not implicitly {@link E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.verify|verify} messages.
+                 * @function encode
+                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
+                 * @static
+                 * @param {E2E.Message.ExtendedTextMessage.ILinkPreviewMetadata} message LinkPreviewMetadata message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                LinkPreviewMetadata.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.paymentLinkMetadata != null && Object.hasOwnProperty.call(message, "paymentLinkMetadata"))
+                        $root.E2E.Message.PaymentLinkMetadata.encode(message.paymentLinkMetadata, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified LinkPreviewMetadata message, length delimited. Does not implicitly {@link E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
+                 * @static
+                 * @param {E2E.Message.ExtendedTextMessage.ILinkPreviewMetadata} message LinkPreviewMetadata message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                LinkPreviewMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a LinkPreviewMetadata message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {E2E.Message.ExtendedTextMessage.LinkPreviewMetadata} LinkPreviewMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                LinkPreviewMetadata.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ExtendedTextMessage.LinkPreviewMetadata();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.decode(reader, reader.uint32());
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a LinkPreviewMetadata message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {E2E.Message.ExtendedTextMessage.LinkPreviewMetadata} LinkPreviewMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                LinkPreviewMetadata.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a LinkPreviewMetadata message.
+                 * @function verify
+                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                LinkPreviewMetadata.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.paymentLinkMetadata != null && message.hasOwnProperty("paymentLinkMetadata")) {
+                        var error = $root.E2E.Message.PaymentLinkMetadata.verify(message.paymentLinkMetadata);
+                        if (error)
+                            return "paymentLinkMetadata." + error;
+                    }
+                    return null;
+                };
+
+                /**
+                 * Creates a LinkPreviewMetadata message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {E2E.Message.ExtendedTextMessage.LinkPreviewMetadata} LinkPreviewMetadata
+                 */
+                LinkPreviewMetadata.fromObject = function fromObject(object) {
+                    if (object instanceof $root.E2E.Message.ExtendedTextMessage.LinkPreviewMetadata)
+                        return object;
+                    var message = new $root.E2E.Message.ExtendedTextMessage.LinkPreviewMetadata();
+                    if (object.paymentLinkMetadata != null) {
+                        if (typeof object.paymentLinkMetadata !== "object")
+                            throw TypeError(".E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.paymentLinkMetadata: object expected");
+                        message.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.fromObject(object.paymentLinkMetadata);
+                    }
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a LinkPreviewMetadata message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
+                 * @static
+                 * @param {E2E.Message.ExtendedTextMessage.LinkPreviewMetadata} message LinkPreviewMetadata
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                LinkPreviewMetadata.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults)
+                        object.paymentLinkMetadata = null;
+                    if (message.paymentLinkMetadata != null && message.hasOwnProperty("paymentLinkMetadata"))
+                        object.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.toObject(message.paymentLinkMetadata, options);
+                    return object;
+                };
+
+                /**
+                 * Converts this LinkPreviewMetadata to JSON.
+                 * @function toJSON
+                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                LinkPreviewMetadata.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for LinkPreviewMetadata
+                 * @function getTypeUrl
+                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                LinkPreviewMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/E2E.Message.ExtendedTextMessage.LinkPreviewMetadata";
+                };
+
+                return LinkPreviewMetadata;
             })();
 
             /**
@@ -76487,6 +76774,682 @@ $root.E2E = (function() {
             })();
 
             return PaymentInviteMessage;
+        })();
+
+        Message.PaymentLinkMetadata = (function() {
+
+            /**
+             * Properties of a PaymentLinkMetadata.
+             * @memberof E2E.Message
+             * @interface IPaymentLinkMetadata
+             * @property {E2E.Message.PaymentLinkMetadata.IPaymentLinkButton|null} [button] PaymentLinkMetadata button
+             * @property {E2E.Message.PaymentLinkMetadata.IPaymentLinkHeader|null} [header] PaymentLinkMetadata header
+             */
+
+            /**
+             * Constructs a new PaymentLinkMetadata.
+             * @memberof E2E.Message
+             * @classdesc Represents a PaymentLinkMetadata.
+             * @implements IPaymentLinkMetadata
+             * @constructor
+             * @param {E2E.Message.IPaymentLinkMetadata=} [properties] Properties to set
+             */
+            function PaymentLinkMetadata(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * PaymentLinkMetadata button.
+             * @member {E2E.Message.PaymentLinkMetadata.IPaymentLinkButton|null|undefined} button
+             * @memberof E2E.Message.PaymentLinkMetadata
+             * @instance
+             */
+            PaymentLinkMetadata.prototype.button = null;
+
+            /**
+             * PaymentLinkMetadata header.
+             * @member {E2E.Message.PaymentLinkMetadata.IPaymentLinkHeader|null|undefined} header
+             * @memberof E2E.Message.PaymentLinkMetadata
+             * @instance
+             */
+            PaymentLinkMetadata.prototype.header = null;
+
+            /**
+             * Creates a new PaymentLinkMetadata instance using the specified properties.
+             * @function create
+             * @memberof E2E.Message.PaymentLinkMetadata
+             * @static
+             * @param {E2E.Message.IPaymentLinkMetadata=} [properties] Properties to set
+             * @returns {E2E.Message.PaymentLinkMetadata} PaymentLinkMetadata instance
+             */
+            PaymentLinkMetadata.create = function create(properties) {
+                return new PaymentLinkMetadata(properties);
+            };
+
+            /**
+             * Encodes the specified PaymentLinkMetadata message. Does not implicitly {@link E2E.Message.PaymentLinkMetadata.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.Message.PaymentLinkMetadata
+             * @static
+             * @param {E2E.Message.IPaymentLinkMetadata} message PaymentLinkMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PaymentLinkMetadata.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.button != null && Object.hasOwnProperty.call(message, "button"))
+                    $root.E2E.Message.PaymentLinkMetadata.PaymentLinkButton.encode(message.button, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.header != null && Object.hasOwnProperty.call(message, "header"))
+                    $root.E2E.Message.PaymentLinkMetadata.PaymentLinkHeader.encode(message.header, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                return writer;
+            };
+
+            /**
+             * Encodes the specified PaymentLinkMetadata message, length delimited. Does not implicitly {@link E2E.Message.PaymentLinkMetadata.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.Message.PaymentLinkMetadata
+             * @static
+             * @param {E2E.Message.IPaymentLinkMetadata} message PaymentLinkMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PaymentLinkMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a PaymentLinkMetadata message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.Message.PaymentLinkMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.Message.PaymentLinkMetadata} PaymentLinkMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PaymentLinkMetadata.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PaymentLinkMetadata();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.button = $root.E2E.Message.PaymentLinkMetadata.PaymentLinkButton.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 2: {
+                            message.header = $root.E2E.Message.PaymentLinkMetadata.PaymentLinkHeader.decode(reader, reader.uint32());
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a PaymentLinkMetadata message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.Message.PaymentLinkMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.Message.PaymentLinkMetadata} PaymentLinkMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PaymentLinkMetadata.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a PaymentLinkMetadata message.
+             * @function verify
+             * @memberof E2E.Message.PaymentLinkMetadata
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            PaymentLinkMetadata.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.button != null && message.hasOwnProperty("button")) {
+                    var error = $root.E2E.Message.PaymentLinkMetadata.PaymentLinkButton.verify(message.button);
+                    if (error)
+                        return "button." + error;
+                }
+                if (message.header != null && message.hasOwnProperty("header")) {
+                    var error = $root.E2E.Message.PaymentLinkMetadata.PaymentLinkHeader.verify(message.header);
+                    if (error)
+                        return "header." + error;
+                }
+                return null;
+            };
+
+            /**
+             * Creates a PaymentLinkMetadata message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.Message.PaymentLinkMetadata
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.Message.PaymentLinkMetadata} PaymentLinkMetadata
+             */
+            PaymentLinkMetadata.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.Message.PaymentLinkMetadata)
+                    return object;
+                var message = new $root.E2E.Message.PaymentLinkMetadata();
+                if (object.button != null) {
+                    if (typeof object.button !== "object")
+                        throw TypeError(".E2E.Message.PaymentLinkMetadata.button: object expected");
+                    message.button = $root.E2E.Message.PaymentLinkMetadata.PaymentLinkButton.fromObject(object.button);
+                }
+                if (object.header != null) {
+                    if (typeof object.header !== "object")
+                        throw TypeError(".E2E.Message.PaymentLinkMetadata.header: object expected");
+                    message.header = $root.E2E.Message.PaymentLinkMetadata.PaymentLinkHeader.fromObject(object.header);
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a PaymentLinkMetadata message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.Message.PaymentLinkMetadata
+             * @static
+             * @param {E2E.Message.PaymentLinkMetadata} message PaymentLinkMetadata
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            PaymentLinkMetadata.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.button = null;
+                    object.header = null;
+                }
+                if (message.button != null && message.hasOwnProperty("button"))
+                    object.button = $root.E2E.Message.PaymentLinkMetadata.PaymentLinkButton.toObject(message.button, options);
+                if (message.header != null && message.hasOwnProperty("header"))
+                    object.header = $root.E2E.Message.PaymentLinkMetadata.PaymentLinkHeader.toObject(message.header, options);
+                return object;
+            };
+
+            /**
+             * Converts this PaymentLinkMetadata to JSON.
+             * @function toJSON
+             * @memberof E2E.Message.PaymentLinkMetadata
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            PaymentLinkMetadata.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for PaymentLinkMetadata
+             * @function getTypeUrl
+             * @memberof E2E.Message.PaymentLinkMetadata
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            PaymentLinkMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.Message.PaymentLinkMetadata";
+            };
+
+            PaymentLinkMetadata.PaymentLinkButton = (function() {
+
+                /**
+                 * Properties of a PaymentLinkButton.
+                 * @memberof E2E.Message.PaymentLinkMetadata
+                 * @interface IPaymentLinkButton
+                 * @property {string} displayText PaymentLinkButton displayText
+                 */
+
+                /**
+                 * Constructs a new PaymentLinkButton.
+                 * @memberof E2E.Message.PaymentLinkMetadata
+                 * @classdesc Represents a PaymentLinkButton.
+                 * @implements IPaymentLinkButton
+                 * @constructor
+                 * @param {E2E.Message.PaymentLinkMetadata.IPaymentLinkButton=} [properties] Properties to set
+                 */
+                function PaymentLinkButton(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * PaymentLinkButton displayText.
+                 * @member {string} displayText
+                 * @memberof E2E.Message.PaymentLinkMetadata.PaymentLinkButton
+                 * @instance
+                 */
+                PaymentLinkButton.prototype.displayText = "";
+
+                /**
+                 * Creates a new PaymentLinkButton instance using the specified properties.
+                 * @function create
+                 * @memberof E2E.Message.PaymentLinkMetadata.PaymentLinkButton
+                 * @static
+                 * @param {E2E.Message.PaymentLinkMetadata.IPaymentLinkButton=} [properties] Properties to set
+                 * @returns {E2E.Message.PaymentLinkMetadata.PaymentLinkButton} PaymentLinkButton instance
+                 */
+                PaymentLinkButton.create = function create(properties) {
+                    return new PaymentLinkButton(properties);
+                };
+
+                /**
+                 * Encodes the specified PaymentLinkButton message. Does not implicitly {@link E2E.Message.PaymentLinkMetadata.PaymentLinkButton.verify|verify} messages.
+                 * @function encode
+                 * @memberof E2E.Message.PaymentLinkMetadata.PaymentLinkButton
+                 * @static
+                 * @param {E2E.Message.PaymentLinkMetadata.IPaymentLinkButton} message PaymentLinkButton message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                PaymentLinkButton.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.displayText);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified PaymentLinkButton message, length delimited. Does not implicitly {@link E2E.Message.PaymentLinkMetadata.PaymentLinkButton.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof E2E.Message.PaymentLinkMetadata.PaymentLinkButton
+                 * @static
+                 * @param {E2E.Message.PaymentLinkMetadata.IPaymentLinkButton} message PaymentLinkButton message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                PaymentLinkButton.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a PaymentLinkButton message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof E2E.Message.PaymentLinkMetadata.PaymentLinkButton
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {E2E.Message.PaymentLinkMetadata.PaymentLinkButton} PaymentLinkButton
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                PaymentLinkButton.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PaymentLinkMetadata.PaymentLinkButton();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.displayText = reader.string();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    if (!message.hasOwnProperty("displayText"))
+                        throw $util.ProtocolError("missing required 'displayText'", { instance: message });
+                    return message;
+                };
+
+                /**
+                 * Decodes a PaymentLinkButton message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof E2E.Message.PaymentLinkMetadata.PaymentLinkButton
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {E2E.Message.PaymentLinkMetadata.PaymentLinkButton} PaymentLinkButton
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                PaymentLinkButton.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a PaymentLinkButton message.
+                 * @function verify
+                 * @memberof E2E.Message.PaymentLinkMetadata.PaymentLinkButton
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                PaymentLinkButton.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (!$util.isString(message.displayText))
+                        return "displayText: string expected";
+                    return null;
+                };
+
+                /**
+                 * Creates a PaymentLinkButton message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof E2E.Message.PaymentLinkMetadata.PaymentLinkButton
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {E2E.Message.PaymentLinkMetadata.PaymentLinkButton} PaymentLinkButton
+                 */
+                PaymentLinkButton.fromObject = function fromObject(object) {
+                    if (object instanceof $root.E2E.Message.PaymentLinkMetadata.PaymentLinkButton)
+                        return object;
+                    var message = new $root.E2E.Message.PaymentLinkMetadata.PaymentLinkButton();
+                    if (object.displayText != null)
+                        message.displayText = String(object.displayText);
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a PaymentLinkButton message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof E2E.Message.PaymentLinkMetadata.PaymentLinkButton
+                 * @static
+                 * @param {E2E.Message.PaymentLinkMetadata.PaymentLinkButton} message PaymentLinkButton
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                PaymentLinkButton.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults)
+                        object.displayText = "";
+                    if (message.displayText != null && message.hasOwnProperty("displayText"))
+                        object.displayText = message.displayText;
+                    return object;
+                };
+
+                /**
+                 * Converts this PaymentLinkButton to JSON.
+                 * @function toJSON
+                 * @memberof E2E.Message.PaymentLinkMetadata.PaymentLinkButton
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                PaymentLinkButton.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for PaymentLinkButton
+                 * @function getTypeUrl
+                 * @memberof E2E.Message.PaymentLinkMetadata.PaymentLinkButton
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                PaymentLinkButton.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/E2E.Message.PaymentLinkMetadata.PaymentLinkButton";
+                };
+
+                return PaymentLinkButton;
+            })();
+
+            PaymentLinkMetadata.PaymentLinkHeader = (function() {
+
+                /**
+                 * Properties of a PaymentLinkHeader.
+                 * @memberof E2E.Message.PaymentLinkMetadata
+                 * @interface IPaymentLinkHeader
+                 * @property {E2E.Message.PaymentLinkMetadata.PaymentLinkHeader.PaymentLinkHeaderType} headerType PaymentLinkHeader headerType
+                 */
+
+                /**
+                 * Constructs a new PaymentLinkHeader.
+                 * @memberof E2E.Message.PaymentLinkMetadata
+                 * @classdesc Represents a PaymentLinkHeader.
+                 * @implements IPaymentLinkHeader
+                 * @constructor
+                 * @param {E2E.Message.PaymentLinkMetadata.IPaymentLinkHeader=} [properties] Properties to set
+                 */
+                function PaymentLinkHeader(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * PaymentLinkHeader headerType.
+                 * @member {E2E.Message.PaymentLinkMetadata.PaymentLinkHeader.PaymentLinkHeaderType} headerType
+                 * @memberof E2E.Message.PaymentLinkMetadata.PaymentLinkHeader
+                 * @instance
+                 */
+                PaymentLinkHeader.prototype.headerType = 0;
+
+                /**
+                 * Creates a new PaymentLinkHeader instance using the specified properties.
+                 * @function create
+                 * @memberof E2E.Message.PaymentLinkMetadata.PaymentLinkHeader
+                 * @static
+                 * @param {E2E.Message.PaymentLinkMetadata.IPaymentLinkHeader=} [properties] Properties to set
+                 * @returns {E2E.Message.PaymentLinkMetadata.PaymentLinkHeader} PaymentLinkHeader instance
+                 */
+                PaymentLinkHeader.create = function create(properties) {
+                    return new PaymentLinkHeader(properties);
+                };
+
+                /**
+                 * Encodes the specified PaymentLinkHeader message. Does not implicitly {@link E2E.Message.PaymentLinkMetadata.PaymentLinkHeader.verify|verify} messages.
+                 * @function encode
+                 * @memberof E2E.Message.PaymentLinkMetadata.PaymentLinkHeader
+                 * @static
+                 * @param {E2E.Message.PaymentLinkMetadata.IPaymentLinkHeader} message PaymentLinkHeader message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                PaymentLinkHeader.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.headerType);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified PaymentLinkHeader message, length delimited. Does not implicitly {@link E2E.Message.PaymentLinkMetadata.PaymentLinkHeader.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof E2E.Message.PaymentLinkMetadata.PaymentLinkHeader
+                 * @static
+                 * @param {E2E.Message.PaymentLinkMetadata.IPaymentLinkHeader} message PaymentLinkHeader message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                PaymentLinkHeader.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a PaymentLinkHeader message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof E2E.Message.PaymentLinkMetadata.PaymentLinkHeader
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {E2E.Message.PaymentLinkMetadata.PaymentLinkHeader} PaymentLinkHeader
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                PaymentLinkHeader.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PaymentLinkMetadata.PaymentLinkHeader();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.headerType = reader.int32();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    if (!message.hasOwnProperty("headerType"))
+                        throw $util.ProtocolError("missing required 'headerType'", { instance: message });
+                    return message;
+                };
+
+                /**
+                 * Decodes a PaymentLinkHeader message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof E2E.Message.PaymentLinkMetadata.PaymentLinkHeader
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {E2E.Message.PaymentLinkMetadata.PaymentLinkHeader} PaymentLinkHeader
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                PaymentLinkHeader.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a PaymentLinkHeader message.
+                 * @function verify
+                 * @memberof E2E.Message.PaymentLinkMetadata.PaymentLinkHeader
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                PaymentLinkHeader.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    switch (message.headerType) {
+                    default:
+                        return "headerType: enum value expected";
+                    case 0:
+                    case 1:
+                        break;
+                    }
+                    return null;
+                };
+
+                /**
+                 * Creates a PaymentLinkHeader message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof E2E.Message.PaymentLinkMetadata.PaymentLinkHeader
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {E2E.Message.PaymentLinkMetadata.PaymentLinkHeader} PaymentLinkHeader
+                 */
+                PaymentLinkHeader.fromObject = function fromObject(object) {
+                    if (object instanceof $root.E2E.Message.PaymentLinkMetadata.PaymentLinkHeader)
+                        return object;
+                    var message = new $root.E2E.Message.PaymentLinkMetadata.PaymentLinkHeader();
+                    switch (object.headerType) {
+                    default:
+                        if (typeof object.headerType === "number") {
+                            message.headerType = object.headerType;
+                            break;
+                        }
+                        break;
+                    case "LINK_PREVIEW":
+                    case 0:
+                        message.headerType = 0;
+                        break;
+                    case "ORDER":
+                    case 1:
+                        message.headerType = 1;
+                        break;
+                    }
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a PaymentLinkHeader message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof E2E.Message.PaymentLinkMetadata.PaymentLinkHeader
+                 * @static
+                 * @param {E2E.Message.PaymentLinkMetadata.PaymentLinkHeader} message PaymentLinkHeader
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                PaymentLinkHeader.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults)
+                        object.headerType = options.enums === String ? "LINK_PREVIEW" : 0;
+                    if (message.headerType != null && message.hasOwnProperty("headerType"))
+                        object.headerType = options.enums === String ? $root.E2E.Message.PaymentLinkMetadata.PaymentLinkHeader.PaymentLinkHeaderType[message.headerType] === undefined ? message.headerType : $root.E2E.Message.PaymentLinkMetadata.PaymentLinkHeader.PaymentLinkHeaderType[message.headerType] : message.headerType;
+                    return object;
+                };
+
+                /**
+                 * Converts this PaymentLinkHeader to JSON.
+                 * @function toJSON
+                 * @memberof E2E.Message.PaymentLinkMetadata.PaymentLinkHeader
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                PaymentLinkHeader.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for PaymentLinkHeader
+                 * @function getTypeUrl
+                 * @memberof E2E.Message.PaymentLinkMetadata.PaymentLinkHeader
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                PaymentLinkHeader.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/E2E.Message.PaymentLinkMetadata.PaymentLinkHeader";
+                };
+
+                /**
+                 * PaymentLinkHeaderType enum.
+                 * @name E2E.Message.PaymentLinkMetadata.PaymentLinkHeader.PaymentLinkHeaderType
+                 * @enum {number}
+                 * @property {number} LINK_PREVIEW=0 LINK_PREVIEW value
+                 * @property {number} ORDER=1 ORDER value
+                 */
+                PaymentLinkHeader.PaymentLinkHeaderType = (function() {
+                    var valuesById = {}, values = Object.create(valuesById);
+                    values[valuesById[0] = "LINK_PREVIEW"] = 0;
+                    values[valuesById[1] = "ORDER"] = 1;
+                    return values;
+                })();
+
+                return PaymentLinkHeader;
+            })();
+
+            return PaymentLinkMetadata;
         })();
 
         Message.PeerDataOperationRequestMessage = (function() {
@@ -91980,7 +92943,6 @@ $root.E2E = (function() {
              * @property {Array.<E2E.IInteractiveAnnotation>|null} [annotations] VideoMessage annotations
              * @property {string|null} [accessibilityLabel] VideoMessage accessibilityLabel
              * @property {Array.<E2E.IProcessedVideo>|null} [processedVideos] VideoMessage processedVideos
-             * @property {number|null} [externalShareFullVideoDurationInSeconds] VideoMessage externalShareFullVideoDurationInSeconds
              */
 
             /**
@@ -92210,14 +93172,6 @@ $root.E2E = (function() {
             VideoMessage.prototype.processedVideos = $util.emptyArray;
 
             /**
-             * VideoMessage externalShareFullVideoDurationInSeconds.
-             * @member {number} externalShareFullVideoDurationInSeconds
-             * @memberof E2E.Message.VideoMessage
-             * @instance
-             */
-            VideoMessage.prototype.externalShareFullVideoDurationInSeconds = 0;
-
-            /**
              * Creates a new VideoMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.VideoMessage
@@ -92296,8 +93250,6 @@ $root.E2E = (function() {
                 if (message.processedVideos != null && message.processedVideos.length)
                     for (var i = 0; i < message.processedVideos.length; ++i)
                         $root.E2E.ProcessedVideo.encode(message.processedVideos[i], writer.uint32(/* id 27, wireType 2 =*/218).fork()).ldelim();
-                if (message.externalShareFullVideoDurationInSeconds != null && Object.hasOwnProperty.call(message, "externalShareFullVideoDurationInSeconds"))
-                    writer.uint32(/* id 28, wireType 0 =*/224).uint32(message.externalShareFullVideoDurationInSeconds);
                 return writer;
             };
 
@@ -92442,10 +93394,6 @@ $root.E2E = (function() {
                             message.processedVideos.push($root.E2E.ProcessedVideo.decode(reader, reader.uint32()));
                             break;
                         }
-                    case 28: {
-                            message.externalShareFullVideoDurationInSeconds = reader.uint32();
-                            break;
-                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -92585,9 +93533,6 @@ $root.E2E = (function() {
                             return "processedVideos." + error;
                     }
                 }
-                if (message.externalShareFullVideoDurationInSeconds != null && message.hasOwnProperty("externalShareFullVideoDurationInSeconds"))
-                    if (!$util.isInteger(message.externalShareFullVideoDurationInSeconds))
-                        return "externalShareFullVideoDurationInSeconds: integer expected";
                 return null;
             };
 
@@ -92735,8 +93680,6 @@ $root.E2E = (function() {
                         message.processedVideos[i] = $root.E2E.ProcessedVideo.fromObject(object.processedVideos[i]);
                     }
                 }
-                if (object.externalShareFullVideoDurationInSeconds != null)
-                    message.externalShareFullVideoDurationInSeconds = object.externalShareFullVideoDurationInSeconds >>> 0;
                 return message;
             };
 
@@ -92832,7 +93775,6 @@ $root.E2E = (function() {
                     }
                     object.staticUrl = "";
                     object.accessibilityLabel = "";
-                    object.externalShareFullVideoDurationInSeconds = 0;
                 }
                 if (message.url != null && message.hasOwnProperty("url"))
                     object.url = message.url;
@@ -92901,8 +93843,6 @@ $root.E2E = (function() {
                     for (var j = 0; j < message.processedVideos.length; ++j)
                         object.processedVideos[j] = $root.E2E.ProcessedVideo.toObject(message.processedVideos[j], options);
                 }
-                if (message.externalShareFullVideoDurationInSeconds != null && message.hasOwnProperty("externalShareFullVideoDurationInSeconds"))
-                    object.externalShareFullVideoDurationInSeconds = message.externalShareFullVideoDurationInSeconds;
                 return object;
             };
 
