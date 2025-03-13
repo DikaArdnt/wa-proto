@@ -95617,6 +95617,266 @@ $root.Protocol = (function() {
      */
     var Protocol = {};
 
+    Protocol.LimitSharing = (function() {
+
+        /**
+         * Properties of a LimitSharing.
+         * @memberof Protocol
+         * @interface ILimitSharing
+         * @property {boolean|null} [sharingLimited] LimitSharing sharingLimited
+         * @property {Protocol.LimitSharing.Trigger|null} [trigger] LimitSharing trigger
+         */
+
+        /**
+         * Constructs a new LimitSharing.
+         * @memberof Protocol
+         * @classdesc Represents a LimitSharing.
+         * @implements ILimitSharing
+         * @constructor
+         * @param {Protocol.ILimitSharing=} [properties] Properties to set
+         */
+        function LimitSharing(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * LimitSharing sharingLimited.
+         * @member {boolean} sharingLimited
+         * @memberof Protocol.LimitSharing
+         * @instance
+         */
+        LimitSharing.prototype.sharingLimited = false;
+
+        /**
+         * LimitSharing trigger.
+         * @member {Protocol.LimitSharing.Trigger} trigger
+         * @memberof Protocol.LimitSharing
+         * @instance
+         */
+        LimitSharing.prototype.trigger = 0;
+
+        /**
+         * Creates a new LimitSharing instance using the specified properties.
+         * @function create
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Protocol.ILimitSharing=} [properties] Properties to set
+         * @returns {Protocol.LimitSharing} LimitSharing instance
+         */
+        LimitSharing.create = function create(properties) {
+            return new LimitSharing(properties);
+        };
+
+        /**
+         * Encodes the specified LimitSharing message. Does not implicitly {@link Protocol.LimitSharing.verify|verify} messages.
+         * @function encode
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Protocol.ILimitSharing} message LimitSharing message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LimitSharing.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.sharingLimited != null && Object.hasOwnProperty.call(message, "sharingLimited"))
+                writer.uint32(/* id 1, wireType 0 =*/8).bool(message.sharingLimited);
+            if (message.trigger != null && Object.hasOwnProperty.call(message, "trigger"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.trigger);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified LimitSharing message, length delimited. Does not implicitly {@link Protocol.LimitSharing.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Protocol.ILimitSharing} message LimitSharing message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LimitSharing.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a LimitSharing message from the specified reader or buffer.
+         * @function decode
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {Protocol.LimitSharing} LimitSharing
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LimitSharing.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.LimitSharing();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1: {
+                        message.sharingLimited = reader.bool();
+                        break;
+                    }
+                case 2: {
+                        message.trigger = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a LimitSharing message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {Protocol.LimitSharing} LimitSharing
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LimitSharing.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a LimitSharing message.
+         * @function verify
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        LimitSharing.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
+                if (typeof message.sharingLimited !== "boolean")
+                    return "sharingLimited: boolean expected";
+            if (message.trigger != null && message.hasOwnProperty("trigger"))
+                switch (message.trigger) {
+                default:
+                    return "trigger: enum value expected";
+                case 0:
+                case 1:
+                    break;
+                }
+            return null;
+        };
+
+        /**
+         * Creates a LimitSharing message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {Protocol.LimitSharing} LimitSharing
+         */
+        LimitSharing.fromObject = function fromObject(object) {
+            if (object instanceof $root.Protocol.LimitSharing)
+                return object;
+            var message = new $root.Protocol.LimitSharing();
+            if (object.sharingLimited != null)
+                message.sharingLimited = Boolean(object.sharingLimited);
+            switch (object.trigger) {
+            default:
+                if (typeof object.trigger === "number") {
+                    message.trigger = object.trigger;
+                    break;
+                }
+                break;
+            case "CHAT_SETTING":
+            case 0:
+                message.trigger = 0;
+                break;
+            case "BIZ_SUPPORTS_FB_HOSTING":
+            case 1:
+                message.trigger = 1;
+                break;
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a LimitSharing message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Protocol.LimitSharing} message LimitSharing
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        LimitSharing.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.sharingLimited = false;
+                object.trigger = options.enums === String ? "CHAT_SETTING" : 0;
+            }
+            if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
+                object.sharingLimited = message.sharingLimited;
+            if (message.trigger != null && message.hasOwnProperty("trigger"))
+                object.trigger = options.enums === String ? $root.Protocol.LimitSharing.Trigger[message.trigger] === undefined ? message.trigger : $root.Protocol.LimitSharing.Trigger[message.trigger] : message.trigger;
+            return object;
+        };
+
+        /**
+         * Converts this LimitSharing to JSON.
+         * @function toJSON
+         * @memberof Protocol.LimitSharing
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        LimitSharing.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for LimitSharing
+         * @function getTypeUrl
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        LimitSharing.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/Protocol.LimitSharing";
+        };
+
+        /**
+         * Trigger enum.
+         * @name Protocol.LimitSharing.Trigger
+         * @enum {number}
+         * @property {number} CHAT_SETTING=0 CHAT_SETTING value
+         * @property {number} BIZ_SUPPORTS_FB_HOSTING=1 BIZ_SUPPORTS_FB_HOSTING value
+         */
+        LimitSharing.Trigger = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "CHAT_SETTING"] = 0;
+            values[valuesById[1] = "BIZ_SUPPORTS_FB_HOSTING"] = 1;
+            return values;
+        })();
+
+        return LimitSharing;
+    })();
+
     Protocol.MessageKey = (function() {
 
         /**
@@ -95888,266 +96148,6 @@ $root.Protocol = (function() {
         };
 
         return MessageKey;
-    })();
-
-    Protocol.LimitSharing = (function() {
-
-        /**
-         * Properties of a LimitSharing.
-         * @memberof Protocol
-         * @interface ILimitSharing
-         * @property {boolean|null} [sharingLimited] LimitSharing sharingLimited
-         * @property {Protocol.LimitSharing.Trigger|null} [trigger] LimitSharing trigger
-         */
-
-        /**
-         * Constructs a new LimitSharing.
-         * @memberof Protocol
-         * @classdesc Represents a LimitSharing.
-         * @implements ILimitSharing
-         * @constructor
-         * @param {Protocol.ILimitSharing=} [properties] Properties to set
-         */
-        function LimitSharing(properties) {
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * LimitSharing sharingLimited.
-         * @member {boolean} sharingLimited
-         * @memberof Protocol.LimitSharing
-         * @instance
-         */
-        LimitSharing.prototype.sharingLimited = false;
-
-        /**
-         * LimitSharing trigger.
-         * @member {Protocol.LimitSharing.Trigger} trigger
-         * @memberof Protocol.LimitSharing
-         * @instance
-         */
-        LimitSharing.prototype.trigger = 0;
-
-        /**
-         * Creates a new LimitSharing instance using the specified properties.
-         * @function create
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {Protocol.ILimitSharing=} [properties] Properties to set
-         * @returns {Protocol.LimitSharing} LimitSharing instance
-         */
-        LimitSharing.create = function create(properties) {
-            return new LimitSharing(properties);
-        };
-
-        /**
-         * Encodes the specified LimitSharing message. Does not implicitly {@link Protocol.LimitSharing.verify|verify} messages.
-         * @function encode
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {Protocol.ILimitSharing} message LimitSharing message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        LimitSharing.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            if (message.sharingLimited != null && Object.hasOwnProperty.call(message, "sharingLimited"))
-                writer.uint32(/* id 1, wireType 0 =*/8).bool(message.sharingLimited);
-            if (message.trigger != null && Object.hasOwnProperty.call(message, "trigger"))
-                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.trigger);
-            return writer;
-        };
-
-        /**
-         * Encodes the specified LimitSharing message, length delimited. Does not implicitly {@link Protocol.LimitSharing.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {Protocol.ILimitSharing} message LimitSharing message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        LimitSharing.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a LimitSharing message from the specified reader or buffer.
-         * @function decode
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {Protocol.LimitSharing} LimitSharing
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        LimitSharing.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.LimitSharing();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1: {
-                        message.sharingLimited = reader.bool();
-                        break;
-                    }
-                case 2: {
-                        message.trigger = reader.int32();
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes a LimitSharing message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {Protocol.LimitSharing} LimitSharing
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        LimitSharing.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a LimitSharing message.
-         * @function verify
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        LimitSharing.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
-                if (typeof message.sharingLimited !== "boolean")
-                    return "sharingLimited: boolean expected";
-            if (message.trigger != null && message.hasOwnProperty("trigger"))
-                switch (message.trigger) {
-                default:
-                    return "trigger: enum value expected";
-                case 0:
-                case 1:
-                    break;
-                }
-            return null;
-        };
-
-        /**
-         * Creates a LimitSharing message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {Protocol.LimitSharing} LimitSharing
-         */
-        LimitSharing.fromObject = function fromObject(object) {
-            if (object instanceof $root.Protocol.LimitSharing)
-                return object;
-            var message = new $root.Protocol.LimitSharing();
-            if (object.sharingLimited != null)
-                message.sharingLimited = Boolean(object.sharingLimited);
-            switch (object.trigger) {
-            default:
-                if (typeof object.trigger === "number") {
-                    message.trigger = object.trigger;
-                    break;
-                }
-                break;
-            case "CHAT_SETTING":
-            case 0:
-                message.trigger = 0;
-                break;
-            case "BIZ_SUPPORTS_FB_HOSTING":
-            case 1:
-                message.trigger = 1;
-                break;
-            }
-            return message;
-        };
-
-        /**
-         * Creates a plain object from a LimitSharing message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {Protocol.LimitSharing} message LimitSharing
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        LimitSharing.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.defaults) {
-                object.sharingLimited = false;
-                object.trigger = options.enums === String ? "CHAT_SETTING" : 0;
-            }
-            if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
-                object.sharingLimited = message.sharingLimited;
-            if (message.trigger != null && message.hasOwnProperty("trigger"))
-                object.trigger = options.enums === String ? $root.Protocol.LimitSharing.Trigger[message.trigger] === undefined ? message.trigger : $root.Protocol.LimitSharing.Trigger[message.trigger] : message.trigger;
-            return object;
-        };
-
-        /**
-         * Converts this LimitSharing to JSON.
-         * @function toJSON
-         * @memberof Protocol.LimitSharing
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        LimitSharing.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        /**
-         * Gets the default type url for LimitSharing
-         * @function getTypeUrl
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
-         */
-        LimitSharing.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/Protocol.LimitSharing";
-        };
-
-        /**
-         * Trigger enum.
-         * @name Protocol.LimitSharing.Trigger
-         * @enum {number}
-         * @property {number} CHAT_SETTING=0 CHAT_SETTING value
-         * @property {number} BIZ_SUPPORTS_FB_HOSTING=1 BIZ_SUPPORTS_FB_HOSTING value
-         */
-        LimitSharing.Trigger = (function() {
-            var valuesById = {}, values = Object.create(valuesById);
-            values[valuesById[0] = "CHAT_SETTING"] = 0;
-            values[valuesById[1] = "BIZ_SUPPORTS_FB_HOSTING"] = 1;
-            return values;
-        })();
-
-        return LimitSharing;
     })();
 
     return Protocol;
@@ -100176,6 +100176,8 @@ $root.SyncAction = (function() {
                 case 4:
                 case 5:
                 case 6:
+                case 7:
+                case 8:
                     break;
                 }
             if (message.isSenderPrimary != null && message.hasOwnProperty("isSenderPrimary"))
@@ -100266,6 +100268,14 @@ $root.SyncAction = (function() {
             case "DARWIN":
             case 6:
                 message.senderPlatform = 6;
+                break;
+            case "IPAD":
+            case 7:
+                message.senderPlatform = 7;
+                break;
+            case "WEAROS":
+            case 8:
+                message.senderPlatform = 8;
                 break;
             }
             if (object.isSenderPrimary != null)
@@ -100397,6 +100407,8 @@ $root.SyncAction = (function() {
          * @property {number} WEB=4 WEB value
          * @property {number} UWP=5 UWP value
          * @property {number} DARWIN=6 DARWIN value
+         * @property {number} IPAD=7 IPAD value
+         * @property {number} WEAROS=8 WEAROS value
          */
         PatchDebugData.Platform = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -100407,6 +100419,8 @@ $root.SyncAction = (function() {
             values[valuesById[4] = "WEB"] = 4;
             values[valuesById[5] = "UWP"] = 5;
             values[valuesById[6] = "DARWIN"] = 6;
+            values[valuesById[7] = "IPAD"] = 7;
+            values[valuesById[8] = "WEAROS"] = 8;
             return values;
         })();
 
@@ -100768,6 +100782,7 @@ $root.SyncAction = (function() {
          * @property {SyncAction.SyncActionValue.IMerchantPaymentPartnerAction|null} [merchantPaymentPartnerAction] SyncActionValue merchantPaymentPartnerAction
          * @property {SyncAction.SyncActionValue.IWaffleAccountLinkStateAction|null} [waffleAccountLinkStateAction] SyncActionValue waffleAccountLinkStateAction
          * @property {SyncAction.SyncActionValue.IUsernameChatStartModeAction|null} [usernameChatStartMode] SyncActionValue usernameChatStartMode
+         * @property {SyncAction.SyncActionValue.INotificationActivitySettingAction|null} [notificationActivitySettingAction] SyncActionValue notificationActivitySettingAction
          */
 
         /**
@@ -101210,6 +101225,14 @@ $root.SyncAction = (function() {
         SyncActionValue.prototype.usernameChatStartMode = null;
 
         /**
+         * SyncActionValue notificationActivitySettingAction.
+         * @member {SyncAction.SyncActionValue.INotificationActivitySettingAction|null|undefined} notificationActivitySettingAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.notificationActivitySettingAction = null;
+
+        /**
          * Creates a new SyncActionValue instance using the specified properties.
          * @function create
          * @memberof SyncAction.SyncActionValue
@@ -101339,6 +101362,8 @@ $root.SyncAction = (function() {
                 $root.SyncAction.SyncActionValue.WaffleAccountLinkStateAction.encode(message.waffleAccountLinkStateAction, writer.uint32(/* id 58, wireType 2 =*/466).fork()).ldelim();
             if (message.usernameChatStartMode != null && Object.hasOwnProperty.call(message, "usernameChatStartMode"))
                 $root.SyncAction.SyncActionValue.UsernameChatStartModeAction.encode(message.usernameChatStartMode, writer.uint32(/* id 59, wireType 2 =*/474).fork()).ldelim();
+            if (message.notificationActivitySettingAction != null && Object.hasOwnProperty.call(message, "notificationActivitySettingAction"))
+                $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.encode(message.notificationActivitySettingAction, writer.uint32(/* id 60, wireType 2 =*/482).fork()).ldelim();
             return writer;
         };
 
@@ -101583,6 +101608,10 @@ $root.SyncAction = (function() {
                     }
                 case 59: {
                         message.usernameChatStartMode = $root.SyncAction.SyncActionValue.UsernameChatStartModeAction.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 60: {
+                        message.notificationActivitySettingAction = $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -101883,6 +101912,11 @@ $root.SyncAction = (function() {
                 if (error)
                     return "usernameChatStartMode." + error;
             }
+            if (message.notificationActivitySettingAction != null && message.hasOwnProperty("notificationActivitySettingAction")) {
+                var error = $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.verify(message.notificationActivitySettingAction);
+                if (error)
+                    return "notificationActivitySettingAction." + error;
+            }
             return null;
         };
 
@@ -102167,6 +102201,11 @@ $root.SyncAction = (function() {
                     throw TypeError(".SyncAction.SyncActionValue.usernameChatStartMode: object expected");
                 message.usernameChatStartMode = $root.SyncAction.SyncActionValue.UsernameChatStartModeAction.fromObject(object.usernameChatStartMode);
             }
+            if (object.notificationActivitySettingAction != null) {
+                if (typeof object.notificationActivitySettingAction !== "object")
+                    throw TypeError(".SyncAction.SyncActionValue.notificationActivitySettingAction: object expected");
+                message.notificationActivitySettingAction = $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.fromObject(object.notificationActivitySettingAction);
+            }
             return message;
         };
 
@@ -102241,6 +102280,7 @@ $root.SyncAction = (function() {
                 object.merchantPaymentPartnerAction = null;
                 object.waffleAccountLinkStateAction = null;
                 object.usernameChatStartMode = null;
+                object.notificationActivitySettingAction = null;
             }
             if (message.timestamp != null && message.hasOwnProperty("timestamp"))
                 if (typeof message.timestamp === "number")
@@ -102351,6 +102391,8 @@ $root.SyncAction = (function() {
                 object.waffleAccountLinkStateAction = $root.SyncAction.SyncActionValue.WaffleAccountLinkStateAction.toObject(message.waffleAccountLinkStateAction, options);
             if (message.usernameChatStartMode != null && message.hasOwnProperty("usernameChatStartMode"))
                 object.usernameChatStartMode = $root.SyncAction.SyncActionValue.UsernameChatStartModeAction.toObject(message.usernameChatStartMode, options);
+            if (message.notificationActivitySettingAction != null && message.hasOwnProperty("notificationActivitySettingAction"))
+                object.notificationActivitySettingAction = $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.toObject(message.notificationActivitySettingAction, options);
             return object;
         };
 
@@ -109598,6 +109640,256 @@ $root.SyncAction = (function() {
             return NoteEditAction;
         })();
 
+        SyncActionValue.NotificationActivitySettingAction = (function() {
+
+            /**
+             * Properties of a NotificationActivitySettingAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface INotificationActivitySettingAction
+             * @property {SyncAction.SyncActionValue.NotificationActivitySettingAction.NotificationActivitySetting|null} [notificationActivitySetting] NotificationActivitySettingAction notificationActivitySetting
+             */
+
+            /**
+             * Constructs a new NotificationActivitySettingAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents a NotificationActivitySettingAction.
+             * @implements INotificationActivitySettingAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.INotificationActivitySettingAction=} [properties] Properties to set
+             */
+            function NotificationActivitySettingAction(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * NotificationActivitySettingAction notificationActivitySetting.
+             * @member {SyncAction.SyncActionValue.NotificationActivitySettingAction.NotificationActivitySetting} notificationActivitySetting
+             * @memberof SyncAction.SyncActionValue.NotificationActivitySettingAction
+             * @instance
+             */
+            NotificationActivitySettingAction.prototype.notificationActivitySetting = 0;
+
+            /**
+             * Creates a new NotificationActivitySettingAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.NotificationActivitySettingAction
+             * @static
+             * @param {SyncAction.SyncActionValue.INotificationActivitySettingAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.NotificationActivitySettingAction} NotificationActivitySettingAction instance
+             */
+            NotificationActivitySettingAction.create = function create(properties) {
+                return new NotificationActivitySettingAction(properties);
+            };
+
+            /**
+             * Encodes the specified NotificationActivitySettingAction message. Does not implicitly {@link SyncAction.SyncActionValue.NotificationActivitySettingAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.NotificationActivitySettingAction
+             * @static
+             * @param {SyncAction.SyncActionValue.INotificationActivitySettingAction} message NotificationActivitySettingAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            NotificationActivitySettingAction.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.notificationActivitySetting != null && Object.hasOwnProperty.call(message, "notificationActivitySetting"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.notificationActivitySetting);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified NotificationActivitySettingAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.NotificationActivitySettingAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.NotificationActivitySettingAction
+             * @static
+             * @param {SyncAction.SyncActionValue.INotificationActivitySettingAction} message NotificationActivitySettingAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            NotificationActivitySettingAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a NotificationActivitySettingAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.NotificationActivitySettingAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.NotificationActivitySettingAction} NotificationActivitySettingAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            NotificationActivitySettingAction.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.NotificationActivitySettingAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.notificationActivitySetting = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a NotificationActivitySettingAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.NotificationActivitySettingAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.NotificationActivitySettingAction} NotificationActivitySettingAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            NotificationActivitySettingAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a NotificationActivitySettingAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.NotificationActivitySettingAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            NotificationActivitySettingAction.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.notificationActivitySetting != null && message.hasOwnProperty("notificationActivitySetting"))
+                    switch (message.notificationActivitySetting) {
+                    default:
+                        return "notificationActivitySetting: enum value expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                        break;
+                    }
+                return null;
+            };
+
+            /**
+             * Creates a NotificationActivitySettingAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.NotificationActivitySettingAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.NotificationActivitySettingAction} NotificationActivitySettingAction
+             */
+            NotificationActivitySettingAction.fromObject = function fromObject(object) {
+                if (object instanceof $root.SyncAction.SyncActionValue.NotificationActivitySettingAction)
+                    return object;
+                var message = new $root.SyncAction.SyncActionValue.NotificationActivitySettingAction();
+                switch (object.notificationActivitySetting) {
+                default:
+                    if (typeof object.notificationActivitySetting === "number") {
+                        message.notificationActivitySetting = object.notificationActivitySetting;
+                        break;
+                    }
+                    break;
+                case "DEFAULT_ALL_MESSAGES":
+                case 0:
+                    message.notificationActivitySetting = 0;
+                    break;
+                case "ALL_MESSAGES":
+                case 1:
+                    message.notificationActivitySetting = 1;
+                    break;
+                case "HIGHLIGHTS":
+                case 2:
+                    message.notificationActivitySetting = 2;
+                    break;
+                case "DEFAULT_HIGHLIGHTS":
+                case 3:
+                    message.notificationActivitySetting = 3;
+                    break;
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a NotificationActivitySettingAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.NotificationActivitySettingAction
+             * @static
+             * @param {SyncAction.SyncActionValue.NotificationActivitySettingAction} message NotificationActivitySettingAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            NotificationActivitySettingAction.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.notificationActivitySetting = options.enums === String ? "DEFAULT_ALL_MESSAGES" : 0;
+                if (message.notificationActivitySetting != null && message.hasOwnProperty("notificationActivitySetting"))
+                    object.notificationActivitySetting = options.enums === String ? $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.NotificationActivitySetting[message.notificationActivitySetting] === undefined ? message.notificationActivitySetting : $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.NotificationActivitySetting[message.notificationActivitySetting] : message.notificationActivitySetting;
+                return object;
+            };
+
+            /**
+             * Converts this NotificationActivitySettingAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.NotificationActivitySettingAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            NotificationActivitySettingAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for NotificationActivitySettingAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.NotificationActivitySettingAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            NotificationActivitySettingAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.NotificationActivitySettingAction";
+            };
+
+            /**
+             * NotificationActivitySetting enum.
+             * @name SyncAction.SyncActionValue.NotificationActivitySettingAction.NotificationActivitySetting
+             * @enum {number}
+             * @property {number} DEFAULT_ALL_MESSAGES=0 DEFAULT_ALL_MESSAGES value
+             * @property {number} ALL_MESSAGES=1 ALL_MESSAGES value
+             * @property {number} HIGHLIGHTS=2 HIGHLIGHTS value
+             * @property {number} DEFAULT_HIGHLIGHTS=3 DEFAULT_HIGHLIGHTS value
+             */
+            NotificationActivitySettingAction.NotificationActivitySetting = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "DEFAULT_ALL_MESSAGES"] = 0;
+                values[valuesById[1] = "ALL_MESSAGES"] = 1;
+                values[valuesById[2] = "HIGHLIGHTS"] = 2;
+                values[valuesById[3] = "DEFAULT_HIGHLIGHTS"] = 3;
+                return values;
+            })();
+
+            return NotificationActivitySettingAction;
+        })();
+
         SyncActionValue.NuxAction = (function() {
 
             /**
@@ -116736,6 +117028,7 @@ $root.DeviceCapabilities = (function() {
          * @memberof DeviceCapabilities
          * @interface IDeviceCapabilities
          * @property {DeviceCapabilities.DeviceCapabilities.ChatLockSupportLevel|null} [chatLockSupportLevel] DeviceCapabilities chatLockSupportLevel
+         * @property {DeviceCapabilities.DeviceCapabilities.ILIDMigration|null} [lidMigration] DeviceCapabilities lidMigration
          */
 
         /**
@@ -116760,6 +117053,14 @@ $root.DeviceCapabilities = (function() {
          * @instance
          */
         DeviceCapabilities.prototype.chatLockSupportLevel = 0;
+
+        /**
+         * DeviceCapabilities lidMigration.
+         * @member {DeviceCapabilities.DeviceCapabilities.ILIDMigration|null|undefined} lidMigration
+         * @memberof DeviceCapabilities.DeviceCapabilities
+         * @instance
+         */
+        DeviceCapabilities.prototype.lidMigration = null;
 
         /**
          * Creates a new DeviceCapabilities instance using the specified properties.
@@ -116787,6 +117088,8 @@ $root.DeviceCapabilities = (function() {
                 writer = $Writer.create();
             if (message.chatLockSupportLevel != null && Object.hasOwnProperty.call(message, "chatLockSupportLevel"))
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.chatLockSupportLevel);
+            if (message.lidMigration != null && Object.hasOwnProperty.call(message, "lidMigration"))
+                $root.DeviceCapabilities.DeviceCapabilities.LIDMigration.encode(message.lidMigration, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             return writer;
         };
 
@@ -116823,6 +117126,10 @@ $root.DeviceCapabilities = (function() {
                 switch (tag >>> 3) {
                 case 1: {
                         message.chatLockSupportLevel = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.lidMigration = $root.DeviceCapabilities.DeviceCapabilities.LIDMigration.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -116869,6 +117176,11 @@ $root.DeviceCapabilities = (function() {
                 case 2:
                     break;
                 }
+            if (message.lidMigration != null && message.hasOwnProperty("lidMigration")) {
+                var error = $root.DeviceCapabilities.DeviceCapabilities.LIDMigration.verify(message.lidMigration);
+                if (error)
+                    return "lidMigration." + error;
+            }
             return null;
         };
 
@@ -116904,6 +117216,11 @@ $root.DeviceCapabilities = (function() {
                 message.chatLockSupportLevel = 2;
                 break;
             }
+            if (object.lidMigration != null) {
+                if (typeof object.lidMigration !== "object")
+                    throw TypeError(".DeviceCapabilities.DeviceCapabilities.lidMigration: object expected");
+                message.lidMigration = $root.DeviceCapabilities.DeviceCapabilities.LIDMigration.fromObject(object.lidMigration);
+            }
             return message;
         };
 
@@ -116920,10 +117237,14 @@ $root.DeviceCapabilities = (function() {
             if (!options)
                 options = {};
             var object = {};
-            if (options.defaults)
+            if (options.defaults) {
                 object.chatLockSupportLevel = options.enums === String ? "NONE" : 0;
+                object.lidMigration = null;
+            }
             if (message.chatLockSupportLevel != null && message.hasOwnProperty("chatLockSupportLevel"))
                 object.chatLockSupportLevel = options.enums === String ? $root.DeviceCapabilities.DeviceCapabilities.ChatLockSupportLevel[message.chatLockSupportLevel] === undefined ? message.chatLockSupportLevel : $root.DeviceCapabilities.DeviceCapabilities.ChatLockSupportLevel[message.chatLockSupportLevel] : message.chatLockSupportLevel;
+            if (message.lidMigration != null && message.hasOwnProperty("lidMigration"))
+                object.lidMigration = $root.DeviceCapabilities.DeviceCapabilities.LIDMigration.toObject(message.lidMigration, options);
             return object;
         };
 
@@ -116967,6 +117288,223 @@ $root.DeviceCapabilities = (function() {
             values[valuesById[1] = "MINIMAL"] = 1;
             values[valuesById[2] = "FULL"] = 2;
             return values;
+        })();
+
+        DeviceCapabilities.LIDMigration = (function() {
+
+            /**
+             * Properties of a LIDMigration.
+             * @memberof DeviceCapabilities.DeviceCapabilities
+             * @interface ILIDMigration
+             * @property {number|Long|null} [chatDbMigrationTimestamp] LIDMigration chatDbMigrationTimestamp
+             */
+
+            /**
+             * Constructs a new LIDMigration.
+             * @memberof DeviceCapabilities.DeviceCapabilities
+             * @classdesc Represents a LIDMigration.
+             * @implements ILIDMigration
+             * @constructor
+             * @param {DeviceCapabilities.DeviceCapabilities.ILIDMigration=} [properties] Properties to set
+             */
+            function LIDMigration(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * LIDMigration chatDbMigrationTimestamp.
+             * @member {number|Long} chatDbMigrationTimestamp
+             * @memberof DeviceCapabilities.DeviceCapabilities.LIDMigration
+             * @instance
+             */
+            LIDMigration.prototype.chatDbMigrationTimestamp = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+            /**
+             * Creates a new LIDMigration instance using the specified properties.
+             * @function create
+             * @memberof DeviceCapabilities.DeviceCapabilities.LIDMigration
+             * @static
+             * @param {DeviceCapabilities.DeviceCapabilities.ILIDMigration=} [properties] Properties to set
+             * @returns {DeviceCapabilities.DeviceCapabilities.LIDMigration} LIDMigration instance
+             */
+            LIDMigration.create = function create(properties) {
+                return new LIDMigration(properties);
+            };
+
+            /**
+             * Encodes the specified LIDMigration message. Does not implicitly {@link DeviceCapabilities.DeviceCapabilities.LIDMigration.verify|verify} messages.
+             * @function encode
+             * @memberof DeviceCapabilities.DeviceCapabilities.LIDMigration
+             * @static
+             * @param {DeviceCapabilities.DeviceCapabilities.ILIDMigration} message LIDMigration message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            LIDMigration.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.chatDbMigrationTimestamp != null && Object.hasOwnProperty.call(message, "chatDbMigrationTimestamp"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.chatDbMigrationTimestamp);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified LIDMigration message, length delimited. Does not implicitly {@link DeviceCapabilities.DeviceCapabilities.LIDMigration.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof DeviceCapabilities.DeviceCapabilities.LIDMigration
+             * @static
+             * @param {DeviceCapabilities.DeviceCapabilities.ILIDMigration} message LIDMigration message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            LIDMigration.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a LIDMigration message from the specified reader or buffer.
+             * @function decode
+             * @memberof DeviceCapabilities.DeviceCapabilities.LIDMigration
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {DeviceCapabilities.DeviceCapabilities.LIDMigration} LIDMigration
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            LIDMigration.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.DeviceCapabilities.DeviceCapabilities.LIDMigration();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.chatDbMigrationTimestamp = reader.uint64();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a LIDMigration message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof DeviceCapabilities.DeviceCapabilities.LIDMigration
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {DeviceCapabilities.DeviceCapabilities.LIDMigration} LIDMigration
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            LIDMigration.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a LIDMigration message.
+             * @function verify
+             * @memberof DeviceCapabilities.DeviceCapabilities.LIDMigration
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            LIDMigration.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.chatDbMigrationTimestamp != null && message.hasOwnProperty("chatDbMigrationTimestamp"))
+                    if (!$util.isInteger(message.chatDbMigrationTimestamp) && !(message.chatDbMigrationTimestamp && $util.isInteger(message.chatDbMigrationTimestamp.low) && $util.isInteger(message.chatDbMigrationTimestamp.high)))
+                        return "chatDbMigrationTimestamp: integer|Long expected";
+                return null;
+            };
+
+            /**
+             * Creates a LIDMigration message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof DeviceCapabilities.DeviceCapabilities.LIDMigration
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {DeviceCapabilities.DeviceCapabilities.LIDMigration} LIDMigration
+             */
+            LIDMigration.fromObject = function fromObject(object) {
+                if (object instanceof $root.DeviceCapabilities.DeviceCapabilities.LIDMigration)
+                    return object;
+                var message = new $root.DeviceCapabilities.DeviceCapabilities.LIDMigration();
+                if (object.chatDbMigrationTimestamp != null)
+                    if ($util.Long)
+                        (message.chatDbMigrationTimestamp = $util.Long.fromValue(object.chatDbMigrationTimestamp)).unsigned = true;
+                    else if (typeof object.chatDbMigrationTimestamp === "string")
+                        message.chatDbMigrationTimestamp = parseInt(object.chatDbMigrationTimestamp, 10);
+                    else if (typeof object.chatDbMigrationTimestamp === "number")
+                        message.chatDbMigrationTimestamp = object.chatDbMigrationTimestamp;
+                    else if (typeof object.chatDbMigrationTimestamp === "object")
+                        message.chatDbMigrationTimestamp = new $util.LongBits(object.chatDbMigrationTimestamp.low >>> 0, object.chatDbMigrationTimestamp.high >>> 0).toNumber(true);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a LIDMigration message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof DeviceCapabilities.DeviceCapabilities.LIDMigration
+             * @static
+             * @param {DeviceCapabilities.DeviceCapabilities.LIDMigration} message LIDMigration
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            LIDMigration.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, true);
+                        object.chatDbMigrationTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    } else
+                        object.chatDbMigrationTimestamp = options.longs === String ? "0" : 0;
+                if (message.chatDbMigrationTimestamp != null && message.hasOwnProperty("chatDbMigrationTimestamp"))
+                    if (typeof message.chatDbMigrationTimestamp === "number")
+                        object.chatDbMigrationTimestamp = options.longs === String ? String(message.chatDbMigrationTimestamp) : message.chatDbMigrationTimestamp;
+                    else
+                        object.chatDbMigrationTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.chatDbMigrationTimestamp) : options.longs === Number ? new $util.LongBits(message.chatDbMigrationTimestamp.low >>> 0, message.chatDbMigrationTimestamp.high >>> 0).toNumber(true) : message.chatDbMigrationTimestamp;
+                return object;
+            };
+
+            /**
+             * Converts this LIDMigration to JSON.
+             * @function toJSON
+             * @memberof DeviceCapabilities.DeviceCapabilities.LIDMigration
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            LIDMigration.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for LIDMigration
+             * @function getTypeUrl
+             * @memberof DeviceCapabilities.DeviceCapabilities.LIDMigration
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            LIDMigration.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/DeviceCapabilities.DeviceCapabilities.LIDMigration";
+            };
+
+            return LIDMigration;
         })();
 
         return DeviceCapabilities;
