@@ -28400,6 +28400,7 @@ $root.E2E = (function() {
              * @property {string|null} [ctaPayload] ExternalAdReplyInfo ctaPayload
              * @property {boolean|null} [disableNudge] ExternalAdReplyInfo disableNudge
              * @property {string|null} [originalImageUrl] ExternalAdReplyInfo originalImageUrl
+             * @property {boolean|null} [wtwaAdFormat] ExternalAdReplyInfo wtwaAdFormat
              */
 
             /**
@@ -28594,6 +28595,14 @@ $root.E2E = (function() {
             ExternalAdReplyInfo.prototype.originalImageUrl = "";
 
             /**
+             * ExternalAdReplyInfo wtwaAdFormat.
+             * @member {boolean} wtwaAdFormat
+             * @memberof E2E.ContextInfo.ExternalAdReplyInfo
+             * @instance
+             */
+            ExternalAdReplyInfo.prototype.wtwaAdFormat = false;
+
+            /**
              * Creates a new ExternalAdReplyInfo instance using the specified properties.
              * @function create
              * @memberof E2E.ContextInfo.ExternalAdReplyInfo
@@ -28661,6 +28670,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 21, wireType 0 =*/168).bool(message.disableNudge);
                 if (message.originalImageUrl != null && Object.hasOwnProperty.call(message, "originalImageUrl"))
                     writer.uint32(/* id 22, wireType 2 =*/178).string(message.originalImageUrl);
+                if (message.wtwaAdFormat != null && Object.hasOwnProperty.call(message, "wtwaAdFormat"))
+                    writer.uint32(/* id 23, wireType 0 =*/184).bool(message.wtwaAdFormat);
                 return writer;
             };
 
@@ -28783,6 +28794,10 @@ $root.E2E = (function() {
                             message.originalImageUrl = reader.string();
                             break;
                         }
+                    case 23: {
+                            message.wtwaAdFormat = reader.bool();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -28890,6 +28905,9 @@ $root.E2E = (function() {
                 if (message.originalImageUrl != null && message.hasOwnProperty("originalImageUrl"))
                     if (!$util.isString(message.originalImageUrl))
                         return "originalImageUrl: string expected";
+                if (message.wtwaAdFormat != null && message.hasOwnProperty("wtwaAdFormat"))
+                    if (typeof message.wtwaAdFormat !== "boolean")
+                        return "wtwaAdFormat: boolean expected";
                 return null;
             };
 
@@ -28970,6 +28988,8 @@ $root.E2E = (function() {
                     message.disableNudge = Boolean(object.disableNudge);
                 if (object.originalImageUrl != null)
                     message.originalImageUrl = String(object.originalImageUrl);
+                if (object.wtwaAdFormat != null)
+                    message.wtwaAdFormat = Boolean(object.wtwaAdFormat);
                 return message;
             };
 
@@ -29015,6 +29035,7 @@ $root.E2E = (function() {
                     object.ctaPayload = "";
                     object.disableNudge = false;
                     object.originalImageUrl = "";
+                    object.wtwaAdFormat = false;
                 }
                 if (message.title != null && message.hasOwnProperty("title"))
                     object.title = message.title;
@@ -29060,6 +29081,8 @@ $root.E2E = (function() {
                     object.disableNudge = message.disableNudge;
                 if (message.originalImageUrl != null && message.hasOwnProperty("originalImageUrl"))
                     object.originalImageUrl = message.originalImageUrl;
+                if (message.wtwaAdFormat != null && message.hasOwnProperty("wtwaAdFormat"))
+                    object.wtwaAdFormat = message.wtwaAdFormat;
                 return object;
             };
 

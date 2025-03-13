@@ -778,6 +778,7 @@ message ContextInfo {
         optional string ctaPayload = 20;
         optional bool disableNudge = 21;
         optional string originalImageUrl = 22;
+        optional bool wtwaAdFormat = 23;
         enum MediaType {
             NONE = 0;
             IMAGE = 1;

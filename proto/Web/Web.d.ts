@@ -13407,6 +13407,9 @@ export namespace E2E {
 
             /** ExternalAdReplyInfo originalImageUrl */
             originalImageUrl?: (string|null);
+
+            /** ExternalAdReplyInfo wtwaAdFormat */
+            wtwaAdFormat?: (boolean|null);
         }
 
         /** Represents an ExternalAdReplyInfo. */
@@ -13483,6 +13486,9 @@ export namespace E2E {
 
             /** ExternalAdReplyInfo originalImageUrl. */
             public originalImageUrl: string;
+
+            /** ExternalAdReplyInfo wtwaAdFormat. */
+            public wtwaAdFormat: boolean;
 
             /**
              * Creates a new ExternalAdReplyInfo instance using the specified properties.
