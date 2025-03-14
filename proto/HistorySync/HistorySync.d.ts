@@ -8850,6 +8850,9 @@ export namespace E2E {
         /** InteractiveAnnotation embeddedContent */
         embeddedContent?: (E2E.IEmbeddedContent|null);
 
+        /** InteractiveAnnotation statusLinkType */
+        statusLinkType?: (E2E.InteractiveAnnotation.StatusLinkType|null);
+
         /** InteractiveAnnotation location */
         location?: (E2E.ILocation|null);
 
@@ -8880,6 +8883,9 @@ export namespace E2E {
 
         /** InteractiveAnnotation embeddedContent. */
         public embeddedContent?: (E2E.IEmbeddedContent|null);
+
+        /** InteractiveAnnotation statusLinkType. */
+        public statusLinkType: E2E.InteractiveAnnotation.StatusLinkType;
 
         /** InteractiveAnnotation location. */
         public location?: (E2E.ILocation|null);
@@ -8972,6 +8978,16 @@ export namespace E2E {
          * @returns The default type url
          */
         public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace InteractiveAnnotation {
+
+        /** StatusLinkType enum. */
+        enum StatusLinkType {
+            RASTERIZED_LINK_PREVIEW = 1,
+            RASTERIZED_LINK_TRUNCATED = 2,
+            RASTERIZED_LINK_FULL_URL = 3
+        }
     }
 
     /** Properties of a TapLinkAction. */
@@ -9879,7 +9895,9 @@ export namespace E2E {
             STATUS_NOTIFICATION = 9,
             HD_IMAGE_DUAL_UPLOAD = 10,
             STICKER_ANNOTATION = 11,
-            MOTION_PHOTO = 12
+            MOTION_PHOTO = 12,
+            STATUS_LINK_ACTION = 13,
+            VIEW_ALL_REPLIES = 14
         }
     }
 

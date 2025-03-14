@@ -9008,6 +9008,7 @@ $root.E2E = (function() {
          * @property {Array.<E2E.IPoint>|null} [polygonVertices] InteractiveAnnotation polygonVertices
          * @property {boolean|null} [shouldSkipConfirmation] InteractiveAnnotation shouldSkipConfirmation
          * @property {E2E.IEmbeddedContent|null} [embeddedContent] InteractiveAnnotation embeddedContent
+         * @property {E2E.InteractiveAnnotation.StatusLinkType|null} [statusLinkType] InteractiveAnnotation statusLinkType
          * @property {E2E.ILocation|null} [location] InteractiveAnnotation location
          * @property {E2E.ContextInfo.IForwardedNewsletterMessageInfo|null} [newsletter] InteractiveAnnotation newsletter
          * @property {boolean|null} [embeddedAction] InteractiveAnnotation embeddedAction
@@ -9053,6 +9054,14 @@ $root.E2E = (function() {
          * @instance
          */
         InteractiveAnnotation.prototype.embeddedContent = null;
+
+        /**
+         * InteractiveAnnotation statusLinkType.
+         * @member {E2E.InteractiveAnnotation.StatusLinkType} statusLinkType
+         * @memberof E2E.InteractiveAnnotation
+         * @instance
+         */
+        InteractiveAnnotation.prototype.statusLinkType = 1;
 
         /**
          * InteractiveAnnotation location.
@@ -9139,6 +9148,8 @@ $root.E2E = (function() {
                 writer.uint32(/* id 6, wireType 0 =*/48).bool(message.embeddedAction);
             if (message.tapAction != null && Object.hasOwnProperty.call(message, "tapAction"))
                 $root.E2E.TapLinkAction.encode(message.tapAction, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+            if (message.statusLinkType != null && Object.hasOwnProperty.call(message, "statusLinkType"))
+                writer.uint32(/* id 8, wireType 0 =*/64).int32(message.statusLinkType);
             return writer;
         };
 
@@ -9185,6 +9196,10 @@ $root.E2E = (function() {
                     }
                 case 5: {
                         message.embeddedContent = $root.E2E.EmbeddedContent.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 8: {
+                        message.statusLinkType = reader.int32();
                         break;
                     }
                 case 2: {
@@ -9256,6 +9271,15 @@ $root.E2E = (function() {
                 if (error)
                     return "embeddedContent." + error;
             }
+            if (message.statusLinkType != null && message.hasOwnProperty("statusLinkType"))
+                switch (message.statusLinkType) {
+                default:
+                    return "statusLinkType: enum value expected";
+                case 1:
+                case 2:
+                case 3:
+                    break;
+                }
             if (message.location != null && message.hasOwnProperty("location")) {
                 properties.action = 1;
                 {
@@ -9323,6 +9347,26 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.InteractiveAnnotation.embeddedContent: object expected");
                 message.embeddedContent = $root.E2E.EmbeddedContent.fromObject(object.embeddedContent);
             }
+            switch (object.statusLinkType) {
+            default:
+                if (typeof object.statusLinkType === "number") {
+                    message.statusLinkType = object.statusLinkType;
+                    break;
+                }
+                break;
+            case "RASTERIZED_LINK_PREVIEW":
+            case 1:
+                message.statusLinkType = 1;
+                break;
+            case "RASTERIZED_LINK_TRUNCATED":
+            case 2:
+                message.statusLinkType = 2;
+                break;
+            case "RASTERIZED_LINK_FULL_URL":
+            case 3:
+                message.statusLinkType = 3;
+                break;
+            }
             if (object.location != null) {
                 if (typeof object.location !== "object")
                     throw TypeError(".E2E.InteractiveAnnotation.location: object expected");
@@ -9361,6 +9405,7 @@ $root.E2E = (function() {
             if (options.defaults) {
                 object.shouldSkipConfirmation = false;
                 object.embeddedContent = null;
+                object.statusLinkType = options.enums === String ? "RASTERIZED_LINK_PREVIEW" : 1;
             }
             if (message.polygonVertices && message.polygonVertices.length) {
                 object.polygonVertices = [];
@@ -9391,6 +9436,8 @@ $root.E2E = (function() {
                 if (options.oneofs)
                     object.action = "tapAction";
             }
+            if (message.statusLinkType != null && message.hasOwnProperty("statusLinkType"))
+                object.statusLinkType = options.enums === String ? $root.E2E.InteractiveAnnotation.StatusLinkType[message.statusLinkType] === undefined ? message.statusLinkType : $root.E2E.InteractiveAnnotation.StatusLinkType[message.statusLinkType] : message.statusLinkType;
             return object;
         };
 
@@ -9419,6 +9466,22 @@ $root.E2E = (function() {
             }
             return typeUrlPrefix + "/E2E.InteractiveAnnotation";
         };
+
+        /**
+         * StatusLinkType enum.
+         * @name E2E.InteractiveAnnotation.StatusLinkType
+         * @enum {number}
+         * @property {number} RASTERIZED_LINK_PREVIEW=1 RASTERIZED_LINK_PREVIEW value
+         * @property {number} RASTERIZED_LINK_TRUNCATED=2 RASTERIZED_LINK_TRUNCATED value
+         * @property {number} RASTERIZED_LINK_FULL_URL=3 RASTERIZED_LINK_FULL_URL value
+         */
+        InteractiveAnnotation.StatusLinkType = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[1] = "RASTERIZED_LINK_PREVIEW"] = 1;
+            values[valuesById[2] = "RASTERIZED_LINK_TRUNCATED"] = 2;
+            values[valuesById[3] = "RASTERIZED_LINK_FULL_URL"] = 3;
+            return values;
+        })();
 
         return InteractiveAnnotation;
     })();
@@ -11823,6 +11886,8 @@ $root.E2E = (function() {
                 case 10:
                 case 11:
                 case 12:
+                case 13:
+                case 14:
                     break;
                 }
             if (message.parentMessageKey != null && message.hasOwnProperty("parentMessageKey")) {
@@ -11907,6 +11972,14 @@ $root.E2E = (function() {
             case 12:
                 message.associationType = 12;
                 break;
+            case "STATUS_LINK_ACTION":
+            case 13:
+                message.associationType = 13;
+                break;
+            case "VIEW_ALL_REPLIES":
+            case 14:
+                message.associationType = 14;
+                break;
             }
             if (object.parentMessageKey != null) {
                 if (typeof object.parentMessageKey !== "object")
@@ -11988,6 +12061,8 @@ $root.E2E = (function() {
          * @property {number} HD_IMAGE_DUAL_UPLOAD=10 HD_IMAGE_DUAL_UPLOAD value
          * @property {number} STICKER_ANNOTATION=11 STICKER_ANNOTATION value
          * @property {number} MOTION_PHOTO=12 MOTION_PHOTO value
+         * @property {number} STATUS_LINK_ACTION=13 STATUS_LINK_ACTION value
+         * @property {number} VIEW_ALL_REPLIES=14 VIEW_ALL_REPLIES value
          */
         MessageAssociation.AssociationType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -12004,6 +12079,8 @@ $root.E2E = (function() {
             values[valuesById[10] = "HD_IMAGE_DUAL_UPLOAD"] = 10;
             values[valuesById[11] = "STICKER_ANNOTATION"] = 11;
             values[valuesById[12] = "MOTION_PHOTO"] = 12;
+            values[valuesById[13] = "STATUS_LINK_ACTION"] = 13;
+            values[valuesById[14] = "VIEW_ALL_REPLIES"] = 14;
             return values;
         })();
 
