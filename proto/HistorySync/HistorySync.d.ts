@@ -9889,7 +9889,7 @@ export namespace E2E {
             EVENT_COVER_IMAGE = 3,
             STATUS_POLL = 4,
             HD_VIDEO_DUAL_UPLOAD = 5,
-            STATUS_TAPPABLE_MESSAGE = 6,
+            STATUS_EXTERNAL_RESHARE = 6,
             MEDIA_POLL = 7,
             STATUS_ADD_YOURS = 8,
             STATUS_NOTIFICATION = 9,
@@ -27072,7 +27072,7 @@ export namespace E2E {
             interface IPaymentLinkButton {
 
                 /** PaymentLinkButton displayText */
-                displayText: string;
+                displayText?: (string|null);
             }
 
             /** Represents a PaymentLinkButton. */
@@ -27169,7 +27169,7 @@ export namespace E2E {
             interface IPaymentLinkHeader {
 
                 /** PaymentLinkHeader headerType */
-                headerType: E2E.Message.PaymentLinkMetadata.PaymentLinkHeader.PaymentLinkHeaderType;
+                headerType?: (E2E.Message.PaymentLinkMetadata.PaymentLinkHeader.PaymentLinkHeaderType|null);
             }
 
             /** Represents a PaymentLinkHeader. */
@@ -33068,6 +33068,9 @@ export namespace E2E {
 
             /** VideoMessage processedVideos */
             processedVideos?: (E2E.IProcessedVideo[]|null);
+
+            /** VideoMessage externalShareFullVideoDurationInSeconds */
+            externalShareFullVideoDurationInSeconds?: (number|null);
         }
 
         /** Represents a VideoMessage. */
@@ -33156,6 +33159,9 @@ export namespace E2E {
 
             /** VideoMessage processedVideos. */
             public processedVideos: E2E.IProcessedVideo[];
+
+            /** VideoMessage externalShareFullVideoDurationInSeconds. */
+            public externalShareFullVideoDurationInSeconds: number;
 
             /**
              * Creates a new VideoMessage instance using the specified properties.

@@ -9202,7 +9202,7 @@ $root.E2E = (function() {
             case 5:
                 message.associationType = 5;
                 break;
-            case "STATUS_TAPPABLE_MESSAGE":
+            case "STATUS_EXTERNAL_RESHARE":
             case 6:
                 message.associationType = 6;
                 break;
@@ -9312,7 +9312,7 @@ $root.E2E = (function() {
          * @property {number} EVENT_COVER_IMAGE=3 EVENT_COVER_IMAGE value
          * @property {number} STATUS_POLL=4 STATUS_POLL value
          * @property {number} HD_VIDEO_DUAL_UPLOAD=5 HD_VIDEO_DUAL_UPLOAD value
-         * @property {number} STATUS_TAPPABLE_MESSAGE=6 STATUS_TAPPABLE_MESSAGE value
+         * @property {number} STATUS_EXTERNAL_RESHARE=6 STATUS_EXTERNAL_RESHARE value
          * @property {number} MEDIA_POLL=7 MEDIA_POLL value
          * @property {number} STATUS_ADD_YOURS=8 STATUS_ADD_YOURS value
          * @property {number} STATUS_NOTIFICATION=9 STATUS_NOTIFICATION value
@@ -9330,7 +9330,7 @@ $root.E2E = (function() {
             values[valuesById[3] = "EVENT_COVER_IMAGE"] = 3;
             values[valuesById[4] = "STATUS_POLL"] = 4;
             values[valuesById[5] = "HD_VIDEO_DUAL_UPLOAD"] = 5;
-            values[valuesById[6] = "STATUS_TAPPABLE_MESSAGE"] = 6;
+            values[valuesById[6] = "STATUS_EXTERNAL_RESHARE"] = 6;
             values[valuesById[7] = "MEDIA_POLL"] = 7;
             values[valuesById[8] = "STATUS_ADD_YOURS"] = 8;
             values[valuesById[9] = "STATUS_NOTIFICATION"] = 9;
@@ -56365,7 +56365,7 @@ $root.E2E = (function() {
                  * Properties of a PaymentLinkButton.
                  * @memberof E2E.Message.PaymentLinkMetadata
                  * @interface IPaymentLinkButton
-                 * @property {string} displayText PaymentLinkButton displayText
+                 * @property {string|null} [displayText] PaymentLinkButton displayText
                  */
 
                 /**
@@ -56415,7 +56415,8 @@ $root.E2E = (function() {
                 PaymentLinkButton.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.displayText);
+                    if (message.displayText != null && Object.hasOwnProperty.call(message, "displayText"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.displayText);
                     return writer;
                 };
 
@@ -56459,8 +56460,6 @@ $root.E2E = (function() {
                             break;
                         }
                     }
-                    if (!message.hasOwnProperty("displayText"))
-                        throw $util.ProtocolError("missing required 'displayText'", { instance: message });
                     return message;
                 };
 
@@ -56491,8 +56490,9 @@ $root.E2E = (function() {
                 PaymentLinkButton.verify = function verify(message) {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
-                    if (!$util.isString(message.displayText))
-                        return "displayText: string expected";
+                    if (message.displayText != null && message.hasOwnProperty("displayText"))
+                        if (!$util.isString(message.displayText))
+                            return "displayText: string expected";
                     return null;
                 };
 
@@ -56568,7 +56568,7 @@ $root.E2E = (function() {
                  * Properties of a PaymentLinkHeader.
                  * @memberof E2E.Message.PaymentLinkMetadata
                  * @interface IPaymentLinkHeader
-                 * @property {E2E.Message.PaymentLinkMetadata.PaymentLinkHeader.PaymentLinkHeaderType} headerType PaymentLinkHeader headerType
+                 * @property {E2E.Message.PaymentLinkMetadata.PaymentLinkHeader.PaymentLinkHeaderType|null} [headerType] PaymentLinkHeader headerType
                  */
 
                 /**
@@ -56618,7 +56618,8 @@ $root.E2E = (function() {
                 PaymentLinkHeader.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.headerType);
+                    if (message.headerType != null && Object.hasOwnProperty.call(message, "headerType"))
+                        writer.uint32(/* id 1, wireType 0 =*/8).int32(message.headerType);
                     return writer;
                 };
 
@@ -56662,8 +56663,6 @@ $root.E2E = (function() {
                             break;
                         }
                     }
-                    if (!message.hasOwnProperty("headerType"))
-                        throw $util.ProtocolError("missing required 'headerType'", { instance: message });
                     return message;
                 };
 
@@ -56694,13 +56693,14 @@ $root.E2E = (function() {
                 PaymentLinkHeader.verify = function verify(message) {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
-                    switch (message.headerType) {
-                    default:
-                        return "headerType: enum value expected";
-                    case 0:
-                    case 1:
-                        break;
-                    }
+                    if (message.headerType != null && message.hasOwnProperty("headerType"))
+                        switch (message.headerType) {
+                        default:
+                            return "headerType: enum value expected";
+                        case 0:
+                        case 1:
+                            break;
+                        }
                     return null;
                 };
 
@@ -72292,6 +72292,7 @@ $root.E2E = (function() {
              * @property {Array.<E2E.IInteractiveAnnotation>|null} [annotations] VideoMessage annotations
              * @property {string|null} [accessibilityLabel] VideoMessage accessibilityLabel
              * @property {Array.<E2E.IProcessedVideo>|null} [processedVideos] VideoMessage processedVideos
+             * @property {number|null} [externalShareFullVideoDurationInSeconds] VideoMessage externalShareFullVideoDurationInSeconds
              */
 
             /**
@@ -72521,6 +72522,14 @@ $root.E2E = (function() {
             VideoMessage.prototype.processedVideos = $util.emptyArray;
 
             /**
+             * VideoMessage externalShareFullVideoDurationInSeconds.
+             * @member {number} externalShareFullVideoDurationInSeconds
+             * @memberof E2E.Message.VideoMessage
+             * @instance
+             */
+            VideoMessage.prototype.externalShareFullVideoDurationInSeconds = 0;
+
+            /**
              * Creates a new VideoMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.VideoMessage
@@ -72599,6 +72608,8 @@ $root.E2E = (function() {
                 if (message.processedVideos != null && message.processedVideos.length)
                     for (var i = 0; i < message.processedVideos.length; ++i)
                         $root.E2E.ProcessedVideo.encode(message.processedVideos[i], writer.uint32(/* id 27, wireType 2 =*/218).fork()).ldelim();
+                if (message.externalShareFullVideoDurationInSeconds != null && Object.hasOwnProperty.call(message, "externalShareFullVideoDurationInSeconds"))
+                    writer.uint32(/* id 28, wireType 0 =*/224).uint32(message.externalShareFullVideoDurationInSeconds);
                 return writer;
             };
 
@@ -72743,6 +72754,10 @@ $root.E2E = (function() {
                             message.processedVideos.push($root.E2E.ProcessedVideo.decode(reader, reader.uint32()));
                             break;
                         }
+                    case 28: {
+                            message.externalShareFullVideoDurationInSeconds = reader.uint32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -72882,6 +72897,9 @@ $root.E2E = (function() {
                             return "processedVideos." + error;
                     }
                 }
+                if (message.externalShareFullVideoDurationInSeconds != null && message.hasOwnProperty("externalShareFullVideoDurationInSeconds"))
+                    if (!$util.isInteger(message.externalShareFullVideoDurationInSeconds))
+                        return "externalShareFullVideoDurationInSeconds: integer expected";
                 return null;
             };
 
@@ -73029,6 +73047,8 @@ $root.E2E = (function() {
                         message.processedVideos[i] = $root.E2E.ProcessedVideo.fromObject(object.processedVideos[i]);
                     }
                 }
+                if (object.externalShareFullVideoDurationInSeconds != null)
+                    message.externalShareFullVideoDurationInSeconds = object.externalShareFullVideoDurationInSeconds >>> 0;
                 return message;
             };
 
@@ -73124,6 +73144,7 @@ $root.E2E = (function() {
                     }
                     object.staticUrl = "";
                     object.accessibilityLabel = "";
+                    object.externalShareFullVideoDurationInSeconds = 0;
                 }
                 if (message.url != null && message.hasOwnProperty("url"))
                     object.url = message.url;
@@ -73192,6 +73213,8 @@ $root.E2E = (function() {
                     for (var j = 0; j < message.processedVideos.length; ++j)
                         object.processedVideos[j] = $root.E2E.ProcessedVideo.toObject(message.processedVideos[j], options);
                 }
+                if (message.externalShareFullVideoDurationInSeconds != null && message.hasOwnProperty("externalShareFullVideoDurationInSeconds"))
+                    object.externalShareFullVideoDurationInSeconds = message.externalShareFullVideoDurationInSeconds;
                 return object;
             };
 
