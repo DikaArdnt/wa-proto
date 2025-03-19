@@ -168,6 +168,8 @@ message Conversation {
     optional string accountLid = 49;
     optional bool limitSharing = 50;
     optional int64 limitSharingSettingTimestamp = 51;
+    optional enum limitSharingTrigger = 52;
+    optional bool limitSharingInitiatedByMe = 53;
     enum EndOfHistoryTransferType {
         COMPLETE_BUT_MORE_MESSAGES_REMAIN_ON_PRIMARY = 0;
         COMPLETE_AND_NO_MORE_MESSAGE_REMAIN_ON_PRIMARY = 1;

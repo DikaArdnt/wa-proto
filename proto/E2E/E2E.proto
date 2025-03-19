@@ -737,6 +737,7 @@ message ContextInfo {
     optional UrlTrackingMap urlTrackingMap = 58;
     optional PairedMediaType pairedMediaType = 59;
     optional uint32 rankingVersion = 60;
+    optional Protocol.LimitSharing limitSharing = 61;
     message AdReplyInfo {
         optional string advertiserName = 1;
         optional MediaType mediaType = 2;
@@ -786,7 +787,8 @@ message ContextInfo {
         optional string ctaPayload = 20;
         optional bool disableNudge = 21;
         optional string originalImageUrl = 22;
-        optional bool wtwaAdFormat = 23;
+        optional string automatedGreetingMessageCtaType = 23;
+        optional bool wtwaAdFormat = 24;
         enum MediaType {
             NONE = 0;
             IMAGE = 1;

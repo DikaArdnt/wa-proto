@@ -25994,6 +25994,7 @@ $root.E2E = (function() {
          * @property {E2E.IUrlTrackingMap|null} [urlTrackingMap] ContextInfo urlTrackingMap
          * @property {E2E.ContextInfo.PairedMediaType|null} [pairedMediaType] ContextInfo pairedMediaType
          * @property {number|null} [rankingVersion] ContextInfo rankingVersion
+         * @property {Protocol.ILimitSharing|null} [limitSharing] ContextInfo limitSharing
          */
 
         /**
@@ -26366,6 +26367,14 @@ $root.E2E = (function() {
         ContextInfo.prototype.rankingVersion = 0;
 
         /**
+         * ContextInfo limitSharing.
+         * @member {Protocol.ILimitSharing|null|undefined} limitSharing
+         * @memberof E2E.ContextInfo
+         * @instance
+         */
+        ContextInfo.prototype.limitSharing = null;
+
+        /**
          * Creates a new ContextInfo instance using the specified properties.
          * @function create
          * @memberof E2E.ContextInfo
@@ -26479,6 +26488,8 @@ $root.E2E = (function() {
                 writer.uint32(/* id 59, wireType 0 =*/472).int32(message.pairedMediaType);
             if (message.rankingVersion != null && Object.hasOwnProperty.call(message, "rankingVersion"))
                 writer.uint32(/* id 60, wireType 0 =*/480).uint32(message.rankingVersion);
+            if (message.limitSharing != null && Object.hasOwnProperty.call(message, "limitSharing"))
+                $root.Protocol.LimitSharing.encode(message.limitSharing, writer.uint32(/* id 61, wireType 2 =*/490).fork()).ldelim();
             return writer;
         };
 
@@ -26691,6 +26702,10 @@ $root.E2E = (function() {
                     }
                 case 60: {
                         message.rankingVersion = reader.uint32();
+                        break;
+                    }
+                case 61: {
+                        message.limitSharing = $root.Protocol.LimitSharing.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -26910,6 +26925,11 @@ $root.E2E = (function() {
             if (message.rankingVersion != null && message.hasOwnProperty("rankingVersion"))
                 if (!$util.isInteger(message.rankingVersion))
                     return "rankingVersion: integer expected";
+            if (message.limitSharing != null && message.hasOwnProperty("limitSharing")) {
+                var error = $root.Protocol.LimitSharing.verify(message.limitSharing);
+                if (error)
+                    return "limitSharing." + error;
+            }
             return null;
         };
 
@@ -27125,6 +27145,11 @@ $root.E2E = (function() {
             }
             if (object.rankingVersion != null)
                 message.rankingVersion = object.rankingVersion >>> 0;
+            if (object.limitSharing != null) {
+                if (typeof object.limitSharing !== "object")
+                    throw TypeError(".E2E.ContextInfo.limitSharing: object expected");
+                message.limitSharing = $root.Protocol.LimitSharing.fromObject(object.limitSharing);
+            }
             return message;
         };
 
@@ -27210,6 +27235,7 @@ $root.E2E = (function() {
                 object.urlTrackingMap = null;
                 object.pairedMediaType = options.enums === String ? "NOT_PAIRED_MEDIA" : 0;
                 object.rankingVersion = 0;
+                object.limitSharing = null;
             }
             if (message.stanzaId != null && message.hasOwnProperty("stanzaId"))
                 object.stanzaId = message.stanzaId;
@@ -27308,6 +27334,8 @@ $root.E2E = (function() {
                 object.pairedMediaType = options.enums === String ? $root.E2E.ContextInfo.PairedMediaType[message.pairedMediaType] === undefined ? message.pairedMediaType : $root.E2E.ContextInfo.PairedMediaType[message.pairedMediaType] : message.pairedMediaType;
             if (message.rankingVersion != null && message.hasOwnProperty("rankingVersion"))
                 object.rankingVersion = message.rankingVersion;
+            if (message.limitSharing != null && message.hasOwnProperty("limitSharing"))
+                object.limitSharing = $root.Protocol.LimitSharing.toObject(message.limitSharing, options);
             return object;
         };
 
@@ -28477,6 +28505,7 @@ $root.E2E = (function() {
              * @property {string|null} [ctaPayload] ExternalAdReplyInfo ctaPayload
              * @property {boolean|null} [disableNudge] ExternalAdReplyInfo disableNudge
              * @property {string|null} [originalImageUrl] ExternalAdReplyInfo originalImageUrl
+             * @property {string|null} [automatedGreetingMessageCtaType] ExternalAdReplyInfo automatedGreetingMessageCtaType
              * @property {boolean|null} [wtwaAdFormat] ExternalAdReplyInfo wtwaAdFormat
              */
 
@@ -28672,6 +28701,14 @@ $root.E2E = (function() {
             ExternalAdReplyInfo.prototype.originalImageUrl = "";
 
             /**
+             * ExternalAdReplyInfo automatedGreetingMessageCtaType.
+             * @member {string} automatedGreetingMessageCtaType
+             * @memberof E2E.ContextInfo.ExternalAdReplyInfo
+             * @instance
+             */
+            ExternalAdReplyInfo.prototype.automatedGreetingMessageCtaType = "";
+
+            /**
              * ExternalAdReplyInfo wtwaAdFormat.
              * @member {boolean} wtwaAdFormat
              * @memberof E2E.ContextInfo.ExternalAdReplyInfo
@@ -28747,8 +28784,10 @@ $root.E2E = (function() {
                     writer.uint32(/* id 21, wireType 0 =*/168).bool(message.disableNudge);
                 if (message.originalImageUrl != null && Object.hasOwnProperty.call(message, "originalImageUrl"))
                     writer.uint32(/* id 22, wireType 2 =*/178).string(message.originalImageUrl);
+                if (message.automatedGreetingMessageCtaType != null && Object.hasOwnProperty.call(message, "automatedGreetingMessageCtaType"))
+                    writer.uint32(/* id 23, wireType 2 =*/186).string(message.automatedGreetingMessageCtaType);
                 if (message.wtwaAdFormat != null && Object.hasOwnProperty.call(message, "wtwaAdFormat"))
-                    writer.uint32(/* id 23, wireType 0 =*/184).bool(message.wtwaAdFormat);
+                    writer.uint32(/* id 24, wireType 0 =*/192).bool(message.wtwaAdFormat);
                 return writer;
             };
 
@@ -28872,6 +28911,10 @@ $root.E2E = (function() {
                             break;
                         }
                     case 23: {
+                            message.automatedGreetingMessageCtaType = reader.string();
+                            break;
+                        }
+                    case 24: {
                             message.wtwaAdFormat = reader.bool();
                             break;
                         }
@@ -28982,6 +29025,9 @@ $root.E2E = (function() {
                 if (message.originalImageUrl != null && message.hasOwnProperty("originalImageUrl"))
                     if (!$util.isString(message.originalImageUrl))
                         return "originalImageUrl: string expected";
+                if (message.automatedGreetingMessageCtaType != null && message.hasOwnProperty("automatedGreetingMessageCtaType"))
+                    if (!$util.isString(message.automatedGreetingMessageCtaType))
+                        return "automatedGreetingMessageCtaType: string expected";
                 if (message.wtwaAdFormat != null && message.hasOwnProperty("wtwaAdFormat"))
                     if (typeof message.wtwaAdFormat !== "boolean")
                         return "wtwaAdFormat: boolean expected";
@@ -29065,6 +29111,8 @@ $root.E2E = (function() {
                     message.disableNudge = Boolean(object.disableNudge);
                 if (object.originalImageUrl != null)
                     message.originalImageUrl = String(object.originalImageUrl);
+                if (object.automatedGreetingMessageCtaType != null)
+                    message.automatedGreetingMessageCtaType = String(object.automatedGreetingMessageCtaType);
                 if (object.wtwaAdFormat != null)
                     message.wtwaAdFormat = Boolean(object.wtwaAdFormat);
                 return message;
@@ -29112,6 +29160,7 @@ $root.E2E = (function() {
                     object.ctaPayload = "";
                     object.disableNudge = false;
                     object.originalImageUrl = "";
+                    object.automatedGreetingMessageCtaType = "";
                     object.wtwaAdFormat = false;
                 }
                 if (message.title != null && message.hasOwnProperty("title"))
@@ -29158,6 +29207,8 @@ $root.E2E = (function() {
                     object.disableNudge = message.disableNudge;
                 if (message.originalImageUrl != null && message.hasOwnProperty("originalImageUrl"))
                     object.originalImageUrl = message.originalImageUrl;
+                if (message.automatedGreetingMessageCtaType != null && message.hasOwnProperty("automatedGreetingMessageCtaType"))
+                    object.automatedGreetingMessageCtaType = message.automatedGreetingMessageCtaType;
                 if (message.wtwaAdFormat != null && message.hasOwnProperty("wtwaAdFormat"))
                     object.wtwaAdFormat = message.wtwaAdFormat;
                 return object;

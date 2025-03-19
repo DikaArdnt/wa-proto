@@ -5,7 +5,6 @@ exports.CompanionReg = require('./CompanionReg/CompanionReg').CompanionReg;
 exports.DeviceCapabilities = require('./DeviceCapabilities/DeviceCapabilities').DeviceCapabilities;
 exports.E2E = require('./E2E/E2E').E2E;
 exports.Ephemeral = require('./Ephemeral/Ephemeral').Ephemeral;
-exports.HistorySync = require('./HistorySync/HistorySync').HistorySync;
 exports.LidMigrationSyncPayload = require('./LidMigrationSyncPayload/LidMigrationSyncPayload').LidMigrationSyncPayload;
 exports.MdStorageChatRowOpaqueData = require('./MdStorageChatRowOpaqueData/MdStorageChatRowOpaqueData').MdStorageChatRowOpaqueData;
 exports.MdStorageMsgRowOpaqueData = require('./MdStorageMsgRowOpaqueData/MdStorageMsgRowOpaqueData').MdStorageMsgRowOpaqueData;

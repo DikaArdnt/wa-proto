@@ -9997,6 +9997,9 @@ export namespace E2E {
 
         /** ContextInfo rankingVersion */
         rankingVersion?: (number|null);
+
+        /** ContextInfo limitSharing */
+        limitSharing?: (Protocol.ILimitSharing|null);
     }
 
     /** Represents a ContextInfo. */
@@ -10139,6 +10142,9 @@ export namespace E2E {
 
         /** ContextInfo rankingVersion. */
         public rankingVersion: number;
+
+        /** ContextInfo limitSharing. */
+        public limitSharing?: (Protocol.ILimitSharing|null);
 
         /**
          * Creates a new ContextInfo instance using the specified properties.
@@ -10744,6 +10750,9 @@ export namespace E2E {
             /** ExternalAdReplyInfo originalImageUrl */
             originalImageUrl?: (string|null);
 
+            /** ExternalAdReplyInfo automatedGreetingMessageCtaType */
+            automatedGreetingMessageCtaType?: (string|null);
+
             /** ExternalAdReplyInfo wtwaAdFormat */
             wtwaAdFormat?: (boolean|null);
         }
@@ -10822,6 +10831,9 @@ export namespace E2E {
 
             /** ExternalAdReplyInfo originalImageUrl. */
             public originalImageUrl: string;
+
+            /** ExternalAdReplyInfo automatedGreetingMessageCtaType. */
+            public automatedGreetingMessageCtaType: string;
 
             /** ExternalAdReplyInfo wtwaAdFormat. */
             public wtwaAdFormat: boolean;
