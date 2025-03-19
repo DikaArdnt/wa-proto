@@ -18914,6 +18914,9 @@ export namespace E2E {
 
                 /** LinkPreviewMetadata paymentLinkMetadata */
                 paymentLinkMetadata?: (E2E.Message.IPaymentLinkMetadata|null);
+
+                /** LinkPreviewMetadata urlMetadata */
+                urlMetadata?: (E2E.Message.IURLMetadata|null);
             }
 
             /** Represents a LinkPreviewMetadata. */
@@ -18927,6 +18930,9 @@ export namespace E2E {
 
                 /** LinkPreviewMetadata paymentLinkMetadata. */
                 public paymentLinkMetadata?: (E2E.Message.IPaymentLinkMetadata|null);
+
+                /** LinkPreviewMetadata urlMetadata. */
+                public urlMetadata?: (E2E.Message.IURLMetadata|null);
 
                 /**
                  * Creates a new LinkPreviewMetadata instance using the specified properties.
@@ -30332,6 +30338,103 @@ export namespace E2E {
                  */
                 public static getTypeUrl(typeUrlPrefix?: string): string;
             }
+        }
+
+        /** Properties of a URLMetadata. */
+        interface IURLMetadata {
+
+            /** URLMetadata fbExperimentId */
+            fbExperimentId?: (number|null);
+        }
+
+        /** Represents a URLMetadata. */
+        class URLMetadata implements IURLMetadata {
+
+            /**
+             * Constructs a new URLMetadata.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IURLMetadata);
+
+            /** URLMetadata fbExperimentId. */
+            public fbExperimentId: number;
+
+            /**
+             * Creates a new URLMetadata instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns URLMetadata instance
+             */
+            public static create(properties?: E2E.Message.IURLMetadata): E2E.Message.URLMetadata;
+
+            /**
+             * Encodes the specified URLMetadata message. Does not implicitly {@link E2E.Message.URLMetadata.verify|verify} messages.
+             * @param message URLMetadata message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IURLMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified URLMetadata message, length delimited. Does not implicitly {@link E2E.Message.URLMetadata.verify|verify} messages.
+             * @param message URLMetadata message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IURLMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a URLMetadata message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns URLMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.URLMetadata;
+
+            /**
+             * Decodes a URLMetadata message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns URLMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.URLMetadata;
+
+            /**
+             * Verifies a URLMetadata message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a URLMetadata message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns URLMetadata
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.URLMetadata;
+
+            /**
+             * Creates a plain object from a URLMetadata message. Also converts values to other types if specified.
+             * @param message URLMetadata
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.URLMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this URLMetadata to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for URLMetadata
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
         /** Properties of a VideoMessage. */

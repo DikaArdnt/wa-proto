@@ -44416,6 +44416,7 @@ $root.E2E = (function() {
                  * @memberof E2E.Message.ExtendedTextMessage
                  * @interface ILinkPreviewMetadata
                  * @property {E2E.Message.IPaymentLinkMetadata|null} [paymentLinkMetadata] LinkPreviewMetadata paymentLinkMetadata
+                 * @property {E2E.Message.IURLMetadata|null} [urlMetadata] LinkPreviewMetadata urlMetadata
                  */
 
                 /**
@@ -44440,6 +44441,14 @@ $root.E2E = (function() {
                  * @instance
                  */
                 LinkPreviewMetadata.prototype.paymentLinkMetadata = null;
+
+                /**
+                 * LinkPreviewMetadata urlMetadata.
+                 * @member {E2E.Message.IURLMetadata|null|undefined} urlMetadata
+                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
+                 * @instance
+                 */
+                LinkPreviewMetadata.prototype.urlMetadata = null;
 
                 /**
                  * Creates a new LinkPreviewMetadata instance using the specified properties.
@@ -44467,6 +44476,8 @@ $root.E2E = (function() {
                         writer = $Writer.create();
                     if (message.paymentLinkMetadata != null && Object.hasOwnProperty.call(message, "paymentLinkMetadata"))
                         $root.E2E.Message.PaymentLinkMetadata.encode(message.paymentLinkMetadata, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                    if (message.urlMetadata != null && Object.hasOwnProperty.call(message, "urlMetadata"))
+                        $root.E2E.Message.URLMetadata.encode(message.urlMetadata, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                     return writer;
                 };
 
@@ -44503,6 +44514,10 @@ $root.E2E = (function() {
                         switch (tag >>> 3) {
                         case 1: {
                                 message.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.decode(reader, reader.uint32());
+                                break;
+                            }
+                        case 2: {
+                                message.urlMetadata = $root.E2E.Message.URLMetadata.decode(reader, reader.uint32());
                                 break;
                             }
                         default:
@@ -44545,6 +44560,11 @@ $root.E2E = (function() {
                         if (error)
                             return "paymentLinkMetadata." + error;
                     }
+                    if (message.urlMetadata != null && message.hasOwnProperty("urlMetadata")) {
+                        var error = $root.E2E.Message.URLMetadata.verify(message.urlMetadata);
+                        if (error)
+                            return "urlMetadata." + error;
+                    }
                     return null;
                 };
 
@@ -44565,6 +44585,11 @@ $root.E2E = (function() {
                             throw TypeError(".E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.paymentLinkMetadata: object expected");
                         message.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.fromObject(object.paymentLinkMetadata);
                     }
+                    if (object.urlMetadata != null) {
+                        if (typeof object.urlMetadata !== "object")
+                            throw TypeError(".E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.urlMetadata: object expected");
+                        message.urlMetadata = $root.E2E.Message.URLMetadata.fromObject(object.urlMetadata);
+                    }
                     return message;
                 };
 
@@ -44581,10 +44606,14 @@ $root.E2E = (function() {
                     if (!options)
                         options = {};
                     var object = {};
-                    if (options.defaults)
+                    if (options.defaults) {
                         object.paymentLinkMetadata = null;
+                        object.urlMetadata = null;
+                    }
                     if (message.paymentLinkMetadata != null && message.hasOwnProperty("paymentLinkMetadata"))
                         object.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.toObject(message.paymentLinkMetadata, options);
+                    if (message.urlMetadata != null && message.hasOwnProperty("urlMetadata"))
+                        object.urlMetadata = $root.E2E.Message.URLMetadata.toObject(message.urlMetadata, options);
                     return object;
                 };
 
@@ -75051,6 +75080,209 @@ $root.E2E = (function() {
             })();
 
             return TemplateMessage;
+        })();
+
+        Message.URLMetadata = (function() {
+
+            /**
+             * Properties of a URLMetadata.
+             * @memberof E2E.Message
+             * @interface IURLMetadata
+             * @property {number|null} [fbExperimentId] URLMetadata fbExperimentId
+             */
+
+            /**
+             * Constructs a new URLMetadata.
+             * @memberof E2E.Message
+             * @classdesc Represents a URLMetadata.
+             * @implements IURLMetadata
+             * @constructor
+             * @param {E2E.Message.IURLMetadata=} [properties] Properties to set
+             */
+            function URLMetadata(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * URLMetadata fbExperimentId.
+             * @member {number} fbExperimentId
+             * @memberof E2E.Message.URLMetadata
+             * @instance
+             */
+            URLMetadata.prototype.fbExperimentId = 0;
+
+            /**
+             * Creates a new URLMetadata instance using the specified properties.
+             * @function create
+             * @memberof E2E.Message.URLMetadata
+             * @static
+             * @param {E2E.Message.IURLMetadata=} [properties] Properties to set
+             * @returns {E2E.Message.URLMetadata} URLMetadata instance
+             */
+            URLMetadata.create = function create(properties) {
+                return new URLMetadata(properties);
+            };
+
+            /**
+             * Encodes the specified URLMetadata message. Does not implicitly {@link E2E.Message.URLMetadata.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.Message.URLMetadata
+             * @static
+             * @param {E2E.Message.IURLMetadata} message URLMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            URLMetadata.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.fbExperimentId != null && Object.hasOwnProperty.call(message, "fbExperimentId"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.fbExperimentId);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified URLMetadata message, length delimited. Does not implicitly {@link E2E.Message.URLMetadata.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.Message.URLMetadata
+             * @static
+             * @param {E2E.Message.IURLMetadata} message URLMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            URLMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a URLMetadata message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.Message.URLMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.Message.URLMetadata} URLMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            URLMetadata.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.URLMetadata();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.fbExperimentId = reader.uint32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a URLMetadata message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.Message.URLMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.Message.URLMetadata} URLMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            URLMetadata.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a URLMetadata message.
+             * @function verify
+             * @memberof E2E.Message.URLMetadata
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            URLMetadata.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.fbExperimentId != null && message.hasOwnProperty("fbExperimentId"))
+                    if (!$util.isInteger(message.fbExperimentId))
+                        return "fbExperimentId: integer expected";
+                return null;
+            };
+
+            /**
+             * Creates a URLMetadata message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.Message.URLMetadata
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.Message.URLMetadata} URLMetadata
+             */
+            URLMetadata.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.Message.URLMetadata)
+                    return object;
+                var message = new $root.E2E.Message.URLMetadata();
+                if (object.fbExperimentId != null)
+                    message.fbExperimentId = object.fbExperimentId >>> 0;
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a URLMetadata message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.Message.URLMetadata
+             * @static
+             * @param {E2E.Message.URLMetadata} message URLMetadata
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            URLMetadata.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.fbExperimentId = 0;
+                if (message.fbExperimentId != null && message.hasOwnProperty("fbExperimentId"))
+                    object.fbExperimentId = message.fbExperimentId;
+                return object;
+            };
+
+            /**
+             * Converts this URLMetadata to JSON.
+             * @function toJSON
+             * @memberof E2E.Message.URLMetadata
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            URLMetadata.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for URLMetadata
+             * @function getTypeUrl
+             * @memberof E2E.Message.URLMetadata
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            URLMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.Message.URLMetadata";
+            };
+
+            return URLMetadata;
         })();
 
         Message.VideoMessage = (function() {

@@ -1254,6 +1254,7 @@ message Message {
         }
         message LinkPreviewMetadata {
             optional Message.PaymentLinkMetadata paymentLinkMetadata = 1;
+            optional Message.URLMetadata urlMetadata = 2;
         }
         enum PreviewType {
             NONE = 0;
@@ -2071,6 +2072,9 @@ message Message {
                 Message.LocationMessage locationMessage = 5;
             }
         }
+    }
+    message URLMetadata {
+        optional uint32 fbExperimentId = 1;
     }
     message VideoMessage {
         optional string url = 1;
