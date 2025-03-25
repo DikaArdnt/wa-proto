@@ -53,6 +53,7 @@ $root.Wa6 = (function() {
          * @property {Wa6.ClientPayload.IInteropData|null} [interopData] ClientPayload interopData
          * @property {Wa6.ClientPayload.TrafficAnonymization|null} [trafficAnonymization] ClientPayload trafficAnonymization
          * @property {boolean|null} [lidDbMigrated] ClientPayload lidDbMigrated
+         * @property {Wa6.ClientPayload.AccountType|null} [accountType] ClientPayload accountType
          */
 
         /**
@@ -304,6 +305,14 @@ $root.Wa6 = (function() {
         ClientPayload.prototype.lidDbMigrated = false;
 
         /**
+         * ClientPayload accountType.
+         * @member {Wa6.ClientPayload.AccountType} accountType
+         * @memberof Wa6.ClientPayload
+         * @instance
+         */
+        ClientPayload.prototype.accountType = 0;
+
+        /**
          * Creates a new ClientPayload instance using the specified properties.
          * @function create
          * @memberof Wa6.ClientPayload
@@ -386,6 +395,8 @@ $root.Wa6 = (function() {
                 writer.uint32(/* id 40, wireType 0 =*/320).int32(message.trafficAnonymization);
             if (message.lidDbMigrated != null && Object.hasOwnProperty.call(message, "lidDbMigrated"))
                 writer.uint32(/* id 41, wireType 0 =*/328).bool(message.lidDbMigrated);
+            if (message.accountType != null && Object.hasOwnProperty.call(message, "accountType"))
+                writer.uint32(/* id 42, wireType 0 =*/336).int32(message.accountType);
             return writer;
         };
 
@@ -543,6 +554,10 @@ $root.Wa6 = (function() {
                         message.lidDbMigrated = reader.bool();
                         break;
                     }
+                case 42: {
+                        message.accountType = reader.int32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -668,6 +683,7 @@ $root.Wa6 = (function() {
                 case 1:
                 case 2:
                 case 3:
+                case 4:
                     break;
                 }
             if (message.fbCat != null && message.hasOwnProperty("fbCat"))
@@ -725,6 +741,14 @@ $root.Wa6 = (function() {
             if (message.lidDbMigrated != null && message.hasOwnProperty("lidDbMigrated"))
                 if (typeof message.lidDbMigrated !== "boolean")
                     return "lidDbMigrated: boolean expected";
+            if (message.accountType != null && message.hasOwnProperty("accountType"))
+                switch (message.accountType) {
+                default:
+                    return "accountType: enum value expected";
+                case 0:
+                case 1:
+                    break;
+                }
             return null;
         };
 
@@ -915,6 +939,10 @@ $root.Wa6 = (function() {
             case 3:
                 message.product = 3;
                 break;
+            case "WHATSAPP_LID":
+            case 4:
+                message.product = 4;
+                break;
             }
             if (object.fbCat != null)
                 if (typeof object.fbCat === "string")
@@ -998,6 +1026,22 @@ $root.Wa6 = (function() {
             }
             if (object.lidDbMigrated != null)
                 message.lidDbMigrated = Boolean(object.lidDbMigrated);
+            switch (object.accountType) {
+            default:
+                if (typeof object.accountType === "number") {
+                    message.accountType = object.accountType;
+                    break;
+                }
+                break;
+            case "DEFAULT":
+            case 0:
+                message.accountType = 0;
+                break;
+            case "GUEST":
+            case 1:
+                message.accountType = 1;
+                break;
+            }
             return message;
         };
 
@@ -1077,6 +1121,7 @@ $root.Wa6 = (function() {
                 object.interopData = null;
                 object.trafficAnonymization = options.enums === String ? "OFF" : 0;
                 object.lidDbMigrated = false;
+                object.accountType = options.enums === String ? "DEFAULT" : 0;
             }
             if (message.username != null && message.hasOwnProperty("username"))
                 if (typeof message.username === "number")
@@ -1145,6 +1190,8 @@ $root.Wa6 = (function() {
                 object.trafficAnonymization = options.enums === String ? $root.Wa6.ClientPayload.TrafficAnonymization[message.trafficAnonymization] === undefined ? message.trafficAnonymization : $root.Wa6.ClientPayload.TrafficAnonymization[message.trafficAnonymization] : message.trafficAnonymization;
             if (message.lidDbMigrated != null && message.hasOwnProperty("lidDbMigrated"))
                 object.lidDbMigrated = message.lidDbMigrated;
+            if (message.accountType != null && message.hasOwnProperty("accountType"))
+                object.accountType = options.enums === String ? $root.Wa6.ClientPayload.AccountType[message.accountType] === undefined ? message.accountType : $root.Wa6.ClientPayload.AccountType[message.accountType] : message.accountType;
             return object;
         };
 
@@ -1173,6 +1220,20 @@ $root.Wa6 = (function() {
             }
             return typeUrlPrefix + "/Wa6.ClientPayload";
         };
+
+        /**
+         * AccountType enum.
+         * @name Wa6.ClientPayload.AccountType
+         * @enum {number}
+         * @property {number} DEFAULT=0 DEFAULT value
+         * @property {number} GUEST=1 GUEST value
+         */
+        ClientPayload.AccountType = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "DEFAULT"] = 0;
+            values[valuesById[1] = "GUEST"] = 1;
+            return values;
+        })();
 
         /**
          * ConnectReason enum.
@@ -2260,6 +2321,7 @@ $root.Wa6 = (function() {
          * @property {number} MESSENGER=1 MESSENGER value
          * @property {number} INTEROP=2 INTEROP value
          * @property {number} INTEROP_MSGR=3 INTEROP_MSGR value
+         * @property {number} WHATSAPP_LID=4 WHATSAPP_LID value
          */
         ClientPayload.Product = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -2267,6 +2329,7 @@ $root.Wa6 = (function() {
             values[valuesById[1] = "MESSENGER"] = 1;
             values[valuesById[2] = "INTEROP"] = 2;
             values[valuesById[3] = "INTEROP_MSGR"] = 3;
+            values[valuesById[4] = "WHATSAPP_LID"] = 4;
             return values;
         })();
 

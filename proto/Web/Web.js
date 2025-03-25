@@ -21505,6 +21505,7 @@ $root.E2E = (function() {
          * @property {E2E.IMessageAssociation|null} [messageAssociation] MessageContextInfo messageAssociation
          * @property {boolean|null} [capiCreatedGroup] MessageContextInfo capiCreatedGroup
          * @property {string|null} [supportPayload] MessageContextInfo supportPayload
+         * @property {Protocol.ILimitSharing|null} [limitSharing] MessageContextInfo limitSharing
          */
 
         /**
@@ -21619,6 +21620,14 @@ $root.E2E = (function() {
         MessageContextInfo.prototype.supportPayload = "";
 
         /**
+         * MessageContextInfo limitSharing.
+         * @member {Protocol.ILimitSharing|null|undefined} limitSharing
+         * @memberof E2E.MessageContextInfo
+         * @instance
+         */
+        MessageContextInfo.prototype.limitSharing = null;
+
+        /**
          * Creates a new MessageContextInfo instance using the specified properties.
          * @function create
          * @memberof E2E.MessageContextInfo
@@ -21666,6 +21675,8 @@ $root.E2E = (function() {
                 writer.uint32(/* id 11, wireType 0 =*/88).bool(message.capiCreatedGroup);
             if (message.supportPayload != null && Object.hasOwnProperty.call(message, "supportPayload"))
                 writer.uint32(/* id 12, wireType 2 =*/98).string(message.supportPayload);
+            if (message.limitSharing != null && Object.hasOwnProperty.call(message, "limitSharing"))
+                $root.Protocol.LimitSharing.encode(message.limitSharing, writer.uint32(/* id 13, wireType 2 =*/106).fork()).ldelim();
             return writer;
         };
 
@@ -21746,6 +21757,10 @@ $root.E2E = (function() {
                     }
                 case 12: {
                         message.supportPayload = reader.string();
+                        break;
+                    }
+                case 13: {
+                        message.limitSharing = $root.Protocol.LimitSharing.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -21830,6 +21845,11 @@ $root.E2E = (function() {
             if (message.supportPayload != null && message.hasOwnProperty("supportPayload"))
                 if (!$util.isString(message.supportPayload))
                     return "supportPayload: string expected";
+            if (message.limitSharing != null && message.hasOwnProperty("limitSharing")) {
+                var error = $root.Protocol.LimitSharing.verify(message.limitSharing);
+                if (error)
+                    return "limitSharing." + error;
+            }
             return null;
         };
 
@@ -21901,6 +21921,11 @@ $root.E2E = (function() {
                 message.capiCreatedGroup = Boolean(object.capiCreatedGroup);
             if (object.supportPayload != null)
                 message.supportPayload = String(object.supportPayload);
+            if (object.limitSharing != null) {
+                if (typeof object.limitSharing !== "object")
+                    throw TypeError(".E2E.MessageContextInfo.limitSharing: object expected");
+                message.limitSharing = $root.Protocol.LimitSharing.fromObject(object.limitSharing);
+            }
             return message;
         };
 
@@ -21948,6 +21973,7 @@ $root.E2E = (function() {
                 object.messageAssociation = null;
                 object.capiCreatedGroup = false;
                 object.supportPayload = "";
+                object.limitSharing = null;
             }
             if (message.deviceListMetadata != null && message.hasOwnProperty("deviceListMetadata"))
                 object.deviceListMetadata = $root.E2E.DeviceListMetadata.toObject(message.deviceListMetadata, options);
@@ -21973,6 +21999,8 @@ $root.E2E = (function() {
                 object.capiCreatedGroup = message.capiCreatedGroup;
             if (message.supportPayload != null && message.hasOwnProperty("supportPayload"))
                 object.supportPayload = message.supportPayload;
+            if (message.limitSharing != null && message.hasOwnProperty("limitSharing"))
+                object.limitSharing = $root.Protocol.LimitSharing.toObject(message.limitSharing, options);
             return object;
         };
 
@@ -36312,7 +36340,6 @@ $root.E2E = (function() {
          * @property {E2E.IUrlTrackingMap|null} [urlTrackingMap] ContextInfo urlTrackingMap
          * @property {E2E.ContextInfo.PairedMediaType|null} [pairedMediaType] ContextInfo pairedMediaType
          * @property {number|null} [rankingVersion] ContextInfo rankingVersion
-         * @property {Protocol.ILimitSharing|null} [limitSharing] ContextInfo limitSharing
          */
 
         /**
@@ -36685,14 +36712,6 @@ $root.E2E = (function() {
         ContextInfo.prototype.rankingVersion = 0;
 
         /**
-         * ContextInfo limitSharing.
-         * @member {Protocol.ILimitSharing|null|undefined} limitSharing
-         * @memberof E2E.ContextInfo
-         * @instance
-         */
-        ContextInfo.prototype.limitSharing = null;
-
-        /**
          * Creates a new ContextInfo instance using the specified properties.
          * @function create
          * @memberof E2E.ContextInfo
@@ -36806,8 +36825,6 @@ $root.E2E = (function() {
                 writer.uint32(/* id 59, wireType 0 =*/472).int32(message.pairedMediaType);
             if (message.rankingVersion != null && Object.hasOwnProperty.call(message, "rankingVersion"))
                 writer.uint32(/* id 60, wireType 0 =*/480).uint32(message.rankingVersion);
-            if (message.limitSharing != null && Object.hasOwnProperty.call(message, "limitSharing"))
-                $root.Protocol.LimitSharing.encode(message.limitSharing, writer.uint32(/* id 61, wireType 2 =*/490).fork()).ldelim();
             return writer;
         };
 
@@ -37020,10 +37037,6 @@ $root.E2E = (function() {
                     }
                 case 60: {
                         message.rankingVersion = reader.uint32();
-                        break;
-                    }
-                case 61: {
-                        message.limitSharing = $root.Protocol.LimitSharing.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -37243,11 +37256,6 @@ $root.E2E = (function() {
             if (message.rankingVersion != null && message.hasOwnProperty("rankingVersion"))
                 if (!$util.isInteger(message.rankingVersion))
                     return "rankingVersion: integer expected";
-            if (message.limitSharing != null && message.hasOwnProperty("limitSharing")) {
-                var error = $root.Protocol.LimitSharing.verify(message.limitSharing);
-                if (error)
-                    return "limitSharing." + error;
-            }
             return null;
         };
 
@@ -37463,11 +37471,6 @@ $root.E2E = (function() {
             }
             if (object.rankingVersion != null)
                 message.rankingVersion = object.rankingVersion >>> 0;
-            if (object.limitSharing != null) {
-                if (typeof object.limitSharing !== "object")
-                    throw TypeError(".E2E.ContextInfo.limitSharing: object expected");
-                message.limitSharing = $root.Protocol.LimitSharing.fromObject(object.limitSharing);
-            }
             return message;
         };
 
@@ -37553,7 +37556,6 @@ $root.E2E = (function() {
                 object.urlTrackingMap = null;
                 object.pairedMediaType = options.enums === String ? "NOT_PAIRED_MEDIA" : 0;
                 object.rankingVersion = 0;
-                object.limitSharing = null;
             }
             if (message.stanzaId != null && message.hasOwnProperty("stanzaId"))
                 object.stanzaId = message.stanzaId;
@@ -37652,8 +37654,6 @@ $root.E2E = (function() {
                 object.pairedMediaType = options.enums === String ? $root.E2E.ContextInfo.PairedMediaType[message.pairedMediaType] === undefined ? message.pairedMediaType : $root.E2E.ContextInfo.PairedMediaType[message.pairedMediaType] : message.pairedMediaType;
             if (message.rankingVersion != null && message.hasOwnProperty("rankingVersion"))
                 object.rankingVersion = message.rankingVersion;
-            if (message.limitSharing != null && message.hasOwnProperty("limitSharing"))
-                object.limitSharing = $root.Protocol.LimitSharing.toObject(message.limitSharing, options);
             return object;
         };
 
@@ -52942,6 +52942,7 @@ $root.E2E = (function() {
              * @property {number|Long|null} [startTime] EventMessage startTime
              * @property {number|Long|null} [endTime] EventMessage endTime
              * @property {boolean|null} [extraGuestsAllowed] EventMessage extraGuestsAllowed
+             * @property {boolean|null} [isScheduleCall] EventMessage isScheduleCall
              */
 
             /**
@@ -53032,6 +53033,14 @@ $root.E2E = (function() {
             EventMessage.prototype.extraGuestsAllowed = false;
 
             /**
+             * EventMessage isScheduleCall.
+             * @member {boolean} isScheduleCall
+             * @memberof E2E.Message.EventMessage
+             * @instance
+             */
+            EventMessage.prototype.isScheduleCall = false;
+
+            /**
              * Creates a new EventMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.EventMessage
@@ -53073,6 +53082,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 8, wireType 0 =*/64).int64(message.endTime);
                 if (message.extraGuestsAllowed != null && Object.hasOwnProperty.call(message, "extraGuestsAllowed"))
                     writer.uint32(/* id 9, wireType 0 =*/72).bool(message.extraGuestsAllowed);
+                if (message.isScheduleCall != null && Object.hasOwnProperty.call(message, "isScheduleCall"))
+                    writer.uint32(/* id 10, wireType 0 =*/80).bool(message.isScheduleCall);
                 return writer;
             };
 
@@ -53143,6 +53154,10 @@ $root.E2E = (function() {
                             message.extraGuestsAllowed = reader.bool();
                             break;
                         }
+                    case 10: {
+                            message.isScheduleCall = reader.bool();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -53209,6 +53224,9 @@ $root.E2E = (function() {
                 if (message.extraGuestsAllowed != null && message.hasOwnProperty("extraGuestsAllowed"))
                     if (typeof message.extraGuestsAllowed !== "boolean")
                         return "extraGuestsAllowed: boolean expected";
+                if (message.isScheduleCall != null && message.hasOwnProperty("isScheduleCall"))
+                    if (typeof message.isScheduleCall !== "boolean")
+                        return "isScheduleCall: boolean expected";
                 return null;
             };
 
@@ -53262,6 +53280,8 @@ $root.E2E = (function() {
                         message.endTime = new $util.LongBits(object.endTime.low >>> 0, object.endTime.high >>> 0).toNumber();
                 if (object.extraGuestsAllowed != null)
                     message.extraGuestsAllowed = Boolean(object.extraGuestsAllowed);
+                if (object.isScheduleCall != null)
+                    message.isScheduleCall = Boolean(object.isScheduleCall);
                 return message;
             };
 
@@ -53296,6 +53316,7 @@ $root.E2E = (function() {
                     } else
                         object.endTime = options.longs === String ? "0" : 0;
                     object.extraGuestsAllowed = false;
+                    object.isScheduleCall = false;
                 }
                 if (message.contextInfo != null && message.hasOwnProperty("contextInfo"))
                     object.contextInfo = $root.E2E.ContextInfo.toObject(message.contextInfo, options);
@@ -53321,6 +53342,8 @@ $root.E2E = (function() {
                         object.endTime = options.longs === String ? $util.Long.prototype.toString.call(message.endTime) : options.longs === Number ? new $util.LongBits(message.endTime.low >>> 0, message.endTime.high >>> 0).toNumber() : message.endTime;
                 if (message.extraGuestsAllowed != null && message.hasOwnProperty("extraGuestsAllowed"))
                     object.extraGuestsAllowed = message.extraGuestsAllowed;
+                if (message.isScheduleCall != null && message.hasOwnProperty("isScheduleCall"))
+                    object.isScheduleCall = message.isScheduleCall;
                 return object;
             };
 

@@ -92,6 +92,9 @@ export namespace Wa6 {
 
         /** ClientPayload lidDbMigrated */
         lidDbMigrated?: (boolean|null);
+
+        /** ClientPayload accountType */
+        accountType?: (Wa6.ClientPayload.AccountType|null);
     }
 
     /** Represents a ClientPayload. */
@@ -190,6 +193,9 @@ export namespace Wa6 {
         /** ClientPayload lidDbMigrated. */
         public lidDbMigrated: boolean;
 
+        /** ClientPayload accountType. */
+        public accountType: Wa6.ClientPayload.AccountType;
+
         /**
          * Creates a new ClientPayload instance using the specified properties.
          * @param [properties] Properties to set
@@ -269,6 +275,12 @@ export namespace Wa6 {
     }
 
     namespace ClientPayload {
+
+        /** AccountType enum. */
+        enum AccountType {
+            DEFAULT = 0,
+            GUEST = 1
+        }
 
         /** ConnectReason enum. */
         enum ConnectReason {
@@ -676,7 +688,8 @@ export namespace Wa6 {
             WHATSAPP = 0,
             MESSENGER = 1,
             INTEROP = 2,
-            INTEROP_MSGR = 3
+            INTEROP_MSGR = 3,
+            WHATSAPP_LID = 4
         }
 
         /** TrafficAnonymization enum. */

@@ -3319,6 +3319,9 @@ export namespace E2E {
 
         /** MessageContextInfo supportPayload */
         supportPayload?: (string|null);
+
+        /** MessageContextInfo limitSharing */
+        limitSharing?: (Protocol.ILimitSharing|null);
     }
 
     /** Represents a MessageContextInfo. */
@@ -3365,6 +3368,9 @@ export namespace E2E {
 
         /** MessageContextInfo supportPayload. */
         public supportPayload: string;
+
+        /** MessageContextInfo limitSharing. */
+        public limitSharing?: (Protocol.ILimitSharing|null);
 
         /**
          * Creates a new MessageContextInfo instance using the specified properties.
@@ -9029,9 +9035,6 @@ export namespace E2E {
 
         /** ContextInfo rankingVersion */
         rankingVersion?: (number|null);
-
-        /** ContextInfo limitSharing */
-        limitSharing?: (Protocol.ILimitSharing|null);
     }
 
     /** Represents a ContextInfo. */
@@ -9174,9 +9177,6 @@ export namespace E2E {
 
         /** ContextInfo rankingVersion. */
         public rankingVersion: number;
-
-        /** ContextInfo limitSharing. */
-        public limitSharing?: (Protocol.ILimitSharing|null);
 
         /**
          * Creates a new ContextInfo instance using the specified properties.
@@ -14748,6 +14748,9 @@ export namespace E2E {
 
             /** EventMessage extraGuestsAllowed */
             extraGuestsAllowed?: (boolean|null);
+
+            /** EventMessage isScheduleCall */
+            isScheduleCall?: (boolean|null);
         }
 
         /** Represents an EventMessage. */
@@ -14785,6 +14788,9 @@ export namespace E2E {
 
             /** EventMessage extraGuestsAllowed. */
             public extraGuestsAllowed: boolean;
+
+            /** EventMessage isScheduleCall. */
+            public isScheduleCall: boolean;
 
             /**
              * Creates a new EventMessage instance using the specified properties.

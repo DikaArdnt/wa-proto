@@ -245,6 +245,7 @@ message MessageContextInfo {
     optional MessageAssociation messageAssociation = 10;
     optional bool capiCreatedGroup = 11;
     optional string supportPayload = 12;
+    optional Protocol.LimitSharing limitSharing = 13;
     enum MessageAddonExpiryType {
         STATIC = 1;
         DEPENDENT_ON_PARENT = 2;
@@ -738,7 +739,6 @@ message ContextInfo {
     optional UrlTrackingMap urlTrackingMap = 58;
     optional PairedMediaType pairedMediaType = 59;
     optional uint32 rankingVersion = 60;
-    optional Protocol.LimitSharing limitSharing = 61;
     message AdReplyInfo {
         optional string advertiserName = 1;
         optional MediaType mediaType = 2;
@@ -1197,6 +1197,7 @@ message Message {
         optional int64 startTime = 7;
         optional int64 endTime = 8;
         optional bool extraGuestsAllowed = 9;
+        optional bool isScheduleCall = 10;
     }
     message EventResponseMessage {
         optional EventResponseType response = 1;
