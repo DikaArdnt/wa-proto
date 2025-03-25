@@ -15066,7 +15066,10 @@ export namespace E2E {
             faviconMMSMetadata?: (E2E.Message.IMMSThumbnailMetadata|null);
 
             /** ExtendedTextMessage linkPreviewMetadata */
-            linkPreviewMetadata?: (E2E.Message.ExtendedTextMessage.ILinkPreviewMetadata|null);
+            linkPreviewMetadata?: (E2E.Message.ILinkPreviewMetadata|null);
+
+            /** ExtendedTextMessage paymentLinkMetadata */
+            paymentLinkMetadata?: (E2E.Message.IPaymentLinkMetadata|null);
         }
 
         /** Represents an ExtendedTextMessage. */
@@ -15157,7 +15160,10 @@ export namespace E2E {
             public faviconMMSMetadata?: (E2E.Message.IMMSThumbnailMetadata|null);
 
             /** ExtendedTextMessage linkPreviewMetadata. */
-            public linkPreviewMetadata?: (E2E.Message.ExtendedTextMessage.ILinkPreviewMetadata|null);
+            public linkPreviewMetadata?: (E2E.Message.ILinkPreviewMetadata|null);
+
+            /** ExtendedTextMessage paymentLinkMetadata. */
+            public paymentLinkMetadata?: (E2E.Message.IPaymentLinkMetadata|null);
 
             /**
              * Creates a new ExtendedTextMessage instance using the specified properties.
@@ -15257,109 +15263,6 @@ export namespace E2E {
                 PARENT = 1,
                 SUB = 2,
                 DEFAULT_SUB = 3
-            }
-
-            /** Properties of a LinkPreviewMetadata. */
-            interface ILinkPreviewMetadata {
-
-                /** LinkPreviewMetadata paymentLinkMetadata */
-                paymentLinkMetadata?: (E2E.Message.IPaymentLinkMetadata|null);
-
-                /** LinkPreviewMetadata urlMetadata */
-                urlMetadata?: (E2E.Message.IURLMetadata|null);
-            }
-
-            /** Represents a LinkPreviewMetadata. */
-            class LinkPreviewMetadata implements ILinkPreviewMetadata {
-
-                /**
-                 * Constructs a new LinkPreviewMetadata.
-                 * @param [properties] Properties to set
-                 */
-                constructor(properties?: E2E.Message.ExtendedTextMessage.ILinkPreviewMetadata);
-
-                /** LinkPreviewMetadata paymentLinkMetadata. */
-                public paymentLinkMetadata?: (E2E.Message.IPaymentLinkMetadata|null);
-
-                /** LinkPreviewMetadata urlMetadata. */
-                public urlMetadata?: (E2E.Message.IURLMetadata|null);
-
-                /**
-                 * Creates a new LinkPreviewMetadata instance using the specified properties.
-                 * @param [properties] Properties to set
-                 * @returns LinkPreviewMetadata instance
-                 */
-                public static create(properties?: E2E.Message.ExtendedTextMessage.ILinkPreviewMetadata): E2E.Message.ExtendedTextMessage.LinkPreviewMetadata;
-
-                /**
-                 * Encodes the specified LinkPreviewMetadata message. Does not implicitly {@link E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.verify|verify} messages.
-                 * @param message LinkPreviewMetadata message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encode(message: E2E.Message.ExtendedTextMessage.ILinkPreviewMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Encodes the specified LinkPreviewMetadata message, length delimited. Does not implicitly {@link E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.verify|verify} messages.
-                 * @param message LinkPreviewMetadata message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encodeDelimited(message: E2E.Message.ExtendedTextMessage.ILinkPreviewMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Decodes a LinkPreviewMetadata message from the specified reader or buffer.
-                 * @param reader Reader or buffer to decode from
-                 * @param [length] Message length if known beforehand
-                 * @returns LinkPreviewMetadata
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.ExtendedTextMessage.LinkPreviewMetadata;
-
-                /**
-                 * Decodes a LinkPreviewMetadata message from the specified reader or buffer, length delimited.
-                 * @param reader Reader or buffer to decode from
-                 * @returns LinkPreviewMetadata
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.ExtendedTextMessage.LinkPreviewMetadata;
-
-                /**
-                 * Verifies a LinkPreviewMetadata message.
-                 * @param message Plain object to verify
-                 * @returns `null` if valid, otherwise the reason why it is not
-                 */
-                public static verify(message: { [k: string]: any }): (string|null);
-
-                /**
-                 * Creates a LinkPreviewMetadata message from a plain object. Also converts values to their respective internal types.
-                 * @param object Plain object
-                 * @returns LinkPreviewMetadata
-                 */
-                public static fromObject(object: { [k: string]: any }): E2E.Message.ExtendedTextMessage.LinkPreviewMetadata;
-
-                /**
-                 * Creates a plain object from a LinkPreviewMetadata message. Also converts values to other types if specified.
-                 * @param message LinkPreviewMetadata
-                 * @param [options] Conversion options
-                 * @returns Plain object
-                 */
-                public static toObject(message: E2E.Message.ExtendedTextMessage.LinkPreviewMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                /**
-                 * Converts this LinkPreviewMetadata to JSON.
-                 * @returns JSON object
-                 */
-                public toJSON(): { [k: string]: any };
-
-                /**
-                 * Gets the default type url for LinkPreviewMetadata
-                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns The default type url
-                 */
-                public static getTypeUrl(typeUrlPrefix?: string): string;
             }
 
             /** PreviewType enum. */
@@ -18642,6 +18545,115 @@ export namespace E2E {
 
             /**
              * Gets the default type url for KeepInChatMessage
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a LinkPreviewMetadata. */
+        interface ILinkPreviewMetadata {
+
+            /** LinkPreviewMetadata paymentLinkMetadata */
+            paymentLinkMetadata?: (E2E.Message.IPaymentLinkMetadata|null);
+
+            /** LinkPreviewMetadata urlMetadata */
+            urlMetadata?: (E2E.Message.IURLMetadata|null);
+
+            /** LinkPreviewMetadata fbExperimentId */
+            fbExperimentId?: (number|null);
+        }
+
+        /** Represents a LinkPreviewMetadata. */
+        class LinkPreviewMetadata implements ILinkPreviewMetadata {
+
+            /**
+             * Constructs a new LinkPreviewMetadata.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.ILinkPreviewMetadata);
+
+            /** LinkPreviewMetadata paymentLinkMetadata. */
+            public paymentLinkMetadata?: (E2E.Message.IPaymentLinkMetadata|null);
+
+            /** LinkPreviewMetadata urlMetadata. */
+            public urlMetadata?: (E2E.Message.IURLMetadata|null);
+
+            /** LinkPreviewMetadata fbExperimentId. */
+            public fbExperimentId: number;
+
+            /**
+             * Creates a new LinkPreviewMetadata instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns LinkPreviewMetadata instance
+             */
+            public static create(properties?: E2E.Message.ILinkPreviewMetadata): E2E.Message.LinkPreviewMetadata;
+
+            /**
+             * Encodes the specified LinkPreviewMetadata message. Does not implicitly {@link E2E.Message.LinkPreviewMetadata.verify|verify} messages.
+             * @param message LinkPreviewMetadata message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.ILinkPreviewMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified LinkPreviewMetadata message, length delimited. Does not implicitly {@link E2E.Message.LinkPreviewMetadata.verify|verify} messages.
+             * @param message LinkPreviewMetadata message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.ILinkPreviewMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a LinkPreviewMetadata message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns LinkPreviewMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.LinkPreviewMetadata;
+
+            /**
+             * Decodes a LinkPreviewMetadata message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns LinkPreviewMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.LinkPreviewMetadata;
+
+            /**
+             * Verifies a LinkPreviewMetadata message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a LinkPreviewMetadata message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns LinkPreviewMetadata
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.LinkPreviewMetadata;
+
+            /**
+             * Creates a plain object from a LinkPreviewMetadata message. Also converts values to other types if specified.
+             * @param message LinkPreviewMetadata
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.LinkPreviewMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this LinkPreviewMetadata to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for LinkPreviewMetadata
              * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
              * @returns The default type url
              */

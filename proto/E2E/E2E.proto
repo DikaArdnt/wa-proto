@@ -1236,7 +1236,8 @@ message Message {
         optional uint32 videoHeight = 31;
         optional uint32 videoWidth = 32;
         optional Message.MMSThumbnailMetadata faviconMMSMetadata = 33;
-        optional LinkPreviewMetadata linkPreviewMetadata = 34;
+        optional Message.LinkPreviewMetadata linkPreviewMetadata = 34;
+        optional Message.PaymentLinkMetadata paymentLinkMetadata = 35;
         enum FontType {
             SYSTEM = 0;
             SYSTEM_TEXT = 1;
@@ -1252,10 +1253,6 @@ message Message {
             PARENT = 1;
             SUB = 2;
             DEFAULT_SUB = 3;
-        }
-        message LinkPreviewMetadata {
-            optional Message.PaymentLinkMetadata paymentLinkMetadata = 1;
-            optional Message.URLMetadata urlMetadata = 2;
         }
         enum PreviewType {
             NONE = 0;
@@ -1506,6 +1503,11 @@ message Message {
         optional Protocol.MessageKey key = 1;
         optional KeepType keepType = 2;
         optional int64 timestampMs = 3;
+    }
+    message LinkPreviewMetadata {
+        optional Message.PaymentLinkMetadata paymentLinkMetadata = 1;
+        optional Message.URLMetadata urlMetadata = 2;
+        optional uint32 fbExperimentId = 3;
     }
     message ListMessage {
         optional string title = 1;

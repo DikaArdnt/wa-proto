@@ -53696,7 +53696,8 @@ $root.E2E = (function() {
              * @property {number|null} [videoHeight] ExtendedTextMessage videoHeight
              * @property {number|null} [videoWidth] ExtendedTextMessage videoWidth
              * @property {E2E.Message.IMMSThumbnailMetadata|null} [faviconMMSMetadata] ExtendedTextMessage faviconMMSMetadata
-             * @property {E2E.Message.ExtendedTextMessage.ILinkPreviewMetadata|null} [linkPreviewMetadata] ExtendedTextMessage linkPreviewMetadata
+             * @property {E2E.Message.ILinkPreviewMetadata|null} [linkPreviewMetadata] ExtendedTextMessage linkPreviewMetadata
+             * @property {E2E.Message.IPaymentLinkMetadata|null} [paymentLinkMetadata] ExtendedTextMessage paymentLinkMetadata
              */
 
             /**
@@ -53924,11 +53925,19 @@ $root.E2E = (function() {
 
             /**
              * ExtendedTextMessage linkPreviewMetadata.
-             * @member {E2E.Message.ExtendedTextMessage.ILinkPreviewMetadata|null|undefined} linkPreviewMetadata
+             * @member {E2E.Message.ILinkPreviewMetadata|null|undefined} linkPreviewMetadata
              * @memberof E2E.Message.ExtendedTextMessage
              * @instance
              */
             ExtendedTextMessage.prototype.linkPreviewMetadata = null;
+
+            /**
+             * ExtendedTextMessage paymentLinkMetadata.
+             * @member {E2E.Message.IPaymentLinkMetadata|null|undefined} paymentLinkMetadata
+             * @memberof E2E.Message.ExtendedTextMessage
+             * @instance
+             */
+            ExtendedTextMessage.prototype.paymentLinkMetadata = null;
 
             /**
              * Creates a new ExtendedTextMessage instance using the specified properties.
@@ -54007,7 +54016,9 @@ $root.E2E = (function() {
                 if (message.faviconMMSMetadata != null && Object.hasOwnProperty.call(message, "faviconMMSMetadata"))
                     $root.E2E.Message.MMSThumbnailMetadata.encode(message.faviconMMSMetadata, writer.uint32(/* id 33, wireType 2 =*/266).fork()).ldelim();
                 if (message.linkPreviewMetadata != null && Object.hasOwnProperty.call(message, "linkPreviewMetadata"))
-                    $root.E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.encode(message.linkPreviewMetadata, writer.uint32(/* id 34, wireType 2 =*/274).fork()).ldelim();
+                    $root.E2E.Message.LinkPreviewMetadata.encode(message.linkPreviewMetadata, writer.uint32(/* id 34, wireType 2 =*/274).fork()).ldelim();
+                if (message.paymentLinkMetadata != null && Object.hasOwnProperty.call(message, "paymentLinkMetadata"))
+                    $root.E2E.Message.PaymentLinkMetadata.encode(message.paymentLinkMetadata, writer.uint32(/* id 35, wireType 2 =*/282).fork()).ldelim();
                 return writer;
             };
 
@@ -54147,7 +54158,11 @@ $root.E2E = (function() {
                             break;
                         }
                     case 34: {
-                            message.linkPreviewMetadata = $root.E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.decode(reader, reader.uint32());
+                            message.linkPreviewMetadata = $root.E2E.Message.LinkPreviewMetadata.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 35: {
+                            message.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -54302,9 +54317,14 @@ $root.E2E = (function() {
                         return "faviconMMSMetadata." + error;
                 }
                 if (message.linkPreviewMetadata != null && message.hasOwnProperty("linkPreviewMetadata")) {
-                    var error = $root.E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.verify(message.linkPreviewMetadata);
+                    var error = $root.E2E.Message.LinkPreviewMetadata.verify(message.linkPreviewMetadata);
                     if (error)
                         return "linkPreviewMetadata." + error;
+                }
+                if (message.paymentLinkMetadata != null && message.hasOwnProperty("paymentLinkMetadata")) {
+                    var error = $root.E2E.Message.PaymentLinkMetadata.verify(message.paymentLinkMetadata);
+                    if (error)
+                        return "paymentLinkMetadata." + error;
                 }
                 return null;
             };
@@ -54516,7 +54536,12 @@ $root.E2E = (function() {
                 if (object.linkPreviewMetadata != null) {
                     if (typeof object.linkPreviewMetadata !== "object")
                         throw TypeError(".E2E.Message.ExtendedTextMessage.linkPreviewMetadata: object expected");
-                    message.linkPreviewMetadata = $root.E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.fromObject(object.linkPreviewMetadata);
+                    message.linkPreviewMetadata = $root.E2E.Message.LinkPreviewMetadata.fromObject(object.linkPreviewMetadata);
+                }
+                if (object.paymentLinkMetadata != null) {
+                    if (typeof object.paymentLinkMetadata !== "object")
+                        throw TypeError(".E2E.Message.ExtendedTextMessage.paymentLinkMetadata: object expected");
+                    message.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.fromObject(object.paymentLinkMetadata);
                 }
                 return message;
             };
@@ -54596,6 +54621,7 @@ $root.E2E = (function() {
                     object.videoWidth = 0;
                     object.faviconMMSMetadata = null;
                     object.linkPreviewMetadata = null;
+                    object.paymentLinkMetadata = null;
                 }
                 if (message.text != null && message.hasOwnProperty("text"))
                     object.text = message.text;
@@ -54653,7 +54679,9 @@ $root.E2E = (function() {
                 if (message.faviconMMSMetadata != null && message.hasOwnProperty("faviconMMSMetadata"))
                     object.faviconMMSMetadata = $root.E2E.Message.MMSThumbnailMetadata.toObject(message.faviconMMSMetadata, options);
                 if (message.linkPreviewMetadata != null && message.hasOwnProperty("linkPreviewMetadata"))
-                    object.linkPreviewMetadata = $root.E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.toObject(message.linkPreviewMetadata, options);
+                    object.linkPreviewMetadata = $root.E2E.Message.LinkPreviewMetadata.toObject(message.linkPreviewMetadata, options);
+                if (message.paymentLinkMetadata != null && message.hasOwnProperty("paymentLinkMetadata"))
+                    object.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.toObject(message.paymentLinkMetadata, options);
                 return object;
             };
 
@@ -54725,243 +54753,6 @@ $root.E2E = (function() {
                 values[valuesById[2] = "SUB"] = 2;
                 values[valuesById[3] = "DEFAULT_SUB"] = 3;
                 return values;
-            })();
-
-            ExtendedTextMessage.LinkPreviewMetadata = (function() {
-
-                /**
-                 * Properties of a LinkPreviewMetadata.
-                 * @memberof E2E.Message.ExtendedTextMessage
-                 * @interface ILinkPreviewMetadata
-                 * @property {E2E.Message.IPaymentLinkMetadata|null} [paymentLinkMetadata] LinkPreviewMetadata paymentLinkMetadata
-                 * @property {E2E.Message.IURLMetadata|null} [urlMetadata] LinkPreviewMetadata urlMetadata
-                 */
-
-                /**
-                 * Constructs a new LinkPreviewMetadata.
-                 * @memberof E2E.Message.ExtendedTextMessage
-                 * @classdesc Represents a LinkPreviewMetadata.
-                 * @implements ILinkPreviewMetadata
-                 * @constructor
-                 * @param {E2E.Message.ExtendedTextMessage.ILinkPreviewMetadata=} [properties] Properties to set
-                 */
-                function LinkPreviewMetadata(properties) {
-                    if (properties)
-                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-
-                /**
-                 * LinkPreviewMetadata paymentLinkMetadata.
-                 * @member {E2E.Message.IPaymentLinkMetadata|null|undefined} paymentLinkMetadata
-                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
-                 * @instance
-                 */
-                LinkPreviewMetadata.prototype.paymentLinkMetadata = null;
-
-                /**
-                 * LinkPreviewMetadata urlMetadata.
-                 * @member {E2E.Message.IURLMetadata|null|undefined} urlMetadata
-                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
-                 * @instance
-                 */
-                LinkPreviewMetadata.prototype.urlMetadata = null;
-
-                /**
-                 * Creates a new LinkPreviewMetadata instance using the specified properties.
-                 * @function create
-                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
-                 * @static
-                 * @param {E2E.Message.ExtendedTextMessage.ILinkPreviewMetadata=} [properties] Properties to set
-                 * @returns {E2E.Message.ExtendedTextMessage.LinkPreviewMetadata} LinkPreviewMetadata instance
-                 */
-                LinkPreviewMetadata.create = function create(properties) {
-                    return new LinkPreviewMetadata(properties);
-                };
-
-                /**
-                 * Encodes the specified LinkPreviewMetadata message. Does not implicitly {@link E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.verify|verify} messages.
-                 * @function encode
-                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
-                 * @static
-                 * @param {E2E.Message.ExtendedTextMessage.ILinkPreviewMetadata} message LinkPreviewMetadata message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                LinkPreviewMetadata.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    if (message.paymentLinkMetadata != null && Object.hasOwnProperty.call(message, "paymentLinkMetadata"))
-                        $root.E2E.Message.PaymentLinkMetadata.encode(message.paymentLinkMetadata, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                    if (message.urlMetadata != null && Object.hasOwnProperty.call(message, "urlMetadata"))
-                        $root.E2E.Message.URLMetadata.encode(message.urlMetadata, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                    return writer;
-                };
-
-                /**
-                 * Encodes the specified LinkPreviewMetadata message, length delimited. Does not implicitly {@link E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
-                 * @static
-                 * @param {E2E.Message.ExtendedTextMessage.ILinkPreviewMetadata} message LinkPreviewMetadata message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                LinkPreviewMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-
-                /**
-                 * Decodes a LinkPreviewMetadata message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {E2E.Message.ExtendedTextMessage.LinkPreviewMetadata} LinkPreviewMetadata
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                LinkPreviewMetadata.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ExtendedTextMessage.LinkPreviewMetadata();
-                    while (reader.pos < end) {
-                        var tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1: {
-                                message.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.decode(reader, reader.uint32());
-                                break;
-                            }
-                        case 2: {
-                                message.urlMetadata = $root.E2E.Message.URLMetadata.decode(reader, reader.uint32());
-                                break;
-                            }
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    return message;
-                };
-
-                /**
-                 * Decodes a LinkPreviewMetadata message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {E2E.Message.ExtendedTextMessage.LinkPreviewMetadata} LinkPreviewMetadata
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                LinkPreviewMetadata.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-
-                /**
-                 * Verifies a LinkPreviewMetadata message.
-                 * @function verify
-                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                LinkPreviewMetadata.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (message.paymentLinkMetadata != null && message.hasOwnProperty("paymentLinkMetadata")) {
-                        var error = $root.E2E.Message.PaymentLinkMetadata.verify(message.paymentLinkMetadata);
-                        if (error)
-                            return "paymentLinkMetadata." + error;
-                    }
-                    if (message.urlMetadata != null && message.hasOwnProperty("urlMetadata")) {
-                        var error = $root.E2E.Message.URLMetadata.verify(message.urlMetadata);
-                        if (error)
-                            return "urlMetadata." + error;
-                    }
-                    return null;
-                };
-
-                /**
-                 * Creates a LinkPreviewMetadata message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {E2E.Message.ExtendedTextMessage.LinkPreviewMetadata} LinkPreviewMetadata
-                 */
-                LinkPreviewMetadata.fromObject = function fromObject(object) {
-                    if (object instanceof $root.E2E.Message.ExtendedTextMessage.LinkPreviewMetadata)
-                        return object;
-                    var message = new $root.E2E.Message.ExtendedTextMessage.LinkPreviewMetadata();
-                    if (object.paymentLinkMetadata != null) {
-                        if (typeof object.paymentLinkMetadata !== "object")
-                            throw TypeError(".E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.paymentLinkMetadata: object expected");
-                        message.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.fromObject(object.paymentLinkMetadata);
-                    }
-                    if (object.urlMetadata != null) {
-                        if (typeof object.urlMetadata !== "object")
-                            throw TypeError(".E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.urlMetadata: object expected");
-                        message.urlMetadata = $root.E2E.Message.URLMetadata.fromObject(object.urlMetadata);
-                    }
-                    return message;
-                };
-
-                /**
-                 * Creates a plain object from a LinkPreviewMetadata message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
-                 * @static
-                 * @param {E2E.Message.ExtendedTextMessage.LinkPreviewMetadata} message LinkPreviewMetadata
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                LinkPreviewMetadata.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    var object = {};
-                    if (options.defaults) {
-                        object.paymentLinkMetadata = null;
-                        object.urlMetadata = null;
-                    }
-                    if (message.paymentLinkMetadata != null && message.hasOwnProperty("paymentLinkMetadata"))
-                        object.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.toObject(message.paymentLinkMetadata, options);
-                    if (message.urlMetadata != null && message.hasOwnProperty("urlMetadata"))
-                        object.urlMetadata = $root.E2E.Message.URLMetadata.toObject(message.urlMetadata, options);
-                    return object;
-                };
-
-                /**
-                 * Converts this LinkPreviewMetadata to JSON.
-                 * @function toJSON
-                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                LinkPreviewMetadata.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-
-                /**
-                 * Gets the default type url for LinkPreviewMetadata
-                 * @function getTypeUrl
-                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
-                 * @static
-                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns {string} The default type url
-                 */
-                LinkPreviewMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-                    if (typeUrlPrefix === undefined) {
-                        typeUrlPrefix = "type.googleapis.com";
-                    }
-                    return typeUrlPrefix + "/E2E.Message.ExtendedTextMessage.LinkPreviewMetadata";
-                };
-
-                return LinkPreviewMetadata;
             })();
 
             /**
@@ -63864,6 +63655,266 @@ $root.E2E = (function() {
             };
 
             return KeepInChatMessage;
+        })();
+
+        Message.LinkPreviewMetadata = (function() {
+
+            /**
+             * Properties of a LinkPreviewMetadata.
+             * @memberof E2E.Message
+             * @interface ILinkPreviewMetadata
+             * @property {E2E.Message.IPaymentLinkMetadata|null} [paymentLinkMetadata] LinkPreviewMetadata paymentLinkMetadata
+             * @property {E2E.Message.IURLMetadata|null} [urlMetadata] LinkPreviewMetadata urlMetadata
+             * @property {number|null} [fbExperimentId] LinkPreviewMetadata fbExperimentId
+             */
+
+            /**
+             * Constructs a new LinkPreviewMetadata.
+             * @memberof E2E.Message
+             * @classdesc Represents a LinkPreviewMetadata.
+             * @implements ILinkPreviewMetadata
+             * @constructor
+             * @param {E2E.Message.ILinkPreviewMetadata=} [properties] Properties to set
+             */
+            function LinkPreviewMetadata(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * LinkPreviewMetadata paymentLinkMetadata.
+             * @member {E2E.Message.IPaymentLinkMetadata|null|undefined} paymentLinkMetadata
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @instance
+             */
+            LinkPreviewMetadata.prototype.paymentLinkMetadata = null;
+
+            /**
+             * LinkPreviewMetadata urlMetadata.
+             * @member {E2E.Message.IURLMetadata|null|undefined} urlMetadata
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @instance
+             */
+            LinkPreviewMetadata.prototype.urlMetadata = null;
+
+            /**
+             * LinkPreviewMetadata fbExperimentId.
+             * @member {number} fbExperimentId
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @instance
+             */
+            LinkPreviewMetadata.prototype.fbExperimentId = 0;
+
+            /**
+             * Creates a new LinkPreviewMetadata instance using the specified properties.
+             * @function create
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @static
+             * @param {E2E.Message.ILinkPreviewMetadata=} [properties] Properties to set
+             * @returns {E2E.Message.LinkPreviewMetadata} LinkPreviewMetadata instance
+             */
+            LinkPreviewMetadata.create = function create(properties) {
+                return new LinkPreviewMetadata(properties);
+            };
+
+            /**
+             * Encodes the specified LinkPreviewMetadata message. Does not implicitly {@link E2E.Message.LinkPreviewMetadata.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @static
+             * @param {E2E.Message.ILinkPreviewMetadata} message LinkPreviewMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            LinkPreviewMetadata.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.paymentLinkMetadata != null && Object.hasOwnProperty.call(message, "paymentLinkMetadata"))
+                    $root.E2E.Message.PaymentLinkMetadata.encode(message.paymentLinkMetadata, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.urlMetadata != null && Object.hasOwnProperty.call(message, "urlMetadata"))
+                    $root.E2E.Message.URLMetadata.encode(message.urlMetadata, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                if (message.fbExperimentId != null && Object.hasOwnProperty.call(message, "fbExperimentId"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).uint32(message.fbExperimentId);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified LinkPreviewMetadata message, length delimited. Does not implicitly {@link E2E.Message.LinkPreviewMetadata.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @static
+             * @param {E2E.Message.ILinkPreviewMetadata} message LinkPreviewMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            LinkPreviewMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a LinkPreviewMetadata message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.Message.LinkPreviewMetadata} LinkPreviewMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            LinkPreviewMetadata.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.LinkPreviewMetadata();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 2: {
+                            message.urlMetadata = $root.E2E.Message.URLMetadata.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 3: {
+                            message.fbExperimentId = reader.uint32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a LinkPreviewMetadata message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.Message.LinkPreviewMetadata} LinkPreviewMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            LinkPreviewMetadata.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a LinkPreviewMetadata message.
+             * @function verify
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            LinkPreviewMetadata.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.paymentLinkMetadata != null && message.hasOwnProperty("paymentLinkMetadata")) {
+                    var error = $root.E2E.Message.PaymentLinkMetadata.verify(message.paymentLinkMetadata);
+                    if (error)
+                        return "paymentLinkMetadata." + error;
+                }
+                if (message.urlMetadata != null && message.hasOwnProperty("urlMetadata")) {
+                    var error = $root.E2E.Message.URLMetadata.verify(message.urlMetadata);
+                    if (error)
+                        return "urlMetadata." + error;
+                }
+                if (message.fbExperimentId != null && message.hasOwnProperty("fbExperimentId"))
+                    if (!$util.isInteger(message.fbExperimentId))
+                        return "fbExperimentId: integer expected";
+                return null;
+            };
+
+            /**
+             * Creates a LinkPreviewMetadata message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.Message.LinkPreviewMetadata} LinkPreviewMetadata
+             */
+            LinkPreviewMetadata.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.Message.LinkPreviewMetadata)
+                    return object;
+                var message = new $root.E2E.Message.LinkPreviewMetadata();
+                if (object.paymentLinkMetadata != null) {
+                    if (typeof object.paymentLinkMetadata !== "object")
+                        throw TypeError(".E2E.Message.LinkPreviewMetadata.paymentLinkMetadata: object expected");
+                    message.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.fromObject(object.paymentLinkMetadata);
+                }
+                if (object.urlMetadata != null) {
+                    if (typeof object.urlMetadata !== "object")
+                        throw TypeError(".E2E.Message.LinkPreviewMetadata.urlMetadata: object expected");
+                    message.urlMetadata = $root.E2E.Message.URLMetadata.fromObject(object.urlMetadata);
+                }
+                if (object.fbExperimentId != null)
+                    message.fbExperimentId = object.fbExperimentId >>> 0;
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a LinkPreviewMetadata message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @static
+             * @param {E2E.Message.LinkPreviewMetadata} message LinkPreviewMetadata
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            LinkPreviewMetadata.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.paymentLinkMetadata = null;
+                    object.urlMetadata = null;
+                    object.fbExperimentId = 0;
+                }
+                if (message.paymentLinkMetadata != null && message.hasOwnProperty("paymentLinkMetadata"))
+                    object.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.toObject(message.paymentLinkMetadata, options);
+                if (message.urlMetadata != null && message.hasOwnProperty("urlMetadata"))
+                    object.urlMetadata = $root.E2E.Message.URLMetadata.toObject(message.urlMetadata, options);
+                if (message.fbExperimentId != null && message.hasOwnProperty("fbExperimentId"))
+                    object.fbExperimentId = message.fbExperimentId;
+                return object;
+            };
+
+            /**
+             * Converts this LinkPreviewMetadata to JSON.
+             * @function toJSON
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            LinkPreviewMetadata.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for LinkPreviewMetadata
+             * @function getTypeUrl
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            LinkPreviewMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.Message.LinkPreviewMetadata";
+            };
+
+            return LinkPreviewMetadata;
         })();
 
         Message.ListMessage = (function() {
