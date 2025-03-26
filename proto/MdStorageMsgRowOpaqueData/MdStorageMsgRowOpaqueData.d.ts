@@ -11653,6 +11653,9 @@ export namespace E2E {
 
         /** Message limitSharingMessage */
         limitSharingMessage?: (E2E.Message.IFutureProofMessage|null);
+
+        /** Message botTaskMessage */
+        botTaskMessage?: (E2E.Message.IFutureProofMessage|null);
     }
 
     /** Represents a Message. */
@@ -11912,6 +11915,9 @@ export namespace E2E {
 
         /** Message limitSharingMessage. */
         public limitSharingMessage?: (E2E.Message.IFutureProofMessage|null);
+
+        /** Message botTaskMessage. */
+        public botTaskMessage?: (E2E.Message.IFutureProofMessage|null);
 
         /**
          * Creates a new Message instance using the specified properties.

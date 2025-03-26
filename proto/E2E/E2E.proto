@@ -921,6 +921,7 @@ message Message {
     optional AIRichResponseMessage richResponseMessage = 97;
     optional StatusNotificationMessage statusNotificationMessage = 98;
     optional FutureProofMessage limitSharingMessage = 99;
+    optional FutureProofMessage botTaskMessage = 100;
     message AlbumMessage {
         optional uint32 expectedImageCount = 2;
         optional uint32 expectedVideoCount = 3;

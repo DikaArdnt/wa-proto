@@ -27738,6 +27738,7 @@ $root.E2E = (function() {
          * @property {E2E.IAIRichResponseMessage|null} [richResponseMessage] Message richResponseMessage
          * @property {E2E.Message.IStatusNotificationMessage|null} [statusNotificationMessage] Message statusNotificationMessage
          * @property {E2E.Message.IFutureProofMessage|null} [limitSharingMessage] Message limitSharingMessage
+         * @property {E2E.Message.IFutureProofMessage|null} [botTaskMessage] Message botTaskMessage
          */
 
         /**
@@ -28420,6 +28421,14 @@ $root.E2E = (function() {
         Message.prototype.limitSharingMessage = null;
 
         /**
+         * Message botTaskMessage.
+         * @member {E2E.Message.IFutureProofMessage|null|undefined} botTaskMessage
+         * @memberof E2E.Message
+         * @instance
+         */
+        Message.prototype.botTaskMessage = null;
+
+        /**
          * Creates a new Message instance using the specified properties.
          * @function create
          * @memberof E2E.Message
@@ -28609,6 +28618,8 @@ $root.E2E = (function() {
                 $root.E2E.Message.StatusNotificationMessage.encode(message.statusNotificationMessage, writer.uint32(/* id 98, wireType 2 =*/786).fork()).ldelim();
             if (message.limitSharingMessage != null && Object.hasOwnProperty.call(message, "limitSharingMessage"))
                 $root.E2E.Message.FutureProofMessage.encode(message.limitSharingMessage, writer.uint32(/* id 99, wireType 2 =*/794).fork()).ldelim();
+            if (message.botTaskMessage != null && Object.hasOwnProperty.call(message, "botTaskMessage"))
+                $root.E2E.Message.FutureProofMessage.encode(message.botTaskMessage, writer.uint32(/* id 100, wireType 2 =*/802).fork()).ldelim();
             return writer;
         };
 
@@ -28973,6 +28984,10 @@ $root.E2E = (function() {
                     }
                 case 99: {
                         message.limitSharingMessage = $root.E2E.Message.FutureProofMessage.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 100: {
+                        message.botTaskMessage = $root.E2E.Message.FutureProofMessage.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -29423,6 +29438,11 @@ $root.E2E = (function() {
                 if (error)
                     return "limitSharingMessage." + error;
             }
+            if (message.botTaskMessage != null && message.hasOwnProperty("botTaskMessage")) {
+                var error = $root.E2E.Message.FutureProofMessage.verify(message.botTaskMessage);
+                if (error)
+                    return "botTaskMessage." + error;
+            }
             return null;
         };
 
@@ -29850,6 +29870,11 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.Message.limitSharingMessage: object expected");
                 message.limitSharingMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.limitSharingMessage);
             }
+            if (object.botTaskMessage != null) {
+                if (typeof object.botTaskMessage !== "object")
+                    throw TypeError(".E2E.Message.botTaskMessage: object expected");
+                message.botTaskMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.botTaskMessage);
+            }
             return message;
         };
 
@@ -29950,6 +29975,7 @@ $root.E2E = (function() {
                 object.richResponseMessage = null;
                 object.statusNotificationMessage = null;
                 object.limitSharingMessage = null;
+                object.botTaskMessage = null;
             }
             if (message.conversation != null && message.hasOwnProperty("conversation"))
                 object.conversation = message.conversation;
@@ -30117,6 +30143,8 @@ $root.E2E = (function() {
                 object.statusNotificationMessage = $root.E2E.Message.StatusNotificationMessage.toObject(message.statusNotificationMessage, options);
             if (message.limitSharingMessage != null && message.hasOwnProperty("limitSharingMessage"))
                 object.limitSharingMessage = $root.E2E.Message.FutureProofMessage.toObject(message.limitSharingMessage, options);
+            if (message.botTaskMessage != null && message.hasOwnProperty("botTaskMessage"))
+                object.botTaskMessage = $root.E2E.Message.FutureProofMessage.toObject(message.botTaskMessage, options);
             return object;
         };
 

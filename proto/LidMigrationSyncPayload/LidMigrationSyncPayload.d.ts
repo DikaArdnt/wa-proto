@@ -8,6 +8,9 @@ export namespace LidMigrationSyncPayload {
 
         /** LIDMigrationMappingSyncPayload pnToLidMappings */
         pnToLidMappings?: (LidMigrationSyncPayload.ILIDMigrationMapping[]|null);
+
+        /** LIDMigrationMappingSyncPayload chatDbMigrationTimestamp */
+        chatDbMigrationTimestamp?: (number|Long|null);
     }
 
     /** Represents a LIDMigrationMappingSyncPayload. */
@@ -21,6 +24,9 @@ export namespace LidMigrationSyncPayload {
 
         /** LIDMigrationMappingSyncPayload pnToLidMappings. */
         public pnToLidMappings: LidMigrationSyncPayload.ILIDMigrationMapping[];
+
+        /** LIDMigrationMappingSyncPayload chatDbMigrationTimestamp. */
+        public chatDbMigrationTimestamp: (number|Long);
 
         /**
          * Creates a new LIDMigrationMappingSyncPayload instance using the specified properties.

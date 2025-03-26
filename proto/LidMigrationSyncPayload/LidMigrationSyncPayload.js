@@ -25,6 +25,7 @@ $root.LidMigrationSyncPayload = (function() {
          * @memberof LidMigrationSyncPayload
          * @interface ILIDMigrationMappingSyncPayload
          * @property {Array.<LidMigrationSyncPayload.ILIDMigrationMapping>|null} [pnToLidMappings] LIDMigrationMappingSyncPayload pnToLidMappings
+         * @property {number|Long|null} [chatDbMigrationTimestamp] LIDMigrationMappingSyncPayload chatDbMigrationTimestamp
          */
 
         /**
@@ -50,6 +51,14 @@ $root.LidMigrationSyncPayload = (function() {
          * @instance
          */
         LIDMigrationMappingSyncPayload.prototype.pnToLidMappings = $util.emptyArray;
+
+        /**
+         * LIDMigrationMappingSyncPayload chatDbMigrationTimestamp.
+         * @member {number|Long} chatDbMigrationTimestamp
+         * @memberof LidMigrationSyncPayload.LIDMigrationMappingSyncPayload
+         * @instance
+         */
+        LIDMigrationMappingSyncPayload.prototype.chatDbMigrationTimestamp = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
 
         /**
          * Creates a new LIDMigrationMappingSyncPayload instance using the specified properties.
@@ -78,6 +87,8 @@ $root.LidMigrationSyncPayload = (function() {
             if (message.pnToLidMappings != null && message.pnToLidMappings.length)
                 for (var i = 0; i < message.pnToLidMappings.length; ++i)
                     $root.LidMigrationSyncPayload.LIDMigrationMapping.encode(message.pnToLidMappings[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.chatDbMigrationTimestamp != null && Object.hasOwnProperty.call(message, "chatDbMigrationTimestamp"))
+                writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.chatDbMigrationTimestamp);
             return writer;
         };
 
@@ -116,6 +127,10 @@ $root.LidMigrationSyncPayload = (function() {
                         if (!(message.pnToLidMappings && message.pnToLidMappings.length))
                             message.pnToLidMappings = [];
                         message.pnToLidMappings.push($root.LidMigrationSyncPayload.LIDMigrationMapping.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 2: {
+                        message.chatDbMigrationTimestamp = reader.uint64();
                         break;
                     }
                 default:
@@ -162,6 +177,9 @@ $root.LidMigrationSyncPayload = (function() {
                         return "pnToLidMappings." + error;
                 }
             }
+            if (message.chatDbMigrationTimestamp != null && message.hasOwnProperty("chatDbMigrationTimestamp"))
+                if (!$util.isInteger(message.chatDbMigrationTimestamp) && !(message.chatDbMigrationTimestamp && $util.isInteger(message.chatDbMigrationTimestamp.low) && $util.isInteger(message.chatDbMigrationTimestamp.high)))
+                    return "chatDbMigrationTimestamp: integer|Long expected";
             return null;
         };
 
@@ -187,6 +205,15 @@ $root.LidMigrationSyncPayload = (function() {
                     message.pnToLidMappings[i] = $root.LidMigrationSyncPayload.LIDMigrationMapping.fromObject(object.pnToLidMappings[i]);
                 }
             }
+            if (object.chatDbMigrationTimestamp != null)
+                if ($util.Long)
+                    (message.chatDbMigrationTimestamp = $util.Long.fromValue(object.chatDbMigrationTimestamp)).unsigned = true;
+                else if (typeof object.chatDbMigrationTimestamp === "string")
+                    message.chatDbMigrationTimestamp = parseInt(object.chatDbMigrationTimestamp, 10);
+                else if (typeof object.chatDbMigrationTimestamp === "number")
+                    message.chatDbMigrationTimestamp = object.chatDbMigrationTimestamp;
+                else if (typeof object.chatDbMigrationTimestamp === "object")
+                    message.chatDbMigrationTimestamp = new $util.LongBits(object.chatDbMigrationTimestamp.low >>> 0, object.chatDbMigrationTimestamp.high >>> 0).toNumber(true);
             return message;
         };
 
@@ -205,11 +232,22 @@ $root.LidMigrationSyncPayload = (function() {
             var object = {};
             if (options.arrays || options.defaults)
                 object.pnToLidMappings = [];
+            if (options.defaults)
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.chatDbMigrationTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.chatDbMigrationTimestamp = options.longs === String ? "0" : 0;
             if (message.pnToLidMappings && message.pnToLidMappings.length) {
                 object.pnToLidMappings = [];
                 for (var j = 0; j < message.pnToLidMappings.length; ++j)
                     object.pnToLidMappings[j] = $root.LidMigrationSyncPayload.LIDMigrationMapping.toObject(message.pnToLidMappings[j], options);
             }
+            if (message.chatDbMigrationTimestamp != null && message.hasOwnProperty("chatDbMigrationTimestamp"))
+                if (typeof message.chatDbMigrationTimestamp === "number")
+                    object.chatDbMigrationTimestamp = options.longs === String ? String(message.chatDbMigrationTimestamp) : message.chatDbMigrationTimestamp;
+                else
+                    object.chatDbMigrationTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.chatDbMigrationTimestamp) : options.longs === Number ? new $util.LongBits(message.chatDbMigrationTimestamp.low >>> 0, message.chatDbMigrationTimestamp.high >>> 0).toNumber(true) : message.chatDbMigrationTimestamp;
             return object;
         };
 
