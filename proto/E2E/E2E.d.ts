@@ -7133,6 +7133,18 @@ export namespace E2E {
 
                 /** AIRichResponseLatexExpression fontHeight */
                 fontHeight?: (number|null);
+
+                /** AIRichResponseLatexExpression imageTopPadding */
+                imageTopPadding?: (number|null);
+
+                /** AIRichResponseLatexExpression imageLeadingPadding */
+                imageLeadingPadding?: (number|null);
+
+                /** AIRichResponseLatexExpression imageBottomPadding */
+                imageBottomPadding?: (number|null);
+
+                /** AIRichResponseLatexExpression imageTrailingPadding */
+                imageTrailingPadding?: (number|null);
             }
 
             /** Represents a AIRichResponseLatexExpression. */
@@ -7158,6 +7170,18 @@ export namespace E2E {
 
                 /** AIRichResponseLatexExpression fontHeight. */
                 public fontHeight: number;
+
+                /** AIRichResponseLatexExpression imageTopPadding. */
+                public imageTopPadding: number;
+
+                /** AIRichResponseLatexExpression imageLeadingPadding. */
+                public imageLeadingPadding: number;
+
+                /** AIRichResponseLatexExpression imageBottomPadding. */
+                public imageBottomPadding: number;
+
+                /** AIRichResponseLatexExpression imageTrailingPadding. */
+                public imageTrailingPadding: number;
 
                 /**
                  * Creates a new AIRichResponseLatexExpression instance using the specified properties.

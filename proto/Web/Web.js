@@ -31696,6 +31696,10 @@ $root.E2E = (function() {
                  * @property {number|null} [width] AIRichResponseLatexExpression width
                  * @property {number|null} [height] AIRichResponseLatexExpression height
                  * @property {number|null} [fontHeight] AIRichResponseLatexExpression fontHeight
+                 * @property {number|null} [imageTopPadding] AIRichResponseLatexExpression imageTopPadding
+                 * @property {number|null} [imageLeadingPadding] AIRichResponseLatexExpression imageLeadingPadding
+                 * @property {number|null} [imageBottomPadding] AIRichResponseLatexExpression imageBottomPadding
+                 * @property {number|null} [imageTrailingPadding] AIRichResponseLatexExpression imageTrailingPadding
                  */
 
                 /**
@@ -31754,6 +31758,38 @@ $root.E2E = (function() {
                 AIRichResponseLatexExpression.prototype.fontHeight = 0;
 
                 /**
+                 * AIRichResponseLatexExpression imageTopPadding.
+                 * @member {number} imageTopPadding
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @instance
+                 */
+                AIRichResponseLatexExpression.prototype.imageTopPadding = 0;
+
+                /**
+                 * AIRichResponseLatexExpression imageLeadingPadding.
+                 * @member {number} imageLeadingPadding
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @instance
+                 */
+                AIRichResponseLatexExpression.prototype.imageLeadingPadding = 0;
+
+                /**
+                 * AIRichResponseLatexExpression imageBottomPadding.
+                 * @member {number} imageBottomPadding
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @instance
+                 */
+                AIRichResponseLatexExpression.prototype.imageBottomPadding = 0;
+
+                /**
+                 * AIRichResponseLatexExpression imageTrailingPadding.
+                 * @member {number} imageTrailingPadding
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @instance
+                 */
+                AIRichResponseLatexExpression.prototype.imageTrailingPadding = 0;
+
+                /**
                  * Creates a new AIRichResponseLatexExpression instance using the specified properties.
                  * @function create
                  * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
@@ -31787,6 +31823,14 @@ $root.E2E = (function() {
                         writer.uint32(/* id 4, wireType 1 =*/33).double(message.height);
                     if (message.fontHeight != null && Object.hasOwnProperty.call(message, "fontHeight"))
                         writer.uint32(/* id 5, wireType 1 =*/41).double(message.fontHeight);
+                    if (message.imageTopPadding != null && Object.hasOwnProperty.call(message, "imageTopPadding"))
+                        writer.uint32(/* id 6, wireType 1 =*/49).double(message.imageTopPadding);
+                    if (message.imageLeadingPadding != null && Object.hasOwnProperty.call(message, "imageLeadingPadding"))
+                        writer.uint32(/* id 7, wireType 1 =*/57).double(message.imageLeadingPadding);
+                    if (message.imageBottomPadding != null && Object.hasOwnProperty.call(message, "imageBottomPadding"))
+                        writer.uint32(/* id 8, wireType 1 =*/65).double(message.imageBottomPadding);
+                    if (message.imageTrailingPadding != null && Object.hasOwnProperty.call(message, "imageTrailingPadding"))
+                        writer.uint32(/* id 9, wireType 1 =*/73).double(message.imageTrailingPadding);
                     return writer;
                 };
 
@@ -31841,6 +31885,22 @@ $root.E2E = (function() {
                                 message.fontHeight = reader.double();
                                 break;
                             }
+                        case 6: {
+                                message.imageTopPadding = reader.double();
+                                break;
+                            }
+                        case 7: {
+                                message.imageLeadingPadding = reader.double();
+                                break;
+                            }
+                        case 8: {
+                                message.imageBottomPadding = reader.double();
+                                break;
+                            }
+                        case 9: {
+                                message.imageTrailingPadding = reader.double();
+                                break;
+                            }
                         default:
                             reader.skipType(tag & 7);
                             break;
@@ -31891,6 +31951,18 @@ $root.E2E = (function() {
                     if (message.fontHeight != null && message.hasOwnProperty("fontHeight"))
                         if (typeof message.fontHeight !== "number")
                             return "fontHeight: number expected";
+                    if (message.imageTopPadding != null && message.hasOwnProperty("imageTopPadding"))
+                        if (typeof message.imageTopPadding !== "number")
+                            return "imageTopPadding: number expected";
+                    if (message.imageLeadingPadding != null && message.hasOwnProperty("imageLeadingPadding"))
+                        if (typeof message.imageLeadingPadding !== "number")
+                            return "imageLeadingPadding: number expected";
+                    if (message.imageBottomPadding != null && message.hasOwnProperty("imageBottomPadding"))
+                        if (typeof message.imageBottomPadding !== "number")
+                            return "imageBottomPadding: number expected";
+                    if (message.imageTrailingPadding != null && message.hasOwnProperty("imageTrailingPadding"))
+                        if (typeof message.imageTrailingPadding !== "number")
+                            return "imageTrailingPadding: number expected";
                     return null;
                 };
 
@@ -31916,6 +31988,14 @@ $root.E2E = (function() {
                         message.height = Number(object.height);
                     if (object.fontHeight != null)
                         message.fontHeight = Number(object.fontHeight);
+                    if (object.imageTopPadding != null)
+                        message.imageTopPadding = Number(object.imageTopPadding);
+                    if (object.imageLeadingPadding != null)
+                        message.imageLeadingPadding = Number(object.imageLeadingPadding);
+                    if (object.imageBottomPadding != null)
+                        message.imageBottomPadding = Number(object.imageBottomPadding);
+                    if (object.imageTrailingPadding != null)
+                        message.imageTrailingPadding = Number(object.imageTrailingPadding);
                     return message;
                 };
 
@@ -31938,6 +32018,10 @@ $root.E2E = (function() {
                         object.width = 0;
                         object.height = 0;
                         object.fontHeight = 0;
+                        object.imageTopPadding = 0;
+                        object.imageLeadingPadding = 0;
+                        object.imageBottomPadding = 0;
+                        object.imageTrailingPadding = 0;
                     }
                     if (message.latexExpression != null && message.hasOwnProperty("latexExpression"))
                         object.latexExpression = message.latexExpression;
@@ -31949,6 +32033,14 @@ $root.E2E = (function() {
                         object.height = options.json && !isFinite(message.height) ? String(message.height) : message.height;
                     if (message.fontHeight != null && message.hasOwnProperty("fontHeight"))
                         object.fontHeight = options.json && !isFinite(message.fontHeight) ? String(message.fontHeight) : message.fontHeight;
+                    if (message.imageTopPadding != null && message.hasOwnProperty("imageTopPadding"))
+                        object.imageTopPadding = options.json && !isFinite(message.imageTopPadding) ? String(message.imageTopPadding) : message.imageTopPadding;
+                    if (message.imageLeadingPadding != null && message.hasOwnProperty("imageLeadingPadding"))
+                        object.imageLeadingPadding = options.json && !isFinite(message.imageLeadingPadding) ? String(message.imageLeadingPadding) : message.imageLeadingPadding;
+                    if (message.imageBottomPadding != null && message.hasOwnProperty("imageBottomPadding"))
+                        object.imageBottomPadding = options.json && !isFinite(message.imageBottomPadding) ? String(message.imageBottomPadding) : message.imageBottomPadding;
+                    if (message.imageTrailingPadding != null && message.hasOwnProperty("imageTrailingPadding"))
+                        object.imageTrailingPadding = options.json && !isFinite(message.imageTrailingPadding) ? String(message.imageTrailingPadding) : message.imageTrailingPadding;
                     return object;
                 };
 
