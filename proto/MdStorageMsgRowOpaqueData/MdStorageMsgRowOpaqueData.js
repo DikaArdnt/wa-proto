@@ -24183,6 +24183,7 @@ $root.E2E = (function() {
          * @interface IBotLinkedAccountsMetadata
          * @property {Array.<E2E.IBotLinkedAccount>|null} [accounts] BotLinkedAccountsMetadata accounts
          * @property {Uint8Array|null} [acAuthTokens] BotLinkedAccountsMetadata acAuthTokens
+         * @property {number|null} [acErrorCode] BotLinkedAccountsMetadata acErrorCode
          */
 
         /**
@@ -24218,6 +24219,14 @@ $root.E2E = (function() {
         BotLinkedAccountsMetadata.prototype.acAuthTokens = $util.newBuffer([]);
 
         /**
+         * BotLinkedAccountsMetadata acErrorCode.
+         * @member {number} acErrorCode
+         * @memberof E2E.BotLinkedAccountsMetadata
+         * @instance
+         */
+        BotLinkedAccountsMetadata.prototype.acErrorCode = 0;
+
+        /**
          * Creates a new BotLinkedAccountsMetadata instance using the specified properties.
          * @function create
          * @memberof E2E.BotLinkedAccountsMetadata
@@ -24246,6 +24255,8 @@ $root.E2E = (function() {
                     $root.E2E.BotLinkedAccount.encode(message.accounts[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             if (message.acAuthTokens != null && Object.hasOwnProperty.call(message, "acAuthTokens"))
                 writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.acAuthTokens);
+            if (message.acErrorCode != null && Object.hasOwnProperty.call(message, "acErrorCode"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.acErrorCode);
             return writer;
         };
 
@@ -24288,6 +24299,10 @@ $root.E2E = (function() {
                     }
                 case 2: {
                         message.acAuthTokens = reader.bytes();
+                        break;
+                    }
+                case 3: {
+                        message.acErrorCode = reader.int32();
                         break;
                     }
                 default:
@@ -24337,6 +24352,9 @@ $root.E2E = (function() {
             if (message.acAuthTokens != null && message.hasOwnProperty("acAuthTokens"))
                 if (!(message.acAuthTokens && typeof message.acAuthTokens.length === "number" || $util.isString(message.acAuthTokens)))
                     return "acAuthTokens: buffer expected";
+            if (message.acErrorCode != null && message.hasOwnProperty("acErrorCode"))
+                if (!$util.isInteger(message.acErrorCode))
+                    return "acErrorCode: integer expected";
             return null;
         };
 
@@ -24367,6 +24385,8 @@ $root.E2E = (function() {
                     $util.base64.decode(object.acAuthTokens, message.acAuthTokens = $util.newBuffer($util.base64.length(object.acAuthTokens)), 0);
                 else if (object.acAuthTokens.length >= 0)
                     message.acAuthTokens = object.acAuthTokens;
+            if (object.acErrorCode != null)
+                message.acErrorCode = object.acErrorCode | 0;
             return message;
         };
 
@@ -24385,7 +24405,7 @@ $root.E2E = (function() {
             var object = {};
             if (options.arrays || options.defaults)
                 object.accounts = [];
-            if (options.defaults)
+            if (options.defaults) {
                 if (options.bytes === String)
                     object.acAuthTokens = "";
                 else {
@@ -24393,6 +24413,8 @@ $root.E2E = (function() {
                     if (options.bytes !== Array)
                         object.acAuthTokens = $util.newBuffer(object.acAuthTokens);
                 }
+                object.acErrorCode = 0;
+            }
             if (message.accounts && message.accounts.length) {
                 object.accounts = [];
                 for (var j = 0; j < message.accounts.length; ++j)
@@ -24400,6 +24422,8 @@ $root.E2E = (function() {
             }
             if (message.acAuthTokens != null && message.hasOwnProperty("acAuthTokens"))
                 object.acAuthTokens = options.bytes === String ? $util.base64.encode(message.acAuthTokens, 0, message.acAuthTokens.length) : options.bytes === Array ? Array.prototype.slice.call(message.acAuthTokens) : message.acAuthTokens;
+            if (message.acErrorCode != null && message.hasOwnProperty("acErrorCode"))
+                object.acErrorCode = message.acErrorCode;
             return object;
         };
 

@@ -646,6 +646,7 @@ message BotLinkedAccount {
 message BotLinkedAccountsMetadata {
     repeated BotLinkedAccount accounts = 1;
     optional bytes acAuthTokens = 2;
+    optional int32 acErrorCode = 3;
 }
 
 message BotPromptSuggestion {

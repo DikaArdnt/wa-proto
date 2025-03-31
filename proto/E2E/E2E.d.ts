@@ -8213,6 +8213,9 @@ export namespace E2E {
 
         /** BotLinkedAccountsMetadata acAuthTokens */
         acAuthTokens?: (Uint8Array|null);
+
+        /** BotLinkedAccountsMetadata acErrorCode */
+        acErrorCode?: (number|null);
     }
 
     /** Represents a BotLinkedAccountsMetadata. */
@@ -8229,6 +8232,9 @@ export namespace E2E {
 
         /** BotLinkedAccountsMetadata acAuthTokens. */
         public acAuthTokens: Uint8Array;
+
+        /** BotLinkedAccountsMetadata acErrorCode. */
+        public acErrorCode: number;
 
         /**
          * Creates a new BotLinkedAccountsMetadata instance using the specified properties.
