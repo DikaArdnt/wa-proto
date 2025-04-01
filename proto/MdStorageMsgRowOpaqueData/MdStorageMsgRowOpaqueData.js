@@ -13833,6 +13833,7 @@ $root.E2E = (function() {
                     case 28:
                     case 29:
                     case 30:
+                    case 31:
                         break;
                     }
             }
@@ -13986,6 +13987,10 @@ $root.E2E = (function() {
                     case 30:
                         message.capabilities[i] = 30;
                         break;
+                    case "RICH_RESPONSE_LATEX_INLINE":
+                    case 31:
+                        message.capabilities[i] = 31;
+                        break;
                     }
             }
             return message;
@@ -14075,6 +14080,7 @@ $root.E2E = (function() {
          * @property {number} ACCOUNT_LINKING=28 ACCOUNT_LINKING value
          * @property {number} STREAMING_DISAGGREGATION=29 STREAMING_DISAGGREGATION value
          * @property {number} RICH_RESPONSE_GRID_IMAGE_3P=30 RICH_RESPONSE_GRID_IMAGE_3P value
+         * @property {number} RICH_RESPONSE_LATEX_INLINE=31 RICH_RESPONSE_LATEX_INLINE value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -14109,6 +14115,7 @@ $root.E2E = (function() {
             values[valuesById[28] = "ACCOUNT_LINKING"] = 28;
             values[valuesById[29] = "STREAMING_DISAGGREGATION"] = 29;
             values[valuesById[30] = "RICH_RESPONSE_GRID_IMAGE_3P"] = 30;
+            values[valuesById[31] = "RICH_RESPONSE_LATEX_INLINE"] = 31;
             return values;
         })();
 

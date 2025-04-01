@@ -5242,7 +5242,8 @@ export namespace E2E {
             AGENTIC_PLANNING = 27,
             ACCOUNT_LINKING = 28,
             STREAMING_DISAGGREGATION = 29,
-            RICH_RESPONSE_GRID_IMAGE_3P = 30
+            RICH_RESPONSE_GRID_IMAGE_3P = 30,
+            RICH_RESPONSE_LATEX_INLINE = 31
         }
     }
 
