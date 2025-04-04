@@ -18,6 +18,280 @@ $root.E2E = (function() {
      */
     var E2E = {};
 
+    E2E.AIQueryFanout = (function() {
+
+        /**
+         * Properties of a AIQueryFanout.
+         * @memberof E2E
+         * @interface IAIQueryFanout
+         * @property {Protocol.IMessageKey|null} [messageKey] AIQueryFanout messageKey
+         * @property {E2E.IMessage|null} [message] AIQueryFanout message
+         * @property {number|Long|null} [timestamp] AIQueryFanout timestamp
+         */
+
+        /**
+         * Constructs a new AIQueryFanout.
+         * @memberof E2E
+         * @classdesc Represents a AIQueryFanout.
+         * @implements IAIQueryFanout
+         * @constructor
+         * @param {E2E.IAIQueryFanout=} [properties] Properties to set
+         */
+        function AIQueryFanout(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AIQueryFanout messageKey.
+         * @member {Protocol.IMessageKey|null|undefined} messageKey
+         * @memberof E2E.AIQueryFanout
+         * @instance
+         */
+        AIQueryFanout.prototype.messageKey = null;
+
+        /**
+         * AIQueryFanout message.
+         * @member {E2E.IMessage|null|undefined} message
+         * @memberof E2E.AIQueryFanout
+         * @instance
+         */
+        AIQueryFanout.prototype.message = null;
+
+        /**
+         * AIQueryFanout timestamp.
+         * @member {number|Long} timestamp
+         * @memberof E2E.AIQueryFanout
+         * @instance
+         */
+        AIQueryFanout.prototype.timestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new AIQueryFanout instance using the specified properties.
+         * @function create
+         * @memberof E2E.AIQueryFanout
+         * @static
+         * @param {E2E.IAIQueryFanout=} [properties] Properties to set
+         * @returns {E2E.AIQueryFanout} AIQueryFanout instance
+         */
+        AIQueryFanout.create = function create(properties) {
+            return new AIQueryFanout(properties);
+        };
+
+        /**
+         * Encodes the specified AIQueryFanout message. Does not implicitly {@link E2E.AIQueryFanout.verify|verify} messages.
+         * @function encode
+         * @memberof E2E.AIQueryFanout
+         * @static
+         * @param {E2E.IAIQueryFanout} message AIQueryFanout message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AIQueryFanout.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.messageKey != null && Object.hasOwnProperty.call(message, "messageKey"))
+                $root.Protocol.MessageKey.encode(message.messageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.message != null && Object.hasOwnProperty.call(message, "message"))
+                $root.E2E.Message.encode(message.message, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int64(message.timestamp);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AIQueryFanout message, length delimited. Does not implicitly {@link E2E.AIQueryFanout.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof E2E.AIQueryFanout
+         * @static
+         * @param {E2E.IAIQueryFanout} message AIQueryFanout message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AIQueryFanout.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a AIQueryFanout message from the specified reader or buffer.
+         * @function decode
+         * @memberof E2E.AIQueryFanout
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {E2E.AIQueryFanout} AIQueryFanout
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AIQueryFanout.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIQueryFanout();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1: {
+                        message.messageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 2: {
+                        message.message = $root.E2E.Message.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 3: {
+                        message.timestamp = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a AIQueryFanout message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof E2E.AIQueryFanout
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {E2E.AIQueryFanout} AIQueryFanout
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AIQueryFanout.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a AIQueryFanout message.
+         * @function verify
+         * @memberof E2E.AIQueryFanout
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AIQueryFanout.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.messageKey != null && message.hasOwnProperty("messageKey")) {
+                var error = $root.Protocol.MessageKey.verify(message.messageKey);
+                if (error)
+                    return "messageKey." + error;
+            }
+            if (message.message != null && message.hasOwnProperty("message")) {
+                var error = $root.E2E.Message.verify(message.message);
+                if (error)
+                    return "message." + error;
+            }
+            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+                if (!$util.isInteger(message.timestamp) && !(message.timestamp && $util.isInteger(message.timestamp.low) && $util.isInteger(message.timestamp.high)))
+                    return "timestamp: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a AIQueryFanout message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof E2E.AIQueryFanout
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {E2E.AIQueryFanout} AIQueryFanout
+         */
+        AIQueryFanout.fromObject = function fromObject(object) {
+            if (object instanceof $root.E2E.AIQueryFanout)
+                return object;
+            var message = new $root.E2E.AIQueryFanout();
+            if (object.messageKey != null) {
+                if (typeof object.messageKey !== "object")
+                    throw TypeError(".E2E.AIQueryFanout.messageKey: object expected");
+                message.messageKey = $root.Protocol.MessageKey.fromObject(object.messageKey);
+            }
+            if (object.message != null) {
+                if (typeof object.message !== "object")
+                    throw TypeError(".E2E.AIQueryFanout.message: object expected");
+                message.message = $root.E2E.Message.fromObject(object.message);
+            }
+            if (object.timestamp != null)
+                if ($util.Long)
+                    (message.timestamp = $util.Long.fromValue(object.timestamp)).unsigned = false;
+                else if (typeof object.timestamp === "string")
+                    message.timestamp = parseInt(object.timestamp, 10);
+                else if (typeof object.timestamp === "number")
+                    message.timestamp = object.timestamp;
+                else if (typeof object.timestamp === "object")
+                    message.timestamp = new $util.LongBits(object.timestamp.low >>> 0, object.timestamp.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a AIQueryFanout message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof E2E.AIQueryFanout
+         * @static
+         * @param {E2E.AIQueryFanout} message AIQueryFanout
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AIQueryFanout.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.messageKey = null;
+                object.message = null;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.timestamp = options.longs === String ? "0" : 0;
+            }
+            if (message.messageKey != null && message.hasOwnProperty("messageKey"))
+                object.messageKey = $root.Protocol.MessageKey.toObject(message.messageKey, options);
+            if (message.message != null && message.hasOwnProperty("message"))
+                object.message = $root.E2E.Message.toObject(message.message, options);
+            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+                if (typeof message.timestamp === "number")
+                    object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
+                else
+                    object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber() : message.timestamp;
+            return object;
+        };
+
+        /**
+         * Converts this AIQueryFanout to JSON.
+         * @function toJSON
+         * @memberof E2E.AIQueryFanout
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AIQueryFanout.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for AIQueryFanout
+         * @function getTypeUrl
+         * @memberof E2E.AIQueryFanout
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AIQueryFanout.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/E2E.AIQueryFanout";
+        };
+
+        return AIQueryFanout;
+    })();
+
     E2E.UrlTrackingMap = (function() {
 
         /**
@@ -9398,6 +9672,7 @@ $root.E2E = (function() {
          * @property {E2E.IBotMetricsMetadata|null} [botMetricsMetadata] BotMetadata botMetricsMetadata
          * @property {E2E.IBotLinkedAccountsMetadata|null} [botLinkedAccountsMetadata] BotMetadata botLinkedAccountsMetadata
          * @property {E2E.IBotSourcesMetadata|null} [richResponseSourcesMetadata] BotMetadata richResponseSourcesMetadata
+         * @property {Uint8Array|null} [aiConversationContext] BotMetadata aiConversationContext
          */
 
         /**
@@ -9568,6 +9843,14 @@ $root.E2E = (function() {
         BotMetadata.prototype.richResponseSourcesMetadata = null;
 
         /**
+         * BotMetadata aiConversationContext.
+         * @member {Uint8Array} aiConversationContext
+         * @memberof E2E.BotMetadata
+         * @instance
+         */
+        BotMetadata.prototype.aiConversationContext = $util.newBuffer([]);
+
+        /**
          * Creates a new BotMetadata instance using the specified properties.
          * @function create
          * @memberof E2E.BotMetadata
@@ -9629,6 +9912,8 @@ $root.E2E = (function() {
                 $root.E2E.BotLinkedAccountsMetadata.encode(message.botLinkedAccountsMetadata, writer.uint32(/* id 18, wireType 2 =*/146).fork()).ldelim();
             if (message.richResponseSourcesMetadata != null && Object.hasOwnProperty.call(message, "richResponseSourcesMetadata"))
                 $root.E2E.BotSourcesMetadata.encode(message.richResponseSourcesMetadata, writer.uint32(/* id 19, wireType 2 =*/154).fork()).ldelim();
+            if (message.aiConversationContext != null && Object.hasOwnProperty.call(message, "aiConversationContext"))
+                writer.uint32(/* id 20, wireType 2 =*/162).bytes(message.aiConversationContext);
             return writer;
         };
 
@@ -9737,6 +10022,10 @@ $root.E2E = (function() {
                     }
                 case 19: {
                         message.richResponseSourcesMetadata = $root.E2E.BotSourcesMetadata.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 20: {
+                        message.aiConversationContext = reader.bytes();
                         break;
                     }
                 default:
@@ -9861,6 +10150,9 @@ $root.E2E = (function() {
                 if (error)
                     return "richResponseSourcesMetadata." + error;
             }
+            if (message.aiConversationContext != null && message.hasOwnProperty("aiConversationContext"))
+                if (!(message.aiConversationContext && typeof message.aiConversationContext.length === "number" || $util.isString(message.aiConversationContext)))
+                    return "aiConversationContext: buffer expected";
             return null;
         };
 
@@ -9959,6 +10251,11 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.BotMetadata.richResponseSourcesMetadata: object expected");
                 message.richResponseSourcesMetadata = $root.E2E.BotSourcesMetadata.fromObject(object.richResponseSourcesMetadata);
             }
+            if (object.aiConversationContext != null)
+                if (typeof object.aiConversationContext === "string")
+                    $util.base64.decode(object.aiConversationContext, message.aiConversationContext = $util.newBuffer($util.base64.length(object.aiConversationContext)), 0);
+                else if (object.aiConversationContext.length >= 0)
+                    message.aiConversationContext = object.aiConversationContext;
             return message;
         };
 
@@ -9995,6 +10292,13 @@ $root.E2E = (function() {
                 object.botMetricsMetadata = null;
                 object.botLinkedAccountsMetadata = null;
                 object.richResponseSourcesMetadata = null;
+                if (options.bytes === String)
+                    object.aiConversationContext = "";
+                else {
+                    object.aiConversationContext = [];
+                    if (options.bytes !== Array)
+                        object.aiConversationContext = $util.newBuffer(object.aiConversationContext);
+                }
             }
             if (message.avatarMetadata != null && message.hasOwnProperty("avatarMetadata"))
                 object.avatarMetadata = $root.E2E.BotAvatarMetadata.toObject(message.avatarMetadata, options);
@@ -10034,6 +10338,8 @@ $root.E2E = (function() {
                 object.botLinkedAccountsMetadata = $root.E2E.BotLinkedAccountsMetadata.toObject(message.botLinkedAccountsMetadata, options);
             if (message.richResponseSourcesMetadata != null && message.hasOwnProperty("richResponseSourcesMetadata"))
                 object.richResponseSourcesMetadata = $root.E2E.BotSourcesMetadata.toObject(message.richResponseSourcesMetadata, options);
+            if (message.aiConversationContext != null && message.hasOwnProperty("aiConversationContext"))
+                object.aiConversationContext = options.bytes === String ? $util.base64.encode(message.aiConversationContext, 0, message.aiConversationContext.length) : options.bytes === Array ? Array.prototype.slice.call(message.aiConversationContext) : message.aiConversationContext;
             return object;
         };
 
@@ -11092,6 +11398,8 @@ $root.E2E = (function() {
                     case 29:
                     case 30:
                     case 31:
+                    case 32:
+                    case 33:
                         break;
                     }
             }
@@ -11249,6 +11557,14 @@ $root.E2E = (function() {
                     case 31:
                         message.capabilities[i] = 31;
                         break;
+                    case "QUERY_PLAN":
+                    case 32:
+                        message.capabilities[i] = 32;
+                        break;
+                    case "PROACTIVE_MESSAGE":
+                    case 33:
+                        message.capabilities[i] = 33;
+                        break;
                     }
             }
             return message;
@@ -11339,6 +11655,8 @@ $root.E2E = (function() {
          * @property {number} STREAMING_DISAGGREGATION=29 STREAMING_DISAGGREGATION value
          * @property {number} RICH_RESPONSE_GRID_IMAGE_3P=30 RICH_RESPONSE_GRID_IMAGE_3P value
          * @property {number} RICH_RESPONSE_LATEX_INLINE=31 RICH_RESPONSE_LATEX_INLINE value
+         * @property {number} QUERY_PLAN=32 QUERY_PLAN value
+         * @property {number} PROACTIVE_MESSAGE=33 PROACTIVE_MESSAGE value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -11374,6 +11692,8 @@ $root.E2E = (function() {
             values[valuesById[29] = "STREAMING_DISAGGREGATION"] = 29;
             values[valuesById[30] = "RICH_RESPONSE_GRID_IMAGE_3P"] = 30;
             values[valuesById[31] = "RICH_RESPONSE_LATEX_INLINE"] = 31;
+            values[valuesById[32] = "QUERY_PLAN"] = 32;
+            values[valuesById[33] = "PROACTIVE_MESSAGE"] = 33;
             return values;
         })();
 
@@ -64987,6 +65307,8 @@ $root.E2E = (function() {
              * @property {E2E.Message.ICloudAPIThreadControlNotification|null} [cloudApiThreadControlNotification] ProtocolMessage cloudApiThreadControlNotification
              * @property {E2E.ILIDMigrationMappingSyncMessage|null} [lidMigrationMappingSyncMessage] ProtocolMessage lidMigrationMappingSyncMessage
              * @property {Protocol.ILimitSharing|null} [limitSharing] ProtocolMessage limitSharing
+             * @property {Uint8Array|null} [aiPsiMetadata] ProtocolMessage aiPsiMetadata
+             * @property {E2E.IAIQueryFanout|null} [aiQueryFanout] ProtocolMessage aiQueryFanout
              */
 
             /**
@@ -65173,6 +65495,22 @@ $root.E2E = (function() {
             ProtocolMessage.prototype.limitSharing = null;
 
             /**
+             * ProtocolMessage aiPsiMetadata.
+             * @member {Uint8Array} aiPsiMetadata
+             * @memberof E2E.Message.ProtocolMessage
+             * @instance
+             */
+            ProtocolMessage.prototype.aiPsiMetadata = $util.newBuffer([]);
+
+            /**
+             * ProtocolMessage aiQueryFanout.
+             * @member {E2E.IAIQueryFanout|null|undefined} aiQueryFanout
+             * @memberof E2E.Message.ProtocolMessage
+             * @instance
+             */
+            ProtocolMessage.prototype.aiQueryFanout = null;
+
+            /**
              * Creates a new ProtocolMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.ProtocolMessage
@@ -65238,6 +65576,10 @@ $root.E2E = (function() {
                     $root.E2E.LIDMigrationMappingSyncMessage.encode(message.lidMigrationMappingSyncMessage, writer.uint32(/* id 23, wireType 2 =*/186).fork()).ldelim();
                 if (message.limitSharing != null && Object.hasOwnProperty.call(message, "limitSharing"))
                     $root.Protocol.LimitSharing.encode(message.limitSharing, writer.uint32(/* id 24, wireType 2 =*/194).fork()).ldelim();
+                if (message.aiPsiMetadata != null && Object.hasOwnProperty.call(message, "aiPsiMetadata"))
+                    writer.uint32(/* id 25, wireType 2 =*/202).bytes(message.aiPsiMetadata);
+                if (message.aiQueryFanout != null && Object.hasOwnProperty.call(message, "aiQueryFanout"))
+                    $root.E2E.AIQueryFanout.encode(message.aiQueryFanout, writer.uint32(/* id 26, wireType 2 =*/210).fork()).ldelim();
                 return writer;
             };
 
@@ -65356,6 +65698,14 @@ $root.E2E = (function() {
                             message.limitSharing = $root.Protocol.LimitSharing.decode(reader, reader.uint32());
                             break;
                         }
+                    case 25: {
+                            message.aiPsiMetadata = reader.bytes();
+                            break;
+                        }
+                    case 26: {
+                            message.aiQueryFanout = $root.E2E.AIQueryFanout.decode(reader, reader.uint32());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -65423,6 +65773,8 @@ $root.E2E = (function() {
                     case 25:
                     case 26:
                     case 27:
+                    case 28:
+                    case 29:
                         break;
                     }
                 if (message.ephemeralExpiration != null && message.hasOwnProperty("ephemeralExpiration"))
@@ -65511,6 +65863,14 @@ $root.E2E = (function() {
                     var error = $root.Protocol.LimitSharing.verify(message.limitSharing);
                     if (error)
                         return "limitSharing." + error;
+                }
+                if (message.aiPsiMetadata != null && message.hasOwnProperty("aiPsiMetadata"))
+                    if (!(message.aiPsiMetadata && typeof message.aiPsiMetadata.length === "number" || $util.isString(message.aiPsiMetadata)))
+                        return "aiPsiMetadata: buffer expected";
+                if (message.aiQueryFanout != null && message.hasOwnProperty("aiQueryFanout")) {
+                    var error = $root.E2E.AIQueryFanout.verify(message.aiQueryFanout);
+                    if (error)
+                        return "aiQueryFanout." + error;
                 }
                 return null;
             };
@@ -65631,6 +65991,14 @@ $root.E2E = (function() {
                 case 27:
                     message.type = 27;
                     break;
+                case "AI_PSI_METADATA":
+                case 28:
+                    message.type = 28;
+                    break;
+                case "AI_QUERY_FANOUT":
+                case 29:
+                    message.type = 29;
+                    break;
                 }
                 if (object.ephemeralExpiration != null)
                     message.ephemeralExpiration = object.ephemeralExpiration >>> 0;
@@ -65729,6 +66097,16 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.ProtocolMessage.limitSharing: object expected");
                     message.limitSharing = $root.Protocol.LimitSharing.fromObject(object.limitSharing);
                 }
+                if (object.aiPsiMetadata != null)
+                    if (typeof object.aiPsiMetadata === "string")
+                        $util.base64.decode(object.aiPsiMetadata, message.aiPsiMetadata = $util.newBuffer($util.base64.length(object.aiPsiMetadata)), 0);
+                    else if (object.aiPsiMetadata.length >= 0)
+                        message.aiPsiMetadata = object.aiPsiMetadata;
+                if (object.aiQueryFanout != null) {
+                    if (typeof object.aiQueryFanout !== "object")
+                        throw TypeError(".E2E.Message.ProtocolMessage.aiQueryFanout: object expected");
+                    message.aiQueryFanout = $root.E2E.AIQueryFanout.fromObject(object.aiQueryFanout);
+                }
                 return message;
             };
 
@@ -65775,6 +66153,14 @@ $root.E2E = (function() {
                     object.cloudApiThreadControlNotification = null;
                     object.lidMigrationMappingSyncMessage = null;
                     object.limitSharing = null;
+                    if (options.bytes === String)
+                        object.aiPsiMetadata = "";
+                    else {
+                        object.aiPsiMetadata = [];
+                        if (options.bytes !== Array)
+                            object.aiPsiMetadata = $util.newBuffer(object.aiPsiMetadata);
+                    }
+                    object.aiQueryFanout = null;
                 }
                 if (message.key != null && message.hasOwnProperty("key"))
                     object.key = $root.Protocol.MessageKey.toObject(message.key, options);
@@ -65824,6 +66210,10 @@ $root.E2E = (function() {
                     object.lidMigrationMappingSyncMessage = $root.E2E.LIDMigrationMappingSyncMessage.toObject(message.lidMigrationMappingSyncMessage, options);
                 if (message.limitSharing != null && message.hasOwnProperty("limitSharing"))
                     object.limitSharing = $root.Protocol.LimitSharing.toObject(message.limitSharing, options);
+                if (message.aiPsiMetadata != null && message.hasOwnProperty("aiPsiMetadata"))
+                    object.aiPsiMetadata = options.bytes === String ? $util.base64.encode(message.aiPsiMetadata, 0, message.aiPsiMetadata.length) : options.bytes === Array ? Array.prototype.slice.call(message.aiPsiMetadata) : message.aiPsiMetadata;
+                if (message.aiQueryFanout != null && message.hasOwnProperty("aiQueryFanout"))
+                    object.aiQueryFanout = $root.E2E.AIQueryFanout.toObject(message.aiQueryFanout, options);
                 return object;
             };
 
@@ -65880,6 +66270,8 @@ $root.E2E = (function() {
              * @property {number} STATUS_MENTION_MESSAGE=25 STATUS_MENTION_MESSAGE value
              * @property {number} STOP_GENERATION_MESSAGE=26 STOP_GENERATION_MESSAGE value
              * @property {number} LIMIT_SHARING=27 LIMIT_SHARING value
+             * @property {number} AI_PSI_METADATA=28 AI_PSI_METADATA value
+             * @property {number} AI_QUERY_FANOUT=29 AI_QUERY_FANOUT value
              */
             ProtocolMessage.Type = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -65906,6 +66298,8 @@ $root.E2E = (function() {
                 values[valuesById[25] = "STATUS_MENTION_MESSAGE"] = 25;
                 values[valuesById[26] = "STOP_GENERATION_MESSAGE"] = 26;
                 values[valuesById[27] = "LIMIT_SHARING"] = 27;
+                values[valuesById[28] = "AI_PSI_METADATA"] = 28;
+                values[valuesById[29] = "AI_QUERY_FANOUT"] = 29;
                 return values;
             })();
 
@@ -73894,6 +74288,551 @@ $root.E2E = (function() {
     return E2E;
 })();
 
+$root.Protocol = (function() {
+
+    /**
+     * Namespace Protocol.
+     * @exports Protocol
+     * @namespace
+     */
+    var Protocol = {};
+
+    Protocol.LimitSharing = (function() {
+
+        /**
+         * Properties of a LimitSharing.
+         * @memberof Protocol
+         * @interface ILimitSharing
+         * @property {boolean|null} [sharingLimited] LimitSharing sharingLimited
+         * @property {Protocol.LimitSharing.Trigger|null} [trigger] LimitSharing trigger
+         */
+
+        /**
+         * Constructs a new LimitSharing.
+         * @memberof Protocol
+         * @classdesc Represents a LimitSharing.
+         * @implements ILimitSharing
+         * @constructor
+         * @param {Protocol.ILimitSharing=} [properties] Properties to set
+         */
+        function LimitSharing(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * LimitSharing sharingLimited.
+         * @member {boolean} sharingLimited
+         * @memberof Protocol.LimitSharing
+         * @instance
+         */
+        LimitSharing.prototype.sharingLimited = false;
+
+        /**
+         * LimitSharing trigger.
+         * @member {Protocol.LimitSharing.Trigger} trigger
+         * @memberof Protocol.LimitSharing
+         * @instance
+         */
+        LimitSharing.prototype.trigger = 0;
+
+        /**
+         * Creates a new LimitSharing instance using the specified properties.
+         * @function create
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Protocol.ILimitSharing=} [properties] Properties to set
+         * @returns {Protocol.LimitSharing} LimitSharing instance
+         */
+        LimitSharing.create = function create(properties) {
+            return new LimitSharing(properties);
+        };
+
+        /**
+         * Encodes the specified LimitSharing message. Does not implicitly {@link Protocol.LimitSharing.verify|verify} messages.
+         * @function encode
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Protocol.ILimitSharing} message LimitSharing message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LimitSharing.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.sharingLimited != null && Object.hasOwnProperty.call(message, "sharingLimited"))
+                writer.uint32(/* id 1, wireType 0 =*/8).bool(message.sharingLimited);
+            if (message.trigger != null && Object.hasOwnProperty.call(message, "trigger"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.trigger);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified LimitSharing message, length delimited. Does not implicitly {@link Protocol.LimitSharing.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Protocol.ILimitSharing} message LimitSharing message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LimitSharing.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a LimitSharing message from the specified reader or buffer.
+         * @function decode
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {Protocol.LimitSharing} LimitSharing
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LimitSharing.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.LimitSharing();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1: {
+                        message.sharingLimited = reader.bool();
+                        break;
+                    }
+                case 2: {
+                        message.trigger = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a LimitSharing message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {Protocol.LimitSharing} LimitSharing
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LimitSharing.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a LimitSharing message.
+         * @function verify
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        LimitSharing.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
+                if (typeof message.sharingLimited !== "boolean")
+                    return "sharingLimited: boolean expected";
+            if (message.trigger != null && message.hasOwnProperty("trigger"))
+                switch (message.trigger) {
+                default:
+                    return "trigger: enum value expected";
+                case 0:
+                case 1:
+                    break;
+                }
+            return null;
+        };
+
+        /**
+         * Creates a LimitSharing message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {Protocol.LimitSharing} LimitSharing
+         */
+        LimitSharing.fromObject = function fromObject(object) {
+            if (object instanceof $root.Protocol.LimitSharing)
+                return object;
+            var message = new $root.Protocol.LimitSharing();
+            if (object.sharingLimited != null)
+                message.sharingLimited = Boolean(object.sharingLimited);
+            switch (object.trigger) {
+            default:
+                if (typeof object.trigger === "number") {
+                    message.trigger = object.trigger;
+                    break;
+                }
+                break;
+            case "CHAT_SETTING":
+            case 0:
+                message.trigger = 0;
+                break;
+            case "BIZ_SUPPORTS_FB_HOSTING":
+            case 1:
+                message.trigger = 1;
+                break;
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a LimitSharing message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Protocol.LimitSharing} message LimitSharing
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        LimitSharing.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.sharingLimited = false;
+                object.trigger = options.enums === String ? "CHAT_SETTING" : 0;
+            }
+            if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
+                object.sharingLimited = message.sharingLimited;
+            if (message.trigger != null && message.hasOwnProperty("trigger"))
+                object.trigger = options.enums === String ? $root.Protocol.LimitSharing.Trigger[message.trigger] === undefined ? message.trigger : $root.Protocol.LimitSharing.Trigger[message.trigger] : message.trigger;
+            return object;
+        };
+
+        /**
+         * Converts this LimitSharing to JSON.
+         * @function toJSON
+         * @memberof Protocol.LimitSharing
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        LimitSharing.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for LimitSharing
+         * @function getTypeUrl
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        LimitSharing.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/Protocol.LimitSharing";
+        };
+
+        /**
+         * Trigger enum.
+         * @name Protocol.LimitSharing.Trigger
+         * @enum {number}
+         * @property {number} CHAT_SETTING=0 CHAT_SETTING value
+         * @property {number} BIZ_SUPPORTS_FB_HOSTING=1 BIZ_SUPPORTS_FB_HOSTING value
+         */
+        LimitSharing.Trigger = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "CHAT_SETTING"] = 0;
+            values[valuesById[1] = "BIZ_SUPPORTS_FB_HOSTING"] = 1;
+            return values;
+        })();
+
+        return LimitSharing;
+    })();
+
+    Protocol.MessageKey = (function() {
+
+        /**
+         * Properties of a MessageKey.
+         * @memberof Protocol
+         * @interface IMessageKey
+         * @property {string|null} [remoteJid] MessageKey remoteJid
+         * @property {boolean|null} [fromMe] MessageKey fromMe
+         * @property {string|null} [id] MessageKey id
+         * @property {string|null} [participant] MessageKey participant
+         */
+
+        /**
+         * Constructs a new MessageKey.
+         * @memberof Protocol
+         * @classdesc Represents a MessageKey.
+         * @implements IMessageKey
+         * @constructor
+         * @param {Protocol.IMessageKey=} [properties] Properties to set
+         */
+        function MessageKey(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * MessageKey remoteJid.
+         * @member {string} remoteJid
+         * @memberof Protocol.MessageKey
+         * @instance
+         */
+        MessageKey.prototype.remoteJid = "";
+
+        /**
+         * MessageKey fromMe.
+         * @member {boolean} fromMe
+         * @memberof Protocol.MessageKey
+         * @instance
+         */
+        MessageKey.prototype.fromMe = false;
+
+        /**
+         * MessageKey id.
+         * @member {string} id
+         * @memberof Protocol.MessageKey
+         * @instance
+         */
+        MessageKey.prototype.id = "";
+
+        /**
+         * MessageKey participant.
+         * @member {string} participant
+         * @memberof Protocol.MessageKey
+         * @instance
+         */
+        MessageKey.prototype.participant = "";
+
+        /**
+         * Creates a new MessageKey instance using the specified properties.
+         * @function create
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {Protocol.IMessageKey=} [properties] Properties to set
+         * @returns {Protocol.MessageKey} MessageKey instance
+         */
+        MessageKey.create = function create(properties) {
+            return new MessageKey(properties);
+        };
+
+        /**
+         * Encodes the specified MessageKey message. Does not implicitly {@link Protocol.MessageKey.verify|verify} messages.
+         * @function encode
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {Protocol.IMessageKey} message MessageKey message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        MessageKey.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.remoteJid != null && Object.hasOwnProperty.call(message, "remoteJid"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.remoteJid);
+            if (message.fromMe != null && Object.hasOwnProperty.call(message, "fromMe"))
+                writer.uint32(/* id 2, wireType 0 =*/16).bool(message.fromMe);
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.id);
+            if (message.participant != null && Object.hasOwnProperty.call(message, "participant"))
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.participant);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified MessageKey message, length delimited. Does not implicitly {@link Protocol.MessageKey.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {Protocol.IMessageKey} message MessageKey message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        MessageKey.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a MessageKey message from the specified reader or buffer.
+         * @function decode
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {Protocol.MessageKey} MessageKey
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        MessageKey.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.MessageKey();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1: {
+                        message.remoteJid = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.fromMe = reader.bool();
+                        break;
+                    }
+                case 3: {
+                        message.id = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.participant = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a MessageKey message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {Protocol.MessageKey} MessageKey
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        MessageKey.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a MessageKey message.
+         * @function verify
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        MessageKey.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.remoteJid != null && message.hasOwnProperty("remoteJid"))
+                if (!$util.isString(message.remoteJid))
+                    return "remoteJid: string expected";
+            if (message.fromMe != null && message.hasOwnProperty("fromMe"))
+                if (typeof message.fromMe !== "boolean")
+                    return "fromMe: boolean expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isString(message.id))
+                    return "id: string expected";
+            if (message.participant != null && message.hasOwnProperty("participant"))
+                if (!$util.isString(message.participant))
+                    return "participant: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a MessageKey message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {Protocol.MessageKey} MessageKey
+         */
+        MessageKey.fromObject = function fromObject(object) {
+            if (object instanceof $root.Protocol.MessageKey)
+                return object;
+            var message = new $root.Protocol.MessageKey();
+            if (object.remoteJid != null)
+                message.remoteJid = String(object.remoteJid);
+            if (object.fromMe != null)
+                message.fromMe = Boolean(object.fromMe);
+            if (object.id != null)
+                message.id = String(object.id);
+            if (object.participant != null)
+                message.participant = String(object.participant);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a MessageKey message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {Protocol.MessageKey} message MessageKey
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        MessageKey.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.remoteJid = "";
+                object.fromMe = false;
+                object.id = "";
+                object.participant = "";
+            }
+            if (message.remoteJid != null && message.hasOwnProperty("remoteJid"))
+                object.remoteJid = message.remoteJid;
+            if (message.fromMe != null && message.hasOwnProperty("fromMe"))
+                object.fromMe = message.fromMe;
+            if (message.id != null && message.hasOwnProperty("id"))
+                object.id = message.id;
+            if (message.participant != null && message.hasOwnProperty("participant"))
+                object.participant = message.participant;
+            return object;
+        };
+
+        /**
+         * Converts this MessageKey to JSON.
+         * @function toJSON
+         * @memberof Protocol.MessageKey
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        MessageKey.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for MessageKey
+         * @function getTypeUrl
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        MessageKey.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/Protocol.MessageKey";
+        };
+
+        return MessageKey;
+    })();
+
+    return Protocol;
+})();
+
 $root.Adv = (function() {
 
     /**
@@ -75493,551 +76432,6 @@ $root.Adv = (function() {
     })();
 
     return Adv;
-})();
-
-$root.Protocol = (function() {
-
-    /**
-     * Namespace Protocol.
-     * @exports Protocol
-     * @namespace
-     */
-    var Protocol = {};
-
-    Protocol.LimitSharing = (function() {
-
-        /**
-         * Properties of a LimitSharing.
-         * @memberof Protocol
-         * @interface ILimitSharing
-         * @property {boolean|null} [sharingLimited] LimitSharing sharingLimited
-         * @property {Protocol.LimitSharing.Trigger|null} [trigger] LimitSharing trigger
-         */
-
-        /**
-         * Constructs a new LimitSharing.
-         * @memberof Protocol
-         * @classdesc Represents a LimitSharing.
-         * @implements ILimitSharing
-         * @constructor
-         * @param {Protocol.ILimitSharing=} [properties] Properties to set
-         */
-        function LimitSharing(properties) {
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * LimitSharing sharingLimited.
-         * @member {boolean} sharingLimited
-         * @memberof Protocol.LimitSharing
-         * @instance
-         */
-        LimitSharing.prototype.sharingLimited = false;
-
-        /**
-         * LimitSharing trigger.
-         * @member {Protocol.LimitSharing.Trigger} trigger
-         * @memberof Protocol.LimitSharing
-         * @instance
-         */
-        LimitSharing.prototype.trigger = 0;
-
-        /**
-         * Creates a new LimitSharing instance using the specified properties.
-         * @function create
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {Protocol.ILimitSharing=} [properties] Properties to set
-         * @returns {Protocol.LimitSharing} LimitSharing instance
-         */
-        LimitSharing.create = function create(properties) {
-            return new LimitSharing(properties);
-        };
-
-        /**
-         * Encodes the specified LimitSharing message. Does not implicitly {@link Protocol.LimitSharing.verify|verify} messages.
-         * @function encode
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {Protocol.ILimitSharing} message LimitSharing message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        LimitSharing.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            if (message.sharingLimited != null && Object.hasOwnProperty.call(message, "sharingLimited"))
-                writer.uint32(/* id 1, wireType 0 =*/8).bool(message.sharingLimited);
-            if (message.trigger != null && Object.hasOwnProperty.call(message, "trigger"))
-                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.trigger);
-            return writer;
-        };
-
-        /**
-         * Encodes the specified LimitSharing message, length delimited. Does not implicitly {@link Protocol.LimitSharing.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {Protocol.ILimitSharing} message LimitSharing message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        LimitSharing.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a LimitSharing message from the specified reader or buffer.
-         * @function decode
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {Protocol.LimitSharing} LimitSharing
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        LimitSharing.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.LimitSharing();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1: {
-                        message.sharingLimited = reader.bool();
-                        break;
-                    }
-                case 2: {
-                        message.trigger = reader.int32();
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes a LimitSharing message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {Protocol.LimitSharing} LimitSharing
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        LimitSharing.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a LimitSharing message.
-         * @function verify
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        LimitSharing.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
-                if (typeof message.sharingLimited !== "boolean")
-                    return "sharingLimited: boolean expected";
-            if (message.trigger != null && message.hasOwnProperty("trigger"))
-                switch (message.trigger) {
-                default:
-                    return "trigger: enum value expected";
-                case 0:
-                case 1:
-                    break;
-                }
-            return null;
-        };
-
-        /**
-         * Creates a LimitSharing message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {Protocol.LimitSharing} LimitSharing
-         */
-        LimitSharing.fromObject = function fromObject(object) {
-            if (object instanceof $root.Protocol.LimitSharing)
-                return object;
-            var message = new $root.Protocol.LimitSharing();
-            if (object.sharingLimited != null)
-                message.sharingLimited = Boolean(object.sharingLimited);
-            switch (object.trigger) {
-            default:
-                if (typeof object.trigger === "number") {
-                    message.trigger = object.trigger;
-                    break;
-                }
-                break;
-            case "CHAT_SETTING":
-            case 0:
-                message.trigger = 0;
-                break;
-            case "BIZ_SUPPORTS_FB_HOSTING":
-            case 1:
-                message.trigger = 1;
-                break;
-            }
-            return message;
-        };
-
-        /**
-         * Creates a plain object from a LimitSharing message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {Protocol.LimitSharing} message LimitSharing
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        LimitSharing.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.defaults) {
-                object.sharingLimited = false;
-                object.trigger = options.enums === String ? "CHAT_SETTING" : 0;
-            }
-            if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
-                object.sharingLimited = message.sharingLimited;
-            if (message.trigger != null && message.hasOwnProperty("trigger"))
-                object.trigger = options.enums === String ? $root.Protocol.LimitSharing.Trigger[message.trigger] === undefined ? message.trigger : $root.Protocol.LimitSharing.Trigger[message.trigger] : message.trigger;
-            return object;
-        };
-
-        /**
-         * Converts this LimitSharing to JSON.
-         * @function toJSON
-         * @memberof Protocol.LimitSharing
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        LimitSharing.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        /**
-         * Gets the default type url for LimitSharing
-         * @function getTypeUrl
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
-         */
-        LimitSharing.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/Protocol.LimitSharing";
-        };
-
-        /**
-         * Trigger enum.
-         * @name Protocol.LimitSharing.Trigger
-         * @enum {number}
-         * @property {number} CHAT_SETTING=0 CHAT_SETTING value
-         * @property {number} BIZ_SUPPORTS_FB_HOSTING=1 BIZ_SUPPORTS_FB_HOSTING value
-         */
-        LimitSharing.Trigger = (function() {
-            var valuesById = {}, values = Object.create(valuesById);
-            values[valuesById[0] = "CHAT_SETTING"] = 0;
-            values[valuesById[1] = "BIZ_SUPPORTS_FB_HOSTING"] = 1;
-            return values;
-        })();
-
-        return LimitSharing;
-    })();
-
-    Protocol.MessageKey = (function() {
-
-        /**
-         * Properties of a MessageKey.
-         * @memberof Protocol
-         * @interface IMessageKey
-         * @property {string|null} [remoteJid] MessageKey remoteJid
-         * @property {boolean|null} [fromMe] MessageKey fromMe
-         * @property {string|null} [id] MessageKey id
-         * @property {string|null} [participant] MessageKey participant
-         */
-
-        /**
-         * Constructs a new MessageKey.
-         * @memberof Protocol
-         * @classdesc Represents a MessageKey.
-         * @implements IMessageKey
-         * @constructor
-         * @param {Protocol.IMessageKey=} [properties] Properties to set
-         */
-        function MessageKey(properties) {
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * MessageKey remoteJid.
-         * @member {string} remoteJid
-         * @memberof Protocol.MessageKey
-         * @instance
-         */
-        MessageKey.prototype.remoteJid = "";
-
-        /**
-         * MessageKey fromMe.
-         * @member {boolean} fromMe
-         * @memberof Protocol.MessageKey
-         * @instance
-         */
-        MessageKey.prototype.fromMe = false;
-
-        /**
-         * MessageKey id.
-         * @member {string} id
-         * @memberof Protocol.MessageKey
-         * @instance
-         */
-        MessageKey.prototype.id = "";
-
-        /**
-         * MessageKey participant.
-         * @member {string} participant
-         * @memberof Protocol.MessageKey
-         * @instance
-         */
-        MessageKey.prototype.participant = "";
-
-        /**
-         * Creates a new MessageKey instance using the specified properties.
-         * @function create
-         * @memberof Protocol.MessageKey
-         * @static
-         * @param {Protocol.IMessageKey=} [properties] Properties to set
-         * @returns {Protocol.MessageKey} MessageKey instance
-         */
-        MessageKey.create = function create(properties) {
-            return new MessageKey(properties);
-        };
-
-        /**
-         * Encodes the specified MessageKey message. Does not implicitly {@link Protocol.MessageKey.verify|verify} messages.
-         * @function encode
-         * @memberof Protocol.MessageKey
-         * @static
-         * @param {Protocol.IMessageKey} message MessageKey message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        MessageKey.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            if (message.remoteJid != null && Object.hasOwnProperty.call(message, "remoteJid"))
-                writer.uint32(/* id 1, wireType 2 =*/10).string(message.remoteJid);
-            if (message.fromMe != null && Object.hasOwnProperty.call(message, "fromMe"))
-                writer.uint32(/* id 2, wireType 0 =*/16).bool(message.fromMe);
-            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
-                writer.uint32(/* id 3, wireType 2 =*/26).string(message.id);
-            if (message.participant != null && Object.hasOwnProperty.call(message, "participant"))
-                writer.uint32(/* id 4, wireType 2 =*/34).string(message.participant);
-            return writer;
-        };
-
-        /**
-         * Encodes the specified MessageKey message, length delimited. Does not implicitly {@link Protocol.MessageKey.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof Protocol.MessageKey
-         * @static
-         * @param {Protocol.IMessageKey} message MessageKey message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        MessageKey.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a MessageKey message from the specified reader or buffer.
-         * @function decode
-         * @memberof Protocol.MessageKey
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {Protocol.MessageKey} MessageKey
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        MessageKey.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.MessageKey();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1: {
-                        message.remoteJid = reader.string();
-                        break;
-                    }
-                case 2: {
-                        message.fromMe = reader.bool();
-                        break;
-                    }
-                case 3: {
-                        message.id = reader.string();
-                        break;
-                    }
-                case 4: {
-                        message.participant = reader.string();
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes a MessageKey message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof Protocol.MessageKey
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {Protocol.MessageKey} MessageKey
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        MessageKey.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a MessageKey message.
-         * @function verify
-         * @memberof Protocol.MessageKey
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        MessageKey.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.remoteJid != null && message.hasOwnProperty("remoteJid"))
-                if (!$util.isString(message.remoteJid))
-                    return "remoteJid: string expected";
-            if (message.fromMe != null && message.hasOwnProperty("fromMe"))
-                if (typeof message.fromMe !== "boolean")
-                    return "fromMe: boolean expected";
-            if (message.id != null && message.hasOwnProperty("id"))
-                if (!$util.isString(message.id))
-                    return "id: string expected";
-            if (message.participant != null && message.hasOwnProperty("participant"))
-                if (!$util.isString(message.participant))
-                    return "participant: string expected";
-            return null;
-        };
-
-        /**
-         * Creates a MessageKey message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof Protocol.MessageKey
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {Protocol.MessageKey} MessageKey
-         */
-        MessageKey.fromObject = function fromObject(object) {
-            if (object instanceof $root.Protocol.MessageKey)
-                return object;
-            var message = new $root.Protocol.MessageKey();
-            if (object.remoteJid != null)
-                message.remoteJid = String(object.remoteJid);
-            if (object.fromMe != null)
-                message.fromMe = Boolean(object.fromMe);
-            if (object.id != null)
-                message.id = String(object.id);
-            if (object.participant != null)
-                message.participant = String(object.participant);
-            return message;
-        };
-
-        /**
-         * Creates a plain object from a MessageKey message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof Protocol.MessageKey
-         * @static
-         * @param {Protocol.MessageKey} message MessageKey
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        MessageKey.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.defaults) {
-                object.remoteJid = "";
-                object.fromMe = false;
-                object.id = "";
-                object.participant = "";
-            }
-            if (message.remoteJid != null && message.hasOwnProperty("remoteJid"))
-                object.remoteJid = message.remoteJid;
-            if (message.fromMe != null && message.hasOwnProperty("fromMe"))
-                object.fromMe = message.fromMe;
-            if (message.id != null && message.hasOwnProperty("id"))
-                object.id = message.id;
-            if (message.participant != null && message.hasOwnProperty("participant"))
-                object.participant = message.participant;
-            return object;
-        };
-
-        /**
-         * Converts this MessageKey to JSON.
-         * @function toJSON
-         * @memberof Protocol.MessageKey
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        MessageKey.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        /**
-         * Gets the default type url for MessageKey
-         * @function getTypeUrl
-         * @memberof Protocol.MessageKey
-         * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
-         */
-        MessageKey.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/Protocol.MessageKey";
-        };
-
-        return MessageKey;
-    })();
-
-    return Protocol;
 })();
 
 $root.CompanionReg = (function() {

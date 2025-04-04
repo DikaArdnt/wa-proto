@@ -1,10 +1,16 @@
 syntax = "proto2";
 package E2E;
 
-import "../Adv/Adv.proto";
 import "../Protocol/Protocol.proto";
+import "../Adv/Adv.proto";
 import "../CompanionReg/CompanionReg.proto";
 import "../MmsRetry/MmsRetry.proto";
+
+message AIQueryFanout {
+    optional Protocol.MessageKey messageKey = 1;
+    optional Message message = 2;
+    optional int64 timestamp = 3;
+}
 
 message UrlTrackingMap {
     repeated UrlTrackingMapElement urlTrackingMapElements = 1;
@@ -295,6 +301,7 @@ message BotMetadata {
     optional BotMetricsMetadata botMetricsMetadata = 17;
     optional BotLinkedAccountsMetadata botLinkedAccountsMetadata = 18;
     optional BotSourcesMetadata richResponseSourcesMetadata = 19;
+    optional bytes aiConversationContext = 20;
 }
 
 message BotSourcesMetadata {
@@ -361,6 +368,8 @@ message BotCapabilityMetadata {
         STREAMING_DISAGGREGATION = 29;
         RICH_RESPONSE_GRID_IMAGE_3P = 30;
         RICH_RESPONSE_LATEX_INLINE = 31;
+        QUERY_PLAN = 32;
+        PROACTIVE_MESSAGE = 33;
     }
 }
 
@@ -1879,6 +1888,8 @@ message Message {
         optional Message.CloudAPIThreadControlNotification cloudApiThreadControlNotification = 22;
         optional LIDMigrationMappingSyncMessage lidMigrationMappingSyncMessage = 23;
         optional Protocol.LimitSharing limitSharing = 24;
+        optional bytes aiPsiMetadata = 25;
+        optional AIQueryFanout aiQueryFanout = 26;
         enum Type {
             REVOKE = 0;
             EPHEMERAL_SETTING = 3;
@@ -1903,6 +1914,8 @@ message Message {
             STATUS_MENTION_MESSAGE = 25;
             STOP_GENERATION_MESSAGE = 26;
             LIMIT_SHARING = 27;
+            AI_PSI_METADATA = 28;
+            AI_QUERY_FANOUT = 29;
         }
     }
     message ReactionMessage {
