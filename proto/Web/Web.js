@@ -13071,6 +13071,247 @@ $root.E2E = (function() {
      */
     var E2E = {};
 
+    E2E.MemberLabel = (function() {
+
+        /**
+         * Properties of a MemberLabel.
+         * @memberof E2E
+         * @interface IMemberLabel
+         * @property {string|null} [label] MemberLabel label
+         * @property {number|Long|null} [labelTimestamp] MemberLabel labelTimestamp
+         */
+
+        /**
+         * Constructs a new MemberLabel.
+         * @memberof E2E
+         * @classdesc Represents a MemberLabel.
+         * @implements IMemberLabel
+         * @constructor
+         * @param {E2E.IMemberLabel=} [properties] Properties to set
+         */
+        function MemberLabel(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * MemberLabel label.
+         * @member {string} label
+         * @memberof E2E.MemberLabel
+         * @instance
+         */
+        MemberLabel.prototype.label = "";
+
+        /**
+         * MemberLabel labelTimestamp.
+         * @member {number|Long} labelTimestamp
+         * @memberof E2E.MemberLabel
+         * @instance
+         */
+        MemberLabel.prototype.labelTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new MemberLabel instance using the specified properties.
+         * @function create
+         * @memberof E2E.MemberLabel
+         * @static
+         * @param {E2E.IMemberLabel=} [properties] Properties to set
+         * @returns {E2E.MemberLabel} MemberLabel instance
+         */
+        MemberLabel.create = function create(properties) {
+            return new MemberLabel(properties);
+        };
+
+        /**
+         * Encodes the specified MemberLabel message. Does not implicitly {@link E2E.MemberLabel.verify|verify} messages.
+         * @function encode
+         * @memberof E2E.MemberLabel
+         * @static
+         * @param {E2E.IMemberLabel} message MemberLabel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        MemberLabel.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.label != null && Object.hasOwnProperty.call(message, "label"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.label);
+            if (message.labelTimestamp != null && Object.hasOwnProperty.call(message, "labelTimestamp"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int64(message.labelTimestamp);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified MemberLabel message, length delimited. Does not implicitly {@link E2E.MemberLabel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof E2E.MemberLabel
+         * @static
+         * @param {E2E.IMemberLabel} message MemberLabel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        MemberLabel.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a MemberLabel message from the specified reader or buffer.
+         * @function decode
+         * @memberof E2E.MemberLabel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {E2E.MemberLabel} MemberLabel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        MemberLabel.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.MemberLabel();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1: {
+                        message.label = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.labelTimestamp = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a MemberLabel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof E2E.MemberLabel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {E2E.MemberLabel} MemberLabel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        MemberLabel.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a MemberLabel message.
+         * @function verify
+         * @memberof E2E.MemberLabel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        MemberLabel.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.label != null && message.hasOwnProperty("label"))
+                if (!$util.isString(message.label))
+                    return "label: string expected";
+            if (message.labelTimestamp != null && message.hasOwnProperty("labelTimestamp"))
+                if (!$util.isInteger(message.labelTimestamp) && !(message.labelTimestamp && $util.isInteger(message.labelTimestamp.low) && $util.isInteger(message.labelTimestamp.high)))
+                    return "labelTimestamp: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a MemberLabel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof E2E.MemberLabel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {E2E.MemberLabel} MemberLabel
+         */
+        MemberLabel.fromObject = function fromObject(object) {
+            if (object instanceof $root.E2E.MemberLabel)
+                return object;
+            var message = new $root.E2E.MemberLabel();
+            if (object.label != null)
+                message.label = String(object.label);
+            if (object.labelTimestamp != null)
+                if ($util.Long)
+                    (message.labelTimestamp = $util.Long.fromValue(object.labelTimestamp)).unsigned = false;
+                else if (typeof object.labelTimestamp === "string")
+                    message.labelTimestamp = parseInt(object.labelTimestamp, 10);
+                else if (typeof object.labelTimestamp === "number")
+                    message.labelTimestamp = object.labelTimestamp;
+                else if (typeof object.labelTimestamp === "object")
+                    message.labelTimestamp = new $util.LongBits(object.labelTimestamp.low >>> 0, object.labelTimestamp.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a MemberLabel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof E2E.MemberLabel
+         * @static
+         * @param {E2E.MemberLabel} message MemberLabel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        MemberLabel.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.label = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.labelTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.labelTimestamp = options.longs === String ? "0" : 0;
+            }
+            if (message.label != null && message.hasOwnProperty("label"))
+                object.label = message.label;
+            if (message.labelTimestamp != null && message.hasOwnProperty("labelTimestamp"))
+                if (typeof message.labelTimestamp === "number")
+                    object.labelTimestamp = options.longs === String ? String(message.labelTimestamp) : message.labelTimestamp;
+                else
+                    object.labelTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.labelTimestamp) : options.longs === Number ? new $util.LongBits(message.labelTimestamp.low >>> 0, message.labelTimestamp.high >>> 0).toNumber() : message.labelTimestamp;
+            return object;
+        };
+
+        /**
+         * Converts this MemberLabel to JSON.
+         * @function toJSON
+         * @memberof E2E.MemberLabel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        MemberLabel.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for MemberLabel
+         * @function getTypeUrl
+         * @memberof E2E.MemberLabel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        MemberLabel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/E2E.MemberLabel";
+        };
+
+        return MemberLabel;
+    })();
+
     E2E.AIQueryFanout = (function() {
 
         /**
@@ -36783,6 +37024,7 @@ $root.E2E = (function() {
          * @property {E2E.IUrlTrackingMap|null} [urlTrackingMap] ContextInfo urlTrackingMap
          * @property {E2E.ContextInfo.PairedMediaType|null} [pairedMediaType] ContextInfo pairedMediaType
          * @property {number|null} [rankingVersion] ContextInfo rankingVersion
+         * @property {E2E.IMemberLabel|null} [memberLabel] ContextInfo memberLabel
          */
 
         /**
@@ -37155,6 +37397,14 @@ $root.E2E = (function() {
         ContextInfo.prototype.rankingVersion = 0;
 
         /**
+         * ContextInfo memberLabel.
+         * @member {E2E.IMemberLabel|null|undefined} memberLabel
+         * @memberof E2E.ContextInfo
+         * @instance
+         */
+        ContextInfo.prototype.memberLabel = null;
+
+        /**
          * Creates a new ContextInfo instance using the specified properties.
          * @function create
          * @memberof E2E.ContextInfo
@@ -37268,6 +37518,8 @@ $root.E2E = (function() {
                 writer.uint32(/* id 59, wireType 0 =*/472).int32(message.pairedMediaType);
             if (message.rankingVersion != null && Object.hasOwnProperty.call(message, "rankingVersion"))
                 writer.uint32(/* id 60, wireType 0 =*/480).uint32(message.rankingVersion);
+            if (message.memberLabel != null && Object.hasOwnProperty.call(message, "memberLabel"))
+                $root.E2E.MemberLabel.encode(message.memberLabel, writer.uint32(/* id 62, wireType 2 =*/498).fork()).ldelim();
             return writer;
         };
 
@@ -37480,6 +37732,10 @@ $root.E2E = (function() {
                     }
                 case 60: {
                         message.rankingVersion = reader.uint32();
+                        break;
+                    }
+                case 62: {
+                        message.memberLabel = $root.E2E.MemberLabel.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -37699,6 +37955,11 @@ $root.E2E = (function() {
             if (message.rankingVersion != null && message.hasOwnProperty("rankingVersion"))
                 if (!$util.isInteger(message.rankingVersion))
                     return "rankingVersion: integer expected";
+            if (message.memberLabel != null && message.hasOwnProperty("memberLabel")) {
+                var error = $root.E2E.MemberLabel.verify(message.memberLabel);
+                if (error)
+                    return "memberLabel." + error;
+            }
             return null;
         };
 
@@ -37914,6 +38175,11 @@ $root.E2E = (function() {
             }
             if (object.rankingVersion != null)
                 message.rankingVersion = object.rankingVersion >>> 0;
+            if (object.memberLabel != null) {
+                if (typeof object.memberLabel !== "object")
+                    throw TypeError(".E2E.ContextInfo.memberLabel: object expected");
+                message.memberLabel = $root.E2E.MemberLabel.fromObject(object.memberLabel);
+            }
             return message;
         };
 
@@ -37999,6 +38265,7 @@ $root.E2E = (function() {
                 object.urlTrackingMap = null;
                 object.pairedMediaType = options.enums === String ? "NOT_PAIRED_MEDIA" : 0;
                 object.rankingVersion = 0;
+                object.memberLabel = null;
             }
             if (message.stanzaId != null && message.hasOwnProperty("stanzaId"))
                 object.stanzaId = message.stanzaId;
@@ -38097,6 +38364,8 @@ $root.E2E = (function() {
                 object.pairedMediaType = options.enums === String ? $root.E2E.ContextInfo.PairedMediaType[message.pairedMediaType] === undefined ? message.pairedMediaType : $root.E2E.ContextInfo.PairedMediaType[message.pairedMediaType] : message.pairedMediaType;
             if (message.rankingVersion != null && message.hasOwnProperty("rankingVersion"))
                 object.rankingVersion = message.rankingVersion;
+            if (message.memberLabel != null && message.hasOwnProperty("memberLabel"))
+                object.memberLabel = $root.E2E.MemberLabel.toObject(message.memberLabel, options);
             return object;
         };
 
@@ -78362,6 +78631,7 @@ $root.E2E = (function() {
              * @property {Protocol.ILimitSharing|null} [limitSharing] ProtocolMessage limitSharing
              * @property {Uint8Array|null} [aiPsiMetadata] ProtocolMessage aiPsiMetadata
              * @property {E2E.IAIQueryFanout|null} [aiQueryFanout] ProtocolMessage aiQueryFanout
+             * @property {E2E.IMemberLabel|null} [memberLabel] ProtocolMessage memberLabel
              */
 
             /**
@@ -78564,6 +78834,14 @@ $root.E2E = (function() {
             ProtocolMessage.prototype.aiQueryFanout = null;
 
             /**
+             * ProtocolMessage memberLabel.
+             * @member {E2E.IMemberLabel|null|undefined} memberLabel
+             * @memberof E2E.Message.ProtocolMessage
+             * @instance
+             */
+            ProtocolMessage.prototype.memberLabel = null;
+
+            /**
              * Creates a new ProtocolMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.ProtocolMessage
@@ -78633,6 +78911,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 25, wireType 2 =*/202).bytes(message.aiPsiMetadata);
                 if (message.aiQueryFanout != null && Object.hasOwnProperty.call(message, "aiQueryFanout"))
                     $root.E2E.AIQueryFanout.encode(message.aiQueryFanout, writer.uint32(/* id 26, wireType 2 =*/210).fork()).ldelim();
+                if (message.memberLabel != null && Object.hasOwnProperty.call(message, "memberLabel"))
+                    $root.E2E.MemberLabel.encode(message.memberLabel, writer.uint32(/* id 27, wireType 2 =*/218).fork()).ldelim();
                 return writer;
             };
 
@@ -78759,6 +79039,10 @@ $root.E2E = (function() {
                             message.aiQueryFanout = $root.E2E.AIQueryFanout.decode(reader, reader.uint32());
                             break;
                         }
+                    case 27: {
+                            message.memberLabel = $root.E2E.MemberLabel.decode(reader, reader.uint32());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -78828,6 +79112,7 @@ $root.E2E = (function() {
                     case 27:
                     case 28:
                     case 29:
+                    case 30:
                         break;
                     }
                 if (message.ephemeralExpiration != null && message.hasOwnProperty("ephemeralExpiration"))
@@ -78924,6 +79209,11 @@ $root.E2E = (function() {
                     var error = $root.E2E.AIQueryFanout.verify(message.aiQueryFanout);
                     if (error)
                         return "aiQueryFanout." + error;
+                }
+                if (message.memberLabel != null && message.hasOwnProperty("memberLabel")) {
+                    var error = $root.E2E.MemberLabel.verify(message.memberLabel);
+                    if (error)
+                        return "memberLabel." + error;
                 }
                 return null;
             };
@@ -79052,6 +79342,10 @@ $root.E2E = (function() {
                 case 29:
                     message.type = 29;
                     break;
+                case "GROUP_MEMBER_LABEL_CHANGE":
+                case 30:
+                    message.type = 30;
+                    break;
                 }
                 if (object.ephemeralExpiration != null)
                     message.ephemeralExpiration = object.ephemeralExpiration >>> 0;
@@ -79160,6 +79454,11 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.ProtocolMessage.aiQueryFanout: object expected");
                     message.aiQueryFanout = $root.E2E.AIQueryFanout.fromObject(object.aiQueryFanout);
                 }
+                if (object.memberLabel != null) {
+                    if (typeof object.memberLabel !== "object")
+                        throw TypeError(".E2E.Message.ProtocolMessage.memberLabel: object expected");
+                    message.memberLabel = $root.E2E.MemberLabel.fromObject(object.memberLabel);
+                }
                 return message;
             };
 
@@ -79214,6 +79513,7 @@ $root.E2E = (function() {
                             object.aiPsiMetadata = $util.newBuffer(object.aiPsiMetadata);
                     }
                     object.aiQueryFanout = null;
+                    object.memberLabel = null;
                 }
                 if (message.key != null && message.hasOwnProperty("key"))
                     object.key = $root.Protocol.MessageKey.toObject(message.key, options);
@@ -79267,6 +79567,8 @@ $root.E2E = (function() {
                     object.aiPsiMetadata = options.bytes === String ? $util.base64.encode(message.aiPsiMetadata, 0, message.aiPsiMetadata.length) : options.bytes === Array ? Array.prototype.slice.call(message.aiPsiMetadata) : message.aiPsiMetadata;
                 if (message.aiQueryFanout != null && message.hasOwnProperty("aiQueryFanout"))
                     object.aiQueryFanout = $root.E2E.AIQueryFanout.toObject(message.aiQueryFanout, options);
+                if (message.memberLabel != null && message.hasOwnProperty("memberLabel"))
+                    object.memberLabel = $root.E2E.MemberLabel.toObject(message.memberLabel, options);
                 return object;
             };
 
@@ -79325,6 +79627,7 @@ $root.E2E = (function() {
              * @property {number} LIMIT_SHARING=27 LIMIT_SHARING value
              * @property {number} AI_PSI_METADATA=28 AI_PSI_METADATA value
              * @property {number} AI_QUERY_FANOUT=29 AI_QUERY_FANOUT value
+             * @property {number} GROUP_MEMBER_LABEL_CHANGE=30 GROUP_MEMBER_LABEL_CHANGE value
              */
             ProtocolMessage.Type = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -79353,6 +79656,7 @@ $root.E2E = (function() {
                 values[valuesById[27] = "LIMIT_SHARING"] = 27;
                 values[valuesById[28] = "AI_PSI_METADATA"] = 28;
                 values[valuesById[29] = "AI_QUERY_FANOUT"] = 29;
+                values[valuesById[30] = "GROUP_MEMBER_LABEL_CHANGE"] = 30;
                 return values;
             })();
 

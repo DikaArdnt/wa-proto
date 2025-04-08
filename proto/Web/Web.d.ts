@@ -3654,6 +3654,109 @@ export namespace Web {
 /** Namespace E2E. */
 export namespace E2E {
 
+    /** Properties of a MemberLabel. */
+    interface IMemberLabel {
+
+        /** MemberLabel label */
+        label?: (string|null);
+
+        /** MemberLabel labelTimestamp */
+        labelTimestamp?: (number|Long|null);
+    }
+
+    /** Represents a MemberLabel. */
+    class MemberLabel implements IMemberLabel {
+
+        /**
+         * Constructs a new MemberLabel.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: E2E.IMemberLabel);
+
+        /** MemberLabel label. */
+        public label: string;
+
+        /** MemberLabel labelTimestamp. */
+        public labelTimestamp: (number|Long);
+
+        /**
+         * Creates a new MemberLabel instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns MemberLabel instance
+         */
+        public static create(properties?: E2E.IMemberLabel): E2E.MemberLabel;
+
+        /**
+         * Encodes the specified MemberLabel message. Does not implicitly {@link E2E.MemberLabel.verify|verify} messages.
+         * @param message MemberLabel message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: E2E.IMemberLabel, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified MemberLabel message, length delimited. Does not implicitly {@link E2E.MemberLabel.verify|verify} messages.
+         * @param message MemberLabel message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: E2E.IMemberLabel, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a MemberLabel message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns MemberLabel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.MemberLabel;
+
+        /**
+         * Decodes a MemberLabel message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns MemberLabel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.MemberLabel;
+
+        /**
+         * Verifies a MemberLabel message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a MemberLabel message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns MemberLabel
+         */
+        public static fromObject(object: { [k: string]: any }): E2E.MemberLabel;
+
+        /**
+         * Creates a plain object from a MemberLabel message. Also converts values to other types if specified.
+         * @param message MemberLabel
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: E2E.MemberLabel, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this MemberLabel to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for MemberLabel
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
     /** Properties of a AIQueryFanout. */
     interface IAIQueryFanout {
 
@@ -12834,6 +12937,9 @@ export namespace E2E {
 
         /** ContextInfo rankingVersion */
         rankingVersion?: (number|null);
+
+        /** ContextInfo memberLabel */
+        memberLabel?: (E2E.IMemberLabel|null);
     }
 
     /** Represents a ContextInfo. */
@@ -12976,6 +13082,9 @@ export namespace E2E {
 
         /** ContextInfo rankingVersion. */
         public rankingVersion: number;
+
+        /** ContextInfo memberLabel. */
+        public memberLabel?: (E2E.IMemberLabel|null);
 
         /**
          * Creates a new ContextInfo instance using the specified properties.
@@ -27970,6 +28079,9 @@ export namespace E2E {
 
             /** ProtocolMessage aiQueryFanout */
             aiQueryFanout?: (E2E.IAIQueryFanout|null);
+
+            /** ProtocolMessage memberLabel */
+            memberLabel?: (E2E.IMemberLabel|null);
         }
 
         /** Represents a ProtocolMessage. */
@@ -28049,6 +28161,9 @@ export namespace E2E {
 
             /** ProtocolMessage aiQueryFanout. */
             public aiQueryFanout?: (E2E.IAIQueryFanout|null);
+
+            /** ProtocolMessage memberLabel. */
+            public memberLabel?: (E2E.IMemberLabel|null);
 
             /**
              * Creates a new ProtocolMessage instance using the specified properties.
@@ -28156,7 +28271,8 @@ export namespace E2E {
                 STOP_GENERATION_MESSAGE = 26,
                 LIMIT_SHARING = 27,
                 AI_PSI_METADATA = 28,
-                AI_QUERY_FANOUT = 29
+                AI_QUERY_FANOUT = 29,
+                GROUP_MEMBER_LABEL_CHANGE = 30
             }
         }
 

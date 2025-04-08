@@ -6,6 +6,11 @@ import "../Adv/Adv.proto";
 import "../CompanionReg/CompanionReg.proto";
 import "../MmsRetry/MmsRetry.proto";
 
+message MemberLabel {
+    optional string label = 1;
+    optional int64 labelTimestamp = 2;
+}
+
 message AIQueryFanout {
     optional Protocol.MessageKey messageKey = 1;
     optional Message message = 2;
@@ -754,6 +759,7 @@ message ContextInfo {
     optional UrlTrackingMap urlTrackingMap = 58;
     optional PairedMediaType pairedMediaType = 59;
     optional uint32 rankingVersion = 60;
+    optional MemberLabel memberLabel = 62;
     message AdReplyInfo {
         optional string advertiserName = 1;
         optional MediaType mediaType = 2;
@@ -1890,6 +1896,7 @@ message Message {
         optional Protocol.LimitSharing limitSharing = 24;
         optional bytes aiPsiMetadata = 25;
         optional AIQueryFanout aiQueryFanout = 26;
+        optional MemberLabel memberLabel = 27;
         enum Type {
             REVOKE = 0;
             EPHEMERAL_SETTING = 3;
@@ -1916,6 +1923,7 @@ message Message {
             LIMIT_SHARING = 27;
             AI_PSI_METADATA = 28;
             AI_QUERY_FANOUT = 29;
+            GROUP_MEMBER_LABEL_CHANGE = 30;
         }
     }
     message ReactionMessage {
