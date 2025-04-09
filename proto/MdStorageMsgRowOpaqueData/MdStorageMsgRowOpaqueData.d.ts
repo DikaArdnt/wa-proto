@@ -119,6 +119,9 @@ export namespace MdStorageMsgRowOpaqueData {
 
         /** MsgOpaqueData eventEndTime */
         eventEndTime?: (number|Long|null);
+
+        /** MsgOpaqueData plainProtobufBytes */
+        plainProtobufBytes?: (Uint8Array|null);
     }
 
     /** Represents a MsgOpaqueData. */
@@ -243,6 +246,9 @@ export namespace MdStorageMsgRowOpaqueData {
 
         /** MsgOpaqueData eventEndTime. */
         public eventEndTime: (number|Long);
+
+        /** MsgOpaqueData plainProtobufBytes. */
+        public plainProtobufBytes: Uint8Array;
 
         /**
          * Creates a new MsgOpaqueData instance using the specified properties.

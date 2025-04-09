@@ -62,6 +62,7 @@ $root.MdStorageMsgRowOpaqueData = (function() {
          * @property {number|Long|null} [eventStartTime] MsgOpaqueData eventStartTime
          * @property {MdStorageMsgRowOpaqueData.MsgOpaqueData.IEventLocation|null} [eventLocation] MsgOpaqueData eventLocation
          * @property {number|Long|null} [eventEndTime] MsgOpaqueData eventEndTime
+         * @property {Uint8Array|null} [plainProtobufBytes] MsgOpaqueData plainProtobufBytes
          */
 
         /**
@@ -385,6 +386,14 @@ $root.MdStorageMsgRowOpaqueData = (function() {
         MsgOpaqueData.prototype.eventEndTime = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
         /**
+         * MsgOpaqueData plainProtobufBytes.
+         * @member {Uint8Array} plainProtobufBytes
+         * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData
+         * @instance
+         */
+        MsgOpaqueData.prototype.plainProtobufBytes = $util.newBuffer([]);
+
+        /**
          * Creates a new MsgOpaqueData instance using the specified properties.
          * @function create
          * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData
@@ -483,6 +492,8 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.PollVotesSnapshot.encode(message.pollVotesSnapshot, writer.uint32(/* id 41, wireType 2 =*/330).fork()).ldelim();
             if (message.pollContentType != null && Object.hasOwnProperty.call(message, "pollContentType"))
                 writer.uint32(/* id 42, wireType 0 =*/336).int32(message.pollContentType);
+            if (message.plainProtobufBytes != null && Object.hasOwnProperty.call(message, "plainProtobufBytes"))
+                writer.uint32(/* id 43, wireType 2 =*/346).bytes(message.plainProtobufBytes);
             if (message.originalSelfAuthor != null && Object.hasOwnProperty.call(message, "originalSelfAuthor"))
                 writer.uint32(/* id 51, wireType 2 =*/410).string(message.originalSelfAuthor);
             return writer;
@@ -673,6 +684,10 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                         message.eventEndTime = reader.int64();
                         break;
                     }
+                case 43: {
+                        message.plainProtobufBytes = reader.bytes();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -840,6 +855,9 @@ $root.MdStorageMsgRowOpaqueData = (function() {
             if (message.eventEndTime != null && message.hasOwnProperty("eventEndTime"))
                 if (!$util.isInteger(message.eventEndTime) && !(message.eventEndTime && $util.isInteger(message.eventEndTime.low) && $util.isInteger(message.eventEndTime.high)))
                     return "eventEndTime: integer|Long expected";
+            if (message.plainProtobufBytes != null && message.hasOwnProperty("plainProtobufBytes"))
+                if (!(message.plainProtobufBytes && typeof message.plainProtobufBytes.length === "number" || $util.isString(message.plainProtobufBytes)))
+                    return "plainProtobufBytes: buffer expected";
             return null;
         };
 
@@ -1008,6 +1026,11 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                     message.eventEndTime = object.eventEndTime;
                 else if (typeof object.eventEndTime === "object")
                     message.eventEndTime = new $util.LongBits(object.eventEndTime.low >>> 0, object.eventEndTime.high >>> 0).toNumber();
+            if (object.plainProtobufBytes != null)
+                if (typeof object.plainProtobufBytes === "string")
+                    $util.base64.decode(object.plainProtobufBytes, message.plainProtobufBytes = $util.newBuffer($util.base64.length(object.plainProtobufBytes)), 0);
+                else if (object.plainProtobufBytes.length >= 0)
+                    message.plainProtobufBytes = object.plainProtobufBytes;
             return message;
         };
 
@@ -1117,6 +1140,13 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                     object.eventEndTime = options.longs === String ? "0" : 0;
                 object.pollVotesSnapshot = null;
                 object.pollContentType = options.enums === String ? "UNKNOWN" : 0;
+                if (options.bytes === String)
+                    object.plainProtobufBytes = "";
+                else {
+                    object.plainProtobufBytes = [];
+                    if (options.bytes !== Array)
+                        object.plainProtobufBytes = $util.newBuffer(object.plainProtobufBytes);
+                }
                 object.originalSelfAuthor = "";
             }
             if (message.body != null && message.hasOwnProperty("body"))
@@ -1205,6 +1235,8 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 object.pollVotesSnapshot = $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.PollVotesSnapshot.toObject(message.pollVotesSnapshot, options);
             if (message.pollContentType != null && message.hasOwnProperty("pollContentType"))
                 object.pollContentType = options.enums === String ? $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.PollContentType[message.pollContentType] === undefined ? message.pollContentType : $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.PollContentType[message.pollContentType] : message.pollContentType;
+            if (message.plainProtobufBytes != null && message.hasOwnProperty("plainProtobufBytes"))
+                object.plainProtobufBytes = options.bytes === String ? $util.base64.encode(message.plainProtobufBytes, 0, message.plainProtobufBytes.length) : options.bytes === Array ? Array.prototype.slice.call(message.plainProtobufBytes) : message.plainProtobufBytes;
             if (message.originalSelfAuthor != null && message.hasOwnProperty("originalSelfAuthor"))
                 object.originalSelfAuthor = message.originalSelfAuthor;
             return object;

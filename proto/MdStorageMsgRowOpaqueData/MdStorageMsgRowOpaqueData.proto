@@ -42,6 +42,7 @@ message MsgOpaqueData {
     optional int64 eventStartTime = 37;
     optional EventLocation eventLocation = 38;
     optional int64 eventEndTime = 40;
+    optional bytes plainProtobufBytes = 43;
     message EventLocation {
         optional double degreesLatitude = 1;
         optional double degreesLongitude = 2;
