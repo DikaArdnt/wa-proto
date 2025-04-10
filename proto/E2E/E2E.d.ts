@@ -20406,8 +20406,11 @@ export namespace E2E {
             /** MessageHistoryBundle contextInfo */
             contextInfo?: (E2E.IContextInfo|null);
 
-            /** MessageHistoryBundle participants */
-            participants?: (string[]|null);
+            /** MessageHistoryBundle historyReceivers */
+            historyReceivers?: (string[]|null);
+
+            /** MessageHistoryBundle firstMessageTimestamp */
+            firstMessageTimestamp?: (number|Long|null);
         }
 
         /** Represents a MessageHistoryBundle. */
@@ -20440,8 +20443,11 @@ export namespace E2E {
             /** MessageHistoryBundle contextInfo. */
             public contextInfo?: (E2E.IContextInfo|null);
 
-            /** MessageHistoryBundle participants. */
-            public participants: string[];
+            /** MessageHistoryBundle historyReceivers. */
+            public historyReceivers: string[];
+
+            /** MessageHistoryBundle firstMessageTimestamp. */
+            public firstMessageTimestamp: (number|Long);
 
             /**
              * Creates a new MessageHistoryBundle instance using the specified properties.

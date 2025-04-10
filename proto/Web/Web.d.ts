@@ -3646,7 +3646,8 @@ export namespace Web {
             SUPPORT_SYSTEM_MESSAGE = 212,
             CHANGE_LID = 213,
             BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_IN_MESSAGE = 214,
-            BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_OUT_MESSAGE = 215
+            BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_OUT_MESSAGE = 215,
+            CHANGE_LIMIT_SHARING = 216
         }
     }
 }
@@ -24057,8 +24058,11 @@ export namespace E2E {
             /** MessageHistoryBundle contextInfo */
             contextInfo?: (E2E.IContextInfo|null);
 
-            /** MessageHistoryBundle participants */
-            participants?: (string[]|null);
+            /** MessageHistoryBundle historyReceivers */
+            historyReceivers?: (string[]|null);
+
+            /** MessageHistoryBundle firstMessageTimestamp */
+            firstMessageTimestamp?: (number|Long|null);
         }
 
         /** Represents a MessageHistoryBundle. */
@@ -24091,8 +24095,11 @@ export namespace E2E {
             /** MessageHistoryBundle contextInfo. */
             public contextInfo?: (E2E.IContextInfo|null);
 
-            /** MessageHistoryBundle participants. */
-            public participants: string[];
+            /** MessageHistoryBundle historyReceivers. */
+            public historyReceivers: string[];
+
+            /** MessageHistoryBundle firstMessageTimestamp. */
+            public firstMessageTimestamp: (number|Long);
 
             /**
              * Creates a new MessageHistoryBundle instance using the specified properties.

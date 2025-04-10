@@ -58176,7 +58176,8 @@ $root.E2E = (function() {
              * @property {string|null} [directPath] MessageHistoryBundle directPath
              * @property {number|Long|null} [mediaKeyTimestamp] MessageHistoryBundle mediaKeyTimestamp
              * @property {E2E.IContextInfo|null} [contextInfo] MessageHistoryBundle contextInfo
-             * @property {Array.<string>|null} [participants] MessageHistoryBundle participants
+             * @property {Array.<string>|null} [historyReceivers] MessageHistoryBundle historyReceivers
+             * @property {number|Long|null} [firstMessageTimestamp] MessageHistoryBundle firstMessageTimestamp
              */
 
             /**
@@ -58188,7 +58189,7 @@ $root.E2E = (function() {
              * @param {E2E.Message.IMessageHistoryBundle=} [properties] Properties to set
              */
             function MessageHistoryBundle(properties) {
-                this.participants = [];
+                this.historyReceivers = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -58252,12 +58253,20 @@ $root.E2E = (function() {
             MessageHistoryBundle.prototype.contextInfo = null;
 
             /**
-             * MessageHistoryBundle participants.
-             * @member {Array.<string>} participants
+             * MessageHistoryBundle historyReceivers.
+             * @member {Array.<string>} historyReceivers
              * @memberof E2E.Message.MessageHistoryBundle
              * @instance
              */
-            MessageHistoryBundle.prototype.participants = $util.emptyArray;
+            MessageHistoryBundle.prototype.historyReceivers = $util.emptyArray;
+
+            /**
+             * MessageHistoryBundle firstMessageTimestamp.
+             * @member {number|Long} firstMessageTimestamp
+             * @memberof E2E.Message.MessageHistoryBundle
+             * @instance
+             */
+            MessageHistoryBundle.prototype.firstMessageTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
             /**
              * Creates a new MessageHistoryBundle instance using the specified properties.
@@ -58284,22 +58293,24 @@ $root.E2E = (function() {
                 if (!writer)
                     writer = $Writer.create();
                 if (message.mimetype != null && Object.hasOwnProperty.call(message, "mimetype"))
-                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.mimetype);
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.mimetype);
                 if (message.fileSha256 != null && Object.hasOwnProperty.call(message, "fileSha256"))
-                    writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.fileSha256);
+                    writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.fileSha256);
                 if (message.mediaKey != null && Object.hasOwnProperty.call(message, "mediaKey"))
-                    writer.uint32(/* id 5, wireType 2 =*/42).bytes(message.mediaKey);
+                    writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.mediaKey);
                 if (message.fileEncSha256 != null && Object.hasOwnProperty.call(message, "fileEncSha256"))
-                    writer.uint32(/* id 6, wireType 2 =*/50).bytes(message.fileEncSha256);
+                    writer.uint32(/* id 4, wireType 2 =*/34).bytes(message.fileEncSha256);
                 if (message.directPath != null && Object.hasOwnProperty.call(message, "directPath"))
-                    writer.uint32(/* id 7, wireType 2 =*/58).string(message.directPath);
+                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.directPath);
                 if (message.mediaKeyTimestamp != null && Object.hasOwnProperty.call(message, "mediaKeyTimestamp"))
-                    writer.uint32(/* id 8, wireType 0 =*/64).int64(message.mediaKeyTimestamp);
+                    writer.uint32(/* id 6, wireType 0 =*/48).int64(message.mediaKeyTimestamp);
                 if (message.contextInfo != null && Object.hasOwnProperty.call(message, "contextInfo"))
-                    $root.E2E.ContextInfo.encode(message.contextInfo, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
-                if (message.participants != null && message.participants.length)
-                    for (var i = 0; i < message.participants.length; ++i)
-                        writer.uint32(/* id 10, wireType 2 =*/82).string(message.participants[i]);
+                    $root.E2E.ContextInfo.encode(message.contextInfo, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+                if (message.historyReceivers != null && message.historyReceivers.length)
+                    for (var i = 0; i < message.historyReceivers.length; ++i)
+                        writer.uint32(/* id 8, wireType 2 =*/66).string(message.historyReceivers[i]);
+                if (message.firstMessageTimestamp != null && Object.hasOwnProperty.call(message, "firstMessageTimestamp"))
+                    writer.uint32(/* id 9, wireType 0 =*/72).int64(message.firstMessageTimestamp);
                 return writer;
             };
 
@@ -58334,38 +58345,42 @@ $root.E2E = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 2: {
+                    case 1: {
                             message.mimetype = reader.string();
                             break;
                         }
-                    case 3: {
+                    case 2: {
                             message.fileSha256 = reader.bytes();
                             break;
                         }
-                    case 5: {
+                    case 3: {
                             message.mediaKey = reader.bytes();
                             break;
                         }
-                    case 6: {
+                    case 4: {
                             message.fileEncSha256 = reader.bytes();
                             break;
                         }
-                    case 7: {
+                    case 5: {
                             message.directPath = reader.string();
                             break;
                         }
-                    case 8: {
+                    case 6: {
                             message.mediaKeyTimestamp = reader.int64();
                             break;
                         }
-                    case 9: {
+                    case 7: {
                             message.contextInfo = $root.E2E.ContextInfo.decode(reader, reader.uint32());
                             break;
                         }
-                    case 10: {
-                            if (!(message.participants && message.participants.length))
-                                message.participants = [];
-                            message.participants.push(reader.string());
+                    case 8: {
+                            if (!(message.historyReceivers && message.historyReceivers.length))
+                                message.historyReceivers = [];
+                            message.historyReceivers.push(reader.string());
+                            break;
+                        }
+                    case 9: {
+                            message.firstMessageTimestamp = reader.int64();
                             break;
                         }
                     default:
@@ -58426,13 +58441,16 @@ $root.E2E = (function() {
                     if (error)
                         return "contextInfo." + error;
                 }
-                if (message.participants != null && message.hasOwnProperty("participants")) {
-                    if (!Array.isArray(message.participants))
-                        return "participants: array expected";
-                    for (var i = 0; i < message.participants.length; ++i)
-                        if (!$util.isString(message.participants[i]))
-                            return "participants: string[] expected";
+                if (message.historyReceivers != null && message.hasOwnProperty("historyReceivers")) {
+                    if (!Array.isArray(message.historyReceivers))
+                        return "historyReceivers: array expected";
+                    for (var i = 0; i < message.historyReceivers.length; ++i)
+                        if (!$util.isString(message.historyReceivers[i]))
+                            return "historyReceivers: string[] expected";
                 }
+                if (message.firstMessageTimestamp != null && message.hasOwnProperty("firstMessageTimestamp"))
+                    if (!$util.isInteger(message.firstMessageTimestamp) && !(message.firstMessageTimestamp && $util.isInteger(message.firstMessageTimestamp.low) && $util.isInteger(message.firstMessageTimestamp.high)))
+                        return "firstMessageTimestamp: integer|Long expected";
                 return null;
             };
 
@@ -58481,13 +58499,22 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.MessageHistoryBundle.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo);
                 }
-                if (object.participants) {
-                    if (!Array.isArray(object.participants))
-                        throw TypeError(".E2E.Message.MessageHistoryBundle.participants: array expected");
-                    message.participants = [];
-                    for (var i = 0; i < object.participants.length; ++i)
-                        message.participants[i] = String(object.participants[i]);
+                if (object.historyReceivers) {
+                    if (!Array.isArray(object.historyReceivers))
+                        throw TypeError(".E2E.Message.MessageHistoryBundle.historyReceivers: array expected");
+                    message.historyReceivers = [];
+                    for (var i = 0; i < object.historyReceivers.length; ++i)
+                        message.historyReceivers[i] = String(object.historyReceivers[i]);
                 }
+                if (object.firstMessageTimestamp != null)
+                    if ($util.Long)
+                        (message.firstMessageTimestamp = $util.Long.fromValue(object.firstMessageTimestamp)).unsigned = false;
+                    else if (typeof object.firstMessageTimestamp === "string")
+                        message.firstMessageTimestamp = parseInt(object.firstMessageTimestamp, 10);
+                    else if (typeof object.firstMessageTimestamp === "number")
+                        message.firstMessageTimestamp = object.firstMessageTimestamp;
+                    else if (typeof object.firstMessageTimestamp === "object")
+                        message.firstMessageTimestamp = new $util.LongBits(object.firstMessageTimestamp.low >>> 0, object.firstMessageTimestamp.high >>> 0).toNumber();
                 return message;
             };
 
@@ -58505,7 +58532,7 @@ $root.E2E = (function() {
                     options = {};
                 var object = {};
                 if (options.arrays || options.defaults)
-                    object.participants = [];
+                    object.historyReceivers = [];
                 if (options.defaults) {
                     object.mimetype = "";
                     if (options.bytes === String)
@@ -58536,6 +58563,11 @@ $root.E2E = (function() {
                     } else
                         object.mediaKeyTimestamp = options.longs === String ? "0" : 0;
                     object.contextInfo = null;
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.firstMessageTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    } else
+                        object.firstMessageTimestamp = options.longs === String ? "0" : 0;
                 }
                 if (message.mimetype != null && message.hasOwnProperty("mimetype"))
                     object.mimetype = message.mimetype;
@@ -58554,11 +58586,16 @@ $root.E2E = (function() {
                         object.mediaKeyTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.mediaKeyTimestamp) : options.longs === Number ? new $util.LongBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0).toNumber() : message.mediaKeyTimestamp;
                 if (message.contextInfo != null && message.hasOwnProperty("contextInfo"))
                     object.contextInfo = $root.E2E.ContextInfo.toObject(message.contextInfo, options);
-                if (message.participants && message.participants.length) {
-                    object.participants = [];
-                    for (var j = 0; j < message.participants.length; ++j)
-                        object.participants[j] = message.participants[j];
+                if (message.historyReceivers && message.historyReceivers.length) {
+                    object.historyReceivers = [];
+                    for (var j = 0; j < message.historyReceivers.length; ++j)
+                        object.historyReceivers[j] = message.historyReceivers[j];
                 }
+                if (message.firstMessageTimestamp != null && message.hasOwnProperty("firstMessageTimestamp"))
+                    if (typeof message.firstMessageTimestamp === "number")
+                        object.firstMessageTimestamp = options.longs === String ? String(message.firstMessageTimestamp) : message.firstMessageTimestamp;
+                    else
+                        object.firstMessageTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.firstMessageTimestamp) : options.longs === Number ? new $util.LongBits(message.firstMessageTimestamp.low >>> 0, message.firstMessageTimestamp.high >>> 0).toNumber() : message.firstMessageTimestamp;
                 return object;
             };
 
