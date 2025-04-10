@@ -7185,6 +7185,9 @@ export namespace E2E {
 
         /** MessageContextInfo limitSharing */
         limitSharing?: (Protocol.ILimitSharing|null);
+
+        /** MessageContextInfo limitSharingV2 */
+        limitSharingV2?: (Protocol.ILimitSharing|null);
     }
 
     /** Represents a MessageContextInfo. */
@@ -7234,6 +7237,9 @@ export namespace E2E {
 
         /** MessageContextInfo limitSharing. */
         public limitSharing?: (Protocol.ILimitSharing|null);
+
+        /** MessageContextInfo limitSharingV2. */
+        public limitSharingV2?: (Protocol.ILimitSharing|null);
 
         /**
          * Creates a new MessageContextInfo instance using the specified properties.

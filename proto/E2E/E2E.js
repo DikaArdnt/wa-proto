@@ -8968,6 +8968,7 @@ $root.E2E = (function() {
          * @property {boolean|null} [capiCreatedGroup] MessageContextInfo capiCreatedGroup
          * @property {string|null} [supportPayload] MessageContextInfo supportPayload
          * @property {Protocol.ILimitSharing|null} [limitSharing] MessageContextInfo limitSharing
+         * @property {Protocol.ILimitSharing|null} [limitSharingV2] MessageContextInfo limitSharingV2
          */
 
         /**
@@ -9090,6 +9091,14 @@ $root.E2E = (function() {
         MessageContextInfo.prototype.limitSharing = null;
 
         /**
+         * MessageContextInfo limitSharingV2.
+         * @member {Protocol.ILimitSharing|null|undefined} limitSharingV2
+         * @memberof E2E.MessageContextInfo
+         * @instance
+         */
+        MessageContextInfo.prototype.limitSharingV2 = null;
+
+        /**
          * Creates a new MessageContextInfo instance using the specified properties.
          * @function create
          * @memberof E2E.MessageContextInfo
@@ -9139,6 +9148,8 @@ $root.E2E = (function() {
                 writer.uint32(/* id 12, wireType 2 =*/98).string(message.supportPayload);
             if (message.limitSharing != null && Object.hasOwnProperty.call(message, "limitSharing"))
                 $root.Protocol.LimitSharing.encode(message.limitSharing, writer.uint32(/* id 13, wireType 2 =*/106).fork()).ldelim();
+            if (message.limitSharingV2 != null && Object.hasOwnProperty.call(message, "limitSharingV2"))
+                $root.Protocol.LimitSharing.encode(message.limitSharingV2, writer.uint32(/* id 14, wireType 2 =*/114).fork()).ldelim();
             return writer;
         };
 
@@ -9223,6 +9234,10 @@ $root.E2E = (function() {
                     }
                 case 13: {
                         message.limitSharing = $root.Protocol.LimitSharing.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 14: {
+                        message.limitSharingV2 = $root.Protocol.LimitSharing.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -9312,6 +9327,11 @@ $root.E2E = (function() {
                 if (error)
                     return "limitSharing." + error;
             }
+            if (message.limitSharingV2 != null && message.hasOwnProperty("limitSharingV2")) {
+                var error = $root.Protocol.LimitSharing.verify(message.limitSharingV2);
+                if (error)
+                    return "limitSharingV2." + error;
+            }
             return null;
         };
 
@@ -9388,6 +9408,11 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.MessageContextInfo.limitSharing: object expected");
                 message.limitSharing = $root.Protocol.LimitSharing.fromObject(object.limitSharing);
             }
+            if (object.limitSharingV2 != null) {
+                if (typeof object.limitSharingV2 !== "object")
+                    throw TypeError(".E2E.MessageContextInfo.limitSharingV2: object expected");
+                message.limitSharingV2 = $root.Protocol.LimitSharing.fromObject(object.limitSharingV2);
+            }
             return message;
         };
 
@@ -9436,6 +9461,7 @@ $root.E2E = (function() {
                 object.capiCreatedGroup = false;
                 object.supportPayload = "";
                 object.limitSharing = null;
+                object.limitSharingV2 = null;
             }
             if (message.deviceListMetadata != null && message.hasOwnProperty("deviceListMetadata"))
                 object.deviceListMetadata = $root.E2E.DeviceListMetadata.toObject(message.deviceListMetadata, options);
@@ -9463,6 +9489,8 @@ $root.E2E = (function() {
                 object.supportPayload = message.supportPayload;
             if (message.limitSharing != null && message.hasOwnProperty("limitSharing"))
                 object.limitSharing = $root.Protocol.LimitSharing.toObject(message.limitSharing, options);
+            if (message.limitSharingV2 != null && message.hasOwnProperty("limitSharingV2"))
+                object.limitSharingV2 = $root.Protocol.LimitSharing.toObject(message.limitSharingV2, options);
             return object;
         };
 
