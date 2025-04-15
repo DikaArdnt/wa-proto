@@ -761,6 +761,7 @@ message ContextInfo {
     optional PairedMediaType pairedMediaType = 59;
     optional uint32 rankingVersion = 60;
     optional MemberLabel memberLabel = 62;
+    optional bool isQuestion = 63;
     message AdReplyInfo {
         optional string advertiserName = 1;
         optional MediaType mediaType = 2;
@@ -944,6 +945,7 @@ message Message {
     optional StatusNotificationMessage statusNotificationMessage = 98;
     optional FutureProofMessage limitSharingMessage = 99;
     optional FutureProofMessage botTaskMessage = 100;
+    optional FutureProofMessage questionMessage = 101;
     message AlbumMessage {
         optional uint32 expectedImageCount = 2;
         optional uint32 expectedVideoCount = 3;

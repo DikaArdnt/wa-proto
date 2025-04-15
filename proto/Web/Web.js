@@ -37262,6 +37262,7 @@ $root.E2E = (function() {
          * @property {E2E.ContextInfo.PairedMediaType|null} [pairedMediaType] ContextInfo pairedMediaType
          * @property {number|null} [rankingVersion] ContextInfo rankingVersion
          * @property {E2E.IMemberLabel|null} [memberLabel] ContextInfo memberLabel
+         * @property {boolean|null} [isQuestion] ContextInfo isQuestion
          */
 
         /**
@@ -37642,6 +37643,14 @@ $root.E2E = (function() {
         ContextInfo.prototype.memberLabel = null;
 
         /**
+         * ContextInfo isQuestion.
+         * @member {boolean} isQuestion
+         * @memberof E2E.ContextInfo
+         * @instance
+         */
+        ContextInfo.prototype.isQuestion = false;
+
+        /**
          * Creates a new ContextInfo instance using the specified properties.
          * @function create
          * @memberof E2E.ContextInfo
@@ -37757,6 +37766,8 @@ $root.E2E = (function() {
                 writer.uint32(/* id 60, wireType 0 =*/480).uint32(message.rankingVersion);
             if (message.memberLabel != null && Object.hasOwnProperty.call(message, "memberLabel"))
                 $root.E2E.MemberLabel.encode(message.memberLabel, writer.uint32(/* id 62, wireType 2 =*/498).fork()).ldelim();
+            if (message.isQuestion != null && Object.hasOwnProperty.call(message, "isQuestion"))
+                writer.uint32(/* id 63, wireType 0 =*/504).bool(message.isQuestion);
             return writer;
         };
 
@@ -37975,6 +37986,10 @@ $root.E2E = (function() {
                     }
                 case 62: {
                         message.memberLabel = $root.E2E.MemberLabel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 63: {
+                        message.isQuestion = reader.bool();
                         break;
                     }
                 default:
@@ -38199,6 +38214,9 @@ $root.E2E = (function() {
                 if (error)
                     return "memberLabel." + error;
             }
+            if (message.isQuestion != null && message.hasOwnProperty("isQuestion"))
+                if (typeof message.isQuestion !== "boolean")
+                    return "isQuestion: boolean expected";
             return null;
         };
 
@@ -38419,6 +38437,8 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.ContextInfo.memberLabel: object expected");
                 message.memberLabel = $root.E2E.MemberLabel.fromObject(object.memberLabel);
             }
+            if (object.isQuestion != null)
+                message.isQuestion = Boolean(object.isQuestion);
             return message;
         };
 
@@ -38505,6 +38525,7 @@ $root.E2E = (function() {
                 object.pairedMediaType = options.enums === String ? "NOT_PAIRED_MEDIA" : 0;
                 object.rankingVersion = 0;
                 object.memberLabel = null;
+                object.isQuestion = false;
             }
             if (message.stanzaId != null && message.hasOwnProperty("stanzaId"))
                 object.stanzaId = message.stanzaId;
@@ -38605,6 +38626,8 @@ $root.E2E = (function() {
                 object.rankingVersion = message.rankingVersion;
             if (message.memberLabel != null && message.hasOwnProperty("memberLabel"))
                 object.memberLabel = $root.E2E.MemberLabel.toObject(message.memberLabel, options);
+            if (message.isQuestion != null && message.hasOwnProperty("isQuestion"))
+                object.isQuestion = message.isQuestion;
             return object;
         };
 
@@ -41761,6 +41784,7 @@ $root.E2E = (function() {
          * @property {E2E.Message.IStatusNotificationMessage|null} [statusNotificationMessage] Message statusNotificationMessage
          * @property {E2E.Message.IFutureProofMessage|null} [limitSharingMessage] Message limitSharingMessage
          * @property {E2E.Message.IFutureProofMessage|null} [botTaskMessage] Message botTaskMessage
+         * @property {E2E.Message.IFutureProofMessage|null} [questionMessage] Message questionMessage
          */
 
         /**
@@ -42451,6 +42475,14 @@ $root.E2E = (function() {
         Message.prototype.botTaskMessage = null;
 
         /**
+         * Message questionMessage.
+         * @member {E2E.Message.IFutureProofMessage|null|undefined} questionMessage
+         * @memberof E2E.Message
+         * @instance
+         */
+        Message.prototype.questionMessage = null;
+
+        /**
          * Creates a new Message instance using the specified properties.
          * @function create
          * @memberof E2E.Message
@@ -42642,6 +42674,8 @@ $root.E2E = (function() {
                 $root.E2E.Message.FutureProofMessage.encode(message.limitSharingMessage, writer.uint32(/* id 99, wireType 2 =*/794).fork()).ldelim();
             if (message.botTaskMessage != null && Object.hasOwnProperty.call(message, "botTaskMessage"))
                 $root.E2E.Message.FutureProofMessage.encode(message.botTaskMessage, writer.uint32(/* id 100, wireType 2 =*/802).fork()).ldelim();
+            if (message.questionMessage != null && Object.hasOwnProperty.call(message, "questionMessage"))
+                $root.E2E.Message.FutureProofMessage.encode(message.questionMessage, writer.uint32(/* id 101, wireType 2 =*/810).fork()).ldelim();
             return writer;
         };
 
@@ -43012,6 +43046,10 @@ $root.E2E = (function() {
                     }
                 case 100: {
                         message.botTaskMessage = $root.E2E.Message.FutureProofMessage.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 101: {
+                        message.questionMessage = $root.E2E.Message.FutureProofMessage.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -43467,6 +43505,11 @@ $root.E2E = (function() {
                 if (error)
                     return "botTaskMessage." + error;
             }
+            if (message.questionMessage != null && message.hasOwnProperty("questionMessage")) {
+                var error = $root.E2E.Message.FutureProofMessage.verify(message.questionMessage);
+                if (error)
+                    return "questionMessage." + error;
+            }
             return null;
         };
 
@@ -43899,6 +43942,11 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.Message.botTaskMessage: object expected");
                 message.botTaskMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.botTaskMessage);
             }
+            if (object.questionMessage != null) {
+                if (typeof object.questionMessage !== "object")
+                    throw TypeError(".E2E.Message.questionMessage: object expected");
+                message.questionMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.questionMessage);
+            }
             return message;
         };
 
@@ -44000,6 +44048,7 @@ $root.E2E = (function() {
                 object.statusNotificationMessage = null;
                 object.limitSharingMessage = null;
                 object.botTaskMessage = null;
+                object.questionMessage = null;
             }
             if (message.conversation != null && message.hasOwnProperty("conversation"))
                 object.conversation = message.conversation;
@@ -44169,6 +44218,8 @@ $root.E2E = (function() {
                 object.limitSharingMessage = $root.E2E.Message.FutureProofMessage.toObject(message.limitSharingMessage, options);
             if (message.botTaskMessage != null && message.hasOwnProperty("botTaskMessage"))
                 object.botTaskMessage = $root.E2E.Message.FutureProofMessage.toObject(message.botTaskMessage, options);
+            if (message.questionMessage != null && message.hasOwnProperty("questionMessage"))
+                object.questionMessage = $root.E2E.Message.FutureProofMessage.toObject(message.questionMessage, options);
             return object;
         };
 

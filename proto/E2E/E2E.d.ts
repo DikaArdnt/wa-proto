@@ -9295,6 +9295,9 @@ export namespace E2E {
 
         /** ContextInfo memberLabel */
         memberLabel?: (E2E.IMemberLabel|null);
+
+        /** ContextInfo isQuestion */
+        isQuestion?: (boolean|null);
     }
 
     /** Represents a ContextInfo. */
@@ -9440,6 +9443,9 @@ export namespace E2E {
 
         /** ContextInfo memberLabel. */
         public memberLabel?: (E2E.IMemberLabel|null);
+
+        /** ContextInfo isQuestion. */
+        public isQuestion: boolean;
 
         /**
          * Creates a new ContextInfo instance using the specified properties.
@@ -10950,6 +10956,9 @@ export namespace E2E {
 
         /** Message botTaskMessage */
         botTaskMessage?: (E2E.Message.IFutureProofMessage|null);
+
+        /** Message questionMessage */
+        questionMessage?: (E2E.Message.IFutureProofMessage|null);
     }
 
     /** Represents a Message. */
@@ -11212,6 +11221,9 @@ export namespace E2E {
 
         /** Message botTaskMessage. */
         public botTaskMessage?: (E2E.Message.IFutureProofMessage|null);
+
+        /** Message questionMessage. */
+        public questionMessage?: (E2E.Message.IFutureProofMessage|null);
 
         /**
          * Creates a new Message instance using the specified properties.
