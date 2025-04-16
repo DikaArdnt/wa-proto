@@ -376,6 +376,7 @@ message BotCapabilityMetadata {
         RICH_RESPONSE_LATEX_INLINE = 31;
         QUERY_PLAN = 32;
         PROACTIVE_MESSAGE = 33;
+        RICH_RESPONSE_UNIFIED_RESPONSE = 34;
     }
 }
 
@@ -504,10 +505,7 @@ message BotRenderingMetadata {
 message AIRichResponseMessage {
     optional AIRichResponseMessageType messageType = 1;
     repeated AIRichResponseSubMessage submessages = 2;
-    optional AIRichResponseAbstractData abstractData = 3;
-    message AIRichResponseAbstractData {
-        optional bytes data = 1;
-    }
+    optional AIRichResponseUnifiedResponse unifiedResponse = 3;
     message AIRichResponseCodeMetadata {
         optional string codeLanguage = 1;
         repeated AIRichResponseCodeBlock codeBlocks = 2;
@@ -638,6 +636,9 @@ message AIRichResponseMessage {
             repeated string items = 1;
             optional bool isHeading = 2;
         }
+    }
+    message AIRichResponseUnifiedResponse {
+        optional bytes data = 1;
     }
 }
 

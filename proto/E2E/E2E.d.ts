@@ -4500,7 +4500,8 @@ export namespace E2E {
             RICH_RESPONSE_GRID_IMAGE_3P = 30,
             RICH_RESPONSE_LATEX_INLINE = 31,
             QUERY_PLAN = 32,
-            PROACTIVE_MESSAGE = 33
+            PROACTIVE_MESSAGE = 33,
+            RICH_RESPONSE_UNIFIED_RESPONSE = 34
         }
     }
 
@@ -6031,8 +6032,8 @@ export namespace E2E {
         /** AIRichResponseMessage submessages */
         submessages?: (E2E.AIRichResponseMessage.IAIRichResponseSubMessage[]|null);
 
-        /** AIRichResponseMessage abstractData */
-        abstractData?: (E2E.AIRichResponseMessage.IAIRichResponseAbstractData|null);
+        /** AIRichResponseMessage unifiedResponse */
+        unifiedResponse?: (E2E.AIRichResponseMessage.IAIRichResponseUnifiedResponse|null);
     }
 
     /** Represents a AIRichResponseMessage. */
@@ -6050,8 +6051,8 @@ export namespace E2E {
         /** AIRichResponseMessage submessages. */
         public submessages: E2E.AIRichResponseMessage.IAIRichResponseSubMessage[];
 
-        /** AIRichResponseMessage abstractData. */
-        public abstractData?: (E2E.AIRichResponseMessage.IAIRichResponseAbstractData|null);
+        /** AIRichResponseMessage unifiedResponse. */
+        public unifiedResponse?: (E2E.AIRichResponseMessage.IAIRichResponseUnifiedResponse|null);
 
         /**
          * Creates a new AIRichResponseMessage instance using the specified properties.
@@ -6132,103 +6133,6 @@ export namespace E2E {
     }
 
     namespace AIRichResponseMessage {
-
-        /** Properties of a AIRichResponseAbstractData. */
-        interface IAIRichResponseAbstractData {
-
-            /** AIRichResponseAbstractData data */
-            data?: (Uint8Array|null);
-        }
-
-        /** Represents a AIRichResponseAbstractData. */
-        class AIRichResponseAbstractData implements IAIRichResponseAbstractData {
-
-            /**
-             * Constructs a new AIRichResponseAbstractData.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: E2E.AIRichResponseMessage.IAIRichResponseAbstractData);
-
-            /** AIRichResponseAbstractData data. */
-            public data: Uint8Array;
-
-            /**
-             * Creates a new AIRichResponseAbstractData instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns AIRichResponseAbstractData instance
-             */
-            public static create(properties?: E2E.AIRichResponseMessage.IAIRichResponseAbstractData): E2E.AIRichResponseMessage.AIRichResponseAbstractData;
-
-            /**
-             * Encodes the specified AIRichResponseAbstractData message. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseAbstractData.verify|verify} messages.
-             * @param message AIRichResponseAbstractData message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: E2E.AIRichResponseMessage.IAIRichResponseAbstractData, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified AIRichResponseAbstractData message, length delimited. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseAbstractData.verify|verify} messages.
-             * @param message AIRichResponseAbstractData message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: E2E.AIRichResponseMessage.IAIRichResponseAbstractData, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes a AIRichResponseAbstractData message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns AIRichResponseAbstractData
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.AIRichResponseMessage.AIRichResponseAbstractData;
-
-            /**
-             * Decodes a AIRichResponseAbstractData message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns AIRichResponseAbstractData
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.AIRichResponseMessage.AIRichResponseAbstractData;
-
-            /**
-             * Verifies a AIRichResponseAbstractData message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates a AIRichResponseAbstractData message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns AIRichResponseAbstractData
-             */
-            public static fromObject(object: { [k: string]: any }): E2E.AIRichResponseMessage.AIRichResponseAbstractData;
-
-            /**
-             * Creates a plain object from a AIRichResponseAbstractData message. Also converts values to other types if specified.
-             * @param message AIRichResponseAbstractData
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: E2E.AIRichResponseMessage.AIRichResponseAbstractData, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this AIRichResponseAbstractData to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-
-            /**
-             * Gets the default type url for AIRichResponseAbstractData
-             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns The default type url
-             */
-            public static getTypeUrl(typeUrlPrefix?: string): string;
-        }
 
         /** Properties of a AIRichResponseCodeMetadata. */
         interface IAIRichResponseCodeMetadata {
@@ -8112,6 +8016,103 @@ export namespace E2E {
                  */
                 public static getTypeUrl(typeUrlPrefix?: string): string;
             }
+        }
+
+        /** Properties of a AIRichResponseUnifiedResponse. */
+        interface IAIRichResponseUnifiedResponse {
+
+            /** AIRichResponseUnifiedResponse data */
+            data?: (Uint8Array|null);
+        }
+
+        /** Represents a AIRichResponseUnifiedResponse. */
+        class AIRichResponseUnifiedResponse implements IAIRichResponseUnifiedResponse {
+
+            /**
+             * Constructs a new AIRichResponseUnifiedResponse.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.AIRichResponseMessage.IAIRichResponseUnifiedResponse);
+
+            /** AIRichResponseUnifiedResponse data. */
+            public data: Uint8Array;
+
+            /**
+             * Creates a new AIRichResponseUnifiedResponse instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns AIRichResponseUnifiedResponse instance
+             */
+            public static create(properties?: E2E.AIRichResponseMessage.IAIRichResponseUnifiedResponse): E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse;
+
+            /**
+             * Encodes the specified AIRichResponseUnifiedResponse message. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse.verify|verify} messages.
+             * @param message AIRichResponseUnifiedResponse message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.AIRichResponseMessage.IAIRichResponseUnifiedResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified AIRichResponseUnifiedResponse message, length delimited. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse.verify|verify} messages.
+             * @param message AIRichResponseUnifiedResponse message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.AIRichResponseMessage.IAIRichResponseUnifiedResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a AIRichResponseUnifiedResponse message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns AIRichResponseUnifiedResponse
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse;
+
+            /**
+             * Decodes a AIRichResponseUnifiedResponse message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns AIRichResponseUnifiedResponse
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse;
+
+            /**
+             * Verifies a AIRichResponseUnifiedResponse message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a AIRichResponseUnifiedResponse message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns AIRichResponseUnifiedResponse
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse;
+
+            /**
+             * Creates a plain object from a AIRichResponseUnifiedResponse message. Also converts values to other types if specified.
+             * @param message AIRichResponseUnifiedResponse
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this AIRichResponseUnifiedResponse to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for AIRichResponseUnifiedResponse
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
         }
     }
 
