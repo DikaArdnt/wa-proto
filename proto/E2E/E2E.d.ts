@@ -3870,6 +3870,9 @@ export namespace E2E {
 
         /** BotMetadata aiConversationContext */
         aiConversationContext?: (Uint8Array|null);
+
+        /** BotMetadata botPromotionMessageMetadata */
+        botPromotionMessageMetadata?: (E2E.IBotPromotionMessageMetadata|null);
     }
 
     /** Represents a BotMetadata. */
@@ -3940,6 +3943,9 @@ export namespace E2E {
 
         /** BotMetadata aiConversationContext. */
         public aiConversationContext: Uint8Array;
+
+        /** BotMetadata botPromotionMessageMetadata. */
+        public botPromotionMessageMetadata?: (E2E.IBotPromotionMessageMetadata|null);
 
         /**
          * Creates a new BotMetadata instance using the specified properties.
@@ -4501,7 +4507,8 @@ export namespace E2E {
             RICH_RESPONSE_LATEX_INLINE = 31,
             QUERY_PLAN = 32,
             PROACTIVE_MESSAGE = 33,
-            RICH_RESPONSE_UNIFIED_RESPONSE = 34
+            RICH_RESPONSE_UNIFIED_RESPONSE = 34,
+            PROMOTION_MESSAGE = 35
         }
     }
 
@@ -6020,6 +6027,118 @@ export namespace E2E {
              * @returns The default type url
              */
             public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+    }
+
+    /** Properties of a BotPromotionMessageMetadata. */
+    interface IBotPromotionMessageMetadata {
+
+        /** BotPromotionMessageMetadata promotionType */
+        promotionType?: (E2E.BotPromotionMessageMetadata.BotPromotionType|null);
+
+        /** BotPromotionMessageMetadata buttonTitle */
+        buttonTitle?: (string|null);
+    }
+
+    /** Represents a BotPromotionMessageMetadata. */
+    class BotPromotionMessageMetadata implements IBotPromotionMessageMetadata {
+
+        /**
+         * Constructs a new BotPromotionMessageMetadata.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: E2E.IBotPromotionMessageMetadata);
+
+        /** BotPromotionMessageMetadata promotionType. */
+        public promotionType: E2E.BotPromotionMessageMetadata.BotPromotionType;
+
+        /** BotPromotionMessageMetadata buttonTitle. */
+        public buttonTitle: string;
+
+        /**
+         * Creates a new BotPromotionMessageMetadata instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BotPromotionMessageMetadata instance
+         */
+        public static create(properties?: E2E.IBotPromotionMessageMetadata): E2E.BotPromotionMessageMetadata;
+
+        /**
+         * Encodes the specified BotPromotionMessageMetadata message. Does not implicitly {@link E2E.BotPromotionMessageMetadata.verify|verify} messages.
+         * @param message BotPromotionMessageMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: E2E.IBotPromotionMessageMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BotPromotionMessageMetadata message, length delimited. Does not implicitly {@link E2E.BotPromotionMessageMetadata.verify|verify} messages.
+         * @param message BotPromotionMessageMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: E2E.IBotPromotionMessageMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BotPromotionMessageMetadata message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BotPromotionMessageMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.BotPromotionMessageMetadata;
+
+        /**
+         * Decodes a BotPromotionMessageMetadata message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BotPromotionMessageMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.BotPromotionMessageMetadata;
+
+        /**
+         * Verifies a BotPromotionMessageMetadata message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BotPromotionMessageMetadata message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BotPromotionMessageMetadata
+         */
+        public static fromObject(object: { [k: string]: any }): E2E.BotPromotionMessageMetadata;
+
+        /**
+         * Creates a plain object from a BotPromotionMessageMetadata message. Also converts values to other types if specified.
+         * @param message BotPromotionMessageMetadata
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: E2E.BotPromotionMessageMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BotPromotionMessageMetadata to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for BotPromotionMessageMetadata
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace BotPromotionMessageMetadata {
+
+        /** BotPromotionType enum. */
+        enum BotPromotionType {
+            UNKNOWN_TYPE = 0,
+            C50 = 1
         }
     }
 
@@ -10057,6 +10176,9 @@ export namespace E2E {
 
             /** ExternalAdReplyInfo wtwaAdFormat */
             wtwaAdFormat?: (boolean|null);
+
+            /** ExternalAdReplyInfo adType */
+            adType?: (E2E.ContextInfo.ExternalAdReplyInfo.AdType|null);
         }
 
         /** Represents an ExternalAdReplyInfo. */
@@ -10140,6 +10262,9 @@ export namespace E2E {
             /** ExternalAdReplyInfo wtwaAdFormat. */
             public wtwaAdFormat: boolean;
 
+            /** ExternalAdReplyInfo adType. */
+            public adType: E2E.ContextInfo.ExternalAdReplyInfo.AdType;
+
             /**
              * Creates a new ExternalAdReplyInfo instance using the specified properties.
              * @param [properties] Properties to set
@@ -10219,6 +10344,12 @@ export namespace E2E {
         }
 
         namespace ExternalAdReplyInfo {
+
+            /** AdType enum. */
+            enum AdType {
+                CTWA = 0,
+                CAWC = 1
+            }
 
             /** MediaType enum. */
             enum MediaType {
@@ -20419,11 +20550,8 @@ export namespace E2E {
             /** MessageHistoryBundle contextInfo */
             contextInfo?: (E2E.IContextInfo|null);
 
-            /** MessageHistoryBundle historyReceivers */
-            historyReceivers?: (string[]|null);
-
-            /** MessageHistoryBundle firstMessageTimestamp */
-            firstMessageTimestamp?: (number|Long|null);
+            /** MessageHistoryBundle messageHistoryMetadata */
+            messageHistoryMetadata?: (E2E.Message.IMessageHistoryMetadata|null);
         }
 
         /** Represents a MessageHistoryBundle. */
@@ -20456,11 +20584,8 @@ export namespace E2E {
             /** MessageHistoryBundle contextInfo. */
             public contextInfo?: (E2E.IContextInfo|null);
 
-            /** MessageHistoryBundle historyReceivers. */
-            public historyReceivers: string[];
-
-            /** MessageHistoryBundle firstMessageTimestamp. */
-            public firstMessageTimestamp: (number|Long);
+            /** MessageHistoryBundle messageHistoryMetadata. */
+            public messageHistoryMetadata?: (E2E.Message.IMessageHistoryMetadata|null);
 
             /**
              * Creates a new MessageHistoryBundle instance using the specified properties.
@@ -20534,6 +20659,218 @@ export namespace E2E {
 
             /**
              * Gets the default type url for MessageHistoryBundle
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a MessageHistoryMetadata. */
+        interface IMessageHistoryMetadata {
+
+            /** MessageHistoryMetadata historyReceivers */
+            historyReceivers?: (string[]|null);
+
+            /** MessageHistoryMetadata firstMessageTimestamp */
+            firstMessageTimestamp?: (number|Long|null);
+
+            /** MessageHistoryMetadata messageCount */
+            messageCount?: (number|Long|null);
+        }
+
+        /** Represents a MessageHistoryMetadata. */
+        class MessageHistoryMetadata implements IMessageHistoryMetadata {
+
+            /**
+             * Constructs a new MessageHistoryMetadata.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IMessageHistoryMetadata);
+
+            /** MessageHistoryMetadata historyReceivers. */
+            public historyReceivers: string[];
+
+            /** MessageHistoryMetadata firstMessageTimestamp. */
+            public firstMessageTimestamp: (number|Long);
+
+            /** MessageHistoryMetadata messageCount. */
+            public messageCount: (number|Long);
+
+            /**
+             * Creates a new MessageHistoryMetadata instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns MessageHistoryMetadata instance
+             */
+            public static create(properties?: E2E.Message.IMessageHistoryMetadata): E2E.Message.MessageHistoryMetadata;
+
+            /**
+             * Encodes the specified MessageHistoryMetadata message. Does not implicitly {@link E2E.Message.MessageHistoryMetadata.verify|verify} messages.
+             * @param message MessageHistoryMetadata message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IMessageHistoryMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified MessageHistoryMetadata message, length delimited. Does not implicitly {@link E2E.Message.MessageHistoryMetadata.verify|verify} messages.
+             * @param message MessageHistoryMetadata message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IMessageHistoryMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a MessageHistoryMetadata message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns MessageHistoryMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.MessageHistoryMetadata;
+
+            /**
+             * Decodes a MessageHistoryMetadata message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns MessageHistoryMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.MessageHistoryMetadata;
+
+            /**
+             * Verifies a MessageHistoryMetadata message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a MessageHistoryMetadata message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns MessageHistoryMetadata
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.MessageHistoryMetadata;
+
+            /**
+             * Creates a plain object from a MessageHistoryMetadata message. Also converts values to other types if specified.
+             * @param message MessageHistoryMetadata
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.MessageHistoryMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this MessageHistoryMetadata to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for MessageHistoryMetadata
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a MessageHistoryNotice. */
+        interface IMessageHistoryNotice {
+
+            /** MessageHistoryNotice contextInfo */
+            contextInfo?: (E2E.IContextInfo|null);
+
+            /** MessageHistoryNotice messageHistoryMetadata */
+            messageHistoryMetadata?: (E2E.Message.IMessageHistoryMetadata|null);
+        }
+
+        /** Represents a MessageHistoryNotice. */
+        class MessageHistoryNotice implements IMessageHistoryNotice {
+
+            /**
+             * Constructs a new MessageHistoryNotice.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IMessageHistoryNotice);
+
+            /** MessageHistoryNotice contextInfo. */
+            public contextInfo?: (E2E.IContextInfo|null);
+
+            /** MessageHistoryNotice messageHistoryMetadata. */
+            public messageHistoryMetadata?: (E2E.Message.IMessageHistoryMetadata|null);
+
+            /**
+             * Creates a new MessageHistoryNotice instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns MessageHistoryNotice instance
+             */
+            public static create(properties?: E2E.Message.IMessageHistoryNotice): E2E.Message.MessageHistoryNotice;
+
+            /**
+             * Encodes the specified MessageHistoryNotice message. Does not implicitly {@link E2E.Message.MessageHistoryNotice.verify|verify} messages.
+             * @param message MessageHistoryNotice message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IMessageHistoryNotice, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified MessageHistoryNotice message, length delimited. Does not implicitly {@link E2E.Message.MessageHistoryNotice.verify|verify} messages.
+             * @param message MessageHistoryNotice message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IMessageHistoryNotice, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a MessageHistoryNotice message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns MessageHistoryNotice
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.MessageHistoryNotice;
+
+            /**
+             * Decodes a MessageHistoryNotice message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns MessageHistoryNotice
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.MessageHistoryNotice;
+
+            /**
+             * Verifies a MessageHistoryNotice message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a MessageHistoryNotice message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns MessageHistoryNotice
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.MessageHistoryNotice;
+
+            /**
+             * Creates a plain object from a MessageHistoryNotice message. Also converts values to other types if specified.
+             * @param message MessageHistoryNotice
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.MessageHistoryNotice, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this MessageHistoryNotice to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for MessageHistoryNotice
              * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
              * @returns The default type url
              */

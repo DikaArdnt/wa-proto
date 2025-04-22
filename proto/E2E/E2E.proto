@@ -308,6 +308,7 @@ message BotMetadata {
     optional BotLinkedAccountsMetadata botLinkedAccountsMetadata = 18;
     optional BotSourcesMetadata richResponseSourcesMetadata = 19;
     optional bytes aiConversationContext = 20;
+    optional BotPromotionMessageMetadata botPromotionMessageMetadata = 21;
 }
 
 message BotSourcesMetadata {
@@ -377,6 +378,7 @@ message BotCapabilityMetadata {
         QUERY_PLAN = 32;
         PROACTIVE_MESSAGE = 33;
         RICH_RESPONSE_UNIFIED_RESPONSE = 34;
+        PROMOTION_MESSAGE = 35;
     }
 }
 
@@ -499,6 +501,15 @@ message BotRenderingMetadata {
     message Keyword {
         optional string value = 1;
         repeated string associatedPrompts = 2;
+    }
+}
+
+message BotPromotionMessageMetadata {
+    optional BotPromotionType promotionType = 1;
+    optional string buttonTitle = 2;
+    enum BotPromotionType {
+        UNKNOWN_TYPE = 0;
+        C50 = 1;
     }
 }
 
@@ -814,6 +825,11 @@ message ContextInfo {
         optional string originalImageUrl = 22;
         optional string automatedGreetingMessageCtaType = 23;
         optional bool wtwaAdFormat = 24;
+        optional AdType adType = 25;
+        enum AdType {
+            CTWA = 0;
+            CAWC = 1;
+        }
         enum MediaType {
             NONE = 0;
             IMAGE = 1;
@@ -1633,8 +1649,16 @@ message Message {
         optional string directPath = 5;
         optional int64 mediaKeyTimestamp = 6;
         optional ContextInfo contextInfo = 7;
-        repeated string historyReceivers = 8;
-        optional int64 firstMessageTimestamp = 9;
+        optional Message.MessageHistoryMetadata messageHistoryMetadata = 8;
+    }
+    message MessageHistoryMetadata {
+        repeated string historyReceivers = 1;
+        optional int64 firstMessageTimestamp = 2;
+        optional int64 messageCount = 3;
+    }
+    message MessageHistoryNotice {
+        optional ContextInfo contextInfo = 1;
+        optional Message.MessageHistoryMetadata messageHistoryMetadata = 2;
     }
     message NewsletterAdminInviteMessage {
         optional string newsletterJid = 1;

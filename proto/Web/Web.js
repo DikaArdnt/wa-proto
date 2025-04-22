@@ -23114,6 +23114,7 @@ $root.E2E = (function() {
          * @property {E2E.IBotLinkedAccountsMetadata|null} [botLinkedAccountsMetadata] BotMetadata botLinkedAccountsMetadata
          * @property {E2E.IBotSourcesMetadata|null} [richResponseSourcesMetadata] BotMetadata richResponseSourcesMetadata
          * @property {Uint8Array|null} [aiConversationContext] BotMetadata aiConversationContext
+         * @property {E2E.IBotPromotionMessageMetadata|null} [botPromotionMessageMetadata] BotMetadata botPromotionMessageMetadata
          */
 
         /**
@@ -23292,6 +23293,14 @@ $root.E2E = (function() {
         BotMetadata.prototype.aiConversationContext = $util.newBuffer([]);
 
         /**
+         * BotMetadata botPromotionMessageMetadata.
+         * @member {E2E.IBotPromotionMessageMetadata|null|undefined} botPromotionMessageMetadata
+         * @memberof E2E.BotMetadata
+         * @instance
+         */
+        BotMetadata.prototype.botPromotionMessageMetadata = null;
+
+        /**
          * Creates a new BotMetadata instance using the specified properties.
          * @function create
          * @memberof E2E.BotMetadata
@@ -23355,6 +23364,8 @@ $root.E2E = (function() {
                 $root.E2E.BotSourcesMetadata.encode(message.richResponseSourcesMetadata, writer.uint32(/* id 19, wireType 2 =*/154).fork()).ldelim();
             if (message.aiConversationContext != null && Object.hasOwnProperty.call(message, "aiConversationContext"))
                 writer.uint32(/* id 20, wireType 2 =*/162).bytes(message.aiConversationContext);
+            if (message.botPromotionMessageMetadata != null && Object.hasOwnProperty.call(message, "botPromotionMessageMetadata"))
+                $root.E2E.BotPromotionMessageMetadata.encode(message.botPromotionMessageMetadata, writer.uint32(/* id 21, wireType 2 =*/170).fork()).ldelim();
             return writer;
         };
 
@@ -23469,6 +23480,10 @@ $root.E2E = (function() {
                     }
                 case 20: {
                         message.aiConversationContext = reader.bytes();
+                        break;
+                    }
+                case 21: {
+                        message.botPromotionMessageMetadata = $root.E2E.BotPromotionMessageMetadata.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -23596,6 +23611,11 @@ $root.E2E = (function() {
             if (message.aiConversationContext != null && message.hasOwnProperty("aiConversationContext"))
                 if (!(message.aiConversationContext && typeof message.aiConversationContext.length === "number" || $util.isString(message.aiConversationContext)))
                     return "aiConversationContext: buffer expected";
+            if (message.botPromotionMessageMetadata != null && message.hasOwnProperty("botPromotionMessageMetadata")) {
+                var error = $root.E2E.BotPromotionMessageMetadata.verify(message.botPromotionMessageMetadata);
+                if (error)
+                    return "botPromotionMessageMetadata." + error;
+            }
             return null;
         };
 
@@ -23699,6 +23719,11 @@ $root.E2E = (function() {
                     $util.base64.decode(object.aiConversationContext, message.aiConversationContext = $util.newBuffer($util.base64.length(object.aiConversationContext)), 0);
                 else if (object.aiConversationContext.length >= 0)
                     message.aiConversationContext = object.aiConversationContext;
+            if (object.botPromotionMessageMetadata != null) {
+                if (typeof object.botPromotionMessageMetadata !== "object")
+                    throw TypeError(".E2E.BotMetadata.botPromotionMessageMetadata: object expected");
+                message.botPromotionMessageMetadata = $root.E2E.BotPromotionMessageMetadata.fromObject(object.botPromotionMessageMetadata);
+            }
             return message;
         };
 
@@ -23742,6 +23767,7 @@ $root.E2E = (function() {
                     if (options.bytes !== Array)
                         object.aiConversationContext = $util.newBuffer(object.aiConversationContext);
                 }
+                object.botPromotionMessageMetadata = null;
             }
             if (message.avatarMetadata != null && message.hasOwnProperty("avatarMetadata"))
                 object.avatarMetadata = $root.E2E.BotAvatarMetadata.toObject(message.avatarMetadata, options);
@@ -23783,6 +23809,8 @@ $root.E2E = (function() {
                 object.richResponseSourcesMetadata = $root.E2E.BotSourcesMetadata.toObject(message.richResponseSourcesMetadata, options);
             if (message.aiConversationContext != null && message.hasOwnProperty("aiConversationContext"))
                 object.aiConversationContext = options.bytes === String ? $util.base64.encode(message.aiConversationContext, 0, message.aiConversationContext.length) : options.bytes === Array ? Array.prototype.slice.call(message.aiConversationContext) : message.aiConversationContext;
+            if (message.botPromotionMessageMetadata != null && message.hasOwnProperty("botPromotionMessageMetadata"))
+                object.botPromotionMessageMetadata = $root.E2E.BotPromotionMessageMetadata.toObject(message.botPromotionMessageMetadata, options);
             return object;
         };
 
@@ -24852,6 +24880,7 @@ $root.E2E = (function() {
                     case 32:
                     case 33:
                     case 34:
+                    case 35:
                         break;
                     }
             }
@@ -25021,6 +25050,10 @@ $root.E2E = (function() {
                     case 34:
                         message.capabilities[i] = 34;
                         break;
+                    case "PROMOTION_MESSAGE":
+                    case 35:
+                        message.capabilities[i] = 35;
+                        break;
                     }
             }
             return message;
@@ -25114,6 +25147,7 @@ $root.E2E = (function() {
          * @property {number} QUERY_PLAN=32 QUERY_PLAN value
          * @property {number} PROACTIVE_MESSAGE=33 PROACTIVE_MESSAGE value
          * @property {number} RICH_RESPONSE_UNIFIED_RESPONSE=34 RICH_RESPONSE_UNIFIED_RESPONSE value
+         * @property {number} PROMOTION_MESSAGE=35 PROMOTION_MESSAGE value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -25152,6 +25186,7 @@ $root.E2E = (function() {
             values[valuesById[32] = "QUERY_PLAN"] = 32;
             values[valuesById[33] = "PROACTIVE_MESSAGE"] = 33;
             values[valuesById[34] = "RICH_RESPONSE_UNIFIED_RESPONSE"] = 34;
+            values[valuesById[35] = "PROMOTION_MESSAGE"] = 35;
             return values;
         })();
 
@@ -29226,6 +29261,268 @@ $root.E2E = (function() {
         })();
 
         return BotRenderingMetadata;
+    })();
+
+    E2E.BotPromotionMessageMetadata = (function() {
+
+        /**
+         * Properties of a BotPromotionMessageMetadata.
+         * @memberof E2E
+         * @interface IBotPromotionMessageMetadata
+         * @property {E2E.BotPromotionMessageMetadata.BotPromotionType|null} [promotionType] BotPromotionMessageMetadata promotionType
+         * @property {string|null} [buttonTitle] BotPromotionMessageMetadata buttonTitle
+         */
+
+        /**
+         * Constructs a new BotPromotionMessageMetadata.
+         * @memberof E2E
+         * @classdesc Represents a BotPromotionMessageMetadata.
+         * @implements IBotPromotionMessageMetadata
+         * @constructor
+         * @param {E2E.IBotPromotionMessageMetadata=} [properties] Properties to set
+         */
+        function BotPromotionMessageMetadata(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BotPromotionMessageMetadata promotionType.
+         * @member {E2E.BotPromotionMessageMetadata.BotPromotionType} promotionType
+         * @memberof E2E.BotPromotionMessageMetadata
+         * @instance
+         */
+        BotPromotionMessageMetadata.prototype.promotionType = 0;
+
+        /**
+         * BotPromotionMessageMetadata buttonTitle.
+         * @member {string} buttonTitle
+         * @memberof E2E.BotPromotionMessageMetadata
+         * @instance
+         */
+        BotPromotionMessageMetadata.prototype.buttonTitle = "";
+
+        /**
+         * Creates a new BotPromotionMessageMetadata instance using the specified properties.
+         * @function create
+         * @memberof E2E.BotPromotionMessageMetadata
+         * @static
+         * @param {E2E.IBotPromotionMessageMetadata=} [properties] Properties to set
+         * @returns {E2E.BotPromotionMessageMetadata} BotPromotionMessageMetadata instance
+         */
+        BotPromotionMessageMetadata.create = function create(properties) {
+            return new BotPromotionMessageMetadata(properties);
+        };
+
+        /**
+         * Encodes the specified BotPromotionMessageMetadata message. Does not implicitly {@link E2E.BotPromotionMessageMetadata.verify|verify} messages.
+         * @function encode
+         * @memberof E2E.BotPromotionMessageMetadata
+         * @static
+         * @param {E2E.IBotPromotionMessageMetadata} message BotPromotionMessageMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotPromotionMessageMetadata.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.promotionType != null && Object.hasOwnProperty.call(message, "promotionType"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.promotionType);
+            if (message.buttonTitle != null && Object.hasOwnProperty.call(message, "buttonTitle"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.buttonTitle);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BotPromotionMessageMetadata message, length delimited. Does not implicitly {@link E2E.BotPromotionMessageMetadata.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof E2E.BotPromotionMessageMetadata
+         * @static
+         * @param {E2E.IBotPromotionMessageMetadata} message BotPromotionMessageMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotPromotionMessageMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BotPromotionMessageMetadata message from the specified reader or buffer.
+         * @function decode
+         * @memberof E2E.BotPromotionMessageMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {E2E.BotPromotionMessageMetadata} BotPromotionMessageMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotPromotionMessageMetadata.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotPromotionMessageMetadata();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.promotionType = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.buttonTitle = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BotPromotionMessageMetadata message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof E2E.BotPromotionMessageMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {E2E.BotPromotionMessageMetadata} BotPromotionMessageMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotPromotionMessageMetadata.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BotPromotionMessageMetadata message.
+         * @function verify
+         * @memberof E2E.BotPromotionMessageMetadata
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BotPromotionMessageMetadata.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.promotionType != null && message.hasOwnProperty("promotionType"))
+                switch (message.promotionType) {
+                default:
+                    return "promotionType: enum value expected";
+                case 0:
+                case 1:
+                    break;
+                }
+            if (message.buttonTitle != null && message.hasOwnProperty("buttonTitle"))
+                if (!$util.isString(message.buttonTitle))
+                    return "buttonTitle: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a BotPromotionMessageMetadata message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof E2E.BotPromotionMessageMetadata
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {E2E.BotPromotionMessageMetadata} BotPromotionMessageMetadata
+         */
+        BotPromotionMessageMetadata.fromObject = function fromObject(object) {
+            if (object instanceof $root.E2E.BotPromotionMessageMetadata)
+                return object;
+            var message = new $root.E2E.BotPromotionMessageMetadata();
+            switch (object.promotionType) {
+            default:
+                if (typeof object.promotionType === "number") {
+                    message.promotionType = object.promotionType;
+                    break;
+                }
+                break;
+            case "UNKNOWN_TYPE":
+            case 0:
+                message.promotionType = 0;
+                break;
+            case "C50":
+            case 1:
+                message.promotionType = 1;
+                break;
+            }
+            if (object.buttonTitle != null)
+                message.buttonTitle = String(object.buttonTitle);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BotPromotionMessageMetadata message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof E2E.BotPromotionMessageMetadata
+         * @static
+         * @param {E2E.BotPromotionMessageMetadata} message BotPromotionMessageMetadata
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BotPromotionMessageMetadata.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.promotionType = options.enums === String ? "UNKNOWN_TYPE" : 0;
+                object.buttonTitle = "";
+            }
+            if (message.promotionType != null && message.hasOwnProperty("promotionType"))
+                object.promotionType = options.enums === String ? $root.E2E.BotPromotionMessageMetadata.BotPromotionType[message.promotionType] === undefined ? message.promotionType : $root.E2E.BotPromotionMessageMetadata.BotPromotionType[message.promotionType] : message.promotionType;
+            if (message.buttonTitle != null && message.hasOwnProperty("buttonTitle"))
+                object.buttonTitle = message.buttonTitle;
+            return object;
+        };
+
+        /**
+         * Converts this BotPromotionMessageMetadata to JSON.
+         * @function toJSON
+         * @memberof E2E.BotPromotionMessageMetadata
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BotPromotionMessageMetadata.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotPromotionMessageMetadata
+         * @function getTypeUrl
+         * @memberof E2E.BotPromotionMessageMetadata
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotPromotionMessageMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/E2E.BotPromotionMessageMetadata";
+        };
+
+        /**
+         * BotPromotionType enum.
+         * @name E2E.BotPromotionMessageMetadata.BotPromotionType
+         * @enum {number}
+         * @property {number} UNKNOWN_TYPE=0 UNKNOWN_TYPE value
+         * @property {number} C50=1 C50 value
+         */
+        BotPromotionMessageMetadata.BotPromotionType = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "UNKNOWN_TYPE"] = 0;
+            values[valuesById[1] = "C50"] = 1;
+            return values;
+        })();
+
+        return BotPromotionMessageMetadata;
     })();
 
     E2E.AIRichResponseMessage = (function() {
@@ -39814,6 +40111,7 @@ $root.E2E = (function() {
              * @property {string|null} [originalImageUrl] ExternalAdReplyInfo originalImageUrl
              * @property {string|null} [automatedGreetingMessageCtaType] ExternalAdReplyInfo automatedGreetingMessageCtaType
              * @property {boolean|null} [wtwaAdFormat] ExternalAdReplyInfo wtwaAdFormat
+             * @property {E2E.ContextInfo.ExternalAdReplyInfo.AdType|null} [adType] ExternalAdReplyInfo adType
              */
 
             /**
@@ -40024,6 +40322,14 @@ $root.E2E = (function() {
             ExternalAdReplyInfo.prototype.wtwaAdFormat = false;
 
             /**
+             * ExternalAdReplyInfo adType.
+             * @member {E2E.ContextInfo.ExternalAdReplyInfo.AdType} adType
+             * @memberof E2E.ContextInfo.ExternalAdReplyInfo
+             * @instance
+             */
+            ExternalAdReplyInfo.prototype.adType = 0;
+
+            /**
              * Creates a new ExternalAdReplyInfo instance using the specified properties.
              * @function create
              * @memberof E2E.ContextInfo.ExternalAdReplyInfo
@@ -40095,6 +40401,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 23, wireType 2 =*/186).string(message.automatedGreetingMessageCtaType);
                 if (message.wtwaAdFormat != null && Object.hasOwnProperty.call(message, "wtwaAdFormat"))
                     writer.uint32(/* id 24, wireType 0 =*/192).bool(message.wtwaAdFormat);
+                if (message.adType != null && Object.hasOwnProperty.call(message, "adType"))
+                    writer.uint32(/* id 25, wireType 0 =*/200).int32(message.adType);
                 return writer;
             };
 
@@ -40227,6 +40535,10 @@ $root.E2E = (function() {
                             message.wtwaAdFormat = reader.bool();
                             break;
                         }
+                    case 25: {
+                            message.adType = reader.int32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -40340,6 +40652,14 @@ $root.E2E = (function() {
                 if (message.wtwaAdFormat != null && message.hasOwnProperty("wtwaAdFormat"))
                     if (typeof message.wtwaAdFormat !== "boolean")
                         return "wtwaAdFormat: boolean expected";
+                if (message.adType != null && message.hasOwnProperty("adType"))
+                    switch (message.adType) {
+                    default:
+                        return "adType: enum value expected";
+                    case 0:
+                    case 1:
+                        break;
+                    }
                 return null;
             };
 
@@ -40424,6 +40744,22 @@ $root.E2E = (function() {
                     message.automatedGreetingMessageCtaType = String(object.automatedGreetingMessageCtaType);
                 if (object.wtwaAdFormat != null)
                     message.wtwaAdFormat = Boolean(object.wtwaAdFormat);
+                switch (object.adType) {
+                default:
+                    if (typeof object.adType === "number") {
+                        message.adType = object.adType;
+                        break;
+                    }
+                    break;
+                case "CTWA":
+                case 0:
+                    message.adType = 0;
+                    break;
+                case "CAWC":
+                case 1:
+                    message.adType = 1;
+                    break;
+                }
                 return message;
             };
 
@@ -40471,6 +40807,7 @@ $root.E2E = (function() {
                     object.originalImageUrl = "";
                     object.automatedGreetingMessageCtaType = "";
                     object.wtwaAdFormat = false;
+                    object.adType = options.enums === String ? "CTWA" : 0;
                 }
                 if (message.title != null && message.hasOwnProperty("title"))
                     object.title = message.title;
@@ -40520,6 +40857,8 @@ $root.E2E = (function() {
                     object.automatedGreetingMessageCtaType = message.automatedGreetingMessageCtaType;
                 if (message.wtwaAdFormat != null && message.hasOwnProperty("wtwaAdFormat"))
                     object.wtwaAdFormat = message.wtwaAdFormat;
+                if (message.adType != null && message.hasOwnProperty("adType"))
+                    object.adType = options.enums === String ? $root.E2E.ContextInfo.ExternalAdReplyInfo.AdType[message.adType] === undefined ? message.adType : $root.E2E.ContextInfo.ExternalAdReplyInfo.AdType[message.adType] : message.adType;
                 return object;
             };
 
@@ -40548,6 +40887,20 @@ $root.E2E = (function() {
                 }
                 return typeUrlPrefix + "/E2E.ContextInfo.ExternalAdReplyInfo";
             };
+
+            /**
+             * AdType enum.
+             * @name E2E.ContextInfo.ExternalAdReplyInfo.AdType
+             * @enum {number}
+             * @property {number} CTWA=0 CTWA value
+             * @property {number} CAWC=1 CAWC value
+             */
+            ExternalAdReplyInfo.AdType = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "CTWA"] = 0;
+                values[valuesById[1] = "CAWC"] = 1;
+                return values;
+            })();
 
             /**
              * MediaType enum.
@@ -68890,8 +69243,7 @@ $root.E2E = (function() {
              * @property {string|null} [directPath] MessageHistoryBundle directPath
              * @property {number|Long|null} [mediaKeyTimestamp] MessageHistoryBundle mediaKeyTimestamp
              * @property {E2E.IContextInfo|null} [contextInfo] MessageHistoryBundle contextInfo
-             * @property {Array.<string>|null} [historyReceivers] MessageHistoryBundle historyReceivers
-             * @property {number|Long|null} [firstMessageTimestamp] MessageHistoryBundle firstMessageTimestamp
+             * @property {E2E.Message.IMessageHistoryMetadata|null} [messageHistoryMetadata] MessageHistoryBundle messageHistoryMetadata
              */
 
             /**
@@ -68903,7 +69255,6 @@ $root.E2E = (function() {
              * @param {E2E.Message.IMessageHistoryBundle=} [properties] Properties to set
              */
             function MessageHistoryBundle(properties) {
-                this.historyReceivers = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -68967,20 +69318,12 @@ $root.E2E = (function() {
             MessageHistoryBundle.prototype.contextInfo = null;
 
             /**
-             * MessageHistoryBundle historyReceivers.
-             * @member {Array.<string>} historyReceivers
+             * MessageHistoryBundle messageHistoryMetadata.
+             * @member {E2E.Message.IMessageHistoryMetadata|null|undefined} messageHistoryMetadata
              * @memberof E2E.Message.MessageHistoryBundle
              * @instance
              */
-            MessageHistoryBundle.prototype.historyReceivers = $util.emptyArray;
-
-            /**
-             * MessageHistoryBundle firstMessageTimestamp.
-             * @member {number|Long} firstMessageTimestamp
-             * @memberof E2E.Message.MessageHistoryBundle
-             * @instance
-             */
-            MessageHistoryBundle.prototype.firstMessageTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+            MessageHistoryBundle.prototype.messageHistoryMetadata = null;
 
             /**
              * Creates a new MessageHistoryBundle instance using the specified properties.
@@ -69020,11 +69363,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 6, wireType 0 =*/48).int64(message.mediaKeyTimestamp);
                 if (message.contextInfo != null && Object.hasOwnProperty.call(message, "contextInfo"))
                     $root.E2E.ContextInfo.encode(message.contextInfo, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
-                if (message.historyReceivers != null && message.historyReceivers.length)
-                    for (var i = 0; i < message.historyReceivers.length; ++i)
-                        writer.uint32(/* id 8, wireType 2 =*/66).string(message.historyReceivers[i]);
-                if (message.firstMessageTimestamp != null && Object.hasOwnProperty.call(message, "firstMessageTimestamp"))
-                    writer.uint32(/* id 9, wireType 0 =*/72).int64(message.firstMessageTimestamp);
+                if (message.messageHistoryMetadata != null && Object.hasOwnProperty.call(message, "messageHistoryMetadata"))
+                    $root.E2E.Message.MessageHistoryMetadata.encode(message.messageHistoryMetadata, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
                 return writer;
             };
 
@@ -69090,13 +69430,7 @@ $root.E2E = (function() {
                             break;
                         }
                     case 8: {
-                            if (!(message.historyReceivers && message.historyReceivers.length))
-                                message.historyReceivers = [];
-                            message.historyReceivers.push(reader.string());
-                            break;
-                        }
-                    case 9: {
-                            message.firstMessageTimestamp = reader.int64();
+                            message.messageHistoryMetadata = $root.E2E.Message.MessageHistoryMetadata.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -69157,16 +69491,11 @@ $root.E2E = (function() {
                     if (error)
                         return "contextInfo." + error;
                 }
-                if (message.historyReceivers != null && message.hasOwnProperty("historyReceivers")) {
-                    if (!Array.isArray(message.historyReceivers))
-                        return "historyReceivers: array expected";
-                    for (var i = 0; i < message.historyReceivers.length; ++i)
-                        if (!$util.isString(message.historyReceivers[i]))
-                            return "historyReceivers: string[] expected";
+                if (message.messageHistoryMetadata != null && message.hasOwnProperty("messageHistoryMetadata")) {
+                    var error = $root.E2E.Message.MessageHistoryMetadata.verify(message.messageHistoryMetadata);
+                    if (error)
+                        return "messageHistoryMetadata." + error;
                 }
-                if (message.firstMessageTimestamp != null && message.hasOwnProperty("firstMessageTimestamp"))
-                    if (!$util.isInteger(message.firstMessageTimestamp) && !(message.firstMessageTimestamp && $util.isInteger(message.firstMessageTimestamp.low) && $util.isInteger(message.firstMessageTimestamp.high)))
-                        return "firstMessageTimestamp: integer|Long expected";
                 return null;
             };
 
@@ -69215,22 +69544,11 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.MessageHistoryBundle.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo);
                 }
-                if (object.historyReceivers) {
-                    if (!Array.isArray(object.historyReceivers))
-                        throw TypeError(".E2E.Message.MessageHistoryBundle.historyReceivers: array expected");
-                    message.historyReceivers = [];
-                    for (var i = 0; i < object.historyReceivers.length; ++i)
-                        message.historyReceivers[i] = String(object.historyReceivers[i]);
+                if (object.messageHistoryMetadata != null) {
+                    if (typeof object.messageHistoryMetadata !== "object")
+                        throw TypeError(".E2E.Message.MessageHistoryBundle.messageHistoryMetadata: object expected");
+                    message.messageHistoryMetadata = $root.E2E.Message.MessageHistoryMetadata.fromObject(object.messageHistoryMetadata);
                 }
-                if (object.firstMessageTimestamp != null)
-                    if ($util.Long)
-                        (message.firstMessageTimestamp = $util.Long.fromValue(object.firstMessageTimestamp)).unsigned = false;
-                    else if (typeof object.firstMessageTimestamp === "string")
-                        message.firstMessageTimestamp = parseInt(object.firstMessageTimestamp, 10);
-                    else if (typeof object.firstMessageTimestamp === "number")
-                        message.firstMessageTimestamp = object.firstMessageTimestamp;
-                    else if (typeof object.firstMessageTimestamp === "object")
-                        message.firstMessageTimestamp = new $util.LongBits(object.firstMessageTimestamp.low >>> 0, object.firstMessageTimestamp.high >>> 0).toNumber();
                 return message;
             };
 
@@ -69247,8 +69565,6 @@ $root.E2E = (function() {
                 if (!options)
                     options = {};
                 var object = {};
-                if (options.arrays || options.defaults)
-                    object.historyReceivers = [];
                 if (options.defaults) {
                     object.mimetype = "";
                     if (options.bytes === String)
@@ -69279,11 +69595,7 @@ $root.E2E = (function() {
                     } else
                         object.mediaKeyTimestamp = options.longs === String ? "0" : 0;
                     object.contextInfo = null;
-                    if ($util.Long) {
-                        var long = new $util.Long(0, 0, false);
-                        object.firstMessageTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                    } else
-                        object.firstMessageTimestamp = options.longs === String ? "0" : 0;
+                    object.messageHistoryMetadata = null;
                 }
                 if (message.mimetype != null && message.hasOwnProperty("mimetype"))
                     object.mimetype = message.mimetype;
@@ -69302,16 +69614,8 @@ $root.E2E = (function() {
                         object.mediaKeyTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.mediaKeyTimestamp) : options.longs === Number ? new $util.LongBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0).toNumber() : message.mediaKeyTimestamp;
                 if (message.contextInfo != null && message.hasOwnProperty("contextInfo"))
                     object.contextInfo = $root.E2E.ContextInfo.toObject(message.contextInfo, options);
-                if (message.historyReceivers && message.historyReceivers.length) {
-                    object.historyReceivers = [];
-                    for (var j = 0; j < message.historyReceivers.length; ++j)
-                        object.historyReceivers[j] = message.historyReceivers[j];
-                }
-                if (message.firstMessageTimestamp != null && message.hasOwnProperty("firstMessageTimestamp"))
-                    if (typeof message.firstMessageTimestamp === "number")
-                        object.firstMessageTimestamp = options.longs === String ? String(message.firstMessageTimestamp) : message.firstMessageTimestamp;
-                    else
-                        object.firstMessageTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.firstMessageTimestamp) : options.longs === Number ? new $util.LongBits(message.firstMessageTimestamp.low >>> 0, message.firstMessageTimestamp.high >>> 0).toNumber() : message.firstMessageTimestamp;
+                if (message.messageHistoryMetadata != null && message.hasOwnProperty("messageHistoryMetadata"))
+                    object.messageHistoryMetadata = $root.E2E.Message.MessageHistoryMetadata.toObject(message.messageHistoryMetadata, options);
                 return object;
             };
 
@@ -69342,6 +69646,542 @@ $root.E2E = (function() {
             };
 
             return MessageHistoryBundle;
+        })();
+
+        Message.MessageHistoryMetadata = (function() {
+
+            /**
+             * Properties of a MessageHistoryMetadata.
+             * @memberof E2E.Message
+             * @interface IMessageHistoryMetadata
+             * @property {Array.<string>|null} [historyReceivers] MessageHistoryMetadata historyReceivers
+             * @property {number|Long|null} [firstMessageTimestamp] MessageHistoryMetadata firstMessageTimestamp
+             * @property {number|Long|null} [messageCount] MessageHistoryMetadata messageCount
+             */
+
+            /**
+             * Constructs a new MessageHistoryMetadata.
+             * @memberof E2E.Message
+             * @classdesc Represents a MessageHistoryMetadata.
+             * @implements IMessageHistoryMetadata
+             * @constructor
+             * @param {E2E.Message.IMessageHistoryMetadata=} [properties] Properties to set
+             */
+            function MessageHistoryMetadata(properties) {
+                this.historyReceivers = [];
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * MessageHistoryMetadata historyReceivers.
+             * @member {Array.<string>} historyReceivers
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @instance
+             */
+            MessageHistoryMetadata.prototype.historyReceivers = $util.emptyArray;
+
+            /**
+             * MessageHistoryMetadata firstMessageTimestamp.
+             * @member {number|Long} firstMessageTimestamp
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @instance
+             */
+            MessageHistoryMetadata.prototype.firstMessageTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+            /**
+             * MessageHistoryMetadata messageCount.
+             * @member {number|Long} messageCount
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @instance
+             */
+            MessageHistoryMetadata.prototype.messageCount = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+            /**
+             * Creates a new MessageHistoryMetadata instance using the specified properties.
+             * @function create
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @static
+             * @param {E2E.Message.IMessageHistoryMetadata=} [properties] Properties to set
+             * @returns {E2E.Message.MessageHistoryMetadata} MessageHistoryMetadata instance
+             */
+            MessageHistoryMetadata.create = function create(properties) {
+                return new MessageHistoryMetadata(properties);
+            };
+
+            /**
+             * Encodes the specified MessageHistoryMetadata message. Does not implicitly {@link E2E.Message.MessageHistoryMetadata.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @static
+             * @param {E2E.Message.IMessageHistoryMetadata} message MessageHistoryMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            MessageHistoryMetadata.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.historyReceivers != null && message.historyReceivers.length)
+                    for (var i = 0; i < message.historyReceivers.length; ++i)
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.historyReceivers[i]);
+                if (message.firstMessageTimestamp != null && Object.hasOwnProperty.call(message, "firstMessageTimestamp"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).int64(message.firstMessageTimestamp);
+                if (message.messageCount != null && Object.hasOwnProperty.call(message, "messageCount"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).int64(message.messageCount);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified MessageHistoryMetadata message, length delimited. Does not implicitly {@link E2E.Message.MessageHistoryMetadata.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @static
+             * @param {E2E.Message.IMessageHistoryMetadata} message MessageHistoryMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            MessageHistoryMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a MessageHistoryMetadata message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.Message.MessageHistoryMetadata} MessageHistoryMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            MessageHistoryMetadata.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.MessageHistoryMetadata();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            if (!(message.historyReceivers && message.historyReceivers.length))
+                                message.historyReceivers = [];
+                            message.historyReceivers.push(reader.string());
+                            break;
+                        }
+                    case 2: {
+                            message.firstMessageTimestamp = reader.int64();
+                            break;
+                        }
+                    case 3: {
+                            message.messageCount = reader.int64();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a MessageHistoryMetadata message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.Message.MessageHistoryMetadata} MessageHistoryMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            MessageHistoryMetadata.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a MessageHistoryMetadata message.
+             * @function verify
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            MessageHistoryMetadata.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.historyReceivers != null && message.hasOwnProperty("historyReceivers")) {
+                    if (!Array.isArray(message.historyReceivers))
+                        return "historyReceivers: array expected";
+                    for (var i = 0; i < message.historyReceivers.length; ++i)
+                        if (!$util.isString(message.historyReceivers[i]))
+                            return "historyReceivers: string[] expected";
+                }
+                if (message.firstMessageTimestamp != null && message.hasOwnProperty("firstMessageTimestamp"))
+                    if (!$util.isInteger(message.firstMessageTimestamp) && !(message.firstMessageTimestamp && $util.isInteger(message.firstMessageTimestamp.low) && $util.isInteger(message.firstMessageTimestamp.high)))
+                        return "firstMessageTimestamp: integer|Long expected";
+                if (message.messageCount != null && message.hasOwnProperty("messageCount"))
+                    if (!$util.isInteger(message.messageCount) && !(message.messageCount && $util.isInteger(message.messageCount.low) && $util.isInteger(message.messageCount.high)))
+                        return "messageCount: integer|Long expected";
+                return null;
+            };
+
+            /**
+             * Creates a MessageHistoryMetadata message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.Message.MessageHistoryMetadata} MessageHistoryMetadata
+             */
+            MessageHistoryMetadata.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.Message.MessageHistoryMetadata)
+                    return object;
+                var message = new $root.E2E.Message.MessageHistoryMetadata();
+                if (object.historyReceivers) {
+                    if (!Array.isArray(object.historyReceivers))
+                        throw TypeError(".E2E.Message.MessageHistoryMetadata.historyReceivers: array expected");
+                    message.historyReceivers = [];
+                    for (var i = 0; i < object.historyReceivers.length; ++i)
+                        message.historyReceivers[i] = String(object.historyReceivers[i]);
+                }
+                if (object.firstMessageTimestamp != null)
+                    if ($util.Long)
+                        (message.firstMessageTimestamp = $util.Long.fromValue(object.firstMessageTimestamp)).unsigned = false;
+                    else if (typeof object.firstMessageTimestamp === "string")
+                        message.firstMessageTimestamp = parseInt(object.firstMessageTimestamp, 10);
+                    else if (typeof object.firstMessageTimestamp === "number")
+                        message.firstMessageTimestamp = object.firstMessageTimestamp;
+                    else if (typeof object.firstMessageTimestamp === "object")
+                        message.firstMessageTimestamp = new $util.LongBits(object.firstMessageTimestamp.low >>> 0, object.firstMessageTimestamp.high >>> 0).toNumber();
+                if (object.messageCount != null)
+                    if ($util.Long)
+                        (message.messageCount = $util.Long.fromValue(object.messageCount)).unsigned = false;
+                    else if (typeof object.messageCount === "string")
+                        message.messageCount = parseInt(object.messageCount, 10);
+                    else if (typeof object.messageCount === "number")
+                        message.messageCount = object.messageCount;
+                    else if (typeof object.messageCount === "object")
+                        message.messageCount = new $util.LongBits(object.messageCount.low >>> 0, object.messageCount.high >>> 0).toNumber();
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a MessageHistoryMetadata message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @static
+             * @param {E2E.Message.MessageHistoryMetadata} message MessageHistoryMetadata
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            MessageHistoryMetadata.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.arrays || options.defaults)
+                    object.historyReceivers = [];
+                if (options.defaults) {
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.firstMessageTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    } else
+                        object.firstMessageTimestamp = options.longs === String ? "0" : 0;
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.messageCount = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    } else
+                        object.messageCount = options.longs === String ? "0" : 0;
+                }
+                if (message.historyReceivers && message.historyReceivers.length) {
+                    object.historyReceivers = [];
+                    for (var j = 0; j < message.historyReceivers.length; ++j)
+                        object.historyReceivers[j] = message.historyReceivers[j];
+                }
+                if (message.firstMessageTimestamp != null && message.hasOwnProperty("firstMessageTimestamp"))
+                    if (typeof message.firstMessageTimestamp === "number")
+                        object.firstMessageTimestamp = options.longs === String ? String(message.firstMessageTimestamp) : message.firstMessageTimestamp;
+                    else
+                        object.firstMessageTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.firstMessageTimestamp) : options.longs === Number ? new $util.LongBits(message.firstMessageTimestamp.low >>> 0, message.firstMessageTimestamp.high >>> 0).toNumber() : message.firstMessageTimestamp;
+                if (message.messageCount != null && message.hasOwnProperty("messageCount"))
+                    if (typeof message.messageCount === "number")
+                        object.messageCount = options.longs === String ? String(message.messageCount) : message.messageCount;
+                    else
+                        object.messageCount = options.longs === String ? $util.Long.prototype.toString.call(message.messageCount) : options.longs === Number ? new $util.LongBits(message.messageCount.low >>> 0, message.messageCount.high >>> 0).toNumber() : message.messageCount;
+                return object;
+            };
+
+            /**
+             * Converts this MessageHistoryMetadata to JSON.
+             * @function toJSON
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            MessageHistoryMetadata.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for MessageHistoryMetadata
+             * @function getTypeUrl
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            MessageHistoryMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.Message.MessageHistoryMetadata";
+            };
+
+            return MessageHistoryMetadata;
+        })();
+
+        Message.MessageHistoryNotice = (function() {
+
+            /**
+             * Properties of a MessageHistoryNotice.
+             * @memberof E2E.Message
+             * @interface IMessageHistoryNotice
+             * @property {E2E.IContextInfo|null} [contextInfo] MessageHistoryNotice contextInfo
+             * @property {E2E.Message.IMessageHistoryMetadata|null} [messageHistoryMetadata] MessageHistoryNotice messageHistoryMetadata
+             */
+
+            /**
+             * Constructs a new MessageHistoryNotice.
+             * @memberof E2E.Message
+             * @classdesc Represents a MessageHistoryNotice.
+             * @implements IMessageHistoryNotice
+             * @constructor
+             * @param {E2E.Message.IMessageHistoryNotice=} [properties] Properties to set
+             */
+            function MessageHistoryNotice(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * MessageHistoryNotice contextInfo.
+             * @member {E2E.IContextInfo|null|undefined} contextInfo
+             * @memberof E2E.Message.MessageHistoryNotice
+             * @instance
+             */
+            MessageHistoryNotice.prototype.contextInfo = null;
+
+            /**
+             * MessageHistoryNotice messageHistoryMetadata.
+             * @member {E2E.Message.IMessageHistoryMetadata|null|undefined} messageHistoryMetadata
+             * @memberof E2E.Message.MessageHistoryNotice
+             * @instance
+             */
+            MessageHistoryNotice.prototype.messageHistoryMetadata = null;
+
+            /**
+             * Creates a new MessageHistoryNotice instance using the specified properties.
+             * @function create
+             * @memberof E2E.Message.MessageHistoryNotice
+             * @static
+             * @param {E2E.Message.IMessageHistoryNotice=} [properties] Properties to set
+             * @returns {E2E.Message.MessageHistoryNotice} MessageHistoryNotice instance
+             */
+            MessageHistoryNotice.create = function create(properties) {
+                return new MessageHistoryNotice(properties);
+            };
+
+            /**
+             * Encodes the specified MessageHistoryNotice message. Does not implicitly {@link E2E.Message.MessageHistoryNotice.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.Message.MessageHistoryNotice
+             * @static
+             * @param {E2E.Message.IMessageHistoryNotice} message MessageHistoryNotice message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            MessageHistoryNotice.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.contextInfo != null && Object.hasOwnProperty.call(message, "contextInfo"))
+                    $root.E2E.ContextInfo.encode(message.contextInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.messageHistoryMetadata != null && Object.hasOwnProperty.call(message, "messageHistoryMetadata"))
+                    $root.E2E.Message.MessageHistoryMetadata.encode(message.messageHistoryMetadata, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                return writer;
+            };
+
+            /**
+             * Encodes the specified MessageHistoryNotice message, length delimited. Does not implicitly {@link E2E.Message.MessageHistoryNotice.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.Message.MessageHistoryNotice
+             * @static
+             * @param {E2E.Message.IMessageHistoryNotice} message MessageHistoryNotice message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            MessageHistoryNotice.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a MessageHistoryNotice message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.Message.MessageHistoryNotice
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.Message.MessageHistoryNotice} MessageHistoryNotice
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            MessageHistoryNotice.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.MessageHistoryNotice();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.contextInfo = $root.E2E.ContextInfo.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 2: {
+                            message.messageHistoryMetadata = $root.E2E.Message.MessageHistoryMetadata.decode(reader, reader.uint32());
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a MessageHistoryNotice message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.Message.MessageHistoryNotice
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.Message.MessageHistoryNotice} MessageHistoryNotice
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            MessageHistoryNotice.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a MessageHistoryNotice message.
+             * @function verify
+             * @memberof E2E.Message.MessageHistoryNotice
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            MessageHistoryNotice.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.contextInfo != null && message.hasOwnProperty("contextInfo")) {
+                    var error = $root.E2E.ContextInfo.verify(message.contextInfo);
+                    if (error)
+                        return "contextInfo." + error;
+                }
+                if (message.messageHistoryMetadata != null && message.hasOwnProperty("messageHistoryMetadata")) {
+                    var error = $root.E2E.Message.MessageHistoryMetadata.verify(message.messageHistoryMetadata);
+                    if (error)
+                        return "messageHistoryMetadata." + error;
+                }
+                return null;
+            };
+
+            /**
+             * Creates a MessageHistoryNotice message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.Message.MessageHistoryNotice
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.Message.MessageHistoryNotice} MessageHistoryNotice
+             */
+            MessageHistoryNotice.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.Message.MessageHistoryNotice)
+                    return object;
+                var message = new $root.E2E.Message.MessageHistoryNotice();
+                if (object.contextInfo != null) {
+                    if (typeof object.contextInfo !== "object")
+                        throw TypeError(".E2E.Message.MessageHistoryNotice.contextInfo: object expected");
+                    message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo);
+                }
+                if (object.messageHistoryMetadata != null) {
+                    if (typeof object.messageHistoryMetadata !== "object")
+                        throw TypeError(".E2E.Message.MessageHistoryNotice.messageHistoryMetadata: object expected");
+                    message.messageHistoryMetadata = $root.E2E.Message.MessageHistoryMetadata.fromObject(object.messageHistoryMetadata);
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a MessageHistoryNotice message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.Message.MessageHistoryNotice
+             * @static
+             * @param {E2E.Message.MessageHistoryNotice} message MessageHistoryNotice
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            MessageHistoryNotice.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.contextInfo = null;
+                    object.messageHistoryMetadata = null;
+                }
+                if (message.contextInfo != null && message.hasOwnProperty("contextInfo"))
+                    object.contextInfo = $root.E2E.ContextInfo.toObject(message.contextInfo, options);
+                if (message.messageHistoryMetadata != null && message.hasOwnProperty("messageHistoryMetadata"))
+                    object.messageHistoryMetadata = $root.E2E.Message.MessageHistoryMetadata.toObject(message.messageHistoryMetadata, options);
+                return object;
+            };
+
+            /**
+             * Converts this MessageHistoryNotice to JSON.
+             * @function toJSON
+             * @memberof E2E.Message.MessageHistoryNotice
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            MessageHistoryNotice.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for MessageHistoryNotice
+             * @function getTypeUrl
+             * @memberof E2E.Message.MessageHistoryNotice
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            MessageHistoryNotice.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.Message.MessageHistoryNotice";
+            };
+
+            return MessageHistoryNotice;
         })();
 
         Message.NewsletterAdminInviteMessage = (function() {
