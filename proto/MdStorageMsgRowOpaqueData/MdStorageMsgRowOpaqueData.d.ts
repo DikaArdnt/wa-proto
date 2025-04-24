@@ -22612,6 +22612,9 @@ export namespace E2E {
 
             /** PeerDataOperationRequestMessage fullHistorySyncOnDemandRequest */
             fullHistorySyncOnDemandRequest?: (E2E.Message.PeerDataOperationRequestMessage.IFullHistorySyncOnDemandRequest|null);
+
+            /** PeerDataOperationRequestMessage syncdCollectionFatalRecoveryRequest */
+            syncdCollectionFatalRecoveryRequest?: (E2E.Message.PeerDataOperationRequestMessage.ISyncDCollectionFatalRecoveryRequest|null);
         }
 
         /** Represents a PeerDataOperationRequestMessage. */
@@ -22640,6 +22643,9 @@ export namespace E2E {
 
             /** PeerDataOperationRequestMessage fullHistorySyncOnDemandRequest. */
             public fullHistorySyncOnDemandRequest?: (E2E.Message.PeerDataOperationRequestMessage.IFullHistorySyncOnDemandRequest|null);
+
+            /** PeerDataOperationRequestMessage syncdCollectionFatalRecoveryRequest. */
+            public syncdCollectionFatalRecoveryRequest?: (E2E.Message.PeerDataOperationRequestMessage.ISyncDCollectionFatalRecoveryRequest|null);
 
             /**
              * Creates a new PeerDataOperationRequestMessage instance using the specified properties.
@@ -23247,6 +23253,109 @@ export namespace E2E {
                  */
                 public static getTypeUrl(typeUrlPrefix?: string): string;
             }
+
+            /** Properties of a SyncDCollectionFatalRecoveryRequest. */
+            interface ISyncDCollectionFatalRecoveryRequest {
+
+                /** SyncDCollectionFatalRecoveryRequest collectionNames */
+                collectionNames?: (string[]|null);
+
+                /** SyncDCollectionFatalRecoveryRequest timestamp */
+                timestamp?: (number|Long|null);
+            }
+
+            /** Represents a SyncDCollectionFatalRecoveryRequest. */
+            class SyncDCollectionFatalRecoveryRequest implements ISyncDCollectionFatalRecoveryRequest {
+
+                /**
+                 * Constructs a new SyncDCollectionFatalRecoveryRequest.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: E2E.Message.PeerDataOperationRequestMessage.ISyncDCollectionFatalRecoveryRequest);
+
+                /** SyncDCollectionFatalRecoveryRequest collectionNames. */
+                public collectionNames: string[];
+
+                /** SyncDCollectionFatalRecoveryRequest timestamp. */
+                public timestamp: (number|Long);
+
+                /**
+                 * Creates a new SyncDCollectionFatalRecoveryRequest instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns SyncDCollectionFatalRecoveryRequest instance
+                 */
+                public static create(properties?: E2E.Message.PeerDataOperationRequestMessage.ISyncDCollectionFatalRecoveryRequest): E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest;
+
+                /**
+                 * Encodes the specified SyncDCollectionFatalRecoveryRequest message. Does not implicitly {@link E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest.verify|verify} messages.
+                 * @param message SyncDCollectionFatalRecoveryRequest message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: E2E.Message.PeerDataOperationRequestMessage.ISyncDCollectionFatalRecoveryRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified SyncDCollectionFatalRecoveryRequest message, length delimited. Does not implicitly {@link E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest.verify|verify} messages.
+                 * @param message SyncDCollectionFatalRecoveryRequest message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: E2E.Message.PeerDataOperationRequestMessage.ISyncDCollectionFatalRecoveryRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a SyncDCollectionFatalRecoveryRequest message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns SyncDCollectionFatalRecoveryRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest;
+
+                /**
+                 * Decodes a SyncDCollectionFatalRecoveryRequest message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns SyncDCollectionFatalRecoveryRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest;
+
+                /**
+                 * Verifies a SyncDCollectionFatalRecoveryRequest message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a SyncDCollectionFatalRecoveryRequest message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns SyncDCollectionFatalRecoveryRequest
+                 */
+                public static fromObject(object: { [k: string]: any }): E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest;
+
+                /**
+                 * Creates a plain object from a SyncDCollectionFatalRecoveryRequest message. Also converts values to other types if specified.
+                 * @param message SyncDCollectionFatalRecoveryRequest
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this SyncDCollectionFatalRecoveryRequest to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for SyncDCollectionFatalRecoveryRequest
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
         }
 
         /** Properties of a PeerDataOperationRequestResponseMessage. */
@@ -23383,6 +23492,9 @@ export namespace E2E {
 
                 /** PeerDataOperationResult companionMetaNonceFetchRequestResponse */
                 companionMetaNonceFetchRequestResponse?: (E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ICompanionMetaNonceFetchResponse|null);
+
+                /** PeerDataOperationResult syncdSnapshotFatalRecoveryResponse */
+                syncdSnapshotFatalRecoveryResponse?: (E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ISyncDSnapshotFatalRecoveryResponse|null);
             }
 
             /** Represents a PeerDataOperationResult. */
@@ -23414,6 +23526,9 @@ export namespace E2E {
 
                 /** PeerDataOperationResult companionMetaNonceFetchRequestResponse. */
                 public companionMetaNonceFetchRequestResponse?: (E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ICompanionMetaNonceFetchResponse|null);
+
+                /** PeerDataOperationResult syncdSnapshotFatalRecoveryResponse. */
+                public syncdSnapshotFatalRecoveryResponse?: (E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ISyncDSnapshotFatalRecoveryResponse|null);
 
                 /**
                  * Creates a new PeerDataOperationResult instance using the specified properties.
@@ -24072,6 +24187,109 @@ export namespace E2E {
                     public static getTypeUrl(typeUrlPrefix?: string): string;
                 }
 
+                /** Properties of a SyncDSnapshotFatalRecoveryResponse. */
+                interface ISyncDSnapshotFatalRecoveryResponse {
+
+                    /** SyncDSnapshotFatalRecoveryResponse collectionSnapshot */
+                    collectionSnapshot?: (Uint8Array|null);
+
+                    /** SyncDSnapshotFatalRecoveryResponse isCompressed */
+                    isCompressed?: (boolean|null);
+                }
+
+                /** Represents a SyncDSnapshotFatalRecoveryResponse. */
+                class SyncDSnapshotFatalRecoveryResponse implements ISyncDSnapshotFatalRecoveryResponse {
+
+                    /**
+                     * Constructs a new SyncDSnapshotFatalRecoveryResponse.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ISyncDSnapshotFatalRecoveryResponse);
+
+                    /** SyncDSnapshotFatalRecoveryResponse collectionSnapshot. */
+                    public collectionSnapshot: Uint8Array;
+
+                    /** SyncDSnapshotFatalRecoveryResponse isCompressed. */
+                    public isCompressed: boolean;
+
+                    /**
+                     * Creates a new SyncDSnapshotFatalRecoveryResponse instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns SyncDSnapshotFatalRecoveryResponse instance
+                     */
+                    public static create(properties?: E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ISyncDSnapshotFatalRecoveryResponse): E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse;
+
+                    /**
+                     * Encodes the specified SyncDSnapshotFatalRecoveryResponse message. Does not implicitly {@link E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse.verify|verify} messages.
+                     * @param message SyncDSnapshotFatalRecoveryResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ISyncDSnapshotFatalRecoveryResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified SyncDSnapshotFatalRecoveryResponse message, length delimited. Does not implicitly {@link E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse.verify|verify} messages.
+                     * @param message SyncDSnapshotFatalRecoveryResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ISyncDSnapshotFatalRecoveryResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a SyncDSnapshotFatalRecoveryResponse message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns SyncDSnapshotFatalRecoveryResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse;
+
+                    /**
+                     * Decodes a SyncDSnapshotFatalRecoveryResponse message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns SyncDSnapshotFatalRecoveryResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse;
+
+                    /**
+                     * Verifies a SyncDSnapshotFatalRecoveryResponse message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a SyncDSnapshotFatalRecoveryResponse message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns SyncDSnapshotFatalRecoveryResponse
+                     */
+                    public static fromObject(object: { [k: string]: any }): E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse;
+
+                    /**
+                     * Creates a plain object from a SyncDSnapshotFatalRecoveryResponse message. Also converts values to other types if specified.
+                     * @param message SyncDSnapshotFatalRecoveryResponse
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this SyncDSnapshotFatalRecoveryResponse to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for SyncDSnapshotFatalRecoveryResponse
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
                 /** Properties of a WaffleNonceFetchResponse. */
                 interface IWaffleNonceFetchResponse {
 
@@ -24186,7 +24404,8 @@ export namespace E2E {
             PLACEHOLDER_MESSAGE_RESEND = 4,
             WAFFLE_LINKING_NONCE_FETCH = 5,
             FULL_HISTORY_SYNC_ON_DEMAND = 6,
-            COMPANION_META_NONCE_FETCH = 7
+            COMPANION_META_NONCE_FETCH = 7,
+            COMPANION_SYNCD_SNAPSHOT_FATAL_RECOVERY = 8
         }
 
         /** Properties of a PinInChatMessage. */

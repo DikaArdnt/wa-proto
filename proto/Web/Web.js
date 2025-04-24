@@ -72121,6 +72121,7 @@ $root.E2E = (function() {
              * @property {E2E.Message.PeerDataOperationRequestMessage.IHistorySyncOnDemandRequest|null} [historySyncOnDemandRequest] PeerDataOperationRequestMessage historySyncOnDemandRequest
              * @property {Array.<E2E.Message.PeerDataOperationRequestMessage.IPlaceholderMessageResendRequest>|null} [placeholderMessageResendRequest] PeerDataOperationRequestMessage placeholderMessageResendRequest
              * @property {E2E.Message.PeerDataOperationRequestMessage.IFullHistorySyncOnDemandRequest|null} [fullHistorySyncOnDemandRequest] PeerDataOperationRequestMessage fullHistorySyncOnDemandRequest
+             * @property {E2E.Message.PeerDataOperationRequestMessage.ISyncDCollectionFatalRecoveryRequest|null} [syncdCollectionFatalRecoveryRequest] PeerDataOperationRequestMessage syncdCollectionFatalRecoveryRequest
              */
 
             /**
@@ -72190,6 +72191,14 @@ $root.E2E = (function() {
             PeerDataOperationRequestMessage.prototype.fullHistorySyncOnDemandRequest = null;
 
             /**
+             * PeerDataOperationRequestMessage syncdCollectionFatalRecoveryRequest.
+             * @member {E2E.Message.PeerDataOperationRequestMessage.ISyncDCollectionFatalRecoveryRequest|null|undefined} syncdCollectionFatalRecoveryRequest
+             * @memberof E2E.Message.PeerDataOperationRequestMessage
+             * @instance
+             */
+            PeerDataOperationRequestMessage.prototype.syncdCollectionFatalRecoveryRequest = null;
+
+            /**
              * Creates a new PeerDataOperationRequestMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.PeerDataOperationRequestMessage
@@ -72228,6 +72237,8 @@ $root.E2E = (function() {
                         $root.E2E.Message.PeerDataOperationRequestMessage.PlaceholderMessageResendRequest.encode(message.placeholderMessageResendRequest[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                 if (message.fullHistorySyncOnDemandRequest != null && Object.hasOwnProperty.call(message, "fullHistorySyncOnDemandRequest"))
                     $root.E2E.Message.PeerDataOperationRequestMessage.FullHistorySyncOnDemandRequest.encode(message.fullHistorySyncOnDemandRequest, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
+                if (message.syncdCollectionFatalRecoveryRequest != null && Object.hasOwnProperty.call(message, "syncdCollectionFatalRecoveryRequest"))
+                    $root.E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest.encode(message.syncdCollectionFatalRecoveryRequest, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
                 return writer;
             };
 
@@ -72294,6 +72305,10 @@ $root.E2E = (function() {
                             message.fullHistorySyncOnDemandRequest = $root.E2E.Message.PeerDataOperationRequestMessage.FullHistorySyncOnDemandRequest.decode(reader, reader.uint32());
                             break;
                         }
+                    case 7: {
+                            message.syncdCollectionFatalRecoveryRequest = $root.E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest.decode(reader, reader.uint32());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -72341,6 +72356,7 @@ $root.E2E = (function() {
                     case 5:
                     case 6:
                     case 7:
+                    case 8:
                         break;
                     }
                 if (message.requestStickerReupload != null && message.hasOwnProperty("requestStickerReupload")) {
@@ -72379,6 +72395,11 @@ $root.E2E = (function() {
                     var error = $root.E2E.Message.PeerDataOperationRequestMessage.FullHistorySyncOnDemandRequest.verify(message.fullHistorySyncOnDemandRequest);
                     if (error)
                         return "fullHistorySyncOnDemandRequest." + error;
+                }
+                if (message.syncdCollectionFatalRecoveryRequest != null && message.hasOwnProperty("syncdCollectionFatalRecoveryRequest")) {
+                    var error = $root.E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest.verify(message.syncdCollectionFatalRecoveryRequest);
+                    if (error)
+                        return "syncdCollectionFatalRecoveryRequest." + error;
                 }
                 return null;
             };
@@ -72434,6 +72455,10 @@ $root.E2E = (function() {
                 case 7:
                     message.peerDataOperationRequestType = 7;
                     break;
+                case "COMPANION_SYNCD_SNAPSHOT_FATAL_RECOVERY":
+                case 8:
+                    message.peerDataOperationRequestType = 8;
+                    break;
                 }
                 if (object.requestStickerReupload) {
                     if (!Array.isArray(object.requestStickerReupload))
@@ -72475,6 +72500,11 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.fullHistorySyncOnDemandRequest: object expected");
                     message.fullHistorySyncOnDemandRequest = $root.E2E.Message.PeerDataOperationRequestMessage.FullHistorySyncOnDemandRequest.fromObject(object.fullHistorySyncOnDemandRequest);
                 }
+                if (object.syncdCollectionFatalRecoveryRequest != null) {
+                    if (typeof object.syncdCollectionFatalRecoveryRequest !== "object")
+                        throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.syncdCollectionFatalRecoveryRequest: object expected");
+                    message.syncdCollectionFatalRecoveryRequest = $root.E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest.fromObject(object.syncdCollectionFatalRecoveryRequest);
+                }
                 return message;
             };
 
@@ -72500,6 +72530,7 @@ $root.E2E = (function() {
                     object.peerDataOperationRequestType = options.enums === String ? "UPLOAD_STICKER" : 0;
                     object.historySyncOnDemandRequest = null;
                     object.fullHistorySyncOnDemandRequest = null;
+                    object.syncdCollectionFatalRecoveryRequest = null;
                 }
                 if (message.peerDataOperationRequestType != null && message.hasOwnProperty("peerDataOperationRequestType"))
                     object.peerDataOperationRequestType = options.enums === String ? $root.E2E.Message.PeerDataOperationRequestType[message.peerDataOperationRequestType] === undefined ? message.peerDataOperationRequestType : $root.E2E.Message.PeerDataOperationRequestType[message.peerDataOperationRequestType] : message.peerDataOperationRequestType;
@@ -72522,6 +72553,8 @@ $root.E2E = (function() {
                 }
                 if (message.fullHistorySyncOnDemandRequest != null && message.hasOwnProperty("fullHistorySyncOnDemandRequest"))
                     object.fullHistorySyncOnDemandRequest = $root.E2E.Message.PeerDataOperationRequestMessage.FullHistorySyncOnDemandRequest.toObject(message.fullHistorySyncOnDemandRequest, options);
+                if (message.syncdCollectionFatalRecoveryRequest != null && message.hasOwnProperty("syncdCollectionFatalRecoveryRequest"))
+                    object.syncdCollectionFatalRecoveryRequest = $root.E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest.toObject(message.syncdCollectionFatalRecoveryRequest, options);
                 return object;
             };
 
@@ -73769,6 +73802,265 @@ $root.E2E = (function() {
                 return RequestUrlPreview;
             })();
 
+            PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest = (function() {
+
+                /**
+                 * Properties of a SyncDCollectionFatalRecoveryRequest.
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage
+                 * @interface ISyncDCollectionFatalRecoveryRequest
+                 * @property {Array.<string>|null} [collectionNames] SyncDCollectionFatalRecoveryRequest collectionNames
+                 * @property {number|Long|null} [timestamp] SyncDCollectionFatalRecoveryRequest timestamp
+                 */
+
+                /**
+                 * Constructs a new SyncDCollectionFatalRecoveryRequest.
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage
+                 * @classdesc Represents a SyncDCollectionFatalRecoveryRequest.
+                 * @implements ISyncDCollectionFatalRecoveryRequest
+                 * @constructor
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.ISyncDCollectionFatalRecoveryRequest=} [properties] Properties to set
+                 */
+                function SyncDCollectionFatalRecoveryRequest(properties) {
+                    this.collectionNames = [];
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * SyncDCollectionFatalRecoveryRequest collectionNames.
+                 * @member {Array.<string>} collectionNames
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest
+                 * @instance
+                 */
+                SyncDCollectionFatalRecoveryRequest.prototype.collectionNames = $util.emptyArray;
+
+                /**
+                 * SyncDCollectionFatalRecoveryRequest timestamp.
+                 * @member {number|Long} timestamp
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest
+                 * @instance
+                 */
+                SyncDCollectionFatalRecoveryRequest.prototype.timestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+                /**
+                 * Creates a new SyncDCollectionFatalRecoveryRequest instance using the specified properties.
+                 * @function create
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.ISyncDCollectionFatalRecoveryRequest=} [properties] Properties to set
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest} SyncDCollectionFatalRecoveryRequest instance
+                 */
+                SyncDCollectionFatalRecoveryRequest.create = function create(properties) {
+                    return new SyncDCollectionFatalRecoveryRequest(properties);
+                };
+
+                /**
+                 * Encodes the specified SyncDCollectionFatalRecoveryRequest message. Does not implicitly {@link E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest.verify|verify} messages.
+                 * @function encode
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.ISyncDCollectionFatalRecoveryRequest} message SyncDCollectionFatalRecoveryRequest message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                SyncDCollectionFatalRecoveryRequest.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.collectionNames != null && message.collectionNames.length)
+                        for (var i = 0; i < message.collectionNames.length; ++i)
+                            writer.uint32(/* id 1, wireType 2 =*/10).string(message.collectionNames[i]);
+                    if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
+                        writer.uint32(/* id 2, wireType 0 =*/16).int64(message.timestamp);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified SyncDCollectionFatalRecoveryRequest message, length delimited. Does not implicitly {@link E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.ISyncDCollectionFatalRecoveryRequest} message SyncDCollectionFatalRecoveryRequest message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                SyncDCollectionFatalRecoveryRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a SyncDCollectionFatalRecoveryRequest message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest} SyncDCollectionFatalRecoveryRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                SyncDCollectionFatalRecoveryRequest.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                if (!(message.collectionNames && message.collectionNames.length))
+                                    message.collectionNames = [];
+                                message.collectionNames.push(reader.string());
+                                break;
+                            }
+                        case 2: {
+                                message.timestamp = reader.int64();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a SyncDCollectionFatalRecoveryRequest message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest} SyncDCollectionFatalRecoveryRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                SyncDCollectionFatalRecoveryRequest.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a SyncDCollectionFatalRecoveryRequest message.
+                 * @function verify
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                SyncDCollectionFatalRecoveryRequest.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.collectionNames != null && message.hasOwnProperty("collectionNames")) {
+                        if (!Array.isArray(message.collectionNames))
+                            return "collectionNames: array expected";
+                        for (var i = 0; i < message.collectionNames.length; ++i)
+                            if (!$util.isString(message.collectionNames[i]))
+                                return "collectionNames: string[] expected";
+                    }
+                    if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+                        if (!$util.isInteger(message.timestamp) && !(message.timestamp && $util.isInteger(message.timestamp.low) && $util.isInteger(message.timestamp.high)))
+                            return "timestamp: integer|Long expected";
+                    return null;
+                };
+
+                /**
+                 * Creates a SyncDCollectionFatalRecoveryRequest message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest} SyncDCollectionFatalRecoveryRequest
+                 */
+                SyncDCollectionFatalRecoveryRequest.fromObject = function fromObject(object) {
+                    if (object instanceof $root.E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest)
+                        return object;
+                    var message = new $root.E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest();
+                    if (object.collectionNames) {
+                        if (!Array.isArray(object.collectionNames))
+                            throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest.collectionNames: array expected");
+                        message.collectionNames = [];
+                        for (var i = 0; i < object.collectionNames.length; ++i)
+                            message.collectionNames[i] = String(object.collectionNames[i]);
+                    }
+                    if (object.timestamp != null)
+                        if ($util.Long)
+                            (message.timestamp = $util.Long.fromValue(object.timestamp)).unsigned = false;
+                        else if (typeof object.timestamp === "string")
+                            message.timestamp = parseInt(object.timestamp, 10);
+                        else if (typeof object.timestamp === "number")
+                            message.timestamp = object.timestamp;
+                        else if (typeof object.timestamp === "object")
+                            message.timestamp = new $util.LongBits(object.timestamp.low >>> 0, object.timestamp.high >>> 0).toNumber();
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a SyncDCollectionFatalRecoveryRequest message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest} message SyncDCollectionFatalRecoveryRequest
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                SyncDCollectionFatalRecoveryRequest.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.arrays || options.defaults)
+                        object.collectionNames = [];
+                    if (options.defaults)
+                        if ($util.Long) {
+                            var long = new $util.Long(0, 0, false);
+                            object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        } else
+                            object.timestamp = options.longs === String ? "0" : 0;
+                    if (message.collectionNames && message.collectionNames.length) {
+                        object.collectionNames = [];
+                        for (var j = 0; j < message.collectionNames.length; ++j)
+                            object.collectionNames[j] = message.collectionNames[j];
+                    }
+                    if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+                        if (typeof message.timestamp === "number")
+                            object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
+                        else
+                            object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber() : message.timestamp;
+                    return object;
+                };
+
+                /**
+                 * Converts this SyncDCollectionFatalRecoveryRequest to JSON.
+                 * @function toJSON
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                SyncDCollectionFatalRecoveryRequest.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for SyncDCollectionFatalRecoveryRequest
+                 * @function getTypeUrl
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                SyncDCollectionFatalRecoveryRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest";
+                };
+
+                return SyncDCollectionFatalRecoveryRequest;
+            })();
+
             return PeerDataOperationRequestMessage;
         })();
 
@@ -73951,6 +74243,7 @@ $root.E2E = (function() {
                     case 5:
                     case 6:
                     case 7:
+                    case 8:
                         break;
                     }
                 if (message.stanzaId != null && message.hasOwnProperty("stanzaId"))
@@ -74018,6 +74311,10 @@ $root.E2E = (function() {
                 case "COMPANION_META_NONCE_FETCH":
                 case 7:
                     message.peerDataOperationRequestType = 7;
+                    break;
+                case "COMPANION_SYNCD_SNAPSHOT_FATAL_RECOVERY":
+                case 8:
+                    message.peerDataOperationRequestType = 8;
                     break;
                 }
                 if (object.stanzaId != null)
@@ -74105,6 +74402,7 @@ $root.E2E = (function() {
                  * @property {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IWaffleNonceFetchResponse|null} [waffleNonceFetchRequestResponse] PeerDataOperationResult waffleNonceFetchRequestResponse
                  * @property {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IFullHistorySyncOnDemandRequestResponse|null} [fullHistorySyncOnDemandRequestResponse] PeerDataOperationResult fullHistorySyncOnDemandRequestResponse
                  * @property {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ICompanionMetaNonceFetchResponse|null} [companionMetaNonceFetchRequestResponse] PeerDataOperationResult companionMetaNonceFetchRequestResponse
+                 * @property {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ISyncDSnapshotFatalRecoveryResponse|null} [syncdSnapshotFatalRecoveryResponse] PeerDataOperationResult syncdSnapshotFatalRecoveryResponse
                  */
 
                 /**
@@ -74179,6 +74477,14 @@ $root.E2E = (function() {
                 PeerDataOperationResult.prototype.companionMetaNonceFetchRequestResponse = null;
 
                 /**
+                 * PeerDataOperationResult syncdSnapshotFatalRecoveryResponse.
+                 * @member {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ISyncDSnapshotFatalRecoveryResponse|null|undefined} syncdSnapshotFatalRecoveryResponse
+                 * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult
+                 * @instance
+                 */
+                PeerDataOperationResult.prototype.syncdSnapshotFatalRecoveryResponse = null;
+
+                /**
                  * Creates a new PeerDataOperationResult instance using the specified properties.
                  * @function create
                  * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult
@@ -74216,6 +74522,8 @@ $root.E2E = (function() {
                         $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FullHistorySyncOnDemandRequestResponse.encode(message.fullHistorySyncOnDemandRequestResponse, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
                     if (message.companionMetaNonceFetchRequestResponse != null && Object.hasOwnProperty.call(message, "companionMetaNonceFetchRequestResponse"))
                         $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionMetaNonceFetchResponse.encode(message.companionMetaNonceFetchRequestResponse, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+                    if (message.syncdSnapshotFatalRecoveryResponse != null && Object.hasOwnProperty.call(message, "syncdSnapshotFatalRecoveryResponse"))
+                        $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse.encode(message.syncdSnapshotFatalRecoveryResponse, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
                     return writer;
                 };
 
@@ -74278,6 +74586,10 @@ $root.E2E = (function() {
                             }
                         case 7: {
                                 message.companionMetaNonceFetchRequestResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionMetaNonceFetchResponse.decode(reader, reader.uint32());
+                                break;
+                            }
+                        case 8: {
+                                message.syncdSnapshotFatalRecoveryResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse.decode(reader, reader.uint32());
                                 break;
                             }
                         default:
@@ -74355,6 +74667,11 @@ $root.E2E = (function() {
                         if (error)
                             return "companionMetaNonceFetchRequestResponse." + error;
                     }
+                    if (message.syncdSnapshotFatalRecoveryResponse != null && message.hasOwnProperty("syncdSnapshotFatalRecoveryResponse")) {
+                        var error = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse.verify(message.syncdSnapshotFatalRecoveryResponse);
+                        if (error)
+                            return "syncdSnapshotFatalRecoveryResponse." + error;
+                    }
                     return null;
                 };
 
@@ -74424,6 +74741,11 @@ $root.E2E = (function() {
                             throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.companionMetaNonceFetchRequestResponse: object expected");
                         message.companionMetaNonceFetchRequestResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionMetaNonceFetchResponse.fromObject(object.companionMetaNonceFetchRequestResponse);
                     }
+                    if (object.syncdSnapshotFatalRecoveryResponse != null) {
+                        if (typeof object.syncdSnapshotFatalRecoveryResponse !== "object")
+                            throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.syncdSnapshotFatalRecoveryResponse: object expected");
+                        message.syncdSnapshotFatalRecoveryResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse.fromObject(object.syncdSnapshotFatalRecoveryResponse);
+                    }
                     return message;
                 };
 
@@ -74448,6 +74770,7 @@ $root.E2E = (function() {
                         object.waffleNonceFetchRequestResponse = null;
                         object.fullHistorySyncOnDemandRequestResponse = null;
                         object.companionMetaNonceFetchRequestResponse = null;
+                        object.syncdSnapshotFatalRecoveryResponse = null;
                     }
                     if (message.mediaUploadResult != null && message.hasOwnProperty("mediaUploadResult"))
                         object.mediaUploadResult = options.enums === String ? $root.MmsRetry.MediaRetryNotification.ResultType[message.mediaUploadResult] === undefined ? message.mediaUploadResult : $root.MmsRetry.MediaRetryNotification.ResultType[message.mediaUploadResult] : message.mediaUploadResult;
@@ -74463,6 +74786,8 @@ $root.E2E = (function() {
                         object.fullHistorySyncOnDemandRequestResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FullHistorySyncOnDemandRequestResponse.toObject(message.fullHistorySyncOnDemandRequestResponse, options);
                     if (message.companionMetaNonceFetchRequestResponse != null && message.hasOwnProperty("companionMetaNonceFetchRequestResponse"))
                         object.companionMetaNonceFetchRequestResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionMetaNonceFetchResponse.toObject(message.companionMetaNonceFetchRequestResponse, options);
+                    if (message.syncdSnapshotFatalRecoveryResponse != null && message.hasOwnProperty("syncdSnapshotFatalRecoveryResponse"))
+                        object.syncdSnapshotFatalRecoveryResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse.toObject(message.syncdSnapshotFatalRecoveryResponse, options);
                     return object;
                 };
 
@@ -75938,6 +76263,244 @@ $root.E2E = (function() {
                     return PlaceholderMessageResendResponse;
                 })();
 
+                PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse = (function() {
+
+                    /**
+                     * Properties of a SyncDSnapshotFatalRecoveryResponse.
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult
+                     * @interface ISyncDSnapshotFatalRecoveryResponse
+                     * @property {Uint8Array|null} [collectionSnapshot] SyncDSnapshotFatalRecoveryResponse collectionSnapshot
+                     * @property {boolean|null} [isCompressed] SyncDSnapshotFatalRecoveryResponse isCompressed
+                     */
+
+                    /**
+                     * Constructs a new SyncDSnapshotFatalRecoveryResponse.
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult
+                     * @classdesc Represents a SyncDSnapshotFatalRecoveryResponse.
+                     * @implements ISyncDSnapshotFatalRecoveryResponse
+                     * @constructor
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ISyncDSnapshotFatalRecoveryResponse=} [properties] Properties to set
+                     */
+                    function SyncDSnapshotFatalRecoveryResponse(properties) {
+                        if (properties)
+                            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                if (properties[keys[i]] != null)
+                                    this[keys[i]] = properties[keys[i]];
+                    }
+
+                    /**
+                     * SyncDSnapshotFatalRecoveryResponse collectionSnapshot.
+                     * @member {Uint8Array} collectionSnapshot
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse
+                     * @instance
+                     */
+                    SyncDSnapshotFatalRecoveryResponse.prototype.collectionSnapshot = $util.newBuffer([]);
+
+                    /**
+                     * SyncDSnapshotFatalRecoveryResponse isCompressed.
+                     * @member {boolean} isCompressed
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse
+                     * @instance
+                     */
+                    SyncDSnapshotFatalRecoveryResponse.prototype.isCompressed = false;
+
+                    /**
+                     * Creates a new SyncDSnapshotFatalRecoveryResponse instance using the specified properties.
+                     * @function create
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse
+                     * @static
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ISyncDSnapshotFatalRecoveryResponse=} [properties] Properties to set
+                     * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse} SyncDSnapshotFatalRecoveryResponse instance
+                     */
+                    SyncDSnapshotFatalRecoveryResponse.create = function create(properties) {
+                        return new SyncDSnapshotFatalRecoveryResponse(properties);
+                    };
+
+                    /**
+                     * Encodes the specified SyncDSnapshotFatalRecoveryResponse message. Does not implicitly {@link E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse.verify|verify} messages.
+                     * @function encode
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse
+                     * @static
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ISyncDSnapshotFatalRecoveryResponse} message SyncDSnapshotFatalRecoveryResponse message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    SyncDSnapshotFatalRecoveryResponse.encode = function encode(message, writer) {
+                        if (!writer)
+                            writer = $Writer.create();
+                        if (message.collectionSnapshot != null && Object.hasOwnProperty.call(message, "collectionSnapshot"))
+                            writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.collectionSnapshot);
+                        if (message.isCompressed != null && Object.hasOwnProperty.call(message, "isCompressed"))
+                            writer.uint32(/* id 2, wireType 0 =*/16).bool(message.isCompressed);
+                        return writer;
+                    };
+
+                    /**
+                     * Encodes the specified SyncDSnapshotFatalRecoveryResponse message, length delimited. Does not implicitly {@link E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse.verify|verify} messages.
+                     * @function encodeDelimited
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse
+                     * @static
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ISyncDSnapshotFatalRecoveryResponse} message SyncDSnapshotFatalRecoveryResponse message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    SyncDSnapshotFatalRecoveryResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                        return this.encode(message, writer).ldelim();
+                    };
+
+                    /**
+                     * Decodes a SyncDSnapshotFatalRecoveryResponse message from the specified reader or buffer.
+                     * @function decode
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @param {number} [length] Message length if known beforehand
+                     * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse} SyncDSnapshotFatalRecoveryResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    SyncDSnapshotFatalRecoveryResponse.decode = function decode(reader, length, error) {
+                        if (!(reader instanceof $Reader))
+                            reader = $Reader.create(reader);
+                        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse();
+                        while (reader.pos < end) {
+                            var tag = reader.uint32();
+                            if (tag === error)
+                                break;
+                            switch (tag >>> 3) {
+                            case 1: {
+                                    message.collectionSnapshot = reader.bytes();
+                                    break;
+                                }
+                            case 2: {
+                                    message.isCompressed = reader.bool();
+                                    break;
+                                }
+                            default:
+                                reader.skipType(tag & 7);
+                                break;
+                            }
+                        }
+                        return message;
+                    };
+
+                    /**
+                     * Decodes a SyncDSnapshotFatalRecoveryResponse message from the specified reader or buffer, length delimited.
+                     * @function decodeDelimited
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse} SyncDSnapshotFatalRecoveryResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    SyncDSnapshotFatalRecoveryResponse.decodeDelimited = function decodeDelimited(reader) {
+                        if (!(reader instanceof $Reader))
+                            reader = new $Reader(reader);
+                        return this.decode(reader, reader.uint32());
+                    };
+
+                    /**
+                     * Verifies a SyncDSnapshotFatalRecoveryResponse message.
+                     * @function verify
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse
+                     * @static
+                     * @param {Object.<string,*>} message Plain object to verify
+                     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                     */
+                    SyncDSnapshotFatalRecoveryResponse.verify = function verify(message) {
+                        if (typeof message !== "object" || message === null)
+                            return "object expected";
+                        if (message.collectionSnapshot != null && message.hasOwnProperty("collectionSnapshot"))
+                            if (!(message.collectionSnapshot && typeof message.collectionSnapshot.length === "number" || $util.isString(message.collectionSnapshot)))
+                                return "collectionSnapshot: buffer expected";
+                        if (message.isCompressed != null && message.hasOwnProperty("isCompressed"))
+                            if (typeof message.isCompressed !== "boolean")
+                                return "isCompressed: boolean expected";
+                        return null;
+                    };
+
+                    /**
+                     * Creates a SyncDSnapshotFatalRecoveryResponse message from a plain object. Also converts values to their respective internal types.
+                     * @function fromObject
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse
+                     * @static
+                     * @param {Object.<string,*>} object Plain object
+                     * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse} SyncDSnapshotFatalRecoveryResponse
+                     */
+                    SyncDSnapshotFatalRecoveryResponse.fromObject = function fromObject(object) {
+                        if (object instanceof $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse)
+                            return object;
+                        var message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse();
+                        if (object.collectionSnapshot != null)
+                            if (typeof object.collectionSnapshot === "string")
+                                $util.base64.decode(object.collectionSnapshot, message.collectionSnapshot = $util.newBuffer($util.base64.length(object.collectionSnapshot)), 0);
+                            else if (object.collectionSnapshot.length >= 0)
+                                message.collectionSnapshot = object.collectionSnapshot;
+                        if (object.isCompressed != null)
+                            message.isCompressed = Boolean(object.isCompressed);
+                        return message;
+                    };
+
+                    /**
+                     * Creates a plain object from a SyncDSnapshotFatalRecoveryResponse message. Also converts values to other types if specified.
+                     * @function toObject
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse
+                     * @static
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse} message SyncDSnapshotFatalRecoveryResponse
+                     * @param {$protobuf.IConversionOptions} [options] Conversion options
+                     * @returns {Object.<string,*>} Plain object
+                     */
+                    SyncDSnapshotFatalRecoveryResponse.toObject = function toObject(message, options) {
+                        if (!options)
+                            options = {};
+                        var object = {};
+                        if (options.defaults) {
+                            if (options.bytes === String)
+                                object.collectionSnapshot = "";
+                            else {
+                                object.collectionSnapshot = [];
+                                if (options.bytes !== Array)
+                                    object.collectionSnapshot = $util.newBuffer(object.collectionSnapshot);
+                            }
+                            object.isCompressed = false;
+                        }
+                        if (message.collectionSnapshot != null && message.hasOwnProperty("collectionSnapshot"))
+                            object.collectionSnapshot = options.bytes === String ? $util.base64.encode(message.collectionSnapshot, 0, message.collectionSnapshot.length) : options.bytes === Array ? Array.prototype.slice.call(message.collectionSnapshot) : message.collectionSnapshot;
+                        if (message.isCompressed != null && message.hasOwnProperty("isCompressed"))
+                            object.isCompressed = message.isCompressed;
+                        return object;
+                    };
+
+                    /**
+                     * Converts this SyncDSnapshotFatalRecoveryResponse to JSON.
+                     * @function toJSON
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse
+                     * @instance
+                     * @returns {Object.<string,*>} JSON object
+                     */
+                    SyncDSnapshotFatalRecoveryResponse.prototype.toJSON = function toJSON() {
+                        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                    };
+
+                    /**
+                     * Gets the default type url for SyncDSnapshotFatalRecoveryResponse
+                     * @function getTypeUrl
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse
+                     * @static
+                     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns {string} The default type url
+                     */
+                    SyncDSnapshotFatalRecoveryResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        if (typeUrlPrefix === undefined) {
+                            typeUrlPrefix = "type.googleapis.com";
+                        }
+                        return typeUrlPrefix + "/E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse";
+                    };
+
+                    return SyncDSnapshotFatalRecoveryResponse;
+                })();
+
                 PeerDataOperationResult.WaffleNonceFetchResponse = (function() {
 
                     /**
@@ -76185,6 +76748,7 @@ $root.E2E = (function() {
          * @property {number} WAFFLE_LINKING_NONCE_FETCH=5 WAFFLE_LINKING_NONCE_FETCH value
          * @property {number} FULL_HISTORY_SYNC_ON_DEMAND=6 FULL_HISTORY_SYNC_ON_DEMAND value
          * @property {number} COMPANION_META_NONCE_FETCH=7 COMPANION_META_NONCE_FETCH value
+         * @property {number} COMPANION_SYNCD_SNAPSHOT_FATAL_RECOVERY=8 COMPANION_SYNCD_SNAPSHOT_FATAL_RECOVERY value
          */
         Message.PeerDataOperationRequestType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -76196,6 +76760,7 @@ $root.E2E = (function() {
             values[valuesById[5] = "WAFFLE_LINKING_NONCE_FETCH"] = 5;
             values[valuesById[6] = "FULL_HISTORY_SYNC_ON_DEMAND"] = 6;
             values[valuesById[7] = "COMPANION_META_NONCE_FETCH"] = 7;
+            values[valuesById[8] = "COMPANION_SYNCD_SNAPSHOT_FATAL_RECOVERY"] = 8;
             return values;
         })();
 

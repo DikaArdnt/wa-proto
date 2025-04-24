@@ -1723,6 +1723,7 @@ message Message {
         optional HistorySyncOnDemandRequest historySyncOnDemandRequest = 4;
         repeated PlaceholderMessageResendRequest placeholderMessageResendRequest = 5;
         optional FullHistorySyncOnDemandRequest fullHistorySyncOnDemandRequest = 6;
+        optional SyncDCollectionFatalRecoveryRequest syncdCollectionFatalRecoveryRequest = 7;
         message FullHistorySyncOnDemandRequest {
             optional Message.FullHistorySyncOnDemandRequestMetadata requestMetadata = 1;
             optional CompanionReg.DeviceProps.HistorySyncConfig historySyncConfig = 2;
@@ -1745,6 +1746,10 @@ message Message {
             optional string url = 1;
             optional bool includeHqThumbnail = 2;
         }
+        message SyncDCollectionFatalRecoveryRequest {
+            repeated string collectionNames = 1;
+            optional int64 timestamp = 2;
+        }
     }
     message PeerDataOperationRequestResponseMessage {
         optional Message.PeerDataOperationRequestType peerDataOperationRequestType = 1;
@@ -1758,6 +1763,7 @@ message Message {
             optional WaffleNonceFetchResponse waffleNonceFetchRequestResponse = 5;
             optional FullHistorySyncOnDemandRequestResponse fullHistorySyncOnDemandRequestResponse = 6;
             optional CompanionMetaNonceFetchResponse companionMetaNonceFetchRequestResponse = 7;
+            optional SyncDSnapshotFatalRecoveryResponse syncdSnapshotFatalRecoveryResponse = 8;
             message CompanionMetaNonceFetchResponse {
                 optional string nonce = 1;
             }
@@ -1795,6 +1801,10 @@ message Message {
             message PlaceholderMessageResendResponse {
                 optional bytes webMessageInfoBytes = 1;
             }
+            message SyncDSnapshotFatalRecoveryResponse {
+                optional bytes collectionSnapshot = 1;
+                optional bool isCompressed = 2;
+            }
             message WaffleNonceFetchResponse {
                 optional string nonce = 1;
                 optional string waEntFbid = 2;
@@ -1810,6 +1820,7 @@ message Message {
         WAFFLE_LINKING_NONCE_FETCH = 5;
         FULL_HISTORY_SYNC_ON_DEMAND = 6;
         COMPANION_META_NONCE_FETCH = 7;
+        COMPANION_SYNCD_SNAPSHOT_FATAL_RECOVERY = 8;
     }
     message PinInChatMessage {
         optional Protocol.MessageKey key = 1;
