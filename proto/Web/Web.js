@@ -10844,6 +10844,7 @@ $root.Web = (function() {
                 case 214:
                 case 215:
                 case 216:
+                case 217:
                     break;
                 }
             if (message.clearMedia != null && message.hasOwnProperty("clearMedia"))
@@ -12049,6 +12050,10 @@ $root.Web = (function() {
             case 216:
                 message.messageStubType = 216;
                 break;
+            case "GROUP_MEMBER_LINK_MODE":
+            case 217:
+                message.messageStubType = 217;
+                break;
             }
             if (object.clearMedia != null)
                 message.clearMedia = Boolean(object.clearMedia);
@@ -12888,6 +12893,7 @@ $root.Web = (function() {
          * @property {number} BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_IN_MESSAGE=214 BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_IN_MESSAGE value
          * @property {number} BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_OUT_MESSAGE=215 BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_OUT_MESSAGE value
          * @property {number} CHANGE_LIMIT_SHARING=216 CHANGE_LIMIT_SHARING value
+         * @property {number} GROUP_MEMBER_LINK_MODE=217 GROUP_MEMBER_LINK_MODE value
          */
         WebMessageInfo.StubType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -13108,6 +13114,7 @@ $root.Web = (function() {
             values[valuesById[214] = "BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_IN_MESSAGE"] = 214;
             values[valuesById[215] = "BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_OUT_MESSAGE"] = 215;
             values[valuesById[216] = "CHANGE_LIMIT_SHARING"] = 216;
+            values[valuesById[217] = "GROUP_MEMBER_LINK_MODE"] = 217;
             return values;
         })();
 
