@@ -92,6 +92,8 @@ message SyncActionValue {
     optional WaffleAccountLinkStateAction waffleAccountLinkStateAction = 58;
     optional UsernameChatStartModeAction usernameChatStartMode = 59;
     optional NotificationActivitySettingAction notificationActivitySettingAction = 60;
+    optional LidContactAction lidContactAction = 61;
+    optional CtwaPerCustomerDataSharingAction ctwaPerCustomerDataSharingAction = 62;
     message AgentAction {
         optional string name = 1;
         optional int32 deviceID = 2;
@@ -124,6 +126,11 @@ message SyncActionValue {
         optional string firstName = 2;
         optional string lidJid = 3;
         optional bool saveOnPrimaryAddressbook = 4;
+        optional string pnJid = 5;
+        optional string username = 6;
+    }
+    message CtwaPerCustomerDataSharingAction {
+        optional bool isCtwaPerCustomerDataSharingEnabled = 1;
     }
     message CustomPaymentMethod {
         required string credentialId = 1;
@@ -172,6 +179,7 @@ message SyncActionValue {
         optional int32 orderIndex = 5;
         optional bool isActive = 6;
         optional ListType type = 7;
+        optional bool isImmutable = 8;
         enum ListType {
             NONE = 0;
             UNREAD = 1;
@@ -179,10 +187,18 @@ message SyncActionValue {
             FAVORITES = 3;
             PREDEFINED = 4;
             CUSTOM = 5;
+            COMMUNITY = 6;
+            SERVER_ASSIGNED = 7;
         }
     }
     message LabelReorderingAction {
         repeated int32 sortedLabelIds = 1;
+    }
+    message LidContactAction {
+        optional string fullName = 1;
+        optional string firstName = 2;
+        optional string username = 3;
+        optional bool saveOnPrimaryAddressbook = 4;
     }
     message LocaleSetting {
         optional string locale = 1;

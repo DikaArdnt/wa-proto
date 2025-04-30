@@ -28972,6 +28972,12 @@ export namespace Protocol {
 
         /** LimitSharing trigger */
         trigger?: (Protocol.LimitSharing.Trigger|null);
+
+        /** LimitSharing limitSharingSettingTimestamp */
+        limitSharingSettingTimestamp?: (number|Long|null);
+
+        /** LimitSharing initiatedByMe */
+        initiatedByMe?: (boolean|null);
     }
 
     /** Represents a LimitSharing. */
@@ -28988,6 +28994,12 @@ export namespace Protocol {
 
         /** LimitSharing trigger. */
         public trigger: Protocol.LimitSharing.Trigger;
+
+        /** LimitSharing limitSharingSettingTimestamp. */
+        public limitSharingSettingTimestamp: (number|Long);
+
+        /** LimitSharing initiatedByMe. */
+        public initiatedByMe: boolean;
 
         /**
          * Creates a new LimitSharing instance using the specified properties.
@@ -29071,8 +29083,10 @@ export namespace Protocol {
 
         /** Trigger enum. */
         enum Trigger {
-            CHAT_SETTING = 0,
-            BIZ_SUPPORTS_FB_HOSTING = 1
+            UNKNOWN = 0,
+            CHAT_SETTING = 1,
+            BIZ_SUPPORTS_FB_HOSTING = 2,
+            UNKNOWN_GROUP = 3
         }
     }
 

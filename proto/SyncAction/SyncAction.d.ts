@@ -455,6 +455,12 @@ export namespace SyncAction {
 
         /** SyncActionValue notificationActivitySettingAction */
         notificationActivitySettingAction?: (SyncAction.SyncActionValue.INotificationActivitySettingAction|null);
+
+        /** SyncActionValue lidContactAction */
+        lidContactAction?: (SyncAction.SyncActionValue.ILidContactAction|null);
+
+        /** SyncActionValue ctwaPerCustomerDataSharingAction */
+        ctwaPerCustomerDataSharingAction?: (SyncAction.SyncActionValue.ICtwaPerCustomerDataSharingAction|null);
     }
 
     /** Represents a SyncActionValue. */
@@ -627,6 +633,12 @@ export namespace SyncAction {
 
         /** SyncActionValue notificationActivitySettingAction. */
         public notificationActivitySettingAction?: (SyncAction.SyncActionValue.INotificationActivitySettingAction|null);
+
+        /** SyncActionValue lidContactAction. */
+        public lidContactAction?: (SyncAction.SyncActionValue.ILidContactAction|null);
+
+        /** SyncActionValue ctwaPerCustomerDataSharingAction. */
+        public ctwaPerCustomerDataSharingAction?: (SyncAction.SyncActionValue.ICtwaPerCustomerDataSharingAction|null);
 
         /**
          * Creates a new SyncActionValue instance using the specified properties.
@@ -1516,6 +1528,12 @@ export namespace SyncAction {
 
             /** ContactAction saveOnPrimaryAddressbook */
             saveOnPrimaryAddressbook?: (boolean|null);
+
+            /** ContactAction pnJid */
+            pnJid?: (string|null);
+
+            /** ContactAction username */
+            username?: (string|null);
         }
 
         /** Represents a ContactAction. */
@@ -1538,6 +1556,12 @@ export namespace SyncAction {
 
             /** ContactAction saveOnPrimaryAddressbook. */
             public saveOnPrimaryAddressbook: boolean;
+
+            /** ContactAction pnJid. */
+            public pnJid: string;
+
+            /** ContactAction username. */
+            public username: string;
 
             /**
              * Creates a new ContactAction instance using the specified properties.
@@ -1611,6 +1635,103 @@ export namespace SyncAction {
 
             /**
              * Gets the default type url for ContactAction
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a CtwaPerCustomerDataSharingAction. */
+        interface ICtwaPerCustomerDataSharingAction {
+
+            /** CtwaPerCustomerDataSharingAction isCtwaPerCustomerDataSharingEnabled */
+            isCtwaPerCustomerDataSharingEnabled?: (boolean|null);
+        }
+
+        /** Represents a CtwaPerCustomerDataSharingAction. */
+        class CtwaPerCustomerDataSharingAction implements ICtwaPerCustomerDataSharingAction {
+
+            /**
+             * Constructs a new CtwaPerCustomerDataSharingAction.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SyncAction.SyncActionValue.ICtwaPerCustomerDataSharingAction);
+
+            /** CtwaPerCustomerDataSharingAction isCtwaPerCustomerDataSharingEnabled. */
+            public isCtwaPerCustomerDataSharingEnabled: boolean;
+
+            /**
+             * Creates a new CtwaPerCustomerDataSharingAction instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns CtwaPerCustomerDataSharingAction instance
+             */
+            public static create(properties?: SyncAction.SyncActionValue.ICtwaPerCustomerDataSharingAction): SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction;
+
+            /**
+             * Encodes the specified CtwaPerCustomerDataSharingAction message. Does not implicitly {@link SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.verify|verify} messages.
+             * @param message CtwaPerCustomerDataSharingAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SyncAction.SyncActionValue.ICtwaPerCustomerDataSharingAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified CtwaPerCustomerDataSharingAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.verify|verify} messages.
+             * @param message CtwaPerCustomerDataSharingAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SyncAction.SyncActionValue.ICtwaPerCustomerDataSharingAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a CtwaPerCustomerDataSharingAction message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns CtwaPerCustomerDataSharingAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction;
+
+            /**
+             * Decodes a CtwaPerCustomerDataSharingAction message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns CtwaPerCustomerDataSharingAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction;
+
+            /**
+             * Verifies a CtwaPerCustomerDataSharingAction message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a CtwaPerCustomerDataSharingAction message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns CtwaPerCustomerDataSharingAction
+             */
+            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction;
+
+            /**
+             * Creates a plain object from a CtwaPerCustomerDataSharingAction message. Also converts values to other types if specified.
+             * @param message CtwaPerCustomerDataSharingAction
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this CtwaPerCustomerDataSharingAction to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for CtwaPerCustomerDataSharingAction
              * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
              * @returns The default type url
              */
@@ -2746,6 +2867,9 @@ export namespace SyncAction {
 
             /** LabelEditAction type */
             type?: (SyncAction.SyncActionValue.LabelEditAction.ListType|null);
+
+            /** LabelEditAction isImmutable */
+            isImmutable?: (boolean|null);
         }
 
         /** Represents a LabelEditAction. */
@@ -2777,6 +2901,9 @@ export namespace SyncAction {
 
             /** LabelEditAction type. */
             public type: SyncAction.SyncActionValue.LabelEditAction.ListType;
+
+            /** LabelEditAction isImmutable. */
+            public isImmutable: boolean;
 
             /**
              * Creates a new LabelEditAction instance using the specified properties.
@@ -2865,7 +2992,9 @@ export namespace SyncAction {
                 GROUPS = 2,
                 FAVORITES = 3,
                 PREDEFINED = 4,
-                CUSTOM = 5
+                CUSTOM = 5,
+                COMMUNITY = 6,
+                SERVER_ASSIGNED = 7
             }
         }
 
@@ -2960,6 +3089,121 @@ export namespace SyncAction {
 
             /**
              * Gets the default type url for LabelReorderingAction
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a LidContactAction. */
+        interface ILidContactAction {
+
+            /** LidContactAction fullName */
+            fullName?: (string|null);
+
+            /** LidContactAction firstName */
+            firstName?: (string|null);
+
+            /** LidContactAction username */
+            username?: (string|null);
+
+            /** LidContactAction saveOnPrimaryAddressbook */
+            saveOnPrimaryAddressbook?: (boolean|null);
+        }
+
+        /** Represents a LidContactAction. */
+        class LidContactAction implements ILidContactAction {
+
+            /**
+             * Constructs a new LidContactAction.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SyncAction.SyncActionValue.ILidContactAction);
+
+            /** LidContactAction fullName. */
+            public fullName: string;
+
+            /** LidContactAction firstName. */
+            public firstName: string;
+
+            /** LidContactAction username. */
+            public username: string;
+
+            /** LidContactAction saveOnPrimaryAddressbook. */
+            public saveOnPrimaryAddressbook: boolean;
+
+            /**
+             * Creates a new LidContactAction instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns LidContactAction instance
+             */
+            public static create(properties?: SyncAction.SyncActionValue.ILidContactAction): SyncAction.SyncActionValue.LidContactAction;
+
+            /**
+             * Encodes the specified LidContactAction message. Does not implicitly {@link SyncAction.SyncActionValue.LidContactAction.verify|verify} messages.
+             * @param message LidContactAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SyncAction.SyncActionValue.ILidContactAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified LidContactAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.LidContactAction.verify|verify} messages.
+             * @param message LidContactAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SyncAction.SyncActionValue.ILidContactAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a LidContactAction message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns LidContactAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.LidContactAction;
+
+            /**
+             * Decodes a LidContactAction message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns LidContactAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.LidContactAction;
+
+            /**
+             * Verifies a LidContactAction message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a LidContactAction message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns LidContactAction
+             */
+            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.LidContactAction;
+
+            /**
+             * Creates a plain object from a LidContactAction message. Also converts values to other types if specified.
+             * @param message LidContactAction
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SyncAction.SyncActionValue.LidContactAction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this LidContactAction to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for LidContactAction
              * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
              * @returns The default type url
              */
@@ -7645,6 +7889,12 @@ export namespace Protocol {
 
         /** LimitSharing trigger */
         trigger?: (Protocol.LimitSharing.Trigger|null);
+
+        /** LimitSharing limitSharingSettingTimestamp */
+        limitSharingSettingTimestamp?: (number|Long|null);
+
+        /** LimitSharing initiatedByMe */
+        initiatedByMe?: (boolean|null);
     }
 
     /** Represents a LimitSharing. */
@@ -7661,6 +7911,12 @@ export namespace Protocol {
 
         /** LimitSharing trigger. */
         public trigger: Protocol.LimitSharing.Trigger;
+
+        /** LimitSharing limitSharingSettingTimestamp. */
+        public limitSharingSettingTimestamp: (number|Long);
+
+        /** LimitSharing initiatedByMe. */
+        public initiatedByMe: boolean;
 
         /**
          * Creates a new LimitSharing instance using the specified properties.
@@ -7744,8 +8000,10 @@ export namespace Protocol {
 
         /** Trigger enum. */
         enum Trigger {
-            CHAT_SETTING = 0,
-            BIZ_SUPPORTS_FB_HOSTING = 1
+            UNKNOWN = 0,
+            CHAT_SETTING = 1,
+            BIZ_SUPPORTS_FB_HOSTING = 2,
+            UNKNOWN_GROUP = 3
         }
     }
 

@@ -79357,6 +79357,8 @@ $root.Protocol = (function() {
          * @interface ILimitSharing
          * @property {boolean|null} [sharingLimited] LimitSharing sharingLimited
          * @property {Protocol.LimitSharing.Trigger|null} [trigger] LimitSharing trigger
+         * @property {number|Long|null} [limitSharingSettingTimestamp] LimitSharing limitSharingSettingTimestamp
+         * @property {boolean|null} [initiatedByMe] LimitSharing initiatedByMe
          */
 
         /**
@@ -79391,6 +79393,22 @@ $root.Protocol = (function() {
         LimitSharing.prototype.trigger = 0;
 
         /**
+         * LimitSharing limitSharingSettingTimestamp.
+         * @member {number|Long} limitSharingSettingTimestamp
+         * @memberof Protocol.LimitSharing
+         * @instance
+         */
+        LimitSharing.prototype.limitSharingSettingTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * LimitSharing initiatedByMe.
+         * @member {boolean} initiatedByMe
+         * @memberof Protocol.LimitSharing
+         * @instance
+         */
+        LimitSharing.prototype.initiatedByMe = false;
+
+        /**
          * Creates a new LimitSharing instance using the specified properties.
          * @function create
          * @memberof Protocol.LimitSharing
@@ -79418,6 +79436,10 @@ $root.Protocol = (function() {
                 writer.uint32(/* id 1, wireType 0 =*/8).bool(message.sharingLimited);
             if (message.trigger != null && Object.hasOwnProperty.call(message, "trigger"))
                 writer.uint32(/* id 2, wireType 0 =*/16).int32(message.trigger);
+            if (message.limitSharingSettingTimestamp != null && Object.hasOwnProperty.call(message, "limitSharingSettingTimestamp"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int64(message.limitSharingSettingTimestamp);
+            if (message.initiatedByMe != null && Object.hasOwnProperty.call(message, "initiatedByMe"))
+                writer.uint32(/* id 4, wireType 0 =*/32).bool(message.initiatedByMe);
             return writer;
         };
 
@@ -79460,6 +79482,14 @@ $root.Protocol = (function() {
                     }
                 case 2: {
                         message.trigger = reader.int32();
+                        break;
+                    }
+                case 3: {
+                        message.limitSharingSettingTimestamp = reader.int64();
+                        break;
+                    }
+                case 4: {
+                        message.initiatedByMe = reader.bool();
                         break;
                     }
                 default:
@@ -79506,8 +79536,16 @@ $root.Protocol = (function() {
                     return "trigger: enum value expected";
                 case 0:
                 case 1:
+                case 2:
+                case 3:
                     break;
                 }
+            if (message.limitSharingSettingTimestamp != null && message.hasOwnProperty("limitSharingSettingTimestamp"))
+                if (!$util.isInteger(message.limitSharingSettingTimestamp) && !(message.limitSharingSettingTimestamp && $util.isInteger(message.limitSharingSettingTimestamp.low) && $util.isInteger(message.limitSharingSettingTimestamp.high)))
+                    return "limitSharingSettingTimestamp: integer|Long expected";
+            if (message.initiatedByMe != null && message.hasOwnProperty("initiatedByMe"))
+                if (typeof message.initiatedByMe !== "boolean")
+                    return "initiatedByMe: boolean expected";
             return null;
         };
 
@@ -79532,15 +79570,34 @@ $root.Protocol = (function() {
                     break;
                 }
                 break;
-            case "CHAT_SETTING":
+            case "UNKNOWN":
             case 0:
                 message.trigger = 0;
                 break;
-            case "BIZ_SUPPORTS_FB_HOSTING":
+            case "CHAT_SETTING":
             case 1:
                 message.trigger = 1;
                 break;
+            case "BIZ_SUPPORTS_FB_HOSTING":
+            case 2:
+                message.trigger = 2;
+                break;
+            case "UNKNOWN_GROUP":
+            case 3:
+                message.trigger = 3;
+                break;
             }
+            if (object.limitSharingSettingTimestamp != null)
+                if ($util.Long)
+                    (message.limitSharingSettingTimestamp = $util.Long.fromValue(object.limitSharingSettingTimestamp)).unsigned = false;
+                else if (typeof object.limitSharingSettingTimestamp === "string")
+                    message.limitSharingSettingTimestamp = parseInt(object.limitSharingSettingTimestamp, 10);
+                else if (typeof object.limitSharingSettingTimestamp === "number")
+                    message.limitSharingSettingTimestamp = object.limitSharingSettingTimestamp;
+                else if (typeof object.limitSharingSettingTimestamp === "object")
+                    message.limitSharingSettingTimestamp = new $util.LongBits(object.limitSharingSettingTimestamp.low >>> 0, object.limitSharingSettingTimestamp.high >>> 0).toNumber();
+            if (object.initiatedByMe != null)
+                message.initiatedByMe = Boolean(object.initiatedByMe);
             return message;
         };
 
@@ -79559,12 +79616,25 @@ $root.Protocol = (function() {
             var object = {};
             if (options.defaults) {
                 object.sharingLimited = false;
-                object.trigger = options.enums === String ? "CHAT_SETTING" : 0;
+                object.trigger = options.enums === String ? "UNKNOWN" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.limitSharingSettingTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.limitSharingSettingTimestamp = options.longs === String ? "0" : 0;
+                object.initiatedByMe = false;
             }
             if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
                 object.sharingLimited = message.sharingLimited;
             if (message.trigger != null && message.hasOwnProperty("trigger"))
                 object.trigger = options.enums === String ? $root.Protocol.LimitSharing.Trigger[message.trigger] === undefined ? message.trigger : $root.Protocol.LimitSharing.Trigger[message.trigger] : message.trigger;
+            if (message.limitSharingSettingTimestamp != null && message.hasOwnProperty("limitSharingSettingTimestamp"))
+                if (typeof message.limitSharingSettingTimestamp === "number")
+                    object.limitSharingSettingTimestamp = options.longs === String ? String(message.limitSharingSettingTimestamp) : message.limitSharingSettingTimestamp;
+                else
+                    object.limitSharingSettingTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.limitSharingSettingTimestamp) : options.longs === Number ? new $util.LongBits(message.limitSharingSettingTimestamp.low >>> 0, message.limitSharingSettingTimestamp.high >>> 0).toNumber() : message.limitSharingSettingTimestamp;
+            if (message.initiatedByMe != null && message.hasOwnProperty("initiatedByMe"))
+                object.initiatedByMe = message.initiatedByMe;
             return object;
         };
 
@@ -79598,13 +79668,17 @@ $root.Protocol = (function() {
          * Trigger enum.
          * @name Protocol.LimitSharing.Trigger
          * @enum {number}
-         * @property {number} CHAT_SETTING=0 CHAT_SETTING value
-         * @property {number} BIZ_SUPPORTS_FB_HOSTING=1 BIZ_SUPPORTS_FB_HOSTING value
+         * @property {number} UNKNOWN=0 UNKNOWN value
+         * @property {number} CHAT_SETTING=1 CHAT_SETTING value
+         * @property {number} BIZ_SUPPORTS_FB_HOSTING=2 BIZ_SUPPORTS_FB_HOSTING value
+         * @property {number} UNKNOWN_GROUP=3 UNKNOWN_GROUP value
          */
         LimitSharing.Trigger = (function() {
             var valuesById = {}, values = Object.create(valuesById);
-            values[valuesById[0] = "CHAT_SETTING"] = 0;
-            values[valuesById[1] = "BIZ_SUPPORTS_FB_HOSTING"] = 1;
+            values[valuesById[0] = "UNKNOWN"] = 0;
+            values[valuesById[1] = "CHAT_SETTING"] = 1;
+            values[valuesById[2] = "BIZ_SUPPORTS_FB_HOSTING"] = 2;
+            values[valuesById[3] = "UNKNOWN_GROUP"] = 3;
             return values;
         })();
 

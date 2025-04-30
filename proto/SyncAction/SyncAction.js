@@ -948,6 +948,8 @@ $root.SyncAction = (function() {
          * @property {SyncAction.SyncActionValue.IWaffleAccountLinkStateAction|null} [waffleAccountLinkStateAction] SyncActionValue waffleAccountLinkStateAction
          * @property {SyncAction.SyncActionValue.IUsernameChatStartModeAction|null} [usernameChatStartMode] SyncActionValue usernameChatStartMode
          * @property {SyncAction.SyncActionValue.INotificationActivitySettingAction|null} [notificationActivitySettingAction] SyncActionValue notificationActivitySettingAction
+         * @property {SyncAction.SyncActionValue.ILidContactAction|null} [lidContactAction] SyncActionValue lidContactAction
+         * @property {SyncAction.SyncActionValue.ICtwaPerCustomerDataSharingAction|null} [ctwaPerCustomerDataSharingAction] SyncActionValue ctwaPerCustomerDataSharingAction
          */
 
         /**
@@ -1398,6 +1400,22 @@ $root.SyncAction = (function() {
         SyncActionValue.prototype.notificationActivitySettingAction = null;
 
         /**
+         * SyncActionValue lidContactAction.
+         * @member {SyncAction.SyncActionValue.ILidContactAction|null|undefined} lidContactAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.lidContactAction = null;
+
+        /**
+         * SyncActionValue ctwaPerCustomerDataSharingAction.
+         * @member {SyncAction.SyncActionValue.ICtwaPerCustomerDataSharingAction|null|undefined} ctwaPerCustomerDataSharingAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.ctwaPerCustomerDataSharingAction = null;
+
+        /**
          * Creates a new SyncActionValue instance using the specified properties.
          * @function create
          * @memberof SyncAction.SyncActionValue
@@ -1529,6 +1547,10 @@ $root.SyncAction = (function() {
                 $root.SyncAction.SyncActionValue.UsernameChatStartModeAction.encode(message.usernameChatStartMode, writer.uint32(/* id 59, wireType 2 =*/474).fork()).ldelim();
             if (message.notificationActivitySettingAction != null && Object.hasOwnProperty.call(message, "notificationActivitySettingAction"))
                 $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.encode(message.notificationActivitySettingAction, writer.uint32(/* id 60, wireType 2 =*/482).fork()).ldelim();
+            if (message.lidContactAction != null && Object.hasOwnProperty.call(message, "lidContactAction"))
+                $root.SyncAction.SyncActionValue.LidContactAction.encode(message.lidContactAction, writer.uint32(/* id 61, wireType 2 =*/490).fork()).ldelim();
+            if (message.ctwaPerCustomerDataSharingAction != null && Object.hasOwnProperty.call(message, "ctwaPerCustomerDataSharingAction"))
+                $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.encode(message.ctwaPerCustomerDataSharingAction, writer.uint32(/* id 62, wireType 2 =*/498).fork()).ldelim();
             return writer;
         };
 
@@ -1779,6 +1801,14 @@ $root.SyncAction = (function() {
                     }
                 case 60: {
                         message.notificationActivitySettingAction = $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 61: {
+                        message.lidContactAction = $root.SyncAction.SyncActionValue.LidContactAction.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 62: {
+                        message.ctwaPerCustomerDataSharingAction = $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -2084,6 +2114,16 @@ $root.SyncAction = (function() {
                 if (error)
                     return "notificationActivitySettingAction." + error;
             }
+            if (message.lidContactAction != null && message.hasOwnProperty("lidContactAction")) {
+                var error = $root.SyncAction.SyncActionValue.LidContactAction.verify(message.lidContactAction);
+                if (error)
+                    return "lidContactAction." + error;
+            }
+            if (message.ctwaPerCustomerDataSharingAction != null && message.hasOwnProperty("ctwaPerCustomerDataSharingAction")) {
+                var error = $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.verify(message.ctwaPerCustomerDataSharingAction);
+                if (error)
+                    return "ctwaPerCustomerDataSharingAction." + error;
+            }
             return null;
         };
 
@@ -2373,6 +2413,16 @@ $root.SyncAction = (function() {
                     throw TypeError(".SyncAction.SyncActionValue.notificationActivitySettingAction: object expected");
                 message.notificationActivitySettingAction = $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.fromObject(object.notificationActivitySettingAction);
             }
+            if (object.lidContactAction != null) {
+                if (typeof object.lidContactAction !== "object")
+                    throw TypeError(".SyncAction.SyncActionValue.lidContactAction: object expected");
+                message.lidContactAction = $root.SyncAction.SyncActionValue.LidContactAction.fromObject(object.lidContactAction);
+            }
+            if (object.ctwaPerCustomerDataSharingAction != null) {
+                if (typeof object.ctwaPerCustomerDataSharingAction !== "object")
+                    throw TypeError(".SyncAction.SyncActionValue.ctwaPerCustomerDataSharingAction: object expected");
+                message.ctwaPerCustomerDataSharingAction = $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.fromObject(object.ctwaPerCustomerDataSharingAction);
+            }
             return message;
         };
 
@@ -2448,6 +2498,8 @@ $root.SyncAction = (function() {
                 object.waffleAccountLinkStateAction = null;
                 object.usernameChatStartMode = null;
                 object.notificationActivitySettingAction = null;
+                object.lidContactAction = null;
+                object.ctwaPerCustomerDataSharingAction = null;
             }
             if (message.timestamp != null && message.hasOwnProperty("timestamp"))
                 if (typeof message.timestamp === "number")
@@ -2560,6 +2612,10 @@ $root.SyncAction = (function() {
                 object.usernameChatStartMode = $root.SyncAction.SyncActionValue.UsernameChatStartModeAction.toObject(message.usernameChatStartMode, options);
             if (message.notificationActivitySettingAction != null && message.hasOwnProperty("notificationActivitySettingAction"))
                 object.notificationActivitySettingAction = $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.toObject(message.notificationActivitySettingAction, options);
+            if (message.lidContactAction != null && message.hasOwnProperty("lidContactAction"))
+                object.lidContactAction = $root.SyncAction.SyncActionValue.LidContactAction.toObject(message.lidContactAction, options);
+            if (message.ctwaPerCustomerDataSharingAction != null && message.hasOwnProperty("ctwaPerCustomerDataSharingAction"))
+                object.ctwaPerCustomerDataSharingAction = $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.toObject(message.ctwaPerCustomerDataSharingAction, options);
             return object;
         };
 
@@ -4325,6 +4381,8 @@ $root.SyncAction = (function() {
              * @property {string|null} [firstName] ContactAction firstName
              * @property {string|null} [lidJid] ContactAction lidJid
              * @property {boolean|null} [saveOnPrimaryAddressbook] ContactAction saveOnPrimaryAddressbook
+             * @property {string|null} [pnJid] ContactAction pnJid
+             * @property {string|null} [username] ContactAction username
              */
 
             /**
@@ -4375,6 +4433,22 @@ $root.SyncAction = (function() {
             ContactAction.prototype.saveOnPrimaryAddressbook = false;
 
             /**
+             * ContactAction pnJid.
+             * @member {string} pnJid
+             * @memberof SyncAction.SyncActionValue.ContactAction
+             * @instance
+             */
+            ContactAction.prototype.pnJid = "";
+
+            /**
+             * ContactAction username.
+             * @member {string} username
+             * @memberof SyncAction.SyncActionValue.ContactAction
+             * @instance
+             */
+            ContactAction.prototype.username = "";
+
+            /**
              * Creates a new ContactAction instance using the specified properties.
              * @function create
              * @memberof SyncAction.SyncActionValue.ContactAction
@@ -4406,6 +4480,10 @@ $root.SyncAction = (function() {
                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.lidJid);
                 if (message.saveOnPrimaryAddressbook != null && Object.hasOwnProperty.call(message, "saveOnPrimaryAddressbook"))
                     writer.uint32(/* id 4, wireType 0 =*/32).bool(message.saveOnPrimaryAddressbook);
+                if (message.pnJid != null && Object.hasOwnProperty.call(message, "pnJid"))
+                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.pnJid);
+                if (message.username != null && Object.hasOwnProperty.call(message, "username"))
+                    writer.uint32(/* id 6, wireType 2 =*/50).string(message.username);
                 return writer;
             };
 
@@ -4458,6 +4536,14 @@ $root.SyncAction = (function() {
                             message.saveOnPrimaryAddressbook = reader.bool();
                             break;
                         }
+                    case 5: {
+                            message.pnJid = reader.string();
+                            break;
+                        }
+                    case 6: {
+                            message.username = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -4505,6 +4591,12 @@ $root.SyncAction = (function() {
                 if (message.saveOnPrimaryAddressbook != null && message.hasOwnProperty("saveOnPrimaryAddressbook"))
                     if (typeof message.saveOnPrimaryAddressbook !== "boolean")
                         return "saveOnPrimaryAddressbook: boolean expected";
+                if (message.pnJid != null && message.hasOwnProperty("pnJid"))
+                    if (!$util.isString(message.pnJid))
+                        return "pnJid: string expected";
+                if (message.username != null && message.hasOwnProperty("username"))
+                    if (!$util.isString(message.username))
+                        return "username: string expected";
                 return null;
             };
 
@@ -4528,6 +4620,10 @@ $root.SyncAction = (function() {
                     message.lidJid = String(object.lidJid);
                 if (object.saveOnPrimaryAddressbook != null)
                     message.saveOnPrimaryAddressbook = Boolean(object.saveOnPrimaryAddressbook);
+                if (object.pnJid != null)
+                    message.pnJid = String(object.pnJid);
+                if (object.username != null)
+                    message.username = String(object.username);
                 return message;
             };
 
@@ -4549,6 +4645,8 @@ $root.SyncAction = (function() {
                     object.firstName = "";
                     object.lidJid = "";
                     object.saveOnPrimaryAddressbook = false;
+                    object.pnJid = "";
+                    object.username = "";
                 }
                 if (message.fullName != null && message.hasOwnProperty("fullName"))
                     object.fullName = message.fullName;
@@ -4558,6 +4656,10 @@ $root.SyncAction = (function() {
                     object.lidJid = message.lidJid;
                 if (message.saveOnPrimaryAddressbook != null && message.hasOwnProperty("saveOnPrimaryAddressbook"))
                     object.saveOnPrimaryAddressbook = message.saveOnPrimaryAddressbook;
+                if (message.pnJid != null && message.hasOwnProperty("pnJid"))
+                    object.pnJid = message.pnJid;
+                if (message.username != null && message.hasOwnProperty("username"))
+                    object.username = message.username;
                 return object;
             };
 
@@ -4588,6 +4690,211 @@ $root.SyncAction = (function() {
             };
 
             return ContactAction;
+        })();
+
+        SyncActionValue.CtwaPerCustomerDataSharingAction = (function() {
+
+            /**
+             * Properties of a CtwaPerCustomerDataSharingAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface ICtwaPerCustomerDataSharingAction
+             * @property {boolean|null} [isCtwaPerCustomerDataSharingEnabled] CtwaPerCustomerDataSharingAction isCtwaPerCustomerDataSharingEnabled
+             */
+
+            /**
+             * Constructs a new CtwaPerCustomerDataSharingAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents a CtwaPerCustomerDataSharingAction.
+             * @implements ICtwaPerCustomerDataSharingAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.ICtwaPerCustomerDataSharingAction=} [properties] Properties to set
+             */
+            function CtwaPerCustomerDataSharingAction(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * CtwaPerCustomerDataSharingAction isCtwaPerCustomerDataSharingEnabled.
+             * @member {boolean} isCtwaPerCustomerDataSharingEnabled
+             * @memberof SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction
+             * @instance
+             */
+            CtwaPerCustomerDataSharingAction.prototype.isCtwaPerCustomerDataSharingEnabled = false;
+
+            /**
+             * Creates a new CtwaPerCustomerDataSharingAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction
+             * @static
+             * @param {SyncAction.SyncActionValue.ICtwaPerCustomerDataSharingAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction} CtwaPerCustomerDataSharingAction instance
+             */
+            CtwaPerCustomerDataSharingAction.create = function create(properties) {
+                return new CtwaPerCustomerDataSharingAction(properties);
+            };
+
+            /**
+             * Encodes the specified CtwaPerCustomerDataSharingAction message. Does not implicitly {@link SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction
+             * @static
+             * @param {SyncAction.SyncActionValue.ICtwaPerCustomerDataSharingAction} message CtwaPerCustomerDataSharingAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            CtwaPerCustomerDataSharingAction.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.isCtwaPerCustomerDataSharingEnabled != null && Object.hasOwnProperty.call(message, "isCtwaPerCustomerDataSharingEnabled"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).bool(message.isCtwaPerCustomerDataSharingEnabled);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified CtwaPerCustomerDataSharingAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction
+             * @static
+             * @param {SyncAction.SyncActionValue.ICtwaPerCustomerDataSharingAction} message CtwaPerCustomerDataSharingAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            CtwaPerCustomerDataSharingAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a CtwaPerCustomerDataSharingAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction} CtwaPerCustomerDataSharingAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            CtwaPerCustomerDataSharingAction.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.isCtwaPerCustomerDataSharingEnabled = reader.bool();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a CtwaPerCustomerDataSharingAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction} CtwaPerCustomerDataSharingAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            CtwaPerCustomerDataSharingAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a CtwaPerCustomerDataSharingAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            CtwaPerCustomerDataSharingAction.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.isCtwaPerCustomerDataSharingEnabled != null && message.hasOwnProperty("isCtwaPerCustomerDataSharingEnabled"))
+                    if (typeof message.isCtwaPerCustomerDataSharingEnabled !== "boolean")
+                        return "isCtwaPerCustomerDataSharingEnabled: boolean expected";
+                return null;
+            };
+
+            /**
+             * Creates a CtwaPerCustomerDataSharingAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction} CtwaPerCustomerDataSharingAction
+             */
+            CtwaPerCustomerDataSharingAction.fromObject = function fromObject(object) {
+                if (object instanceof $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction)
+                    return object;
+                var message = new $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction();
+                if (object.isCtwaPerCustomerDataSharingEnabled != null)
+                    message.isCtwaPerCustomerDataSharingEnabled = Boolean(object.isCtwaPerCustomerDataSharingEnabled);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a CtwaPerCustomerDataSharingAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction
+             * @static
+             * @param {SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction} message CtwaPerCustomerDataSharingAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            CtwaPerCustomerDataSharingAction.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.isCtwaPerCustomerDataSharingEnabled = false;
+                if (message.isCtwaPerCustomerDataSharingEnabled != null && message.hasOwnProperty("isCtwaPerCustomerDataSharingEnabled"))
+                    object.isCtwaPerCustomerDataSharingEnabled = message.isCtwaPerCustomerDataSharingEnabled;
+                return object;
+            };
+
+            /**
+             * Converts this CtwaPerCustomerDataSharingAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            CtwaPerCustomerDataSharingAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for CtwaPerCustomerDataSharingAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            CtwaPerCustomerDataSharingAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction";
+            };
+
+            return CtwaPerCustomerDataSharingAction;
         })();
 
         SyncActionValue.CustomPaymentMethod = (function() {
@@ -7083,6 +7390,7 @@ $root.SyncAction = (function() {
              * @property {number|null} [orderIndex] LabelEditAction orderIndex
              * @property {boolean|null} [isActive] LabelEditAction isActive
              * @property {SyncAction.SyncActionValue.LabelEditAction.ListType|null} [type] LabelEditAction type
+             * @property {boolean|null} [isImmutable] LabelEditAction isImmutable
              */
 
             /**
@@ -7157,6 +7465,14 @@ $root.SyncAction = (function() {
             LabelEditAction.prototype.type = 0;
 
             /**
+             * LabelEditAction isImmutable.
+             * @member {boolean} isImmutable
+             * @memberof SyncAction.SyncActionValue.LabelEditAction
+             * @instance
+             */
+            LabelEditAction.prototype.isImmutable = false;
+
+            /**
              * Creates a new LabelEditAction instance using the specified properties.
              * @function create
              * @memberof SyncAction.SyncActionValue.LabelEditAction
@@ -7194,6 +7510,8 @@ $root.SyncAction = (function() {
                     writer.uint32(/* id 6, wireType 0 =*/48).bool(message.isActive);
                 if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                     writer.uint32(/* id 7, wireType 0 =*/56).int32(message.type);
+                if (message.isImmutable != null && Object.hasOwnProperty.call(message, "isImmutable"))
+                    writer.uint32(/* id 8, wireType 0 =*/64).bool(message.isImmutable);
                 return writer;
             };
 
@@ -7256,6 +7574,10 @@ $root.SyncAction = (function() {
                         }
                     case 7: {
                             message.type = reader.int32();
+                            break;
+                        }
+                    case 8: {
+                            message.isImmutable = reader.bool();
                             break;
                         }
                     default:
@@ -7321,8 +7643,13 @@ $root.SyncAction = (function() {
                     case 3:
                     case 4:
                     case 5:
+                    case 6:
+                    case 7:
                         break;
                     }
+                if (message.isImmutable != null && message.hasOwnProperty("isImmutable"))
+                    if (typeof message.isImmutable !== "boolean")
+                        return "isImmutable: boolean expected";
                 return null;
             };
 
@@ -7381,7 +7708,17 @@ $root.SyncAction = (function() {
                 case 5:
                     message.type = 5;
                     break;
+                case "COMMUNITY":
+                case 6:
+                    message.type = 6;
+                    break;
+                case "SERVER_ASSIGNED":
+                case 7:
+                    message.type = 7;
+                    break;
                 }
+                if (object.isImmutable != null)
+                    message.isImmutable = Boolean(object.isImmutable);
                 return message;
             };
 
@@ -7406,6 +7743,7 @@ $root.SyncAction = (function() {
                     object.orderIndex = 0;
                     object.isActive = false;
                     object.type = options.enums === String ? "NONE" : 0;
+                    object.isImmutable = false;
                 }
                 if (message.name != null && message.hasOwnProperty("name"))
                     object.name = message.name;
@@ -7421,6 +7759,8 @@ $root.SyncAction = (function() {
                     object.isActive = message.isActive;
                 if (message.type != null && message.hasOwnProperty("type"))
                     object.type = options.enums === String ? $root.SyncAction.SyncActionValue.LabelEditAction.ListType[message.type] === undefined ? message.type : $root.SyncAction.SyncActionValue.LabelEditAction.ListType[message.type] : message.type;
+                if (message.isImmutable != null && message.hasOwnProperty("isImmutable"))
+                    object.isImmutable = message.isImmutable;
                 return object;
             };
 
@@ -7460,6 +7800,8 @@ $root.SyncAction = (function() {
              * @property {number} FAVORITES=3 FAVORITES value
              * @property {number} PREDEFINED=4 PREDEFINED value
              * @property {number} CUSTOM=5 CUSTOM value
+             * @property {number} COMMUNITY=6 COMMUNITY value
+             * @property {number} SERVER_ASSIGNED=7 SERVER_ASSIGNED value
              */
             LabelEditAction.ListType = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -7469,6 +7811,8 @@ $root.SyncAction = (function() {
                 values[valuesById[3] = "FAVORITES"] = 3;
                 values[valuesById[4] = "PREDEFINED"] = 4;
                 values[valuesById[5] = "CUSTOM"] = 5;
+                values[valuesById[6] = "COMMUNITY"] = 6;
+                values[valuesById[7] = "SERVER_ASSIGNED"] = 7;
                 return values;
             })();
 
@@ -7699,6 +8043,281 @@ $root.SyncAction = (function() {
             };
 
             return LabelReorderingAction;
+        })();
+
+        SyncActionValue.LidContactAction = (function() {
+
+            /**
+             * Properties of a LidContactAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface ILidContactAction
+             * @property {string|null} [fullName] LidContactAction fullName
+             * @property {string|null} [firstName] LidContactAction firstName
+             * @property {string|null} [username] LidContactAction username
+             * @property {boolean|null} [saveOnPrimaryAddressbook] LidContactAction saveOnPrimaryAddressbook
+             */
+
+            /**
+             * Constructs a new LidContactAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents a LidContactAction.
+             * @implements ILidContactAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.ILidContactAction=} [properties] Properties to set
+             */
+            function LidContactAction(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * LidContactAction fullName.
+             * @member {string} fullName
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @instance
+             */
+            LidContactAction.prototype.fullName = "";
+
+            /**
+             * LidContactAction firstName.
+             * @member {string} firstName
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @instance
+             */
+            LidContactAction.prototype.firstName = "";
+
+            /**
+             * LidContactAction username.
+             * @member {string} username
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @instance
+             */
+            LidContactAction.prototype.username = "";
+
+            /**
+             * LidContactAction saveOnPrimaryAddressbook.
+             * @member {boolean} saveOnPrimaryAddressbook
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @instance
+             */
+            LidContactAction.prototype.saveOnPrimaryAddressbook = false;
+
+            /**
+             * Creates a new LidContactAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @static
+             * @param {SyncAction.SyncActionValue.ILidContactAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.LidContactAction} LidContactAction instance
+             */
+            LidContactAction.create = function create(properties) {
+                return new LidContactAction(properties);
+            };
+
+            /**
+             * Encodes the specified LidContactAction message. Does not implicitly {@link SyncAction.SyncActionValue.LidContactAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @static
+             * @param {SyncAction.SyncActionValue.ILidContactAction} message LidContactAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            LidContactAction.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.fullName != null && Object.hasOwnProperty.call(message, "fullName"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.fullName);
+                if (message.firstName != null && Object.hasOwnProperty.call(message, "firstName"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.firstName);
+                if (message.username != null && Object.hasOwnProperty.call(message, "username"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.username);
+                if (message.saveOnPrimaryAddressbook != null && Object.hasOwnProperty.call(message, "saveOnPrimaryAddressbook"))
+                    writer.uint32(/* id 4, wireType 0 =*/32).bool(message.saveOnPrimaryAddressbook);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified LidContactAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.LidContactAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @static
+             * @param {SyncAction.SyncActionValue.ILidContactAction} message LidContactAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            LidContactAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a LidContactAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.LidContactAction} LidContactAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            LidContactAction.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.LidContactAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.fullName = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.firstName = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.username = reader.string();
+                            break;
+                        }
+                    case 4: {
+                            message.saveOnPrimaryAddressbook = reader.bool();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a LidContactAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.LidContactAction} LidContactAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            LidContactAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a LidContactAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            LidContactAction.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.fullName != null && message.hasOwnProperty("fullName"))
+                    if (!$util.isString(message.fullName))
+                        return "fullName: string expected";
+                if (message.firstName != null && message.hasOwnProperty("firstName"))
+                    if (!$util.isString(message.firstName))
+                        return "firstName: string expected";
+                if (message.username != null && message.hasOwnProperty("username"))
+                    if (!$util.isString(message.username))
+                        return "username: string expected";
+                if (message.saveOnPrimaryAddressbook != null && message.hasOwnProperty("saveOnPrimaryAddressbook"))
+                    if (typeof message.saveOnPrimaryAddressbook !== "boolean")
+                        return "saveOnPrimaryAddressbook: boolean expected";
+                return null;
+            };
+
+            /**
+             * Creates a LidContactAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.LidContactAction} LidContactAction
+             */
+            LidContactAction.fromObject = function fromObject(object) {
+                if (object instanceof $root.SyncAction.SyncActionValue.LidContactAction)
+                    return object;
+                var message = new $root.SyncAction.SyncActionValue.LidContactAction();
+                if (object.fullName != null)
+                    message.fullName = String(object.fullName);
+                if (object.firstName != null)
+                    message.firstName = String(object.firstName);
+                if (object.username != null)
+                    message.username = String(object.username);
+                if (object.saveOnPrimaryAddressbook != null)
+                    message.saveOnPrimaryAddressbook = Boolean(object.saveOnPrimaryAddressbook);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a LidContactAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @static
+             * @param {SyncAction.SyncActionValue.LidContactAction} message LidContactAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            LidContactAction.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.fullName = "";
+                    object.firstName = "";
+                    object.username = "";
+                    object.saveOnPrimaryAddressbook = false;
+                }
+                if (message.fullName != null && message.hasOwnProperty("fullName"))
+                    object.fullName = message.fullName;
+                if (message.firstName != null && message.hasOwnProperty("firstName"))
+                    object.firstName = message.firstName;
+                if (message.username != null && message.hasOwnProperty("username"))
+                    object.username = message.username;
+                if (message.saveOnPrimaryAddressbook != null && message.hasOwnProperty("saveOnPrimaryAddressbook"))
+                    object.saveOnPrimaryAddressbook = message.saveOnPrimaryAddressbook;
+                return object;
+            };
+
+            /**
+             * Converts this LidContactAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            LidContactAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for LidContactAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            LidContactAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.LidContactAction";
+            };
+
+            return LidContactAction;
         })();
 
         SyncActionValue.LocaleSetting = (function() {
@@ -18945,6 +19564,8 @@ $root.Protocol = (function() {
          * @interface ILimitSharing
          * @property {boolean|null} [sharingLimited] LimitSharing sharingLimited
          * @property {Protocol.LimitSharing.Trigger|null} [trigger] LimitSharing trigger
+         * @property {number|Long|null} [limitSharingSettingTimestamp] LimitSharing limitSharingSettingTimestamp
+         * @property {boolean|null} [initiatedByMe] LimitSharing initiatedByMe
          */
 
         /**
@@ -18979,6 +19600,22 @@ $root.Protocol = (function() {
         LimitSharing.prototype.trigger = 0;
 
         /**
+         * LimitSharing limitSharingSettingTimestamp.
+         * @member {number|Long} limitSharingSettingTimestamp
+         * @memberof Protocol.LimitSharing
+         * @instance
+         */
+        LimitSharing.prototype.limitSharingSettingTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * LimitSharing initiatedByMe.
+         * @member {boolean} initiatedByMe
+         * @memberof Protocol.LimitSharing
+         * @instance
+         */
+        LimitSharing.prototype.initiatedByMe = false;
+
+        /**
          * Creates a new LimitSharing instance using the specified properties.
          * @function create
          * @memberof Protocol.LimitSharing
@@ -19006,6 +19643,10 @@ $root.Protocol = (function() {
                 writer.uint32(/* id 1, wireType 0 =*/8).bool(message.sharingLimited);
             if (message.trigger != null && Object.hasOwnProperty.call(message, "trigger"))
                 writer.uint32(/* id 2, wireType 0 =*/16).int32(message.trigger);
+            if (message.limitSharingSettingTimestamp != null && Object.hasOwnProperty.call(message, "limitSharingSettingTimestamp"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int64(message.limitSharingSettingTimestamp);
+            if (message.initiatedByMe != null && Object.hasOwnProperty.call(message, "initiatedByMe"))
+                writer.uint32(/* id 4, wireType 0 =*/32).bool(message.initiatedByMe);
             return writer;
         };
 
@@ -19048,6 +19689,14 @@ $root.Protocol = (function() {
                     }
                 case 2: {
                         message.trigger = reader.int32();
+                        break;
+                    }
+                case 3: {
+                        message.limitSharingSettingTimestamp = reader.int64();
+                        break;
+                    }
+                case 4: {
+                        message.initiatedByMe = reader.bool();
                         break;
                     }
                 default:
@@ -19094,8 +19743,16 @@ $root.Protocol = (function() {
                     return "trigger: enum value expected";
                 case 0:
                 case 1:
+                case 2:
+                case 3:
                     break;
                 }
+            if (message.limitSharingSettingTimestamp != null && message.hasOwnProperty("limitSharingSettingTimestamp"))
+                if (!$util.isInteger(message.limitSharingSettingTimestamp) && !(message.limitSharingSettingTimestamp && $util.isInteger(message.limitSharingSettingTimestamp.low) && $util.isInteger(message.limitSharingSettingTimestamp.high)))
+                    return "limitSharingSettingTimestamp: integer|Long expected";
+            if (message.initiatedByMe != null && message.hasOwnProperty("initiatedByMe"))
+                if (typeof message.initiatedByMe !== "boolean")
+                    return "initiatedByMe: boolean expected";
             return null;
         };
 
@@ -19120,15 +19777,34 @@ $root.Protocol = (function() {
                     break;
                 }
                 break;
-            case "CHAT_SETTING":
+            case "UNKNOWN":
             case 0:
                 message.trigger = 0;
                 break;
-            case "BIZ_SUPPORTS_FB_HOSTING":
+            case "CHAT_SETTING":
             case 1:
                 message.trigger = 1;
                 break;
+            case "BIZ_SUPPORTS_FB_HOSTING":
+            case 2:
+                message.trigger = 2;
+                break;
+            case "UNKNOWN_GROUP":
+            case 3:
+                message.trigger = 3;
+                break;
             }
+            if (object.limitSharingSettingTimestamp != null)
+                if ($util.Long)
+                    (message.limitSharingSettingTimestamp = $util.Long.fromValue(object.limitSharingSettingTimestamp)).unsigned = false;
+                else if (typeof object.limitSharingSettingTimestamp === "string")
+                    message.limitSharingSettingTimestamp = parseInt(object.limitSharingSettingTimestamp, 10);
+                else if (typeof object.limitSharingSettingTimestamp === "number")
+                    message.limitSharingSettingTimestamp = object.limitSharingSettingTimestamp;
+                else if (typeof object.limitSharingSettingTimestamp === "object")
+                    message.limitSharingSettingTimestamp = new $util.LongBits(object.limitSharingSettingTimestamp.low >>> 0, object.limitSharingSettingTimestamp.high >>> 0).toNumber();
+            if (object.initiatedByMe != null)
+                message.initiatedByMe = Boolean(object.initiatedByMe);
             return message;
         };
 
@@ -19147,12 +19823,25 @@ $root.Protocol = (function() {
             var object = {};
             if (options.defaults) {
                 object.sharingLimited = false;
-                object.trigger = options.enums === String ? "CHAT_SETTING" : 0;
+                object.trigger = options.enums === String ? "UNKNOWN" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.limitSharingSettingTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.limitSharingSettingTimestamp = options.longs === String ? "0" : 0;
+                object.initiatedByMe = false;
             }
             if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
                 object.sharingLimited = message.sharingLimited;
             if (message.trigger != null && message.hasOwnProperty("trigger"))
                 object.trigger = options.enums === String ? $root.Protocol.LimitSharing.Trigger[message.trigger] === undefined ? message.trigger : $root.Protocol.LimitSharing.Trigger[message.trigger] : message.trigger;
+            if (message.limitSharingSettingTimestamp != null && message.hasOwnProperty("limitSharingSettingTimestamp"))
+                if (typeof message.limitSharingSettingTimestamp === "number")
+                    object.limitSharingSettingTimestamp = options.longs === String ? String(message.limitSharingSettingTimestamp) : message.limitSharingSettingTimestamp;
+                else
+                    object.limitSharingSettingTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.limitSharingSettingTimestamp) : options.longs === Number ? new $util.LongBits(message.limitSharingSettingTimestamp.low >>> 0, message.limitSharingSettingTimestamp.high >>> 0).toNumber() : message.limitSharingSettingTimestamp;
+            if (message.initiatedByMe != null && message.hasOwnProperty("initiatedByMe"))
+                object.initiatedByMe = message.initiatedByMe;
             return object;
         };
 
@@ -19186,13 +19875,17 @@ $root.Protocol = (function() {
          * Trigger enum.
          * @name Protocol.LimitSharing.Trigger
          * @enum {number}
-         * @property {number} CHAT_SETTING=0 CHAT_SETTING value
-         * @property {number} BIZ_SUPPORTS_FB_HOSTING=1 BIZ_SUPPORTS_FB_HOSTING value
+         * @property {number} UNKNOWN=0 UNKNOWN value
+         * @property {number} CHAT_SETTING=1 CHAT_SETTING value
+         * @property {number} BIZ_SUPPORTS_FB_HOSTING=2 BIZ_SUPPORTS_FB_HOSTING value
+         * @property {number} UNKNOWN_GROUP=3 UNKNOWN_GROUP value
          */
         LimitSharing.Trigger = (function() {
             var valuesById = {}, values = Object.create(valuesById);
-            values[valuesById[0] = "CHAT_SETTING"] = 0;
-            values[valuesById[1] = "BIZ_SUPPORTS_FB_HOSTING"] = 1;
+            values[valuesById[0] = "UNKNOWN"] = 0;
+            values[valuesById[1] = "CHAT_SETTING"] = 1;
+            values[valuesById[2] = "BIZ_SUPPORTS_FB_HOSTING"] = 2;
+            values[valuesById[3] = "UNKNOWN_GROUP"] = 3;
             return values;
         })();
 
