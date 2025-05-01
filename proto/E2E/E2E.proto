@@ -309,6 +309,8 @@ message BotMetadata {
     optional BotSourcesMetadata richResponseSourcesMetadata = 19;
     optional bytes aiConversationContext = 20;
     optional BotPromotionMessageMetadata botPromotionMessageMetadata = 21;
+    optional BotModeSelectionMetadata botModeSelectionMetadata = 22;
+    optional BotQuotaMetadata botQuotaMetadata = 23;
 }
 
 message BotSourcesMetadata {
@@ -337,6 +339,27 @@ message BotImagineMetadata {
         MEMU = 2;
         FLASH = 3;
         EDIT = 4;
+    }
+}
+
+message BotQuotaMetadata {
+    repeated BotFeatureQuotaMetadata botFeatureQuotaMetadata = 1;
+    message BotFeatureQuotaMetadata {
+        optional BotFeatureType featureType = 1;
+        optional uint32 remainingQuota = 2;
+        optional uint64 expirationTimestamp = 3;
+        enum BotFeatureType {
+            UNKNOWN_FEATURE = 0;
+            REASONING_FEATURE = 1;
+        }
+    }
+}
+
+message BotModeSelectionMetadata {
+    repeated BotUserSelectionMode mode = 1;
+    enum BotUserSelectionMode {
+        UNKNOWN_MODE = 0;
+        REASONING_MODE = 1;
     }
 }
 
@@ -1163,10 +1186,15 @@ message Message {
         optional int64 senderNotificationTimestampMs = 2;
         optional string consumerLid = 3;
         optional string consumerPhoneNumber = 4;
+        optional CloudAPIThreadControlNotificationContent notificationContent = 5;
         enum CloudAPIThreadControl {
             UNKNOWN = 0;
             CONTROL_PASSED = 1;
             CONTROL_TAKEN = 2;
+        }
+        message CloudAPIThreadControlNotificationContent {
+            optional string handoffNotificationText = 1;
+            optional string extraJson = 2;
         }
     }
     message CommentMessage {

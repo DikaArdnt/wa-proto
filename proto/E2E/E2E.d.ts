@@ -3873,6 +3873,12 @@ export namespace E2E {
 
         /** BotMetadata botPromotionMessageMetadata */
         botPromotionMessageMetadata?: (E2E.IBotPromotionMessageMetadata|null);
+
+        /** BotMetadata botModeSelectionMetadata */
+        botModeSelectionMetadata?: (E2E.IBotModeSelectionMetadata|null);
+
+        /** BotMetadata botQuotaMetadata */
+        botQuotaMetadata?: (E2E.IBotQuotaMetadata|null);
     }
 
     /** Represents a BotMetadata. */
@@ -3946,6 +3952,12 @@ export namespace E2E {
 
         /** BotMetadata botPromotionMessageMetadata. */
         public botPromotionMessageMetadata?: (E2E.IBotPromotionMessageMetadata|null);
+
+        /** BotMetadata botModeSelectionMetadata. */
+        public botModeSelectionMetadata?: (E2E.IBotModeSelectionMetadata|null);
+
+        /** BotMetadata botQuotaMetadata. */
+        public botQuotaMetadata?: (E2E.IBotQuotaMetadata|null);
 
         /**
          * Creates a new BotMetadata instance using the specified properties.
@@ -4369,6 +4381,330 @@ export namespace E2E {
             MEMU = 2,
             FLASH = 3,
             EDIT = 4
+        }
+    }
+
+    /** Properties of a BotQuotaMetadata. */
+    interface IBotQuotaMetadata {
+
+        /** BotQuotaMetadata botFeatureQuotaMetadata */
+        botFeatureQuotaMetadata?: (E2E.BotQuotaMetadata.IBotFeatureQuotaMetadata[]|null);
+    }
+
+    /** Represents a BotQuotaMetadata. */
+    class BotQuotaMetadata implements IBotQuotaMetadata {
+
+        /**
+         * Constructs a new BotQuotaMetadata.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: E2E.IBotQuotaMetadata);
+
+        /** BotQuotaMetadata botFeatureQuotaMetadata. */
+        public botFeatureQuotaMetadata: E2E.BotQuotaMetadata.IBotFeatureQuotaMetadata[];
+
+        /**
+         * Creates a new BotQuotaMetadata instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BotQuotaMetadata instance
+         */
+        public static create(properties?: E2E.IBotQuotaMetadata): E2E.BotQuotaMetadata;
+
+        /**
+         * Encodes the specified BotQuotaMetadata message. Does not implicitly {@link E2E.BotQuotaMetadata.verify|verify} messages.
+         * @param message BotQuotaMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: E2E.IBotQuotaMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BotQuotaMetadata message, length delimited. Does not implicitly {@link E2E.BotQuotaMetadata.verify|verify} messages.
+         * @param message BotQuotaMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: E2E.IBotQuotaMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BotQuotaMetadata message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BotQuotaMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.BotQuotaMetadata;
+
+        /**
+         * Decodes a BotQuotaMetadata message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BotQuotaMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.BotQuotaMetadata;
+
+        /**
+         * Verifies a BotQuotaMetadata message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BotQuotaMetadata message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BotQuotaMetadata
+         */
+        public static fromObject(object: { [k: string]: any }): E2E.BotQuotaMetadata;
+
+        /**
+         * Creates a plain object from a BotQuotaMetadata message. Also converts values to other types if specified.
+         * @param message BotQuotaMetadata
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: E2E.BotQuotaMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BotQuotaMetadata to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for BotQuotaMetadata
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace BotQuotaMetadata {
+
+        /** Properties of a BotFeatureQuotaMetadata. */
+        interface IBotFeatureQuotaMetadata {
+
+            /** BotFeatureQuotaMetadata featureType */
+            featureType?: (E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.BotFeatureType|null);
+
+            /** BotFeatureQuotaMetadata remainingQuota */
+            remainingQuota?: (number|null);
+
+            /** BotFeatureQuotaMetadata expirationTimestamp */
+            expirationTimestamp?: (number|Long|null);
+        }
+
+        /** Represents a BotFeatureQuotaMetadata. */
+        class BotFeatureQuotaMetadata implements IBotFeatureQuotaMetadata {
+
+            /**
+             * Constructs a new BotFeatureQuotaMetadata.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.BotQuotaMetadata.IBotFeatureQuotaMetadata);
+
+            /** BotFeatureQuotaMetadata featureType. */
+            public featureType: E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.BotFeatureType;
+
+            /** BotFeatureQuotaMetadata remainingQuota. */
+            public remainingQuota: number;
+
+            /** BotFeatureQuotaMetadata expirationTimestamp. */
+            public expirationTimestamp: (number|Long);
+
+            /**
+             * Creates a new BotFeatureQuotaMetadata instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns BotFeatureQuotaMetadata instance
+             */
+            public static create(properties?: E2E.BotQuotaMetadata.IBotFeatureQuotaMetadata): E2E.BotQuotaMetadata.BotFeatureQuotaMetadata;
+
+            /**
+             * Encodes the specified BotFeatureQuotaMetadata message. Does not implicitly {@link E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.verify|verify} messages.
+             * @param message BotFeatureQuotaMetadata message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.BotQuotaMetadata.IBotFeatureQuotaMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified BotFeatureQuotaMetadata message, length delimited. Does not implicitly {@link E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.verify|verify} messages.
+             * @param message BotFeatureQuotaMetadata message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.BotQuotaMetadata.IBotFeatureQuotaMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a BotFeatureQuotaMetadata message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns BotFeatureQuotaMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.BotQuotaMetadata.BotFeatureQuotaMetadata;
+
+            /**
+             * Decodes a BotFeatureQuotaMetadata message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns BotFeatureQuotaMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.BotQuotaMetadata.BotFeatureQuotaMetadata;
+
+            /**
+             * Verifies a BotFeatureQuotaMetadata message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a BotFeatureQuotaMetadata message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns BotFeatureQuotaMetadata
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.BotQuotaMetadata.BotFeatureQuotaMetadata;
+
+            /**
+             * Creates a plain object from a BotFeatureQuotaMetadata message. Also converts values to other types if specified.
+             * @param message BotFeatureQuotaMetadata
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.BotQuotaMetadata.BotFeatureQuotaMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this BotFeatureQuotaMetadata to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for BotFeatureQuotaMetadata
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace BotFeatureQuotaMetadata {
+
+            /** BotFeatureType enum. */
+            enum BotFeatureType {
+                UNKNOWN_FEATURE = 0,
+                REASONING_FEATURE = 1
+            }
+        }
+    }
+
+    /** Properties of a BotModeSelectionMetadata. */
+    interface IBotModeSelectionMetadata {
+
+        /** BotModeSelectionMetadata mode */
+        mode?: (E2E.BotModeSelectionMetadata.BotUserSelectionMode[]|null);
+    }
+
+    /** Represents a BotModeSelectionMetadata. */
+    class BotModeSelectionMetadata implements IBotModeSelectionMetadata {
+
+        /**
+         * Constructs a new BotModeSelectionMetadata.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: E2E.IBotModeSelectionMetadata);
+
+        /** BotModeSelectionMetadata mode. */
+        public mode: E2E.BotModeSelectionMetadata.BotUserSelectionMode[];
+
+        /**
+         * Creates a new BotModeSelectionMetadata instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BotModeSelectionMetadata instance
+         */
+        public static create(properties?: E2E.IBotModeSelectionMetadata): E2E.BotModeSelectionMetadata;
+
+        /**
+         * Encodes the specified BotModeSelectionMetadata message. Does not implicitly {@link E2E.BotModeSelectionMetadata.verify|verify} messages.
+         * @param message BotModeSelectionMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: E2E.IBotModeSelectionMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BotModeSelectionMetadata message, length delimited. Does not implicitly {@link E2E.BotModeSelectionMetadata.verify|verify} messages.
+         * @param message BotModeSelectionMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: E2E.IBotModeSelectionMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BotModeSelectionMetadata message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BotModeSelectionMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.BotModeSelectionMetadata;
+
+        /**
+         * Decodes a BotModeSelectionMetadata message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BotModeSelectionMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.BotModeSelectionMetadata;
+
+        /**
+         * Verifies a BotModeSelectionMetadata message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BotModeSelectionMetadata message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BotModeSelectionMetadata
+         */
+        public static fromObject(object: { [k: string]: any }): E2E.BotModeSelectionMetadata;
+
+        /**
+         * Creates a plain object from a BotModeSelectionMetadata message. Also converts values to other types if specified.
+         * @param message BotModeSelectionMetadata
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: E2E.BotModeSelectionMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BotModeSelectionMetadata to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for BotModeSelectionMetadata
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace BotModeSelectionMetadata {
+
+        /** BotUserSelectionMode enum. */
+        enum BotUserSelectionMode {
+            UNKNOWN_MODE = 0,
+            REASONING_MODE = 1
         }
     }
 
@@ -13950,6 +14286,9 @@ export namespace E2E {
 
             /** CloudAPIThreadControlNotification consumerPhoneNumber */
             consumerPhoneNumber?: (string|null);
+
+            /** CloudAPIThreadControlNotification notificationContent */
+            notificationContent?: (E2E.Message.CloudAPIThreadControlNotification.ICloudAPIThreadControlNotificationContent|null);
         }
 
         /** Represents a CloudAPIThreadControlNotification. */
@@ -13972,6 +14311,9 @@ export namespace E2E {
 
             /** CloudAPIThreadControlNotification consumerPhoneNumber. */
             public consumerPhoneNumber: string;
+
+            /** CloudAPIThreadControlNotification notificationContent. */
+            public notificationContent?: (E2E.Message.CloudAPIThreadControlNotification.ICloudAPIThreadControlNotificationContent|null);
 
             /**
              * Creates a new CloudAPIThreadControlNotification instance using the specified properties.
@@ -14058,6 +14400,109 @@ export namespace E2E {
                 UNKNOWN = 0,
                 CONTROL_PASSED = 1,
                 CONTROL_TAKEN = 2
+            }
+
+            /** Properties of a CloudAPIThreadControlNotificationContent. */
+            interface ICloudAPIThreadControlNotificationContent {
+
+                /** CloudAPIThreadControlNotificationContent handoffNotificationText */
+                handoffNotificationText?: (string|null);
+
+                /** CloudAPIThreadControlNotificationContent extraJson */
+                extraJson?: (string|null);
+            }
+
+            /** Represents a CloudAPIThreadControlNotificationContent. */
+            class CloudAPIThreadControlNotificationContent implements ICloudAPIThreadControlNotificationContent {
+
+                /**
+                 * Constructs a new CloudAPIThreadControlNotificationContent.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: E2E.Message.CloudAPIThreadControlNotification.ICloudAPIThreadControlNotificationContent);
+
+                /** CloudAPIThreadControlNotificationContent handoffNotificationText. */
+                public handoffNotificationText: string;
+
+                /** CloudAPIThreadControlNotificationContent extraJson. */
+                public extraJson: string;
+
+                /**
+                 * Creates a new CloudAPIThreadControlNotificationContent instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns CloudAPIThreadControlNotificationContent instance
+                 */
+                public static create(properties?: E2E.Message.CloudAPIThreadControlNotification.ICloudAPIThreadControlNotificationContent): E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent;
+
+                /**
+                 * Encodes the specified CloudAPIThreadControlNotificationContent message. Does not implicitly {@link E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent.verify|verify} messages.
+                 * @param message CloudAPIThreadControlNotificationContent message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: E2E.Message.CloudAPIThreadControlNotification.ICloudAPIThreadControlNotificationContent, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified CloudAPIThreadControlNotificationContent message, length delimited. Does not implicitly {@link E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent.verify|verify} messages.
+                 * @param message CloudAPIThreadControlNotificationContent message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: E2E.Message.CloudAPIThreadControlNotification.ICloudAPIThreadControlNotificationContent, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a CloudAPIThreadControlNotificationContent message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns CloudAPIThreadControlNotificationContent
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent;
+
+                /**
+                 * Decodes a CloudAPIThreadControlNotificationContent message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns CloudAPIThreadControlNotificationContent
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent;
+
+                /**
+                 * Verifies a CloudAPIThreadControlNotificationContent message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a CloudAPIThreadControlNotificationContent message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns CloudAPIThreadControlNotificationContent
+                 */
+                public static fromObject(object: { [k: string]: any }): E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent;
+
+                /**
+                 * Creates a plain object from a CloudAPIThreadControlNotificationContent message. Also converts values to other types if specified.
+                 * @param message CloudAPIThreadControlNotificationContent
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this CloudAPIThreadControlNotificationContent to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for CloudAPIThreadControlNotificationContent
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
             }
         }
 

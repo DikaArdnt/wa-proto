@@ -12795,6 +12795,8 @@ $root.E2E = (function() {
          * @property {E2E.IBotSourcesMetadata|null} [richResponseSourcesMetadata] BotMetadata richResponseSourcesMetadata
          * @property {Uint8Array|null} [aiConversationContext] BotMetadata aiConversationContext
          * @property {E2E.IBotPromotionMessageMetadata|null} [botPromotionMessageMetadata] BotMetadata botPromotionMessageMetadata
+         * @property {E2E.IBotModeSelectionMetadata|null} [botModeSelectionMetadata] BotMetadata botModeSelectionMetadata
+         * @property {E2E.IBotQuotaMetadata|null} [botQuotaMetadata] BotMetadata botQuotaMetadata
          */
 
         /**
@@ -12981,6 +12983,22 @@ $root.E2E = (function() {
         BotMetadata.prototype.botPromotionMessageMetadata = null;
 
         /**
+         * BotMetadata botModeSelectionMetadata.
+         * @member {E2E.IBotModeSelectionMetadata|null|undefined} botModeSelectionMetadata
+         * @memberof E2E.BotMetadata
+         * @instance
+         */
+        BotMetadata.prototype.botModeSelectionMetadata = null;
+
+        /**
+         * BotMetadata botQuotaMetadata.
+         * @member {E2E.IBotQuotaMetadata|null|undefined} botQuotaMetadata
+         * @memberof E2E.BotMetadata
+         * @instance
+         */
+        BotMetadata.prototype.botQuotaMetadata = null;
+
+        /**
          * Creates a new BotMetadata instance using the specified properties.
          * @function create
          * @memberof E2E.BotMetadata
@@ -13046,6 +13064,10 @@ $root.E2E = (function() {
                 writer.uint32(/* id 20, wireType 2 =*/162).bytes(message.aiConversationContext);
             if (message.botPromotionMessageMetadata != null && Object.hasOwnProperty.call(message, "botPromotionMessageMetadata"))
                 $root.E2E.BotPromotionMessageMetadata.encode(message.botPromotionMessageMetadata, writer.uint32(/* id 21, wireType 2 =*/170).fork()).ldelim();
+            if (message.botModeSelectionMetadata != null && Object.hasOwnProperty.call(message, "botModeSelectionMetadata"))
+                $root.E2E.BotModeSelectionMetadata.encode(message.botModeSelectionMetadata, writer.uint32(/* id 22, wireType 2 =*/178).fork()).ldelim();
+            if (message.botQuotaMetadata != null && Object.hasOwnProperty.call(message, "botQuotaMetadata"))
+                $root.E2E.BotQuotaMetadata.encode(message.botQuotaMetadata, writer.uint32(/* id 23, wireType 2 =*/186).fork()).ldelim();
             return writer;
         };
 
@@ -13164,6 +13186,14 @@ $root.E2E = (function() {
                     }
                 case 21: {
                         message.botPromotionMessageMetadata = $root.E2E.BotPromotionMessageMetadata.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 22: {
+                        message.botModeSelectionMetadata = $root.E2E.BotModeSelectionMetadata.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 23: {
+                        message.botQuotaMetadata = $root.E2E.BotQuotaMetadata.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -13296,6 +13326,16 @@ $root.E2E = (function() {
                 if (error)
                     return "botPromotionMessageMetadata." + error;
             }
+            if (message.botModeSelectionMetadata != null && message.hasOwnProperty("botModeSelectionMetadata")) {
+                var error = $root.E2E.BotModeSelectionMetadata.verify(message.botModeSelectionMetadata);
+                if (error)
+                    return "botModeSelectionMetadata." + error;
+            }
+            if (message.botQuotaMetadata != null && message.hasOwnProperty("botQuotaMetadata")) {
+                var error = $root.E2E.BotQuotaMetadata.verify(message.botQuotaMetadata);
+                if (error)
+                    return "botQuotaMetadata." + error;
+            }
             return null;
         };
 
@@ -13404,6 +13444,16 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.BotMetadata.botPromotionMessageMetadata: object expected");
                 message.botPromotionMessageMetadata = $root.E2E.BotPromotionMessageMetadata.fromObject(object.botPromotionMessageMetadata);
             }
+            if (object.botModeSelectionMetadata != null) {
+                if (typeof object.botModeSelectionMetadata !== "object")
+                    throw TypeError(".E2E.BotMetadata.botModeSelectionMetadata: object expected");
+                message.botModeSelectionMetadata = $root.E2E.BotModeSelectionMetadata.fromObject(object.botModeSelectionMetadata);
+            }
+            if (object.botQuotaMetadata != null) {
+                if (typeof object.botQuotaMetadata !== "object")
+                    throw TypeError(".E2E.BotMetadata.botQuotaMetadata: object expected");
+                message.botQuotaMetadata = $root.E2E.BotQuotaMetadata.fromObject(object.botQuotaMetadata);
+            }
             return message;
         };
 
@@ -13448,6 +13498,8 @@ $root.E2E = (function() {
                         object.aiConversationContext = $util.newBuffer(object.aiConversationContext);
                 }
                 object.botPromotionMessageMetadata = null;
+                object.botModeSelectionMetadata = null;
+                object.botQuotaMetadata = null;
             }
             if (message.avatarMetadata != null && message.hasOwnProperty("avatarMetadata"))
                 object.avatarMetadata = $root.E2E.BotAvatarMetadata.toObject(message.avatarMetadata, options);
@@ -13491,6 +13543,10 @@ $root.E2E = (function() {
                 object.aiConversationContext = options.bytes === String ? $util.base64.encode(message.aiConversationContext, 0, message.aiConversationContext.length) : options.bytes === Array ? Array.prototype.slice.call(message.aiConversationContext) : message.aiConversationContext;
             if (message.botPromotionMessageMetadata != null && message.hasOwnProperty("botPromotionMessageMetadata"))
                 object.botPromotionMessageMetadata = $root.E2E.BotPromotionMessageMetadata.toObject(message.botPromotionMessageMetadata, options);
+            if (message.botModeSelectionMetadata != null && message.hasOwnProperty("botModeSelectionMetadata"))
+                object.botModeSelectionMetadata = $root.E2E.BotModeSelectionMetadata.toObject(message.botModeSelectionMetadata, options);
+            if (message.botQuotaMetadata != null && message.hasOwnProperty("botQuotaMetadata"))
+                object.botQuotaMetadata = $root.E2E.BotQuotaMetadata.toObject(message.botQuotaMetadata, options);
             return object;
         };
 
@@ -14374,6 +14430,790 @@ $root.E2E = (function() {
         })();
 
         return BotImagineMetadata;
+    })();
+
+    E2E.BotQuotaMetadata = (function() {
+
+        /**
+         * Properties of a BotQuotaMetadata.
+         * @memberof E2E
+         * @interface IBotQuotaMetadata
+         * @property {Array.<E2E.BotQuotaMetadata.IBotFeatureQuotaMetadata>|null} [botFeatureQuotaMetadata] BotQuotaMetadata botFeatureQuotaMetadata
+         */
+
+        /**
+         * Constructs a new BotQuotaMetadata.
+         * @memberof E2E
+         * @classdesc Represents a BotQuotaMetadata.
+         * @implements IBotQuotaMetadata
+         * @constructor
+         * @param {E2E.IBotQuotaMetadata=} [properties] Properties to set
+         */
+        function BotQuotaMetadata(properties) {
+            this.botFeatureQuotaMetadata = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BotQuotaMetadata botFeatureQuotaMetadata.
+         * @member {Array.<E2E.BotQuotaMetadata.IBotFeatureQuotaMetadata>} botFeatureQuotaMetadata
+         * @memberof E2E.BotQuotaMetadata
+         * @instance
+         */
+        BotQuotaMetadata.prototype.botFeatureQuotaMetadata = $util.emptyArray;
+
+        /**
+         * Creates a new BotQuotaMetadata instance using the specified properties.
+         * @function create
+         * @memberof E2E.BotQuotaMetadata
+         * @static
+         * @param {E2E.IBotQuotaMetadata=} [properties] Properties to set
+         * @returns {E2E.BotQuotaMetadata} BotQuotaMetadata instance
+         */
+        BotQuotaMetadata.create = function create(properties) {
+            return new BotQuotaMetadata(properties);
+        };
+
+        /**
+         * Encodes the specified BotQuotaMetadata message. Does not implicitly {@link E2E.BotQuotaMetadata.verify|verify} messages.
+         * @function encode
+         * @memberof E2E.BotQuotaMetadata
+         * @static
+         * @param {E2E.IBotQuotaMetadata} message BotQuotaMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotQuotaMetadata.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.botFeatureQuotaMetadata != null && message.botFeatureQuotaMetadata.length)
+                for (var i = 0; i < message.botFeatureQuotaMetadata.length; ++i)
+                    $root.E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.encode(message.botFeatureQuotaMetadata[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BotQuotaMetadata message, length delimited. Does not implicitly {@link E2E.BotQuotaMetadata.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof E2E.BotQuotaMetadata
+         * @static
+         * @param {E2E.IBotQuotaMetadata} message BotQuotaMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotQuotaMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BotQuotaMetadata message from the specified reader or buffer.
+         * @function decode
+         * @memberof E2E.BotQuotaMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {E2E.BotQuotaMetadata} BotQuotaMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotQuotaMetadata.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotQuotaMetadata();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        if (!(message.botFeatureQuotaMetadata && message.botFeatureQuotaMetadata.length))
+                            message.botFeatureQuotaMetadata = [];
+                        message.botFeatureQuotaMetadata.push($root.E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.decode(reader, reader.uint32()));
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BotQuotaMetadata message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof E2E.BotQuotaMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {E2E.BotQuotaMetadata} BotQuotaMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotQuotaMetadata.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BotQuotaMetadata message.
+         * @function verify
+         * @memberof E2E.BotQuotaMetadata
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BotQuotaMetadata.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.botFeatureQuotaMetadata != null && message.hasOwnProperty("botFeatureQuotaMetadata")) {
+                if (!Array.isArray(message.botFeatureQuotaMetadata))
+                    return "botFeatureQuotaMetadata: array expected";
+                for (var i = 0; i < message.botFeatureQuotaMetadata.length; ++i) {
+                    var error = $root.E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.verify(message.botFeatureQuotaMetadata[i]);
+                    if (error)
+                        return "botFeatureQuotaMetadata." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a BotQuotaMetadata message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof E2E.BotQuotaMetadata
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {E2E.BotQuotaMetadata} BotQuotaMetadata
+         */
+        BotQuotaMetadata.fromObject = function fromObject(object) {
+            if (object instanceof $root.E2E.BotQuotaMetadata)
+                return object;
+            var message = new $root.E2E.BotQuotaMetadata();
+            if (object.botFeatureQuotaMetadata) {
+                if (!Array.isArray(object.botFeatureQuotaMetadata))
+                    throw TypeError(".E2E.BotQuotaMetadata.botFeatureQuotaMetadata: array expected");
+                message.botFeatureQuotaMetadata = [];
+                for (var i = 0; i < object.botFeatureQuotaMetadata.length; ++i) {
+                    if (typeof object.botFeatureQuotaMetadata[i] !== "object")
+                        throw TypeError(".E2E.BotQuotaMetadata.botFeatureQuotaMetadata: object expected");
+                    message.botFeatureQuotaMetadata[i] = $root.E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.fromObject(object.botFeatureQuotaMetadata[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BotQuotaMetadata message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof E2E.BotQuotaMetadata
+         * @static
+         * @param {E2E.BotQuotaMetadata} message BotQuotaMetadata
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BotQuotaMetadata.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.botFeatureQuotaMetadata = [];
+            if (message.botFeatureQuotaMetadata && message.botFeatureQuotaMetadata.length) {
+                object.botFeatureQuotaMetadata = [];
+                for (var j = 0; j < message.botFeatureQuotaMetadata.length; ++j)
+                    object.botFeatureQuotaMetadata[j] = $root.E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.toObject(message.botFeatureQuotaMetadata[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this BotQuotaMetadata to JSON.
+         * @function toJSON
+         * @memberof E2E.BotQuotaMetadata
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BotQuotaMetadata.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotQuotaMetadata
+         * @function getTypeUrl
+         * @memberof E2E.BotQuotaMetadata
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotQuotaMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/E2E.BotQuotaMetadata";
+        };
+
+        BotQuotaMetadata.BotFeatureQuotaMetadata = (function() {
+
+            /**
+             * Properties of a BotFeatureQuotaMetadata.
+             * @memberof E2E.BotQuotaMetadata
+             * @interface IBotFeatureQuotaMetadata
+             * @property {E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.BotFeatureType|null} [featureType] BotFeatureQuotaMetadata featureType
+             * @property {number|null} [remainingQuota] BotFeatureQuotaMetadata remainingQuota
+             * @property {number|Long|null} [expirationTimestamp] BotFeatureQuotaMetadata expirationTimestamp
+             */
+
+            /**
+             * Constructs a new BotFeatureQuotaMetadata.
+             * @memberof E2E.BotQuotaMetadata
+             * @classdesc Represents a BotFeatureQuotaMetadata.
+             * @implements IBotFeatureQuotaMetadata
+             * @constructor
+             * @param {E2E.BotQuotaMetadata.IBotFeatureQuotaMetadata=} [properties] Properties to set
+             */
+            function BotFeatureQuotaMetadata(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * BotFeatureQuotaMetadata featureType.
+             * @member {E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.BotFeatureType} featureType
+             * @memberof E2E.BotQuotaMetadata.BotFeatureQuotaMetadata
+             * @instance
+             */
+            BotFeatureQuotaMetadata.prototype.featureType = 0;
+
+            /**
+             * BotFeatureQuotaMetadata remainingQuota.
+             * @member {number} remainingQuota
+             * @memberof E2E.BotQuotaMetadata.BotFeatureQuotaMetadata
+             * @instance
+             */
+            BotFeatureQuotaMetadata.prototype.remainingQuota = 0;
+
+            /**
+             * BotFeatureQuotaMetadata expirationTimestamp.
+             * @member {number|Long} expirationTimestamp
+             * @memberof E2E.BotQuotaMetadata.BotFeatureQuotaMetadata
+             * @instance
+             */
+            BotFeatureQuotaMetadata.prototype.expirationTimestamp = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+            /**
+             * Creates a new BotFeatureQuotaMetadata instance using the specified properties.
+             * @function create
+             * @memberof E2E.BotQuotaMetadata.BotFeatureQuotaMetadata
+             * @static
+             * @param {E2E.BotQuotaMetadata.IBotFeatureQuotaMetadata=} [properties] Properties to set
+             * @returns {E2E.BotQuotaMetadata.BotFeatureQuotaMetadata} BotFeatureQuotaMetadata instance
+             */
+            BotFeatureQuotaMetadata.create = function create(properties) {
+                return new BotFeatureQuotaMetadata(properties);
+            };
+
+            /**
+             * Encodes the specified BotFeatureQuotaMetadata message. Does not implicitly {@link E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.BotQuotaMetadata.BotFeatureQuotaMetadata
+             * @static
+             * @param {E2E.BotQuotaMetadata.IBotFeatureQuotaMetadata} message BotFeatureQuotaMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            BotFeatureQuotaMetadata.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.featureType != null && Object.hasOwnProperty.call(message, "featureType"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.featureType);
+                if (message.remainingQuota != null && Object.hasOwnProperty.call(message, "remainingQuota"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.remainingQuota);
+                if (message.expirationTimestamp != null && Object.hasOwnProperty.call(message, "expirationTimestamp"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).uint64(message.expirationTimestamp);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified BotFeatureQuotaMetadata message, length delimited. Does not implicitly {@link E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.BotQuotaMetadata.BotFeatureQuotaMetadata
+             * @static
+             * @param {E2E.BotQuotaMetadata.IBotFeatureQuotaMetadata} message BotFeatureQuotaMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            BotFeatureQuotaMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a BotFeatureQuotaMetadata message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.BotQuotaMetadata.BotFeatureQuotaMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.BotQuotaMetadata.BotFeatureQuotaMetadata} BotFeatureQuotaMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            BotFeatureQuotaMetadata.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotQuotaMetadata.BotFeatureQuotaMetadata();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.featureType = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.remainingQuota = reader.uint32();
+                            break;
+                        }
+                    case 3: {
+                            message.expirationTimestamp = reader.uint64();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a BotFeatureQuotaMetadata message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.BotQuotaMetadata.BotFeatureQuotaMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.BotQuotaMetadata.BotFeatureQuotaMetadata} BotFeatureQuotaMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            BotFeatureQuotaMetadata.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a BotFeatureQuotaMetadata message.
+             * @function verify
+             * @memberof E2E.BotQuotaMetadata.BotFeatureQuotaMetadata
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            BotFeatureQuotaMetadata.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.featureType != null && message.hasOwnProperty("featureType"))
+                    switch (message.featureType) {
+                    default:
+                        return "featureType: enum value expected";
+                    case 0:
+                    case 1:
+                        break;
+                    }
+                if (message.remainingQuota != null && message.hasOwnProperty("remainingQuota"))
+                    if (!$util.isInteger(message.remainingQuota))
+                        return "remainingQuota: integer expected";
+                if (message.expirationTimestamp != null && message.hasOwnProperty("expirationTimestamp"))
+                    if (!$util.isInteger(message.expirationTimestamp) && !(message.expirationTimestamp && $util.isInteger(message.expirationTimestamp.low) && $util.isInteger(message.expirationTimestamp.high)))
+                        return "expirationTimestamp: integer|Long expected";
+                return null;
+            };
+
+            /**
+             * Creates a BotFeatureQuotaMetadata message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.BotQuotaMetadata.BotFeatureQuotaMetadata
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.BotQuotaMetadata.BotFeatureQuotaMetadata} BotFeatureQuotaMetadata
+             */
+            BotFeatureQuotaMetadata.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.BotQuotaMetadata.BotFeatureQuotaMetadata)
+                    return object;
+                var message = new $root.E2E.BotQuotaMetadata.BotFeatureQuotaMetadata();
+                switch (object.featureType) {
+                default:
+                    if (typeof object.featureType === "number") {
+                        message.featureType = object.featureType;
+                        break;
+                    }
+                    break;
+                case "UNKNOWN_FEATURE":
+                case 0:
+                    message.featureType = 0;
+                    break;
+                case "REASONING_FEATURE":
+                case 1:
+                    message.featureType = 1;
+                    break;
+                }
+                if (object.remainingQuota != null)
+                    message.remainingQuota = object.remainingQuota >>> 0;
+                if (object.expirationTimestamp != null)
+                    if ($util.Long)
+                        (message.expirationTimestamp = $util.Long.fromValue(object.expirationTimestamp)).unsigned = true;
+                    else if (typeof object.expirationTimestamp === "string")
+                        message.expirationTimestamp = parseInt(object.expirationTimestamp, 10);
+                    else if (typeof object.expirationTimestamp === "number")
+                        message.expirationTimestamp = object.expirationTimestamp;
+                    else if (typeof object.expirationTimestamp === "object")
+                        message.expirationTimestamp = new $util.LongBits(object.expirationTimestamp.low >>> 0, object.expirationTimestamp.high >>> 0).toNumber(true);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a BotFeatureQuotaMetadata message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.BotQuotaMetadata.BotFeatureQuotaMetadata
+             * @static
+             * @param {E2E.BotQuotaMetadata.BotFeatureQuotaMetadata} message BotFeatureQuotaMetadata
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            BotFeatureQuotaMetadata.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.featureType = options.enums === String ? "UNKNOWN_FEATURE" : 0;
+                    object.remainingQuota = 0;
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, true);
+                        object.expirationTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    } else
+                        object.expirationTimestamp = options.longs === String ? "0" : 0;
+                }
+                if (message.featureType != null && message.hasOwnProperty("featureType"))
+                    object.featureType = options.enums === String ? $root.E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.BotFeatureType[message.featureType] === undefined ? message.featureType : $root.E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.BotFeatureType[message.featureType] : message.featureType;
+                if (message.remainingQuota != null && message.hasOwnProperty("remainingQuota"))
+                    object.remainingQuota = message.remainingQuota;
+                if (message.expirationTimestamp != null && message.hasOwnProperty("expirationTimestamp"))
+                    if (typeof message.expirationTimestamp === "number")
+                        object.expirationTimestamp = options.longs === String ? String(message.expirationTimestamp) : message.expirationTimestamp;
+                    else
+                        object.expirationTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.expirationTimestamp) : options.longs === Number ? new $util.LongBits(message.expirationTimestamp.low >>> 0, message.expirationTimestamp.high >>> 0).toNumber(true) : message.expirationTimestamp;
+                return object;
+            };
+
+            /**
+             * Converts this BotFeatureQuotaMetadata to JSON.
+             * @function toJSON
+             * @memberof E2E.BotQuotaMetadata.BotFeatureQuotaMetadata
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            BotFeatureQuotaMetadata.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for BotFeatureQuotaMetadata
+             * @function getTypeUrl
+             * @memberof E2E.BotQuotaMetadata.BotFeatureQuotaMetadata
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            BotFeatureQuotaMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.BotQuotaMetadata.BotFeatureQuotaMetadata";
+            };
+
+            /**
+             * BotFeatureType enum.
+             * @name E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.BotFeatureType
+             * @enum {number}
+             * @property {number} UNKNOWN_FEATURE=0 UNKNOWN_FEATURE value
+             * @property {number} REASONING_FEATURE=1 REASONING_FEATURE value
+             */
+            BotFeatureQuotaMetadata.BotFeatureType = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "UNKNOWN_FEATURE"] = 0;
+                values[valuesById[1] = "REASONING_FEATURE"] = 1;
+                return values;
+            })();
+
+            return BotFeatureQuotaMetadata;
+        })();
+
+        return BotQuotaMetadata;
+    })();
+
+    E2E.BotModeSelectionMetadata = (function() {
+
+        /**
+         * Properties of a BotModeSelectionMetadata.
+         * @memberof E2E
+         * @interface IBotModeSelectionMetadata
+         * @property {Array.<E2E.BotModeSelectionMetadata.BotUserSelectionMode>|null} [mode] BotModeSelectionMetadata mode
+         */
+
+        /**
+         * Constructs a new BotModeSelectionMetadata.
+         * @memberof E2E
+         * @classdesc Represents a BotModeSelectionMetadata.
+         * @implements IBotModeSelectionMetadata
+         * @constructor
+         * @param {E2E.IBotModeSelectionMetadata=} [properties] Properties to set
+         */
+        function BotModeSelectionMetadata(properties) {
+            this.mode = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BotModeSelectionMetadata mode.
+         * @member {Array.<E2E.BotModeSelectionMetadata.BotUserSelectionMode>} mode
+         * @memberof E2E.BotModeSelectionMetadata
+         * @instance
+         */
+        BotModeSelectionMetadata.prototype.mode = $util.emptyArray;
+
+        /**
+         * Creates a new BotModeSelectionMetadata instance using the specified properties.
+         * @function create
+         * @memberof E2E.BotModeSelectionMetadata
+         * @static
+         * @param {E2E.IBotModeSelectionMetadata=} [properties] Properties to set
+         * @returns {E2E.BotModeSelectionMetadata} BotModeSelectionMetadata instance
+         */
+        BotModeSelectionMetadata.create = function create(properties) {
+            return new BotModeSelectionMetadata(properties);
+        };
+
+        /**
+         * Encodes the specified BotModeSelectionMetadata message. Does not implicitly {@link E2E.BotModeSelectionMetadata.verify|verify} messages.
+         * @function encode
+         * @memberof E2E.BotModeSelectionMetadata
+         * @static
+         * @param {E2E.IBotModeSelectionMetadata} message BotModeSelectionMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotModeSelectionMetadata.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.mode != null && message.mode.length)
+                for (var i = 0; i < message.mode.length; ++i)
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.mode[i]);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BotModeSelectionMetadata message, length delimited. Does not implicitly {@link E2E.BotModeSelectionMetadata.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof E2E.BotModeSelectionMetadata
+         * @static
+         * @param {E2E.IBotModeSelectionMetadata} message BotModeSelectionMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotModeSelectionMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BotModeSelectionMetadata message from the specified reader or buffer.
+         * @function decode
+         * @memberof E2E.BotModeSelectionMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {E2E.BotModeSelectionMetadata} BotModeSelectionMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotModeSelectionMetadata.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotModeSelectionMetadata();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        if (!(message.mode && message.mode.length))
+                            message.mode = [];
+                        if ((tag & 7) === 2) {
+                            var end2 = reader.uint32() + reader.pos;
+                            while (reader.pos < end2)
+                                message.mode.push(reader.int32());
+                        } else
+                            message.mode.push(reader.int32());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BotModeSelectionMetadata message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof E2E.BotModeSelectionMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {E2E.BotModeSelectionMetadata} BotModeSelectionMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotModeSelectionMetadata.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BotModeSelectionMetadata message.
+         * @function verify
+         * @memberof E2E.BotModeSelectionMetadata
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BotModeSelectionMetadata.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.mode != null && message.hasOwnProperty("mode")) {
+                if (!Array.isArray(message.mode))
+                    return "mode: array expected";
+                for (var i = 0; i < message.mode.length; ++i)
+                    switch (message.mode[i]) {
+                    default:
+                        return "mode: enum value[] expected";
+                    case 0:
+                    case 1:
+                        break;
+                    }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a BotModeSelectionMetadata message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof E2E.BotModeSelectionMetadata
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {E2E.BotModeSelectionMetadata} BotModeSelectionMetadata
+         */
+        BotModeSelectionMetadata.fromObject = function fromObject(object) {
+            if (object instanceof $root.E2E.BotModeSelectionMetadata)
+                return object;
+            var message = new $root.E2E.BotModeSelectionMetadata();
+            if (object.mode) {
+                if (!Array.isArray(object.mode))
+                    throw TypeError(".E2E.BotModeSelectionMetadata.mode: array expected");
+                message.mode = [];
+                for (var i = 0; i < object.mode.length; ++i)
+                    switch (object.mode[i]) {
+                    default:
+                        if (typeof object.mode[i] === "number") {
+                            message.mode[i] = object.mode[i];
+                            break;
+                        }
+                    case "UNKNOWN_MODE":
+                    case 0:
+                        message.mode[i] = 0;
+                        break;
+                    case "REASONING_MODE":
+                    case 1:
+                        message.mode[i] = 1;
+                        break;
+                    }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BotModeSelectionMetadata message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof E2E.BotModeSelectionMetadata
+         * @static
+         * @param {E2E.BotModeSelectionMetadata} message BotModeSelectionMetadata
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BotModeSelectionMetadata.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.mode = [];
+            if (message.mode && message.mode.length) {
+                object.mode = [];
+                for (var j = 0; j < message.mode.length; ++j)
+                    object.mode[j] = options.enums === String ? $root.E2E.BotModeSelectionMetadata.BotUserSelectionMode[message.mode[j]] === undefined ? message.mode[j] : $root.E2E.BotModeSelectionMetadata.BotUserSelectionMode[message.mode[j]] : message.mode[j];
+            }
+            return object;
+        };
+
+        /**
+         * Converts this BotModeSelectionMetadata to JSON.
+         * @function toJSON
+         * @memberof E2E.BotModeSelectionMetadata
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BotModeSelectionMetadata.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotModeSelectionMetadata
+         * @function getTypeUrl
+         * @memberof E2E.BotModeSelectionMetadata
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotModeSelectionMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/E2E.BotModeSelectionMetadata";
+        };
+
+        /**
+         * BotUserSelectionMode enum.
+         * @name E2E.BotModeSelectionMetadata.BotUserSelectionMode
+         * @enum {number}
+         * @property {number} UNKNOWN_MODE=0 UNKNOWN_MODE value
+         * @property {number} REASONING_MODE=1 REASONING_MODE value
+         */
+        BotModeSelectionMetadata.BotUserSelectionMode = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "UNKNOWN_MODE"] = 0;
+            values[valuesById[1] = "REASONING_MODE"] = 1;
+            return values;
+        })();
+
+        return BotModeSelectionMetadata;
     })();
 
     E2E.BotCapabilityMetadata = (function() {
@@ -40940,6 +41780,7 @@ $root.E2E = (function() {
              * @property {number|Long|null} [senderNotificationTimestampMs] CloudAPIThreadControlNotification senderNotificationTimestampMs
              * @property {string|null} [consumerLid] CloudAPIThreadControlNotification consumerLid
              * @property {string|null} [consumerPhoneNumber] CloudAPIThreadControlNotification consumerPhoneNumber
+             * @property {E2E.Message.CloudAPIThreadControlNotification.ICloudAPIThreadControlNotificationContent|null} [notificationContent] CloudAPIThreadControlNotification notificationContent
              */
 
             /**
@@ -40990,6 +41831,14 @@ $root.E2E = (function() {
             CloudAPIThreadControlNotification.prototype.consumerPhoneNumber = "";
 
             /**
+             * CloudAPIThreadControlNotification notificationContent.
+             * @member {E2E.Message.CloudAPIThreadControlNotification.ICloudAPIThreadControlNotificationContent|null|undefined} notificationContent
+             * @memberof E2E.Message.CloudAPIThreadControlNotification
+             * @instance
+             */
+            CloudAPIThreadControlNotification.prototype.notificationContent = null;
+
+            /**
              * Creates a new CloudAPIThreadControlNotification instance using the specified properties.
              * @function create
              * @memberof E2E.Message.CloudAPIThreadControlNotification
@@ -41021,6 +41870,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.consumerLid);
                 if (message.consumerPhoneNumber != null && Object.hasOwnProperty.call(message, "consumerPhoneNumber"))
                     writer.uint32(/* id 4, wireType 2 =*/34).string(message.consumerPhoneNumber);
+                if (message.notificationContent != null && Object.hasOwnProperty.call(message, "notificationContent"))
+                    $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent.encode(message.notificationContent, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                 return writer;
             };
 
@@ -41071,6 +41922,10 @@ $root.E2E = (function() {
                         }
                     case 4: {
                             message.consumerPhoneNumber = reader.string();
+                            break;
+                        }
+                    case 5: {
+                            message.notificationContent = $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -41126,6 +41981,11 @@ $root.E2E = (function() {
                 if (message.consumerPhoneNumber != null && message.hasOwnProperty("consumerPhoneNumber"))
                     if (!$util.isString(message.consumerPhoneNumber))
                         return "consumerPhoneNumber: string expected";
+                if (message.notificationContent != null && message.hasOwnProperty("notificationContent")) {
+                    var error = $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent.verify(message.notificationContent);
+                    if (error)
+                        return "notificationContent." + error;
+                }
                 return null;
             };
 
@@ -41174,6 +42034,11 @@ $root.E2E = (function() {
                     message.consumerLid = String(object.consumerLid);
                 if (object.consumerPhoneNumber != null)
                     message.consumerPhoneNumber = String(object.consumerPhoneNumber);
+                if (object.notificationContent != null) {
+                    if (typeof object.notificationContent !== "object")
+                        throw TypeError(".E2E.Message.CloudAPIThreadControlNotification.notificationContent: object expected");
+                    message.notificationContent = $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent.fromObject(object.notificationContent);
+                }
                 return message;
             };
 
@@ -41199,6 +42064,7 @@ $root.E2E = (function() {
                         object.senderNotificationTimestampMs = options.longs === String ? "0" : 0;
                     object.consumerLid = "";
                     object.consumerPhoneNumber = "";
+                    object.notificationContent = null;
                 }
                 if (message.status != null && message.hasOwnProperty("status"))
                     object.status = options.enums === String ? $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControl[message.status] === undefined ? message.status : $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControl[message.status] : message.status;
@@ -41211,6 +42077,8 @@ $root.E2E = (function() {
                     object.consumerLid = message.consumerLid;
                 if (message.consumerPhoneNumber != null && message.hasOwnProperty("consumerPhoneNumber"))
                     object.consumerPhoneNumber = message.consumerPhoneNumber;
+                if (message.notificationContent != null && message.hasOwnProperty("notificationContent"))
+                    object.notificationContent = $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent.toObject(message.notificationContent, options);
                 return object;
             };
 
@@ -41254,6 +42122,235 @@ $root.E2E = (function() {
                 values[valuesById[1] = "CONTROL_PASSED"] = 1;
                 values[valuesById[2] = "CONTROL_TAKEN"] = 2;
                 return values;
+            })();
+
+            CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent = (function() {
+
+                /**
+                 * Properties of a CloudAPIThreadControlNotificationContent.
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification
+                 * @interface ICloudAPIThreadControlNotificationContent
+                 * @property {string|null} [handoffNotificationText] CloudAPIThreadControlNotificationContent handoffNotificationText
+                 * @property {string|null} [extraJson] CloudAPIThreadControlNotificationContent extraJson
+                 */
+
+                /**
+                 * Constructs a new CloudAPIThreadControlNotificationContent.
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification
+                 * @classdesc Represents a CloudAPIThreadControlNotificationContent.
+                 * @implements ICloudAPIThreadControlNotificationContent
+                 * @constructor
+                 * @param {E2E.Message.CloudAPIThreadControlNotification.ICloudAPIThreadControlNotificationContent=} [properties] Properties to set
+                 */
+                function CloudAPIThreadControlNotificationContent(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * CloudAPIThreadControlNotificationContent handoffNotificationText.
+                 * @member {string} handoffNotificationText
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent
+                 * @instance
+                 */
+                CloudAPIThreadControlNotificationContent.prototype.handoffNotificationText = "";
+
+                /**
+                 * CloudAPIThreadControlNotificationContent extraJson.
+                 * @member {string} extraJson
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent
+                 * @instance
+                 */
+                CloudAPIThreadControlNotificationContent.prototype.extraJson = "";
+
+                /**
+                 * Creates a new CloudAPIThreadControlNotificationContent instance using the specified properties.
+                 * @function create
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent
+                 * @static
+                 * @param {E2E.Message.CloudAPIThreadControlNotification.ICloudAPIThreadControlNotificationContent=} [properties] Properties to set
+                 * @returns {E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent} CloudAPIThreadControlNotificationContent instance
+                 */
+                CloudAPIThreadControlNotificationContent.create = function create(properties) {
+                    return new CloudAPIThreadControlNotificationContent(properties);
+                };
+
+                /**
+                 * Encodes the specified CloudAPIThreadControlNotificationContent message. Does not implicitly {@link E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent.verify|verify} messages.
+                 * @function encode
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent
+                 * @static
+                 * @param {E2E.Message.CloudAPIThreadControlNotification.ICloudAPIThreadControlNotificationContent} message CloudAPIThreadControlNotificationContent message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                CloudAPIThreadControlNotificationContent.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.handoffNotificationText != null && Object.hasOwnProperty.call(message, "handoffNotificationText"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.handoffNotificationText);
+                    if (message.extraJson != null && Object.hasOwnProperty.call(message, "extraJson"))
+                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.extraJson);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified CloudAPIThreadControlNotificationContent message, length delimited. Does not implicitly {@link E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent
+                 * @static
+                 * @param {E2E.Message.CloudAPIThreadControlNotification.ICloudAPIThreadControlNotificationContent} message CloudAPIThreadControlNotificationContent message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                CloudAPIThreadControlNotificationContent.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a CloudAPIThreadControlNotificationContent message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent} CloudAPIThreadControlNotificationContent
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                CloudAPIThreadControlNotificationContent.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.handoffNotificationText = reader.string();
+                                break;
+                            }
+                        case 2: {
+                                message.extraJson = reader.string();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a CloudAPIThreadControlNotificationContent message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent} CloudAPIThreadControlNotificationContent
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                CloudAPIThreadControlNotificationContent.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a CloudAPIThreadControlNotificationContent message.
+                 * @function verify
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                CloudAPIThreadControlNotificationContent.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.handoffNotificationText != null && message.hasOwnProperty("handoffNotificationText"))
+                        if (!$util.isString(message.handoffNotificationText))
+                            return "handoffNotificationText: string expected";
+                    if (message.extraJson != null && message.hasOwnProperty("extraJson"))
+                        if (!$util.isString(message.extraJson))
+                            return "extraJson: string expected";
+                    return null;
+                };
+
+                /**
+                 * Creates a CloudAPIThreadControlNotificationContent message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent} CloudAPIThreadControlNotificationContent
+                 */
+                CloudAPIThreadControlNotificationContent.fromObject = function fromObject(object) {
+                    if (object instanceof $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent)
+                        return object;
+                    var message = new $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent();
+                    if (object.handoffNotificationText != null)
+                        message.handoffNotificationText = String(object.handoffNotificationText);
+                    if (object.extraJson != null)
+                        message.extraJson = String(object.extraJson);
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a CloudAPIThreadControlNotificationContent message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent
+                 * @static
+                 * @param {E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent} message CloudAPIThreadControlNotificationContent
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                CloudAPIThreadControlNotificationContent.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        object.handoffNotificationText = "";
+                        object.extraJson = "";
+                    }
+                    if (message.handoffNotificationText != null && message.hasOwnProperty("handoffNotificationText"))
+                        object.handoffNotificationText = message.handoffNotificationText;
+                    if (message.extraJson != null && message.hasOwnProperty("extraJson"))
+                        object.extraJson = message.extraJson;
+                    return object;
+                };
+
+                /**
+                 * Converts this CloudAPIThreadControlNotificationContent to JSON.
+                 * @function toJSON
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                CloudAPIThreadControlNotificationContent.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for CloudAPIThreadControlNotificationContent
+                 * @function getTypeUrl
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                CloudAPIThreadControlNotificationContent.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent";
+                };
+
+                return CloudAPIThreadControlNotificationContent;
             })();
 
             return CloudAPIThreadControlNotification;
