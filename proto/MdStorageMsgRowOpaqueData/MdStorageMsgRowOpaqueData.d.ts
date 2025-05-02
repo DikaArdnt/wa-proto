@@ -22468,6 +22468,9 @@ export namespace E2E {
 
             /** OrderMessage orderRequestMessageId */
             orderRequestMessageId?: (Protocol.IMessageKey|null);
+
+            /** OrderMessage catalogType */
+            catalogType?: (string|null);
         }
 
         /** Represents an OrderMessage. */
@@ -22520,6 +22523,9 @@ export namespace E2E {
 
             /** OrderMessage orderRequestMessageId. */
             public orderRequestMessageId?: (Protocol.IMessageKey|null);
+
+            /** OrderMessage catalogType. */
+            public catalogType: string;
 
             /**
              * Creates a new OrderMessage instance using the specified properties.
@@ -27428,7 +27434,8 @@ export namespace E2E {
             /** SecretEncType enum. */
             enum SecretEncType {
                 UNKNOWN = 0,
-                EVENT_EDIT = 1
+                EVENT_EDIT = 1,
+                MESSAGE_EDIT = 2
             }
         }
 

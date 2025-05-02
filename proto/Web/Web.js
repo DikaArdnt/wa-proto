@@ -71657,6 +71657,7 @@ $root.E2E = (function() {
              * @property {E2E.IContextInfo|null} [contextInfo] OrderMessage contextInfo
              * @property {number|null} [messageVersion] OrderMessage messageVersion
              * @property {Protocol.IMessageKey|null} [orderRequestMessageId] OrderMessage orderRequestMessageId
+             * @property {string|null} [catalogType] OrderMessage catalogType
              */
 
             /**
@@ -71787,6 +71788,14 @@ $root.E2E = (function() {
             OrderMessage.prototype.orderRequestMessageId = null;
 
             /**
+             * OrderMessage catalogType.
+             * @member {string} catalogType
+             * @memberof E2E.Message.OrderMessage
+             * @instance
+             */
+            OrderMessage.prototype.catalogType = "";
+
+            /**
              * Creates a new OrderMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.OrderMessage
@@ -71836,6 +71845,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 12, wireType 0 =*/96).int32(message.messageVersion);
                 if (message.orderRequestMessageId != null && Object.hasOwnProperty.call(message, "orderRequestMessageId"))
                     $root.Protocol.MessageKey.encode(message.orderRequestMessageId, writer.uint32(/* id 13, wireType 2 =*/106).fork()).ldelim();
+                if (message.catalogType != null && Object.hasOwnProperty.call(message, "catalogType"))
+                    writer.uint32(/* id 15, wireType 2 =*/122).string(message.catalogType);
                 if (message.contextInfo != null && Object.hasOwnProperty.call(message, "contextInfo"))
                     $root.E2E.ContextInfo.encode(message.contextInfo, writer.uint32(/* id 17, wireType 2 =*/138).fork()).ldelim();
                 return writer;
@@ -71930,6 +71941,10 @@ $root.E2E = (function() {
                             message.orderRequestMessageId = $root.Protocol.MessageKey.decode(reader, reader.uint32());
                             break;
                         }
+                    case 15: {
+                            message.catalogType = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -72021,6 +72036,9 @@ $root.E2E = (function() {
                     if (error)
                         return "orderRequestMessageId." + error;
                 }
+                if (message.catalogType != null && message.hasOwnProperty("catalogType"))
+                    if (!$util.isString(message.catalogType))
+                        return "catalogType: string expected";
                 return null;
             };
 
@@ -72108,6 +72126,8 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.OrderMessage.orderRequestMessageId: object expected");
                     message.orderRequestMessageId = $root.Protocol.MessageKey.fromObject(object.orderRequestMessageId);
                 }
+                if (object.catalogType != null)
+                    message.catalogType = String(object.catalogType);
                 return message;
             };
 
@@ -72148,6 +72168,7 @@ $root.E2E = (function() {
                     object.totalCurrencyCode = "";
                     object.messageVersion = 0;
                     object.orderRequestMessageId = null;
+                    object.catalogType = "";
                     object.contextInfo = null;
                 }
                 if (message.orderId != null && message.hasOwnProperty("orderId"))
@@ -72179,6 +72200,8 @@ $root.E2E = (function() {
                     object.messageVersion = message.messageVersion;
                 if (message.orderRequestMessageId != null && message.hasOwnProperty("orderRequestMessageId"))
                     object.orderRequestMessageId = $root.Protocol.MessageKey.toObject(message.orderRequestMessageId, options);
+                if (message.catalogType != null && message.hasOwnProperty("catalogType"))
+                    object.catalogType = message.catalogType;
                 if (message.contextInfo != null && message.hasOwnProperty("contextInfo"))
                     object.contextInfo = $root.E2E.ContextInfo.toObject(message.contextInfo, options);
                 return object;
@@ -84639,6 +84662,7 @@ $root.E2E = (function() {
                         return "secretEncType: enum value expected";
                     case 0:
                     case 1:
+                    case 2:
                         break;
                     }
                 return null;
@@ -84685,6 +84709,10 @@ $root.E2E = (function() {
                 case "EVENT_EDIT":
                 case 1:
                     message.secretEncType = 1;
+                    break;
+                case "MESSAGE_EDIT":
+                case 2:
+                    message.secretEncType = 2;
                     break;
                 }
                 return message;
@@ -84764,11 +84792,13 @@ $root.E2E = (function() {
              * @enum {number}
              * @property {number} UNKNOWN=0 UNKNOWN value
              * @property {number} EVENT_EDIT=1 EVENT_EDIT value
+             * @property {number} MESSAGE_EDIT=2 MESSAGE_EDIT value
              */
             SecretEncryptedMessage.SecretEncType = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
                 values[valuesById[0] = "UNKNOWN"] = 0;
                 values[valuesById[1] = "EVENT_EDIT"] = 1;
+                values[valuesById[2] = "MESSAGE_EDIT"] = 2;
                 return values;
             })();
 

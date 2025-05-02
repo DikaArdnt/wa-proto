@@ -1711,6 +1711,7 @@ message Message {
         optional ContextInfo contextInfo = 17;
         optional int32 messageVersion = 12;
         optional Protocol.MessageKey orderRequestMessageId = 13;
+        optional string catalogType = 15;
         enum OrderStatus {
             INQUIRY = 1;
             ACCEPTED = 2;
@@ -2045,6 +2046,7 @@ message Message {
         enum SecretEncType {
             UNKNOWN = 0;
             EVENT_EDIT = 1;
+            MESSAGE_EDIT = 2;
         }
     }
     message SendPaymentMessage {
