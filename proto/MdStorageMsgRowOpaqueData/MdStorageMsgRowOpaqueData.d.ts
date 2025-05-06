@@ -12402,6 +12402,9 @@ export namespace E2E {
 
         /** Message questionMessage */
         questionMessage?: (E2E.Message.IFutureProofMessage|null);
+
+        /** Message messageHistoryNotice */
+        messageHistoryNotice?: (E2E.Message.IMessageHistoryNotice|null);
     }
 
     /** Represents a Message. */
@@ -12667,6 +12670,9 @@ export namespace E2E {
 
         /** Message questionMessage. */
         public questionMessage?: (E2E.Message.IFutureProofMessage|null);
+
+        /** Message messageHistoryNotice. */
+        public messageHistoryNotice?: (E2E.Message.IMessageHistoryNotice|null);
 
         /**
          * Creates a new Message instance using the specified properties.
@@ -14694,6 +14700,9 @@ export namespace E2E {
 
             /** Call ctwaPayload */
             ctwaPayload?: (Uint8Array|null);
+
+            /** Call contextInfo */
+            contextInfo?: (E2E.IContextInfo|null);
         }
 
         /** Represents a Call. */
@@ -14722,6 +14731,9 @@ export namespace E2E {
 
             /** Call ctwaPayload. */
             public ctwaPayload: Uint8Array;
+
+            /** Call contextInfo. */
+            public contextInfo?: (E2E.IContextInfo|null);
 
             /**
              * Creates a new Call instance using the specified properties.

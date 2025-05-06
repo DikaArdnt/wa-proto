@@ -42992,6 +42992,7 @@ $root.E2E = (function() {
          * @property {E2E.Message.IFutureProofMessage|null} [limitSharingMessage] Message limitSharingMessage
          * @property {E2E.Message.IFutureProofMessage|null} [botTaskMessage] Message botTaskMessage
          * @property {E2E.Message.IFutureProofMessage|null} [questionMessage] Message questionMessage
+         * @property {E2E.Message.IMessageHistoryNotice|null} [messageHistoryNotice] Message messageHistoryNotice
          */
 
         /**
@@ -43690,6 +43691,14 @@ $root.E2E = (function() {
         Message.prototype.questionMessage = null;
 
         /**
+         * Message messageHistoryNotice.
+         * @member {E2E.Message.IMessageHistoryNotice|null|undefined} messageHistoryNotice
+         * @memberof E2E.Message
+         * @instance
+         */
+        Message.prototype.messageHistoryNotice = null;
+
+        /**
          * Creates a new Message instance using the specified properties.
          * @function create
          * @memberof E2E.Message
@@ -43883,6 +43892,8 @@ $root.E2E = (function() {
                 $root.E2E.Message.FutureProofMessage.encode(message.botTaskMessage, writer.uint32(/* id 100, wireType 2 =*/802).fork()).ldelim();
             if (message.questionMessage != null && Object.hasOwnProperty.call(message, "questionMessage"))
                 $root.E2E.Message.FutureProofMessage.encode(message.questionMessage, writer.uint32(/* id 101, wireType 2 =*/810).fork()).ldelim();
+            if (message.messageHistoryNotice != null && Object.hasOwnProperty.call(message, "messageHistoryNotice"))
+                $root.E2E.Message.MessageHistoryNotice.encode(message.messageHistoryNotice, writer.uint32(/* id 102, wireType 2 =*/818).fork()).ldelim();
             return writer;
         };
 
@@ -44257,6 +44268,10 @@ $root.E2E = (function() {
                     }
                 case 101: {
                         message.questionMessage = $root.E2E.Message.FutureProofMessage.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 102: {
+                        message.messageHistoryNotice = $root.E2E.Message.MessageHistoryNotice.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -44717,6 +44732,11 @@ $root.E2E = (function() {
                 if (error)
                     return "questionMessage." + error;
             }
+            if (message.messageHistoryNotice != null && message.hasOwnProperty("messageHistoryNotice")) {
+                var error = $root.E2E.Message.MessageHistoryNotice.verify(message.messageHistoryNotice);
+                if (error)
+                    return "messageHistoryNotice." + error;
+            }
             return null;
         };
 
@@ -45154,6 +45174,11 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.Message.questionMessage: object expected");
                 message.questionMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.questionMessage);
             }
+            if (object.messageHistoryNotice != null) {
+                if (typeof object.messageHistoryNotice !== "object")
+                    throw TypeError(".E2E.Message.messageHistoryNotice: object expected");
+                message.messageHistoryNotice = $root.E2E.Message.MessageHistoryNotice.fromObject(object.messageHistoryNotice);
+            }
             return message;
         };
 
@@ -45256,6 +45281,7 @@ $root.E2E = (function() {
                 object.limitSharingMessage = null;
                 object.botTaskMessage = null;
                 object.questionMessage = null;
+                object.messageHistoryNotice = null;
             }
             if (message.conversation != null && message.hasOwnProperty("conversation"))
                 object.conversation = message.conversation;
@@ -45427,6 +45453,8 @@ $root.E2E = (function() {
                 object.botTaskMessage = $root.E2E.Message.FutureProofMessage.toObject(message.botTaskMessage, options);
             if (message.questionMessage != null && message.hasOwnProperty("questionMessage"))
                 object.questionMessage = $root.E2E.Message.FutureProofMessage.toObject(message.questionMessage, options);
+            if (message.messageHistoryNotice != null && message.hasOwnProperty("messageHistoryNotice"))
+                object.messageHistoryNotice = $root.E2E.Message.MessageHistoryNotice.toObject(message.messageHistoryNotice, options);
             return object;
         };
 
@@ -50595,6 +50623,7 @@ $root.E2E = (function() {
              * @property {number|null} [conversionDelaySeconds] Call conversionDelaySeconds
              * @property {string|null} [ctwaSignals] Call ctwaSignals
              * @property {Uint8Array|null} [ctwaPayload] Call ctwaPayload
+             * @property {E2E.IContextInfo|null} [contextInfo] Call contextInfo
              */
 
             /**
@@ -50661,6 +50690,14 @@ $root.E2E = (function() {
             Call.prototype.ctwaPayload = $util.newBuffer([]);
 
             /**
+             * Call contextInfo.
+             * @member {E2E.IContextInfo|null|undefined} contextInfo
+             * @memberof E2E.Message.Call
+             * @instance
+             */
+            Call.prototype.contextInfo = null;
+
+            /**
              * Creates a new Call instance using the specified properties.
              * @function create
              * @memberof E2E.Message.Call
@@ -50696,6 +50733,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 5, wireType 2 =*/42).string(message.ctwaSignals);
                 if (message.ctwaPayload != null && Object.hasOwnProperty.call(message, "ctwaPayload"))
                     writer.uint32(/* id 6, wireType 2 =*/50).bytes(message.ctwaPayload);
+                if (message.contextInfo != null && Object.hasOwnProperty.call(message, "contextInfo"))
+                    $root.E2E.ContextInfo.encode(message.contextInfo, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
                 return writer;
             };
 
@@ -50756,6 +50795,10 @@ $root.E2E = (function() {
                             message.ctwaPayload = reader.bytes();
                             break;
                         }
+                    case 7: {
+                            message.contextInfo = $root.E2E.ContextInfo.decode(reader, reader.uint32());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -50809,6 +50852,11 @@ $root.E2E = (function() {
                 if (message.ctwaPayload != null && message.hasOwnProperty("ctwaPayload"))
                     if (!(message.ctwaPayload && typeof message.ctwaPayload.length === "number" || $util.isString(message.ctwaPayload)))
                         return "ctwaPayload: buffer expected";
+                if (message.contextInfo != null && message.hasOwnProperty("contextInfo")) {
+                    var error = $root.E2E.ContextInfo.verify(message.contextInfo);
+                    if (error)
+                        return "contextInfo." + error;
+                }
                 return null;
             };
 
@@ -50845,6 +50893,11 @@ $root.E2E = (function() {
                         $util.base64.decode(object.ctwaPayload, message.ctwaPayload = $util.newBuffer($util.base64.length(object.ctwaPayload)), 0);
                     else if (object.ctwaPayload.length >= 0)
                         message.ctwaPayload = object.ctwaPayload;
+                if (object.contextInfo != null) {
+                    if (typeof object.contextInfo !== "object")
+                        throw TypeError(".E2E.Message.Call.contextInfo: object expected");
+                    message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo);
+                }
                 return message;
             };
 
@@ -50886,6 +50939,7 @@ $root.E2E = (function() {
                         if (options.bytes !== Array)
                             object.ctwaPayload = $util.newBuffer(object.ctwaPayload);
                     }
+                    object.contextInfo = null;
                 }
                 if (message.callKey != null && message.hasOwnProperty("callKey"))
                     object.callKey = options.bytes === String ? $util.base64.encode(message.callKey, 0, message.callKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.callKey) : message.callKey;
@@ -50899,6 +50953,8 @@ $root.E2E = (function() {
                     object.ctwaSignals = message.ctwaSignals;
                 if (message.ctwaPayload != null && message.hasOwnProperty("ctwaPayload"))
                     object.ctwaPayload = options.bytes === String ? $util.base64.encode(message.ctwaPayload, 0, message.ctwaPayload.length) : options.bytes === Array ? Array.prototype.slice.call(message.ctwaPayload) : message.ctwaPayload;
+                if (message.contextInfo != null && message.hasOwnProperty("contextInfo"))
+                    object.contextInfo = $root.E2E.ContextInfo.toObject(message.contextInfo, options);
                 return object;
             };
 
