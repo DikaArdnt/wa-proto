@@ -9754,9 +9754,6 @@ export namespace E2E {
 
         /** ContextInfo isQuestion */
         isQuestion?: (boolean|null);
-
-        /** ContextInfo statusType */
-        statusType?: (E2E.ContextInfo.StatusSourceType|null);
     }
 
     /** Represents a ContextInfo. */
@@ -9905,9 +9902,6 @@ export namespace E2E {
 
         /** ContextInfo isQuestion. */
         public isQuestion: boolean;
-
-        /** ContextInfo statusType. */
-        public statusType: E2E.ContextInfo.StatusSourceType;
 
         /**
          * Creates a new ContextInfo instance using the specified properties.
@@ -11070,15 +11064,6 @@ export namespace E2E {
             NONE = 0,
             RESHARED_FROM_MENTION = 1,
             RESHARED_FROM_POST = 2
-        }
-
-        /** StatusSourceType enum. */
-        enum StatusSourceType {
-            IMAGE = 0,
-            VIDEO = 1,
-            GIF = 2,
-            AUDIO = 3,
-            TEXT = 4
         }
 
         /** Properties of a UTMInfo. */
@@ -22760,8 +22745,8 @@ export namespace E2E {
             /** Properties of a SyncDCollectionFatalRecoveryRequest. */
             interface ISyncDCollectionFatalRecoveryRequest {
 
-                /** SyncDCollectionFatalRecoveryRequest collectionName */
-                collectionName?: (string|null);
+                /** SyncDCollectionFatalRecoveryRequest collectionNames */
+                collectionNames?: (string[]|null);
 
                 /** SyncDCollectionFatalRecoveryRequest timestamp */
                 timestamp?: (number|Long|null);
@@ -22776,8 +22761,8 @@ export namespace E2E {
                  */
                 constructor(properties?: E2E.Message.PeerDataOperationRequestMessage.ISyncDCollectionFatalRecoveryRequest);
 
-                /** SyncDCollectionFatalRecoveryRequest collectionName. */
-                public collectionName: string;
+                /** SyncDCollectionFatalRecoveryRequest collectionNames. */
+                public collectionNames: string[];
 
                 /** SyncDCollectionFatalRecoveryRequest timestamp. */
                 public timestamp: (number|Long);
@@ -28461,10 +28446,7 @@ export namespace E2E {
         AI_TAB = 18,
         AI_HOME = 19,
         AI_DEEPLINK_IMMERSIVE = 20,
-        AI_DEEPLINK = 21,
-        META_AI_CHAT_SHORTCUT_AI_STUDIO = 22,
-        UGC_CHAT_SHORTCUT_AI_STUDIO = 23,
-        NEW_CHAT_AI_STUDIO = 24
+        AI_DEEPLINK = 21
     }
 }
 

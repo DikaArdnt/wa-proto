@@ -29285,9 +29285,6 @@ $root.E2E = (function() {
                 case 19:
                 case 20:
                 case 21:
-                case 22:
-                case 23:
-                case 24:
                     break;
                 }
             if (message.threadOrigin != null && message.hasOwnProperty("threadOrigin"))
@@ -29407,18 +29404,6 @@ $root.E2E = (function() {
             case "AI_DEEPLINK":
             case 21:
                 message.destinationEntryPoint = 21;
-                break;
-            case "META_AI_CHAT_SHORTCUT_AI_STUDIO":
-            case 22:
-                message.destinationEntryPoint = 22;
-                break;
-            case "UGC_CHAT_SHORTCUT_AI_STUDIO":
-            case 23:
-                message.destinationEntryPoint = 23;
-                break;
-            case "NEW_CHAT_AI_STUDIO":
-            case 24:
-                message.destinationEntryPoint = 24;
                 break;
             }
             switch (object.threadOrigin) {
@@ -38219,7 +38204,6 @@ $root.E2E = (function() {
          * @property {number|null} [rankingVersion] ContextInfo rankingVersion
          * @property {E2E.IMemberLabel|null} [memberLabel] ContextInfo memberLabel
          * @property {boolean|null} [isQuestion] ContextInfo isQuestion
-         * @property {E2E.ContextInfo.StatusSourceType|null} [statusType] ContextInfo statusType
          */
 
         /**
@@ -38608,14 +38592,6 @@ $root.E2E = (function() {
         ContextInfo.prototype.isQuestion = false;
 
         /**
-         * ContextInfo statusType.
-         * @member {E2E.ContextInfo.StatusSourceType} statusType
-         * @memberof E2E.ContextInfo
-         * @instance
-         */
-        ContextInfo.prototype.statusType = 0;
-
-        /**
          * Creates a new ContextInfo instance using the specified properties.
          * @function create
          * @memberof E2E.ContextInfo
@@ -38733,8 +38709,6 @@ $root.E2E = (function() {
                 $root.E2E.MemberLabel.encode(message.memberLabel, writer.uint32(/* id 62, wireType 2 =*/498).fork()).ldelim();
             if (message.isQuestion != null && Object.hasOwnProperty.call(message, "isQuestion"))
                 writer.uint32(/* id 63, wireType 0 =*/504).bool(message.isQuestion);
-            if (message.statusType != null && Object.hasOwnProperty.call(message, "statusType"))
-                writer.uint32(/* id 64, wireType 0 =*/512).int32(message.statusType);
             return writer;
         };
 
@@ -38955,10 +38929,6 @@ $root.E2E = (function() {
                     }
                 case 63: {
                         message.isQuestion = reader.bool();
-                        break;
-                    }
-                case 64: {
-                        message.statusType = reader.int32();
                         break;
                     }
                 default:
@@ -39186,17 +39156,6 @@ $root.E2E = (function() {
             if (message.isQuestion != null && message.hasOwnProperty("isQuestion"))
                 if (typeof message.isQuestion !== "boolean")
                     return "isQuestion: boolean expected";
-            if (message.statusType != null && message.hasOwnProperty("statusType"))
-                switch (message.statusType) {
-                default:
-                    return "statusType: enum value expected";
-                case 0:
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                    break;
-                }
             return null;
         };
 
@@ -39419,34 +39378,6 @@ $root.E2E = (function() {
             }
             if (object.isQuestion != null)
                 message.isQuestion = Boolean(object.isQuestion);
-            switch (object.statusType) {
-            default:
-                if (typeof object.statusType === "number") {
-                    message.statusType = object.statusType;
-                    break;
-                }
-                break;
-            case "IMAGE":
-            case 0:
-                message.statusType = 0;
-                break;
-            case "VIDEO":
-            case 1:
-                message.statusType = 1;
-                break;
-            case "GIF":
-            case 2:
-                message.statusType = 2;
-                break;
-            case "AUDIO":
-            case 3:
-                message.statusType = 3;
-                break;
-            case "TEXT":
-            case 4:
-                message.statusType = 4;
-                break;
-            }
             return message;
         };
 
@@ -39534,7 +39465,6 @@ $root.E2E = (function() {
                 object.rankingVersion = 0;
                 object.memberLabel = null;
                 object.isQuestion = false;
-                object.statusType = options.enums === String ? "IMAGE" : 0;
             }
             if (message.stanzaId != null && message.hasOwnProperty("stanzaId"))
                 object.stanzaId = message.stanzaId;
@@ -39637,8 +39567,6 @@ $root.E2E = (function() {
                 object.memberLabel = $root.E2E.MemberLabel.toObject(message.memberLabel, options);
             if (message.isQuestion != null && message.hasOwnProperty("isQuestion"))
                 object.isQuestion = message.isQuestion;
-            if (message.statusType != null && message.hasOwnProperty("statusType"))
-                object.statusType = options.enums === String ? $root.E2E.ContextInfo.StatusSourceType[message.statusType] === undefined ? message.statusType : $root.E2E.ContextInfo.StatusSourceType[message.statusType] : message.statusType;
             return object;
         };
 
@@ -42510,26 +42438,6 @@ $root.E2E = (function() {
             values[valuesById[0] = "NONE"] = 0;
             values[valuesById[1] = "RESHARED_FROM_MENTION"] = 1;
             values[valuesById[2] = "RESHARED_FROM_POST"] = 2;
-            return values;
-        })();
-
-        /**
-         * StatusSourceType enum.
-         * @name E2E.ContextInfo.StatusSourceType
-         * @enum {number}
-         * @property {number} IMAGE=0 IMAGE value
-         * @property {number} VIDEO=1 VIDEO value
-         * @property {number} GIF=2 GIF value
-         * @property {number} AUDIO=3 AUDIO value
-         * @property {number} TEXT=4 TEXT value
-         */
-        ContextInfo.StatusSourceType = (function() {
-            var valuesById = {}, values = Object.create(valuesById);
-            values[valuesById[0] = "IMAGE"] = 0;
-            values[valuesById[1] = "VIDEO"] = 1;
-            values[valuesById[2] = "GIF"] = 2;
-            values[valuesById[3] = "AUDIO"] = 3;
-            values[valuesById[4] = "TEXT"] = 4;
             return values;
         })();
 
@@ -74673,7 +74581,7 @@ $root.E2E = (function() {
                  * Properties of a SyncDCollectionFatalRecoveryRequest.
                  * @memberof E2E.Message.PeerDataOperationRequestMessage
                  * @interface ISyncDCollectionFatalRecoveryRequest
-                 * @property {string|null} [collectionName] SyncDCollectionFatalRecoveryRequest collectionName
+                 * @property {Array.<string>|null} [collectionNames] SyncDCollectionFatalRecoveryRequest collectionNames
                  * @property {number|Long|null} [timestamp] SyncDCollectionFatalRecoveryRequest timestamp
                  */
 
@@ -74686,6 +74594,7 @@ $root.E2E = (function() {
                  * @param {E2E.Message.PeerDataOperationRequestMessage.ISyncDCollectionFatalRecoveryRequest=} [properties] Properties to set
                  */
                 function SyncDCollectionFatalRecoveryRequest(properties) {
+                    this.collectionNames = [];
                     if (properties)
                         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                             if (properties[keys[i]] != null)
@@ -74693,12 +74602,12 @@ $root.E2E = (function() {
                 }
 
                 /**
-                 * SyncDCollectionFatalRecoveryRequest collectionName.
-                 * @member {string} collectionName
+                 * SyncDCollectionFatalRecoveryRequest collectionNames.
+                 * @member {Array.<string>} collectionNames
                  * @memberof E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest
                  * @instance
                  */
-                SyncDCollectionFatalRecoveryRequest.prototype.collectionName = "";
+                SyncDCollectionFatalRecoveryRequest.prototype.collectionNames = $util.emptyArray;
 
                 /**
                  * SyncDCollectionFatalRecoveryRequest timestamp.
@@ -74732,8 +74641,9 @@ $root.E2E = (function() {
                 SyncDCollectionFatalRecoveryRequest.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.collectionName != null && Object.hasOwnProperty.call(message, "collectionName"))
-                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.collectionName);
+                    if (message.collectionNames != null && message.collectionNames.length)
+                        for (var i = 0; i < message.collectionNames.length; ++i)
+                            writer.uint32(/* id 1, wireType 2 =*/10).string(message.collectionNames[i]);
                     if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                         writer.uint32(/* id 2, wireType 0 =*/16).int64(message.timestamp);
                     return writer;
@@ -74771,7 +74681,9 @@ $root.E2E = (function() {
                         var tag = reader.uint32();
                         switch (tag >>> 3) {
                         case 1: {
-                                message.collectionName = reader.string();
+                                if (!(message.collectionNames && message.collectionNames.length))
+                                    message.collectionNames = [];
+                                message.collectionNames.push(reader.string());
                                 break;
                             }
                         case 2: {
@@ -74813,9 +74725,13 @@ $root.E2E = (function() {
                 SyncDCollectionFatalRecoveryRequest.verify = function verify(message) {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
-                    if (message.collectionName != null && message.hasOwnProperty("collectionName"))
-                        if (!$util.isString(message.collectionName))
-                            return "collectionName: string expected";
+                    if (message.collectionNames != null && message.hasOwnProperty("collectionNames")) {
+                        if (!Array.isArray(message.collectionNames))
+                            return "collectionNames: array expected";
+                        for (var i = 0; i < message.collectionNames.length; ++i)
+                            if (!$util.isString(message.collectionNames[i]))
+                                return "collectionNames: string[] expected";
+                    }
                     if (message.timestamp != null && message.hasOwnProperty("timestamp"))
                         if (!$util.isInteger(message.timestamp) && !(message.timestamp && $util.isInteger(message.timestamp.low) && $util.isInteger(message.timestamp.high)))
                             return "timestamp: integer|Long expected";
@@ -74834,8 +74750,13 @@ $root.E2E = (function() {
                     if (object instanceof $root.E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest)
                         return object;
                     var message = new $root.E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest();
-                    if (object.collectionName != null)
-                        message.collectionName = String(object.collectionName);
+                    if (object.collectionNames) {
+                        if (!Array.isArray(object.collectionNames))
+                            throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest.collectionNames: array expected");
+                        message.collectionNames = [];
+                        for (var i = 0; i < object.collectionNames.length; ++i)
+                            message.collectionNames[i] = String(object.collectionNames[i]);
+                    }
                     if (object.timestamp != null)
                         if ($util.Long)
                             (message.timestamp = $util.Long.fromValue(object.timestamp)).unsigned = false;
@@ -74861,16 +74782,19 @@ $root.E2E = (function() {
                     if (!options)
                         options = {};
                     var object = {};
-                    if (options.defaults) {
-                        object.collectionName = "";
+                    if (options.arrays || options.defaults)
+                        object.collectionNames = [];
+                    if (options.defaults)
                         if ($util.Long) {
                             var long = new $util.Long(0, 0, false);
                             object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                         } else
                             object.timestamp = options.longs === String ? "0" : 0;
+                    if (message.collectionNames && message.collectionNames.length) {
+                        object.collectionNames = [];
+                        for (var j = 0; j < message.collectionNames.length; ++j)
+                            object.collectionNames[j] = message.collectionNames[j];
                     }
-                    if (message.collectionName != null && message.hasOwnProperty("collectionName"))
-                        object.collectionName = message.collectionName;
                     if (message.timestamp != null && message.hasOwnProperty("timestamp"))
                         if (typeof message.timestamp === "number")
                             object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
@@ -90398,9 +90322,6 @@ $root.E2E = (function() {
      * @property {number} AI_HOME=19 AI_HOME value
      * @property {number} AI_DEEPLINK_IMMERSIVE=20 AI_DEEPLINK_IMMERSIVE value
      * @property {number} AI_DEEPLINK=21 AI_DEEPLINK value
-     * @property {number} META_AI_CHAT_SHORTCUT_AI_STUDIO=22 META_AI_CHAT_SHORTCUT_AI_STUDIO value
-     * @property {number} UGC_CHAT_SHORTCUT_AI_STUDIO=23 UGC_CHAT_SHORTCUT_AI_STUDIO value
-     * @property {number} NEW_CHAT_AI_STUDIO=24 NEW_CHAT_AI_STUDIO value
      */
     E2E.BotMetricsEntryPoint = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -90425,9 +90346,6 @@ $root.E2E = (function() {
         values[valuesById[19] = "AI_HOME"] = 19;
         values[valuesById[20] = "AI_DEEPLINK_IMMERSIVE"] = 20;
         values[valuesById[21] = "AI_DEEPLINK"] = 21;
-        values[valuesById[22] = "META_AI_CHAT_SHORTCUT_AI_STUDIO"] = 22;
-        values[valuesById[23] = "UGC_CHAT_SHORTCUT_AI_STUDIO"] = 23;
-        values[valuesById[24] = "NEW_CHAT_AI_STUDIO"] = 24;
         return values;
     })();
 
