@@ -105,14 +105,12 @@ $root.SignalLocalStorageProtocol = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        SenderKeyRecordStructure.decode = function decode(reader, length, error) {
+        SenderKeyRecordStructure.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SenderKeyRecordStructure();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         if (!(message.senderKeyStates && message.senderKeyStates.length))
@@ -364,14 +362,12 @@ $root.SignalLocalStorageProtocol = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        SenderKeyStateStructure.decode = function decode(reader, length, error) {
+        SenderKeyStateStructure.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.senderKeyId = reader.uint32();
@@ -644,14 +640,12 @@ $root.SignalLocalStorageProtocol = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            SenderChainKey.decode = function decode(reader, length, error) {
+            SenderChainKey.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.iteration = reader.uint32();
@@ -882,14 +876,12 @@ $root.SignalLocalStorageProtocol = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            SenderMessageKey.decode = function decode(reader, length, error) {
+            SenderMessageKey.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.iteration = reader.uint32();
@@ -1120,14 +1112,12 @@ $root.SignalLocalStorageProtocol = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            SenderSigningKey.decode = function decode(reader, length, error) {
+            SenderSigningKey.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message["public"] = reader.bytes();
@@ -1370,14 +1360,12 @@ $root.SignalLocalStorageProtocol = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        IdentityKeyPairStructure.decode = function decode(reader, length, error) {
+        IdentityKeyPairStructure.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.IdentityKeyPairStructure();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.publicKey = reader.bytes();
@@ -1650,14 +1638,12 @@ $root.SignalLocalStorageProtocol = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        SignedPreKeyRecordStructure.decode = function decode(reader, length, error) {
+        SignedPreKeyRecordStructure.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SignedPreKeyRecordStructure();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.id = reader.uint32();
@@ -1967,14 +1953,12 @@ $root.SignalLocalStorageProtocol = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PreKeyRecordStructure.decode = function decode(reader, length, error) {
+        PreKeyRecordStructure.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.PreKeyRecordStructure();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.id = reader.uint32();
@@ -2228,14 +2212,12 @@ $root.SignalLocalStorageProtocol = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        RecordStructure.decode = function decode(reader, length, error) {
+        RecordStructure.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.RecordStructure();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.currentSession = $root.SignalLocalStorageProtocol.SessionStructure.decode(reader, reader.uint32());
@@ -2604,14 +2586,12 @@ $root.SignalLocalStorageProtocol = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        SessionStructure.decode = function decode(reader, length, error) {
+        SessionStructure.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SessionStructure();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.sessionVersion = reader.uint32();
@@ -3057,14 +3037,12 @@ $root.SignalLocalStorageProtocol = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            Chain.decode = function decode(reader, length, error) {
+            Chain.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SessionStructure.Chain();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.senderRatchetKey = reader.bytes();
@@ -3350,14 +3328,12 @@ $root.SignalLocalStorageProtocol = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ChainKey.decode = function decode(reader, length, error) {
+                ChainKey.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.index = reader.uint32();
@@ -3610,14 +3586,12 @@ $root.SignalLocalStorageProtocol = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                MessageKey.decode = function decode(reader, length, error) {
+                MessageKey.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.index = reader.uint32();
@@ -3948,14 +3922,12 @@ $root.SignalLocalStorageProtocol = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PendingKeyExchange.decode = function decode(reader, length, error) {
+            PendingKeyExchange.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.sequence = reader.uint32();
@@ -4302,14 +4274,12 @@ $root.SignalLocalStorageProtocol = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PendingPreKey.decode = function decode(reader, length, error) {
+            PendingPreKey.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalLocalStorageProtocol.SessionStructure.PendingPreKey();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.preKeyId = reader.uint32();

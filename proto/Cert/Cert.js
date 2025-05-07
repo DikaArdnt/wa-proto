@@ -114,14 +114,12 @@ $root.Cert = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        CertChain.decode = function decode(reader, length, error) {
+        CertChain.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Cert.CertChain();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.leaf = $root.Cert.CertChain.NoiseCertificate.decode(reader, reader.uint32());
@@ -350,14 +348,12 @@ $root.Cert = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            NoiseCertificate.decode = function decode(reader, length, error) {
+            NoiseCertificate.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Cert.CertChain.NoiseCertificate();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.details = reader.bytes();
@@ -627,14 +623,12 @@ $root.Cert = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Details.decode = function decode(reader, length, error) {
+                Details.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Cert.CertChain.NoiseCertificate.Details();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.serial = reader.uint32();
@@ -935,14 +929,12 @@ $root.Cert = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        NoiseCertificate.decode = function decode(reader, length, error) {
+        NoiseCertificate.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Cert.NoiseCertificate();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.details = reader.bytes();
@@ -1212,14 +1204,12 @@ $root.Cert = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            Details.decode = function decode(reader, length, error) {
+            Details.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Cert.NoiseCertificate.Details();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.serial = reader.uint32();

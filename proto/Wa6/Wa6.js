@@ -424,14 +424,12 @@ $root.Wa6 = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ClientPayload.decode = function decode(reader, length, error) {
+        ClientPayload.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Wa6.ClientPayload();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.username = reader.uint64();
@@ -1397,14 +1395,12 @@ $root.Wa6 = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            DNSSource.decode = function decode(reader, length, error) {
+            DNSSource.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Wa6.ClientPayload.DNSSource();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 15: {
                             message.dnsMethod = reader.int32();
@@ -1753,14 +1749,12 @@ $root.Wa6 = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            DevicePairingRegistrationData.decode = function decode(reader, length, error) {
+            DevicePairingRegistrationData.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Wa6.ClientPayload.DevicePairingRegistrationData();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.eRegid = reader.bytes();
@@ -2153,14 +2147,12 @@ $root.Wa6 = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            InteropData.decode = function decode(reader, length, error) {
+            InteropData.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Wa6.ClientPayload.InteropData();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.accountId = reader.uint64();
@@ -2605,14 +2597,12 @@ $root.Wa6 = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            UserAgent.decode = function decode(reader, length, error) {
+            UserAgent.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Wa6.ClientPayload.UserAgent();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.platform = reader.int32();
@@ -3289,14 +3279,12 @@ $root.Wa6 = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                AppVersion.decode = function decode(reader, length, error) {
+                AppVersion.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Wa6.ClientPayload.UserAgent.AppVersion();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.primary = reader.uint32();
@@ -3699,14 +3687,12 @@ $root.Wa6 = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            WebInfo.decode = function decode(reader, length, error) {
+            WebInfo.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Wa6.ClientPayload.WebInfo();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.refToken = reader.string();
@@ -4114,14 +4100,12 @@ $root.Wa6 = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                WebdPayload.decode = function decode(reader, length, error) {
+                WebdPayload.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Wa6.ClientPayload.WebInfo.WebdPayload();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.usesParticipantInKey = reader.bool();
@@ -4477,14 +4461,12 @@ $root.Wa6 = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        HandshakeMessage.decode = function decode(reader, length, error) {
+        HandshakeMessage.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Wa6.HandshakeMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 2: {
                         message.clientHello = $root.Wa6.HandshakeMessage.ClientHello.decode(reader, reader.uint32());
@@ -4730,14 +4712,12 @@ $root.Wa6 = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ClientFinish.decode = function decode(reader, length, error) {
+            ClientFinish.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Wa6.HandshakeMessage.ClientFinish();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message["static"] = reader.bytes();
@@ -4988,14 +4968,12 @@ $root.Wa6 = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ClientHello.decode = function decode(reader, length, error) {
+            ClientHello.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Wa6.HandshakeMessage.ClientHello();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.ephemeral = reader.bytes();
@@ -5267,14 +5245,12 @@ $root.Wa6 = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ServerHello.decode = function decode(reader, length, error) {
+            ServerHello.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Wa6.HandshakeMessage.ServerHello();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.ephemeral = reader.bytes();

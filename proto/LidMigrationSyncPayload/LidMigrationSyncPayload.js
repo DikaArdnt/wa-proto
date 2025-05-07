@@ -116,14 +116,12 @@ $root.LidMigrationSyncPayload = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        LIDMigrationMappingSyncPayload.decode = function decode(reader, length, error) {
+        LIDMigrationMappingSyncPayload.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.LidMigrationSyncPayload.LIDMigrationMappingSyncPayload();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         if (!(message.pnToLidMappings && message.pnToLidMappings.length))
@@ -387,14 +385,12 @@ $root.LidMigrationSyncPayload = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        LIDMigrationMapping.decode = function decode(reader, length, error) {
+        LIDMigrationMapping.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.LidMigrationSyncPayload.LIDMigrationMapping();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.pn = reader.uint64();

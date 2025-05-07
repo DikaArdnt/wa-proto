@@ -132,14 +132,12 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Citation.decode = function decode(reader, length, error) {
+        Citation.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.Citation();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.title = reader.string();
@@ -378,14 +376,12 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        StatusMentionMessage.decode = function decode(reader, length, error) {
+        StatusMentionMessage.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.StatusMentionMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.quotedStatus = $root.E2E.Message.decode(reader, reader.uint32());
@@ -665,14 +661,12 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        MessageAddOn.decode = function decode(reader, length, error) {
+        MessageAddOn.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.MessageAddOn();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.messageAddOnType = reader.int32();
@@ -1107,14 +1101,12 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        LegacyMessage.decode = function decode(reader, length, error) {
+        LegacyMessage.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.LegacyMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.eventResponseMessage = $root.E2E.Message.EventResponseMessage.decode(reader, reader.uint32());
@@ -1368,14 +1360,12 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        EventResponse.decode = function decode(reader, length, error) {
+        EventResponse.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.EventResponse();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.eventResponseMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -1634,14 +1624,12 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PremiumMessageInfo.decode = function decode(reader, length, error) {
+        PremiumMessageInfo.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.PremiumMessageInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.serverCampaignId = reader.string();
@@ -1850,14 +1838,12 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        MessageAddOnContextInfo.decode = function decode(reader, length, error) {
+        MessageAddOnContextInfo.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.MessageAddOnContextInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.messageAddOnDurationInSecs = reader.uint32();
@@ -2131,14 +2117,12 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PinInChat.decode = function decode(reader, length, error) {
+        PinInChat.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.PinInChat();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.type = reader.int32();
@@ -2518,14 +2502,12 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        KeepInChat.decode = function decode(reader, length, error) {
+        KeepInChat.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.KeepInChat();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.keepType = reader.int32();
@@ -2855,14 +2837,12 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        EventAdditionalMetadata.decode = function decode(reader, length, error) {
+        EventAdditionalMetadata.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.EventAdditionalMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.isStale = reader.bool();
@@ -3060,14 +3040,12 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PollAdditionalMetadata.decode = function decode(reader, length, error) {
+        PollAdditionalMetadata.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.PollAdditionalMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.pollInvalidated = reader.bool();
@@ -3309,14 +3287,12 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PollUpdate.decode = function decode(reader, length, error) {
+        PollUpdate.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.PollUpdate();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.pollUpdateMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -3645,14 +3621,12 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Reaction.decode = function decode(reader, length, error) {
+        Reaction.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.Reaction();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -3976,14 +3950,12 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        UserReceipt.decode = function decode(reader, length, error) {
+        UserReceipt.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.UserReceipt();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.userJid = reader.string();
@@ -4325,14 +4297,12 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        StatusPSA.decode = function decode(reader, length, error) {
+        StatusPSA.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.StatusPSA();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 44: {
                         message.campaignId = reader.uint64();
@@ -4594,14 +4564,12 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PhotoChange.decode = function decode(reader, length, error) {
+        PhotoChange.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.PhotoChange();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.oldPhoto = reader.bytes();
@@ -4842,14 +4810,12 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        MediaData.decode = function decode(reader, length, error) {
+        MediaData.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.MediaData();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.localPath = reader.string();
@@ -5047,14 +5013,12 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ReportingTokenInfo.decode = function decode(reader, length, error) {
+        ReportingTokenInfo.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.ReportingTokenInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.reportingTag = reader.bytes();
@@ -5745,14 +5709,12 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        WebFeatures.decode = function decode(reader, length, error) {
+        WebFeatures.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.WebFeatures();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.labelsDisplay = reader.int32();
@@ -7835,14 +7797,12 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        NotificationMessageInfo.decode = function decode(reader, length, error) {
+        NotificationMessageInfo.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.NotificationMessageInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -8136,14 +8096,12 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        WebNotificationsInfo.decode = function decode(reader, length, error) {
+        WebNotificationsInfo.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.WebNotificationsInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 2: {
                         message.timestamp = reader.uint64();
@@ -8544,14 +8502,12 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PaymentInfo.decode = function decode(reader, length, error) {
+        PaymentInfo.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.PaymentInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.currencyDeprecated = reader.int32();
@@ -9341,14 +9297,12 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        CommentMetadata.decode = function decode(reader, length, error) {
+        CommentMetadata.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.CommentMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.commentParentKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -10254,14 +10208,12 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        WebMessageInfo.decode = function decode(reader, length, error) {
+        WebMessageInfo.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.WebMessageInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -13229,14 +13181,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        MemberLabel.decode = function decode(reader, length, error) {
+        MemberLabel.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.MemberLabel();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.label = reader.string();
@@ -13483,14 +13433,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AIQueryFanout.decode = function decode(reader, length, error) {
+        AIQueryFanout.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIQueryFanout();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.messageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -13739,14 +13687,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        UrlTrackingMap.decode = function decode(reader, length, error) {
+        UrlTrackingMap.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.UrlTrackingMap();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         if (!(message.urlTrackingMapElements && message.urlTrackingMapElements.length))
@@ -13993,14 +13939,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            UrlTrackingMapElement.decode = function decode(reader, length, error) {
+            UrlTrackingMapElement.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.UrlTrackingMap.UrlTrackingMapElement();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.originalUrl = reader.string();
@@ -14317,14 +14261,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ProcessedVideo.decode = function decode(reader, length, error) {
+        ProcessedVideo.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ProcessedVideo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.directPath = reader.string();
@@ -14692,14 +14634,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        LIDMigrationMappingSyncMessage.decode = function decode(reader, length, error) {
+        LIDMigrationMappingSyncMessage.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.LIDMigrationMappingSyncMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.encodedMappingPayload = reader.bytes();
@@ -14928,14 +14868,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        MediaNotifyMessage.decode = function decode(reader, length, error) {
+        MediaNotifyMessage.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.MediaNotifyMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.expressPathUrl = reader.string();
@@ -15203,14 +15141,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        MessageSecretMessage.decode = function decode(reader, length, error) {
+        MessageSecretMessage.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.MessageSecretMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.version = reader.sfixed32();
@@ -15462,14 +15398,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        GroupMention.decode = function decode(reader, length, error) {
+        GroupMention.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.GroupMention();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.groupJid = reader.string();
@@ -15691,14 +15625,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ActionLink.decode = function decode(reader, length, error) {
+        ActionLink.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ActionLink();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.url = reader.string();
@@ -15942,14 +15874,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        DisappearingMode.decode = function decode(reader, length, error) {
+        DisappearingMode.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.DisappearingMode();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.initiator = reader.int32();
@@ -16391,14 +16321,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PaymentBackground.decode = function decode(reader, length, error) {
+        PaymentBackground.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.PaymentBackground();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.id = reader.string();
@@ -16784,14 +16712,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            MediaData.decode = function decode(reader, length, error) {
+            MediaData.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.PaymentBackground.MediaData();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.mediaKey = reader.bytes();
@@ -17118,14 +17044,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Money.decode = function decode(reader, length, error) {
+        Money.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Money();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.value = reader.int64();
@@ -17409,14 +17333,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        HydratedTemplateButton.decode = function decode(reader, length, error) {
+        HydratedTemplateButton.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.HydratedTemplateButton();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 4: {
                         message.index = reader.uint32();
@@ -17693,14 +17615,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            HydratedCallButton.decode = function decode(reader, length, error) {
+            HydratedCallButton.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.HydratedTemplateButton.HydratedCallButton();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.displayText = reader.string();
@@ -17922,14 +17842,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            HydratedQuickReplyButton.decode = function decode(reader, length, error) {
+            HydratedQuickReplyButton.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.HydratedTemplateButton.HydratedQuickReplyButton();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.displayText = reader.string();
@@ -18173,14 +18091,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            HydratedURLButton.decode = function decode(reader, length, error) {
+            HydratedURLButton.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.HydratedTemplateButton.HydratedURLButton();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.displayText = reader.string();
@@ -18505,14 +18421,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        TemplateButton.decode = function decode(reader, length, error) {
+        TemplateButton.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.TemplateButton();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 4: {
                         message.index = reader.uint32();
@@ -18789,14 +18703,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            CallButton.decode = function decode(reader, length, error) {
+            CallButton.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.TemplateButton.CallButton();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.displayText = $root.E2E.Message.HighlyStructuredMessage.decode(reader, reader.uint32());
@@ -19028,14 +18940,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            QuickReplyButton.decode = function decode(reader, length, error) {
+            QuickReplyButton.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.TemplateButton.QuickReplyButton();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.displayText = $root.E2E.Message.HighlyStructuredMessage.decode(reader, reader.uint32());
@@ -19262,14 +19172,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            URLButton.decode = function decode(reader, length, error) {
+            URLButton.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.TemplateButton.URLButton();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.displayText = $root.E2E.Message.HighlyStructuredMessage.decode(reader, reader.uint32());
@@ -19515,14 +19423,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Location.decode = function decode(reader, length, error) {
+        Location.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Location();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.degreesLatitude = reader.double();
@@ -19778,14 +19684,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Point.decode = function decode(reader, length, error) {
+        Point.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Point();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.xDeprecated = reader.int32();
@@ -20113,14 +20017,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        InteractiveAnnotation.decode = function decode(reader, length, error) {
+        InteractiveAnnotation.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.InteractiveAnnotation();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         if (!(message.polygonVertices && message.polygonVertices.length))
@@ -20520,14 +20422,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        TapLinkAction.decode = function decode(reader, length, error) {
+        TapLinkAction.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.TapLinkAction();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.title = reader.string();
@@ -20763,14 +20663,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        EmbeddedContent.decode = function decode(reader, length, error) {
+        EmbeddedContent.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.EmbeddedContent();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.embeddedMessage = $root.E2E.EmbeddedMessage.decode(reader, reader.uint32());
@@ -21112,14 +21010,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        EmbeddedMusic.decode = function decode(reader, length, error) {
+        EmbeddedMusic.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.EmbeddedMusic();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.musicContentMediaId = reader.string();
@@ -21485,14 +21381,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        EmbeddedMessage.decode = function decode(reader, length, error) {
+        EmbeddedMessage.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.EmbeddedMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.stanzaId = reader.string();
@@ -21795,14 +21689,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        DeviceListMetadata.decode = function decode(reader, length, error) {
+        DeviceListMetadata.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.DeviceListMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.senderKeyHash = reader.bytes();
@@ -22352,14 +22244,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        MessageContextInfo.decode = function decode(reader, length, error) {
+        MessageContextInfo.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.MessageContextInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.deviceListMetadata = $root.E2E.DeviceListMetadata.decode(reader, reader.uint32());
@@ -22821,14 +22711,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        MessageAssociation.decode = function decode(reader, length, error) {
+        MessageAssociation.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.MessageAssociation();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.associationType = reader.int32();
@@ -23422,14 +23310,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotMetadata.decode = function decode(reader, length, error) {
+        BotMetadata.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.avatarMetadata = $root.E2E.BotAvatarMetadata.decode(reader, reader.uint32());
@@ -23993,14 +23879,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotSourcesMetadata.decode = function decode(reader, length, error) {
+        BotSourcesMetadata.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotSourcesMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         if (!(message.sources && message.sources.length))
@@ -24269,14 +24153,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            BotSourceItem.decode = function decode(reader, length, error) {
+            BotSourceItem.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotSourcesMetadata.BotSourceItem();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.provider = reader.int32();
@@ -24585,14 +24467,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotImagineMetadata.decode = function decode(reader, length, error) {
+        BotImagineMetadata.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotImagineMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.imagineType = reader.int32();
@@ -24846,14 +24726,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotQuotaMetadata.decode = function decode(reader, length, error) {
+        BotQuotaMetadata.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotQuotaMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         if (!(message.botFeatureQuotaMetadata && message.botFeatureQuotaMetadata.length))
@@ -25089,14 +24967,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            BotFeatureQuotaMetadata.decode = function decode(reader, length, error) {
+            BotFeatureQuotaMetadata.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotQuotaMetadata.BotFeatureQuotaMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.featureType = reader.int32();
@@ -25371,14 +25247,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotModeSelectionMetadata.decode = function decode(reader, length, error) {
+        BotModeSelectionMetadata.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotModeSelectionMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         if (!(message.mode && message.mode.length))
@@ -25630,14 +25504,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotCapabilityMetadata.decode = function decode(reader, length, error) {
+        BotCapabilityMetadata.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotCapabilityMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         if (!(message.capabilities && message.capabilities.length))
@@ -26138,14 +26010,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotProgressIndicatorMetadata.decode = function decode(reader, length, error) {
+        BotProgressIndicatorMetadata.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotProgressIndicatorMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.progressDescription = reader.string();
@@ -26442,14 +26312,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            BotPlanningStepMetadata.decode = function decode(reader, length, error) {
+            BotPlanningStepMetadata.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.statusTitle = reader.string();
@@ -26819,14 +26687,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BotPlanningSearchSourceMetadata.decode = function decode(reader, length, error) {
+                BotPlanningSearchSourceMetadata.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.title = reader.string();
@@ -27112,14 +26978,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BotPlanningSearchSourcesMetadata.decode = function decode(reader, length, error) {
+                BotPlanningSearchSourcesMetadata.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.sourceTitle = reader.string();
@@ -27413,14 +27277,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BotPlanningStepSectionMetadata.decode = function decode(reader, length, error) {
+                BotPlanningStepSectionMetadata.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.sectionTitle = reader.string();
@@ -27716,14 +27578,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotModelMetadata.decode = function decode(reader, length, error) {
+        BotModelMetadata.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotModelMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.modelType = reader.int32();
@@ -28058,14 +27918,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotReminderMetadata.decode = function decode(reader, length, error) {
+        BotReminderMetadata.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotReminderMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.requestMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -28434,14 +28292,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotMemuMetadata.decode = function decode(reader, length, error) {
+        BotMemuMetadata.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotMemuMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         if (!(message.faceImages && message.faceImages.length))
@@ -28724,14 +28580,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotMediaMetadata.decode = function decode(reader, length, error) {
+        BotMediaMetadata.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotMediaMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.fileSha256 = reader.string();
@@ -29067,14 +28921,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotSessionMetadata.decode = function decode(reader, length, error) {
+        BotSessionMetadata.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotSessionMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.sessionId = reader.string();
@@ -29351,14 +29203,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotMetricsMetadata.decode = function decode(reader, length, error) {
+        BotMetricsMetadata.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotMetricsMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.destinationId = reader.string();
@@ -29726,14 +29576,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotRenderingMetadata.decode = function decode(reader, length, error) {
+        BotRenderingMetadata.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotRenderingMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         if (!(message.keywords && message.keywords.length))
@@ -29960,14 +29808,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            Keyword.decode = function decode(reader, length, error) {
+            Keyword.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotRenderingMetadata.Keyword();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.value = reader.string();
@@ -30206,14 +30052,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotPromotionMessageMetadata.decode = function decode(reader, length, error) {
+        BotPromotionMessageMetadata.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotPromotionMessageMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.promotionType = reader.int32();
@@ -30481,14 +30325,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AIRichResponseMessage.decode = function decode(reader, length, error) {
+        AIRichResponseMessage.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.messageType = reader.int32();
@@ -30765,14 +30607,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseCodeMetadata.decode = function decode(reader, length, error) {
+            AIRichResponseCodeMetadata.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseCodeMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.codeLanguage = reader.string();
@@ -31010,14 +30850,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                AIRichResponseCodeBlock.decode = function decode(reader, length, error) {
+                AIRichResponseCodeBlock.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseCodeMetadata.AIRichResponseCodeBlock();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.highlightType = reader.int32();
@@ -31305,14 +31143,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseContentItemsMetadata.decode = function decode(reader, length, error) {
+            AIRichResponseContentItemsMetadata.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             if (!(message.itemsMetadata && message.itemsMetadata.length))
@@ -31572,14 +31408,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                AIRichResponseContentItemMetadata.decode = function decode(reader, length, error) {
+                AIRichResponseContentItemMetadata.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.reelItem = $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem.decode(reader, reader.uint32());
@@ -31820,14 +31654,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                AIRichResponseReelItem.decode = function decode(reader, length, error) {
+                AIRichResponseReelItem.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.title = reader.string();
@@ -32112,14 +31944,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseDynamicMetadata.decode = function decode(reader, length, error) {
+            AIRichResponseDynamicMetadata.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseDynamicMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.type = reader.int32();
@@ -32421,14 +32251,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseGridImageMetadata.decode = function decode(reader, length, error) {
+            AIRichResponseGridImageMetadata.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseGridImageMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.gridImageUrl = $root.E2E.AIRichResponseMessage.AIRichResponseImageURL.decode(reader, reader.uint32());
@@ -32685,14 +32513,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseImageURL.decode = function decode(reader, length, error) {
+            AIRichResponseImageURL.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseImageURL();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.imagePreviewUrl = reader.string();
@@ -32948,14 +32774,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseInlineImageMetadata.decode = function decode(reader, length, error) {
+            AIRichResponseInlineImageMetadata.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseInlineImageMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.imageUrl = $root.E2E.AIRichResponseMessage.AIRichResponseImageURL.decode(reader, reader.uint32());
@@ -33248,14 +33072,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseLatexMetadata.decode = function decode(reader, length, error) {
+            AIRichResponseLatexMetadata.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.text = reader.string();
@@ -33570,14 +33392,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                AIRichResponseLatexExpression.decode = function decode(reader, length, error) {
+                AIRichResponseLatexExpression.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.latexExpression = reader.string();
@@ -33932,14 +33752,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseMapMetadata.decode = function decode(reader, length, error) {
+            AIRichResponseMapMetadata.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.centerLatitude = reader.double();
@@ -34259,14 +34077,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                AIRichResponseMapAnnotation.decode = function decode(reader, length, error) {
+                AIRichResponseMapAnnotation.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.annotationNumber = reader.uint32();
@@ -34629,14 +34445,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseSubMessage.decode = function decode(reader, length, error) {
+            AIRichResponseSubMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseSubMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.messageType = reader.int32();
@@ -35074,14 +34888,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseTableMetadata.decode = function decode(reader, length, error) {
+            AIRichResponseTableMetadata.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseTableMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             if (!(message.rows && message.rows.length))
@@ -35308,14 +35120,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                AIRichResponseTableRow.decode = function decode(reader, length, error) {
+                AIRichResponseTableRow.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseTableMetadata.AIRichResponseTableRow();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.items && message.items.length))
@@ -35543,14 +35353,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseUnifiedResponse.decode = function decode(reader, length, error) {
+            AIRichResponseUnifiedResponse.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.data = reader.bytes();
@@ -35771,14 +35579,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotMemoryFact.decode = function decode(reader, length, error) {
+        BotMemoryFact.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotMemoryFact();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.fact = reader.string();
@@ -36015,14 +35821,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotMemoryMetadata.decode = function decode(reader, length, error) {
+        BotMemoryMetadata.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotMemoryMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         if (!(message.addedFacts && message.addedFacts.length))
@@ -36284,14 +36088,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotLinkedAccount.decode = function decode(reader, length, error) {
+        BotLinkedAccount.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotLinkedAccount();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.type = reader.int32();
@@ -36539,14 +36341,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotLinkedAccountsMetadata.decode = function decode(reader, length, error) {
+        BotLinkedAccountsMetadata.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotLinkedAccountsMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         if (!(message.accounts && message.accounts.length))
@@ -36809,14 +36609,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotPromptSuggestion.decode = function decode(reader, length, error) {
+        BotPromptSuggestion.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotPromptSuggestion();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.prompt = reader.string();
@@ -37029,14 +36827,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotPromptSuggestions.decode = function decode(reader, length, error) {
+        BotPromptSuggestions.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotPromptSuggestions();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         if (!(message.suggestions && message.suggestions.length))
@@ -37288,14 +37084,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotSuggestedPromptMetadata.decode = function decode(reader, length, error) {
+        BotSuggestedPromptMetadata.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotSuggestedPromptMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         if (!(message.suggestedPrompts && message.suggestedPrompts.length))
@@ -37671,14 +37465,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotPluginMetadata.decode = function decode(reader, length, error) {
+        BotPluginMetadata.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotPluginMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.provider = reader.int32();
@@ -38193,14 +37985,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotAvatarMetadata.decode = function decode(reader, length, error) {
+        BotAvatarMetadata.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotAvatarMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.sentiment = reader.uint32();
@@ -38946,14 +38736,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ContextInfo.decode = function decode(reader, length, error) {
+        ContextInfo.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ContextInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.stanzaId = reader.string();
@@ -39926,14 +39714,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AdReplyInfo.decode = function decode(reader, length, error) {
+            AdReplyInfo.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ContextInfo.AdReplyInfo();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.advertiserName = reader.string();
@@ -40217,14 +40003,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            BusinessMessageForwardInfo.decode = function decode(reader, length, error) {
+            BusinessMessageForwardInfo.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ContextInfo.BusinessMessageForwardInfo();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.businessOwnerJid = reader.string();
@@ -40446,14 +40230,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            DataSharingContext.decode = function decode(reader, length, error) {
+            DataSharingContext.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ContextInfo.DataSharingContext();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.showMmDisclosure = reader.bool();
@@ -40737,14 +40519,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Parameters.decode = function decode(reader, length, error) {
+                Parameters.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ContextInfo.DataSharingContext.Parameters();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.key = reader.string();
@@ -41277,14 +41057,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ExternalAdReplyInfo.decode = function decode(reader, length, error) {
+            ExternalAdReplyInfo.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ContextInfo.ExternalAdReplyInfo();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.title = reader.string();
@@ -41886,14 +41664,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            FeatureEligibilities.decode = function decode(reader, length, error) {
+            FeatureEligibilities.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ContextInfo.FeatureEligibilities();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.cannotBeReactedTo = reader.bool();
@@ -42150,14 +41926,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ForwardedAIBotMessageInfo.decode = function decode(reader, length, error) {
+            ForwardedAIBotMessageInfo.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ContextInfo.ForwardedAIBotMessageInfo();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.botName = reader.string();
@@ -42424,14 +42198,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ForwardedNewsletterMessageInfo.decode = function decode(reader, length, error) {
+            ForwardedNewsletterMessageInfo.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ContextInfo.ForwardedNewsletterMessageInfo();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.newsletterJid = reader.string();
@@ -42765,14 +42537,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            UTMInfo.decode = function decode(reader, length, error) {
+            UTMInfo.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ContextInfo.UTMInfo();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.utmSource = reader.string();
@@ -43921,14 +43691,12 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Message.decode = function decode(reader, length, error) {
+        Message.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.conversation = reader.string();
@@ -45591,14 +45359,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AlbumMessage.decode = function decode(reader, length, error) {
+            AlbumMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.AlbumMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 2: {
                             message.expectedImageCount = reader.uint32();
@@ -45839,14 +45605,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AppStateFatalExceptionNotification.decode = function decode(reader, length, error) {
+            AppStateFatalExceptionNotification.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.AppStateFatalExceptionNotification();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             if (!(message.collectionNames && message.collectionNames.length))
@@ -46096,14 +45860,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AppStateSyncKey.decode = function decode(reader, length, error) {
+            AppStateSyncKey.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.AppStateSyncKey();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.keyId = $root.E2E.Message.AppStateSyncKeyId.decode(reader, reader.uint32());
@@ -46346,14 +46108,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AppStateSyncKeyData.decode = function decode(reader, length, error) {
+            AppStateSyncKeyData.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.AppStateSyncKeyData();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.keyData = reader.bytes();
@@ -46631,14 +46391,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AppStateSyncKeyFingerprint.decode = function decode(reader, length, error) {
+            AppStateSyncKeyFingerprint.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.AppStateSyncKeyFingerprint();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.rawId = reader.uint32();
@@ -46881,14 +46639,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AppStateSyncKeyId.decode = function decode(reader, length, error) {
+            AppStateSyncKeyId.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.AppStateSyncKeyId();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.keyId = reader.bytes();
@@ -47097,14 +46853,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AppStateSyncKeyRequest.decode = function decode(reader, length, error) {
+            AppStateSyncKeyRequest.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.AppStateSyncKeyRequest();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             if (!(message.keyIds && message.keyIds.length))
@@ -47323,14 +47077,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AppStateSyncKeyShare.decode = function decode(reader, length, error) {
+            AppStateSyncKeyShare.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.AppStateSyncKeyShare();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             if (!(message.keys && message.keys.length))
@@ -47712,14 +47464,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AudioMessage.decode = function decode(reader, length, error) {
+            AudioMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.AudioMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.url = reader.string();
@@ -48209,14 +47959,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            BCallMessage.decode = function decode(reader, length, error) {
+            BCallMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.BCallMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.sessionId = reader.string();
@@ -48555,14 +48303,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            BotFeedbackMessage.decode = function decode(reader, length, error) {
+            BotFeedbackMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.BotFeedbackMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.messageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -49145,14 +48891,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ButtonsMessage.decode = function decode(reader, length, error) {
+            ButtonsMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ButtonsMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 6: {
                             message.contentText = reader.string();
@@ -49611,14 +49355,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Button.decode = function decode(reader, length, error) {
+                Button.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ButtonsMessage.Button();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.buttonId = reader.string();
@@ -49884,14 +49626,12 @@ $root.E2E = (function() {
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ButtonText.decode = function decode(reader, length, error) {
+                    ButtonText.decode = function decode(reader, length) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ButtonsMessage.Button.ButtonText();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
-                            if (tag === error)
-                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.displayText = reader.string();
@@ -50100,14 +49840,12 @@ $root.E2E = (function() {
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    NativeFlowInfo.decode = function decode(reader, length, error) {
+                    NativeFlowInfo.decode = function decode(reader, length) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ButtonsMessage.Button.NativeFlowInfo();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
-                            if (tag === error)
-                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.name = reader.string();
@@ -50411,14 +50149,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ButtonsResponseMessage.decode = function decode(reader, length, error) {
+            ButtonsResponseMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ButtonsResponseMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.selectedButtonId = reader.string();
@@ -50762,14 +50498,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            Call.decode = function decode(reader, length, error) {
+            Call.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.Call();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.callKey = reader.bytes();
@@ -51118,14 +50852,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            CallLogMessage.decode = function decode(reader, length, error) {
+            CallLogMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.CallLogMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.isVideo = reader.bool();
@@ -51513,14 +51245,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CallParticipant.decode = function decode(reader, length, error) {
+                CallParticipant.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.CallLogMessage.CallParticipant();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.jid = reader.string();
@@ -51799,14 +51529,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            CancelPaymentRequestMessage.decode = function decode(reader, length, error) {
+            CancelPaymentRequestMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.CancelPaymentRequestMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -52020,14 +51748,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            Chat.decode = function decode(reader, length, error) {
+            Chat.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.Chat();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.displayName = reader.string();
@@ -52282,14 +52008,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            CloudAPIThreadControlNotification.decode = function decode(reader, length, error) {
+            CloudAPIThreadControlNotification.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.CloudAPIThreadControlNotification();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.status = reader.int32();
@@ -52603,14 +52327,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CloudAPIThreadControlNotificationContent.decode = function decode(reader, length, error) {
+                CloudAPIThreadControlNotificationContent.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.handoffNotificationText = reader.string();
@@ -52835,14 +52557,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            CommentMessage.decode = function decode(reader, length, error) {
+            CommentMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.CommentMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.message = $root.E2E.Message.decode(reader, reader.uint32());
@@ -53085,14 +52805,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ContactMessage.decode = function decode(reader, length, error) {
+            ContactMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ContactMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.displayName = reader.string();
@@ -53344,14 +53062,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ContactsArrayMessage.decode = function decode(reader, length, error) {
+            ContactsArrayMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ContactsArrayMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.displayName = reader.string();
@@ -53599,14 +53315,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            DeclinePaymentRequestMessage.decode = function decode(reader, length, error) {
+            DeclinePaymentRequestMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.DeclinePaymentRequestMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -53831,14 +53545,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            DeviceSentMessage.decode = function decode(reader, length, error) {
+            DeviceSentMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.DeviceSentMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.destinationJid = reader.string();
@@ -54286,14 +53998,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            DocumentMessage.decode = function decode(reader, length, error) {
+            DocumentMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.DocumentMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.url = reader.string();
@@ -54841,14 +54551,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            EncCommentMessage.decode = function decode(reader, length, error) {
+            EncCommentMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.EncCommentMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.targetMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -55116,14 +54824,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            EncEventResponseMessage.decode = function decode(reader, length, error) {
+            EncEventResponseMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.EncEventResponseMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.eventCreationMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -55391,14 +55097,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            EncReactionMessage.decode = function decode(reader, length, error) {
+            EncReactionMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.EncReactionMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.targetMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -55743,14 +55447,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            EventMessage.decode = function decode(reader, length, error) {
+            EventMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.EventMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.contextInfo = $root.E2E.ContextInfo.decode(reader, reader.uint32());
@@ -56117,14 +55819,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            EventResponseMessage.decode = function decode(reader, length, error) {
+            EventResponseMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.EventResponseMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.response = reader.int32();
@@ -56705,14 +56405,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ExtendedTextMessage.decode = function decode(reader, length, error) {
+            ExtendedTextMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ExtendedTextMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.text = reader.string();
@@ -57526,14 +57224,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            FullHistorySyncOnDemandRequestMetadata.decode = function decode(reader, length, error) {
+            FullHistorySyncOnDemandRequestMetadata.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.FullHistorySyncOnDemandRequestMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.requestId = reader.string();
@@ -57731,14 +57427,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            FutureProofMessage.decode = function decode(reader, length, error) {
+            FutureProofMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.FutureProofMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.message = $root.E2E.Message.decode(reader, reader.uint32());
@@ -58018,14 +57712,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            GroupInviteMessage.decode = function decode(reader, length, error) {
+            GroupInviteMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.GroupInviteMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.groupJid = reader.string();
@@ -58461,14 +58153,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            HighlyStructuredMessage.decode = function decode(reader, length, error) {
+            HighlyStructuredMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.HighlyStructuredMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.namespace = reader.string();
@@ -58836,14 +58526,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                HSMLocalizableParameter.decode = function decode(reader, length, error) {
+                HSMLocalizableParameter.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message["default"] = reader.string();
@@ -59096,14 +58784,12 @@ $root.E2E = (function() {
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    HSMCurrency.decode = function decode(reader, length, error) {
+                    HSMCurrency.decode = function decode(reader, length) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.HSMCurrency();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
-                            if (tag === error)
-                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.currencyCode = reader.string();
@@ -59353,14 +59039,12 @@ $root.E2E = (function() {
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    HSMDateTime.decode = function decode(reader, length, error) {
+                    HSMDateTime.decode = function decode(reader, length) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.HSMDateTime();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
-                            if (tag === error)
-                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.component = $root.E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.HSMDateTime.HSMDateTimeComponent.decode(reader, reader.uint32());
@@ -59655,14 +59339,12 @@ $root.E2E = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        HSMDateTimeComponent.decode = function decode(reader, length, error) {
+                        HSMDateTimeComponent.decode = function decode(reader, length) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.HSMDateTime.HSMDateTimeComponent();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
-                                if (tag === error)
-                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.dayOfWeek = reader.int32();
@@ -60034,14 +59716,12 @@ $root.E2E = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        HSMDateTimeUnixEpoch.decode = function decode(reader, length, error) {
+                        HSMDateTimeUnixEpoch.decode = function decode(reader, length) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.HSMDateTime.HSMDateTimeUnixEpoch();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
-                                if (tag === error)
-                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.timestamp = reader.int64();
@@ -60405,14 +60085,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            HistorySyncNotification.decode = function decode(reader, length, error) {
+            HistorySyncNotification.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.HistorySyncNotification();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.fileSha256 = reader.bytes();
@@ -61225,14 +60903,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ImageMessage.decode = function decode(reader, length, error) {
+            ImageMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ImageMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.url = reader.string();
@@ -61996,14 +61672,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            InitialSecurityNotificationSettingSync.decode = function decode(reader, length, error) {
+            InitialSecurityNotificationSettingSync.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InitialSecurityNotificationSettingSync();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.securityNotificationEnabled = reader.bool();
@@ -62303,14 +61977,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            InteractiveMessage.decode = function decode(reader, length, error) {
+            InteractiveMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InteractiveMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.header = $root.E2E.Message.InteractiveMessage.Header.decode(reader, reader.uint32());
@@ -62674,14 +62346,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Body.decode = function decode(reader, length, error) {
+                Body.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InteractiveMessage.Body();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.text = reader.string();
@@ -62892,14 +62562,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CarouselMessage.decode = function decode(reader, length, error) {
+                CarouselMessage.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InteractiveMessage.CarouselMessage();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.cards && message.cards.length))
@@ -63151,14 +62819,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CollectionMessage.decode = function decode(reader, length, error) {
+                CollectionMessage.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InteractiveMessage.CollectionMessage();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.bizJid = reader.string();
@@ -63381,14 +63047,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Footer.decode = function decode(reader, length, error) {
+                Footer.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InteractiveMessage.Footer();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.text = reader.string();
@@ -63688,14 +63352,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Header.decode = function decode(reader, length, error) {
+                Header.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InteractiveMessage.Header();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.title = reader.string();
@@ -64082,14 +63744,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                NativeFlowMessage.decode = function decode(reader, length, error) {
+                NativeFlowMessage.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InteractiveMessage.NativeFlowMessage();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.buttons && message.buttons.length))
@@ -64340,14 +64000,12 @@ $root.E2E = (function() {
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    NativeFlowButton.decode = function decode(reader, length, error) {
+                    NativeFlowButton.decode = function decode(reader, length) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InteractiveMessage.NativeFlowMessage.NativeFlowButton();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
-                            if (tag === error)
-                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.name = reader.string();
@@ -64583,14 +64241,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ShopMessage.decode = function decode(reader, length, error) {
+                ShopMessage.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InteractiveMessage.ShopMessage();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.id = reader.string();
@@ -64899,14 +64555,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            InteractiveResponseMessage.decode = function decode(reader, length, error) {
+            InteractiveResponseMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InteractiveResponseMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.body = $root.E2E.Message.InteractiveResponseMessage.Body.decode(reader, reader.uint32());
@@ -65158,14 +64812,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Body.decode = function decode(reader, length, error) {
+                Body.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InteractiveResponseMessage.Body();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.text = reader.string();
@@ -65431,14 +65083,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                NativeFlowResponseMessage.decode = function decode(reader, length, error) {
+                NativeFlowResponseMessage.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InteractiveResponseMessage.NativeFlowResponseMessage();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -65763,14 +65413,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            InvoiceMessage.decode = function decode(reader, length, error) {
+            InvoiceMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InvoiceMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.note = reader.string();
@@ -66182,14 +65830,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            KeepInChatMessage.decode = function decode(reader, length, error) {
+            KeepInChatMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.KeepInChatMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -66477,14 +66123,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            LinkPreviewMetadata.decode = function decode(reader, length, error) {
+            LinkPreviewMetadata.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.LinkPreviewMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.decode(reader, reader.uint32());
@@ -66796,14 +66440,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ListMessage.decode = function decode(reader, length, error) {
+            ListMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ListMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.title = reader.string();
@@ -67153,14 +66795,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Product.decode = function decode(reader, length, error) {
+                Product.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ListMessage.Product();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.productId = reader.string();
@@ -67369,14 +67009,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ProductListHeaderImage.decode = function decode(reader, length, error) {
+                ProductListHeaderImage.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ListMessage.ProductListHeaderImage();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.productId = reader.string();
@@ -67620,14 +67258,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ProductListInfo.decode = function decode(reader, length, error) {
+                ProductListInfo.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ListMessage.ProductListInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.productSections && message.productSections.length))
@@ -67888,14 +67524,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ProductSection.decode = function decode(reader, length, error) {
+                ProductSection.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ListMessage.ProductSection();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.title = reader.string();
@@ -68147,14 +67781,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Row.decode = function decode(reader, length, error) {
+                Row.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ListMessage.Row();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.title = reader.string();
@@ -68390,14 +68022,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Section.decode = function decode(reader, length, error) {
+                Section.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ListMessage.Section();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.title = reader.string();
@@ -68674,14 +68304,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ListResponseMessage.decode = function decode(reader, length, error) {
+            ListResponseMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ListResponseMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.title = reader.string();
@@ -68968,14 +68596,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SingleSelectReply.decode = function decode(reader, length, error) {
+                SingleSelectReply.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ListResponseMessage.SingleSelectReply();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selectedRowId = reader.string();
@@ -69275,14 +68901,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            LiveLocationMessage.decode = function decode(reader, length, error) {
+            LiveLocationMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.LiveLocationMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.degreesLatitude = reader.double();
@@ -69738,14 +69362,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            LocationMessage.decode = function decode(reader, length, error) {
+            LocationMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.LocationMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.degreesLatitude = reader.double();
@@ -70156,14 +69778,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            MMSThumbnailMetadata.decode = function decode(reader, length, error) {
+            MMSThumbnailMetadata.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.MMSThumbnailMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.thumbnailDirectPath = reader.string();
@@ -70552,14 +70172,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            MessageHistoryBundle.decode = function decode(reader, length, error) {
+            MessageHistoryBundle.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.MessageHistoryBundle();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.mimetype = reader.string();
@@ -70917,14 +70535,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            MessageHistoryMetadata.decode = function decode(reader, length, error) {
+            MessageHistoryMetadata.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.MessageHistoryMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             if (!(message.historyReceivers && message.historyReceivers.length))
@@ -71201,14 +70817,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            MessageHistoryNotice.decode = function decode(reader, length, error) {
+            MessageHistoryNotice.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.MessageHistoryNotice();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.contextInfo = $root.E2E.ContextInfo.decode(reader, reader.uint32());
@@ -71484,14 +71098,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            NewsletterAdminInviteMessage.decode = function decode(reader, length, error) {
+            NewsletterAdminInviteMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.NewsletterAdminInviteMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.newsletterJid = reader.string();
@@ -71932,14 +71544,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            OrderMessage.decode = function decode(reader, length, error) {
+            OrderMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.OrderMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.orderId = reader.string();
@@ -72416,14 +72026,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PaymentInviteMessage.decode = function decode(reader, length, error) {
+            PaymentInviteMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PaymentInviteMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.serviceType = reader.int32();
@@ -72706,14 +72314,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PaymentLinkMetadata.decode = function decode(reader, length, error) {
+            PaymentLinkMetadata.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PaymentLinkMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.button = $root.E2E.Message.PaymentLinkMetadata.PaymentLinkButton.decode(reader, reader.uint32());
@@ -72931,14 +72537,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PaymentLinkButton.decode = function decode(reader, length, error) {
+                PaymentLinkButton.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PaymentLinkMetadata.PaymentLinkButton();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.displayText = reader.string();
@@ -73136,14 +72740,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PaymentLinkHeader.decode = function decode(reader, length, error) {
+                PaymentLinkHeader.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PaymentLinkMetadata.PaymentLinkHeader();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.headerType = reader.int32();
@@ -73449,14 +73051,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PeerDataOperationRequestMessage.decode = function decode(reader, length, error) {
+            PeerDataOperationRequestMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.peerDataOperationRequestType = reader.int32();
@@ -73863,14 +73463,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FullHistorySyncOnDemandRequest.decode = function decode(reader, length, error) {
+                FullHistorySyncOnDemandRequest.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestMessage.FullHistorySyncOnDemandRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.requestMetadata = $root.E2E.Message.FullHistorySyncOnDemandRequestMetadata.decode(reader, reader.uint32());
@@ -74146,14 +73744,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                HistorySyncOnDemandRequest.decode = function decode(reader, length, error) {
+                HistorySyncOnDemandRequest.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestMessage.HistorySyncOnDemandRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.chatJid = reader.string();
@@ -74426,14 +74022,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PlaceholderMessageResendRequest.decode = function decode(reader, length, error) {
+                PlaceholderMessageResendRequest.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestMessage.PlaceholderMessageResendRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.messageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -74636,14 +74230,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                RequestStickerReupload.decode = function decode(reader, length, error) {
+                RequestStickerReupload.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestMessage.RequestStickerReupload();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.fileSha256 = reader.string();
@@ -74852,14 +74444,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                RequestUrlPreview.decode = function decode(reader, length, error) {
+                RequestUrlPreview.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestMessage.RequestUrlPreview();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.url = reader.string();
@@ -75083,14 +74673,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SyncDCollectionFatalRecoveryRequest.decode = function decode(reader, length, error) {
+                SyncDCollectionFatalRecoveryRequest.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.collectionNames && message.collectionNames.length))
@@ -75356,14 +74944,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PeerDataOperationRequestResponseMessage.decode = function decode(reader, length, error) {
+            PeerDataOperationRequestResponseMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.peerDataOperationRequestType = reader.int32();
@@ -75734,14 +75320,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PeerDataOperationResult.decode = function decode(reader, length, error) {
+                PeerDataOperationResult.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.mediaUploadResult = reader.int32();
@@ -76085,14 +75669,12 @@ $root.E2E = (function() {
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    CompanionMetaNonceFetchResponse.decode = function decode(reader, length, error) {
+                    CompanionMetaNonceFetchResponse.decode = function decode(reader, length) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionMetaNonceFetchResponse();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
-                            if (tag === error)
-                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.nonce = reader.string();
@@ -76301,14 +75883,12 @@ $root.E2E = (function() {
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    FullHistorySyncOnDemandRequestResponse.decode = function decode(reader, length, error) {
+                    FullHistorySyncOnDemandRequestResponse.decode = function decode(reader, length) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FullHistorySyncOnDemandRequestResponse();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
-                            if (tag === error)
-                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.requestMetadata = $root.E2E.Message.FullHistorySyncOnDemandRequestMetadata.decode(reader, reader.uint32());
@@ -76658,14 +76238,12 @@ $root.E2E = (function() {
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    LinkPreviewResponse.decode = function decode(reader, length, error) {
+                    LinkPreviewResponse.decode = function decode(reader, length) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
-                            if (tag === error)
-                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.url = reader.string();
@@ -77013,14 +76591,12 @@ $root.E2E = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        LinkPreviewHighQualityThumbnail.decode = function decode(reader, length, error) {
+                        LinkPreviewHighQualityThumbnail.decode = function decode(reader, length) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.LinkPreviewHighQualityThumbnail();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
-                                if (tag === error)
-                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.directPath = reader.string();
@@ -77317,14 +76893,12 @@ $root.E2E = (function() {
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    PlaceholderMessageResendResponse.decode = function decode(reader, length, error) {
+                    PlaceholderMessageResendResponse.decode = function decode(reader, length) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.PlaceholderMessageResendResponse();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
-                            if (tag === error)
-                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.webMessageInfoBytes = reader.bytes();
@@ -77542,14 +77116,12 @@ $root.E2E = (function() {
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    SyncDSnapshotFatalRecoveryResponse.decode = function decode(reader, length, error) {
+                    SyncDSnapshotFatalRecoveryResponse.decode = function decode(reader, length) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
-                            if (tag === error)
-                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.collectionSnapshot = reader.bytes();
@@ -77780,14 +77352,12 @@ $root.E2E = (function() {
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    WaffleNonceFetchResponse.decode = function decode(reader, length, error) {
+                    WaffleNonceFetchResponse.decode = function decode(reader, length) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.WaffleNonceFetchResponse();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
-                            if (tag === error)
-                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.nonce = reader.string();
@@ -78054,14 +77624,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PinInChatMessage.decode = function decode(reader, length, error) {
+            PinInChatMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PinInChatMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -78343,14 +77911,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PlaceholderMessage.decode = function decode(reader, length, error) {
+            PlaceholderMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PlaceholderMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.type = reader.int32();
@@ -78669,14 +78235,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PollCreationMessage.decode = function decode(reader, length, error) {
+            PollCreationMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PollCreationMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.encKey = reader.bytes();
@@ -79049,14 +78613,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Option.decode = function decode(reader, length, error) {
+                Option.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PollCreationMessage.Option();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.optionName = reader.string();
@@ -79295,14 +78857,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PollEncValue.decode = function decode(reader, length, error) {
+            PollEncValue.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PollEncValue();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.encPayload = reader.bytes();
@@ -79555,14 +79115,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PollResultSnapshotMessage.decode = function decode(reader, length, error) {
+            PollResultSnapshotMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PollResultSnapshotMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.name = reader.string();
@@ -79818,14 +79376,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PollVote.decode = function decode(reader, length, error) {
+                PollVote.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PollResultSnapshotMessage.PollVote();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.optionName = reader.string();
@@ -80086,14 +79642,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PollUpdateMessage.decode = function decode(reader, length, error) {
+            PollUpdateMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PollUpdateMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.pollCreationMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -80346,14 +79900,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PollUpdateMessageMetadata.decode = function decode(reader, length, error) {
+            PollUpdateMessageMetadata.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PollUpdateMessageMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     default:
                         reader.skipType(tag & 7);
@@ -80536,14 +80088,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PollVoteMessage.decode = function decode(reader, length, error) {
+            PollVoteMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PollVoteMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             if (!(message.selectedOptions && message.selectedOptions.length))
@@ -80813,14 +80363,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ProductMessage.decode = function decode(reader, length, error) {
+            ProductMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ProductMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.product = $root.E2E.Message.ProductMessage.ProductSnapshot.decode(reader, reader.uint32());
@@ -81113,14 +80661,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CatalogSnapshot.decode = function decode(reader, length, error) {
+                CatalogSnapshot.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ProductMessage.CatalogSnapshot();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.catalogImage = $root.E2E.Message.ImageMessage.decode(reader, reader.uint32());
@@ -81469,14 +81015,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ProductSnapshot.decode = function decode(reader, length, error) {
+                ProductSnapshot.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ProductMessage.ProductSnapshot();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.productImage = $root.E2E.Message.ImageMessage.decode(reader, reader.uint32());
@@ -82096,14 +81640,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ProtocolMessage.decode = function decode(reader, length, error) {
+            ProtocolMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ProtocolMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -82939,14 +82481,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ReactionMessage.decode = function decode(reader, length, error) {
+            ReactionMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ReactionMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -83266,14 +82806,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            RequestPaymentMessage.decode = function decode(reader, length, error) {
+            RequestPaymentMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.RequestPaymentMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 4: {
                             message.noteMessage = $root.E2E.Message.decode(reader, reader.uint32());
@@ -83587,14 +83125,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            RequestPhoneNumberMessage.decode = function decode(reader, length, error) {
+            RequestPhoneNumberMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.RequestPhoneNumberMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.contextInfo = $root.E2E.ContextInfo.decode(reader, reader.uint32());
@@ -83797,14 +83333,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            RequestWelcomeMessageMetadata.decode = function decode(reader, length, error) {
+            RequestWelcomeMessageMetadata.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.RequestWelcomeMessageMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.localChatState = reader.int32();
@@ -84057,14 +83591,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ScheduledCallCreationMessage.decode = function decode(reader, length, error) {
+            ScheduledCallCreationMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ScheduledCallCreationMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.scheduledTimestampMs = reader.int64();
@@ -84352,14 +83884,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ScheduledCallEditMessage.decode = function decode(reader, length, error) {
+            ScheduledCallEditMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ScheduledCallEditMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -84641,14 +84171,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            SecretEncryptedMessage.decode = function decode(reader, length, error) {
+            SecretEncryptedMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.SecretEncryptedMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.targetMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -84968,14 +84496,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            SendPaymentMessage.decode = function decode(reader, length, error) {
+            SendPaymentMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.SendPaymentMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 2: {
                             message.noteMessage = $root.E2E.Message.decode(reader, reader.uint32());
@@ -85224,14 +84750,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            SenderKeyDistributionMessage.decode = function decode(reader, length, error) {
+            SenderKeyDistributionMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.SenderKeyDistributionMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.groupId = reader.string();
@@ -85473,14 +84997,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            StatusNotificationMessage.decode = function decode(reader, length, error) {
+            StatusNotificationMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.StatusNotificationMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.responseMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -85962,14 +85484,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            StickerMessage.decode = function decode(reader, length, error) {
+            StickerMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.StickerMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.url = reader.string();
@@ -86721,14 +86241,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            StickerPackMessage.decode = function decode(reader, length, error) {
+            StickerPackMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.StickerPackMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.stickerPackId = reader.string();
@@ -87369,14 +86887,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Sticker.decode = function decode(reader, length, error) {
+                Sticker.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.StickerPackMessage.Sticker();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.fileName = reader.string();
@@ -87693,14 +87209,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            StickerSyncRMRMessage.decode = function decode(reader, length, error) {
+            StickerSyncRMRMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.StickerSyncRMRMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             if (!(message.filehash && message.filehash.length))
@@ -87996,14 +87510,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            TemplateButtonReplyMessage.decode = function decode(reader, length, error) {
+            TemplateButtonReplyMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.TemplateButtonReplyMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.selectedId = reader.string();
@@ -88324,14 +87836,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            TemplateMessage.decode = function decode(reader, length, error) {
+            TemplateMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.TemplateMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 3: {
                             message.contextInfo = $root.E2E.ContextInfo.decode(reader, reader.uint32());
@@ -88725,14 +88235,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FourRowTemplate.decode = function decode(reader, length, error) {
+                FourRowTemplate.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.TemplateMessage.FourRowTemplate();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 6: {
                                 message.content = $root.E2E.Message.HighlyStructuredMessage.decode(reader, reader.uint32());
@@ -89219,14 +88727,12 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                HydratedFourRowTemplate.decode = function decode(reader, length, error) {
+                HydratedFourRowTemplate.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.TemplateMessage.HydratedFourRowTemplate();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 6: {
                                 message.hydratedContentText = reader.string();
@@ -89609,14 +89115,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            URLMetadata.decode = function decode(reader, length, error) {
+            URLMetadata.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.URLMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.fbExperimentId = reader.uint32();
@@ -90106,14 +89610,12 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            VideoMessage.decode = function decode(reader, length, error) {
+            VideoMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.VideoMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.url = reader.string();
@@ -90977,14 +90479,12 @@ $root.Protocol = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        LimitSharing.decode = function decode(reader, length, error) {
+        LimitSharing.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.LimitSharing();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.sharingLimited = reader.bool();
@@ -91313,14 +90813,12 @@ $root.Protocol = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        MessageKey.decode = function decode(reader, length, error) {
+        MessageKey.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.MessageKey();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.remoteJid = reader.string();
@@ -91589,14 +91087,12 @@ $root.Adv = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ADVSignedDeviceIdentityHMAC.decode = function decode(reader, length, error) {
+        ADVSignedDeviceIdentityHMAC.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Adv.ADVSignedDeviceIdentityHMAC();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.details = reader.bytes();
@@ -91889,14 +91385,12 @@ $root.Adv = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ADVSignedDeviceIdentity.decode = function decode(reader, length, error) {
+        ADVSignedDeviceIdentity.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Adv.ADVSignedDeviceIdentity();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.details = reader.bytes();
@@ -92211,14 +91705,12 @@ $root.Adv = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ADVDeviceIdentity.decode = function decode(reader, length, error) {
+        ADVDeviceIdentity.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Adv.ADVDeviceIdentity();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.rawId = reader.uint32();
@@ -92539,14 +92031,12 @@ $root.Adv = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ADVSignedKeyIndexList.decode = function decode(reader, length, error) {
+        ADVSignedKeyIndexList.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Adv.ADVSignedKeyIndexList();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.details = reader.bytes();
@@ -92845,14 +92335,12 @@ $root.Adv = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ADVKeyIndexList.decode = function decode(reader, length, error) {
+        ADVKeyIndexList.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Adv.ADVKeyIndexList();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.rawId = reader.uint32();
@@ -93189,14 +92677,12 @@ $root.CompanionReg = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ClientPairingProps.decode = function decode(reader, length, error) {
+        ClientPairingProps.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.ClientPairingProps();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.isChatDbLidMigrated = reader.bool();
@@ -93418,14 +92904,12 @@ $root.CompanionReg = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        EncryptedPairingRequest.decode = function decode(reader, length, error) {
+        EncryptedPairingRequest.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.EncryptedPairingRequest();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.encryptedPayload = reader.bytes();
@@ -93676,14 +93160,12 @@ $root.CompanionReg = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PairingRequest.decode = function decode(reader, length, error) {
+        PairingRequest.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.PairingRequest();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.companionPublicKey = reader.bytes();
@@ -93944,14 +93426,12 @@ $root.CompanionReg = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PrimaryEphemeralIdentity.decode = function decode(reader, length, error) {
+        PrimaryEphemeralIdentity.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.PrimaryEphemeralIdentity();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.publicKey = reader.bytes();
@@ -94191,14 +93671,12 @@ $root.CompanionReg = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ProloguePayload.decode = function decode(reader, length, error) {
+        ProloguePayload.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.ProloguePayload();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.companionEphemeralIdentity = reader.bytes();
@@ -94423,14 +93901,12 @@ $root.CompanionReg = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        CompanionCommitment.decode = function decode(reader, length, error) {
+        CompanionCommitment.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.CompanionCommitment();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.hash = reader.bytes();
@@ -94659,14 +94135,12 @@ $root.CompanionReg = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        CompanionEphemeralIdentity.decode = function decode(reader, length, error) {
+        CompanionEphemeralIdentity.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.CompanionEphemeralIdentity();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.publicKey = reader.bytes();
@@ -95076,14 +94550,12 @@ $root.CompanionReg = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        DeviceProps.decode = function decode(reader, length, error) {
+        DeviceProps.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.DeviceProps();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.os = reader.string();
@@ -95515,14 +94987,12 @@ $root.CompanionReg = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AppVersion.decode = function decode(reader, length, error) {
+            AppVersion.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.DeviceProps.AppVersion();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.primary = reader.uint32();
@@ -95912,14 +95382,12 @@ $root.CompanionReg = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            HistorySyncConfig.decode = function decode(reader, length, error) {
+            HistorySyncConfig.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.DeviceProps.HistorySyncConfig();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.fullSyncDaysLimit = reader.uint32();
@@ -96349,14 +95817,12 @@ $root.MmsRetry = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ServerErrorReceipt.decode = function decode(reader, length, error) {
+        ServerErrorReceipt.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.MmsRetry.ServerErrorReceipt();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.stanzaId = reader.string();
@@ -96587,14 +96053,12 @@ $root.MmsRetry = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        MediaRetryNotification.decode = function decode(reader, length, error) {
+        MediaRetryNotification.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.MmsRetry.MediaRetryNotification();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.stanzaId = reader.string();
