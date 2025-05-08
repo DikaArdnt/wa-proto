@@ -9755,8 +9755,8 @@ export namespace E2E {
         /** ContextInfo isQuestion */
         isQuestion?: (boolean|null);
 
-        /** ContextInfo statusType */
-        statusType?: (E2E.ContextInfo.StatusSourceType|null);
+        /** ContextInfo statusSourceType */
+        statusSourceType?: (E2E.ContextInfo.StatusSourceType|null);
     }
 
     /** Represents a ContextInfo. */
@@ -9906,8 +9906,8 @@ export namespace E2E {
         /** ContextInfo isQuestion. */
         public isQuestion: boolean;
 
-        /** ContextInfo statusType. */
-        public statusType: E2E.ContextInfo.StatusSourceType;
+        /** ContextInfo statusSourceType. */
+        public statusSourceType: E2E.ContextInfo.StatusSourceType;
 
         /**
          * Creates a new ContextInfo instance using the specified properties.

@@ -797,7 +797,7 @@ message ContextInfo {
     optional uint32 rankingVersion = 60;
     optional MemberLabel memberLabel = 62;
     optional bool isQuestion = 63;
-    optional StatusSourceType statusType = 64;
+    optional StatusSourceType statusSourceType = 64;
     message AdReplyInfo {
         optional string advertiserName = 1;
         optional MediaType mediaType = 2;
