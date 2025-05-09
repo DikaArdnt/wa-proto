@@ -26292,6 +26292,7 @@ $root.E2E = (function() {
                 case 2:
                 case 3:
                 case 4:
+                case 5:
                     break;
                 }
             return null;
@@ -26542,6 +26543,10 @@ $root.E2E = (function() {
             case "TEXT":
             case 4:
                 message.statusSourceType = 4;
+                break;
+            case "MUSIC_FIRST":
+            case 5:
+                message.statusSourceType = 5;
                 break;
             }
             return message;
@@ -29635,6 +29640,7 @@ $root.E2E = (function() {
          * @property {number} GIF=2 GIF value
          * @property {number} AUDIO=3 AUDIO value
          * @property {number} TEXT=4 TEXT value
+         * @property {number} MUSIC_FIRST=5 MUSIC_FIRST value
          */
         ContextInfo.StatusSourceType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -29643,6 +29649,7 @@ $root.E2E = (function() {
             values[valuesById[2] = "GIF"] = 2;
             values[valuesById[3] = "AUDIO"] = 3;
             values[valuesById[4] = "TEXT"] = 4;
+            values[valuesById[5] = "MUSIC_FIRST"] = 5;
             return values;
         })();
 

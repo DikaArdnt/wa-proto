@@ -14731,7 +14731,8 @@ export namespace E2E {
             VIDEO = 1,
             GIF = 2,
             AUDIO = 3,
-            TEXT = 4
+            TEXT = 4,
+            MUSIC_FIRST = 5
         }
 
         /** Properties of a UTMInfo. */

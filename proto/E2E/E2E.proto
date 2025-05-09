@@ -901,6 +901,7 @@ message ContextInfo {
         GIF = 2;
         AUDIO = 3;
         TEXT = 4;
+        MUSIC_FIRST = 5;
     }
     message UTMInfo {
         optional string utmSource = 1;
