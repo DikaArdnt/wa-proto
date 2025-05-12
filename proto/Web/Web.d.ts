@@ -7532,6 +7532,9 @@ export namespace E2E {
 
         /** BotMetadata botQuotaMetadata */
         botQuotaMetadata?: (E2E.IBotQuotaMetadata|null);
+
+        /** BotMetadata botAgeCollectionMetadata */
+        botAgeCollectionMetadata?: (E2E.IBotAgeCollectionMetadata|null);
     }
 
     /** Represents a BotMetadata. */
@@ -7611,6 +7614,9 @@ export namespace E2E {
 
         /** BotMetadata botQuotaMetadata. */
         public botQuotaMetadata?: (E2E.IBotQuotaMetadata|null);
+
+        /** BotMetadata botAgeCollectionMetadata. */
+        public botAgeCollectionMetadata?: (E2E.IBotAgeCollectionMetadata|null);
 
         /**
          * Creates a new BotMetadata instance using the specified properties.
@@ -7926,6 +7932,109 @@ export namespace E2E {
                 SUPPORT = 3
             }
         }
+    }
+
+    /** Properties of a BotAgeCollectionMetadata. */
+    interface IBotAgeCollectionMetadata {
+
+        /** BotAgeCollectionMetadata ageCollectionEligible */
+        ageCollectionEligible?: (boolean|null);
+
+        /** BotAgeCollectionMetadata shouldTriggerAgeCollectionOnClient */
+        shouldTriggerAgeCollectionOnClient?: (boolean|null);
+    }
+
+    /** Represents a BotAgeCollectionMetadata. */
+    class BotAgeCollectionMetadata implements IBotAgeCollectionMetadata {
+
+        /**
+         * Constructs a new BotAgeCollectionMetadata.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: E2E.IBotAgeCollectionMetadata);
+
+        /** BotAgeCollectionMetadata ageCollectionEligible. */
+        public ageCollectionEligible: boolean;
+
+        /** BotAgeCollectionMetadata shouldTriggerAgeCollectionOnClient. */
+        public shouldTriggerAgeCollectionOnClient: boolean;
+
+        /**
+         * Creates a new BotAgeCollectionMetadata instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BotAgeCollectionMetadata instance
+         */
+        public static create(properties?: E2E.IBotAgeCollectionMetadata): E2E.BotAgeCollectionMetadata;
+
+        /**
+         * Encodes the specified BotAgeCollectionMetadata message. Does not implicitly {@link E2E.BotAgeCollectionMetadata.verify|verify} messages.
+         * @param message BotAgeCollectionMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: E2E.IBotAgeCollectionMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BotAgeCollectionMetadata message, length delimited. Does not implicitly {@link E2E.BotAgeCollectionMetadata.verify|verify} messages.
+         * @param message BotAgeCollectionMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: E2E.IBotAgeCollectionMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BotAgeCollectionMetadata message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BotAgeCollectionMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.BotAgeCollectionMetadata;
+
+        /**
+         * Decodes a BotAgeCollectionMetadata message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BotAgeCollectionMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.BotAgeCollectionMetadata;
+
+        /**
+         * Verifies a BotAgeCollectionMetadata message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BotAgeCollectionMetadata message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BotAgeCollectionMetadata
+         */
+        public static fromObject(object: { [k: string]: any }): E2E.BotAgeCollectionMetadata;
+
+        /**
+         * Creates a plain object from a BotAgeCollectionMetadata message. Also converts values to other types if specified.
+         * @param message BotAgeCollectionMetadata
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: E2E.BotAgeCollectionMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BotAgeCollectionMetadata to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for BotAgeCollectionMetadata
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
     /** Properties of a BotImagineMetadata. */
@@ -14732,7 +14841,7 @@ export namespace E2E {
             GIF = 2,
             AUDIO = 3,
             TEXT = 4,
-            MUSIC_FIRST = 5
+            MUSIC_STANDALONE = 5
         }
 
         /** Properties of a UTMInfo. */

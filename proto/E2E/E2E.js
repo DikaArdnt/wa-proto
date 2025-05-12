@@ -10009,6 +10009,7 @@ $root.E2E = (function() {
          * @property {E2E.IBotPromotionMessageMetadata|null} [botPromotionMessageMetadata] BotMetadata botPromotionMessageMetadata
          * @property {E2E.IBotModeSelectionMetadata|null} [botModeSelectionMetadata] BotMetadata botModeSelectionMetadata
          * @property {E2E.IBotQuotaMetadata|null} [botQuotaMetadata] BotMetadata botQuotaMetadata
+         * @property {E2E.IBotAgeCollectionMetadata|null} [botAgeCollectionMetadata] BotMetadata botAgeCollectionMetadata
          */
 
         /**
@@ -10211,6 +10212,14 @@ $root.E2E = (function() {
         BotMetadata.prototype.botQuotaMetadata = null;
 
         /**
+         * BotMetadata botAgeCollectionMetadata.
+         * @member {E2E.IBotAgeCollectionMetadata|null|undefined} botAgeCollectionMetadata
+         * @memberof E2E.BotMetadata
+         * @instance
+         */
+        BotMetadata.prototype.botAgeCollectionMetadata = null;
+
+        /**
          * Creates a new BotMetadata instance using the specified properties.
          * @function create
          * @memberof E2E.BotMetadata
@@ -10280,6 +10289,8 @@ $root.E2E = (function() {
                 $root.E2E.BotModeSelectionMetadata.encode(message.botModeSelectionMetadata, writer.uint32(/* id 22, wireType 2 =*/178).fork()).ldelim();
             if (message.botQuotaMetadata != null && Object.hasOwnProperty.call(message, "botQuotaMetadata"))
                 $root.E2E.BotQuotaMetadata.encode(message.botQuotaMetadata, writer.uint32(/* id 23, wireType 2 =*/186).fork()).ldelim();
+            if (message.botAgeCollectionMetadata != null && Object.hasOwnProperty.call(message, "botAgeCollectionMetadata"))
+                $root.E2E.BotAgeCollectionMetadata.encode(message.botAgeCollectionMetadata, writer.uint32(/* id 24, wireType 2 =*/194).fork()).ldelim();
             return writer;
         };
 
@@ -10406,6 +10417,10 @@ $root.E2E = (function() {
                     }
                 case 23: {
                         message.botQuotaMetadata = $root.E2E.BotQuotaMetadata.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 24: {
+                        message.botAgeCollectionMetadata = $root.E2E.BotAgeCollectionMetadata.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -10548,6 +10563,11 @@ $root.E2E = (function() {
                 if (error)
                     return "botQuotaMetadata." + error;
             }
+            if (message.botAgeCollectionMetadata != null && message.hasOwnProperty("botAgeCollectionMetadata")) {
+                var error = $root.E2E.BotAgeCollectionMetadata.verify(message.botAgeCollectionMetadata);
+                if (error)
+                    return "botAgeCollectionMetadata." + error;
+            }
             return null;
         };
 
@@ -10666,6 +10686,11 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.BotMetadata.botQuotaMetadata: object expected");
                 message.botQuotaMetadata = $root.E2E.BotQuotaMetadata.fromObject(object.botQuotaMetadata);
             }
+            if (object.botAgeCollectionMetadata != null) {
+                if (typeof object.botAgeCollectionMetadata !== "object")
+                    throw TypeError(".E2E.BotMetadata.botAgeCollectionMetadata: object expected");
+                message.botAgeCollectionMetadata = $root.E2E.BotAgeCollectionMetadata.fromObject(object.botAgeCollectionMetadata);
+            }
             return message;
         };
 
@@ -10712,6 +10737,7 @@ $root.E2E = (function() {
                 object.botPromotionMessageMetadata = null;
                 object.botModeSelectionMetadata = null;
                 object.botQuotaMetadata = null;
+                object.botAgeCollectionMetadata = null;
             }
             if (message.avatarMetadata != null && message.hasOwnProperty("avatarMetadata"))
                 object.avatarMetadata = $root.E2E.BotAvatarMetadata.toObject(message.avatarMetadata, options);
@@ -10759,6 +10785,8 @@ $root.E2E = (function() {
                 object.botModeSelectionMetadata = $root.E2E.BotModeSelectionMetadata.toObject(message.botModeSelectionMetadata, options);
             if (message.botQuotaMetadata != null && message.hasOwnProperty("botQuotaMetadata"))
                 object.botQuotaMetadata = $root.E2E.BotQuotaMetadata.toObject(message.botQuotaMetadata, options);
+            if (message.botAgeCollectionMetadata != null && message.hasOwnProperty("botAgeCollectionMetadata"))
+                object.botAgeCollectionMetadata = $root.E2E.BotAgeCollectionMetadata.toObject(message.botAgeCollectionMetadata, options);
             return object;
         };
 
@@ -11383,6 +11411,235 @@ $root.E2E = (function() {
         })();
 
         return BotSourcesMetadata;
+    })();
+
+    E2E.BotAgeCollectionMetadata = (function() {
+
+        /**
+         * Properties of a BotAgeCollectionMetadata.
+         * @memberof E2E
+         * @interface IBotAgeCollectionMetadata
+         * @property {boolean|null} [ageCollectionEligible] BotAgeCollectionMetadata ageCollectionEligible
+         * @property {boolean|null} [shouldTriggerAgeCollectionOnClient] BotAgeCollectionMetadata shouldTriggerAgeCollectionOnClient
+         */
+
+        /**
+         * Constructs a new BotAgeCollectionMetadata.
+         * @memberof E2E
+         * @classdesc Represents a BotAgeCollectionMetadata.
+         * @implements IBotAgeCollectionMetadata
+         * @constructor
+         * @param {E2E.IBotAgeCollectionMetadata=} [properties] Properties to set
+         */
+        function BotAgeCollectionMetadata(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BotAgeCollectionMetadata ageCollectionEligible.
+         * @member {boolean} ageCollectionEligible
+         * @memberof E2E.BotAgeCollectionMetadata
+         * @instance
+         */
+        BotAgeCollectionMetadata.prototype.ageCollectionEligible = false;
+
+        /**
+         * BotAgeCollectionMetadata shouldTriggerAgeCollectionOnClient.
+         * @member {boolean} shouldTriggerAgeCollectionOnClient
+         * @memberof E2E.BotAgeCollectionMetadata
+         * @instance
+         */
+        BotAgeCollectionMetadata.prototype.shouldTriggerAgeCollectionOnClient = false;
+
+        /**
+         * Creates a new BotAgeCollectionMetadata instance using the specified properties.
+         * @function create
+         * @memberof E2E.BotAgeCollectionMetadata
+         * @static
+         * @param {E2E.IBotAgeCollectionMetadata=} [properties] Properties to set
+         * @returns {E2E.BotAgeCollectionMetadata} BotAgeCollectionMetadata instance
+         */
+        BotAgeCollectionMetadata.create = function create(properties) {
+            return new BotAgeCollectionMetadata(properties);
+        };
+
+        /**
+         * Encodes the specified BotAgeCollectionMetadata message. Does not implicitly {@link E2E.BotAgeCollectionMetadata.verify|verify} messages.
+         * @function encode
+         * @memberof E2E.BotAgeCollectionMetadata
+         * @static
+         * @param {E2E.IBotAgeCollectionMetadata} message BotAgeCollectionMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotAgeCollectionMetadata.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.ageCollectionEligible != null && Object.hasOwnProperty.call(message, "ageCollectionEligible"))
+                writer.uint32(/* id 1, wireType 0 =*/8).bool(message.ageCollectionEligible);
+            if (message.shouldTriggerAgeCollectionOnClient != null && Object.hasOwnProperty.call(message, "shouldTriggerAgeCollectionOnClient"))
+                writer.uint32(/* id 2, wireType 0 =*/16).bool(message.shouldTriggerAgeCollectionOnClient);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BotAgeCollectionMetadata message, length delimited. Does not implicitly {@link E2E.BotAgeCollectionMetadata.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof E2E.BotAgeCollectionMetadata
+         * @static
+         * @param {E2E.IBotAgeCollectionMetadata} message BotAgeCollectionMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotAgeCollectionMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BotAgeCollectionMetadata message from the specified reader or buffer.
+         * @function decode
+         * @memberof E2E.BotAgeCollectionMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {E2E.BotAgeCollectionMetadata} BotAgeCollectionMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotAgeCollectionMetadata.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotAgeCollectionMetadata();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.ageCollectionEligible = reader.bool();
+                        break;
+                    }
+                case 2: {
+                        message.shouldTriggerAgeCollectionOnClient = reader.bool();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BotAgeCollectionMetadata message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof E2E.BotAgeCollectionMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {E2E.BotAgeCollectionMetadata} BotAgeCollectionMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotAgeCollectionMetadata.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BotAgeCollectionMetadata message.
+         * @function verify
+         * @memberof E2E.BotAgeCollectionMetadata
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BotAgeCollectionMetadata.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.ageCollectionEligible != null && message.hasOwnProperty("ageCollectionEligible"))
+                if (typeof message.ageCollectionEligible !== "boolean")
+                    return "ageCollectionEligible: boolean expected";
+            if (message.shouldTriggerAgeCollectionOnClient != null && message.hasOwnProperty("shouldTriggerAgeCollectionOnClient"))
+                if (typeof message.shouldTriggerAgeCollectionOnClient !== "boolean")
+                    return "shouldTriggerAgeCollectionOnClient: boolean expected";
+            return null;
+        };
+
+        /**
+         * Creates a BotAgeCollectionMetadata message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof E2E.BotAgeCollectionMetadata
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {E2E.BotAgeCollectionMetadata} BotAgeCollectionMetadata
+         */
+        BotAgeCollectionMetadata.fromObject = function fromObject(object) {
+            if (object instanceof $root.E2E.BotAgeCollectionMetadata)
+                return object;
+            var message = new $root.E2E.BotAgeCollectionMetadata();
+            if (object.ageCollectionEligible != null)
+                message.ageCollectionEligible = Boolean(object.ageCollectionEligible);
+            if (object.shouldTriggerAgeCollectionOnClient != null)
+                message.shouldTriggerAgeCollectionOnClient = Boolean(object.shouldTriggerAgeCollectionOnClient);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BotAgeCollectionMetadata message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof E2E.BotAgeCollectionMetadata
+         * @static
+         * @param {E2E.BotAgeCollectionMetadata} message BotAgeCollectionMetadata
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BotAgeCollectionMetadata.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.ageCollectionEligible = false;
+                object.shouldTriggerAgeCollectionOnClient = false;
+            }
+            if (message.ageCollectionEligible != null && message.hasOwnProperty("ageCollectionEligible"))
+                object.ageCollectionEligible = message.ageCollectionEligible;
+            if (message.shouldTriggerAgeCollectionOnClient != null && message.hasOwnProperty("shouldTriggerAgeCollectionOnClient"))
+                object.shouldTriggerAgeCollectionOnClient = message.shouldTriggerAgeCollectionOnClient;
+            return object;
+        };
+
+        /**
+         * Converts this BotAgeCollectionMetadata to JSON.
+         * @function toJSON
+         * @memberof E2E.BotAgeCollectionMetadata
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BotAgeCollectionMetadata.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotAgeCollectionMetadata
+         * @function getTypeUrl
+         * @memberof E2E.BotAgeCollectionMetadata
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotAgeCollectionMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/E2E.BotAgeCollectionMetadata";
+        };
+
+        return BotAgeCollectionMetadata;
     })();
 
     E2E.BotImagineMetadata = (function() {
@@ -26544,7 +26801,7 @@ $root.E2E = (function() {
             case 4:
                 message.statusSourceType = 4;
                 break;
-            case "MUSIC_FIRST":
+            case "MUSIC_STANDALONE":
             case 5:
                 message.statusSourceType = 5;
                 break;
@@ -29640,7 +29897,7 @@ $root.E2E = (function() {
          * @property {number} GIF=2 GIF value
          * @property {number} AUDIO=3 AUDIO value
          * @property {number} TEXT=4 TEXT value
-         * @property {number} MUSIC_FIRST=5 MUSIC_FIRST value
+         * @property {number} MUSIC_STANDALONE=5 MUSIC_STANDALONE value
          */
         ContextInfo.StatusSourceType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -29649,7 +29906,7 @@ $root.E2E = (function() {
             values[valuesById[2] = "GIF"] = 2;
             values[valuesById[3] = "AUDIO"] = 3;
             values[valuesById[4] = "TEXT"] = 4;
-            values[valuesById[5] = "MUSIC_FIRST"] = 5;
+            values[valuesById[5] = "MUSIC_STANDALONE"] = 5;
             return values;
         })();
 

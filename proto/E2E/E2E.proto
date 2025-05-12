@@ -311,6 +311,7 @@ message BotMetadata {
     optional BotPromotionMessageMetadata botPromotionMessageMetadata = 21;
     optional BotModeSelectionMetadata botModeSelectionMetadata = 22;
     optional BotQuotaMetadata botQuotaMetadata = 23;
+    optional BotAgeCollectionMetadata botAgeCollectionMetadata = 24;
 }
 
 message BotSourcesMetadata {
@@ -329,6 +330,11 @@ message BotSourcesMetadata {
             SUPPORT = 3;
         }
     }
+}
+
+message BotAgeCollectionMetadata {
+    optional bool ageCollectionEligible = 1;
+    optional bool shouldTriggerAgeCollectionOnClient = 2;
 }
 
 message BotImagineMetadata {
@@ -901,7 +907,7 @@ message ContextInfo {
         GIF = 2;
         AUDIO = 3;
         TEXT = 4;
-        MUSIC_FIRST = 5;
+        MUSIC_STANDALONE = 5;
     }
     message UTMInfo {
         optional string utmSource = 1;
