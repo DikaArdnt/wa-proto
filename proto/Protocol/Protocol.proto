@@ -3,10 +3,10 @@ package Protocol;
 
 message LimitSharing {
     optional bool sharingLimited = 1;
-    optional Trigger trigger = 2;
+    optional TriggerType trigger = 2;
     optional int64 limitSharingSettingTimestamp = 3;
     optional bool initiatedByMe = 4;
-    enum Trigger {
+    enum TriggerType {
         UNKNOWN = 0;
         CHAT_SETTING = 1;
         BIZ_SUPPORTS_FB_HOSTING = 2;

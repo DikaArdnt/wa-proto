@@ -25,7 +25,7 @@ $root.Protocol = (function() {
          * @memberof Protocol
          * @interface ILimitSharing
          * @property {boolean|null} [sharingLimited] LimitSharing sharingLimited
-         * @property {Protocol.LimitSharing.Trigger|null} [trigger] LimitSharing trigger
+         * @property {Protocol.LimitSharing.TriggerType|null} [trigger] LimitSharing trigger
          * @property {number|Long|null} [limitSharingSettingTimestamp] LimitSharing limitSharingSettingTimestamp
          * @property {boolean|null} [initiatedByMe] LimitSharing initiatedByMe
          */
@@ -55,7 +55,7 @@ $root.Protocol = (function() {
 
         /**
          * LimitSharing trigger.
-         * @member {Protocol.LimitSharing.Trigger} trigger
+         * @member {Protocol.LimitSharing.TriggerType} trigger
          * @memberof Protocol.LimitSharing
          * @instance
          */
@@ -296,7 +296,7 @@ $root.Protocol = (function() {
             if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
                 object.sharingLimited = message.sharingLimited;
             if (message.trigger != null && message.hasOwnProperty("trigger"))
-                object.trigger = options.enums === String ? $root.Protocol.LimitSharing.Trigger[message.trigger] === undefined ? message.trigger : $root.Protocol.LimitSharing.Trigger[message.trigger] : message.trigger;
+                object.trigger = options.enums === String ? $root.Protocol.LimitSharing.TriggerType[message.trigger] === undefined ? message.trigger : $root.Protocol.LimitSharing.TriggerType[message.trigger] : message.trigger;
             if (message.limitSharingSettingTimestamp != null && message.hasOwnProperty("limitSharingSettingTimestamp"))
                 if (typeof message.limitSharingSettingTimestamp === "number")
                     object.limitSharingSettingTimestamp = options.longs === String ? String(message.limitSharingSettingTimestamp) : message.limitSharingSettingTimestamp;
@@ -334,15 +334,15 @@ $root.Protocol = (function() {
         };
 
         /**
-         * Trigger enum.
-         * @name Protocol.LimitSharing.Trigger
+         * TriggerType enum.
+         * @name Protocol.LimitSharing.TriggerType
          * @enum {number}
          * @property {number} UNKNOWN=0 UNKNOWN value
          * @property {number} CHAT_SETTING=1 CHAT_SETTING value
          * @property {number} BIZ_SUPPORTS_FB_HOSTING=2 BIZ_SUPPORTS_FB_HOSTING value
          * @property {number} UNKNOWN_GROUP=3 UNKNOWN_GROUP value
          */
-        LimitSharing.Trigger = (function() {
+        LimitSharing.TriggerType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
             values[valuesById[0] = "UNKNOWN"] = 0;
             values[valuesById[1] = "CHAT_SETTING"] = 1;

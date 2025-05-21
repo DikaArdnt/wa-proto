@@ -12146,7 +12146,9 @@ export namespace E2E {
             SD_VIDEO_PARENT = 1,
             HD_VIDEO_CHILD = 2,
             SD_IMAGE_PARENT = 3,
-            HD_IMAGE_CHILD = 4
+            HD_IMAGE_CHILD = 4,
+            MOTION_PHOTO_PARENT = 5,
+            MOTION_PHOTO_CHILD = 6
         }
 
         /** StatusAttributionType enum. */
@@ -29563,7 +29565,7 @@ export namespace Protocol {
         sharingLimited?: (boolean|null);
 
         /** LimitSharing trigger */
-        trigger?: (Protocol.LimitSharing.Trigger|null);
+        trigger?: (Protocol.LimitSharing.TriggerType|null);
 
         /** LimitSharing limitSharingSettingTimestamp */
         limitSharingSettingTimestamp?: (number|Long|null);
@@ -29585,7 +29587,7 @@ export namespace Protocol {
         public sharingLimited: boolean;
 
         /** LimitSharing trigger. */
-        public trigger: Protocol.LimitSharing.Trigger;
+        public trigger: Protocol.LimitSharing.TriggerType;
 
         /** LimitSharing limitSharingSettingTimestamp. */
         public limitSharingSettingTimestamp: (number|Long);
@@ -29673,8 +29675,8 @@ export namespace Protocol {
 
     namespace LimitSharing {
 
-        /** Trigger enum. */
-        enum Trigger {
+        /** TriggerType enum. */
+        enum TriggerType {
             UNKNOWN = 0,
             CHAT_SETTING = 1,
             BIZ_SUPPORTS_FB_HOSTING = 2,

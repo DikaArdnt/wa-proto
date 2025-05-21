@@ -10845,6 +10845,7 @@ $root.Web = (function() {
                 case 215:
                 case 216:
                 case 217:
+                case 218:
                     break;
                 }
             if (message.clearMedia != null && message.hasOwnProperty("clearMedia"))
@@ -12054,6 +12055,10 @@ $root.Web = (function() {
             case 217:
                 message.messageStubType = 217;
                 break;
+            case "BIZ_AUTOMATICALLY_LABELED_CHAT_SYSTEM_MESSAGE":
+            case 218:
+                message.messageStubType = 218;
+                break;
             }
             if (object.clearMedia != null)
                 message.clearMedia = Boolean(object.clearMedia);
@@ -12894,6 +12899,7 @@ $root.Web = (function() {
          * @property {number} BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_OUT_MESSAGE=215 BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_OUT_MESSAGE value
          * @property {number} CHANGE_LIMIT_SHARING=216 CHANGE_LIMIT_SHARING value
          * @property {number} GROUP_MEMBER_LINK_MODE=217 GROUP_MEMBER_LINK_MODE value
+         * @property {number} BIZ_AUTOMATICALLY_LABELED_CHAT_SYSTEM_MESSAGE=218 BIZ_AUTOMATICALLY_LABELED_CHAT_SYSTEM_MESSAGE value
          */
         WebMessageInfo.StubType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -13115,6 +13121,7 @@ $root.Web = (function() {
             values[valuesById[215] = "BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_OUT_MESSAGE"] = 215;
             values[valuesById[216] = "CHANGE_LIMIT_SHARING"] = 216;
             values[valuesById[217] = "GROUP_MEMBER_LINK_MODE"] = 217;
+            values[valuesById[218] = "BIZ_AUTOMATICALLY_LABELED_CHAT_SYSTEM_MESSAGE"] = 218;
             return values;
         })();
 
@@ -39642,6 +39649,8 @@ $root.E2E = (function() {
                 case 2:
                 case 3:
                 case 4:
+                case 5:
+                case 6:
                     break;
                 }
             if (message.rankingVersion != null && message.hasOwnProperty("rankingVersion"))
@@ -39878,6 +39887,14 @@ $root.E2E = (function() {
             case "HD_IMAGE_CHILD":
             case 4:
                 message.pairedMediaType = 4;
+                break;
+            case "MOTION_PHOTO_PARENT":
+            case 5:
+                message.pairedMediaType = 5;
+                break;
+            case "MOTION_PHOTO_CHILD":
+            case 6:
+                message.pairedMediaType = 6;
                 break;
             }
             if (object.rankingVersion != null)
@@ -42976,6 +42993,8 @@ $root.E2E = (function() {
          * @property {number} HD_VIDEO_CHILD=2 HD_VIDEO_CHILD value
          * @property {number} SD_IMAGE_PARENT=3 SD_IMAGE_PARENT value
          * @property {number} HD_IMAGE_CHILD=4 HD_IMAGE_CHILD value
+         * @property {number} MOTION_PHOTO_PARENT=5 MOTION_PHOTO_PARENT value
+         * @property {number} MOTION_PHOTO_CHILD=6 MOTION_PHOTO_CHILD value
          */
         ContextInfo.PairedMediaType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -42984,6 +43003,8 @@ $root.E2E = (function() {
             values[valuesById[2] = "HD_VIDEO_CHILD"] = 2;
             values[valuesById[3] = "SD_IMAGE_PARENT"] = 3;
             values[valuesById[4] = "HD_IMAGE_CHILD"] = 4;
+            values[valuesById[5] = "MOTION_PHOTO_PARENT"] = 5;
+            values[valuesById[6] = "MOTION_PHOTO_CHILD"] = 6;
             return values;
         })();
 
@@ -91212,7 +91233,7 @@ $root.Protocol = (function() {
          * @memberof Protocol
          * @interface ILimitSharing
          * @property {boolean|null} [sharingLimited] LimitSharing sharingLimited
-         * @property {Protocol.LimitSharing.Trigger|null} [trigger] LimitSharing trigger
+         * @property {Protocol.LimitSharing.TriggerType|null} [trigger] LimitSharing trigger
          * @property {number|Long|null} [limitSharingSettingTimestamp] LimitSharing limitSharingSettingTimestamp
          * @property {boolean|null} [initiatedByMe] LimitSharing initiatedByMe
          */
@@ -91242,7 +91263,7 @@ $root.Protocol = (function() {
 
         /**
          * LimitSharing trigger.
-         * @member {Protocol.LimitSharing.Trigger} trigger
+         * @member {Protocol.LimitSharing.TriggerType} trigger
          * @memberof Protocol.LimitSharing
          * @instance
          */
@@ -91483,7 +91504,7 @@ $root.Protocol = (function() {
             if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
                 object.sharingLimited = message.sharingLimited;
             if (message.trigger != null && message.hasOwnProperty("trigger"))
-                object.trigger = options.enums === String ? $root.Protocol.LimitSharing.Trigger[message.trigger] === undefined ? message.trigger : $root.Protocol.LimitSharing.Trigger[message.trigger] : message.trigger;
+                object.trigger = options.enums === String ? $root.Protocol.LimitSharing.TriggerType[message.trigger] === undefined ? message.trigger : $root.Protocol.LimitSharing.TriggerType[message.trigger] : message.trigger;
             if (message.limitSharingSettingTimestamp != null && message.hasOwnProperty("limitSharingSettingTimestamp"))
                 if (typeof message.limitSharingSettingTimestamp === "number")
                     object.limitSharingSettingTimestamp = options.longs === String ? String(message.limitSharingSettingTimestamp) : message.limitSharingSettingTimestamp;
@@ -91521,15 +91542,15 @@ $root.Protocol = (function() {
         };
 
         /**
-         * Trigger enum.
-         * @name Protocol.LimitSharing.Trigger
+         * TriggerType enum.
+         * @name Protocol.LimitSharing.TriggerType
          * @enum {number}
          * @property {number} UNKNOWN=0 UNKNOWN value
          * @property {number} CHAT_SETTING=1 CHAT_SETTING value
          * @property {number} BIZ_SUPPORTS_FB_HOSTING=2 BIZ_SUPPORTS_FB_HOSTING value
          * @property {number} UNKNOWN_GROUP=3 UNKNOWN_GROUP value
          */
-        LimitSharing.Trigger = (function() {
+        LimitSharing.TriggerType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
             values[valuesById[0] = "UNKNOWN"] = 0;
             values[valuesById[1] = "CHAT_SETTING"] = 1;

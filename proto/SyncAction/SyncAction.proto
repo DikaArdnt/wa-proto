@@ -94,6 +94,7 @@ message SyncActionValue {
     optional NotificationActivitySettingAction notificationActivitySettingAction = 60;
     optional LidContactAction lidContactAction = 61;
     optional CtwaPerCustomerDataSharingAction ctwaPerCustomerDataSharingAction = 62;
+    optional PaymentTosAction paymentTosAction = 63;
     message AgentAction {
         optional string name = 1;
         optional int32 deviceID = 2;
@@ -265,6 +266,13 @@ message SyncActionValue {
     }
     message PaymentInfoAction {
         optional string cpi = 1;
+    }
+    message PaymentTosAction {
+        required PaymentNotice paymentNotice = 1;
+        required bool accepted = 2;
+        enum PaymentNotice {
+            BR_PAY_PRIVACY_POLICY = 0;
+        }
     }
     message PinAction {
         optional bool pinned = 1;

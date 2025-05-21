@@ -158,12 +158,14 @@ $root.HistorySync = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        NotificationSettings.decode = function decode(reader, length) {
+        NotificationSettings.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.HistorySync.NotificationSettings();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.messageVibrate = reader.string();
@@ -433,12 +435,14 @@ $root.HistorySync = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AvatarUserSettings.decode = function decode(reader, length) {
+        AvatarUserSettings.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.HistorySync.AvatarUserSettings();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.fbid = reader.string();
@@ -671,12 +675,14 @@ $root.HistorySync = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PastParticipant.decode = function decode(reader, length) {
+        PastParticipant.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.HistorySync.PastParticipant();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.userJid = reader.string();
@@ -959,12 +965,14 @@ $root.HistorySync = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PastParticipants.decode = function decode(reader, length) {
+        PastParticipants.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.HistorySync.PastParticipants();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.groupJid = reader.string();
@@ -1315,12 +1323,14 @@ $root.HistorySync = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        StickerMetadata.decode = function decode(reader, length) {
+        StickerMetadata.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.HistorySync.StickerMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.url = reader.string();
@@ -1739,12 +1749,14 @@ $root.HistorySync = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AutoDownloadSettings.decode = function decode(reader, length) {
+        AutoDownloadSettings.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.HistorySync.AutoDownloadSettings();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.downloadImages = reader.bool();
@@ -1919,6 +1931,7 @@ $root.HistorySync = (function() {
          * @property {HistorySync.INotificationSettings|null} [individualNotificationSettings] GlobalSettings individualNotificationSettings
          * @property {HistorySync.INotificationSettings|null} [groupNotificationSettings] GlobalSettings groupNotificationSettings
          * @property {ChatLockSettings.IChatLockSettings|null} [chatLockSettings] GlobalSettings chatLockSettings
+         * @property {number|Long|null} [chatDbLidMigrationTimestamp] GlobalSettings chatDbLidMigrationTimestamp
          */
 
         /**
@@ -2089,6 +2102,14 @@ $root.HistorySync = (function() {
         GlobalSettings.prototype.chatLockSettings = null;
 
         /**
+         * GlobalSettings chatDbLidMigrationTimestamp.
+         * @member {number|Long} chatDbLidMigrationTimestamp
+         * @memberof HistorySync.GlobalSettings
+         * @instance
+         */
+        GlobalSettings.prototype.chatDbLidMigrationTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
          * Creates a new GlobalSettings instance using the specified properties.
          * @function create
          * @memberof HistorySync.GlobalSettings
@@ -2150,6 +2171,8 @@ $root.HistorySync = (function() {
                 $root.HistorySync.NotificationSettings.encode(message.groupNotificationSettings, writer.uint32(/* id 18, wireType 2 =*/146).fork()).ldelim();
             if (message.chatLockSettings != null && Object.hasOwnProperty.call(message, "chatLockSettings"))
                 $root.ChatLockSettings.ChatLockSettings.encode(message.chatLockSettings, writer.uint32(/* id 19, wireType 2 =*/154).fork()).ldelim();
+            if (message.chatDbLidMigrationTimestamp != null && Object.hasOwnProperty.call(message, "chatDbLidMigrationTimestamp"))
+                writer.uint32(/* id 20, wireType 0 =*/160).int64(message.chatDbLidMigrationTimestamp);
             return writer;
         };
 
@@ -2177,12 +2200,14 @@ $root.HistorySync = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        GlobalSettings.decode = function decode(reader, length) {
+        GlobalSettings.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.HistorySync.GlobalSettings();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.lightThemeWallpaper = $root.HistorySync.WallpaperSettings.decode(reader, reader.uint32());
@@ -2258,6 +2283,10 @@ $root.HistorySync = (function() {
                     }
                 case 19: {
                         message.chatLockSettings = $root.ChatLockSettings.ChatLockSettings.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 20: {
+                        message.chatDbLidMigrationTimestamp = reader.int64();
                         break;
                     }
                 default:
@@ -2376,6 +2405,9 @@ $root.HistorySync = (function() {
                 if (error)
                     return "chatLockSettings." + error;
             }
+            if (message.chatDbLidMigrationTimestamp != null && message.hasOwnProperty("chatDbLidMigrationTimestamp"))
+                if (!$util.isInteger(message.chatDbLidMigrationTimestamp) && !(message.chatDbLidMigrationTimestamp && $util.isInteger(message.chatDbLidMigrationTimestamp.low) && $util.isInteger(message.chatDbLidMigrationTimestamp.high)))
+                    return "chatDbLidMigrationTimestamp: integer|Long expected";
             return null;
         };
 
@@ -2481,6 +2513,15 @@ $root.HistorySync = (function() {
                     throw TypeError(".HistorySync.GlobalSettings.chatLockSettings: object expected");
                 message.chatLockSettings = $root.ChatLockSettings.ChatLockSettings.fromObject(object.chatLockSettings);
             }
+            if (object.chatDbLidMigrationTimestamp != null)
+                if ($util.Long)
+                    (message.chatDbLidMigrationTimestamp = $util.Long.fromValue(object.chatDbLidMigrationTimestamp)).unsigned = false;
+                else if (typeof object.chatDbLidMigrationTimestamp === "string")
+                    message.chatDbLidMigrationTimestamp = parseInt(object.chatDbLidMigrationTimestamp, 10);
+                else if (typeof object.chatDbLidMigrationTimestamp === "number")
+                    message.chatDbLidMigrationTimestamp = object.chatDbLidMigrationTimestamp;
+                else if (typeof object.chatDbLidMigrationTimestamp === "object")
+                    message.chatDbLidMigrationTimestamp = new $util.LongBits(object.chatDbLidMigrationTimestamp.low >>> 0, object.chatDbLidMigrationTimestamp.high >>> 0).toNumber();
             return message;
         };
 
@@ -2521,6 +2562,11 @@ $root.HistorySync = (function() {
                 object.individualNotificationSettings = null;
                 object.groupNotificationSettings = null;
                 object.chatLockSettings = null;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.chatDbLidMigrationTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.chatDbLidMigrationTimestamp = options.longs === String ? "0" : 0;
             }
             if (message.lightThemeWallpaper != null && message.hasOwnProperty("lightThemeWallpaper"))
                 object.lightThemeWallpaper = $root.HistorySync.WallpaperSettings.toObject(message.lightThemeWallpaper, options);
@@ -2563,6 +2609,11 @@ $root.HistorySync = (function() {
                 object.groupNotificationSettings = $root.HistorySync.NotificationSettings.toObject(message.groupNotificationSettings, options);
             if (message.chatLockSettings != null && message.hasOwnProperty("chatLockSettings"))
                 object.chatLockSettings = $root.ChatLockSettings.ChatLockSettings.toObject(message.chatLockSettings, options);
+            if (message.chatDbLidMigrationTimestamp != null && message.hasOwnProperty("chatDbLidMigrationTimestamp"))
+                if (typeof message.chatDbLidMigrationTimestamp === "number")
+                    object.chatDbLidMigrationTimestamp = options.longs === String ? String(message.chatDbLidMigrationTimestamp) : message.chatDbLidMigrationTimestamp;
+                else
+                    object.chatDbLidMigrationTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.chatDbLidMigrationTimestamp) : options.longs === Number ? new $util.LongBits(message.chatDbLidMigrationTimestamp.low >>> 0, message.chatDbLidMigrationTimestamp.high >>> 0).toNumber() : message.chatDbLidMigrationTimestamp;
             return object;
         };
 
@@ -2691,12 +2742,14 @@ $root.HistorySync = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        WallpaperSettings.decode = function decode(reader, length) {
+        WallpaperSettings.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.HistorySync.WallpaperSettings();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.filename = reader.string();
@@ -2917,12 +2970,14 @@ $root.HistorySync = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        GroupParticipant.decode = function decode(reader, length) {
+        GroupParticipant.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.HistorySync.GroupParticipant();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.userJid = reader.string();
@@ -3185,12 +3240,14 @@ $root.HistorySync = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Pushname.decode = function decode(reader, length) {
+        Pushname.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.HistorySync.Pushname();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.id = reader.string();
@@ -3412,12 +3469,14 @@ $root.HistorySync = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        HistorySyncMsg.decode = function decode(reader, length) {
+        HistorySyncMsg.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.HistorySync.HistorySyncMsg();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.message = $root.Web.WebMessageInfo.decode(reader, reader.uint32());
@@ -3680,12 +3739,14 @@ $root.HistorySync = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Account.decode = function decode(reader, length) {
+        Account.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.HistorySync.Account();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.lid = reader.string();
@@ -3931,12 +3992,14 @@ $root.HistorySync = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PhoneNumberToLIDMapping.decode = function decode(reader, length) {
+        PhoneNumberToLIDMapping.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.HistorySync.PhoneNumberToLIDMapping();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.pnJid = reader.string();
@@ -4119,6 +4182,8 @@ $root.HistorySync = (function() {
          * @property {string|null} [accountLid] Conversation accountLid
          * @property {boolean|null} [limitSharing] Conversation limitSharing
          * @property {number|Long|null} [limitSharingSettingTimestamp] Conversation limitSharingSettingTimestamp
+         * @property {Protocol.LimitSharing.TriggerType|null} [limitSharingTrigger] Conversation limitSharingTrigger
+         * @property {boolean|null} [limitSharingInitiatedByMe] Conversation limitSharingInitiatedByMe
          */
 
         /**
@@ -4547,6 +4612,22 @@ $root.HistorySync = (function() {
         Conversation.prototype.limitSharingSettingTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
         /**
+         * Conversation limitSharingTrigger.
+         * @member {Protocol.LimitSharing.TriggerType} limitSharingTrigger
+         * @memberof HistorySync.Conversation
+         * @instance
+         */
+        Conversation.prototype.limitSharingTrigger = 0;
+
+        /**
+         * Conversation limitSharingInitiatedByMe.
+         * @member {boolean} limitSharingInitiatedByMe
+         * @memberof HistorySync.Conversation
+         * @instance
+         */
+        Conversation.prototype.limitSharingInitiatedByMe = false;
+
+        /**
          * Creates a new Conversation instance using the specified properties.
          * @function create
          * @memberof HistorySync.Conversation
@@ -4673,6 +4754,10 @@ $root.HistorySync = (function() {
                 writer.uint32(/* id 50, wireType 0 =*/400).bool(message.limitSharing);
             if (message.limitSharingSettingTimestamp != null && Object.hasOwnProperty.call(message, "limitSharingSettingTimestamp"))
                 writer.uint32(/* id 51, wireType 0 =*/408).int64(message.limitSharingSettingTimestamp);
+            if (message.limitSharingTrigger != null && Object.hasOwnProperty.call(message, "limitSharingTrigger"))
+                writer.uint32(/* id 52, wireType 0 =*/416).int32(message.limitSharingTrigger);
+            if (message.limitSharingInitiatedByMe != null && Object.hasOwnProperty.call(message, "limitSharingInitiatedByMe"))
+                writer.uint32(/* id 53, wireType 0 =*/424).bool(message.limitSharingInitiatedByMe);
             return writer;
         };
 
@@ -4700,12 +4785,14 @@ $root.HistorySync = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Conversation.decode = function decode(reader, length) {
+        Conversation.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.HistorySync.Conversation();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.id = reader.string();
@@ -4913,6 +5000,14 @@ $root.HistorySync = (function() {
                     }
                 case 51: {
                         message.limitSharingSettingTimestamp = reader.int64();
+                        break;
+                    }
+                case 52: {
+                        message.limitSharingTrigger = reader.int32();
+                        break;
+                    }
+                case 53: {
+                        message.limitSharingInitiatedByMe = reader.bool();
                         break;
                     }
                 default:
@@ -5138,6 +5233,19 @@ $root.HistorySync = (function() {
             if (message.limitSharingSettingTimestamp != null && message.hasOwnProperty("limitSharingSettingTimestamp"))
                 if (!$util.isInteger(message.limitSharingSettingTimestamp) && !(message.limitSharingSettingTimestamp && $util.isInteger(message.limitSharingSettingTimestamp.low) && $util.isInteger(message.limitSharingSettingTimestamp.high)))
                     return "limitSharingSettingTimestamp: integer|Long expected";
+            if (message.limitSharingTrigger != null && message.hasOwnProperty("limitSharingTrigger"))
+                switch (message.limitSharingTrigger) {
+                default:
+                    return "limitSharingTrigger: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                    break;
+                }
+            if (message.limitSharingInitiatedByMe != null && message.hasOwnProperty("limitSharingInitiatedByMe"))
+                if (typeof message.limitSharingInitiatedByMe !== "boolean")
+                    return "limitSharingInitiatedByMe: boolean expected";
             return null;
         };
 
@@ -5393,6 +5501,32 @@ $root.HistorySync = (function() {
                     message.limitSharingSettingTimestamp = object.limitSharingSettingTimestamp;
                 else if (typeof object.limitSharingSettingTimestamp === "object")
                     message.limitSharingSettingTimestamp = new $util.LongBits(object.limitSharingSettingTimestamp.low >>> 0, object.limitSharingSettingTimestamp.high >>> 0).toNumber();
+            switch (object.limitSharingTrigger) {
+            default:
+                if (typeof object.limitSharingTrigger === "number") {
+                    message.limitSharingTrigger = object.limitSharingTrigger;
+                    break;
+                }
+                break;
+            case "UNKNOWN":
+            case 0:
+                message.limitSharingTrigger = 0;
+                break;
+            case "CHAT_SETTING":
+            case 1:
+                message.limitSharingTrigger = 1;
+                break;
+            case "BIZ_SUPPORTS_FB_HOSTING":
+            case 2:
+                message.limitSharingTrigger = 2;
+                break;
+            case "UNKNOWN_GROUP":
+            case 3:
+                message.limitSharingTrigger = 3;
+                break;
+            }
+            if (object.limitSharingInitiatedByMe != null)
+                message.limitSharingInitiatedByMe = Boolean(object.limitSharingInitiatedByMe);
             return message;
         };
 
@@ -5507,6 +5641,8 @@ $root.HistorySync = (function() {
                     object.limitSharingSettingTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                 } else
                     object.limitSharingSettingTimestamp = options.longs === String ? "0" : 0;
+                object.limitSharingTrigger = options.enums === String ? "UNKNOWN" : 0;
+                object.limitSharingInitiatedByMe = false;
             }
             if (message.id != null && message.hasOwnProperty("id"))
                 object.id = message.id;
@@ -5640,6 +5776,10 @@ $root.HistorySync = (function() {
                     object.limitSharingSettingTimestamp = options.longs === String ? String(message.limitSharingSettingTimestamp) : message.limitSharingSettingTimestamp;
                 else
                     object.limitSharingSettingTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.limitSharingSettingTimestamp) : options.longs === Number ? new $util.LongBits(message.limitSharingSettingTimestamp.low >>> 0, message.limitSharingSettingTimestamp.high >>> 0).toNumber() : message.limitSharingSettingTimestamp;
+            if (message.limitSharingTrigger != null && message.hasOwnProperty("limitSharingTrigger"))
+                object.limitSharingTrigger = options.enums === String ? $root.Protocol.LimitSharing.TriggerType[message.limitSharingTrigger] === undefined ? message.limitSharingTrigger : $root.Protocol.LimitSharing.TriggerType[message.limitSharingTrigger] : message.limitSharingTrigger;
+            if (message.limitSharingInitiatedByMe != null && message.hasOwnProperty("limitSharingInitiatedByMe"))
+                object.limitSharingInitiatedByMe = message.limitSharingInitiatedByMe;
             return object;
         };
 
@@ -5964,12 +6104,14 @@ $root.HistorySync = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        HistorySync.decode = function decode(reader, length) {
+        HistorySync.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.HistorySync.HistorySync();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.syncType = reader.int32();
@@ -6694,12 +6836,14 @@ $root.ChatLockSettings = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ChatLockSettings.decode = function decode(reader, length) {
+        ChatLockSettings.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.ChatLockSettings.ChatLockSettings();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.hideLockedChats = reader.bool();
@@ -6962,12 +7106,14 @@ $root.UserPassword = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        UserPassword.decode = function decode(reader, length) {
+        UserPassword.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.UserPassword.UserPassword();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.encoding = reader.int32();
@@ -7312,12 +7458,14 @@ $root.UserPassword = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            TransformerArg.decode = function decode(reader, length) {
+            TransformerArg.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.UserPassword.UserPassword.TransformerArg();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.key = reader.string();
@@ -7555,12 +7703,14 @@ $root.UserPassword = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Value.decode = function decode(reader, length) {
+                Value.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.UserPassword.UserPassword.TransformerArg.Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.asBlob = reader.bytes();
@@ -7830,12 +7980,14 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Citation.decode = function decode(reader, length) {
+        Citation.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.Citation();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.title = reader.string();
@@ -8074,12 +8226,14 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        StatusMentionMessage.decode = function decode(reader, length) {
+        StatusMentionMessage.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.StatusMentionMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.quotedStatus = $root.E2E.Message.decode(reader, reader.uint32());
@@ -8359,12 +8513,14 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        MessageAddOn.decode = function decode(reader, length) {
+        MessageAddOn.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.MessageAddOn();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.messageAddOnType = reader.int32();
@@ -8799,12 +8955,14 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        LegacyMessage.decode = function decode(reader, length) {
+        LegacyMessage.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.LegacyMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.eventResponseMessage = $root.E2E.Message.EventResponseMessage.decode(reader, reader.uint32());
@@ -9058,12 +9216,14 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        EventResponse.decode = function decode(reader, length) {
+        EventResponse.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.EventResponse();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.eventResponseMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -9322,12 +9482,14 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PremiumMessageInfo.decode = function decode(reader, length) {
+        PremiumMessageInfo.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.PremiumMessageInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.serverCampaignId = reader.string();
@@ -9536,12 +9698,14 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        MessageAddOnContextInfo.decode = function decode(reader, length) {
+        MessageAddOnContextInfo.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.MessageAddOnContextInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.messageAddOnDurationInSecs = reader.uint32();
@@ -9815,12 +9979,14 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PinInChat.decode = function decode(reader, length) {
+        PinInChat.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.PinInChat();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.type = reader.int32();
@@ -10200,12 +10366,14 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        KeepInChat.decode = function decode(reader, length) {
+        KeepInChat.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.KeepInChat();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.keepType = reader.int32();
@@ -10535,12 +10703,14 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        EventAdditionalMetadata.decode = function decode(reader, length) {
+        EventAdditionalMetadata.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.EventAdditionalMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.isStale = reader.bool();
@@ -10738,12 +10908,14 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PollAdditionalMetadata.decode = function decode(reader, length) {
+        PollAdditionalMetadata.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.PollAdditionalMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.pollInvalidated = reader.bool();
@@ -10985,12 +11157,14 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PollUpdate.decode = function decode(reader, length) {
+        PollUpdate.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.PollUpdate();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.pollUpdateMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -11319,12 +11493,14 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Reaction.decode = function decode(reader, length) {
+        Reaction.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.Reaction();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -11648,12 +11824,14 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        UserReceipt.decode = function decode(reader, length) {
+        UserReceipt.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.UserReceipt();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.userJid = reader.string();
@@ -11995,12 +12173,14 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        StatusPSA.decode = function decode(reader, length) {
+        StatusPSA.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.StatusPSA();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 44: {
                         message.campaignId = reader.uint64();
@@ -12262,12 +12442,14 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PhotoChange.decode = function decode(reader, length) {
+        PhotoChange.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.PhotoChange();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.oldPhoto = reader.bytes();
@@ -12508,12 +12690,14 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        MediaData.decode = function decode(reader, length) {
+        MediaData.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.MediaData();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.localPath = reader.string();
@@ -12711,12 +12895,14 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ReportingTokenInfo.decode = function decode(reader, length) {
+        ReportingTokenInfo.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.ReportingTokenInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.reportingTag = reader.bytes();
@@ -13407,12 +13593,14 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        WebFeatures.decode = function decode(reader, length) {
+        WebFeatures.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.WebFeatures();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.labelsDisplay = reader.int32();
@@ -15495,12 +15683,14 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        NotificationMessageInfo.decode = function decode(reader, length) {
+        NotificationMessageInfo.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.NotificationMessageInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -15794,12 +15984,14 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        WebNotificationsInfo.decode = function decode(reader, length) {
+        WebNotificationsInfo.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.WebNotificationsInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 2: {
                         message.timestamp = reader.uint64();
@@ -16200,12 +16392,14 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PaymentInfo.decode = function decode(reader, length) {
+        PaymentInfo.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.PaymentInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.currencyDeprecated = reader.int32();
@@ -16995,12 +17189,14 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        CommentMetadata.decode = function decode(reader, length) {
+        CommentMetadata.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.CommentMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.commentParentKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -17906,12 +18102,14 @@ $root.Web = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        WebMessageInfo.decode = function decode(reader, length) {
+        WebMessageInfo.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.WebMessageInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -18493,6 +18691,9 @@ $root.Web = (function() {
                 case 213:
                 case 214:
                 case 215:
+                case 216:
+                case 217:
+                case 218:
                     break;
                 }
             if (message.clearMedia != null && message.hasOwnProperty("clearMedia"))
@@ -19694,6 +19895,18 @@ $root.Web = (function() {
             case 215:
                 message.messageStubType = 215;
                 break;
+            case "CHANGE_LIMIT_SHARING":
+            case 216:
+                message.messageStubType = 216;
+                break;
+            case "GROUP_MEMBER_LINK_MODE":
+            case 217:
+                message.messageStubType = 217;
+                break;
+            case "BIZ_AUTOMATICALLY_LABELED_CHAT_SYSTEM_MESSAGE":
+            case 218:
+                message.messageStubType = 218;
+                break;
             }
             if (object.clearMedia != null)
                 message.clearMedia = Boolean(object.clearMedia);
@@ -20532,6 +20745,9 @@ $root.Web = (function() {
          * @property {number} CHANGE_LID=213 CHANGE_LID value
          * @property {number} BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_IN_MESSAGE=214 BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_IN_MESSAGE value
          * @property {number} BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_OUT_MESSAGE=215 BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_OUT_MESSAGE value
+         * @property {number} CHANGE_LIMIT_SHARING=216 CHANGE_LIMIT_SHARING value
+         * @property {number} GROUP_MEMBER_LINK_MODE=217 GROUP_MEMBER_LINK_MODE value
+         * @property {number} BIZ_AUTOMATICALLY_LABELED_CHAT_SYSTEM_MESSAGE=218 BIZ_AUTOMATICALLY_LABELED_CHAT_SYSTEM_MESSAGE value
          */
         WebMessageInfo.StubType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -20751,6 +20967,9 @@ $root.Web = (function() {
             values[valuesById[213] = "CHANGE_LID"] = 213;
             values[valuesById[214] = "BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_IN_MESSAGE"] = 214;
             values[valuesById[215] = "BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_OUT_MESSAGE"] = 215;
+            values[valuesById[216] = "CHANGE_LIMIT_SHARING"] = 216;
+            values[valuesById[217] = "GROUP_MEMBER_LINK_MODE"] = 217;
+            values[valuesById[218] = "BIZ_AUTOMATICALLY_LABELED_CHAT_SYSTEM_MESSAGE"] = 218;
             return values;
         })();
 
@@ -20768,6 +20987,525 @@ $root.E2E = (function() {
      * @namespace
      */
     var E2E = {};
+
+    E2E.MemberLabel = (function() {
+
+        /**
+         * Properties of a MemberLabel.
+         * @memberof E2E
+         * @interface IMemberLabel
+         * @property {string|null} [label] MemberLabel label
+         * @property {number|Long|null} [labelTimestamp] MemberLabel labelTimestamp
+         */
+
+        /**
+         * Constructs a new MemberLabel.
+         * @memberof E2E
+         * @classdesc Represents a MemberLabel.
+         * @implements IMemberLabel
+         * @constructor
+         * @param {E2E.IMemberLabel=} [properties] Properties to set
+         */
+        function MemberLabel(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * MemberLabel label.
+         * @member {string} label
+         * @memberof E2E.MemberLabel
+         * @instance
+         */
+        MemberLabel.prototype.label = "";
+
+        /**
+         * MemberLabel labelTimestamp.
+         * @member {number|Long} labelTimestamp
+         * @memberof E2E.MemberLabel
+         * @instance
+         */
+        MemberLabel.prototype.labelTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new MemberLabel instance using the specified properties.
+         * @function create
+         * @memberof E2E.MemberLabel
+         * @static
+         * @param {E2E.IMemberLabel=} [properties] Properties to set
+         * @returns {E2E.MemberLabel} MemberLabel instance
+         */
+        MemberLabel.create = function create(properties) {
+            return new MemberLabel(properties);
+        };
+
+        /**
+         * Encodes the specified MemberLabel message. Does not implicitly {@link E2E.MemberLabel.verify|verify} messages.
+         * @function encode
+         * @memberof E2E.MemberLabel
+         * @static
+         * @param {E2E.IMemberLabel} message MemberLabel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        MemberLabel.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.label != null && Object.hasOwnProperty.call(message, "label"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.label);
+            if (message.labelTimestamp != null && Object.hasOwnProperty.call(message, "labelTimestamp"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int64(message.labelTimestamp);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified MemberLabel message, length delimited. Does not implicitly {@link E2E.MemberLabel.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof E2E.MemberLabel
+         * @static
+         * @param {E2E.IMemberLabel} message MemberLabel message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        MemberLabel.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a MemberLabel message from the specified reader or buffer.
+         * @function decode
+         * @memberof E2E.MemberLabel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {E2E.MemberLabel} MemberLabel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        MemberLabel.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.MemberLabel();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.label = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.labelTimestamp = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a MemberLabel message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof E2E.MemberLabel
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {E2E.MemberLabel} MemberLabel
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        MemberLabel.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a MemberLabel message.
+         * @function verify
+         * @memberof E2E.MemberLabel
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        MemberLabel.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.label != null && message.hasOwnProperty("label"))
+                if (!$util.isString(message.label))
+                    return "label: string expected";
+            if (message.labelTimestamp != null && message.hasOwnProperty("labelTimestamp"))
+                if (!$util.isInteger(message.labelTimestamp) && !(message.labelTimestamp && $util.isInteger(message.labelTimestamp.low) && $util.isInteger(message.labelTimestamp.high)))
+                    return "labelTimestamp: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a MemberLabel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof E2E.MemberLabel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {E2E.MemberLabel} MemberLabel
+         */
+        MemberLabel.fromObject = function fromObject(object) {
+            if (object instanceof $root.E2E.MemberLabel)
+                return object;
+            var message = new $root.E2E.MemberLabel();
+            if (object.label != null)
+                message.label = String(object.label);
+            if (object.labelTimestamp != null)
+                if ($util.Long)
+                    (message.labelTimestamp = $util.Long.fromValue(object.labelTimestamp)).unsigned = false;
+                else if (typeof object.labelTimestamp === "string")
+                    message.labelTimestamp = parseInt(object.labelTimestamp, 10);
+                else if (typeof object.labelTimestamp === "number")
+                    message.labelTimestamp = object.labelTimestamp;
+                else if (typeof object.labelTimestamp === "object")
+                    message.labelTimestamp = new $util.LongBits(object.labelTimestamp.low >>> 0, object.labelTimestamp.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a MemberLabel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof E2E.MemberLabel
+         * @static
+         * @param {E2E.MemberLabel} message MemberLabel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        MemberLabel.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.label = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.labelTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.labelTimestamp = options.longs === String ? "0" : 0;
+            }
+            if (message.label != null && message.hasOwnProperty("label"))
+                object.label = message.label;
+            if (message.labelTimestamp != null && message.hasOwnProperty("labelTimestamp"))
+                if (typeof message.labelTimestamp === "number")
+                    object.labelTimestamp = options.longs === String ? String(message.labelTimestamp) : message.labelTimestamp;
+                else
+                    object.labelTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.labelTimestamp) : options.longs === Number ? new $util.LongBits(message.labelTimestamp.low >>> 0, message.labelTimestamp.high >>> 0).toNumber() : message.labelTimestamp;
+            return object;
+        };
+
+        /**
+         * Converts this MemberLabel to JSON.
+         * @function toJSON
+         * @memberof E2E.MemberLabel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        MemberLabel.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for MemberLabel
+         * @function getTypeUrl
+         * @memberof E2E.MemberLabel
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        MemberLabel.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/E2E.MemberLabel";
+        };
+
+        return MemberLabel;
+    })();
+
+    E2E.AIQueryFanout = (function() {
+
+        /**
+         * Properties of a AIQueryFanout.
+         * @memberof E2E
+         * @interface IAIQueryFanout
+         * @property {Protocol.IMessageKey|null} [messageKey] AIQueryFanout messageKey
+         * @property {E2E.IMessage|null} [message] AIQueryFanout message
+         * @property {number|Long|null} [timestamp] AIQueryFanout timestamp
+         */
+
+        /**
+         * Constructs a new AIQueryFanout.
+         * @memberof E2E
+         * @classdesc Represents a AIQueryFanout.
+         * @implements IAIQueryFanout
+         * @constructor
+         * @param {E2E.IAIQueryFanout=} [properties] Properties to set
+         */
+        function AIQueryFanout(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AIQueryFanout messageKey.
+         * @member {Protocol.IMessageKey|null|undefined} messageKey
+         * @memberof E2E.AIQueryFanout
+         * @instance
+         */
+        AIQueryFanout.prototype.messageKey = null;
+
+        /**
+         * AIQueryFanout message.
+         * @member {E2E.IMessage|null|undefined} message
+         * @memberof E2E.AIQueryFanout
+         * @instance
+         */
+        AIQueryFanout.prototype.message = null;
+
+        /**
+         * AIQueryFanout timestamp.
+         * @member {number|Long} timestamp
+         * @memberof E2E.AIQueryFanout
+         * @instance
+         */
+        AIQueryFanout.prototype.timestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new AIQueryFanout instance using the specified properties.
+         * @function create
+         * @memberof E2E.AIQueryFanout
+         * @static
+         * @param {E2E.IAIQueryFanout=} [properties] Properties to set
+         * @returns {E2E.AIQueryFanout} AIQueryFanout instance
+         */
+        AIQueryFanout.create = function create(properties) {
+            return new AIQueryFanout(properties);
+        };
+
+        /**
+         * Encodes the specified AIQueryFanout message. Does not implicitly {@link E2E.AIQueryFanout.verify|verify} messages.
+         * @function encode
+         * @memberof E2E.AIQueryFanout
+         * @static
+         * @param {E2E.IAIQueryFanout} message AIQueryFanout message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AIQueryFanout.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.messageKey != null && Object.hasOwnProperty.call(message, "messageKey"))
+                $root.Protocol.MessageKey.encode(message.messageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.message != null && Object.hasOwnProperty.call(message, "message"))
+                $root.E2E.Message.encode(message.message, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int64(message.timestamp);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AIQueryFanout message, length delimited. Does not implicitly {@link E2E.AIQueryFanout.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof E2E.AIQueryFanout
+         * @static
+         * @param {E2E.IAIQueryFanout} message AIQueryFanout message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AIQueryFanout.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a AIQueryFanout message from the specified reader or buffer.
+         * @function decode
+         * @memberof E2E.AIQueryFanout
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {E2E.AIQueryFanout} AIQueryFanout
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AIQueryFanout.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIQueryFanout();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.messageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 2: {
+                        message.message = $root.E2E.Message.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 3: {
+                        message.timestamp = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a AIQueryFanout message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof E2E.AIQueryFanout
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {E2E.AIQueryFanout} AIQueryFanout
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AIQueryFanout.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a AIQueryFanout message.
+         * @function verify
+         * @memberof E2E.AIQueryFanout
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AIQueryFanout.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.messageKey != null && message.hasOwnProperty("messageKey")) {
+                var error = $root.Protocol.MessageKey.verify(message.messageKey);
+                if (error)
+                    return "messageKey." + error;
+            }
+            if (message.message != null && message.hasOwnProperty("message")) {
+                var error = $root.E2E.Message.verify(message.message);
+                if (error)
+                    return "message." + error;
+            }
+            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+                if (!$util.isInteger(message.timestamp) && !(message.timestamp && $util.isInteger(message.timestamp.low) && $util.isInteger(message.timestamp.high)))
+                    return "timestamp: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a AIQueryFanout message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof E2E.AIQueryFanout
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {E2E.AIQueryFanout} AIQueryFanout
+         */
+        AIQueryFanout.fromObject = function fromObject(object) {
+            if (object instanceof $root.E2E.AIQueryFanout)
+                return object;
+            var message = new $root.E2E.AIQueryFanout();
+            if (object.messageKey != null) {
+                if (typeof object.messageKey !== "object")
+                    throw TypeError(".E2E.AIQueryFanout.messageKey: object expected");
+                message.messageKey = $root.Protocol.MessageKey.fromObject(object.messageKey);
+            }
+            if (object.message != null) {
+                if (typeof object.message !== "object")
+                    throw TypeError(".E2E.AIQueryFanout.message: object expected");
+                message.message = $root.E2E.Message.fromObject(object.message);
+            }
+            if (object.timestamp != null)
+                if ($util.Long)
+                    (message.timestamp = $util.Long.fromValue(object.timestamp)).unsigned = false;
+                else if (typeof object.timestamp === "string")
+                    message.timestamp = parseInt(object.timestamp, 10);
+                else if (typeof object.timestamp === "number")
+                    message.timestamp = object.timestamp;
+                else if (typeof object.timestamp === "object")
+                    message.timestamp = new $util.LongBits(object.timestamp.low >>> 0, object.timestamp.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a AIQueryFanout message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof E2E.AIQueryFanout
+         * @static
+         * @param {E2E.AIQueryFanout} message AIQueryFanout
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AIQueryFanout.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.messageKey = null;
+                object.message = null;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.timestamp = options.longs === String ? "0" : 0;
+            }
+            if (message.messageKey != null && message.hasOwnProperty("messageKey"))
+                object.messageKey = $root.Protocol.MessageKey.toObject(message.messageKey, options);
+            if (message.message != null && message.hasOwnProperty("message"))
+                object.message = $root.E2E.Message.toObject(message.message, options);
+            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+                if (typeof message.timestamp === "number")
+                    object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
+                else
+                    object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber() : message.timestamp;
+            return object;
+        };
+
+        /**
+         * Converts this AIQueryFanout to JSON.
+         * @function toJSON
+         * @memberof E2E.AIQueryFanout
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AIQueryFanout.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for AIQueryFanout
+         * @function getTypeUrl
+         * @memberof E2E.AIQueryFanout
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AIQueryFanout.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/E2E.AIQueryFanout";
+        };
+
+        return AIQueryFanout;
+    })();
 
     E2E.UrlTrackingMap = (function() {
 
@@ -20856,12 +21594,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        UrlTrackingMap.decode = function decode(reader, length) {
+        UrlTrackingMap.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.UrlTrackingMap();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         if (!(message.urlTrackingMapElements && message.urlTrackingMapElements.length))
@@ -21108,12 +21848,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            UrlTrackingMapElement.decode = function decode(reader, length) {
+            UrlTrackingMapElement.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.UrlTrackingMap.UrlTrackingMapElement();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.originalUrl = reader.string();
@@ -21430,12 +22172,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ProcessedVideo.decode = function decode(reader, length) {
+        ProcessedVideo.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ProcessedVideo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.directPath = reader.string();
@@ -21803,12 +22547,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        LIDMigrationMappingSyncMessage.decode = function decode(reader, length) {
+        LIDMigrationMappingSyncMessage.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.LIDMigrationMappingSyncMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.encodedMappingPayload = reader.bytes();
@@ -22037,12 +22783,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        MediaNotifyMessage.decode = function decode(reader, length) {
+        MediaNotifyMessage.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.MediaNotifyMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.expressPathUrl = reader.string();
@@ -22310,12 +23058,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        MessageSecretMessage.decode = function decode(reader, length) {
+        MessageSecretMessage.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.MessageSecretMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.version = reader.sfixed32();
@@ -22567,12 +23317,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        GroupMention.decode = function decode(reader, length) {
+        GroupMention.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.GroupMention();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.groupJid = reader.string();
@@ -22794,12 +23546,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ActionLink.decode = function decode(reader, length) {
+        ActionLink.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ActionLink();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.url = reader.string();
@@ -23043,12 +23797,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        DisappearingMode.decode = function decode(reader, length) {
+        DisappearingMode.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.DisappearingMode();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.initiator = reader.int32();
@@ -23490,12 +24246,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PaymentBackground.decode = function decode(reader, length) {
+        PaymentBackground.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.PaymentBackground();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.id = reader.string();
@@ -23881,12 +24639,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            MediaData.decode = function decode(reader, length) {
+            MediaData.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.PaymentBackground.MediaData();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.mediaKey = reader.bytes();
@@ -24213,12 +24973,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Money.decode = function decode(reader, length) {
+        Money.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Money();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.value = reader.int64();
@@ -24502,12 +25264,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        HydratedTemplateButton.decode = function decode(reader, length) {
+        HydratedTemplateButton.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.HydratedTemplateButton();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 4: {
                         message.index = reader.uint32();
@@ -24784,12 +25548,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            HydratedCallButton.decode = function decode(reader, length) {
+            HydratedCallButton.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.HydratedTemplateButton.HydratedCallButton();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.displayText = reader.string();
@@ -25011,12 +25777,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            HydratedQuickReplyButton.decode = function decode(reader, length) {
+            HydratedQuickReplyButton.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.HydratedTemplateButton.HydratedQuickReplyButton();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.displayText = reader.string();
@@ -25260,12 +26028,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            HydratedURLButton.decode = function decode(reader, length) {
+            HydratedURLButton.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.HydratedTemplateButton.HydratedURLButton();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.displayText = reader.string();
@@ -25590,12 +26360,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        TemplateButton.decode = function decode(reader, length) {
+        TemplateButton.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.TemplateButton();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 4: {
                         message.index = reader.uint32();
@@ -25872,12 +26644,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            CallButton.decode = function decode(reader, length) {
+            CallButton.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.TemplateButton.CallButton();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.displayText = $root.E2E.Message.HighlyStructuredMessage.decode(reader, reader.uint32());
@@ -26109,12 +26883,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            QuickReplyButton.decode = function decode(reader, length) {
+            QuickReplyButton.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.TemplateButton.QuickReplyButton();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.displayText = $root.E2E.Message.HighlyStructuredMessage.decode(reader, reader.uint32());
@@ -26341,12 +27117,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            URLButton.decode = function decode(reader, length) {
+            URLButton.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.TemplateButton.URLButton();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.displayText = $root.E2E.Message.HighlyStructuredMessage.decode(reader, reader.uint32());
@@ -26592,12 +27370,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Location.decode = function decode(reader, length) {
+        Location.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Location();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.degreesLatitude = reader.double();
@@ -26853,12 +27633,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Point.decode = function decode(reader, length) {
+        Point.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Point();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.xDeprecated = reader.int32();
@@ -27186,12 +27968,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        InteractiveAnnotation.decode = function decode(reader, length) {
+        InteractiveAnnotation.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.InteractiveAnnotation();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         if (!(message.polygonVertices && message.polygonVertices.length))
@@ -27591,12 +28375,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        TapLinkAction.decode = function decode(reader, length) {
+        TapLinkAction.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.TapLinkAction();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.title = reader.string();
@@ -27832,12 +28618,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        EmbeddedContent.decode = function decode(reader, length) {
+        EmbeddedContent.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.EmbeddedContent();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.embeddedMessage = $root.E2E.EmbeddedMessage.decode(reader, reader.uint32());
@@ -28179,12 +28967,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        EmbeddedMusic.decode = function decode(reader, length) {
+        EmbeddedMusic.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.EmbeddedMusic();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.musicContentMediaId = reader.string();
@@ -28550,12 +29340,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        EmbeddedMessage.decode = function decode(reader, length) {
+        EmbeddedMessage.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.EmbeddedMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.stanzaId = reader.string();
@@ -28858,12 +29650,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        DeviceListMetadata.decode = function decode(reader, length) {
+        DeviceListMetadata.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.DeviceListMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.senderKeyHash = reader.bytes();
@@ -29203,6 +29997,8 @@ $root.E2E = (function() {
          * @property {E2E.IMessageAssociation|null} [messageAssociation] MessageContextInfo messageAssociation
          * @property {boolean|null} [capiCreatedGroup] MessageContextInfo capiCreatedGroup
          * @property {string|null} [supportPayload] MessageContextInfo supportPayload
+         * @property {Protocol.ILimitSharing|null} [limitSharing] MessageContextInfo limitSharing
+         * @property {Protocol.ILimitSharing|null} [limitSharingV2] MessageContextInfo limitSharingV2
          */
 
         /**
@@ -29317,6 +30113,22 @@ $root.E2E = (function() {
         MessageContextInfo.prototype.supportPayload = "";
 
         /**
+         * MessageContextInfo limitSharing.
+         * @member {Protocol.ILimitSharing|null|undefined} limitSharing
+         * @memberof E2E.MessageContextInfo
+         * @instance
+         */
+        MessageContextInfo.prototype.limitSharing = null;
+
+        /**
+         * MessageContextInfo limitSharingV2.
+         * @member {Protocol.ILimitSharing|null|undefined} limitSharingV2
+         * @memberof E2E.MessageContextInfo
+         * @instance
+         */
+        MessageContextInfo.prototype.limitSharingV2 = null;
+
+        /**
          * Creates a new MessageContextInfo instance using the specified properties.
          * @function create
          * @memberof E2E.MessageContextInfo
@@ -29364,6 +30176,10 @@ $root.E2E = (function() {
                 writer.uint32(/* id 11, wireType 0 =*/88).bool(message.capiCreatedGroup);
             if (message.supportPayload != null && Object.hasOwnProperty.call(message, "supportPayload"))
                 writer.uint32(/* id 12, wireType 2 =*/98).string(message.supportPayload);
+            if (message.limitSharing != null && Object.hasOwnProperty.call(message, "limitSharing"))
+                $root.Protocol.LimitSharing.encode(message.limitSharing, writer.uint32(/* id 13, wireType 2 =*/106).fork()).ldelim();
+            if (message.limitSharingV2 != null && Object.hasOwnProperty.call(message, "limitSharingV2"))
+                $root.Protocol.LimitSharing.encode(message.limitSharingV2, writer.uint32(/* id 14, wireType 2 =*/114).fork()).ldelim();
             return writer;
         };
 
@@ -29391,12 +30207,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        MessageContextInfo.decode = function decode(reader, length) {
+        MessageContextInfo.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.MessageContextInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.deviceListMetadata = $root.E2E.DeviceListMetadata.decode(reader, reader.uint32());
@@ -29444,6 +30262,14 @@ $root.E2E = (function() {
                     }
                 case 12: {
                         message.supportPayload = reader.string();
+                        break;
+                    }
+                case 13: {
+                        message.limitSharing = $root.Protocol.LimitSharing.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 14: {
+                        message.limitSharingV2 = $root.Protocol.LimitSharing.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -29528,6 +30354,16 @@ $root.E2E = (function() {
             if (message.supportPayload != null && message.hasOwnProperty("supportPayload"))
                 if (!$util.isString(message.supportPayload))
                     return "supportPayload: string expected";
+            if (message.limitSharing != null && message.hasOwnProperty("limitSharing")) {
+                var error = $root.Protocol.LimitSharing.verify(message.limitSharing);
+                if (error)
+                    return "limitSharing." + error;
+            }
+            if (message.limitSharingV2 != null && message.hasOwnProperty("limitSharingV2")) {
+                var error = $root.Protocol.LimitSharing.verify(message.limitSharingV2);
+                if (error)
+                    return "limitSharingV2." + error;
+            }
             return null;
         };
 
@@ -29599,6 +30435,16 @@ $root.E2E = (function() {
                 message.capiCreatedGroup = Boolean(object.capiCreatedGroup);
             if (object.supportPayload != null)
                 message.supportPayload = String(object.supportPayload);
+            if (object.limitSharing != null) {
+                if (typeof object.limitSharing !== "object")
+                    throw TypeError(".E2E.MessageContextInfo.limitSharing: object expected");
+                message.limitSharing = $root.Protocol.LimitSharing.fromObject(object.limitSharing);
+            }
+            if (object.limitSharingV2 != null) {
+                if (typeof object.limitSharingV2 !== "object")
+                    throw TypeError(".E2E.MessageContextInfo.limitSharingV2: object expected");
+                message.limitSharingV2 = $root.Protocol.LimitSharing.fromObject(object.limitSharingV2);
+            }
             return message;
         };
 
@@ -29646,6 +30492,8 @@ $root.E2E = (function() {
                 object.messageAssociation = null;
                 object.capiCreatedGroup = false;
                 object.supportPayload = "";
+                object.limitSharing = null;
+                object.limitSharingV2 = null;
             }
             if (message.deviceListMetadata != null && message.hasOwnProperty("deviceListMetadata"))
                 object.deviceListMetadata = $root.E2E.DeviceListMetadata.toObject(message.deviceListMetadata, options);
@@ -29671,6 +30519,10 @@ $root.E2E = (function() {
                 object.capiCreatedGroup = message.capiCreatedGroup;
             if (message.supportPayload != null && message.hasOwnProperty("supportPayload"))
                 object.supportPayload = message.supportPayload;
+            if (message.limitSharing != null && message.hasOwnProperty("limitSharing"))
+                object.limitSharing = $root.Protocol.LimitSharing.toObject(message.limitSharing, options);
+            if (message.limitSharingV2 != null && message.hasOwnProperty("limitSharingV2"))
+                object.limitSharingV2 = $root.Protocol.LimitSharing.toObject(message.limitSharingV2, options);
             return object;
         };
 
@@ -29824,12 +30676,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        MessageAssociation.decode = function decode(reader, length) {
+        MessageAssociation.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.MessageAssociation();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.associationType = reader.int32();
@@ -30121,6 +30975,11 @@ $root.E2E = (function() {
          * @property {E2E.IBotMetricsMetadata|null} [botMetricsMetadata] BotMetadata botMetricsMetadata
          * @property {E2E.IBotLinkedAccountsMetadata|null} [botLinkedAccountsMetadata] BotMetadata botLinkedAccountsMetadata
          * @property {E2E.IBotSourcesMetadata|null} [richResponseSourcesMetadata] BotMetadata richResponseSourcesMetadata
+         * @property {Uint8Array|null} [aiConversationContext] BotMetadata aiConversationContext
+         * @property {E2E.IBotPromotionMessageMetadata|null} [botPromotionMessageMetadata] BotMetadata botPromotionMessageMetadata
+         * @property {E2E.IBotModeSelectionMetadata|null} [botModeSelectionMetadata] BotMetadata botModeSelectionMetadata
+         * @property {E2E.IBotQuotaMetadata|null} [botQuotaMetadata] BotMetadata botQuotaMetadata
+         * @property {E2E.IBotAgeCollectionMetadata|null} [botAgeCollectionMetadata] BotMetadata botAgeCollectionMetadata
          */
 
         /**
@@ -30291,6 +31150,46 @@ $root.E2E = (function() {
         BotMetadata.prototype.richResponseSourcesMetadata = null;
 
         /**
+         * BotMetadata aiConversationContext.
+         * @member {Uint8Array} aiConversationContext
+         * @memberof E2E.BotMetadata
+         * @instance
+         */
+        BotMetadata.prototype.aiConversationContext = $util.newBuffer([]);
+
+        /**
+         * BotMetadata botPromotionMessageMetadata.
+         * @member {E2E.IBotPromotionMessageMetadata|null|undefined} botPromotionMessageMetadata
+         * @memberof E2E.BotMetadata
+         * @instance
+         */
+        BotMetadata.prototype.botPromotionMessageMetadata = null;
+
+        /**
+         * BotMetadata botModeSelectionMetadata.
+         * @member {E2E.IBotModeSelectionMetadata|null|undefined} botModeSelectionMetadata
+         * @memberof E2E.BotMetadata
+         * @instance
+         */
+        BotMetadata.prototype.botModeSelectionMetadata = null;
+
+        /**
+         * BotMetadata botQuotaMetadata.
+         * @member {E2E.IBotQuotaMetadata|null|undefined} botQuotaMetadata
+         * @memberof E2E.BotMetadata
+         * @instance
+         */
+        BotMetadata.prototype.botQuotaMetadata = null;
+
+        /**
+         * BotMetadata botAgeCollectionMetadata.
+         * @member {E2E.IBotAgeCollectionMetadata|null|undefined} botAgeCollectionMetadata
+         * @memberof E2E.BotMetadata
+         * @instance
+         */
+        BotMetadata.prototype.botAgeCollectionMetadata = null;
+
+        /**
          * Creates a new BotMetadata instance using the specified properties.
          * @function create
          * @memberof E2E.BotMetadata
@@ -30352,6 +31251,16 @@ $root.E2E = (function() {
                 $root.E2E.BotLinkedAccountsMetadata.encode(message.botLinkedAccountsMetadata, writer.uint32(/* id 18, wireType 2 =*/146).fork()).ldelim();
             if (message.richResponseSourcesMetadata != null && Object.hasOwnProperty.call(message, "richResponseSourcesMetadata"))
                 $root.E2E.BotSourcesMetadata.encode(message.richResponseSourcesMetadata, writer.uint32(/* id 19, wireType 2 =*/154).fork()).ldelim();
+            if (message.aiConversationContext != null && Object.hasOwnProperty.call(message, "aiConversationContext"))
+                writer.uint32(/* id 20, wireType 2 =*/162).bytes(message.aiConversationContext);
+            if (message.botPromotionMessageMetadata != null && Object.hasOwnProperty.call(message, "botPromotionMessageMetadata"))
+                $root.E2E.BotPromotionMessageMetadata.encode(message.botPromotionMessageMetadata, writer.uint32(/* id 21, wireType 2 =*/170).fork()).ldelim();
+            if (message.botModeSelectionMetadata != null && Object.hasOwnProperty.call(message, "botModeSelectionMetadata"))
+                $root.E2E.BotModeSelectionMetadata.encode(message.botModeSelectionMetadata, writer.uint32(/* id 22, wireType 2 =*/178).fork()).ldelim();
+            if (message.botQuotaMetadata != null && Object.hasOwnProperty.call(message, "botQuotaMetadata"))
+                $root.E2E.BotQuotaMetadata.encode(message.botQuotaMetadata, writer.uint32(/* id 23, wireType 2 =*/186).fork()).ldelim();
+            if (message.botAgeCollectionMetadata != null && Object.hasOwnProperty.call(message, "botAgeCollectionMetadata"))
+                $root.E2E.BotAgeCollectionMetadata.encode(message.botAgeCollectionMetadata, writer.uint32(/* id 24, wireType 2 =*/194).fork()).ldelim();
             return writer;
         };
 
@@ -30379,12 +31288,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotMetadata.decode = function decode(reader, length) {
+        BotMetadata.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.avatarMetadata = $root.E2E.BotAvatarMetadata.decode(reader, reader.uint32());
@@ -30460,6 +31371,26 @@ $root.E2E = (function() {
                     }
                 case 19: {
                         message.richResponseSourcesMetadata = $root.E2E.BotSourcesMetadata.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 20: {
+                        message.aiConversationContext = reader.bytes();
+                        break;
+                    }
+                case 21: {
+                        message.botPromotionMessageMetadata = $root.E2E.BotPromotionMessageMetadata.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 22: {
+                        message.botModeSelectionMetadata = $root.E2E.BotModeSelectionMetadata.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 23: {
+                        message.botQuotaMetadata = $root.E2E.BotQuotaMetadata.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 24: {
+                        message.botAgeCollectionMetadata = $root.E2E.BotAgeCollectionMetadata.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -30584,6 +31515,29 @@ $root.E2E = (function() {
                 if (error)
                     return "richResponseSourcesMetadata." + error;
             }
+            if (message.aiConversationContext != null && message.hasOwnProperty("aiConversationContext"))
+                if (!(message.aiConversationContext && typeof message.aiConversationContext.length === "number" || $util.isString(message.aiConversationContext)))
+                    return "aiConversationContext: buffer expected";
+            if (message.botPromotionMessageMetadata != null && message.hasOwnProperty("botPromotionMessageMetadata")) {
+                var error = $root.E2E.BotPromotionMessageMetadata.verify(message.botPromotionMessageMetadata);
+                if (error)
+                    return "botPromotionMessageMetadata." + error;
+            }
+            if (message.botModeSelectionMetadata != null && message.hasOwnProperty("botModeSelectionMetadata")) {
+                var error = $root.E2E.BotModeSelectionMetadata.verify(message.botModeSelectionMetadata);
+                if (error)
+                    return "botModeSelectionMetadata." + error;
+            }
+            if (message.botQuotaMetadata != null && message.hasOwnProperty("botQuotaMetadata")) {
+                var error = $root.E2E.BotQuotaMetadata.verify(message.botQuotaMetadata);
+                if (error)
+                    return "botQuotaMetadata." + error;
+            }
+            if (message.botAgeCollectionMetadata != null && message.hasOwnProperty("botAgeCollectionMetadata")) {
+                var error = $root.E2E.BotAgeCollectionMetadata.verify(message.botAgeCollectionMetadata);
+                if (error)
+                    return "botAgeCollectionMetadata." + error;
+            }
             return null;
         };
 
@@ -30682,6 +31636,31 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.BotMetadata.richResponseSourcesMetadata: object expected");
                 message.richResponseSourcesMetadata = $root.E2E.BotSourcesMetadata.fromObject(object.richResponseSourcesMetadata);
             }
+            if (object.aiConversationContext != null)
+                if (typeof object.aiConversationContext === "string")
+                    $util.base64.decode(object.aiConversationContext, message.aiConversationContext = $util.newBuffer($util.base64.length(object.aiConversationContext)), 0);
+                else if (object.aiConversationContext.length >= 0)
+                    message.aiConversationContext = object.aiConversationContext;
+            if (object.botPromotionMessageMetadata != null) {
+                if (typeof object.botPromotionMessageMetadata !== "object")
+                    throw TypeError(".E2E.BotMetadata.botPromotionMessageMetadata: object expected");
+                message.botPromotionMessageMetadata = $root.E2E.BotPromotionMessageMetadata.fromObject(object.botPromotionMessageMetadata);
+            }
+            if (object.botModeSelectionMetadata != null) {
+                if (typeof object.botModeSelectionMetadata !== "object")
+                    throw TypeError(".E2E.BotMetadata.botModeSelectionMetadata: object expected");
+                message.botModeSelectionMetadata = $root.E2E.BotModeSelectionMetadata.fromObject(object.botModeSelectionMetadata);
+            }
+            if (object.botQuotaMetadata != null) {
+                if (typeof object.botQuotaMetadata !== "object")
+                    throw TypeError(".E2E.BotMetadata.botQuotaMetadata: object expected");
+                message.botQuotaMetadata = $root.E2E.BotQuotaMetadata.fromObject(object.botQuotaMetadata);
+            }
+            if (object.botAgeCollectionMetadata != null) {
+                if (typeof object.botAgeCollectionMetadata !== "object")
+                    throw TypeError(".E2E.BotMetadata.botAgeCollectionMetadata: object expected");
+                message.botAgeCollectionMetadata = $root.E2E.BotAgeCollectionMetadata.fromObject(object.botAgeCollectionMetadata);
+            }
             return message;
         };
 
@@ -30718,6 +31697,17 @@ $root.E2E = (function() {
                 object.botMetricsMetadata = null;
                 object.botLinkedAccountsMetadata = null;
                 object.richResponseSourcesMetadata = null;
+                if (options.bytes === String)
+                    object.aiConversationContext = "";
+                else {
+                    object.aiConversationContext = [];
+                    if (options.bytes !== Array)
+                        object.aiConversationContext = $util.newBuffer(object.aiConversationContext);
+                }
+                object.botPromotionMessageMetadata = null;
+                object.botModeSelectionMetadata = null;
+                object.botQuotaMetadata = null;
+                object.botAgeCollectionMetadata = null;
             }
             if (message.avatarMetadata != null && message.hasOwnProperty("avatarMetadata"))
                 object.avatarMetadata = $root.E2E.BotAvatarMetadata.toObject(message.avatarMetadata, options);
@@ -30757,6 +31747,16 @@ $root.E2E = (function() {
                 object.botLinkedAccountsMetadata = $root.E2E.BotLinkedAccountsMetadata.toObject(message.botLinkedAccountsMetadata, options);
             if (message.richResponseSourcesMetadata != null && message.hasOwnProperty("richResponseSourcesMetadata"))
                 object.richResponseSourcesMetadata = $root.E2E.BotSourcesMetadata.toObject(message.richResponseSourcesMetadata, options);
+            if (message.aiConversationContext != null && message.hasOwnProperty("aiConversationContext"))
+                object.aiConversationContext = options.bytes === String ? $util.base64.encode(message.aiConversationContext, 0, message.aiConversationContext.length) : options.bytes === Array ? Array.prototype.slice.call(message.aiConversationContext) : message.aiConversationContext;
+            if (message.botPromotionMessageMetadata != null && message.hasOwnProperty("botPromotionMessageMetadata"))
+                object.botPromotionMessageMetadata = $root.E2E.BotPromotionMessageMetadata.toObject(message.botPromotionMessageMetadata, options);
+            if (message.botModeSelectionMetadata != null && message.hasOwnProperty("botModeSelectionMetadata"))
+                object.botModeSelectionMetadata = $root.E2E.BotModeSelectionMetadata.toObject(message.botModeSelectionMetadata, options);
+            if (message.botQuotaMetadata != null && message.hasOwnProperty("botQuotaMetadata"))
+                object.botQuotaMetadata = $root.E2E.BotQuotaMetadata.toObject(message.botQuotaMetadata, options);
+            if (message.botAgeCollectionMetadata != null && message.hasOwnProperty("botAgeCollectionMetadata"))
+                object.botAgeCollectionMetadata = $root.E2E.BotAgeCollectionMetadata.toObject(message.botAgeCollectionMetadata, options);
             return object;
         };
 
@@ -30876,12 +31876,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotSourcesMetadata.decode = function decode(reader, length) {
+        BotSourcesMetadata.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotSourcesMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         if (!(message.sources && message.sources.length))
@@ -31150,12 +32152,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            BotSourceItem.decode = function decode(reader, length) {
+            BotSourceItem.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotSourcesMetadata.BotSourceItem();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.provider = reader.int32();
@@ -31379,6 +32383,235 @@ $root.E2E = (function() {
         return BotSourcesMetadata;
     })();
 
+    E2E.BotAgeCollectionMetadata = (function() {
+
+        /**
+         * Properties of a BotAgeCollectionMetadata.
+         * @memberof E2E
+         * @interface IBotAgeCollectionMetadata
+         * @property {boolean|null} [ageCollectionEligible] BotAgeCollectionMetadata ageCollectionEligible
+         * @property {boolean|null} [shouldTriggerAgeCollectionOnClient] BotAgeCollectionMetadata shouldTriggerAgeCollectionOnClient
+         */
+
+        /**
+         * Constructs a new BotAgeCollectionMetadata.
+         * @memberof E2E
+         * @classdesc Represents a BotAgeCollectionMetadata.
+         * @implements IBotAgeCollectionMetadata
+         * @constructor
+         * @param {E2E.IBotAgeCollectionMetadata=} [properties] Properties to set
+         */
+        function BotAgeCollectionMetadata(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BotAgeCollectionMetadata ageCollectionEligible.
+         * @member {boolean} ageCollectionEligible
+         * @memberof E2E.BotAgeCollectionMetadata
+         * @instance
+         */
+        BotAgeCollectionMetadata.prototype.ageCollectionEligible = false;
+
+        /**
+         * BotAgeCollectionMetadata shouldTriggerAgeCollectionOnClient.
+         * @member {boolean} shouldTriggerAgeCollectionOnClient
+         * @memberof E2E.BotAgeCollectionMetadata
+         * @instance
+         */
+        BotAgeCollectionMetadata.prototype.shouldTriggerAgeCollectionOnClient = false;
+
+        /**
+         * Creates a new BotAgeCollectionMetadata instance using the specified properties.
+         * @function create
+         * @memberof E2E.BotAgeCollectionMetadata
+         * @static
+         * @param {E2E.IBotAgeCollectionMetadata=} [properties] Properties to set
+         * @returns {E2E.BotAgeCollectionMetadata} BotAgeCollectionMetadata instance
+         */
+        BotAgeCollectionMetadata.create = function create(properties) {
+            return new BotAgeCollectionMetadata(properties);
+        };
+
+        /**
+         * Encodes the specified BotAgeCollectionMetadata message. Does not implicitly {@link E2E.BotAgeCollectionMetadata.verify|verify} messages.
+         * @function encode
+         * @memberof E2E.BotAgeCollectionMetadata
+         * @static
+         * @param {E2E.IBotAgeCollectionMetadata} message BotAgeCollectionMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotAgeCollectionMetadata.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.ageCollectionEligible != null && Object.hasOwnProperty.call(message, "ageCollectionEligible"))
+                writer.uint32(/* id 1, wireType 0 =*/8).bool(message.ageCollectionEligible);
+            if (message.shouldTriggerAgeCollectionOnClient != null && Object.hasOwnProperty.call(message, "shouldTriggerAgeCollectionOnClient"))
+                writer.uint32(/* id 2, wireType 0 =*/16).bool(message.shouldTriggerAgeCollectionOnClient);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BotAgeCollectionMetadata message, length delimited. Does not implicitly {@link E2E.BotAgeCollectionMetadata.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof E2E.BotAgeCollectionMetadata
+         * @static
+         * @param {E2E.IBotAgeCollectionMetadata} message BotAgeCollectionMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotAgeCollectionMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BotAgeCollectionMetadata message from the specified reader or buffer.
+         * @function decode
+         * @memberof E2E.BotAgeCollectionMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {E2E.BotAgeCollectionMetadata} BotAgeCollectionMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotAgeCollectionMetadata.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotAgeCollectionMetadata();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.ageCollectionEligible = reader.bool();
+                        break;
+                    }
+                case 2: {
+                        message.shouldTriggerAgeCollectionOnClient = reader.bool();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BotAgeCollectionMetadata message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof E2E.BotAgeCollectionMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {E2E.BotAgeCollectionMetadata} BotAgeCollectionMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotAgeCollectionMetadata.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BotAgeCollectionMetadata message.
+         * @function verify
+         * @memberof E2E.BotAgeCollectionMetadata
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BotAgeCollectionMetadata.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.ageCollectionEligible != null && message.hasOwnProperty("ageCollectionEligible"))
+                if (typeof message.ageCollectionEligible !== "boolean")
+                    return "ageCollectionEligible: boolean expected";
+            if (message.shouldTriggerAgeCollectionOnClient != null && message.hasOwnProperty("shouldTriggerAgeCollectionOnClient"))
+                if (typeof message.shouldTriggerAgeCollectionOnClient !== "boolean")
+                    return "shouldTriggerAgeCollectionOnClient: boolean expected";
+            return null;
+        };
+
+        /**
+         * Creates a BotAgeCollectionMetadata message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof E2E.BotAgeCollectionMetadata
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {E2E.BotAgeCollectionMetadata} BotAgeCollectionMetadata
+         */
+        BotAgeCollectionMetadata.fromObject = function fromObject(object) {
+            if (object instanceof $root.E2E.BotAgeCollectionMetadata)
+                return object;
+            var message = new $root.E2E.BotAgeCollectionMetadata();
+            if (object.ageCollectionEligible != null)
+                message.ageCollectionEligible = Boolean(object.ageCollectionEligible);
+            if (object.shouldTriggerAgeCollectionOnClient != null)
+                message.shouldTriggerAgeCollectionOnClient = Boolean(object.shouldTriggerAgeCollectionOnClient);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BotAgeCollectionMetadata message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof E2E.BotAgeCollectionMetadata
+         * @static
+         * @param {E2E.BotAgeCollectionMetadata} message BotAgeCollectionMetadata
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BotAgeCollectionMetadata.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.ageCollectionEligible = false;
+                object.shouldTriggerAgeCollectionOnClient = false;
+            }
+            if (message.ageCollectionEligible != null && message.hasOwnProperty("ageCollectionEligible"))
+                object.ageCollectionEligible = message.ageCollectionEligible;
+            if (message.shouldTriggerAgeCollectionOnClient != null && message.hasOwnProperty("shouldTriggerAgeCollectionOnClient"))
+                object.shouldTriggerAgeCollectionOnClient = message.shouldTriggerAgeCollectionOnClient;
+            return object;
+        };
+
+        /**
+         * Converts this BotAgeCollectionMetadata to JSON.
+         * @function toJSON
+         * @memberof E2E.BotAgeCollectionMetadata
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BotAgeCollectionMetadata.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotAgeCollectionMetadata
+         * @function getTypeUrl
+         * @memberof E2E.BotAgeCollectionMetadata
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotAgeCollectionMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/E2E.BotAgeCollectionMetadata";
+        };
+
+        return BotAgeCollectionMetadata;
+    })();
+
     E2E.BotImagineMetadata = (function() {
 
         /**
@@ -31464,12 +32697,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotImagineMetadata.decode = function decode(reader, length) {
+        BotImagineMetadata.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotImagineMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.imagineType = reader.int32();
@@ -31636,6 +32871,790 @@ $root.E2E = (function() {
         return BotImagineMetadata;
     })();
 
+    E2E.BotQuotaMetadata = (function() {
+
+        /**
+         * Properties of a BotQuotaMetadata.
+         * @memberof E2E
+         * @interface IBotQuotaMetadata
+         * @property {Array.<E2E.BotQuotaMetadata.IBotFeatureQuotaMetadata>|null} [botFeatureQuotaMetadata] BotQuotaMetadata botFeatureQuotaMetadata
+         */
+
+        /**
+         * Constructs a new BotQuotaMetadata.
+         * @memberof E2E
+         * @classdesc Represents a BotQuotaMetadata.
+         * @implements IBotQuotaMetadata
+         * @constructor
+         * @param {E2E.IBotQuotaMetadata=} [properties] Properties to set
+         */
+        function BotQuotaMetadata(properties) {
+            this.botFeatureQuotaMetadata = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BotQuotaMetadata botFeatureQuotaMetadata.
+         * @member {Array.<E2E.BotQuotaMetadata.IBotFeatureQuotaMetadata>} botFeatureQuotaMetadata
+         * @memberof E2E.BotQuotaMetadata
+         * @instance
+         */
+        BotQuotaMetadata.prototype.botFeatureQuotaMetadata = $util.emptyArray;
+
+        /**
+         * Creates a new BotQuotaMetadata instance using the specified properties.
+         * @function create
+         * @memberof E2E.BotQuotaMetadata
+         * @static
+         * @param {E2E.IBotQuotaMetadata=} [properties] Properties to set
+         * @returns {E2E.BotQuotaMetadata} BotQuotaMetadata instance
+         */
+        BotQuotaMetadata.create = function create(properties) {
+            return new BotQuotaMetadata(properties);
+        };
+
+        /**
+         * Encodes the specified BotQuotaMetadata message. Does not implicitly {@link E2E.BotQuotaMetadata.verify|verify} messages.
+         * @function encode
+         * @memberof E2E.BotQuotaMetadata
+         * @static
+         * @param {E2E.IBotQuotaMetadata} message BotQuotaMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotQuotaMetadata.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.botFeatureQuotaMetadata != null && message.botFeatureQuotaMetadata.length)
+                for (var i = 0; i < message.botFeatureQuotaMetadata.length; ++i)
+                    $root.E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.encode(message.botFeatureQuotaMetadata[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BotQuotaMetadata message, length delimited. Does not implicitly {@link E2E.BotQuotaMetadata.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof E2E.BotQuotaMetadata
+         * @static
+         * @param {E2E.IBotQuotaMetadata} message BotQuotaMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotQuotaMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BotQuotaMetadata message from the specified reader or buffer.
+         * @function decode
+         * @memberof E2E.BotQuotaMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {E2E.BotQuotaMetadata} BotQuotaMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotQuotaMetadata.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotQuotaMetadata();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        if (!(message.botFeatureQuotaMetadata && message.botFeatureQuotaMetadata.length))
+                            message.botFeatureQuotaMetadata = [];
+                        message.botFeatureQuotaMetadata.push($root.E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.decode(reader, reader.uint32()));
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BotQuotaMetadata message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof E2E.BotQuotaMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {E2E.BotQuotaMetadata} BotQuotaMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotQuotaMetadata.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BotQuotaMetadata message.
+         * @function verify
+         * @memberof E2E.BotQuotaMetadata
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BotQuotaMetadata.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.botFeatureQuotaMetadata != null && message.hasOwnProperty("botFeatureQuotaMetadata")) {
+                if (!Array.isArray(message.botFeatureQuotaMetadata))
+                    return "botFeatureQuotaMetadata: array expected";
+                for (var i = 0; i < message.botFeatureQuotaMetadata.length; ++i) {
+                    var error = $root.E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.verify(message.botFeatureQuotaMetadata[i]);
+                    if (error)
+                        return "botFeatureQuotaMetadata." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a BotQuotaMetadata message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof E2E.BotQuotaMetadata
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {E2E.BotQuotaMetadata} BotQuotaMetadata
+         */
+        BotQuotaMetadata.fromObject = function fromObject(object) {
+            if (object instanceof $root.E2E.BotQuotaMetadata)
+                return object;
+            var message = new $root.E2E.BotQuotaMetadata();
+            if (object.botFeatureQuotaMetadata) {
+                if (!Array.isArray(object.botFeatureQuotaMetadata))
+                    throw TypeError(".E2E.BotQuotaMetadata.botFeatureQuotaMetadata: array expected");
+                message.botFeatureQuotaMetadata = [];
+                for (var i = 0; i < object.botFeatureQuotaMetadata.length; ++i) {
+                    if (typeof object.botFeatureQuotaMetadata[i] !== "object")
+                        throw TypeError(".E2E.BotQuotaMetadata.botFeatureQuotaMetadata: object expected");
+                    message.botFeatureQuotaMetadata[i] = $root.E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.fromObject(object.botFeatureQuotaMetadata[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BotQuotaMetadata message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof E2E.BotQuotaMetadata
+         * @static
+         * @param {E2E.BotQuotaMetadata} message BotQuotaMetadata
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BotQuotaMetadata.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.botFeatureQuotaMetadata = [];
+            if (message.botFeatureQuotaMetadata && message.botFeatureQuotaMetadata.length) {
+                object.botFeatureQuotaMetadata = [];
+                for (var j = 0; j < message.botFeatureQuotaMetadata.length; ++j)
+                    object.botFeatureQuotaMetadata[j] = $root.E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.toObject(message.botFeatureQuotaMetadata[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this BotQuotaMetadata to JSON.
+         * @function toJSON
+         * @memberof E2E.BotQuotaMetadata
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BotQuotaMetadata.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotQuotaMetadata
+         * @function getTypeUrl
+         * @memberof E2E.BotQuotaMetadata
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotQuotaMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/E2E.BotQuotaMetadata";
+        };
+
+        BotQuotaMetadata.BotFeatureQuotaMetadata = (function() {
+
+            /**
+             * Properties of a BotFeatureQuotaMetadata.
+             * @memberof E2E.BotQuotaMetadata
+             * @interface IBotFeatureQuotaMetadata
+             * @property {E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.BotFeatureType|null} [featureType] BotFeatureQuotaMetadata featureType
+             * @property {number|null} [remainingQuota] BotFeatureQuotaMetadata remainingQuota
+             * @property {number|Long|null} [expirationTimestamp] BotFeatureQuotaMetadata expirationTimestamp
+             */
+
+            /**
+             * Constructs a new BotFeatureQuotaMetadata.
+             * @memberof E2E.BotQuotaMetadata
+             * @classdesc Represents a BotFeatureQuotaMetadata.
+             * @implements IBotFeatureQuotaMetadata
+             * @constructor
+             * @param {E2E.BotQuotaMetadata.IBotFeatureQuotaMetadata=} [properties] Properties to set
+             */
+            function BotFeatureQuotaMetadata(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * BotFeatureQuotaMetadata featureType.
+             * @member {E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.BotFeatureType} featureType
+             * @memberof E2E.BotQuotaMetadata.BotFeatureQuotaMetadata
+             * @instance
+             */
+            BotFeatureQuotaMetadata.prototype.featureType = 0;
+
+            /**
+             * BotFeatureQuotaMetadata remainingQuota.
+             * @member {number} remainingQuota
+             * @memberof E2E.BotQuotaMetadata.BotFeatureQuotaMetadata
+             * @instance
+             */
+            BotFeatureQuotaMetadata.prototype.remainingQuota = 0;
+
+            /**
+             * BotFeatureQuotaMetadata expirationTimestamp.
+             * @member {number|Long} expirationTimestamp
+             * @memberof E2E.BotQuotaMetadata.BotFeatureQuotaMetadata
+             * @instance
+             */
+            BotFeatureQuotaMetadata.prototype.expirationTimestamp = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+            /**
+             * Creates a new BotFeatureQuotaMetadata instance using the specified properties.
+             * @function create
+             * @memberof E2E.BotQuotaMetadata.BotFeatureQuotaMetadata
+             * @static
+             * @param {E2E.BotQuotaMetadata.IBotFeatureQuotaMetadata=} [properties] Properties to set
+             * @returns {E2E.BotQuotaMetadata.BotFeatureQuotaMetadata} BotFeatureQuotaMetadata instance
+             */
+            BotFeatureQuotaMetadata.create = function create(properties) {
+                return new BotFeatureQuotaMetadata(properties);
+            };
+
+            /**
+             * Encodes the specified BotFeatureQuotaMetadata message. Does not implicitly {@link E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.BotQuotaMetadata.BotFeatureQuotaMetadata
+             * @static
+             * @param {E2E.BotQuotaMetadata.IBotFeatureQuotaMetadata} message BotFeatureQuotaMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            BotFeatureQuotaMetadata.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.featureType != null && Object.hasOwnProperty.call(message, "featureType"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.featureType);
+                if (message.remainingQuota != null && Object.hasOwnProperty.call(message, "remainingQuota"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.remainingQuota);
+                if (message.expirationTimestamp != null && Object.hasOwnProperty.call(message, "expirationTimestamp"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).uint64(message.expirationTimestamp);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified BotFeatureQuotaMetadata message, length delimited. Does not implicitly {@link E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.BotQuotaMetadata.BotFeatureQuotaMetadata
+             * @static
+             * @param {E2E.BotQuotaMetadata.IBotFeatureQuotaMetadata} message BotFeatureQuotaMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            BotFeatureQuotaMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a BotFeatureQuotaMetadata message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.BotQuotaMetadata.BotFeatureQuotaMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.BotQuotaMetadata.BotFeatureQuotaMetadata} BotFeatureQuotaMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            BotFeatureQuotaMetadata.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotQuotaMetadata.BotFeatureQuotaMetadata();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.featureType = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.remainingQuota = reader.uint32();
+                            break;
+                        }
+                    case 3: {
+                            message.expirationTimestamp = reader.uint64();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a BotFeatureQuotaMetadata message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.BotQuotaMetadata.BotFeatureQuotaMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.BotQuotaMetadata.BotFeatureQuotaMetadata} BotFeatureQuotaMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            BotFeatureQuotaMetadata.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a BotFeatureQuotaMetadata message.
+             * @function verify
+             * @memberof E2E.BotQuotaMetadata.BotFeatureQuotaMetadata
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            BotFeatureQuotaMetadata.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.featureType != null && message.hasOwnProperty("featureType"))
+                    switch (message.featureType) {
+                    default:
+                        return "featureType: enum value expected";
+                    case 0:
+                    case 1:
+                        break;
+                    }
+                if (message.remainingQuota != null && message.hasOwnProperty("remainingQuota"))
+                    if (!$util.isInteger(message.remainingQuota))
+                        return "remainingQuota: integer expected";
+                if (message.expirationTimestamp != null && message.hasOwnProperty("expirationTimestamp"))
+                    if (!$util.isInteger(message.expirationTimestamp) && !(message.expirationTimestamp && $util.isInteger(message.expirationTimestamp.low) && $util.isInteger(message.expirationTimestamp.high)))
+                        return "expirationTimestamp: integer|Long expected";
+                return null;
+            };
+
+            /**
+             * Creates a BotFeatureQuotaMetadata message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.BotQuotaMetadata.BotFeatureQuotaMetadata
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.BotQuotaMetadata.BotFeatureQuotaMetadata} BotFeatureQuotaMetadata
+             */
+            BotFeatureQuotaMetadata.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.BotQuotaMetadata.BotFeatureQuotaMetadata)
+                    return object;
+                var message = new $root.E2E.BotQuotaMetadata.BotFeatureQuotaMetadata();
+                switch (object.featureType) {
+                default:
+                    if (typeof object.featureType === "number") {
+                        message.featureType = object.featureType;
+                        break;
+                    }
+                    break;
+                case "UNKNOWN_FEATURE":
+                case 0:
+                    message.featureType = 0;
+                    break;
+                case "REASONING_FEATURE":
+                case 1:
+                    message.featureType = 1;
+                    break;
+                }
+                if (object.remainingQuota != null)
+                    message.remainingQuota = object.remainingQuota >>> 0;
+                if (object.expirationTimestamp != null)
+                    if ($util.Long)
+                        (message.expirationTimestamp = $util.Long.fromValue(object.expirationTimestamp)).unsigned = true;
+                    else if (typeof object.expirationTimestamp === "string")
+                        message.expirationTimestamp = parseInt(object.expirationTimestamp, 10);
+                    else if (typeof object.expirationTimestamp === "number")
+                        message.expirationTimestamp = object.expirationTimestamp;
+                    else if (typeof object.expirationTimestamp === "object")
+                        message.expirationTimestamp = new $util.LongBits(object.expirationTimestamp.low >>> 0, object.expirationTimestamp.high >>> 0).toNumber(true);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a BotFeatureQuotaMetadata message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.BotQuotaMetadata.BotFeatureQuotaMetadata
+             * @static
+             * @param {E2E.BotQuotaMetadata.BotFeatureQuotaMetadata} message BotFeatureQuotaMetadata
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            BotFeatureQuotaMetadata.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.featureType = options.enums === String ? "UNKNOWN_FEATURE" : 0;
+                    object.remainingQuota = 0;
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, true);
+                        object.expirationTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    } else
+                        object.expirationTimestamp = options.longs === String ? "0" : 0;
+                }
+                if (message.featureType != null && message.hasOwnProperty("featureType"))
+                    object.featureType = options.enums === String ? $root.E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.BotFeatureType[message.featureType] === undefined ? message.featureType : $root.E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.BotFeatureType[message.featureType] : message.featureType;
+                if (message.remainingQuota != null && message.hasOwnProperty("remainingQuota"))
+                    object.remainingQuota = message.remainingQuota;
+                if (message.expirationTimestamp != null && message.hasOwnProperty("expirationTimestamp"))
+                    if (typeof message.expirationTimestamp === "number")
+                        object.expirationTimestamp = options.longs === String ? String(message.expirationTimestamp) : message.expirationTimestamp;
+                    else
+                        object.expirationTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.expirationTimestamp) : options.longs === Number ? new $util.LongBits(message.expirationTimestamp.low >>> 0, message.expirationTimestamp.high >>> 0).toNumber(true) : message.expirationTimestamp;
+                return object;
+            };
+
+            /**
+             * Converts this BotFeatureQuotaMetadata to JSON.
+             * @function toJSON
+             * @memberof E2E.BotQuotaMetadata.BotFeatureQuotaMetadata
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            BotFeatureQuotaMetadata.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for BotFeatureQuotaMetadata
+             * @function getTypeUrl
+             * @memberof E2E.BotQuotaMetadata.BotFeatureQuotaMetadata
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            BotFeatureQuotaMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.BotQuotaMetadata.BotFeatureQuotaMetadata";
+            };
+
+            /**
+             * BotFeatureType enum.
+             * @name E2E.BotQuotaMetadata.BotFeatureQuotaMetadata.BotFeatureType
+             * @enum {number}
+             * @property {number} UNKNOWN_FEATURE=0 UNKNOWN_FEATURE value
+             * @property {number} REASONING_FEATURE=1 REASONING_FEATURE value
+             */
+            BotFeatureQuotaMetadata.BotFeatureType = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "UNKNOWN_FEATURE"] = 0;
+                values[valuesById[1] = "REASONING_FEATURE"] = 1;
+                return values;
+            })();
+
+            return BotFeatureQuotaMetadata;
+        })();
+
+        return BotQuotaMetadata;
+    })();
+
+    E2E.BotModeSelectionMetadata = (function() {
+
+        /**
+         * Properties of a BotModeSelectionMetadata.
+         * @memberof E2E
+         * @interface IBotModeSelectionMetadata
+         * @property {Array.<E2E.BotModeSelectionMetadata.BotUserSelectionMode>|null} [mode] BotModeSelectionMetadata mode
+         */
+
+        /**
+         * Constructs a new BotModeSelectionMetadata.
+         * @memberof E2E
+         * @classdesc Represents a BotModeSelectionMetadata.
+         * @implements IBotModeSelectionMetadata
+         * @constructor
+         * @param {E2E.IBotModeSelectionMetadata=} [properties] Properties to set
+         */
+        function BotModeSelectionMetadata(properties) {
+            this.mode = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BotModeSelectionMetadata mode.
+         * @member {Array.<E2E.BotModeSelectionMetadata.BotUserSelectionMode>} mode
+         * @memberof E2E.BotModeSelectionMetadata
+         * @instance
+         */
+        BotModeSelectionMetadata.prototype.mode = $util.emptyArray;
+
+        /**
+         * Creates a new BotModeSelectionMetadata instance using the specified properties.
+         * @function create
+         * @memberof E2E.BotModeSelectionMetadata
+         * @static
+         * @param {E2E.IBotModeSelectionMetadata=} [properties] Properties to set
+         * @returns {E2E.BotModeSelectionMetadata} BotModeSelectionMetadata instance
+         */
+        BotModeSelectionMetadata.create = function create(properties) {
+            return new BotModeSelectionMetadata(properties);
+        };
+
+        /**
+         * Encodes the specified BotModeSelectionMetadata message. Does not implicitly {@link E2E.BotModeSelectionMetadata.verify|verify} messages.
+         * @function encode
+         * @memberof E2E.BotModeSelectionMetadata
+         * @static
+         * @param {E2E.IBotModeSelectionMetadata} message BotModeSelectionMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotModeSelectionMetadata.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.mode != null && message.mode.length)
+                for (var i = 0; i < message.mode.length; ++i)
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.mode[i]);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BotModeSelectionMetadata message, length delimited. Does not implicitly {@link E2E.BotModeSelectionMetadata.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof E2E.BotModeSelectionMetadata
+         * @static
+         * @param {E2E.IBotModeSelectionMetadata} message BotModeSelectionMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotModeSelectionMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BotModeSelectionMetadata message from the specified reader or buffer.
+         * @function decode
+         * @memberof E2E.BotModeSelectionMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {E2E.BotModeSelectionMetadata} BotModeSelectionMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotModeSelectionMetadata.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotModeSelectionMetadata();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        if (!(message.mode && message.mode.length))
+                            message.mode = [];
+                        if ((tag & 7) === 2) {
+                            var end2 = reader.uint32() + reader.pos;
+                            while (reader.pos < end2)
+                                message.mode.push(reader.int32());
+                        } else
+                            message.mode.push(reader.int32());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BotModeSelectionMetadata message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof E2E.BotModeSelectionMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {E2E.BotModeSelectionMetadata} BotModeSelectionMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotModeSelectionMetadata.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BotModeSelectionMetadata message.
+         * @function verify
+         * @memberof E2E.BotModeSelectionMetadata
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BotModeSelectionMetadata.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.mode != null && message.hasOwnProperty("mode")) {
+                if (!Array.isArray(message.mode))
+                    return "mode: array expected";
+                for (var i = 0; i < message.mode.length; ++i)
+                    switch (message.mode[i]) {
+                    default:
+                        return "mode: enum value[] expected";
+                    case 0:
+                    case 1:
+                        break;
+                    }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a BotModeSelectionMetadata message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof E2E.BotModeSelectionMetadata
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {E2E.BotModeSelectionMetadata} BotModeSelectionMetadata
+         */
+        BotModeSelectionMetadata.fromObject = function fromObject(object) {
+            if (object instanceof $root.E2E.BotModeSelectionMetadata)
+                return object;
+            var message = new $root.E2E.BotModeSelectionMetadata();
+            if (object.mode) {
+                if (!Array.isArray(object.mode))
+                    throw TypeError(".E2E.BotModeSelectionMetadata.mode: array expected");
+                message.mode = [];
+                for (var i = 0; i < object.mode.length; ++i)
+                    switch (object.mode[i]) {
+                    default:
+                        if (typeof object.mode[i] === "number") {
+                            message.mode[i] = object.mode[i];
+                            break;
+                        }
+                    case "UNKNOWN_MODE":
+                    case 0:
+                        message.mode[i] = 0;
+                        break;
+                    case "REASONING_MODE":
+                    case 1:
+                        message.mode[i] = 1;
+                        break;
+                    }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BotModeSelectionMetadata message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof E2E.BotModeSelectionMetadata
+         * @static
+         * @param {E2E.BotModeSelectionMetadata} message BotModeSelectionMetadata
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BotModeSelectionMetadata.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.mode = [];
+            if (message.mode && message.mode.length) {
+                object.mode = [];
+                for (var j = 0; j < message.mode.length; ++j)
+                    object.mode[j] = options.enums === String ? $root.E2E.BotModeSelectionMetadata.BotUserSelectionMode[message.mode[j]] === undefined ? message.mode[j] : $root.E2E.BotModeSelectionMetadata.BotUserSelectionMode[message.mode[j]] : message.mode[j];
+            }
+            return object;
+        };
+
+        /**
+         * Converts this BotModeSelectionMetadata to JSON.
+         * @function toJSON
+         * @memberof E2E.BotModeSelectionMetadata
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BotModeSelectionMetadata.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotModeSelectionMetadata
+         * @function getTypeUrl
+         * @memberof E2E.BotModeSelectionMetadata
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotModeSelectionMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/E2E.BotModeSelectionMetadata";
+        };
+
+        /**
+         * BotUserSelectionMode enum.
+         * @name E2E.BotModeSelectionMetadata.BotUserSelectionMode
+         * @enum {number}
+         * @property {number} UNKNOWN_MODE=0 UNKNOWN_MODE value
+         * @property {number} REASONING_MODE=1 REASONING_MODE value
+         */
+        BotModeSelectionMetadata.BotUserSelectionMode = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "UNKNOWN_MODE"] = 0;
+            values[valuesById[1] = "REASONING_MODE"] = 1;
+            return values;
+        })();
+
+        return BotModeSelectionMetadata;
+    })();
+
     E2E.BotCapabilityMetadata = (function() {
 
         /**
@@ -31723,12 +33742,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotCapabilityMetadata.decode = function decode(reader, length) {
+        BotCapabilityMetadata.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotCapabilityMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         if (!(message.capabilities && message.capabilities.length))
@@ -31813,6 +33834,12 @@ $root.E2E = (function() {
                     case 27:
                     case 28:
                     case 29:
+                    case 30:
+                    case 31:
+                    case 32:
+                    case 33:
+                    case 34:
+                    case 35:
                         break;
                     }
             }
@@ -31962,6 +33989,30 @@ $root.E2E = (function() {
                     case 29:
                         message.capabilities[i] = 29;
                         break;
+                    case "RICH_RESPONSE_GRID_IMAGE_3P":
+                    case 30:
+                        message.capabilities[i] = 30;
+                        break;
+                    case "RICH_RESPONSE_LATEX_INLINE":
+                    case 31:
+                        message.capabilities[i] = 31;
+                        break;
+                    case "QUERY_PLAN":
+                    case 32:
+                        message.capabilities[i] = 32;
+                        break;
+                    case "PROACTIVE_MESSAGE":
+                    case 33:
+                        message.capabilities[i] = 33;
+                        break;
+                    case "RICH_RESPONSE_UNIFIED_RESPONSE":
+                    case 34:
+                        message.capabilities[i] = 34;
+                        break;
+                    case "PROMOTION_MESSAGE":
+                    case 35:
+                        message.capabilities[i] = 35;
+                        break;
                     }
             }
             return message;
@@ -32050,6 +34101,12 @@ $root.E2E = (function() {
          * @property {number} AGENTIC_PLANNING=27 AGENTIC_PLANNING value
          * @property {number} ACCOUNT_LINKING=28 ACCOUNT_LINKING value
          * @property {number} STREAMING_DISAGGREGATION=29 STREAMING_DISAGGREGATION value
+         * @property {number} RICH_RESPONSE_GRID_IMAGE_3P=30 RICH_RESPONSE_GRID_IMAGE_3P value
+         * @property {number} RICH_RESPONSE_LATEX_INLINE=31 RICH_RESPONSE_LATEX_INLINE value
+         * @property {number} QUERY_PLAN=32 QUERY_PLAN value
+         * @property {number} PROACTIVE_MESSAGE=33 PROACTIVE_MESSAGE value
+         * @property {number} RICH_RESPONSE_UNIFIED_RESPONSE=34 RICH_RESPONSE_UNIFIED_RESPONSE value
+         * @property {number} PROMOTION_MESSAGE=35 PROMOTION_MESSAGE value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -32083,6 +34140,12 @@ $root.E2E = (function() {
             values[valuesById[27] = "AGENTIC_PLANNING"] = 27;
             values[valuesById[28] = "ACCOUNT_LINKING"] = 28;
             values[valuesById[29] = "STREAMING_DISAGGREGATION"] = 29;
+            values[valuesById[30] = "RICH_RESPONSE_GRID_IMAGE_3P"] = 30;
+            values[valuesById[31] = "RICH_RESPONSE_LATEX_INLINE"] = 31;
+            values[valuesById[32] = "QUERY_PLAN"] = 32;
+            values[valuesById[33] = "PROACTIVE_MESSAGE"] = 33;
+            values[valuesById[34] = "RICH_RESPONSE_UNIFIED_RESPONSE"] = 34;
+            values[valuesById[35] = "PROMOTION_MESSAGE"] = 35;
             return values;
         })();
 
@@ -32187,12 +34250,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotProgressIndicatorMetadata.decode = function decode(reader, length) {
+        BotProgressIndicatorMetadata.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotProgressIndicatorMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.progressDescription = reader.string();
@@ -32489,12 +34554,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            BotPlanningStepMetadata.decode = function decode(reader, length) {
+            BotPlanningStepMetadata.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.statusTitle = reader.string();
@@ -32864,12 +34931,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BotPlanningSearchSourceMetadata.decode = function decode(reader, length) {
+                BotPlanningSearchSourceMetadata.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.title = reader.string();
@@ -33155,12 +35224,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BotPlanningSearchSourcesMetadata.decode = function decode(reader, length) {
+                BotPlanningSearchSourcesMetadata.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.sourceTitle = reader.string();
@@ -33454,12 +35525,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BotPlanningStepSectionMetadata.decode = function decode(reader, length) {
+                BotPlanningStepSectionMetadata.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.sectionTitle = reader.string();
@@ -33755,12 +35828,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotModelMetadata.decode = function decode(reader, length) {
+        BotModelMetadata.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotModelMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.modelType = reader.int32();
@@ -34095,12 +36170,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotReminderMetadata.decode = function decode(reader, length) {
+        BotReminderMetadata.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotReminderMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.requestMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -34469,12 +36546,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotMemuMetadata.decode = function decode(reader, length) {
+        BotMemuMetadata.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotMemuMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         if (!(message.faceImages && message.faceImages.length))
@@ -34757,12 +36836,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotMediaMetadata.decode = function decode(reader, length) {
+        BotMediaMetadata.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotMediaMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.fileSha256 = reader.string();
@@ -35098,12 +37179,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotSessionMetadata.decode = function decode(reader, length) {
+        BotSessionMetadata.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotSessionMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.sessionId = reader.string();
@@ -35380,12 +37463,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotMetricsMetadata.decode = function decode(reader, length) {
+        BotMetricsMetadata.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotMetricsMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.destinationId = reader.string();
@@ -35462,6 +37547,9 @@ $root.E2E = (function() {
                 case 19:
                 case 20:
                 case 21:
+                case 22:
+                case 23:
+                case 24:
                     break;
                 }
             if (message.threadOrigin != null && message.hasOwnProperty("threadOrigin"))
@@ -35581,6 +37669,18 @@ $root.E2E = (function() {
             case "AI_DEEPLINK":
             case 21:
                 message.destinationEntryPoint = 21;
+                break;
+            case "META_AI_CHAT_SHORTCUT_AI_STUDIO":
+            case 22:
+                message.destinationEntryPoint = 22;
+                break;
+            case "UGC_CHAT_SHORTCUT_AI_STUDIO":
+            case 23:
+                message.destinationEntryPoint = 23;
+                break;
+            case "NEW_CHAT_AI_STUDIO":
+            case 24:
+                message.destinationEntryPoint = 24;
                 break;
             }
             switch (object.threadOrigin) {
@@ -35753,12 +37853,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotRenderingMetadata.decode = function decode(reader, length) {
+        BotRenderingMetadata.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotRenderingMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         if (!(message.keywords && message.keywords.length))
@@ -35985,12 +38087,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            Keyword.decode = function decode(reader, length) {
+            Keyword.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotRenderingMetadata.Keyword();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.value = reader.string();
@@ -36133,6 +38237,268 @@ $root.E2E = (function() {
         return BotRenderingMetadata;
     })();
 
+    E2E.BotPromotionMessageMetadata = (function() {
+
+        /**
+         * Properties of a BotPromotionMessageMetadata.
+         * @memberof E2E
+         * @interface IBotPromotionMessageMetadata
+         * @property {E2E.BotPromotionMessageMetadata.BotPromotionType|null} [promotionType] BotPromotionMessageMetadata promotionType
+         * @property {string|null} [buttonTitle] BotPromotionMessageMetadata buttonTitle
+         */
+
+        /**
+         * Constructs a new BotPromotionMessageMetadata.
+         * @memberof E2E
+         * @classdesc Represents a BotPromotionMessageMetadata.
+         * @implements IBotPromotionMessageMetadata
+         * @constructor
+         * @param {E2E.IBotPromotionMessageMetadata=} [properties] Properties to set
+         */
+        function BotPromotionMessageMetadata(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BotPromotionMessageMetadata promotionType.
+         * @member {E2E.BotPromotionMessageMetadata.BotPromotionType} promotionType
+         * @memberof E2E.BotPromotionMessageMetadata
+         * @instance
+         */
+        BotPromotionMessageMetadata.prototype.promotionType = 0;
+
+        /**
+         * BotPromotionMessageMetadata buttonTitle.
+         * @member {string} buttonTitle
+         * @memberof E2E.BotPromotionMessageMetadata
+         * @instance
+         */
+        BotPromotionMessageMetadata.prototype.buttonTitle = "";
+
+        /**
+         * Creates a new BotPromotionMessageMetadata instance using the specified properties.
+         * @function create
+         * @memberof E2E.BotPromotionMessageMetadata
+         * @static
+         * @param {E2E.IBotPromotionMessageMetadata=} [properties] Properties to set
+         * @returns {E2E.BotPromotionMessageMetadata} BotPromotionMessageMetadata instance
+         */
+        BotPromotionMessageMetadata.create = function create(properties) {
+            return new BotPromotionMessageMetadata(properties);
+        };
+
+        /**
+         * Encodes the specified BotPromotionMessageMetadata message. Does not implicitly {@link E2E.BotPromotionMessageMetadata.verify|verify} messages.
+         * @function encode
+         * @memberof E2E.BotPromotionMessageMetadata
+         * @static
+         * @param {E2E.IBotPromotionMessageMetadata} message BotPromotionMessageMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotPromotionMessageMetadata.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.promotionType != null && Object.hasOwnProperty.call(message, "promotionType"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.promotionType);
+            if (message.buttonTitle != null && Object.hasOwnProperty.call(message, "buttonTitle"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.buttonTitle);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BotPromotionMessageMetadata message, length delimited. Does not implicitly {@link E2E.BotPromotionMessageMetadata.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof E2E.BotPromotionMessageMetadata
+         * @static
+         * @param {E2E.IBotPromotionMessageMetadata} message BotPromotionMessageMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotPromotionMessageMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BotPromotionMessageMetadata message from the specified reader or buffer.
+         * @function decode
+         * @memberof E2E.BotPromotionMessageMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {E2E.BotPromotionMessageMetadata} BotPromotionMessageMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotPromotionMessageMetadata.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotPromotionMessageMetadata();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.promotionType = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.buttonTitle = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BotPromotionMessageMetadata message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof E2E.BotPromotionMessageMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {E2E.BotPromotionMessageMetadata} BotPromotionMessageMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotPromotionMessageMetadata.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BotPromotionMessageMetadata message.
+         * @function verify
+         * @memberof E2E.BotPromotionMessageMetadata
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BotPromotionMessageMetadata.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.promotionType != null && message.hasOwnProperty("promotionType"))
+                switch (message.promotionType) {
+                default:
+                    return "promotionType: enum value expected";
+                case 0:
+                case 1:
+                    break;
+                }
+            if (message.buttonTitle != null && message.hasOwnProperty("buttonTitle"))
+                if (!$util.isString(message.buttonTitle))
+                    return "buttonTitle: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a BotPromotionMessageMetadata message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof E2E.BotPromotionMessageMetadata
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {E2E.BotPromotionMessageMetadata} BotPromotionMessageMetadata
+         */
+        BotPromotionMessageMetadata.fromObject = function fromObject(object) {
+            if (object instanceof $root.E2E.BotPromotionMessageMetadata)
+                return object;
+            var message = new $root.E2E.BotPromotionMessageMetadata();
+            switch (object.promotionType) {
+            default:
+                if (typeof object.promotionType === "number") {
+                    message.promotionType = object.promotionType;
+                    break;
+                }
+                break;
+            case "UNKNOWN_TYPE":
+            case 0:
+                message.promotionType = 0;
+                break;
+            case "C50":
+            case 1:
+                message.promotionType = 1;
+                break;
+            }
+            if (object.buttonTitle != null)
+                message.buttonTitle = String(object.buttonTitle);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BotPromotionMessageMetadata message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof E2E.BotPromotionMessageMetadata
+         * @static
+         * @param {E2E.BotPromotionMessageMetadata} message BotPromotionMessageMetadata
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BotPromotionMessageMetadata.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.promotionType = options.enums === String ? "UNKNOWN_TYPE" : 0;
+                object.buttonTitle = "";
+            }
+            if (message.promotionType != null && message.hasOwnProperty("promotionType"))
+                object.promotionType = options.enums === String ? $root.E2E.BotPromotionMessageMetadata.BotPromotionType[message.promotionType] === undefined ? message.promotionType : $root.E2E.BotPromotionMessageMetadata.BotPromotionType[message.promotionType] : message.promotionType;
+            if (message.buttonTitle != null && message.hasOwnProperty("buttonTitle"))
+                object.buttonTitle = message.buttonTitle;
+            return object;
+        };
+
+        /**
+         * Converts this BotPromotionMessageMetadata to JSON.
+         * @function toJSON
+         * @memberof E2E.BotPromotionMessageMetadata
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BotPromotionMessageMetadata.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotPromotionMessageMetadata
+         * @function getTypeUrl
+         * @memberof E2E.BotPromotionMessageMetadata
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotPromotionMessageMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/E2E.BotPromotionMessageMetadata";
+        };
+
+        /**
+         * BotPromotionType enum.
+         * @name E2E.BotPromotionMessageMetadata.BotPromotionType
+         * @enum {number}
+         * @property {number} UNKNOWN_TYPE=0 UNKNOWN_TYPE value
+         * @property {number} C50=1 C50 value
+         */
+        BotPromotionMessageMetadata.BotPromotionType = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "UNKNOWN_TYPE"] = 0;
+            values[valuesById[1] = "C50"] = 1;
+            return values;
+        })();
+
+        return BotPromotionMessageMetadata;
+    })();
+
     E2E.AIRichResponseMessage = (function() {
 
         /**
@@ -36141,7 +38507,7 @@ $root.E2E = (function() {
          * @interface IAIRichResponseMessage
          * @property {E2E.AIRichResponseMessage.AIRichResponseMessageType|null} [messageType] AIRichResponseMessage messageType
          * @property {Array.<E2E.AIRichResponseMessage.IAIRichResponseSubMessage>|null} [submessages] AIRichResponseMessage submessages
-         * @property {E2E.AIRichResponseMessage.IAIRichResponseAbstractData|null} [abstractData] AIRichResponseMessage abstractData
+         * @property {E2E.AIRichResponseMessage.IAIRichResponseUnifiedResponse|null} [unifiedResponse] AIRichResponseMessage unifiedResponse
          */
 
         /**
@@ -36177,12 +38543,12 @@ $root.E2E = (function() {
         AIRichResponseMessage.prototype.submessages = $util.emptyArray;
 
         /**
-         * AIRichResponseMessage abstractData.
-         * @member {E2E.AIRichResponseMessage.IAIRichResponseAbstractData|null|undefined} abstractData
+         * AIRichResponseMessage unifiedResponse.
+         * @member {E2E.AIRichResponseMessage.IAIRichResponseUnifiedResponse|null|undefined} unifiedResponse
          * @memberof E2E.AIRichResponseMessage
          * @instance
          */
-        AIRichResponseMessage.prototype.abstractData = null;
+        AIRichResponseMessage.prototype.unifiedResponse = null;
 
         /**
          * Creates a new AIRichResponseMessage instance using the specified properties.
@@ -36213,8 +38579,8 @@ $root.E2E = (function() {
             if (message.submessages != null && message.submessages.length)
                 for (var i = 0; i < message.submessages.length; ++i)
                     $root.E2E.AIRichResponseMessage.AIRichResponseSubMessage.encode(message.submessages[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-            if (message.abstractData != null && Object.hasOwnProperty.call(message, "abstractData"))
-                $root.E2E.AIRichResponseMessage.AIRichResponseAbstractData.encode(message.abstractData, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.unifiedResponse != null && Object.hasOwnProperty.call(message, "unifiedResponse"))
+                $root.E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse.encode(message.unifiedResponse, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             return writer;
         };
 
@@ -36242,12 +38608,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AIRichResponseMessage.decode = function decode(reader, length) {
+        AIRichResponseMessage.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.messageType = reader.int32();
@@ -36260,7 +38628,7 @@ $root.E2E = (function() {
                         break;
                     }
                 case 3: {
-                        message.abstractData = $root.E2E.AIRichResponseMessage.AIRichResponseAbstractData.decode(reader, reader.uint32());
+                        message.unifiedResponse = $root.E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -36315,10 +38683,10 @@ $root.E2E = (function() {
                         return "submessages." + error;
                 }
             }
-            if (message.abstractData != null && message.hasOwnProperty("abstractData")) {
-                var error = $root.E2E.AIRichResponseMessage.AIRichResponseAbstractData.verify(message.abstractData);
+            if (message.unifiedResponse != null && message.hasOwnProperty("unifiedResponse")) {
+                var error = $root.E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse.verify(message.unifiedResponse);
                 if (error)
-                    return "abstractData." + error;
+                    return "unifiedResponse." + error;
             }
             return null;
         };
@@ -36361,10 +38729,10 @@ $root.E2E = (function() {
                     message.submessages[i] = $root.E2E.AIRichResponseMessage.AIRichResponseSubMessage.fromObject(object.submessages[i]);
                 }
             }
-            if (object.abstractData != null) {
-                if (typeof object.abstractData !== "object")
-                    throw TypeError(".E2E.AIRichResponseMessage.abstractData: object expected");
-                message.abstractData = $root.E2E.AIRichResponseMessage.AIRichResponseAbstractData.fromObject(object.abstractData);
+            if (object.unifiedResponse != null) {
+                if (typeof object.unifiedResponse !== "object")
+                    throw TypeError(".E2E.AIRichResponseMessage.unifiedResponse: object expected");
+                message.unifiedResponse = $root.E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse.fromObject(object.unifiedResponse);
             }
             return message;
         };
@@ -36386,7 +38754,7 @@ $root.E2E = (function() {
                 object.submessages = [];
             if (options.defaults) {
                 object.messageType = options.enums === String ? "AI_RICH_RESPONSE_TYPE_UNKNOWN" : 0;
-                object.abstractData = null;
+                object.unifiedResponse = null;
             }
             if (message.messageType != null && message.hasOwnProperty("messageType"))
                 object.messageType = options.enums === String ? $root.E2E.AIRichResponseMessage.AIRichResponseMessageType[message.messageType] === undefined ? message.messageType : $root.E2E.AIRichResponseMessage.AIRichResponseMessageType[message.messageType] : message.messageType;
@@ -36395,8 +38763,8 @@ $root.E2E = (function() {
                 for (var j = 0; j < message.submessages.length; ++j)
                     object.submessages[j] = $root.E2E.AIRichResponseMessage.AIRichResponseSubMessage.toObject(message.submessages[j], options);
             }
-            if (message.abstractData != null && message.hasOwnProperty("abstractData"))
-                object.abstractData = $root.E2E.AIRichResponseMessage.AIRichResponseAbstractData.toObject(message.abstractData, options);
+            if (message.unifiedResponse != null && message.hasOwnProperty("unifiedResponse"))
+                object.unifiedResponse = $root.E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse.toObject(message.unifiedResponse, options);
             return object;
         };
 
@@ -36425,218 +38793,6 @@ $root.E2E = (function() {
             }
             return typeUrlPrefix + "/E2E.AIRichResponseMessage";
         };
-
-        AIRichResponseMessage.AIRichResponseAbstractData = (function() {
-
-            /**
-             * Properties of a AIRichResponseAbstractData.
-             * @memberof E2E.AIRichResponseMessage
-             * @interface IAIRichResponseAbstractData
-             * @property {Uint8Array|null} [data] AIRichResponseAbstractData data
-             */
-
-            /**
-             * Constructs a new AIRichResponseAbstractData.
-             * @memberof E2E.AIRichResponseMessage
-             * @classdesc Represents a AIRichResponseAbstractData.
-             * @implements IAIRichResponseAbstractData
-             * @constructor
-             * @param {E2E.AIRichResponseMessage.IAIRichResponseAbstractData=} [properties] Properties to set
-             */
-            function AIRichResponseAbstractData(properties) {
-                if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
-                            this[keys[i]] = properties[keys[i]];
-            }
-
-            /**
-             * AIRichResponseAbstractData data.
-             * @member {Uint8Array} data
-             * @memberof E2E.AIRichResponseMessage.AIRichResponseAbstractData
-             * @instance
-             */
-            AIRichResponseAbstractData.prototype.data = $util.newBuffer([]);
-
-            /**
-             * Creates a new AIRichResponseAbstractData instance using the specified properties.
-             * @function create
-             * @memberof E2E.AIRichResponseMessage.AIRichResponseAbstractData
-             * @static
-             * @param {E2E.AIRichResponseMessage.IAIRichResponseAbstractData=} [properties] Properties to set
-             * @returns {E2E.AIRichResponseMessage.AIRichResponseAbstractData} AIRichResponseAbstractData instance
-             */
-            AIRichResponseAbstractData.create = function create(properties) {
-                return new AIRichResponseAbstractData(properties);
-            };
-
-            /**
-             * Encodes the specified AIRichResponseAbstractData message. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseAbstractData.verify|verify} messages.
-             * @function encode
-             * @memberof E2E.AIRichResponseMessage.AIRichResponseAbstractData
-             * @static
-             * @param {E2E.AIRichResponseMessage.IAIRichResponseAbstractData} message AIRichResponseAbstractData message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            AIRichResponseAbstractData.encode = function encode(message, writer) {
-                if (!writer)
-                    writer = $Writer.create();
-                if (message.data != null && Object.hasOwnProperty.call(message, "data"))
-                    writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.data);
-                return writer;
-            };
-
-            /**
-             * Encodes the specified AIRichResponseAbstractData message, length delimited. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseAbstractData.verify|verify} messages.
-             * @function encodeDelimited
-             * @memberof E2E.AIRichResponseMessage.AIRichResponseAbstractData
-             * @static
-             * @param {E2E.AIRichResponseMessage.IAIRichResponseAbstractData} message AIRichResponseAbstractData message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            AIRichResponseAbstractData.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
-            };
-
-            /**
-             * Decodes a AIRichResponseAbstractData message from the specified reader or buffer.
-             * @function decode
-             * @memberof E2E.AIRichResponseMessage.AIRichResponseAbstractData
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @param {number} [length] Message length if known beforehand
-             * @returns {E2E.AIRichResponseMessage.AIRichResponseAbstractData} AIRichResponseAbstractData
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            AIRichResponseAbstractData.decode = function decode(reader, length) {
-                if (!(reader instanceof $Reader))
-                    reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseAbstractData();
-                while (reader.pos < end) {
-                    var tag = reader.uint32();
-                    switch (tag >>> 3) {
-                    case 1: {
-                            message.data = reader.bytes();
-                            break;
-                        }
-                    default:
-                        reader.skipType(tag & 7);
-                        break;
-                    }
-                }
-                return message;
-            };
-
-            /**
-             * Decodes a AIRichResponseAbstractData message from the specified reader or buffer, length delimited.
-             * @function decodeDelimited
-             * @memberof E2E.AIRichResponseMessage.AIRichResponseAbstractData
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @returns {E2E.AIRichResponseMessage.AIRichResponseAbstractData} AIRichResponseAbstractData
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            AIRichResponseAbstractData.decodeDelimited = function decodeDelimited(reader) {
-                if (!(reader instanceof $Reader))
-                    reader = new $Reader(reader);
-                return this.decode(reader, reader.uint32());
-            };
-
-            /**
-             * Verifies a AIRichResponseAbstractData message.
-             * @function verify
-             * @memberof E2E.AIRichResponseMessage.AIRichResponseAbstractData
-             * @static
-             * @param {Object.<string,*>} message Plain object to verify
-             * @returns {string|null} `null` if valid, otherwise the reason why it is not
-             */
-            AIRichResponseAbstractData.verify = function verify(message) {
-                if (typeof message !== "object" || message === null)
-                    return "object expected";
-                if (message.data != null && message.hasOwnProperty("data"))
-                    if (!(message.data && typeof message.data.length === "number" || $util.isString(message.data)))
-                        return "data: buffer expected";
-                return null;
-            };
-
-            /**
-             * Creates a AIRichResponseAbstractData message from a plain object. Also converts values to their respective internal types.
-             * @function fromObject
-             * @memberof E2E.AIRichResponseMessage.AIRichResponseAbstractData
-             * @static
-             * @param {Object.<string,*>} object Plain object
-             * @returns {E2E.AIRichResponseMessage.AIRichResponseAbstractData} AIRichResponseAbstractData
-             */
-            AIRichResponseAbstractData.fromObject = function fromObject(object) {
-                if (object instanceof $root.E2E.AIRichResponseMessage.AIRichResponseAbstractData)
-                    return object;
-                var message = new $root.E2E.AIRichResponseMessage.AIRichResponseAbstractData();
-                if (object.data != null)
-                    if (typeof object.data === "string")
-                        $util.base64.decode(object.data, message.data = $util.newBuffer($util.base64.length(object.data)), 0);
-                    else if (object.data.length >= 0)
-                        message.data = object.data;
-                return message;
-            };
-
-            /**
-             * Creates a plain object from a AIRichResponseAbstractData message. Also converts values to other types if specified.
-             * @function toObject
-             * @memberof E2E.AIRichResponseMessage.AIRichResponseAbstractData
-             * @static
-             * @param {E2E.AIRichResponseMessage.AIRichResponseAbstractData} message AIRichResponseAbstractData
-             * @param {$protobuf.IConversionOptions} [options] Conversion options
-             * @returns {Object.<string,*>} Plain object
-             */
-            AIRichResponseAbstractData.toObject = function toObject(message, options) {
-                if (!options)
-                    options = {};
-                var object = {};
-                if (options.defaults)
-                    if (options.bytes === String)
-                        object.data = "";
-                    else {
-                        object.data = [];
-                        if (options.bytes !== Array)
-                            object.data = $util.newBuffer(object.data);
-                    }
-                if (message.data != null && message.hasOwnProperty("data"))
-                    object.data = options.bytes === String ? $util.base64.encode(message.data, 0, message.data.length) : options.bytes === Array ? Array.prototype.slice.call(message.data) : message.data;
-                return object;
-            };
-
-            /**
-             * Converts this AIRichResponseAbstractData to JSON.
-             * @function toJSON
-             * @memberof E2E.AIRichResponseMessage.AIRichResponseAbstractData
-             * @instance
-             * @returns {Object.<string,*>} JSON object
-             */
-            AIRichResponseAbstractData.prototype.toJSON = function toJSON() {
-                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-            };
-
-            /**
-             * Gets the default type url for AIRichResponseAbstractData
-             * @function getTypeUrl
-             * @memberof E2E.AIRichResponseMessage.AIRichResponseAbstractData
-             * @static
-             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns {string} The default type url
-             */
-            AIRichResponseAbstractData.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-                if (typeUrlPrefix === undefined) {
-                    typeUrlPrefix = "type.googleapis.com";
-                }
-                return typeUrlPrefix + "/E2E.AIRichResponseMessage.AIRichResponseAbstractData";
-            };
-
-            return AIRichResponseAbstractData;
-        })();
 
         AIRichResponseMessage.AIRichResponseCodeMetadata = (function() {
 
@@ -36736,12 +38892,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseCodeMetadata.decode = function decode(reader, length) {
+            AIRichResponseCodeMetadata.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseCodeMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.codeLanguage = reader.string();
@@ -36979,12 +39137,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                AIRichResponseCodeBlock.decode = function decode(reader, length) {
+                AIRichResponseCodeBlock.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseCodeMetadata.AIRichResponseCodeBlock();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.highlightType = reader.int32();
@@ -37272,12 +39432,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseContentItemsMetadata.decode = function decode(reader, length) {
+            AIRichResponseContentItemsMetadata.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             if (!(message.itemsMetadata && message.itemsMetadata.length))
@@ -37537,12 +39699,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                AIRichResponseContentItemMetadata.decode = function decode(reader, length) {
+                AIRichResponseContentItemMetadata.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.reelItem = $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem.decode(reader, reader.uint32());
@@ -37783,12 +39947,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                AIRichResponseReelItem.decode = function decode(reader, length) {
+                AIRichResponseReelItem.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseContentItemsMetadata.AIRichResponseReelItem();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.title = reader.string();
@@ -38073,12 +40239,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseDynamicMetadata.decode = function decode(reader, length) {
+            AIRichResponseDynamicMetadata.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseDynamicMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.type = reader.int32();
@@ -38380,12 +40548,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseGridImageMetadata.decode = function decode(reader, length) {
+            AIRichResponseGridImageMetadata.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseGridImageMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.gridImageUrl = $root.E2E.AIRichResponseMessage.AIRichResponseImageURL.decode(reader, reader.uint32());
@@ -38642,12 +40812,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseImageURL.decode = function decode(reader, length) {
+            AIRichResponseImageURL.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseImageURL();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.imagePreviewUrl = reader.string();
@@ -38903,12 +41075,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseInlineImageMetadata.decode = function decode(reader, length) {
+            AIRichResponseInlineImageMetadata.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseInlineImageMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.imageUrl = $root.E2E.AIRichResponseMessage.AIRichResponseImageURL.decode(reader, reader.uint32());
@@ -39201,12 +41375,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseLatexMetadata.decode = function decode(reader, length) {
+            AIRichResponseLatexMetadata.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.text = reader.string();
@@ -39359,6 +41535,10 @@ $root.E2E = (function() {
                  * @property {number|null} [width] AIRichResponseLatexExpression width
                  * @property {number|null} [height] AIRichResponseLatexExpression height
                  * @property {number|null} [fontHeight] AIRichResponseLatexExpression fontHeight
+                 * @property {number|null} [imageTopPadding] AIRichResponseLatexExpression imageTopPadding
+                 * @property {number|null} [imageLeadingPadding] AIRichResponseLatexExpression imageLeadingPadding
+                 * @property {number|null} [imageBottomPadding] AIRichResponseLatexExpression imageBottomPadding
+                 * @property {number|null} [imageTrailingPadding] AIRichResponseLatexExpression imageTrailingPadding
                  */
 
                 /**
@@ -39417,6 +41597,38 @@ $root.E2E = (function() {
                 AIRichResponseLatexExpression.prototype.fontHeight = 0;
 
                 /**
+                 * AIRichResponseLatexExpression imageTopPadding.
+                 * @member {number} imageTopPadding
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @instance
+                 */
+                AIRichResponseLatexExpression.prototype.imageTopPadding = 0;
+
+                /**
+                 * AIRichResponseLatexExpression imageLeadingPadding.
+                 * @member {number} imageLeadingPadding
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @instance
+                 */
+                AIRichResponseLatexExpression.prototype.imageLeadingPadding = 0;
+
+                /**
+                 * AIRichResponseLatexExpression imageBottomPadding.
+                 * @member {number} imageBottomPadding
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @instance
+                 */
+                AIRichResponseLatexExpression.prototype.imageBottomPadding = 0;
+
+                /**
+                 * AIRichResponseLatexExpression imageTrailingPadding.
+                 * @member {number} imageTrailingPadding
+                 * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
+                 * @instance
+                 */
+                AIRichResponseLatexExpression.prototype.imageTrailingPadding = 0;
+
+                /**
                  * Creates a new AIRichResponseLatexExpression instance using the specified properties.
                  * @function create
                  * @memberof E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
@@ -39450,6 +41662,14 @@ $root.E2E = (function() {
                         writer.uint32(/* id 4, wireType 1 =*/33).double(message.height);
                     if (message.fontHeight != null && Object.hasOwnProperty.call(message, "fontHeight"))
                         writer.uint32(/* id 5, wireType 1 =*/41).double(message.fontHeight);
+                    if (message.imageTopPadding != null && Object.hasOwnProperty.call(message, "imageTopPadding"))
+                        writer.uint32(/* id 6, wireType 1 =*/49).double(message.imageTopPadding);
+                    if (message.imageLeadingPadding != null && Object.hasOwnProperty.call(message, "imageLeadingPadding"))
+                        writer.uint32(/* id 7, wireType 1 =*/57).double(message.imageLeadingPadding);
+                    if (message.imageBottomPadding != null && Object.hasOwnProperty.call(message, "imageBottomPadding"))
+                        writer.uint32(/* id 8, wireType 1 =*/65).double(message.imageBottomPadding);
+                    if (message.imageTrailingPadding != null && Object.hasOwnProperty.call(message, "imageTrailingPadding"))
+                        writer.uint32(/* id 9, wireType 1 =*/73).double(message.imageTrailingPadding);
                     return writer;
                 };
 
@@ -39477,12 +41697,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                AIRichResponseLatexExpression.decode = function decode(reader, length) {
+                AIRichResponseLatexExpression.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseLatexMetadata.AIRichResponseLatexExpression();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.latexExpression = reader.string();
@@ -39502,6 +41724,22 @@ $root.E2E = (function() {
                             }
                         case 5: {
                                 message.fontHeight = reader.double();
+                                break;
+                            }
+                        case 6: {
+                                message.imageTopPadding = reader.double();
+                                break;
+                            }
+                        case 7: {
+                                message.imageLeadingPadding = reader.double();
+                                break;
+                            }
+                        case 8: {
+                                message.imageBottomPadding = reader.double();
+                                break;
+                            }
+                        case 9: {
+                                message.imageTrailingPadding = reader.double();
                                 break;
                             }
                         default:
@@ -39554,6 +41792,18 @@ $root.E2E = (function() {
                     if (message.fontHeight != null && message.hasOwnProperty("fontHeight"))
                         if (typeof message.fontHeight !== "number")
                             return "fontHeight: number expected";
+                    if (message.imageTopPadding != null && message.hasOwnProperty("imageTopPadding"))
+                        if (typeof message.imageTopPadding !== "number")
+                            return "imageTopPadding: number expected";
+                    if (message.imageLeadingPadding != null && message.hasOwnProperty("imageLeadingPadding"))
+                        if (typeof message.imageLeadingPadding !== "number")
+                            return "imageLeadingPadding: number expected";
+                    if (message.imageBottomPadding != null && message.hasOwnProperty("imageBottomPadding"))
+                        if (typeof message.imageBottomPadding !== "number")
+                            return "imageBottomPadding: number expected";
+                    if (message.imageTrailingPadding != null && message.hasOwnProperty("imageTrailingPadding"))
+                        if (typeof message.imageTrailingPadding !== "number")
+                            return "imageTrailingPadding: number expected";
                     return null;
                 };
 
@@ -39579,6 +41829,14 @@ $root.E2E = (function() {
                         message.height = Number(object.height);
                     if (object.fontHeight != null)
                         message.fontHeight = Number(object.fontHeight);
+                    if (object.imageTopPadding != null)
+                        message.imageTopPadding = Number(object.imageTopPadding);
+                    if (object.imageLeadingPadding != null)
+                        message.imageLeadingPadding = Number(object.imageLeadingPadding);
+                    if (object.imageBottomPadding != null)
+                        message.imageBottomPadding = Number(object.imageBottomPadding);
+                    if (object.imageTrailingPadding != null)
+                        message.imageTrailingPadding = Number(object.imageTrailingPadding);
                     return message;
                 };
 
@@ -39601,6 +41859,10 @@ $root.E2E = (function() {
                         object.width = 0;
                         object.height = 0;
                         object.fontHeight = 0;
+                        object.imageTopPadding = 0;
+                        object.imageLeadingPadding = 0;
+                        object.imageBottomPadding = 0;
+                        object.imageTrailingPadding = 0;
                     }
                     if (message.latexExpression != null && message.hasOwnProperty("latexExpression"))
                         object.latexExpression = message.latexExpression;
@@ -39612,6 +41874,14 @@ $root.E2E = (function() {
                         object.height = options.json && !isFinite(message.height) ? String(message.height) : message.height;
                     if (message.fontHeight != null && message.hasOwnProperty("fontHeight"))
                         object.fontHeight = options.json && !isFinite(message.fontHeight) ? String(message.fontHeight) : message.fontHeight;
+                    if (message.imageTopPadding != null && message.hasOwnProperty("imageTopPadding"))
+                        object.imageTopPadding = options.json && !isFinite(message.imageTopPadding) ? String(message.imageTopPadding) : message.imageTopPadding;
+                    if (message.imageLeadingPadding != null && message.hasOwnProperty("imageLeadingPadding"))
+                        object.imageLeadingPadding = options.json && !isFinite(message.imageLeadingPadding) ? String(message.imageLeadingPadding) : message.imageLeadingPadding;
+                    if (message.imageBottomPadding != null && message.hasOwnProperty("imageBottomPadding"))
+                        object.imageBottomPadding = options.json && !isFinite(message.imageBottomPadding) ? String(message.imageBottomPadding) : message.imageBottomPadding;
+                    if (message.imageTrailingPadding != null && message.hasOwnProperty("imageTrailingPadding"))
+                        object.imageTrailingPadding = options.json && !isFinite(message.imageTrailingPadding) ? String(message.imageTrailingPadding) : message.imageTrailingPadding;
                     return object;
                 };
 
@@ -39789,12 +42059,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseMapMetadata.decode = function decode(reader, length) {
+            AIRichResponseMapMetadata.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.centerLatitude = reader.double();
@@ -40114,12 +42386,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                AIRichResponseMapAnnotation.decode = function decode(reader, length) {
+                AIRichResponseMapAnnotation.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseMapMetadata.AIRichResponseMapAnnotation();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.annotationNumber = reader.uint32();
@@ -40482,12 +42756,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseSubMessage.decode = function decode(reader, length) {
+            AIRichResponseSubMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseSubMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.messageType = reader.int32();
@@ -40925,12 +43201,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseTableMetadata.decode = function decode(reader, length) {
+            AIRichResponseTableMetadata.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseTableMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             if (!(message.rows && message.rows.length))
@@ -41157,12 +43435,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                AIRichResponseTableRow.decode = function decode(reader, length) {
+                AIRichResponseTableRow.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseTableMetadata.AIRichResponseTableRow();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.items && message.items.length))
@@ -41305,6 +43585,220 @@ $root.E2E = (function() {
             return AIRichResponseTableMetadata;
         })();
 
+        AIRichResponseMessage.AIRichResponseUnifiedResponse = (function() {
+
+            /**
+             * Properties of a AIRichResponseUnifiedResponse.
+             * @memberof E2E.AIRichResponseMessage
+             * @interface IAIRichResponseUnifiedResponse
+             * @property {Uint8Array|null} [data] AIRichResponseUnifiedResponse data
+             */
+
+            /**
+             * Constructs a new AIRichResponseUnifiedResponse.
+             * @memberof E2E.AIRichResponseMessage
+             * @classdesc Represents a AIRichResponseUnifiedResponse.
+             * @implements IAIRichResponseUnifiedResponse
+             * @constructor
+             * @param {E2E.AIRichResponseMessage.IAIRichResponseUnifiedResponse=} [properties] Properties to set
+             */
+            function AIRichResponseUnifiedResponse(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * AIRichResponseUnifiedResponse data.
+             * @member {Uint8Array} data
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse
+             * @instance
+             */
+            AIRichResponseUnifiedResponse.prototype.data = $util.newBuffer([]);
+
+            /**
+             * Creates a new AIRichResponseUnifiedResponse instance using the specified properties.
+             * @function create
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse
+             * @static
+             * @param {E2E.AIRichResponseMessage.IAIRichResponseUnifiedResponse=} [properties] Properties to set
+             * @returns {E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse} AIRichResponseUnifiedResponse instance
+             */
+            AIRichResponseUnifiedResponse.create = function create(properties) {
+                return new AIRichResponseUnifiedResponse(properties);
+            };
+
+            /**
+             * Encodes the specified AIRichResponseUnifiedResponse message. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse
+             * @static
+             * @param {E2E.AIRichResponseMessage.IAIRichResponseUnifiedResponse} message AIRichResponseUnifiedResponse message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            AIRichResponseUnifiedResponse.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.data);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified AIRichResponseUnifiedResponse message, length delimited. Does not implicitly {@link E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse
+             * @static
+             * @param {E2E.AIRichResponseMessage.IAIRichResponseUnifiedResponse} message AIRichResponseUnifiedResponse message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            AIRichResponseUnifiedResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a AIRichResponseUnifiedResponse message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse} AIRichResponseUnifiedResponse
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            AIRichResponseUnifiedResponse.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.data = reader.bytes();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a AIRichResponseUnifiedResponse message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse} AIRichResponseUnifiedResponse
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            AIRichResponseUnifiedResponse.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a AIRichResponseUnifiedResponse message.
+             * @function verify
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            AIRichResponseUnifiedResponse.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.data != null && message.hasOwnProperty("data"))
+                    if (!(message.data && typeof message.data.length === "number" || $util.isString(message.data)))
+                        return "data: buffer expected";
+                return null;
+            };
+
+            /**
+             * Creates a AIRichResponseUnifiedResponse message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse} AIRichResponseUnifiedResponse
+             */
+            AIRichResponseUnifiedResponse.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse)
+                    return object;
+                var message = new $root.E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse();
+                if (object.data != null)
+                    if (typeof object.data === "string")
+                        $util.base64.decode(object.data, message.data = $util.newBuffer($util.base64.length(object.data)), 0);
+                    else if (object.data.length >= 0)
+                        message.data = object.data;
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a AIRichResponseUnifiedResponse message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse
+             * @static
+             * @param {E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse} message AIRichResponseUnifiedResponse
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            AIRichResponseUnifiedResponse.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    if (options.bytes === String)
+                        object.data = "";
+                    else {
+                        object.data = [];
+                        if (options.bytes !== Array)
+                            object.data = $util.newBuffer(object.data);
+                    }
+                if (message.data != null && message.hasOwnProperty("data"))
+                    object.data = options.bytes === String ? $util.base64.encode(message.data, 0, message.data.length) : options.bytes === Array ? Array.prototype.slice.call(message.data) : message.data;
+                return object;
+            };
+
+            /**
+             * Converts this AIRichResponseUnifiedResponse to JSON.
+             * @function toJSON
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            AIRichResponseUnifiedResponse.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for AIRichResponseUnifiedResponse
+             * @function getTypeUrl
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            AIRichResponseUnifiedResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse";
+            };
+
+            return AIRichResponseUnifiedResponse;
+        })();
+
         return AIRichResponseMessage;
     })();
 
@@ -41404,12 +43898,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotMemoryFact.decode = function decode(reader, length) {
+        BotMemoryFact.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotMemoryFact();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.fact = reader.string();
@@ -41646,12 +44142,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotMemoryMetadata.decode = function decode(reader, length) {
+        BotMemoryMetadata.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotMemoryMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         if (!(message.addedFacts && message.addedFacts.length))
@@ -41913,12 +44411,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotLinkedAccount.decode = function decode(reader, length) {
+        BotLinkedAccount.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotLinkedAccount();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.type = reader.int32();
@@ -42065,6 +44565,7 @@ $root.E2E = (function() {
          * @interface IBotLinkedAccountsMetadata
          * @property {Array.<E2E.IBotLinkedAccount>|null} [accounts] BotLinkedAccountsMetadata accounts
          * @property {Uint8Array|null} [acAuthTokens] BotLinkedAccountsMetadata acAuthTokens
+         * @property {number|null} [acErrorCode] BotLinkedAccountsMetadata acErrorCode
          */
 
         /**
@@ -42100,6 +44601,14 @@ $root.E2E = (function() {
         BotLinkedAccountsMetadata.prototype.acAuthTokens = $util.newBuffer([]);
 
         /**
+         * BotLinkedAccountsMetadata acErrorCode.
+         * @member {number} acErrorCode
+         * @memberof E2E.BotLinkedAccountsMetadata
+         * @instance
+         */
+        BotLinkedAccountsMetadata.prototype.acErrorCode = 0;
+
+        /**
          * Creates a new BotLinkedAccountsMetadata instance using the specified properties.
          * @function create
          * @memberof E2E.BotLinkedAccountsMetadata
@@ -42128,6 +44637,8 @@ $root.E2E = (function() {
                     $root.E2E.BotLinkedAccount.encode(message.accounts[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             if (message.acAuthTokens != null && Object.hasOwnProperty.call(message, "acAuthTokens"))
                 writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.acAuthTokens);
+            if (message.acErrorCode != null && Object.hasOwnProperty.call(message, "acErrorCode"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.acErrorCode);
             return writer;
         };
 
@@ -42155,12 +44666,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotLinkedAccountsMetadata.decode = function decode(reader, length) {
+        BotLinkedAccountsMetadata.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotLinkedAccountsMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         if (!(message.accounts && message.accounts.length))
@@ -42170,6 +44683,10 @@ $root.E2E = (function() {
                     }
                 case 2: {
                         message.acAuthTokens = reader.bytes();
+                        break;
+                    }
+                case 3: {
+                        message.acErrorCode = reader.int32();
                         break;
                     }
                 default:
@@ -42219,6 +44736,9 @@ $root.E2E = (function() {
             if (message.acAuthTokens != null && message.hasOwnProperty("acAuthTokens"))
                 if (!(message.acAuthTokens && typeof message.acAuthTokens.length === "number" || $util.isString(message.acAuthTokens)))
                     return "acAuthTokens: buffer expected";
+            if (message.acErrorCode != null && message.hasOwnProperty("acErrorCode"))
+                if (!$util.isInteger(message.acErrorCode))
+                    return "acErrorCode: integer expected";
             return null;
         };
 
@@ -42249,6 +44769,8 @@ $root.E2E = (function() {
                     $util.base64.decode(object.acAuthTokens, message.acAuthTokens = $util.newBuffer($util.base64.length(object.acAuthTokens)), 0);
                 else if (object.acAuthTokens.length >= 0)
                     message.acAuthTokens = object.acAuthTokens;
+            if (object.acErrorCode != null)
+                message.acErrorCode = object.acErrorCode | 0;
             return message;
         };
 
@@ -42267,7 +44789,7 @@ $root.E2E = (function() {
             var object = {};
             if (options.arrays || options.defaults)
                 object.accounts = [];
-            if (options.defaults)
+            if (options.defaults) {
                 if (options.bytes === String)
                     object.acAuthTokens = "";
                 else {
@@ -42275,6 +44797,8 @@ $root.E2E = (function() {
                     if (options.bytes !== Array)
                         object.acAuthTokens = $util.newBuffer(object.acAuthTokens);
                 }
+                object.acErrorCode = 0;
+            }
             if (message.accounts && message.accounts.length) {
                 object.accounts = [];
                 for (var j = 0; j < message.accounts.length; ++j)
@@ -42282,6 +44806,8 @@ $root.E2E = (function() {
             }
             if (message.acAuthTokens != null && message.hasOwnProperty("acAuthTokens"))
                 object.acAuthTokens = options.bytes === String ? $util.base64.encode(message.acAuthTokens, 0, message.acAuthTokens.length) : options.bytes === Array ? Array.prototype.slice.call(message.acAuthTokens) : message.acAuthTokens;
+            if (message.acErrorCode != null && message.hasOwnProperty("acErrorCode"))
+                object.acErrorCode = message.acErrorCode;
             return object;
         };
 
@@ -42410,12 +44936,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotPromptSuggestion.decode = function decode(reader, length) {
+        BotPromptSuggestion.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotPromptSuggestion();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.prompt = reader.string();
@@ -42628,12 +45156,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotPromptSuggestions.decode = function decode(reader, length) {
+        BotPromptSuggestions.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotPromptSuggestions();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         if (!(message.suggestions && message.suggestions.length))
@@ -42885,12 +45415,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotSuggestedPromptMetadata.decode = function decode(reader, length) {
+        BotSuggestedPromptMetadata.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotSuggestedPromptMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         if (!(message.suggestedPrompts && message.suggestedPrompts.length))
@@ -43266,12 +45798,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotPluginMetadata.decode = function decode(reader, length) {
+        BotPluginMetadata.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotPluginMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.provider = reader.int32();
@@ -43786,12 +46320,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotAvatarMetadata.decode = function decode(reader, length) {
+        BotAvatarMetadata.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotAvatarMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.sentiment = reader.uint32();
@@ -44003,6 +46539,9 @@ $root.E2E = (function() {
          * @property {E2E.IUrlTrackingMap|null} [urlTrackingMap] ContextInfo urlTrackingMap
          * @property {E2E.ContextInfo.PairedMediaType|null} [pairedMediaType] ContextInfo pairedMediaType
          * @property {number|null} [rankingVersion] ContextInfo rankingVersion
+         * @property {E2E.IMemberLabel|null} [memberLabel] ContextInfo memberLabel
+         * @property {boolean|null} [isQuestion] ContextInfo isQuestion
+         * @property {E2E.ContextInfo.StatusSourceType|null} [statusSourceType] ContextInfo statusSourceType
          */
 
         /**
@@ -44375,6 +46914,30 @@ $root.E2E = (function() {
         ContextInfo.prototype.rankingVersion = 0;
 
         /**
+         * ContextInfo memberLabel.
+         * @member {E2E.IMemberLabel|null|undefined} memberLabel
+         * @memberof E2E.ContextInfo
+         * @instance
+         */
+        ContextInfo.prototype.memberLabel = null;
+
+        /**
+         * ContextInfo isQuestion.
+         * @member {boolean} isQuestion
+         * @memberof E2E.ContextInfo
+         * @instance
+         */
+        ContextInfo.prototype.isQuestion = false;
+
+        /**
+         * ContextInfo statusSourceType.
+         * @member {E2E.ContextInfo.StatusSourceType} statusSourceType
+         * @memberof E2E.ContextInfo
+         * @instance
+         */
+        ContextInfo.prototype.statusSourceType = 0;
+
+        /**
          * Creates a new ContextInfo instance using the specified properties.
          * @function create
          * @memberof E2E.ContextInfo
@@ -44488,6 +47051,12 @@ $root.E2E = (function() {
                 writer.uint32(/* id 59, wireType 0 =*/472).int32(message.pairedMediaType);
             if (message.rankingVersion != null && Object.hasOwnProperty.call(message, "rankingVersion"))
                 writer.uint32(/* id 60, wireType 0 =*/480).uint32(message.rankingVersion);
+            if (message.memberLabel != null && Object.hasOwnProperty.call(message, "memberLabel"))
+                $root.E2E.MemberLabel.encode(message.memberLabel, writer.uint32(/* id 62, wireType 2 =*/498).fork()).ldelim();
+            if (message.isQuestion != null && Object.hasOwnProperty.call(message, "isQuestion"))
+                writer.uint32(/* id 63, wireType 0 =*/504).bool(message.isQuestion);
+            if (message.statusSourceType != null && Object.hasOwnProperty.call(message, "statusSourceType"))
+                writer.uint32(/* id 64, wireType 0 =*/512).int32(message.statusSourceType);
             return writer;
         };
 
@@ -44515,12 +47084,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ContextInfo.decode = function decode(reader, length) {
+        ContextInfo.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ContextInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.stanzaId = reader.string();
@@ -44700,6 +47271,18 @@ $root.E2E = (function() {
                     }
                 case 60: {
                         message.rankingVersion = reader.uint32();
+                        break;
+                    }
+                case 62: {
+                        message.memberLabel = $root.E2E.MemberLabel.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 63: {
+                        message.isQuestion = reader.bool();
+                        break;
+                    }
+                case 64: {
+                        message.statusSourceType = reader.int32();
                         break;
                     }
                 default:
@@ -44914,11 +47497,33 @@ $root.E2E = (function() {
                 case 2:
                 case 3:
                 case 4:
+                case 5:
+                case 6:
                     break;
                 }
             if (message.rankingVersion != null && message.hasOwnProperty("rankingVersion"))
                 if (!$util.isInteger(message.rankingVersion))
                     return "rankingVersion: integer expected";
+            if (message.memberLabel != null && message.hasOwnProperty("memberLabel")) {
+                var error = $root.E2E.MemberLabel.verify(message.memberLabel);
+                if (error)
+                    return "memberLabel." + error;
+            }
+            if (message.isQuestion != null && message.hasOwnProperty("isQuestion"))
+                if (typeof message.isQuestion !== "boolean")
+                    return "isQuestion: boolean expected";
+            if (message.statusSourceType != null && message.hasOwnProperty("statusSourceType"))
+                switch (message.statusSourceType) {
+                default:
+                    return "statusSourceType: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                    break;
+                }
             return null;
         };
 
@@ -45131,9 +47736,56 @@ $root.E2E = (function() {
             case 4:
                 message.pairedMediaType = 4;
                 break;
+            case "MOTION_PHOTO_PARENT":
+            case 5:
+                message.pairedMediaType = 5;
+                break;
+            case "MOTION_PHOTO_CHILD":
+            case 6:
+                message.pairedMediaType = 6;
+                break;
             }
             if (object.rankingVersion != null)
                 message.rankingVersion = object.rankingVersion >>> 0;
+            if (object.memberLabel != null) {
+                if (typeof object.memberLabel !== "object")
+                    throw TypeError(".E2E.ContextInfo.memberLabel: object expected");
+                message.memberLabel = $root.E2E.MemberLabel.fromObject(object.memberLabel);
+            }
+            if (object.isQuestion != null)
+                message.isQuestion = Boolean(object.isQuestion);
+            switch (object.statusSourceType) {
+            default:
+                if (typeof object.statusSourceType === "number") {
+                    message.statusSourceType = object.statusSourceType;
+                    break;
+                }
+                break;
+            case "IMAGE":
+            case 0:
+                message.statusSourceType = 0;
+                break;
+            case "VIDEO":
+            case 1:
+                message.statusSourceType = 1;
+                break;
+            case "GIF":
+            case 2:
+                message.statusSourceType = 2;
+                break;
+            case "AUDIO":
+            case 3:
+                message.statusSourceType = 3;
+                break;
+            case "TEXT":
+            case 4:
+                message.statusSourceType = 4;
+                break;
+            case "MUSIC_STANDALONE":
+            case 5:
+                message.statusSourceType = 5;
+                break;
+            }
             return message;
         };
 
@@ -45219,6 +47871,9 @@ $root.E2E = (function() {
                 object.urlTrackingMap = null;
                 object.pairedMediaType = options.enums === String ? "NOT_PAIRED_MEDIA" : 0;
                 object.rankingVersion = 0;
+                object.memberLabel = null;
+                object.isQuestion = false;
+                object.statusSourceType = options.enums === String ? "IMAGE" : 0;
             }
             if (message.stanzaId != null && message.hasOwnProperty("stanzaId"))
                 object.stanzaId = message.stanzaId;
@@ -45317,6 +47972,12 @@ $root.E2E = (function() {
                 object.pairedMediaType = options.enums === String ? $root.E2E.ContextInfo.PairedMediaType[message.pairedMediaType] === undefined ? message.pairedMediaType : $root.E2E.ContextInfo.PairedMediaType[message.pairedMediaType] : message.pairedMediaType;
             if (message.rankingVersion != null && message.hasOwnProperty("rankingVersion"))
                 object.rankingVersion = message.rankingVersion;
+            if (message.memberLabel != null && message.hasOwnProperty("memberLabel"))
+                object.memberLabel = $root.E2E.MemberLabel.toObject(message.memberLabel, options);
+            if (message.isQuestion != null && message.hasOwnProperty("isQuestion"))
+                object.isQuestion = message.isQuestion;
+            if (message.statusSourceType != null && message.hasOwnProperty("statusSourceType"))
+                object.statusSourceType = options.enums === String ? $root.E2E.ContextInfo.StatusSourceType[message.statusSourceType] === undefined ? message.statusSourceType : $root.E2E.ContextInfo.StatusSourceType[message.statusSourceType] : message.statusSourceType;
             return object;
         };
 
@@ -45464,12 +48125,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AdReplyInfo.decode = function decode(reader, length) {
+            AdReplyInfo.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ContextInfo.AdReplyInfo();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.advertiserName = reader.string();
@@ -45753,12 +48416,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            BusinessMessageForwardInfo.decode = function decode(reader, length) {
+            BusinessMessageForwardInfo.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ContextInfo.BusinessMessageForwardInfo();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.businessOwnerJid = reader.string();
@@ -45980,12 +48645,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            DataSharingContext.decode = function decode(reader, length) {
+            DataSharingContext.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ContextInfo.DataSharingContext();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.showMmDisclosure = reader.bool();
@@ -46269,12 +48936,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Parameters.decode = function decode(reader, length) {
+                Parameters.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ContextInfo.DataSharingContext.Parameters();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.key = reader.string();
@@ -46486,7 +49155,9 @@ $root.E2E = (function() {
              * @property {string|null} [ctaPayload] ExternalAdReplyInfo ctaPayload
              * @property {boolean|null} [disableNudge] ExternalAdReplyInfo disableNudge
              * @property {string|null} [originalImageUrl] ExternalAdReplyInfo originalImageUrl
+             * @property {string|null} [automatedGreetingMessageCtaType] ExternalAdReplyInfo automatedGreetingMessageCtaType
              * @property {boolean|null} [wtwaAdFormat] ExternalAdReplyInfo wtwaAdFormat
+             * @property {E2E.ContextInfo.ExternalAdReplyInfo.AdType|null} [adType] ExternalAdReplyInfo adType
              */
 
             /**
@@ -46681,12 +49352,28 @@ $root.E2E = (function() {
             ExternalAdReplyInfo.prototype.originalImageUrl = "";
 
             /**
+             * ExternalAdReplyInfo automatedGreetingMessageCtaType.
+             * @member {string} automatedGreetingMessageCtaType
+             * @memberof E2E.ContextInfo.ExternalAdReplyInfo
+             * @instance
+             */
+            ExternalAdReplyInfo.prototype.automatedGreetingMessageCtaType = "";
+
+            /**
              * ExternalAdReplyInfo wtwaAdFormat.
              * @member {boolean} wtwaAdFormat
              * @memberof E2E.ContextInfo.ExternalAdReplyInfo
              * @instance
              */
             ExternalAdReplyInfo.prototype.wtwaAdFormat = false;
+
+            /**
+             * ExternalAdReplyInfo adType.
+             * @member {E2E.ContextInfo.ExternalAdReplyInfo.AdType} adType
+             * @memberof E2E.ContextInfo.ExternalAdReplyInfo
+             * @instance
+             */
+            ExternalAdReplyInfo.prototype.adType = 0;
 
             /**
              * Creates a new ExternalAdReplyInfo instance using the specified properties.
@@ -46756,8 +49443,12 @@ $root.E2E = (function() {
                     writer.uint32(/* id 21, wireType 0 =*/168).bool(message.disableNudge);
                 if (message.originalImageUrl != null && Object.hasOwnProperty.call(message, "originalImageUrl"))
                     writer.uint32(/* id 22, wireType 2 =*/178).string(message.originalImageUrl);
+                if (message.automatedGreetingMessageCtaType != null && Object.hasOwnProperty.call(message, "automatedGreetingMessageCtaType"))
+                    writer.uint32(/* id 23, wireType 2 =*/186).string(message.automatedGreetingMessageCtaType);
                 if (message.wtwaAdFormat != null && Object.hasOwnProperty.call(message, "wtwaAdFormat"))
-                    writer.uint32(/* id 23, wireType 0 =*/184).bool(message.wtwaAdFormat);
+                    writer.uint32(/* id 24, wireType 0 =*/192).bool(message.wtwaAdFormat);
+                if (message.adType != null && Object.hasOwnProperty.call(message, "adType"))
+                    writer.uint32(/* id 25, wireType 0 =*/200).int32(message.adType);
                 return writer;
             };
 
@@ -46785,12 +49476,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ExternalAdReplyInfo.decode = function decode(reader, length) {
+            ExternalAdReplyInfo.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ContextInfo.ExternalAdReplyInfo();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.title = reader.string();
@@ -46881,7 +49574,15 @@ $root.E2E = (function() {
                             break;
                         }
                     case 23: {
+                            message.automatedGreetingMessageCtaType = reader.string();
+                            break;
+                        }
+                    case 24: {
                             message.wtwaAdFormat = reader.bool();
+                            break;
+                        }
+                    case 25: {
+                            message.adType = reader.int32();
                             break;
                         }
                     default:
@@ -46991,9 +49692,20 @@ $root.E2E = (function() {
                 if (message.originalImageUrl != null && message.hasOwnProperty("originalImageUrl"))
                     if (!$util.isString(message.originalImageUrl))
                         return "originalImageUrl: string expected";
+                if (message.automatedGreetingMessageCtaType != null && message.hasOwnProperty("automatedGreetingMessageCtaType"))
+                    if (!$util.isString(message.automatedGreetingMessageCtaType))
+                        return "automatedGreetingMessageCtaType: string expected";
                 if (message.wtwaAdFormat != null && message.hasOwnProperty("wtwaAdFormat"))
                     if (typeof message.wtwaAdFormat !== "boolean")
                         return "wtwaAdFormat: boolean expected";
+                if (message.adType != null && message.hasOwnProperty("adType"))
+                    switch (message.adType) {
+                    default:
+                        return "adType: enum value expected";
+                    case 0:
+                    case 1:
+                        break;
+                    }
                 return null;
             };
 
@@ -47074,8 +49786,26 @@ $root.E2E = (function() {
                     message.disableNudge = Boolean(object.disableNudge);
                 if (object.originalImageUrl != null)
                     message.originalImageUrl = String(object.originalImageUrl);
+                if (object.automatedGreetingMessageCtaType != null)
+                    message.automatedGreetingMessageCtaType = String(object.automatedGreetingMessageCtaType);
                 if (object.wtwaAdFormat != null)
                     message.wtwaAdFormat = Boolean(object.wtwaAdFormat);
+                switch (object.adType) {
+                default:
+                    if (typeof object.adType === "number") {
+                        message.adType = object.adType;
+                        break;
+                    }
+                    break;
+                case "CTWA":
+                case 0:
+                    message.adType = 0;
+                    break;
+                case "CAWC":
+                case 1:
+                    message.adType = 1;
+                    break;
+                }
                 return message;
             };
 
@@ -47121,7 +49851,9 @@ $root.E2E = (function() {
                     object.ctaPayload = "";
                     object.disableNudge = false;
                     object.originalImageUrl = "";
+                    object.automatedGreetingMessageCtaType = "";
                     object.wtwaAdFormat = false;
+                    object.adType = options.enums === String ? "CTWA" : 0;
                 }
                 if (message.title != null && message.hasOwnProperty("title"))
                     object.title = message.title;
@@ -47167,8 +49899,12 @@ $root.E2E = (function() {
                     object.disableNudge = message.disableNudge;
                 if (message.originalImageUrl != null && message.hasOwnProperty("originalImageUrl"))
                     object.originalImageUrl = message.originalImageUrl;
+                if (message.automatedGreetingMessageCtaType != null && message.hasOwnProperty("automatedGreetingMessageCtaType"))
+                    object.automatedGreetingMessageCtaType = message.automatedGreetingMessageCtaType;
                 if (message.wtwaAdFormat != null && message.hasOwnProperty("wtwaAdFormat"))
                     object.wtwaAdFormat = message.wtwaAdFormat;
+                if (message.adType != null && message.hasOwnProperty("adType"))
+                    object.adType = options.enums === String ? $root.E2E.ContextInfo.ExternalAdReplyInfo.AdType[message.adType] === undefined ? message.adType : $root.E2E.ContextInfo.ExternalAdReplyInfo.AdType[message.adType] : message.adType;
                 return object;
             };
 
@@ -47197,6 +49933,20 @@ $root.E2E = (function() {
                 }
                 return typeUrlPrefix + "/E2E.ContextInfo.ExternalAdReplyInfo";
             };
+
+            /**
+             * AdType enum.
+             * @name E2E.ContextInfo.ExternalAdReplyInfo.AdType
+             * @enum {number}
+             * @property {number} CTWA=0 CTWA value
+             * @property {number} CAWC=1 CAWC value
+             */
+            ExternalAdReplyInfo.AdType = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "CTWA"] = 0;
+                values[valuesById[1] = "CAWC"] = 1;
+                return values;
+            })();
 
             /**
              * MediaType enum.
@@ -47335,12 +50085,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            FeatureEligibilities.decode = function decode(reader, length) {
+            FeatureEligibilities.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ContextInfo.FeatureEligibilities();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.cannotBeReactedTo = reader.bool();
@@ -47597,12 +50349,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ForwardedAIBotMessageInfo.decode = function decode(reader, length) {
+            ForwardedAIBotMessageInfo.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ContextInfo.ForwardedAIBotMessageInfo();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.botName = reader.string();
@@ -47869,12 +50623,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ForwardedNewsletterMessageInfo.decode = function decode(reader, length) {
+            ForwardedNewsletterMessageInfo.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ContextInfo.ForwardedNewsletterMessageInfo();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.newsletterJid = reader.string();
@@ -48085,6 +50841,8 @@ $root.E2E = (function() {
          * @property {number} HD_VIDEO_CHILD=2 HD_VIDEO_CHILD value
          * @property {number} SD_IMAGE_PARENT=3 SD_IMAGE_PARENT value
          * @property {number} HD_IMAGE_CHILD=4 HD_IMAGE_CHILD value
+         * @property {number} MOTION_PHOTO_PARENT=5 MOTION_PHOTO_PARENT value
+         * @property {number} MOTION_PHOTO_CHILD=6 MOTION_PHOTO_CHILD value
          */
         ContextInfo.PairedMediaType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -48093,6 +50851,8 @@ $root.E2E = (function() {
             values[valuesById[2] = "HD_VIDEO_CHILD"] = 2;
             values[valuesById[3] = "SD_IMAGE_PARENT"] = 3;
             values[valuesById[4] = "HD_IMAGE_CHILD"] = 4;
+            values[valuesById[5] = "MOTION_PHOTO_PARENT"] = 5;
+            values[valuesById[6] = "MOTION_PHOTO_CHILD"] = 6;
             return values;
         })();
 
@@ -48109,6 +50869,28 @@ $root.E2E = (function() {
             values[valuesById[0] = "NONE"] = 0;
             values[valuesById[1] = "RESHARED_FROM_MENTION"] = 1;
             values[valuesById[2] = "RESHARED_FROM_POST"] = 2;
+            return values;
+        })();
+
+        /**
+         * StatusSourceType enum.
+         * @name E2E.ContextInfo.StatusSourceType
+         * @enum {number}
+         * @property {number} IMAGE=0 IMAGE value
+         * @property {number} VIDEO=1 VIDEO value
+         * @property {number} GIF=2 GIF value
+         * @property {number} AUDIO=3 AUDIO value
+         * @property {number} TEXT=4 TEXT value
+         * @property {number} MUSIC_STANDALONE=5 MUSIC_STANDALONE value
+         */
+        ContextInfo.StatusSourceType = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "IMAGE"] = 0;
+            values[valuesById[1] = "VIDEO"] = 1;
+            values[valuesById[2] = "GIF"] = 2;
+            values[valuesById[3] = "AUDIO"] = 3;
+            values[valuesById[4] = "TEXT"] = 4;
+            values[valuesById[5] = "MUSIC_STANDALONE"] = 5;
             return values;
         })();
 
@@ -48208,12 +50990,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            UTMInfo.decode = function decode(reader, length) {
+            UTMInfo.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ContextInfo.UTMInfo();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.utmSource = reader.string();
@@ -48431,6 +51215,9 @@ $root.E2E = (function() {
          * @property {E2E.IAIRichResponseMessage|null} [richResponseMessage] Message richResponseMessage
          * @property {E2E.Message.IStatusNotificationMessage|null} [statusNotificationMessage] Message statusNotificationMessage
          * @property {E2E.Message.IFutureProofMessage|null} [limitSharingMessage] Message limitSharingMessage
+         * @property {E2E.Message.IFutureProofMessage|null} [botTaskMessage] Message botTaskMessage
+         * @property {E2E.Message.IFutureProofMessage|null} [questionMessage] Message questionMessage
+         * @property {E2E.Message.IMessageHistoryNotice|null} [messageHistoryNotice] Message messageHistoryNotice
          */
 
         /**
@@ -49113,6 +51900,30 @@ $root.E2E = (function() {
         Message.prototype.limitSharingMessage = null;
 
         /**
+         * Message botTaskMessage.
+         * @member {E2E.Message.IFutureProofMessage|null|undefined} botTaskMessage
+         * @memberof E2E.Message
+         * @instance
+         */
+        Message.prototype.botTaskMessage = null;
+
+        /**
+         * Message questionMessage.
+         * @member {E2E.Message.IFutureProofMessage|null|undefined} questionMessage
+         * @memberof E2E.Message
+         * @instance
+         */
+        Message.prototype.questionMessage = null;
+
+        /**
+         * Message messageHistoryNotice.
+         * @member {E2E.Message.IMessageHistoryNotice|null|undefined} messageHistoryNotice
+         * @memberof E2E.Message
+         * @instance
+         */
+        Message.prototype.messageHistoryNotice = null;
+
+        /**
          * Creates a new Message instance using the specified properties.
          * @function create
          * @memberof E2E.Message
@@ -49302,6 +52113,12 @@ $root.E2E = (function() {
                 $root.E2E.Message.StatusNotificationMessage.encode(message.statusNotificationMessage, writer.uint32(/* id 98, wireType 2 =*/786).fork()).ldelim();
             if (message.limitSharingMessage != null && Object.hasOwnProperty.call(message, "limitSharingMessage"))
                 $root.E2E.Message.FutureProofMessage.encode(message.limitSharingMessage, writer.uint32(/* id 99, wireType 2 =*/794).fork()).ldelim();
+            if (message.botTaskMessage != null && Object.hasOwnProperty.call(message, "botTaskMessage"))
+                $root.E2E.Message.FutureProofMessage.encode(message.botTaskMessage, writer.uint32(/* id 100, wireType 2 =*/802).fork()).ldelim();
+            if (message.questionMessage != null && Object.hasOwnProperty.call(message, "questionMessage"))
+                $root.E2E.Message.FutureProofMessage.encode(message.questionMessage, writer.uint32(/* id 101, wireType 2 =*/810).fork()).ldelim();
+            if (message.messageHistoryNotice != null && Object.hasOwnProperty.call(message, "messageHistoryNotice"))
+                $root.E2E.Message.MessageHistoryNotice.encode(message.messageHistoryNotice, writer.uint32(/* id 102, wireType 2 =*/818).fork()).ldelim();
             return writer;
         };
 
@@ -49329,12 +52146,14 @@ $root.E2E = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Message.decode = function decode(reader, length) {
+        Message.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.conversation = reader.string();
@@ -49666,6 +52485,18 @@ $root.E2E = (function() {
                     }
                 case 99: {
                         message.limitSharingMessage = $root.E2E.Message.FutureProofMessage.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 100: {
+                        message.botTaskMessage = $root.E2E.Message.FutureProofMessage.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 101: {
+                        message.questionMessage = $root.E2E.Message.FutureProofMessage.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 102: {
+                        message.messageHistoryNotice = $root.E2E.Message.MessageHistoryNotice.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -50116,6 +52947,21 @@ $root.E2E = (function() {
                 if (error)
                     return "limitSharingMessage." + error;
             }
+            if (message.botTaskMessage != null && message.hasOwnProperty("botTaskMessage")) {
+                var error = $root.E2E.Message.FutureProofMessage.verify(message.botTaskMessage);
+                if (error)
+                    return "botTaskMessage." + error;
+            }
+            if (message.questionMessage != null && message.hasOwnProperty("questionMessage")) {
+                var error = $root.E2E.Message.FutureProofMessage.verify(message.questionMessage);
+                if (error)
+                    return "questionMessage." + error;
+            }
+            if (message.messageHistoryNotice != null && message.hasOwnProperty("messageHistoryNotice")) {
+                var error = $root.E2E.Message.MessageHistoryNotice.verify(message.messageHistoryNotice);
+                if (error)
+                    return "messageHistoryNotice." + error;
+            }
             return null;
         };
 
@@ -50543,6 +53389,21 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.Message.limitSharingMessage: object expected");
                 message.limitSharingMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.limitSharingMessage);
             }
+            if (object.botTaskMessage != null) {
+                if (typeof object.botTaskMessage !== "object")
+                    throw TypeError(".E2E.Message.botTaskMessage: object expected");
+                message.botTaskMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.botTaskMessage);
+            }
+            if (object.questionMessage != null) {
+                if (typeof object.questionMessage !== "object")
+                    throw TypeError(".E2E.Message.questionMessage: object expected");
+                message.questionMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.questionMessage);
+            }
+            if (object.messageHistoryNotice != null) {
+                if (typeof object.messageHistoryNotice !== "object")
+                    throw TypeError(".E2E.Message.messageHistoryNotice: object expected");
+                message.messageHistoryNotice = $root.E2E.Message.MessageHistoryNotice.fromObject(object.messageHistoryNotice);
+            }
             return message;
         };
 
@@ -50643,6 +53504,9 @@ $root.E2E = (function() {
                 object.richResponseMessage = null;
                 object.statusNotificationMessage = null;
                 object.limitSharingMessage = null;
+                object.botTaskMessage = null;
+                object.questionMessage = null;
+                object.messageHistoryNotice = null;
             }
             if (message.conversation != null && message.hasOwnProperty("conversation"))
                 object.conversation = message.conversation;
@@ -50810,6 +53674,12 @@ $root.E2E = (function() {
                 object.statusNotificationMessage = $root.E2E.Message.StatusNotificationMessage.toObject(message.statusNotificationMessage, options);
             if (message.limitSharingMessage != null && message.hasOwnProperty("limitSharingMessage"))
                 object.limitSharingMessage = $root.E2E.Message.FutureProofMessage.toObject(message.limitSharingMessage, options);
+            if (message.botTaskMessage != null && message.hasOwnProperty("botTaskMessage"))
+                object.botTaskMessage = $root.E2E.Message.FutureProofMessage.toObject(message.botTaskMessage, options);
+            if (message.questionMessage != null && message.hasOwnProperty("questionMessage"))
+                object.questionMessage = $root.E2E.Message.FutureProofMessage.toObject(message.questionMessage, options);
+            if (message.messageHistoryNotice != null && message.hasOwnProperty("messageHistoryNotice"))
+                object.messageHistoryNotice = $root.E2E.Message.MessageHistoryNotice.toObject(message.messageHistoryNotice, options);
             return object;
         };
 
@@ -50946,12 +53816,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AlbumMessage.decode = function decode(reader, length) {
+            AlbumMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.AlbumMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 2: {
                             message.expectedImageCount = reader.uint32();
@@ -51192,12 +54064,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AppStateFatalExceptionNotification.decode = function decode(reader, length) {
+            AppStateFatalExceptionNotification.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.AppStateFatalExceptionNotification();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             if (!(message.collectionNames && message.collectionNames.length))
@@ -51447,12 +54321,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AppStateSyncKey.decode = function decode(reader, length) {
+            AppStateSyncKey.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.AppStateSyncKey();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.keyId = $root.E2E.Message.AppStateSyncKeyId.decode(reader, reader.uint32());
@@ -51695,12 +54571,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AppStateSyncKeyData.decode = function decode(reader, length) {
+            AppStateSyncKeyData.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.AppStateSyncKeyData();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.keyData = reader.bytes();
@@ -51978,12 +54856,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AppStateSyncKeyFingerprint.decode = function decode(reader, length) {
+            AppStateSyncKeyFingerprint.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.AppStateSyncKeyFingerprint();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.rawId = reader.uint32();
@@ -52226,12 +55106,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AppStateSyncKeyId.decode = function decode(reader, length) {
+            AppStateSyncKeyId.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.AppStateSyncKeyId();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.keyId = reader.bytes();
@@ -52440,12 +55322,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AppStateSyncKeyRequest.decode = function decode(reader, length) {
+            AppStateSyncKeyRequest.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.AppStateSyncKeyRequest();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             if (!(message.keyIds && message.keyIds.length))
@@ -52664,12 +55548,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AppStateSyncKeyShare.decode = function decode(reader, length) {
+            AppStateSyncKeyShare.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.AppStateSyncKeyShare();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             if (!(message.keys && message.keys.length))
@@ -53051,12 +55937,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AudioMessage.decode = function decode(reader, length) {
+            AudioMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.AudioMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.url = reader.string();
@@ -53546,12 +56434,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            BCallMessage.decode = function decode(reader, length) {
+            BCallMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.BCallMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.sessionId = reader.string();
@@ -53890,12 +56780,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            BotFeedbackMessage.decode = function decode(reader, length) {
+            BotFeedbackMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.BotFeedbackMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.messageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -54478,12 +57370,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ButtonsMessage.decode = function decode(reader, length) {
+            ButtonsMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ButtonsMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 6: {
                             message.contentText = reader.string();
@@ -54942,12 +57836,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Button.decode = function decode(reader, length) {
+                Button.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ButtonsMessage.Button();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.buttonId = reader.string();
@@ -55213,12 +58109,14 @@ $root.E2E = (function() {
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    ButtonText.decode = function decode(reader, length) {
+                    ButtonText.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ButtonsMessage.Button.ButtonText();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.displayText = reader.string();
@@ -55427,12 +58325,14 @@ $root.E2E = (function() {
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    NativeFlowInfo.decode = function decode(reader, length) {
+                    NativeFlowInfo.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ButtonsMessage.Button.NativeFlowInfo();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.name = reader.string();
@@ -55736,12 +58636,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ButtonsResponseMessage.decode = function decode(reader, length) {
+            ButtonsResponseMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ButtonsResponseMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.selectedButtonId = reader.string();
@@ -55946,6 +58848,7 @@ $root.E2E = (function() {
              * @property {number|null} [conversionDelaySeconds] Call conversionDelaySeconds
              * @property {string|null} [ctwaSignals] Call ctwaSignals
              * @property {Uint8Array|null} [ctwaPayload] Call ctwaPayload
+             * @property {E2E.IContextInfo|null} [contextInfo] Call contextInfo
              */
 
             /**
@@ -56012,6 +58915,14 @@ $root.E2E = (function() {
             Call.prototype.ctwaPayload = $util.newBuffer([]);
 
             /**
+             * Call contextInfo.
+             * @member {E2E.IContextInfo|null|undefined} contextInfo
+             * @memberof E2E.Message.Call
+             * @instance
+             */
+            Call.prototype.contextInfo = null;
+
+            /**
              * Creates a new Call instance using the specified properties.
              * @function create
              * @memberof E2E.Message.Call
@@ -56047,6 +58958,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 5, wireType 2 =*/42).string(message.ctwaSignals);
                 if (message.ctwaPayload != null && Object.hasOwnProperty.call(message, "ctwaPayload"))
                     writer.uint32(/* id 6, wireType 2 =*/50).bytes(message.ctwaPayload);
+                if (message.contextInfo != null && Object.hasOwnProperty.call(message, "contextInfo"))
+                    $root.E2E.ContextInfo.encode(message.contextInfo, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
                 return writer;
             };
 
@@ -56074,12 +58987,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            Call.decode = function decode(reader, length) {
+            Call.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.Call();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.callKey = reader.bytes();
@@ -56103,6 +59018,10 @@ $root.E2E = (function() {
                         }
                     case 6: {
                             message.ctwaPayload = reader.bytes();
+                            break;
+                        }
+                    case 7: {
+                            message.contextInfo = $root.E2E.ContextInfo.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -56158,6 +59077,11 @@ $root.E2E = (function() {
                 if (message.ctwaPayload != null && message.hasOwnProperty("ctwaPayload"))
                     if (!(message.ctwaPayload && typeof message.ctwaPayload.length === "number" || $util.isString(message.ctwaPayload)))
                         return "ctwaPayload: buffer expected";
+                if (message.contextInfo != null && message.hasOwnProperty("contextInfo")) {
+                    var error = $root.E2E.ContextInfo.verify(message.contextInfo);
+                    if (error)
+                        return "contextInfo." + error;
+                }
                 return null;
             };
 
@@ -56194,6 +59118,11 @@ $root.E2E = (function() {
                         $util.base64.decode(object.ctwaPayload, message.ctwaPayload = $util.newBuffer($util.base64.length(object.ctwaPayload)), 0);
                     else if (object.ctwaPayload.length >= 0)
                         message.ctwaPayload = object.ctwaPayload;
+                if (object.contextInfo != null) {
+                    if (typeof object.contextInfo !== "object")
+                        throw TypeError(".E2E.Message.Call.contextInfo: object expected");
+                    message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo);
+                }
                 return message;
             };
 
@@ -56235,6 +59164,7 @@ $root.E2E = (function() {
                         if (options.bytes !== Array)
                             object.ctwaPayload = $util.newBuffer(object.ctwaPayload);
                     }
+                    object.contextInfo = null;
                 }
                 if (message.callKey != null && message.hasOwnProperty("callKey"))
                     object.callKey = options.bytes === String ? $util.base64.encode(message.callKey, 0, message.callKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.callKey) : message.callKey;
@@ -56248,6 +59178,8 @@ $root.E2E = (function() {
                     object.ctwaSignals = message.ctwaSignals;
                 if (message.ctwaPayload != null && message.hasOwnProperty("ctwaPayload"))
                     object.ctwaPayload = options.bytes === String ? $util.base64.encode(message.ctwaPayload, 0, message.ctwaPayload.length) : options.bytes === Array ? Array.prototype.slice.call(message.ctwaPayload) : message.ctwaPayload;
+                if (message.contextInfo != null && message.hasOwnProperty("contextInfo"))
+                    object.contextInfo = $root.E2E.ContextInfo.toObject(message.contextInfo, options);
                 return object;
             };
 
@@ -56411,12 +59343,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            CallLogMessage.decode = function decode(reader, length) {
+            CallLogMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.CallLogMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.isVideo = reader.bool();
@@ -56804,12 +59738,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CallParticipant.decode = function decode(reader, length) {
+                CallParticipant.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.CallLogMessage.CallParticipant();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.jid = reader.string();
@@ -57088,12 +60024,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            CancelPaymentRequestMessage.decode = function decode(reader, length) {
+            CancelPaymentRequestMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.CancelPaymentRequestMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -57307,12 +60245,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            Chat.decode = function decode(reader, length) {
+            Chat.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.Chat();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.displayName = reader.string();
@@ -57448,6 +60388,7 @@ $root.E2E = (function() {
              * @property {number|Long|null} [senderNotificationTimestampMs] CloudAPIThreadControlNotification senderNotificationTimestampMs
              * @property {string|null} [consumerLid] CloudAPIThreadControlNotification consumerLid
              * @property {string|null} [consumerPhoneNumber] CloudAPIThreadControlNotification consumerPhoneNumber
+             * @property {E2E.Message.CloudAPIThreadControlNotification.ICloudAPIThreadControlNotificationContent|null} [notificationContent] CloudAPIThreadControlNotification notificationContent
              */
 
             /**
@@ -57498,6 +60439,14 @@ $root.E2E = (function() {
             CloudAPIThreadControlNotification.prototype.consumerPhoneNumber = "";
 
             /**
+             * CloudAPIThreadControlNotification notificationContent.
+             * @member {E2E.Message.CloudAPIThreadControlNotification.ICloudAPIThreadControlNotificationContent|null|undefined} notificationContent
+             * @memberof E2E.Message.CloudAPIThreadControlNotification
+             * @instance
+             */
+            CloudAPIThreadControlNotification.prototype.notificationContent = null;
+
+            /**
              * Creates a new CloudAPIThreadControlNotification instance using the specified properties.
              * @function create
              * @memberof E2E.Message.CloudAPIThreadControlNotification
@@ -57529,6 +60478,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.consumerLid);
                 if (message.consumerPhoneNumber != null && Object.hasOwnProperty.call(message, "consumerPhoneNumber"))
                     writer.uint32(/* id 4, wireType 2 =*/34).string(message.consumerPhoneNumber);
+                if (message.notificationContent != null && Object.hasOwnProperty.call(message, "notificationContent"))
+                    $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent.encode(message.notificationContent, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                 return writer;
             };
 
@@ -57556,12 +60507,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            CloudAPIThreadControlNotification.decode = function decode(reader, length) {
+            CloudAPIThreadControlNotification.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.CloudAPIThreadControlNotification();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.status = reader.int32();
@@ -57577,6 +60530,10 @@ $root.E2E = (function() {
                         }
                     case 4: {
                             message.consumerPhoneNumber = reader.string();
+                            break;
+                        }
+                    case 5: {
+                            message.notificationContent = $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -57632,6 +60589,11 @@ $root.E2E = (function() {
                 if (message.consumerPhoneNumber != null && message.hasOwnProperty("consumerPhoneNumber"))
                     if (!$util.isString(message.consumerPhoneNumber))
                         return "consumerPhoneNumber: string expected";
+                if (message.notificationContent != null && message.hasOwnProperty("notificationContent")) {
+                    var error = $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent.verify(message.notificationContent);
+                    if (error)
+                        return "notificationContent." + error;
+                }
                 return null;
             };
 
@@ -57680,6 +60642,11 @@ $root.E2E = (function() {
                     message.consumerLid = String(object.consumerLid);
                 if (object.consumerPhoneNumber != null)
                     message.consumerPhoneNumber = String(object.consumerPhoneNumber);
+                if (object.notificationContent != null) {
+                    if (typeof object.notificationContent !== "object")
+                        throw TypeError(".E2E.Message.CloudAPIThreadControlNotification.notificationContent: object expected");
+                    message.notificationContent = $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent.fromObject(object.notificationContent);
+                }
                 return message;
             };
 
@@ -57705,6 +60672,7 @@ $root.E2E = (function() {
                         object.senderNotificationTimestampMs = options.longs === String ? "0" : 0;
                     object.consumerLid = "";
                     object.consumerPhoneNumber = "";
+                    object.notificationContent = null;
                 }
                 if (message.status != null && message.hasOwnProperty("status"))
                     object.status = options.enums === String ? $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControl[message.status] === undefined ? message.status : $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControl[message.status] : message.status;
@@ -57717,6 +60685,8 @@ $root.E2E = (function() {
                     object.consumerLid = message.consumerLid;
                 if (message.consumerPhoneNumber != null && message.hasOwnProperty("consumerPhoneNumber"))
                     object.consumerPhoneNumber = message.consumerPhoneNumber;
+                if (message.notificationContent != null && message.hasOwnProperty("notificationContent"))
+                    object.notificationContent = $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent.toObject(message.notificationContent, options);
                 return object;
             };
 
@@ -57760,6 +60730,235 @@ $root.E2E = (function() {
                 values[valuesById[1] = "CONTROL_PASSED"] = 1;
                 values[valuesById[2] = "CONTROL_TAKEN"] = 2;
                 return values;
+            })();
+
+            CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent = (function() {
+
+                /**
+                 * Properties of a CloudAPIThreadControlNotificationContent.
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification
+                 * @interface ICloudAPIThreadControlNotificationContent
+                 * @property {string|null} [handoffNotificationText] CloudAPIThreadControlNotificationContent handoffNotificationText
+                 * @property {string|null} [extraJson] CloudAPIThreadControlNotificationContent extraJson
+                 */
+
+                /**
+                 * Constructs a new CloudAPIThreadControlNotificationContent.
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification
+                 * @classdesc Represents a CloudAPIThreadControlNotificationContent.
+                 * @implements ICloudAPIThreadControlNotificationContent
+                 * @constructor
+                 * @param {E2E.Message.CloudAPIThreadControlNotification.ICloudAPIThreadControlNotificationContent=} [properties] Properties to set
+                 */
+                function CloudAPIThreadControlNotificationContent(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * CloudAPIThreadControlNotificationContent handoffNotificationText.
+                 * @member {string} handoffNotificationText
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent
+                 * @instance
+                 */
+                CloudAPIThreadControlNotificationContent.prototype.handoffNotificationText = "";
+
+                /**
+                 * CloudAPIThreadControlNotificationContent extraJson.
+                 * @member {string} extraJson
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent
+                 * @instance
+                 */
+                CloudAPIThreadControlNotificationContent.prototype.extraJson = "";
+
+                /**
+                 * Creates a new CloudAPIThreadControlNotificationContent instance using the specified properties.
+                 * @function create
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent
+                 * @static
+                 * @param {E2E.Message.CloudAPIThreadControlNotification.ICloudAPIThreadControlNotificationContent=} [properties] Properties to set
+                 * @returns {E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent} CloudAPIThreadControlNotificationContent instance
+                 */
+                CloudAPIThreadControlNotificationContent.create = function create(properties) {
+                    return new CloudAPIThreadControlNotificationContent(properties);
+                };
+
+                /**
+                 * Encodes the specified CloudAPIThreadControlNotificationContent message. Does not implicitly {@link E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent.verify|verify} messages.
+                 * @function encode
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent
+                 * @static
+                 * @param {E2E.Message.CloudAPIThreadControlNotification.ICloudAPIThreadControlNotificationContent} message CloudAPIThreadControlNotificationContent message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                CloudAPIThreadControlNotificationContent.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.handoffNotificationText != null && Object.hasOwnProperty.call(message, "handoffNotificationText"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.handoffNotificationText);
+                    if (message.extraJson != null && Object.hasOwnProperty.call(message, "extraJson"))
+                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.extraJson);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified CloudAPIThreadControlNotificationContent message, length delimited. Does not implicitly {@link E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent
+                 * @static
+                 * @param {E2E.Message.CloudAPIThreadControlNotification.ICloudAPIThreadControlNotificationContent} message CloudAPIThreadControlNotificationContent message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                CloudAPIThreadControlNotificationContent.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a CloudAPIThreadControlNotificationContent message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent} CloudAPIThreadControlNotificationContent
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                CloudAPIThreadControlNotificationContent.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.handoffNotificationText = reader.string();
+                                break;
+                            }
+                        case 2: {
+                                message.extraJson = reader.string();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a CloudAPIThreadControlNotificationContent message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent} CloudAPIThreadControlNotificationContent
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                CloudAPIThreadControlNotificationContent.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a CloudAPIThreadControlNotificationContent message.
+                 * @function verify
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                CloudAPIThreadControlNotificationContent.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.handoffNotificationText != null && message.hasOwnProperty("handoffNotificationText"))
+                        if (!$util.isString(message.handoffNotificationText))
+                            return "handoffNotificationText: string expected";
+                    if (message.extraJson != null && message.hasOwnProperty("extraJson"))
+                        if (!$util.isString(message.extraJson))
+                            return "extraJson: string expected";
+                    return null;
+                };
+
+                /**
+                 * Creates a CloudAPIThreadControlNotificationContent message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent} CloudAPIThreadControlNotificationContent
+                 */
+                CloudAPIThreadControlNotificationContent.fromObject = function fromObject(object) {
+                    if (object instanceof $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent)
+                        return object;
+                    var message = new $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent();
+                    if (object.handoffNotificationText != null)
+                        message.handoffNotificationText = String(object.handoffNotificationText);
+                    if (object.extraJson != null)
+                        message.extraJson = String(object.extraJson);
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a CloudAPIThreadControlNotificationContent message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent
+                 * @static
+                 * @param {E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent} message CloudAPIThreadControlNotificationContent
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                CloudAPIThreadControlNotificationContent.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        object.handoffNotificationText = "";
+                        object.extraJson = "";
+                    }
+                    if (message.handoffNotificationText != null && message.hasOwnProperty("handoffNotificationText"))
+                        object.handoffNotificationText = message.handoffNotificationText;
+                    if (message.extraJson != null && message.hasOwnProperty("extraJson"))
+                        object.extraJson = message.extraJson;
+                    return object;
+                };
+
+                /**
+                 * Converts this CloudAPIThreadControlNotificationContent to JSON.
+                 * @function toJSON
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                CloudAPIThreadControlNotificationContent.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for CloudAPIThreadControlNotificationContent
+                 * @function getTypeUrl
+                 * @memberof E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                CloudAPIThreadControlNotificationContent.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent";
+                };
+
+                return CloudAPIThreadControlNotificationContent;
             })();
 
             return CloudAPIThreadControlNotification;
@@ -57861,12 +61060,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            CommentMessage.decode = function decode(reader, length) {
+            CommentMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.CommentMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.message = $root.E2E.Message.decode(reader, reader.uint32());
@@ -58109,12 +61310,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ContactMessage.decode = function decode(reader, length) {
+            ContactMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ContactMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.displayName = reader.string();
@@ -58366,12 +61569,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ContactsArrayMessage.decode = function decode(reader, length) {
+            ContactsArrayMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ContactsArrayMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.displayName = reader.string();
@@ -58619,12 +61824,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            DeclinePaymentRequestMessage.decode = function decode(reader, length) {
+            DeclinePaymentRequestMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.DeclinePaymentRequestMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -58849,12 +62056,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            DeviceSentMessage.decode = function decode(reader, length) {
+            DeviceSentMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.DeviceSentMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.destinationJid = reader.string();
@@ -59302,12 +62511,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            DocumentMessage.decode = function decode(reader, length) {
+            DocumentMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.DocumentMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.url = reader.string();
@@ -59855,12 +63066,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            EncCommentMessage.decode = function decode(reader, length) {
+            EncCommentMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.EncCommentMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.targetMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -60128,12 +63341,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            EncEventResponseMessage.decode = function decode(reader, length) {
+            EncEventResponseMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.EncEventResponseMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.eventCreationMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -60401,12 +63616,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            EncReactionMessage.decode = function decode(reader, length) {
+            EncReactionMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.EncReactionMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.targetMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -60582,6 +63799,7 @@ $root.E2E = (function() {
              * @property {number|Long|null} [startTime] EventMessage startTime
              * @property {number|Long|null} [endTime] EventMessage endTime
              * @property {boolean|null} [extraGuestsAllowed] EventMessage extraGuestsAllowed
+             * @property {boolean|null} [isScheduleCall] EventMessage isScheduleCall
              */
 
             /**
@@ -60672,6 +63890,14 @@ $root.E2E = (function() {
             EventMessage.prototype.extraGuestsAllowed = false;
 
             /**
+             * EventMessage isScheduleCall.
+             * @member {boolean} isScheduleCall
+             * @memberof E2E.Message.EventMessage
+             * @instance
+             */
+            EventMessage.prototype.isScheduleCall = false;
+
+            /**
              * Creates a new EventMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.EventMessage
@@ -60713,6 +63939,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 8, wireType 0 =*/64).int64(message.endTime);
                 if (message.extraGuestsAllowed != null && Object.hasOwnProperty.call(message, "extraGuestsAllowed"))
                     writer.uint32(/* id 9, wireType 0 =*/72).bool(message.extraGuestsAllowed);
+                if (message.isScheduleCall != null && Object.hasOwnProperty.call(message, "isScheduleCall"))
+                    writer.uint32(/* id 10, wireType 0 =*/80).bool(message.isScheduleCall);
                 return writer;
             };
 
@@ -60740,12 +63968,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            EventMessage.decode = function decode(reader, length) {
+            EventMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.EventMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.contextInfo = $root.E2E.ContextInfo.decode(reader, reader.uint32());
@@ -60781,6 +64011,10 @@ $root.E2E = (function() {
                         }
                     case 9: {
                             message.extraGuestsAllowed = reader.bool();
+                            break;
+                        }
+                    case 10: {
+                            message.isScheduleCall = reader.bool();
                             break;
                         }
                     default:
@@ -60849,6 +64083,9 @@ $root.E2E = (function() {
                 if (message.extraGuestsAllowed != null && message.hasOwnProperty("extraGuestsAllowed"))
                     if (typeof message.extraGuestsAllowed !== "boolean")
                         return "extraGuestsAllowed: boolean expected";
+                if (message.isScheduleCall != null && message.hasOwnProperty("isScheduleCall"))
+                    if (typeof message.isScheduleCall !== "boolean")
+                        return "isScheduleCall: boolean expected";
                 return null;
             };
 
@@ -60902,6 +64139,8 @@ $root.E2E = (function() {
                         message.endTime = new $util.LongBits(object.endTime.low >>> 0, object.endTime.high >>> 0).toNumber();
                 if (object.extraGuestsAllowed != null)
                     message.extraGuestsAllowed = Boolean(object.extraGuestsAllowed);
+                if (object.isScheduleCall != null)
+                    message.isScheduleCall = Boolean(object.isScheduleCall);
                 return message;
             };
 
@@ -60936,6 +64175,7 @@ $root.E2E = (function() {
                     } else
                         object.endTime = options.longs === String ? "0" : 0;
                     object.extraGuestsAllowed = false;
+                    object.isScheduleCall = false;
                 }
                 if (message.contextInfo != null && message.hasOwnProperty("contextInfo"))
                     object.contextInfo = $root.E2E.ContextInfo.toObject(message.contextInfo, options);
@@ -60961,6 +64201,8 @@ $root.E2E = (function() {
                         object.endTime = options.longs === String ? $util.Long.prototype.toString.call(message.endTime) : options.longs === Number ? new $util.LongBits(message.endTime.low >>> 0, message.endTime.high >>> 0).toNumber() : message.endTime;
                 if (message.extraGuestsAllowed != null && message.hasOwnProperty("extraGuestsAllowed"))
                     object.extraGuestsAllowed = message.extraGuestsAllowed;
+                if (message.isScheduleCall != null && message.hasOwnProperty("isScheduleCall"))
+                    object.isScheduleCall = message.isScheduleCall;
                 return object;
             };
 
@@ -61100,12 +64342,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            EventResponseMessage.decode = function decode(reader, length) {
+            EventResponseMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.EventResponseMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.response = reader.int32();
@@ -61336,7 +64580,8 @@ $root.E2E = (function() {
              * @property {number|null} [videoHeight] ExtendedTextMessage videoHeight
              * @property {number|null} [videoWidth] ExtendedTextMessage videoWidth
              * @property {E2E.Message.IMMSThumbnailMetadata|null} [faviconMMSMetadata] ExtendedTextMessage faviconMMSMetadata
-             * @property {E2E.Message.ExtendedTextMessage.ILinkPreviewMetadata|null} [linkPreviewMetadata] ExtendedTextMessage linkPreviewMetadata
+             * @property {E2E.Message.ILinkPreviewMetadata|null} [linkPreviewMetadata] ExtendedTextMessage linkPreviewMetadata
+             * @property {E2E.Message.IPaymentLinkMetadata|null} [paymentLinkMetadata] ExtendedTextMessage paymentLinkMetadata
              */
 
             /**
@@ -61564,11 +64809,19 @@ $root.E2E = (function() {
 
             /**
              * ExtendedTextMessage linkPreviewMetadata.
-             * @member {E2E.Message.ExtendedTextMessage.ILinkPreviewMetadata|null|undefined} linkPreviewMetadata
+             * @member {E2E.Message.ILinkPreviewMetadata|null|undefined} linkPreviewMetadata
              * @memberof E2E.Message.ExtendedTextMessage
              * @instance
              */
             ExtendedTextMessage.prototype.linkPreviewMetadata = null;
+
+            /**
+             * ExtendedTextMessage paymentLinkMetadata.
+             * @member {E2E.Message.IPaymentLinkMetadata|null|undefined} paymentLinkMetadata
+             * @memberof E2E.Message.ExtendedTextMessage
+             * @instance
+             */
+            ExtendedTextMessage.prototype.paymentLinkMetadata = null;
 
             /**
              * Creates a new ExtendedTextMessage instance using the specified properties.
@@ -61647,7 +64900,9 @@ $root.E2E = (function() {
                 if (message.faviconMMSMetadata != null && Object.hasOwnProperty.call(message, "faviconMMSMetadata"))
                     $root.E2E.Message.MMSThumbnailMetadata.encode(message.faviconMMSMetadata, writer.uint32(/* id 33, wireType 2 =*/266).fork()).ldelim();
                 if (message.linkPreviewMetadata != null && Object.hasOwnProperty.call(message, "linkPreviewMetadata"))
-                    $root.E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.encode(message.linkPreviewMetadata, writer.uint32(/* id 34, wireType 2 =*/274).fork()).ldelim();
+                    $root.E2E.Message.LinkPreviewMetadata.encode(message.linkPreviewMetadata, writer.uint32(/* id 34, wireType 2 =*/274).fork()).ldelim();
+                if (message.paymentLinkMetadata != null && Object.hasOwnProperty.call(message, "paymentLinkMetadata"))
+                    $root.E2E.Message.PaymentLinkMetadata.encode(message.paymentLinkMetadata, writer.uint32(/* id 35, wireType 2 =*/282).fork()).ldelim();
                 return writer;
             };
 
@@ -61675,12 +64930,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ExtendedTextMessage.decode = function decode(reader, length) {
+            ExtendedTextMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ExtendedTextMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.text = reader.string();
@@ -61787,7 +65044,11 @@ $root.E2E = (function() {
                             break;
                         }
                     case 34: {
-                            message.linkPreviewMetadata = $root.E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.decode(reader, reader.uint32());
+                            message.linkPreviewMetadata = $root.E2E.Message.LinkPreviewMetadata.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 35: {
+                            message.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -61942,9 +65203,14 @@ $root.E2E = (function() {
                         return "faviconMMSMetadata." + error;
                 }
                 if (message.linkPreviewMetadata != null && message.hasOwnProperty("linkPreviewMetadata")) {
-                    var error = $root.E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.verify(message.linkPreviewMetadata);
+                    var error = $root.E2E.Message.LinkPreviewMetadata.verify(message.linkPreviewMetadata);
                     if (error)
                         return "linkPreviewMetadata." + error;
+                }
+                if (message.paymentLinkMetadata != null && message.hasOwnProperty("paymentLinkMetadata")) {
+                    var error = $root.E2E.Message.PaymentLinkMetadata.verify(message.paymentLinkMetadata);
+                    if (error)
+                        return "paymentLinkMetadata." + error;
                 }
                 return null;
             };
@@ -62156,7 +65422,12 @@ $root.E2E = (function() {
                 if (object.linkPreviewMetadata != null) {
                     if (typeof object.linkPreviewMetadata !== "object")
                         throw TypeError(".E2E.Message.ExtendedTextMessage.linkPreviewMetadata: object expected");
-                    message.linkPreviewMetadata = $root.E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.fromObject(object.linkPreviewMetadata);
+                    message.linkPreviewMetadata = $root.E2E.Message.LinkPreviewMetadata.fromObject(object.linkPreviewMetadata);
+                }
+                if (object.paymentLinkMetadata != null) {
+                    if (typeof object.paymentLinkMetadata !== "object")
+                        throw TypeError(".E2E.Message.ExtendedTextMessage.paymentLinkMetadata: object expected");
+                    message.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.fromObject(object.paymentLinkMetadata);
                 }
                 return message;
             };
@@ -62236,6 +65507,7 @@ $root.E2E = (function() {
                     object.videoWidth = 0;
                     object.faviconMMSMetadata = null;
                     object.linkPreviewMetadata = null;
+                    object.paymentLinkMetadata = null;
                 }
                 if (message.text != null && message.hasOwnProperty("text"))
                     object.text = message.text;
@@ -62293,7 +65565,9 @@ $root.E2E = (function() {
                 if (message.faviconMMSMetadata != null && message.hasOwnProperty("faviconMMSMetadata"))
                     object.faviconMMSMetadata = $root.E2E.Message.MMSThumbnailMetadata.toObject(message.faviconMMSMetadata, options);
                 if (message.linkPreviewMetadata != null && message.hasOwnProperty("linkPreviewMetadata"))
-                    object.linkPreviewMetadata = $root.E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.toObject(message.linkPreviewMetadata, options);
+                    object.linkPreviewMetadata = $root.E2E.Message.LinkPreviewMetadata.toObject(message.linkPreviewMetadata, options);
+                if (message.paymentLinkMetadata != null && message.hasOwnProperty("paymentLinkMetadata"))
+                    object.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.toObject(message.paymentLinkMetadata, options);
                 return object;
             };
 
@@ -62365,214 +65639,6 @@ $root.E2E = (function() {
                 values[valuesById[2] = "SUB"] = 2;
                 values[valuesById[3] = "DEFAULT_SUB"] = 3;
                 return values;
-            })();
-
-            ExtendedTextMessage.LinkPreviewMetadata = (function() {
-
-                /**
-                 * Properties of a LinkPreviewMetadata.
-                 * @memberof E2E.Message.ExtendedTextMessage
-                 * @interface ILinkPreviewMetadata
-                 * @property {E2E.Message.IPaymentLinkMetadata|null} [paymentLinkMetadata] LinkPreviewMetadata paymentLinkMetadata
-                 */
-
-                /**
-                 * Constructs a new LinkPreviewMetadata.
-                 * @memberof E2E.Message.ExtendedTextMessage
-                 * @classdesc Represents a LinkPreviewMetadata.
-                 * @implements ILinkPreviewMetadata
-                 * @constructor
-                 * @param {E2E.Message.ExtendedTextMessage.ILinkPreviewMetadata=} [properties] Properties to set
-                 */
-                function LinkPreviewMetadata(properties) {
-                    if (properties)
-                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-
-                /**
-                 * LinkPreviewMetadata paymentLinkMetadata.
-                 * @member {E2E.Message.IPaymentLinkMetadata|null|undefined} paymentLinkMetadata
-                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
-                 * @instance
-                 */
-                LinkPreviewMetadata.prototype.paymentLinkMetadata = null;
-
-                /**
-                 * Creates a new LinkPreviewMetadata instance using the specified properties.
-                 * @function create
-                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
-                 * @static
-                 * @param {E2E.Message.ExtendedTextMessage.ILinkPreviewMetadata=} [properties] Properties to set
-                 * @returns {E2E.Message.ExtendedTextMessage.LinkPreviewMetadata} LinkPreviewMetadata instance
-                 */
-                LinkPreviewMetadata.create = function create(properties) {
-                    return new LinkPreviewMetadata(properties);
-                };
-
-                /**
-                 * Encodes the specified LinkPreviewMetadata message. Does not implicitly {@link E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.verify|verify} messages.
-                 * @function encode
-                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
-                 * @static
-                 * @param {E2E.Message.ExtendedTextMessage.ILinkPreviewMetadata} message LinkPreviewMetadata message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                LinkPreviewMetadata.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    if (message.paymentLinkMetadata != null && Object.hasOwnProperty.call(message, "paymentLinkMetadata"))
-                        $root.E2E.Message.PaymentLinkMetadata.encode(message.paymentLinkMetadata, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                    return writer;
-                };
-
-                /**
-                 * Encodes the specified LinkPreviewMetadata message, length delimited. Does not implicitly {@link E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
-                 * @static
-                 * @param {E2E.Message.ExtendedTextMessage.ILinkPreviewMetadata} message LinkPreviewMetadata message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                LinkPreviewMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-
-                /**
-                 * Decodes a LinkPreviewMetadata message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {E2E.Message.ExtendedTextMessage.LinkPreviewMetadata} LinkPreviewMetadata
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                LinkPreviewMetadata.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ExtendedTextMessage.LinkPreviewMetadata();
-                    while (reader.pos < end) {
-                        var tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1: {
-                                message.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.decode(reader, reader.uint32());
-                                break;
-                            }
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    return message;
-                };
-
-                /**
-                 * Decodes a LinkPreviewMetadata message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {E2E.Message.ExtendedTextMessage.LinkPreviewMetadata} LinkPreviewMetadata
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                LinkPreviewMetadata.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-
-                /**
-                 * Verifies a LinkPreviewMetadata message.
-                 * @function verify
-                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                LinkPreviewMetadata.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (message.paymentLinkMetadata != null && message.hasOwnProperty("paymentLinkMetadata")) {
-                        var error = $root.E2E.Message.PaymentLinkMetadata.verify(message.paymentLinkMetadata);
-                        if (error)
-                            return "paymentLinkMetadata." + error;
-                    }
-                    return null;
-                };
-
-                /**
-                 * Creates a LinkPreviewMetadata message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {E2E.Message.ExtendedTextMessage.LinkPreviewMetadata} LinkPreviewMetadata
-                 */
-                LinkPreviewMetadata.fromObject = function fromObject(object) {
-                    if (object instanceof $root.E2E.Message.ExtendedTextMessage.LinkPreviewMetadata)
-                        return object;
-                    var message = new $root.E2E.Message.ExtendedTextMessage.LinkPreviewMetadata();
-                    if (object.paymentLinkMetadata != null) {
-                        if (typeof object.paymentLinkMetadata !== "object")
-                            throw TypeError(".E2E.Message.ExtendedTextMessage.LinkPreviewMetadata.paymentLinkMetadata: object expected");
-                        message.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.fromObject(object.paymentLinkMetadata);
-                    }
-                    return message;
-                };
-
-                /**
-                 * Creates a plain object from a LinkPreviewMetadata message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
-                 * @static
-                 * @param {E2E.Message.ExtendedTextMessage.LinkPreviewMetadata} message LinkPreviewMetadata
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                LinkPreviewMetadata.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    var object = {};
-                    if (options.defaults)
-                        object.paymentLinkMetadata = null;
-                    if (message.paymentLinkMetadata != null && message.hasOwnProperty("paymentLinkMetadata"))
-                        object.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.toObject(message.paymentLinkMetadata, options);
-                    return object;
-                };
-
-                /**
-                 * Converts this LinkPreviewMetadata to JSON.
-                 * @function toJSON
-                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                LinkPreviewMetadata.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-
-                /**
-                 * Gets the default type url for LinkPreviewMetadata
-                 * @function getTypeUrl
-                 * @memberof E2E.Message.ExtendedTextMessage.LinkPreviewMetadata
-                 * @static
-                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns {string} The default type url
-                 */
-                LinkPreviewMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-                    if (typeUrlPrefix === undefined) {
-                        typeUrlPrefix = "type.googleapis.com";
-                    }
-                    return typeUrlPrefix + "/E2E.Message.ExtendedTextMessage.LinkPreviewMetadata";
-                };
-
-                return LinkPreviewMetadata;
             })();
 
             /**
@@ -62685,12 +65751,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            FullHistorySyncOnDemandRequestMetadata.decode = function decode(reader, length) {
+            FullHistorySyncOnDemandRequestMetadata.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.FullHistorySyncOnDemandRequestMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.requestId = reader.string();
@@ -62888,12 +65956,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            FutureProofMessage.decode = function decode(reader, length) {
+            FutureProofMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.FutureProofMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.message = $root.E2E.Message.decode(reader, reader.uint32());
@@ -63173,12 +66243,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            GroupInviteMessage.decode = function decode(reader, length) {
+            GroupInviteMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.GroupInviteMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.groupJid = reader.string();
@@ -63614,12 +66686,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            HighlyStructuredMessage.decode = function decode(reader, length) {
+            HighlyStructuredMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.HighlyStructuredMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.namespace = reader.string();
@@ -63987,12 +67061,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                HSMLocalizableParameter.decode = function decode(reader, length) {
+                HSMLocalizableParameter.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message["default"] = reader.string();
@@ -64245,12 +67321,14 @@ $root.E2E = (function() {
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    HSMCurrency.decode = function decode(reader, length) {
+                    HSMCurrency.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.HSMCurrency();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.currencyCode = reader.string();
@@ -64500,12 +67578,14 @@ $root.E2E = (function() {
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    HSMDateTime.decode = function decode(reader, length) {
+                    HSMDateTime.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.HSMDateTime();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.component = $root.E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.HSMDateTime.HSMDateTimeComponent.decode(reader, reader.uint32());
@@ -64800,12 +67880,14 @@ $root.E2E = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        HSMDateTimeComponent.decode = function decode(reader, length) {
+                        HSMDateTimeComponent.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.HSMDateTime.HSMDateTimeComponent();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.dayOfWeek = reader.int32();
@@ -65177,12 +68259,14 @@ $root.E2E = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        HSMDateTimeUnixEpoch.decode = function decode(reader, length) {
+                        HSMDateTimeUnixEpoch.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.HSMDateTime.HSMDateTimeUnixEpoch();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.timestamp = reader.int64();
@@ -65546,12 +68630,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            HistorySyncNotification.decode = function decode(reader, length) {
+            HistorySyncNotification.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.HistorySyncNotification();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.fileSha256 = reader.bytes();
@@ -66364,12 +69450,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ImageMessage.decode = function decode(reader, length) {
+            ImageMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ImageMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.url = reader.string();
@@ -67133,12 +70221,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            InitialSecurityNotificationSettingSync.decode = function decode(reader, length) {
+            InitialSecurityNotificationSettingSync.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InitialSecurityNotificationSettingSync();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.securityNotificationEnabled = reader.bool();
@@ -67438,12 +70528,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            InteractiveMessage.decode = function decode(reader, length) {
+            InteractiveMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InteractiveMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.header = $root.E2E.Message.InteractiveMessage.Header.decode(reader, reader.uint32());
@@ -67807,12 +70899,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Body.decode = function decode(reader, length) {
+                Body.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InteractiveMessage.Body();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.text = reader.string();
@@ -68023,12 +71117,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CarouselMessage.decode = function decode(reader, length) {
+                CarouselMessage.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InteractiveMessage.CarouselMessage();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.cards && message.cards.length))
@@ -68280,12 +71376,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CollectionMessage.decode = function decode(reader, length) {
+                CollectionMessage.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InteractiveMessage.CollectionMessage();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.bizJid = reader.string();
@@ -68508,12 +71606,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Footer.decode = function decode(reader, length) {
+                Footer.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InteractiveMessage.Footer();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.text = reader.string();
@@ -68813,12 +71913,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Header.decode = function decode(reader, length) {
+                Header.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InteractiveMessage.Header();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.title = reader.string();
@@ -69205,12 +72307,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                NativeFlowMessage.decode = function decode(reader, length) {
+                NativeFlowMessage.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InteractiveMessage.NativeFlowMessage();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.buttons && message.buttons.length))
@@ -69461,12 +72565,14 @@ $root.E2E = (function() {
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    NativeFlowButton.decode = function decode(reader, length) {
+                    NativeFlowButton.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InteractiveMessage.NativeFlowMessage.NativeFlowButton();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.name = reader.string();
@@ -69702,12 +72808,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ShopMessage.decode = function decode(reader, length) {
+                ShopMessage.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InteractiveMessage.ShopMessage();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.id = reader.string();
@@ -70016,12 +73124,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            InteractiveResponseMessage.decode = function decode(reader, length) {
+            InteractiveResponseMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InteractiveResponseMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.body = $root.E2E.Message.InteractiveResponseMessage.Body.decode(reader, reader.uint32());
@@ -70273,12 +73383,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Body.decode = function decode(reader, length) {
+                Body.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InteractiveResponseMessage.Body();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.text = reader.string();
@@ -70544,12 +73656,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                NativeFlowResponseMessage.decode = function decode(reader, length) {
+                NativeFlowResponseMessage.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InteractiveResponseMessage.NativeFlowResponseMessage();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.name = reader.string();
@@ -70874,12 +73988,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            InvoiceMessage.decode = function decode(reader, length) {
+            InvoiceMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InvoiceMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.note = reader.string();
@@ -71291,12 +74407,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            KeepInChatMessage.decode = function decode(reader, length) {
+            KeepInChatMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.KeepInChatMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -71477,6 +74595,268 @@ $root.E2E = (function() {
             return KeepInChatMessage;
         })();
 
+        Message.LinkPreviewMetadata = (function() {
+
+            /**
+             * Properties of a LinkPreviewMetadata.
+             * @memberof E2E.Message
+             * @interface ILinkPreviewMetadata
+             * @property {E2E.Message.IPaymentLinkMetadata|null} [paymentLinkMetadata] LinkPreviewMetadata paymentLinkMetadata
+             * @property {E2E.Message.IURLMetadata|null} [urlMetadata] LinkPreviewMetadata urlMetadata
+             * @property {number|null} [fbExperimentId] LinkPreviewMetadata fbExperimentId
+             */
+
+            /**
+             * Constructs a new LinkPreviewMetadata.
+             * @memberof E2E.Message
+             * @classdesc Represents a LinkPreviewMetadata.
+             * @implements ILinkPreviewMetadata
+             * @constructor
+             * @param {E2E.Message.ILinkPreviewMetadata=} [properties] Properties to set
+             */
+            function LinkPreviewMetadata(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * LinkPreviewMetadata paymentLinkMetadata.
+             * @member {E2E.Message.IPaymentLinkMetadata|null|undefined} paymentLinkMetadata
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @instance
+             */
+            LinkPreviewMetadata.prototype.paymentLinkMetadata = null;
+
+            /**
+             * LinkPreviewMetadata urlMetadata.
+             * @member {E2E.Message.IURLMetadata|null|undefined} urlMetadata
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @instance
+             */
+            LinkPreviewMetadata.prototype.urlMetadata = null;
+
+            /**
+             * LinkPreviewMetadata fbExperimentId.
+             * @member {number} fbExperimentId
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @instance
+             */
+            LinkPreviewMetadata.prototype.fbExperimentId = 0;
+
+            /**
+             * Creates a new LinkPreviewMetadata instance using the specified properties.
+             * @function create
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @static
+             * @param {E2E.Message.ILinkPreviewMetadata=} [properties] Properties to set
+             * @returns {E2E.Message.LinkPreviewMetadata} LinkPreviewMetadata instance
+             */
+            LinkPreviewMetadata.create = function create(properties) {
+                return new LinkPreviewMetadata(properties);
+            };
+
+            /**
+             * Encodes the specified LinkPreviewMetadata message. Does not implicitly {@link E2E.Message.LinkPreviewMetadata.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @static
+             * @param {E2E.Message.ILinkPreviewMetadata} message LinkPreviewMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            LinkPreviewMetadata.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.paymentLinkMetadata != null && Object.hasOwnProperty.call(message, "paymentLinkMetadata"))
+                    $root.E2E.Message.PaymentLinkMetadata.encode(message.paymentLinkMetadata, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.urlMetadata != null && Object.hasOwnProperty.call(message, "urlMetadata"))
+                    $root.E2E.Message.URLMetadata.encode(message.urlMetadata, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                if (message.fbExperimentId != null && Object.hasOwnProperty.call(message, "fbExperimentId"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).uint32(message.fbExperimentId);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified LinkPreviewMetadata message, length delimited. Does not implicitly {@link E2E.Message.LinkPreviewMetadata.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @static
+             * @param {E2E.Message.ILinkPreviewMetadata} message LinkPreviewMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            LinkPreviewMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a LinkPreviewMetadata message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.Message.LinkPreviewMetadata} LinkPreviewMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            LinkPreviewMetadata.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.LinkPreviewMetadata();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 2: {
+                            message.urlMetadata = $root.E2E.Message.URLMetadata.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 3: {
+                            message.fbExperimentId = reader.uint32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a LinkPreviewMetadata message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.Message.LinkPreviewMetadata} LinkPreviewMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            LinkPreviewMetadata.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a LinkPreviewMetadata message.
+             * @function verify
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            LinkPreviewMetadata.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.paymentLinkMetadata != null && message.hasOwnProperty("paymentLinkMetadata")) {
+                    var error = $root.E2E.Message.PaymentLinkMetadata.verify(message.paymentLinkMetadata);
+                    if (error)
+                        return "paymentLinkMetadata." + error;
+                }
+                if (message.urlMetadata != null && message.hasOwnProperty("urlMetadata")) {
+                    var error = $root.E2E.Message.URLMetadata.verify(message.urlMetadata);
+                    if (error)
+                        return "urlMetadata." + error;
+                }
+                if (message.fbExperimentId != null && message.hasOwnProperty("fbExperimentId"))
+                    if (!$util.isInteger(message.fbExperimentId))
+                        return "fbExperimentId: integer expected";
+                return null;
+            };
+
+            /**
+             * Creates a LinkPreviewMetadata message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.Message.LinkPreviewMetadata} LinkPreviewMetadata
+             */
+            LinkPreviewMetadata.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.Message.LinkPreviewMetadata)
+                    return object;
+                var message = new $root.E2E.Message.LinkPreviewMetadata();
+                if (object.paymentLinkMetadata != null) {
+                    if (typeof object.paymentLinkMetadata !== "object")
+                        throw TypeError(".E2E.Message.LinkPreviewMetadata.paymentLinkMetadata: object expected");
+                    message.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.fromObject(object.paymentLinkMetadata);
+                }
+                if (object.urlMetadata != null) {
+                    if (typeof object.urlMetadata !== "object")
+                        throw TypeError(".E2E.Message.LinkPreviewMetadata.urlMetadata: object expected");
+                    message.urlMetadata = $root.E2E.Message.URLMetadata.fromObject(object.urlMetadata);
+                }
+                if (object.fbExperimentId != null)
+                    message.fbExperimentId = object.fbExperimentId >>> 0;
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a LinkPreviewMetadata message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @static
+             * @param {E2E.Message.LinkPreviewMetadata} message LinkPreviewMetadata
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            LinkPreviewMetadata.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.paymentLinkMetadata = null;
+                    object.urlMetadata = null;
+                    object.fbExperimentId = 0;
+                }
+                if (message.paymentLinkMetadata != null && message.hasOwnProperty("paymentLinkMetadata"))
+                    object.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.toObject(message.paymentLinkMetadata, options);
+                if (message.urlMetadata != null && message.hasOwnProperty("urlMetadata"))
+                    object.urlMetadata = $root.E2E.Message.URLMetadata.toObject(message.urlMetadata, options);
+                if (message.fbExperimentId != null && message.hasOwnProperty("fbExperimentId"))
+                    object.fbExperimentId = message.fbExperimentId;
+                return object;
+            };
+
+            /**
+             * Converts this LinkPreviewMetadata to JSON.
+             * @function toJSON
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            LinkPreviewMetadata.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for LinkPreviewMetadata
+             * @function getTypeUrl
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            LinkPreviewMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.Message.LinkPreviewMetadata";
+            };
+
+            return LinkPreviewMetadata;
+        })();
+
         Message.ListMessage = (function() {
 
             /**
@@ -71641,12 +75021,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ListMessage.decode = function decode(reader, length) {
+            ListMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ListMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.title = reader.string();
@@ -71996,12 +75378,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Product.decode = function decode(reader, length) {
+                Product.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ListMessage.Product();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.productId = reader.string();
@@ -72210,12 +75594,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ProductListHeaderImage.decode = function decode(reader, length) {
+                ProductListHeaderImage.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ListMessage.ProductListHeaderImage();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.productId = reader.string();
@@ -72459,12 +75845,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ProductListInfo.decode = function decode(reader, length) {
+                ProductListInfo.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ListMessage.ProductListInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 if (!(message.productSections && message.productSections.length))
@@ -72725,12 +76113,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ProductSection.decode = function decode(reader, length) {
+                ProductSection.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ListMessage.ProductSection();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.title = reader.string();
@@ -72982,12 +76372,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Row.decode = function decode(reader, length) {
+                Row.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ListMessage.Row();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.title = reader.string();
@@ -73223,12 +76615,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Section.decode = function decode(reader, length) {
+                Section.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ListMessage.Section();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.title = reader.string();
@@ -73505,12 +76899,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ListResponseMessage.decode = function decode(reader, length) {
+            ListResponseMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ListResponseMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.title = reader.string();
@@ -73797,12 +77193,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SingleSelectReply.decode = function decode(reader, length) {
+                SingleSelectReply.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ListResponseMessage.SingleSelectReply();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.selectedRowId = reader.string();
@@ -74102,12 +77500,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            LiveLocationMessage.decode = function decode(reader, length) {
+            LiveLocationMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.LiveLocationMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.degreesLatitude = reader.double();
@@ -74563,12 +77963,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            LocationMessage.decode = function decode(reader, length) {
+            LocationMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.LocationMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.degreesLatitude = reader.double();
@@ -74979,12 +78381,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            MMSThumbnailMetadata.decode = function decode(reader, length) {
+            MMSThumbnailMetadata.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.MMSThumbnailMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.thumbnailDirectPath = reader.string();
@@ -75224,7 +78628,7 @@ $root.E2E = (function() {
              * @property {string|null} [directPath] MessageHistoryBundle directPath
              * @property {number|Long|null} [mediaKeyTimestamp] MessageHistoryBundle mediaKeyTimestamp
              * @property {E2E.IContextInfo|null} [contextInfo] MessageHistoryBundle contextInfo
-             * @property {Array.<string>|null} [participants] MessageHistoryBundle participants
+             * @property {E2E.Message.IMessageHistoryMetadata|null} [messageHistoryMetadata] MessageHistoryBundle messageHistoryMetadata
              */
 
             /**
@@ -75236,7 +78640,6 @@ $root.E2E = (function() {
              * @param {E2E.Message.IMessageHistoryBundle=} [properties] Properties to set
              */
             function MessageHistoryBundle(properties) {
-                this.participants = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -75300,12 +78703,12 @@ $root.E2E = (function() {
             MessageHistoryBundle.prototype.contextInfo = null;
 
             /**
-             * MessageHistoryBundle participants.
-             * @member {Array.<string>} participants
+             * MessageHistoryBundle messageHistoryMetadata.
+             * @member {E2E.Message.IMessageHistoryMetadata|null|undefined} messageHistoryMetadata
              * @memberof E2E.Message.MessageHistoryBundle
              * @instance
              */
-            MessageHistoryBundle.prototype.participants = $util.emptyArray;
+            MessageHistoryBundle.prototype.messageHistoryMetadata = null;
 
             /**
              * Creates a new MessageHistoryBundle instance using the specified properties.
@@ -75332,22 +78735,21 @@ $root.E2E = (function() {
                 if (!writer)
                     writer = $Writer.create();
                 if (message.mimetype != null && Object.hasOwnProperty.call(message, "mimetype"))
-                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.mimetype);
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.mimetype);
                 if (message.fileSha256 != null && Object.hasOwnProperty.call(message, "fileSha256"))
-                    writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.fileSha256);
+                    writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.fileSha256);
                 if (message.mediaKey != null && Object.hasOwnProperty.call(message, "mediaKey"))
-                    writer.uint32(/* id 5, wireType 2 =*/42).bytes(message.mediaKey);
+                    writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.mediaKey);
                 if (message.fileEncSha256 != null && Object.hasOwnProperty.call(message, "fileEncSha256"))
-                    writer.uint32(/* id 6, wireType 2 =*/50).bytes(message.fileEncSha256);
+                    writer.uint32(/* id 4, wireType 2 =*/34).bytes(message.fileEncSha256);
                 if (message.directPath != null && Object.hasOwnProperty.call(message, "directPath"))
-                    writer.uint32(/* id 7, wireType 2 =*/58).string(message.directPath);
+                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.directPath);
                 if (message.mediaKeyTimestamp != null && Object.hasOwnProperty.call(message, "mediaKeyTimestamp"))
-                    writer.uint32(/* id 8, wireType 0 =*/64).int64(message.mediaKeyTimestamp);
+                    writer.uint32(/* id 6, wireType 0 =*/48).int64(message.mediaKeyTimestamp);
                 if (message.contextInfo != null && Object.hasOwnProperty.call(message, "contextInfo"))
-                    $root.E2E.ContextInfo.encode(message.contextInfo, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
-                if (message.participants != null && message.participants.length)
-                    for (var i = 0; i < message.participants.length; ++i)
-                        writer.uint32(/* id 10, wireType 2 =*/82).string(message.participants[i]);
+                    $root.E2E.ContextInfo.encode(message.contextInfo, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+                if (message.messageHistoryMetadata != null && Object.hasOwnProperty.call(message, "messageHistoryMetadata"))
+                    $root.E2E.Message.MessageHistoryMetadata.encode(message.messageHistoryMetadata, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
                 return writer;
             };
 
@@ -75375,45 +78777,45 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            MessageHistoryBundle.decode = function decode(reader, length) {
+            MessageHistoryBundle.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.MessageHistoryBundle();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
-                    case 2: {
+                    case 1: {
                             message.mimetype = reader.string();
                             break;
                         }
-                    case 3: {
+                    case 2: {
                             message.fileSha256 = reader.bytes();
                             break;
                         }
-                    case 5: {
+                    case 3: {
                             message.mediaKey = reader.bytes();
                             break;
                         }
-                    case 6: {
+                    case 4: {
                             message.fileEncSha256 = reader.bytes();
                             break;
                         }
-                    case 7: {
+                    case 5: {
                             message.directPath = reader.string();
                             break;
                         }
-                    case 8: {
+                    case 6: {
                             message.mediaKeyTimestamp = reader.int64();
                             break;
                         }
-                    case 9: {
+                    case 7: {
                             message.contextInfo = $root.E2E.ContextInfo.decode(reader, reader.uint32());
                             break;
                         }
-                    case 10: {
-                            if (!(message.participants && message.participants.length))
-                                message.participants = [];
-                            message.participants.push(reader.string());
+                    case 8: {
+                            message.messageHistoryMetadata = $root.E2E.Message.MessageHistoryMetadata.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -75474,12 +78876,10 @@ $root.E2E = (function() {
                     if (error)
                         return "contextInfo." + error;
                 }
-                if (message.participants != null && message.hasOwnProperty("participants")) {
-                    if (!Array.isArray(message.participants))
-                        return "participants: array expected";
-                    for (var i = 0; i < message.participants.length; ++i)
-                        if (!$util.isString(message.participants[i]))
-                            return "participants: string[] expected";
+                if (message.messageHistoryMetadata != null && message.hasOwnProperty("messageHistoryMetadata")) {
+                    var error = $root.E2E.Message.MessageHistoryMetadata.verify(message.messageHistoryMetadata);
+                    if (error)
+                        return "messageHistoryMetadata." + error;
                 }
                 return null;
             };
@@ -75529,12 +78929,10 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.MessageHistoryBundle.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo);
                 }
-                if (object.participants) {
-                    if (!Array.isArray(object.participants))
-                        throw TypeError(".E2E.Message.MessageHistoryBundle.participants: array expected");
-                    message.participants = [];
-                    for (var i = 0; i < object.participants.length; ++i)
-                        message.participants[i] = String(object.participants[i]);
+                if (object.messageHistoryMetadata != null) {
+                    if (typeof object.messageHistoryMetadata !== "object")
+                        throw TypeError(".E2E.Message.MessageHistoryBundle.messageHistoryMetadata: object expected");
+                    message.messageHistoryMetadata = $root.E2E.Message.MessageHistoryMetadata.fromObject(object.messageHistoryMetadata);
                 }
                 return message;
             };
@@ -75552,8 +78950,6 @@ $root.E2E = (function() {
                 if (!options)
                     options = {};
                 var object = {};
-                if (options.arrays || options.defaults)
-                    object.participants = [];
                 if (options.defaults) {
                     object.mimetype = "";
                     if (options.bytes === String)
@@ -75584,6 +78980,7 @@ $root.E2E = (function() {
                     } else
                         object.mediaKeyTimestamp = options.longs === String ? "0" : 0;
                     object.contextInfo = null;
+                    object.messageHistoryMetadata = null;
                 }
                 if (message.mimetype != null && message.hasOwnProperty("mimetype"))
                     object.mimetype = message.mimetype;
@@ -75602,11 +78999,8 @@ $root.E2E = (function() {
                         object.mediaKeyTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.mediaKeyTimestamp) : options.longs === Number ? new $util.LongBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0).toNumber() : message.mediaKeyTimestamp;
                 if (message.contextInfo != null && message.hasOwnProperty("contextInfo"))
                     object.contextInfo = $root.E2E.ContextInfo.toObject(message.contextInfo, options);
-                if (message.participants && message.participants.length) {
-                    object.participants = [];
-                    for (var j = 0; j < message.participants.length; ++j)
-                        object.participants[j] = message.participants[j];
-                }
+                if (message.messageHistoryMetadata != null && message.hasOwnProperty("messageHistoryMetadata"))
+                    object.messageHistoryMetadata = $root.E2E.Message.MessageHistoryMetadata.toObject(message.messageHistoryMetadata, options);
                 return object;
             };
 
@@ -75637,6 +79031,542 @@ $root.E2E = (function() {
             };
 
             return MessageHistoryBundle;
+        })();
+
+        Message.MessageHistoryMetadata = (function() {
+
+            /**
+             * Properties of a MessageHistoryMetadata.
+             * @memberof E2E.Message
+             * @interface IMessageHistoryMetadata
+             * @property {Array.<string>|null} [historyReceivers] MessageHistoryMetadata historyReceivers
+             * @property {number|Long|null} [firstMessageTimestamp] MessageHistoryMetadata firstMessageTimestamp
+             * @property {number|Long|null} [messageCount] MessageHistoryMetadata messageCount
+             */
+
+            /**
+             * Constructs a new MessageHistoryMetadata.
+             * @memberof E2E.Message
+             * @classdesc Represents a MessageHistoryMetadata.
+             * @implements IMessageHistoryMetadata
+             * @constructor
+             * @param {E2E.Message.IMessageHistoryMetadata=} [properties] Properties to set
+             */
+            function MessageHistoryMetadata(properties) {
+                this.historyReceivers = [];
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * MessageHistoryMetadata historyReceivers.
+             * @member {Array.<string>} historyReceivers
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @instance
+             */
+            MessageHistoryMetadata.prototype.historyReceivers = $util.emptyArray;
+
+            /**
+             * MessageHistoryMetadata firstMessageTimestamp.
+             * @member {number|Long} firstMessageTimestamp
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @instance
+             */
+            MessageHistoryMetadata.prototype.firstMessageTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+            /**
+             * MessageHistoryMetadata messageCount.
+             * @member {number|Long} messageCount
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @instance
+             */
+            MessageHistoryMetadata.prototype.messageCount = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+            /**
+             * Creates a new MessageHistoryMetadata instance using the specified properties.
+             * @function create
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @static
+             * @param {E2E.Message.IMessageHistoryMetadata=} [properties] Properties to set
+             * @returns {E2E.Message.MessageHistoryMetadata} MessageHistoryMetadata instance
+             */
+            MessageHistoryMetadata.create = function create(properties) {
+                return new MessageHistoryMetadata(properties);
+            };
+
+            /**
+             * Encodes the specified MessageHistoryMetadata message. Does not implicitly {@link E2E.Message.MessageHistoryMetadata.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @static
+             * @param {E2E.Message.IMessageHistoryMetadata} message MessageHistoryMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            MessageHistoryMetadata.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.historyReceivers != null && message.historyReceivers.length)
+                    for (var i = 0; i < message.historyReceivers.length; ++i)
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.historyReceivers[i]);
+                if (message.firstMessageTimestamp != null && Object.hasOwnProperty.call(message, "firstMessageTimestamp"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).int64(message.firstMessageTimestamp);
+                if (message.messageCount != null && Object.hasOwnProperty.call(message, "messageCount"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).int64(message.messageCount);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified MessageHistoryMetadata message, length delimited. Does not implicitly {@link E2E.Message.MessageHistoryMetadata.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @static
+             * @param {E2E.Message.IMessageHistoryMetadata} message MessageHistoryMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            MessageHistoryMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a MessageHistoryMetadata message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.Message.MessageHistoryMetadata} MessageHistoryMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            MessageHistoryMetadata.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.MessageHistoryMetadata();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            if (!(message.historyReceivers && message.historyReceivers.length))
+                                message.historyReceivers = [];
+                            message.historyReceivers.push(reader.string());
+                            break;
+                        }
+                    case 2: {
+                            message.firstMessageTimestamp = reader.int64();
+                            break;
+                        }
+                    case 3: {
+                            message.messageCount = reader.int64();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a MessageHistoryMetadata message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.Message.MessageHistoryMetadata} MessageHistoryMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            MessageHistoryMetadata.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a MessageHistoryMetadata message.
+             * @function verify
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            MessageHistoryMetadata.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.historyReceivers != null && message.hasOwnProperty("historyReceivers")) {
+                    if (!Array.isArray(message.historyReceivers))
+                        return "historyReceivers: array expected";
+                    for (var i = 0; i < message.historyReceivers.length; ++i)
+                        if (!$util.isString(message.historyReceivers[i]))
+                            return "historyReceivers: string[] expected";
+                }
+                if (message.firstMessageTimestamp != null && message.hasOwnProperty("firstMessageTimestamp"))
+                    if (!$util.isInteger(message.firstMessageTimestamp) && !(message.firstMessageTimestamp && $util.isInteger(message.firstMessageTimestamp.low) && $util.isInteger(message.firstMessageTimestamp.high)))
+                        return "firstMessageTimestamp: integer|Long expected";
+                if (message.messageCount != null && message.hasOwnProperty("messageCount"))
+                    if (!$util.isInteger(message.messageCount) && !(message.messageCount && $util.isInteger(message.messageCount.low) && $util.isInteger(message.messageCount.high)))
+                        return "messageCount: integer|Long expected";
+                return null;
+            };
+
+            /**
+             * Creates a MessageHistoryMetadata message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.Message.MessageHistoryMetadata} MessageHistoryMetadata
+             */
+            MessageHistoryMetadata.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.Message.MessageHistoryMetadata)
+                    return object;
+                var message = new $root.E2E.Message.MessageHistoryMetadata();
+                if (object.historyReceivers) {
+                    if (!Array.isArray(object.historyReceivers))
+                        throw TypeError(".E2E.Message.MessageHistoryMetadata.historyReceivers: array expected");
+                    message.historyReceivers = [];
+                    for (var i = 0; i < object.historyReceivers.length; ++i)
+                        message.historyReceivers[i] = String(object.historyReceivers[i]);
+                }
+                if (object.firstMessageTimestamp != null)
+                    if ($util.Long)
+                        (message.firstMessageTimestamp = $util.Long.fromValue(object.firstMessageTimestamp)).unsigned = false;
+                    else if (typeof object.firstMessageTimestamp === "string")
+                        message.firstMessageTimestamp = parseInt(object.firstMessageTimestamp, 10);
+                    else if (typeof object.firstMessageTimestamp === "number")
+                        message.firstMessageTimestamp = object.firstMessageTimestamp;
+                    else if (typeof object.firstMessageTimestamp === "object")
+                        message.firstMessageTimestamp = new $util.LongBits(object.firstMessageTimestamp.low >>> 0, object.firstMessageTimestamp.high >>> 0).toNumber();
+                if (object.messageCount != null)
+                    if ($util.Long)
+                        (message.messageCount = $util.Long.fromValue(object.messageCount)).unsigned = false;
+                    else if (typeof object.messageCount === "string")
+                        message.messageCount = parseInt(object.messageCount, 10);
+                    else if (typeof object.messageCount === "number")
+                        message.messageCount = object.messageCount;
+                    else if (typeof object.messageCount === "object")
+                        message.messageCount = new $util.LongBits(object.messageCount.low >>> 0, object.messageCount.high >>> 0).toNumber();
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a MessageHistoryMetadata message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @static
+             * @param {E2E.Message.MessageHistoryMetadata} message MessageHistoryMetadata
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            MessageHistoryMetadata.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.arrays || options.defaults)
+                    object.historyReceivers = [];
+                if (options.defaults) {
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.firstMessageTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    } else
+                        object.firstMessageTimestamp = options.longs === String ? "0" : 0;
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.messageCount = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    } else
+                        object.messageCount = options.longs === String ? "0" : 0;
+                }
+                if (message.historyReceivers && message.historyReceivers.length) {
+                    object.historyReceivers = [];
+                    for (var j = 0; j < message.historyReceivers.length; ++j)
+                        object.historyReceivers[j] = message.historyReceivers[j];
+                }
+                if (message.firstMessageTimestamp != null && message.hasOwnProperty("firstMessageTimestamp"))
+                    if (typeof message.firstMessageTimestamp === "number")
+                        object.firstMessageTimestamp = options.longs === String ? String(message.firstMessageTimestamp) : message.firstMessageTimestamp;
+                    else
+                        object.firstMessageTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.firstMessageTimestamp) : options.longs === Number ? new $util.LongBits(message.firstMessageTimestamp.low >>> 0, message.firstMessageTimestamp.high >>> 0).toNumber() : message.firstMessageTimestamp;
+                if (message.messageCount != null && message.hasOwnProperty("messageCount"))
+                    if (typeof message.messageCount === "number")
+                        object.messageCount = options.longs === String ? String(message.messageCount) : message.messageCount;
+                    else
+                        object.messageCount = options.longs === String ? $util.Long.prototype.toString.call(message.messageCount) : options.longs === Number ? new $util.LongBits(message.messageCount.low >>> 0, message.messageCount.high >>> 0).toNumber() : message.messageCount;
+                return object;
+            };
+
+            /**
+             * Converts this MessageHistoryMetadata to JSON.
+             * @function toJSON
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            MessageHistoryMetadata.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for MessageHistoryMetadata
+             * @function getTypeUrl
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            MessageHistoryMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.Message.MessageHistoryMetadata";
+            };
+
+            return MessageHistoryMetadata;
+        })();
+
+        Message.MessageHistoryNotice = (function() {
+
+            /**
+             * Properties of a MessageHistoryNotice.
+             * @memberof E2E.Message
+             * @interface IMessageHistoryNotice
+             * @property {E2E.IContextInfo|null} [contextInfo] MessageHistoryNotice contextInfo
+             * @property {E2E.Message.IMessageHistoryMetadata|null} [messageHistoryMetadata] MessageHistoryNotice messageHistoryMetadata
+             */
+
+            /**
+             * Constructs a new MessageHistoryNotice.
+             * @memberof E2E.Message
+             * @classdesc Represents a MessageHistoryNotice.
+             * @implements IMessageHistoryNotice
+             * @constructor
+             * @param {E2E.Message.IMessageHistoryNotice=} [properties] Properties to set
+             */
+            function MessageHistoryNotice(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * MessageHistoryNotice contextInfo.
+             * @member {E2E.IContextInfo|null|undefined} contextInfo
+             * @memberof E2E.Message.MessageHistoryNotice
+             * @instance
+             */
+            MessageHistoryNotice.prototype.contextInfo = null;
+
+            /**
+             * MessageHistoryNotice messageHistoryMetadata.
+             * @member {E2E.Message.IMessageHistoryMetadata|null|undefined} messageHistoryMetadata
+             * @memberof E2E.Message.MessageHistoryNotice
+             * @instance
+             */
+            MessageHistoryNotice.prototype.messageHistoryMetadata = null;
+
+            /**
+             * Creates a new MessageHistoryNotice instance using the specified properties.
+             * @function create
+             * @memberof E2E.Message.MessageHistoryNotice
+             * @static
+             * @param {E2E.Message.IMessageHistoryNotice=} [properties] Properties to set
+             * @returns {E2E.Message.MessageHistoryNotice} MessageHistoryNotice instance
+             */
+            MessageHistoryNotice.create = function create(properties) {
+                return new MessageHistoryNotice(properties);
+            };
+
+            /**
+             * Encodes the specified MessageHistoryNotice message. Does not implicitly {@link E2E.Message.MessageHistoryNotice.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.Message.MessageHistoryNotice
+             * @static
+             * @param {E2E.Message.IMessageHistoryNotice} message MessageHistoryNotice message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            MessageHistoryNotice.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.contextInfo != null && Object.hasOwnProperty.call(message, "contextInfo"))
+                    $root.E2E.ContextInfo.encode(message.contextInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.messageHistoryMetadata != null && Object.hasOwnProperty.call(message, "messageHistoryMetadata"))
+                    $root.E2E.Message.MessageHistoryMetadata.encode(message.messageHistoryMetadata, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                return writer;
+            };
+
+            /**
+             * Encodes the specified MessageHistoryNotice message, length delimited. Does not implicitly {@link E2E.Message.MessageHistoryNotice.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.Message.MessageHistoryNotice
+             * @static
+             * @param {E2E.Message.IMessageHistoryNotice} message MessageHistoryNotice message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            MessageHistoryNotice.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a MessageHistoryNotice message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.Message.MessageHistoryNotice
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.Message.MessageHistoryNotice} MessageHistoryNotice
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            MessageHistoryNotice.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.MessageHistoryNotice();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.contextInfo = $root.E2E.ContextInfo.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 2: {
+                            message.messageHistoryMetadata = $root.E2E.Message.MessageHistoryMetadata.decode(reader, reader.uint32());
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a MessageHistoryNotice message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.Message.MessageHistoryNotice
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.Message.MessageHistoryNotice} MessageHistoryNotice
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            MessageHistoryNotice.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a MessageHistoryNotice message.
+             * @function verify
+             * @memberof E2E.Message.MessageHistoryNotice
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            MessageHistoryNotice.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.contextInfo != null && message.hasOwnProperty("contextInfo")) {
+                    var error = $root.E2E.ContextInfo.verify(message.contextInfo);
+                    if (error)
+                        return "contextInfo." + error;
+                }
+                if (message.messageHistoryMetadata != null && message.hasOwnProperty("messageHistoryMetadata")) {
+                    var error = $root.E2E.Message.MessageHistoryMetadata.verify(message.messageHistoryMetadata);
+                    if (error)
+                        return "messageHistoryMetadata." + error;
+                }
+                return null;
+            };
+
+            /**
+             * Creates a MessageHistoryNotice message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.Message.MessageHistoryNotice
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.Message.MessageHistoryNotice} MessageHistoryNotice
+             */
+            MessageHistoryNotice.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.Message.MessageHistoryNotice)
+                    return object;
+                var message = new $root.E2E.Message.MessageHistoryNotice();
+                if (object.contextInfo != null) {
+                    if (typeof object.contextInfo !== "object")
+                        throw TypeError(".E2E.Message.MessageHistoryNotice.contextInfo: object expected");
+                    message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo);
+                }
+                if (object.messageHistoryMetadata != null) {
+                    if (typeof object.messageHistoryMetadata !== "object")
+                        throw TypeError(".E2E.Message.MessageHistoryNotice.messageHistoryMetadata: object expected");
+                    message.messageHistoryMetadata = $root.E2E.Message.MessageHistoryMetadata.fromObject(object.messageHistoryMetadata);
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a MessageHistoryNotice message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.Message.MessageHistoryNotice
+             * @static
+             * @param {E2E.Message.MessageHistoryNotice} message MessageHistoryNotice
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            MessageHistoryNotice.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.contextInfo = null;
+                    object.messageHistoryMetadata = null;
+                }
+                if (message.contextInfo != null && message.hasOwnProperty("contextInfo"))
+                    object.contextInfo = $root.E2E.ContextInfo.toObject(message.contextInfo, options);
+                if (message.messageHistoryMetadata != null && message.hasOwnProperty("messageHistoryMetadata"))
+                    object.messageHistoryMetadata = $root.E2E.Message.MessageHistoryMetadata.toObject(message.messageHistoryMetadata, options);
+                return object;
+            };
+
+            /**
+             * Converts this MessageHistoryNotice to JSON.
+             * @function toJSON
+             * @memberof E2E.Message.MessageHistoryNotice
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            MessageHistoryNotice.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for MessageHistoryNotice
+             * @function getTypeUrl
+             * @memberof E2E.Message.MessageHistoryNotice
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            MessageHistoryNotice.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.Message.MessageHistoryNotice";
+            };
+
+            return MessageHistoryNotice;
         })();
 
         Message.NewsletterAdminInviteMessage = (function() {
@@ -75779,12 +79709,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            NewsletterAdminInviteMessage.decode = function decode(reader, length) {
+            NewsletterAdminInviteMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.NewsletterAdminInviteMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.newsletterJid = reader.string();
@@ -76006,6 +79938,7 @@ $root.E2E = (function() {
              * @property {E2E.IContextInfo|null} [contextInfo] OrderMessage contextInfo
              * @property {number|null} [messageVersion] OrderMessage messageVersion
              * @property {Protocol.IMessageKey|null} [orderRequestMessageId] OrderMessage orderRequestMessageId
+             * @property {string|null} [catalogType] OrderMessage catalogType
              */
 
             /**
@@ -76136,6 +80069,14 @@ $root.E2E = (function() {
             OrderMessage.prototype.orderRequestMessageId = null;
 
             /**
+             * OrderMessage catalogType.
+             * @member {string} catalogType
+             * @memberof E2E.Message.OrderMessage
+             * @instance
+             */
+            OrderMessage.prototype.catalogType = "";
+
+            /**
              * Creates a new OrderMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.OrderMessage
@@ -76185,6 +80126,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 12, wireType 0 =*/96).int32(message.messageVersion);
                 if (message.orderRequestMessageId != null && Object.hasOwnProperty.call(message, "orderRequestMessageId"))
                     $root.Protocol.MessageKey.encode(message.orderRequestMessageId, writer.uint32(/* id 13, wireType 2 =*/106).fork()).ldelim();
+                if (message.catalogType != null && Object.hasOwnProperty.call(message, "catalogType"))
+                    writer.uint32(/* id 15, wireType 2 =*/122).string(message.catalogType);
                 if (message.contextInfo != null && Object.hasOwnProperty.call(message, "contextInfo"))
                     $root.E2E.ContextInfo.encode(message.contextInfo, writer.uint32(/* id 17, wireType 2 =*/138).fork()).ldelim();
                 return writer;
@@ -76214,12 +80157,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            OrderMessage.decode = function decode(reader, length) {
+            OrderMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.OrderMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.orderId = reader.string();
@@ -76275,6 +80220,10 @@ $root.E2E = (function() {
                         }
                     case 13: {
                             message.orderRequestMessageId = $root.Protocol.MessageKey.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 15: {
+                            message.catalogType = reader.string();
                             break;
                         }
                     default:
@@ -76368,6 +80317,9 @@ $root.E2E = (function() {
                     if (error)
                         return "orderRequestMessageId." + error;
                 }
+                if (message.catalogType != null && message.hasOwnProperty("catalogType"))
+                    if (!$util.isString(message.catalogType))
+                        return "catalogType: string expected";
                 return null;
             };
 
@@ -76455,6 +80407,8 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.OrderMessage.orderRequestMessageId: object expected");
                     message.orderRequestMessageId = $root.Protocol.MessageKey.fromObject(object.orderRequestMessageId);
                 }
+                if (object.catalogType != null)
+                    message.catalogType = String(object.catalogType);
                 return message;
             };
 
@@ -76495,6 +80449,7 @@ $root.E2E = (function() {
                     object.totalCurrencyCode = "";
                     object.messageVersion = 0;
                     object.orderRequestMessageId = null;
+                    object.catalogType = "";
                     object.contextInfo = null;
                 }
                 if (message.orderId != null && message.hasOwnProperty("orderId"))
@@ -76526,6 +80481,8 @@ $root.E2E = (function() {
                     object.messageVersion = message.messageVersion;
                 if (message.orderRequestMessageId != null && message.hasOwnProperty("orderRequestMessageId"))
                     object.orderRequestMessageId = $root.Protocol.MessageKey.toObject(message.orderRequestMessageId, options);
+                if (message.catalogType != null && message.hasOwnProperty("catalogType"))
+                    object.catalogType = message.catalogType;
                 if (message.contextInfo != null && message.hasOwnProperty("contextInfo"))
                     object.contextInfo = $root.E2E.ContextInfo.toObject(message.contextInfo, options);
                 return object;
@@ -76684,12 +80641,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PaymentInviteMessage.decode = function decode(reader, length) {
+            PaymentInviteMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PaymentInviteMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.serviceType = reader.int32();
@@ -76972,12 +80931,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PaymentLinkMetadata.decode = function decode(reader, length) {
+            PaymentLinkMetadata.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PaymentLinkMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.button = $root.E2E.Message.PaymentLinkMetadata.PaymentLinkButton.decode(reader, reader.uint32());
@@ -77195,12 +81156,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PaymentLinkButton.decode = function decode(reader, length) {
+                PaymentLinkButton.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PaymentLinkMetadata.PaymentLinkButton();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.displayText = reader.string();
@@ -77398,12 +81361,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PaymentLinkHeader.decode = function decode(reader, length) {
+                PaymentLinkHeader.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PaymentLinkMetadata.PaymentLinkHeader();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.headerType = reader.int32();
@@ -77564,6 +81529,7 @@ $root.E2E = (function() {
              * @property {E2E.Message.PeerDataOperationRequestMessage.IHistorySyncOnDemandRequest|null} [historySyncOnDemandRequest] PeerDataOperationRequestMessage historySyncOnDemandRequest
              * @property {Array.<E2E.Message.PeerDataOperationRequestMessage.IPlaceholderMessageResendRequest>|null} [placeholderMessageResendRequest] PeerDataOperationRequestMessage placeholderMessageResendRequest
              * @property {E2E.Message.PeerDataOperationRequestMessage.IFullHistorySyncOnDemandRequest|null} [fullHistorySyncOnDemandRequest] PeerDataOperationRequestMessage fullHistorySyncOnDemandRequest
+             * @property {E2E.Message.PeerDataOperationRequestMessage.ISyncDCollectionFatalRecoveryRequest|null} [syncdCollectionFatalRecoveryRequest] PeerDataOperationRequestMessage syncdCollectionFatalRecoveryRequest
              */
 
             /**
@@ -77633,6 +81599,14 @@ $root.E2E = (function() {
             PeerDataOperationRequestMessage.prototype.fullHistorySyncOnDemandRequest = null;
 
             /**
+             * PeerDataOperationRequestMessage syncdCollectionFatalRecoveryRequest.
+             * @member {E2E.Message.PeerDataOperationRequestMessage.ISyncDCollectionFatalRecoveryRequest|null|undefined} syncdCollectionFatalRecoveryRequest
+             * @memberof E2E.Message.PeerDataOperationRequestMessage
+             * @instance
+             */
+            PeerDataOperationRequestMessage.prototype.syncdCollectionFatalRecoveryRequest = null;
+
+            /**
              * Creates a new PeerDataOperationRequestMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.PeerDataOperationRequestMessage
@@ -77671,6 +81645,8 @@ $root.E2E = (function() {
                         $root.E2E.Message.PeerDataOperationRequestMessage.PlaceholderMessageResendRequest.encode(message.placeholderMessageResendRequest[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                 if (message.fullHistorySyncOnDemandRequest != null && Object.hasOwnProperty.call(message, "fullHistorySyncOnDemandRequest"))
                     $root.E2E.Message.PeerDataOperationRequestMessage.FullHistorySyncOnDemandRequest.encode(message.fullHistorySyncOnDemandRequest, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
+                if (message.syncdCollectionFatalRecoveryRequest != null && Object.hasOwnProperty.call(message, "syncdCollectionFatalRecoveryRequest"))
+                    $root.E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest.encode(message.syncdCollectionFatalRecoveryRequest, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
                 return writer;
             };
 
@@ -77698,12 +81674,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PeerDataOperationRequestMessage.decode = function decode(reader, length) {
+            PeerDataOperationRequestMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.peerDataOperationRequestType = reader.int32();
@@ -77733,6 +81711,10 @@ $root.E2E = (function() {
                         }
                     case 6: {
                             message.fullHistorySyncOnDemandRequest = $root.E2E.Message.PeerDataOperationRequestMessage.FullHistorySyncOnDemandRequest.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 7: {
+                            message.syncdCollectionFatalRecoveryRequest = $root.E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -77782,6 +81764,7 @@ $root.E2E = (function() {
                     case 5:
                     case 6:
                     case 7:
+                    case 8:
                         break;
                     }
                 if (message.requestStickerReupload != null && message.hasOwnProperty("requestStickerReupload")) {
@@ -77820,6 +81803,11 @@ $root.E2E = (function() {
                     var error = $root.E2E.Message.PeerDataOperationRequestMessage.FullHistorySyncOnDemandRequest.verify(message.fullHistorySyncOnDemandRequest);
                     if (error)
                         return "fullHistorySyncOnDemandRequest." + error;
+                }
+                if (message.syncdCollectionFatalRecoveryRequest != null && message.hasOwnProperty("syncdCollectionFatalRecoveryRequest")) {
+                    var error = $root.E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest.verify(message.syncdCollectionFatalRecoveryRequest);
+                    if (error)
+                        return "syncdCollectionFatalRecoveryRequest." + error;
                 }
                 return null;
             };
@@ -77875,6 +81863,10 @@ $root.E2E = (function() {
                 case 7:
                     message.peerDataOperationRequestType = 7;
                     break;
+                case "COMPANION_SYNCD_SNAPSHOT_FATAL_RECOVERY":
+                case 8:
+                    message.peerDataOperationRequestType = 8;
+                    break;
                 }
                 if (object.requestStickerReupload) {
                     if (!Array.isArray(object.requestStickerReupload))
@@ -77916,6 +81908,11 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.fullHistorySyncOnDemandRequest: object expected");
                     message.fullHistorySyncOnDemandRequest = $root.E2E.Message.PeerDataOperationRequestMessage.FullHistorySyncOnDemandRequest.fromObject(object.fullHistorySyncOnDemandRequest);
                 }
+                if (object.syncdCollectionFatalRecoveryRequest != null) {
+                    if (typeof object.syncdCollectionFatalRecoveryRequest !== "object")
+                        throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.syncdCollectionFatalRecoveryRequest: object expected");
+                    message.syncdCollectionFatalRecoveryRequest = $root.E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest.fromObject(object.syncdCollectionFatalRecoveryRequest);
+                }
                 return message;
             };
 
@@ -77941,6 +81938,7 @@ $root.E2E = (function() {
                     object.peerDataOperationRequestType = options.enums === String ? "UPLOAD_STICKER" : 0;
                     object.historySyncOnDemandRequest = null;
                     object.fullHistorySyncOnDemandRequest = null;
+                    object.syncdCollectionFatalRecoveryRequest = null;
                 }
                 if (message.peerDataOperationRequestType != null && message.hasOwnProperty("peerDataOperationRequestType"))
                     object.peerDataOperationRequestType = options.enums === String ? $root.E2E.Message.PeerDataOperationRequestType[message.peerDataOperationRequestType] === undefined ? message.peerDataOperationRequestType : $root.E2E.Message.PeerDataOperationRequestType[message.peerDataOperationRequestType] : message.peerDataOperationRequestType;
@@ -77963,6 +81961,8 @@ $root.E2E = (function() {
                 }
                 if (message.fullHistorySyncOnDemandRequest != null && message.hasOwnProperty("fullHistorySyncOnDemandRequest"))
                     object.fullHistorySyncOnDemandRequest = $root.E2E.Message.PeerDataOperationRequestMessage.FullHistorySyncOnDemandRequest.toObject(message.fullHistorySyncOnDemandRequest, options);
+                if (message.syncdCollectionFatalRecoveryRequest != null && message.hasOwnProperty("syncdCollectionFatalRecoveryRequest"))
+                    object.syncdCollectionFatalRecoveryRequest = $root.E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest.toObject(message.syncdCollectionFatalRecoveryRequest, options);
                 return object;
             };
 
@@ -78088,12 +82088,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FullHistorySyncOnDemandRequest.decode = function decode(reader, length) {
+                FullHistorySyncOnDemandRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestMessage.FullHistorySyncOnDemandRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.requestMetadata = $root.E2E.Message.FullHistorySyncOnDemandRequestMetadata.decode(reader, reader.uint32());
@@ -78369,12 +82371,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                HistorySyncOnDemandRequest.decode = function decode(reader, length) {
+                HistorySyncOnDemandRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestMessage.HistorySyncOnDemandRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.chatJid = reader.string();
@@ -78647,12 +82651,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PlaceholderMessageResendRequest.decode = function decode(reader, length) {
+                PlaceholderMessageResendRequest.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestMessage.PlaceholderMessageResendRequest();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.messageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -78855,12 +82861,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                RequestStickerReupload.decode = function decode(reader, length) {
+                RequestStickerReupload.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestMessage.RequestStickerReupload();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.fileSha256 = reader.string();
@@ -79069,12 +83077,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                RequestUrlPreview.decode = function decode(reader, length) {
+                RequestUrlPreview.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestMessage.RequestUrlPreview();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.url = reader.string();
@@ -79200,6 +83210,249 @@ $root.E2E = (function() {
                 return RequestUrlPreview;
             })();
 
+            PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest = (function() {
+
+                /**
+                 * Properties of a SyncDCollectionFatalRecoveryRequest.
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage
+                 * @interface ISyncDCollectionFatalRecoveryRequest
+                 * @property {string|null} [collectionName] SyncDCollectionFatalRecoveryRequest collectionName
+                 * @property {number|Long|null} [timestamp] SyncDCollectionFatalRecoveryRequest timestamp
+                 */
+
+                /**
+                 * Constructs a new SyncDCollectionFatalRecoveryRequest.
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage
+                 * @classdesc Represents a SyncDCollectionFatalRecoveryRequest.
+                 * @implements ISyncDCollectionFatalRecoveryRequest
+                 * @constructor
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.ISyncDCollectionFatalRecoveryRequest=} [properties] Properties to set
+                 */
+                function SyncDCollectionFatalRecoveryRequest(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * SyncDCollectionFatalRecoveryRequest collectionName.
+                 * @member {string} collectionName
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest
+                 * @instance
+                 */
+                SyncDCollectionFatalRecoveryRequest.prototype.collectionName = "";
+
+                /**
+                 * SyncDCollectionFatalRecoveryRequest timestamp.
+                 * @member {number|Long} timestamp
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest
+                 * @instance
+                 */
+                SyncDCollectionFatalRecoveryRequest.prototype.timestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+                /**
+                 * Creates a new SyncDCollectionFatalRecoveryRequest instance using the specified properties.
+                 * @function create
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.ISyncDCollectionFatalRecoveryRequest=} [properties] Properties to set
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest} SyncDCollectionFatalRecoveryRequest instance
+                 */
+                SyncDCollectionFatalRecoveryRequest.create = function create(properties) {
+                    return new SyncDCollectionFatalRecoveryRequest(properties);
+                };
+
+                /**
+                 * Encodes the specified SyncDCollectionFatalRecoveryRequest message. Does not implicitly {@link E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest.verify|verify} messages.
+                 * @function encode
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.ISyncDCollectionFatalRecoveryRequest} message SyncDCollectionFatalRecoveryRequest message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                SyncDCollectionFatalRecoveryRequest.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.collectionName != null && Object.hasOwnProperty.call(message, "collectionName"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.collectionName);
+                    if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
+                        writer.uint32(/* id 2, wireType 0 =*/16).int64(message.timestamp);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified SyncDCollectionFatalRecoveryRequest message, length delimited. Does not implicitly {@link E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.ISyncDCollectionFatalRecoveryRequest} message SyncDCollectionFatalRecoveryRequest message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                SyncDCollectionFatalRecoveryRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a SyncDCollectionFatalRecoveryRequest message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest} SyncDCollectionFatalRecoveryRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                SyncDCollectionFatalRecoveryRequest.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.collectionName = reader.string();
+                                break;
+                            }
+                        case 2: {
+                                message.timestamp = reader.int64();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a SyncDCollectionFatalRecoveryRequest message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest} SyncDCollectionFatalRecoveryRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                SyncDCollectionFatalRecoveryRequest.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a SyncDCollectionFatalRecoveryRequest message.
+                 * @function verify
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                SyncDCollectionFatalRecoveryRequest.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.collectionName != null && message.hasOwnProperty("collectionName"))
+                        if (!$util.isString(message.collectionName))
+                            return "collectionName: string expected";
+                    if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+                        if (!$util.isInteger(message.timestamp) && !(message.timestamp && $util.isInteger(message.timestamp.low) && $util.isInteger(message.timestamp.high)))
+                            return "timestamp: integer|Long expected";
+                    return null;
+                };
+
+                /**
+                 * Creates a SyncDCollectionFatalRecoveryRequest message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest} SyncDCollectionFatalRecoveryRequest
+                 */
+                SyncDCollectionFatalRecoveryRequest.fromObject = function fromObject(object) {
+                    if (object instanceof $root.E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest)
+                        return object;
+                    var message = new $root.E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest();
+                    if (object.collectionName != null)
+                        message.collectionName = String(object.collectionName);
+                    if (object.timestamp != null)
+                        if ($util.Long)
+                            (message.timestamp = $util.Long.fromValue(object.timestamp)).unsigned = false;
+                        else if (typeof object.timestamp === "string")
+                            message.timestamp = parseInt(object.timestamp, 10);
+                        else if (typeof object.timestamp === "number")
+                            message.timestamp = object.timestamp;
+                        else if (typeof object.timestamp === "object")
+                            message.timestamp = new $util.LongBits(object.timestamp.low >>> 0, object.timestamp.high >>> 0).toNumber();
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a SyncDCollectionFatalRecoveryRequest message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest} message SyncDCollectionFatalRecoveryRequest
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                SyncDCollectionFatalRecoveryRequest.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        object.collectionName = "";
+                        if ($util.Long) {
+                            var long = new $util.Long(0, 0, false);
+                            object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        } else
+                            object.timestamp = options.longs === String ? "0" : 0;
+                    }
+                    if (message.collectionName != null && message.hasOwnProperty("collectionName"))
+                        object.collectionName = message.collectionName;
+                    if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+                        if (typeof message.timestamp === "number")
+                            object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
+                        else
+                            object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber() : message.timestamp;
+                    return object;
+                };
+
+                /**
+                 * Converts this SyncDCollectionFatalRecoveryRequest to JSON.
+                 * @function toJSON
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                SyncDCollectionFatalRecoveryRequest.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for SyncDCollectionFatalRecoveryRequest
+                 * @function getTypeUrl
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                SyncDCollectionFatalRecoveryRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest";
+                };
+
+                return SyncDCollectionFatalRecoveryRequest;
+            })();
+
             return PeerDataOperationRequestMessage;
         })();
 
@@ -79312,12 +83565,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PeerDataOperationRequestResponseMessage.decode = function decode(reader, length) {
+            PeerDataOperationRequestResponseMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.peerDataOperationRequestType = reader.int32();
@@ -79380,6 +83635,7 @@ $root.E2E = (function() {
                     case 5:
                     case 6:
                     case 7:
+                    case 8:
                         break;
                     }
                 if (message.stanzaId != null && message.hasOwnProperty("stanzaId"))
@@ -79447,6 +83703,10 @@ $root.E2E = (function() {
                 case "COMPANION_META_NONCE_FETCH":
                 case 7:
                     message.peerDataOperationRequestType = 7;
+                    break;
+                case "COMPANION_SYNCD_SNAPSHOT_FATAL_RECOVERY":
+                case 8:
+                    message.peerDataOperationRequestType = 8;
                     break;
                 }
                 if (object.stanzaId != null)
@@ -79534,6 +83794,7 @@ $root.E2E = (function() {
                  * @property {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IWaffleNonceFetchResponse|null} [waffleNonceFetchRequestResponse] PeerDataOperationResult waffleNonceFetchRequestResponse
                  * @property {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IFullHistorySyncOnDemandRequestResponse|null} [fullHistorySyncOnDemandRequestResponse] PeerDataOperationResult fullHistorySyncOnDemandRequestResponse
                  * @property {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ICompanionMetaNonceFetchResponse|null} [companionMetaNonceFetchRequestResponse] PeerDataOperationResult companionMetaNonceFetchRequestResponse
+                 * @property {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ISyncDSnapshotFatalRecoveryResponse|null} [syncdSnapshotFatalRecoveryResponse] PeerDataOperationResult syncdSnapshotFatalRecoveryResponse
                  */
 
                 /**
@@ -79608,6 +83869,14 @@ $root.E2E = (function() {
                 PeerDataOperationResult.prototype.companionMetaNonceFetchRequestResponse = null;
 
                 /**
+                 * PeerDataOperationResult syncdSnapshotFatalRecoveryResponse.
+                 * @member {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ISyncDSnapshotFatalRecoveryResponse|null|undefined} syncdSnapshotFatalRecoveryResponse
+                 * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult
+                 * @instance
+                 */
+                PeerDataOperationResult.prototype.syncdSnapshotFatalRecoveryResponse = null;
+
+                /**
                  * Creates a new PeerDataOperationResult instance using the specified properties.
                  * @function create
                  * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult
@@ -79645,6 +83914,8 @@ $root.E2E = (function() {
                         $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FullHistorySyncOnDemandRequestResponse.encode(message.fullHistorySyncOnDemandRequestResponse, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
                     if (message.companionMetaNonceFetchRequestResponse != null && Object.hasOwnProperty.call(message, "companionMetaNonceFetchRequestResponse"))
                         $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionMetaNonceFetchResponse.encode(message.companionMetaNonceFetchRequestResponse, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+                    if (message.syncdSnapshotFatalRecoveryResponse != null && Object.hasOwnProperty.call(message, "syncdSnapshotFatalRecoveryResponse"))
+                        $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse.encode(message.syncdSnapshotFatalRecoveryResponse, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
                     return writer;
                 };
 
@@ -79672,12 +83943,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PeerDataOperationResult.decode = function decode(reader, length) {
+                PeerDataOperationResult.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.mediaUploadResult = reader.int32();
@@ -79705,6 +83978,10 @@ $root.E2E = (function() {
                             }
                         case 7: {
                                 message.companionMetaNonceFetchRequestResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionMetaNonceFetchResponse.decode(reader, reader.uint32());
+                                break;
+                            }
+                        case 8: {
+                                message.syncdSnapshotFatalRecoveryResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse.decode(reader, reader.uint32());
                                 break;
                             }
                         default:
@@ -79782,6 +84059,11 @@ $root.E2E = (function() {
                         if (error)
                             return "companionMetaNonceFetchRequestResponse." + error;
                     }
+                    if (message.syncdSnapshotFatalRecoveryResponse != null && message.hasOwnProperty("syncdSnapshotFatalRecoveryResponse")) {
+                        var error = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse.verify(message.syncdSnapshotFatalRecoveryResponse);
+                        if (error)
+                            return "syncdSnapshotFatalRecoveryResponse." + error;
+                    }
                     return null;
                 };
 
@@ -79851,6 +84133,11 @@ $root.E2E = (function() {
                             throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.companionMetaNonceFetchRequestResponse: object expected");
                         message.companionMetaNonceFetchRequestResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionMetaNonceFetchResponse.fromObject(object.companionMetaNonceFetchRequestResponse);
                     }
+                    if (object.syncdSnapshotFatalRecoveryResponse != null) {
+                        if (typeof object.syncdSnapshotFatalRecoveryResponse !== "object")
+                            throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.syncdSnapshotFatalRecoveryResponse: object expected");
+                        message.syncdSnapshotFatalRecoveryResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse.fromObject(object.syncdSnapshotFatalRecoveryResponse);
+                    }
                     return message;
                 };
 
@@ -79875,6 +84162,7 @@ $root.E2E = (function() {
                         object.waffleNonceFetchRequestResponse = null;
                         object.fullHistorySyncOnDemandRequestResponse = null;
                         object.companionMetaNonceFetchRequestResponse = null;
+                        object.syncdSnapshotFatalRecoveryResponse = null;
                     }
                     if (message.mediaUploadResult != null && message.hasOwnProperty("mediaUploadResult"))
                         object.mediaUploadResult = options.enums === String ? $root.MmsRetry.MediaRetryNotification.ResultType[message.mediaUploadResult] === undefined ? message.mediaUploadResult : $root.MmsRetry.MediaRetryNotification.ResultType[message.mediaUploadResult] : message.mediaUploadResult;
@@ -79890,6 +84178,8 @@ $root.E2E = (function() {
                         object.fullHistorySyncOnDemandRequestResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FullHistorySyncOnDemandRequestResponse.toObject(message.fullHistorySyncOnDemandRequestResponse, options);
                     if (message.companionMetaNonceFetchRequestResponse != null && message.hasOwnProperty("companionMetaNonceFetchRequestResponse"))
                         object.companionMetaNonceFetchRequestResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionMetaNonceFetchResponse.toObject(message.companionMetaNonceFetchRequestResponse, options);
+                    if (message.syncdSnapshotFatalRecoveryResponse != null && message.hasOwnProperty("syncdSnapshotFatalRecoveryResponse"))
+                        object.syncdSnapshotFatalRecoveryResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse.toObject(message.syncdSnapshotFatalRecoveryResponse, options);
                     return object;
                 };
 
@@ -80004,12 +84294,14 @@ $root.E2E = (function() {
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    CompanionMetaNonceFetchResponse.decode = function decode(reader, length) {
+                    CompanionMetaNonceFetchResponse.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionMetaNonceFetchResponse();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.nonce = reader.string();
@@ -80218,12 +84510,14 @@ $root.E2E = (function() {
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    FullHistorySyncOnDemandRequestResponse.decode = function decode(reader, length) {
+                    FullHistorySyncOnDemandRequestResponse.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FullHistorySyncOnDemandRequestResponse();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.requestMetadata = $root.E2E.Message.FullHistorySyncOnDemandRequestMetadata.decode(reader, reader.uint32());
@@ -80573,12 +84867,14 @@ $root.E2E = (function() {
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    LinkPreviewResponse.decode = function decode(reader, length) {
+                    LinkPreviewResponse.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.url = reader.string();
@@ -80926,12 +85222,14 @@ $root.E2E = (function() {
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        LinkPreviewHighQualityThumbnail.decode = function decode(reader, length) {
+                        LinkPreviewHighQualityThumbnail.decode = function decode(reader, length, error) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
                             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.LinkPreviewHighQualityThumbnail();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
                                 switch (tag >>> 3) {
                                 case 1: {
                                         message.directPath = reader.string();
@@ -81228,12 +85526,14 @@ $root.E2E = (function() {
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    PlaceholderMessageResendResponse.decode = function decode(reader, length) {
+                    PlaceholderMessageResendResponse.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.PlaceholderMessageResendResponse();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.webMessageInfoBytes = reader.bytes();
@@ -81355,6 +85655,244 @@ $root.E2E = (function() {
                     return PlaceholderMessageResendResponse;
                 })();
 
+                PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse = (function() {
+
+                    /**
+                     * Properties of a SyncDSnapshotFatalRecoveryResponse.
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult
+                     * @interface ISyncDSnapshotFatalRecoveryResponse
+                     * @property {Uint8Array|null} [collectionSnapshot] SyncDSnapshotFatalRecoveryResponse collectionSnapshot
+                     * @property {boolean|null} [isCompressed] SyncDSnapshotFatalRecoveryResponse isCompressed
+                     */
+
+                    /**
+                     * Constructs a new SyncDSnapshotFatalRecoveryResponse.
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult
+                     * @classdesc Represents a SyncDSnapshotFatalRecoveryResponse.
+                     * @implements ISyncDSnapshotFatalRecoveryResponse
+                     * @constructor
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ISyncDSnapshotFatalRecoveryResponse=} [properties] Properties to set
+                     */
+                    function SyncDSnapshotFatalRecoveryResponse(properties) {
+                        if (properties)
+                            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                if (properties[keys[i]] != null)
+                                    this[keys[i]] = properties[keys[i]];
+                    }
+
+                    /**
+                     * SyncDSnapshotFatalRecoveryResponse collectionSnapshot.
+                     * @member {Uint8Array} collectionSnapshot
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse
+                     * @instance
+                     */
+                    SyncDSnapshotFatalRecoveryResponse.prototype.collectionSnapshot = $util.newBuffer([]);
+
+                    /**
+                     * SyncDSnapshotFatalRecoveryResponse isCompressed.
+                     * @member {boolean} isCompressed
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse
+                     * @instance
+                     */
+                    SyncDSnapshotFatalRecoveryResponse.prototype.isCompressed = false;
+
+                    /**
+                     * Creates a new SyncDSnapshotFatalRecoveryResponse instance using the specified properties.
+                     * @function create
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse
+                     * @static
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ISyncDSnapshotFatalRecoveryResponse=} [properties] Properties to set
+                     * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse} SyncDSnapshotFatalRecoveryResponse instance
+                     */
+                    SyncDSnapshotFatalRecoveryResponse.create = function create(properties) {
+                        return new SyncDSnapshotFatalRecoveryResponse(properties);
+                    };
+
+                    /**
+                     * Encodes the specified SyncDSnapshotFatalRecoveryResponse message. Does not implicitly {@link E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse.verify|verify} messages.
+                     * @function encode
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse
+                     * @static
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ISyncDSnapshotFatalRecoveryResponse} message SyncDSnapshotFatalRecoveryResponse message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    SyncDSnapshotFatalRecoveryResponse.encode = function encode(message, writer) {
+                        if (!writer)
+                            writer = $Writer.create();
+                        if (message.collectionSnapshot != null && Object.hasOwnProperty.call(message, "collectionSnapshot"))
+                            writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.collectionSnapshot);
+                        if (message.isCompressed != null && Object.hasOwnProperty.call(message, "isCompressed"))
+                            writer.uint32(/* id 2, wireType 0 =*/16).bool(message.isCompressed);
+                        return writer;
+                    };
+
+                    /**
+                     * Encodes the specified SyncDSnapshotFatalRecoveryResponse message, length delimited. Does not implicitly {@link E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse.verify|verify} messages.
+                     * @function encodeDelimited
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse
+                     * @static
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ISyncDSnapshotFatalRecoveryResponse} message SyncDSnapshotFatalRecoveryResponse message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    SyncDSnapshotFatalRecoveryResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                        return this.encode(message, writer).ldelim();
+                    };
+
+                    /**
+                     * Decodes a SyncDSnapshotFatalRecoveryResponse message from the specified reader or buffer.
+                     * @function decode
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @param {number} [length] Message length if known beforehand
+                     * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse} SyncDSnapshotFatalRecoveryResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    SyncDSnapshotFatalRecoveryResponse.decode = function decode(reader, length, error) {
+                        if (!(reader instanceof $Reader))
+                            reader = $Reader.create(reader);
+                        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse();
+                        while (reader.pos < end) {
+                            var tag = reader.uint32();
+                            if (tag === error)
+                                break;
+                            switch (tag >>> 3) {
+                            case 1: {
+                                    message.collectionSnapshot = reader.bytes();
+                                    break;
+                                }
+                            case 2: {
+                                    message.isCompressed = reader.bool();
+                                    break;
+                                }
+                            default:
+                                reader.skipType(tag & 7);
+                                break;
+                            }
+                        }
+                        return message;
+                    };
+
+                    /**
+                     * Decodes a SyncDSnapshotFatalRecoveryResponse message from the specified reader or buffer, length delimited.
+                     * @function decodeDelimited
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse} SyncDSnapshotFatalRecoveryResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    SyncDSnapshotFatalRecoveryResponse.decodeDelimited = function decodeDelimited(reader) {
+                        if (!(reader instanceof $Reader))
+                            reader = new $Reader(reader);
+                        return this.decode(reader, reader.uint32());
+                    };
+
+                    /**
+                     * Verifies a SyncDSnapshotFatalRecoveryResponse message.
+                     * @function verify
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse
+                     * @static
+                     * @param {Object.<string,*>} message Plain object to verify
+                     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                     */
+                    SyncDSnapshotFatalRecoveryResponse.verify = function verify(message) {
+                        if (typeof message !== "object" || message === null)
+                            return "object expected";
+                        if (message.collectionSnapshot != null && message.hasOwnProperty("collectionSnapshot"))
+                            if (!(message.collectionSnapshot && typeof message.collectionSnapshot.length === "number" || $util.isString(message.collectionSnapshot)))
+                                return "collectionSnapshot: buffer expected";
+                        if (message.isCompressed != null && message.hasOwnProperty("isCompressed"))
+                            if (typeof message.isCompressed !== "boolean")
+                                return "isCompressed: boolean expected";
+                        return null;
+                    };
+
+                    /**
+                     * Creates a SyncDSnapshotFatalRecoveryResponse message from a plain object. Also converts values to their respective internal types.
+                     * @function fromObject
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse
+                     * @static
+                     * @param {Object.<string,*>} object Plain object
+                     * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse} SyncDSnapshotFatalRecoveryResponse
+                     */
+                    SyncDSnapshotFatalRecoveryResponse.fromObject = function fromObject(object) {
+                        if (object instanceof $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse)
+                            return object;
+                        var message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse();
+                        if (object.collectionSnapshot != null)
+                            if (typeof object.collectionSnapshot === "string")
+                                $util.base64.decode(object.collectionSnapshot, message.collectionSnapshot = $util.newBuffer($util.base64.length(object.collectionSnapshot)), 0);
+                            else if (object.collectionSnapshot.length >= 0)
+                                message.collectionSnapshot = object.collectionSnapshot;
+                        if (object.isCompressed != null)
+                            message.isCompressed = Boolean(object.isCompressed);
+                        return message;
+                    };
+
+                    /**
+                     * Creates a plain object from a SyncDSnapshotFatalRecoveryResponse message. Also converts values to other types if specified.
+                     * @function toObject
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse
+                     * @static
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse} message SyncDSnapshotFatalRecoveryResponse
+                     * @param {$protobuf.IConversionOptions} [options] Conversion options
+                     * @returns {Object.<string,*>} Plain object
+                     */
+                    SyncDSnapshotFatalRecoveryResponse.toObject = function toObject(message, options) {
+                        if (!options)
+                            options = {};
+                        var object = {};
+                        if (options.defaults) {
+                            if (options.bytes === String)
+                                object.collectionSnapshot = "";
+                            else {
+                                object.collectionSnapshot = [];
+                                if (options.bytes !== Array)
+                                    object.collectionSnapshot = $util.newBuffer(object.collectionSnapshot);
+                            }
+                            object.isCompressed = false;
+                        }
+                        if (message.collectionSnapshot != null && message.hasOwnProperty("collectionSnapshot"))
+                            object.collectionSnapshot = options.bytes === String ? $util.base64.encode(message.collectionSnapshot, 0, message.collectionSnapshot.length) : options.bytes === Array ? Array.prototype.slice.call(message.collectionSnapshot) : message.collectionSnapshot;
+                        if (message.isCompressed != null && message.hasOwnProperty("isCompressed"))
+                            object.isCompressed = message.isCompressed;
+                        return object;
+                    };
+
+                    /**
+                     * Converts this SyncDSnapshotFatalRecoveryResponse to JSON.
+                     * @function toJSON
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse
+                     * @instance
+                     * @returns {Object.<string,*>} JSON object
+                     */
+                    SyncDSnapshotFatalRecoveryResponse.prototype.toJSON = function toJSON() {
+                        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                    };
+
+                    /**
+                     * Gets the default type url for SyncDSnapshotFatalRecoveryResponse
+                     * @function getTypeUrl
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse
+                     * @static
+                     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns {string} The default type url
+                     */
+                    SyncDSnapshotFatalRecoveryResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        if (typeUrlPrefix === undefined) {
+                            typeUrlPrefix = "type.googleapis.com";
+                        }
+                        return typeUrlPrefix + "/E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse";
+                    };
+
+                    return SyncDSnapshotFatalRecoveryResponse;
+                })();
+
                 PeerDataOperationResult.WaffleNonceFetchResponse = (function() {
 
                     /**
@@ -81451,12 +85989,14 @@ $root.E2E = (function() {
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    WaffleNonceFetchResponse.decode = function decode(reader, length) {
+                    WaffleNonceFetchResponse.decode = function decode(reader, length, error) {
                         if (!(reader instanceof $Reader))
                             reader = $Reader.create(reader);
                         var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.WaffleNonceFetchResponse();
                         while (reader.pos < end) {
                             var tag = reader.uint32();
+                            if (tag === error)
+                                break;
                             switch (tag >>> 3) {
                             case 1: {
                                     message.nonce = reader.string();
@@ -81600,6 +86140,7 @@ $root.E2E = (function() {
          * @property {number} WAFFLE_LINKING_NONCE_FETCH=5 WAFFLE_LINKING_NONCE_FETCH value
          * @property {number} FULL_HISTORY_SYNC_ON_DEMAND=6 FULL_HISTORY_SYNC_ON_DEMAND value
          * @property {number} COMPANION_META_NONCE_FETCH=7 COMPANION_META_NONCE_FETCH value
+         * @property {number} COMPANION_SYNCD_SNAPSHOT_FATAL_RECOVERY=8 COMPANION_SYNCD_SNAPSHOT_FATAL_RECOVERY value
          */
         Message.PeerDataOperationRequestType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -81611,6 +86152,7 @@ $root.E2E = (function() {
             values[valuesById[5] = "WAFFLE_LINKING_NONCE_FETCH"] = 5;
             values[valuesById[6] = "FULL_HISTORY_SYNC_ON_DEMAND"] = 6;
             values[valuesById[7] = "COMPANION_META_NONCE_FETCH"] = 7;
+            values[valuesById[8] = "COMPANION_SYNCD_SNAPSHOT_FATAL_RECOVERY"] = 8;
             return values;
         })();
 
@@ -81721,12 +86263,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PinInChatMessage.decode = function decode(reader, length) {
+            PinInChatMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PinInChatMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -82008,12 +86552,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PlaceholderMessage.decode = function decode(reader, length) {
+            PlaceholderMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PlaceholderMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.type = reader.int32();
@@ -82332,12 +86878,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PollCreationMessage.decode = function decode(reader, length) {
+            PollCreationMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PollCreationMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.encKey = reader.bytes();
@@ -82710,12 +87258,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Option.decode = function decode(reader, length) {
+                Option.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PollCreationMessage.Option();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.optionName = reader.string();
@@ -82954,12 +87504,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PollEncValue.decode = function decode(reader, length) {
+            PollEncValue.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PollEncValue();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.encPayload = reader.bytes();
@@ -83212,12 +87764,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PollResultSnapshotMessage.decode = function decode(reader, length) {
+            PollResultSnapshotMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PollResultSnapshotMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.name = reader.string();
@@ -83473,12 +88027,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PollVote.decode = function decode(reader, length) {
+                PollVote.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PollResultSnapshotMessage.PollVote();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.optionName = reader.string();
@@ -83739,12 +88295,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PollUpdateMessage.decode = function decode(reader, length) {
+            PollUpdateMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PollUpdateMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.pollCreationMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -83997,12 +88555,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PollUpdateMessageMetadata.decode = function decode(reader, length) {
+            PollUpdateMessageMetadata.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PollUpdateMessageMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     default:
                         reader.skipType(tag & 7);
@@ -84185,12 +88745,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PollVoteMessage.decode = function decode(reader, length) {
+            PollVoteMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PollVoteMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             if (!(message.selectedOptions && message.selectedOptions.length))
@@ -84460,12 +89022,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ProductMessage.decode = function decode(reader, length) {
+            ProductMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ProductMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.product = $root.E2E.Message.ProductMessage.ProductSnapshot.decode(reader, reader.uint32());
@@ -84758,12 +89322,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CatalogSnapshot.decode = function decode(reader, length) {
+                CatalogSnapshot.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ProductMessage.CatalogSnapshot();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.catalogImage = $root.E2E.Message.ImageMessage.decode(reader, reader.uint32());
@@ -85112,12 +89678,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                ProductSnapshot.decode = function decode(reader, length) {
+                ProductSnapshot.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ProductMessage.ProductSnapshot();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.productImage = $root.E2E.Message.ImageMessage.decode(reader, reader.uint32());
@@ -85426,6 +89994,9 @@ $root.E2E = (function() {
              * @property {E2E.Message.ICloudAPIThreadControlNotification|null} [cloudApiThreadControlNotification] ProtocolMessage cloudApiThreadControlNotification
              * @property {E2E.ILIDMigrationMappingSyncMessage|null} [lidMigrationMappingSyncMessage] ProtocolMessage lidMigrationMappingSyncMessage
              * @property {Protocol.ILimitSharing|null} [limitSharing] ProtocolMessage limitSharing
+             * @property {Uint8Array|null} [aiPsiMetadata] ProtocolMessage aiPsiMetadata
+             * @property {E2E.IAIQueryFanout|null} [aiQueryFanout] ProtocolMessage aiQueryFanout
+             * @property {E2E.IMemberLabel|null} [memberLabel] ProtocolMessage memberLabel
              */
 
             /**
@@ -85612,6 +90183,30 @@ $root.E2E = (function() {
             ProtocolMessage.prototype.limitSharing = null;
 
             /**
+             * ProtocolMessage aiPsiMetadata.
+             * @member {Uint8Array} aiPsiMetadata
+             * @memberof E2E.Message.ProtocolMessage
+             * @instance
+             */
+            ProtocolMessage.prototype.aiPsiMetadata = $util.newBuffer([]);
+
+            /**
+             * ProtocolMessage aiQueryFanout.
+             * @member {E2E.IAIQueryFanout|null|undefined} aiQueryFanout
+             * @memberof E2E.Message.ProtocolMessage
+             * @instance
+             */
+            ProtocolMessage.prototype.aiQueryFanout = null;
+
+            /**
+             * ProtocolMessage memberLabel.
+             * @member {E2E.IMemberLabel|null|undefined} memberLabel
+             * @memberof E2E.Message.ProtocolMessage
+             * @instance
+             */
+            ProtocolMessage.prototype.memberLabel = null;
+
+            /**
              * Creates a new ProtocolMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.ProtocolMessage
@@ -85677,6 +90272,12 @@ $root.E2E = (function() {
                     $root.E2E.LIDMigrationMappingSyncMessage.encode(message.lidMigrationMappingSyncMessage, writer.uint32(/* id 23, wireType 2 =*/186).fork()).ldelim();
                 if (message.limitSharing != null && Object.hasOwnProperty.call(message, "limitSharing"))
                     $root.Protocol.LimitSharing.encode(message.limitSharing, writer.uint32(/* id 24, wireType 2 =*/194).fork()).ldelim();
+                if (message.aiPsiMetadata != null && Object.hasOwnProperty.call(message, "aiPsiMetadata"))
+                    writer.uint32(/* id 25, wireType 2 =*/202).bytes(message.aiPsiMetadata);
+                if (message.aiQueryFanout != null && Object.hasOwnProperty.call(message, "aiQueryFanout"))
+                    $root.E2E.AIQueryFanout.encode(message.aiQueryFanout, writer.uint32(/* id 26, wireType 2 =*/210).fork()).ldelim();
+                if (message.memberLabel != null && Object.hasOwnProperty.call(message, "memberLabel"))
+                    $root.E2E.MemberLabel.encode(message.memberLabel, writer.uint32(/* id 27, wireType 2 =*/218).fork()).ldelim();
                 return writer;
             };
 
@@ -85704,12 +90305,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ProtocolMessage.decode = function decode(reader, length) {
+            ProtocolMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ProtocolMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -85795,6 +90398,18 @@ $root.E2E = (function() {
                             message.limitSharing = $root.Protocol.LimitSharing.decode(reader, reader.uint32());
                             break;
                         }
+                    case 25: {
+                            message.aiPsiMetadata = reader.bytes();
+                            break;
+                        }
+                    case 26: {
+                            message.aiQueryFanout = $root.E2E.AIQueryFanout.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 27: {
+                            message.memberLabel = $root.E2E.MemberLabel.decode(reader, reader.uint32());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -85862,6 +90477,9 @@ $root.E2E = (function() {
                     case 25:
                     case 26:
                     case 27:
+                    case 28:
+                    case 29:
+                    case 30:
                         break;
                     }
                 if (message.ephemeralExpiration != null && message.hasOwnProperty("ephemeralExpiration"))
@@ -85950,6 +90568,19 @@ $root.E2E = (function() {
                     var error = $root.Protocol.LimitSharing.verify(message.limitSharing);
                     if (error)
                         return "limitSharing." + error;
+                }
+                if (message.aiPsiMetadata != null && message.hasOwnProperty("aiPsiMetadata"))
+                    if (!(message.aiPsiMetadata && typeof message.aiPsiMetadata.length === "number" || $util.isString(message.aiPsiMetadata)))
+                        return "aiPsiMetadata: buffer expected";
+                if (message.aiQueryFanout != null && message.hasOwnProperty("aiQueryFanout")) {
+                    var error = $root.E2E.AIQueryFanout.verify(message.aiQueryFanout);
+                    if (error)
+                        return "aiQueryFanout." + error;
+                }
+                if (message.memberLabel != null && message.hasOwnProperty("memberLabel")) {
+                    var error = $root.E2E.MemberLabel.verify(message.memberLabel);
+                    if (error)
+                        return "memberLabel." + error;
                 }
                 return null;
             };
@@ -86070,6 +90701,18 @@ $root.E2E = (function() {
                 case 27:
                     message.type = 27;
                     break;
+                case "AI_PSI_METADATA":
+                case 28:
+                    message.type = 28;
+                    break;
+                case "AI_QUERY_FANOUT":
+                case 29:
+                    message.type = 29;
+                    break;
+                case "GROUP_MEMBER_LABEL_CHANGE":
+                case 30:
+                    message.type = 30;
+                    break;
                 }
                 if (object.ephemeralExpiration != null)
                     message.ephemeralExpiration = object.ephemeralExpiration >>> 0;
@@ -86168,6 +90811,21 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.ProtocolMessage.limitSharing: object expected");
                     message.limitSharing = $root.Protocol.LimitSharing.fromObject(object.limitSharing);
                 }
+                if (object.aiPsiMetadata != null)
+                    if (typeof object.aiPsiMetadata === "string")
+                        $util.base64.decode(object.aiPsiMetadata, message.aiPsiMetadata = $util.newBuffer($util.base64.length(object.aiPsiMetadata)), 0);
+                    else if (object.aiPsiMetadata.length >= 0)
+                        message.aiPsiMetadata = object.aiPsiMetadata;
+                if (object.aiQueryFanout != null) {
+                    if (typeof object.aiQueryFanout !== "object")
+                        throw TypeError(".E2E.Message.ProtocolMessage.aiQueryFanout: object expected");
+                    message.aiQueryFanout = $root.E2E.AIQueryFanout.fromObject(object.aiQueryFanout);
+                }
+                if (object.memberLabel != null) {
+                    if (typeof object.memberLabel !== "object")
+                        throw TypeError(".E2E.Message.ProtocolMessage.memberLabel: object expected");
+                    message.memberLabel = $root.E2E.MemberLabel.fromObject(object.memberLabel);
+                }
                 return message;
             };
 
@@ -86214,6 +90872,15 @@ $root.E2E = (function() {
                     object.cloudApiThreadControlNotification = null;
                     object.lidMigrationMappingSyncMessage = null;
                     object.limitSharing = null;
+                    if (options.bytes === String)
+                        object.aiPsiMetadata = "";
+                    else {
+                        object.aiPsiMetadata = [];
+                        if (options.bytes !== Array)
+                            object.aiPsiMetadata = $util.newBuffer(object.aiPsiMetadata);
+                    }
+                    object.aiQueryFanout = null;
+                    object.memberLabel = null;
                 }
                 if (message.key != null && message.hasOwnProperty("key"))
                     object.key = $root.Protocol.MessageKey.toObject(message.key, options);
@@ -86263,6 +90930,12 @@ $root.E2E = (function() {
                     object.lidMigrationMappingSyncMessage = $root.E2E.LIDMigrationMappingSyncMessage.toObject(message.lidMigrationMappingSyncMessage, options);
                 if (message.limitSharing != null && message.hasOwnProperty("limitSharing"))
                     object.limitSharing = $root.Protocol.LimitSharing.toObject(message.limitSharing, options);
+                if (message.aiPsiMetadata != null && message.hasOwnProperty("aiPsiMetadata"))
+                    object.aiPsiMetadata = options.bytes === String ? $util.base64.encode(message.aiPsiMetadata, 0, message.aiPsiMetadata.length) : options.bytes === Array ? Array.prototype.slice.call(message.aiPsiMetadata) : message.aiPsiMetadata;
+                if (message.aiQueryFanout != null && message.hasOwnProperty("aiQueryFanout"))
+                    object.aiQueryFanout = $root.E2E.AIQueryFanout.toObject(message.aiQueryFanout, options);
+                if (message.memberLabel != null && message.hasOwnProperty("memberLabel"))
+                    object.memberLabel = $root.E2E.MemberLabel.toObject(message.memberLabel, options);
                 return object;
             };
 
@@ -86319,6 +90992,9 @@ $root.E2E = (function() {
              * @property {number} STATUS_MENTION_MESSAGE=25 STATUS_MENTION_MESSAGE value
              * @property {number} STOP_GENERATION_MESSAGE=26 STOP_GENERATION_MESSAGE value
              * @property {number} LIMIT_SHARING=27 LIMIT_SHARING value
+             * @property {number} AI_PSI_METADATA=28 AI_PSI_METADATA value
+             * @property {number} AI_QUERY_FANOUT=29 AI_QUERY_FANOUT value
+             * @property {number} GROUP_MEMBER_LABEL_CHANGE=30 GROUP_MEMBER_LABEL_CHANGE value
              */
             ProtocolMessage.Type = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -86345,6 +91021,9 @@ $root.E2E = (function() {
                 values[valuesById[25] = "STATUS_MENTION_MESSAGE"] = 25;
                 values[valuesById[26] = "STOP_GENERATION_MESSAGE"] = 26;
                 values[valuesById[27] = "LIMIT_SHARING"] = 27;
+                values[valuesById[28] = "AI_PSI_METADATA"] = 28;
+                values[valuesById[29] = "AI_QUERY_FANOUT"] = 29;
+                values[valuesById[30] = "GROUP_MEMBER_LABEL_CHANGE"] = 30;
                 return values;
             })();
 
@@ -86469,12 +91148,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ReactionMessage.decode = function decode(reader, length) {
+            ReactionMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ReactionMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -86794,12 +91475,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            RequestPaymentMessage.decode = function decode(reader, length) {
+            RequestPaymentMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.RequestPaymentMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 4: {
                             message.noteMessage = $root.E2E.Message.decode(reader, reader.uint32());
@@ -87113,12 +91796,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            RequestPhoneNumberMessage.decode = function decode(reader, length) {
+            RequestPhoneNumberMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.RequestPhoneNumberMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.contextInfo = $root.E2E.ContextInfo.decode(reader, reader.uint32());
@@ -87321,12 +92006,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            RequestWelcomeMessageMetadata.decode = function decode(reader, length) {
+            RequestWelcomeMessageMetadata.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.RequestWelcomeMessageMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.localChatState = reader.int32();
@@ -87579,12 +92266,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ScheduledCallCreationMessage.decode = function decode(reader, length) {
+            ScheduledCallCreationMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ScheduledCallCreationMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.scheduledTimestampMs = reader.int64();
@@ -87872,12 +92561,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ScheduledCallEditMessage.decode = function decode(reader, length) {
+            ScheduledCallEditMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ScheduledCallEditMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -88159,12 +92850,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            SecretEncryptedMessage.decode = function decode(reader, length) {
+            SecretEncryptedMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.SecretEncryptedMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.targetMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -88234,6 +92927,7 @@ $root.E2E = (function() {
                         return "secretEncType: enum value expected";
                     case 0:
                     case 1:
+                    case 2:
                         break;
                     }
                 return null;
@@ -88280,6 +92974,10 @@ $root.E2E = (function() {
                 case "EVENT_EDIT":
                 case 1:
                     message.secretEncType = 1;
+                    break;
+                case "MESSAGE_EDIT":
+                case 2:
+                    message.secretEncType = 2;
                     break;
                 }
                 return message;
@@ -88359,11 +93057,13 @@ $root.E2E = (function() {
              * @enum {number}
              * @property {number} UNKNOWN=0 UNKNOWN value
              * @property {number} EVENT_EDIT=1 EVENT_EDIT value
+             * @property {number} MESSAGE_EDIT=2 MESSAGE_EDIT value
              */
             SecretEncryptedMessage.SecretEncType = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
                 values[valuesById[0] = "UNKNOWN"] = 0;
                 values[valuesById[1] = "EVENT_EDIT"] = 1;
+                values[valuesById[2] = "MESSAGE_EDIT"] = 2;
                 return values;
             })();
 
@@ -88477,12 +93177,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            SendPaymentMessage.decode = function decode(reader, length) {
+            SendPaymentMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.SendPaymentMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 2: {
                             message.noteMessage = $root.E2E.Message.decode(reader, reader.uint32());
@@ -88731,12 +93433,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            SenderKeyDistributionMessage.decode = function decode(reader, length) {
+            SenderKeyDistributionMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.SenderKeyDistributionMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.groupId = reader.string();
@@ -88978,12 +93682,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            StatusNotificationMessage.decode = function decode(reader, length) {
+            StatusNotificationMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.StatusNotificationMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.responseMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -89465,12 +94171,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            StickerMessage.decode = function decode(reader, length) {
+            StickerMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.StickerMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.url = reader.string();
@@ -90222,12 +94930,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            StickerPackMessage.decode = function decode(reader, length) {
+            StickerPackMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.StickerPackMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.stickerPackId = reader.string();
@@ -90868,12 +95578,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Sticker.decode = function decode(reader, length) {
+                Sticker.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.StickerPackMessage.Sticker();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.fileName = reader.string();
@@ -91190,12 +95902,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            StickerSyncRMRMessage.decode = function decode(reader, length) {
+            StickerSyncRMRMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.StickerSyncRMRMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             if (!(message.filehash && message.filehash.length))
@@ -91491,12 +96205,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            TemplateButtonReplyMessage.decode = function decode(reader, length) {
+            TemplateButtonReplyMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.TemplateButtonReplyMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.selectedId = reader.string();
@@ -91817,12 +96533,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            TemplateMessage.decode = function decode(reader, length) {
+            TemplateMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.TemplateMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 3: {
                             message.contextInfo = $root.E2E.ContextInfo.decode(reader, reader.uint32());
@@ -92216,12 +96934,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                FourRowTemplate.decode = function decode(reader, length) {
+                FourRowTemplate.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.TemplateMessage.FourRowTemplate();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 6: {
                                 message.content = $root.E2E.Message.HighlyStructuredMessage.decode(reader, reader.uint32());
@@ -92708,12 +97428,14 @@ $root.E2E = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                HydratedFourRowTemplate.decode = function decode(reader, length) {
+                HydratedFourRowTemplate.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.TemplateMessage.HydratedFourRowTemplate();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 6: {
                                 message.hydratedContentText = reader.string();
@@ -93009,6 +97731,211 @@ $root.E2E = (function() {
             })();
 
             return TemplateMessage;
+        })();
+
+        Message.URLMetadata = (function() {
+
+            /**
+             * Properties of a URLMetadata.
+             * @memberof E2E.Message
+             * @interface IURLMetadata
+             * @property {number|null} [fbExperimentId] URLMetadata fbExperimentId
+             */
+
+            /**
+             * Constructs a new URLMetadata.
+             * @memberof E2E.Message
+             * @classdesc Represents a URLMetadata.
+             * @implements IURLMetadata
+             * @constructor
+             * @param {E2E.Message.IURLMetadata=} [properties] Properties to set
+             */
+            function URLMetadata(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * URLMetadata fbExperimentId.
+             * @member {number} fbExperimentId
+             * @memberof E2E.Message.URLMetadata
+             * @instance
+             */
+            URLMetadata.prototype.fbExperimentId = 0;
+
+            /**
+             * Creates a new URLMetadata instance using the specified properties.
+             * @function create
+             * @memberof E2E.Message.URLMetadata
+             * @static
+             * @param {E2E.Message.IURLMetadata=} [properties] Properties to set
+             * @returns {E2E.Message.URLMetadata} URLMetadata instance
+             */
+            URLMetadata.create = function create(properties) {
+                return new URLMetadata(properties);
+            };
+
+            /**
+             * Encodes the specified URLMetadata message. Does not implicitly {@link E2E.Message.URLMetadata.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.Message.URLMetadata
+             * @static
+             * @param {E2E.Message.IURLMetadata} message URLMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            URLMetadata.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.fbExperimentId != null && Object.hasOwnProperty.call(message, "fbExperimentId"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.fbExperimentId);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified URLMetadata message, length delimited. Does not implicitly {@link E2E.Message.URLMetadata.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.Message.URLMetadata
+             * @static
+             * @param {E2E.Message.IURLMetadata} message URLMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            URLMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a URLMetadata message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.Message.URLMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.Message.URLMetadata} URLMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            URLMetadata.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.URLMetadata();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.fbExperimentId = reader.uint32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a URLMetadata message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.Message.URLMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.Message.URLMetadata} URLMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            URLMetadata.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a URLMetadata message.
+             * @function verify
+             * @memberof E2E.Message.URLMetadata
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            URLMetadata.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.fbExperimentId != null && message.hasOwnProperty("fbExperimentId"))
+                    if (!$util.isInteger(message.fbExperimentId))
+                        return "fbExperimentId: integer expected";
+                return null;
+            };
+
+            /**
+             * Creates a URLMetadata message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.Message.URLMetadata
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.Message.URLMetadata} URLMetadata
+             */
+            URLMetadata.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.Message.URLMetadata)
+                    return object;
+                var message = new $root.E2E.Message.URLMetadata();
+                if (object.fbExperimentId != null)
+                    message.fbExperimentId = object.fbExperimentId >>> 0;
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a URLMetadata message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.Message.URLMetadata
+             * @static
+             * @param {E2E.Message.URLMetadata} message URLMetadata
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            URLMetadata.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.fbExperimentId = 0;
+                if (message.fbExperimentId != null && message.hasOwnProperty("fbExperimentId"))
+                    object.fbExperimentId = message.fbExperimentId;
+                return object;
+            };
+
+            /**
+             * Converts this URLMetadata to JSON.
+             * @function toJSON
+             * @memberof E2E.Message.URLMetadata
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            URLMetadata.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for URLMetadata
+             * @function getTypeUrl
+             * @memberof E2E.Message.URLMetadata
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            URLMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.Message.URLMetadata";
+            };
+
+            return URLMetadata;
         })();
 
         Message.VideoMessage = (function() {
@@ -93388,12 +98315,14 @@ $root.E2E = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            VideoMessage.decode = function decode(reader, length) {
+            VideoMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.VideoMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.url = reader.string();
@@ -94100,6 +99029,9 @@ $root.E2E = (function() {
      * @property {number} AI_HOME=19 AI_HOME value
      * @property {number} AI_DEEPLINK_IMMERSIVE=20 AI_DEEPLINK_IMMERSIVE value
      * @property {number} AI_DEEPLINK=21 AI_DEEPLINK value
+     * @property {number} META_AI_CHAT_SHORTCUT_AI_STUDIO=22 META_AI_CHAT_SHORTCUT_AI_STUDIO value
+     * @property {number} UGC_CHAT_SHORTCUT_AI_STUDIO=23 UGC_CHAT_SHORTCUT_AI_STUDIO value
+     * @property {number} NEW_CHAT_AI_STUDIO=24 NEW_CHAT_AI_STUDIO value
      */
     E2E.BotMetricsEntryPoint = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -94124,10 +99056,636 @@ $root.E2E = (function() {
         values[valuesById[19] = "AI_HOME"] = 19;
         values[valuesById[20] = "AI_DEEPLINK_IMMERSIVE"] = 20;
         values[valuesById[21] = "AI_DEEPLINK"] = 21;
+        values[valuesById[22] = "META_AI_CHAT_SHORTCUT_AI_STUDIO"] = 22;
+        values[valuesById[23] = "UGC_CHAT_SHORTCUT_AI_STUDIO"] = 23;
+        values[valuesById[24] = "NEW_CHAT_AI_STUDIO"] = 24;
         return values;
     })();
 
     return E2E;
+})();
+
+$root.Protocol = (function() {
+
+    /**
+     * Namespace Protocol.
+     * @exports Protocol
+     * @namespace
+     */
+    var Protocol = {};
+
+    Protocol.LimitSharing = (function() {
+
+        /**
+         * Properties of a LimitSharing.
+         * @memberof Protocol
+         * @interface ILimitSharing
+         * @property {boolean|null} [sharingLimited] LimitSharing sharingLimited
+         * @property {Protocol.LimitSharing.TriggerType|null} [trigger] LimitSharing trigger
+         * @property {number|Long|null} [limitSharingSettingTimestamp] LimitSharing limitSharingSettingTimestamp
+         * @property {boolean|null} [initiatedByMe] LimitSharing initiatedByMe
+         */
+
+        /**
+         * Constructs a new LimitSharing.
+         * @memberof Protocol
+         * @classdesc Represents a LimitSharing.
+         * @implements ILimitSharing
+         * @constructor
+         * @param {Protocol.ILimitSharing=} [properties] Properties to set
+         */
+        function LimitSharing(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * LimitSharing sharingLimited.
+         * @member {boolean} sharingLimited
+         * @memberof Protocol.LimitSharing
+         * @instance
+         */
+        LimitSharing.prototype.sharingLimited = false;
+
+        /**
+         * LimitSharing trigger.
+         * @member {Protocol.LimitSharing.TriggerType} trigger
+         * @memberof Protocol.LimitSharing
+         * @instance
+         */
+        LimitSharing.prototype.trigger = 0;
+
+        /**
+         * LimitSharing limitSharingSettingTimestamp.
+         * @member {number|Long} limitSharingSettingTimestamp
+         * @memberof Protocol.LimitSharing
+         * @instance
+         */
+        LimitSharing.prototype.limitSharingSettingTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * LimitSharing initiatedByMe.
+         * @member {boolean} initiatedByMe
+         * @memberof Protocol.LimitSharing
+         * @instance
+         */
+        LimitSharing.prototype.initiatedByMe = false;
+
+        /**
+         * Creates a new LimitSharing instance using the specified properties.
+         * @function create
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Protocol.ILimitSharing=} [properties] Properties to set
+         * @returns {Protocol.LimitSharing} LimitSharing instance
+         */
+        LimitSharing.create = function create(properties) {
+            return new LimitSharing(properties);
+        };
+
+        /**
+         * Encodes the specified LimitSharing message. Does not implicitly {@link Protocol.LimitSharing.verify|verify} messages.
+         * @function encode
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Protocol.ILimitSharing} message LimitSharing message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LimitSharing.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.sharingLimited != null && Object.hasOwnProperty.call(message, "sharingLimited"))
+                writer.uint32(/* id 1, wireType 0 =*/8).bool(message.sharingLimited);
+            if (message.trigger != null && Object.hasOwnProperty.call(message, "trigger"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.trigger);
+            if (message.limitSharingSettingTimestamp != null && Object.hasOwnProperty.call(message, "limitSharingSettingTimestamp"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int64(message.limitSharingSettingTimestamp);
+            if (message.initiatedByMe != null && Object.hasOwnProperty.call(message, "initiatedByMe"))
+                writer.uint32(/* id 4, wireType 0 =*/32).bool(message.initiatedByMe);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified LimitSharing message, length delimited. Does not implicitly {@link Protocol.LimitSharing.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Protocol.ILimitSharing} message LimitSharing message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LimitSharing.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a LimitSharing message from the specified reader or buffer.
+         * @function decode
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {Protocol.LimitSharing} LimitSharing
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LimitSharing.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.LimitSharing();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.sharingLimited = reader.bool();
+                        break;
+                    }
+                case 2: {
+                        message.trigger = reader.int32();
+                        break;
+                    }
+                case 3: {
+                        message.limitSharingSettingTimestamp = reader.int64();
+                        break;
+                    }
+                case 4: {
+                        message.initiatedByMe = reader.bool();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a LimitSharing message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {Protocol.LimitSharing} LimitSharing
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LimitSharing.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a LimitSharing message.
+         * @function verify
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        LimitSharing.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
+                if (typeof message.sharingLimited !== "boolean")
+                    return "sharingLimited: boolean expected";
+            if (message.trigger != null && message.hasOwnProperty("trigger"))
+                switch (message.trigger) {
+                default:
+                    return "trigger: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                    break;
+                }
+            if (message.limitSharingSettingTimestamp != null && message.hasOwnProperty("limitSharingSettingTimestamp"))
+                if (!$util.isInteger(message.limitSharingSettingTimestamp) && !(message.limitSharingSettingTimestamp && $util.isInteger(message.limitSharingSettingTimestamp.low) && $util.isInteger(message.limitSharingSettingTimestamp.high)))
+                    return "limitSharingSettingTimestamp: integer|Long expected";
+            if (message.initiatedByMe != null && message.hasOwnProperty("initiatedByMe"))
+                if (typeof message.initiatedByMe !== "boolean")
+                    return "initiatedByMe: boolean expected";
+            return null;
+        };
+
+        /**
+         * Creates a LimitSharing message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {Protocol.LimitSharing} LimitSharing
+         */
+        LimitSharing.fromObject = function fromObject(object) {
+            if (object instanceof $root.Protocol.LimitSharing)
+                return object;
+            var message = new $root.Protocol.LimitSharing();
+            if (object.sharingLimited != null)
+                message.sharingLimited = Boolean(object.sharingLimited);
+            switch (object.trigger) {
+            default:
+                if (typeof object.trigger === "number") {
+                    message.trigger = object.trigger;
+                    break;
+                }
+                break;
+            case "UNKNOWN":
+            case 0:
+                message.trigger = 0;
+                break;
+            case "CHAT_SETTING":
+            case 1:
+                message.trigger = 1;
+                break;
+            case "BIZ_SUPPORTS_FB_HOSTING":
+            case 2:
+                message.trigger = 2;
+                break;
+            case "UNKNOWN_GROUP":
+            case 3:
+                message.trigger = 3;
+                break;
+            }
+            if (object.limitSharingSettingTimestamp != null)
+                if ($util.Long)
+                    (message.limitSharingSettingTimestamp = $util.Long.fromValue(object.limitSharingSettingTimestamp)).unsigned = false;
+                else if (typeof object.limitSharingSettingTimestamp === "string")
+                    message.limitSharingSettingTimestamp = parseInt(object.limitSharingSettingTimestamp, 10);
+                else if (typeof object.limitSharingSettingTimestamp === "number")
+                    message.limitSharingSettingTimestamp = object.limitSharingSettingTimestamp;
+                else if (typeof object.limitSharingSettingTimestamp === "object")
+                    message.limitSharingSettingTimestamp = new $util.LongBits(object.limitSharingSettingTimestamp.low >>> 0, object.limitSharingSettingTimestamp.high >>> 0).toNumber();
+            if (object.initiatedByMe != null)
+                message.initiatedByMe = Boolean(object.initiatedByMe);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a LimitSharing message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {Protocol.LimitSharing} message LimitSharing
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        LimitSharing.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.sharingLimited = false;
+                object.trigger = options.enums === String ? "UNKNOWN" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.limitSharingSettingTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.limitSharingSettingTimestamp = options.longs === String ? "0" : 0;
+                object.initiatedByMe = false;
+            }
+            if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
+                object.sharingLimited = message.sharingLimited;
+            if (message.trigger != null && message.hasOwnProperty("trigger"))
+                object.trigger = options.enums === String ? $root.Protocol.LimitSharing.TriggerType[message.trigger] === undefined ? message.trigger : $root.Protocol.LimitSharing.TriggerType[message.trigger] : message.trigger;
+            if (message.limitSharingSettingTimestamp != null && message.hasOwnProperty("limitSharingSettingTimestamp"))
+                if (typeof message.limitSharingSettingTimestamp === "number")
+                    object.limitSharingSettingTimestamp = options.longs === String ? String(message.limitSharingSettingTimestamp) : message.limitSharingSettingTimestamp;
+                else
+                    object.limitSharingSettingTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.limitSharingSettingTimestamp) : options.longs === Number ? new $util.LongBits(message.limitSharingSettingTimestamp.low >>> 0, message.limitSharingSettingTimestamp.high >>> 0).toNumber() : message.limitSharingSettingTimestamp;
+            if (message.initiatedByMe != null && message.hasOwnProperty("initiatedByMe"))
+                object.initiatedByMe = message.initiatedByMe;
+            return object;
+        };
+
+        /**
+         * Converts this LimitSharing to JSON.
+         * @function toJSON
+         * @memberof Protocol.LimitSharing
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        LimitSharing.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for LimitSharing
+         * @function getTypeUrl
+         * @memberof Protocol.LimitSharing
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        LimitSharing.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/Protocol.LimitSharing";
+        };
+
+        /**
+         * TriggerType enum.
+         * @name Protocol.LimitSharing.TriggerType
+         * @enum {number}
+         * @property {number} UNKNOWN=0 UNKNOWN value
+         * @property {number} CHAT_SETTING=1 CHAT_SETTING value
+         * @property {number} BIZ_SUPPORTS_FB_HOSTING=2 BIZ_SUPPORTS_FB_HOSTING value
+         * @property {number} UNKNOWN_GROUP=3 UNKNOWN_GROUP value
+         */
+        LimitSharing.TriggerType = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "UNKNOWN"] = 0;
+            values[valuesById[1] = "CHAT_SETTING"] = 1;
+            values[valuesById[2] = "BIZ_SUPPORTS_FB_HOSTING"] = 2;
+            values[valuesById[3] = "UNKNOWN_GROUP"] = 3;
+            return values;
+        })();
+
+        return LimitSharing;
+    })();
+
+    Protocol.MessageKey = (function() {
+
+        /**
+         * Properties of a MessageKey.
+         * @memberof Protocol
+         * @interface IMessageKey
+         * @property {string|null} [remoteJid] MessageKey remoteJid
+         * @property {boolean|null} [fromMe] MessageKey fromMe
+         * @property {string|null} [id] MessageKey id
+         * @property {string|null} [participant] MessageKey participant
+         */
+
+        /**
+         * Constructs a new MessageKey.
+         * @memberof Protocol
+         * @classdesc Represents a MessageKey.
+         * @implements IMessageKey
+         * @constructor
+         * @param {Protocol.IMessageKey=} [properties] Properties to set
+         */
+        function MessageKey(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * MessageKey remoteJid.
+         * @member {string} remoteJid
+         * @memberof Protocol.MessageKey
+         * @instance
+         */
+        MessageKey.prototype.remoteJid = "";
+
+        /**
+         * MessageKey fromMe.
+         * @member {boolean} fromMe
+         * @memberof Protocol.MessageKey
+         * @instance
+         */
+        MessageKey.prototype.fromMe = false;
+
+        /**
+         * MessageKey id.
+         * @member {string} id
+         * @memberof Protocol.MessageKey
+         * @instance
+         */
+        MessageKey.prototype.id = "";
+
+        /**
+         * MessageKey participant.
+         * @member {string} participant
+         * @memberof Protocol.MessageKey
+         * @instance
+         */
+        MessageKey.prototype.participant = "";
+
+        /**
+         * Creates a new MessageKey instance using the specified properties.
+         * @function create
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {Protocol.IMessageKey=} [properties] Properties to set
+         * @returns {Protocol.MessageKey} MessageKey instance
+         */
+        MessageKey.create = function create(properties) {
+            return new MessageKey(properties);
+        };
+
+        /**
+         * Encodes the specified MessageKey message. Does not implicitly {@link Protocol.MessageKey.verify|verify} messages.
+         * @function encode
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {Protocol.IMessageKey} message MessageKey message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        MessageKey.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.remoteJid != null && Object.hasOwnProperty.call(message, "remoteJid"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.remoteJid);
+            if (message.fromMe != null && Object.hasOwnProperty.call(message, "fromMe"))
+                writer.uint32(/* id 2, wireType 0 =*/16).bool(message.fromMe);
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.id);
+            if (message.participant != null && Object.hasOwnProperty.call(message, "participant"))
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.participant);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified MessageKey message, length delimited. Does not implicitly {@link Protocol.MessageKey.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {Protocol.IMessageKey} message MessageKey message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        MessageKey.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a MessageKey message from the specified reader or buffer.
+         * @function decode
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {Protocol.MessageKey} MessageKey
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        MessageKey.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.MessageKey();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.remoteJid = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.fromMe = reader.bool();
+                        break;
+                    }
+                case 3: {
+                        message.id = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.participant = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a MessageKey message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {Protocol.MessageKey} MessageKey
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        MessageKey.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a MessageKey message.
+         * @function verify
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        MessageKey.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.remoteJid != null && message.hasOwnProperty("remoteJid"))
+                if (!$util.isString(message.remoteJid))
+                    return "remoteJid: string expected";
+            if (message.fromMe != null && message.hasOwnProperty("fromMe"))
+                if (typeof message.fromMe !== "boolean")
+                    return "fromMe: boolean expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isString(message.id))
+                    return "id: string expected";
+            if (message.participant != null && message.hasOwnProperty("participant"))
+                if (!$util.isString(message.participant))
+                    return "participant: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a MessageKey message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {Protocol.MessageKey} MessageKey
+         */
+        MessageKey.fromObject = function fromObject(object) {
+            if (object instanceof $root.Protocol.MessageKey)
+                return object;
+            var message = new $root.Protocol.MessageKey();
+            if (object.remoteJid != null)
+                message.remoteJid = String(object.remoteJid);
+            if (object.fromMe != null)
+                message.fromMe = Boolean(object.fromMe);
+            if (object.id != null)
+                message.id = String(object.id);
+            if (object.participant != null)
+                message.participant = String(object.participant);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a MessageKey message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {Protocol.MessageKey} message MessageKey
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        MessageKey.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.remoteJid = "";
+                object.fromMe = false;
+                object.id = "";
+                object.participant = "";
+            }
+            if (message.remoteJid != null && message.hasOwnProperty("remoteJid"))
+                object.remoteJid = message.remoteJid;
+            if (message.fromMe != null && message.hasOwnProperty("fromMe"))
+                object.fromMe = message.fromMe;
+            if (message.id != null && message.hasOwnProperty("id"))
+                object.id = message.id;
+            if (message.participant != null && message.hasOwnProperty("participant"))
+                object.participant = message.participant;
+            return object;
+        };
+
+        /**
+         * Converts this MessageKey to JSON.
+         * @function toJSON
+         * @memberof Protocol.MessageKey
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        MessageKey.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for MessageKey
+         * @function getTypeUrl
+         * @memberof Protocol.MessageKey
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        MessageKey.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/Protocol.MessageKey";
+        };
+
+        return MessageKey;
+    })();
+
+    return Protocol;
 })();
 
 $root.Adv = (function() {
@@ -94246,12 +99804,14 @@ $root.Adv = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ADVSignedDeviceIdentityHMAC.decode = function decode(reader, length) {
+        ADVSignedDeviceIdentityHMAC.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Adv.ADVSignedDeviceIdentityHMAC();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.details = reader.bytes();
@@ -94544,12 +100104,14 @@ $root.Adv = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ADVSignedDeviceIdentity.decode = function decode(reader, length) {
+        ADVSignedDeviceIdentity.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Adv.ADVSignedDeviceIdentity();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.details = reader.bytes();
@@ -94864,12 +100426,14 @@ $root.Adv = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ADVDeviceIdentity.decode = function decode(reader, length) {
+        ADVDeviceIdentity.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Adv.ADVDeviceIdentity();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.rawId = reader.uint32();
@@ -95190,12 +100754,14 @@ $root.Adv = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ADVSignedKeyIndexList.decode = function decode(reader, length) {
+        ADVSignedKeyIndexList.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Adv.ADVSignedKeyIndexList();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.details = reader.bytes();
@@ -95494,12 +101060,14 @@ $root.Adv = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ADVKeyIndexList.decode = function decode(reader, length) {
+        ADVKeyIndexList.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Adv.ADVKeyIndexList();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.rawId = reader.uint32();
@@ -95731,551 +101299,6 @@ $root.Adv = (function() {
     return Adv;
 })();
 
-$root.Protocol = (function() {
-
-    /**
-     * Namespace Protocol.
-     * @exports Protocol
-     * @namespace
-     */
-    var Protocol = {};
-
-    Protocol.LimitSharing = (function() {
-
-        /**
-         * Properties of a LimitSharing.
-         * @memberof Protocol
-         * @interface ILimitSharing
-         * @property {boolean|null} [sharingLimited] LimitSharing sharingLimited
-         * @property {Protocol.LimitSharing.Trigger|null} [trigger] LimitSharing trigger
-         */
-
-        /**
-         * Constructs a new LimitSharing.
-         * @memberof Protocol
-         * @classdesc Represents a LimitSharing.
-         * @implements ILimitSharing
-         * @constructor
-         * @param {Protocol.ILimitSharing=} [properties] Properties to set
-         */
-        function LimitSharing(properties) {
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * LimitSharing sharingLimited.
-         * @member {boolean} sharingLimited
-         * @memberof Protocol.LimitSharing
-         * @instance
-         */
-        LimitSharing.prototype.sharingLimited = false;
-
-        /**
-         * LimitSharing trigger.
-         * @member {Protocol.LimitSharing.Trigger} trigger
-         * @memberof Protocol.LimitSharing
-         * @instance
-         */
-        LimitSharing.prototype.trigger = 0;
-
-        /**
-         * Creates a new LimitSharing instance using the specified properties.
-         * @function create
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {Protocol.ILimitSharing=} [properties] Properties to set
-         * @returns {Protocol.LimitSharing} LimitSharing instance
-         */
-        LimitSharing.create = function create(properties) {
-            return new LimitSharing(properties);
-        };
-
-        /**
-         * Encodes the specified LimitSharing message. Does not implicitly {@link Protocol.LimitSharing.verify|verify} messages.
-         * @function encode
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {Protocol.ILimitSharing} message LimitSharing message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        LimitSharing.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            if (message.sharingLimited != null && Object.hasOwnProperty.call(message, "sharingLimited"))
-                writer.uint32(/* id 1, wireType 0 =*/8).bool(message.sharingLimited);
-            if (message.trigger != null && Object.hasOwnProperty.call(message, "trigger"))
-                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.trigger);
-            return writer;
-        };
-
-        /**
-         * Encodes the specified LimitSharing message, length delimited. Does not implicitly {@link Protocol.LimitSharing.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {Protocol.ILimitSharing} message LimitSharing message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        LimitSharing.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a LimitSharing message from the specified reader or buffer.
-         * @function decode
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {Protocol.LimitSharing} LimitSharing
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        LimitSharing.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.LimitSharing();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1: {
-                        message.sharingLimited = reader.bool();
-                        break;
-                    }
-                case 2: {
-                        message.trigger = reader.int32();
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes a LimitSharing message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {Protocol.LimitSharing} LimitSharing
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        LimitSharing.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a LimitSharing message.
-         * @function verify
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        LimitSharing.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
-                if (typeof message.sharingLimited !== "boolean")
-                    return "sharingLimited: boolean expected";
-            if (message.trigger != null && message.hasOwnProperty("trigger"))
-                switch (message.trigger) {
-                default:
-                    return "trigger: enum value expected";
-                case 0:
-                case 1:
-                    break;
-                }
-            return null;
-        };
-
-        /**
-         * Creates a LimitSharing message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {Protocol.LimitSharing} LimitSharing
-         */
-        LimitSharing.fromObject = function fromObject(object) {
-            if (object instanceof $root.Protocol.LimitSharing)
-                return object;
-            var message = new $root.Protocol.LimitSharing();
-            if (object.sharingLimited != null)
-                message.sharingLimited = Boolean(object.sharingLimited);
-            switch (object.trigger) {
-            default:
-                if (typeof object.trigger === "number") {
-                    message.trigger = object.trigger;
-                    break;
-                }
-                break;
-            case "CHAT_SETTING":
-            case 0:
-                message.trigger = 0;
-                break;
-            case "BIZ_SUPPORTS_FB_HOSTING":
-            case 1:
-                message.trigger = 1;
-                break;
-            }
-            return message;
-        };
-
-        /**
-         * Creates a plain object from a LimitSharing message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {Protocol.LimitSharing} message LimitSharing
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        LimitSharing.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.defaults) {
-                object.sharingLimited = false;
-                object.trigger = options.enums === String ? "CHAT_SETTING" : 0;
-            }
-            if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
-                object.sharingLimited = message.sharingLimited;
-            if (message.trigger != null && message.hasOwnProperty("trigger"))
-                object.trigger = options.enums === String ? $root.Protocol.LimitSharing.Trigger[message.trigger] === undefined ? message.trigger : $root.Protocol.LimitSharing.Trigger[message.trigger] : message.trigger;
-            return object;
-        };
-
-        /**
-         * Converts this LimitSharing to JSON.
-         * @function toJSON
-         * @memberof Protocol.LimitSharing
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        LimitSharing.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        /**
-         * Gets the default type url for LimitSharing
-         * @function getTypeUrl
-         * @memberof Protocol.LimitSharing
-         * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
-         */
-        LimitSharing.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/Protocol.LimitSharing";
-        };
-
-        /**
-         * Trigger enum.
-         * @name Protocol.LimitSharing.Trigger
-         * @enum {number}
-         * @property {number} CHAT_SETTING=0 CHAT_SETTING value
-         * @property {number} BIZ_SUPPORTS_FB_HOSTING=1 BIZ_SUPPORTS_FB_HOSTING value
-         */
-        LimitSharing.Trigger = (function() {
-            var valuesById = {}, values = Object.create(valuesById);
-            values[valuesById[0] = "CHAT_SETTING"] = 0;
-            values[valuesById[1] = "BIZ_SUPPORTS_FB_HOSTING"] = 1;
-            return values;
-        })();
-
-        return LimitSharing;
-    })();
-
-    Protocol.MessageKey = (function() {
-
-        /**
-         * Properties of a MessageKey.
-         * @memberof Protocol
-         * @interface IMessageKey
-         * @property {string|null} [remoteJid] MessageKey remoteJid
-         * @property {boolean|null} [fromMe] MessageKey fromMe
-         * @property {string|null} [id] MessageKey id
-         * @property {string|null} [participant] MessageKey participant
-         */
-
-        /**
-         * Constructs a new MessageKey.
-         * @memberof Protocol
-         * @classdesc Represents a MessageKey.
-         * @implements IMessageKey
-         * @constructor
-         * @param {Protocol.IMessageKey=} [properties] Properties to set
-         */
-        function MessageKey(properties) {
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * MessageKey remoteJid.
-         * @member {string} remoteJid
-         * @memberof Protocol.MessageKey
-         * @instance
-         */
-        MessageKey.prototype.remoteJid = "";
-
-        /**
-         * MessageKey fromMe.
-         * @member {boolean} fromMe
-         * @memberof Protocol.MessageKey
-         * @instance
-         */
-        MessageKey.prototype.fromMe = false;
-
-        /**
-         * MessageKey id.
-         * @member {string} id
-         * @memberof Protocol.MessageKey
-         * @instance
-         */
-        MessageKey.prototype.id = "";
-
-        /**
-         * MessageKey participant.
-         * @member {string} participant
-         * @memberof Protocol.MessageKey
-         * @instance
-         */
-        MessageKey.prototype.participant = "";
-
-        /**
-         * Creates a new MessageKey instance using the specified properties.
-         * @function create
-         * @memberof Protocol.MessageKey
-         * @static
-         * @param {Protocol.IMessageKey=} [properties] Properties to set
-         * @returns {Protocol.MessageKey} MessageKey instance
-         */
-        MessageKey.create = function create(properties) {
-            return new MessageKey(properties);
-        };
-
-        /**
-         * Encodes the specified MessageKey message. Does not implicitly {@link Protocol.MessageKey.verify|verify} messages.
-         * @function encode
-         * @memberof Protocol.MessageKey
-         * @static
-         * @param {Protocol.IMessageKey} message MessageKey message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        MessageKey.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            if (message.remoteJid != null && Object.hasOwnProperty.call(message, "remoteJid"))
-                writer.uint32(/* id 1, wireType 2 =*/10).string(message.remoteJid);
-            if (message.fromMe != null && Object.hasOwnProperty.call(message, "fromMe"))
-                writer.uint32(/* id 2, wireType 0 =*/16).bool(message.fromMe);
-            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
-                writer.uint32(/* id 3, wireType 2 =*/26).string(message.id);
-            if (message.participant != null && Object.hasOwnProperty.call(message, "participant"))
-                writer.uint32(/* id 4, wireType 2 =*/34).string(message.participant);
-            return writer;
-        };
-
-        /**
-         * Encodes the specified MessageKey message, length delimited. Does not implicitly {@link Protocol.MessageKey.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof Protocol.MessageKey
-         * @static
-         * @param {Protocol.IMessageKey} message MessageKey message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        MessageKey.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a MessageKey message from the specified reader or buffer.
-         * @function decode
-         * @memberof Protocol.MessageKey
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {Protocol.MessageKey} MessageKey
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        MessageKey.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.MessageKey();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1: {
-                        message.remoteJid = reader.string();
-                        break;
-                    }
-                case 2: {
-                        message.fromMe = reader.bool();
-                        break;
-                    }
-                case 3: {
-                        message.id = reader.string();
-                        break;
-                    }
-                case 4: {
-                        message.participant = reader.string();
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes a MessageKey message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof Protocol.MessageKey
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {Protocol.MessageKey} MessageKey
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        MessageKey.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a MessageKey message.
-         * @function verify
-         * @memberof Protocol.MessageKey
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        MessageKey.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.remoteJid != null && message.hasOwnProperty("remoteJid"))
-                if (!$util.isString(message.remoteJid))
-                    return "remoteJid: string expected";
-            if (message.fromMe != null && message.hasOwnProperty("fromMe"))
-                if (typeof message.fromMe !== "boolean")
-                    return "fromMe: boolean expected";
-            if (message.id != null && message.hasOwnProperty("id"))
-                if (!$util.isString(message.id))
-                    return "id: string expected";
-            if (message.participant != null && message.hasOwnProperty("participant"))
-                if (!$util.isString(message.participant))
-                    return "participant: string expected";
-            return null;
-        };
-
-        /**
-         * Creates a MessageKey message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof Protocol.MessageKey
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {Protocol.MessageKey} MessageKey
-         */
-        MessageKey.fromObject = function fromObject(object) {
-            if (object instanceof $root.Protocol.MessageKey)
-                return object;
-            var message = new $root.Protocol.MessageKey();
-            if (object.remoteJid != null)
-                message.remoteJid = String(object.remoteJid);
-            if (object.fromMe != null)
-                message.fromMe = Boolean(object.fromMe);
-            if (object.id != null)
-                message.id = String(object.id);
-            if (object.participant != null)
-                message.participant = String(object.participant);
-            return message;
-        };
-
-        /**
-         * Creates a plain object from a MessageKey message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof Protocol.MessageKey
-         * @static
-         * @param {Protocol.MessageKey} message MessageKey
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        MessageKey.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.defaults) {
-                object.remoteJid = "";
-                object.fromMe = false;
-                object.id = "";
-                object.participant = "";
-            }
-            if (message.remoteJid != null && message.hasOwnProperty("remoteJid"))
-                object.remoteJid = message.remoteJid;
-            if (message.fromMe != null && message.hasOwnProperty("fromMe"))
-                object.fromMe = message.fromMe;
-            if (message.id != null && message.hasOwnProperty("id"))
-                object.id = message.id;
-            if (message.participant != null && message.hasOwnProperty("participant"))
-                object.participant = message.participant;
-            return object;
-        };
-
-        /**
-         * Converts this MessageKey to JSON.
-         * @function toJSON
-         * @memberof Protocol.MessageKey
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        MessageKey.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        /**
-         * Gets the default type url for MessageKey
-         * @function getTypeUrl
-         * @memberof Protocol.MessageKey
-         * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
-         */
-        MessageKey.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/Protocol.MessageKey";
-        };
-
-        return MessageKey;
-    })();
-
-    return Protocol;
-})();
-
 $root.CompanionReg = (function() {
 
     /**
@@ -96381,12 +101404,14 @@ $root.CompanionReg = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ClientPairingProps.decode = function decode(reader, length) {
+        ClientPairingProps.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.ClientPairingProps();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.isChatDbLidMigrated = reader.bool();
@@ -96608,12 +101633,14 @@ $root.CompanionReg = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        EncryptedPairingRequest.decode = function decode(reader, length) {
+        EncryptedPairingRequest.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.EncryptedPairingRequest();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.encryptedPayload = reader.bytes();
@@ -96864,12 +101891,14 @@ $root.CompanionReg = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PairingRequest.decode = function decode(reader, length) {
+        PairingRequest.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.PairingRequest();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.companionPublicKey = reader.bytes();
@@ -97130,12 +102159,14 @@ $root.CompanionReg = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PrimaryEphemeralIdentity.decode = function decode(reader, length) {
+        PrimaryEphemeralIdentity.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.PrimaryEphemeralIdentity();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.publicKey = reader.bytes();
@@ -97375,12 +102406,14 @@ $root.CompanionReg = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ProloguePayload.decode = function decode(reader, length) {
+        ProloguePayload.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.ProloguePayload();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.companionEphemeralIdentity = reader.bytes();
@@ -97605,12 +102638,14 @@ $root.CompanionReg = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        CompanionCommitment.decode = function decode(reader, length) {
+        CompanionCommitment.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.CompanionCommitment();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.hash = reader.bytes();
@@ -97839,12 +102874,14 @@ $root.CompanionReg = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        CompanionEphemeralIdentity.decode = function decode(reader, length) {
+        CompanionEphemeralIdentity.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.CompanionEphemeralIdentity();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.publicKey = reader.bytes();
@@ -98254,12 +103291,14 @@ $root.CompanionReg = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        DeviceProps.decode = function decode(reader, length) {
+        DeviceProps.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.DeviceProps();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.os = reader.string();
@@ -98691,12 +103730,14 @@ $root.CompanionReg = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AppVersion.decode = function decode(reader, length) {
+            AppVersion.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.DeviceProps.AppVersion();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.primary = reader.uint32();
@@ -99086,12 +104127,14 @@ $root.CompanionReg = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            HistorySyncConfig.decode = function decode(reader, length) {
+            HistorySyncConfig.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.DeviceProps.HistorySyncConfig();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.fullSyncDaysLimit = reader.uint32();
@@ -99521,12 +104564,14 @@ $root.MmsRetry = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ServerErrorReceipt.decode = function decode(reader, length) {
+        ServerErrorReceipt.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.MmsRetry.ServerErrorReceipt();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.stanzaId = reader.string();
@@ -99757,12 +104802,14 @@ $root.MmsRetry = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        MediaRetryNotification.decode = function decode(reader, length) {
+        MediaRetryNotification.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.MmsRetry.MediaRetryNotification();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.stanzaId = reader.string();
@@ -100175,12 +105222,14 @@ $root.SyncAction = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PatchDebugData.decode = function decode(reader, length) {
+        PatchDebugData.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.PatchDebugData();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.currentLthash = reader.bytes();
@@ -100668,12 +105717,14 @@ $root.SyncAction = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        SyncActionData.decode = function decode(reader, length) {
+        SyncActionData.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionData();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.index = reader.bytes();
@@ -100906,6 +105957,9 @@ $root.SyncAction = (function() {
          * @property {SyncAction.SyncActionValue.IWaffleAccountLinkStateAction|null} [waffleAccountLinkStateAction] SyncActionValue waffleAccountLinkStateAction
          * @property {SyncAction.SyncActionValue.IUsernameChatStartModeAction|null} [usernameChatStartMode] SyncActionValue usernameChatStartMode
          * @property {SyncAction.SyncActionValue.INotificationActivitySettingAction|null} [notificationActivitySettingAction] SyncActionValue notificationActivitySettingAction
+         * @property {SyncAction.SyncActionValue.ILidContactAction|null} [lidContactAction] SyncActionValue lidContactAction
+         * @property {SyncAction.SyncActionValue.ICtwaPerCustomerDataSharingAction|null} [ctwaPerCustomerDataSharingAction] SyncActionValue ctwaPerCustomerDataSharingAction
+         * @property {SyncAction.SyncActionValue.IPaymentTosAction|null} [paymentTosAction] SyncActionValue paymentTosAction
          */
 
         /**
@@ -101356,6 +106410,30 @@ $root.SyncAction = (function() {
         SyncActionValue.prototype.notificationActivitySettingAction = null;
 
         /**
+         * SyncActionValue lidContactAction.
+         * @member {SyncAction.SyncActionValue.ILidContactAction|null|undefined} lidContactAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.lidContactAction = null;
+
+        /**
+         * SyncActionValue ctwaPerCustomerDataSharingAction.
+         * @member {SyncAction.SyncActionValue.ICtwaPerCustomerDataSharingAction|null|undefined} ctwaPerCustomerDataSharingAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.ctwaPerCustomerDataSharingAction = null;
+
+        /**
+         * SyncActionValue paymentTosAction.
+         * @member {SyncAction.SyncActionValue.IPaymentTosAction|null|undefined} paymentTosAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.paymentTosAction = null;
+
+        /**
          * Creates a new SyncActionValue instance using the specified properties.
          * @function create
          * @memberof SyncAction.SyncActionValue
@@ -101487,6 +106565,12 @@ $root.SyncAction = (function() {
                 $root.SyncAction.SyncActionValue.UsernameChatStartModeAction.encode(message.usernameChatStartMode, writer.uint32(/* id 59, wireType 2 =*/474).fork()).ldelim();
             if (message.notificationActivitySettingAction != null && Object.hasOwnProperty.call(message, "notificationActivitySettingAction"))
                 $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.encode(message.notificationActivitySettingAction, writer.uint32(/* id 60, wireType 2 =*/482).fork()).ldelim();
+            if (message.lidContactAction != null && Object.hasOwnProperty.call(message, "lidContactAction"))
+                $root.SyncAction.SyncActionValue.LidContactAction.encode(message.lidContactAction, writer.uint32(/* id 61, wireType 2 =*/490).fork()).ldelim();
+            if (message.ctwaPerCustomerDataSharingAction != null && Object.hasOwnProperty.call(message, "ctwaPerCustomerDataSharingAction"))
+                $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.encode(message.ctwaPerCustomerDataSharingAction, writer.uint32(/* id 62, wireType 2 =*/498).fork()).ldelim();
+            if (message.paymentTosAction != null && Object.hasOwnProperty.call(message, "paymentTosAction"))
+                $root.SyncAction.SyncActionValue.PaymentTosAction.encode(message.paymentTosAction, writer.uint32(/* id 63, wireType 2 =*/506).fork()).ldelim();
             return writer;
         };
 
@@ -101514,12 +106598,14 @@ $root.SyncAction = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        SyncActionValue.decode = function decode(reader, length) {
+        SyncActionValue.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.timestamp = reader.int64();
@@ -101735,6 +106821,18 @@ $root.SyncAction = (function() {
                     }
                 case 60: {
                         message.notificationActivitySettingAction = $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 61: {
+                        message.lidContactAction = $root.SyncAction.SyncActionValue.LidContactAction.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 62: {
+                        message.ctwaPerCustomerDataSharingAction = $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 63: {
+                        message.paymentTosAction = $root.SyncAction.SyncActionValue.PaymentTosAction.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -102040,6 +107138,21 @@ $root.SyncAction = (function() {
                 if (error)
                     return "notificationActivitySettingAction." + error;
             }
+            if (message.lidContactAction != null && message.hasOwnProperty("lidContactAction")) {
+                var error = $root.SyncAction.SyncActionValue.LidContactAction.verify(message.lidContactAction);
+                if (error)
+                    return "lidContactAction." + error;
+            }
+            if (message.ctwaPerCustomerDataSharingAction != null && message.hasOwnProperty("ctwaPerCustomerDataSharingAction")) {
+                var error = $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.verify(message.ctwaPerCustomerDataSharingAction);
+                if (error)
+                    return "ctwaPerCustomerDataSharingAction." + error;
+            }
+            if (message.paymentTosAction != null && message.hasOwnProperty("paymentTosAction")) {
+                var error = $root.SyncAction.SyncActionValue.PaymentTosAction.verify(message.paymentTosAction);
+                if (error)
+                    return "paymentTosAction." + error;
+            }
             return null;
         };
 
@@ -102329,6 +107442,21 @@ $root.SyncAction = (function() {
                     throw TypeError(".SyncAction.SyncActionValue.notificationActivitySettingAction: object expected");
                 message.notificationActivitySettingAction = $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.fromObject(object.notificationActivitySettingAction);
             }
+            if (object.lidContactAction != null) {
+                if (typeof object.lidContactAction !== "object")
+                    throw TypeError(".SyncAction.SyncActionValue.lidContactAction: object expected");
+                message.lidContactAction = $root.SyncAction.SyncActionValue.LidContactAction.fromObject(object.lidContactAction);
+            }
+            if (object.ctwaPerCustomerDataSharingAction != null) {
+                if (typeof object.ctwaPerCustomerDataSharingAction !== "object")
+                    throw TypeError(".SyncAction.SyncActionValue.ctwaPerCustomerDataSharingAction: object expected");
+                message.ctwaPerCustomerDataSharingAction = $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.fromObject(object.ctwaPerCustomerDataSharingAction);
+            }
+            if (object.paymentTosAction != null) {
+                if (typeof object.paymentTosAction !== "object")
+                    throw TypeError(".SyncAction.SyncActionValue.paymentTosAction: object expected");
+                message.paymentTosAction = $root.SyncAction.SyncActionValue.PaymentTosAction.fromObject(object.paymentTosAction);
+            }
             return message;
         };
 
@@ -102404,6 +107532,9 @@ $root.SyncAction = (function() {
                 object.waffleAccountLinkStateAction = null;
                 object.usernameChatStartMode = null;
                 object.notificationActivitySettingAction = null;
+                object.lidContactAction = null;
+                object.ctwaPerCustomerDataSharingAction = null;
+                object.paymentTosAction = null;
             }
             if (message.timestamp != null && message.hasOwnProperty("timestamp"))
                 if (typeof message.timestamp === "number")
@@ -102516,6 +107647,12 @@ $root.SyncAction = (function() {
                 object.usernameChatStartMode = $root.SyncAction.SyncActionValue.UsernameChatStartModeAction.toObject(message.usernameChatStartMode, options);
             if (message.notificationActivitySettingAction != null && message.hasOwnProperty("notificationActivitySettingAction"))
                 object.notificationActivitySettingAction = $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.toObject(message.notificationActivitySettingAction, options);
+            if (message.lidContactAction != null && message.hasOwnProperty("lidContactAction"))
+                object.lidContactAction = $root.SyncAction.SyncActionValue.LidContactAction.toObject(message.lidContactAction, options);
+            if (message.ctwaPerCustomerDataSharingAction != null && message.hasOwnProperty("ctwaPerCustomerDataSharingAction"))
+                object.ctwaPerCustomerDataSharingAction = $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.toObject(message.ctwaPerCustomerDataSharingAction, options);
+            if (message.paymentTosAction != null && message.hasOwnProperty("paymentTosAction"))
+                object.paymentTosAction = $root.SyncAction.SyncActionValue.PaymentTosAction.toObject(message.paymentTosAction, options);
             return object;
         };
 
@@ -102652,12 +107789,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AgentAction.decode = function decode(reader, length) {
+            AgentAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.AgentAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.name = reader.string();
@@ -102880,12 +108019,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AndroidUnsupportedActions.decode = function decode(reader, length) {
+            AndroidUnsupportedActions.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.AndroidUnsupportedActions();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.allowed = reader.bool();
@@ -103094,12 +108235,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ArchiveChatAction.decode = function decode(reader, length) {
+            ArchiveChatAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.ArchiveChatAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.archived = reader.bool();
@@ -103315,12 +108458,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            BotWelcomeRequestAction.decode = function decode(reader, length) {
+            BotWelcomeRequestAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.BotWelcomeRequestAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.isSent = reader.bool();
@@ -103518,12 +108663,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            CallLogAction.decode = function decode(reader, length) {
+            CallLogAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.CallLogAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.callLogRecord = $root.SyncAction.CallLogRecord.decode(reader, reader.uint32());
@@ -103726,12 +108873,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ChatAssignmentAction.decode = function decode(reader, length) {
+            ChatAssignmentAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.ChatAssignmentAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.deviceAgentID = reader.string();
@@ -103929,12 +109078,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ChatAssignmentOpenedStatusAction.decode = function decode(reader, length) {
+            ChatAssignmentOpenedStatusAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.ChatAssignmentOpenedStatusAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.chatOpened = reader.bool();
@@ -104132,12 +109283,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ClearChatAction.decode = function decode(reader, length) {
+            ClearChatAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.ClearChatAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.decode(reader, reader.uint32());
@@ -104265,6 +109418,8 @@ $root.SyncAction = (function() {
              * @property {string|null} [firstName] ContactAction firstName
              * @property {string|null} [lidJid] ContactAction lidJid
              * @property {boolean|null} [saveOnPrimaryAddressbook] ContactAction saveOnPrimaryAddressbook
+             * @property {string|null} [pnJid] ContactAction pnJid
+             * @property {string|null} [username] ContactAction username
              */
 
             /**
@@ -104315,6 +109470,22 @@ $root.SyncAction = (function() {
             ContactAction.prototype.saveOnPrimaryAddressbook = false;
 
             /**
+             * ContactAction pnJid.
+             * @member {string} pnJid
+             * @memberof SyncAction.SyncActionValue.ContactAction
+             * @instance
+             */
+            ContactAction.prototype.pnJid = "";
+
+            /**
+             * ContactAction username.
+             * @member {string} username
+             * @memberof SyncAction.SyncActionValue.ContactAction
+             * @instance
+             */
+            ContactAction.prototype.username = "";
+
+            /**
              * Creates a new ContactAction instance using the specified properties.
              * @function create
              * @memberof SyncAction.SyncActionValue.ContactAction
@@ -104346,6 +109517,10 @@ $root.SyncAction = (function() {
                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.lidJid);
                 if (message.saveOnPrimaryAddressbook != null && Object.hasOwnProperty.call(message, "saveOnPrimaryAddressbook"))
                     writer.uint32(/* id 4, wireType 0 =*/32).bool(message.saveOnPrimaryAddressbook);
+                if (message.pnJid != null && Object.hasOwnProperty.call(message, "pnJid"))
+                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.pnJid);
+                if (message.username != null && Object.hasOwnProperty.call(message, "username"))
+                    writer.uint32(/* id 6, wireType 2 =*/50).string(message.username);
                 return writer;
             };
 
@@ -104373,12 +109548,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ContactAction.decode = function decode(reader, length) {
+            ContactAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.ContactAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.fullName = reader.string();
@@ -104394,6 +109571,14 @@ $root.SyncAction = (function() {
                         }
                     case 4: {
                             message.saveOnPrimaryAddressbook = reader.bool();
+                            break;
+                        }
+                    case 5: {
+                            message.pnJid = reader.string();
+                            break;
+                        }
+                    case 6: {
+                            message.username = reader.string();
                             break;
                         }
                     default:
@@ -104443,6 +109628,12 @@ $root.SyncAction = (function() {
                 if (message.saveOnPrimaryAddressbook != null && message.hasOwnProperty("saveOnPrimaryAddressbook"))
                     if (typeof message.saveOnPrimaryAddressbook !== "boolean")
                         return "saveOnPrimaryAddressbook: boolean expected";
+                if (message.pnJid != null && message.hasOwnProperty("pnJid"))
+                    if (!$util.isString(message.pnJid))
+                        return "pnJid: string expected";
+                if (message.username != null && message.hasOwnProperty("username"))
+                    if (!$util.isString(message.username))
+                        return "username: string expected";
                 return null;
             };
 
@@ -104466,6 +109657,10 @@ $root.SyncAction = (function() {
                     message.lidJid = String(object.lidJid);
                 if (object.saveOnPrimaryAddressbook != null)
                     message.saveOnPrimaryAddressbook = Boolean(object.saveOnPrimaryAddressbook);
+                if (object.pnJid != null)
+                    message.pnJid = String(object.pnJid);
+                if (object.username != null)
+                    message.username = String(object.username);
                 return message;
             };
 
@@ -104487,6 +109682,8 @@ $root.SyncAction = (function() {
                     object.firstName = "";
                     object.lidJid = "";
                     object.saveOnPrimaryAddressbook = false;
+                    object.pnJid = "";
+                    object.username = "";
                 }
                 if (message.fullName != null && message.hasOwnProperty("fullName"))
                     object.fullName = message.fullName;
@@ -104496,6 +109693,10 @@ $root.SyncAction = (function() {
                     object.lidJid = message.lidJid;
                 if (message.saveOnPrimaryAddressbook != null && message.hasOwnProperty("saveOnPrimaryAddressbook"))
                     object.saveOnPrimaryAddressbook = message.saveOnPrimaryAddressbook;
+                if (message.pnJid != null && message.hasOwnProperty("pnJid"))
+                    object.pnJid = message.pnJid;
+                if (message.username != null && message.hasOwnProperty("username"))
+                    object.username = message.username;
                 return object;
             };
 
@@ -104526,6 +109727,211 @@ $root.SyncAction = (function() {
             };
 
             return ContactAction;
+        })();
+
+        SyncActionValue.CtwaPerCustomerDataSharingAction = (function() {
+
+            /**
+             * Properties of a CtwaPerCustomerDataSharingAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface ICtwaPerCustomerDataSharingAction
+             * @property {boolean|null} [isCtwaPerCustomerDataSharingEnabled] CtwaPerCustomerDataSharingAction isCtwaPerCustomerDataSharingEnabled
+             */
+
+            /**
+             * Constructs a new CtwaPerCustomerDataSharingAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents a CtwaPerCustomerDataSharingAction.
+             * @implements ICtwaPerCustomerDataSharingAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.ICtwaPerCustomerDataSharingAction=} [properties] Properties to set
+             */
+            function CtwaPerCustomerDataSharingAction(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * CtwaPerCustomerDataSharingAction isCtwaPerCustomerDataSharingEnabled.
+             * @member {boolean} isCtwaPerCustomerDataSharingEnabled
+             * @memberof SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction
+             * @instance
+             */
+            CtwaPerCustomerDataSharingAction.prototype.isCtwaPerCustomerDataSharingEnabled = false;
+
+            /**
+             * Creates a new CtwaPerCustomerDataSharingAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction
+             * @static
+             * @param {SyncAction.SyncActionValue.ICtwaPerCustomerDataSharingAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction} CtwaPerCustomerDataSharingAction instance
+             */
+            CtwaPerCustomerDataSharingAction.create = function create(properties) {
+                return new CtwaPerCustomerDataSharingAction(properties);
+            };
+
+            /**
+             * Encodes the specified CtwaPerCustomerDataSharingAction message. Does not implicitly {@link SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction
+             * @static
+             * @param {SyncAction.SyncActionValue.ICtwaPerCustomerDataSharingAction} message CtwaPerCustomerDataSharingAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            CtwaPerCustomerDataSharingAction.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.isCtwaPerCustomerDataSharingEnabled != null && Object.hasOwnProperty.call(message, "isCtwaPerCustomerDataSharingEnabled"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).bool(message.isCtwaPerCustomerDataSharingEnabled);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified CtwaPerCustomerDataSharingAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction
+             * @static
+             * @param {SyncAction.SyncActionValue.ICtwaPerCustomerDataSharingAction} message CtwaPerCustomerDataSharingAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            CtwaPerCustomerDataSharingAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a CtwaPerCustomerDataSharingAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction} CtwaPerCustomerDataSharingAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            CtwaPerCustomerDataSharingAction.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.isCtwaPerCustomerDataSharingEnabled = reader.bool();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a CtwaPerCustomerDataSharingAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction} CtwaPerCustomerDataSharingAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            CtwaPerCustomerDataSharingAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a CtwaPerCustomerDataSharingAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            CtwaPerCustomerDataSharingAction.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.isCtwaPerCustomerDataSharingEnabled != null && message.hasOwnProperty("isCtwaPerCustomerDataSharingEnabled"))
+                    if (typeof message.isCtwaPerCustomerDataSharingEnabled !== "boolean")
+                        return "isCtwaPerCustomerDataSharingEnabled: boolean expected";
+                return null;
+            };
+
+            /**
+             * Creates a CtwaPerCustomerDataSharingAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction} CtwaPerCustomerDataSharingAction
+             */
+            CtwaPerCustomerDataSharingAction.fromObject = function fromObject(object) {
+                if (object instanceof $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction)
+                    return object;
+                var message = new $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction();
+                if (object.isCtwaPerCustomerDataSharingEnabled != null)
+                    message.isCtwaPerCustomerDataSharingEnabled = Boolean(object.isCtwaPerCustomerDataSharingEnabled);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a CtwaPerCustomerDataSharingAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction
+             * @static
+             * @param {SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction} message CtwaPerCustomerDataSharingAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            CtwaPerCustomerDataSharingAction.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.isCtwaPerCustomerDataSharingEnabled = false;
+                if (message.isCtwaPerCustomerDataSharingEnabled != null && message.hasOwnProperty("isCtwaPerCustomerDataSharingEnabled"))
+                    object.isCtwaPerCustomerDataSharingEnabled = message.isCtwaPerCustomerDataSharingEnabled;
+                return object;
+            };
+
+            /**
+             * Converts this CtwaPerCustomerDataSharingAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            CtwaPerCustomerDataSharingAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for CtwaPerCustomerDataSharingAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            CtwaPerCustomerDataSharingAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction";
+            };
+
+            return CtwaPerCustomerDataSharingAction;
         })();
 
         SyncActionValue.CustomPaymentMethod = (function() {
@@ -104645,12 +110051,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            CustomPaymentMethod.decode = function decode(reader, length) {
+            CustomPaymentMethod.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.CustomPaymentMethod();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.credentialId = reader.string();
@@ -104917,12 +110325,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            CustomPaymentMethodMetadata.decode = function decode(reader, length) {
+            CustomPaymentMethodMetadata.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.CustomPaymentMethodMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.key = reader.string();
@@ -105137,12 +110547,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            CustomPaymentMethodsAction.decode = function decode(reader, length) {
+            CustomPaymentMethodsAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.CustomPaymentMethodsAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             if (!(message.customPaymentMethods && message.customPaymentMethods.length))
@@ -105359,12 +110771,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            DeleteChatAction.decode = function decode(reader, length) {
+            DeleteChatAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.DeleteChatAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.decode(reader, reader.uint32());
@@ -105578,12 +110992,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            DeleteIndividualCallLogAction.decode = function decode(reader, length) {
+            DeleteIndividualCallLogAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.DeleteIndividualCallLogAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.peerJid = reader.string();
@@ -105805,12 +111221,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            DeleteMessageForMeAction.decode = function decode(reader, length) {
+            DeleteMessageForMeAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.DeleteMessageForMeAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.deleteMedia = reader.bool();
@@ -106035,12 +111453,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ExternalWebBetaAction.decode = function decode(reader, length) {
+            ExternalWebBetaAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.ExternalWebBetaAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.isOptIn = reader.bool();
@@ -106240,12 +111660,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            FavoritesAction.decode = function decode(reader, length) {
+            FavoritesAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.FavoritesAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             if (!(message.favorites && message.favorites.length))
@@ -106459,12 +111881,14 @@ $root.SyncAction = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Favorite.decode = function decode(reader, length) {
+                Favorite.decode = function decode(reader, length, error) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.FavoritesAction.Favorite();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
+                        if (tag === error)
+                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.id = reader.string();
@@ -106665,12 +112089,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            KeyExpiration.decode = function decode(reader, length) {
+            KeyExpiration.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.KeyExpiration();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.expiredKeyEpoch = reader.int32();
@@ -106868,12 +112294,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            LabelAssociationAction.decode = function decode(reader, length) {
+            LabelAssociationAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.LabelAssociationAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.labeled = reader.bool();
@@ -106999,6 +112427,7 @@ $root.SyncAction = (function() {
              * @property {number|null} [orderIndex] LabelEditAction orderIndex
              * @property {boolean|null} [isActive] LabelEditAction isActive
              * @property {SyncAction.SyncActionValue.LabelEditAction.ListType|null} [type] LabelEditAction type
+             * @property {boolean|null} [isImmutable] LabelEditAction isImmutable
              */
 
             /**
@@ -107073,6 +112502,14 @@ $root.SyncAction = (function() {
             LabelEditAction.prototype.type = 0;
 
             /**
+             * LabelEditAction isImmutable.
+             * @member {boolean} isImmutable
+             * @memberof SyncAction.SyncActionValue.LabelEditAction
+             * @instance
+             */
+            LabelEditAction.prototype.isImmutable = false;
+
+            /**
              * Creates a new LabelEditAction instance using the specified properties.
              * @function create
              * @memberof SyncAction.SyncActionValue.LabelEditAction
@@ -107110,6 +112547,8 @@ $root.SyncAction = (function() {
                     writer.uint32(/* id 6, wireType 0 =*/48).bool(message.isActive);
                 if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                     writer.uint32(/* id 7, wireType 0 =*/56).int32(message.type);
+                if (message.isImmutable != null && Object.hasOwnProperty.call(message, "isImmutable"))
+                    writer.uint32(/* id 8, wireType 0 =*/64).bool(message.isImmutable);
                 return writer;
             };
 
@@ -107137,12 +112576,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            LabelEditAction.decode = function decode(reader, length) {
+            LabelEditAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.LabelEditAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.name = reader.string();
@@ -107170,6 +112611,10 @@ $root.SyncAction = (function() {
                         }
                     case 7: {
                             message.type = reader.int32();
+                            break;
+                        }
+                    case 8: {
+                            message.isImmutable = reader.bool();
                             break;
                         }
                     default:
@@ -107235,8 +112680,13 @@ $root.SyncAction = (function() {
                     case 3:
                     case 4:
                     case 5:
+                    case 6:
+                    case 7:
                         break;
                     }
+                if (message.isImmutable != null && message.hasOwnProperty("isImmutable"))
+                    if (typeof message.isImmutable !== "boolean")
+                        return "isImmutable: boolean expected";
                 return null;
             };
 
@@ -107295,7 +112745,17 @@ $root.SyncAction = (function() {
                 case 5:
                     message.type = 5;
                     break;
+                case "COMMUNITY":
+                case 6:
+                    message.type = 6;
+                    break;
+                case "SERVER_ASSIGNED":
+                case 7:
+                    message.type = 7;
+                    break;
                 }
+                if (object.isImmutable != null)
+                    message.isImmutable = Boolean(object.isImmutable);
                 return message;
             };
 
@@ -107320,6 +112780,7 @@ $root.SyncAction = (function() {
                     object.orderIndex = 0;
                     object.isActive = false;
                     object.type = options.enums === String ? "NONE" : 0;
+                    object.isImmutable = false;
                 }
                 if (message.name != null && message.hasOwnProperty("name"))
                     object.name = message.name;
@@ -107335,6 +112796,8 @@ $root.SyncAction = (function() {
                     object.isActive = message.isActive;
                 if (message.type != null && message.hasOwnProperty("type"))
                     object.type = options.enums === String ? $root.SyncAction.SyncActionValue.LabelEditAction.ListType[message.type] === undefined ? message.type : $root.SyncAction.SyncActionValue.LabelEditAction.ListType[message.type] : message.type;
+                if (message.isImmutable != null && message.hasOwnProperty("isImmutable"))
+                    object.isImmutable = message.isImmutable;
                 return object;
             };
 
@@ -107374,6 +112837,8 @@ $root.SyncAction = (function() {
              * @property {number} FAVORITES=3 FAVORITES value
              * @property {number} PREDEFINED=4 PREDEFINED value
              * @property {number} CUSTOM=5 CUSTOM value
+             * @property {number} COMMUNITY=6 COMMUNITY value
+             * @property {number} SERVER_ASSIGNED=7 SERVER_ASSIGNED value
              */
             LabelEditAction.ListType = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -107383,6 +112848,8 @@ $root.SyncAction = (function() {
                 values[valuesById[3] = "FAVORITES"] = 3;
                 values[valuesById[4] = "PREDEFINED"] = 4;
                 values[valuesById[5] = "CUSTOM"] = 5;
+                values[valuesById[6] = "COMMUNITY"] = 6;
+                values[valuesById[7] = "SERVER_ASSIGNED"] = 7;
                 return values;
             })();
 
@@ -107476,12 +112943,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            LabelReorderingAction.decode = function decode(reader, length) {
+            LabelReorderingAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.LabelReorderingAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             if (!(message.sortedLabelIds && message.sortedLabelIds.length))
@@ -107613,6 +113082,281 @@ $root.SyncAction = (function() {
             return LabelReorderingAction;
         })();
 
+        SyncActionValue.LidContactAction = (function() {
+
+            /**
+             * Properties of a LidContactAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface ILidContactAction
+             * @property {string|null} [fullName] LidContactAction fullName
+             * @property {string|null} [firstName] LidContactAction firstName
+             * @property {string|null} [username] LidContactAction username
+             * @property {boolean|null} [saveOnPrimaryAddressbook] LidContactAction saveOnPrimaryAddressbook
+             */
+
+            /**
+             * Constructs a new LidContactAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents a LidContactAction.
+             * @implements ILidContactAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.ILidContactAction=} [properties] Properties to set
+             */
+            function LidContactAction(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * LidContactAction fullName.
+             * @member {string} fullName
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @instance
+             */
+            LidContactAction.prototype.fullName = "";
+
+            /**
+             * LidContactAction firstName.
+             * @member {string} firstName
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @instance
+             */
+            LidContactAction.prototype.firstName = "";
+
+            /**
+             * LidContactAction username.
+             * @member {string} username
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @instance
+             */
+            LidContactAction.prototype.username = "";
+
+            /**
+             * LidContactAction saveOnPrimaryAddressbook.
+             * @member {boolean} saveOnPrimaryAddressbook
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @instance
+             */
+            LidContactAction.prototype.saveOnPrimaryAddressbook = false;
+
+            /**
+             * Creates a new LidContactAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @static
+             * @param {SyncAction.SyncActionValue.ILidContactAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.LidContactAction} LidContactAction instance
+             */
+            LidContactAction.create = function create(properties) {
+                return new LidContactAction(properties);
+            };
+
+            /**
+             * Encodes the specified LidContactAction message. Does not implicitly {@link SyncAction.SyncActionValue.LidContactAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @static
+             * @param {SyncAction.SyncActionValue.ILidContactAction} message LidContactAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            LidContactAction.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.fullName != null && Object.hasOwnProperty.call(message, "fullName"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.fullName);
+                if (message.firstName != null && Object.hasOwnProperty.call(message, "firstName"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.firstName);
+                if (message.username != null && Object.hasOwnProperty.call(message, "username"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.username);
+                if (message.saveOnPrimaryAddressbook != null && Object.hasOwnProperty.call(message, "saveOnPrimaryAddressbook"))
+                    writer.uint32(/* id 4, wireType 0 =*/32).bool(message.saveOnPrimaryAddressbook);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified LidContactAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.LidContactAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @static
+             * @param {SyncAction.SyncActionValue.ILidContactAction} message LidContactAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            LidContactAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a LidContactAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.LidContactAction} LidContactAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            LidContactAction.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.LidContactAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.fullName = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.firstName = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.username = reader.string();
+                            break;
+                        }
+                    case 4: {
+                            message.saveOnPrimaryAddressbook = reader.bool();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a LidContactAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.LidContactAction} LidContactAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            LidContactAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a LidContactAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            LidContactAction.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.fullName != null && message.hasOwnProperty("fullName"))
+                    if (!$util.isString(message.fullName))
+                        return "fullName: string expected";
+                if (message.firstName != null && message.hasOwnProperty("firstName"))
+                    if (!$util.isString(message.firstName))
+                        return "firstName: string expected";
+                if (message.username != null && message.hasOwnProperty("username"))
+                    if (!$util.isString(message.username))
+                        return "username: string expected";
+                if (message.saveOnPrimaryAddressbook != null && message.hasOwnProperty("saveOnPrimaryAddressbook"))
+                    if (typeof message.saveOnPrimaryAddressbook !== "boolean")
+                        return "saveOnPrimaryAddressbook: boolean expected";
+                return null;
+            };
+
+            /**
+             * Creates a LidContactAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.LidContactAction} LidContactAction
+             */
+            LidContactAction.fromObject = function fromObject(object) {
+                if (object instanceof $root.SyncAction.SyncActionValue.LidContactAction)
+                    return object;
+                var message = new $root.SyncAction.SyncActionValue.LidContactAction();
+                if (object.fullName != null)
+                    message.fullName = String(object.fullName);
+                if (object.firstName != null)
+                    message.firstName = String(object.firstName);
+                if (object.username != null)
+                    message.username = String(object.username);
+                if (object.saveOnPrimaryAddressbook != null)
+                    message.saveOnPrimaryAddressbook = Boolean(object.saveOnPrimaryAddressbook);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a LidContactAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @static
+             * @param {SyncAction.SyncActionValue.LidContactAction} message LidContactAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            LidContactAction.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.fullName = "";
+                    object.firstName = "";
+                    object.username = "";
+                    object.saveOnPrimaryAddressbook = false;
+                }
+                if (message.fullName != null && message.hasOwnProperty("fullName"))
+                    object.fullName = message.fullName;
+                if (message.firstName != null && message.hasOwnProperty("firstName"))
+                    object.firstName = message.firstName;
+                if (message.username != null && message.hasOwnProperty("username"))
+                    object.username = message.username;
+                if (message.saveOnPrimaryAddressbook != null && message.hasOwnProperty("saveOnPrimaryAddressbook"))
+                    object.saveOnPrimaryAddressbook = message.saveOnPrimaryAddressbook;
+                return object;
+            };
+
+            /**
+             * Converts this LidContactAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            LidContactAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for LidContactAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.LidContactAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            LidContactAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.LidContactAction";
+            };
+
+            return LidContactAction;
+        })();
+
         SyncActionValue.LocaleSetting = (function() {
 
             /**
@@ -107698,12 +113442,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            LocaleSetting.decode = function decode(reader, length) {
+            LocaleSetting.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.LocaleSetting();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.locale = reader.string();
@@ -107901,12 +113647,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            LockChatAction.decode = function decode(reader, length) {
+            LockChatAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.LockChatAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.locked = reader.bool();
@@ -108115,12 +113863,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            MarkChatAsReadAction.decode = function decode(reader, length) {
+            MarkChatAsReadAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.MarkChatAsReadAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.read = reader.bool();
@@ -108402,12 +114152,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            MarketingMessageAction.decode = function decode(reader, length) {
+            MarketingMessageAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.MarketingMessageAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.name = reader.string();
@@ -108732,12 +114484,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            MarketingMessageBroadcastAction.decode = function decode(reader, length) {
+            MarketingMessageBroadcastAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.MarketingMessageBroadcastAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.repliedCount = reader.int32();
@@ -108966,12 +114720,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            MerchantPaymentPartnerAction.decode = function decode(reader, length) {
+            MerchantPaymentPartnerAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.MerchantPaymentPartnerAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.status = reader.int32();
@@ -109263,12 +115019,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            MuteAction.decode = function decode(reader, length) {
+            MuteAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.MuteAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.muted = reader.bool();
@@ -109549,12 +115307,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            NoteEditAction.decode = function decode(reader, length) {
+            NoteEditAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.NoteEditAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.type = reader.int32();
@@ -109848,12 +115608,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            NotificationActivitySettingAction.decode = function decode(reader, length) {
+            NotificationActivitySettingAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.NotificationActivitySettingAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.notificationActivitySetting = reader.int32();
@@ -110098,12 +115860,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            NuxAction.decode = function decode(reader, length) {
+            NuxAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.NuxAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.acknowledged = reader.bool();
@@ -110301,12 +116065,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PaymentInfoAction.decode = function decode(reader, length) {
+            PaymentInfoAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.PaymentInfoAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.cpi = reader.string();
@@ -110419,6 +116185,261 @@ $root.SyncAction = (function() {
             return PaymentInfoAction;
         })();
 
+        SyncActionValue.PaymentTosAction = (function() {
+
+            /**
+             * Properties of a PaymentTosAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface IPaymentTosAction
+             * @property {SyncAction.SyncActionValue.PaymentTosAction.PaymentNotice} paymentNotice PaymentTosAction paymentNotice
+             * @property {boolean} accepted PaymentTosAction accepted
+             */
+
+            /**
+             * Constructs a new PaymentTosAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents a PaymentTosAction.
+             * @implements IPaymentTosAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.IPaymentTosAction=} [properties] Properties to set
+             */
+            function PaymentTosAction(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * PaymentTosAction paymentNotice.
+             * @member {SyncAction.SyncActionValue.PaymentTosAction.PaymentNotice} paymentNotice
+             * @memberof SyncAction.SyncActionValue.PaymentTosAction
+             * @instance
+             */
+            PaymentTosAction.prototype.paymentNotice = 0;
+
+            /**
+             * PaymentTosAction accepted.
+             * @member {boolean} accepted
+             * @memberof SyncAction.SyncActionValue.PaymentTosAction
+             * @instance
+             */
+            PaymentTosAction.prototype.accepted = false;
+
+            /**
+             * Creates a new PaymentTosAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.PaymentTosAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IPaymentTosAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.PaymentTosAction} PaymentTosAction instance
+             */
+            PaymentTosAction.create = function create(properties) {
+                return new PaymentTosAction(properties);
+            };
+
+            /**
+             * Encodes the specified PaymentTosAction message. Does not implicitly {@link SyncAction.SyncActionValue.PaymentTosAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.PaymentTosAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IPaymentTosAction} message PaymentTosAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PaymentTosAction.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.paymentNotice);
+                writer.uint32(/* id 2, wireType 0 =*/16).bool(message.accepted);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified PaymentTosAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.PaymentTosAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.PaymentTosAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IPaymentTosAction} message PaymentTosAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PaymentTosAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a PaymentTosAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.PaymentTosAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.PaymentTosAction} PaymentTosAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PaymentTosAction.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.PaymentTosAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.paymentNotice = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.accepted = reader.bool();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                if (!message.hasOwnProperty("paymentNotice"))
+                    throw $util.ProtocolError("missing required 'paymentNotice'", { instance: message });
+                if (!message.hasOwnProperty("accepted"))
+                    throw $util.ProtocolError("missing required 'accepted'", { instance: message });
+                return message;
+            };
+
+            /**
+             * Decodes a PaymentTosAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.PaymentTosAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.PaymentTosAction} PaymentTosAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PaymentTosAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a PaymentTosAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.PaymentTosAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            PaymentTosAction.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                switch (message.paymentNotice) {
+                default:
+                    return "paymentNotice: enum value expected";
+                case 0:
+                    break;
+                }
+                if (typeof message.accepted !== "boolean")
+                    return "accepted: boolean expected";
+                return null;
+            };
+
+            /**
+             * Creates a PaymentTosAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.PaymentTosAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.PaymentTosAction} PaymentTosAction
+             */
+            PaymentTosAction.fromObject = function fromObject(object) {
+                if (object instanceof $root.SyncAction.SyncActionValue.PaymentTosAction)
+                    return object;
+                var message = new $root.SyncAction.SyncActionValue.PaymentTosAction();
+                switch (object.paymentNotice) {
+                default:
+                    if (typeof object.paymentNotice === "number") {
+                        message.paymentNotice = object.paymentNotice;
+                        break;
+                    }
+                    break;
+                case "BR_PAY_PRIVACY_POLICY":
+                case 0:
+                    message.paymentNotice = 0;
+                    break;
+                }
+                if (object.accepted != null)
+                    message.accepted = Boolean(object.accepted);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a PaymentTosAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.PaymentTosAction
+             * @static
+             * @param {SyncAction.SyncActionValue.PaymentTosAction} message PaymentTosAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            PaymentTosAction.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.paymentNotice = options.enums === String ? "BR_PAY_PRIVACY_POLICY" : 0;
+                    object.accepted = false;
+                }
+                if (message.paymentNotice != null && message.hasOwnProperty("paymentNotice"))
+                    object.paymentNotice = options.enums === String ? $root.SyncAction.SyncActionValue.PaymentTosAction.PaymentNotice[message.paymentNotice] === undefined ? message.paymentNotice : $root.SyncAction.SyncActionValue.PaymentTosAction.PaymentNotice[message.paymentNotice] : message.paymentNotice;
+                if (message.accepted != null && message.hasOwnProperty("accepted"))
+                    object.accepted = message.accepted;
+                return object;
+            };
+
+            /**
+             * Converts this PaymentTosAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.PaymentTosAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            PaymentTosAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for PaymentTosAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.PaymentTosAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            PaymentTosAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.PaymentTosAction";
+            };
+
+            /**
+             * PaymentNotice enum.
+             * @name SyncAction.SyncActionValue.PaymentTosAction.PaymentNotice
+             * @enum {number}
+             * @property {number} BR_PAY_PRIVACY_POLICY=0 BR_PAY_PRIVACY_POLICY value
+             */
+            PaymentTosAction.PaymentNotice = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "BR_PAY_PRIVACY_POLICY"] = 0;
+                return values;
+            })();
+
+            return PaymentTosAction;
+        })();
+
         SyncActionValue.PinAction = (function() {
 
             /**
@@ -110504,12 +116525,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PinAction.decode = function decode(reader, length) {
+            PinAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.PinAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.pinned = reader.bool();
@@ -110707,12 +116730,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PnForLidChatAction.decode = function decode(reader, length) {
+            PnForLidChatAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.PnForLidChatAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.pnJid = reader.string();
@@ -110912,12 +116937,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PrimaryFeature.decode = function decode(reader, length) {
+            PrimaryFeature.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.PrimaryFeature();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             if (!(message.flags && message.flags.length))
@@ -111129,12 +117156,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PrimaryVersionAction.decode = function decode(reader, length) {
+            PrimaryVersionAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.PrimaryVersionAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.version = reader.string();
@@ -111332,12 +117361,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PrivacySettingDisableLinkPreviewsAction.decode = function decode(reader, length) {
+            PrivacySettingDisableLinkPreviewsAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.PrivacySettingDisableLinkPreviewsAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.isPreviewsDisabled = reader.bool();
@@ -111535,12 +117566,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PrivacySettingRelayAllCalls.decode = function decode(reader, length) {
+            PrivacySettingRelayAllCalls.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.PrivacySettingRelayAllCalls();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.isEnabled = reader.bool();
@@ -111738,12 +117771,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PushNameSetting.decode = function decode(reader, length) {
+            PushNameSetting.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.PushNameSetting();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.name = reader.string();
@@ -111987,12 +118022,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            QuickReplyAction.decode = function decode(reader, length) {
+            QuickReplyAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.QuickReplyAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.shortcut = reader.string();
@@ -112256,12 +118293,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            RecentEmojiWeightsAction.decode = function decode(reader, length) {
+            RecentEmojiWeightsAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.RecentEmojiWeightsAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             if (!(message.weights && message.weights.length))
@@ -112478,12 +118517,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            RemoveRecentStickerAction.decode = function decode(reader, length) {
+            RemoveRecentStickerAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.RemoveRecentStickerAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.lastStickerSentTs = reader.int64();
@@ -112695,12 +118736,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            SecurityNotificationSetting.decode = function decode(reader, length) {
+            SecurityNotificationSetting.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.SecurityNotificationSetting();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.showNotification = reader.bool();
@@ -112898,12 +118941,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            StarAction.decode = function decode(reader, length) {
+            StarAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.StarAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.starred = reader.bool();
@@ -113114,12 +119159,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            StatusPrivacyAction.decode = function decode(reader, length) {
+            StatusPrivacyAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.StatusPrivacyAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.mode = reader.int32();
@@ -113494,12 +119541,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            StickerAction.decode = function decode(reader, length) {
+            StickerAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.StickerAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.url = reader.string();
@@ -113872,12 +119921,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            SubscriptionAction.decode = function decode(reader, length) {
+            SubscriptionAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.SubscriptionAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.isDeactivated = reader.bool();
@@ -114125,12 +120176,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            SyncActionMessage.decode = function decode(reader, length) {
+            SyncActionMessage.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.SyncActionMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32());
@@ -114384,12 +120437,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            SyncActionMessageRange.decode = function decode(reader, length) {
+            SyncActionMessageRange.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.SyncActionMessageRange();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.lastMessageTimestamp = reader.int64();
@@ -114660,12 +120715,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            TimeFormatAction.decode = function decode(reader, length) {
+            TimeFormatAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.TimeFormatAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.isTwentyFourHourFormatEnabled = reader.bool();
@@ -114863,12 +120920,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            UnarchiveChatsSetting.decode = function decode(reader, length) {
+            UnarchiveChatsSetting.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.UnarchiveChatsSetting();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.unarchiveChats = reader.bool();
@@ -115066,12 +121125,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            UserStatusMuteAction.decode = function decode(reader, length) {
+            UserStatusMuteAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.UserStatusMuteAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.muted = reader.bool();
@@ -115269,12 +121330,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            UsernameChatStartModeAction.decode = function decode(reader, length) {
+            UsernameChatStartModeAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.UsernameChatStartModeAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.chatStartMode = reader.int32();
@@ -115505,12 +121568,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            WaffleAccountLinkStateAction.decode = function decode(reader, length) {
+            WaffleAccountLinkStateAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.WaffleAccountLinkStateAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 2: {
                             message.linkState = reader.int32();
@@ -115734,12 +121799,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            WamoUserIdentifierAction.decode = function decode(reader, length) {
+            WamoUserIdentifierAction.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.WamoUserIdentifierAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.identifier = reader.string();
@@ -116096,12 +122163,14 @@ $root.SyncAction = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        CallLogRecord.decode = function decode(reader, length) {
+        CallLogRecord.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.CallLogRecord();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.callResult = reader.int32();
@@ -116689,12 +122758,14 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ParticipantInfo.decode = function decode(reader, length) {
+            ParticipantInfo.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.CallLogRecord.ParticipantInfo();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.userJid = reader.string();
@@ -117001,12 +123072,14 @@ $root.SyncAction = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        RecentEmojiWeight.decode = function decode(reader, length) {
+        RecentEmojiWeight.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.RecentEmojiWeight();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.emoji = reader.string();
@@ -117240,12 +123313,14 @@ $root.DeviceCapabilities = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        DeviceCapabilities.decode = function decode(reader, length) {
+        DeviceCapabilities.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.DeviceCapabilities.DeviceCapabilities();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.chatLockSupportLevel = reader.int32();
@@ -117498,12 +123573,14 @@ $root.DeviceCapabilities = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            LIDMigration.decode = function decode(reader, length) {
+            LIDMigration.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.DeviceCapabilities.DeviceCapabilities.LIDMigration();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
+                    if (tag === error)
+                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.chatDbMigrationTimestamp = reader.uint64();

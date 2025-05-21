@@ -950,6 +950,7 @@ $root.SyncAction = (function() {
          * @property {SyncAction.SyncActionValue.INotificationActivitySettingAction|null} [notificationActivitySettingAction] SyncActionValue notificationActivitySettingAction
          * @property {SyncAction.SyncActionValue.ILidContactAction|null} [lidContactAction] SyncActionValue lidContactAction
          * @property {SyncAction.SyncActionValue.ICtwaPerCustomerDataSharingAction|null} [ctwaPerCustomerDataSharingAction] SyncActionValue ctwaPerCustomerDataSharingAction
+         * @property {SyncAction.SyncActionValue.IPaymentTosAction|null} [paymentTosAction] SyncActionValue paymentTosAction
          */
 
         /**
@@ -1416,6 +1417,14 @@ $root.SyncAction = (function() {
         SyncActionValue.prototype.ctwaPerCustomerDataSharingAction = null;
 
         /**
+         * SyncActionValue paymentTosAction.
+         * @member {SyncAction.SyncActionValue.IPaymentTosAction|null|undefined} paymentTosAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.paymentTosAction = null;
+
+        /**
          * Creates a new SyncActionValue instance using the specified properties.
          * @function create
          * @memberof SyncAction.SyncActionValue
@@ -1551,6 +1560,8 @@ $root.SyncAction = (function() {
                 $root.SyncAction.SyncActionValue.LidContactAction.encode(message.lidContactAction, writer.uint32(/* id 61, wireType 2 =*/490).fork()).ldelim();
             if (message.ctwaPerCustomerDataSharingAction != null && Object.hasOwnProperty.call(message, "ctwaPerCustomerDataSharingAction"))
                 $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.encode(message.ctwaPerCustomerDataSharingAction, writer.uint32(/* id 62, wireType 2 =*/498).fork()).ldelim();
+            if (message.paymentTosAction != null && Object.hasOwnProperty.call(message, "paymentTosAction"))
+                $root.SyncAction.SyncActionValue.PaymentTosAction.encode(message.paymentTosAction, writer.uint32(/* id 63, wireType 2 =*/506).fork()).ldelim();
             return writer;
         };
 
@@ -1809,6 +1820,10 @@ $root.SyncAction = (function() {
                     }
                 case 62: {
                         message.ctwaPerCustomerDataSharingAction = $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 63: {
+                        message.paymentTosAction = $root.SyncAction.SyncActionValue.PaymentTosAction.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -2124,6 +2139,11 @@ $root.SyncAction = (function() {
                 if (error)
                     return "ctwaPerCustomerDataSharingAction." + error;
             }
+            if (message.paymentTosAction != null && message.hasOwnProperty("paymentTosAction")) {
+                var error = $root.SyncAction.SyncActionValue.PaymentTosAction.verify(message.paymentTosAction);
+                if (error)
+                    return "paymentTosAction." + error;
+            }
             return null;
         };
 
@@ -2423,6 +2443,11 @@ $root.SyncAction = (function() {
                     throw TypeError(".SyncAction.SyncActionValue.ctwaPerCustomerDataSharingAction: object expected");
                 message.ctwaPerCustomerDataSharingAction = $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.fromObject(object.ctwaPerCustomerDataSharingAction);
             }
+            if (object.paymentTosAction != null) {
+                if (typeof object.paymentTosAction !== "object")
+                    throw TypeError(".SyncAction.SyncActionValue.paymentTosAction: object expected");
+                message.paymentTosAction = $root.SyncAction.SyncActionValue.PaymentTosAction.fromObject(object.paymentTosAction);
+            }
             return message;
         };
 
@@ -2500,6 +2525,7 @@ $root.SyncAction = (function() {
                 object.notificationActivitySettingAction = null;
                 object.lidContactAction = null;
                 object.ctwaPerCustomerDataSharingAction = null;
+                object.paymentTosAction = null;
             }
             if (message.timestamp != null && message.hasOwnProperty("timestamp"))
                 if (typeof message.timestamp === "number")
@@ -2616,6 +2642,8 @@ $root.SyncAction = (function() {
                 object.lidContactAction = $root.SyncAction.SyncActionValue.LidContactAction.toObject(message.lidContactAction, options);
             if (message.ctwaPerCustomerDataSharingAction != null && message.hasOwnProperty("ctwaPerCustomerDataSharingAction"))
                 object.ctwaPerCustomerDataSharingAction = $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.toObject(message.ctwaPerCustomerDataSharingAction, options);
+            if (message.paymentTosAction != null && message.hasOwnProperty("paymentTosAction"))
+                object.paymentTosAction = $root.SyncAction.SyncActionValue.PaymentTosAction.toObject(message.paymentTosAction, options);
             return object;
         };
 
@@ -11148,6 +11176,261 @@ $root.SyncAction = (function() {
             return PaymentInfoAction;
         })();
 
+        SyncActionValue.PaymentTosAction = (function() {
+
+            /**
+             * Properties of a PaymentTosAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface IPaymentTosAction
+             * @property {SyncAction.SyncActionValue.PaymentTosAction.PaymentNotice} paymentNotice PaymentTosAction paymentNotice
+             * @property {boolean} accepted PaymentTosAction accepted
+             */
+
+            /**
+             * Constructs a new PaymentTosAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents a PaymentTosAction.
+             * @implements IPaymentTosAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.IPaymentTosAction=} [properties] Properties to set
+             */
+            function PaymentTosAction(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * PaymentTosAction paymentNotice.
+             * @member {SyncAction.SyncActionValue.PaymentTosAction.PaymentNotice} paymentNotice
+             * @memberof SyncAction.SyncActionValue.PaymentTosAction
+             * @instance
+             */
+            PaymentTosAction.prototype.paymentNotice = 0;
+
+            /**
+             * PaymentTosAction accepted.
+             * @member {boolean} accepted
+             * @memberof SyncAction.SyncActionValue.PaymentTosAction
+             * @instance
+             */
+            PaymentTosAction.prototype.accepted = false;
+
+            /**
+             * Creates a new PaymentTosAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.PaymentTosAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IPaymentTosAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.PaymentTosAction} PaymentTosAction instance
+             */
+            PaymentTosAction.create = function create(properties) {
+                return new PaymentTosAction(properties);
+            };
+
+            /**
+             * Encodes the specified PaymentTosAction message. Does not implicitly {@link SyncAction.SyncActionValue.PaymentTosAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.PaymentTosAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IPaymentTosAction} message PaymentTosAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PaymentTosAction.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.paymentNotice);
+                writer.uint32(/* id 2, wireType 0 =*/16).bool(message.accepted);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified PaymentTosAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.PaymentTosAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.PaymentTosAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IPaymentTosAction} message PaymentTosAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PaymentTosAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a PaymentTosAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.PaymentTosAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.PaymentTosAction} PaymentTosAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PaymentTosAction.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.PaymentTosAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.paymentNotice = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.accepted = reader.bool();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                if (!message.hasOwnProperty("paymentNotice"))
+                    throw $util.ProtocolError("missing required 'paymentNotice'", { instance: message });
+                if (!message.hasOwnProperty("accepted"))
+                    throw $util.ProtocolError("missing required 'accepted'", { instance: message });
+                return message;
+            };
+
+            /**
+             * Decodes a PaymentTosAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.PaymentTosAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.PaymentTosAction} PaymentTosAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PaymentTosAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a PaymentTosAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.PaymentTosAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            PaymentTosAction.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                switch (message.paymentNotice) {
+                default:
+                    return "paymentNotice: enum value expected";
+                case 0:
+                    break;
+                }
+                if (typeof message.accepted !== "boolean")
+                    return "accepted: boolean expected";
+                return null;
+            };
+
+            /**
+             * Creates a PaymentTosAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.PaymentTosAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.PaymentTosAction} PaymentTosAction
+             */
+            PaymentTosAction.fromObject = function fromObject(object) {
+                if (object instanceof $root.SyncAction.SyncActionValue.PaymentTosAction)
+                    return object;
+                var message = new $root.SyncAction.SyncActionValue.PaymentTosAction();
+                switch (object.paymentNotice) {
+                default:
+                    if (typeof object.paymentNotice === "number") {
+                        message.paymentNotice = object.paymentNotice;
+                        break;
+                    }
+                    break;
+                case "BR_PAY_PRIVACY_POLICY":
+                case 0:
+                    message.paymentNotice = 0;
+                    break;
+                }
+                if (object.accepted != null)
+                    message.accepted = Boolean(object.accepted);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a PaymentTosAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.PaymentTosAction
+             * @static
+             * @param {SyncAction.SyncActionValue.PaymentTosAction} message PaymentTosAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            PaymentTosAction.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.paymentNotice = options.enums === String ? "BR_PAY_PRIVACY_POLICY" : 0;
+                    object.accepted = false;
+                }
+                if (message.paymentNotice != null && message.hasOwnProperty("paymentNotice"))
+                    object.paymentNotice = options.enums === String ? $root.SyncAction.SyncActionValue.PaymentTosAction.PaymentNotice[message.paymentNotice] === undefined ? message.paymentNotice : $root.SyncAction.SyncActionValue.PaymentTosAction.PaymentNotice[message.paymentNotice] : message.paymentNotice;
+                if (message.accepted != null && message.hasOwnProperty("accepted"))
+                    object.accepted = message.accepted;
+                return object;
+            };
+
+            /**
+             * Converts this PaymentTosAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.PaymentTosAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            PaymentTosAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for PaymentTosAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.PaymentTosAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            PaymentTosAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.PaymentTosAction";
+            };
+
+            /**
+             * PaymentNotice enum.
+             * @name SyncAction.SyncActionValue.PaymentTosAction.PaymentNotice
+             * @enum {number}
+             * @property {number} BR_PAY_PRIVACY_POLICY=0 BR_PAY_PRIVACY_POLICY value
+             */
+            PaymentTosAction.PaymentNotice = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "BR_PAY_PRIVACY_POLICY"] = 0;
+                return values;
+            })();
+
+            return PaymentTosAction;
+        })();
+
         SyncActionValue.PinAction = (function() {
 
             /**
@@ -19563,7 +19846,7 @@ $root.Protocol = (function() {
          * @memberof Protocol
          * @interface ILimitSharing
          * @property {boolean|null} [sharingLimited] LimitSharing sharingLimited
-         * @property {Protocol.LimitSharing.Trigger|null} [trigger] LimitSharing trigger
+         * @property {Protocol.LimitSharing.TriggerType|null} [trigger] LimitSharing trigger
          * @property {number|Long|null} [limitSharingSettingTimestamp] LimitSharing limitSharingSettingTimestamp
          * @property {boolean|null} [initiatedByMe] LimitSharing initiatedByMe
          */
@@ -19593,7 +19876,7 @@ $root.Protocol = (function() {
 
         /**
          * LimitSharing trigger.
-         * @member {Protocol.LimitSharing.Trigger} trigger
+         * @member {Protocol.LimitSharing.TriggerType} trigger
          * @memberof Protocol.LimitSharing
          * @instance
          */
@@ -19834,7 +20117,7 @@ $root.Protocol = (function() {
             if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
                 object.sharingLimited = message.sharingLimited;
             if (message.trigger != null && message.hasOwnProperty("trigger"))
-                object.trigger = options.enums === String ? $root.Protocol.LimitSharing.Trigger[message.trigger] === undefined ? message.trigger : $root.Protocol.LimitSharing.Trigger[message.trigger] : message.trigger;
+                object.trigger = options.enums === String ? $root.Protocol.LimitSharing.TriggerType[message.trigger] === undefined ? message.trigger : $root.Protocol.LimitSharing.TriggerType[message.trigger] : message.trigger;
             if (message.limitSharingSettingTimestamp != null && message.hasOwnProperty("limitSharingSettingTimestamp"))
                 if (typeof message.limitSharingSettingTimestamp === "number")
                     object.limitSharingSettingTimestamp = options.longs === String ? String(message.limitSharingSettingTimestamp) : message.limitSharingSettingTimestamp;
@@ -19872,15 +20155,15 @@ $root.Protocol = (function() {
         };
 
         /**
-         * Trigger enum.
-         * @name Protocol.LimitSharing.Trigger
+         * TriggerType enum.
+         * @name Protocol.LimitSharing.TriggerType
          * @enum {number}
          * @property {number} UNKNOWN=0 UNKNOWN value
          * @property {number} CHAT_SETTING=1 CHAT_SETTING value
          * @property {number} BIZ_SUPPORTS_FB_HOSTING=2 BIZ_SUPPORTS_FB_HOSTING value
          * @property {number} UNKNOWN_GROUP=3 UNKNOWN_GROUP value
          */
-        LimitSharing.Trigger = (function() {
+        LimitSharing.TriggerType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
             values[valuesById[0] = "UNKNOWN"] = 0;
             values[valuesById[1] = "CHAT_SETTING"] = 1;

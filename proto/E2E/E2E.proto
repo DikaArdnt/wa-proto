@@ -895,6 +895,8 @@ message ContextInfo {
         HD_VIDEO_CHILD = 2;
         SD_IMAGE_PARENT = 3;
         HD_IMAGE_CHILD = 4;
+        MOTION_PHOTO_PARENT = 5;
+        MOTION_PHOTO_CHILD = 6;
     }
     enum StatusAttributionType {
         NONE = 0;

@@ -10,7 +10,7 @@ export namespace Protocol {
         sharingLimited?: (boolean|null);
 
         /** LimitSharing trigger */
-        trigger?: (Protocol.LimitSharing.Trigger|null);
+        trigger?: (Protocol.LimitSharing.TriggerType|null);
 
         /** LimitSharing limitSharingSettingTimestamp */
         limitSharingSettingTimestamp?: (number|Long|null);
@@ -32,7 +32,7 @@ export namespace Protocol {
         public sharingLimited: boolean;
 
         /** LimitSharing trigger. */
-        public trigger: Protocol.LimitSharing.Trigger;
+        public trigger: Protocol.LimitSharing.TriggerType;
 
         /** LimitSharing limitSharingSettingTimestamp. */
         public limitSharingSettingTimestamp: (number|Long);
@@ -120,8 +120,8 @@ export namespace Protocol {
 
     namespace LimitSharing {
 
-        /** Trigger enum. */
-        enum Trigger {
+        /** TriggerType enum. */
+        enum TriggerType {
             UNKNOWN = 0,
             CHAT_SETTING = 1,
             BIZ_SUPPORTS_FB_HOSTING = 2,
