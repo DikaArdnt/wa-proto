@@ -37360,6 +37360,7 @@ $root.E2E = (function() {
                 case 22:
                 case 23:
                 case 24:
+                case 25:
                     break;
                 }
             if (message.threadOrigin != null && message.hasOwnProperty("threadOrigin"))
@@ -37491,6 +37492,10 @@ $root.E2E = (function() {
             case "NEW_CHAT_AI_STUDIO":
             case 24:
                 message.destinationEntryPoint = 24;
+                break;
+            case "AIVOICE_FAVICON_CALL_HISTORY":
+            case 25:
+                message.destinationEntryPoint = 25;
                 break;
             }
             switch (object.threadOrigin) {
@@ -56576,6 +56581,8 @@ $root.E2E = (function() {
                     case 10:
                     case 11:
                     case 12:
+                    case 13:
+                    case 14:
                         break;
                     }
                 if (message.text != null && message.hasOwnProperty("text"))
@@ -56672,6 +56679,14 @@ $root.E2E = (function() {
                 case "BOT_FEEDBACK_NEGATIVE_DOESNT_LOOK_LIKE_THE_PERSON":
                 case 12:
                     message.kind = 12;
+                    break;
+                case "BOT_FEEDBACK_NEGATIVE_HALLUCINATION_INTERNAL_ONLY":
+                case 13:
+                    message.kind = 13;
+                    break;
+                case "BOT_FEEDBACK_NEGATIVE":
+                case 14:
+                    message.kind = 14;
                     break;
                 }
                 if (object.text != null)
@@ -56802,6 +56817,8 @@ $root.E2E = (function() {
              * @property {number} BOT_FEEDBACK_NEGATIVE_PERSONALIZED=10 BOT_FEEDBACK_NEGATIVE_PERSONALIZED value
              * @property {number} BOT_FEEDBACK_NEGATIVE_CLARITY=11 BOT_FEEDBACK_NEGATIVE_CLARITY value
              * @property {number} BOT_FEEDBACK_NEGATIVE_DOESNT_LOOK_LIKE_THE_PERSON=12 BOT_FEEDBACK_NEGATIVE_DOESNT_LOOK_LIKE_THE_PERSON value
+             * @property {number} BOT_FEEDBACK_NEGATIVE_HALLUCINATION_INTERNAL_ONLY=13 BOT_FEEDBACK_NEGATIVE_HALLUCINATION_INTERNAL_ONLY value
+             * @property {number} BOT_FEEDBACK_NEGATIVE=14 BOT_FEEDBACK_NEGATIVE value
              */
             BotFeedbackMessage.BotFeedbackKind = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -56818,6 +56835,8 @@ $root.E2E = (function() {
                 values[valuesById[10] = "BOT_FEEDBACK_NEGATIVE_PERSONALIZED"] = 10;
                 values[valuesById[11] = "BOT_FEEDBACK_NEGATIVE_CLARITY"] = 11;
                 values[valuesById[12] = "BOT_FEEDBACK_NEGATIVE_DOESNT_LOOK_LIKE_THE_PERSON"] = 12;
+                values[valuesById[13] = "BOT_FEEDBACK_NEGATIVE_HALLUCINATION_INTERNAL_ONLY"] = 13;
+                values[valuesById[14] = "BOT_FEEDBACK_NEGATIVE"] = 14;
                 return values;
             })();
 
@@ -98494,6 +98513,7 @@ $root.E2E = (function() {
      * @property {number} META_AI_CHAT_SHORTCUT_AI_STUDIO=22 META_AI_CHAT_SHORTCUT_AI_STUDIO value
      * @property {number} UGC_CHAT_SHORTCUT_AI_STUDIO=23 UGC_CHAT_SHORTCUT_AI_STUDIO value
      * @property {number} NEW_CHAT_AI_STUDIO=24 NEW_CHAT_AI_STUDIO value
+     * @property {number} AIVOICE_FAVICON_CALL_HISTORY=25 AIVOICE_FAVICON_CALL_HISTORY value
      */
     E2E.BotMetricsEntryPoint = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -98521,6 +98541,7 @@ $root.E2E = (function() {
         values[valuesById[22] = "META_AI_CHAT_SHORTCUT_AI_STUDIO"] = 22;
         values[valuesById[23] = "UGC_CHAT_SHORTCUT_AI_STUDIO"] = 23;
         values[valuesById[24] = "NEW_CHAT_AI_STUDIO"] = 24;
+        values[valuesById[25] = "AIVOICE_FAVICON_CALL_HISTORY"] = 25;
         return values;
     })();
 
