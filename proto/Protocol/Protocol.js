@@ -136,14 +136,12 @@ $root.Protocol = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        LimitSharing.decode = function decode(reader, length, error) {
+        LimitSharing.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.LimitSharing();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.sharingLimited = reader.bool();
@@ -472,14 +470,12 @@ $root.Protocol = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        MessageKey.decode = function decode(reader, length, error) {
+        MessageKey.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.MessageKey();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.remoteJid = reader.string();

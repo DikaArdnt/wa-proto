@@ -114,14 +114,12 @@ $root.CompanionReg = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ClientPairingProps.decode = function decode(reader, length, error) {
+        ClientPairingProps.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.ClientPairingProps();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.isChatDbLidMigrated = reader.bool();
@@ -343,14 +341,12 @@ $root.CompanionReg = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        EncryptedPairingRequest.decode = function decode(reader, length, error) {
+        EncryptedPairingRequest.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.EncryptedPairingRequest();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.encryptedPayload = reader.bytes();
@@ -601,14 +597,12 @@ $root.CompanionReg = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PairingRequest.decode = function decode(reader, length, error) {
+        PairingRequest.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.PairingRequest();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.companionPublicKey = reader.bytes();
@@ -869,14 +863,12 @@ $root.CompanionReg = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PrimaryEphemeralIdentity.decode = function decode(reader, length, error) {
+        PrimaryEphemeralIdentity.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.PrimaryEphemeralIdentity();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.publicKey = reader.bytes();
@@ -1116,14 +1108,12 @@ $root.CompanionReg = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ProloguePayload.decode = function decode(reader, length, error) {
+        ProloguePayload.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.ProloguePayload();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.companionEphemeralIdentity = reader.bytes();
@@ -1348,14 +1338,12 @@ $root.CompanionReg = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        CompanionCommitment.decode = function decode(reader, length, error) {
+        CompanionCommitment.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.CompanionCommitment();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.hash = reader.bytes();
@@ -1584,14 +1572,12 @@ $root.CompanionReg = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        CompanionEphemeralIdentity.decode = function decode(reader, length, error) {
+        CompanionEphemeralIdentity.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.CompanionEphemeralIdentity();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.publicKey = reader.bytes();
@@ -2001,14 +1987,12 @@ $root.CompanionReg = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        DeviceProps.decode = function decode(reader, length, error) {
+        DeviceProps.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.DeviceProps();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.os = reader.string();
@@ -2440,14 +2424,12 @@ $root.CompanionReg = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AppVersion.decode = function decode(reader, length, error) {
+            AppVersion.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.DeviceProps.AppVersion();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.primary = reader.uint32();
@@ -2837,14 +2819,12 @@ $root.CompanionReg = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            HistorySyncConfig.decode = function decode(reader, length, error) {
+            HistorySyncConfig.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.CompanionReg.DeviceProps.HistorySyncConfig();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.fullSyncDaysLimit = reader.uint32();

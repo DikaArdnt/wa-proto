@@ -103,14 +103,12 @@ $root.MdStorageChatRowOpaqueData = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ChatRowOpaqueData.decode = function decode(reader, length, error) {
+        ChatRowOpaqueData.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.draftMessage = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.decode(reader, reader.uint32());
@@ -354,14 +352,12 @@ $root.MdStorageChatRowOpaqueData = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            DraftMessage.decode = function decode(reader, length, error) {
+            DraftMessage.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.text = reader.string();
@@ -750,14 +746,12 @@ $root.MdStorageChatRowOpaqueData = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CtwaContextData.decode = function decode(reader, length, error) {
+                CtwaContextData.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextData();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.conversionSource = reader.string();
@@ -1170,14 +1164,12 @@ $root.MdStorageChatRowOpaqueData = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CtwaContextLinkData.decode = function decode(reader, length, error) {
+                CtwaContextLinkData.decode = function decode(reader, length) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextLinkData();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
-                        if (tag === error)
-                            break;
                         switch (tag >>> 3) {
                         case 1: {
                                 message.context = reader.string();

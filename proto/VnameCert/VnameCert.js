@@ -180,14 +180,12 @@ $root.VnameCert = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BizIdentityInfo.decode = function decode(reader, length, error) {
+        BizIdentityInfo.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.VnameCert.BizIdentityInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.vlevel = reader.int32();
@@ -653,14 +651,12 @@ $root.VnameCert = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BizAccountLinkInfo.decode = function decode(reader, length, error) {
+        BizAccountLinkInfo.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.VnameCert.BizAccountLinkInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.whatsappBizAcctFbid = reader.uint64();
@@ -1005,14 +1001,12 @@ $root.VnameCert = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BizAccountPayload.decode = function decode(reader, length, error) {
+        BizAccountPayload.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.VnameCert.BizAccountPayload();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.vnameCert = $root.VnameCert.VerifiedNameCertificate.decode(reader, reader.uint32());
@@ -1259,14 +1253,12 @@ $root.VnameCert = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        VerifiedNameCertificate.decode = function decode(reader, length, error) {
+        VerifiedNameCertificate.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.VnameCert.VerifiedNameCertificate();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.details = reader.bytes();
@@ -1559,14 +1551,12 @@ $root.VnameCert = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            Details.decode = function decode(reader, length, error) {
+            Details.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.VnameCert.VerifiedNameCertificate.Details();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
-                    if (tag === error)
-                        break;
                     switch (tag >>> 3) {
                     case 1: {
                             message.serial = reader.uint64();
@@ -1886,14 +1876,12 @@ $root.VnameCert = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        LocalizedName.decode = function decode(reader, length, error) {
+        LocalizedName.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.VnameCert.LocalizedName();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.lg = reader.string();

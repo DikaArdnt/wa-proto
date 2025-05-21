@@ -151,14 +151,12 @@ $root.Reporting = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Field.decode = function decode(reader, length, error) {
+        Field.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Reporting.Field(), key, value;
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.minVersion = reader.uint32();
@@ -463,14 +461,12 @@ $root.Reporting = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Config.decode = function decode(reader, length, error) {
+        Config.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Reporting.Config(), key, value;
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         if (message.field === $util.emptyObject)
@@ -756,14 +752,12 @@ $root.Reporting = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Reportable.decode = function decode(reader, length, error) {
+        Reportable.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Reporting.Reportable();
             while (reader.pos < end) {
                 var tag = reader.uint32();
-                if (tag === error)
-                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.minVersion = reader.uint32();
