@@ -11817,6 +11817,7 @@ $root.E2E = (function() {
          * @property {string|null} [supportPayload] MessageContextInfo supportPayload
          * @property {Protocol.ILimitSharing|null} [limitSharing] MessageContextInfo limitSharing
          * @property {Protocol.ILimitSharing|null} [limitSharingV2] MessageContextInfo limitSharingV2
+         * @property {Array.<E2E.IThreadID>|null} [threadId] MessageContextInfo threadId
          */
 
         /**
@@ -11828,6 +11829,7 @@ $root.E2E = (function() {
          * @param {E2E.IMessageContextInfo=} [properties] Properties to set
          */
         function MessageContextInfo(properties) {
+            this.threadId = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -11947,6 +11949,14 @@ $root.E2E = (function() {
         MessageContextInfo.prototype.limitSharingV2 = null;
 
         /**
+         * MessageContextInfo threadId.
+         * @member {Array.<E2E.IThreadID>} threadId
+         * @memberof E2E.MessageContextInfo
+         * @instance
+         */
+        MessageContextInfo.prototype.threadId = $util.emptyArray;
+
+        /**
          * Creates a new MessageContextInfo instance using the specified properties.
          * @function create
          * @memberof E2E.MessageContextInfo
@@ -11998,6 +12008,9 @@ $root.E2E = (function() {
                 $root.Protocol.LimitSharing.encode(message.limitSharing, writer.uint32(/* id 13, wireType 2 =*/106).fork()).ldelim();
             if (message.limitSharingV2 != null && Object.hasOwnProperty.call(message, "limitSharingV2"))
                 $root.Protocol.LimitSharing.encode(message.limitSharingV2, writer.uint32(/* id 14, wireType 2 =*/114).fork()).ldelim();
+            if (message.threadId != null && message.threadId.length)
+                for (var i = 0; i < message.threadId.length; ++i)
+                    $root.E2E.ThreadID.encode(message.threadId[i], writer.uint32(/* id 15, wireType 2 =*/122).fork()).ldelim();
             return writer;
         };
 
@@ -12088,6 +12101,12 @@ $root.E2E = (function() {
                     }
                 case 14: {
                         message.limitSharingV2 = $root.Protocol.LimitSharing.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 15: {
+                        if (!(message.threadId && message.threadId.length))
+                            message.threadId = [];
+                        message.threadId.push($root.E2E.ThreadID.decode(reader, reader.uint32()));
                         break;
                     }
                 default:
@@ -12182,6 +12201,15 @@ $root.E2E = (function() {
                 if (error)
                     return "limitSharingV2." + error;
             }
+            if (message.threadId != null && message.hasOwnProperty("threadId")) {
+                if (!Array.isArray(message.threadId))
+                    return "threadId: array expected";
+                for (var i = 0; i < message.threadId.length; ++i) {
+                    var error = $root.E2E.ThreadID.verify(message.threadId[i]);
+                    if (error)
+                        return "threadId." + error;
+                }
+            }
             return null;
         };
 
@@ -12263,6 +12291,16 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.MessageContextInfo.limitSharingV2: object expected");
                 message.limitSharingV2 = $root.Protocol.LimitSharing.fromObject(object.limitSharingV2);
             }
+            if (object.threadId) {
+                if (!Array.isArray(object.threadId))
+                    throw TypeError(".E2E.MessageContextInfo.threadId: array expected");
+                message.threadId = [];
+                for (var i = 0; i < object.threadId.length; ++i) {
+                    if (typeof object.threadId[i] !== "object")
+                        throw TypeError(".E2E.MessageContextInfo.threadId: object expected");
+                    message.threadId[i] = $root.E2E.ThreadID.fromObject(object.threadId[i]);
+                }
+            }
             return message;
         };
 
@@ -12279,6 +12317,8 @@ $root.E2E = (function() {
             if (!options)
                 options = {};
             var object = {};
+            if (options.arrays || options.defaults)
+                object.threadId = [];
             if (options.defaults) {
                 object.deviceListMetadata = null;
                 object.deviceListMetadataVersion = 0;
@@ -12341,6 +12381,11 @@ $root.E2E = (function() {
                 object.limitSharing = $root.Protocol.LimitSharing.toObject(message.limitSharing, options);
             if (message.limitSharingV2 != null && message.hasOwnProperty("limitSharingV2"))
                 object.limitSharingV2 = $root.Protocol.LimitSharing.toObject(message.limitSharingV2, options);
+            if (message.threadId && message.threadId.length) {
+                object.threadId = [];
+                for (var j = 0; j < message.threadId.length; ++j)
+                    object.threadId[j] = $root.E2E.ThreadID.toObject(message.threadId[j], options);
+            }
             return object;
         };
 
@@ -12385,6 +12430,273 @@ $root.E2E = (function() {
         })();
 
         return MessageContextInfo;
+    })();
+
+    E2E.ThreadID = (function() {
+
+        /**
+         * Properties of a ThreadID.
+         * @memberof E2E
+         * @interface IThreadID
+         * @property {E2E.ThreadID.ThreadType|null} [threadType] ThreadID threadType
+         * @property {Protocol.IMessageKey|null} [threadKey] ThreadID threadKey
+         */
+
+        /**
+         * Constructs a new ThreadID.
+         * @memberof E2E
+         * @classdesc Represents a ThreadID.
+         * @implements IThreadID
+         * @constructor
+         * @param {E2E.IThreadID=} [properties] Properties to set
+         */
+        function ThreadID(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ThreadID threadType.
+         * @member {E2E.ThreadID.ThreadType} threadType
+         * @memberof E2E.ThreadID
+         * @instance
+         */
+        ThreadID.prototype.threadType = 0;
+
+        /**
+         * ThreadID threadKey.
+         * @member {Protocol.IMessageKey|null|undefined} threadKey
+         * @memberof E2E.ThreadID
+         * @instance
+         */
+        ThreadID.prototype.threadKey = null;
+
+        /**
+         * Creates a new ThreadID instance using the specified properties.
+         * @function create
+         * @memberof E2E.ThreadID
+         * @static
+         * @param {E2E.IThreadID=} [properties] Properties to set
+         * @returns {E2E.ThreadID} ThreadID instance
+         */
+        ThreadID.create = function create(properties) {
+            return new ThreadID(properties);
+        };
+
+        /**
+         * Encodes the specified ThreadID message. Does not implicitly {@link E2E.ThreadID.verify|verify} messages.
+         * @function encode
+         * @memberof E2E.ThreadID
+         * @static
+         * @param {E2E.IThreadID} message ThreadID message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ThreadID.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.threadType != null && Object.hasOwnProperty.call(message, "threadType"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.threadType);
+            if (message.threadKey != null && Object.hasOwnProperty.call(message, "threadKey"))
+                $root.Protocol.MessageKey.encode(message.threadKey, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified ThreadID message, length delimited. Does not implicitly {@link E2E.ThreadID.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof E2E.ThreadID
+         * @static
+         * @param {E2E.IThreadID} message ThreadID message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ThreadID.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a ThreadID message from the specified reader or buffer.
+         * @function decode
+         * @memberof E2E.ThreadID
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {E2E.ThreadID} ThreadID
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ThreadID.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ThreadID();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.threadType = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.threadKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a ThreadID message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof E2E.ThreadID
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {E2E.ThreadID} ThreadID
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ThreadID.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a ThreadID message.
+         * @function verify
+         * @memberof E2E.ThreadID
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        ThreadID.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.threadType != null && message.hasOwnProperty("threadType"))
+                switch (message.threadType) {
+                default:
+                    return "threadType: enum value expected";
+                case 0:
+                case 1:
+                    break;
+                }
+            if (message.threadKey != null && message.hasOwnProperty("threadKey")) {
+                var error = $root.Protocol.MessageKey.verify(message.threadKey);
+                if (error)
+                    return "threadKey." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a ThreadID message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof E2E.ThreadID
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {E2E.ThreadID} ThreadID
+         */
+        ThreadID.fromObject = function fromObject(object) {
+            if (object instanceof $root.E2E.ThreadID)
+                return object;
+            var message = new $root.E2E.ThreadID();
+            switch (object.threadType) {
+            default:
+                if (typeof object.threadType === "number") {
+                    message.threadType = object.threadType;
+                    break;
+                }
+                break;
+            case "UNKNOWN":
+            case 0:
+                message.threadType = 0;
+                break;
+            case "VIEW_REPLIES":
+            case 1:
+                message.threadType = 1;
+                break;
+            }
+            if (object.threadKey != null) {
+                if (typeof object.threadKey !== "object")
+                    throw TypeError(".E2E.ThreadID.threadKey: object expected");
+                message.threadKey = $root.Protocol.MessageKey.fromObject(object.threadKey);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a ThreadID message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof E2E.ThreadID
+         * @static
+         * @param {E2E.ThreadID} message ThreadID
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        ThreadID.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.threadType = options.enums === String ? "UNKNOWN" : 0;
+                object.threadKey = null;
+            }
+            if (message.threadType != null && message.hasOwnProperty("threadType"))
+                object.threadType = options.enums === String ? $root.E2E.ThreadID.ThreadType[message.threadType] === undefined ? message.threadType : $root.E2E.ThreadID.ThreadType[message.threadType] : message.threadType;
+            if (message.threadKey != null && message.hasOwnProperty("threadKey"))
+                object.threadKey = $root.Protocol.MessageKey.toObject(message.threadKey, options);
+            return object;
+        };
+
+        /**
+         * Converts this ThreadID to JSON.
+         * @function toJSON
+         * @memberof E2E.ThreadID
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        ThreadID.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for ThreadID
+         * @function getTypeUrl
+         * @memberof E2E.ThreadID
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        ThreadID.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/E2E.ThreadID";
+        };
+
+        /**
+         * ThreadType enum.
+         * @name E2E.ThreadID.ThreadType
+         * @enum {number}
+         * @property {number} UNKNOWN=0 UNKNOWN value
+         * @property {number} VIEW_REPLIES=1 VIEW_REPLIES value
+         */
+        ThreadID.ThreadType = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "UNKNOWN"] = 0;
+            values[valuesById[1] = "VIEW_REPLIES"] = 1;
+            return values;
+        })();
+
+        return ThreadID;
     })();
 
     E2E.MessageAssociation = (function() {
@@ -38711,6 +39023,7 @@ $root.E2E = (function() {
                     default:
                         return "kindReport: enum value expected";
                     case 0:
+                    case 1:
                         break;
                     }
                 return null;
@@ -38828,9 +39141,13 @@ $root.E2E = (function() {
                         break;
                     }
                     break;
-                case "GENERIC":
+                case "NONE":
                 case 0:
                     message.kindReport = 0;
+                    break;
+                case "GENERIC":
+                case 1:
+                    message.kindReport = 1;
                     break;
                 }
                 return message;
@@ -38863,7 +39180,7 @@ $root.E2E = (function() {
                         object.kindPositive = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                     } else
                         object.kindPositive = options.longs === String ? "0" : 0;
-                    object.kindReport = options.enums === String ? "GENERIC" : 0;
+                    object.kindReport = options.enums === String ? "NONE" : 0;
                 }
                 if (message.messageKey != null && message.hasOwnProperty("messageKey"))
                     object.messageKey = $root.Protocol.MessageKey.toObject(message.messageKey, options);
@@ -38996,11 +39313,13 @@ $root.E2E = (function() {
              * ReportKind enum.
              * @name E2E.Message.BotFeedbackMessage.ReportKind
              * @enum {number}
-             * @property {number} GENERIC=0 GENERIC value
+             * @property {number} NONE=0 NONE value
+             * @property {number} GENERIC=1 GENERIC value
              */
             BotFeedbackMessage.ReportKind = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
-                values[valuesById[0] = "GENERIC"] = 0;
+                values[valuesById[0] = "NONE"] = 0;
+                values[valuesById[1] = "GENERIC"] = 1;
                 return values;
             })();
 

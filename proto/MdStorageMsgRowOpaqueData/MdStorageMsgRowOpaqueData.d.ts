@@ -4512,6 +4512,9 @@ export namespace E2E {
 
         /** MessageContextInfo limitSharingV2 */
         limitSharingV2?: (Protocol.ILimitSharing|null);
+
+        /** MessageContextInfo threadId */
+        threadId?: (E2E.IThreadID[]|null);
     }
 
     /** Represents a MessageContextInfo. */
@@ -4564,6 +4567,9 @@ export namespace E2E {
 
         /** MessageContextInfo limitSharingV2. */
         public limitSharingV2?: (Protocol.ILimitSharing|null);
+
+        /** MessageContextInfo threadId. */
+        public threadId: E2E.IThreadID[];
 
         /**
          * Creates a new MessageContextInfo instance using the specified properties.
@@ -4649,6 +4655,118 @@ export namespace E2E {
         enum MessageAddonExpiryType {
             STATIC = 1,
             DEPENDENT_ON_PARENT = 2
+        }
+    }
+
+    /** Properties of a ThreadID. */
+    interface IThreadID {
+
+        /** ThreadID threadType */
+        threadType?: (E2E.ThreadID.ThreadType|null);
+
+        /** ThreadID threadKey */
+        threadKey?: (Protocol.IMessageKey|null);
+    }
+
+    /** Represents a ThreadID. */
+    class ThreadID implements IThreadID {
+
+        /**
+         * Constructs a new ThreadID.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: E2E.IThreadID);
+
+        /** ThreadID threadType. */
+        public threadType: E2E.ThreadID.ThreadType;
+
+        /** ThreadID threadKey. */
+        public threadKey?: (Protocol.IMessageKey|null);
+
+        /**
+         * Creates a new ThreadID instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ThreadID instance
+         */
+        public static create(properties?: E2E.IThreadID): E2E.ThreadID;
+
+        /**
+         * Encodes the specified ThreadID message. Does not implicitly {@link E2E.ThreadID.verify|verify} messages.
+         * @param message ThreadID message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: E2E.IThreadID, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ThreadID message, length delimited. Does not implicitly {@link E2E.ThreadID.verify|verify} messages.
+         * @param message ThreadID message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: E2E.IThreadID, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ThreadID message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ThreadID
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.ThreadID;
+
+        /**
+         * Decodes a ThreadID message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ThreadID
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.ThreadID;
+
+        /**
+         * Verifies a ThreadID message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ThreadID message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ThreadID
+         */
+        public static fromObject(object: { [k: string]: any }): E2E.ThreadID;
+
+        /**
+         * Creates a plain object from a ThreadID message. Also converts values to other types if specified.
+         * @param message ThreadID
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: E2E.ThreadID, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ThreadID to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ThreadID
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace ThreadID {
+
+        /** ThreadType enum. */
+        enum ThreadType {
+            UNKNOWN = 0,
+            VIEW_REPLIES = 1
         }
     }
 
@@ -14185,7 +14303,8 @@ export namespace E2E {
 
             /** ReportKind enum. */
             enum ReportKind {
-                GENERIC = 0
+                NONE = 0,
+                GENERIC = 1
             }
         }
 
