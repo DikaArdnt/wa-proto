@@ -3,6 +3,7 @@ package E2E;
 
 import "../Protocol/Protocol.proto";
 import "../Adv/Adv.proto";
+import "../StatusAttributions/StatusAttributions.proto";
 import "../CompanionReg/CompanionReg.proto";
 import "../MmsRetry/MmsRetry.proto";
 
@@ -322,6 +323,7 @@ message BotMetadata {
     optional BotModeSelectionMetadata botModeSelectionMetadata = 22;
     optional BotQuotaMetadata botQuotaMetadata = 23;
     optional BotAgeCollectionMetadata botAgeCollectionMetadata = 24;
+    optional string conversationStarterPromptId = 25;
 }
 
 message BotSourcesMetadata {
@@ -814,6 +816,7 @@ message ContextInfo {
     optional MemberLabel memberLabel = 62;
     optional bool isQuestion = 63;
     optional StatusSourceType statusSourceType = 64;
+    repeated StatusAttributions.StatusAttribution statusAttributions = 65;
     message AdReplyInfo {
         optional string advertiserName = 1;
         optional MediaType mediaType = 2;
@@ -1014,6 +1017,8 @@ message Message {
     optional FutureProofMessage botTaskMessage = 100;
     optional FutureProofMessage questionMessage = 101;
     optional MessageHistoryNotice messageHistoryNotice = 102;
+    optional FutureProofMessage groupStatusMessageV2 = 103;
+    optional FutureProofMessage botForwardedMessage = 104;
     message AlbumMessage {
         optional uint32 expectedImageCount = 2;
         optional uint32 expectedVideoCount = 3;
@@ -1766,6 +1771,7 @@ message Message {
     message PaymentLinkMetadata {
         optional PaymentLinkButton button = 1;
         optional PaymentLinkHeader header = 2;
+        optional PaymentLinkProvider provider = 3;
         message PaymentLinkButton {
             optional string displayText = 1;
         }
@@ -1775,6 +1781,9 @@ message Message {
                 LINK_PREVIEW = 0;
                 ORDER = 1;
             }
+        }
+        message PaymentLinkProvider {
+            optional string paramsJson = 1;
         }
     }
     message PeerDataOperationRequestMessage {
@@ -2238,10 +2247,17 @@ message Message {
         optional string accessibilityLabel = 26;
         repeated ProcessedVideo processedVideos = 27;
         optional uint32 externalShareFullVideoDurationInSeconds = 28;
+        optional uint64 motionPhotoPresentationOffsetMs = 29;
+        optional string metadataUrl = 30;
+        optional VideoSourceType videoSourceType = 31;
         enum Attribution {
             NONE = 0;
             GIPHY = 1;
             TENOR = 2;
+        }
+        enum VideoSourceType {
+            USER_VIDEO = 0;
+            AI_GENERATED = 1;
         }
     }
 }
