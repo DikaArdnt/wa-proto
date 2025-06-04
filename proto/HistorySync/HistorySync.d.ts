@@ -14846,6 +14846,9 @@ export namespace E2E {
 
             /** AIRichResponseTableMetadata rows */
             rows?: (E2E.AIRichResponseMessage.AIRichResponseTableMetadata.IAIRichResponseTableRow[]|null);
+
+            /** AIRichResponseTableMetadata title */
+            title?: (string|null);
         }
 
         /** Represents a AIRichResponseTableMetadata. */
@@ -14859,6 +14862,9 @@ export namespace E2E {
 
             /** AIRichResponseTableMetadata rows. */
             public rows: E2E.AIRichResponseMessage.AIRichResponseTableMetadata.IAIRichResponseTableRow[];
+
+            /** AIRichResponseTableMetadata title. */
+            public title: string;
 
             /**
              * Creates a new AIRichResponseTableMetadata instance using the specified properties.

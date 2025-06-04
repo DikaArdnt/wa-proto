@@ -43461,6 +43461,7 @@ $root.E2E = (function() {
              * @memberof E2E.AIRichResponseMessage
              * @interface IAIRichResponseTableMetadata
              * @property {Array.<E2E.AIRichResponseMessage.AIRichResponseTableMetadata.IAIRichResponseTableRow>|null} [rows] AIRichResponseTableMetadata rows
+             * @property {string|null} [title] AIRichResponseTableMetadata title
              */
 
             /**
@@ -43486,6 +43487,14 @@ $root.E2E = (function() {
              * @instance
              */
             AIRichResponseTableMetadata.prototype.rows = $util.emptyArray;
+
+            /**
+             * AIRichResponseTableMetadata title.
+             * @member {string} title
+             * @memberof E2E.AIRichResponseMessage.AIRichResponseTableMetadata
+             * @instance
+             */
+            AIRichResponseTableMetadata.prototype.title = "";
 
             /**
              * Creates a new AIRichResponseTableMetadata instance using the specified properties.
@@ -43514,6 +43523,8 @@ $root.E2E = (function() {
                 if (message.rows != null && message.rows.length)
                     for (var i = 0; i < message.rows.length; ++i)
                         $root.E2E.AIRichResponseMessage.AIRichResponseTableMetadata.AIRichResponseTableRow.encode(message.rows[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.title != null && Object.hasOwnProperty.call(message, "title"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.title);
                 return writer;
             };
 
@@ -43554,6 +43565,10 @@ $root.E2E = (function() {
                             if (!(message.rows && message.rows.length))
                                 message.rows = [];
                             message.rows.push($root.E2E.AIRichResponseMessage.AIRichResponseTableMetadata.AIRichResponseTableRow.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 2: {
+                            message.title = reader.string();
                             break;
                         }
                     default:
@@ -43600,6 +43615,9 @@ $root.E2E = (function() {
                             return "rows." + error;
                     }
                 }
+                if (message.title != null && message.hasOwnProperty("title"))
+                    if (!$util.isString(message.title))
+                        return "title: string expected";
                 return null;
             };
 
@@ -43625,6 +43643,8 @@ $root.E2E = (function() {
                         message.rows[i] = $root.E2E.AIRichResponseMessage.AIRichResponseTableMetadata.AIRichResponseTableRow.fromObject(object.rows[i]);
                     }
                 }
+                if (object.title != null)
+                    message.title = String(object.title);
                 return message;
             };
 
@@ -43643,11 +43663,15 @@ $root.E2E = (function() {
                 var object = {};
                 if (options.arrays || options.defaults)
                     object.rows = [];
+                if (options.defaults)
+                    object.title = "";
                 if (message.rows && message.rows.length) {
                     object.rows = [];
                     for (var j = 0; j < message.rows.length; ++j)
                         object.rows[j] = $root.E2E.AIRichResponseMessage.AIRichResponseTableMetadata.AIRichResponseTableRow.toObject(message.rows[j], options);
                 }
+                if (message.title != null && message.hasOwnProperty("title"))
+                    object.title = message.title;
                 return object;
             };
 
