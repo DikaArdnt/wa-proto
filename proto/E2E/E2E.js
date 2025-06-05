@@ -17878,6 +17878,7 @@ $root.E2E = (function() {
          * @property {E2E.AIRichResponseMessage.AIRichResponseMessageType|null} [messageType] AIRichResponseMessage messageType
          * @property {Array.<E2E.AIRichResponseMessage.IAIRichResponseSubMessage>|null} [submessages] AIRichResponseMessage submessages
          * @property {E2E.AIRichResponseMessage.IAIRichResponseUnifiedResponse|null} [unifiedResponse] AIRichResponseMessage unifiedResponse
+         * @property {E2E.IContextInfo|null} [contextInfo] AIRichResponseMessage contextInfo
          */
 
         /**
@@ -17921,6 +17922,14 @@ $root.E2E = (function() {
         AIRichResponseMessage.prototype.unifiedResponse = null;
 
         /**
+         * AIRichResponseMessage contextInfo.
+         * @member {E2E.IContextInfo|null|undefined} contextInfo
+         * @memberof E2E.AIRichResponseMessage
+         * @instance
+         */
+        AIRichResponseMessage.prototype.contextInfo = null;
+
+        /**
          * Creates a new AIRichResponseMessage instance using the specified properties.
          * @function create
          * @memberof E2E.AIRichResponseMessage
@@ -17951,6 +17960,8 @@ $root.E2E = (function() {
                     $root.E2E.AIRichResponseMessage.AIRichResponseSubMessage.encode(message.submessages[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             if (message.unifiedResponse != null && Object.hasOwnProperty.call(message, "unifiedResponse"))
                 $root.E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse.encode(message.unifiedResponse, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.contextInfo != null && Object.hasOwnProperty.call(message, "contextInfo"))
+                $root.E2E.ContextInfo.encode(message.contextInfo, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             return writer;
         };
 
@@ -17999,6 +18010,10 @@ $root.E2E = (function() {
                     }
                 case 3: {
                         message.unifiedResponse = $root.E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        message.contextInfo = $root.E2E.ContextInfo.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -18058,6 +18073,11 @@ $root.E2E = (function() {
                 if (error)
                     return "unifiedResponse." + error;
             }
+            if (message.contextInfo != null && message.hasOwnProperty("contextInfo")) {
+                var error = $root.E2E.ContextInfo.verify(message.contextInfo);
+                if (error)
+                    return "contextInfo." + error;
+            }
             return null;
         };
 
@@ -18104,6 +18124,11 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.AIRichResponseMessage.unifiedResponse: object expected");
                 message.unifiedResponse = $root.E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse.fromObject(object.unifiedResponse);
             }
+            if (object.contextInfo != null) {
+                if (typeof object.contextInfo !== "object")
+                    throw TypeError(".E2E.AIRichResponseMessage.contextInfo: object expected");
+                message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo);
+            }
             return message;
         };
 
@@ -18125,6 +18150,7 @@ $root.E2E = (function() {
             if (options.defaults) {
                 object.messageType = options.enums === String ? "AI_RICH_RESPONSE_TYPE_UNKNOWN" : 0;
                 object.unifiedResponse = null;
+                object.contextInfo = null;
             }
             if (message.messageType != null && message.hasOwnProperty("messageType"))
                 object.messageType = options.enums === String ? $root.E2E.AIRichResponseMessage.AIRichResponseMessageType[message.messageType] === undefined ? message.messageType : $root.E2E.AIRichResponseMessage.AIRichResponseMessageType[message.messageType] : message.messageType;
@@ -18135,6 +18161,8 @@ $root.E2E = (function() {
             }
             if (message.unifiedResponse != null && message.hasOwnProperty("unifiedResponse"))
                 object.unifiedResponse = $root.E2E.AIRichResponseMessage.AIRichResponseUnifiedResponse.toObject(message.unifiedResponse, options);
+            if (message.contextInfo != null && message.hasOwnProperty("contextInfo"))
+                object.contextInfo = $root.E2E.ContextInfo.toObject(message.contextInfo, options);
             return object;
         };
 
@@ -81185,6 +81213,7 @@ $root.StatusAttributions = (function() {
          * @property {StatusAttributions.StatusAttribution.IStatusReshare|null} [statusReshare] StatusAttribution statusReshare
          * @property {StatusAttributions.StatusAttribution.IExternalShare|null} [externalShare] StatusAttribution externalShare
          * @property {StatusAttributions.StatusAttribution.IMusic|null} [music] StatusAttribution music
+         * @property {StatusAttributions.StatusAttribution.IGroupStatus|null} [groupStatus] StatusAttribution groupStatus
          */
 
         /**
@@ -81242,17 +81271,25 @@ $root.StatusAttributions = (function() {
          */
         StatusAttribution.prototype.music = null;
 
+        /**
+         * StatusAttribution groupStatus.
+         * @member {StatusAttributions.StatusAttribution.IGroupStatus|null|undefined} groupStatus
+         * @memberof StatusAttributions.StatusAttribution
+         * @instance
+         */
+        StatusAttribution.prototype.groupStatus = null;
+
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
         /**
          * StatusAttribution attributionData.
-         * @member {"statusReshare"|"externalShare"|"music"|undefined} attributionData
+         * @member {"statusReshare"|"externalShare"|"music"|"groupStatus"|undefined} attributionData
          * @memberof StatusAttributions.StatusAttribution
          * @instance
          */
         Object.defineProperty(StatusAttribution.prototype, "attributionData", {
-            get: $util.oneOfGetter($oneOfFields = ["statusReshare", "externalShare", "music"]),
+            get: $util.oneOfGetter($oneOfFields = ["statusReshare", "externalShare", "music", "groupStatus"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
@@ -81290,6 +81327,8 @@ $root.StatusAttributions = (function() {
                 $root.StatusAttributions.StatusAttribution.ExternalShare.encode(message.externalShare, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             if (message.music != null && Object.hasOwnProperty.call(message, "music"))
                 $root.StatusAttributions.StatusAttribution.Music.encode(message.music, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+            if (message.groupStatus != null && Object.hasOwnProperty.call(message, "groupStatus"))
+                $root.StatusAttributions.StatusAttribution.GroupStatus.encode(message.groupStatus, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
             return writer;
         };
 
@@ -81346,6 +81385,10 @@ $root.StatusAttributions = (function() {
                         message.music = $root.StatusAttributions.StatusAttribution.Music.decode(reader, reader.uint32());
                         break;
                     }
+                case 6: {
+                        message.groupStatus = $root.StatusAttributions.StatusAttribution.GroupStatus.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -81389,6 +81432,8 @@ $root.StatusAttributions = (function() {
                 case 0:
                 case 1:
                 case 2:
+                case 3:
+                case 4:
                     break;
                 }
             if (message.actionUrl != null && message.hasOwnProperty("actionUrl"))
@@ -81420,6 +81465,16 @@ $root.StatusAttributions = (function() {
                     var error = $root.StatusAttributions.StatusAttribution.Music.verify(message.music);
                     if (error)
                         return "music." + error;
+                }
+            }
+            if (message.groupStatus != null && message.hasOwnProperty("groupStatus")) {
+                if (properties.attributionData === 1)
+                    return "attributionData: multiple values";
+                properties.attributionData = 1;
+                {
+                    var error = $root.StatusAttributions.StatusAttribution.GroupStatus.verify(message.groupStatus);
+                    if (error)
+                        return "groupStatus." + error;
                 }
             }
             return null;
@@ -81456,6 +81511,14 @@ $root.StatusAttributions = (function() {
             case 2:
                 message.type = 2;
                 break;
+            case "STATUS_MENTION":
+            case 3:
+                message.type = 3;
+                break;
+            case "GROUP_STATUS":
+            case 4:
+                message.type = 4;
+                break;
             }
             if (object.actionUrl != null)
                 message.actionUrl = String(object.actionUrl);
@@ -81473,6 +81536,11 @@ $root.StatusAttributions = (function() {
                 if (typeof object.music !== "object")
                     throw TypeError(".StatusAttributions.StatusAttribution.music: object expected");
                 message.music = $root.StatusAttributions.StatusAttribution.Music.fromObject(object.music);
+            }
+            if (object.groupStatus != null) {
+                if (typeof object.groupStatus !== "object")
+                    throw TypeError(".StatusAttributions.StatusAttribution.groupStatus: object expected");
+                message.groupStatus = $root.StatusAttributions.StatusAttribution.GroupStatus.fromObject(object.groupStatus);
             }
             return message;
         };
@@ -81512,6 +81580,11 @@ $root.StatusAttributions = (function() {
                 object.music = $root.StatusAttributions.StatusAttribution.Music.toObject(message.music, options);
                 if (options.oneofs)
                     object.attributionData = "music";
+            }
+            if (message.groupStatus != null && message.hasOwnProperty("groupStatus")) {
+                object.groupStatus = $root.StatusAttributions.StatusAttribution.GroupStatus.toObject(message.groupStatus, options);
+                if (options.oneofs)
+                    object.attributionData = "groupStatus";
             }
             return object;
         };
@@ -81869,6 +81942,211 @@ $root.StatusAttributions = (function() {
             })();
 
             return ExternalShare;
+        })();
+
+        StatusAttribution.GroupStatus = (function() {
+
+            /**
+             * Properties of a GroupStatus.
+             * @memberof StatusAttributions.StatusAttribution
+             * @interface IGroupStatus
+             * @property {string|null} [authorJid] GroupStatus authorJid
+             */
+
+            /**
+             * Constructs a new GroupStatus.
+             * @memberof StatusAttributions.StatusAttribution
+             * @classdesc Represents a GroupStatus.
+             * @implements IGroupStatus
+             * @constructor
+             * @param {StatusAttributions.StatusAttribution.IGroupStatus=} [properties] Properties to set
+             */
+            function GroupStatus(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * GroupStatus authorJid.
+             * @member {string} authorJid
+             * @memberof StatusAttributions.StatusAttribution.GroupStatus
+             * @instance
+             */
+            GroupStatus.prototype.authorJid = "";
+
+            /**
+             * Creates a new GroupStatus instance using the specified properties.
+             * @function create
+             * @memberof StatusAttributions.StatusAttribution.GroupStatus
+             * @static
+             * @param {StatusAttributions.StatusAttribution.IGroupStatus=} [properties] Properties to set
+             * @returns {StatusAttributions.StatusAttribution.GroupStatus} GroupStatus instance
+             */
+            GroupStatus.create = function create(properties) {
+                return new GroupStatus(properties);
+            };
+
+            /**
+             * Encodes the specified GroupStatus message. Does not implicitly {@link StatusAttributions.StatusAttribution.GroupStatus.verify|verify} messages.
+             * @function encode
+             * @memberof StatusAttributions.StatusAttribution.GroupStatus
+             * @static
+             * @param {StatusAttributions.StatusAttribution.IGroupStatus} message GroupStatus message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            GroupStatus.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.authorJid != null && Object.hasOwnProperty.call(message, "authorJid"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.authorJid);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified GroupStatus message, length delimited. Does not implicitly {@link StatusAttributions.StatusAttribution.GroupStatus.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof StatusAttributions.StatusAttribution.GroupStatus
+             * @static
+             * @param {StatusAttributions.StatusAttribution.IGroupStatus} message GroupStatus message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            GroupStatus.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a GroupStatus message from the specified reader or buffer.
+             * @function decode
+             * @memberof StatusAttributions.StatusAttribution.GroupStatus
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {StatusAttributions.StatusAttribution.GroupStatus} GroupStatus
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            GroupStatus.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.StatusAttributions.StatusAttribution.GroupStatus();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.authorJid = reader.string();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a GroupStatus message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof StatusAttributions.StatusAttribution.GroupStatus
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {StatusAttributions.StatusAttribution.GroupStatus} GroupStatus
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            GroupStatus.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a GroupStatus message.
+             * @function verify
+             * @memberof StatusAttributions.StatusAttribution.GroupStatus
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            GroupStatus.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.authorJid != null && message.hasOwnProperty("authorJid"))
+                    if (!$util.isString(message.authorJid))
+                        return "authorJid: string expected";
+                return null;
+            };
+
+            /**
+             * Creates a GroupStatus message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof StatusAttributions.StatusAttribution.GroupStatus
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {StatusAttributions.StatusAttribution.GroupStatus} GroupStatus
+             */
+            GroupStatus.fromObject = function fromObject(object) {
+                if (object instanceof $root.StatusAttributions.StatusAttribution.GroupStatus)
+                    return object;
+                var message = new $root.StatusAttributions.StatusAttribution.GroupStatus();
+                if (object.authorJid != null)
+                    message.authorJid = String(object.authorJid);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a GroupStatus message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof StatusAttributions.StatusAttribution.GroupStatus
+             * @static
+             * @param {StatusAttributions.StatusAttribution.GroupStatus} message GroupStatus
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            GroupStatus.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.authorJid = "";
+                if (message.authorJid != null && message.hasOwnProperty("authorJid"))
+                    object.authorJid = message.authorJid;
+                return object;
+            };
+
+            /**
+             * Converts this GroupStatus to JSON.
+             * @function toJSON
+             * @memberof StatusAttributions.StatusAttribution.GroupStatus
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            GroupStatus.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for GroupStatus
+             * @function getTypeUrl
+             * @memberof StatusAttributions.StatusAttribution.GroupStatus
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            GroupStatus.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/StatusAttributions.StatusAttribution.GroupStatus";
+            };
+
+            return GroupStatus;
         })();
 
         StatusAttribution.Music = (function() {
@@ -82755,12 +83033,16 @@ $root.StatusAttributions = (function() {
          * @property {number} RESHARE=0 RESHARE value
          * @property {number} EXTERNAL_SHARE=1 EXTERNAL_SHARE value
          * @property {number} MUSIC=2 MUSIC value
+         * @property {number} STATUS_MENTION=3 STATUS_MENTION value
+         * @property {number} GROUP_STATUS=4 GROUP_STATUS value
          */
         StatusAttribution.Type = (function() {
             var valuesById = {}, values = Object.create(valuesById);
             values[valuesById[0] = "RESHARE"] = 0;
             values[valuesById[1] = "EXTERNAL_SHARE"] = 1;
             values[valuesById[2] = "MUSIC"] = 2;
+            values[valuesById[3] = "STATUS_MENTION"] = 3;
+            values[valuesById[4] = "GROUP_STATUS"] = 4;
             return values;
         })();
 

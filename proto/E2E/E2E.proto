@@ -558,6 +558,7 @@ message AIRichResponseMessage {
     optional AIRichResponseMessageType messageType = 1;
     repeated AIRichResponseSubMessage submessages = 2;
     optional AIRichResponseUnifiedResponse unifiedResponse = 3;
+    optional ContextInfo contextInfo = 4;
     message AIRichResponseCodeMetadata {
         optional string codeLanguage = 1;
         repeated AIRichResponseCodeBlock codeBlocks = 2;

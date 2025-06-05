@@ -8,6 +8,7 @@ message StatusAttribution {
         StatusAttribution.StatusReshare statusReshare = 3;
         StatusAttribution.ExternalShare externalShare = 4;
         StatusAttribution.Music music = 5;
+        StatusAttribution.GroupStatus groupStatus = 6;
     }
     message ExternalShare {
         optional string actionUrl = 1;
@@ -21,6 +22,9 @@ message StatusAttribution {
             MESSENGER = 3;
             SPOTIFY = 4;
         }
+    }
+    message GroupStatus {
+        optional string authorJid = 1;
     }
     message Music {
         optional string authorName = 1;
@@ -50,5 +54,7 @@ message StatusAttribution {
         RESHARE = 0;
         EXTERNAL_SHARE = 1;
         MUSIC = 2;
+        STATUS_MENTION = 3;
+        GROUP_STATUS = 4;
     }
 }
