@@ -23215,6 +23215,7 @@ $root.E2E = (function() {
                 case 12:
                 case 13:
                 case 14:
+                case 15:
                     break;
                 }
             if (message.parentMessageKey != null && message.hasOwnProperty("parentMessageKey")) {
@@ -23307,6 +23308,10 @@ $root.E2E = (function() {
             case 14:
                 message.associationType = 14;
                 break;
+            case "STATUS_ADD_YOURS_AI_IMAGINE":
+            case 15:
+                message.associationType = 15;
+                break;
             }
             if (object.parentMessageKey != null) {
                 if (typeof object.parentMessageKey !== "object")
@@ -23390,6 +23395,7 @@ $root.E2E = (function() {
          * @property {number} MOTION_PHOTO=12 MOTION_PHOTO value
          * @property {number} STATUS_LINK_ACTION=13 STATUS_LINK_ACTION value
          * @property {number} VIEW_ALL_REPLIES=14 VIEW_ALL_REPLIES value
+         * @property {number} STATUS_ADD_YOURS_AI_IMAGINE=15 STATUS_ADD_YOURS_AI_IMAGINE value
          */
         MessageAssociation.AssociationType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -23408,6 +23414,7 @@ $root.E2E = (function() {
             values[valuesById[12] = "MOTION_PHOTO"] = 12;
             values[valuesById[13] = "STATUS_LINK_ACTION"] = 13;
             values[valuesById[14] = "VIEW_ALL_REPLIES"] = 14;
+            values[valuesById[15] = "STATUS_ADD_YOURS_AI_IMAGINE"] = 15;
             return values;
         })();
 
@@ -67269,6 +67276,8 @@ $root.E2E = (function() {
              * @property {E2E.Message.IPaymentLinkMetadata|null} [paymentLinkMetadata] LinkPreviewMetadata paymentLinkMetadata
              * @property {E2E.Message.IURLMetadata|null} [urlMetadata] LinkPreviewMetadata urlMetadata
              * @property {number|null} [fbExperimentId] LinkPreviewMetadata fbExperimentId
+             * @property {number|null} [linkMediaDuration] LinkPreviewMetadata linkMediaDuration
+             * @property {E2E.Message.LinkPreviewMetadata.SocialMediaPostType|null} [socialMediaPostType] LinkPreviewMetadata socialMediaPostType
              */
 
             /**
@@ -67311,6 +67320,22 @@ $root.E2E = (function() {
             LinkPreviewMetadata.prototype.fbExperimentId = 0;
 
             /**
+             * LinkPreviewMetadata linkMediaDuration.
+             * @member {number} linkMediaDuration
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @instance
+             */
+            LinkPreviewMetadata.prototype.linkMediaDuration = 0;
+
+            /**
+             * LinkPreviewMetadata socialMediaPostType.
+             * @member {E2E.Message.LinkPreviewMetadata.SocialMediaPostType} socialMediaPostType
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @instance
+             */
+            LinkPreviewMetadata.prototype.socialMediaPostType = 0;
+
+            /**
              * Creates a new LinkPreviewMetadata instance using the specified properties.
              * @function create
              * @memberof E2E.Message.LinkPreviewMetadata
@@ -67340,6 +67365,10 @@ $root.E2E = (function() {
                     $root.E2E.Message.URLMetadata.encode(message.urlMetadata, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 if (message.fbExperimentId != null && Object.hasOwnProperty.call(message, "fbExperimentId"))
                     writer.uint32(/* id 3, wireType 0 =*/24).uint32(message.fbExperimentId);
+                if (message.linkMediaDuration != null && Object.hasOwnProperty.call(message, "linkMediaDuration"))
+                    writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.linkMediaDuration);
+                if (message.socialMediaPostType != null && Object.hasOwnProperty.call(message, "socialMediaPostType"))
+                    writer.uint32(/* id 5, wireType 0 =*/40).int32(message.socialMediaPostType);
                 return writer;
             };
 
@@ -67386,6 +67415,14 @@ $root.E2E = (function() {
                         }
                     case 3: {
                             message.fbExperimentId = reader.uint32();
+                            break;
+                        }
+                    case 4: {
+                            message.linkMediaDuration = reader.uint32();
+                            break;
+                        }
+                    case 5: {
+                            message.socialMediaPostType = reader.int32();
                             break;
                         }
                     default:
@@ -67436,6 +67473,21 @@ $root.E2E = (function() {
                 if (message.fbExperimentId != null && message.hasOwnProperty("fbExperimentId"))
                     if (!$util.isInteger(message.fbExperimentId))
                         return "fbExperimentId: integer expected";
+                if (message.linkMediaDuration != null && message.hasOwnProperty("linkMediaDuration"))
+                    if (!$util.isInteger(message.linkMediaDuration))
+                        return "linkMediaDuration: integer expected";
+                if (message.socialMediaPostType != null && message.hasOwnProperty("socialMediaPostType"))
+                    switch (message.socialMediaPostType) {
+                    default:
+                        return "socialMediaPostType: enum value expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                        break;
+                    }
                 return null;
             };
 
@@ -67463,6 +67515,40 @@ $root.E2E = (function() {
                 }
                 if (object.fbExperimentId != null)
                     message.fbExperimentId = object.fbExperimentId >>> 0;
+                if (object.linkMediaDuration != null)
+                    message.linkMediaDuration = object.linkMediaDuration >>> 0;
+                switch (object.socialMediaPostType) {
+                default:
+                    if (typeof object.socialMediaPostType === "number") {
+                        message.socialMediaPostType = object.socialMediaPostType;
+                        break;
+                    }
+                    break;
+                case "NONE":
+                case 0:
+                    message.socialMediaPostType = 0;
+                    break;
+                case "REEL":
+                case 1:
+                    message.socialMediaPostType = 1;
+                    break;
+                case "LIVE_VIDEO":
+                case 2:
+                    message.socialMediaPostType = 2;
+                    break;
+                case "LONG_VIDEO":
+                case 3:
+                    message.socialMediaPostType = 3;
+                    break;
+                case "SINGLE_IMAGE":
+                case 4:
+                    message.socialMediaPostType = 4;
+                    break;
+                case "CAROUSEL":
+                case 5:
+                    message.socialMediaPostType = 5;
+                    break;
+                }
                 return message;
             };
 
@@ -67483,6 +67569,8 @@ $root.E2E = (function() {
                     object.paymentLinkMetadata = null;
                     object.urlMetadata = null;
                     object.fbExperimentId = 0;
+                    object.linkMediaDuration = 0;
+                    object.socialMediaPostType = options.enums === String ? "NONE" : 0;
                 }
                 if (message.paymentLinkMetadata != null && message.hasOwnProperty("paymentLinkMetadata"))
                     object.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.toObject(message.paymentLinkMetadata, options);
@@ -67490,6 +67578,10 @@ $root.E2E = (function() {
                     object.urlMetadata = $root.E2E.Message.URLMetadata.toObject(message.urlMetadata, options);
                 if (message.fbExperimentId != null && message.hasOwnProperty("fbExperimentId"))
                     object.fbExperimentId = message.fbExperimentId;
+                if (message.linkMediaDuration != null && message.hasOwnProperty("linkMediaDuration"))
+                    object.linkMediaDuration = message.linkMediaDuration;
+                if (message.socialMediaPostType != null && message.hasOwnProperty("socialMediaPostType"))
+                    object.socialMediaPostType = options.enums === String ? $root.E2E.Message.LinkPreviewMetadata.SocialMediaPostType[message.socialMediaPostType] === undefined ? message.socialMediaPostType : $root.E2E.Message.LinkPreviewMetadata.SocialMediaPostType[message.socialMediaPostType] : message.socialMediaPostType;
                 return object;
             };
 
@@ -67518,6 +67610,28 @@ $root.E2E = (function() {
                 }
                 return typeUrlPrefix + "/E2E.Message.LinkPreviewMetadata";
             };
+
+            /**
+             * SocialMediaPostType enum.
+             * @name E2E.Message.LinkPreviewMetadata.SocialMediaPostType
+             * @enum {number}
+             * @property {number} NONE=0 NONE value
+             * @property {number} REEL=1 REEL value
+             * @property {number} LIVE_VIDEO=2 LIVE_VIDEO value
+             * @property {number} LONG_VIDEO=3 LONG_VIDEO value
+             * @property {number} SINGLE_IMAGE=4 SINGLE_IMAGE value
+             * @property {number} CAROUSEL=5 CAROUSEL value
+             */
+            LinkPreviewMetadata.SocialMediaPostType = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "NONE"] = 0;
+                values[valuesById[1] = "REEL"] = 1;
+                values[valuesById[2] = "LIVE_VIDEO"] = 2;
+                values[valuesById[3] = "LONG_VIDEO"] = 3;
+                values[valuesById[4] = "SINGLE_IMAGE"] = 4;
+                values[valuesById[5] = "CAROUSEL"] = 5;
+                return values;
+            })();
 
             return LinkPreviewMetadata;
         })();

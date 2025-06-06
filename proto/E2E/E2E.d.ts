@@ -3922,7 +3922,8 @@ export namespace E2E {
             STICKER_ANNOTATION = 11,
             MOTION_PHOTO = 12,
             STATUS_LINK_ACTION = 13,
-            VIEW_ALL_REPLIES = 14
+            VIEW_ALL_REPLIES = 14,
+            STATUS_ADD_YOURS_AI_IMAGINE = 15
         }
     }
 
@@ -19722,6 +19723,12 @@ export namespace E2E {
 
             /** LinkPreviewMetadata fbExperimentId */
             fbExperimentId?: (number|null);
+
+            /** LinkPreviewMetadata linkMediaDuration */
+            linkMediaDuration?: (number|null);
+
+            /** LinkPreviewMetadata socialMediaPostType */
+            socialMediaPostType?: (E2E.Message.LinkPreviewMetadata.SocialMediaPostType|null);
         }
 
         /** Represents a LinkPreviewMetadata. */
@@ -19741,6 +19748,12 @@ export namespace E2E {
 
             /** LinkPreviewMetadata fbExperimentId. */
             public fbExperimentId: number;
+
+            /** LinkPreviewMetadata linkMediaDuration. */
+            public linkMediaDuration: number;
+
+            /** LinkPreviewMetadata socialMediaPostType. */
+            public socialMediaPostType: E2E.Message.LinkPreviewMetadata.SocialMediaPostType;
 
             /**
              * Creates a new LinkPreviewMetadata instance using the specified properties.
@@ -19818,6 +19831,19 @@ export namespace E2E {
              * @returns The default type url
              */
             public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace LinkPreviewMetadata {
+
+            /** SocialMediaPostType enum. */
+            enum SocialMediaPostType {
+                NONE = 0,
+                REEL = 1,
+                LIVE_VIDEO = 2,
+                LONG_VIDEO = 3,
+                SINGLE_IMAGE = 4,
+                CAROUSEL = 5
+            }
         }
 
         /** Properties of a ListMessage. */
