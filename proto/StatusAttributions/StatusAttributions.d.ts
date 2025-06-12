@@ -258,7 +258,9 @@ export namespace StatusAttributions {
                 INSTAGRAM = 1,
                 FACEBOOK = 2,
                 MESSENGER = 3,
-                SPOTIFY = 4
+                SPOTIFY = 4,
+                YOUTUBE = 5,
+                PINTEREST = 6
             }
         }
 

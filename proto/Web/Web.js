@@ -23452,6 +23452,8 @@ $root.E2E = (function() {
          * @property {E2E.IBotQuotaMetadata|null} [botQuotaMetadata] BotMetadata botQuotaMetadata
          * @property {E2E.IBotAgeCollectionMetadata|null} [botAgeCollectionMetadata] BotMetadata botAgeCollectionMetadata
          * @property {string|null} [conversationStarterPromptId] BotMetadata conversationStarterPromptId
+         * @property {string|null} [botResponseId] BotMetadata botResponseId
+         * @property {E2E.IBotSignatureVerificationMetadata|null} [verificationMetadata] BotMetadata verificationMetadata
          */
 
         /**
@@ -23670,6 +23672,22 @@ $root.E2E = (function() {
         BotMetadata.prototype.conversationStarterPromptId = "";
 
         /**
+         * BotMetadata botResponseId.
+         * @member {string} botResponseId
+         * @memberof E2E.BotMetadata
+         * @instance
+         */
+        BotMetadata.prototype.botResponseId = "";
+
+        /**
+         * BotMetadata verificationMetadata.
+         * @member {E2E.IBotSignatureVerificationMetadata|null|undefined} verificationMetadata
+         * @memberof E2E.BotMetadata
+         * @instance
+         */
+        BotMetadata.prototype.verificationMetadata = null;
+
+        /**
          * Creates a new BotMetadata instance using the specified properties.
          * @function create
          * @memberof E2E.BotMetadata
@@ -23743,6 +23761,10 @@ $root.E2E = (function() {
                 $root.E2E.BotAgeCollectionMetadata.encode(message.botAgeCollectionMetadata, writer.uint32(/* id 24, wireType 2 =*/194).fork()).ldelim();
             if (message.conversationStarterPromptId != null && Object.hasOwnProperty.call(message, "conversationStarterPromptId"))
                 writer.uint32(/* id 25, wireType 2 =*/202).string(message.conversationStarterPromptId);
+            if (message.botResponseId != null && Object.hasOwnProperty.call(message, "botResponseId"))
+                writer.uint32(/* id 26, wireType 2 =*/210).string(message.botResponseId);
+            if (message.verificationMetadata != null && Object.hasOwnProperty.call(message, "verificationMetadata"))
+                $root.E2E.BotSignatureVerificationMetadata.encode(message.verificationMetadata, writer.uint32(/* id 27, wireType 2 =*/218).fork()).ldelim();
             return writer;
         };
 
@@ -23877,6 +23899,14 @@ $root.E2E = (function() {
                     }
                 case 25: {
                         message.conversationStarterPromptId = reader.string();
+                        break;
+                    }
+                case 26: {
+                        message.botResponseId = reader.string();
+                        break;
+                    }
+                case 27: {
+                        message.verificationMetadata = $root.E2E.BotSignatureVerificationMetadata.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -24027,6 +24057,14 @@ $root.E2E = (function() {
             if (message.conversationStarterPromptId != null && message.hasOwnProperty("conversationStarterPromptId"))
                 if (!$util.isString(message.conversationStarterPromptId))
                     return "conversationStarterPromptId: string expected";
+            if (message.botResponseId != null && message.hasOwnProperty("botResponseId"))
+                if (!$util.isString(message.botResponseId))
+                    return "botResponseId: string expected";
+            if (message.verificationMetadata != null && message.hasOwnProperty("verificationMetadata")) {
+                var error = $root.E2E.BotSignatureVerificationMetadata.verify(message.verificationMetadata);
+                if (error)
+                    return "verificationMetadata." + error;
+            }
             return null;
         };
 
@@ -24152,6 +24190,13 @@ $root.E2E = (function() {
             }
             if (object.conversationStarterPromptId != null)
                 message.conversationStarterPromptId = String(object.conversationStarterPromptId);
+            if (object.botResponseId != null)
+                message.botResponseId = String(object.botResponseId);
+            if (object.verificationMetadata != null) {
+                if (typeof object.verificationMetadata !== "object")
+                    throw TypeError(".E2E.BotMetadata.verificationMetadata: object expected");
+                message.verificationMetadata = $root.E2E.BotSignatureVerificationMetadata.fromObject(object.verificationMetadata);
+            }
             return message;
         };
 
@@ -24200,6 +24245,8 @@ $root.E2E = (function() {
                 object.botQuotaMetadata = null;
                 object.botAgeCollectionMetadata = null;
                 object.conversationStarterPromptId = "";
+                object.botResponseId = "";
+                object.verificationMetadata = null;
             }
             if (message.avatarMetadata != null && message.hasOwnProperty("avatarMetadata"))
                 object.avatarMetadata = $root.E2E.BotAvatarMetadata.toObject(message.avatarMetadata, options);
@@ -24251,6 +24298,10 @@ $root.E2E = (function() {
                 object.botAgeCollectionMetadata = $root.E2E.BotAgeCollectionMetadata.toObject(message.botAgeCollectionMetadata, options);
             if (message.conversationStarterPromptId != null && message.hasOwnProperty("conversationStarterPromptId"))
                 object.conversationStarterPromptId = message.conversationStarterPromptId;
+            if (message.botResponseId != null && message.hasOwnProperty("botResponseId"))
+                object.botResponseId = message.botResponseId;
+            if (message.verificationMetadata != null && message.hasOwnProperty("verificationMetadata"))
+                object.verificationMetadata = $root.E2E.BotSignatureVerificationMetadata.toObject(message.verificationMetadata, options);
             return object;
         };
 
@@ -26334,6 +26385,7 @@ $root.E2E = (function() {
                     case 33:
                     case 34:
                     case 35:
+                    case 36:
                         break;
                     }
             }
@@ -26507,6 +26559,10 @@ $root.E2E = (function() {
                     case 35:
                         message.capabilities[i] = 35;
                         break;
+                    case "SIMPLIFIED_PROFILE_PAGE":
+                    case 36:
+                        message.capabilities[i] = 36;
+                        break;
                     }
             }
             return message;
@@ -26601,6 +26657,7 @@ $root.E2E = (function() {
          * @property {number} PROACTIVE_MESSAGE=33 PROACTIVE_MESSAGE value
          * @property {number} RICH_RESPONSE_UNIFIED_RESPONSE=34 RICH_RESPONSE_UNIFIED_RESPONSE value
          * @property {number} PROMOTION_MESSAGE=35 PROMOTION_MESSAGE value
+         * @property {number} SIMPLIFIED_PROFILE_PAGE=36 SIMPLIFIED_PROFILE_PAGE value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -26640,6 +26697,7 @@ $root.E2E = (function() {
             values[valuesById[33] = "PROACTIVE_MESSAGE"] = 33;
             values[valuesById[34] = "RICH_RESPONSE_UNIFIED_RESPONSE"] = 34;
             values[valuesById[35] = "PROMOTION_MESSAGE"] = 35;
+            values[valuesById[36] = "SIMPLIFIED_PROFILE_PAGE"] = 36;
             return values;
         })();
 
@@ -36351,6 +36409,551 @@ $root.E2E = (function() {
         })();
 
         return AIRichResponseMessage;
+    })();
+
+    E2E.BotSignatureVerificationUseCaseProof = (function() {
+
+        /**
+         * Properties of a BotSignatureVerificationUseCaseProof.
+         * @memberof E2E
+         * @interface IBotSignatureVerificationUseCaseProof
+         * @property {number|null} [version] BotSignatureVerificationUseCaseProof version
+         * @property {E2E.BotSignatureVerificationUseCaseProof.BotSignatureUseCase|null} [useCase] BotSignatureVerificationUseCaseProof useCase
+         * @property {Uint8Array|null} [signature] BotSignatureVerificationUseCaseProof signature
+         * @property {Uint8Array|null} [certificateChain] BotSignatureVerificationUseCaseProof certificateChain
+         */
+
+        /**
+         * Constructs a new BotSignatureVerificationUseCaseProof.
+         * @memberof E2E
+         * @classdesc Represents a BotSignatureVerificationUseCaseProof.
+         * @implements IBotSignatureVerificationUseCaseProof
+         * @constructor
+         * @param {E2E.IBotSignatureVerificationUseCaseProof=} [properties] Properties to set
+         */
+        function BotSignatureVerificationUseCaseProof(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BotSignatureVerificationUseCaseProof version.
+         * @member {number} version
+         * @memberof E2E.BotSignatureVerificationUseCaseProof
+         * @instance
+         */
+        BotSignatureVerificationUseCaseProof.prototype.version = 0;
+
+        /**
+         * BotSignatureVerificationUseCaseProof useCase.
+         * @member {E2E.BotSignatureVerificationUseCaseProof.BotSignatureUseCase} useCase
+         * @memberof E2E.BotSignatureVerificationUseCaseProof
+         * @instance
+         */
+        BotSignatureVerificationUseCaseProof.prototype.useCase = 0;
+
+        /**
+         * BotSignatureVerificationUseCaseProof signature.
+         * @member {Uint8Array} signature
+         * @memberof E2E.BotSignatureVerificationUseCaseProof
+         * @instance
+         */
+        BotSignatureVerificationUseCaseProof.prototype.signature = $util.newBuffer([]);
+
+        /**
+         * BotSignatureVerificationUseCaseProof certificateChain.
+         * @member {Uint8Array} certificateChain
+         * @memberof E2E.BotSignatureVerificationUseCaseProof
+         * @instance
+         */
+        BotSignatureVerificationUseCaseProof.prototype.certificateChain = $util.newBuffer([]);
+
+        /**
+         * Creates a new BotSignatureVerificationUseCaseProof instance using the specified properties.
+         * @function create
+         * @memberof E2E.BotSignatureVerificationUseCaseProof
+         * @static
+         * @param {E2E.IBotSignatureVerificationUseCaseProof=} [properties] Properties to set
+         * @returns {E2E.BotSignatureVerificationUseCaseProof} BotSignatureVerificationUseCaseProof instance
+         */
+        BotSignatureVerificationUseCaseProof.create = function create(properties) {
+            return new BotSignatureVerificationUseCaseProof(properties);
+        };
+
+        /**
+         * Encodes the specified BotSignatureVerificationUseCaseProof message. Does not implicitly {@link E2E.BotSignatureVerificationUseCaseProof.verify|verify} messages.
+         * @function encode
+         * @memberof E2E.BotSignatureVerificationUseCaseProof
+         * @static
+         * @param {E2E.IBotSignatureVerificationUseCaseProof} message BotSignatureVerificationUseCaseProof message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotSignatureVerificationUseCaseProof.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.version != null && Object.hasOwnProperty.call(message, "version"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.version);
+            if (message.useCase != null && Object.hasOwnProperty.call(message, "useCase"))
+                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.useCase);
+            if (message.signature != null && Object.hasOwnProperty.call(message, "signature"))
+                writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.signature);
+            if (message.certificateChain != null && Object.hasOwnProperty.call(message, "certificateChain"))
+                writer.uint32(/* id 4, wireType 2 =*/34).bytes(message.certificateChain);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BotSignatureVerificationUseCaseProof message, length delimited. Does not implicitly {@link E2E.BotSignatureVerificationUseCaseProof.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof E2E.BotSignatureVerificationUseCaseProof
+         * @static
+         * @param {E2E.IBotSignatureVerificationUseCaseProof} message BotSignatureVerificationUseCaseProof message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotSignatureVerificationUseCaseProof.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BotSignatureVerificationUseCaseProof message from the specified reader or buffer.
+         * @function decode
+         * @memberof E2E.BotSignatureVerificationUseCaseProof
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {E2E.BotSignatureVerificationUseCaseProof} BotSignatureVerificationUseCaseProof
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotSignatureVerificationUseCaseProof.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotSignatureVerificationUseCaseProof();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.version = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.useCase = reader.int32();
+                        break;
+                    }
+                case 3: {
+                        message.signature = reader.bytes();
+                        break;
+                    }
+                case 4: {
+                        message.certificateChain = reader.bytes();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BotSignatureVerificationUseCaseProof message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof E2E.BotSignatureVerificationUseCaseProof
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {E2E.BotSignatureVerificationUseCaseProof} BotSignatureVerificationUseCaseProof
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotSignatureVerificationUseCaseProof.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BotSignatureVerificationUseCaseProof message.
+         * @function verify
+         * @memberof E2E.BotSignatureVerificationUseCaseProof
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BotSignatureVerificationUseCaseProof.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.version != null && message.hasOwnProperty("version"))
+                if (!$util.isInteger(message.version))
+                    return "version: integer expected";
+            if (message.useCase != null && message.hasOwnProperty("useCase"))
+                switch (message.useCase) {
+                default:
+                    return "useCase: enum value expected";
+                case 0:
+                    break;
+                }
+            if (message.signature != null && message.hasOwnProperty("signature"))
+                if (!(message.signature && typeof message.signature.length === "number" || $util.isString(message.signature)))
+                    return "signature: buffer expected";
+            if (message.certificateChain != null && message.hasOwnProperty("certificateChain"))
+                if (!(message.certificateChain && typeof message.certificateChain.length === "number" || $util.isString(message.certificateChain)))
+                    return "certificateChain: buffer expected";
+            return null;
+        };
+
+        /**
+         * Creates a BotSignatureVerificationUseCaseProof message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof E2E.BotSignatureVerificationUseCaseProof
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {E2E.BotSignatureVerificationUseCaseProof} BotSignatureVerificationUseCaseProof
+         */
+        BotSignatureVerificationUseCaseProof.fromObject = function fromObject(object) {
+            if (object instanceof $root.E2E.BotSignatureVerificationUseCaseProof)
+                return object;
+            var message = new $root.E2E.BotSignatureVerificationUseCaseProof();
+            if (object.version != null)
+                message.version = object.version | 0;
+            switch (object.useCase) {
+            default:
+                if (typeof object.useCase === "number") {
+                    message.useCase = object.useCase;
+                    break;
+                }
+                break;
+            case "WA_BOT_MSG":
+            case 0:
+                message.useCase = 0;
+                break;
+            }
+            if (object.signature != null)
+                if (typeof object.signature === "string")
+                    $util.base64.decode(object.signature, message.signature = $util.newBuffer($util.base64.length(object.signature)), 0);
+                else if (object.signature.length >= 0)
+                    message.signature = object.signature;
+            if (object.certificateChain != null)
+                if (typeof object.certificateChain === "string")
+                    $util.base64.decode(object.certificateChain, message.certificateChain = $util.newBuffer($util.base64.length(object.certificateChain)), 0);
+                else if (object.certificateChain.length >= 0)
+                    message.certificateChain = object.certificateChain;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BotSignatureVerificationUseCaseProof message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof E2E.BotSignatureVerificationUseCaseProof
+         * @static
+         * @param {E2E.BotSignatureVerificationUseCaseProof} message BotSignatureVerificationUseCaseProof
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BotSignatureVerificationUseCaseProof.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.version = 0;
+                object.useCase = options.enums === String ? "WA_BOT_MSG" : 0;
+                if (options.bytes === String)
+                    object.signature = "";
+                else {
+                    object.signature = [];
+                    if (options.bytes !== Array)
+                        object.signature = $util.newBuffer(object.signature);
+                }
+                if (options.bytes === String)
+                    object.certificateChain = "";
+                else {
+                    object.certificateChain = [];
+                    if (options.bytes !== Array)
+                        object.certificateChain = $util.newBuffer(object.certificateChain);
+                }
+            }
+            if (message.version != null && message.hasOwnProperty("version"))
+                object.version = message.version;
+            if (message.useCase != null && message.hasOwnProperty("useCase"))
+                object.useCase = options.enums === String ? $root.E2E.BotSignatureVerificationUseCaseProof.BotSignatureUseCase[message.useCase] === undefined ? message.useCase : $root.E2E.BotSignatureVerificationUseCaseProof.BotSignatureUseCase[message.useCase] : message.useCase;
+            if (message.signature != null && message.hasOwnProperty("signature"))
+                object.signature = options.bytes === String ? $util.base64.encode(message.signature, 0, message.signature.length) : options.bytes === Array ? Array.prototype.slice.call(message.signature) : message.signature;
+            if (message.certificateChain != null && message.hasOwnProperty("certificateChain"))
+                object.certificateChain = options.bytes === String ? $util.base64.encode(message.certificateChain, 0, message.certificateChain.length) : options.bytes === Array ? Array.prototype.slice.call(message.certificateChain) : message.certificateChain;
+            return object;
+        };
+
+        /**
+         * Converts this BotSignatureVerificationUseCaseProof to JSON.
+         * @function toJSON
+         * @memberof E2E.BotSignatureVerificationUseCaseProof
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BotSignatureVerificationUseCaseProof.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotSignatureVerificationUseCaseProof
+         * @function getTypeUrl
+         * @memberof E2E.BotSignatureVerificationUseCaseProof
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotSignatureVerificationUseCaseProof.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/E2E.BotSignatureVerificationUseCaseProof";
+        };
+
+        /**
+         * BotSignatureUseCase enum.
+         * @name E2E.BotSignatureVerificationUseCaseProof.BotSignatureUseCase
+         * @enum {number}
+         * @property {number} WA_BOT_MSG=0 WA_BOT_MSG value
+         */
+        BotSignatureVerificationUseCaseProof.BotSignatureUseCase = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "WA_BOT_MSG"] = 0;
+            return values;
+        })();
+
+        return BotSignatureVerificationUseCaseProof;
+    })();
+
+    E2E.BotSignatureVerificationMetadata = (function() {
+
+        /**
+         * Properties of a BotSignatureVerificationMetadata.
+         * @memberof E2E
+         * @interface IBotSignatureVerificationMetadata
+         * @property {Array.<E2E.IBotSignatureVerificationUseCaseProof>|null} [proofs] BotSignatureVerificationMetadata proofs
+         */
+
+        /**
+         * Constructs a new BotSignatureVerificationMetadata.
+         * @memberof E2E
+         * @classdesc Represents a BotSignatureVerificationMetadata.
+         * @implements IBotSignatureVerificationMetadata
+         * @constructor
+         * @param {E2E.IBotSignatureVerificationMetadata=} [properties] Properties to set
+         */
+        function BotSignatureVerificationMetadata(properties) {
+            this.proofs = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BotSignatureVerificationMetadata proofs.
+         * @member {Array.<E2E.IBotSignatureVerificationUseCaseProof>} proofs
+         * @memberof E2E.BotSignatureVerificationMetadata
+         * @instance
+         */
+        BotSignatureVerificationMetadata.prototype.proofs = $util.emptyArray;
+
+        /**
+         * Creates a new BotSignatureVerificationMetadata instance using the specified properties.
+         * @function create
+         * @memberof E2E.BotSignatureVerificationMetadata
+         * @static
+         * @param {E2E.IBotSignatureVerificationMetadata=} [properties] Properties to set
+         * @returns {E2E.BotSignatureVerificationMetadata} BotSignatureVerificationMetadata instance
+         */
+        BotSignatureVerificationMetadata.create = function create(properties) {
+            return new BotSignatureVerificationMetadata(properties);
+        };
+
+        /**
+         * Encodes the specified BotSignatureVerificationMetadata message. Does not implicitly {@link E2E.BotSignatureVerificationMetadata.verify|verify} messages.
+         * @function encode
+         * @memberof E2E.BotSignatureVerificationMetadata
+         * @static
+         * @param {E2E.IBotSignatureVerificationMetadata} message BotSignatureVerificationMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotSignatureVerificationMetadata.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.proofs != null && message.proofs.length)
+                for (var i = 0; i < message.proofs.length; ++i)
+                    $root.E2E.BotSignatureVerificationUseCaseProof.encode(message.proofs[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BotSignatureVerificationMetadata message, length delimited. Does not implicitly {@link E2E.BotSignatureVerificationMetadata.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof E2E.BotSignatureVerificationMetadata
+         * @static
+         * @param {E2E.IBotSignatureVerificationMetadata} message BotSignatureVerificationMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotSignatureVerificationMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BotSignatureVerificationMetadata message from the specified reader or buffer.
+         * @function decode
+         * @memberof E2E.BotSignatureVerificationMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {E2E.BotSignatureVerificationMetadata} BotSignatureVerificationMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotSignatureVerificationMetadata.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.BotSignatureVerificationMetadata();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        if (!(message.proofs && message.proofs.length))
+                            message.proofs = [];
+                        message.proofs.push($root.E2E.BotSignatureVerificationUseCaseProof.decode(reader, reader.uint32()));
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BotSignatureVerificationMetadata message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof E2E.BotSignatureVerificationMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {E2E.BotSignatureVerificationMetadata} BotSignatureVerificationMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotSignatureVerificationMetadata.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BotSignatureVerificationMetadata message.
+         * @function verify
+         * @memberof E2E.BotSignatureVerificationMetadata
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BotSignatureVerificationMetadata.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.proofs != null && message.hasOwnProperty("proofs")) {
+                if (!Array.isArray(message.proofs))
+                    return "proofs: array expected";
+                for (var i = 0; i < message.proofs.length; ++i) {
+                    var error = $root.E2E.BotSignatureVerificationUseCaseProof.verify(message.proofs[i]);
+                    if (error)
+                        return "proofs." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a BotSignatureVerificationMetadata message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof E2E.BotSignatureVerificationMetadata
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {E2E.BotSignatureVerificationMetadata} BotSignatureVerificationMetadata
+         */
+        BotSignatureVerificationMetadata.fromObject = function fromObject(object) {
+            if (object instanceof $root.E2E.BotSignatureVerificationMetadata)
+                return object;
+            var message = new $root.E2E.BotSignatureVerificationMetadata();
+            if (object.proofs) {
+                if (!Array.isArray(object.proofs))
+                    throw TypeError(".E2E.BotSignatureVerificationMetadata.proofs: array expected");
+                message.proofs = [];
+                for (var i = 0; i < object.proofs.length; ++i) {
+                    if (typeof object.proofs[i] !== "object")
+                        throw TypeError(".E2E.BotSignatureVerificationMetadata.proofs: object expected");
+                    message.proofs[i] = $root.E2E.BotSignatureVerificationUseCaseProof.fromObject(object.proofs[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BotSignatureVerificationMetadata message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof E2E.BotSignatureVerificationMetadata
+         * @static
+         * @param {E2E.BotSignatureVerificationMetadata} message BotSignatureVerificationMetadata
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BotSignatureVerificationMetadata.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.proofs = [];
+            if (message.proofs && message.proofs.length) {
+                object.proofs = [];
+                for (var j = 0; j < message.proofs.length; ++j)
+                    object.proofs[j] = $root.E2E.BotSignatureVerificationUseCaseProof.toObject(message.proofs[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this BotSignatureVerificationMetadata to JSON.
+         * @function toJSON
+         * @memberof E2E.BotSignatureVerificationMetadata
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BotSignatureVerificationMetadata.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotSignatureVerificationMetadata
+         * @function getTypeUrl
+         * @memberof E2E.BotSignatureVerificationMetadata
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotSignatureVerificationMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/E2E.BotSignatureVerificationMetadata";
+        };
+
+        return BotSignatureVerificationMetadata;
     })();
 
     E2E.BotMemoryFact = (function() {
@@ -74777,6 +75380,7 @@ $root.E2E = (function() {
                     case 6:
                     case 7:
                     case 8:
+                    case 9:
                         break;
                     }
                 if (message.requestStickerReupload != null && message.hasOwnProperty("requestStickerReupload")) {
@@ -74878,6 +75482,10 @@ $root.E2E = (function() {
                 case "COMPANION_SYNCD_SNAPSHOT_FATAL_RECOVERY":
                 case 8:
                     message.peerDataOperationRequestType = 8;
+                    break;
+                case "COMPANION_CANONICAL_USER_NONCE_FETCH":
+                case 9:
+                    message.peerDataOperationRequestType = 9;
                     break;
                 }
                 if (object.requestStickerReupload) {
@@ -76648,6 +77256,7 @@ $root.E2E = (function() {
                     case 6:
                     case 7:
                     case 8:
+                    case 9:
                         break;
                     }
                 if (message.stanzaId != null && message.hasOwnProperty("stanzaId"))
@@ -76719,6 +77328,10 @@ $root.E2E = (function() {
                 case "COMPANION_SYNCD_SNAPSHOT_FATAL_RECOVERY":
                 case 8:
                     message.peerDataOperationRequestType = 8;
+                    break;
+                case "COMPANION_CANONICAL_USER_NONCE_FETCH":
+                case 9:
+                    message.peerDataOperationRequestType = 9;
                     break;
                 }
                 if (object.stanzaId != null)
@@ -76807,6 +77420,7 @@ $root.E2E = (function() {
                  * @property {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IFullHistorySyncOnDemandRequestResponse|null} [fullHistorySyncOnDemandRequestResponse] PeerDataOperationResult fullHistorySyncOnDemandRequestResponse
                  * @property {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ICompanionMetaNonceFetchResponse|null} [companionMetaNonceFetchRequestResponse] PeerDataOperationResult companionMetaNonceFetchRequestResponse
                  * @property {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ISyncDSnapshotFatalRecoveryResponse|null} [syncdSnapshotFatalRecoveryResponse] PeerDataOperationResult syncdSnapshotFatalRecoveryResponse
+                 * @property {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ICompanionCanonicalUserNonceFetchResponse|null} [companionCanonicalUserNonceFetchRequestResponse] PeerDataOperationResult companionCanonicalUserNonceFetchRequestResponse
                  */
 
                 /**
@@ -76889,6 +77503,14 @@ $root.E2E = (function() {
                 PeerDataOperationResult.prototype.syncdSnapshotFatalRecoveryResponse = null;
 
                 /**
+                 * PeerDataOperationResult companionCanonicalUserNonceFetchRequestResponse.
+                 * @member {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ICompanionCanonicalUserNonceFetchResponse|null|undefined} companionCanonicalUserNonceFetchRequestResponse
+                 * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult
+                 * @instance
+                 */
+                PeerDataOperationResult.prototype.companionCanonicalUserNonceFetchRequestResponse = null;
+
+                /**
                  * Creates a new PeerDataOperationResult instance using the specified properties.
                  * @function create
                  * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult
@@ -76928,6 +77550,8 @@ $root.E2E = (function() {
                         $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionMetaNonceFetchResponse.encode(message.companionMetaNonceFetchRequestResponse, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
                     if (message.syncdSnapshotFatalRecoveryResponse != null && Object.hasOwnProperty.call(message, "syncdSnapshotFatalRecoveryResponse"))
                         $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse.encode(message.syncdSnapshotFatalRecoveryResponse, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+                    if (message.companionCanonicalUserNonceFetchRequestResponse != null && Object.hasOwnProperty.call(message, "companionCanonicalUserNonceFetchRequestResponse"))
+                        $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse.encode(message.companionCanonicalUserNonceFetchRequestResponse, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
                     return writer;
                 };
 
@@ -76994,6 +77618,10 @@ $root.E2E = (function() {
                             }
                         case 8: {
                                 message.syncdSnapshotFatalRecoveryResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse.decode(reader, reader.uint32());
+                                break;
+                            }
+                        case 9: {
+                                message.companionCanonicalUserNonceFetchRequestResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse.decode(reader, reader.uint32());
                                 break;
                             }
                         default:
@@ -77076,6 +77704,11 @@ $root.E2E = (function() {
                         if (error)
                             return "syncdSnapshotFatalRecoveryResponse." + error;
                     }
+                    if (message.companionCanonicalUserNonceFetchRequestResponse != null && message.hasOwnProperty("companionCanonicalUserNonceFetchRequestResponse")) {
+                        var error = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse.verify(message.companionCanonicalUserNonceFetchRequestResponse);
+                        if (error)
+                            return "companionCanonicalUserNonceFetchRequestResponse." + error;
+                    }
                     return null;
                 };
 
@@ -77150,6 +77783,11 @@ $root.E2E = (function() {
                             throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.syncdSnapshotFatalRecoveryResponse: object expected");
                         message.syncdSnapshotFatalRecoveryResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse.fromObject(object.syncdSnapshotFatalRecoveryResponse);
                     }
+                    if (object.companionCanonicalUserNonceFetchRequestResponse != null) {
+                        if (typeof object.companionCanonicalUserNonceFetchRequestResponse !== "object")
+                            throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.companionCanonicalUserNonceFetchRequestResponse: object expected");
+                        message.companionCanonicalUserNonceFetchRequestResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse.fromObject(object.companionCanonicalUserNonceFetchRequestResponse);
+                    }
                     return message;
                 };
 
@@ -77175,6 +77813,7 @@ $root.E2E = (function() {
                         object.fullHistorySyncOnDemandRequestResponse = null;
                         object.companionMetaNonceFetchRequestResponse = null;
                         object.syncdSnapshotFatalRecoveryResponse = null;
+                        object.companionCanonicalUserNonceFetchRequestResponse = null;
                     }
                     if (message.mediaUploadResult != null && message.hasOwnProperty("mediaUploadResult"))
                         object.mediaUploadResult = options.enums === String ? $root.MmsRetry.MediaRetryNotification.ResultType[message.mediaUploadResult] === undefined ? message.mediaUploadResult : $root.MmsRetry.MediaRetryNotification.ResultType[message.mediaUploadResult] : message.mediaUploadResult;
@@ -77192,6 +77831,8 @@ $root.E2E = (function() {
                         object.companionMetaNonceFetchRequestResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionMetaNonceFetchResponse.toObject(message.companionMetaNonceFetchRequestResponse, options);
                     if (message.syncdSnapshotFatalRecoveryResponse != null && message.hasOwnProperty("syncdSnapshotFatalRecoveryResponse"))
                         object.syncdSnapshotFatalRecoveryResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse.toObject(message.syncdSnapshotFatalRecoveryResponse, options);
+                    if (message.companionCanonicalUserNonceFetchRequestResponse != null && message.hasOwnProperty("companionCanonicalUserNonceFetchRequestResponse"))
+                        object.companionCanonicalUserNonceFetchRequestResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse.toObject(message.companionCanonicalUserNonceFetchRequestResponse, options);
                     return object;
                 };
 
@@ -77220,6 +77861,211 @@ $root.E2E = (function() {
                     }
                     return typeUrlPrefix + "/E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult";
                 };
+
+                PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse = (function() {
+
+                    /**
+                     * Properties of a CompanionCanonicalUserNonceFetchResponse.
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult
+                     * @interface ICompanionCanonicalUserNonceFetchResponse
+                     * @property {string|null} [nonce] CompanionCanonicalUserNonceFetchResponse nonce
+                     */
+
+                    /**
+                     * Constructs a new CompanionCanonicalUserNonceFetchResponse.
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult
+                     * @classdesc Represents a CompanionCanonicalUserNonceFetchResponse.
+                     * @implements ICompanionCanonicalUserNonceFetchResponse
+                     * @constructor
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ICompanionCanonicalUserNonceFetchResponse=} [properties] Properties to set
+                     */
+                    function CompanionCanonicalUserNonceFetchResponse(properties) {
+                        if (properties)
+                            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                if (properties[keys[i]] != null)
+                                    this[keys[i]] = properties[keys[i]];
+                    }
+
+                    /**
+                     * CompanionCanonicalUserNonceFetchResponse nonce.
+                     * @member {string} nonce
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse
+                     * @instance
+                     */
+                    CompanionCanonicalUserNonceFetchResponse.prototype.nonce = "";
+
+                    /**
+                     * Creates a new CompanionCanonicalUserNonceFetchResponse instance using the specified properties.
+                     * @function create
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse
+                     * @static
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ICompanionCanonicalUserNonceFetchResponse=} [properties] Properties to set
+                     * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse} CompanionCanonicalUserNonceFetchResponse instance
+                     */
+                    CompanionCanonicalUserNonceFetchResponse.create = function create(properties) {
+                        return new CompanionCanonicalUserNonceFetchResponse(properties);
+                    };
+
+                    /**
+                     * Encodes the specified CompanionCanonicalUserNonceFetchResponse message. Does not implicitly {@link E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse.verify|verify} messages.
+                     * @function encode
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse
+                     * @static
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ICompanionCanonicalUserNonceFetchResponse} message CompanionCanonicalUserNonceFetchResponse message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    CompanionCanonicalUserNonceFetchResponse.encode = function encode(message, writer) {
+                        if (!writer)
+                            writer = $Writer.create();
+                        if (message.nonce != null && Object.hasOwnProperty.call(message, "nonce"))
+                            writer.uint32(/* id 1, wireType 2 =*/10).string(message.nonce);
+                        return writer;
+                    };
+
+                    /**
+                     * Encodes the specified CompanionCanonicalUserNonceFetchResponse message, length delimited. Does not implicitly {@link E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse.verify|verify} messages.
+                     * @function encodeDelimited
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse
+                     * @static
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ICompanionCanonicalUserNonceFetchResponse} message CompanionCanonicalUserNonceFetchResponse message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    CompanionCanonicalUserNonceFetchResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                        return this.encode(message, writer).ldelim();
+                    };
+
+                    /**
+                     * Decodes a CompanionCanonicalUserNonceFetchResponse message from the specified reader or buffer.
+                     * @function decode
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @param {number} [length] Message length if known beforehand
+                     * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse} CompanionCanonicalUserNonceFetchResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    CompanionCanonicalUserNonceFetchResponse.decode = function decode(reader, length, error) {
+                        if (!(reader instanceof $Reader))
+                            reader = $Reader.create(reader);
+                        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse();
+                        while (reader.pos < end) {
+                            var tag = reader.uint32();
+                            if (tag === error)
+                                break;
+                            switch (tag >>> 3) {
+                            case 1: {
+                                    message.nonce = reader.string();
+                                    break;
+                                }
+                            default:
+                                reader.skipType(tag & 7);
+                                break;
+                            }
+                        }
+                        return message;
+                    };
+
+                    /**
+                     * Decodes a CompanionCanonicalUserNonceFetchResponse message from the specified reader or buffer, length delimited.
+                     * @function decodeDelimited
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse} CompanionCanonicalUserNonceFetchResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    CompanionCanonicalUserNonceFetchResponse.decodeDelimited = function decodeDelimited(reader) {
+                        if (!(reader instanceof $Reader))
+                            reader = new $Reader(reader);
+                        return this.decode(reader, reader.uint32());
+                    };
+
+                    /**
+                     * Verifies a CompanionCanonicalUserNonceFetchResponse message.
+                     * @function verify
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse
+                     * @static
+                     * @param {Object.<string,*>} message Plain object to verify
+                     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                     */
+                    CompanionCanonicalUserNonceFetchResponse.verify = function verify(message) {
+                        if (typeof message !== "object" || message === null)
+                            return "object expected";
+                        if (message.nonce != null && message.hasOwnProperty("nonce"))
+                            if (!$util.isString(message.nonce))
+                                return "nonce: string expected";
+                        return null;
+                    };
+
+                    /**
+                     * Creates a CompanionCanonicalUserNonceFetchResponse message from a plain object. Also converts values to their respective internal types.
+                     * @function fromObject
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse
+                     * @static
+                     * @param {Object.<string,*>} object Plain object
+                     * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse} CompanionCanonicalUserNonceFetchResponse
+                     */
+                    CompanionCanonicalUserNonceFetchResponse.fromObject = function fromObject(object) {
+                        if (object instanceof $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse)
+                            return object;
+                        var message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse();
+                        if (object.nonce != null)
+                            message.nonce = String(object.nonce);
+                        return message;
+                    };
+
+                    /**
+                     * Creates a plain object from a CompanionCanonicalUserNonceFetchResponse message. Also converts values to other types if specified.
+                     * @function toObject
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse
+                     * @static
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse} message CompanionCanonicalUserNonceFetchResponse
+                     * @param {$protobuf.IConversionOptions} [options] Conversion options
+                     * @returns {Object.<string,*>} Plain object
+                     */
+                    CompanionCanonicalUserNonceFetchResponse.toObject = function toObject(message, options) {
+                        if (!options)
+                            options = {};
+                        var object = {};
+                        if (options.defaults)
+                            object.nonce = "";
+                        if (message.nonce != null && message.hasOwnProperty("nonce"))
+                            object.nonce = message.nonce;
+                        return object;
+                    };
+
+                    /**
+                     * Converts this CompanionCanonicalUserNonceFetchResponse to JSON.
+                     * @function toJSON
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse
+                     * @instance
+                     * @returns {Object.<string,*>} JSON object
+                     */
+                    CompanionCanonicalUserNonceFetchResponse.prototype.toJSON = function toJSON() {
+                        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                    };
+
+                    /**
+                     * Gets the default type url for CompanionCanonicalUserNonceFetchResponse
+                     * @function getTypeUrl
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse
+                     * @static
+                     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns {string} The default type url
+                     */
+                    CompanionCanonicalUserNonceFetchResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        if (typeUrlPrefix === undefined) {
+                            typeUrlPrefix = "type.googleapis.com";
+                        }
+                        return typeUrlPrefix + "/E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse";
+                    };
+
+                    return CompanionCanonicalUserNonceFetchResponse;
+                })();
 
                 PeerDataOperationResult.CompanionMetaNonceFetchResponse = (function() {
 
@@ -79153,6 +79999,7 @@ $root.E2E = (function() {
          * @property {number} FULL_HISTORY_SYNC_ON_DEMAND=6 FULL_HISTORY_SYNC_ON_DEMAND value
          * @property {number} COMPANION_META_NONCE_FETCH=7 COMPANION_META_NONCE_FETCH value
          * @property {number} COMPANION_SYNCD_SNAPSHOT_FATAL_RECOVERY=8 COMPANION_SYNCD_SNAPSHOT_FATAL_RECOVERY value
+         * @property {number} COMPANION_CANONICAL_USER_NONCE_FETCH=9 COMPANION_CANONICAL_USER_NONCE_FETCH value
          */
         Message.PeerDataOperationRequestType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -79165,6 +80012,7 @@ $root.E2E = (function() {
             values[valuesById[6] = "FULL_HISTORY_SYNC_ON_DEMAND"] = 6;
             values[valuesById[7] = "COMPANION_META_NONCE_FETCH"] = 7;
             values[valuesById[8] = "COMPANION_SYNCD_SNAPSHOT_FATAL_RECOVERY"] = 8;
+            values[valuesById[9] = "COMPANION_CANONICAL_USER_NONCE_FETCH"] = 9;
             return values;
         })();
 
@@ -95041,6 +95889,8 @@ $root.StatusAttributions = (function() {
                     case 2:
                     case 3:
                     case 4:
+                    case 5:
+                    case 6:
                         break;
                     }
                 if (message.duration != null && message.hasOwnProperty("duration"))
@@ -95092,6 +95942,14 @@ $root.StatusAttributions = (function() {
                 case "SPOTIFY":
                 case 4:
                     message.source = 4;
+                    break;
+                case "YOUTUBE":
+                case 5:
+                    message.source = 5;
+                    break;
+                case "PINTEREST":
+                case 6:
+                    message.source = 6;
                     break;
                 }
                 if (object.duration != null)
@@ -95166,6 +96024,8 @@ $root.StatusAttributions = (function() {
              * @property {number} FACEBOOK=2 FACEBOOK value
              * @property {number} MESSENGER=3 MESSENGER value
              * @property {number} SPOTIFY=4 SPOTIFY value
+             * @property {number} YOUTUBE=5 YOUTUBE value
+             * @property {number} PINTEREST=6 PINTEREST value
              */
             ExternalShare.Source = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -95174,6 +96034,8 @@ $root.StatusAttributions = (function() {
                 values[valuesById[2] = "FACEBOOK"] = 2;
                 values[valuesById[3] = "MESSENGER"] = 3;
                 values[valuesById[4] = "SPOTIFY"] = 4;
+                values[valuesById[5] = "YOUTUBE"] = 5;
+                values[valuesById[6] = "PINTEREST"] = 6;
                 return values;
             })();
 
