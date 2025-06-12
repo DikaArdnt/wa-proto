@@ -30458,6 +30458,9 @@ export namespace CompanionReg {
 
         /** ClientPairingProps isSyncdPureLidSession */
         isSyncdPureLidSession?: (boolean|null);
+
+        /** ClientPairingProps isSyncdSnapshotRecoveryEnabled */
+        isSyncdSnapshotRecoveryEnabled?: (boolean|null);
     }
 
     /** Represents a ClientPairingProps. */
@@ -30474,6 +30477,9 @@ export namespace CompanionReg {
 
         /** ClientPairingProps isSyncdPureLidSession. */
         public isSyncdPureLidSession: boolean;
+
+        /** ClientPairingProps isSyncdSnapshotRecoveryEnabled. */
+        public isSyncdSnapshotRecoveryEnabled: boolean;
 
         /**
          * Creates a new ClientPairingProps instance using the specified properties.

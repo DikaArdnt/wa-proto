@@ -104153,6 +104153,7 @@ $root.CompanionReg = (function() {
          * @interface IClientPairingProps
          * @property {boolean|null} [isChatDbLidMigrated] ClientPairingProps isChatDbLidMigrated
          * @property {boolean|null} [isSyncdPureLidSession] ClientPairingProps isSyncdPureLidSession
+         * @property {boolean|null} [isSyncdSnapshotRecoveryEnabled] ClientPairingProps isSyncdSnapshotRecoveryEnabled
          */
 
         /**
@@ -104187,6 +104188,14 @@ $root.CompanionReg = (function() {
         ClientPairingProps.prototype.isSyncdPureLidSession = false;
 
         /**
+         * ClientPairingProps isSyncdSnapshotRecoveryEnabled.
+         * @member {boolean} isSyncdSnapshotRecoveryEnabled
+         * @memberof CompanionReg.ClientPairingProps
+         * @instance
+         */
+        ClientPairingProps.prototype.isSyncdSnapshotRecoveryEnabled = false;
+
+        /**
          * Creates a new ClientPairingProps instance using the specified properties.
          * @function create
          * @memberof CompanionReg.ClientPairingProps
@@ -104214,6 +104223,8 @@ $root.CompanionReg = (function() {
                 writer.uint32(/* id 1, wireType 0 =*/8).bool(message.isChatDbLidMigrated);
             if (message.isSyncdPureLidSession != null && Object.hasOwnProperty.call(message, "isSyncdPureLidSession"))
                 writer.uint32(/* id 2, wireType 0 =*/16).bool(message.isSyncdPureLidSession);
+            if (message.isSyncdSnapshotRecoveryEnabled != null && Object.hasOwnProperty.call(message, "isSyncdSnapshotRecoveryEnabled"))
+                writer.uint32(/* id 3, wireType 0 =*/24).bool(message.isSyncdSnapshotRecoveryEnabled);
             return writer;
         };
 
@@ -104258,6 +104269,10 @@ $root.CompanionReg = (function() {
                         message.isSyncdPureLidSession = reader.bool();
                         break;
                     }
+                case 3: {
+                        message.isSyncdSnapshotRecoveryEnabled = reader.bool();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -104299,6 +104314,9 @@ $root.CompanionReg = (function() {
             if (message.isSyncdPureLidSession != null && message.hasOwnProperty("isSyncdPureLidSession"))
                 if (typeof message.isSyncdPureLidSession !== "boolean")
                     return "isSyncdPureLidSession: boolean expected";
+            if (message.isSyncdSnapshotRecoveryEnabled != null && message.hasOwnProperty("isSyncdSnapshotRecoveryEnabled"))
+                if (typeof message.isSyncdSnapshotRecoveryEnabled !== "boolean")
+                    return "isSyncdSnapshotRecoveryEnabled: boolean expected";
             return null;
         };
 
@@ -104318,6 +104336,8 @@ $root.CompanionReg = (function() {
                 message.isChatDbLidMigrated = Boolean(object.isChatDbLidMigrated);
             if (object.isSyncdPureLidSession != null)
                 message.isSyncdPureLidSession = Boolean(object.isSyncdPureLidSession);
+            if (object.isSyncdSnapshotRecoveryEnabled != null)
+                message.isSyncdSnapshotRecoveryEnabled = Boolean(object.isSyncdSnapshotRecoveryEnabled);
             return message;
         };
 
@@ -104337,11 +104357,14 @@ $root.CompanionReg = (function() {
             if (options.defaults) {
                 object.isChatDbLidMigrated = false;
                 object.isSyncdPureLidSession = false;
+                object.isSyncdSnapshotRecoveryEnabled = false;
             }
             if (message.isChatDbLidMigrated != null && message.hasOwnProperty("isChatDbLidMigrated"))
                 object.isChatDbLidMigrated = message.isChatDbLidMigrated;
             if (message.isSyncdPureLidSession != null && message.hasOwnProperty("isSyncdPureLidSession"))
                 object.isSyncdPureLidSession = message.isSyncdPureLidSession;
+            if (message.isSyncdSnapshotRecoveryEnabled != null && message.hasOwnProperty("isSyncdSnapshotRecoveryEnabled"))
+                object.isSyncdSnapshotRecoveryEnabled = message.isSyncdSnapshotRecoveryEnabled;
             return object;
         };
 
