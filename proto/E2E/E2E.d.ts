@@ -5091,7 +5091,8 @@ export namespace E2E {
             PROACTIVE_MESSAGE = 33,
             RICH_RESPONSE_UNIFIED_RESPONSE = 34,
             PROMOTION_MESSAGE = 35,
-            SIMPLIFIED_PROFILE_PAGE = 36
+            SIMPLIFIED_PROFILE_PAGE = 36,
+            RICH_RESPONSE_SOURCES_IN_MESSAGE = 37
         }
     }
 

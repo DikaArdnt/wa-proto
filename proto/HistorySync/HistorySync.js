@@ -34234,6 +34234,7 @@ $root.E2E = (function() {
                     case 34:
                     case 35:
                     case 36:
+                    case 37:
                         break;
                     }
             }
@@ -34411,6 +34412,10 @@ $root.E2E = (function() {
                     case 36:
                         message.capabilities[i] = 36;
                         break;
+                    case "RICH_RESPONSE_SOURCES_IN_MESSAGE":
+                    case 37:
+                        message.capabilities[i] = 37;
+                        break;
                     }
             }
             return message;
@@ -34506,6 +34511,7 @@ $root.E2E = (function() {
          * @property {number} RICH_RESPONSE_UNIFIED_RESPONSE=34 RICH_RESPONSE_UNIFIED_RESPONSE value
          * @property {number} PROMOTION_MESSAGE=35 PROMOTION_MESSAGE value
          * @property {number} SIMPLIFIED_PROFILE_PAGE=36 SIMPLIFIED_PROFILE_PAGE value
+         * @property {number} RICH_RESPONSE_SOURCES_IN_MESSAGE=37 RICH_RESPONSE_SOURCES_IN_MESSAGE value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -34546,6 +34552,7 @@ $root.E2E = (function() {
             values[valuesById[34] = "RICH_RESPONSE_UNIFIED_RESPONSE"] = 34;
             values[valuesById[35] = "PROMOTION_MESSAGE"] = 35;
             values[valuesById[36] = "SIMPLIFIED_PROFILE_PAGE"] = 36;
+            values[valuesById[37] = "RICH_RESPONSE_SOURCES_IN_MESSAGE"] = 37;
             return values;
         })();
 
