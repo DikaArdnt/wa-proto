@@ -951,6 +951,8 @@ $root.SyncAction = (function() {
          * @property {SyncAction.SyncActionValue.ILidContactAction|null} [lidContactAction] SyncActionValue lidContactAction
          * @property {SyncAction.SyncActionValue.ICtwaPerCustomerDataSharingAction|null} [ctwaPerCustomerDataSharingAction] SyncActionValue ctwaPerCustomerDataSharingAction
          * @property {SyncAction.SyncActionValue.IPaymentTosAction|null} [paymentTosAction] SyncActionValue paymentTosAction
+         * @property {SyncAction.SyncActionValue.IPrivacySettingChannelsPersonalisedRecommendationAction|null} [privacySettingChannelsPersonalisedRecommendationAction] SyncActionValue privacySettingChannelsPersonalisedRecommendationAction
+         * @property {SyncAction.SyncActionValue.IBusinessBroadcastAssociationAction|null} [businessBroadcastAssociationAction] SyncActionValue businessBroadcastAssociationAction
          */
 
         /**
@@ -1425,6 +1427,22 @@ $root.SyncAction = (function() {
         SyncActionValue.prototype.paymentTosAction = null;
 
         /**
+         * SyncActionValue privacySettingChannelsPersonalisedRecommendationAction.
+         * @member {SyncAction.SyncActionValue.IPrivacySettingChannelsPersonalisedRecommendationAction|null|undefined} privacySettingChannelsPersonalisedRecommendationAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.privacySettingChannelsPersonalisedRecommendationAction = null;
+
+        /**
+         * SyncActionValue businessBroadcastAssociationAction.
+         * @member {SyncAction.SyncActionValue.IBusinessBroadcastAssociationAction|null|undefined} businessBroadcastAssociationAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.businessBroadcastAssociationAction = null;
+
+        /**
          * Creates a new SyncActionValue instance using the specified properties.
          * @function create
          * @memberof SyncAction.SyncActionValue
@@ -1562,6 +1580,10 @@ $root.SyncAction = (function() {
                 $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.encode(message.ctwaPerCustomerDataSharingAction, writer.uint32(/* id 62, wireType 2 =*/498).fork()).ldelim();
             if (message.paymentTosAction != null && Object.hasOwnProperty.call(message, "paymentTosAction"))
                 $root.SyncAction.SyncActionValue.PaymentTosAction.encode(message.paymentTosAction, writer.uint32(/* id 63, wireType 2 =*/506).fork()).ldelim();
+            if (message.privacySettingChannelsPersonalisedRecommendationAction != null && Object.hasOwnProperty.call(message, "privacySettingChannelsPersonalisedRecommendationAction"))
+                $root.SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction.encode(message.privacySettingChannelsPersonalisedRecommendationAction, writer.uint32(/* id 64, wireType 2 =*/514).fork()).ldelim();
+            if (message.businessBroadcastAssociationAction != null && Object.hasOwnProperty.call(message, "businessBroadcastAssociationAction"))
+                $root.SyncAction.SyncActionValue.BusinessBroadcastAssociationAction.encode(message.businessBroadcastAssociationAction, writer.uint32(/* id 65, wireType 2 =*/522).fork()).ldelim();
             return writer;
         };
 
@@ -1824,6 +1846,14 @@ $root.SyncAction = (function() {
                     }
                 case 63: {
                         message.paymentTosAction = $root.SyncAction.SyncActionValue.PaymentTosAction.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 64: {
+                        message.privacySettingChannelsPersonalisedRecommendationAction = $root.SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 65: {
+                        message.businessBroadcastAssociationAction = $root.SyncAction.SyncActionValue.BusinessBroadcastAssociationAction.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -2144,6 +2174,16 @@ $root.SyncAction = (function() {
                 if (error)
                     return "paymentTosAction." + error;
             }
+            if (message.privacySettingChannelsPersonalisedRecommendationAction != null && message.hasOwnProperty("privacySettingChannelsPersonalisedRecommendationAction")) {
+                var error = $root.SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction.verify(message.privacySettingChannelsPersonalisedRecommendationAction);
+                if (error)
+                    return "privacySettingChannelsPersonalisedRecommendationAction." + error;
+            }
+            if (message.businessBroadcastAssociationAction != null && message.hasOwnProperty("businessBroadcastAssociationAction")) {
+                var error = $root.SyncAction.SyncActionValue.BusinessBroadcastAssociationAction.verify(message.businessBroadcastAssociationAction);
+                if (error)
+                    return "businessBroadcastAssociationAction." + error;
+            }
             return null;
         };
 
@@ -2448,6 +2488,16 @@ $root.SyncAction = (function() {
                     throw TypeError(".SyncAction.SyncActionValue.paymentTosAction: object expected");
                 message.paymentTosAction = $root.SyncAction.SyncActionValue.PaymentTosAction.fromObject(object.paymentTosAction);
             }
+            if (object.privacySettingChannelsPersonalisedRecommendationAction != null) {
+                if (typeof object.privacySettingChannelsPersonalisedRecommendationAction !== "object")
+                    throw TypeError(".SyncAction.SyncActionValue.privacySettingChannelsPersonalisedRecommendationAction: object expected");
+                message.privacySettingChannelsPersonalisedRecommendationAction = $root.SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction.fromObject(object.privacySettingChannelsPersonalisedRecommendationAction);
+            }
+            if (object.businessBroadcastAssociationAction != null) {
+                if (typeof object.businessBroadcastAssociationAction !== "object")
+                    throw TypeError(".SyncAction.SyncActionValue.businessBroadcastAssociationAction: object expected");
+                message.businessBroadcastAssociationAction = $root.SyncAction.SyncActionValue.BusinessBroadcastAssociationAction.fromObject(object.businessBroadcastAssociationAction);
+            }
             return message;
         };
 
@@ -2526,6 +2576,8 @@ $root.SyncAction = (function() {
                 object.lidContactAction = null;
                 object.ctwaPerCustomerDataSharingAction = null;
                 object.paymentTosAction = null;
+                object.privacySettingChannelsPersonalisedRecommendationAction = null;
+                object.businessBroadcastAssociationAction = null;
             }
             if (message.timestamp != null && message.hasOwnProperty("timestamp"))
                 if (typeof message.timestamp === "number")
@@ -2644,6 +2696,10 @@ $root.SyncAction = (function() {
                 object.ctwaPerCustomerDataSharingAction = $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.toObject(message.ctwaPerCustomerDataSharingAction, options);
             if (message.paymentTosAction != null && message.hasOwnProperty("paymentTosAction"))
                 object.paymentTosAction = $root.SyncAction.SyncActionValue.PaymentTosAction.toObject(message.paymentTosAction, options);
+            if (message.privacySettingChannelsPersonalisedRecommendationAction != null && message.hasOwnProperty("privacySettingChannelsPersonalisedRecommendationAction"))
+                object.privacySettingChannelsPersonalisedRecommendationAction = $root.SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction.toObject(message.privacySettingChannelsPersonalisedRecommendationAction, options);
+            if (message.businessBroadcastAssociationAction != null && message.hasOwnProperty("businessBroadcastAssociationAction"))
+                object.businessBroadcastAssociationAction = $root.SyncAction.SyncActionValue.BusinessBroadcastAssociationAction.toObject(message.businessBroadcastAssociationAction, options);
             return object;
         };
 
@@ -3567,6 +3623,211 @@ $root.SyncAction = (function() {
             };
 
             return BotWelcomeRequestAction;
+        })();
+
+        SyncActionValue.BusinessBroadcastAssociationAction = (function() {
+
+            /**
+             * Properties of a BusinessBroadcastAssociationAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface IBusinessBroadcastAssociationAction
+             * @property {boolean|null} [deleted] BusinessBroadcastAssociationAction deleted
+             */
+
+            /**
+             * Constructs a new BusinessBroadcastAssociationAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents a BusinessBroadcastAssociationAction.
+             * @implements IBusinessBroadcastAssociationAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.IBusinessBroadcastAssociationAction=} [properties] Properties to set
+             */
+            function BusinessBroadcastAssociationAction(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * BusinessBroadcastAssociationAction deleted.
+             * @member {boolean} deleted
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastAssociationAction
+             * @instance
+             */
+            BusinessBroadcastAssociationAction.prototype.deleted = false;
+
+            /**
+             * Creates a new BusinessBroadcastAssociationAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastAssociationAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IBusinessBroadcastAssociationAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.BusinessBroadcastAssociationAction} BusinessBroadcastAssociationAction instance
+             */
+            BusinessBroadcastAssociationAction.create = function create(properties) {
+                return new BusinessBroadcastAssociationAction(properties);
+            };
+
+            /**
+             * Encodes the specified BusinessBroadcastAssociationAction message. Does not implicitly {@link SyncAction.SyncActionValue.BusinessBroadcastAssociationAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastAssociationAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IBusinessBroadcastAssociationAction} message BusinessBroadcastAssociationAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            BusinessBroadcastAssociationAction.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.deleted != null && Object.hasOwnProperty.call(message, "deleted"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).bool(message.deleted);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified BusinessBroadcastAssociationAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.BusinessBroadcastAssociationAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastAssociationAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IBusinessBroadcastAssociationAction} message BusinessBroadcastAssociationAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            BusinessBroadcastAssociationAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a BusinessBroadcastAssociationAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastAssociationAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.BusinessBroadcastAssociationAction} BusinessBroadcastAssociationAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            BusinessBroadcastAssociationAction.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.BusinessBroadcastAssociationAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.deleted = reader.bool();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a BusinessBroadcastAssociationAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastAssociationAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.BusinessBroadcastAssociationAction} BusinessBroadcastAssociationAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            BusinessBroadcastAssociationAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a BusinessBroadcastAssociationAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastAssociationAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            BusinessBroadcastAssociationAction.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.deleted != null && message.hasOwnProperty("deleted"))
+                    if (typeof message.deleted !== "boolean")
+                        return "deleted: boolean expected";
+                return null;
+            };
+
+            /**
+             * Creates a BusinessBroadcastAssociationAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastAssociationAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.BusinessBroadcastAssociationAction} BusinessBroadcastAssociationAction
+             */
+            BusinessBroadcastAssociationAction.fromObject = function fromObject(object) {
+                if (object instanceof $root.SyncAction.SyncActionValue.BusinessBroadcastAssociationAction)
+                    return object;
+                var message = new $root.SyncAction.SyncActionValue.BusinessBroadcastAssociationAction();
+                if (object.deleted != null)
+                    message.deleted = Boolean(object.deleted);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a BusinessBroadcastAssociationAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastAssociationAction
+             * @static
+             * @param {SyncAction.SyncActionValue.BusinessBroadcastAssociationAction} message BusinessBroadcastAssociationAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            BusinessBroadcastAssociationAction.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.deleted = false;
+                if (message.deleted != null && message.hasOwnProperty("deleted"))
+                    object.deleted = message.deleted;
+                return object;
+            };
+
+            /**
+             * Converts this BusinessBroadcastAssociationAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastAssociationAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            BusinessBroadcastAssociationAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for BusinessBroadcastAssociationAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastAssociationAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            BusinessBroadcastAssociationAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.BusinessBroadcastAssociationAction";
+            };
+
+            return BusinessBroadcastAssociationAction;
         })();
 
         SyncActionValue.CallLogAction = (function() {
@@ -12265,6 +12526,211 @@ $root.SyncAction = (function() {
             };
 
             return PrimaryVersionAction;
+        })();
+
+        SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction = (function() {
+
+            /**
+             * Properties of a PrivacySettingChannelsPersonalisedRecommendationAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface IPrivacySettingChannelsPersonalisedRecommendationAction
+             * @property {boolean|null} [isUserOptedOut] PrivacySettingChannelsPersonalisedRecommendationAction isUserOptedOut
+             */
+
+            /**
+             * Constructs a new PrivacySettingChannelsPersonalisedRecommendationAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents a PrivacySettingChannelsPersonalisedRecommendationAction.
+             * @implements IPrivacySettingChannelsPersonalisedRecommendationAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.IPrivacySettingChannelsPersonalisedRecommendationAction=} [properties] Properties to set
+             */
+            function PrivacySettingChannelsPersonalisedRecommendationAction(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * PrivacySettingChannelsPersonalisedRecommendationAction isUserOptedOut.
+             * @member {boolean} isUserOptedOut
+             * @memberof SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction
+             * @instance
+             */
+            PrivacySettingChannelsPersonalisedRecommendationAction.prototype.isUserOptedOut = false;
+
+            /**
+             * Creates a new PrivacySettingChannelsPersonalisedRecommendationAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IPrivacySettingChannelsPersonalisedRecommendationAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction} PrivacySettingChannelsPersonalisedRecommendationAction instance
+             */
+            PrivacySettingChannelsPersonalisedRecommendationAction.create = function create(properties) {
+                return new PrivacySettingChannelsPersonalisedRecommendationAction(properties);
+            };
+
+            /**
+             * Encodes the specified PrivacySettingChannelsPersonalisedRecommendationAction message. Does not implicitly {@link SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IPrivacySettingChannelsPersonalisedRecommendationAction} message PrivacySettingChannelsPersonalisedRecommendationAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PrivacySettingChannelsPersonalisedRecommendationAction.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.isUserOptedOut != null && Object.hasOwnProperty.call(message, "isUserOptedOut"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).bool(message.isUserOptedOut);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified PrivacySettingChannelsPersonalisedRecommendationAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IPrivacySettingChannelsPersonalisedRecommendationAction} message PrivacySettingChannelsPersonalisedRecommendationAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PrivacySettingChannelsPersonalisedRecommendationAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a PrivacySettingChannelsPersonalisedRecommendationAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction} PrivacySettingChannelsPersonalisedRecommendationAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PrivacySettingChannelsPersonalisedRecommendationAction.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.isUserOptedOut = reader.bool();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a PrivacySettingChannelsPersonalisedRecommendationAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction} PrivacySettingChannelsPersonalisedRecommendationAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PrivacySettingChannelsPersonalisedRecommendationAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a PrivacySettingChannelsPersonalisedRecommendationAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            PrivacySettingChannelsPersonalisedRecommendationAction.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.isUserOptedOut != null && message.hasOwnProperty("isUserOptedOut"))
+                    if (typeof message.isUserOptedOut !== "boolean")
+                        return "isUserOptedOut: boolean expected";
+                return null;
+            };
+
+            /**
+             * Creates a PrivacySettingChannelsPersonalisedRecommendationAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction} PrivacySettingChannelsPersonalisedRecommendationAction
+             */
+            PrivacySettingChannelsPersonalisedRecommendationAction.fromObject = function fromObject(object) {
+                if (object instanceof $root.SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction)
+                    return object;
+                var message = new $root.SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction();
+                if (object.isUserOptedOut != null)
+                    message.isUserOptedOut = Boolean(object.isUserOptedOut);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a PrivacySettingChannelsPersonalisedRecommendationAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction
+             * @static
+             * @param {SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction} message PrivacySettingChannelsPersonalisedRecommendationAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            PrivacySettingChannelsPersonalisedRecommendationAction.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.isUserOptedOut = false;
+                if (message.isUserOptedOut != null && message.hasOwnProperty("isUserOptedOut"))
+                    object.isUserOptedOut = message.isUserOptedOut;
+                return object;
+            };
+
+            /**
+             * Converts this PrivacySettingChannelsPersonalisedRecommendationAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            PrivacySettingChannelsPersonalisedRecommendationAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for PrivacySettingChannelsPersonalisedRecommendationAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            PrivacySettingChannelsPersonalisedRecommendationAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction";
+            };
+
+            return PrivacySettingChannelsPersonalisedRecommendationAction;
         })();
 
         SyncActionValue.PrivacySettingDisableLinkPreviewsAction = (function() {
