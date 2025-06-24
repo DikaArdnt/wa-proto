@@ -18694,6 +18694,7 @@ $root.Web = (function() {
                 case 216:
                 case 217:
                 case 218:
+                case 219:
                     break;
                 }
             if (message.clearMedia != null && message.hasOwnProperty("clearMedia"))
@@ -19907,6 +19908,10 @@ $root.Web = (function() {
             case 218:
                 message.messageStubType = 218;
                 break;
+            case "PHONE_NUMBER_HIDING_CHAT_DEPRECATED_MESSAGE":
+            case 219:
+                message.messageStubType = 219;
+                break;
             }
             if (object.clearMedia != null)
                 message.clearMedia = Boolean(object.clearMedia);
@@ -20748,6 +20753,7 @@ $root.Web = (function() {
          * @property {number} CHANGE_LIMIT_SHARING=216 CHANGE_LIMIT_SHARING value
          * @property {number} GROUP_MEMBER_LINK_MODE=217 GROUP_MEMBER_LINK_MODE value
          * @property {number} BIZ_AUTOMATICALLY_LABELED_CHAT_SYSTEM_MESSAGE=218 BIZ_AUTOMATICALLY_LABELED_CHAT_SYSTEM_MESSAGE value
+         * @property {number} PHONE_NUMBER_HIDING_CHAT_DEPRECATED_MESSAGE=219 PHONE_NUMBER_HIDING_CHAT_DEPRECATED_MESSAGE value
          */
         WebMessageInfo.StubType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -20970,6 +20976,7 @@ $root.Web = (function() {
             values[valuesById[216] = "CHANGE_LIMIT_SHARING"] = 216;
             values[valuesById[217] = "GROUP_MEMBER_LINK_MODE"] = 217;
             values[valuesById[218] = "BIZ_AUTOMATICALLY_LABELED_CHAT_SYSTEM_MESSAGE"] = 218;
+            values[valuesById[219] = "PHONE_NUMBER_HIDING_CHAT_DEPRECATED_MESSAGE"] = 219;
             return values;
         })();
 
