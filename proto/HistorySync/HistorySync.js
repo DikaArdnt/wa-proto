@@ -32424,6 +32424,7 @@ $root.E2E = (function() {
              * @property {string|null} [sourceQuery] BotSourceItem sourceQuery
              * @property {string|null} [faviconCdnUrl] BotSourceItem faviconCdnUrl
              * @property {number|null} [citationNumber] BotSourceItem citationNumber
+             * @property {string|null} [sourceTitle] BotSourceItem sourceTitle
              */
 
             /**
@@ -32490,6 +32491,14 @@ $root.E2E = (function() {
             BotSourceItem.prototype.citationNumber = 0;
 
             /**
+             * BotSourceItem sourceTitle.
+             * @member {string} sourceTitle
+             * @memberof E2E.BotSourcesMetadata.BotSourceItem
+             * @instance
+             */
+            BotSourceItem.prototype.sourceTitle = "";
+
+            /**
              * Creates a new BotSourceItem instance using the specified properties.
              * @function create
              * @memberof E2E.BotSourcesMetadata.BotSourceItem
@@ -32525,6 +32534,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 5, wireType 2 =*/42).string(message.faviconCdnUrl);
                 if (message.citationNumber != null && Object.hasOwnProperty.call(message, "citationNumber"))
                     writer.uint32(/* id 6, wireType 0 =*/48).uint32(message.citationNumber);
+                if (message.sourceTitle != null && Object.hasOwnProperty.call(message, "sourceTitle"))
+                    writer.uint32(/* id 7, wireType 2 =*/58).string(message.sourceTitle);
                 return writer;
             };
 
@@ -32583,6 +32594,10 @@ $root.E2E = (function() {
                         }
                     case 6: {
                             message.citationNumber = reader.uint32();
+                            break;
+                        }
+                    case 7: {
+                            message.sourceTitle = reader.string();
                             break;
                         }
                     default:
@@ -32645,6 +32660,9 @@ $root.E2E = (function() {
                 if (message.citationNumber != null && message.hasOwnProperty("citationNumber"))
                     if (!$util.isInteger(message.citationNumber))
                         return "citationNumber: integer expected";
+                if (message.sourceTitle != null && message.hasOwnProperty("sourceTitle"))
+                    if (!$util.isString(message.sourceTitle))
+                        return "sourceTitle: string expected";
                 return null;
             };
 
@@ -32694,6 +32712,8 @@ $root.E2E = (function() {
                     message.faviconCdnUrl = String(object.faviconCdnUrl);
                 if (object.citationNumber != null)
                     message.citationNumber = object.citationNumber >>> 0;
+                if (object.sourceTitle != null)
+                    message.sourceTitle = String(object.sourceTitle);
                 return message;
             };
 
@@ -32717,6 +32737,7 @@ $root.E2E = (function() {
                     object.sourceQuery = "";
                     object.faviconCdnUrl = "";
                     object.citationNumber = 0;
+                    object.sourceTitle = "";
                 }
                 if (message.provider != null && message.hasOwnProperty("provider"))
                     object.provider = options.enums === String ? $root.E2E.BotSourcesMetadata.BotSourceItem.SourceProvider[message.provider] === undefined ? message.provider : $root.E2E.BotSourcesMetadata.BotSourceItem.SourceProvider[message.provider] : message.provider;
@@ -32730,6 +32751,8 @@ $root.E2E = (function() {
                     object.faviconCdnUrl = message.faviconCdnUrl;
                 if (message.citationNumber != null && message.hasOwnProperty("citationNumber"))
                     object.citationNumber = message.citationNumber;
+                if (message.sourceTitle != null && message.hasOwnProperty("sourceTitle"))
+                    object.sourceTitle = message.sourceTitle;
                 return object;
             };
 
@@ -37965,6 +37988,7 @@ $root.E2E = (function() {
                 case 23:
                 case 24:
                 case 25:
+                case 26:
                     break;
                 }
             if (message.threadOrigin != null && message.hasOwnProperty("threadOrigin"))
@@ -37975,6 +37999,7 @@ $root.E2E = (function() {
                 case 2:
                 case 3:
                 case 4:
+                case 5:
                     break;
                 }
             return null;
@@ -38101,6 +38126,10 @@ $root.E2E = (function() {
             case 25:
                 message.destinationEntryPoint = 25;
                 break;
+            case "ASK_META_AI_CONTEXT_MENU":
+            case 26:
+                message.destinationEntryPoint = 26;
+                break;
             }
             switch (object.threadOrigin) {
             default:
@@ -38124,6 +38153,10 @@ $root.E2E = (function() {
             case "AI_DEEPLINK_THREAD":
             case 4:
                 message.threadOrigin = 4;
+                break;
+            case "ASK_META_AI_CONTEXT_MENU_THREAD":
+            case 5:
+                message.threadOrigin = 5;
                 break;
             }
             return message;
@@ -59986,6 +60019,7 @@ $root.E2E = (function() {
              * @property {string|null} [ctwaSignals] Call ctwaSignals
              * @property {Uint8Array|null} [ctwaPayload] Call ctwaPayload
              * @property {E2E.IContextInfo|null} [contextInfo] Call contextInfo
+             * @property {string|null} [nativeFlowCallButtonPayload] Call nativeFlowCallButtonPayload
              */
 
             /**
@@ -60060,6 +60094,14 @@ $root.E2E = (function() {
             Call.prototype.contextInfo = null;
 
             /**
+             * Call nativeFlowCallButtonPayload.
+             * @member {string} nativeFlowCallButtonPayload
+             * @memberof E2E.Message.Call
+             * @instance
+             */
+            Call.prototype.nativeFlowCallButtonPayload = "";
+
+            /**
              * Creates a new Call instance using the specified properties.
              * @function create
              * @memberof E2E.Message.Call
@@ -60097,6 +60139,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 6, wireType 2 =*/50).bytes(message.ctwaPayload);
                 if (message.contextInfo != null && Object.hasOwnProperty.call(message, "contextInfo"))
                     $root.E2E.ContextInfo.encode(message.contextInfo, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+                if (message.nativeFlowCallButtonPayload != null && Object.hasOwnProperty.call(message, "nativeFlowCallButtonPayload"))
+                    writer.uint32(/* id 8, wireType 2 =*/66).string(message.nativeFlowCallButtonPayload);
                 return writer;
             };
 
@@ -60161,6 +60205,10 @@ $root.E2E = (function() {
                             message.contextInfo = $root.E2E.ContextInfo.decode(reader, reader.uint32());
                             break;
                         }
+                    case 8: {
+                            message.nativeFlowCallButtonPayload = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -60219,6 +60267,9 @@ $root.E2E = (function() {
                     if (error)
                         return "contextInfo." + error;
                 }
+                if (message.nativeFlowCallButtonPayload != null && message.hasOwnProperty("nativeFlowCallButtonPayload"))
+                    if (!$util.isString(message.nativeFlowCallButtonPayload))
+                        return "nativeFlowCallButtonPayload: string expected";
                 return null;
             };
 
@@ -60260,6 +60311,8 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.Call.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo);
                 }
+                if (object.nativeFlowCallButtonPayload != null)
+                    message.nativeFlowCallButtonPayload = String(object.nativeFlowCallButtonPayload);
                 return message;
             };
 
@@ -60302,6 +60355,7 @@ $root.E2E = (function() {
                             object.ctwaPayload = $util.newBuffer(object.ctwaPayload);
                     }
                     object.contextInfo = null;
+                    object.nativeFlowCallButtonPayload = "";
                 }
                 if (message.callKey != null && message.hasOwnProperty("callKey"))
                     object.callKey = options.bytes === String ? $util.base64.encode(message.callKey, 0, message.callKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.callKey) : message.callKey;
@@ -60317,6 +60371,8 @@ $root.E2E = (function() {
                     object.ctwaPayload = options.bytes === String ? $util.base64.encode(message.ctwaPayload, 0, message.ctwaPayload.length) : options.bytes === Array ? Array.prototype.slice.call(message.ctwaPayload) : message.ctwaPayload;
                 if (message.contextInfo != null && message.hasOwnProperty("contextInfo"))
                     object.contextInfo = $root.E2E.ContextInfo.toObject(message.contextInfo, options);
+                if (message.nativeFlowCallButtonPayload != null && message.hasOwnProperty("nativeFlowCallButtonPayload"))
+                    object.nativeFlowCallButtonPayload = message.nativeFlowCallButtonPayload;
                 return object;
             };
 
@@ -100832,6 +100888,7 @@ $root.E2E = (function() {
      * @property {number} AI_HOME_THREAD=2 AI_HOME_THREAD value
      * @property {number} AI_DEEPLINK_IMMERSIVE_THREAD=3 AI_DEEPLINK_IMMERSIVE_THREAD value
      * @property {number} AI_DEEPLINK_THREAD=4 AI_DEEPLINK_THREAD value
+     * @property {number} ASK_META_AI_CONTEXT_MENU_THREAD=5 ASK_META_AI_CONTEXT_MENU_THREAD value
      */
     E2E.BotMetricsThreadEntryPoint = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -100839,6 +100896,7 @@ $root.E2E = (function() {
         values[valuesById[2] = "AI_HOME_THREAD"] = 2;
         values[valuesById[3] = "AI_DEEPLINK_IMMERSIVE_THREAD"] = 3;
         values[valuesById[4] = "AI_DEEPLINK_THREAD"] = 4;
+        values[valuesById[5] = "ASK_META_AI_CONTEXT_MENU_THREAD"] = 5;
         return values;
     })();
 
@@ -100871,6 +100929,7 @@ $root.E2E = (function() {
      * @property {number} UGC_CHAT_SHORTCUT_AI_STUDIO=23 UGC_CHAT_SHORTCUT_AI_STUDIO value
      * @property {number} NEW_CHAT_AI_STUDIO=24 NEW_CHAT_AI_STUDIO value
      * @property {number} AIVOICE_FAVICON_CALL_HISTORY=25 AIVOICE_FAVICON_CALL_HISTORY value
+     * @property {number} ASK_META_AI_CONTEXT_MENU=26 ASK_META_AI_CONTEXT_MENU value
      */
     E2E.BotMetricsEntryPoint = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -100899,6 +100958,7 @@ $root.E2E = (function() {
         values[valuesById[23] = "UGC_CHAT_SHORTCUT_AI_STUDIO"] = 23;
         values[valuesById[24] = "NEW_CHAT_AI_STUDIO"] = 24;
         values[valuesById[25] = "AIVOICE_FAVICON_CALL_HISTORY"] = 25;
+        values[valuesById[26] = "ASK_META_AI_CONTEXT_MENU"] = 26;
         return values;
     })();
 
