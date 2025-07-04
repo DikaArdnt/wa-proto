@@ -5098,7 +5098,8 @@ export namespace E2E {
             RICH_RESPONSE_UNIFIED_RESPONSE = 34,
             PROMOTION_MESSAGE = 35,
             SIMPLIFIED_PROFILE_PAGE = 36,
-            RICH_RESPONSE_SOURCES_IN_MESSAGE = 37
+            RICH_RESPONSE_SOURCES_IN_MESSAGE = 37,
+            RICH_RESPONSE_SIDE_BY_SIDE_SURVEY = 38
         }
     }
 
@@ -16477,6 +16478,9 @@ export namespace E2E {
 
             /** ExtendedTextMessage paymentLinkMetadata */
             paymentLinkMetadata?: (E2E.Message.IPaymentLinkMetadata|null);
+
+            /** ExtendedTextMessage endCardTiles */
+            endCardTiles?: (E2E.Message.IVideoEndCard[]|null);
         }
 
         /** Represents an ExtendedTextMessage. */
@@ -16571,6 +16575,9 @@ export namespace E2E {
 
             /** ExtendedTextMessage paymentLinkMetadata. */
             public paymentLinkMetadata?: (E2E.Message.IPaymentLinkMetadata|null);
+
+            /** ExtendedTextMessage endCardTiles. */
+            public endCardTiles: E2E.Message.IVideoEndCard[];
 
             /**
              * Creates a new ExtendedTextMessage instance using the specified properties.
@@ -28891,6 +28898,121 @@ export namespace E2E {
 
             /**
              * Gets the default type url for URLMetadata
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a VideoEndCard. */
+        interface IVideoEndCard {
+
+            /** VideoEndCard username */
+            username: string;
+
+            /** VideoEndCard caption */
+            caption: string;
+
+            /** VideoEndCard thumbnailImageUrl */
+            thumbnailImageUrl: string;
+
+            /** VideoEndCard profilePictureUrl */
+            profilePictureUrl: string;
+        }
+
+        /** Represents a VideoEndCard. */
+        class VideoEndCard implements IVideoEndCard {
+
+            /**
+             * Constructs a new VideoEndCard.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IVideoEndCard);
+
+            /** VideoEndCard username. */
+            public username: string;
+
+            /** VideoEndCard caption. */
+            public caption: string;
+
+            /** VideoEndCard thumbnailImageUrl. */
+            public thumbnailImageUrl: string;
+
+            /** VideoEndCard profilePictureUrl. */
+            public profilePictureUrl: string;
+
+            /**
+             * Creates a new VideoEndCard instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns VideoEndCard instance
+             */
+            public static create(properties?: E2E.Message.IVideoEndCard): E2E.Message.VideoEndCard;
+
+            /**
+             * Encodes the specified VideoEndCard message. Does not implicitly {@link E2E.Message.VideoEndCard.verify|verify} messages.
+             * @param message VideoEndCard message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IVideoEndCard, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified VideoEndCard message, length delimited. Does not implicitly {@link E2E.Message.VideoEndCard.verify|verify} messages.
+             * @param message VideoEndCard message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IVideoEndCard, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a VideoEndCard message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns VideoEndCard
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.VideoEndCard;
+
+            /**
+             * Decodes a VideoEndCard message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns VideoEndCard
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.VideoEndCard;
+
+            /**
+             * Verifies a VideoEndCard message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a VideoEndCard message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns VideoEndCard
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.VideoEndCard;
+
+            /**
+             * Creates a plain object from a VideoEndCard message. Also converts values to other types if specified.
+             * @param message VideoEndCard
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.VideoEndCard, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this VideoEndCard to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for VideoEndCard
              * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
              * @returns The default type url
              */

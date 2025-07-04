@@ -34265,6 +34265,7 @@ $root.E2E = (function() {
                     case 35:
                     case 36:
                     case 37:
+                    case 38:
                         break;
                     }
             }
@@ -34446,6 +34447,10 @@ $root.E2E = (function() {
                     case 37:
                         message.capabilities[i] = 37;
                         break;
+                    case "RICH_RESPONSE_SIDE_BY_SIDE_SURVEY":
+                    case 38:
+                        message.capabilities[i] = 38;
+                        break;
                     }
             }
             return message;
@@ -34542,6 +34547,7 @@ $root.E2E = (function() {
          * @property {number} PROMOTION_MESSAGE=35 PROMOTION_MESSAGE value
          * @property {number} SIMPLIFIED_PROFILE_PAGE=36 SIMPLIFIED_PROFILE_PAGE value
          * @property {number} RICH_RESPONSE_SOURCES_IN_MESSAGE=37 RICH_RESPONSE_SOURCES_IN_MESSAGE value
+         * @property {number} RICH_RESPONSE_SIDE_BY_SIDE_SURVEY=38 RICH_RESPONSE_SIDE_BY_SIDE_SURVEY value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -34583,6 +34589,7 @@ $root.E2E = (function() {
             values[valuesById[35] = "PROMOTION_MESSAGE"] = 35;
             values[valuesById[36] = "SIMPLIFIED_PROFILE_PAGE"] = 36;
             values[valuesById[37] = "RICH_RESPONSE_SOURCES_IN_MESSAGE"] = 37;
+            values[valuesById[38] = "RICH_RESPONSE_SIDE_BY_SIDE_SURVEY"] = 38;
             return values;
         })();
 
@@ -65775,6 +65782,7 @@ $root.E2E = (function() {
              * @property {E2E.Message.IMMSThumbnailMetadata|null} [faviconMMSMetadata] ExtendedTextMessage faviconMMSMetadata
              * @property {E2E.Message.ILinkPreviewMetadata|null} [linkPreviewMetadata] ExtendedTextMessage linkPreviewMetadata
              * @property {E2E.Message.IPaymentLinkMetadata|null} [paymentLinkMetadata] ExtendedTextMessage paymentLinkMetadata
+             * @property {Array.<E2E.Message.IVideoEndCard>|null} [endCardTiles] ExtendedTextMessage endCardTiles
              */
 
             /**
@@ -65786,6 +65794,7 @@ $root.E2E = (function() {
              * @param {E2E.Message.IExtendedTextMessage=} [properties] Properties to set
              */
             function ExtendedTextMessage(properties) {
+                this.endCardTiles = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -66017,6 +66026,14 @@ $root.E2E = (function() {
             ExtendedTextMessage.prototype.paymentLinkMetadata = null;
 
             /**
+             * ExtendedTextMessage endCardTiles.
+             * @member {Array.<E2E.Message.IVideoEndCard>} endCardTiles
+             * @memberof E2E.Message.ExtendedTextMessage
+             * @instance
+             */
+            ExtendedTextMessage.prototype.endCardTiles = $util.emptyArray;
+
+            /**
              * Creates a new ExtendedTextMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.ExtendedTextMessage
@@ -66096,6 +66113,9 @@ $root.E2E = (function() {
                     $root.E2E.Message.LinkPreviewMetadata.encode(message.linkPreviewMetadata, writer.uint32(/* id 34, wireType 2 =*/274).fork()).ldelim();
                 if (message.paymentLinkMetadata != null && Object.hasOwnProperty.call(message, "paymentLinkMetadata"))
                     $root.E2E.Message.PaymentLinkMetadata.encode(message.paymentLinkMetadata, writer.uint32(/* id 35, wireType 2 =*/282).fork()).ldelim();
+                if (message.endCardTiles != null && message.endCardTiles.length)
+                    for (var i = 0; i < message.endCardTiles.length; ++i)
+                        $root.E2E.Message.VideoEndCard.encode(message.endCardTiles[i], writer.uint32(/* id 36, wireType 2 =*/290).fork()).ldelim();
                 return writer;
             };
 
@@ -66242,6 +66262,12 @@ $root.E2E = (function() {
                         }
                     case 35: {
                             message.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 36: {
+                            if (!(message.endCardTiles && message.endCardTiles.length))
+                                message.endCardTiles = [];
+                            message.endCardTiles.push($root.E2E.Message.VideoEndCard.decode(reader, reader.uint32()));
                             break;
                         }
                     default:
@@ -66404,6 +66430,15 @@ $root.E2E = (function() {
                     var error = $root.E2E.Message.PaymentLinkMetadata.verify(message.paymentLinkMetadata);
                     if (error)
                         return "paymentLinkMetadata." + error;
+                }
+                if (message.endCardTiles != null && message.hasOwnProperty("endCardTiles")) {
+                    if (!Array.isArray(message.endCardTiles))
+                        return "endCardTiles: array expected";
+                    for (var i = 0; i < message.endCardTiles.length; ++i) {
+                        var error = $root.E2E.Message.VideoEndCard.verify(message.endCardTiles[i]);
+                        if (error)
+                            return "endCardTiles." + error;
+                    }
                 }
                 return null;
             };
@@ -66622,6 +66657,16 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.ExtendedTextMessage.paymentLinkMetadata: object expected");
                     message.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.fromObject(object.paymentLinkMetadata);
                 }
+                if (object.endCardTiles) {
+                    if (!Array.isArray(object.endCardTiles))
+                        throw TypeError(".E2E.Message.ExtendedTextMessage.endCardTiles: array expected");
+                    message.endCardTiles = [];
+                    for (var i = 0; i < object.endCardTiles.length; ++i) {
+                        if (typeof object.endCardTiles[i] !== "object")
+                            throw TypeError(".E2E.Message.ExtendedTextMessage.endCardTiles: object expected");
+                        message.endCardTiles[i] = $root.E2E.Message.VideoEndCard.fromObject(object.endCardTiles[i]);
+                    }
+                }
                 return message;
             };
 
@@ -66638,6 +66683,8 @@ $root.E2E = (function() {
                 if (!options)
                     options = {};
                 var object = {};
+                if (options.arrays || options.defaults)
+                    object.endCardTiles = [];
                 if (options.defaults) {
                     object.text = "";
                     object.matchedText = "";
@@ -66761,6 +66808,11 @@ $root.E2E = (function() {
                     object.linkPreviewMetadata = $root.E2E.Message.LinkPreviewMetadata.toObject(message.linkPreviewMetadata, options);
                 if (message.paymentLinkMetadata != null && message.hasOwnProperty("paymentLinkMetadata"))
                     object.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.toObject(message.paymentLinkMetadata, options);
+                if (message.endCardTiles && message.endCardTiles.length) {
+                    object.endCardTiles = [];
+                    for (var j = 0; j < message.endCardTiles.length; ++j)
+                        object.endCardTiles[j] = $root.E2E.Message.VideoEndCard.toObject(message.endCardTiles[j], options);
+                }
                 return object;
             };
 
@@ -99714,6 +99766,281 @@ $root.E2E = (function() {
             };
 
             return URLMetadata;
+        })();
+
+        Message.VideoEndCard = (function() {
+
+            /**
+             * Properties of a VideoEndCard.
+             * @memberof E2E.Message
+             * @interface IVideoEndCard
+             * @property {string} username VideoEndCard username
+             * @property {string} caption VideoEndCard caption
+             * @property {string} thumbnailImageUrl VideoEndCard thumbnailImageUrl
+             * @property {string} profilePictureUrl VideoEndCard profilePictureUrl
+             */
+
+            /**
+             * Constructs a new VideoEndCard.
+             * @memberof E2E.Message
+             * @classdesc Represents a VideoEndCard.
+             * @implements IVideoEndCard
+             * @constructor
+             * @param {E2E.Message.IVideoEndCard=} [properties] Properties to set
+             */
+            function VideoEndCard(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * VideoEndCard username.
+             * @member {string} username
+             * @memberof E2E.Message.VideoEndCard
+             * @instance
+             */
+            VideoEndCard.prototype.username = "";
+
+            /**
+             * VideoEndCard caption.
+             * @member {string} caption
+             * @memberof E2E.Message.VideoEndCard
+             * @instance
+             */
+            VideoEndCard.prototype.caption = "";
+
+            /**
+             * VideoEndCard thumbnailImageUrl.
+             * @member {string} thumbnailImageUrl
+             * @memberof E2E.Message.VideoEndCard
+             * @instance
+             */
+            VideoEndCard.prototype.thumbnailImageUrl = "";
+
+            /**
+             * VideoEndCard profilePictureUrl.
+             * @member {string} profilePictureUrl
+             * @memberof E2E.Message.VideoEndCard
+             * @instance
+             */
+            VideoEndCard.prototype.profilePictureUrl = "";
+
+            /**
+             * Creates a new VideoEndCard instance using the specified properties.
+             * @function create
+             * @memberof E2E.Message.VideoEndCard
+             * @static
+             * @param {E2E.Message.IVideoEndCard=} [properties] Properties to set
+             * @returns {E2E.Message.VideoEndCard} VideoEndCard instance
+             */
+            VideoEndCard.create = function create(properties) {
+                return new VideoEndCard(properties);
+            };
+
+            /**
+             * Encodes the specified VideoEndCard message. Does not implicitly {@link E2E.Message.VideoEndCard.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.Message.VideoEndCard
+             * @static
+             * @param {E2E.Message.IVideoEndCard} message VideoEndCard message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            VideoEndCard.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.username);
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.caption);
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.thumbnailImageUrl);
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.profilePictureUrl);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified VideoEndCard message, length delimited. Does not implicitly {@link E2E.Message.VideoEndCard.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.Message.VideoEndCard
+             * @static
+             * @param {E2E.Message.IVideoEndCard} message VideoEndCard message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            VideoEndCard.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a VideoEndCard message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.Message.VideoEndCard
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.Message.VideoEndCard} VideoEndCard
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            VideoEndCard.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.VideoEndCard();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.username = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.caption = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.thumbnailImageUrl = reader.string();
+                            break;
+                        }
+                    case 4: {
+                            message.profilePictureUrl = reader.string();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                if (!message.hasOwnProperty("username"))
+                    throw $util.ProtocolError("missing required 'username'", { instance: message });
+                if (!message.hasOwnProperty("caption"))
+                    throw $util.ProtocolError("missing required 'caption'", { instance: message });
+                if (!message.hasOwnProperty("thumbnailImageUrl"))
+                    throw $util.ProtocolError("missing required 'thumbnailImageUrl'", { instance: message });
+                if (!message.hasOwnProperty("profilePictureUrl"))
+                    throw $util.ProtocolError("missing required 'profilePictureUrl'", { instance: message });
+                return message;
+            };
+
+            /**
+             * Decodes a VideoEndCard message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.Message.VideoEndCard
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.Message.VideoEndCard} VideoEndCard
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            VideoEndCard.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a VideoEndCard message.
+             * @function verify
+             * @memberof E2E.Message.VideoEndCard
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            VideoEndCard.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (!$util.isString(message.username))
+                    return "username: string expected";
+                if (!$util.isString(message.caption))
+                    return "caption: string expected";
+                if (!$util.isString(message.thumbnailImageUrl))
+                    return "thumbnailImageUrl: string expected";
+                if (!$util.isString(message.profilePictureUrl))
+                    return "profilePictureUrl: string expected";
+                return null;
+            };
+
+            /**
+             * Creates a VideoEndCard message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.Message.VideoEndCard
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.Message.VideoEndCard} VideoEndCard
+             */
+            VideoEndCard.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.Message.VideoEndCard)
+                    return object;
+                var message = new $root.E2E.Message.VideoEndCard();
+                if (object.username != null)
+                    message.username = String(object.username);
+                if (object.caption != null)
+                    message.caption = String(object.caption);
+                if (object.thumbnailImageUrl != null)
+                    message.thumbnailImageUrl = String(object.thumbnailImageUrl);
+                if (object.profilePictureUrl != null)
+                    message.profilePictureUrl = String(object.profilePictureUrl);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a VideoEndCard message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.Message.VideoEndCard
+             * @static
+             * @param {E2E.Message.VideoEndCard} message VideoEndCard
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            VideoEndCard.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.username = "";
+                    object.caption = "";
+                    object.thumbnailImageUrl = "";
+                    object.profilePictureUrl = "";
+                }
+                if (message.username != null && message.hasOwnProperty("username"))
+                    object.username = message.username;
+                if (message.caption != null && message.hasOwnProperty("caption"))
+                    object.caption = message.caption;
+                if (message.thumbnailImageUrl != null && message.hasOwnProperty("thumbnailImageUrl"))
+                    object.thumbnailImageUrl = message.thumbnailImageUrl;
+                if (message.profilePictureUrl != null && message.hasOwnProperty("profilePictureUrl"))
+                    object.profilePictureUrl = message.profilePictureUrl;
+                return object;
+            };
+
+            /**
+             * Converts this VideoEndCard to JSON.
+             * @function toJSON
+             * @memberof E2E.Message.VideoEndCard
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            VideoEndCard.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for VideoEndCard
+             * @function getTypeUrl
+             * @memberof E2E.Message.VideoEndCard
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            VideoEndCard.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.Message.VideoEndCard";
+            };
+
+            return VideoEndCard;
         })();
 
         Message.VideoMessage = (function() {

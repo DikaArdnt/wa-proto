@@ -426,6 +426,7 @@ message BotCapabilityMetadata {
         PROMOTION_MESSAGE = 35;
         SIMPLIFIED_PROFILE_PAGE = 36;
         RICH_RESPONSE_SOURCES_IN_MESSAGE = 37;
+        RICH_RESPONSE_SIDE_BY_SIDE_SURVEY = 38;
     }
 }
 
@@ -1369,6 +1370,7 @@ message Message {
         optional Message.MMSThumbnailMetadata faviconMMSMetadata = 33;
         optional Message.LinkPreviewMetadata linkPreviewMetadata = 34;
         optional Message.PaymentLinkMetadata paymentLinkMetadata = 35;
+        repeated Message.VideoEndCard endCardTiles = 36;
         enum FontType {
             SYSTEM = 0;
             SYSTEM_TEXT = 1;
@@ -2256,6 +2258,12 @@ message Message {
     }
     message URLMetadata {
         optional uint32 fbExperimentId = 1;
+    }
+    message VideoEndCard {
+        required string username = 1;
+        required string caption = 2;
+        required string thumbnailImageUrl = 3;
+        required string profilePictureUrl = 4;
     }
     message VideoMessage {
         optional string url = 1;
