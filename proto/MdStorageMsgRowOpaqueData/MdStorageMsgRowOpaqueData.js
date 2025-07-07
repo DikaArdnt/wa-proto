@@ -12882,6 +12882,7 @@ $root.E2E = (function() {
                 case 13:
                 case 14:
                 case 15:
+                case 16:
                     break;
                 }
             if (message.parentMessageKey != null && message.hasOwnProperty("parentMessageKey")) {
@@ -12978,6 +12979,10 @@ $root.E2E = (function() {
             case 15:
                 message.associationType = 15;
                 break;
+            case "STATUS_QUESTION":
+            case 16:
+                message.associationType = 16;
+                break;
             }
             if (object.parentMessageKey != null) {
                 if (typeof object.parentMessageKey !== "object")
@@ -13062,6 +13067,7 @@ $root.E2E = (function() {
          * @property {number} STATUS_LINK_ACTION=13 STATUS_LINK_ACTION value
          * @property {number} VIEW_ALL_REPLIES=14 VIEW_ALL_REPLIES value
          * @property {number} STATUS_ADD_YOURS_AI_IMAGINE=15 STATUS_ADD_YOURS_AI_IMAGINE value
+         * @property {number} STATUS_QUESTION=16 STATUS_QUESTION value
          */
         MessageAssociation.AssociationType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -13081,6 +13087,7 @@ $root.E2E = (function() {
             values[valuesById[13] = "STATUS_LINK_ACTION"] = 13;
             values[valuesById[14] = "VIEW_ALL_REPLIES"] = 14;
             values[valuesById[15] = "STATUS_ADD_YOURS_AI_IMAGINE"] = 15;
+            values[valuesById[16] = "STATUS_QUESTION"] = 16;
             return values;
         })();
 
@@ -19807,6 +19814,8 @@ $root.E2E = (function() {
                 case 24:
                 case 25:
                 case 26:
+                case 27:
+                case 28:
                     break;
                 }
             if (message.threadOrigin != null && message.hasOwnProperty("threadOrigin"))
@@ -19947,6 +19956,14 @@ $root.E2E = (function() {
             case "ASK_META_AI_CONTEXT_MENU":
             case 26:
                 message.destinationEntryPoint = 26;
+                break;
+            case "ASK_META_AI_CONTEXT_MENU_1ON1":
+            case 27:
+                message.destinationEntryPoint = 27;
+                break;
+            case "ASK_META_AI_CONTEXT_MENU_GROUP":
+            case 28:
+                message.destinationEntryPoint = 28;
                 break;
             }
             switch (object.threadOrigin) {
@@ -29410,6 +29427,7 @@ $root.E2E = (function() {
          * @property {boolean|null} [isQuestion] ContextInfo isQuestion
          * @property {E2E.ContextInfo.StatusSourceType|null} [statusSourceType] ContextInfo statusSourceType
          * @property {Array.<StatusAttributions.IStatusAttribution>|null} [statusAttributions] ContextInfo statusAttributions
+         * @property {boolean|null} [isGroupStatus] ContextInfo isGroupStatus
          */
 
         /**
@@ -29815,6 +29833,14 @@ $root.E2E = (function() {
         ContextInfo.prototype.statusAttributions = $util.emptyArray;
 
         /**
+         * ContextInfo isGroupStatus.
+         * @member {boolean} isGroupStatus
+         * @memberof E2E.ContextInfo
+         * @instance
+         */
+        ContextInfo.prototype.isGroupStatus = false;
+
+        /**
          * Creates a new ContextInfo instance using the specified properties.
          * @function create
          * @memberof E2E.ContextInfo
@@ -29937,6 +29963,8 @@ $root.E2E = (function() {
             if (message.statusAttributions != null && message.statusAttributions.length)
                 for (var i = 0; i < message.statusAttributions.length; ++i)
                     $root.StatusAttributions.StatusAttribution.encode(message.statusAttributions[i], writer.uint32(/* id 65, wireType 2 =*/522).fork()).ldelim();
+            if (message.isGroupStatus != null && Object.hasOwnProperty.call(message, "isGroupStatus"))
+                writer.uint32(/* id 66, wireType 0 =*/528).bool(message.isGroupStatus);
             return writer;
         };
 
@@ -30171,6 +30199,10 @@ $root.E2E = (function() {
                         message.statusAttributions.push($root.StatusAttributions.StatusAttribution.decode(reader, reader.uint32()));
                         break;
                     }
+                case 66: {
+                        message.isGroupStatus = reader.bool();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -30367,6 +30399,7 @@ $root.E2E = (function() {
                 case 0:
                 case 1:
                 case 2:
+                case 3:
                     break;
                 }
             if (message.urlTrackingMap != null && message.hasOwnProperty("urlTrackingMap")) {
@@ -30419,6 +30452,9 @@ $root.E2E = (function() {
                         return "statusAttributions." + error;
                 }
             }
+            if (message.isGroupStatus != null && message.hasOwnProperty("isGroupStatus"))
+                if (typeof message.isGroupStatus !== "boolean")
+                    return "isGroupStatus: boolean expected";
             return null;
         };
 
@@ -30598,6 +30634,10 @@ $root.E2E = (function() {
             case 2:
                 message.statusAttributionType = 2;
                 break;
+            case "FORWARDED_FROM_STATUS":
+            case 3:
+                message.statusAttributionType = 3;
+                break;
             }
             if (object.urlTrackingMap != null) {
                 if (typeof object.urlTrackingMap !== "object")
@@ -30691,6 +30731,8 @@ $root.E2E = (function() {
                     message.statusAttributions[i] = $root.StatusAttributions.StatusAttribution.fromObject(object.statusAttributions[i]);
                 }
             }
+            if (object.isGroupStatus != null)
+                message.isGroupStatus = Boolean(object.isGroupStatus);
             return message;
         };
 
@@ -30780,6 +30822,7 @@ $root.E2E = (function() {
                 object.memberLabel = null;
                 object.isQuestion = false;
                 object.statusSourceType = options.enums === String ? "IMAGE" : 0;
+                object.isGroupStatus = false;
             }
             if (message.stanzaId != null && message.hasOwnProperty("stanzaId"))
                 object.stanzaId = message.stanzaId;
@@ -30889,6 +30932,8 @@ $root.E2E = (function() {
                 for (var j = 0; j < message.statusAttributions.length; ++j)
                     object.statusAttributions[j] = $root.StatusAttributions.StatusAttribution.toObject(message.statusAttributions[j], options);
             }
+            if (message.isGroupStatus != null && message.hasOwnProperty("isGroupStatus"))
+                object.isGroupStatus = message.isGroupStatus;
             return object;
         };
 
@@ -33774,12 +33819,14 @@ $root.E2E = (function() {
          * @property {number} NONE=0 NONE value
          * @property {number} RESHARED_FROM_MENTION=1 RESHARED_FROM_MENTION value
          * @property {number} RESHARED_FROM_POST=2 RESHARED_FROM_POST value
+         * @property {number} FORWARDED_FROM_STATUS=3 FORWARDED_FROM_STATUS value
          */
         ContextInfo.StatusAttributionType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
             values[valuesById[0] = "NONE"] = 0;
             values[valuesById[1] = "RESHARED_FROM_MENTION"] = 1;
             values[valuesById[2] = "RESHARED_FROM_POST"] = 2;
+            values[valuesById[3] = "FORWARDED_FROM_STATUS"] = 3;
             return values;
         })();
 
@@ -34131,6 +34178,7 @@ $root.E2E = (function() {
          * @property {E2E.Message.IMessageHistoryNotice|null} [messageHistoryNotice] Message messageHistoryNotice
          * @property {E2E.Message.IFutureProofMessage|null} [groupStatusMessageV2] Message groupStatusMessageV2
          * @property {E2E.Message.IFutureProofMessage|null} [botForwardedMessage] Message botForwardedMessage
+         * @property {E2E.Message.IStatusQuestionAnswerMessage|null} [statusQuestionAnswerMessage] Message statusQuestionAnswerMessage
          */
 
         /**
@@ -34853,6 +34901,14 @@ $root.E2E = (function() {
         Message.prototype.botForwardedMessage = null;
 
         /**
+         * Message statusQuestionAnswerMessage.
+         * @member {E2E.Message.IStatusQuestionAnswerMessage|null|undefined} statusQuestionAnswerMessage
+         * @memberof E2E.Message
+         * @instance
+         */
+        Message.prototype.statusQuestionAnswerMessage = null;
+
+        /**
          * Creates a new Message instance using the specified properties.
          * @function create
          * @memberof E2E.Message
@@ -35052,6 +35108,8 @@ $root.E2E = (function() {
                 $root.E2E.Message.FutureProofMessage.encode(message.groupStatusMessageV2, writer.uint32(/* id 103, wireType 2 =*/826).fork()).ldelim();
             if (message.botForwardedMessage != null && Object.hasOwnProperty.call(message, "botForwardedMessage"))
                 $root.E2E.Message.FutureProofMessage.encode(message.botForwardedMessage, writer.uint32(/* id 104, wireType 2 =*/834).fork()).ldelim();
+            if (message.statusQuestionAnswerMessage != null && Object.hasOwnProperty.call(message, "statusQuestionAnswerMessage"))
+                $root.E2E.Message.StatusQuestionAnswerMessage.encode(message.statusQuestionAnswerMessage, writer.uint32(/* id 105, wireType 2 =*/842).fork()).ldelim();
             return writer;
         };
 
@@ -35438,6 +35496,10 @@ $root.E2E = (function() {
                     }
                 case 104: {
                         message.botForwardedMessage = $root.E2E.Message.FutureProofMessage.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 105: {
+                        message.statusQuestionAnswerMessage = $root.E2E.Message.StatusQuestionAnswerMessage.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -35913,6 +35975,11 @@ $root.E2E = (function() {
                 if (error)
                     return "botForwardedMessage." + error;
             }
+            if (message.statusQuestionAnswerMessage != null && message.hasOwnProperty("statusQuestionAnswerMessage")) {
+                var error = $root.E2E.Message.StatusQuestionAnswerMessage.verify(message.statusQuestionAnswerMessage);
+                if (error)
+                    return "statusQuestionAnswerMessage." + error;
+            }
             return null;
         };
 
@@ -36365,6 +36432,11 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.Message.botForwardedMessage: object expected");
                 message.botForwardedMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.botForwardedMessage);
             }
+            if (object.statusQuestionAnswerMessage != null) {
+                if (typeof object.statusQuestionAnswerMessage !== "object")
+                    throw TypeError(".E2E.Message.statusQuestionAnswerMessage: object expected");
+                message.statusQuestionAnswerMessage = $root.E2E.Message.StatusQuestionAnswerMessage.fromObject(object.statusQuestionAnswerMessage);
+            }
             return message;
         };
 
@@ -36470,6 +36542,7 @@ $root.E2E = (function() {
                 object.messageHistoryNotice = null;
                 object.groupStatusMessageV2 = null;
                 object.botForwardedMessage = null;
+                object.statusQuestionAnswerMessage = null;
             }
             if (message.conversation != null && message.hasOwnProperty("conversation"))
                 object.conversation = message.conversation;
@@ -36647,6 +36720,8 @@ $root.E2E = (function() {
                 object.groupStatusMessageV2 = $root.E2E.Message.FutureProofMessage.toObject(message.groupStatusMessageV2, options);
             if (message.botForwardedMessage != null && message.hasOwnProperty("botForwardedMessage"))
                 object.botForwardedMessage = $root.E2E.Message.FutureProofMessage.toObject(message.botForwardedMessage, options);
+            if (message.statusQuestionAnswerMessage != null && message.hasOwnProperty("statusQuestionAnswerMessage"))
+                object.statusQuestionAnswerMessage = $root.E2E.Message.StatusQuestionAnswerMessage.toObject(message.statusQuestionAnswerMessage, options);
             return object;
         };
 
@@ -68368,6 +68443,7 @@ $root.E2E = (function() {
                      * @property {string|null} [matchText] LinkPreviewResponse matchText
                      * @property {string|null} [previewType] LinkPreviewResponse previewType
                      * @property {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.ILinkPreviewHighQualityThumbnail|null} [hqThumbnail] LinkPreviewResponse hqThumbnail
+                     * @property {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.IPaymentLinkPreviewMetadata|null} [previewMetadata] LinkPreviewResponse previewMetadata
                      */
 
                     /**
@@ -68442,6 +68518,14 @@ $root.E2E = (function() {
                     LinkPreviewResponse.prototype.hqThumbnail = null;
 
                     /**
+                     * LinkPreviewResponse previewMetadata.
+                     * @member {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.IPaymentLinkPreviewMetadata|null|undefined} previewMetadata
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse
+                     * @instance
+                     */
+                    LinkPreviewResponse.prototype.previewMetadata = null;
+
+                    /**
                      * Creates a new LinkPreviewResponse instance using the specified properties.
                      * @function create
                      * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse
@@ -68479,6 +68563,8 @@ $root.E2E = (function() {
                             writer.uint32(/* id 7, wireType 2 =*/58).string(message.previewType);
                         if (message.hqThumbnail != null && Object.hasOwnProperty.call(message, "hqThumbnail"))
                             $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.LinkPreviewHighQualityThumbnail.encode(message.hqThumbnail, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+                        if (message.previewMetadata != null && Object.hasOwnProperty.call(message, "previewMetadata"))
+                            $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata.encode(message.previewMetadata, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
                         return writer;
                     };
 
@@ -68543,6 +68629,10 @@ $root.E2E = (function() {
                                     message.hqThumbnail = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.LinkPreviewHighQualityThumbnail.decode(reader, reader.uint32());
                                     break;
                                 }
+                            case 9: {
+                                    message.previewMetadata = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata.decode(reader, reader.uint32());
+                                    break;
+                                }
                             default:
                                 reader.skipType(tag & 7);
                                 break;
@@ -68601,6 +68691,11 @@ $root.E2E = (function() {
                             if (error)
                                 return "hqThumbnail." + error;
                         }
+                        if (message.previewMetadata != null && message.hasOwnProperty("previewMetadata")) {
+                            var error = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata.verify(message.previewMetadata);
+                            if (error)
+                                return "previewMetadata." + error;
+                        }
                         return null;
                     };
 
@@ -68636,6 +68731,11 @@ $root.E2E = (function() {
                                 throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.hqThumbnail: object expected");
                             message.hqThumbnail = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.LinkPreviewHighQualityThumbnail.fromObject(object.hqThumbnail);
                         }
+                        if (object.previewMetadata != null) {
+                            if (typeof object.previewMetadata !== "object")
+                                throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.previewMetadata: object expected");
+                            message.previewMetadata = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata.fromObject(object.previewMetadata);
+                        }
                         return message;
                     };
 
@@ -68666,6 +68766,7 @@ $root.E2E = (function() {
                             object.matchText = "";
                             object.previewType = "";
                             object.hqThumbnail = null;
+                            object.previewMetadata = null;
                         }
                         if (message.url != null && message.hasOwnProperty("url"))
                             object.url = message.url;
@@ -68681,6 +68782,8 @@ $root.E2E = (function() {
                             object.previewType = message.previewType;
                         if (message.hqThumbnail != null && message.hasOwnProperty("hqThumbnail"))
                             object.hqThumbnail = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.LinkPreviewHighQualityThumbnail.toObject(message.hqThumbnail, options);
+                        if (message.previewMetadata != null && message.hasOwnProperty("previewMetadata"))
+                            object.previewMetadata = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata.toObject(message.previewMetadata, options);
                         return object;
                     };
 
@@ -69075,6 +69178,235 @@ $root.E2E = (function() {
                         };
 
                         return LinkPreviewHighQualityThumbnail;
+                    })();
+
+                    LinkPreviewResponse.PaymentLinkPreviewMetadata = (function() {
+
+                        /**
+                         * Properties of a PaymentLinkPreviewMetadata.
+                         * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse
+                         * @interface IPaymentLinkPreviewMetadata
+                         * @property {boolean|null} [isBusinessVerified] PaymentLinkPreviewMetadata isBusinessVerified
+                         * @property {string|null} [providerName] PaymentLinkPreviewMetadata providerName
+                         */
+
+                        /**
+                         * Constructs a new PaymentLinkPreviewMetadata.
+                         * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse
+                         * @classdesc Represents a PaymentLinkPreviewMetadata.
+                         * @implements IPaymentLinkPreviewMetadata
+                         * @constructor
+                         * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.IPaymentLinkPreviewMetadata=} [properties] Properties to set
+                         */
+                        function PaymentLinkPreviewMetadata(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+
+                        /**
+                         * PaymentLinkPreviewMetadata isBusinessVerified.
+                         * @member {boolean} isBusinessVerified
+                         * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata
+                         * @instance
+                         */
+                        PaymentLinkPreviewMetadata.prototype.isBusinessVerified = false;
+
+                        /**
+                         * PaymentLinkPreviewMetadata providerName.
+                         * @member {string} providerName
+                         * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata
+                         * @instance
+                         */
+                        PaymentLinkPreviewMetadata.prototype.providerName = "";
+
+                        /**
+                         * Creates a new PaymentLinkPreviewMetadata instance using the specified properties.
+                         * @function create
+                         * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata
+                         * @static
+                         * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.IPaymentLinkPreviewMetadata=} [properties] Properties to set
+                         * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata} PaymentLinkPreviewMetadata instance
+                         */
+                        PaymentLinkPreviewMetadata.create = function create(properties) {
+                            return new PaymentLinkPreviewMetadata(properties);
+                        };
+
+                        /**
+                         * Encodes the specified PaymentLinkPreviewMetadata message. Does not implicitly {@link E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata.verify|verify} messages.
+                         * @function encode
+                         * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata
+                         * @static
+                         * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.IPaymentLinkPreviewMetadata} message PaymentLinkPreviewMetadata message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        PaymentLinkPreviewMetadata.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.isBusinessVerified != null && Object.hasOwnProperty.call(message, "isBusinessVerified"))
+                                writer.uint32(/* id 1, wireType 0 =*/8).bool(message.isBusinessVerified);
+                            if (message.providerName != null && Object.hasOwnProperty.call(message, "providerName"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.providerName);
+                            return writer;
+                        };
+
+                        /**
+                         * Encodes the specified PaymentLinkPreviewMetadata message, length delimited. Does not implicitly {@link E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata
+                         * @static
+                         * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.IPaymentLinkPreviewMetadata} message PaymentLinkPreviewMetadata message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        PaymentLinkPreviewMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+
+                        /**
+                         * Decodes a PaymentLinkPreviewMetadata message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata} PaymentLinkPreviewMetadata
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        PaymentLinkPreviewMetadata.decode = function decode(reader, length, error) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                if (tag === error)
+                                    break;
+                                switch (tag >>> 3) {
+                                case 1: {
+                                        message.isBusinessVerified = reader.bool();
+                                        break;
+                                    }
+                                case 2: {
+                                        message.providerName = reader.string();
+                                        break;
+                                    }
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+
+                        /**
+                         * Decodes a PaymentLinkPreviewMetadata message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata} PaymentLinkPreviewMetadata
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        PaymentLinkPreviewMetadata.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+
+                        /**
+                         * Verifies a PaymentLinkPreviewMetadata message.
+                         * @function verify
+                         * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        PaymentLinkPreviewMetadata.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.isBusinessVerified != null && message.hasOwnProperty("isBusinessVerified"))
+                                if (typeof message.isBusinessVerified !== "boolean")
+                                    return "isBusinessVerified: boolean expected";
+                            if (message.providerName != null && message.hasOwnProperty("providerName"))
+                                if (!$util.isString(message.providerName))
+                                    return "providerName: string expected";
+                            return null;
+                        };
+
+                        /**
+                         * Creates a PaymentLinkPreviewMetadata message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata} PaymentLinkPreviewMetadata
+                         */
+                        PaymentLinkPreviewMetadata.fromObject = function fromObject(object) {
+                            if (object instanceof $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata)
+                                return object;
+                            var message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata();
+                            if (object.isBusinessVerified != null)
+                                message.isBusinessVerified = Boolean(object.isBusinessVerified);
+                            if (object.providerName != null)
+                                message.providerName = String(object.providerName);
+                            return message;
+                        };
+
+                        /**
+                         * Creates a plain object from a PaymentLinkPreviewMetadata message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata
+                         * @static
+                         * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata} message PaymentLinkPreviewMetadata
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        PaymentLinkPreviewMetadata.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.isBusinessVerified = false;
+                                object.providerName = "";
+                            }
+                            if (message.isBusinessVerified != null && message.hasOwnProperty("isBusinessVerified"))
+                                object.isBusinessVerified = message.isBusinessVerified;
+                            if (message.providerName != null && message.hasOwnProperty("providerName"))
+                                object.providerName = message.providerName;
+                            return object;
+                        };
+
+                        /**
+                         * Converts this PaymentLinkPreviewMetadata to JSON.
+                         * @function toJSON
+                         * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        PaymentLinkPreviewMetadata.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+
+                        /**
+                         * Gets the default type url for PaymentLinkPreviewMetadata
+                         * @function getTypeUrl
+                         * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata
+                         * @static
+                         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                         * @returns {string} The default type url
+                         */
+                        PaymentLinkPreviewMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                            if (typeUrlPrefix === undefined) {
+                                typeUrlPrefix = "type.googleapis.com";
+                            }
+                            return typeUrlPrefix + "/E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata";
+                        };
+
+                        return PaymentLinkPreviewMetadata;
                     })();
 
                     return LinkPreviewResponse;
@@ -77518,6 +77850,240 @@ $root.E2E = (function() {
             return StatusNotificationMessage;
         })();
 
+        Message.StatusQuestionAnswerMessage = (function() {
+
+            /**
+             * Properties of a StatusQuestionAnswerMessage.
+             * @memberof E2E.Message
+             * @interface IStatusQuestionAnswerMessage
+             * @property {Protocol.IMessageKey|null} [key] StatusQuestionAnswerMessage key
+             * @property {string|null} [text] StatusQuestionAnswerMessage text
+             */
+
+            /**
+             * Constructs a new StatusQuestionAnswerMessage.
+             * @memberof E2E.Message
+             * @classdesc Represents a StatusQuestionAnswerMessage.
+             * @implements IStatusQuestionAnswerMessage
+             * @constructor
+             * @param {E2E.Message.IStatusQuestionAnswerMessage=} [properties] Properties to set
+             */
+            function StatusQuestionAnswerMessage(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * StatusQuestionAnswerMessage key.
+             * @member {Protocol.IMessageKey|null|undefined} key
+             * @memberof E2E.Message.StatusQuestionAnswerMessage
+             * @instance
+             */
+            StatusQuestionAnswerMessage.prototype.key = null;
+
+            /**
+             * StatusQuestionAnswerMessage text.
+             * @member {string} text
+             * @memberof E2E.Message.StatusQuestionAnswerMessage
+             * @instance
+             */
+            StatusQuestionAnswerMessage.prototype.text = "";
+
+            /**
+             * Creates a new StatusQuestionAnswerMessage instance using the specified properties.
+             * @function create
+             * @memberof E2E.Message.StatusQuestionAnswerMessage
+             * @static
+             * @param {E2E.Message.IStatusQuestionAnswerMessage=} [properties] Properties to set
+             * @returns {E2E.Message.StatusQuestionAnswerMessage} StatusQuestionAnswerMessage instance
+             */
+            StatusQuestionAnswerMessage.create = function create(properties) {
+                return new StatusQuestionAnswerMessage(properties);
+            };
+
+            /**
+             * Encodes the specified StatusQuestionAnswerMessage message. Does not implicitly {@link E2E.Message.StatusQuestionAnswerMessage.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.Message.StatusQuestionAnswerMessage
+             * @static
+             * @param {E2E.Message.IStatusQuestionAnswerMessage} message StatusQuestionAnswerMessage message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            StatusQuestionAnswerMessage.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.key != null && Object.hasOwnProperty.call(message, "key"))
+                    $root.Protocol.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.text != null && Object.hasOwnProperty.call(message, "text"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.text);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified StatusQuestionAnswerMessage message, length delimited. Does not implicitly {@link E2E.Message.StatusQuestionAnswerMessage.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.Message.StatusQuestionAnswerMessage
+             * @static
+             * @param {E2E.Message.IStatusQuestionAnswerMessage} message StatusQuestionAnswerMessage message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            StatusQuestionAnswerMessage.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a StatusQuestionAnswerMessage message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.Message.StatusQuestionAnswerMessage
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.Message.StatusQuestionAnswerMessage} StatusQuestionAnswerMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            StatusQuestionAnswerMessage.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.StatusQuestionAnswerMessage();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 2: {
+                            message.text = reader.string();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a StatusQuestionAnswerMessage message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.Message.StatusQuestionAnswerMessage
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.Message.StatusQuestionAnswerMessage} StatusQuestionAnswerMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            StatusQuestionAnswerMessage.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a StatusQuestionAnswerMessage message.
+             * @function verify
+             * @memberof E2E.Message.StatusQuestionAnswerMessage
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            StatusQuestionAnswerMessage.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.key != null && message.hasOwnProperty("key")) {
+                    var error = $root.Protocol.MessageKey.verify(message.key);
+                    if (error)
+                        return "key." + error;
+                }
+                if (message.text != null && message.hasOwnProperty("text"))
+                    if (!$util.isString(message.text))
+                        return "text: string expected";
+                return null;
+            };
+
+            /**
+             * Creates a StatusQuestionAnswerMessage message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.Message.StatusQuestionAnswerMessage
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.Message.StatusQuestionAnswerMessage} StatusQuestionAnswerMessage
+             */
+            StatusQuestionAnswerMessage.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.Message.StatusQuestionAnswerMessage)
+                    return object;
+                var message = new $root.E2E.Message.StatusQuestionAnswerMessage();
+                if (object.key != null) {
+                    if (typeof object.key !== "object")
+                        throw TypeError(".E2E.Message.StatusQuestionAnswerMessage.key: object expected");
+                    message.key = $root.Protocol.MessageKey.fromObject(object.key);
+                }
+                if (object.text != null)
+                    message.text = String(object.text);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a StatusQuestionAnswerMessage message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.Message.StatusQuestionAnswerMessage
+             * @static
+             * @param {E2E.Message.StatusQuestionAnswerMessage} message StatusQuestionAnswerMessage
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            StatusQuestionAnswerMessage.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.key = null;
+                    object.text = "";
+                }
+                if (message.key != null && message.hasOwnProperty("key"))
+                    object.key = $root.Protocol.MessageKey.toObject(message.key, options);
+                if (message.text != null && message.hasOwnProperty("text"))
+                    object.text = message.text;
+                return object;
+            };
+
+            /**
+             * Converts this StatusQuestionAnswerMessage to JSON.
+             * @function toJSON
+             * @memberof E2E.Message.StatusQuestionAnswerMessage
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            StatusQuestionAnswerMessage.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for StatusQuestionAnswerMessage
+             * @function getTypeUrl
+             * @memberof E2E.Message.StatusQuestionAnswerMessage
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            StatusQuestionAnswerMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.Message.StatusQuestionAnswerMessage";
+            };
+
+            return StatusQuestionAnswerMessage;
+        })();
+
         Message.StickerMessage = (function() {
 
             /**
@@ -83068,6 +83634,8 @@ $root.E2E = (function() {
      * @property {number} NEW_CHAT_AI_STUDIO=24 NEW_CHAT_AI_STUDIO value
      * @property {number} AIVOICE_FAVICON_CALL_HISTORY=25 AIVOICE_FAVICON_CALL_HISTORY value
      * @property {number} ASK_META_AI_CONTEXT_MENU=26 ASK_META_AI_CONTEXT_MENU value
+     * @property {number} ASK_META_AI_CONTEXT_MENU_1ON1=27 ASK_META_AI_CONTEXT_MENU_1ON1 value
+     * @property {number} ASK_META_AI_CONTEXT_MENU_GROUP=28 ASK_META_AI_CONTEXT_MENU_GROUP value
      */
     E2E.BotMetricsEntryPoint = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -83097,6 +83665,8 @@ $root.E2E = (function() {
         values[valuesById[24] = "NEW_CHAT_AI_STUDIO"] = 24;
         values[valuesById[25] = "AIVOICE_FAVICON_CALL_HISTORY"] = 25;
         values[valuesById[26] = "ASK_META_AI_CONTEXT_MENU"] = 26;
+        values[valuesById[27] = "ASK_META_AI_CONTEXT_MENU_1ON1"] = 27;
+        values[valuesById[28] = "ASK_META_AI_CONTEXT_MENU_GROUP"] = 28;
         return values;
     })();
 
@@ -85358,6 +85928,7 @@ $root.StatusAttributions = (function() {
          * @property {StatusAttributions.StatusAttribution.IExternalShare|null} [externalShare] StatusAttribution externalShare
          * @property {StatusAttributions.StatusAttribution.IMusic|null} [music] StatusAttribution music
          * @property {StatusAttributions.StatusAttribution.IGroupStatus|null} [groupStatus] StatusAttribution groupStatus
+         * @property {StatusAttributions.StatusAttribution.IRLAttribution|null} [rlAttribution] StatusAttribution rlAttribution
          */
 
         /**
@@ -85423,17 +85994,25 @@ $root.StatusAttributions = (function() {
          */
         StatusAttribution.prototype.groupStatus = null;
 
+        /**
+         * StatusAttribution rlAttribution.
+         * @member {StatusAttributions.StatusAttribution.IRLAttribution|null|undefined} rlAttribution
+         * @memberof StatusAttributions.StatusAttribution
+         * @instance
+         */
+        StatusAttribution.prototype.rlAttribution = null;
+
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
         /**
          * StatusAttribution attributionData.
-         * @member {"statusReshare"|"externalShare"|"music"|"groupStatus"|undefined} attributionData
+         * @member {"statusReshare"|"externalShare"|"music"|"groupStatus"|"rlAttribution"|undefined} attributionData
          * @memberof StatusAttributions.StatusAttribution
          * @instance
          */
         Object.defineProperty(StatusAttribution.prototype, "attributionData", {
-            get: $util.oneOfGetter($oneOfFields = ["statusReshare", "externalShare", "music", "groupStatus"]),
+            get: $util.oneOfGetter($oneOfFields = ["statusReshare", "externalShare", "music", "groupStatus", "rlAttribution"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
@@ -85473,6 +86052,8 @@ $root.StatusAttributions = (function() {
                 $root.StatusAttributions.StatusAttribution.Music.encode(message.music, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
             if (message.groupStatus != null && Object.hasOwnProperty.call(message, "groupStatus"))
                 $root.StatusAttributions.StatusAttribution.GroupStatus.encode(message.groupStatus, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
+            if (message.rlAttribution != null && Object.hasOwnProperty.call(message, "rlAttribution"))
+                $root.StatusAttributions.StatusAttribution.RLAttribution.encode(message.rlAttribution, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
             return writer;
         };
 
@@ -85533,6 +86114,10 @@ $root.StatusAttributions = (function() {
                         message.groupStatus = $root.StatusAttributions.StatusAttribution.GroupStatus.decode(reader, reader.uint32());
                         break;
                     }
+                case 7: {
+                        message.rlAttribution = $root.StatusAttributions.StatusAttribution.RLAttribution.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -85578,6 +86163,8 @@ $root.StatusAttributions = (function() {
                 case 2:
                 case 3:
                 case 4:
+                case 5:
+                case 6:
                     break;
                 }
             if (message.actionUrl != null && message.hasOwnProperty("actionUrl"))
@@ -85621,6 +86208,16 @@ $root.StatusAttributions = (function() {
                         return "groupStatus." + error;
                 }
             }
+            if (message.rlAttribution != null && message.hasOwnProperty("rlAttribution")) {
+                if (properties.attributionData === 1)
+                    return "attributionData: multiple values";
+                properties.attributionData = 1;
+                {
+                    var error = $root.StatusAttributions.StatusAttribution.RLAttribution.verify(message.rlAttribution);
+                    if (error)
+                        return "rlAttribution." + error;
+                }
+            }
             return null;
         };
 
@@ -85643,25 +86240,33 @@ $root.StatusAttributions = (function() {
                     break;
                 }
                 break;
-            case "RESHARE":
+            case "UNKNOWN":
             case 0:
                 message.type = 0;
                 break;
-            case "EXTERNAL_SHARE":
+            case "RESHARE":
             case 1:
                 message.type = 1;
                 break;
-            case "MUSIC":
+            case "EXTERNAL_SHARE":
             case 2:
                 message.type = 2;
                 break;
-            case "STATUS_MENTION":
+            case "MUSIC":
             case 3:
                 message.type = 3;
                 break;
-            case "GROUP_STATUS":
+            case "STATUS_MENTION":
             case 4:
                 message.type = 4;
+                break;
+            case "GROUP_STATUS":
+            case 5:
+                message.type = 5;
+                break;
+            case "RL_ATTRIBUTION":
+            case 6:
+                message.type = 6;
                 break;
             }
             if (object.actionUrl != null)
@@ -85686,6 +86291,11 @@ $root.StatusAttributions = (function() {
                     throw TypeError(".StatusAttributions.StatusAttribution.groupStatus: object expected");
                 message.groupStatus = $root.StatusAttributions.StatusAttribution.GroupStatus.fromObject(object.groupStatus);
             }
+            if (object.rlAttribution != null) {
+                if (typeof object.rlAttribution !== "object")
+                    throw TypeError(".StatusAttributions.StatusAttribution.rlAttribution: object expected");
+                message.rlAttribution = $root.StatusAttributions.StatusAttribution.RLAttribution.fromObject(object.rlAttribution);
+            }
             return message;
         };
 
@@ -85703,7 +86313,7 @@ $root.StatusAttributions = (function() {
                 options = {};
             var object = {};
             if (options.defaults) {
-                object.type = options.enums === String ? "RESHARE" : 0;
+                object.type = options.enums === String ? "UNKNOWN" : 0;
                 object.actionUrl = "";
             }
             if (message.type != null && message.hasOwnProperty("type"))
@@ -85729,6 +86339,11 @@ $root.StatusAttributions = (function() {
                 object.groupStatus = $root.StatusAttributions.StatusAttribution.GroupStatus.toObject(message.groupStatus, options);
                 if (options.oneofs)
                     object.attributionData = "groupStatus";
+            }
+            if (message.rlAttribution != null && message.hasOwnProperty("rlAttribution")) {
+                object.rlAttribution = $root.StatusAttributions.StatusAttribution.RLAttribution.toObject(message.rlAttribution, options);
+                if (options.oneofs)
+                    object.attributionData = "rlAttribution";
             }
             return object;
         };
@@ -86628,6 +87243,251 @@ $root.StatusAttributions = (function() {
             return Music;
         })();
 
+        StatusAttribution.RLAttribution = (function() {
+
+            /**
+             * Properties of a RLAttribution.
+             * @memberof StatusAttributions.StatusAttribution
+             * @interface IRLAttribution
+             * @property {StatusAttributions.StatusAttribution.RLAttribution.Source|null} [source] RLAttribution source
+             */
+
+            /**
+             * Constructs a new RLAttribution.
+             * @memberof StatusAttributions.StatusAttribution
+             * @classdesc Represents a RLAttribution.
+             * @implements IRLAttribution
+             * @constructor
+             * @param {StatusAttributions.StatusAttribution.IRLAttribution=} [properties] Properties to set
+             */
+            function RLAttribution(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * RLAttribution source.
+             * @member {StatusAttributions.StatusAttribution.RLAttribution.Source} source
+             * @memberof StatusAttributions.StatusAttribution.RLAttribution
+             * @instance
+             */
+            RLAttribution.prototype.source = 0;
+
+            /**
+             * Creates a new RLAttribution instance using the specified properties.
+             * @function create
+             * @memberof StatusAttributions.StatusAttribution.RLAttribution
+             * @static
+             * @param {StatusAttributions.StatusAttribution.IRLAttribution=} [properties] Properties to set
+             * @returns {StatusAttributions.StatusAttribution.RLAttribution} RLAttribution instance
+             */
+            RLAttribution.create = function create(properties) {
+                return new RLAttribution(properties);
+            };
+
+            /**
+             * Encodes the specified RLAttribution message. Does not implicitly {@link StatusAttributions.StatusAttribution.RLAttribution.verify|verify} messages.
+             * @function encode
+             * @memberof StatusAttributions.StatusAttribution.RLAttribution
+             * @static
+             * @param {StatusAttributions.StatusAttribution.IRLAttribution} message RLAttribution message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            RLAttribution.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.source != null && Object.hasOwnProperty.call(message, "source"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.source);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified RLAttribution message, length delimited. Does not implicitly {@link StatusAttributions.StatusAttribution.RLAttribution.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof StatusAttributions.StatusAttribution.RLAttribution
+             * @static
+             * @param {StatusAttributions.StatusAttribution.IRLAttribution} message RLAttribution message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            RLAttribution.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a RLAttribution message from the specified reader or buffer.
+             * @function decode
+             * @memberof StatusAttributions.StatusAttribution.RLAttribution
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {StatusAttributions.StatusAttribution.RLAttribution} RLAttribution
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            RLAttribution.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.StatusAttributions.StatusAttribution.RLAttribution();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.source = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a RLAttribution message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof StatusAttributions.StatusAttribution.RLAttribution
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {StatusAttributions.StatusAttribution.RLAttribution} RLAttribution
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            RLAttribution.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a RLAttribution message.
+             * @function verify
+             * @memberof StatusAttributions.StatusAttribution.RLAttribution
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            RLAttribution.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.source != null && message.hasOwnProperty("source"))
+                    switch (message.source) {
+                    default:
+                        return "source: enum value expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                        break;
+                    }
+                return null;
+            };
+
+            /**
+             * Creates a RLAttribution message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof StatusAttributions.StatusAttribution.RLAttribution
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {StatusAttributions.StatusAttribution.RLAttribution} RLAttribution
+             */
+            RLAttribution.fromObject = function fromObject(object) {
+                if (object instanceof $root.StatusAttributions.StatusAttribution.RLAttribution)
+                    return object;
+                var message = new $root.StatusAttributions.StatusAttribution.RLAttribution();
+                switch (object.source) {
+                default:
+                    if (typeof object.source === "number") {
+                        message.source = object.source;
+                        break;
+                    }
+                    break;
+                case "UNKNOWN":
+                case 0:
+                    message.source = 0;
+                    break;
+                case "RAY_BAN_META_GLASSES":
+                case 1:
+                    message.source = 1;
+                    break;
+                case "OAKLEY_META_GLASSES":
+                case 2:
+                    message.source = 2;
+                    break;
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a RLAttribution message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof StatusAttributions.StatusAttribution.RLAttribution
+             * @static
+             * @param {StatusAttributions.StatusAttribution.RLAttribution} message RLAttribution
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            RLAttribution.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.source = options.enums === String ? "UNKNOWN" : 0;
+                if (message.source != null && message.hasOwnProperty("source"))
+                    object.source = options.enums === String ? $root.StatusAttributions.StatusAttribution.RLAttribution.Source[message.source] === undefined ? message.source : $root.StatusAttributions.StatusAttribution.RLAttribution.Source[message.source] : message.source;
+                return object;
+            };
+
+            /**
+             * Converts this RLAttribution to JSON.
+             * @function toJSON
+             * @memberof StatusAttributions.StatusAttribution.RLAttribution
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            RLAttribution.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for RLAttribution
+             * @function getTypeUrl
+             * @memberof StatusAttributions.StatusAttribution.RLAttribution
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            RLAttribution.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/StatusAttributions.StatusAttribution.RLAttribution";
+            };
+
+            /**
+             * Source enum.
+             * @name StatusAttributions.StatusAttribution.RLAttribution.Source
+             * @enum {number}
+             * @property {number} UNKNOWN=0 UNKNOWN value
+             * @property {number} RAY_BAN_META_GLASSES=1 RAY_BAN_META_GLASSES value
+             * @property {number} OAKLEY_META_GLASSES=2 OAKLEY_META_GLASSES value
+             */
+            RLAttribution.Source = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "UNKNOWN"] = 0;
+                values[valuesById[1] = "RAY_BAN_META_GLASSES"] = 1;
+                values[valuesById[2] = "OAKLEY_META_GLASSES"] = 2;
+                return values;
+            })();
+
+            return RLAttribution;
+        })();
+
         StatusAttribution.StatusReshare = (function() {
 
             /**
@@ -87188,19 +88048,23 @@ $root.StatusAttributions = (function() {
          * Type enum.
          * @name StatusAttributions.StatusAttribution.Type
          * @enum {number}
-         * @property {number} RESHARE=0 RESHARE value
-         * @property {number} EXTERNAL_SHARE=1 EXTERNAL_SHARE value
-         * @property {number} MUSIC=2 MUSIC value
-         * @property {number} STATUS_MENTION=3 STATUS_MENTION value
-         * @property {number} GROUP_STATUS=4 GROUP_STATUS value
+         * @property {number} UNKNOWN=0 UNKNOWN value
+         * @property {number} RESHARE=1 RESHARE value
+         * @property {number} EXTERNAL_SHARE=2 EXTERNAL_SHARE value
+         * @property {number} MUSIC=3 MUSIC value
+         * @property {number} STATUS_MENTION=4 STATUS_MENTION value
+         * @property {number} GROUP_STATUS=5 GROUP_STATUS value
+         * @property {number} RL_ATTRIBUTION=6 RL_ATTRIBUTION value
          */
         StatusAttribution.Type = (function() {
             var valuesById = {}, values = Object.create(valuesById);
-            values[valuesById[0] = "RESHARE"] = 0;
-            values[valuesById[1] = "EXTERNAL_SHARE"] = 1;
-            values[valuesById[2] = "MUSIC"] = 2;
-            values[valuesById[3] = "STATUS_MENTION"] = 3;
-            values[valuesById[4] = "GROUP_STATUS"] = 4;
+            values[valuesById[0] = "UNKNOWN"] = 0;
+            values[valuesById[1] = "RESHARE"] = 1;
+            values[valuesById[2] = "EXTERNAL_SHARE"] = 2;
+            values[valuesById[3] = "MUSIC"] = 3;
+            values[valuesById[4] = "STATUS_MENTION"] = 4;
+            values[valuesById[5] = "GROUP_STATUS"] = 5;
+            values[valuesById[6] = "RL_ATTRIBUTION"] = 6;
             return values;
         })();
 

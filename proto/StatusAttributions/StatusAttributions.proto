@@ -9,6 +9,7 @@ message StatusAttribution {
         StatusAttribution.ExternalShare externalShare = 4;
         StatusAttribution.Music music = 5;
         StatusAttribution.GroupStatus groupStatus = 6;
+        StatusAttribution.RLAttribution rlAttribution = 7;
     }
     message ExternalShare {
         optional string actionUrl = 1;
@@ -36,6 +37,14 @@ message StatusAttribution {
         optional string artistAttribution = 5;
         optional bool isExplicit = 6;
     }
+    message RLAttribution {
+        optional Source source = 1;
+        enum Source {
+            UNKNOWN = 0;
+            RAY_BAN_META_GLASSES = 1;
+            OAKLEY_META_GLASSES = 2;
+        }
+    }
     message StatusReshare {
         optional Source source = 1;
         optional Metadata metadata = 2;
@@ -53,10 +62,12 @@ message StatusAttribution {
         }
     }
     enum Type {
-        RESHARE = 0;
-        EXTERNAL_SHARE = 1;
-        MUSIC = 2;
-        STATUS_MENTION = 3;
-        GROUP_STATUS = 4;
+        UNKNOWN = 0;
+        RESHARE = 1;
+        EXTERNAL_SHARE = 2;
+        MUSIC = 3;
+        STATUS_MENTION = 4;
+        GROUP_STATUS = 5;
+        RL_ATTRIBUTION = 6;
     }
 }

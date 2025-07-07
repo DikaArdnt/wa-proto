@@ -296,6 +296,7 @@ message MessageAssociation {
         STATUS_LINK_ACTION = 13;
         VIEW_ALL_REPLIES = 14;
         STATUS_ADD_YOURS_AI_IMAGINE = 15;
+        STATUS_QUESTION = 16;
     }
 }
 
@@ -840,6 +841,7 @@ message ContextInfo {
     optional bool isQuestion = 63;
     optional StatusSourceType statusSourceType = 64;
     repeated StatusAttributions.StatusAttribution statusAttributions = 65;
+    optional bool isGroupStatus = 66;
     message AdReplyInfo {
         optional string advertiserName = 1;
         optional MediaType mediaType = 2;
@@ -938,6 +940,7 @@ message ContextInfo {
         NONE = 0;
         RESHARED_FROM_MENTION = 1;
         RESHARED_FROM_POST = 2;
+        FORWARDED_FROM_STATUS = 3;
     }
     enum StatusSourceType {
         IMAGE = 0;
@@ -1042,6 +1045,7 @@ message Message {
     optional MessageHistoryNotice messageHistoryNotice = 102;
     optional FutureProofMessage groupStatusMessageV2 = 103;
     optional FutureProofMessage botForwardedMessage = 104;
+    optional StatusQuestionAnswerMessage statusQuestionAnswerMessage = 105;
     message AlbumMessage {
         optional uint32 expectedImageCount = 2;
         optional uint32 expectedVideoCount = 3;
@@ -1897,6 +1901,7 @@ message Message {
                 optional string matchText = 6;
                 optional string previewType = 7;
                 optional LinkPreviewHighQualityThumbnail hqThumbnail = 8;
+                optional PaymentLinkPreviewMetadata previewMetadata = 9;
                 message LinkPreviewHighQualityThumbnail {
                     optional string directPath = 1;
                     optional string thumbHash = 2;
@@ -1905,6 +1910,10 @@ message Message {
                     optional int64 mediaKeyTimestampMs = 5;
                     optional int32 thumbWidth = 6;
                     optional int32 thumbHeight = 7;
+                }
+                message PaymentLinkPreviewMetadata {
+                    optional bool isBusinessVerified = 1;
+                    optional string providerName = 2;
                 }
             }
             message PlaceholderMessageResendResponse {
@@ -2149,6 +2158,10 @@ message Message {
             STATUS_RESHARE = 2;
         }
     }
+    message StatusQuestionAnswerMessage {
+        optional Protocol.MessageKey key = 1;
+        optional string text = 2;
+    }
     message StickerMessage {
         optional string url = 1;
         optional bytes fileSha256 = 2;
@@ -2359,4 +2372,6 @@ enum BotMetricsEntryPoint {
     NEW_CHAT_AI_STUDIO = 24;
     AIVOICE_FAVICON_CALL_HISTORY = 25;
     ASK_META_AI_CONTEXT_MENU = 26;
+    ASK_META_AI_CONTEXT_MENU_1ON1 = 27;
+    ASK_META_AI_CONTEXT_MENU_GROUP = 28;
 }

@@ -23,6 +23,9 @@ export namespace StatusAttributions {
 
         /** StatusAttribution groupStatus */
         groupStatus?: (StatusAttributions.StatusAttribution.IGroupStatus|null);
+
+        /** StatusAttribution rlAttribution */
+        rlAttribution?: (StatusAttributions.StatusAttribution.IRLAttribution|null);
     }
 
     /** Represents a StatusAttribution. */
@@ -52,8 +55,11 @@ export namespace StatusAttributions {
         /** StatusAttribution groupStatus. */
         public groupStatus?: (StatusAttributions.StatusAttribution.IGroupStatus|null);
 
+        /** StatusAttribution rlAttribution. */
+        public rlAttribution?: (StatusAttributions.StatusAttribution.IRLAttribution|null);
+
         /** StatusAttribution attributionData. */
-        public attributionData?: ("statusReshare"|"externalShare"|"music"|"groupStatus");
+        public attributionData?: ("statusReshare"|"externalShare"|"music"|"groupStatus"|"rlAttribution");
 
         /**
          * Creates a new StatusAttribution instance using the specified properties.
@@ -488,6 +494,113 @@ export namespace StatusAttributions {
             public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
+        /** Properties of a RLAttribution. */
+        interface IRLAttribution {
+
+            /** RLAttribution source */
+            source?: (StatusAttributions.StatusAttribution.RLAttribution.Source|null);
+        }
+
+        /** Represents a RLAttribution. */
+        class RLAttribution implements IRLAttribution {
+
+            /**
+             * Constructs a new RLAttribution.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: StatusAttributions.StatusAttribution.IRLAttribution);
+
+            /** RLAttribution source. */
+            public source: StatusAttributions.StatusAttribution.RLAttribution.Source;
+
+            /**
+             * Creates a new RLAttribution instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns RLAttribution instance
+             */
+            public static create(properties?: StatusAttributions.StatusAttribution.IRLAttribution): StatusAttributions.StatusAttribution.RLAttribution;
+
+            /**
+             * Encodes the specified RLAttribution message. Does not implicitly {@link StatusAttributions.StatusAttribution.RLAttribution.verify|verify} messages.
+             * @param message RLAttribution message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: StatusAttributions.StatusAttribution.IRLAttribution, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified RLAttribution message, length delimited. Does not implicitly {@link StatusAttributions.StatusAttribution.RLAttribution.verify|verify} messages.
+             * @param message RLAttribution message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: StatusAttributions.StatusAttribution.IRLAttribution, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a RLAttribution message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns RLAttribution
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): StatusAttributions.StatusAttribution.RLAttribution;
+
+            /**
+             * Decodes a RLAttribution message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns RLAttribution
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): StatusAttributions.StatusAttribution.RLAttribution;
+
+            /**
+             * Verifies a RLAttribution message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a RLAttribution message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns RLAttribution
+             */
+            public static fromObject(object: { [k: string]: any }): StatusAttributions.StatusAttribution.RLAttribution;
+
+            /**
+             * Creates a plain object from a RLAttribution message. Also converts values to other types if specified.
+             * @param message RLAttribution
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: StatusAttributions.StatusAttribution.RLAttribution, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this RLAttribution to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for RLAttribution
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace RLAttribution {
+
+            /** Source enum. */
+            enum Source {
+                UNKNOWN = 0,
+                RAY_BAN_META_GLASSES = 1,
+                OAKLEY_META_GLASSES = 2
+            }
+        }
+
         /** Properties of a StatusReshare. */
         interface IStatusReshare {
 
@@ -719,11 +832,13 @@ export namespace StatusAttributions {
 
         /** Type enum. */
         enum Type {
-            RESHARE = 0,
-            EXTERNAL_SHARE = 1,
-            MUSIC = 2,
-            STATUS_MENTION = 3,
-            GROUP_STATUS = 4
+            UNKNOWN = 0,
+            RESHARE = 1,
+            EXTERNAL_SHARE = 2,
+            MUSIC = 3,
+            STATUS_MENTION = 4,
+            GROUP_STATUS = 5,
+            RL_ATTRIBUTION = 6
         }
     }
 }
