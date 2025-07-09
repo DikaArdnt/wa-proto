@@ -30607,6 +30607,8 @@ $root.E2E = (function() {
                 case 26:
                 case 27:
                 case 28:
+                case 29:
+                case 30:
                     break;
                 }
             if (message.threadOrigin != null && message.hasOwnProperty("threadOrigin"))
@@ -30755,6 +30757,14 @@ $root.E2E = (function() {
             case "ASK_META_AI_CONTEXT_MENU_GROUP":
             case 28:
                 message.destinationEntryPoint = 28;
+                break;
+            case "INVOKE_META_AI_1ON1":
+            case 29:
+                message.destinationEntryPoint = 29;
+                break;
+            case "INVOKE_META_AI_GROUP":
+            case 30:
+                message.destinationEntryPoint = 30;
                 break;
             }
             switch (object.threadOrigin) {
@@ -94956,6 +94966,8 @@ $root.E2E = (function() {
      * @property {number} ASK_META_AI_CONTEXT_MENU=26 ASK_META_AI_CONTEXT_MENU value
      * @property {number} ASK_META_AI_CONTEXT_MENU_1ON1=27 ASK_META_AI_CONTEXT_MENU_1ON1 value
      * @property {number} ASK_META_AI_CONTEXT_MENU_GROUP=28 ASK_META_AI_CONTEXT_MENU_GROUP value
+     * @property {number} INVOKE_META_AI_1ON1=29 INVOKE_META_AI_1ON1 value
+     * @property {number} INVOKE_META_AI_GROUP=30 INVOKE_META_AI_GROUP value
      */
     E2E.BotMetricsEntryPoint = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -94987,6 +94999,8 @@ $root.E2E = (function() {
         values[valuesById[26] = "ASK_META_AI_CONTEXT_MENU"] = 26;
         values[valuesById[27] = "ASK_META_AI_CONTEXT_MENU_1ON1"] = 27;
         values[valuesById[28] = "ASK_META_AI_CONTEXT_MENU_GROUP"] = 28;
+        values[valuesById[29] = "INVOKE_META_AI_1ON1"] = 29;
+        values[valuesById[30] = "INVOKE_META_AI_GROUP"] = 30;
         return values;
     })();
 
