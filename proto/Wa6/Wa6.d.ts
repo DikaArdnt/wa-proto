@@ -1054,7 +1054,8 @@ export namespace Wa6 {
                 BLUE_WEB = 32,
                 IPAD = 33,
                 TEST = 34,
-                SMART_GLASSES = 35
+                SMART_GLASSES = 35,
+                BLUE_VR = 36
             }
 
             /** ReleaseChannel enum. */

@@ -300,6 +300,13 @@ message MessageAssociation {
     }
 }
 
+message BotUnifiedResponseMutation {
+    optional SideBySideMetadata sbsMetadata = 1;
+    message SideBySideMetadata {
+        optional string primaryResponseId = 1;
+    }
+}
+
 message BotMetadata {
     optional BotAvatarMetadata avatarMetadata = 1;
     optional string personaId = 2;
@@ -328,6 +335,7 @@ message BotMetadata {
     optional string conversationStarterPromptId = 25;
     optional string botResponseId = 26;
     optional BotSignatureVerificationMetadata verificationMetadata = 27;
+    optional BotUnifiedResponseMutation unifiedResponseMutation = 28;
 }
 
 message BotSourcesMetadata {
@@ -345,6 +353,7 @@ message BotSourcesMetadata {
             BING = 1;
             GOOGLE = 2;
             SUPPORT = 3;
+            OTHER = 4;
         }
     }
 }
@@ -1046,6 +1055,7 @@ message Message {
     optional FutureProofMessage groupStatusMessageV2 = 103;
     optional FutureProofMessage botForwardedMessage = 104;
     optional StatusQuestionAnswerMessage statusQuestionAnswerMessage = 105;
+    optional QuestionAdminReplyMessage questionAdminReplyMessage = 106;
     message AlbumMessage {
         optional uint32 expectedImageCount = 2;
         optional uint32 expectedVideoCount = 3;
@@ -2083,6 +2093,15 @@ message Message {
             AI_PSI_METADATA = 28;
             AI_QUERY_FANOUT = 29;
             GROUP_MEMBER_LABEL_CHANGE = 30;
+        }
+    }
+    message QuestionAdminReplyMessage {
+        optional Message adminReplyMessage = 1;
+        optional QuotedQuestionAdminReplyMessage quotedMessage = 2;
+        message QuotedQuestionAdminReplyMessage {
+            optional int32 serverQuestionId = 1;
+            optional Message quotedQuestion = 2;
+            optional Message quotedFollowerResponse = 3;
         }
     }
     message ReactionMessage {

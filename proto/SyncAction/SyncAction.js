@@ -953,6 +953,8 @@ $root.SyncAction = (function() {
          * @property {SyncAction.SyncActionValue.IPaymentTosAction|null} [paymentTosAction] SyncActionValue paymentTosAction
          * @property {SyncAction.SyncActionValue.IPrivacySettingChannelsPersonalisedRecommendationAction|null} [privacySettingChannelsPersonalisedRecommendationAction] SyncActionValue privacySettingChannelsPersonalisedRecommendationAction
          * @property {SyncAction.SyncActionValue.IBusinessBroadcastAssociationAction|null} [businessBroadcastAssociationAction] SyncActionValue businessBroadcastAssociationAction
+         * @property {SyncAction.SyncActionValue.IDetectedOutcomesStatusAction|null} [detectedOutcomesStatusAction] SyncActionValue detectedOutcomesStatusAction
+         * @property {SyncAction.SyncActionValue.IMaibaAIFeaturesControlAction|null} [maibaAiFeaturesControlAction] SyncActionValue maibaAiFeaturesControlAction
          */
 
         /**
@@ -1443,6 +1445,22 @@ $root.SyncAction = (function() {
         SyncActionValue.prototype.businessBroadcastAssociationAction = null;
 
         /**
+         * SyncActionValue detectedOutcomesStatusAction.
+         * @member {SyncAction.SyncActionValue.IDetectedOutcomesStatusAction|null|undefined} detectedOutcomesStatusAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.detectedOutcomesStatusAction = null;
+
+        /**
+         * SyncActionValue maibaAiFeaturesControlAction.
+         * @member {SyncAction.SyncActionValue.IMaibaAIFeaturesControlAction|null|undefined} maibaAiFeaturesControlAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.maibaAiFeaturesControlAction = null;
+
+        /**
          * Creates a new SyncActionValue instance using the specified properties.
          * @function create
          * @memberof SyncAction.SyncActionValue
@@ -1584,6 +1602,10 @@ $root.SyncAction = (function() {
                 $root.SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction.encode(message.privacySettingChannelsPersonalisedRecommendationAction, writer.uint32(/* id 64, wireType 2 =*/514).fork()).ldelim();
             if (message.businessBroadcastAssociationAction != null && Object.hasOwnProperty.call(message, "businessBroadcastAssociationAction"))
                 $root.SyncAction.SyncActionValue.BusinessBroadcastAssociationAction.encode(message.businessBroadcastAssociationAction, writer.uint32(/* id 65, wireType 2 =*/522).fork()).ldelim();
+            if (message.detectedOutcomesStatusAction != null && Object.hasOwnProperty.call(message, "detectedOutcomesStatusAction"))
+                $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction.encode(message.detectedOutcomesStatusAction, writer.uint32(/* id 66, wireType 2 =*/530).fork()).ldelim();
+            if (message.maibaAiFeaturesControlAction != null && Object.hasOwnProperty.call(message, "maibaAiFeaturesControlAction"))
+                $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.encode(message.maibaAiFeaturesControlAction, writer.uint32(/* id 67, wireType 2 =*/538).fork()).ldelim();
             return writer;
         };
 
@@ -1854,6 +1876,14 @@ $root.SyncAction = (function() {
                     }
                 case 65: {
                         message.businessBroadcastAssociationAction = $root.SyncAction.SyncActionValue.BusinessBroadcastAssociationAction.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 66: {
+                        message.detectedOutcomesStatusAction = $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 67: {
+                        message.maibaAiFeaturesControlAction = $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -2184,6 +2214,16 @@ $root.SyncAction = (function() {
                 if (error)
                     return "businessBroadcastAssociationAction." + error;
             }
+            if (message.detectedOutcomesStatusAction != null && message.hasOwnProperty("detectedOutcomesStatusAction")) {
+                var error = $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction.verify(message.detectedOutcomesStatusAction);
+                if (error)
+                    return "detectedOutcomesStatusAction." + error;
+            }
+            if (message.maibaAiFeaturesControlAction != null && message.hasOwnProperty("maibaAiFeaturesControlAction")) {
+                var error = $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.verify(message.maibaAiFeaturesControlAction);
+                if (error)
+                    return "maibaAiFeaturesControlAction." + error;
+            }
             return null;
         };
 
@@ -2498,6 +2538,16 @@ $root.SyncAction = (function() {
                     throw TypeError(".SyncAction.SyncActionValue.businessBroadcastAssociationAction: object expected");
                 message.businessBroadcastAssociationAction = $root.SyncAction.SyncActionValue.BusinessBroadcastAssociationAction.fromObject(object.businessBroadcastAssociationAction);
             }
+            if (object.detectedOutcomesStatusAction != null) {
+                if (typeof object.detectedOutcomesStatusAction !== "object")
+                    throw TypeError(".SyncAction.SyncActionValue.detectedOutcomesStatusAction: object expected");
+                message.detectedOutcomesStatusAction = $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction.fromObject(object.detectedOutcomesStatusAction);
+            }
+            if (object.maibaAiFeaturesControlAction != null) {
+                if (typeof object.maibaAiFeaturesControlAction !== "object")
+                    throw TypeError(".SyncAction.SyncActionValue.maibaAiFeaturesControlAction: object expected");
+                message.maibaAiFeaturesControlAction = $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.fromObject(object.maibaAiFeaturesControlAction);
+            }
             return message;
         };
 
@@ -2578,6 +2628,8 @@ $root.SyncAction = (function() {
                 object.paymentTosAction = null;
                 object.privacySettingChannelsPersonalisedRecommendationAction = null;
                 object.businessBroadcastAssociationAction = null;
+                object.detectedOutcomesStatusAction = null;
+                object.maibaAiFeaturesControlAction = null;
             }
             if (message.timestamp != null && message.hasOwnProperty("timestamp"))
                 if (typeof message.timestamp === "number")
@@ -2700,6 +2752,10 @@ $root.SyncAction = (function() {
                 object.privacySettingChannelsPersonalisedRecommendationAction = $root.SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction.toObject(message.privacySettingChannelsPersonalisedRecommendationAction, options);
             if (message.businessBroadcastAssociationAction != null && message.hasOwnProperty("businessBroadcastAssociationAction"))
                 object.businessBroadcastAssociationAction = $root.SyncAction.SyncActionValue.BusinessBroadcastAssociationAction.toObject(message.businessBroadcastAssociationAction, options);
+            if (message.detectedOutcomesStatusAction != null && message.hasOwnProperty("detectedOutcomesStatusAction"))
+                object.detectedOutcomesStatusAction = $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction.toObject(message.detectedOutcomesStatusAction, options);
+            if (message.maibaAiFeaturesControlAction != null && message.hasOwnProperty("maibaAiFeaturesControlAction"))
+                object.maibaAiFeaturesControlAction = $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.toObject(message.maibaAiFeaturesControlAction, options);
             return object;
         };
 
@@ -6620,6 +6676,211 @@ $root.SyncAction = (function() {
             return DeleteMessageForMeAction;
         })();
 
+        SyncActionValue.DetectedOutcomesStatusAction = (function() {
+
+            /**
+             * Properties of a DetectedOutcomesStatusAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface IDetectedOutcomesStatusAction
+             * @property {boolean|null} [isEnabled] DetectedOutcomesStatusAction isEnabled
+             */
+
+            /**
+             * Constructs a new DetectedOutcomesStatusAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents a DetectedOutcomesStatusAction.
+             * @implements IDetectedOutcomesStatusAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.IDetectedOutcomesStatusAction=} [properties] Properties to set
+             */
+            function DetectedOutcomesStatusAction(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * DetectedOutcomesStatusAction isEnabled.
+             * @member {boolean} isEnabled
+             * @memberof SyncAction.SyncActionValue.DetectedOutcomesStatusAction
+             * @instance
+             */
+            DetectedOutcomesStatusAction.prototype.isEnabled = false;
+
+            /**
+             * Creates a new DetectedOutcomesStatusAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.DetectedOutcomesStatusAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IDetectedOutcomesStatusAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.DetectedOutcomesStatusAction} DetectedOutcomesStatusAction instance
+             */
+            DetectedOutcomesStatusAction.create = function create(properties) {
+                return new DetectedOutcomesStatusAction(properties);
+            };
+
+            /**
+             * Encodes the specified DetectedOutcomesStatusAction message. Does not implicitly {@link SyncAction.SyncActionValue.DetectedOutcomesStatusAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.DetectedOutcomesStatusAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IDetectedOutcomesStatusAction} message DetectedOutcomesStatusAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            DetectedOutcomesStatusAction.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.isEnabled != null && Object.hasOwnProperty.call(message, "isEnabled"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).bool(message.isEnabled);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified DetectedOutcomesStatusAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.DetectedOutcomesStatusAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.DetectedOutcomesStatusAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IDetectedOutcomesStatusAction} message DetectedOutcomesStatusAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            DetectedOutcomesStatusAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a DetectedOutcomesStatusAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.DetectedOutcomesStatusAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.DetectedOutcomesStatusAction} DetectedOutcomesStatusAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            DetectedOutcomesStatusAction.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.isEnabled = reader.bool();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a DetectedOutcomesStatusAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.DetectedOutcomesStatusAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.DetectedOutcomesStatusAction} DetectedOutcomesStatusAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            DetectedOutcomesStatusAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a DetectedOutcomesStatusAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.DetectedOutcomesStatusAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            DetectedOutcomesStatusAction.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.isEnabled != null && message.hasOwnProperty("isEnabled"))
+                    if (typeof message.isEnabled !== "boolean")
+                        return "isEnabled: boolean expected";
+                return null;
+            };
+
+            /**
+             * Creates a DetectedOutcomesStatusAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.DetectedOutcomesStatusAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.DetectedOutcomesStatusAction} DetectedOutcomesStatusAction
+             */
+            DetectedOutcomesStatusAction.fromObject = function fromObject(object) {
+                if (object instanceof $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction)
+                    return object;
+                var message = new $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction();
+                if (object.isEnabled != null)
+                    message.isEnabled = Boolean(object.isEnabled);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a DetectedOutcomesStatusAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.DetectedOutcomesStatusAction
+             * @static
+             * @param {SyncAction.SyncActionValue.DetectedOutcomesStatusAction} message DetectedOutcomesStatusAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            DetectedOutcomesStatusAction.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.isEnabled = false;
+                if (message.isEnabled != null && message.hasOwnProperty("isEnabled"))
+                    object.isEnabled = message.isEnabled;
+                return object;
+            };
+
+            /**
+             * Converts this DetectedOutcomesStatusAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.DetectedOutcomesStatusAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            DetectedOutcomesStatusAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for DetectedOutcomesStatusAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.DetectedOutcomesStatusAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            DetectedOutcomesStatusAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.DetectedOutcomesStatusAction";
+            };
+
+            return DetectedOutcomesStatusAction;
+        })();
+
         SyncActionValue.ExternalWebBetaAction = (function() {
 
             /**
@@ -9017,6 +9278,251 @@ $root.SyncAction = (function() {
             };
 
             return LockChatAction;
+        })();
+
+        SyncActionValue.MaibaAIFeaturesControlAction = (function() {
+
+            /**
+             * Properties of a MaibaAIFeaturesControlAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface IMaibaAIFeaturesControlAction
+             * @property {SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.MaibaAIFeatureStatus|null} [aiFeatureStatus] MaibaAIFeaturesControlAction aiFeatureStatus
+             */
+
+            /**
+             * Constructs a new MaibaAIFeaturesControlAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents a MaibaAIFeaturesControlAction.
+             * @implements IMaibaAIFeaturesControlAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.IMaibaAIFeaturesControlAction=} [properties] Properties to set
+             */
+            function MaibaAIFeaturesControlAction(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * MaibaAIFeaturesControlAction aiFeatureStatus.
+             * @member {SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.MaibaAIFeatureStatus} aiFeatureStatus
+             * @memberof SyncAction.SyncActionValue.MaibaAIFeaturesControlAction
+             * @instance
+             */
+            MaibaAIFeaturesControlAction.prototype.aiFeatureStatus = 0;
+
+            /**
+             * Creates a new MaibaAIFeaturesControlAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.MaibaAIFeaturesControlAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IMaibaAIFeaturesControlAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.MaibaAIFeaturesControlAction} MaibaAIFeaturesControlAction instance
+             */
+            MaibaAIFeaturesControlAction.create = function create(properties) {
+                return new MaibaAIFeaturesControlAction(properties);
+            };
+
+            /**
+             * Encodes the specified MaibaAIFeaturesControlAction message. Does not implicitly {@link SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.MaibaAIFeaturesControlAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IMaibaAIFeaturesControlAction} message MaibaAIFeaturesControlAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            MaibaAIFeaturesControlAction.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.aiFeatureStatus != null && Object.hasOwnProperty.call(message, "aiFeatureStatus"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.aiFeatureStatus);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified MaibaAIFeaturesControlAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.MaibaAIFeaturesControlAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IMaibaAIFeaturesControlAction} message MaibaAIFeaturesControlAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            MaibaAIFeaturesControlAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a MaibaAIFeaturesControlAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.MaibaAIFeaturesControlAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.MaibaAIFeaturesControlAction} MaibaAIFeaturesControlAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            MaibaAIFeaturesControlAction.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.aiFeatureStatus = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a MaibaAIFeaturesControlAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.MaibaAIFeaturesControlAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.MaibaAIFeaturesControlAction} MaibaAIFeaturesControlAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            MaibaAIFeaturesControlAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a MaibaAIFeaturesControlAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.MaibaAIFeaturesControlAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            MaibaAIFeaturesControlAction.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.aiFeatureStatus != null && message.hasOwnProperty("aiFeatureStatus"))
+                    switch (message.aiFeatureStatus) {
+                    default:
+                        return "aiFeatureStatus: enum value expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                        break;
+                    }
+                return null;
+            };
+
+            /**
+             * Creates a MaibaAIFeaturesControlAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.MaibaAIFeaturesControlAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.MaibaAIFeaturesControlAction} MaibaAIFeaturesControlAction
+             */
+            MaibaAIFeaturesControlAction.fromObject = function fromObject(object) {
+                if (object instanceof $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction)
+                    return object;
+                var message = new $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction();
+                switch (object.aiFeatureStatus) {
+                default:
+                    if (typeof object.aiFeatureStatus === "number") {
+                        message.aiFeatureStatus = object.aiFeatureStatus;
+                        break;
+                    }
+                    break;
+                case "ENABLED":
+                case 0:
+                    message.aiFeatureStatus = 0;
+                    break;
+                case "ENABLED_HAS_LEARNING":
+                case 1:
+                    message.aiFeatureStatus = 1;
+                    break;
+                case "DISABLED":
+                case 2:
+                    message.aiFeatureStatus = 2;
+                    break;
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a MaibaAIFeaturesControlAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.MaibaAIFeaturesControlAction
+             * @static
+             * @param {SyncAction.SyncActionValue.MaibaAIFeaturesControlAction} message MaibaAIFeaturesControlAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            MaibaAIFeaturesControlAction.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.aiFeatureStatus = options.enums === String ? "ENABLED" : 0;
+                if (message.aiFeatureStatus != null && message.hasOwnProperty("aiFeatureStatus"))
+                    object.aiFeatureStatus = options.enums === String ? $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.MaibaAIFeatureStatus[message.aiFeatureStatus] === undefined ? message.aiFeatureStatus : $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.MaibaAIFeatureStatus[message.aiFeatureStatus] : message.aiFeatureStatus;
+                return object;
+            };
+
+            /**
+             * Converts this MaibaAIFeaturesControlAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.MaibaAIFeaturesControlAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            MaibaAIFeaturesControlAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for MaibaAIFeaturesControlAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.MaibaAIFeaturesControlAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            MaibaAIFeaturesControlAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.MaibaAIFeaturesControlAction";
+            };
+
+            /**
+             * MaibaAIFeatureStatus enum.
+             * @name SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.MaibaAIFeatureStatus
+             * @enum {number}
+             * @property {number} ENABLED=0 ENABLED value
+             * @property {number} ENABLED_HAS_LEARNING=1 ENABLED_HAS_LEARNING value
+             * @property {number} DISABLED=2 DISABLED value
+             */
+            MaibaAIFeaturesControlAction.MaibaAIFeatureStatus = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "ENABLED"] = 0;
+                values[valuesById[1] = "ENABLED_HAS_LEARNING"] = 1;
+                values[valuesById[2] = "DISABLED"] = 2;
+                return values;
+            })();
+
+            return MaibaAIFeaturesControlAction;
         })();
 
         SyncActionValue.MarkChatAsReadAction = (function() {

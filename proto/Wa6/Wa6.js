@@ -2753,6 +2753,7 @@ $root.Wa6 = (function() {
                     case 33:
                     case 34:
                     case 35:
+                    case 36:
                         break;
                     }
                 if (message.appVersion != null && message.hasOwnProperty("appVersion")) {
@@ -2982,6 +2983,10 @@ $root.Wa6 = (function() {
                 case "SMART_GLASSES":
                 case 35:
                     message.platform = 35;
+                    break;
+                case "BLUE_VR":
+                case 36:
+                    message.platform = 36;
                     break;
                 }
                 if (object.appVersion != null) {
@@ -3518,6 +3523,7 @@ $root.Wa6 = (function() {
              * @property {number} IPAD=33 IPAD value
              * @property {number} TEST=34 TEST value
              * @property {number} SMART_GLASSES=35 SMART_GLASSES value
+             * @property {number} BLUE_VR=36 BLUE_VR value
              */
             UserAgent.Platform = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -3557,6 +3563,7 @@ $root.Wa6 = (function() {
                 values[valuesById[33] = "IPAD"] = 33;
                 values[valuesById[34] = "TEST"] = 34;
                 values[valuesById[35] = "SMART_GLASSES"] = 35;
+                values[valuesById[36] = "BLUE_VR"] = 36;
                 return values;
             })();
 

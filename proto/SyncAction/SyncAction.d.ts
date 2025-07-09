@@ -470,6 +470,12 @@ export namespace SyncAction {
 
         /** SyncActionValue businessBroadcastAssociationAction */
         businessBroadcastAssociationAction?: (SyncAction.SyncActionValue.IBusinessBroadcastAssociationAction|null);
+
+        /** SyncActionValue detectedOutcomesStatusAction */
+        detectedOutcomesStatusAction?: (SyncAction.SyncActionValue.IDetectedOutcomesStatusAction|null);
+
+        /** SyncActionValue maibaAiFeaturesControlAction */
+        maibaAiFeaturesControlAction?: (SyncAction.SyncActionValue.IMaibaAIFeaturesControlAction|null);
     }
 
     /** Represents a SyncActionValue. */
@@ -657,6 +663,12 @@ export namespace SyncAction {
 
         /** SyncActionValue businessBroadcastAssociationAction. */
         public businessBroadcastAssociationAction?: (SyncAction.SyncActionValue.IBusinessBroadcastAssociationAction|null);
+
+        /** SyncActionValue detectedOutcomesStatusAction. */
+        public detectedOutcomesStatusAction?: (SyncAction.SyncActionValue.IDetectedOutcomesStatusAction|null);
+
+        /** SyncActionValue maibaAiFeaturesControlAction. */
+        public maibaAiFeaturesControlAction?: (SyncAction.SyncActionValue.IMaibaAIFeaturesControlAction|null);
 
         /**
          * Creates a new SyncActionValue instance using the specified properties.
@@ -2471,6 +2483,103 @@ export namespace SyncAction {
             public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
+        /** Properties of a DetectedOutcomesStatusAction. */
+        interface IDetectedOutcomesStatusAction {
+
+            /** DetectedOutcomesStatusAction isEnabled */
+            isEnabled?: (boolean|null);
+        }
+
+        /** Represents a DetectedOutcomesStatusAction. */
+        class DetectedOutcomesStatusAction implements IDetectedOutcomesStatusAction {
+
+            /**
+             * Constructs a new DetectedOutcomesStatusAction.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SyncAction.SyncActionValue.IDetectedOutcomesStatusAction);
+
+            /** DetectedOutcomesStatusAction isEnabled. */
+            public isEnabled: boolean;
+
+            /**
+             * Creates a new DetectedOutcomesStatusAction instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns DetectedOutcomesStatusAction instance
+             */
+            public static create(properties?: SyncAction.SyncActionValue.IDetectedOutcomesStatusAction): SyncAction.SyncActionValue.DetectedOutcomesStatusAction;
+
+            /**
+             * Encodes the specified DetectedOutcomesStatusAction message. Does not implicitly {@link SyncAction.SyncActionValue.DetectedOutcomesStatusAction.verify|verify} messages.
+             * @param message DetectedOutcomesStatusAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SyncAction.SyncActionValue.IDetectedOutcomesStatusAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified DetectedOutcomesStatusAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.DetectedOutcomesStatusAction.verify|verify} messages.
+             * @param message DetectedOutcomesStatusAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SyncAction.SyncActionValue.IDetectedOutcomesStatusAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a DetectedOutcomesStatusAction message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns DetectedOutcomesStatusAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.DetectedOutcomesStatusAction;
+
+            /**
+             * Decodes a DetectedOutcomesStatusAction message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns DetectedOutcomesStatusAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.DetectedOutcomesStatusAction;
+
+            /**
+             * Verifies a DetectedOutcomesStatusAction message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a DetectedOutcomesStatusAction message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns DetectedOutcomesStatusAction
+             */
+            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.DetectedOutcomesStatusAction;
+
+            /**
+             * Creates a plain object from a DetectedOutcomesStatusAction message. Also converts values to other types if specified.
+             * @param message DetectedOutcomesStatusAction
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SyncAction.SyncActionValue.DetectedOutcomesStatusAction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this DetectedOutcomesStatusAction to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for DetectedOutcomesStatusAction
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
         /** Properties of an ExternalWebBetaAction. */
         interface IExternalWebBetaAction {
 
@@ -3517,6 +3626,113 @@ export namespace SyncAction {
              * @returns The default type url
              */
             public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a MaibaAIFeaturesControlAction. */
+        interface IMaibaAIFeaturesControlAction {
+
+            /** MaibaAIFeaturesControlAction aiFeatureStatus */
+            aiFeatureStatus?: (SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.MaibaAIFeatureStatus|null);
+        }
+
+        /** Represents a MaibaAIFeaturesControlAction. */
+        class MaibaAIFeaturesControlAction implements IMaibaAIFeaturesControlAction {
+
+            /**
+             * Constructs a new MaibaAIFeaturesControlAction.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SyncAction.SyncActionValue.IMaibaAIFeaturesControlAction);
+
+            /** MaibaAIFeaturesControlAction aiFeatureStatus. */
+            public aiFeatureStatus: SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.MaibaAIFeatureStatus;
+
+            /**
+             * Creates a new MaibaAIFeaturesControlAction instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns MaibaAIFeaturesControlAction instance
+             */
+            public static create(properties?: SyncAction.SyncActionValue.IMaibaAIFeaturesControlAction): SyncAction.SyncActionValue.MaibaAIFeaturesControlAction;
+
+            /**
+             * Encodes the specified MaibaAIFeaturesControlAction message. Does not implicitly {@link SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.verify|verify} messages.
+             * @param message MaibaAIFeaturesControlAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SyncAction.SyncActionValue.IMaibaAIFeaturesControlAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified MaibaAIFeaturesControlAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.verify|verify} messages.
+             * @param message MaibaAIFeaturesControlAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SyncAction.SyncActionValue.IMaibaAIFeaturesControlAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a MaibaAIFeaturesControlAction message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns MaibaAIFeaturesControlAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.MaibaAIFeaturesControlAction;
+
+            /**
+             * Decodes a MaibaAIFeaturesControlAction message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns MaibaAIFeaturesControlAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.MaibaAIFeaturesControlAction;
+
+            /**
+             * Verifies a MaibaAIFeaturesControlAction message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a MaibaAIFeaturesControlAction message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns MaibaAIFeaturesControlAction
+             */
+            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.MaibaAIFeaturesControlAction;
+
+            /**
+             * Creates a plain object from a MaibaAIFeaturesControlAction message. Also converts values to other types if specified.
+             * @param message MaibaAIFeaturesControlAction
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SyncAction.SyncActionValue.MaibaAIFeaturesControlAction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this MaibaAIFeaturesControlAction to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for MaibaAIFeaturesControlAction
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace MaibaAIFeaturesControlAction {
+
+            /** MaibaAIFeatureStatus enum. */
+            enum MaibaAIFeatureStatus {
+                ENABLED = 0,
+                ENABLED_HAS_LEARNING = 1,
+                DISABLED = 2
+            }
         }
 
         /** Properties of a MarkChatAsReadAction. */

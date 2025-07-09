@@ -97,6 +97,8 @@ message SyncActionValue {
     optional PaymentTosAction paymentTosAction = 63;
     optional PrivacySettingChannelsPersonalisedRecommendationAction privacySettingChannelsPersonalisedRecommendationAction = 64;
     optional BusinessBroadcastAssociationAction businessBroadcastAssociationAction = 65;
+    optional DetectedOutcomesStatusAction detectedOutcomesStatusAction = 66;
+    optional MaibaAIFeaturesControlAction maibaAiFeaturesControlAction = 67;
     message AgentAction {
         optional string name = 1;
         optional int32 deviceID = 2;
@@ -162,6 +164,9 @@ message SyncActionValue {
         optional bool deleteMedia = 1;
         optional int64 messageTimestamp = 2;
     }
+    message DetectedOutcomesStatusAction {
+        optional bool isEnabled = 1;
+    }
     message ExternalWebBetaAction {
         optional bool isOptIn = 1;
     }
@@ -211,6 +216,14 @@ message SyncActionValue {
     }
     message LockChatAction {
         optional bool locked = 1;
+    }
+    message MaibaAIFeaturesControlAction {
+        optional MaibaAIFeatureStatus aiFeatureStatus = 1;
+        enum MaibaAIFeatureStatus {
+            ENABLED = 0;
+            ENABLED_HAS_LEARNING = 1;
+            DISABLED = 2;
+        }
     }
     message MarkChatAsReadAction {
         optional bool read = 1;

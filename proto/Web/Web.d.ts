@@ -7583,6 +7583,203 @@ export namespace E2E {
         }
     }
 
+    /** Properties of a BotUnifiedResponseMutation. */
+    interface IBotUnifiedResponseMutation {
+
+        /** BotUnifiedResponseMutation sbsMetadata */
+        sbsMetadata?: (E2E.BotUnifiedResponseMutation.ISideBySideMetadata|null);
+    }
+
+    /** Represents a BotUnifiedResponseMutation. */
+    class BotUnifiedResponseMutation implements IBotUnifiedResponseMutation {
+
+        /**
+         * Constructs a new BotUnifiedResponseMutation.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: E2E.IBotUnifiedResponseMutation);
+
+        /** BotUnifiedResponseMutation sbsMetadata. */
+        public sbsMetadata?: (E2E.BotUnifiedResponseMutation.ISideBySideMetadata|null);
+
+        /**
+         * Creates a new BotUnifiedResponseMutation instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BotUnifiedResponseMutation instance
+         */
+        public static create(properties?: E2E.IBotUnifiedResponseMutation): E2E.BotUnifiedResponseMutation;
+
+        /**
+         * Encodes the specified BotUnifiedResponseMutation message. Does not implicitly {@link E2E.BotUnifiedResponseMutation.verify|verify} messages.
+         * @param message BotUnifiedResponseMutation message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: E2E.IBotUnifiedResponseMutation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BotUnifiedResponseMutation message, length delimited. Does not implicitly {@link E2E.BotUnifiedResponseMutation.verify|verify} messages.
+         * @param message BotUnifiedResponseMutation message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: E2E.IBotUnifiedResponseMutation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BotUnifiedResponseMutation message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BotUnifiedResponseMutation
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.BotUnifiedResponseMutation;
+
+        /**
+         * Decodes a BotUnifiedResponseMutation message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BotUnifiedResponseMutation
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.BotUnifiedResponseMutation;
+
+        /**
+         * Verifies a BotUnifiedResponseMutation message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BotUnifiedResponseMutation message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BotUnifiedResponseMutation
+         */
+        public static fromObject(object: { [k: string]: any }): E2E.BotUnifiedResponseMutation;
+
+        /**
+         * Creates a plain object from a BotUnifiedResponseMutation message. Also converts values to other types if specified.
+         * @param message BotUnifiedResponseMutation
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: E2E.BotUnifiedResponseMutation, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BotUnifiedResponseMutation to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for BotUnifiedResponseMutation
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace BotUnifiedResponseMutation {
+
+        /** Properties of a SideBySideMetadata. */
+        interface ISideBySideMetadata {
+
+            /** SideBySideMetadata primaryResponseId */
+            primaryResponseId?: (string|null);
+        }
+
+        /** Represents a SideBySideMetadata. */
+        class SideBySideMetadata implements ISideBySideMetadata {
+
+            /**
+             * Constructs a new SideBySideMetadata.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.BotUnifiedResponseMutation.ISideBySideMetadata);
+
+            /** SideBySideMetadata primaryResponseId. */
+            public primaryResponseId: string;
+
+            /**
+             * Creates a new SideBySideMetadata instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns SideBySideMetadata instance
+             */
+            public static create(properties?: E2E.BotUnifiedResponseMutation.ISideBySideMetadata): E2E.BotUnifiedResponseMutation.SideBySideMetadata;
+
+            /**
+             * Encodes the specified SideBySideMetadata message. Does not implicitly {@link E2E.BotUnifiedResponseMutation.SideBySideMetadata.verify|verify} messages.
+             * @param message SideBySideMetadata message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.BotUnifiedResponseMutation.ISideBySideMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified SideBySideMetadata message, length delimited. Does not implicitly {@link E2E.BotUnifiedResponseMutation.SideBySideMetadata.verify|verify} messages.
+             * @param message SideBySideMetadata message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.BotUnifiedResponseMutation.ISideBySideMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a SideBySideMetadata message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns SideBySideMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.BotUnifiedResponseMutation.SideBySideMetadata;
+
+            /**
+             * Decodes a SideBySideMetadata message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns SideBySideMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.BotUnifiedResponseMutation.SideBySideMetadata;
+
+            /**
+             * Verifies a SideBySideMetadata message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a SideBySideMetadata message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns SideBySideMetadata
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.BotUnifiedResponseMutation.SideBySideMetadata;
+
+            /**
+             * Creates a plain object from a SideBySideMetadata message. Also converts values to other types if specified.
+             * @param message SideBySideMetadata
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.BotUnifiedResponseMutation.SideBySideMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this SideBySideMetadata to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for SideBySideMetadata
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+    }
+
     /** Properties of a BotMetadata. */
     interface IBotMetadata {
 
@@ -7666,6 +7863,9 @@ export namespace E2E {
 
         /** BotMetadata verificationMetadata */
         verificationMetadata?: (E2E.IBotSignatureVerificationMetadata|null);
+
+        /** BotMetadata unifiedResponseMutation */
+        unifiedResponseMutation?: (E2E.IBotUnifiedResponseMutation|null);
     }
 
     /** Represents a BotMetadata. */
@@ -7757,6 +7957,9 @@ export namespace E2E {
 
         /** BotMetadata verificationMetadata. */
         public verificationMetadata?: (E2E.IBotSignatureVerificationMetadata|null);
+
+        /** BotMetadata unifiedResponseMutation. */
+        public unifiedResponseMutation?: (E2E.IBotUnifiedResponseMutation|null);
 
         /**
          * Creates a new BotMetadata instance using the specified properties.
@@ -8075,7 +8278,8 @@ export namespace E2E {
                 UNKNOWN = 0,
                 BING = 1,
                 GOOGLE = 2,
-                SUPPORT = 3
+                SUPPORT = 3,
+                OTHER = 4
             }
         }
     }
@@ -15613,6 +15817,9 @@ export namespace E2E {
 
         /** Message statusQuestionAnswerMessage */
         statusQuestionAnswerMessage?: (E2E.Message.IStatusQuestionAnswerMessage|null);
+
+        /** Message questionAdminReplyMessage */
+        questionAdminReplyMessage?: (E2E.Message.IQuestionAdminReplyMessage|null);
     }
 
     /** Represents a Message. */
@@ -15890,6 +16097,9 @@ export namespace E2E {
 
         /** Message statusQuestionAnswerMessage. */
         public statusQuestionAnswerMessage?: (E2E.Message.IStatusQuestionAnswerMessage|null);
+
+        /** Message questionAdminReplyMessage. */
+        public questionAdminReplyMessage?: (E2E.Message.IQuestionAdminReplyMessage|null);
 
         /**
          * Creates a new Message instance using the specified properties.
@@ -30214,6 +30424,221 @@ export namespace E2E {
                 AI_PSI_METADATA = 28,
                 AI_QUERY_FANOUT = 29,
                 GROUP_MEMBER_LABEL_CHANGE = 30
+            }
+        }
+
+        /** Properties of a QuestionAdminReplyMessage. */
+        interface IQuestionAdminReplyMessage {
+
+            /** QuestionAdminReplyMessage adminReplyMessage */
+            adminReplyMessage?: (E2E.IMessage|null);
+
+            /** QuestionAdminReplyMessage quotedMessage */
+            quotedMessage?: (E2E.Message.QuestionAdminReplyMessage.IQuotedQuestionAdminReplyMessage|null);
+        }
+
+        /** Represents a QuestionAdminReplyMessage. */
+        class QuestionAdminReplyMessage implements IQuestionAdminReplyMessage {
+
+            /**
+             * Constructs a new QuestionAdminReplyMessage.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IQuestionAdminReplyMessage);
+
+            /** QuestionAdminReplyMessage adminReplyMessage. */
+            public adminReplyMessage?: (E2E.IMessage|null);
+
+            /** QuestionAdminReplyMessage quotedMessage. */
+            public quotedMessage?: (E2E.Message.QuestionAdminReplyMessage.IQuotedQuestionAdminReplyMessage|null);
+
+            /**
+             * Creates a new QuestionAdminReplyMessage instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns QuestionAdminReplyMessage instance
+             */
+            public static create(properties?: E2E.Message.IQuestionAdminReplyMessage): E2E.Message.QuestionAdminReplyMessage;
+
+            /**
+             * Encodes the specified QuestionAdminReplyMessage message. Does not implicitly {@link E2E.Message.QuestionAdminReplyMessage.verify|verify} messages.
+             * @param message QuestionAdminReplyMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IQuestionAdminReplyMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified QuestionAdminReplyMessage message, length delimited. Does not implicitly {@link E2E.Message.QuestionAdminReplyMessage.verify|verify} messages.
+             * @param message QuestionAdminReplyMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IQuestionAdminReplyMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a QuestionAdminReplyMessage message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns QuestionAdminReplyMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.QuestionAdminReplyMessage;
+
+            /**
+             * Decodes a QuestionAdminReplyMessage message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns QuestionAdminReplyMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.QuestionAdminReplyMessage;
+
+            /**
+             * Verifies a QuestionAdminReplyMessage message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a QuestionAdminReplyMessage message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns QuestionAdminReplyMessage
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.QuestionAdminReplyMessage;
+
+            /**
+             * Creates a plain object from a QuestionAdminReplyMessage message. Also converts values to other types if specified.
+             * @param message QuestionAdminReplyMessage
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.QuestionAdminReplyMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this QuestionAdminReplyMessage to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for QuestionAdminReplyMessage
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace QuestionAdminReplyMessage {
+
+            /** Properties of a QuotedQuestionAdminReplyMessage. */
+            interface IQuotedQuestionAdminReplyMessage {
+
+                /** QuotedQuestionAdminReplyMessage serverQuestionId */
+                serverQuestionId?: (number|null);
+
+                /** QuotedQuestionAdminReplyMessage quotedQuestion */
+                quotedQuestion?: (E2E.IMessage|null);
+
+                /** QuotedQuestionAdminReplyMessage quotedFollowerResponse */
+                quotedFollowerResponse?: (E2E.IMessage|null);
+            }
+
+            /** Represents a QuotedQuestionAdminReplyMessage. */
+            class QuotedQuestionAdminReplyMessage implements IQuotedQuestionAdminReplyMessage {
+
+                /**
+                 * Constructs a new QuotedQuestionAdminReplyMessage.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: E2E.Message.QuestionAdminReplyMessage.IQuotedQuestionAdminReplyMessage);
+
+                /** QuotedQuestionAdminReplyMessage serverQuestionId. */
+                public serverQuestionId: number;
+
+                /** QuotedQuestionAdminReplyMessage quotedQuestion. */
+                public quotedQuestion?: (E2E.IMessage|null);
+
+                /** QuotedQuestionAdminReplyMessage quotedFollowerResponse. */
+                public quotedFollowerResponse?: (E2E.IMessage|null);
+
+                /**
+                 * Creates a new QuotedQuestionAdminReplyMessage instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns QuotedQuestionAdminReplyMessage instance
+                 */
+                public static create(properties?: E2E.Message.QuestionAdminReplyMessage.IQuotedQuestionAdminReplyMessage): E2E.Message.QuestionAdminReplyMessage.QuotedQuestionAdminReplyMessage;
+
+                /**
+                 * Encodes the specified QuotedQuestionAdminReplyMessage message. Does not implicitly {@link E2E.Message.QuestionAdminReplyMessage.QuotedQuestionAdminReplyMessage.verify|verify} messages.
+                 * @param message QuotedQuestionAdminReplyMessage message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: E2E.Message.QuestionAdminReplyMessage.IQuotedQuestionAdminReplyMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified QuotedQuestionAdminReplyMessage message, length delimited. Does not implicitly {@link E2E.Message.QuestionAdminReplyMessage.QuotedQuestionAdminReplyMessage.verify|verify} messages.
+                 * @param message QuotedQuestionAdminReplyMessage message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: E2E.Message.QuestionAdminReplyMessage.IQuotedQuestionAdminReplyMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a QuotedQuestionAdminReplyMessage message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns QuotedQuestionAdminReplyMessage
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.QuestionAdminReplyMessage.QuotedQuestionAdminReplyMessage;
+
+                /**
+                 * Decodes a QuotedQuestionAdminReplyMessage message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns QuotedQuestionAdminReplyMessage
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.QuestionAdminReplyMessage.QuotedQuestionAdminReplyMessage;
+
+                /**
+                 * Verifies a QuotedQuestionAdminReplyMessage message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a QuotedQuestionAdminReplyMessage message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns QuotedQuestionAdminReplyMessage
+                 */
+                public static fromObject(object: { [k: string]: any }): E2E.Message.QuestionAdminReplyMessage.QuotedQuestionAdminReplyMessage;
+
+                /**
+                 * Creates a plain object from a QuotedQuestionAdminReplyMessage message. Also converts values to other types if specified.
+                 * @param message QuotedQuestionAdminReplyMessage
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: E2E.Message.QuestionAdminReplyMessage.QuotedQuestionAdminReplyMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this QuotedQuestionAdminReplyMessage to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for QuotedQuestionAdminReplyMessage
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
             }
         }
 
