@@ -24,6 +24,7 @@ message StatusAttribution {
             SPOTIFY = 4;
             YOUTUBE = 5;
             PINTEREST = 6;
+            THREADS = 7;
         }
     }
     message GroupStatus {

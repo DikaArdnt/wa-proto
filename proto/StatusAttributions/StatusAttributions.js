@@ -668,6 +668,7 @@ $root.StatusAttributions = (function() {
                     case 4:
                     case 5:
                     case 6:
+                    case 7:
                         break;
                     }
                 if (message.duration != null && message.hasOwnProperty("duration"))
@@ -727,6 +728,10 @@ $root.StatusAttributions = (function() {
                 case "PINTEREST":
                 case 6:
                     message.source = 6;
+                    break;
+                case "THREADS":
+                case 7:
+                    message.source = 7;
                     break;
                 }
                 if (object.duration != null)
@@ -803,6 +808,7 @@ $root.StatusAttributions = (function() {
              * @property {number} SPOTIFY=4 SPOTIFY value
              * @property {number} YOUTUBE=5 YOUTUBE value
              * @property {number} PINTEREST=6 PINTEREST value
+             * @property {number} THREADS=7 THREADS value
              */
             ExternalShare.Source = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -813,6 +819,7 @@ $root.StatusAttributions = (function() {
                 values[valuesById[4] = "SPOTIFY"] = 4;
                 values[valuesById[5] = "YOUTUBE"] = 5;
                 values[valuesById[6] = "PINTEREST"] = 6;
+                values[valuesById[7] = "THREADS"] = 7;
                 return values;
             })();
 

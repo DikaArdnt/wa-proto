@@ -1105,6 +1105,7 @@ message Message {
         optional fixed32 backgroundArgb = 20;
         optional bool viewOnce = 21;
         optional string accessibilityLabel = 22;
+        optional Message.MediaKeyDomain mediaKeyDomain = 23;
     }
     message BCallMessage {
         optional string sessionId = 1;
@@ -1316,6 +1317,7 @@ message Message {
         optional uint32 thumbnailWidth = 19;
         optional string caption = 20;
         optional string accessibilityLabel = 21;
+        optional Message.MediaKeyDomain mediaKeyDomain = 22;
     }
     message EncCommentMessage {
         optional Protocol.MessageKey targetMessageKey = 1;
@@ -1385,6 +1387,7 @@ message Message {
         optional Message.LinkPreviewMetadata linkPreviewMetadata = 34;
         optional Message.PaymentLinkMetadata paymentLinkMetadata = 35;
         repeated Message.VideoEndCard endCardTiles = 36;
+        optional Message.MediaKeyDomain mediaKeyDomain = 37;
         enum FontType {
             SYSTEM = 0;
             SYSTEM_TEXT = 1;
@@ -1539,6 +1542,7 @@ message Message {
         repeated InteractiveAnnotation annotations = 30;
         optional ImageSourceType imageSourceType = 31;
         optional string accessibilityLabel = 32;
+        optional Message.MediaKeyDomain mediaKeyDomain = 33;
         enum ImageSourceType {
             USER_IMAGE = 0;
             AI_GENERATED = 1;
@@ -1754,6 +1758,14 @@ message Message {
         optional int64 mediaKeyTimestamp = 5;
         optional uint32 thumbnailHeight = 6;
         optional uint32 thumbnailWidth = 7;
+        optional Message.MediaKeyDomain mediaKeyDomain = 8;
+    }
+    enum MediaKeyDomain {
+        UNSET = 0;
+        E2EE_CHAT = 1;
+        STATUS = 2;
+        CAPI = 3;
+        BOT = 4;
     }
     message MessageHistoryBundle {
         optional string mimetype = 1;
@@ -2202,6 +2214,7 @@ message Message {
         optional bool isAiSticker = 20;
         optional bool isLottie = 21;
         optional string accessibilityLabel = 22;
+        optional Message.MediaKeyDomain mediaKeyDomain = 23;
     }
     message StickerPackMessage {
         optional string stickerPackId = 1;
@@ -2328,6 +2341,7 @@ message Message {
         optional uint64 motionPhotoPresentationOffsetMs = 29;
         optional string metadataUrl = 30;
         optional VideoSourceType videoSourceType = 31;
+        optional Message.MediaKeyDomain mediaKeyDomain = 32;
         enum Attribution {
             NONE = 0;
             GIPHY = 1;

@@ -266,7 +266,8 @@ export namespace StatusAttributions {
                 MESSENGER = 3,
                 SPOTIFY = 4,
                 YOUTUBE = 5,
-                PINTEREST = 6
+                PINTEREST = 6,
+                THREADS = 7
             }
         }
 

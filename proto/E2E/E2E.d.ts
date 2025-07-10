@@ -13400,6 +13400,9 @@ export namespace E2E {
 
             /** AudioMessage accessibilityLabel */
             accessibilityLabel?: (string|null);
+
+            /** AudioMessage mediaKeyDomain */
+            mediaKeyDomain?: (E2E.Message.MediaKeyDomain|null);
         }
 
         /** Represents an AudioMessage. */
@@ -13458,6 +13461,9 @@ export namespace E2E {
 
             /** AudioMessage accessibilityLabel. */
             public accessibilityLabel: string;
+
+            /** AudioMessage mediaKeyDomain. */
+            public mediaKeyDomain: E2E.Message.MediaKeyDomain;
 
             /**
              * Creates a new AudioMessage instance using the specified properties.
@@ -15866,6 +15872,9 @@ export namespace E2E {
 
             /** DocumentMessage accessibilityLabel */
             accessibilityLabel?: (string|null);
+
+            /** DocumentMessage mediaKeyDomain */
+            mediaKeyDomain?: (E2E.Message.MediaKeyDomain|null);
         }
 
         /** Represents a DocumentMessage. */
@@ -15939,6 +15948,9 @@ export namespace E2E {
 
             /** DocumentMessage accessibilityLabel. */
             public accessibilityLabel: string;
+
+            /** DocumentMessage mediaKeyDomain. */
+            public mediaKeyDomain: E2E.Message.MediaKeyDomain;
 
             /**
              * Creates a new DocumentMessage instance using the specified properties.
@@ -16705,6 +16717,9 @@ export namespace E2E {
 
             /** ExtendedTextMessage endCardTiles */
             endCardTiles?: (E2E.Message.IVideoEndCard[]|null);
+
+            /** ExtendedTextMessage mediaKeyDomain */
+            mediaKeyDomain?: (E2E.Message.MediaKeyDomain|null);
         }
 
         /** Represents an ExtendedTextMessage. */
@@ -16802,6 +16817,9 @@ export namespace E2E {
 
             /** ExtendedTextMessage endCardTiles. */
             public endCardTiles: E2E.Message.IVideoEndCard[];
+
+            /** ExtendedTextMessage mediaKeyDomain. */
+            public mediaKeyDomain: E2E.Message.MediaKeyDomain;
 
             /**
              * Creates a new ExtendedTextMessage instance using the specified properties.
@@ -18260,6 +18278,9 @@ export namespace E2E {
 
             /** ImageMessage accessibilityLabel */
             accessibilityLabel?: (string|null);
+
+            /** ImageMessage mediaKeyDomain */
+            mediaKeyDomain?: (E2E.Message.MediaKeyDomain|null);
         }
 
         /** Represents an ImageMessage. */
@@ -18357,6 +18378,9 @@ export namespace E2E {
 
             /** ImageMessage accessibilityLabel. */
             public accessibilityLabel: string;
+
+            /** ImageMessage mediaKeyDomain. */
+            public mediaKeyDomain: E2E.Message.MediaKeyDomain;
 
             /**
              * Creates a new ImageMessage instance using the specified properties.
@@ -21660,6 +21684,9 @@ export namespace E2E {
 
             /** MMSThumbnailMetadata thumbnailWidth */
             thumbnailWidth?: (number|null);
+
+            /** MMSThumbnailMetadata mediaKeyDomain */
+            mediaKeyDomain?: (E2E.Message.MediaKeyDomain|null);
         }
 
         /** Represents a MMSThumbnailMetadata. */
@@ -21691,6 +21718,9 @@ export namespace E2E {
 
             /** MMSThumbnailMetadata thumbnailWidth. */
             public thumbnailWidth: number;
+
+            /** MMSThumbnailMetadata mediaKeyDomain. */
+            public mediaKeyDomain: E2E.Message.MediaKeyDomain;
 
             /**
              * Creates a new MMSThumbnailMetadata instance using the specified properties.
@@ -21768,6 +21798,15 @@ export namespace E2E {
              * @returns The default type url
              */
             public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** MediaKeyDomain enum. */
+        enum MediaKeyDomain {
+            UNSET = 0,
+            E2EE_CHAT = 1,
+            STATUS = 2,
+            CAPI = 3,
+            BOT = 4
         }
 
         /** Properties of a MessageHistoryBundle. */
@@ -28290,6 +28329,9 @@ export namespace E2E {
 
             /** StickerMessage accessibilityLabel */
             accessibilityLabel?: (string|null);
+
+            /** StickerMessage mediaKeyDomain */
+            mediaKeyDomain?: (E2E.Message.MediaKeyDomain|null);
         }
 
         /** Represents a StickerMessage. */
@@ -28360,6 +28402,9 @@ export namespace E2E {
 
             /** StickerMessage accessibilityLabel. */
             public accessibilityLabel: string;
+
+            /** StickerMessage mediaKeyDomain. */
+            public mediaKeyDomain: E2E.Message.MediaKeyDomain;
 
             /**
              * Creates a new StickerMessage instance using the specified properties.
@@ -29762,6 +29807,9 @@ export namespace E2E {
 
             /** VideoMessage videoSourceType */
             videoSourceType?: (E2E.Message.VideoMessage.VideoSourceType|null);
+
+            /** VideoMessage mediaKeyDomain */
+            mediaKeyDomain?: (E2E.Message.MediaKeyDomain|null);
         }
 
         /** Represents a VideoMessage. */
@@ -29862,6 +29910,9 @@ export namespace E2E {
 
             /** VideoMessage videoSourceType. */
             public videoSourceType: E2E.Message.VideoMessage.VideoSourceType;
+
+            /** VideoMessage mediaKeyDomain. */
+            public mediaKeyDomain: E2E.Message.MediaKeyDomain;
 
             /**
              * Creates a new VideoMessage instance using the specified properties.
@@ -31116,7 +31167,8 @@ export namespace StatusAttributions {
                 MESSENGER = 3,
                 SPOTIFY = 4,
                 YOUTUBE = 5,
-                PINTEREST = 6
+                PINTEREST = 6,
+                THREADS = 7
             }
         }
 

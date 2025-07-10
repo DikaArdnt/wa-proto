@@ -39239,6 +39239,7 @@ $root.E2E = (function() {
              * @property {number|null} [backgroundArgb] AudioMessage backgroundArgb
              * @property {boolean|null} [viewOnce] AudioMessage viewOnce
              * @property {string|null} [accessibilityLabel] AudioMessage accessibilityLabel
+             * @property {E2E.Message.MediaKeyDomain|null} [mediaKeyDomain] AudioMessage mediaKeyDomain
              */
 
             /**
@@ -39385,6 +39386,14 @@ $root.E2E = (function() {
             AudioMessage.prototype.accessibilityLabel = "";
 
             /**
+             * AudioMessage mediaKeyDomain.
+             * @member {E2E.Message.MediaKeyDomain} mediaKeyDomain
+             * @memberof E2E.Message.AudioMessage
+             * @instance
+             */
+            AudioMessage.prototype.mediaKeyDomain = 0;
+
+            /**
              * Creates a new AudioMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.AudioMessage
@@ -39440,6 +39449,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 21, wireType 0 =*/168).bool(message.viewOnce);
                 if (message.accessibilityLabel != null && Object.hasOwnProperty.call(message, "accessibilityLabel"))
                     writer.uint32(/* id 22, wireType 2 =*/178).string(message.accessibilityLabel);
+                if (message.mediaKeyDomain != null && Object.hasOwnProperty.call(message, "mediaKeyDomain"))
+                    writer.uint32(/* id 23, wireType 0 =*/184).int32(message.mediaKeyDomain);
                 return writer;
             };
 
@@ -39540,6 +39551,10 @@ $root.E2E = (function() {
                             message.accessibilityLabel = reader.string();
                             break;
                         }
+                    case 23: {
+                            message.mediaKeyDomain = reader.int32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -39625,6 +39640,17 @@ $root.E2E = (function() {
                 if (message.accessibilityLabel != null && message.hasOwnProperty("accessibilityLabel"))
                     if (!$util.isString(message.accessibilityLabel))
                         return "accessibilityLabel: string expected";
+                if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
+                    switch (message.mediaKeyDomain) {
+                    default:
+                        return "mediaKeyDomain: enum value expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                        break;
+                    }
                 return null;
             };
 
@@ -39704,6 +39730,34 @@ $root.E2E = (function() {
                     message.viewOnce = Boolean(object.viewOnce);
                 if (object.accessibilityLabel != null)
                     message.accessibilityLabel = String(object.accessibilityLabel);
+                switch (object.mediaKeyDomain) {
+                default:
+                    if (typeof object.mediaKeyDomain === "number") {
+                        message.mediaKeyDomain = object.mediaKeyDomain;
+                        break;
+                    }
+                    break;
+                case "UNSET":
+                case 0:
+                    message.mediaKeyDomain = 0;
+                    break;
+                case "E2EE_CHAT":
+                case 1:
+                    message.mediaKeyDomain = 1;
+                    break;
+                case "STATUS":
+                case 2:
+                    message.mediaKeyDomain = 2;
+                    break;
+                case "CAPI":
+                case 3:
+                    message.mediaKeyDomain = 3;
+                    break;
+                case "BOT":
+                case 4:
+                    message.mediaKeyDomain = 4;
+                    break;
+                }
                 return message;
             };
 
@@ -39775,6 +39829,7 @@ $root.E2E = (function() {
                     object.backgroundArgb = 0;
                     object.viewOnce = false;
                     object.accessibilityLabel = "";
+                    object.mediaKeyDomain = options.enums === String ? "UNSET" : 0;
                 }
                 if (message.url != null && message.hasOwnProperty("url"))
                     object.url = message.url;
@@ -39814,6 +39869,8 @@ $root.E2E = (function() {
                     object.viewOnce = message.viewOnce;
                 if (message.accessibilityLabel != null && message.hasOwnProperty("accessibilityLabel"))
                     object.accessibilityLabel = message.accessibilityLabel;
+                if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
+                    object.mediaKeyDomain = options.enums === String ? $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] === undefined ? message.mediaKeyDomain : $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] : message.mediaKeyDomain;
                 return object;
             };
 
@@ -45807,6 +45864,7 @@ $root.E2E = (function() {
              * @property {number|null} [thumbnailWidth] DocumentMessage thumbnailWidth
              * @property {string|null} [caption] DocumentMessage caption
              * @property {string|null} [accessibilityLabel] DocumentMessage accessibilityLabel
+             * @property {E2E.Message.MediaKeyDomain|null} [mediaKeyDomain] DocumentMessage mediaKeyDomain
              */
 
             /**
@@ -45993,6 +46051,14 @@ $root.E2E = (function() {
             DocumentMessage.prototype.accessibilityLabel = "";
 
             /**
+             * DocumentMessage mediaKeyDomain.
+             * @member {E2E.Message.MediaKeyDomain} mediaKeyDomain
+             * @memberof E2E.Message.DocumentMessage
+             * @instance
+             */
+            DocumentMessage.prototype.mediaKeyDomain = 0;
+
+            /**
              * Creates a new DocumentMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.DocumentMessage
@@ -46058,6 +46124,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 20, wireType 2 =*/162).string(message.caption);
                 if (message.accessibilityLabel != null && Object.hasOwnProperty.call(message, "accessibilityLabel"))
                     writer.uint32(/* id 21, wireType 2 =*/170).string(message.accessibilityLabel);
+                if (message.mediaKeyDomain != null && Object.hasOwnProperty.call(message, "mediaKeyDomain"))
+                    writer.uint32(/* id 22, wireType 0 =*/176).int32(message.mediaKeyDomain);
                 return writer;
             };
 
@@ -46178,6 +46246,10 @@ $root.E2E = (function() {
                             message.accessibilityLabel = reader.string();
                             break;
                         }
+                    case 22: {
+                            message.mediaKeyDomain = reader.int32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -46278,6 +46350,17 @@ $root.E2E = (function() {
                 if (message.accessibilityLabel != null && message.hasOwnProperty("accessibilityLabel"))
                     if (!$util.isString(message.accessibilityLabel))
                         return "accessibilityLabel: string expected";
+                if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
+                    switch (message.mediaKeyDomain) {
+                    default:
+                        return "mediaKeyDomain: enum value expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                        break;
+                    }
                 return null;
             };
 
@@ -46370,6 +46453,34 @@ $root.E2E = (function() {
                     message.caption = String(object.caption);
                 if (object.accessibilityLabel != null)
                     message.accessibilityLabel = String(object.accessibilityLabel);
+                switch (object.mediaKeyDomain) {
+                default:
+                    if (typeof object.mediaKeyDomain === "number") {
+                        message.mediaKeyDomain = object.mediaKeyDomain;
+                        break;
+                    }
+                    break;
+                case "UNSET":
+                case 0:
+                    message.mediaKeyDomain = 0;
+                    break;
+                case "E2EE_CHAT":
+                case 1:
+                    message.mediaKeyDomain = 1;
+                    break;
+                case "STATUS":
+                case 2:
+                    message.mediaKeyDomain = 2;
+                    break;
+                case "CAPI":
+                case 3:
+                    message.mediaKeyDomain = 3;
+                    break;
+                case "BOT":
+                case 4:
+                    message.mediaKeyDomain = 4;
+                    break;
+                }
                 return message;
             };
 
@@ -46452,6 +46563,7 @@ $root.E2E = (function() {
                     object.thumbnailWidth = 0;
                     object.caption = "";
                     object.accessibilityLabel = "";
+                    object.mediaKeyDomain = options.enums === String ? "UNSET" : 0;
                 }
                 if (message.url != null && message.hasOwnProperty("url"))
                     object.url = message.url;
@@ -46501,6 +46613,8 @@ $root.E2E = (function() {
                     object.caption = message.caption;
                 if (message.accessibilityLabel != null && message.hasOwnProperty("accessibilityLabel"))
                     object.accessibilityLabel = message.accessibilityLabel;
+                if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
+                    object.mediaKeyDomain = options.enums === String ? $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] === undefined ? message.mediaKeyDomain : $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] : message.mediaKeyDomain;
                 return object;
             };
 
@@ -48157,6 +48271,7 @@ $root.E2E = (function() {
              * @property {E2E.Message.ILinkPreviewMetadata|null} [linkPreviewMetadata] ExtendedTextMessage linkPreviewMetadata
              * @property {E2E.Message.IPaymentLinkMetadata|null} [paymentLinkMetadata] ExtendedTextMessage paymentLinkMetadata
              * @property {Array.<E2E.Message.IVideoEndCard>|null} [endCardTiles] ExtendedTextMessage endCardTiles
+             * @property {E2E.Message.MediaKeyDomain|null} [mediaKeyDomain] ExtendedTextMessage mediaKeyDomain
              */
 
             /**
@@ -48408,6 +48523,14 @@ $root.E2E = (function() {
             ExtendedTextMessage.prototype.endCardTiles = $util.emptyArray;
 
             /**
+             * ExtendedTextMessage mediaKeyDomain.
+             * @member {E2E.Message.MediaKeyDomain} mediaKeyDomain
+             * @memberof E2E.Message.ExtendedTextMessage
+             * @instance
+             */
+            ExtendedTextMessage.prototype.mediaKeyDomain = 0;
+
+            /**
              * Creates a new ExtendedTextMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.ExtendedTextMessage
@@ -48490,6 +48613,8 @@ $root.E2E = (function() {
                 if (message.endCardTiles != null && message.endCardTiles.length)
                     for (var i = 0; i < message.endCardTiles.length; ++i)
                         $root.E2E.Message.VideoEndCard.encode(message.endCardTiles[i], writer.uint32(/* id 36, wireType 2 =*/290).fork()).ldelim();
+                if (message.mediaKeyDomain != null && Object.hasOwnProperty.call(message, "mediaKeyDomain"))
+                    writer.uint32(/* id 37, wireType 0 =*/296).int32(message.mediaKeyDomain);
                 return writer;
             };
 
@@ -48642,6 +48767,10 @@ $root.E2E = (function() {
                             if (!(message.endCardTiles && message.endCardTiles.length))
                                 message.endCardTiles = [];
                             message.endCardTiles.push($root.E2E.Message.VideoEndCard.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 37: {
+                            message.mediaKeyDomain = reader.int32();
                             break;
                         }
                     default:
@@ -48814,6 +48943,17 @@ $root.E2E = (function() {
                             return "endCardTiles." + error;
                     }
                 }
+                if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
+                    switch (message.mediaKeyDomain) {
+                    default:
+                        return "mediaKeyDomain: enum value expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                        break;
+                    }
                 return null;
             };
 
@@ -49041,6 +49181,34 @@ $root.E2E = (function() {
                         message.endCardTiles[i] = $root.E2E.Message.VideoEndCard.fromObject(object.endCardTiles[i]);
                     }
                 }
+                switch (object.mediaKeyDomain) {
+                default:
+                    if (typeof object.mediaKeyDomain === "number") {
+                        message.mediaKeyDomain = object.mediaKeyDomain;
+                        break;
+                    }
+                    break;
+                case "UNSET":
+                case 0:
+                    message.mediaKeyDomain = 0;
+                    break;
+                case "E2EE_CHAT":
+                case 1:
+                    message.mediaKeyDomain = 1;
+                    break;
+                case "STATUS":
+                case 2:
+                    message.mediaKeyDomain = 2;
+                    break;
+                case "CAPI":
+                case 3:
+                    message.mediaKeyDomain = 3;
+                    break;
+                case "BOT":
+                case 4:
+                    message.mediaKeyDomain = 4;
+                    break;
+                }
                 return message;
             };
 
@@ -49122,6 +49290,7 @@ $root.E2E = (function() {
                     object.faviconMMSMetadata = null;
                     object.linkPreviewMetadata = null;
                     object.paymentLinkMetadata = null;
+                    object.mediaKeyDomain = options.enums === String ? "UNSET" : 0;
                 }
                 if (message.text != null && message.hasOwnProperty("text"))
                     object.text = message.text;
@@ -49187,6 +49356,8 @@ $root.E2E = (function() {
                     for (var j = 0; j < message.endCardTiles.length; ++j)
                         object.endCardTiles[j] = $root.E2E.Message.VideoEndCard.toObject(message.endCardTiles[j], options);
                 }
+                if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
+                    object.mediaKeyDomain = options.enums === String ? $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] === undefined ? message.mediaKeyDomain : $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] : message.mediaKeyDomain;
                 return object;
             };
 
@@ -52705,6 +52876,7 @@ $root.E2E = (function() {
              * @property {Array.<E2E.IInteractiveAnnotation>|null} [annotations] ImageMessage annotations
              * @property {E2E.Message.ImageMessage.ImageSourceType|null} [imageSourceType] ImageMessage imageSourceType
              * @property {string|null} [accessibilityLabel] ImageMessage accessibilityLabel
+             * @property {E2E.Message.MediaKeyDomain|null} [mediaKeyDomain] ImageMessage mediaKeyDomain
              */
 
             /**
@@ -52958,6 +53130,14 @@ $root.E2E = (function() {
             ImageMessage.prototype.accessibilityLabel = "";
 
             /**
+             * ImageMessage mediaKeyDomain.
+             * @member {E2E.Message.MediaKeyDomain} mediaKeyDomain
+             * @memberof E2E.Message.ImageMessage
+             * @instance
+             */
+            ImageMessage.prototype.mediaKeyDomain = 0;
+
+            /**
              * Creates a new ImageMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.ImageMessage
@@ -53042,6 +53222,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 31, wireType 0 =*/248).int32(message.imageSourceType);
                 if (message.accessibilityLabel != null && Object.hasOwnProperty.call(message, "accessibilityLabel"))
                     writer.uint32(/* id 32, wireType 2 =*/258).string(message.accessibilityLabel);
+                if (message.mediaKeyDomain != null && Object.hasOwnProperty.call(message, "mediaKeyDomain"))
+                    writer.uint32(/* id 33, wireType 0 =*/264).int32(message.mediaKeyDomain);
                 return writer;
             };
 
@@ -53205,6 +53387,10 @@ $root.E2E = (function() {
                             message.accessibilityLabel = reader.string();
                             break;
                         }
+                    case 33: {
+                            message.mediaKeyDomain = reader.int32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -53352,6 +53538,17 @@ $root.E2E = (function() {
                 if (message.accessibilityLabel != null && message.hasOwnProperty("accessibilityLabel"))
                     if (!$util.isString(message.accessibilityLabel))
                         return "accessibilityLabel: string expected";
+                if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
+                    switch (message.mediaKeyDomain) {
+                    default:
+                        return "mediaKeyDomain: enum value expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                        break;
+                    }
                 return null;
             };
 
@@ -53515,6 +53712,34 @@ $root.E2E = (function() {
                 }
                 if (object.accessibilityLabel != null)
                     message.accessibilityLabel = String(object.accessibilityLabel);
+                switch (object.mediaKeyDomain) {
+                default:
+                    if (typeof object.mediaKeyDomain === "number") {
+                        message.mediaKeyDomain = object.mediaKeyDomain;
+                        break;
+                    }
+                    break;
+                case "UNSET":
+                case 0:
+                    message.mediaKeyDomain = 0;
+                    break;
+                case "E2EE_CHAT":
+                case 1:
+                    message.mediaKeyDomain = 1;
+                    break;
+                case "STATUS":
+                case 2:
+                    message.mediaKeyDomain = 2;
+                    break;
+                case "CAPI":
+                case 3:
+                    message.mediaKeyDomain = 3;
+                    break;
+                case "BOT":
+                case 4:
+                    message.mediaKeyDomain = 4;
+                    break;
+                }
                 return message;
             };
 
@@ -53631,6 +53856,7 @@ $root.E2E = (function() {
                     object.staticUrl = "";
                     object.imageSourceType = options.enums === String ? "USER_IMAGE" : 0;
                     object.accessibilityLabel = "";
+                    object.mediaKeyDomain = options.enums === String ? "UNSET" : 0;
                 }
                 if (message.url != null && message.hasOwnProperty("url"))
                     object.url = message.url;
@@ -53705,6 +53931,8 @@ $root.E2E = (function() {
                     object.imageSourceType = options.enums === String ? $root.E2E.Message.ImageMessage.ImageSourceType[message.imageSourceType] === undefined ? message.imageSourceType : $root.E2E.Message.ImageMessage.ImageSourceType[message.imageSourceType] : message.imageSourceType;
                 if (message.accessibilityLabel != null && message.hasOwnProperty("accessibilityLabel"))
                     object.accessibilityLabel = message.accessibilityLabel;
+                if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
+                    object.mediaKeyDomain = options.enums === String ? $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] === undefined ? message.mediaKeyDomain : $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] : message.mediaKeyDomain;
                 return object;
             };
 
@@ -61969,6 +62197,7 @@ $root.E2E = (function() {
              * @property {number|Long|null} [mediaKeyTimestamp] MMSThumbnailMetadata mediaKeyTimestamp
              * @property {number|null} [thumbnailHeight] MMSThumbnailMetadata thumbnailHeight
              * @property {number|null} [thumbnailWidth] MMSThumbnailMetadata thumbnailWidth
+             * @property {E2E.Message.MediaKeyDomain|null} [mediaKeyDomain] MMSThumbnailMetadata mediaKeyDomain
              */
 
             /**
@@ -62043,6 +62272,14 @@ $root.E2E = (function() {
             MMSThumbnailMetadata.prototype.thumbnailWidth = 0;
 
             /**
+             * MMSThumbnailMetadata mediaKeyDomain.
+             * @member {E2E.Message.MediaKeyDomain} mediaKeyDomain
+             * @memberof E2E.Message.MMSThumbnailMetadata
+             * @instance
+             */
+            MMSThumbnailMetadata.prototype.mediaKeyDomain = 0;
+
+            /**
              * Creates a new MMSThumbnailMetadata instance using the specified properties.
              * @function create
              * @memberof E2E.Message.MMSThumbnailMetadata
@@ -62080,6 +62317,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 6, wireType 0 =*/48).uint32(message.thumbnailHeight);
                 if (message.thumbnailWidth != null && Object.hasOwnProperty.call(message, "thumbnailWidth"))
                     writer.uint32(/* id 7, wireType 0 =*/56).uint32(message.thumbnailWidth);
+                if (message.mediaKeyDomain != null && Object.hasOwnProperty.call(message, "mediaKeyDomain"))
+                    writer.uint32(/* id 8, wireType 0 =*/64).int32(message.mediaKeyDomain);
                 return writer;
             };
 
@@ -62144,6 +62383,10 @@ $root.E2E = (function() {
                             message.thumbnailWidth = reader.uint32();
                             break;
                         }
+                    case 8: {
+                            message.mediaKeyDomain = reader.int32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -62200,6 +62443,17 @@ $root.E2E = (function() {
                 if (message.thumbnailWidth != null && message.hasOwnProperty("thumbnailWidth"))
                     if (!$util.isInteger(message.thumbnailWidth))
                         return "thumbnailWidth: integer expected";
+                if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
+                    switch (message.mediaKeyDomain) {
+                    default:
+                        return "mediaKeyDomain: enum value expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                        break;
+                    }
                 return null;
             };
 
@@ -62245,6 +62499,34 @@ $root.E2E = (function() {
                     message.thumbnailHeight = object.thumbnailHeight >>> 0;
                 if (object.thumbnailWidth != null)
                     message.thumbnailWidth = object.thumbnailWidth >>> 0;
+                switch (object.mediaKeyDomain) {
+                default:
+                    if (typeof object.mediaKeyDomain === "number") {
+                        message.mediaKeyDomain = object.mediaKeyDomain;
+                        break;
+                    }
+                    break;
+                case "UNSET":
+                case 0:
+                    message.mediaKeyDomain = 0;
+                    break;
+                case "E2EE_CHAT":
+                case 1:
+                    message.mediaKeyDomain = 1;
+                    break;
+                case "STATUS":
+                case 2:
+                    message.mediaKeyDomain = 2;
+                    break;
+                case "CAPI":
+                case 3:
+                    message.mediaKeyDomain = 3;
+                    break;
+                case "BOT":
+                case 4:
+                    message.mediaKeyDomain = 4;
+                    break;
+                }
                 return message;
             };
 
@@ -62291,6 +62573,7 @@ $root.E2E = (function() {
                         object.mediaKeyTimestamp = options.longs === String ? "0" : 0;
                     object.thumbnailHeight = 0;
                     object.thumbnailWidth = 0;
+                    object.mediaKeyDomain = options.enums === String ? "UNSET" : 0;
                 }
                 if (message.thumbnailDirectPath != null && message.hasOwnProperty("thumbnailDirectPath"))
                     object.thumbnailDirectPath = message.thumbnailDirectPath;
@@ -62309,6 +62592,8 @@ $root.E2E = (function() {
                     object.thumbnailHeight = message.thumbnailHeight;
                 if (message.thumbnailWidth != null && message.hasOwnProperty("thumbnailWidth"))
                     object.thumbnailWidth = message.thumbnailWidth;
+                if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
+                    object.mediaKeyDomain = options.enums === String ? $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] === undefined ? message.mediaKeyDomain : $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] : message.mediaKeyDomain;
                 return object;
             };
 
@@ -62339,6 +62624,26 @@ $root.E2E = (function() {
             };
 
             return MMSThumbnailMetadata;
+        })();
+
+        /**
+         * MediaKeyDomain enum.
+         * @name E2E.Message.MediaKeyDomain
+         * @enum {number}
+         * @property {number} UNSET=0 UNSET value
+         * @property {number} E2EE_CHAT=1 E2EE_CHAT value
+         * @property {number} STATUS=2 STATUS value
+         * @property {number} CAPI=3 CAPI value
+         * @property {number} BOT=4 BOT value
+         */
+        Message.MediaKeyDomain = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "UNSET"] = 0;
+            values[valuesById[1] = "E2EE_CHAT"] = 1;
+            values[valuesById[2] = "STATUS"] = 2;
+            values[valuesById[3] = "CAPI"] = 3;
+            values[valuesById[4] = "BOT"] = 4;
+            return values;
         })();
 
         Message.MessageHistoryBundle = (function() {
@@ -79099,6 +79404,7 @@ $root.E2E = (function() {
              * @property {boolean|null} [isAiSticker] StickerMessage isAiSticker
              * @property {boolean|null} [isLottie] StickerMessage isLottie
              * @property {string|null} [accessibilityLabel] StickerMessage accessibilityLabel
+             * @property {E2E.Message.MediaKeyDomain|null} [mediaKeyDomain] StickerMessage mediaKeyDomain
              */
 
             /**
@@ -79277,6 +79583,14 @@ $root.E2E = (function() {
             StickerMessage.prototype.accessibilityLabel = "";
 
             /**
+             * StickerMessage mediaKeyDomain.
+             * @member {E2E.Message.MediaKeyDomain} mediaKeyDomain
+             * @memberof E2E.Message.StickerMessage
+             * @instance
+             */
+            StickerMessage.prototype.mediaKeyDomain = 0;
+
+            /**
              * Creates a new StickerMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.StickerMessage
@@ -79340,6 +79654,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 21, wireType 0 =*/168).bool(message.isLottie);
                 if (message.accessibilityLabel != null && Object.hasOwnProperty.call(message, "accessibilityLabel"))
                     writer.uint32(/* id 22, wireType 2 =*/178).string(message.accessibilityLabel);
+                if (message.mediaKeyDomain != null && Object.hasOwnProperty.call(message, "mediaKeyDomain"))
+                    writer.uint32(/* id 23, wireType 0 =*/184).int32(message.mediaKeyDomain);
                 return writer;
             };
 
@@ -79456,6 +79772,10 @@ $root.E2E = (function() {
                             message.accessibilityLabel = reader.string();
                             break;
                         }
+                    case 23: {
+                            message.mediaKeyDomain = reader.int32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -79553,6 +79873,17 @@ $root.E2E = (function() {
                 if (message.accessibilityLabel != null && message.hasOwnProperty("accessibilityLabel"))
                     if (!$util.isString(message.accessibilityLabel))
                         return "accessibilityLabel: string expected";
+                if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
+                    switch (message.mediaKeyDomain) {
+                    default:
+                        return "mediaKeyDomain: enum value expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                        break;
+                    }
                 return null;
             };
 
@@ -79647,6 +79978,34 @@ $root.E2E = (function() {
                     message.isLottie = Boolean(object.isLottie);
                 if (object.accessibilityLabel != null)
                     message.accessibilityLabel = String(object.accessibilityLabel);
+                switch (object.mediaKeyDomain) {
+                default:
+                    if (typeof object.mediaKeyDomain === "number") {
+                        message.mediaKeyDomain = object.mediaKeyDomain;
+                        break;
+                    }
+                    break;
+                case "UNSET":
+                case 0:
+                    message.mediaKeyDomain = 0;
+                    break;
+                case "E2EE_CHAT":
+                case 1:
+                    message.mediaKeyDomain = 1;
+                    break;
+                case "STATUS":
+                case 2:
+                    message.mediaKeyDomain = 2;
+                    break;
+                case "CAPI":
+                case 3:
+                    message.mediaKeyDomain = 3;
+                    break;
+                case "BOT":
+                case 4:
+                    message.mediaKeyDomain = 4;
+                    break;
+                }
                 return message;
             };
 
@@ -79726,6 +80085,7 @@ $root.E2E = (function() {
                     object.isAiSticker = false;
                     object.isLottie = false;
                     object.accessibilityLabel = "";
+                    object.mediaKeyDomain = options.enums === String ? "UNSET" : 0;
                 }
                 if (message.url != null && message.hasOwnProperty("url"))
                     object.url = message.url;
@@ -79776,6 +80136,8 @@ $root.E2E = (function() {
                     object.isLottie = message.isLottie;
                 if (message.accessibilityLabel != null && message.hasOwnProperty("accessibilityLabel"))
                     object.accessibilityLabel = message.accessibilityLabel;
+                if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
+                    object.mediaKeyDomain = options.enums === String ? $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] === undefined ? message.mediaKeyDomain : $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] : message.mediaKeyDomain;
                 return object;
             };
 
@@ -83445,6 +83807,7 @@ $root.E2E = (function() {
              * @property {number|Long|null} [motionPhotoPresentationOffsetMs] VideoMessage motionPhotoPresentationOffsetMs
              * @property {string|null} [metadataUrl] VideoMessage metadataUrl
              * @property {E2E.Message.VideoMessage.VideoSourceType|null} [videoSourceType] VideoMessage videoSourceType
+             * @property {E2E.Message.MediaKeyDomain|null} [mediaKeyDomain] VideoMessage mediaKeyDomain
              */
 
             /**
@@ -83706,6 +84069,14 @@ $root.E2E = (function() {
             VideoMessage.prototype.videoSourceType = 0;
 
             /**
+             * VideoMessage mediaKeyDomain.
+             * @member {E2E.Message.MediaKeyDomain} mediaKeyDomain
+             * @memberof E2E.Message.VideoMessage
+             * @instance
+             */
+            VideoMessage.prototype.mediaKeyDomain = 0;
+
+            /**
              * Creates a new VideoMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.VideoMessage
@@ -83792,6 +84163,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 30, wireType 2 =*/242).string(message.metadataUrl);
                 if (message.videoSourceType != null && Object.hasOwnProperty.call(message, "videoSourceType"))
                     writer.uint32(/* id 31, wireType 0 =*/248).int32(message.videoSourceType);
+                if (message.mediaKeyDomain != null && Object.hasOwnProperty.call(message, "mediaKeyDomain"))
+                    writer.uint32(/* id 32, wireType 0 =*/256).int32(message.mediaKeyDomain);
                 return writer;
             };
 
@@ -83954,6 +84327,10 @@ $root.E2E = (function() {
                             message.videoSourceType = reader.int32();
                             break;
                         }
+                    case 32: {
+                            message.mediaKeyDomain = reader.int32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -84108,6 +84485,17 @@ $root.E2E = (function() {
                         return "videoSourceType: enum value expected";
                     case 0:
                     case 1:
+                        break;
+                    }
+                if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
+                    switch (message.mediaKeyDomain) {
+                    default:
+                        return "mediaKeyDomain: enum value expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
                         break;
                     }
                 return null;
@@ -84286,6 +84674,34 @@ $root.E2E = (function() {
                     message.videoSourceType = 1;
                     break;
                 }
+                switch (object.mediaKeyDomain) {
+                default:
+                    if (typeof object.mediaKeyDomain === "number") {
+                        message.mediaKeyDomain = object.mediaKeyDomain;
+                        break;
+                    }
+                    break;
+                case "UNSET":
+                case 0:
+                    message.mediaKeyDomain = 0;
+                    break;
+                case "E2EE_CHAT":
+                case 1:
+                    message.mediaKeyDomain = 1;
+                    break;
+                case "STATUS":
+                case 2:
+                    message.mediaKeyDomain = 2;
+                    break;
+                case "CAPI":
+                case 3:
+                    message.mediaKeyDomain = 3;
+                    break;
+                case "BOT":
+                case 4:
+                    message.mediaKeyDomain = 4;
+                    break;
+                }
                 return message;
             };
 
@@ -84389,6 +84805,7 @@ $root.E2E = (function() {
                         object.motionPhotoPresentationOffsetMs = options.longs === String ? "0" : 0;
                     object.metadataUrl = "";
                     object.videoSourceType = options.enums === String ? "USER_VIDEO" : 0;
+                    object.mediaKeyDomain = options.enums === String ? "UNSET" : 0;
                 }
                 if (message.url != null && message.hasOwnProperty("url"))
                     object.url = message.url;
@@ -84468,6 +84885,8 @@ $root.E2E = (function() {
                     object.metadataUrl = message.metadataUrl;
                 if (message.videoSourceType != null && message.hasOwnProperty("videoSourceType"))
                     object.videoSourceType = options.enums === String ? $root.E2E.Message.VideoMessage.VideoSourceType[message.videoSourceType] === undefined ? message.videoSourceType : $root.E2E.Message.VideoMessage.VideoSourceType[message.videoSourceType] : message.videoSourceType;
+                if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
+                    object.mediaKeyDomain = options.enums === String ? $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] === undefined ? message.mediaKeyDomain : $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] : message.mediaKeyDomain;
                 return object;
             };
 
@@ -87559,6 +87978,7 @@ $root.StatusAttributions = (function() {
                     case 4:
                     case 5:
                     case 6:
+                    case 7:
                         break;
                     }
                 if (message.duration != null && message.hasOwnProperty("duration"))
@@ -87618,6 +88038,10 @@ $root.StatusAttributions = (function() {
                 case "PINTEREST":
                 case 6:
                     message.source = 6;
+                    break;
+                case "THREADS":
+                case 7:
+                    message.source = 7;
                     break;
                 }
                 if (object.duration != null)
@@ -87694,6 +88118,7 @@ $root.StatusAttributions = (function() {
              * @property {number} SPOTIFY=4 SPOTIFY value
              * @property {number} YOUTUBE=5 YOUTUBE value
              * @property {number} PINTEREST=6 PINTEREST value
+             * @property {number} THREADS=7 THREADS value
              */
             ExternalShare.Source = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -87704,6 +88129,7 @@ $root.StatusAttributions = (function() {
                 values[valuesById[4] = "SPOTIFY"] = 4;
                 values[valuesById[5] = "YOUTUBE"] = 5;
                 values[valuesById[6] = "PINTEREST"] = 6;
+                values[valuesById[7] = "THREADS"] = 7;
                 return values;
             })();
 
