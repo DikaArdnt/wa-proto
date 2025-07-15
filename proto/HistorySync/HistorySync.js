@@ -97211,6 +97211,7 @@ $root.E2E = (function() {
                     case 0:
                     case 1:
                     case 2:
+                    case 3:
                         break;
                     }
                 return null;
@@ -97256,6 +97257,10 @@ $root.E2E = (function() {
                 case "STATUS_RESHARE":
                 case 2:
                     message.type = 2;
+                    break;
+                case "STATUS_QUESTION_ANSWER_RESHARE":
+                case 3:
+                    message.type = 3;
                     break;
                 }
                 return message;
@@ -97321,12 +97326,14 @@ $root.E2E = (function() {
              * @property {number} UNKNOWN=0 UNKNOWN value
              * @property {number} STATUS_ADD_YOURS=1 STATUS_ADD_YOURS value
              * @property {number} STATUS_RESHARE=2 STATUS_RESHARE value
+             * @property {number} STATUS_QUESTION_ANSWER_RESHARE=3 STATUS_QUESTION_ANSWER_RESHARE value
              */
             StatusNotificationMessage.StatusNotificationType = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
                 values[valuesById[0] = "UNKNOWN"] = 0;
                 values[valuesById[1] = "STATUS_ADD_YOURS"] = 1;
                 values[valuesById[2] = "STATUS_RESHARE"] = 2;
+                values[valuesById[3] = "STATUS_QUESTION_ANSWER_RESHARE"] = 3;
                 return values;
             })();
 
@@ -110325,6 +110332,7 @@ $root.CompanionReg = (function() {
              * @property {boolean|null} [supportFbidBotChatHistory] HistorySyncConfig supportFbidBotChatHistory
              * @property {boolean|null} [supportAddOnHistorySyncMigration] HistorySyncConfig supportAddOnHistorySyncMigration
              * @property {boolean|null} [supportMessageAssociation] HistorySyncConfig supportMessageAssociation
+             * @property {boolean|null} [supportGroupHistory] HistorySyncConfig supportGroupHistory
              */
 
             /**
@@ -110455,6 +110463,14 @@ $root.CompanionReg = (function() {
             HistorySyncConfig.prototype.supportMessageAssociation = false;
 
             /**
+             * HistorySyncConfig supportGroupHistory.
+             * @member {boolean} supportGroupHistory
+             * @memberof CompanionReg.DeviceProps.HistorySyncConfig
+             * @instance
+             */
+            HistorySyncConfig.prototype.supportGroupHistory = false;
+
+            /**
              * Creates a new HistorySyncConfig instance using the specified properties.
              * @function create
              * @memberof CompanionReg.DeviceProps.HistorySyncConfig
@@ -110506,6 +110522,8 @@ $root.CompanionReg = (function() {
                     writer.uint32(/* id 13, wireType 0 =*/104).bool(message.supportAddOnHistorySyncMigration);
                 if (message.supportMessageAssociation != null && Object.hasOwnProperty.call(message, "supportMessageAssociation"))
                     writer.uint32(/* id 14, wireType 0 =*/112).bool(message.supportMessageAssociation);
+                if (message.supportGroupHistory != null && Object.hasOwnProperty.call(message, "supportGroupHistory"))
+                    writer.uint32(/* id 15, wireType 0 =*/120).bool(message.supportGroupHistory);
                 return writer;
             };
 
@@ -110598,6 +110616,10 @@ $root.CompanionReg = (function() {
                             message.supportMessageAssociation = reader.bool();
                             break;
                         }
+                    case 15: {
+                            message.supportGroupHistory = reader.bool();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -110675,6 +110697,9 @@ $root.CompanionReg = (function() {
                 if (message.supportMessageAssociation != null && message.hasOwnProperty("supportMessageAssociation"))
                     if (typeof message.supportMessageAssociation !== "boolean")
                         return "supportMessageAssociation: boolean expected";
+                if (message.supportGroupHistory != null && message.hasOwnProperty("supportGroupHistory"))
+                    if (typeof message.supportGroupHistory !== "boolean")
+                        return "supportGroupHistory: boolean expected";
                 return null;
             };
 
@@ -110718,6 +110743,8 @@ $root.CompanionReg = (function() {
                     message.supportAddOnHistorySyncMigration = Boolean(object.supportAddOnHistorySyncMigration);
                 if (object.supportMessageAssociation != null)
                     message.supportMessageAssociation = Boolean(object.supportMessageAssociation);
+                if (object.supportGroupHistory != null)
+                    message.supportGroupHistory = Boolean(object.supportGroupHistory);
                 return message;
             };
 
@@ -110749,6 +110776,7 @@ $root.CompanionReg = (function() {
                     object.supportFbidBotChatHistory = false;
                     object.supportAddOnHistorySyncMigration = false;
                     object.supportMessageAssociation = false;
+                    object.supportGroupHistory = false;
                 }
                 if (message.fullSyncDaysLimit != null && message.hasOwnProperty("fullSyncDaysLimit"))
                     object.fullSyncDaysLimit = message.fullSyncDaysLimit;
@@ -110778,6 +110806,8 @@ $root.CompanionReg = (function() {
                     object.supportAddOnHistorySyncMigration = message.supportAddOnHistorySyncMigration;
                 if (message.supportMessageAssociation != null && message.hasOwnProperty("supportMessageAssociation"))
                     object.supportMessageAssociation = message.supportMessageAssociation;
+                if (message.supportGroupHistory != null && message.hasOwnProperty("supportGroupHistory"))
+                    object.supportGroupHistory = message.supportGroupHistory;
                 return object;
             };
 

@@ -66,6 +66,7 @@ message DeviceProps {
         optional bool supportFbidBotChatHistory = 12;
         optional bool supportAddOnHistorySyncMigration = 13;
         optional bool supportMessageAssociation = 14;
+        optional bool supportGroupHistory = 15;
     }
     enum PlatformType {
         UNKNOWN = 0;

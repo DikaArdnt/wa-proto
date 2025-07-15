@@ -1024,6 +1024,9 @@ export namespace CompanionReg {
 
             /** HistorySyncConfig supportMessageAssociation */
             supportMessageAssociation?: (boolean|null);
+
+            /** HistorySyncConfig supportGroupHistory */
+            supportGroupHistory?: (boolean|null);
         }
 
         /** Represents a HistorySyncConfig. */
@@ -1076,6 +1079,9 @@ export namespace CompanionReg {
 
             /** HistorySyncConfig supportMessageAssociation. */
             public supportMessageAssociation: boolean;
+
+            /** HistorySyncConfig supportGroupHistory. */
+            public supportGroupHistory: boolean;
 
             /**
              * Creates a new HistorySyncConfig instance using the specified properties.

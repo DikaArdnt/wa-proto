@@ -29135,7 +29135,8 @@ export namespace E2E {
             enum StatusNotificationType {
                 UNKNOWN = 0,
                 STATUS_ADD_YOURS = 1,
-                STATUS_RESHARE = 2
+                STATUS_RESHARE = 2,
+                STATUS_QUESTION_ANSWER_RESHARE = 3
             }
         }
 
@@ -33744,6 +33745,9 @@ export namespace CompanionReg {
 
             /** HistorySyncConfig supportMessageAssociation */
             supportMessageAssociation?: (boolean|null);
+
+            /** HistorySyncConfig supportGroupHistory */
+            supportGroupHistory?: (boolean|null);
         }
 
         /** Represents a HistorySyncConfig. */
@@ -33796,6 +33800,9 @@ export namespace CompanionReg {
 
             /** HistorySyncConfig supportMessageAssociation. */
             public supportMessageAssociation: boolean;
+
+            /** HistorySyncConfig supportGroupHistory. */
+            public supportGroupHistory: boolean;
 
             /**
              * Creates a new HistorySyncConfig instance using the specified properties.

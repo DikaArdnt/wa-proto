@@ -2187,6 +2187,7 @@ message Message {
             UNKNOWN = 0;
             STATUS_ADD_YOURS = 1;
             STATUS_RESHARE = 2;
+            STATUS_QUESTION_ANSWER_RESHARE = 3;
         }
     }
     message StatusQuestionAnswerMessage {
