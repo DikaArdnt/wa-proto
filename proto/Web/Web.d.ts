@@ -15820,6 +15820,9 @@ export namespace E2E {
 
         /** Message questionAdminReplyMessage */
         questionAdminReplyMessage?: (E2E.Message.IQuestionAdminReplyMessage|null);
+
+        /** Message questionResponseMessage */
+        questionResponseMessage?: (E2E.Message.IQuestionResponseMessage|null);
     }
 
     /** Represents a Message. */
@@ -16100,6 +16103,9 @@ export namespace E2E {
 
         /** Message questionAdminReplyMessage. */
         public questionAdminReplyMessage?: (E2E.Message.IQuestionAdminReplyMessage|null);
+
+        /** Message questionResponseMessage. */
+        public questionResponseMessage?: (E2E.Message.IQuestionResponseMessage|null);
 
         /**
          * Creates a new Message instance using the specified properties.
@@ -30679,6 +30685,109 @@ export namespace E2E {
                  */
                 public static getTypeUrl(typeUrlPrefix?: string): string;
             }
+        }
+
+        /** Properties of a QuestionResponseMessage. */
+        interface IQuestionResponseMessage {
+
+            /** QuestionResponseMessage key */
+            key?: (Protocol.IMessageKey|null);
+
+            /** QuestionResponseMessage text */
+            text?: (string|null);
+        }
+
+        /** Represents a QuestionResponseMessage. */
+        class QuestionResponseMessage implements IQuestionResponseMessage {
+
+            /**
+             * Constructs a new QuestionResponseMessage.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IQuestionResponseMessage);
+
+            /** QuestionResponseMessage key. */
+            public key?: (Protocol.IMessageKey|null);
+
+            /** QuestionResponseMessage text. */
+            public text: string;
+
+            /**
+             * Creates a new QuestionResponseMessage instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns QuestionResponseMessage instance
+             */
+            public static create(properties?: E2E.Message.IQuestionResponseMessage): E2E.Message.QuestionResponseMessage;
+
+            /**
+             * Encodes the specified QuestionResponseMessage message. Does not implicitly {@link E2E.Message.QuestionResponseMessage.verify|verify} messages.
+             * @param message QuestionResponseMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IQuestionResponseMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified QuestionResponseMessage message, length delimited. Does not implicitly {@link E2E.Message.QuestionResponseMessage.verify|verify} messages.
+             * @param message QuestionResponseMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IQuestionResponseMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a QuestionResponseMessage message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns QuestionResponseMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.QuestionResponseMessage;
+
+            /**
+             * Decodes a QuestionResponseMessage message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns QuestionResponseMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.QuestionResponseMessage;
+
+            /**
+             * Verifies a QuestionResponseMessage message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a QuestionResponseMessage message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns QuestionResponseMessage
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.QuestionResponseMessage;
+
+            /**
+             * Creates a plain object from a QuestionResponseMessage message. Also converts values to other types if specified.
+             * @param message QuestionResponseMessage
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.QuestionResponseMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this QuestionResponseMessage to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for QuestionResponseMessage
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
         /** Properties of a ReactionMessage. */

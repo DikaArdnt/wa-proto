@@ -31852,6 +31852,7 @@ $root.E2E = (function() {
          * @property {E2E.Message.IFutureProofMessage|null} [botForwardedMessage] Message botForwardedMessage
          * @property {E2E.Message.IStatusQuestionAnswerMessage|null} [statusQuestionAnswerMessage] Message statusQuestionAnswerMessage
          * @property {E2E.Message.IQuestionAdminReplyMessage|null} [questionAdminReplyMessage] Message questionAdminReplyMessage
+         * @property {E2E.Message.IQuestionResponseMessage|null} [questionResponseMessage] Message questionResponseMessage
          */
 
         /**
@@ -32590,6 +32591,14 @@ $root.E2E = (function() {
         Message.prototype.questionAdminReplyMessage = null;
 
         /**
+         * Message questionResponseMessage.
+         * @member {E2E.Message.IQuestionResponseMessage|null|undefined} questionResponseMessage
+         * @memberof E2E.Message
+         * @instance
+         */
+        Message.prototype.questionResponseMessage = null;
+
+        /**
          * Creates a new Message instance using the specified properties.
          * @function create
          * @memberof E2E.Message
@@ -32793,6 +32802,8 @@ $root.E2E = (function() {
                 $root.E2E.Message.StatusQuestionAnswerMessage.encode(message.statusQuestionAnswerMessage, writer.uint32(/* id 105, wireType 2 =*/842).fork()).ldelim();
             if (message.questionAdminReplyMessage != null && Object.hasOwnProperty.call(message, "questionAdminReplyMessage"))
                 $root.E2E.Message.QuestionAdminReplyMessage.encode(message.questionAdminReplyMessage, writer.uint32(/* id 106, wireType 2 =*/850).fork()).ldelim();
+            if (message.questionResponseMessage != null && Object.hasOwnProperty.call(message, "questionResponseMessage"))
+                $root.E2E.Message.QuestionResponseMessage.encode(message.questionResponseMessage, writer.uint32(/* id 107, wireType 2 =*/858).fork()).ldelim();
             return writer;
         };
 
@@ -33187,6 +33198,10 @@ $root.E2E = (function() {
                     }
                 case 106: {
                         message.questionAdminReplyMessage = $root.E2E.Message.QuestionAdminReplyMessage.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 107: {
+                        message.questionResponseMessage = $root.E2E.Message.QuestionResponseMessage.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -33672,6 +33687,11 @@ $root.E2E = (function() {
                 if (error)
                     return "questionAdminReplyMessage." + error;
             }
+            if (message.questionResponseMessage != null && message.hasOwnProperty("questionResponseMessage")) {
+                var error = $root.E2E.Message.QuestionResponseMessage.verify(message.questionResponseMessage);
+                if (error)
+                    return "questionResponseMessage." + error;
+            }
             return null;
         };
 
@@ -34134,6 +34154,11 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.Message.questionAdminReplyMessage: object expected");
                 message.questionAdminReplyMessage = $root.E2E.Message.QuestionAdminReplyMessage.fromObject(object.questionAdminReplyMessage);
             }
+            if (object.questionResponseMessage != null) {
+                if (typeof object.questionResponseMessage !== "object")
+                    throw TypeError(".E2E.Message.questionResponseMessage: object expected");
+                message.questionResponseMessage = $root.E2E.Message.QuestionResponseMessage.fromObject(object.questionResponseMessage);
+            }
             return message;
         };
 
@@ -34241,6 +34266,7 @@ $root.E2E = (function() {
                 object.botForwardedMessage = null;
                 object.statusQuestionAnswerMessage = null;
                 object.questionAdminReplyMessage = null;
+                object.questionResponseMessage = null;
             }
             if (message.conversation != null && message.hasOwnProperty("conversation"))
                 object.conversation = message.conversation;
@@ -34422,6 +34448,8 @@ $root.E2E = (function() {
                 object.statusQuestionAnswerMessage = $root.E2E.Message.StatusQuestionAnswerMessage.toObject(message.statusQuestionAnswerMessage, options);
             if (message.questionAdminReplyMessage != null && message.hasOwnProperty("questionAdminReplyMessage"))
                 object.questionAdminReplyMessage = $root.E2E.Message.QuestionAdminReplyMessage.toObject(message.questionAdminReplyMessage, options);
+            if (message.questionResponseMessage != null && message.hasOwnProperty("questionResponseMessage"))
+                object.questionResponseMessage = $root.E2E.Message.QuestionResponseMessage.toObject(message.questionResponseMessage, options);
             return object;
         };
 
@@ -73507,6 +73535,240 @@ $root.E2E = (function() {
             })();
 
             return QuestionAdminReplyMessage;
+        })();
+
+        Message.QuestionResponseMessage = (function() {
+
+            /**
+             * Properties of a QuestionResponseMessage.
+             * @memberof E2E.Message
+             * @interface IQuestionResponseMessage
+             * @property {Protocol.IMessageKey|null} [key] QuestionResponseMessage key
+             * @property {string|null} [text] QuestionResponseMessage text
+             */
+
+            /**
+             * Constructs a new QuestionResponseMessage.
+             * @memberof E2E.Message
+             * @classdesc Represents a QuestionResponseMessage.
+             * @implements IQuestionResponseMessage
+             * @constructor
+             * @param {E2E.Message.IQuestionResponseMessage=} [properties] Properties to set
+             */
+            function QuestionResponseMessage(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * QuestionResponseMessage key.
+             * @member {Protocol.IMessageKey|null|undefined} key
+             * @memberof E2E.Message.QuestionResponseMessage
+             * @instance
+             */
+            QuestionResponseMessage.prototype.key = null;
+
+            /**
+             * QuestionResponseMessage text.
+             * @member {string} text
+             * @memberof E2E.Message.QuestionResponseMessage
+             * @instance
+             */
+            QuestionResponseMessage.prototype.text = "";
+
+            /**
+             * Creates a new QuestionResponseMessage instance using the specified properties.
+             * @function create
+             * @memberof E2E.Message.QuestionResponseMessage
+             * @static
+             * @param {E2E.Message.IQuestionResponseMessage=} [properties] Properties to set
+             * @returns {E2E.Message.QuestionResponseMessage} QuestionResponseMessage instance
+             */
+            QuestionResponseMessage.create = function create(properties) {
+                return new QuestionResponseMessage(properties);
+            };
+
+            /**
+             * Encodes the specified QuestionResponseMessage message. Does not implicitly {@link E2E.Message.QuestionResponseMessage.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.Message.QuestionResponseMessage
+             * @static
+             * @param {E2E.Message.IQuestionResponseMessage} message QuestionResponseMessage message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            QuestionResponseMessage.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.key != null && Object.hasOwnProperty.call(message, "key"))
+                    $root.Protocol.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.text != null && Object.hasOwnProperty.call(message, "text"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.text);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified QuestionResponseMessage message, length delimited. Does not implicitly {@link E2E.Message.QuestionResponseMessage.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.Message.QuestionResponseMessage
+             * @static
+             * @param {E2E.Message.IQuestionResponseMessage} message QuestionResponseMessage message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            QuestionResponseMessage.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a QuestionResponseMessage message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.Message.QuestionResponseMessage
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.Message.QuestionResponseMessage} QuestionResponseMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            QuestionResponseMessage.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.QuestionResponseMessage();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 2: {
+                            message.text = reader.string();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a QuestionResponseMessage message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.Message.QuestionResponseMessage
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.Message.QuestionResponseMessage} QuestionResponseMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            QuestionResponseMessage.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a QuestionResponseMessage message.
+             * @function verify
+             * @memberof E2E.Message.QuestionResponseMessage
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            QuestionResponseMessage.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.key != null && message.hasOwnProperty("key")) {
+                    var error = $root.Protocol.MessageKey.verify(message.key);
+                    if (error)
+                        return "key." + error;
+                }
+                if (message.text != null && message.hasOwnProperty("text"))
+                    if (!$util.isString(message.text))
+                        return "text: string expected";
+                return null;
+            };
+
+            /**
+             * Creates a QuestionResponseMessage message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.Message.QuestionResponseMessage
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.Message.QuestionResponseMessage} QuestionResponseMessage
+             */
+            QuestionResponseMessage.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.Message.QuestionResponseMessage)
+                    return object;
+                var message = new $root.E2E.Message.QuestionResponseMessage();
+                if (object.key != null) {
+                    if (typeof object.key !== "object")
+                        throw TypeError(".E2E.Message.QuestionResponseMessage.key: object expected");
+                    message.key = $root.Protocol.MessageKey.fromObject(object.key);
+                }
+                if (object.text != null)
+                    message.text = String(object.text);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a QuestionResponseMessage message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.Message.QuestionResponseMessage
+             * @static
+             * @param {E2E.Message.QuestionResponseMessage} message QuestionResponseMessage
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            QuestionResponseMessage.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.key = null;
+                    object.text = "";
+                }
+                if (message.key != null && message.hasOwnProperty("key"))
+                    object.key = $root.Protocol.MessageKey.toObject(message.key, options);
+                if (message.text != null && message.hasOwnProperty("text"))
+                    object.text = message.text;
+                return object;
+            };
+
+            /**
+             * Converts this QuestionResponseMessage to JSON.
+             * @function toJSON
+             * @memberof E2E.Message.QuestionResponseMessage
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            QuestionResponseMessage.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for QuestionResponseMessage
+             * @function getTypeUrl
+             * @memberof E2E.Message.QuestionResponseMessage
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            QuestionResponseMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.Message.QuestionResponseMessage";
+            };
+
+            return QuestionResponseMessage;
         })();
 
         Message.ReactionMessage = (function() {
