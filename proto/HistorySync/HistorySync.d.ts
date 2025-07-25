@@ -14159,6 +14159,9 @@ export namespace E2E {
 
             /** ExternalAdReplyInfo adType */
             adType?: (E2E.ContextInfo.ExternalAdReplyInfo.AdType|null);
+
+            /** ExternalAdReplyInfo wtwaWebsiteUrl */
+            wtwaWebsiteUrl?: (string|null);
         }
 
         /** Represents an ExternalAdReplyInfo. */
@@ -14244,6 +14247,9 @@ export namespace E2E {
 
             /** ExternalAdReplyInfo adType. */
             public adType: E2E.ContextInfo.ExternalAdReplyInfo.AdType;
+
+            /** ExternalAdReplyInfo wtwaWebsiteUrl. */
+            public wtwaWebsiteUrl: string;
 
             /**
              * Creates a new ExternalAdReplyInfo instance using the specified properties.
@@ -18221,6 +18227,9 @@ export namespace E2E {
 
             /** CloudAPIThreadControlNotification notificationContent */
             notificationContent?: (E2E.Message.CloudAPIThreadControlNotification.ICloudAPIThreadControlNotificationContent|null);
+
+            /** CloudAPIThreadControlNotification shouldSuppressNotification */
+            shouldSuppressNotification?: (boolean|null);
         }
 
         /** Represents a CloudAPIThreadControlNotification. */
@@ -18246,6 +18255,9 @@ export namespace E2E {
 
             /** CloudAPIThreadControlNotification notificationContent. */
             public notificationContent?: (E2E.Message.CloudAPIThreadControlNotification.ICloudAPIThreadControlNotificationContent|null);
+
+            /** CloudAPIThreadControlNotification shouldSuppressNotification. */
+            public shouldSuppressNotification: boolean;
 
             /**
              * Creates a new CloudAPIThreadControlNotification instance using the specified properties.

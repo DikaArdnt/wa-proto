@@ -30421,6 +30421,7 @@ $root.E2E = (function() {
              * @property {string|null} [automatedGreetingMessageCtaType] ExternalAdReplyInfo automatedGreetingMessageCtaType
              * @property {boolean|null} [wtwaAdFormat] ExternalAdReplyInfo wtwaAdFormat
              * @property {E2E.ContextInfo.ExternalAdReplyInfo.AdType|null} [adType] ExternalAdReplyInfo adType
+             * @property {string|null} [wtwaWebsiteUrl] ExternalAdReplyInfo wtwaWebsiteUrl
              */
 
             /**
@@ -30639,6 +30640,14 @@ $root.E2E = (function() {
             ExternalAdReplyInfo.prototype.adType = 0;
 
             /**
+             * ExternalAdReplyInfo wtwaWebsiteUrl.
+             * @member {string} wtwaWebsiteUrl
+             * @memberof E2E.ContextInfo.ExternalAdReplyInfo
+             * @instance
+             */
+            ExternalAdReplyInfo.prototype.wtwaWebsiteUrl = "";
+
+            /**
              * Creates a new ExternalAdReplyInfo instance using the specified properties.
              * @function create
              * @memberof E2E.ContextInfo.ExternalAdReplyInfo
@@ -30712,6 +30721,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 24, wireType 0 =*/192).bool(message.wtwaAdFormat);
                 if (message.adType != null && Object.hasOwnProperty.call(message, "adType"))
                     writer.uint32(/* id 25, wireType 0 =*/200).int32(message.adType);
+                if (message.wtwaWebsiteUrl != null && Object.hasOwnProperty.call(message, "wtwaWebsiteUrl"))
+                    writer.uint32(/* id 26, wireType 2 =*/210).string(message.wtwaWebsiteUrl);
                 return writer;
             };
 
@@ -30848,6 +30859,10 @@ $root.E2E = (function() {
                             message.adType = reader.int32();
                             break;
                         }
+                    case 26: {
+                            message.wtwaWebsiteUrl = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -30969,6 +30984,9 @@ $root.E2E = (function() {
                     case 1:
                         break;
                     }
+                if (message.wtwaWebsiteUrl != null && message.hasOwnProperty("wtwaWebsiteUrl"))
+                    if (!$util.isString(message.wtwaWebsiteUrl))
+                        return "wtwaWebsiteUrl: string expected";
                 return null;
             };
 
@@ -31069,6 +31087,8 @@ $root.E2E = (function() {
                     message.adType = 1;
                     break;
                 }
+                if (object.wtwaWebsiteUrl != null)
+                    message.wtwaWebsiteUrl = String(object.wtwaWebsiteUrl);
                 return message;
             };
 
@@ -31117,6 +31137,7 @@ $root.E2E = (function() {
                     object.automatedGreetingMessageCtaType = "";
                     object.wtwaAdFormat = false;
                     object.adType = options.enums === String ? "CTWA" : 0;
+                    object.wtwaWebsiteUrl = "";
                 }
                 if (message.title != null && message.hasOwnProperty("title"))
                     object.title = message.title;
@@ -31168,6 +31189,8 @@ $root.E2E = (function() {
                     object.wtwaAdFormat = message.wtwaAdFormat;
                 if (message.adType != null && message.hasOwnProperty("adType"))
                     object.adType = options.enums === String ? $root.E2E.ContextInfo.ExternalAdReplyInfo.AdType[message.adType] === undefined ? message.adType : $root.E2E.ContextInfo.ExternalAdReplyInfo.AdType[message.adType] : message.adType;
+                if (message.wtwaWebsiteUrl != null && message.hasOwnProperty("wtwaWebsiteUrl"))
+                    object.wtwaWebsiteUrl = message.wtwaWebsiteUrl;
                 return object;
             };
 
@@ -42387,6 +42410,7 @@ $root.E2E = (function() {
              * @property {string|null} [consumerLid] CloudAPIThreadControlNotification consumerLid
              * @property {string|null} [consumerPhoneNumber] CloudAPIThreadControlNotification consumerPhoneNumber
              * @property {E2E.Message.CloudAPIThreadControlNotification.ICloudAPIThreadControlNotificationContent|null} [notificationContent] CloudAPIThreadControlNotification notificationContent
+             * @property {boolean|null} [shouldSuppressNotification] CloudAPIThreadControlNotification shouldSuppressNotification
              */
 
             /**
@@ -42445,6 +42469,14 @@ $root.E2E = (function() {
             CloudAPIThreadControlNotification.prototype.notificationContent = null;
 
             /**
+             * CloudAPIThreadControlNotification shouldSuppressNotification.
+             * @member {boolean} shouldSuppressNotification
+             * @memberof E2E.Message.CloudAPIThreadControlNotification
+             * @instance
+             */
+            CloudAPIThreadControlNotification.prototype.shouldSuppressNotification = false;
+
+            /**
              * Creates a new CloudAPIThreadControlNotification instance using the specified properties.
              * @function create
              * @memberof E2E.Message.CloudAPIThreadControlNotification
@@ -42478,6 +42510,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 4, wireType 2 =*/34).string(message.consumerPhoneNumber);
                 if (message.notificationContent != null && Object.hasOwnProperty.call(message, "notificationContent"))
                     $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent.encode(message.notificationContent, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                if (message.shouldSuppressNotification != null && Object.hasOwnProperty.call(message, "shouldSuppressNotification"))
+                    writer.uint32(/* id 6, wireType 0 =*/48).bool(message.shouldSuppressNotification);
                 return writer;
             };
 
@@ -42532,6 +42566,10 @@ $root.E2E = (function() {
                         }
                     case 5: {
                             message.notificationContent = $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 6: {
+                            message.shouldSuppressNotification = reader.bool();
                             break;
                         }
                     default:
@@ -42592,6 +42630,9 @@ $root.E2E = (function() {
                     if (error)
                         return "notificationContent." + error;
                 }
+                if (message.shouldSuppressNotification != null && message.hasOwnProperty("shouldSuppressNotification"))
+                    if (typeof message.shouldSuppressNotification !== "boolean")
+                        return "shouldSuppressNotification: boolean expected";
                 return null;
             };
 
@@ -42645,6 +42686,8 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.CloudAPIThreadControlNotification.notificationContent: object expected");
                     message.notificationContent = $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent.fromObject(object.notificationContent);
                 }
+                if (object.shouldSuppressNotification != null)
+                    message.shouldSuppressNotification = Boolean(object.shouldSuppressNotification);
                 return message;
             };
 
@@ -42671,6 +42714,7 @@ $root.E2E = (function() {
                     object.consumerLid = "";
                     object.consumerPhoneNumber = "";
                     object.notificationContent = null;
+                    object.shouldSuppressNotification = false;
                 }
                 if (message.status != null && message.hasOwnProperty("status"))
                     object.status = options.enums === String ? $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControl[message.status] === undefined ? message.status : $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControl[message.status] : message.status;
@@ -42685,6 +42729,8 @@ $root.E2E = (function() {
                     object.consumerPhoneNumber = message.consumerPhoneNumber;
                 if (message.notificationContent != null && message.hasOwnProperty("notificationContent"))
                     object.notificationContent = $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent.toObject(message.notificationContent, options);
+                if (message.shouldSuppressNotification != null && message.hasOwnProperty("shouldSuppressNotification"))
+                    object.shouldSuppressNotification = message.shouldSuppressNotification;
                 return object;
             };
 
