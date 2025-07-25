@@ -2,8 +2,8 @@ syntax = "proto2";
 package HistorySync;
 
 import "../ChatLockSettings/ChatLockSettings.proto";
-import "../Web/Web.proto";
 import "../E2E/E2E.proto";
+import "../Web/Web.proto";
 import "../Protocol/Protocol.proto";
 import "../SyncAction/SyncAction.proto";
 
@@ -49,6 +49,7 @@ message StickerMetadata {
     optional float weight = 10;
     optional int64 lastStickerSentTs = 11;
     optional bool isLottie = 12;
+    optional bool isAvatarSticker = 13;
 }
 
 message AutoDownloadSettings {
@@ -89,6 +90,7 @@ message WallpaperSettings {
 message GroupParticipant {
     required string userJid = 1;
     optional Rank rank = 2;
+    optional E2E.MemberLabel memberLabel = 3;
     enum Rank {
         REGULAR = 0;
         ADMIN = 1;

@@ -1027,6 +1027,9 @@ export namespace CompanionReg {
 
             /** HistorySyncConfig supportGroupHistory */
             supportGroupHistory?: (boolean|null);
+
+            /** HistorySyncConfig onDemandReady */
+            onDemandReady?: (boolean|null);
         }
 
         /** Represents a HistorySyncConfig. */
@@ -1082,6 +1085,9 @@ export namespace CompanionReg {
 
             /** HistorySyncConfig supportGroupHistory. */
             public supportGroupHistory: boolean;
+
+            /** HistorySyncConfig onDemandReady. */
+            public onDemandReady: boolean;
 
             /**
              * Creates a new HistorySyncConfig instance using the specified properties.

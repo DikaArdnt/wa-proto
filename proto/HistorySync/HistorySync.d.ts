@@ -492,6 +492,9 @@ export namespace HistorySync {
 
         /** StickerMetadata isLottie */
         isLottie?: (boolean|null);
+
+        /** StickerMetadata isAvatarSticker */
+        isAvatarSticker?: (boolean|null);
     }
 
     /** Represents a StickerMetadata. */
@@ -538,6 +541,9 @@ export namespace HistorySync {
 
         /** StickerMetadata isLottie. */
         public isLottie: boolean;
+
+        /** StickerMetadata isAvatarSticker. */
+        public isAvatarSticker: boolean;
 
         /**
          * Creates a new StickerMetadata instance using the specified properties.
@@ -1054,6 +1060,9 @@ export namespace HistorySync {
 
         /** GroupParticipant rank */
         rank?: (HistorySync.GroupParticipant.Rank|null);
+
+        /** GroupParticipant memberLabel */
+        memberLabel?: (E2E.IMemberLabel|null);
     }
 
     /** Represents a GroupParticipant. */
@@ -1070,6 +1079,9 @@ export namespace HistorySync {
 
         /** GroupParticipant rank. */
         public rank: HistorySync.GroupParticipant.Rank;
+
+        /** GroupParticipant memberLabel. */
+        public memberLabel?: (E2E.IMemberLabel|null);
 
         /**
          * Creates a new GroupParticipant instance using the specified properties.
@@ -2680,3661 +2692,6 @@ export namespace UserPassword {
                  */
                 public static getTypeUrl(typeUrlPrefix?: string): string;
             }
-        }
-    }
-}
-
-/** Namespace Web. */
-export namespace Web {
-
-    /** Properties of a Citation. */
-    interface ICitation {
-
-        /** Citation title */
-        title: string;
-
-        /** Citation subtitle */
-        subtitle: string;
-
-        /** Citation cmsId */
-        cmsId: string;
-
-        /** Citation imageUrl */
-        imageUrl: string;
-    }
-
-    /** Represents a Citation. */
-    class Citation implements ICitation {
-
-        /**
-         * Constructs a new Citation.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Web.ICitation);
-
-        /** Citation title. */
-        public title: string;
-
-        /** Citation subtitle. */
-        public subtitle: string;
-
-        /** Citation cmsId. */
-        public cmsId: string;
-
-        /** Citation imageUrl. */
-        public imageUrl: string;
-
-        /**
-         * Creates a new Citation instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns Citation instance
-         */
-        public static create(properties?: Web.ICitation): Web.Citation;
-
-        /**
-         * Encodes the specified Citation message. Does not implicitly {@link Web.Citation.verify|verify} messages.
-         * @param message Citation message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Web.ICitation, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified Citation message, length delimited. Does not implicitly {@link Web.Citation.verify|verify} messages.
-         * @param message Citation message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Web.ICitation, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a Citation message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns Citation
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.Citation;
-
-        /**
-         * Decodes a Citation message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns Citation
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.Citation;
-
-        /**
-         * Verifies a Citation message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a Citation message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns Citation
-         */
-        public static fromObject(object: { [k: string]: any }): Web.Citation;
-
-        /**
-         * Creates a plain object from a Citation message. Also converts values to other types if specified.
-         * @param message Citation
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: Web.Citation, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this Citation to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for Citation
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a StatusMentionMessage. */
-    interface IStatusMentionMessage {
-
-        /** StatusMentionMessage quotedStatus */
-        quotedStatus?: (E2E.IMessage|null);
-    }
-
-    /** Represents a StatusMentionMessage. */
-    class StatusMentionMessage implements IStatusMentionMessage {
-
-        /**
-         * Constructs a new StatusMentionMessage.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Web.IStatusMentionMessage);
-
-        /** StatusMentionMessage quotedStatus. */
-        public quotedStatus?: (E2E.IMessage|null);
-
-        /**
-         * Creates a new StatusMentionMessage instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns StatusMentionMessage instance
-         */
-        public static create(properties?: Web.IStatusMentionMessage): Web.StatusMentionMessage;
-
-        /**
-         * Encodes the specified StatusMentionMessage message. Does not implicitly {@link Web.StatusMentionMessage.verify|verify} messages.
-         * @param message StatusMentionMessage message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Web.IStatusMentionMessage, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified StatusMentionMessage message, length delimited. Does not implicitly {@link Web.StatusMentionMessage.verify|verify} messages.
-         * @param message StatusMentionMessage message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Web.IStatusMentionMessage, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a StatusMentionMessage message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns StatusMentionMessage
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.StatusMentionMessage;
-
-        /**
-         * Decodes a StatusMentionMessage message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns StatusMentionMessage
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.StatusMentionMessage;
-
-        /**
-         * Verifies a StatusMentionMessage message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a StatusMentionMessage message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns StatusMentionMessage
-         */
-        public static fromObject(object: { [k: string]: any }): Web.StatusMentionMessage;
-
-        /**
-         * Creates a plain object from a StatusMentionMessage message. Also converts values to other types if specified.
-         * @param message StatusMentionMessage
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: Web.StatusMentionMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this StatusMentionMessage to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for StatusMentionMessage
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a MessageAddOn. */
-    interface IMessageAddOn {
-
-        /** MessageAddOn messageAddOnType */
-        messageAddOnType?: (Web.MessageAddOn.MessageAddOnType|null);
-
-        /** MessageAddOn messageAddOn */
-        messageAddOn?: (E2E.IMessage|null);
-
-        /** MessageAddOn senderTimestampMs */
-        senderTimestampMs?: (number|Long|null);
-
-        /** MessageAddOn serverTimestampMs */
-        serverTimestampMs?: (number|Long|null);
-
-        /** MessageAddOn status */
-        status?: (Web.WebMessageInfo.Status|null);
-
-        /** MessageAddOn addOnContextInfo */
-        addOnContextInfo?: (Web.IMessageAddOnContextInfo|null);
-
-        /** MessageAddOn messageAddOnKey */
-        messageAddOnKey?: (Protocol.IMessageKey|null);
-
-        /** MessageAddOn legacyMessage */
-        legacyMessage?: (Web.ILegacyMessage|null);
-    }
-
-    /** Represents a MessageAddOn. */
-    class MessageAddOn implements IMessageAddOn {
-
-        /**
-         * Constructs a new MessageAddOn.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Web.IMessageAddOn);
-
-        /** MessageAddOn messageAddOnType. */
-        public messageAddOnType: Web.MessageAddOn.MessageAddOnType;
-
-        /** MessageAddOn messageAddOn. */
-        public messageAddOn?: (E2E.IMessage|null);
-
-        /** MessageAddOn senderTimestampMs. */
-        public senderTimestampMs: (number|Long);
-
-        /** MessageAddOn serverTimestampMs. */
-        public serverTimestampMs: (number|Long);
-
-        /** MessageAddOn status. */
-        public status: Web.WebMessageInfo.Status;
-
-        /** MessageAddOn addOnContextInfo. */
-        public addOnContextInfo?: (Web.IMessageAddOnContextInfo|null);
-
-        /** MessageAddOn messageAddOnKey. */
-        public messageAddOnKey?: (Protocol.IMessageKey|null);
-
-        /** MessageAddOn legacyMessage. */
-        public legacyMessage?: (Web.ILegacyMessage|null);
-
-        /**
-         * Creates a new MessageAddOn instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns MessageAddOn instance
-         */
-        public static create(properties?: Web.IMessageAddOn): Web.MessageAddOn;
-
-        /**
-         * Encodes the specified MessageAddOn message. Does not implicitly {@link Web.MessageAddOn.verify|verify} messages.
-         * @param message MessageAddOn message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Web.IMessageAddOn, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified MessageAddOn message, length delimited. Does not implicitly {@link Web.MessageAddOn.verify|verify} messages.
-         * @param message MessageAddOn message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Web.IMessageAddOn, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a MessageAddOn message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns MessageAddOn
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.MessageAddOn;
-
-        /**
-         * Decodes a MessageAddOn message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns MessageAddOn
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.MessageAddOn;
-
-        /**
-         * Verifies a MessageAddOn message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a MessageAddOn message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns MessageAddOn
-         */
-        public static fromObject(object: { [k: string]: any }): Web.MessageAddOn;
-
-        /**
-         * Creates a plain object from a MessageAddOn message. Also converts values to other types if specified.
-         * @param message MessageAddOn
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: Web.MessageAddOn, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this MessageAddOn to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for MessageAddOn
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    namespace MessageAddOn {
-
-        /** MessageAddOnType enum. */
-        enum MessageAddOnType {
-            UNDEFINED = 0,
-            REACTION = 1,
-            EVENT_RESPONSE = 2,
-            POLL_UPDATE = 3,
-            PIN_IN_CHAT = 4
-        }
-    }
-
-    /** Properties of a LegacyMessage. */
-    interface ILegacyMessage {
-
-        /** LegacyMessage eventResponseMessage */
-        eventResponseMessage?: (E2E.Message.IEventResponseMessage|null);
-
-        /** LegacyMessage pollVote */
-        pollVote?: (E2E.Message.IPollVoteMessage|null);
-    }
-
-    /** Represents a LegacyMessage. */
-    class LegacyMessage implements ILegacyMessage {
-
-        /**
-         * Constructs a new LegacyMessage.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Web.ILegacyMessage);
-
-        /** LegacyMessage eventResponseMessage. */
-        public eventResponseMessage?: (E2E.Message.IEventResponseMessage|null);
-
-        /** LegacyMessage pollVote. */
-        public pollVote?: (E2E.Message.IPollVoteMessage|null);
-
-        /**
-         * Creates a new LegacyMessage instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns LegacyMessage instance
-         */
-        public static create(properties?: Web.ILegacyMessage): Web.LegacyMessage;
-
-        /**
-         * Encodes the specified LegacyMessage message. Does not implicitly {@link Web.LegacyMessage.verify|verify} messages.
-         * @param message LegacyMessage message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Web.ILegacyMessage, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified LegacyMessage message, length delimited. Does not implicitly {@link Web.LegacyMessage.verify|verify} messages.
-         * @param message LegacyMessage message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Web.ILegacyMessage, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a LegacyMessage message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns LegacyMessage
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.LegacyMessage;
-
-        /**
-         * Decodes a LegacyMessage message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns LegacyMessage
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.LegacyMessage;
-
-        /**
-         * Verifies a LegacyMessage message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a LegacyMessage message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns LegacyMessage
-         */
-        public static fromObject(object: { [k: string]: any }): Web.LegacyMessage;
-
-        /**
-         * Creates a plain object from a LegacyMessage message. Also converts values to other types if specified.
-         * @param message LegacyMessage
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: Web.LegacyMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this LegacyMessage to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for LegacyMessage
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of an EventResponse. */
-    interface IEventResponse {
-
-        /** EventResponse eventResponseMessageKey */
-        eventResponseMessageKey?: (Protocol.IMessageKey|null);
-
-        /** EventResponse timestampMs */
-        timestampMs?: (number|Long|null);
-
-        /** EventResponse eventResponseMessage */
-        eventResponseMessage?: (E2E.Message.IEventResponseMessage|null);
-
-        /** EventResponse unread */
-        unread?: (boolean|null);
-    }
-
-    /** Represents an EventResponse. */
-    class EventResponse implements IEventResponse {
-
-        /**
-         * Constructs a new EventResponse.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Web.IEventResponse);
-
-        /** EventResponse eventResponseMessageKey. */
-        public eventResponseMessageKey?: (Protocol.IMessageKey|null);
-
-        /** EventResponse timestampMs. */
-        public timestampMs: (number|Long);
-
-        /** EventResponse eventResponseMessage. */
-        public eventResponseMessage?: (E2E.Message.IEventResponseMessage|null);
-
-        /** EventResponse unread. */
-        public unread: boolean;
-
-        /**
-         * Creates a new EventResponse instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns EventResponse instance
-         */
-        public static create(properties?: Web.IEventResponse): Web.EventResponse;
-
-        /**
-         * Encodes the specified EventResponse message. Does not implicitly {@link Web.EventResponse.verify|verify} messages.
-         * @param message EventResponse message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Web.IEventResponse, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified EventResponse message, length delimited. Does not implicitly {@link Web.EventResponse.verify|verify} messages.
-         * @param message EventResponse message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Web.IEventResponse, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes an EventResponse message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns EventResponse
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.EventResponse;
-
-        /**
-         * Decodes an EventResponse message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns EventResponse
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.EventResponse;
-
-        /**
-         * Verifies an EventResponse message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates an EventResponse message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns EventResponse
-         */
-        public static fromObject(object: { [k: string]: any }): Web.EventResponse;
-
-        /**
-         * Creates a plain object from an EventResponse message. Also converts values to other types if specified.
-         * @param message EventResponse
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: Web.EventResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this EventResponse to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for EventResponse
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a PremiumMessageInfo. */
-    interface IPremiumMessageInfo {
-
-        /** PremiumMessageInfo serverCampaignId */
-        serverCampaignId?: (string|null);
-    }
-
-    /** Represents a PremiumMessageInfo. */
-    class PremiumMessageInfo implements IPremiumMessageInfo {
-
-        /**
-         * Constructs a new PremiumMessageInfo.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Web.IPremiumMessageInfo);
-
-        /** PremiumMessageInfo serverCampaignId. */
-        public serverCampaignId: string;
-
-        /**
-         * Creates a new PremiumMessageInfo instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns PremiumMessageInfo instance
-         */
-        public static create(properties?: Web.IPremiumMessageInfo): Web.PremiumMessageInfo;
-
-        /**
-         * Encodes the specified PremiumMessageInfo message. Does not implicitly {@link Web.PremiumMessageInfo.verify|verify} messages.
-         * @param message PremiumMessageInfo message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Web.IPremiumMessageInfo, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified PremiumMessageInfo message, length delimited. Does not implicitly {@link Web.PremiumMessageInfo.verify|verify} messages.
-         * @param message PremiumMessageInfo message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Web.IPremiumMessageInfo, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a PremiumMessageInfo message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns PremiumMessageInfo
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.PremiumMessageInfo;
-
-        /**
-         * Decodes a PremiumMessageInfo message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns PremiumMessageInfo
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.PremiumMessageInfo;
-
-        /**
-         * Verifies a PremiumMessageInfo message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a PremiumMessageInfo message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns PremiumMessageInfo
-         */
-        public static fromObject(object: { [k: string]: any }): Web.PremiumMessageInfo;
-
-        /**
-         * Creates a plain object from a PremiumMessageInfo message. Also converts values to other types if specified.
-         * @param message PremiumMessageInfo
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: Web.PremiumMessageInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this PremiumMessageInfo to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for PremiumMessageInfo
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a MessageAddOnContextInfo. */
-    interface IMessageAddOnContextInfo {
-
-        /** MessageAddOnContextInfo messageAddOnDurationInSecs */
-        messageAddOnDurationInSecs?: (number|null);
-
-        /** MessageAddOnContextInfo messageAddOnExpiryType */
-        messageAddOnExpiryType?: (E2E.MessageContextInfo.MessageAddonExpiryType|null);
-    }
-
-    /** Represents a MessageAddOnContextInfo. */
-    class MessageAddOnContextInfo implements IMessageAddOnContextInfo {
-
-        /**
-         * Constructs a new MessageAddOnContextInfo.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Web.IMessageAddOnContextInfo);
-
-        /** MessageAddOnContextInfo messageAddOnDurationInSecs. */
-        public messageAddOnDurationInSecs: number;
-
-        /** MessageAddOnContextInfo messageAddOnExpiryType. */
-        public messageAddOnExpiryType: E2E.MessageContextInfo.MessageAddonExpiryType;
-
-        /**
-         * Creates a new MessageAddOnContextInfo instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns MessageAddOnContextInfo instance
-         */
-        public static create(properties?: Web.IMessageAddOnContextInfo): Web.MessageAddOnContextInfo;
-
-        /**
-         * Encodes the specified MessageAddOnContextInfo message. Does not implicitly {@link Web.MessageAddOnContextInfo.verify|verify} messages.
-         * @param message MessageAddOnContextInfo message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Web.IMessageAddOnContextInfo, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified MessageAddOnContextInfo message, length delimited. Does not implicitly {@link Web.MessageAddOnContextInfo.verify|verify} messages.
-         * @param message MessageAddOnContextInfo message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Web.IMessageAddOnContextInfo, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a MessageAddOnContextInfo message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns MessageAddOnContextInfo
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.MessageAddOnContextInfo;
-
-        /**
-         * Decodes a MessageAddOnContextInfo message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns MessageAddOnContextInfo
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.MessageAddOnContextInfo;
-
-        /**
-         * Verifies a MessageAddOnContextInfo message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a MessageAddOnContextInfo message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns MessageAddOnContextInfo
-         */
-        public static fromObject(object: { [k: string]: any }): Web.MessageAddOnContextInfo;
-
-        /**
-         * Creates a plain object from a MessageAddOnContextInfo message. Also converts values to other types if specified.
-         * @param message MessageAddOnContextInfo
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: Web.MessageAddOnContextInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this MessageAddOnContextInfo to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for MessageAddOnContextInfo
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a PinInChat. */
-    interface IPinInChat {
-
-        /** PinInChat type */
-        type?: (Web.PinInChat.Type|null);
-
-        /** PinInChat key */
-        key?: (Protocol.IMessageKey|null);
-
-        /** PinInChat senderTimestampMs */
-        senderTimestampMs?: (number|Long|null);
-
-        /** PinInChat serverTimestampMs */
-        serverTimestampMs?: (number|Long|null);
-
-        /** PinInChat messageAddOnContextInfo */
-        messageAddOnContextInfo?: (Web.IMessageAddOnContextInfo|null);
-    }
-
-    /** Represents a PinInChat. */
-    class PinInChat implements IPinInChat {
-
-        /**
-         * Constructs a new PinInChat.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Web.IPinInChat);
-
-        /** PinInChat type. */
-        public type: Web.PinInChat.Type;
-
-        /** PinInChat key. */
-        public key?: (Protocol.IMessageKey|null);
-
-        /** PinInChat senderTimestampMs. */
-        public senderTimestampMs: (number|Long);
-
-        /** PinInChat serverTimestampMs. */
-        public serverTimestampMs: (number|Long);
-
-        /** PinInChat messageAddOnContextInfo. */
-        public messageAddOnContextInfo?: (Web.IMessageAddOnContextInfo|null);
-
-        /**
-         * Creates a new PinInChat instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns PinInChat instance
-         */
-        public static create(properties?: Web.IPinInChat): Web.PinInChat;
-
-        /**
-         * Encodes the specified PinInChat message. Does not implicitly {@link Web.PinInChat.verify|verify} messages.
-         * @param message PinInChat message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Web.IPinInChat, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified PinInChat message, length delimited. Does not implicitly {@link Web.PinInChat.verify|verify} messages.
-         * @param message PinInChat message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Web.IPinInChat, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a PinInChat message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns PinInChat
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.PinInChat;
-
-        /**
-         * Decodes a PinInChat message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns PinInChat
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.PinInChat;
-
-        /**
-         * Verifies a PinInChat message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a PinInChat message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns PinInChat
-         */
-        public static fromObject(object: { [k: string]: any }): Web.PinInChat;
-
-        /**
-         * Creates a plain object from a PinInChat message. Also converts values to other types if specified.
-         * @param message PinInChat
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: Web.PinInChat, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this PinInChat to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for PinInChat
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    namespace PinInChat {
-
-        /** Type enum. */
-        enum Type {
-            UNKNOWN_TYPE = 0,
-            PIN_FOR_ALL = 1,
-            UNPIN_FOR_ALL = 2
-        }
-    }
-
-    /** Properties of a KeepInChat. */
-    interface IKeepInChat {
-
-        /** KeepInChat keepType */
-        keepType?: (E2E.KeepType|null);
-
-        /** KeepInChat serverTimestamp */
-        serverTimestamp?: (number|Long|null);
-
-        /** KeepInChat key */
-        key?: (Protocol.IMessageKey|null);
-
-        /** KeepInChat deviceJid */
-        deviceJid?: (string|null);
-
-        /** KeepInChat clientTimestampMs */
-        clientTimestampMs?: (number|Long|null);
-
-        /** KeepInChat serverTimestampMs */
-        serverTimestampMs?: (number|Long|null);
-    }
-
-    /** Represents a KeepInChat. */
-    class KeepInChat implements IKeepInChat {
-
-        /**
-         * Constructs a new KeepInChat.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Web.IKeepInChat);
-
-        /** KeepInChat keepType. */
-        public keepType: E2E.KeepType;
-
-        /** KeepInChat serverTimestamp. */
-        public serverTimestamp: (number|Long);
-
-        /** KeepInChat key. */
-        public key?: (Protocol.IMessageKey|null);
-
-        /** KeepInChat deviceJid. */
-        public deviceJid: string;
-
-        /** KeepInChat clientTimestampMs. */
-        public clientTimestampMs: (number|Long);
-
-        /** KeepInChat serverTimestampMs. */
-        public serverTimestampMs: (number|Long);
-
-        /**
-         * Creates a new KeepInChat instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns KeepInChat instance
-         */
-        public static create(properties?: Web.IKeepInChat): Web.KeepInChat;
-
-        /**
-         * Encodes the specified KeepInChat message. Does not implicitly {@link Web.KeepInChat.verify|verify} messages.
-         * @param message KeepInChat message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Web.IKeepInChat, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified KeepInChat message, length delimited. Does not implicitly {@link Web.KeepInChat.verify|verify} messages.
-         * @param message KeepInChat message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Web.IKeepInChat, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a KeepInChat message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns KeepInChat
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.KeepInChat;
-
-        /**
-         * Decodes a KeepInChat message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns KeepInChat
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.KeepInChat;
-
-        /**
-         * Verifies a KeepInChat message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a KeepInChat message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns KeepInChat
-         */
-        public static fromObject(object: { [k: string]: any }): Web.KeepInChat;
-
-        /**
-         * Creates a plain object from a KeepInChat message. Also converts values to other types if specified.
-         * @param message KeepInChat
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: Web.KeepInChat, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this KeepInChat to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for KeepInChat
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of an EventAdditionalMetadata. */
-    interface IEventAdditionalMetadata {
-
-        /** EventAdditionalMetadata isStale */
-        isStale?: (boolean|null);
-    }
-
-    /** Represents an EventAdditionalMetadata. */
-    class EventAdditionalMetadata implements IEventAdditionalMetadata {
-
-        /**
-         * Constructs a new EventAdditionalMetadata.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Web.IEventAdditionalMetadata);
-
-        /** EventAdditionalMetadata isStale. */
-        public isStale: boolean;
-
-        /**
-         * Creates a new EventAdditionalMetadata instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns EventAdditionalMetadata instance
-         */
-        public static create(properties?: Web.IEventAdditionalMetadata): Web.EventAdditionalMetadata;
-
-        /**
-         * Encodes the specified EventAdditionalMetadata message. Does not implicitly {@link Web.EventAdditionalMetadata.verify|verify} messages.
-         * @param message EventAdditionalMetadata message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Web.IEventAdditionalMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified EventAdditionalMetadata message, length delimited. Does not implicitly {@link Web.EventAdditionalMetadata.verify|verify} messages.
-         * @param message EventAdditionalMetadata message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Web.IEventAdditionalMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes an EventAdditionalMetadata message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns EventAdditionalMetadata
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.EventAdditionalMetadata;
-
-        /**
-         * Decodes an EventAdditionalMetadata message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns EventAdditionalMetadata
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.EventAdditionalMetadata;
-
-        /**
-         * Verifies an EventAdditionalMetadata message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates an EventAdditionalMetadata message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns EventAdditionalMetadata
-         */
-        public static fromObject(object: { [k: string]: any }): Web.EventAdditionalMetadata;
-
-        /**
-         * Creates a plain object from an EventAdditionalMetadata message. Also converts values to other types if specified.
-         * @param message EventAdditionalMetadata
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: Web.EventAdditionalMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this EventAdditionalMetadata to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for EventAdditionalMetadata
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a PollAdditionalMetadata. */
-    interface IPollAdditionalMetadata {
-
-        /** PollAdditionalMetadata pollInvalidated */
-        pollInvalidated?: (boolean|null);
-    }
-
-    /** Represents a PollAdditionalMetadata. */
-    class PollAdditionalMetadata implements IPollAdditionalMetadata {
-
-        /**
-         * Constructs a new PollAdditionalMetadata.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Web.IPollAdditionalMetadata);
-
-        /** PollAdditionalMetadata pollInvalidated. */
-        public pollInvalidated: boolean;
-
-        /**
-         * Creates a new PollAdditionalMetadata instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns PollAdditionalMetadata instance
-         */
-        public static create(properties?: Web.IPollAdditionalMetadata): Web.PollAdditionalMetadata;
-
-        /**
-         * Encodes the specified PollAdditionalMetadata message. Does not implicitly {@link Web.PollAdditionalMetadata.verify|verify} messages.
-         * @param message PollAdditionalMetadata message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Web.IPollAdditionalMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified PollAdditionalMetadata message, length delimited. Does not implicitly {@link Web.PollAdditionalMetadata.verify|verify} messages.
-         * @param message PollAdditionalMetadata message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Web.IPollAdditionalMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a PollAdditionalMetadata message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns PollAdditionalMetadata
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.PollAdditionalMetadata;
-
-        /**
-         * Decodes a PollAdditionalMetadata message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns PollAdditionalMetadata
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.PollAdditionalMetadata;
-
-        /**
-         * Verifies a PollAdditionalMetadata message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a PollAdditionalMetadata message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns PollAdditionalMetadata
-         */
-        public static fromObject(object: { [k: string]: any }): Web.PollAdditionalMetadata;
-
-        /**
-         * Creates a plain object from a PollAdditionalMetadata message. Also converts values to other types if specified.
-         * @param message PollAdditionalMetadata
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: Web.PollAdditionalMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this PollAdditionalMetadata to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for PollAdditionalMetadata
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a PollUpdate. */
-    interface IPollUpdate {
-
-        /** PollUpdate pollUpdateMessageKey */
-        pollUpdateMessageKey?: (Protocol.IMessageKey|null);
-
-        /** PollUpdate vote */
-        vote?: (E2E.Message.IPollVoteMessage|null);
-
-        /** PollUpdate senderTimestampMs */
-        senderTimestampMs?: (number|Long|null);
-
-        /** PollUpdate serverTimestampMs */
-        serverTimestampMs?: (number|Long|null);
-
-        /** PollUpdate unread */
-        unread?: (boolean|null);
-    }
-
-    /** Represents a PollUpdate. */
-    class PollUpdate implements IPollUpdate {
-
-        /**
-         * Constructs a new PollUpdate.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Web.IPollUpdate);
-
-        /** PollUpdate pollUpdateMessageKey. */
-        public pollUpdateMessageKey?: (Protocol.IMessageKey|null);
-
-        /** PollUpdate vote. */
-        public vote?: (E2E.Message.IPollVoteMessage|null);
-
-        /** PollUpdate senderTimestampMs. */
-        public senderTimestampMs: (number|Long);
-
-        /** PollUpdate serverTimestampMs. */
-        public serverTimestampMs: (number|Long);
-
-        /** PollUpdate unread. */
-        public unread: boolean;
-
-        /**
-         * Creates a new PollUpdate instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns PollUpdate instance
-         */
-        public static create(properties?: Web.IPollUpdate): Web.PollUpdate;
-
-        /**
-         * Encodes the specified PollUpdate message. Does not implicitly {@link Web.PollUpdate.verify|verify} messages.
-         * @param message PollUpdate message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Web.IPollUpdate, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified PollUpdate message, length delimited. Does not implicitly {@link Web.PollUpdate.verify|verify} messages.
-         * @param message PollUpdate message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Web.IPollUpdate, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a PollUpdate message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns PollUpdate
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.PollUpdate;
-
-        /**
-         * Decodes a PollUpdate message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns PollUpdate
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.PollUpdate;
-
-        /**
-         * Verifies a PollUpdate message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a PollUpdate message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns PollUpdate
-         */
-        public static fromObject(object: { [k: string]: any }): Web.PollUpdate;
-
-        /**
-         * Creates a plain object from a PollUpdate message. Also converts values to other types if specified.
-         * @param message PollUpdate
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: Web.PollUpdate, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this PollUpdate to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for PollUpdate
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a Reaction. */
-    interface IReaction {
-
-        /** Reaction key */
-        key?: (Protocol.IMessageKey|null);
-
-        /** Reaction text */
-        text?: (string|null);
-
-        /** Reaction groupingKey */
-        groupingKey?: (string|null);
-
-        /** Reaction senderTimestampMs */
-        senderTimestampMs?: (number|Long|null);
-
-        /** Reaction unread */
-        unread?: (boolean|null);
-    }
-
-    /** Represents a Reaction. */
-    class Reaction implements IReaction {
-
-        /**
-         * Constructs a new Reaction.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Web.IReaction);
-
-        /** Reaction key. */
-        public key?: (Protocol.IMessageKey|null);
-
-        /** Reaction text. */
-        public text: string;
-
-        /** Reaction groupingKey. */
-        public groupingKey: string;
-
-        /** Reaction senderTimestampMs. */
-        public senderTimestampMs: (number|Long);
-
-        /** Reaction unread. */
-        public unread: boolean;
-
-        /**
-         * Creates a new Reaction instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns Reaction instance
-         */
-        public static create(properties?: Web.IReaction): Web.Reaction;
-
-        /**
-         * Encodes the specified Reaction message. Does not implicitly {@link Web.Reaction.verify|verify} messages.
-         * @param message Reaction message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Web.IReaction, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified Reaction message, length delimited. Does not implicitly {@link Web.Reaction.verify|verify} messages.
-         * @param message Reaction message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Web.IReaction, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a Reaction message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns Reaction
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.Reaction;
-
-        /**
-         * Decodes a Reaction message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns Reaction
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.Reaction;
-
-        /**
-         * Verifies a Reaction message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a Reaction message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns Reaction
-         */
-        public static fromObject(object: { [k: string]: any }): Web.Reaction;
-
-        /**
-         * Creates a plain object from a Reaction message. Also converts values to other types if specified.
-         * @param message Reaction
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: Web.Reaction, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this Reaction to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for Reaction
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a UserReceipt. */
-    interface IUserReceipt {
-
-        /** UserReceipt userJid */
-        userJid: string;
-
-        /** UserReceipt receiptTimestamp */
-        receiptTimestamp?: (number|Long|null);
-
-        /** UserReceipt readTimestamp */
-        readTimestamp?: (number|Long|null);
-
-        /** UserReceipt playedTimestamp */
-        playedTimestamp?: (number|Long|null);
-
-        /** UserReceipt pendingDeviceJid */
-        pendingDeviceJid?: (string[]|null);
-
-        /** UserReceipt deliveredDeviceJid */
-        deliveredDeviceJid?: (string[]|null);
-    }
-
-    /** Represents a UserReceipt. */
-    class UserReceipt implements IUserReceipt {
-
-        /**
-         * Constructs a new UserReceipt.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Web.IUserReceipt);
-
-        /** UserReceipt userJid. */
-        public userJid: string;
-
-        /** UserReceipt receiptTimestamp. */
-        public receiptTimestamp: (number|Long);
-
-        /** UserReceipt readTimestamp. */
-        public readTimestamp: (number|Long);
-
-        /** UserReceipt playedTimestamp. */
-        public playedTimestamp: (number|Long);
-
-        /** UserReceipt pendingDeviceJid. */
-        public pendingDeviceJid: string[];
-
-        /** UserReceipt deliveredDeviceJid. */
-        public deliveredDeviceJid: string[];
-
-        /**
-         * Creates a new UserReceipt instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns UserReceipt instance
-         */
-        public static create(properties?: Web.IUserReceipt): Web.UserReceipt;
-
-        /**
-         * Encodes the specified UserReceipt message. Does not implicitly {@link Web.UserReceipt.verify|verify} messages.
-         * @param message UserReceipt message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Web.IUserReceipt, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified UserReceipt message, length delimited. Does not implicitly {@link Web.UserReceipt.verify|verify} messages.
-         * @param message UserReceipt message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Web.IUserReceipt, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a UserReceipt message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns UserReceipt
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.UserReceipt;
-
-        /**
-         * Decodes a UserReceipt message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns UserReceipt
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.UserReceipt;
-
-        /**
-         * Verifies a UserReceipt message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a UserReceipt message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns UserReceipt
-         */
-        public static fromObject(object: { [k: string]: any }): Web.UserReceipt;
-
-        /**
-         * Creates a plain object from a UserReceipt message. Also converts values to other types if specified.
-         * @param message UserReceipt
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: Web.UserReceipt, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this UserReceipt to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for UserReceipt
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a StatusPSA. */
-    interface IStatusPSA {
-
-        /** StatusPSA campaignId */
-        campaignId: (number|Long);
-
-        /** StatusPSA campaignExpirationTimestamp */
-        campaignExpirationTimestamp?: (number|Long|null);
-    }
-
-    /** Represents a StatusPSA. */
-    class StatusPSA implements IStatusPSA {
-
-        /**
-         * Constructs a new StatusPSA.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Web.IStatusPSA);
-
-        /** StatusPSA campaignId. */
-        public campaignId: (number|Long);
-
-        /** StatusPSA campaignExpirationTimestamp. */
-        public campaignExpirationTimestamp: (number|Long);
-
-        /**
-         * Creates a new StatusPSA instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns StatusPSA instance
-         */
-        public static create(properties?: Web.IStatusPSA): Web.StatusPSA;
-
-        /**
-         * Encodes the specified StatusPSA message. Does not implicitly {@link Web.StatusPSA.verify|verify} messages.
-         * @param message StatusPSA message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Web.IStatusPSA, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified StatusPSA message, length delimited. Does not implicitly {@link Web.StatusPSA.verify|verify} messages.
-         * @param message StatusPSA message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Web.IStatusPSA, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a StatusPSA message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns StatusPSA
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.StatusPSA;
-
-        /**
-         * Decodes a StatusPSA message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns StatusPSA
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.StatusPSA;
-
-        /**
-         * Verifies a StatusPSA message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a StatusPSA message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns StatusPSA
-         */
-        public static fromObject(object: { [k: string]: any }): Web.StatusPSA;
-
-        /**
-         * Creates a plain object from a StatusPSA message. Also converts values to other types if specified.
-         * @param message StatusPSA
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: Web.StatusPSA, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this StatusPSA to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for StatusPSA
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a PhotoChange. */
-    interface IPhotoChange {
-
-        /** PhotoChange oldPhoto */
-        oldPhoto?: (Uint8Array|null);
-
-        /** PhotoChange newPhoto */
-        newPhoto?: (Uint8Array|null);
-
-        /** PhotoChange newPhotoId */
-        newPhotoId?: (number|null);
-    }
-
-    /** Represents a PhotoChange. */
-    class PhotoChange implements IPhotoChange {
-
-        /**
-         * Constructs a new PhotoChange.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Web.IPhotoChange);
-
-        /** PhotoChange oldPhoto. */
-        public oldPhoto: Uint8Array;
-
-        /** PhotoChange newPhoto. */
-        public newPhoto: Uint8Array;
-
-        /** PhotoChange newPhotoId. */
-        public newPhotoId: number;
-
-        /**
-         * Creates a new PhotoChange instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns PhotoChange instance
-         */
-        public static create(properties?: Web.IPhotoChange): Web.PhotoChange;
-
-        /**
-         * Encodes the specified PhotoChange message. Does not implicitly {@link Web.PhotoChange.verify|verify} messages.
-         * @param message PhotoChange message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Web.IPhotoChange, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified PhotoChange message, length delimited. Does not implicitly {@link Web.PhotoChange.verify|verify} messages.
-         * @param message PhotoChange message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Web.IPhotoChange, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a PhotoChange message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns PhotoChange
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.PhotoChange;
-
-        /**
-         * Decodes a PhotoChange message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns PhotoChange
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.PhotoChange;
-
-        /**
-         * Verifies a PhotoChange message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a PhotoChange message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns PhotoChange
-         */
-        public static fromObject(object: { [k: string]: any }): Web.PhotoChange;
-
-        /**
-         * Creates a plain object from a PhotoChange message. Also converts values to other types if specified.
-         * @param message PhotoChange
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: Web.PhotoChange, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this PhotoChange to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for PhotoChange
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a MediaData. */
-    interface IMediaData {
-
-        /** MediaData localPath */
-        localPath?: (string|null);
-    }
-
-    /** Represents a MediaData. */
-    class MediaData implements IMediaData {
-
-        /**
-         * Constructs a new MediaData.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Web.IMediaData);
-
-        /** MediaData localPath. */
-        public localPath: string;
-
-        /**
-         * Creates a new MediaData instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns MediaData instance
-         */
-        public static create(properties?: Web.IMediaData): Web.MediaData;
-
-        /**
-         * Encodes the specified MediaData message. Does not implicitly {@link Web.MediaData.verify|verify} messages.
-         * @param message MediaData message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Web.IMediaData, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified MediaData message, length delimited. Does not implicitly {@link Web.MediaData.verify|verify} messages.
-         * @param message MediaData message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Web.IMediaData, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a MediaData message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns MediaData
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.MediaData;
-
-        /**
-         * Decodes a MediaData message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns MediaData
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.MediaData;
-
-        /**
-         * Verifies a MediaData message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a MediaData message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns MediaData
-         */
-        public static fromObject(object: { [k: string]: any }): Web.MediaData;
-
-        /**
-         * Creates a plain object from a MediaData message. Also converts values to other types if specified.
-         * @param message MediaData
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: Web.MediaData, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this MediaData to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for MediaData
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a ReportingTokenInfo. */
-    interface IReportingTokenInfo {
-
-        /** ReportingTokenInfo reportingTag */
-        reportingTag?: (Uint8Array|null);
-    }
-
-    /** Represents a ReportingTokenInfo. */
-    class ReportingTokenInfo implements IReportingTokenInfo {
-
-        /**
-         * Constructs a new ReportingTokenInfo.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Web.IReportingTokenInfo);
-
-        /** ReportingTokenInfo reportingTag. */
-        public reportingTag: Uint8Array;
-
-        /**
-         * Creates a new ReportingTokenInfo instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns ReportingTokenInfo instance
-         */
-        public static create(properties?: Web.IReportingTokenInfo): Web.ReportingTokenInfo;
-
-        /**
-         * Encodes the specified ReportingTokenInfo message. Does not implicitly {@link Web.ReportingTokenInfo.verify|verify} messages.
-         * @param message ReportingTokenInfo message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Web.IReportingTokenInfo, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified ReportingTokenInfo message, length delimited. Does not implicitly {@link Web.ReportingTokenInfo.verify|verify} messages.
-         * @param message ReportingTokenInfo message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Web.IReportingTokenInfo, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a ReportingTokenInfo message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns ReportingTokenInfo
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.ReportingTokenInfo;
-
-        /**
-         * Decodes a ReportingTokenInfo message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns ReportingTokenInfo
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.ReportingTokenInfo;
-
-        /**
-         * Verifies a ReportingTokenInfo message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a ReportingTokenInfo message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns ReportingTokenInfo
-         */
-        public static fromObject(object: { [k: string]: any }): Web.ReportingTokenInfo;
-
-        /**
-         * Creates a plain object from a ReportingTokenInfo message. Also converts values to other types if specified.
-         * @param message ReportingTokenInfo
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: Web.ReportingTokenInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this ReportingTokenInfo to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for ReportingTokenInfo
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a WebFeatures. */
-    interface IWebFeatures {
-
-        /** WebFeatures labelsDisplay */
-        labelsDisplay?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures voipIndividualOutgoing */
-        voipIndividualOutgoing?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures groupsV3 */
-        groupsV3?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures groupsV3Create */
-        groupsV3Create?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures changeNumberV2 */
-        changeNumberV2?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures queryStatusV3Thumbnail */
-        queryStatusV3Thumbnail?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures liveLocations */
-        liveLocations?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures queryVname */
-        queryVname?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures voipIndividualIncoming */
-        voipIndividualIncoming?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures quickRepliesQuery */
-        quickRepliesQuery?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures payments */
-        payments?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures stickerPackQuery */
-        stickerPackQuery?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures liveLocationsFinal */
-        liveLocationsFinal?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures labelsEdit */
-        labelsEdit?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures mediaUpload */
-        mediaUpload?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures mediaUploadRichQuickReplies */
-        mediaUploadRichQuickReplies?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures vnameV2 */
-        vnameV2?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures videoPlaybackUrl */
-        videoPlaybackUrl?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures statusRanking */
-        statusRanking?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures voipIndividualVideo */
-        voipIndividualVideo?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures thirdPartyStickers */
-        thirdPartyStickers?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures frequentlyForwardedSetting */
-        frequentlyForwardedSetting?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures groupsV4JoinPermission */
-        groupsV4JoinPermission?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures recentStickers */
-        recentStickers?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures catalog */
-        catalog?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures starredStickers */
-        starredStickers?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures voipGroupCall */
-        voipGroupCall?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures templateMessage */
-        templateMessage?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures templateMessageInteractivity */
-        templateMessageInteractivity?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures ephemeralMessages */
-        ephemeralMessages?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures e2ENotificationSync */
-        e2ENotificationSync?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures recentStickersV2 */
-        recentStickersV2?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures recentStickersV3 */
-        recentStickersV3?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures userNotice */
-        userNotice?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures support */
-        support?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures groupUiiCleanup */
-        groupUiiCleanup?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures groupDogfoodingInternalOnly */
-        groupDogfoodingInternalOnly?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures settingsSync */
-        settingsSync?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures archiveV2 */
-        archiveV2?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures ephemeralAllowGroupMembers */
-        ephemeralAllowGroupMembers?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures ephemeral24HDuration */
-        ephemeral24HDuration?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures mdForceUpgrade */
-        mdForceUpgrade?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures disappearingMode */
-        disappearingMode?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures externalMdOptInAvailable */
-        externalMdOptInAvailable?: (Web.WebFeatures.Flag|null);
-
-        /** WebFeatures noDeleteMessageTimeLimit */
-        noDeleteMessageTimeLimit?: (Web.WebFeatures.Flag|null);
-    }
-
-    /** Represents a WebFeatures. */
-    class WebFeatures implements IWebFeatures {
-
-        /**
-         * Constructs a new WebFeatures.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Web.IWebFeatures);
-
-        /** WebFeatures labelsDisplay. */
-        public labelsDisplay: Web.WebFeatures.Flag;
-
-        /** WebFeatures voipIndividualOutgoing. */
-        public voipIndividualOutgoing: Web.WebFeatures.Flag;
-
-        /** WebFeatures groupsV3. */
-        public groupsV3: Web.WebFeatures.Flag;
-
-        /** WebFeatures groupsV3Create. */
-        public groupsV3Create: Web.WebFeatures.Flag;
-
-        /** WebFeatures changeNumberV2. */
-        public changeNumberV2: Web.WebFeatures.Flag;
-
-        /** WebFeatures queryStatusV3Thumbnail. */
-        public queryStatusV3Thumbnail: Web.WebFeatures.Flag;
-
-        /** WebFeatures liveLocations. */
-        public liveLocations: Web.WebFeatures.Flag;
-
-        /** WebFeatures queryVname. */
-        public queryVname: Web.WebFeatures.Flag;
-
-        /** WebFeatures voipIndividualIncoming. */
-        public voipIndividualIncoming: Web.WebFeatures.Flag;
-
-        /** WebFeatures quickRepliesQuery. */
-        public quickRepliesQuery: Web.WebFeatures.Flag;
-
-        /** WebFeatures payments. */
-        public payments: Web.WebFeatures.Flag;
-
-        /** WebFeatures stickerPackQuery. */
-        public stickerPackQuery: Web.WebFeatures.Flag;
-
-        /** WebFeatures liveLocationsFinal. */
-        public liveLocationsFinal: Web.WebFeatures.Flag;
-
-        /** WebFeatures labelsEdit. */
-        public labelsEdit: Web.WebFeatures.Flag;
-
-        /** WebFeatures mediaUpload. */
-        public mediaUpload: Web.WebFeatures.Flag;
-
-        /** WebFeatures mediaUploadRichQuickReplies. */
-        public mediaUploadRichQuickReplies: Web.WebFeatures.Flag;
-
-        /** WebFeatures vnameV2. */
-        public vnameV2: Web.WebFeatures.Flag;
-
-        /** WebFeatures videoPlaybackUrl. */
-        public videoPlaybackUrl: Web.WebFeatures.Flag;
-
-        /** WebFeatures statusRanking. */
-        public statusRanking: Web.WebFeatures.Flag;
-
-        /** WebFeatures voipIndividualVideo. */
-        public voipIndividualVideo: Web.WebFeatures.Flag;
-
-        /** WebFeatures thirdPartyStickers. */
-        public thirdPartyStickers: Web.WebFeatures.Flag;
-
-        /** WebFeatures frequentlyForwardedSetting. */
-        public frequentlyForwardedSetting: Web.WebFeatures.Flag;
-
-        /** WebFeatures groupsV4JoinPermission. */
-        public groupsV4JoinPermission: Web.WebFeatures.Flag;
-
-        /** WebFeatures recentStickers. */
-        public recentStickers: Web.WebFeatures.Flag;
-
-        /** WebFeatures catalog. */
-        public catalog: Web.WebFeatures.Flag;
-
-        /** WebFeatures starredStickers. */
-        public starredStickers: Web.WebFeatures.Flag;
-
-        /** WebFeatures voipGroupCall. */
-        public voipGroupCall: Web.WebFeatures.Flag;
-
-        /** WebFeatures templateMessage. */
-        public templateMessage: Web.WebFeatures.Flag;
-
-        /** WebFeatures templateMessageInteractivity. */
-        public templateMessageInteractivity: Web.WebFeatures.Flag;
-
-        /** WebFeatures ephemeralMessages. */
-        public ephemeralMessages: Web.WebFeatures.Flag;
-
-        /** WebFeatures e2ENotificationSync. */
-        public e2ENotificationSync: Web.WebFeatures.Flag;
-
-        /** WebFeatures recentStickersV2. */
-        public recentStickersV2: Web.WebFeatures.Flag;
-
-        /** WebFeatures recentStickersV3. */
-        public recentStickersV3: Web.WebFeatures.Flag;
-
-        /** WebFeatures userNotice. */
-        public userNotice: Web.WebFeatures.Flag;
-
-        /** WebFeatures support. */
-        public support: Web.WebFeatures.Flag;
-
-        /** WebFeatures groupUiiCleanup. */
-        public groupUiiCleanup: Web.WebFeatures.Flag;
-
-        /** WebFeatures groupDogfoodingInternalOnly. */
-        public groupDogfoodingInternalOnly: Web.WebFeatures.Flag;
-
-        /** WebFeatures settingsSync. */
-        public settingsSync: Web.WebFeatures.Flag;
-
-        /** WebFeatures archiveV2. */
-        public archiveV2: Web.WebFeatures.Flag;
-
-        /** WebFeatures ephemeralAllowGroupMembers. */
-        public ephemeralAllowGroupMembers: Web.WebFeatures.Flag;
-
-        /** WebFeatures ephemeral24HDuration. */
-        public ephemeral24HDuration: Web.WebFeatures.Flag;
-
-        /** WebFeatures mdForceUpgrade. */
-        public mdForceUpgrade: Web.WebFeatures.Flag;
-
-        /** WebFeatures disappearingMode. */
-        public disappearingMode: Web.WebFeatures.Flag;
-
-        /** WebFeatures externalMdOptInAvailable. */
-        public externalMdOptInAvailable: Web.WebFeatures.Flag;
-
-        /** WebFeatures noDeleteMessageTimeLimit. */
-        public noDeleteMessageTimeLimit: Web.WebFeatures.Flag;
-
-        /**
-         * Creates a new WebFeatures instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns WebFeatures instance
-         */
-        public static create(properties?: Web.IWebFeatures): Web.WebFeatures;
-
-        /**
-         * Encodes the specified WebFeatures message. Does not implicitly {@link Web.WebFeatures.verify|verify} messages.
-         * @param message WebFeatures message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Web.IWebFeatures, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified WebFeatures message, length delimited. Does not implicitly {@link Web.WebFeatures.verify|verify} messages.
-         * @param message WebFeatures message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Web.IWebFeatures, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a WebFeatures message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns WebFeatures
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.WebFeatures;
-
-        /**
-         * Decodes a WebFeatures message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns WebFeatures
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.WebFeatures;
-
-        /**
-         * Verifies a WebFeatures message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a WebFeatures message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns WebFeatures
-         */
-        public static fromObject(object: { [k: string]: any }): Web.WebFeatures;
-
-        /**
-         * Creates a plain object from a WebFeatures message. Also converts values to other types if specified.
-         * @param message WebFeatures
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: Web.WebFeatures, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this WebFeatures to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for WebFeatures
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    namespace WebFeatures {
-
-        /** Flag enum. */
-        enum Flag {
-            NOT_STARTED = 0,
-            FORCE_UPGRADE = 1,
-            DEVELOPMENT = 2,
-            PRODUCTION = 3
-        }
-    }
-
-    /** Properties of a NotificationMessageInfo. */
-    interface INotificationMessageInfo {
-
-        /** NotificationMessageInfo key */
-        key?: (Protocol.IMessageKey|null);
-
-        /** NotificationMessageInfo message */
-        message?: (E2E.IMessage|null);
-
-        /** NotificationMessageInfo messageTimestamp */
-        messageTimestamp?: (number|Long|null);
-
-        /** NotificationMessageInfo participant */
-        participant?: (string|null);
-    }
-
-    /** Represents a NotificationMessageInfo. */
-    class NotificationMessageInfo implements INotificationMessageInfo {
-
-        /**
-         * Constructs a new NotificationMessageInfo.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Web.INotificationMessageInfo);
-
-        /** NotificationMessageInfo key. */
-        public key?: (Protocol.IMessageKey|null);
-
-        /** NotificationMessageInfo message. */
-        public message?: (E2E.IMessage|null);
-
-        /** NotificationMessageInfo messageTimestamp. */
-        public messageTimestamp: (number|Long);
-
-        /** NotificationMessageInfo participant. */
-        public participant: string;
-
-        /**
-         * Creates a new NotificationMessageInfo instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns NotificationMessageInfo instance
-         */
-        public static create(properties?: Web.INotificationMessageInfo): Web.NotificationMessageInfo;
-
-        /**
-         * Encodes the specified NotificationMessageInfo message. Does not implicitly {@link Web.NotificationMessageInfo.verify|verify} messages.
-         * @param message NotificationMessageInfo message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Web.INotificationMessageInfo, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified NotificationMessageInfo message, length delimited. Does not implicitly {@link Web.NotificationMessageInfo.verify|verify} messages.
-         * @param message NotificationMessageInfo message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Web.INotificationMessageInfo, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a NotificationMessageInfo message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns NotificationMessageInfo
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.NotificationMessageInfo;
-
-        /**
-         * Decodes a NotificationMessageInfo message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns NotificationMessageInfo
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.NotificationMessageInfo;
-
-        /**
-         * Verifies a NotificationMessageInfo message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a NotificationMessageInfo message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns NotificationMessageInfo
-         */
-        public static fromObject(object: { [k: string]: any }): Web.NotificationMessageInfo;
-
-        /**
-         * Creates a plain object from a NotificationMessageInfo message. Also converts values to other types if specified.
-         * @param message NotificationMessageInfo
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: Web.NotificationMessageInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this NotificationMessageInfo to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for NotificationMessageInfo
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a WebNotificationsInfo. */
-    interface IWebNotificationsInfo {
-
-        /** WebNotificationsInfo timestamp */
-        timestamp?: (number|Long|null);
-
-        /** WebNotificationsInfo unreadChats */
-        unreadChats?: (number|null);
-
-        /** WebNotificationsInfo notifyMessageCount */
-        notifyMessageCount?: (number|null);
-
-        /** WebNotificationsInfo notifyMessages */
-        notifyMessages?: (Web.IWebMessageInfo[]|null);
-    }
-
-    /** Represents a WebNotificationsInfo. */
-    class WebNotificationsInfo implements IWebNotificationsInfo {
-
-        /**
-         * Constructs a new WebNotificationsInfo.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Web.IWebNotificationsInfo);
-
-        /** WebNotificationsInfo timestamp. */
-        public timestamp: (number|Long);
-
-        /** WebNotificationsInfo unreadChats. */
-        public unreadChats: number;
-
-        /** WebNotificationsInfo notifyMessageCount. */
-        public notifyMessageCount: number;
-
-        /** WebNotificationsInfo notifyMessages. */
-        public notifyMessages: Web.IWebMessageInfo[];
-
-        /**
-         * Creates a new WebNotificationsInfo instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns WebNotificationsInfo instance
-         */
-        public static create(properties?: Web.IWebNotificationsInfo): Web.WebNotificationsInfo;
-
-        /**
-         * Encodes the specified WebNotificationsInfo message. Does not implicitly {@link Web.WebNotificationsInfo.verify|verify} messages.
-         * @param message WebNotificationsInfo message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Web.IWebNotificationsInfo, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified WebNotificationsInfo message, length delimited. Does not implicitly {@link Web.WebNotificationsInfo.verify|verify} messages.
-         * @param message WebNotificationsInfo message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Web.IWebNotificationsInfo, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a WebNotificationsInfo message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns WebNotificationsInfo
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.WebNotificationsInfo;
-
-        /**
-         * Decodes a WebNotificationsInfo message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns WebNotificationsInfo
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.WebNotificationsInfo;
-
-        /**
-         * Verifies a WebNotificationsInfo message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a WebNotificationsInfo message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns WebNotificationsInfo
-         */
-        public static fromObject(object: { [k: string]: any }): Web.WebNotificationsInfo;
-
-        /**
-         * Creates a plain object from a WebNotificationsInfo message. Also converts values to other types if specified.
-         * @param message WebNotificationsInfo
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: Web.WebNotificationsInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this WebNotificationsInfo to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for WebNotificationsInfo
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a PaymentInfo. */
-    interface IPaymentInfo {
-
-        /** PaymentInfo currencyDeprecated */
-        currencyDeprecated?: (Web.PaymentInfo.Currency|null);
-
-        /** PaymentInfo amount1000 */
-        amount1000?: (number|Long|null);
-
-        /** PaymentInfo receiverJid */
-        receiverJid?: (string|null);
-
-        /** PaymentInfo status */
-        status?: (Web.PaymentInfo.Status|null);
-
-        /** PaymentInfo transactionTimestamp */
-        transactionTimestamp?: (number|Long|null);
-
-        /** PaymentInfo requestMessageKey */
-        requestMessageKey?: (Protocol.IMessageKey|null);
-
-        /** PaymentInfo expiryTimestamp */
-        expiryTimestamp?: (number|Long|null);
-
-        /** PaymentInfo futureproofed */
-        futureproofed?: (boolean|null);
-
-        /** PaymentInfo currency */
-        currency?: (string|null);
-
-        /** PaymentInfo txnStatus */
-        txnStatus?: (Web.PaymentInfo.TxnStatus|null);
-
-        /** PaymentInfo useNoviFiatFormat */
-        useNoviFiatFormat?: (boolean|null);
-
-        /** PaymentInfo primaryAmount */
-        primaryAmount?: (E2E.IMoney|null);
-
-        /** PaymentInfo exchangeAmount */
-        exchangeAmount?: (E2E.IMoney|null);
-    }
-
-    /** Represents a PaymentInfo. */
-    class PaymentInfo implements IPaymentInfo {
-
-        /**
-         * Constructs a new PaymentInfo.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Web.IPaymentInfo);
-
-        /** PaymentInfo currencyDeprecated. */
-        public currencyDeprecated: Web.PaymentInfo.Currency;
-
-        /** PaymentInfo amount1000. */
-        public amount1000: (number|Long);
-
-        /** PaymentInfo receiverJid. */
-        public receiverJid: string;
-
-        /** PaymentInfo status. */
-        public status: Web.PaymentInfo.Status;
-
-        /** PaymentInfo transactionTimestamp. */
-        public transactionTimestamp: (number|Long);
-
-        /** PaymentInfo requestMessageKey. */
-        public requestMessageKey?: (Protocol.IMessageKey|null);
-
-        /** PaymentInfo expiryTimestamp. */
-        public expiryTimestamp: (number|Long);
-
-        /** PaymentInfo futureproofed. */
-        public futureproofed: boolean;
-
-        /** PaymentInfo currency. */
-        public currency: string;
-
-        /** PaymentInfo txnStatus. */
-        public txnStatus: Web.PaymentInfo.TxnStatus;
-
-        /** PaymentInfo useNoviFiatFormat. */
-        public useNoviFiatFormat: boolean;
-
-        /** PaymentInfo primaryAmount. */
-        public primaryAmount?: (E2E.IMoney|null);
-
-        /** PaymentInfo exchangeAmount. */
-        public exchangeAmount?: (E2E.IMoney|null);
-
-        /**
-         * Creates a new PaymentInfo instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns PaymentInfo instance
-         */
-        public static create(properties?: Web.IPaymentInfo): Web.PaymentInfo;
-
-        /**
-         * Encodes the specified PaymentInfo message. Does not implicitly {@link Web.PaymentInfo.verify|verify} messages.
-         * @param message PaymentInfo message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Web.IPaymentInfo, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified PaymentInfo message, length delimited. Does not implicitly {@link Web.PaymentInfo.verify|verify} messages.
-         * @param message PaymentInfo message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Web.IPaymentInfo, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a PaymentInfo message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns PaymentInfo
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.PaymentInfo;
-
-        /**
-         * Decodes a PaymentInfo message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns PaymentInfo
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.PaymentInfo;
-
-        /**
-         * Verifies a PaymentInfo message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a PaymentInfo message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns PaymentInfo
-         */
-        public static fromObject(object: { [k: string]: any }): Web.PaymentInfo;
-
-        /**
-         * Creates a plain object from a PaymentInfo message. Also converts values to other types if specified.
-         * @param message PaymentInfo
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: Web.PaymentInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this PaymentInfo to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for PaymentInfo
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    namespace PaymentInfo {
-
-        /** Currency enum. */
-        enum Currency {
-            UNKNOWN_CURRENCY = 0,
-            INR = 1
-        }
-
-        /** Status enum. */
-        enum Status {
-            UNKNOWN_STATUS = 0,
-            PROCESSING = 1,
-            SENT = 2,
-            NEED_TO_ACCEPT = 3,
-            COMPLETE = 4,
-            COULD_NOT_COMPLETE = 5,
-            REFUNDED = 6,
-            EXPIRED = 7,
-            REJECTED = 8,
-            CANCELLED = 9,
-            WAITING_FOR_PAYER = 10,
-            WAITING = 11
-        }
-
-        /** TxnStatus enum. */
-        enum TxnStatus {
-            UNKNOWN = 0,
-            PENDING_SETUP = 1,
-            PENDING_RECEIVER_SETUP = 2,
-            INIT = 3,
-            SUCCESS = 4,
-            COMPLETED = 5,
-            FAILED = 6,
-            FAILED_RISK = 7,
-            FAILED_PROCESSING = 8,
-            FAILED_RECEIVER_PROCESSING = 9,
-            FAILED_DA = 10,
-            FAILED_DA_FINAL = 11,
-            REFUNDED_TXN = 12,
-            REFUND_FAILED = 13,
-            REFUND_FAILED_PROCESSING = 14,
-            REFUND_FAILED_DA = 15,
-            EXPIRED_TXN = 16,
-            AUTH_CANCELED = 17,
-            AUTH_CANCEL_FAILED_PROCESSING = 18,
-            AUTH_CANCEL_FAILED = 19,
-            COLLECT_INIT = 20,
-            COLLECT_SUCCESS = 21,
-            COLLECT_FAILED = 22,
-            COLLECT_FAILED_RISK = 23,
-            COLLECT_REJECTED = 24,
-            COLLECT_EXPIRED = 25,
-            COLLECT_CANCELED = 26,
-            COLLECT_CANCELLING = 27,
-            IN_REVIEW = 28,
-            REVERSAL_SUCCESS = 29,
-            REVERSAL_PENDING = 30,
-            REFUND_PENDING = 31
-        }
-    }
-
-    /** Properties of a CommentMetadata. */
-    interface ICommentMetadata {
-
-        /** CommentMetadata commentParentKey */
-        commentParentKey?: (Protocol.IMessageKey|null);
-
-        /** CommentMetadata replyCount */
-        replyCount?: (number|null);
-    }
-
-    /** Represents a CommentMetadata. */
-    class CommentMetadata implements ICommentMetadata {
-
-        /**
-         * Constructs a new CommentMetadata.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Web.ICommentMetadata);
-
-        /** CommentMetadata commentParentKey. */
-        public commentParentKey?: (Protocol.IMessageKey|null);
-
-        /** CommentMetadata replyCount. */
-        public replyCount: number;
-
-        /**
-         * Creates a new CommentMetadata instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns CommentMetadata instance
-         */
-        public static create(properties?: Web.ICommentMetadata): Web.CommentMetadata;
-
-        /**
-         * Encodes the specified CommentMetadata message. Does not implicitly {@link Web.CommentMetadata.verify|verify} messages.
-         * @param message CommentMetadata message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Web.ICommentMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified CommentMetadata message, length delimited. Does not implicitly {@link Web.CommentMetadata.verify|verify} messages.
-         * @param message CommentMetadata message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Web.ICommentMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a CommentMetadata message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns CommentMetadata
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.CommentMetadata;
-
-        /**
-         * Decodes a CommentMetadata message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns CommentMetadata
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.CommentMetadata;
-
-        /**
-         * Verifies a CommentMetadata message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a CommentMetadata message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns CommentMetadata
-         */
-        public static fromObject(object: { [k: string]: any }): Web.CommentMetadata;
-
-        /**
-         * Creates a plain object from a CommentMetadata message. Also converts values to other types if specified.
-         * @param message CommentMetadata
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: Web.CommentMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this CommentMetadata to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for CommentMetadata
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a WebMessageInfo. */
-    interface IWebMessageInfo {
-
-        /** WebMessageInfo key */
-        key: Protocol.IMessageKey;
-
-        /** WebMessageInfo message */
-        message?: (E2E.IMessage|null);
-
-        /** WebMessageInfo messageTimestamp */
-        messageTimestamp?: (number|Long|null);
-
-        /** WebMessageInfo status */
-        status?: (Web.WebMessageInfo.Status|null);
-
-        /** WebMessageInfo participant */
-        participant?: (string|null);
-
-        /** WebMessageInfo messageC2STimestamp */
-        messageC2STimestamp?: (number|Long|null);
-
-        /** WebMessageInfo ignore */
-        ignore?: (boolean|null);
-
-        /** WebMessageInfo starred */
-        starred?: (boolean|null);
-
-        /** WebMessageInfo broadcast */
-        broadcast?: (boolean|null);
-
-        /** WebMessageInfo pushName */
-        pushName?: (string|null);
-
-        /** WebMessageInfo mediaCiphertextSha256 */
-        mediaCiphertextSha256?: (Uint8Array|null);
-
-        /** WebMessageInfo multicast */
-        multicast?: (boolean|null);
-
-        /** WebMessageInfo urlText */
-        urlText?: (boolean|null);
-
-        /** WebMessageInfo urlNumber */
-        urlNumber?: (boolean|null);
-
-        /** WebMessageInfo messageStubType */
-        messageStubType?: (Web.WebMessageInfo.StubType|null);
-
-        /** WebMessageInfo clearMedia */
-        clearMedia?: (boolean|null);
-
-        /** WebMessageInfo messageStubParameters */
-        messageStubParameters?: (string[]|null);
-
-        /** WebMessageInfo duration */
-        duration?: (number|null);
-
-        /** WebMessageInfo labels */
-        labels?: (string[]|null);
-
-        /** WebMessageInfo paymentInfo */
-        paymentInfo?: (Web.IPaymentInfo|null);
-
-        /** WebMessageInfo finalLiveLocation */
-        finalLiveLocation?: (E2E.Message.ILiveLocationMessage|null);
-
-        /** WebMessageInfo quotedPaymentInfo */
-        quotedPaymentInfo?: (Web.IPaymentInfo|null);
-
-        /** WebMessageInfo ephemeralStartTimestamp */
-        ephemeralStartTimestamp?: (number|Long|null);
-
-        /** WebMessageInfo ephemeralDuration */
-        ephemeralDuration?: (number|null);
-
-        /** WebMessageInfo ephemeralOffToOn */
-        ephemeralOffToOn?: (boolean|null);
-
-        /** WebMessageInfo ephemeralOutOfSync */
-        ephemeralOutOfSync?: (boolean|null);
-
-        /** WebMessageInfo bizPrivacyStatus */
-        bizPrivacyStatus?: (Web.WebMessageInfo.BizPrivacyStatus|null);
-
-        /** WebMessageInfo verifiedBizName */
-        verifiedBizName?: (string|null);
-
-        /** WebMessageInfo mediaData */
-        mediaData?: (E2E.PaymentBackground.IMediaData|null);
-
-        /** WebMessageInfo photoChange */
-        photoChange?: (Web.IPhotoChange|null);
-
-        /** WebMessageInfo userReceipt */
-        userReceipt?: (Web.IUserReceipt[]|null);
-
-        /** WebMessageInfo reactions */
-        reactions?: (Web.IReaction[]|null);
-
-        /** WebMessageInfo quotedStickerData */
-        quotedStickerData?: (E2E.PaymentBackground.IMediaData|null);
-
-        /** WebMessageInfo futureproofData */
-        futureproofData?: (Uint8Array|null);
-
-        /** WebMessageInfo statusPsa */
-        statusPsa?: (Web.IStatusPSA|null);
-
-        /** WebMessageInfo pollUpdates */
-        pollUpdates?: (Web.IPollUpdate[]|null);
-
-        /** WebMessageInfo pollAdditionalMetadata */
-        pollAdditionalMetadata?: (Web.IPollAdditionalMetadata|null);
-
-        /** WebMessageInfo agentId */
-        agentId?: (string|null);
-
-        /** WebMessageInfo statusAlreadyViewed */
-        statusAlreadyViewed?: (boolean|null);
-
-        /** WebMessageInfo messageSecret */
-        messageSecret?: (Uint8Array|null);
-
-        /** WebMessageInfo keepInChat */
-        keepInChat?: (Web.IKeepInChat|null);
-
-        /** WebMessageInfo originalSelfAuthorUserJidString */
-        originalSelfAuthorUserJidString?: (string|null);
-
-        /** WebMessageInfo revokeMessageTimestamp */
-        revokeMessageTimestamp?: (number|Long|null);
-
-        /** WebMessageInfo pinInChat */
-        pinInChat?: (Web.IPinInChat|null);
-
-        /** WebMessageInfo premiumMessageInfo */
-        premiumMessageInfo?: (Web.IPremiumMessageInfo|null);
-
-        /** WebMessageInfo is1PBizBotMessage */
-        is1PBizBotMessage?: (boolean|null);
-
-        /** WebMessageInfo isGroupHistoryMessage */
-        isGroupHistoryMessage?: (boolean|null);
-
-        /** WebMessageInfo botMessageInvokerJid */
-        botMessageInvokerJid?: (string|null);
-
-        /** WebMessageInfo commentMetadata */
-        commentMetadata?: (Web.ICommentMetadata|null);
-
-        /** WebMessageInfo eventResponses */
-        eventResponses?: (Web.IEventResponse[]|null);
-
-        /** WebMessageInfo reportingTokenInfo */
-        reportingTokenInfo?: (Web.IReportingTokenInfo|null);
-
-        /** WebMessageInfo newsletterServerId */
-        newsletterServerId?: (number|Long|null);
-
-        /** WebMessageInfo eventAdditionalMetadata */
-        eventAdditionalMetadata?: (Web.IEventAdditionalMetadata|null);
-
-        /** WebMessageInfo isMentionedInStatus */
-        isMentionedInStatus?: (boolean|null);
-
-        /** WebMessageInfo statusMentions */
-        statusMentions?: (string[]|null);
-
-        /** WebMessageInfo targetMessageId */
-        targetMessageId?: (Protocol.IMessageKey|null);
-
-        /** WebMessageInfo messageAddOns */
-        messageAddOns?: (Web.IMessageAddOn[]|null);
-
-        /** WebMessageInfo statusMentionMessageInfo */
-        statusMentionMessageInfo?: (Web.IStatusMentionMessage|null);
-
-        /** WebMessageInfo isSupportAiMessage */
-        isSupportAiMessage?: (boolean|null);
-
-        /** WebMessageInfo statusMentionSources */
-        statusMentionSources?: (string[]|null);
-
-        /** WebMessageInfo supportAiCitations */
-        supportAiCitations?: (Web.ICitation[]|null);
-
-        /** WebMessageInfo botTargetId */
-        botTargetId?: (string|null);
-    }
-
-    /** Represents a WebMessageInfo. */
-    class WebMessageInfo implements IWebMessageInfo {
-
-        /**
-         * Constructs a new WebMessageInfo.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: Web.IWebMessageInfo);
-
-        /** WebMessageInfo key. */
-        public key: Protocol.IMessageKey;
-
-        /** WebMessageInfo message. */
-        public message?: (E2E.IMessage|null);
-
-        /** WebMessageInfo messageTimestamp. */
-        public messageTimestamp: (number|Long);
-
-        /** WebMessageInfo status. */
-        public status: Web.WebMessageInfo.Status;
-
-        /** WebMessageInfo participant. */
-        public participant: string;
-
-        /** WebMessageInfo messageC2STimestamp. */
-        public messageC2STimestamp: (number|Long);
-
-        /** WebMessageInfo ignore. */
-        public ignore: boolean;
-
-        /** WebMessageInfo starred. */
-        public starred: boolean;
-
-        /** WebMessageInfo broadcast. */
-        public broadcast: boolean;
-
-        /** WebMessageInfo pushName. */
-        public pushName: string;
-
-        /** WebMessageInfo mediaCiphertextSha256. */
-        public mediaCiphertextSha256: Uint8Array;
-
-        /** WebMessageInfo multicast. */
-        public multicast: boolean;
-
-        /** WebMessageInfo urlText. */
-        public urlText: boolean;
-
-        /** WebMessageInfo urlNumber. */
-        public urlNumber: boolean;
-
-        /** WebMessageInfo messageStubType. */
-        public messageStubType: Web.WebMessageInfo.StubType;
-
-        /** WebMessageInfo clearMedia. */
-        public clearMedia: boolean;
-
-        /** WebMessageInfo messageStubParameters. */
-        public messageStubParameters: string[];
-
-        /** WebMessageInfo duration. */
-        public duration: number;
-
-        /** WebMessageInfo labels. */
-        public labels: string[];
-
-        /** WebMessageInfo paymentInfo. */
-        public paymentInfo?: (Web.IPaymentInfo|null);
-
-        /** WebMessageInfo finalLiveLocation. */
-        public finalLiveLocation?: (E2E.Message.ILiveLocationMessage|null);
-
-        /** WebMessageInfo quotedPaymentInfo. */
-        public quotedPaymentInfo?: (Web.IPaymentInfo|null);
-
-        /** WebMessageInfo ephemeralStartTimestamp. */
-        public ephemeralStartTimestamp: (number|Long);
-
-        /** WebMessageInfo ephemeralDuration. */
-        public ephemeralDuration: number;
-
-        /** WebMessageInfo ephemeralOffToOn. */
-        public ephemeralOffToOn: boolean;
-
-        /** WebMessageInfo ephemeralOutOfSync. */
-        public ephemeralOutOfSync: boolean;
-
-        /** WebMessageInfo bizPrivacyStatus. */
-        public bizPrivacyStatus: Web.WebMessageInfo.BizPrivacyStatus;
-
-        /** WebMessageInfo verifiedBizName. */
-        public verifiedBizName: string;
-
-        /** WebMessageInfo mediaData. */
-        public mediaData?: (E2E.PaymentBackground.IMediaData|null);
-
-        /** WebMessageInfo photoChange. */
-        public photoChange?: (Web.IPhotoChange|null);
-
-        /** WebMessageInfo userReceipt. */
-        public userReceipt: Web.IUserReceipt[];
-
-        /** WebMessageInfo reactions. */
-        public reactions: Web.IReaction[];
-
-        /** WebMessageInfo quotedStickerData. */
-        public quotedStickerData?: (E2E.PaymentBackground.IMediaData|null);
-
-        /** WebMessageInfo futureproofData. */
-        public futureproofData: Uint8Array;
-
-        /** WebMessageInfo statusPsa. */
-        public statusPsa?: (Web.IStatusPSA|null);
-
-        /** WebMessageInfo pollUpdates. */
-        public pollUpdates: Web.IPollUpdate[];
-
-        /** WebMessageInfo pollAdditionalMetadata. */
-        public pollAdditionalMetadata?: (Web.IPollAdditionalMetadata|null);
-
-        /** WebMessageInfo agentId. */
-        public agentId: string;
-
-        /** WebMessageInfo statusAlreadyViewed. */
-        public statusAlreadyViewed: boolean;
-
-        /** WebMessageInfo messageSecret. */
-        public messageSecret: Uint8Array;
-
-        /** WebMessageInfo keepInChat. */
-        public keepInChat?: (Web.IKeepInChat|null);
-
-        /** WebMessageInfo originalSelfAuthorUserJidString. */
-        public originalSelfAuthorUserJidString: string;
-
-        /** WebMessageInfo revokeMessageTimestamp. */
-        public revokeMessageTimestamp: (number|Long);
-
-        /** WebMessageInfo pinInChat. */
-        public pinInChat?: (Web.IPinInChat|null);
-
-        /** WebMessageInfo premiumMessageInfo. */
-        public premiumMessageInfo?: (Web.IPremiumMessageInfo|null);
-
-        /** WebMessageInfo is1PBizBotMessage. */
-        public is1PBizBotMessage: boolean;
-
-        /** WebMessageInfo isGroupHistoryMessage. */
-        public isGroupHistoryMessage: boolean;
-
-        /** WebMessageInfo botMessageInvokerJid. */
-        public botMessageInvokerJid: string;
-
-        /** WebMessageInfo commentMetadata. */
-        public commentMetadata?: (Web.ICommentMetadata|null);
-
-        /** WebMessageInfo eventResponses. */
-        public eventResponses: Web.IEventResponse[];
-
-        /** WebMessageInfo reportingTokenInfo. */
-        public reportingTokenInfo?: (Web.IReportingTokenInfo|null);
-
-        /** WebMessageInfo newsletterServerId. */
-        public newsletterServerId: (number|Long);
-
-        /** WebMessageInfo eventAdditionalMetadata. */
-        public eventAdditionalMetadata?: (Web.IEventAdditionalMetadata|null);
-
-        /** WebMessageInfo isMentionedInStatus. */
-        public isMentionedInStatus: boolean;
-
-        /** WebMessageInfo statusMentions. */
-        public statusMentions: string[];
-
-        /** WebMessageInfo targetMessageId. */
-        public targetMessageId?: (Protocol.IMessageKey|null);
-
-        /** WebMessageInfo messageAddOns. */
-        public messageAddOns: Web.IMessageAddOn[];
-
-        /** WebMessageInfo statusMentionMessageInfo. */
-        public statusMentionMessageInfo?: (Web.IStatusMentionMessage|null);
-
-        /** WebMessageInfo isSupportAiMessage. */
-        public isSupportAiMessage: boolean;
-
-        /** WebMessageInfo statusMentionSources. */
-        public statusMentionSources: string[];
-
-        /** WebMessageInfo supportAiCitations. */
-        public supportAiCitations: Web.ICitation[];
-
-        /** WebMessageInfo botTargetId. */
-        public botTargetId: string;
-
-        /**
-         * Creates a new WebMessageInfo instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns WebMessageInfo instance
-         */
-        public static create(properties?: Web.IWebMessageInfo): Web.WebMessageInfo;
-
-        /**
-         * Encodes the specified WebMessageInfo message. Does not implicitly {@link Web.WebMessageInfo.verify|verify} messages.
-         * @param message WebMessageInfo message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: Web.IWebMessageInfo, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified WebMessageInfo message, length delimited. Does not implicitly {@link Web.WebMessageInfo.verify|verify} messages.
-         * @param message WebMessageInfo message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: Web.IWebMessageInfo, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a WebMessageInfo message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns WebMessageInfo
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.WebMessageInfo;
-
-        /**
-         * Decodes a WebMessageInfo message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns WebMessageInfo
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.WebMessageInfo;
-
-        /**
-         * Verifies a WebMessageInfo message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a WebMessageInfo message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns WebMessageInfo
-         */
-        public static fromObject(object: { [k: string]: any }): Web.WebMessageInfo;
-
-        /**
-         * Creates a plain object from a WebMessageInfo message. Also converts values to other types if specified.
-         * @param message WebMessageInfo
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: Web.WebMessageInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this WebMessageInfo to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for WebMessageInfo
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    namespace WebMessageInfo {
-
-        /** BizPrivacyStatus enum. */
-        enum BizPrivacyStatus {
-            E2EE = 0,
-            FB = 2,
-            BSP = 1,
-            BSP_AND_FB = 3
-        }
-
-        /** Status enum. */
-        enum Status {
-            ERROR = 0,
-            PENDING = 1,
-            SERVER_ACK = 2,
-            DELIVERY_ACK = 3,
-            READ = 4,
-            PLAYED = 5
-        }
-
-        /** StubType enum. */
-        enum StubType {
-            UNKNOWN = 0,
-            REVOKE = 1,
-            CIPHERTEXT = 2,
-            FUTUREPROOF = 3,
-            NON_VERIFIED_TRANSITION = 4,
-            UNVERIFIED_TRANSITION = 5,
-            VERIFIED_TRANSITION = 6,
-            VERIFIED_LOW_UNKNOWN = 7,
-            VERIFIED_HIGH = 8,
-            VERIFIED_INITIAL_UNKNOWN = 9,
-            VERIFIED_INITIAL_LOW = 10,
-            VERIFIED_INITIAL_HIGH = 11,
-            VERIFIED_TRANSITION_ANY_TO_NONE = 12,
-            VERIFIED_TRANSITION_ANY_TO_HIGH = 13,
-            VERIFIED_TRANSITION_HIGH_TO_LOW = 14,
-            VERIFIED_TRANSITION_HIGH_TO_UNKNOWN = 15,
-            VERIFIED_TRANSITION_UNKNOWN_TO_LOW = 16,
-            VERIFIED_TRANSITION_LOW_TO_UNKNOWN = 17,
-            VERIFIED_TRANSITION_NONE_TO_LOW = 18,
-            VERIFIED_TRANSITION_NONE_TO_UNKNOWN = 19,
-            GROUP_CREATE = 20,
-            GROUP_CHANGE_SUBJECT = 21,
-            GROUP_CHANGE_ICON = 22,
-            GROUP_CHANGE_INVITE_LINK = 23,
-            GROUP_CHANGE_DESCRIPTION = 24,
-            GROUP_CHANGE_RESTRICT = 25,
-            GROUP_CHANGE_ANNOUNCE = 26,
-            GROUP_PARTICIPANT_ADD = 27,
-            GROUP_PARTICIPANT_REMOVE = 28,
-            GROUP_PARTICIPANT_PROMOTE = 29,
-            GROUP_PARTICIPANT_DEMOTE = 30,
-            GROUP_PARTICIPANT_INVITE = 31,
-            GROUP_PARTICIPANT_LEAVE = 32,
-            GROUP_PARTICIPANT_CHANGE_NUMBER = 33,
-            BROADCAST_CREATE = 34,
-            BROADCAST_ADD = 35,
-            BROADCAST_REMOVE = 36,
-            GENERIC_NOTIFICATION = 37,
-            E2E_IDENTITY_CHANGED = 38,
-            E2E_ENCRYPTED = 39,
-            CALL_MISSED_VOICE = 40,
-            CALL_MISSED_VIDEO = 41,
-            INDIVIDUAL_CHANGE_NUMBER = 42,
-            GROUP_DELETE = 43,
-            GROUP_ANNOUNCE_MODE_MESSAGE_BOUNCE = 44,
-            CALL_MISSED_GROUP_VOICE = 45,
-            CALL_MISSED_GROUP_VIDEO = 46,
-            PAYMENT_CIPHERTEXT = 47,
-            PAYMENT_FUTUREPROOF = 48,
-            PAYMENT_TRANSACTION_STATUS_UPDATE_FAILED = 49,
-            PAYMENT_TRANSACTION_STATUS_UPDATE_REFUNDED = 50,
-            PAYMENT_TRANSACTION_STATUS_UPDATE_REFUND_FAILED = 51,
-            PAYMENT_TRANSACTION_STATUS_RECEIVER_PENDING_SETUP = 52,
-            PAYMENT_TRANSACTION_STATUS_RECEIVER_SUCCESS_AFTER_HICCUP = 53,
-            PAYMENT_ACTION_ACCOUNT_SETUP_REMINDER = 54,
-            PAYMENT_ACTION_SEND_PAYMENT_REMINDER = 55,
-            PAYMENT_ACTION_SEND_PAYMENT_INVITATION = 56,
-            PAYMENT_ACTION_REQUEST_DECLINED = 57,
-            PAYMENT_ACTION_REQUEST_EXPIRED = 58,
-            PAYMENT_ACTION_REQUEST_CANCELLED = 59,
-            BIZ_VERIFIED_TRANSITION_TOP_TO_BOTTOM = 60,
-            BIZ_VERIFIED_TRANSITION_BOTTOM_TO_TOP = 61,
-            BIZ_INTRO_TOP = 62,
-            BIZ_INTRO_BOTTOM = 63,
-            BIZ_NAME_CHANGE = 64,
-            BIZ_MOVE_TO_CONSUMER_APP = 65,
-            BIZ_TWO_TIER_MIGRATION_TOP = 66,
-            BIZ_TWO_TIER_MIGRATION_BOTTOM = 67,
-            OVERSIZED = 68,
-            GROUP_CHANGE_NO_FREQUENTLY_FORWARDED = 69,
-            GROUP_V4_ADD_INVITE_SENT = 70,
-            GROUP_PARTICIPANT_ADD_REQUEST_JOIN = 71,
-            CHANGE_EPHEMERAL_SETTING = 72,
-            E2E_DEVICE_CHANGED = 73,
-            VIEWED_ONCE = 74,
-            E2E_ENCRYPTED_NOW = 75,
-            BLUE_MSG_BSP_FB_TO_BSP_PREMISE = 76,
-            BLUE_MSG_BSP_FB_TO_SELF_FB = 77,
-            BLUE_MSG_BSP_FB_TO_SELF_PREMISE = 78,
-            BLUE_MSG_BSP_FB_UNVERIFIED = 79,
-            BLUE_MSG_BSP_FB_UNVERIFIED_TO_SELF_PREMISE_VERIFIED = 80,
-            BLUE_MSG_BSP_FB_VERIFIED = 81,
-            BLUE_MSG_BSP_FB_VERIFIED_TO_SELF_PREMISE_UNVERIFIED = 82,
-            BLUE_MSG_BSP_PREMISE_TO_SELF_PREMISE = 83,
-            BLUE_MSG_BSP_PREMISE_UNVERIFIED = 84,
-            BLUE_MSG_BSP_PREMISE_UNVERIFIED_TO_SELF_PREMISE_VERIFIED = 85,
-            BLUE_MSG_BSP_PREMISE_VERIFIED = 86,
-            BLUE_MSG_BSP_PREMISE_VERIFIED_TO_SELF_PREMISE_UNVERIFIED = 87,
-            BLUE_MSG_CONSUMER_TO_BSP_FB_UNVERIFIED = 88,
-            BLUE_MSG_CONSUMER_TO_BSP_PREMISE_UNVERIFIED = 89,
-            BLUE_MSG_CONSUMER_TO_SELF_FB_UNVERIFIED = 90,
-            BLUE_MSG_CONSUMER_TO_SELF_PREMISE_UNVERIFIED = 91,
-            BLUE_MSG_SELF_FB_TO_BSP_PREMISE = 92,
-            BLUE_MSG_SELF_FB_TO_SELF_PREMISE = 93,
-            BLUE_MSG_SELF_FB_UNVERIFIED = 94,
-            BLUE_MSG_SELF_FB_UNVERIFIED_TO_SELF_PREMISE_VERIFIED = 95,
-            BLUE_MSG_SELF_FB_VERIFIED = 96,
-            BLUE_MSG_SELF_FB_VERIFIED_TO_SELF_PREMISE_UNVERIFIED = 97,
-            BLUE_MSG_SELF_PREMISE_TO_BSP_PREMISE = 98,
-            BLUE_MSG_SELF_PREMISE_UNVERIFIED = 99,
-            BLUE_MSG_SELF_PREMISE_VERIFIED = 100,
-            BLUE_MSG_TO_BSP_FB = 101,
-            BLUE_MSG_TO_CONSUMER = 102,
-            BLUE_MSG_TO_SELF_FB = 103,
-            BLUE_MSG_UNVERIFIED_TO_BSP_FB_VERIFIED = 104,
-            BLUE_MSG_UNVERIFIED_TO_BSP_PREMISE_VERIFIED = 105,
-            BLUE_MSG_UNVERIFIED_TO_SELF_FB_VERIFIED = 106,
-            BLUE_MSG_UNVERIFIED_TO_VERIFIED = 107,
-            BLUE_MSG_VERIFIED_TO_BSP_FB_UNVERIFIED = 108,
-            BLUE_MSG_VERIFIED_TO_BSP_PREMISE_UNVERIFIED = 109,
-            BLUE_MSG_VERIFIED_TO_SELF_FB_UNVERIFIED = 110,
-            BLUE_MSG_VERIFIED_TO_UNVERIFIED = 111,
-            BLUE_MSG_BSP_FB_UNVERIFIED_TO_BSP_PREMISE_VERIFIED = 112,
-            BLUE_MSG_BSP_FB_UNVERIFIED_TO_SELF_FB_VERIFIED = 113,
-            BLUE_MSG_BSP_FB_VERIFIED_TO_BSP_PREMISE_UNVERIFIED = 114,
-            BLUE_MSG_BSP_FB_VERIFIED_TO_SELF_FB_UNVERIFIED = 115,
-            BLUE_MSG_SELF_FB_UNVERIFIED_TO_BSP_PREMISE_VERIFIED = 116,
-            BLUE_MSG_SELF_FB_VERIFIED_TO_BSP_PREMISE_UNVERIFIED = 117,
-            E2E_IDENTITY_UNAVAILABLE = 118,
-            GROUP_CREATING = 119,
-            GROUP_CREATE_FAILED = 120,
-            GROUP_BOUNCED = 121,
-            BLOCK_CONTACT = 122,
-            EPHEMERAL_SETTING_NOT_APPLIED = 123,
-            SYNC_FAILED = 124,
-            SYNCING = 125,
-            BIZ_PRIVACY_MODE_INIT_FB = 126,
-            BIZ_PRIVACY_MODE_INIT_BSP = 127,
-            BIZ_PRIVACY_MODE_TO_FB = 128,
-            BIZ_PRIVACY_MODE_TO_BSP = 129,
-            DISAPPEARING_MODE = 130,
-            E2E_DEVICE_FETCH_FAILED = 131,
-            ADMIN_REVOKE = 132,
-            GROUP_INVITE_LINK_GROWTH_LOCKED = 133,
-            COMMUNITY_LINK_PARENT_GROUP = 134,
-            COMMUNITY_LINK_SIBLING_GROUP = 135,
-            COMMUNITY_LINK_SUB_GROUP = 136,
-            COMMUNITY_UNLINK_PARENT_GROUP = 137,
-            COMMUNITY_UNLINK_SIBLING_GROUP = 138,
-            COMMUNITY_UNLINK_SUB_GROUP = 139,
-            GROUP_PARTICIPANT_ACCEPT = 140,
-            GROUP_PARTICIPANT_LINKED_GROUP_JOIN = 141,
-            COMMUNITY_CREATE = 142,
-            EPHEMERAL_KEEP_IN_CHAT = 143,
-            GROUP_MEMBERSHIP_JOIN_APPROVAL_REQUEST = 144,
-            GROUP_MEMBERSHIP_JOIN_APPROVAL_MODE = 145,
-            INTEGRITY_UNLINK_PARENT_GROUP = 146,
-            COMMUNITY_PARTICIPANT_PROMOTE = 147,
-            COMMUNITY_PARTICIPANT_DEMOTE = 148,
-            COMMUNITY_PARENT_GROUP_DELETED = 149,
-            COMMUNITY_LINK_PARENT_GROUP_MEMBERSHIP_APPROVAL = 150,
-            GROUP_PARTICIPANT_JOINED_GROUP_AND_PARENT_GROUP = 151,
-            MASKED_THREAD_CREATED = 152,
-            MASKED_THREAD_UNMASKED = 153,
-            BIZ_CHAT_ASSIGNMENT = 154,
-            CHAT_PSA = 155,
-            CHAT_POLL_CREATION_MESSAGE = 156,
-            CAG_MASKED_THREAD_CREATED = 157,
-            COMMUNITY_PARENT_GROUP_SUBJECT_CHANGED = 158,
-            CAG_INVITE_AUTO_ADD = 159,
-            BIZ_CHAT_ASSIGNMENT_UNASSIGN = 160,
-            CAG_INVITE_AUTO_JOINED = 161,
-            SCHEDULED_CALL_START_MESSAGE = 162,
-            COMMUNITY_INVITE_RICH = 163,
-            COMMUNITY_INVITE_AUTO_ADD_RICH = 164,
-            SUB_GROUP_INVITE_RICH = 165,
-            SUB_GROUP_PARTICIPANT_ADD_RICH = 166,
-            COMMUNITY_LINK_PARENT_GROUP_RICH = 167,
-            COMMUNITY_PARTICIPANT_ADD_RICH = 168,
-            SILENCED_UNKNOWN_CALLER_AUDIO = 169,
-            SILENCED_UNKNOWN_CALLER_VIDEO = 170,
-            GROUP_MEMBER_ADD_MODE = 171,
-            GROUP_MEMBERSHIP_JOIN_APPROVAL_REQUEST_NON_ADMIN_ADD = 172,
-            COMMUNITY_CHANGE_DESCRIPTION = 173,
-            SENDER_INVITE = 174,
-            RECEIVER_INVITE = 175,
-            COMMUNITY_ALLOW_MEMBER_ADDED_GROUPS = 176,
-            PINNED_MESSAGE_IN_CHAT = 177,
-            PAYMENT_INVITE_SETUP_INVITER = 178,
-            PAYMENT_INVITE_SETUP_INVITEE_RECEIVE_ONLY = 179,
-            PAYMENT_INVITE_SETUP_INVITEE_SEND_AND_RECEIVE = 180,
-            LINKED_GROUP_CALL_START = 181,
-            REPORT_TO_ADMIN_ENABLED_STATUS = 182,
-            EMPTY_SUBGROUP_CREATE = 183,
-            SCHEDULED_CALL_CANCEL = 184,
-            SUBGROUP_ADMIN_TRIGGERED_AUTO_ADD_RICH = 185,
-            GROUP_CHANGE_RECENT_HISTORY_SHARING = 186,
-            PAID_MESSAGE_SERVER_CAMPAIGN_ID = 187,
-            GENERAL_CHAT_CREATE = 188,
-            GENERAL_CHAT_ADD = 189,
-            GENERAL_CHAT_AUTO_ADD_DISABLED = 190,
-            SUGGESTED_SUBGROUP_ANNOUNCE = 191,
-            BIZ_BOT_1P_MESSAGING_ENABLED = 192,
-            CHANGE_USERNAME = 193,
-            BIZ_COEX_PRIVACY_INIT_SELF = 194,
-            BIZ_COEX_PRIVACY_TRANSITION_SELF = 195,
-            SUPPORT_AI_EDUCATION = 196,
-            BIZ_BOT_3P_MESSAGING_ENABLED = 197,
-            REMINDER_SETUP_MESSAGE = 198,
-            REMINDER_SENT_MESSAGE = 199,
-            REMINDER_CANCEL_MESSAGE = 200,
-            BIZ_COEX_PRIVACY_INIT = 201,
-            BIZ_COEX_PRIVACY_TRANSITION = 202,
-            GROUP_DEACTIVATED = 203,
-            COMMUNITY_DEACTIVATE_SIBLING_GROUP = 204,
-            EVENT_UPDATED = 205,
-            EVENT_CANCELED = 206,
-            COMMUNITY_OWNER_UPDATED = 207,
-            COMMUNITY_SUB_GROUP_VISIBILITY_HIDDEN = 208,
-            CAPI_GROUP_NE2EE_SYSTEM_MESSAGE = 209,
-            STATUS_MENTION = 210,
-            USER_CONTROLS_SYSTEM_MESSAGE = 211,
-            SUPPORT_SYSTEM_MESSAGE = 212,
-            CHANGE_LID = 213,
-            BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_IN_MESSAGE = 214,
-            BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_OUT_MESSAGE = 215,
-            CHANGE_LIMIT_SHARING = 216,
-            GROUP_MEMBER_LINK_MODE = 217,
-            BIZ_AUTOMATICALLY_LABELED_CHAT_SYSTEM_MESSAGE = 218,
-            PHONE_NUMBER_HIDING_CHAT_DEPRECATED_MESSAGE = 219
         }
     }
 }
@@ -10550,6 +6907,9 @@ export namespace E2E {
 
         /** BotMetadata unifiedResponseMutation */
         unifiedResponseMutation?: (E2E.IBotUnifiedResponseMutation|null);
+
+        /** BotMetadata botMessageOriginMetadata */
+        botMessageOriginMetadata?: (E2E.IBotMessageOriginMetadata|null);
     }
 
     /** Represents a BotMetadata. */
@@ -10645,6 +7005,9 @@ export namespace E2E {
         /** BotMetadata unifiedResponseMutation. */
         public unifiedResponseMutation?: (E2E.IBotUnifiedResponseMutation|null);
 
+        /** BotMetadata botMessageOriginMetadata. */
+        public botMessageOriginMetadata?: (E2E.IBotMessageOriginMetadata|null);
+
         /**
          * Creates a new BotMetadata instance using the specified properties.
          * @param [properties] Properties to set
@@ -10717,6 +7080,208 @@ export namespace E2E {
 
         /**
          * Gets the default type url for BotMetadata
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a BotMessageOrigin. */
+    interface IBotMessageOrigin {
+
+        /** BotMessageOrigin type */
+        type?: (E2E.BotMessageOrigin.BotMessageOriginType|null);
+    }
+
+    /** Represents a BotMessageOrigin. */
+    class BotMessageOrigin implements IBotMessageOrigin {
+
+        /**
+         * Constructs a new BotMessageOrigin.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: E2E.IBotMessageOrigin);
+
+        /** BotMessageOrigin type. */
+        public type: E2E.BotMessageOrigin.BotMessageOriginType;
+
+        /**
+         * Creates a new BotMessageOrigin instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BotMessageOrigin instance
+         */
+        public static create(properties?: E2E.IBotMessageOrigin): E2E.BotMessageOrigin;
+
+        /**
+         * Encodes the specified BotMessageOrigin message. Does not implicitly {@link E2E.BotMessageOrigin.verify|verify} messages.
+         * @param message BotMessageOrigin message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: E2E.IBotMessageOrigin, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BotMessageOrigin message, length delimited. Does not implicitly {@link E2E.BotMessageOrigin.verify|verify} messages.
+         * @param message BotMessageOrigin message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: E2E.IBotMessageOrigin, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BotMessageOrigin message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BotMessageOrigin
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.BotMessageOrigin;
+
+        /**
+         * Decodes a BotMessageOrigin message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BotMessageOrigin
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.BotMessageOrigin;
+
+        /**
+         * Verifies a BotMessageOrigin message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BotMessageOrigin message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BotMessageOrigin
+         */
+        public static fromObject(object: { [k: string]: any }): E2E.BotMessageOrigin;
+
+        /**
+         * Creates a plain object from a BotMessageOrigin message. Also converts values to other types if specified.
+         * @param message BotMessageOrigin
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: E2E.BotMessageOrigin, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BotMessageOrigin to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for BotMessageOrigin
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace BotMessageOrigin {
+
+        /** BotMessageOriginType enum. */
+        enum BotMessageOriginType {
+            BOT_MESSAGE_ORIGIN_TYPE_AI_INITIATED = 0
+        }
+    }
+
+    /** Properties of a BotMessageOriginMetadata. */
+    interface IBotMessageOriginMetadata {
+
+        /** BotMessageOriginMetadata origins */
+        origins?: (E2E.IBotMessageOrigin[]|null);
+    }
+
+    /** Represents a BotMessageOriginMetadata. */
+    class BotMessageOriginMetadata implements IBotMessageOriginMetadata {
+
+        /**
+         * Constructs a new BotMessageOriginMetadata.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: E2E.IBotMessageOriginMetadata);
+
+        /** BotMessageOriginMetadata origins. */
+        public origins: E2E.IBotMessageOrigin[];
+
+        /**
+         * Creates a new BotMessageOriginMetadata instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BotMessageOriginMetadata instance
+         */
+        public static create(properties?: E2E.IBotMessageOriginMetadata): E2E.BotMessageOriginMetadata;
+
+        /**
+         * Encodes the specified BotMessageOriginMetadata message. Does not implicitly {@link E2E.BotMessageOriginMetadata.verify|verify} messages.
+         * @param message BotMessageOriginMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: E2E.IBotMessageOriginMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BotMessageOriginMetadata message, length delimited. Does not implicitly {@link E2E.BotMessageOriginMetadata.verify|verify} messages.
+         * @param message BotMessageOriginMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: E2E.IBotMessageOriginMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BotMessageOriginMetadata message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BotMessageOriginMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.BotMessageOriginMetadata;
+
+        /**
+         * Decodes a BotMessageOriginMetadata message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BotMessageOriginMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.BotMessageOriginMetadata;
+
+        /**
+         * Verifies a BotMessageOriginMetadata message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BotMessageOriginMetadata message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BotMessageOriginMetadata
+         */
+        public static fromObject(object: { [k: string]: any }): E2E.BotMessageOriginMetadata;
+
+        /**
+         * Creates a plain object from a BotMessageOriginMetadata message. Also converts values to other types if specified.
+         * @param message BotMessageOriginMetadata
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: E2E.BotMessageOriginMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BotMessageOriginMetadata to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for BotMessageOriginMetadata
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
@@ -16794,6 +13359,15 @@ export namespace E2E {
 
         /** ContextInfo isGroupStatus */
         isGroupStatus?: (boolean|null);
+
+        /** ContextInfo forwardOrigin */
+        forwardOrigin?: (E2E.ContextInfo.ForwardOrigin|null);
+
+        /** ContextInfo questionReplyQuotedMessage */
+        questionReplyQuotedMessage?: (E2E.ContextInfo.IQuestionReplyQuotedMessage|null);
+
+        /** ContextInfo statusAudienceMetadata */
+        statusAudienceMetadata?: (E2E.ContextInfo.IStatusAudienceMetadata|null);
     }
 
     /** Represents a ContextInfo. */
@@ -16951,6 +13525,15 @@ export namespace E2E {
 
         /** ContextInfo isGroupStatus. */
         public isGroupStatus: boolean;
+
+        /** ContextInfo forwardOrigin. */
+        public forwardOrigin: E2E.ContextInfo.ForwardOrigin;
+
+        /** ContextInfo questionReplyQuotedMessage. */
+        public questionReplyQuotedMessage?: (E2E.ContextInfo.IQuestionReplyQuotedMessage|null);
+
+        /** ContextInfo statusAudienceMetadata. */
+        public statusAudienceMetadata?: (E2E.ContextInfo.IStatusAudienceMetadata|null);
 
         /**
          * Creates a new ContextInfo instance using the specified properties.
@@ -17265,6 +13848,9 @@ export namespace E2E {
 
             /** DataSharingContext parameters */
             parameters?: (E2E.ContextInfo.DataSharingContext.IParameters[]|null);
+
+            /** DataSharingContext dataSharingFlags */
+            dataSharingFlags?: (number|null);
         }
 
         /** Represents a DataSharingContext. */
@@ -17284,6 +13870,9 @@ export namespace E2E {
 
             /** DataSharingContext parameters. */
             public parameters: E2E.ContextInfo.DataSharingContext.IParameters[];
+
+            /** DataSharingContext dataSharingFlags. */
+            public dataSharingFlags: number;
 
             /**
              * Creates a new DataSharingContext instance using the specified properties.
@@ -17364,6 +13953,12 @@ export namespace E2E {
         }
 
         namespace DataSharingContext {
+
+            /** DataSharingFlags enum. */
+            enum DataSharingFlags {
+                SHOW_MM_DISCLOSURE_ON_CLICK = 1,
+                SHOW_MM_DISCLOSURE_ON_READ = 2
+            }
 
             /** Properties of a Parameters. */
             interface IParameters {
@@ -17859,6 +14454,14 @@ export namespace E2E {
             public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
+        /** ForwardOrigin enum. */
+        enum ForwardOrigin {
+            UNKNOWN = 0,
+            CHAT = 1,
+            STATUS = 2,
+            CHANNELS = 3
+        }
+
         /** Properties of a ForwardedAIBotMessageInfo. */
         interface IForwardedAIBotMessageInfo {
 
@@ -18110,12 +14713,228 @@ export namespace E2E {
             MOTION_PHOTO_CHILD = 6
         }
 
+        /** Properties of a QuestionReplyQuotedMessage. */
+        interface IQuestionReplyQuotedMessage {
+
+            /** QuestionReplyQuotedMessage serverQuestionId */
+            serverQuestionId?: (number|null);
+
+            /** QuestionReplyQuotedMessage quotedQuestion */
+            quotedQuestion?: (E2E.IMessage|null);
+
+            /** QuestionReplyQuotedMessage quotedResponse */
+            quotedResponse?: (E2E.IMessage|null);
+        }
+
+        /** Represents a QuestionReplyQuotedMessage. */
+        class QuestionReplyQuotedMessage implements IQuestionReplyQuotedMessage {
+
+            /**
+             * Constructs a new QuestionReplyQuotedMessage.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.ContextInfo.IQuestionReplyQuotedMessage);
+
+            /** QuestionReplyQuotedMessage serverQuestionId. */
+            public serverQuestionId: number;
+
+            /** QuestionReplyQuotedMessage quotedQuestion. */
+            public quotedQuestion?: (E2E.IMessage|null);
+
+            /** QuestionReplyQuotedMessage quotedResponse. */
+            public quotedResponse?: (E2E.IMessage|null);
+
+            /**
+             * Creates a new QuestionReplyQuotedMessage instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns QuestionReplyQuotedMessage instance
+             */
+            public static create(properties?: E2E.ContextInfo.IQuestionReplyQuotedMessage): E2E.ContextInfo.QuestionReplyQuotedMessage;
+
+            /**
+             * Encodes the specified QuestionReplyQuotedMessage message. Does not implicitly {@link E2E.ContextInfo.QuestionReplyQuotedMessage.verify|verify} messages.
+             * @param message QuestionReplyQuotedMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.ContextInfo.IQuestionReplyQuotedMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified QuestionReplyQuotedMessage message, length delimited. Does not implicitly {@link E2E.ContextInfo.QuestionReplyQuotedMessage.verify|verify} messages.
+             * @param message QuestionReplyQuotedMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.ContextInfo.IQuestionReplyQuotedMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a QuestionReplyQuotedMessage message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns QuestionReplyQuotedMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.ContextInfo.QuestionReplyQuotedMessage;
+
+            /**
+             * Decodes a QuestionReplyQuotedMessage message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns QuestionReplyQuotedMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.ContextInfo.QuestionReplyQuotedMessage;
+
+            /**
+             * Verifies a QuestionReplyQuotedMessage message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a QuestionReplyQuotedMessage message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns QuestionReplyQuotedMessage
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.ContextInfo.QuestionReplyQuotedMessage;
+
+            /**
+             * Creates a plain object from a QuestionReplyQuotedMessage message. Also converts values to other types if specified.
+             * @param message QuestionReplyQuotedMessage
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.ContextInfo.QuestionReplyQuotedMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this QuestionReplyQuotedMessage to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for QuestionReplyQuotedMessage
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
         /** StatusAttributionType enum. */
         enum StatusAttributionType {
             NONE = 0,
             RESHARED_FROM_MENTION = 1,
             RESHARED_FROM_POST = 2,
-            FORWARDED_FROM_STATUS = 3
+            RESHARED_FROM_POST_MANY_TIMES = 3,
+            FORWARDED_FROM_STATUS = 4
+        }
+
+        /** Properties of a StatusAudienceMetadata. */
+        interface IStatusAudienceMetadata {
+
+            /** StatusAudienceMetadata audienceType */
+            audienceType?: (E2E.ContextInfo.StatusAudienceMetadata.AudienceType|null);
+        }
+
+        /** Represents a StatusAudienceMetadata. */
+        class StatusAudienceMetadata implements IStatusAudienceMetadata {
+
+            /**
+             * Constructs a new StatusAudienceMetadata.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.ContextInfo.IStatusAudienceMetadata);
+
+            /** StatusAudienceMetadata audienceType. */
+            public audienceType: E2E.ContextInfo.StatusAudienceMetadata.AudienceType;
+
+            /**
+             * Creates a new StatusAudienceMetadata instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns StatusAudienceMetadata instance
+             */
+            public static create(properties?: E2E.ContextInfo.IStatusAudienceMetadata): E2E.ContextInfo.StatusAudienceMetadata;
+
+            /**
+             * Encodes the specified StatusAudienceMetadata message. Does not implicitly {@link E2E.ContextInfo.StatusAudienceMetadata.verify|verify} messages.
+             * @param message StatusAudienceMetadata message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.ContextInfo.IStatusAudienceMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified StatusAudienceMetadata message, length delimited. Does not implicitly {@link E2E.ContextInfo.StatusAudienceMetadata.verify|verify} messages.
+             * @param message StatusAudienceMetadata message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.ContextInfo.IStatusAudienceMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a StatusAudienceMetadata message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns StatusAudienceMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.ContextInfo.StatusAudienceMetadata;
+
+            /**
+             * Decodes a StatusAudienceMetadata message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns StatusAudienceMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.ContextInfo.StatusAudienceMetadata;
+
+            /**
+             * Verifies a StatusAudienceMetadata message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a StatusAudienceMetadata message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns StatusAudienceMetadata
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.ContextInfo.StatusAudienceMetadata;
+
+            /**
+             * Creates a plain object from a StatusAudienceMetadata message. Also converts values to other types if specified.
+             * @param message StatusAudienceMetadata
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.ContextInfo.StatusAudienceMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this StatusAudienceMetadata to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for StatusAudienceMetadata
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace StatusAudienceMetadata {
+
+            /** AudienceType enum. */
+            enum AudienceType {
+                UNKNOWN = 0,
+                CLOSE_FRIENDS = 1
+            }
         }
 
         /** StatusSourceType enum. */
@@ -18502,9 +15321,6 @@ export namespace E2E {
         /** Message statusQuestionAnswerMessage */
         statusQuestionAnswerMessage?: (E2E.Message.IStatusQuestionAnswerMessage|null);
 
-        /** Message questionAdminReplyMessage */
-        questionAdminReplyMessage?: (E2E.Message.IQuestionAdminReplyMessage|null);
-
         /** Message questionResponseMessage */
         questionResponseMessage?: (E2E.Message.IQuestionResponseMessage|null);
     }
@@ -18784,9 +15600,6 @@ export namespace E2E {
 
         /** Message statusQuestionAnswerMessage. */
         public statusQuestionAnswerMessage?: (E2E.Message.IStatusQuestionAnswerMessage|null);
-
-        /** Message questionAdminReplyMessage. */
-        public questionAdminReplyMessage?: (E2E.Message.IQuestionAdminReplyMessage|null);
 
         /** Message questionResponseMessage. */
         public questionResponseMessage?: (E2E.Message.IQuestionResponseMessage|null);
@@ -23062,9 +19875,6 @@ export namespace E2E {
 
             /** ExtendedTextMessage endCardTiles */
             endCardTiles?: (E2E.Message.IVideoEndCard[]|null);
-
-            /** ExtendedTextMessage mediaKeyDomain */
-            mediaKeyDomain?: (E2E.Message.MediaKeyDomain|null);
         }
 
         /** Represents an ExtendedTextMessage. */
@@ -23162,9 +19972,6 @@ export namespace E2E {
 
             /** ExtendedTextMessage endCardTiles. */
             public endCardTiles: E2E.Message.IVideoEndCard[];
-
-            /** ExtendedTextMessage mediaKeyDomain. */
-            public mediaKeyDomain: E2E.Message.MediaKeyDomain;
 
             /**
              * Creates a new ExtendedTextMessage instance using the specified properties.
@@ -33156,221 +29963,6 @@ export namespace E2E {
             }
         }
 
-        /** Properties of a QuestionAdminReplyMessage. */
-        interface IQuestionAdminReplyMessage {
-
-            /** QuestionAdminReplyMessage adminReplyMessage */
-            adminReplyMessage?: (E2E.IMessage|null);
-
-            /** QuestionAdminReplyMessage quotedMessage */
-            quotedMessage?: (E2E.Message.QuestionAdminReplyMessage.IQuotedQuestionAdminReplyMessage|null);
-        }
-
-        /** Represents a QuestionAdminReplyMessage. */
-        class QuestionAdminReplyMessage implements IQuestionAdminReplyMessage {
-
-            /**
-             * Constructs a new QuestionAdminReplyMessage.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: E2E.Message.IQuestionAdminReplyMessage);
-
-            /** QuestionAdminReplyMessage adminReplyMessage. */
-            public adminReplyMessage?: (E2E.IMessage|null);
-
-            /** QuestionAdminReplyMessage quotedMessage. */
-            public quotedMessage?: (E2E.Message.QuestionAdminReplyMessage.IQuotedQuestionAdminReplyMessage|null);
-
-            /**
-             * Creates a new QuestionAdminReplyMessage instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns QuestionAdminReplyMessage instance
-             */
-            public static create(properties?: E2E.Message.IQuestionAdminReplyMessage): E2E.Message.QuestionAdminReplyMessage;
-
-            /**
-             * Encodes the specified QuestionAdminReplyMessage message. Does not implicitly {@link E2E.Message.QuestionAdminReplyMessage.verify|verify} messages.
-             * @param message QuestionAdminReplyMessage message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: E2E.Message.IQuestionAdminReplyMessage, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified QuestionAdminReplyMessage message, length delimited. Does not implicitly {@link E2E.Message.QuestionAdminReplyMessage.verify|verify} messages.
-             * @param message QuestionAdminReplyMessage message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: E2E.Message.IQuestionAdminReplyMessage, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes a QuestionAdminReplyMessage message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns QuestionAdminReplyMessage
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.QuestionAdminReplyMessage;
-
-            /**
-             * Decodes a QuestionAdminReplyMessage message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns QuestionAdminReplyMessage
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.QuestionAdminReplyMessage;
-
-            /**
-             * Verifies a QuestionAdminReplyMessage message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates a QuestionAdminReplyMessage message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns QuestionAdminReplyMessage
-             */
-            public static fromObject(object: { [k: string]: any }): E2E.Message.QuestionAdminReplyMessage;
-
-            /**
-             * Creates a plain object from a QuestionAdminReplyMessage message. Also converts values to other types if specified.
-             * @param message QuestionAdminReplyMessage
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: E2E.Message.QuestionAdminReplyMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this QuestionAdminReplyMessage to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-
-            /**
-             * Gets the default type url for QuestionAdminReplyMessage
-             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns The default type url
-             */
-            public static getTypeUrl(typeUrlPrefix?: string): string;
-        }
-
-        namespace QuestionAdminReplyMessage {
-
-            /** Properties of a QuotedQuestionAdminReplyMessage. */
-            interface IQuotedQuestionAdminReplyMessage {
-
-                /** QuotedQuestionAdminReplyMessage serverQuestionId */
-                serverQuestionId?: (number|null);
-
-                /** QuotedQuestionAdminReplyMessage quotedQuestion */
-                quotedQuestion?: (E2E.IMessage|null);
-
-                /** QuotedQuestionAdminReplyMessage quotedFollowerResponse */
-                quotedFollowerResponse?: (E2E.IMessage|null);
-            }
-
-            /** Represents a QuotedQuestionAdminReplyMessage. */
-            class QuotedQuestionAdminReplyMessage implements IQuotedQuestionAdminReplyMessage {
-
-                /**
-                 * Constructs a new QuotedQuestionAdminReplyMessage.
-                 * @param [properties] Properties to set
-                 */
-                constructor(properties?: E2E.Message.QuestionAdminReplyMessage.IQuotedQuestionAdminReplyMessage);
-
-                /** QuotedQuestionAdminReplyMessage serverQuestionId. */
-                public serverQuestionId: number;
-
-                /** QuotedQuestionAdminReplyMessage quotedQuestion. */
-                public quotedQuestion?: (E2E.IMessage|null);
-
-                /** QuotedQuestionAdminReplyMessage quotedFollowerResponse. */
-                public quotedFollowerResponse?: (E2E.IMessage|null);
-
-                /**
-                 * Creates a new QuotedQuestionAdminReplyMessage instance using the specified properties.
-                 * @param [properties] Properties to set
-                 * @returns QuotedQuestionAdminReplyMessage instance
-                 */
-                public static create(properties?: E2E.Message.QuestionAdminReplyMessage.IQuotedQuestionAdminReplyMessage): E2E.Message.QuestionAdminReplyMessage.QuotedQuestionAdminReplyMessage;
-
-                /**
-                 * Encodes the specified QuotedQuestionAdminReplyMessage message. Does not implicitly {@link E2E.Message.QuestionAdminReplyMessage.QuotedQuestionAdminReplyMessage.verify|verify} messages.
-                 * @param message QuotedQuestionAdminReplyMessage message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encode(message: E2E.Message.QuestionAdminReplyMessage.IQuotedQuestionAdminReplyMessage, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Encodes the specified QuotedQuestionAdminReplyMessage message, length delimited. Does not implicitly {@link E2E.Message.QuestionAdminReplyMessage.QuotedQuestionAdminReplyMessage.verify|verify} messages.
-                 * @param message QuotedQuestionAdminReplyMessage message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encodeDelimited(message: E2E.Message.QuestionAdminReplyMessage.IQuotedQuestionAdminReplyMessage, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Decodes a QuotedQuestionAdminReplyMessage message from the specified reader or buffer.
-                 * @param reader Reader or buffer to decode from
-                 * @param [length] Message length if known beforehand
-                 * @returns QuotedQuestionAdminReplyMessage
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.QuestionAdminReplyMessage.QuotedQuestionAdminReplyMessage;
-
-                /**
-                 * Decodes a QuotedQuestionAdminReplyMessage message from the specified reader or buffer, length delimited.
-                 * @param reader Reader or buffer to decode from
-                 * @returns QuotedQuestionAdminReplyMessage
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.QuestionAdminReplyMessage.QuotedQuestionAdminReplyMessage;
-
-                /**
-                 * Verifies a QuotedQuestionAdminReplyMessage message.
-                 * @param message Plain object to verify
-                 * @returns `null` if valid, otherwise the reason why it is not
-                 */
-                public static verify(message: { [k: string]: any }): (string|null);
-
-                /**
-                 * Creates a QuotedQuestionAdminReplyMessage message from a plain object. Also converts values to their respective internal types.
-                 * @param object Plain object
-                 * @returns QuotedQuestionAdminReplyMessage
-                 */
-                public static fromObject(object: { [k: string]: any }): E2E.Message.QuestionAdminReplyMessage.QuotedQuestionAdminReplyMessage;
-
-                /**
-                 * Creates a plain object from a QuotedQuestionAdminReplyMessage message. Also converts values to other types if specified.
-                 * @param message QuotedQuestionAdminReplyMessage
-                 * @param [options] Conversion options
-                 * @returns Plain object
-                 */
-                public static toObject(message: E2E.Message.QuestionAdminReplyMessage.QuotedQuestionAdminReplyMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                /**
-                 * Converts this QuotedQuestionAdminReplyMessage to JSON.
-                 * @returns JSON object
-                 */
-                public toJSON(): { [k: string]: any };
-
-                /**
-                 * Gets the default type url for QuotedQuestionAdminReplyMessage
-                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns The default type url
-                 */
-                public static getTypeUrl(typeUrlPrefix?: string): string;
-            }
-        }
-
         /** Properties of a QuestionResponseMessage. */
         interface IQuestionResponseMessage {
 
@@ -39221,6 +35813,9 @@ export namespace CompanionReg {
 
             /** HistorySyncConfig supportGroupHistory */
             supportGroupHistory?: (boolean|null);
+
+            /** HistorySyncConfig onDemandReady */
+            onDemandReady?: (boolean|null);
         }
 
         /** Represents a HistorySyncConfig. */
@@ -39276,6 +35871,9 @@ export namespace CompanionReg {
 
             /** HistorySyncConfig supportGroupHistory. */
             public supportGroupHistory: boolean;
+
+            /** HistorySyncConfig onDemandReady. */
+            public onDemandReady: boolean;
 
             /**
              * Creates a new HistorySyncConfig instance using the specified properties.
@@ -39609,6 +36207,3661 @@ export namespace MmsRetry {
             SUCCESS = 1,
             NOT_FOUND = 2,
             DECRYPTION_ERROR = 3
+        }
+    }
+}
+
+/** Namespace Web. */
+export namespace Web {
+
+    /** Properties of a Citation. */
+    interface ICitation {
+
+        /** Citation title */
+        title: string;
+
+        /** Citation subtitle */
+        subtitle: string;
+
+        /** Citation cmsId */
+        cmsId: string;
+
+        /** Citation imageUrl */
+        imageUrl: string;
+    }
+
+    /** Represents a Citation. */
+    class Citation implements ICitation {
+
+        /**
+         * Constructs a new Citation.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Web.ICitation);
+
+        /** Citation title. */
+        public title: string;
+
+        /** Citation subtitle. */
+        public subtitle: string;
+
+        /** Citation cmsId. */
+        public cmsId: string;
+
+        /** Citation imageUrl. */
+        public imageUrl: string;
+
+        /**
+         * Creates a new Citation instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Citation instance
+         */
+        public static create(properties?: Web.ICitation): Web.Citation;
+
+        /**
+         * Encodes the specified Citation message. Does not implicitly {@link Web.Citation.verify|verify} messages.
+         * @param message Citation message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Web.ICitation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Citation message, length delimited. Does not implicitly {@link Web.Citation.verify|verify} messages.
+         * @param message Citation message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Web.ICitation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a Citation message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Citation
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.Citation;
+
+        /**
+         * Decodes a Citation message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Citation
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.Citation;
+
+        /**
+         * Verifies a Citation message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a Citation message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Citation
+         */
+        public static fromObject(object: { [k: string]: any }): Web.Citation;
+
+        /**
+         * Creates a plain object from a Citation message. Also converts values to other types if specified.
+         * @param message Citation
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Web.Citation, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this Citation to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for Citation
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a StatusMentionMessage. */
+    interface IStatusMentionMessage {
+
+        /** StatusMentionMessage quotedStatus */
+        quotedStatus?: (E2E.IMessage|null);
+    }
+
+    /** Represents a StatusMentionMessage. */
+    class StatusMentionMessage implements IStatusMentionMessage {
+
+        /**
+         * Constructs a new StatusMentionMessage.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Web.IStatusMentionMessage);
+
+        /** StatusMentionMessage quotedStatus. */
+        public quotedStatus?: (E2E.IMessage|null);
+
+        /**
+         * Creates a new StatusMentionMessage instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns StatusMentionMessage instance
+         */
+        public static create(properties?: Web.IStatusMentionMessage): Web.StatusMentionMessage;
+
+        /**
+         * Encodes the specified StatusMentionMessage message. Does not implicitly {@link Web.StatusMentionMessage.verify|verify} messages.
+         * @param message StatusMentionMessage message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Web.IStatusMentionMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified StatusMentionMessage message, length delimited. Does not implicitly {@link Web.StatusMentionMessage.verify|verify} messages.
+         * @param message StatusMentionMessage message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Web.IStatusMentionMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a StatusMentionMessage message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns StatusMentionMessage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.StatusMentionMessage;
+
+        /**
+         * Decodes a StatusMentionMessage message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns StatusMentionMessage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.StatusMentionMessage;
+
+        /**
+         * Verifies a StatusMentionMessage message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a StatusMentionMessage message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns StatusMentionMessage
+         */
+        public static fromObject(object: { [k: string]: any }): Web.StatusMentionMessage;
+
+        /**
+         * Creates a plain object from a StatusMentionMessage message. Also converts values to other types if specified.
+         * @param message StatusMentionMessage
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Web.StatusMentionMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this StatusMentionMessage to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for StatusMentionMessage
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a MessageAddOn. */
+    interface IMessageAddOn {
+
+        /** MessageAddOn messageAddOnType */
+        messageAddOnType?: (Web.MessageAddOn.MessageAddOnType|null);
+
+        /** MessageAddOn messageAddOn */
+        messageAddOn?: (E2E.IMessage|null);
+
+        /** MessageAddOn senderTimestampMs */
+        senderTimestampMs?: (number|Long|null);
+
+        /** MessageAddOn serverTimestampMs */
+        serverTimestampMs?: (number|Long|null);
+
+        /** MessageAddOn status */
+        status?: (Web.WebMessageInfo.Status|null);
+
+        /** MessageAddOn addOnContextInfo */
+        addOnContextInfo?: (Web.IMessageAddOnContextInfo|null);
+
+        /** MessageAddOn messageAddOnKey */
+        messageAddOnKey?: (Protocol.IMessageKey|null);
+
+        /** MessageAddOn legacyMessage */
+        legacyMessage?: (Web.ILegacyMessage|null);
+    }
+
+    /** Represents a MessageAddOn. */
+    class MessageAddOn implements IMessageAddOn {
+
+        /**
+         * Constructs a new MessageAddOn.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Web.IMessageAddOn);
+
+        /** MessageAddOn messageAddOnType. */
+        public messageAddOnType: Web.MessageAddOn.MessageAddOnType;
+
+        /** MessageAddOn messageAddOn. */
+        public messageAddOn?: (E2E.IMessage|null);
+
+        /** MessageAddOn senderTimestampMs. */
+        public senderTimestampMs: (number|Long);
+
+        /** MessageAddOn serverTimestampMs. */
+        public serverTimestampMs: (number|Long);
+
+        /** MessageAddOn status. */
+        public status: Web.WebMessageInfo.Status;
+
+        /** MessageAddOn addOnContextInfo. */
+        public addOnContextInfo?: (Web.IMessageAddOnContextInfo|null);
+
+        /** MessageAddOn messageAddOnKey. */
+        public messageAddOnKey?: (Protocol.IMessageKey|null);
+
+        /** MessageAddOn legacyMessage. */
+        public legacyMessage?: (Web.ILegacyMessage|null);
+
+        /**
+         * Creates a new MessageAddOn instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns MessageAddOn instance
+         */
+        public static create(properties?: Web.IMessageAddOn): Web.MessageAddOn;
+
+        /**
+         * Encodes the specified MessageAddOn message. Does not implicitly {@link Web.MessageAddOn.verify|verify} messages.
+         * @param message MessageAddOn message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Web.IMessageAddOn, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified MessageAddOn message, length delimited. Does not implicitly {@link Web.MessageAddOn.verify|verify} messages.
+         * @param message MessageAddOn message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Web.IMessageAddOn, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a MessageAddOn message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns MessageAddOn
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.MessageAddOn;
+
+        /**
+         * Decodes a MessageAddOn message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns MessageAddOn
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.MessageAddOn;
+
+        /**
+         * Verifies a MessageAddOn message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a MessageAddOn message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns MessageAddOn
+         */
+        public static fromObject(object: { [k: string]: any }): Web.MessageAddOn;
+
+        /**
+         * Creates a plain object from a MessageAddOn message. Also converts values to other types if specified.
+         * @param message MessageAddOn
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Web.MessageAddOn, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this MessageAddOn to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for MessageAddOn
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace MessageAddOn {
+
+        /** MessageAddOnType enum. */
+        enum MessageAddOnType {
+            UNDEFINED = 0,
+            REACTION = 1,
+            EVENT_RESPONSE = 2,
+            POLL_UPDATE = 3,
+            PIN_IN_CHAT = 4
+        }
+    }
+
+    /** Properties of a LegacyMessage. */
+    interface ILegacyMessage {
+
+        /** LegacyMessage eventResponseMessage */
+        eventResponseMessage?: (E2E.Message.IEventResponseMessage|null);
+
+        /** LegacyMessage pollVote */
+        pollVote?: (E2E.Message.IPollVoteMessage|null);
+    }
+
+    /** Represents a LegacyMessage. */
+    class LegacyMessage implements ILegacyMessage {
+
+        /**
+         * Constructs a new LegacyMessage.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Web.ILegacyMessage);
+
+        /** LegacyMessage eventResponseMessage. */
+        public eventResponseMessage?: (E2E.Message.IEventResponseMessage|null);
+
+        /** LegacyMessage pollVote. */
+        public pollVote?: (E2E.Message.IPollVoteMessage|null);
+
+        /**
+         * Creates a new LegacyMessage instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns LegacyMessage instance
+         */
+        public static create(properties?: Web.ILegacyMessage): Web.LegacyMessage;
+
+        /**
+         * Encodes the specified LegacyMessage message. Does not implicitly {@link Web.LegacyMessage.verify|verify} messages.
+         * @param message LegacyMessage message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Web.ILegacyMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified LegacyMessage message, length delimited. Does not implicitly {@link Web.LegacyMessage.verify|verify} messages.
+         * @param message LegacyMessage message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Web.ILegacyMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a LegacyMessage message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns LegacyMessage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.LegacyMessage;
+
+        /**
+         * Decodes a LegacyMessage message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns LegacyMessage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.LegacyMessage;
+
+        /**
+         * Verifies a LegacyMessage message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a LegacyMessage message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns LegacyMessage
+         */
+        public static fromObject(object: { [k: string]: any }): Web.LegacyMessage;
+
+        /**
+         * Creates a plain object from a LegacyMessage message. Also converts values to other types if specified.
+         * @param message LegacyMessage
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Web.LegacyMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this LegacyMessage to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for LegacyMessage
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of an EventResponse. */
+    interface IEventResponse {
+
+        /** EventResponse eventResponseMessageKey */
+        eventResponseMessageKey?: (Protocol.IMessageKey|null);
+
+        /** EventResponse timestampMs */
+        timestampMs?: (number|Long|null);
+
+        /** EventResponse eventResponseMessage */
+        eventResponseMessage?: (E2E.Message.IEventResponseMessage|null);
+
+        /** EventResponse unread */
+        unread?: (boolean|null);
+    }
+
+    /** Represents an EventResponse. */
+    class EventResponse implements IEventResponse {
+
+        /**
+         * Constructs a new EventResponse.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Web.IEventResponse);
+
+        /** EventResponse eventResponseMessageKey. */
+        public eventResponseMessageKey?: (Protocol.IMessageKey|null);
+
+        /** EventResponse timestampMs. */
+        public timestampMs: (number|Long);
+
+        /** EventResponse eventResponseMessage. */
+        public eventResponseMessage?: (E2E.Message.IEventResponseMessage|null);
+
+        /** EventResponse unread. */
+        public unread: boolean;
+
+        /**
+         * Creates a new EventResponse instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns EventResponse instance
+         */
+        public static create(properties?: Web.IEventResponse): Web.EventResponse;
+
+        /**
+         * Encodes the specified EventResponse message. Does not implicitly {@link Web.EventResponse.verify|verify} messages.
+         * @param message EventResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Web.IEventResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified EventResponse message, length delimited. Does not implicitly {@link Web.EventResponse.verify|verify} messages.
+         * @param message EventResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Web.IEventResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an EventResponse message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns EventResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.EventResponse;
+
+        /**
+         * Decodes an EventResponse message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns EventResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.EventResponse;
+
+        /**
+         * Verifies an EventResponse message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an EventResponse message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns EventResponse
+         */
+        public static fromObject(object: { [k: string]: any }): Web.EventResponse;
+
+        /**
+         * Creates a plain object from an EventResponse message. Also converts values to other types if specified.
+         * @param message EventResponse
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Web.EventResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this EventResponse to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for EventResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a PremiumMessageInfo. */
+    interface IPremiumMessageInfo {
+
+        /** PremiumMessageInfo serverCampaignId */
+        serverCampaignId?: (string|null);
+    }
+
+    /** Represents a PremiumMessageInfo. */
+    class PremiumMessageInfo implements IPremiumMessageInfo {
+
+        /**
+         * Constructs a new PremiumMessageInfo.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Web.IPremiumMessageInfo);
+
+        /** PremiumMessageInfo serverCampaignId. */
+        public serverCampaignId: string;
+
+        /**
+         * Creates a new PremiumMessageInfo instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns PremiumMessageInfo instance
+         */
+        public static create(properties?: Web.IPremiumMessageInfo): Web.PremiumMessageInfo;
+
+        /**
+         * Encodes the specified PremiumMessageInfo message. Does not implicitly {@link Web.PremiumMessageInfo.verify|verify} messages.
+         * @param message PremiumMessageInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Web.IPremiumMessageInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified PremiumMessageInfo message, length delimited. Does not implicitly {@link Web.PremiumMessageInfo.verify|verify} messages.
+         * @param message PremiumMessageInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Web.IPremiumMessageInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a PremiumMessageInfo message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns PremiumMessageInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.PremiumMessageInfo;
+
+        /**
+         * Decodes a PremiumMessageInfo message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns PremiumMessageInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.PremiumMessageInfo;
+
+        /**
+         * Verifies a PremiumMessageInfo message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a PremiumMessageInfo message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns PremiumMessageInfo
+         */
+        public static fromObject(object: { [k: string]: any }): Web.PremiumMessageInfo;
+
+        /**
+         * Creates a plain object from a PremiumMessageInfo message. Also converts values to other types if specified.
+         * @param message PremiumMessageInfo
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Web.PremiumMessageInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this PremiumMessageInfo to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for PremiumMessageInfo
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a MessageAddOnContextInfo. */
+    interface IMessageAddOnContextInfo {
+
+        /** MessageAddOnContextInfo messageAddOnDurationInSecs */
+        messageAddOnDurationInSecs?: (number|null);
+
+        /** MessageAddOnContextInfo messageAddOnExpiryType */
+        messageAddOnExpiryType?: (E2E.MessageContextInfo.MessageAddonExpiryType|null);
+    }
+
+    /** Represents a MessageAddOnContextInfo. */
+    class MessageAddOnContextInfo implements IMessageAddOnContextInfo {
+
+        /**
+         * Constructs a new MessageAddOnContextInfo.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Web.IMessageAddOnContextInfo);
+
+        /** MessageAddOnContextInfo messageAddOnDurationInSecs. */
+        public messageAddOnDurationInSecs: number;
+
+        /** MessageAddOnContextInfo messageAddOnExpiryType. */
+        public messageAddOnExpiryType: E2E.MessageContextInfo.MessageAddonExpiryType;
+
+        /**
+         * Creates a new MessageAddOnContextInfo instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns MessageAddOnContextInfo instance
+         */
+        public static create(properties?: Web.IMessageAddOnContextInfo): Web.MessageAddOnContextInfo;
+
+        /**
+         * Encodes the specified MessageAddOnContextInfo message. Does not implicitly {@link Web.MessageAddOnContextInfo.verify|verify} messages.
+         * @param message MessageAddOnContextInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Web.IMessageAddOnContextInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified MessageAddOnContextInfo message, length delimited. Does not implicitly {@link Web.MessageAddOnContextInfo.verify|verify} messages.
+         * @param message MessageAddOnContextInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Web.IMessageAddOnContextInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a MessageAddOnContextInfo message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns MessageAddOnContextInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.MessageAddOnContextInfo;
+
+        /**
+         * Decodes a MessageAddOnContextInfo message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns MessageAddOnContextInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.MessageAddOnContextInfo;
+
+        /**
+         * Verifies a MessageAddOnContextInfo message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a MessageAddOnContextInfo message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns MessageAddOnContextInfo
+         */
+        public static fromObject(object: { [k: string]: any }): Web.MessageAddOnContextInfo;
+
+        /**
+         * Creates a plain object from a MessageAddOnContextInfo message. Also converts values to other types if specified.
+         * @param message MessageAddOnContextInfo
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Web.MessageAddOnContextInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this MessageAddOnContextInfo to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for MessageAddOnContextInfo
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a PinInChat. */
+    interface IPinInChat {
+
+        /** PinInChat type */
+        type?: (Web.PinInChat.Type|null);
+
+        /** PinInChat key */
+        key?: (Protocol.IMessageKey|null);
+
+        /** PinInChat senderTimestampMs */
+        senderTimestampMs?: (number|Long|null);
+
+        /** PinInChat serverTimestampMs */
+        serverTimestampMs?: (number|Long|null);
+
+        /** PinInChat messageAddOnContextInfo */
+        messageAddOnContextInfo?: (Web.IMessageAddOnContextInfo|null);
+    }
+
+    /** Represents a PinInChat. */
+    class PinInChat implements IPinInChat {
+
+        /**
+         * Constructs a new PinInChat.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Web.IPinInChat);
+
+        /** PinInChat type. */
+        public type: Web.PinInChat.Type;
+
+        /** PinInChat key. */
+        public key?: (Protocol.IMessageKey|null);
+
+        /** PinInChat senderTimestampMs. */
+        public senderTimestampMs: (number|Long);
+
+        /** PinInChat serverTimestampMs. */
+        public serverTimestampMs: (number|Long);
+
+        /** PinInChat messageAddOnContextInfo. */
+        public messageAddOnContextInfo?: (Web.IMessageAddOnContextInfo|null);
+
+        /**
+         * Creates a new PinInChat instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns PinInChat instance
+         */
+        public static create(properties?: Web.IPinInChat): Web.PinInChat;
+
+        /**
+         * Encodes the specified PinInChat message. Does not implicitly {@link Web.PinInChat.verify|verify} messages.
+         * @param message PinInChat message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Web.IPinInChat, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified PinInChat message, length delimited. Does not implicitly {@link Web.PinInChat.verify|verify} messages.
+         * @param message PinInChat message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Web.IPinInChat, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a PinInChat message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns PinInChat
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.PinInChat;
+
+        /**
+         * Decodes a PinInChat message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns PinInChat
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.PinInChat;
+
+        /**
+         * Verifies a PinInChat message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a PinInChat message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns PinInChat
+         */
+        public static fromObject(object: { [k: string]: any }): Web.PinInChat;
+
+        /**
+         * Creates a plain object from a PinInChat message. Also converts values to other types if specified.
+         * @param message PinInChat
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Web.PinInChat, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this PinInChat to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for PinInChat
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace PinInChat {
+
+        /** Type enum. */
+        enum Type {
+            UNKNOWN_TYPE = 0,
+            PIN_FOR_ALL = 1,
+            UNPIN_FOR_ALL = 2
+        }
+    }
+
+    /** Properties of a KeepInChat. */
+    interface IKeepInChat {
+
+        /** KeepInChat keepType */
+        keepType?: (E2E.KeepType|null);
+
+        /** KeepInChat serverTimestamp */
+        serverTimestamp?: (number|Long|null);
+
+        /** KeepInChat key */
+        key?: (Protocol.IMessageKey|null);
+
+        /** KeepInChat deviceJid */
+        deviceJid?: (string|null);
+
+        /** KeepInChat clientTimestampMs */
+        clientTimestampMs?: (number|Long|null);
+
+        /** KeepInChat serverTimestampMs */
+        serverTimestampMs?: (number|Long|null);
+    }
+
+    /** Represents a KeepInChat. */
+    class KeepInChat implements IKeepInChat {
+
+        /**
+         * Constructs a new KeepInChat.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Web.IKeepInChat);
+
+        /** KeepInChat keepType. */
+        public keepType: E2E.KeepType;
+
+        /** KeepInChat serverTimestamp. */
+        public serverTimestamp: (number|Long);
+
+        /** KeepInChat key. */
+        public key?: (Protocol.IMessageKey|null);
+
+        /** KeepInChat deviceJid. */
+        public deviceJid: string;
+
+        /** KeepInChat clientTimestampMs. */
+        public clientTimestampMs: (number|Long);
+
+        /** KeepInChat serverTimestampMs. */
+        public serverTimestampMs: (number|Long);
+
+        /**
+         * Creates a new KeepInChat instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns KeepInChat instance
+         */
+        public static create(properties?: Web.IKeepInChat): Web.KeepInChat;
+
+        /**
+         * Encodes the specified KeepInChat message. Does not implicitly {@link Web.KeepInChat.verify|verify} messages.
+         * @param message KeepInChat message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Web.IKeepInChat, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified KeepInChat message, length delimited. Does not implicitly {@link Web.KeepInChat.verify|verify} messages.
+         * @param message KeepInChat message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Web.IKeepInChat, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a KeepInChat message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns KeepInChat
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.KeepInChat;
+
+        /**
+         * Decodes a KeepInChat message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns KeepInChat
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.KeepInChat;
+
+        /**
+         * Verifies a KeepInChat message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a KeepInChat message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns KeepInChat
+         */
+        public static fromObject(object: { [k: string]: any }): Web.KeepInChat;
+
+        /**
+         * Creates a plain object from a KeepInChat message. Also converts values to other types if specified.
+         * @param message KeepInChat
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Web.KeepInChat, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this KeepInChat to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for KeepInChat
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of an EventAdditionalMetadata. */
+    interface IEventAdditionalMetadata {
+
+        /** EventAdditionalMetadata isStale */
+        isStale?: (boolean|null);
+    }
+
+    /** Represents an EventAdditionalMetadata. */
+    class EventAdditionalMetadata implements IEventAdditionalMetadata {
+
+        /**
+         * Constructs a new EventAdditionalMetadata.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Web.IEventAdditionalMetadata);
+
+        /** EventAdditionalMetadata isStale. */
+        public isStale: boolean;
+
+        /**
+         * Creates a new EventAdditionalMetadata instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns EventAdditionalMetadata instance
+         */
+        public static create(properties?: Web.IEventAdditionalMetadata): Web.EventAdditionalMetadata;
+
+        /**
+         * Encodes the specified EventAdditionalMetadata message. Does not implicitly {@link Web.EventAdditionalMetadata.verify|verify} messages.
+         * @param message EventAdditionalMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Web.IEventAdditionalMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified EventAdditionalMetadata message, length delimited. Does not implicitly {@link Web.EventAdditionalMetadata.verify|verify} messages.
+         * @param message EventAdditionalMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Web.IEventAdditionalMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an EventAdditionalMetadata message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns EventAdditionalMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.EventAdditionalMetadata;
+
+        /**
+         * Decodes an EventAdditionalMetadata message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns EventAdditionalMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.EventAdditionalMetadata;
+
+        /**
+         * Verifies an EventAdditionalMetadata message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an EventAdditionalMetadata message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns EventAdditionalMetadata
+         */
+        public static fromObject(object: { [k: string]: any }): Web.EventAdditionalMetadata;
+
+        /**
+         * Creates a plain object from an EventAdditionalMetadata message. Also converts values to other types if specified.
+         * @param message EventAdditionalMetadata
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Web.EventAdditionalMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this EventAdditionalMetadata to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for EventAdditionalMetadata
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a PollAdditionalMetadata. */
+    interface IPollAdditionalMetadata {
+
+        /** PollAdditionalMetadata pollInvalidated */
+        pollInvalidated?: (boolean|null);
+    }
+
+    /** Represents a PollAdditionalMetadata. */
+    class PollAdditionalMetadata implements IPollAdditionalMetadata {
+
+        /**
+         * Constructs a new PollAdditionalMetadata.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Web.IPollAdditionalMetadata);
+
+        /** PollAdditionalMetadata pollInvalidated. */
+        public pollInvalidated: boolean;
+
+        /**
+         * Creates a new PollAdditionalMetadata instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns PollAdditionalMetadata instance
+         */
+        public static create(properties?: Web.IPollAdditionalMetadata): Web.PollAdditionalMetadata;
+
+        /**
+         * Encodes the specified PollAdditionalMetadata message. Does not implicitly {@link Web.PollAdditionalMetadata.verify|verify} messages.
+         * @param message PollAdditionalMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Web.IPollAdditionalMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified PollAdditionalMetadata message, length delimited. Does not implicitly {@link Web.PollAdditionalMetadata.verify|verify} messages.
+         * @param message PollAdditionalMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Web.IPollAdditionalMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a PollAdditionalMetadata message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns PollAdditionalMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.PollAdditionalMetadata;
+
+        /**
+         * Decodes a PollAdditionalMetadata message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns PollAdditionalMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.PollAdditionalMetadata;
+
+        /**
+         * Verifies a PollAdditionalMetadata message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a PollAdditionalMetadata message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns PollAdditionalMetadata
+         */
+        public static fromObject(object: { [k: string]: any }): Web.PollAdditionalMetadata;
+
+        /**
+         * Creates a plain object from a PollAdditionalMetadata message. Also converts values to other types if specified.
+         * @param message PollAdditionalMetadata
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Web.PollAdditionalMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this PollAdditionalMetadata to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for PollAdditionalMetadata
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a PollUpdate. */
+    interface IPollUpdate {
+
+        /** PollUpdate pollUpdateMessageKey */
+        pollUpdateMessageKey?: (Protocol.IMessageKey|null);
+
+        /** PollUpdate vote */
+        vote?: (E2E.Message.IPollVoteMessage|null);
+
+        /** PollUpdate senderTimestampMs */
+        senderTimestampMs?: (number|Long|null);
+
+        /** PollUpdate serverTimestampMs */
+        serverTimestampMs?: (number|Long|null);
+
+        /** PollUpdate unread */
+        unread?: (boolean|null);
+    }
+
+    /** Represents a PollUpdate. */
+    class PollUpdate implements IPollUpdate {
+
+        /**
+         * Constructs a new PollUpdate.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Web.IPollUpdate);
+
+        /** PollUpdate pollUpdateMessageKey. */
+        public pollUpdateMessageKey?: (Protocol.IMessageKey|null);
+
+        /** PollUpdate vote. */
+        public vote?: (E2E.Message.IPollVoteMessage|null);
+
+        /** PollUpdate senderTimestampMs. */
+        public senderTimestampMs: (number|Long);
+
+        /** PollUpdate serverTimestampMs. */
+        public serverTimestampMs: (number|Long);
+
+        /** PollUpdate unread. */
+        public unread: boolean;
+
+        /**
+         * Creates a new PollUpdate instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns PollUpdate instance
+         */
+        public static create(properties?: Web.IPollUpdate): Web.PollUpdate;
+
+        /**
+         * Encodes the specified PollUpdate message. Does not implicitly {@link Web.PollUpdate.verify|verify} messages.
+         * @param message PollUpdate message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Web.IPollUpdate, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified PollUpdate message, length delimited. Does not implicitly {@link Web.PollUpdate.verify|verify} messages.
+         * @param message PollUpdate message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Web.IPollUpdate, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a PollUpdate message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns PollUpdate
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.PollUpdate;
+
+        /**
+         * Decodes a PollUpdate message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns PollUpdate
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.PollUpdate;
+
+        /**
+         * Verifies a PollUpdate message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a PollUpdate message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns PollUpdate
+         */
+        public static fromObject(object: { [k: string]: any }): Web.PollUpdate;
+
+        /**
+         * Creates a plain object from a PollUpdate message. Also converts values to other types if specified.
+         * @param message PollUpdate
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Web.PollUpdate, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this PollUpdate to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for PollUpdate
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a Reaction. */
+    interface IReaction {
+
+        /** Reaction key */
+        key?: (Protocol.IMessageKey|null);
+
+        /** Reaction text */
+        text?: (string|null);
+
+        /** Reaction groupingKey */
+        groupingKey?: (string|null);
+
+        /** Reaction senderTimestampMs */
+        senderTimestampMs?: (number|Long|null);
+
+        /** Reaction unread */
+        unread?: (boolean|null);
+    }
+
+    /** Represents a Reaction. */
+    class Reaction implements IReaction {
+
+        /**
+         * Constructs a new Reaction.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Web.IReaction);
+
+        /** Reaction key. */
+        public key?: (Protocol.IMessageKey|null);
+
+        /** Reaction text. */
+        public text: string;
+
+        /** Reaction groupingKey. */
+        public groupingKey: string;
+
+        /** Reaction senderTimestampMs. */
+        public senderTimestampMs: (number|Long);
+
+        /** Reaction unread. */
+        public unread: boolean;
+
+        /**
+         * Creates a new Reaction instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Reaction instance
+         */
+        public static create(properties?: Web.IReaction): Web.Reaction;
+
+        /**
+         * Encodes the specified Reaction message. Does not implicitly {@link Web.Reaction.verify|verify} messages.
+         * @param message Reaction message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Web.IReaction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Reaction message, length delimited. Does not implicitly {@link Web.Reaction.verify|verify} messages.
+         * @param message Reaction message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Web.IReaction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a Reaction message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Reaction
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.Reaction;
+
+        /**
+         * Decodes a Reaction message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Reaction
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.Reaction;
+
+        /**
+         * Verifies a Reaction message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a Reaction message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Reaction
+         */
+        public static fromObject(object: { [k: string]: any }): Web.Reaction;
+
+        /**
+         * Creates a plain object from a Reaction message. Also converts values to other types if specified.
+         * @param message Reaction
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Web.Reaction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this Reaction to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for Reaction
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a UserReceipt. */
+    interface IUserReceipt {
+
+        /** UserReceipt userJid */
+        userJid: string;
+
+        /** UserReceipt receiptTimestamp */
+        receiptTimestamp?: (number|Long|null);
+
+        /** UserReceipt readTimestamp */
+        readTimestamp?: (number|Long|null);
+
+        /** UserReceipt playedTimestamp */
+        playedTimestamp?: (number|Long|null);
+
+        /** UserReceipt pendingDeviceJid */
+        pendingDeviceJid?: (string[]|null);
+
+        /** UserReceipt deliveredDeviceJid */
+        deliveredDeviceJid?: (string[]|null);
+    }
+
+    /** Represents a UserReceipt. */
+    class UserReceipt implements IUserReceipt {
+
+        /**
+         * Constructs a new UserReceipt.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Web.IUserReceipt);
+
+        /** UserReceipt userJid. */
+        public userJid: string;
+
+        /** UserReceipt receiptTimestamp. */
+        public receiptTimestamp: (number|Long);
+
+        /** UserReceipt readTimestamp. */
+        public readTimestamp: (number|Long);
+
+        /** UserReceipt playedTimestamp. */
+        public playedTimestamp: (number|Long);
+
+        /** UserReceipt pendingDeviceJid. */
+        public pendingDeviceJid: string[];
+
+        /** UserReceipt deliveredDeviceJid. */
+        public deliveredDeviceJid: string[];
+
+        /**
+         * Creates a new UserReceipt instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns UserReceipt instance
+         */
+        public static create(properties?: Web.IUserReceipt): Web.UserReceipt;
+
+        /**
+         * Encodes the specified UserReceipt message. Does not implicitly {@link Web.UserReceipt.verify|verify} messages.
+         * @param message UserReceipt message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Web.IUserReceipt, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified UserReceipt message, length delimited. Does not implicitly {@link Web.UserReceipt.verify|verify} messages.
+         * @param message UserReceipt message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Web.IUserReceipt, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a UserReceipt message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns UserReceipt
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.UserReceipt;
+
+        /**
+         * Decodes a UserReceipt message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns UserReceipt
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.UserReceipt;
+
+        /**
+         * Verifies a UserReceipt message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a UserReceipt message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns UserReceipt
+         */
+        public static fromObject(object: { [k: string]: any }): Web.UserReceipt;
+
+        /**
+         * Creates a plain object from a UserReceipt message. Also converts values to other types if specified.
+         * @param message UserReceipt
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Web.UserReceipt, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this UserReceipt to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for UserReceipt
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a StatusPSA. */
+    interface IStatusPSA {
+
+        /** StatusPSA campaignId */
+        campaignId: (number|Long);
+
+        /** StatusPSA campaignExpirationTimestamp */
+        campaignExpirationTimestamp?: (number|Long|null);
+    }
+
+    /** Represents a StatusPSA. */
+    class StatusPSA implements IStatusPSA {
+
+        /**
+         * Constructs a new StatusPSA.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Web.IStatusPSA);
+
+        /** StatusPSA campaignId. */
+        public campaignId: (number|Long);
+
+        /** StatusPSA campaignExpirationTimestamp. */
+        public campaignExpirationTimestamp: (number|Long);
+
+        /**
+         * Creates a new StatusPSA instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns StatusPSA instance
+         */
+        public static create(properties?: Web.IStatusPSA): Web.StatusPSA;
+
+        /**
+         * Encodes the specified StatusPSA message. Does not implicitly {@link Web.StatusPSA.verify|verify} messages.
+         * @param message StatusPSA message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Web.IStatusPSA, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified StatusPSA message, length delimited. Does not implicitly {@link Web.StatusPSA.verify|verify} messages.
+         * @param message StatusPSA message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Web.IStatusPSA, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a StatusPSA message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns StatusPSA
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.StatusPSA;
+
+        /**
+         * Decodes a StatusPSA message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns StatusPSA
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.StatusPSA;
+
+        /**
+         * Verifies a StatusPSA message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a StatusPSA message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns StatusPSA
+         */
+        public static fromObject(object: { [k: string]: any }): Web.StatusPSA;
+
+        /**
+         * Creates a plain object from a StatusPSA message. Also converts values to other types if specified.
+         * @param message StatusPSA
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Web.StatusPSA, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this StatusPSA to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for StatusPSA
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a PhotoChange. */
+    interface IPhotoChange {
+
+        /** PhotoChange oldPhoto */
+        oldPhoto?: (Uint8Array|null);
+
+        /** PhotoChange newPhoto */
+        newPhoto?: (Uint8Array|null);
+
+        /** PhotoChange newPhotoId */
+        newPhotoId?: (number|null);
+    }
+
+    /** Represents a PhotoChange. */
+    class PhotoChange implements IPhotoChange {
+
+        /**
+         * Constructs a new PhotoChange.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Web.IPhotoChange);
+
+        /** PhotoChange oldPhoto. */
+        public oldPhoto: Uint8Array;
+
+        /** PhotoChange newPhoto. */
+        public newPhoto: Uint8Array;
+
+        /** PhotoChange newPhotoId. */
+        public newPhotoId: number;
+
+        /**
+         * Creates a new PhotoChange instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns PhotoChange instance
+         */
+        public static create(properties?: Web.IPhotoChange): Web.PhotoChange;
+
+        /**
+         * Encodes the specified PhotoChange message. Does not implicitly {@link Web.PhotoChange.verify|verify} messages.
+         * @param message PhotoChange message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Web.IPhotoChange, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified PhotoChange message, length delimited. Does not implicitly {@link Web.PhotoChange.verify|verify} messages.
+         * @param message PhotoChange message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Web.IPhotoChange, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a PhotoChange message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns PhotoChange
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.PhotoChange;
+
+        /**
+         * Decodes a PhotoChange message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns PhotoChange
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.PhotoChange;
+
+        /**
+         * Verifies a PhotoChange message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a PhotoChange message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns PhotoChange
+         */
+        public static fromObject(object: { [k: string]: any }): Web.PhotoChange;
+
+        /**
+         * Creates a plain object from a PhotoChange message. Also converts values to other types if specified.
+         * @param message PhotoChange
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Web.PhotoChange, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this PhotoChange to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for PhotoChange
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a MediaData. */
+    interface IMediaData {
+
+        /** MediaData localPath */
+        localPath?: (string|null);
+    }
+
+    /** Represents a MediaData. */
+    class MediaData implements IMediaData {
+
+        /**
+         * Constructs a new MediaData.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Web.IMediaData);
+
+        /** MediaData localPath. */
+        public localPath: string;
+
+        /**
+         * Creates a new MediaData instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns MediaData instance
+         */
+        public static create(properties?: Web.IMediaData): Web.MediaData;
+
+        /**
+         * Encodes the specified MediaData message. Does not implicitly {@link Web.MediaData.verify|verify} messages.
+         * @param message MediaData message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Web.IMediaData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified MediaData message, length delimited. Does not implicitly {@link Web.MediaData.verify|verify} messages.
+         * @param message MediaData message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Web.IMediaData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a MediaData message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns MediaData
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.MediaData;
+
+        /**
+         * Decodes a MediaData message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns MediaData
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.MediaData;
+
+        /**
+         * Verifies a MediaData message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a MediaData message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns MediaData
+         */
+        public static fromObject(object: { [k: string]: any }): Web.MediaData;
+
+        /**
+         * Creates a plain object from a MediaData message. Also converts values to other types if specified.
+         * @param message MediaData
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Web.MediaData, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this MediaData to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for MediaData
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ReportingTokenInfo. */
+    interface IReportingTokenInfo {
+
+        /** ReportingTokenInfo reportingTag */
+        reportingTag?: (Uint8Array|null);
+    }
+
+    /** Represents a ReportingTokenInfo. */
+    class ReportingTokenInfo implements IReportingTokenInfo {
+
+        /**
+         * Constructs a new ReportingTokenInfo.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Web.IReportingTokenInfo);
+
+        /** ReportingTokenInfo reportingTag. */
+        public reportingTag: Uint8Array;
+
+        /**
+         * Creates a new ReportingTokenInfo instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ReportingTokenInfo instance
+         */
+        public static create(properties?: Web.IReportingTokenInfo): Web.ReportingTokenInfo;
+
+        /**
+         * Encodes the specified ReportingTokenInfo message. Does not implicitly {@link Web.ReportingTokenInfo.verify|verify} messages.
+         * @param message ReportingTokenInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Web.IReportingTokenInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ReportingTokenInfo message, length delimited. Does not implicitly {@link Web.ReportingTokenInfo.verify|verify} messages.
+         * @param message ReportingTokenInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Web.IReportingTokenInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ReportingTokenInfo message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ReportingTokenInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.ReportingTokenInfo;
+
+        /**
+         * Decodes a ReportingTokenInfo message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ReportingTokenInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.ReportingTokenInfo;
+
+        /**
+         * Verifies a ReportingTokenInfo message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ReportingTokenInfo message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ReportingTokenInfo
+         */
+        public static fromObject(object: { [k: string]: any }): Web.ReportingTokenInfo;
+
+        /**
+         * Creates a plain object from a ReportingTokenInfo message. Also converts values to other types if specified.
+         * @param message ReportingTokenInfo
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Web.ReportingTokenInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ReportingTokenInfo to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ReportingTokenInfo
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a WebFeatures. */
+    interface IWebFeatures {
+
+        /** WebFeatures labelsDisplay */
+        labelsDisplay?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures voipIndividualOutgoing */
+        voipIndividualOutgoing?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures groupsV3 */
+        groupsV3?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures groupsV3Create */
+        groupsV3Create?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures changeNumberV2 */
+        changeNumberV2?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures queryStatusV3Thumbnail */
+        queryStatusV3Thumbnail?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures liveLocations */
+        liveLocations?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures queryVname */
+        queryVname?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures voipIndividualIncoming */
+        voipIndividualIncoming?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures quickRepliesQuery */
+        quickRepliesQuery?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures payments */
+        payments?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures stickerPackQuery */
+        stickerPackQuery?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures liveLocationsFinal */
+        liveLocationsFinal?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures labelsEdit */
+        labelsEdit?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures mediaUpload */
+        mediaUpload?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures mediaUploadRichQuickReplies */
+        mediaUploadRichQuickReplies?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures vnameV2 */
+        vnameV2?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures videoPlaybackUrl */
+        videoPlaybackUrl?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures statusRanking */
+        statusRanking?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures voipIndividualVideo */
+        voipIndividualVideo?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures thirdPartyStickers */
+        thirdPartyStickers?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures frequentlyForwardedSetting */
+        frequentlyForwardedSetting?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures groupsV4JoinPermission */
+        groupsV4JoinPermission?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures recentStickers */
+        recentStickers?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures catalog */
+        catalog?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures starredStickers */
+        starredStickers?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures voipGroupCall */
+        voipGroupCall?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures templateMessage */
+        templateMessage?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures templateMessageInteractivity */
+        templateMessageInteractivity?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures ephemeralMessages */
+        ephemeralMessages?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures e2ENotificationSync */
+        e2ENotificationSync?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures recentStickersV2 */
+        recentStickersV2?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures recentStickersV3 */
+        recentStickersV3?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures userNotice */
+        userNotice?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures support */
+        support?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures groupUiiCleanup */
+        groupUiiCleanup?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures groupDogfoodingInternalOnly */
+        groupDogfoodingInternalOnly?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures settingsSync */
+        settingsSync?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures archiveV2 */
+        archiveV2?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures ephemeralAllowGroupMembers */
+        ephemeralAllowGroupMembers?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures ephemeral24HDuration */
+        ephemeral24HDuration?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures mdForceUpgrade */
+        mdForceUpgrade?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures disappearingMode */
+        disappearingMode?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures externalMdOptInAvailable */
+        externalMdOptInAvailable?: (Web.WebFeatures.Flag|null);
+
+        /** WebFeatures noDeleteMessageTimeLimit */
+        noDeleteMessageTimeLimit?: (Web.WebFeatures.Flag|null);
+    }
+
+    /** Represents a WebFeatures. */
+    class WebFeatures implements IWebFeatures {
+
+        /**
+         * Constructs a new WebFeatures.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Web.IWebFeatures);
+
+        /** WebFeatures labelsDisplay. */
+        public labelsDisplay: Web.WebFeatures.Flag;
+
+        /** WebFeatures voipIndividualOutgoing. */
+        public voipIndividualOutgoing: Web.WebFeatures.Flag;
+
+        /** WebFeatures groupsV3. */
+        public groupsV3: Web.WebFeatures.Flag;
+
+        /** WebFeatures groupsV3Create. */
+        public groupsV3Create: Web.WebFeatures.Flag;
+
+        /** WebFeatures changeNumberV2. */
+        public changeNumberV2: Web.WebFeatures.Flag;
+
+        /** WebFeatures queryStatusV3Thumbnail. */
+        public queryStatusV3Thumbnail: Web.WebFeatures.Flag;
+
+        /** WebFeatures liveLocations. */
+        public liveLocations: Web.WebFeatures.Flag;
+
+        /** WebFeatures queryVname. */
+        public queryVname: Web.WebFeatures.Flag;
+
+        /** WebFeatures voipIndividualIncoming. */
+        public voipIndividualIncoming: Web.WebFeatures.Flag;
+
+        /** WebFeatures quickRepliesQuery. */
+        public quickRepliesQuery: Web.WebFeatures.Flag;
+
+        /** WebFeatures payments. */
+        public payments: Web.WebFeatures.Flag;
+
+        /** WebFeatures stickerPackQuery. */
+        public stickerPackQuery: Web.WebFeatures.Flag;
+
+        /** WebFeatures liveLocationsFinal. */
+        public liveLocationsFinal: Web.WebFeatures.Flag;
+
+        /** WebFeatures labelsEdit. */
+        public labelsEdit: Web.WebFeatures.Flag;
+
+        /** WebFeatures mediaUpload. */
+        public mediaUpload: Web.WebFeatures.Flag;
+
+        /** WebFeatures mediaUploadRichQuickReplies. */
+        public mediaUploadRichQuickReplies: Web.WebFeatures.Flag;
+
+        /** WebFeatures vnameV2. */
+        public vnameV2: Web.WebFeatures.Flag;
+
+        /** WebFeatures videoPlaybackUrl. */
+        public videoPlaybackUrl: Web.WebFeatures.Flag;
+
+        /** WebFeatures statusRanking. */
+        public statusRanking: Web.WebFeatures.Flag;
+
+        /** WebFeatures voipIndividualVideo. */
+        public voipIndividualVideo: Web.WebFeatures.Flag;
+
+        /** WebFeatures thirdPartyStickers. */
+        public thirdPartyStickers: Web.WebFeatures.Flag;
+
+        /** WebFeatures frequentlyForwardedSetting. */
+        public frequentlyForwardedSetting: Web.WebFeatures.Flag;
+
+        /** WebFeatures groupsV4JoinPermission. */
+        public groupsV4JoinPermission: Web.WebFeatures.Flag;
+
+        /** WebFeatures recentStickers. */
+        public recentStickers: Web.WebFeatures.Flag;
+
+        /** WebFeatures catalog. */
+        public catalog: Web.WebFeatures.Flag;
+
+        /** WebFeatures starredStickers. */
+        public starredStickers: Web.WebFeatures.Flag;
+
+        /** WebFeatures voipGroupCall. */
+        public voipGroupCall: Web.WebFeatures.Flag;
+
+        /** WebFeatures templateMessage. */
+        public templateMessage: Web.WebFeatures.Flag;
+
+        /** WebFeatures templateMessageInteractivity. */
+        public templateMessageInteractivity: Web.WebFeatures.Flag;
+
+        /** WebFeatures ephemeralMessages. */
+        public ephemeralMessages: Web.WebFeatures.Flag;
+
+        /** WebFeatures e2ENotificationSync. */
+        public e2ENotificationSync: Web.WebFeatures.Flag;
+
+        /** WebFeatures recentStickersV2. */
+        public recentStickersV2: Web.WebFeatures.Flag;
+
+        /** WebFeatures recentStickersV3. */
+        public recentStickersV3: Web.WebFeatures.Flag;
+
+        /** WebFeatures userNotice. */
+        public userNotice: Web.WebFeatures.Flag;
+
+        /** WebFeatures support. */
+        public support: Web.WebFeatures.Flag;
+
+        /** WebFeatures groupUiiCleanup. */
+        public groupUiiCleanup: Web.WebFeatures.Flag;
+
+        /** WebFeatures groupDogfoodingInternalOnly. */
+        public groupDogfoodingInternalOnly: Web.WebFeatures.Flag;
+
+        /** WebFeatures settingsSync. */
+        public settingsSync: Web.WebFeatures.Flag;
+
+        /** WebFeatures archiveV2. */
+        public archiveV2: Web.WebFeatures.Flag;
+
+        /** WebFeatures ephemeralAllowGroupMembers. */
+        public ephemeralAllowGroupMembers: Web.WebFeatures.Flag;
+
+        /** WebFeatures ephemeral24HDuration. */
+        public ephemeral24HDuration: Web.WebFeatures.Flag;
+
+        /** WebFeatures mdForceUpgrade. */
+        public mdForceUpgrade: Web.WebFeatures.Flag;
+
+        /** WebFeatures disappearingMode. */
+        public disappearingMode: Web.WebFeatures.Flag;
+
+        /** WebFeatures externalMdOptInAvailable. */
+        public externalMdOptInAvailable: Web.WebFeatures.Flag;
+
+        /** WebFeatures noDeleteMessageTimeLimit. */
+        public noDeleteMessageTimeLimit: Web.WebFeatures.Flag;
+
+        /**
+         * Creates a new WebFeatures instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns WebFeatures instance
+         */
+        public static create(properties?: Web.IWebFeatures): Web.WebFeatures;
+
+        /**
+         * Encodes the specified WebFeatures message. Does not implicitly {@link Web.WebFeatures.verify|verify} messages.
+         * @param message WebFeatures message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Web.IWebFeatures, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified WebFeatures message, length delimited. Does not implicitly {@link Web.WebFeatures.verify|verify} messages.
+         * @param message WebFeatures message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Web.IWebFeatures, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a WebFeatures message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns WebFeatures
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.WebFeatures;
+
+        /**
+         * Decodes a WebFeatures message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns WebFeatures
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.WebFeatures;
+
+        /**
+         * Verifies a WebFeatures message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a WebFeatures message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns WebFeatures
+         */
+        public static fromObject(object: { [k: string]: any }): Web.WebFeatures;
+
+        /**
+         * Creates a plain object from a WebFeatures message. Also converts values to other types if specified.
+         * @param message WebFeatures
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Web.WebFeatures, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this WebFeatures to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for WebFeatures
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace WebFeatures {
+
+        /** Flag enum. */
+        enum Flag {
+            NOT_STARTED = 0,
+            FORCE_UPGRADE = 1,
+            DEVELOPMENT = 2,
+            PRODUCTION = 3
+        }
+    }
+
+    /** Properties of a NotificationMessageInfo. */
+    interface INotificationMessageInfo {
+
+        /** NotificationMessageInfo key */
+        key?: (Protocol.IMessageKey|null);
+
+        /** NotificationMessageInfo message */
+        message?: (E2E.IMessage|null);
+
+        /** NotificationMessageInfo messageTimestamp */
+        messageTimestamp?: (number|Long|null);
+
+        /** NotificationMessageInfo participant */
+        participant?: (string|null);
+    }
+
+    /** Represents a NotificationMessageInfo. */
+    class NotificationMessageInfo implements INotificationMessageInfo {
+
+        /**
+         * Constructs a new NotificationMessageInfo.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Web.INotificationMessageInfo);
+
+        /** NotificationMessageInfo key. */
+        public key?: (Protocol.IMessageKey|null);
+
+        /** NotificationMessageInfo message. */
+        public message?: (E2E.IMessage|null);
+
+        /** NotificationMessageInfo messageTimestamp. */
+        public messageTimestamp: (number|Long);
+
+        /** NotificationMessageInfo participant. */
+        public participant: string;
+
+        /**
+         * Creates a new NotificationMessageInfo instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns NotificationMessageInfo instance
+         */
+        public static create(properties?: Web.INotificationMessageInfo): Web.NotificationMessageInfo;
+
+        /**
+         * Encodes the specified NotificationMessageInfo message. Does not implicitly {@link Web.NotificationMessageInfo.verify|verify} messages.
+         * @param message NotificationMessageInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Web.INotificationMessageInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified NotificationMessageInfo message, length delimited. Does not implicitly {@link Web.NotificationMessageInfo.verify|verify} messages.
+         * @param message NotificationMessageInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Web.INotificationMessageInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a NotificationMessageInfo message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns NotificationMessageInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.NotificationMessageInfo;
+
+        /**
+         * Decodes a NotificationMessageInfo message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns NotificationMessageInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.NotificationMessageInfo;
+
+        /**
+         * Verifies a NotificationMessageInfo message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a NotificationMessageInfo message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns NotificationMessageInfo
+         */
+        public static fromObject(object: { [k: string]: any }): Web.NotificationMessageInfo;
+
+        /**
+         * Creates a plain object from a NotificationMessageInfo message. Also converts values to other types if specified.
+         * @param message NotificationMessageInfo
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Web.NotificationMessageInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this NotificationMessageInfo to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for NotificationMessageInfo
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a WebNotificationsInfo. */
+    interface IWebNotificationsInfo {
+
+        /** WebNotificationsInfo timestamp */
+        timestamp?: (number|Long|null);
+
+        /** WebNotificationsInfo unreadChats */
+        unreadChats?: (number|null);
+
+        /** WebNotificationsInfo notifyMessageCount */
+        notifyMessageCount?: (number|null);
+
+        /** WebNotificationsInfo notifyMessages */
+        notifyMessages?: (Web.IWebMessageInfo[]|null);
+    }
+
+    /** Represents a WebNotificationsInfo. */
+    class WebNotificationsInfo implements IWebNotificationsInfo {
+
+        /**
+         * Constructs a new WebNotificationsInfo.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Web.IWebNotificationsInfo);
+
+        /** WebNotificationsInfo timestamp. */
+        public timestamp: (number|Long);
+
+        /** WebNotificationsInfo unreadChats. */
+        public unreadChats: number;
+
+        /** WebNotificationsInfo notifyMessageCount. */
+        public notifyMessageCount: number;
+
+        /** WebNotificationsInfo notifyMessages. */
+        public notifyMessages: Web.IWebMessageInfo[];
+
+        /**
+         * Creates a new WebNotificationsInfo instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns WebNotificationsInfo instance
+         */
+        public static create(properties?: Web.IWebNotificationsInfo): Web.WebNotificationsInfo;
+
+        /**
+         * Encodes the specified WebNotificationsInfo message. Does not implicitly {@link Web.WebNotificationsInfo.verify|verify} messages.
+         * @param message WebNotificationsInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Web.IWebNotificationsInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified WebNotificationsInfo message, length delimited. Does not implicitly {@link Web.WebNotificationsInfo.verify|verify} messages.
+         * @param message WebNotificationsInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Web.IWebNotificationsInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a WebNotificationsInfo message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns WebNotificationsInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.WebNotificationsInfo;
+
+        /**
+         * Decodes a WebNotificationsInfo message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns WebNotificationsInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.WebNotificationsInfo;
+
+        /**
+         * Verifies a WebNotificationsInfo message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a WebNotificationsInfo message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns WebNotificationsInfo
+         */
+        public static fromObject(object: { [k: string]: any }): Web.WebNotificationsInfo;
+
+        /**
+         * Creates a plain object from a WebNotificationsInfo message. Also converts values to other types if specified.
+         * @param message WebNotificationsInfo
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Web.WebNotificationsInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this WebNotificationsInfo to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for WebNotificationsInfo
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a PaymentInfo. */
+    interface IPaymentInfo {
+
+        /** PaymentInfo currencyDeprecated */
+        currencyDeprecated?: (Web.PaymentInfo.Currency|null);
+
+        /** PaymentInfo amount1000 */
+        amount1000?: (number|Long|null);
+
+        /** PaymentInfo receiverJid */
+        receiverJid?: (string|null);
+
+        /** PaymentInfo status */
+        status?: (Web.PaymentInfo.Status|null);
+
+        /** PaymentInfo transactionTimestamp */
+        transactionTimestamp?: (number|Long|null);
+
+        /** PaymentInfo requestMessageKey */
+        requestMessageKey?: (Protocol.IMessageKey|null);
+
+        /** PaymentInfo expiryTimestamp */
+        expiryTimestamp?: (number|Long|null);
+
+        /** PaymentInfo futureproofed */
+        futureproofed?: (boolean|null);
+
+        /** PaymentInfo currency */
+        currency?: (string|null);
+
+        /** PaymentInfo txnStatus */
+        txnStatus?: (Web.PaymentInfo.TxnStatus|null);
+
+        /** PaymentInfo useNoviFiatFormat */
+        useNoviFiatFormat?: (boolean|null);
+
+        /** PaymentInfo primaryAmount */
+        primaryAmount?: (E2E.IMoney|null);
+
+        /** PaymentInfo exchangeAmount */
+        exchangeAmount?: (E2E.IMoney|null);
+    }
+
+    /** Represents a PaymentInfo. */
+    class PaymentInfo implements IPaymentInfo {
+
+        /**
+         * Constructs a new PaymentInfo.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Web.IPaymentInfo);
+
+        /** PaymentInfo currencyDeprecated. */
+        public currencyDeprecated: Web.PaymentInfo.Currency;
+
+        /** PaymentInfo amount1000. */
+        public amount1000: (number|Long);
+
+        /** PaymentInfo receiverJid. */
+        public receiverJid: string;
+
+        /** PaymentInfo status. */
+        public status: Web.PaymentInfo.Status;
+
+        /** PaymentInfo transactionTimestamp. */
+        public transactionTimestamp: (number|Long);
+
+        /** PaymentInfo requestMessageKey. */
+        public requestMessageKey?: (Protocol.IMessageKey|null);
+
+        /** PaymentInfo expiryTimestamp. */
+        public expiryTimestamp: (number|Long);
+
+        /** PaymentInfo futureproofed. */
+        public futureproofed: boolean;
+
+        /** PaymentInfo currency. */
+        public currency: string;
+
+        /** PaymentInfo txnStatus. */
+        public txnStatus: Web.PaymentInfo.TxnStatus;
+
+        /** PaymentInfo useNoviFiatFormat. */
+        public useNoviFiatFormat: boolean;
+
+        /** PaymentInfo primaryAmount. */
+        public primaryAmount?: (E2E.IMoney|null);
+
+        /** PaymentInfo exchangeAmount. */
+        public exchangeAmount?: (E2E.IMoney|null);
+
+        /**
+         * Creates a new PaymentInfo instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns PaymentInfo instance
+         */
+        public static create(properties?: Web.IPaymentInfo): Web.PaymentInfo;
+
+        /**
+         * Encodes the specified PaymentInfo message. Does not implicitly {@link Web.PaymentInfo.verify|verify} messages.
+         * @param message PaymentInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Web.IPaymentInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified PaymentInfo message, length delimited. Does not implicitly {@link Web.PaymentInfo.verify|verify} messages.
+         * @param message PaymentInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Web.IPaymentInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a PaymentInfo message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns PaymentInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.PaymentInfo;
+
+        /**
+         * Decodes a PaymentInfo message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns PaymentInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.PaymentInfo;
+
+        /**
+         * Verifies a PaymentInfo message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a PaymentInfo message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns PaymentInfo
+         */
+        public static fromObject(object: { [k: string]: any }): Web.PaymentInfo;
+
+        /**
+         * Creates a plain object from a PaymentInfo message. Also converts values to other types if specified.
+         * @param message PaymentInfo
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Web.PaymentInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this PaymentInfo to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for PaymentInfo
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace PaymentInfo {
+
+        /** Currency enum. */
+        enum Currency {
+            UNKNOWN_CURRENCY = 0,
+            INR = 1
+        }
+
+        /** Status enum. */
+        enum Status {
+            UNKNOWN_STATUS = 0,
+            PROCESSING = 1,
+            SENT = 2,
+            NEED_TO_ACCEPT = 3,
+            COMPLETE = 4,
+            COULD_NOT_COMPLETE = 5,
+            REFUNDED = 6,
+            EXPIRED = 7,
+            REJECTED = 8,
+            CANCELLED = 9,
+            WAITING_FOR_PAYER = 10,
+            WAITING = 11
+        }
+
+        /** TxnStatus enum. */
+        enum TxnStatus {
+            UNKNOWN = 0,
+            PENDING_SETUP = 1,
+            PENDING_RECEIVER_SETUP = 2,
+            INIT = 3,
+            SUCCESS = 4,
+            COMPLETED = 5,
+            FAILED = 6,
+            FAILED_RISK = 7,
+            FAILED_PROCESSING = 8,
+            FAILED_RECEIVER_PROCESSING = 9,
+            FAILED_DA = 10,
+            FAILED_DA_FINAL = 11,
+            REFUNDED_TXN = 12,
+            REFUND_FAILED = 13,
+            REFUND_FAILED_PROCESSING = 14,
+            REFUND_FAILED_DA = 15,
+            EXPIRED_TXN = 16,
+            AUTH_CANCELED = 17,
+            AUTH_CANCEL_FAILED_PROCESSING = 18,
+            AUTH_CANCEL_FAILED = 19,
+            COLLECT_INIT = 20,
+            COLLECT_SUCCESS = 21,
+            COLLECT_FAILED = 22,
+            COLLECT_FAILED_RISK = 23,
+            COLLECT_REJECTED = 24,
+            COLLECT_EXPIRED = 25,
+            COLLECT_CANCELED = 26,
+            COLLECT_CANCELLING = 27,
+            IN_REVIEW = 28,
+            REVERSAL_SUCCESS = 29,
+            REVERSAL_PENDING = 30,
+            REFUND_PENDING = 31
+        }
+    }
+
+    /** Properties of a CommentMetadata. */
+    interface ICommentMetadata {
+
+        /** CommentMetadata commentParentKey */
+        commentParentKey?: (Protocol.IMessageKey|null);
+
+        /** CommentMetadata replyCount */
+        replyCount?: (number|null);
+    }
+
+    /** Represents a CommentMetadata. */
+    class CommentMetadata implements ICommentMetadata {
+
+        /**
+         * Constructs a new CommentMetadata.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Web.ICommentMetadata);
+
+        /** CommentMetadata commentParentKey. */
+        public commentParentKey?: (Protocol.IMessageKey|null);
+
+        /** CommentMetadata replyCount. */
+        public replyCount: number;
+
+        /**
+         * Creates a new CommentMetadata instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns CommentMetadata instance
+         */
+        public static create(properties?: Web.ICommentMetadata): Web.CommentMetadata;
+
+        /**
+         * Encodes the specified CommentMetadata message. Does not implicitly {@link Web.CommentMetadata.verify|verify} messages.
+         * @param message CommentMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Web.ICommentMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified CommentMetadata message, length delimited. Does not implicitly {@link Web.CommentMetadata.verify|verify} messages.
+         * @param message CommentMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Web.ICommentMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a CommentMetadata message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns CommentMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.CommentMetadata;
+
+        /**
+         * Decodes a CommentMetadata message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns CommentMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.CommentMetadata;
+
+        /**
+         * Verifies a CommentMetadata message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a CommentMetadata message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns CommentMetadata
+         */
+        public static fromObject(object: { [k: string]: any }): Web.CommentMetadata;
+
+        /**
+         * Creates a plain object from a CommentMetadata message. Also converts values to other types if specified.
+         * @param message CommentMetadata
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Web.CommentMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this CommentMetadata to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for CommentMetadata
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a WebMessageInfo. */
+    interface IWebMessageInfo {
+
+        /** WebMessageInfo key */
+        key: Protocol.IMessageKey;
+
+        /** WebMessageInfo message */
+        message?: (E2E.IMessage|null);
+
+        /** WebMessageInfo messageTimestamp */
+        messageTimestamp?: (number|Long|null);
+
+        /** WebMessageInfo status */
+        status?: (Web.WebMessageInfo.Status|null);
+
+        /** WebMessageInfo participant */
+        participant?: (string|null);
+
+        /** WebMessageInfo messageC2STimestamp */
+        messageC2STimestamp?: (number|Long|null);
+
+        /** WebMessageInfo ignore */
+        ignore?: (boolean|null);
+
+        /** WebMessageInfo starred */
+        starred?: (boolean|null);
+
+        /** WebMessageInfo broadcast */
+        broadcast?: (boolean|null);
+
+        /** WebMessageInfo pushName */
+        pushName?: (string|null);
+
+        /** WebMessageInfo mediaCiphertextSha256 */
+        mediaCiphertextSha256?: (Uint8Array|null);
+
+        /** WebMessageInfo multicast */
+        multicast?: (boolean|null);
+
+        /** WebMessageInfo urlText */
+        urlText?: (boolean|null);
+
+        /** WebMessageInfo urlNumber */
+        urlNumber?: (boolean|null);
+
+        /** WebMessageInfo messageStubType */
+        messageStubType?: (Web.WebMessageInfo.StubType|null);
+
+        /** WebMessageInfo clearMedia */
+        clearMedia?: (boolean|null);
+
+        /** WebMessageInfo messageStubParameters */
+        messageStubParameters?: (string[]|null);
+
+        /** WebMessageInfo duration */
+        duration?: (number|null);
+
+        /** WebMessageInfo labels */
+        labels?: (string[]|null);
+
+        /** WebMessageInfo paymentInfo */
+        paymentInfo?: (Web.IPaymentInfo|null);
+
+        /** WebMessageInfo finalLiveLocation */
+        finalLiveLocation?: (E2E.Message.ILiveLocationMessage|null);
+
+        /** WebMessageInfo quotedPaymentInfo */
+        quotedPaymentInfo?: (Web.IPaymentInfo|null);
+
+        /** WebMessageInfo ephemeralStartTimestamp */
+        ephemeralStartTimestamp?: (number|Long|null);
+
+        /** WebMessageInfo ephemeralDuration */
+        ephemeralDuration?: (number|null);
+
+        /** WebMessageInfo ephemeralOffToOn */
+        ephemeralOffToOn?: (boolean|null);
+
+        /** WebMessageInfo ephemeralOutOfSync */
+        ephemeralOutOfSync?: (boolean|null);
+
+        /** WebMessageInfo bizPrivacyStatus */
+        bizPrivacyStatus?: (Web.WebMessageInfo.BizPrivacyStatus|null);
+
+        /** WebMessageInfo verifiedBizName */
+        verifiedBizName?: (string|null);
+
+        /** WebMessageInfo mediaData */
+        mediaData?: (E2E.PaymentBackground.IMediaData|null);
+
+        /** WebMessageInfo photoChange */
+        photoChange?: (Web.IPhotoChange|null);
+
+        /** WebMessageInfo userReceipt */
+        userReceipt?: (Web.IUserReceipt[]|null);
+
+        /** WebMessageInfo reactions */
+        reactions?: (Web.IReaction[]|null);
+
+        /** WebMessageInfo quotedStickerData */
+        quotedStickerData?: (E2E.PaymentBackground.IMediaData|null);
+
+        /** WebMessageInfo futureproofData */
+        futureproofData?: (Uint8Array|null);
+
+        /** WebMessageInfo statusPsa */
+        statusPsa?: (Web.IStatusPSA|null);
+
+        /** WebMessageInfo pollUpdates */
+        pollUpdates?: (Web.IPollUpdate[]|null);
+
+        /** WebMessageInfo pollAdditionalMetadata */
+        pollAdditionalMetadata?: (Web.IPollAdditionalMetadata|null);
+
+        /** WebMessageInfo agentId */
+        agentId?: (string|null);
+
+        /** WebMessageInfo statusAlreadyViewed */
+        statusAlreadyViewed?: (boolean|null);
+
+        /** WebMessageInfo messageSecret */
+        messageSecret?: (Uint8Array|null);
+
+        /** WebMessageInfo keepInChat */
+        keepInChat?: (Web.IKeepInChat|null);
+
+        /** WebMessageInfo originalSelfAuthorUserJidString */
+        originalSelfAuthorUserJidString?: (string|null);
+
+        /** WebMessageInfo revokeMessageTimestamp */
+        revokeMessageTimestamp?: (number|Long|null);
+
+        /** WebMessageInfo pinInChat */
+        pinInChat?: (Web.IPinInChat|null);
+
+        /** WebMessageInfo premiumMessageInfo */
+        premiumMessageInfo?: (Web.IPremiumMessageInfo|null);
+
+        /** WebMessageInfo is1PBizBotMessage */
+        is1PBizBotMessage?: (boolean|null);
+
+        /** WebMessageInfo isGroupHistoryMessage */
+        isGroupHistoryMessage?: (boolean|null);
+
+        /** WebMessageInfo botMessageInvokerJid */
+        botMessageInvokerJid?: (string|null);
+
+        /** WebMessageInfo commentMetadata */
+        commentMetadata?: (Web.ICommentMetadata|null);
+
+        /** WebMessageInfo eventResponses */
+        eventResponses?: (Web.IEventResponse[]|null);
+
+        /** WebMessageInfo reportingTokenInfo */
+        reportingTokenInfo?: (Web.IReportingTokenInfo|null);
+
+        /** WebMessageInfo newsletterServerId */
+        newsletterServerId?: (number|Long|null);
+
+        /** WebMessageInfo eventAdditionalMetadata */
+        eventAdditionalMetadata?: (Web.IEventAdditionalMetadata|null);
+
+        /** WebMessageInfo isMentionedInStatus */
+        isMentionedInStatus?: (boolean|null);
+
+        /** WebMessageInfo statusMentions */
+        statusMentions?: (string[]|null);
+
+        /** WebMessageInfo targetMessageId */
+        targetMessageId?: (Protocol.IMessageKey|null);
+
+        /** WebMessageInfo messageAddOns */
+        messageAddOns?: (Web.IMessageAddOn[]|null);
+
+        /** WebMessageInfo statusMentionMessageInfo */
+        statusMentionMessageInfo?: (Web.IStatusMentionMessage|null);
+
+        /** WebMessageInfo isSupportAiMessage */
+        isSupportAiMessage?: (boolean|null);
+
+        /** WebMessageInfo statusMentionSources */
+        statusMentionSources?: (string[]|null);
+
+        /** WebMessageInfo supportAiCitations */
+        supportAiCitations?: (Web.ICitation[]|null);
+
+        /** WebMessageInfo botTargetId */
+        botTargetId?: (string|null);
+    }
+
+    /** Represents a WebMessageInfo. */
+    class WebMessageInfo implements IWebMessageInfo {
+
+        /**
+         * Constructs a new WebMessageInfo.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Web.IWebMessageInfo);
+
+        /** WebMessageInfo key. */
+        public key: Protocol.IMessageKey;
+
+        /** WebMessageInfo message. */
+        public message?: (E2E.IMessage|null);
+
+        /** WebMessageInfo messageTimestamp. */
+        public messageTimestamp: (number|Long);
+
+        /** WebMessageInfo status. */
+        public status: Web.WebMessageInfo.Status;
+
+        /** WebMessageInfo participant. */
+        public participant: string;
+
+        /** WebMessageInfo messageC2STimestamp. */
+        public messageC2STimestamp: (number|Long);
+
+        /** WebMessageInfo ignore. */
+        public ignore: boolean;
+
+        /** WebMessageInfo starred. */
+        public starred: boolean;
+
+        /** WebMessageInfo broadcast. */
+        public broadcast: boolean;
+
+        /** WebMessageInfo pushName. */
+        public pushName: string;
+
+        /** WebMessageInfo mediaCiphertextSha256. */
+        public mediaCiphertextSha256: Uint8Array;
+
+        /** WebMessageInfo multicast. */
+        public multicast: boolean;
+
+        /** WebMessageInfo urlText. */
+        public urlText: boolean;
+
+        /** WebMessageInfo urlNumber. */
+        public urlNumber: boolean;
+
+        /** WebMessageInfo messageStubType. */
+        public messageStubType: Web.WebMessageInfo.StubType;
+
+        /** WebMessageInfo clearMedia. */
+        public clearMedia: boolean;
+
+        /** WebMessageInfo messageStubParameters. */
+        public messageStubParameters: string[];
+
+        /** WebMessageInfo duration. */
+        public duration: number;
+
+        /** WebMessageInfo labels. */
+        public labels: string[];
+
+        /** WebMessageInfo paymentInfo. */
+        public paymentInfo?: (Web.IPaymentInfo|null);
+
+        /** WebMessageInfo finalLiveLocation. */
+        public finalLiveLocation?: (E2E.Message.ILiveLocationMessage|null);
+
+        /** WebMessageInfo quotedPaymentInfo. */
+        public quotedPaymentInfo?: (Web.IPaymentInfo|null);
+
+        /** WebMessageInfo ephemeralStartTimestamp. */
+        public ephemeralStartTimestamp: (number|Long);
+
+        /** WebMessageInfo ephemeralDuration. */
+        public ephemeralDuration: number;
+
+        /** WebMessageInfo ephemeralOffToOn. */
+        public ephemeralOffToOn: boolean;
+
+        /** WebMessageInfo ephemeralOutOfSync. */
+        public ephemeralOutOfSync: boolean;
+
+        /** WebMessageInfo bizPrivacyStatus. */
+        public bizPrivacyStatus: Web.WebMessageInfo.BizPrivacyStatus;
+
+        /** WebMessageInfo verifiedBizName. */
+        public verifiedBizName: string;
+
+        /** WebMessageInfo mediaData. */
+        public mediaData?: (E2E.PaymentBackground.IMediaData|null);
+
+        /** WebMessageInfo photoChange. */
+        public photoChange?: (Web.IPhotoChange|null);
+
+        /** WebMessageInfo userReceipt. */
+        public userReceipt: Web.IUserReceipt[];
+
+        /** WebMessageInfo reactions. */
+        public reactions: Web.IReaction[];
+
+        /** WebMessageInfo quotedStickerData. */
+        public quotedStickerData?: (E2E.PaymentBackground.IMediaData|null);
+
+        /** WebMessageInfo futureproofData. */
+        public futureproofData: Uint8Array;
+
+        /** WebMessageInfo statusPsa. */
+        public statusPsa?: (Web.IStatusPSA|null);
+
+        /** WebMessageInfo pollUpdates. */
+        public pollUpdates: Web.IPollUpdate[];
+
+        /** WebMessageInfo pollAdditionalMetadata. */
+        public pollAdditionalMetadata?: (Web.IPollAdditionalMetadata|null);
+
+        /** WebMessageInfo agentId. */
+        public agentId: string;
+
+        /** WebMessageInfo statusAlreadyViewed. */
+        public statusAlreadyViewed: boolean;
+
+        /** WebMessageInfo messageSecret. */
+        public messageSecret: Uint8Array;
+
+        /** WebMessageInfo keepInChat. */
+        public keepInChat?: (Web.IKeepInChat|null);
+
+        /** WebMessageInfo originalSelfAuthorUserJidString. */
+        public originalSelfAuthorUserJidString: string;
+
+        /** WebMessageInfo revokeMessageTimestamp. */
+        public revokeMessageTimestamp: (number|Long);
+
+        /** WebMessageInfo pinInChat. */
+        public pinInChat?: (Web.IPinInChat|null);
+
+        /** WebMessageInfo premiumMessageInfo. */
+        public premiumMessageInfo?: (Web.IPremiumMessageInfo|null);
+
+        /** WebMessageInfo is1PBizBotMessage. */
+        public is1PBizBotMessage: boolean;
+
+        /** WebMessageInfo isGroupHistoryMessage. */
+        public isGroupHistoryMessage: boolean;
+
+        /** WebMessageInfo botMessageInvokerJid. */
+        public botMessageInvokerJid: string;
+
+        /** WebMessageInfo commentMetadata. */
+        public commentMetadata?: (Web.ICommentMetadata|null);
+
+        /** WebMessageInfo eventResponses. */
+        public eventResponses: Web.IEventResponse[];
+
+        /** WebMessageInfo reportingTokenInfo. */
+        public reportingTokenInfo?: (Web.IReportingTokenInfo|null);
+
+        /** WebMessageInfo newsletterServerId. */
+        public newsletterServerId: (number|Long);
+
+        /** WebMessageInfo eventAdditionalMetadata. */
+        public eventAdditionalMetadata?: (Web.IEventAdditionalMetadata|null);
+
+        /** WebMessageInfo isMentionedInStatus. */
+        public isMentionedInStatus: boolean;
+
+        /** WebMessageInfo statusMentions. */
+        public statusMentions: string[];
+
+        /** WebMessageInfo targetMessageId. */
+        public targetMessageId?: (Protocol.IMessageKey|null);
+
+        /** WebMessageInfo messageAddOns. */
+        public messageAddOns: Web.IMessageAddOn[];
+
+        /** WebMessageInfo statusMentionMessageInfo. */
+        public statusMentionMessageInfo?: (Web.IStatusMentionMessage|null);
+
+        /** WebMessageInfo isSupportAiMessage. */
+        public isSupportAiMessage: boolean;
+
+        /** WebMessageInfo statusMentionSources. */
+        public statusMentionSources: string[];
+
+        /** WebMessageInfo supportAiCitations. */
+        public supportAiCitations: Web.ICitation[];
+
+        /** WebMessageInfo botTargetId. */
+        public botTargetId: string;
+
+        /**
+         * Creates a new WebMessageInfo instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns WebMessageInfo instance
+         */
+        public static create(properties?: Web.IWebMessageInfo): Web.WebMessageInfo;
+
+        /**
+         * Encodes the specified WebMessageInfo message. Does not implicitly {@link Web.WebMessageInfo.verify|verify} messages.
+         * @param message WebMessageInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Web.IWebMessageInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified WebMessageInfo message, length delimited. Does not implicitly {@link Web.WebMessageInfo.verify|verify} messages.
+         * @param message WebMessageInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Web.IWebMessageInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a WebMessageInfo message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns WebMessageInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.WebMessageInfo;
+
+        /**
+         * Decodes a WebMessageInfo message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns WebMessageInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.WebMessageInfo;
+
+        /**
+         * Verifies a WebMessageInfo message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a WebMessageInfo message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns WebMessageInfo
+         */
+        public static fromObject(object: { [k: string]: any }): Web.WebMessageInfo;
+
+        /**
+         * Creates a plain object from a WebMessageInfo message. Also converts values to other types if specified.
+         * @param message WebMessageInfo
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Web.WebMessageInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this WebMessageInfo to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for WebMessageInfo
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace WebMessageInfo {
+
+        /** BizPrivacyStatus enum. */
+        enum BizPrivacyStatus {
+            E2EE = 0,
+            FB = 2,
+            BSP = 1,
+            BSP_AND_FB = 3
+        }
+
+        /** Status enum. */
+        enum Status {
+            ERROR = 0,
+            PENDING = 1,
+            SERVER_ACK = 2,
+            DELIVERY_ACK = 3,
+            READ = 4,
+            PLAYED = 5
+        }
+
+        /** StubType enum. */
+        enum StubType {
+            UNKNOWN = 0,
+            REVOKE = 1,
+            CIPHERTEXT = 2,
+            FUTUREPROOF = 3,
+            NON_VERIFIED_TRANSITION = 4,
+            UNVERIFIED_TRANSITION = 5,
+            VERIFIED_TRANSITION = 6,
+            VERIFIED_LOW_UNKNOWN = 7,
+            VERIFIED_HIGH = 8,
+            VERIFIED_INITIAL_UNKNOWN = 9,
+            VERIFIED_INITIAL_LOW = 10,
+            VERIFIED_INITIAL_HIGH = 11,
+            VERIFIED_TRANSITION_ANY_TO_NONE = 12,
+            VERIFIED_TRANSITION_ANY_TO_HIGH = 13,
+            VERIFIED_TRANSITION_HIGH_TO_LOW = 14,
+            VERIFIED_TRANSITION_HIGH_TO_UNKNOWN = 15,
+            VERIFIED_TRANSITION_UNKNOWN_TO_LOW = 16,
+            VERIFIED_TRANSITION_LOW_TO_UNKNOWN = 17,
+            VERIFIED_TRANSITION_NONE_TO_LOW = 18,
+            VERIFIED_TRANSITION_NONE_TO_UNKNOWN = 19,
+            GROUP_CREATE = 20,
+            GROUP_CHANGE_SUBJECT = 21,
+            GROUP_CHANGE_ICON = 22,
+            GROUP_CHANGE_INVITE_LINK = 23,
+            GROUP_CHANGE_DESCRIPTION = 24,
+            GROUP_CHANGE_RESTRICT = 25,
+            GROUP_CHANGE_ANNOUNCE = 26,
+            GROUP_PARTICIPANT_ADD = 27,
+            GROUP_PARTICIPANT_REMOVE = 28,
+            GROUP_PARTICIPANT_PROMOTE = 29,
+            GROUP_PARTICIPANT_DEMOTE = 30,
+            GROUP_PARTICIPANT_INVITE = 31,
+            GROUP_PARTICIPANT_LEAVE = 32,
+            GROUP_PARTICIPANT_CHANGE_NUMBER = 33,
+            BROADCAST_CREATE = 34,
+            BROADCAST_ADD = 35,
+            BROADCAST_REMOVE = 36,
+            GENERIC_NOTIFICATION = 37,
+            E2E_IDENTITY_CHANGED = 38,
+            E2E_ENCRYPTED = 39,
+            CALL_MISSED_VOICE = 40,
+            CALL_MISSED_VIDEO = 41,
+            INDIVIDUAL_CHANGE_NUMBER = 42,
+            GROUP_DELETE = 43,
+            GROUP_ANNOUNCE_MODE_MESSAGE_BOUNCE = 44,
+            CALL_MISSED_GROUP_VOICE = 45,
+            CALL_MISSED_GROUP_VIDEO = 46,
+            PAYMENT_CIPHERTEXT = 47,
+            PAYMENT_FUTUREPROOF = 48,
+            PAYMENT_TRANSACTION_STATUS_UPDATE_FAILED = 49,
+            PAYMENT_TRANSACTION_STATUS_UPDATE_REFUNDED = 50,
+            PAYMENT_TRANSACTION_STATUS_UPDATE_REFUND_FAILED = 51,
+            PAYMENT_TRANSACTION_STATUS_RECEIVER_PENDING_SETUP = 52,
+            PAYMENT_TRANSACTION_STATUS_RECEIVER_SUCCESS_AFTER_HICCUP = 53,
+            PAYMENT_ACTION_ACCOUNT_SETUP_REMINDER = 54,
+            PAYMENT_ACTION_SEND_PAYMENT_REMINDER = 55,
+            PAYMENT_ACTION_SEND_PAYMENT_INVITATION = 56,
+            PAYMENT_ACTION_REQUEST_DECLINED = 57,
+            PAYMENT_ACTION_REQUEST_EXPIRED = 58,
+            PAYMENT_ACTION_REQUEST_CANCELLED = 59,
+            BIZ_VERIFIED_TRANSITION_TOP_TO_BOTTOM = 60,
+            BIZ_VERIFIED_TRANSITION_BOTTOM_TO_TOP = 61,
+            BIZ_INTRO_TOP = 62,
+            BIZ_INTRO_BOTTOM = 63,
+            BIZ_NAME_CHANGE = 64,
+            BIZ_MOVE_TO_CONSUMER_APP = 65,
+            BIZ_TWO_TIER_MIGRATION_TOP = 66,
+            BIZ_TWO_TIER_MIGRATION_BOTTOM = 67,
+            OVERSIZED = 68,
+            GROUP_CHANGE_NO_FREQUENTLY_FORWARDED = 69,
+            GROUP_V4_ADD_INVITE_SENT = 70,
+            GROUP_PARTICIPANT_ADD_REQUEST_JOIN = 71,
+            CHANGE_EPHEMERAL_SETTING = 72,
+            E2E_DEVICE_CHANGED = 73,
+            VIEWED_ONCE = 74,
+            E2E_ENCRYPTED_NOW = 75,
+            BLUE_MSG_BSP_FB_TO_BSP_PREMISE = 76,
+            BLUE_MSG_BSP_FB_TO_SELF_FB = 77,
+            BLUE_MSG_BSP_FB_TO_SELF_PREMISE = 78,
+            BLUE_MSG_BSP_FB_UNVERIFIED = 79,
+            BLUE_MSG_BSP_FB_UNVERIFIED_TO_SELF_PREMISE_VERIFIED = 80,
+            BLUE_MSG_BSP_FB_VERIFIED = 81,
+            BLUE_MSG_BSP_FB_VERIFIED_TO_SELF_PREMISE_UNVERIFIED = 82,
+            BLUE_MSG_BSP_PREMISE_TO_SELF_PREMISE = 83,
+            BLUE_MSG_BSP_PREMISE_UNVERIFIED = 84,
+            BLUE_MSG_BSP_PREMISE_UNVERIFIED_TO_SELF_PREMISE_VERIFIED = 85,
+            BLUE_MSG_BSP_PREMISE_VERIFIED = 86,
+            BLUE_MSG_BSP_PREMISE_VERIFIED_TO_SELF_PREMISE_UNVERIFIED = 87,
+            BLUE_MSG_CONSUMER_TO_BSP_FB_UNVERIFIED = 88,
+            BLUE_MSG_CONSUMER_TO_BSP_PREMISE_UNVERIFIED = 89,
+            BLUE_MSG_CONSUMER_TO_SELF_FB_UNVERIFIED = 90,
+            BLUE_MSG_CONSUMER_TO_SELF_PREMISE_UNVERIFIED = 91,
+            BLUE_MSG_SELF_FB_TO_BSP_PREMISE = 92,
+            BLUE_MSG_SELF_FB_TO_SELF_PREMISE = 93,
+            BLUE_MSG_SELF_FB_UNVERIFIED = 94,
+            BLUE_MSG_SELF_FB_UNVERIFIED_TO_SELF_PREMISE_VERIFIED = 95,
+            BLUE_MSG_SELF_FB_VERIFIED = 96,
+            BLUE_MSG_SELF_FB_VERIFIED_TO_SELF_PREMISE_UNVERIFIED = 97,
+            BLUE_MSG_SELF_PREMISE_TO_BSP_PREMISE = 98,
+            BLUE_MSG_SELF_PREMISE_UNVERIFIED = 99,
+            BLUE_MSG_SELF_PREMISE_VERIFIED = 100,
+            BLUE_MSG_TO_BSP_FB = 101,
+            BLUE_MSG_TO_CONSUMER = 102,
+            BLUE_MSG_TO_SELF_FB = 103,
+            BLUE_MSG_UNVERIFIED_TO_BSP_FB_VERIFIED = 104,
+            BLUE_MSG_UNVERIFIED_TO_BSP_PREMISE_VERIFIED = 105,
+            BLUE_MSG_UNVERIFIED_TO_SELF_FB_VERIFIED = 106,
+            BLUE_MSG_UNVERIFIED_TO_VERIFIED = 107,
+            BLUE_MSG_VERIFIED_TO_BSP_FB_UNVERIFIED = 108,
+            BLUE_MSG_VERIFIED_TO_BSP_PREMISE_UNVERIFIED = 109,
+            BLUE_MSG_VERIFIED_TO_SELF_FB_UNVERIFIED = 110,
+            BLUE_MSG_VERIFIED_TO_UNVERIFIED = 111,
+            BLUE_MSG_BSP_FB_UNVERIFIED_TO_BSP_PREMISE_VERIFIED = 112,
+            BLUE_MSG_BSP_FB_UNVERIFIED_TO_SELF_FB_VERIFIED = 113,
+            BLUE_MSG_BSP_FB_VERIFIED_TO_BSP_PREMISE_UNVERIFIED = 114,
+            BLUE_MSG_BSP_FB_VERIFIED_TO_SELF_FB_UNVERIFIED = 115,
+            BLUE_MSG_SELF_FB_UNVERIFIED_TO_BSP_PREMISE_VERIFIED = 116,
+            BLUE_MSG_SELF_FB_VERIFIED_TO_BSP_PREMISE_UNVERIFIED = 117,
+            E2E_IDENTITY_UNAVAILABLE = 118,
+            GROUP_CREATING = 119,
+            GROUP_CREATE_FAILED = 120,
+            GROUP_BOUNCED = 121,
+            BLOCK_CONTACT = 122,
+            EPHEMERAL_SETTING_NOT_APPLIED = 123,
+            SYNC_FAILED = 124,
+            SYNCING = 125,
+            BIZ_PRIVACY_MODE_INIT_FB = 126,
+            BIZ_PRIVACY_MODE_INIT_BSP = 127,
+            BIZ_PRIVACY_MODE_TO_FB = 128,
+            BIZ_PRIVACY_MODE_TO_BSP = 129,
+            DISAPPEARING_MODE = 130,
+            E2E_DEVICE_FETCH_FAILED = 131,
+            ADMIN_REVOKE = 132,
+            GROUP_INVITE_LINK_GROWTH_LOCKED = 133,
+            COMMUNITY_LINK_PARENT_GROUP = 134,
+            COMMUNITY_LINK_SIBLING_GROUP = 135,
+            COMMUNITY_LINK_SUB_GROUP = 136,
+            COMMUNITY_UNLINK_PARENT_GROUP = 137,
+            COMMUNITY_UNLINK_SIBLING_GROUP = 138,
+            COMMUNITY_UNLINK_SUB_GROUP = 139,
+            GROUP_PARTICIPANT_ACCEPT = 140,
+            GROUP_PARTICIPANT_LINKED_GROUP_JOIN = 141,
+            COMMUNITY_CREATE = 142,
+            EPHEMERAL_KEEP_IN_CHAT = 143,
+            GROUP_MEMBERSHIP_JOIN_APPROVAL_REQUEST = 144,
+            GROUP_MEMBERSHIP_JOIN_APPROVAL_MODE = 145,
+            INTEGRITY_UNLINK_PARENT_GROUP = 146,
+            COMMUNITY_PARTICIPANT_PROMOTE = 147,
+            COMMUNITY_PARTICIPANT_DEMOTE = 148,
+            COMMUNITY_PARENT_GROUP_DELETED = 149,
+            COMMUNITY_LINK_PARENT_GROUP_MEMBERSHIP_APPROVAL = 150,
+            GROUP_PARTICIPANT_JOINED_GROUP_AND_PARENT_GROUP = 151,
+            MASKED_THREAD_CREATED = 152,
+            MASKED_THREAD_UNMASKED = 153,
+            BIZ_CHAT_ASSIGNMENT = 154,
+            CHAT_PSA = 155,
+            CHAT_POLL_CREATION_MESSAGE = 156,
+            CAG_MASKED_THREAD_CREATED = 157,
+            COMMUNITY_PARENT_GROUP_SUBJECT_CHANGED = 158,
+            CAG_INVITE_AUTO_ADD = 159,
+            BIZ_CHAT_ASSIGNMENT_UNASSIGN = 160,
+            CAG_INVITE_AUTO_JOINED = 161,
+            SCHEDULED_CALL_START_MESSAGE = 162,
+            COMMUNITY_INVITE_RICH = 163,
+            COMMUNITY_INVITE_AUTO_ADD_RICH = 164,
+            SUB_GROUP_INVITE_RICH = 165,
+            SUB_GROUP_PARTICIPANT_ADD_RICH = 166,
+            COMMUNITY_LINK_PARENT_GROUP_RICH = 167,
+            COMMUNITY_PARTICIPANT_ADD_RICH = 168,
+            SILENCED_UNKNOWN_CALLER_AUDIO = 169,
+            SILENCED_UNKNOWN_CALLER_VIDEO = 170,
+            GROUP_MEMBER_ADD_MODE = 171,
+            GROUP_MEMBERSHIP_JOIN_APPROVAL_REQUEST_NON_ADMIN_ADD = 172,
+            COMMUNITY_CHANGE_DESCRIPTION = 173,
+            SENDER_INVITE = 174,
+            RECEIVER_INVITE = 175,
+            COMMUNITY_ALLOW_MEMBER_ADDED_GROUPS = 176,
+            PINNED_MESSAGE_IN_CHAT = 177,
+            PAYMENT_INVITE_SETUP_INVITER = 178,
+            PAYMENT_INVITE_SETUP_INVITEE_RECEIVE_ONLY = 179,
+            PAYMENT_INVITE_SETUP_INVITEE_SEND_AND_RECEIVE = 180,
+            LINKED_GROUP_CALL_START = 181,
+            REPORT_TO_ADMIN_ENABLED_STATUS = 182,
+            EMPTY_SUBGROUP_CREATE = 183,
+            SCHEDULED_CALL_CANCEL = 184,
+            SUBGROUP_ADMIN_TRIGGERED_AUTO_ADD_RICH = 185,
+            GROUP_CHANGE_RECENT_HISTORY_SHARING = 186,
+            PAID_MESSAGE_SERVER_CAMPAIGN_ID = 187,
+            GENERAL_CHAT_CREATE = 188,
+            GENERAL_CHAT_ADD = 189,
+            GENERAL_CHAT_AUTO_ADD_DISABLED = 190,
+            SUGGESTED_SUBGROUP_ANNOUNCE = 191,
+            BIZ_BOT_1P_MESSAGING_ENABLED = 192,
+            CHANGE_USERNAME = 193,
+            BIZ_COEX_PRIVACY_INIT_SELF = 194,
+            BIZ_COEX_PRIVACY_TRANSITION_SELF = 195,
+            SUPPORT_AI_EDUCATION = 196,
+            BIZ_BOT_3P_MESSAGING_ENABLED = 197,
+            REMINDER_SETUP_MESSAGE = 198,
+            REMINDER_SENT_MESSAGE = 199,
+            REMINDER_CANCEL_MESSAGE = 200,
+            BIZ_COEX_PRIVACY_INIT = 201,
+            BIZ_COEX_PRIVACY_TRANSITION = 202,
+            GROUP_DEACTIVATED = 203,
+            COMMUNITY_DEACTIVATE_SIBLING_GROUP = 204,
+            EVENT_UPDATED = 205,
+            EVENT_CANCELED = 206,
+            COMMUNITY_OWNER_UPDATED = 207,
+            COMMUNITY_SUB_GROUP_VISIBILITY_HIDDEN = 208,
+            CAPI_GROUP_NE2EE_SYSTEM_MESSAGE = 209,
+            STATUS_MENTION = 210,
+            USER_CONTROLS_SYSTEM_MESSAGE = 211,
+            SUPPORT_SYSTEM_MESSAGE = 212,
+            CHANGE_LID = 213,
+            BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_IN_MESSAGE = 214,
+            BIZ_CUSTOMER_3PD_DATA_SHARING_OPT_OUT_MESSAGE = 215,
+            CHANGE_LIMIT_SHARING = 216,
+            GROUP_MEMBER_LINK_MODE = 217,
+            BIZ_AUTOMATICALLY_LABELED_CHAT_SYSTEM_MESSAGE = 218,
+            PHONE_NUMBER_HIDING_CHAT_DEPRECATED_MESSAGE = 219
         }
     }
 }

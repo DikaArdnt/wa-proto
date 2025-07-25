@@ -5186,6 +5186,9 @@ export namespace E2E {
 
         /** BotMetadata unifiedResponseMutation */
         unifiedResponseMutation?: (E2E.IBotUnifiedResponseMutation|null);
+
+        /** BotMetadata botMessageOriginMetadata */
+        botMessageOriginMetadata?: (E2E.IBotMessageOriginMetadata|null);
     }
 
     /** Represents a BotMetadata. */
@@ -5281,6 +5284,9 @@ export namespace E2E {
         /** BotMetadata unifiedResponseMutation. */
         public unifiedResponseMutation?: (E2E.IBotUnifiedResponseMutation|null);
 
+        /** BotMetadata botMessageOriginMetadata. */
+        public botMessageOriginMetadata?: (E2E.IBotMessageOriginMetadata|null);
+
         /**
          * Creates a new BotMetadata instance using the specified properties.
          * @param [properties] Properties to set
@@ -5353,6 +5359,208 @@ export namespace E2E {
 
         /**
          * Gets the default type url for BotMetadata
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a BotMessageOrigin. */
+    interface IBotMessageOrigin {
+
+        /** BotMessageOrigin type */
+        type?: (E2E.BotMessageOrigin.BotMessageOriginType|null);
+    }
+
+    /** Represents a BotMessageOrigin. */
+    class BotMessageOrigin implements IBotMessageOrigin {
+
+        /**
+         * Constructs a new BotMessageOrigin.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: E2E.IBotMessageOrigin);
+
+        /** BotMessageOrigin type. */
+        public type: E2E.BotMessageOrigin.BotMessageOriginType;
+
+        /**
+         * Creates a new BotMessageOrigin instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BotMessageOrigin instance
+         */
+        public static create(properties?: E2E.IBotMessageOrigin): E2E.BotMessageOrigin;
+
+        /**
+         * Encodes the specified BotMessageOrigin message. Does not implicitly {@link E2E.BotMessageOrigin.verify|verify} messages.
+         * @param message BotMessageOrigin message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: E2E.IBotMessageOrigin, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BotMessageOrigin message, length delimited. Does not implicitly {@link E2E.BotMessageOrigin.verify|verify} messages.
+         * @param message BotMessageOrigin message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: E2E.IBotMessageOrigin, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BotMessageOrigin message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BotMessageOrigin
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.BotMessageOrigin;
+
+        /**
+         * Decodes a BotMessageOrigin message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BotMessageOrigin
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.BotMessageOrigin;
+
+        /**
+         * Verifies a BotMessageOrigin message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BotMessageOrigin message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BotMessageOrigin
+         */
+        public static fromObject(object: { [k: string]: any }): E2E.BotMessageOrigin;
+
+        /**
+         * Creates a plain object from a BotMessageOrigin message. Also converts values to other types if specified.
+         * @param message BotMessageOrigin
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: E2E.BotMessageOrigin, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BotMessageOrigin to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for BotMessageOrigin
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace BotMessageOrigin {
+
+        /** BotMessageOriginType enum. */
+        enum BotMessageOriginType {
+            BOT_MESSAGE_ORIGIN_TYPE_AI_INITIATED = 0
+        }
+    }
+
+    /** Properties of a BotMessageOriginMetadata. */
+    interface IBotMessageOriginMetadata {
+
+        /** BotMessageOriginMetadata origins */
+        origins?: (E2E.IBotMessageOrigin[]|null);
+    }
+
+    /** Represents a BotMessageOriginMetadata. */
+    class BotMessageOriginMetadata implements IBotMessageOriginMetadata {
+
+        /**
+         * Constructs a new BotMessageOriginMetadata.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: E2E.IBotMessageOriginMetadata);
+
+        /** BotMessageOriginMetadata origins. */
+        public origins: E2E.IBotMessageOrigin[];
+
+        /**
+         * Creates a new BotMessageOriginMetadata instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BotMessageOriginMetadata instance
+         */
+        public static create(properties?: E2E.IBotMessageOriginMetadata): E2E.BotMessageOriginMetadata;
+
+        /**
+         * Encodes the specified BotMessageOriginMetadata message. Does not implicitly {@link E2E.BotMessageOriginMetadata.verify|verify} messages.
+         * @param message BotMessageOriginMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: E2E.IBotMessageOriginMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BotMessageOriginMetadata message, length delimited. Does not implicitly {@link E2E.BotMessageOriginMetadata.verify|verify} messages.
+         * @param message BotMessageOriginMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: E2E.IBotMessageOriginMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BotMessageOriginMetadata message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BotMessageOriginMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.BotMessageOriginMetadata;
+
+        /**
+         * Decodes a BotMessageOriginMetadata message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BotMessageOriginMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.BotMessageOriginMetadata;
+
+        /**
+         * Verifies a BotMessageOriginMetadata message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BotMessageOriginMetadata message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BotMessageOriginMetadata
+         */
+        public static fromObject(object: { [k: string]: any }): E2E.BotMessageOriginMetadata;
+
+        /**
+         * Creates a plain object from a BotMessageOriginMetadata message. Also converts values to other types if specified.
+         * @param message BotMessageOriginMetadata
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: E2E.BotMessageOriginMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BotMessageOriginMetadata to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for BotMessageOriginMetadata
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
@@ -11430,6 +11638,15 @@ export namespace E2E {
 
         /** ContextInfo isGroupStatus */
         isGroupStatus?: (boolean|null);
+
+        /** ContextInfo forwardOrigin */
+        forwardOrigin?: (E2E.ContextInfo.ForwardOrigin|null);
+
+        /** ContextInfo questionReplyQuotedMessage */
+        questionReplyQuotedMessage?: (E2E.ContextInfo.IQuestionReplyQuotedMessage|null);
+
+        /** ContextInfo statusAudienceMetadata */
+        statusAudienceMetadata?: (E2E.ContextInfo.IStatusAudienceMetadata|null);
     }
 
     /** Represents a ContextInfo. */
@@ -11587,6 +11804,15 @@ export namespace E2E {
 
         /** ContextInfo isGroupStatus. */
         public isGroupStatus: boolean;
+
+        /** ContextInfo forwardOrigin. */
+        public forwardOrigin: E2E.ContextInfo.ForwardOrigin;
+
+        /** ContextInfo questionReplyQuotedMessage. */
+        public questionReplyQuotedMessage?: (E2E.ContextInfo.IQuestionReplyQuotedMessage|null);
+
+        /** ContextInfo statusAudienceMetadata. */
+        public statusAudienceMetadata?: (E2E.ContextInfo.IStatusAudienceMetadata|null);
 
         /**
          * Creates a new ContextInfo instance using the specified properties.
@@ -11901,6 +12127,9 @@ export namespace E2E {
 
             /** DataSharingContext parameters */
             parameters?: (E2E.ContextInfo.DataSharingContext.IParameters[]|null);
+
+            /** DataSharingContext dataSharingFlags */
+            dataSharingFlags?: (number|null);
         }
 
         /** Represents a DataSharingContext. */
@@ -11920,6 +12149,9 @@ export namespace E2E {
 
             /** DataSharingContext parameters. */
             public parameters: E2E.ContextInfo.DataSharingContext.IParameters[];
+
+            /** DataSharingContext dataSharingFlags. */
+            public dataSharingFlags: number;
 
             /**
              * Creates a new DataSharingContext instance using the specified properties.
@@ -12000,6 +12232,12 @@ export namespace E2E {
         }
 
         namespace DataSharingContext {
+
+            /** DataSharingFlags enum. */
+            enum DataSharingFlags {
+                SHOW_MM_DISCLOSURE_ON_CLICK = 1,
+                SHOW_MM_DISCLOSURE_ON_READ = 2
+            }
 
             /** Properties of a Parameters. */
             interface IParameters {
@@ -12495,6 +12733,14 @@ export namespace E2E {
             public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
+        /** ForwardOrigin enum. */
+        enum ForwardOrigin {
+            UNKNOWN = 0,
+            CHAT = 1,
+            STATUS = 2,
+            CHANNELS = 3
+        }
+
         /** Properties of a ForwardedAIBotMessageInfo. */
         interface IForwardedAIBotMessageInfo {
 
@@ -12746,12 +12992,228 @@ export namespace E2E {
             MOTION_PHOTO_CHILD = 6
         }
 
+        /** Properties of a QuestionReplyQuotedMessage. */
+        interface IQuestionReplyQuotedMessage {
+
+            /** QuestionReplyQuotedMessage serverQuestionId */
+            serverQuestionId?: (number|null);
+
+            /** QuestionReplyQuotedMessage quotedQuestion */
+            quotedQuestion?: (E2E.IMessage|null);
+
+            /** QuestionReplyQuotedMessage quotedResponse */
+            quotedResponse?: (E2E.IMessage|null);
+        }
+
+        /** Represents a QuestionReplyQuotedMessage. */
+        class QuestionReplyQuotedMessage implements IQuestionReplyQuotedMessage {
+
+            /**
+             * Constructs a new QuestionReplyQuotedMessage.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.ContextInfo.IQuestionReplyQuotedMessage);
+
+            /** QuestionReplyQuotedMessage serverQuestionId. */
+            public serverQuestionId: number;
+
+            /** QuestionReplyQuotedMessage quotedQuestion. */
+            public quotedQuestion?: (E2E.IMessage|null);
+
+            /** QuestionReplyQuotedMessage quotedResponse. */
+            public quotedResponse?: (E2E.IMessage|null);
+
+            /**
+             * Creates a new QuestionReplyQuotedMessage instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns QuestionReplyQuotedMessage instance
+             */
+            public static create(properties?: E2E.ContextInfo.IQuestionReplyQuotedMessage): E2E.ContextInfo.QuestionReplyQuotedMessage;
+
+            /**
+             * Encodes the specified QuestionReplyQuotedMessage message. Does not implicitly {@link E2E.ContextInfo.QuestionReplyQuotedMessage.verify|verify} messages.
+             * @param message QuestionReplyQuotedMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.ContextInfo.IQuestionReplyQuotedMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified QuestionReplyQuotedMessage message, length delimited. Does not implicitly {@link E2E.ContextInfo.QuestionReplyQuotedMessage.verify|verify} messages.
+             * @param message QuestionReplyQuotedMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.ContextInfo.IQuestionReplyQuotedMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a QuestionReplyQuotedMessage message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns QuestionReplyQuotedMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.ContextInfo.QuestionReplyQuotedMessage;
+
+            /**
+             * Decodes a QuestionReplyQuotedMessage message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns QuestionReplyQuotedMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.ContextInfo.QuestionReplyQuotedMessage;
+
+            /**
+             * Verifies a QuestionReplyQuotedMessage message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a QuestionReplyQuotedMessage message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns QuestionReplyQuotedMessage
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.ContextInfo.QuestionReplyQuotedMessage;
+
+            /**
+             * Creates a plain object from a QuestionReplyQuotedMessage message. Also converts values to other types if specified.
+             * @param message QuestionReplyQuotedMessage
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.ContextInfo.QuestionReplyQuotedMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this QuestionReplyQuotedMessage to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for QuestionReplyQuotedMessage
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
         /** StatusAttributionType enum. */
         enum StatusAttributionType {
             NONE = 0,
             RESHARED_FROM_MENTION = 1,
             RESHARED_FROM_POST = 2,
-            FORWARDED_FROM_STATUS = 3
+            RESHARED_FROM_POST_MANY_TIMES = 3,
+            FORWARDED_FROM_STATUS = 4
+        }
+
+        /** Properties of a StatusAudienceMetadata. */
+        interface IStatusAudienceMetadata {
+
+            /** StatusAudienceMetadata audienceType */
+            audienceType?: (E2E.ContextInfo.StatusAudienceMetadata.AudienceType|null);
+        }
+
+        /** Represents a StatusAudienceMetadata. */
+        class StatusAudienceMetadata implements IStatusAudienceMetadata {
+
+            /**
+             * Constructs a new StatusAudienceMetadata.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.ContextInfo.IStatusAudienceMetadata);
+
+            /** StatusAudienceMetadata audienceType. */
+            public audienceType: E2E.ContextInfo.StatusAudienceMetadata.AudienceType;
+
+            /**
+             * Creates a new StatusAudienceMetadata instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns StatusAudienceMetadata instance
+             */
+            public static create(properties?: E2E.ContextInfo.IStatusAudienceMetadata): E2E.ContextInfo.StatusAudienceMetadata;
+
+            /**
+             * Encodes the specified StatusAudienceMetadata message. Does not implicitly {@link E2E.ContextInfo.StatusAudienceMetadata.verify|verify} messages.
+             * @param message StatusAudienceMetadata message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.ContextInfo.IStatusAudienceMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified StatusAudienceMetadata message, length delimited. Does not implicitly {@link E2E.ContextInfo.StatusAudienceMetadata.verify|verify} messages.
+             * @param message StatusAudienceMetadata message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.ContextInfo.IStatusAudienceMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a StatusAudienceMetadata message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns StatusAudienceMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.ContextInfo.StatusAudienceMetadata;
+
+            /**
+             * Decodes a StatusAudienceMetadata message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns StatusAudienceMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.ContextInfo.StatusAudienceMetadata;
+
+            /**
+             * Verifies a StatusAudienceMetadata message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a StatusAudienceMetadata message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns StatusAudienceMetadata
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.ContextInfo.StatusAudienceMetadata;
+
+            /**
+             * Creates a plain object from a StatusAudienceMetadata message. Also converts values to other types if specified.
+             * @param message StatusAudienceMetadata
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.ContextInfo.StatusAudienceMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this StatusAudienceMetadata to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for StatusAudienceMetadata
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace StatusAudienceMetadata {
+
+            /** AudienceType enum. */
+            enum AudienceType {
+                UNKNOWN = 0,
+                CLOSE_FRIENDS = 1
+            }
         }
 
         /** StatusSourceType enum. */
@@ -13138,9 +13600,6 @@ export namespace E2E {
         /** Message statusQuestionAnswerMessage */
         statusQuestionAnswerMessage?: (E2E.Message.IStatusQuestionAnswerMessage|null);
 
-        /** Message questionAdminReplyMessage */
-        questionAdminReplyMessage?: (E2E.Message.IQuestionAdminReplyMessage|null);
-
         /** Message questionResponseMessage */
         questionResponseMessage?: (E2E.Message.IQuestionResponseMessage|null);
     }
@@ -13420,9 +13879,6 @@ export namespace E2E {
 
         /** Message statusQuestionAnswerMessage. */
         public statusQuestionAnswerMessage?: (E2E.Message.IStatusQuestionAnswerMessage|null);
-
-        /** Message questionAdminReplyMessage. */
-        public questionAdminReplyMessage?: (E2E.Message.IQuestionAdminReplyMessage|null);
 
         /** Message questionResponseMessage. */
         public questionResponseMessage?: (E2E.Message.IQuestionResponseMessage|null);
@@ -17698,9 +18154,6 @@ export namespace E2E {
 
             /** ExtendedTextMessage endCardTiles */
             endCardTiles?: (E2E.Message.IVideoEndCard[]|null);
-
-            /** ExtendedTextMessage mediaKeyDomain */
-            mediaKeyDomain?: (E2E.Message.MediaKeyDomain|null);
         }
 
         /** Represents an ExtendedTextMessage. */
@@ -17798,9 +18251,6 @@ export namespace E2E {
 
             /** ExtendedTextMessage endCardTiles. */
             public endCardTiles: E2E.Message.IVideoEndCard[];
-
-            /** ExtendedTextMessage mediaKeyDomain. */
-            public mediaKeyDomain: E2E.Message.MediaKeyDomain;
 
             /**
              * Creates a new ExtendedTextMessage instance using the specified properties.
@@ -27792,221 +28242,6 @@ export namespace E2E {
             }
         }
 
-        /** Properties of a QuestionAdminReplyMessage. */
-        interface IQuestionAdminReplyMessage {
-
-            /** QuestionAdminReplyMessage adminReplyMessage */
-            adminReplyMessage?: (E2E.IMessage|null);
-
-            /** QuestionAdminReplyMessage quotedMessage */
-            quotedMessage?: (E2E.Message.QuestionAdminReplyMessage.IQuotedQuestionAdminReplyMessage|null);
-        }
-
-        /** Represents a QuestionAdminReplyMessage. */
-        class QuestionAdminReplyMessage implements IQuestionAdminReplyMessage {
-
-            /**
-             * Constructs a new QuestionAdminReplyMessage.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: E2E.Message.IQuestionAdminReplyMessage);
-
-            /** QuestionAdminReplyMessage adminReplyMessage. */
-            public adminReplyMessage?: (E2E.IMessage|null);
-
-            /** QuestionAdminReplyMessage quotedMessage. */
-            public quotedMessage?: (E2E.Message.QuestionAdminReplyMessage.IQuotedQuestionAdminReplyMessage|null);
-
-            /**
-             * Creates a new QuestionAdminReplyMessage instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns QuestionAdminReplyMessage instance
-             */
-            public static create(properties?: E2E.Message.IQuestionAdminReplyMessage): E2E.Message.QuestionAdminReplyMessage;
-
-            /**
-             * Encodes the specified QuestionAdminReplyMessage message. Does not implicitly {@link E2E.Message.QuestionAdminReplyMessage.verify|verify} messages.
-             * @param message QuestionAdminReplyMessage message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: E2E.Message.IQuestionAdminReplyMessage, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified QuestionAdminReplyMessage message, length delimited. Does not implicitly {@link E2E.Message.QuestionAdminReplyMessage.verify|verify} messages.
-             * @param message QuestionAdminReplyMessage message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: E2E.Message.IQuestionAdminReplyMessage, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes a QuestionAdminReplyMessage message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns QuestionAdminReplyMessage
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.QuestionAdminReplyMessage;
-
-            /**
-             * Decodes a QuestionAdminReplyMessage message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns QuestionAdminReplyMessage
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.QuestionAdminReplyMessage;
-
-            /**
-             * Verifies a QuestionAdminReplyMessage message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates a QuestionAdminReplyMessage message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns QuestionAdminReplyMessage
-             */
-            public static fromObject(object: { [k: string]: any }): E2E.Message.QuestionAdminReplyMessage;
-
-            /**
-             * Creates a plain object from a QuestionAdminReplyMessage message. Also converts values to other types if specified.
-             * @param message QuestionAdminReplyMessage
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: E2E.Message.QuestionAdminReplyMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this QuestionAdminReplyMessage to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-
-            /**
-             * Gets the default type url for QuestionAdminReplyMessage
-             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns The default type url
-             */
-            public static getTypeUrl(typeUrlPrefix?: string): string;
-        }
-
-        namespace QuestionAdminReplyMessage {
-
-            /** Properties of a QuotedQuestionAdminReplyMessage. */
-            interface IQuotedQuestionAdminReplyMessage {
-
-                /** QuotedQuestionAdminReplyMessage serverQuestionId */
-                serverQuestionId?: (number|null);
-
-                /** QuotedQuestionAdminReplyMessage quotedQuestion */
-                quotedQuestion?: (E2E.IMessage|null);
-
-                /** QuotedQuestionAdminReplyMessage quotedFollowerResponse */
-                quotedFollowerResponse?: (E2E.IMessage|null);
-            }
-
-            /** Represents a QuotedQuestionAdminReplyMessage. */
-            class QuotedQuestionAdminReplyMessage implements IQuotedQuestionAdminReplyMessage {
-
-                /**
-                 * Constructs a new QuotedQuestionAdminReplyMessage.
-                 * @param [properties] Properties to set
-                 */
-                constructor(properties?: E2E.Message.QuestionAdminReplyMessage.IQuotedQuestionAdminReplyMessage);
-
-                /** QuotedQuestionAdminReplyMessage serverQuestionId. */
-                public serverQuestionId: number;
-
-                /** QuotedQuestionAdminReplyMessage quotedQuestion. */
-                public quotedQuestion?: (E2E.IMessage|null);
-
-                /** QuotedQuestionAdminReplyMessage quotedFollowerResponse. */
-                public quotedFollowerResponse?: (E2E.IMessage|null);
-
-                /**
-                 * Creates a new QuotedQuestionAdminReplyMessage instance using the specified properties.
-                 * @param [properties] Properties to set
-                 * @returns QuotedQuestionAdminReplyMessage instance
-                 */
-                public static create(properties?: E2E.Message.QuestionAdminReplyMessage.IQuotedQuestionAdminReplyMessage): E2E.Message.QuestionAdminReplyMessage.QuotedQuestionAdminReplyMessage;
-
-                /**
-                 * Encodes the specified QuotedQuestionAdminReplyMessage message. Does not implicitly {@link E2E.Message.QuestionAdminReplyMessage.QuotedQuestionAdminReplyMessage.verify|verify} messages.
-                 * @param message QuotedQuestionAdminReplyMessage message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encode(message: E2E.Message.QuestionAdminReplyMessage.IQuotedQuestionAdminReplyMessage, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Encodes the specified QuotedQuestionAdminReplyMessage message, length delimited. Does not implicitly {@link E2E.Message.QuestionAdminReplyMessage.QuotedQuestionAdminReplyMessage.verify|verify} messages.
-                 * @param message QuotedQuestionAdminReplyMessage message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encodeDelimited(message: E2E.Message.QuestionAdminReplyMessage.IQuotedQuestionAdminReplyMessage, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Decodes a QuotedQuestionAdminReplyMessage message from the specified reader or buffer.
-                 * @param reader Reader or buffer to decode from
-                 * @param [length] Message length if known beforehand
-                 * @returns QuotedQuestionAdminReplyMessage
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.QuestionAdminReplyMessage.QuotedQuestionAdminReplyMessage;
-
-                /**
-                 * Decodes a QuotedQuestionAdminReplyMessage message from the specified reader or buffer, length delimited.
-                 * @param reader Reader or buffer to decode from
-                 * @returns QuotedQuestionAdminReplyMessage
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.QuestionAdminReplyMessage.QuotedQuestionAdminReplyMessage;
-
-                /**
-                 * Verifies a QuotedQuestionAdminReplyMessage message.
-                 * @param message Plain object to verify
-                 * @returns `null` if valid, otherwise the reason why it is not
-                 */
-                public static verify(message: { [k: string]: any }): (string|null);
-
-                /**
-                 * Creates a QuotedQuestionAdminReplyMessage message from a plain object. Also converts values to their respective internal types.
-                 * @param object Plain object
-                 * @returns QuotedQuestionAdminReplyMessage
-                 */
-                public static fromObject(object: { [k: string]: any }): E2E.Message.QuestionAdminReplyMessage.QuotedQuestionAdminReplyMessage;
-
-                /**
-                 * Creates a plain object from a QuotedQuestionAdminReplyMessage message. Also converts values to other types if specified.
-                 * @param message QuotedQuestionAdminReplyMessage
-                 * @param [options] Conversion options
-                 * @returns Plain object
-                 */
-                public static toObject(message: E2E.Message.QuestionAdminReplyMessage.QuotedQuestionAdminReplyMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                /**
-                 * Converts this QuotedQuestionAdminReplyMessage to JSON.
-                 * @returns JSON object
-                 */
-                public toJSON(): { [k: string]: any };
-
-                /**
-                 * Gets the default type url for QuotedQuestionAdminReplyMessage
-                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns The default type url
-                 */
-                public static getTypeUrl(typeUrlPrefix?: string): string;
-            }
-        }
-
         /** Properties of a QuestionResponseMessage. */
         interface IQuestionResponseMessage {
 
@@ -33857,6 +34092,9 @@ export namespace CompanionReg {
 
             /** HistorySyncConfig supportGroupHistory */
             supportGroupHistory?: (boolean|null);
+
+            /** HistorySyncConfig onDemandReady */
+            onDemandReady?: (boolean|null);
         }
 
         /** Represents a HistorySyncConfig. */
@@ -33912,6 +34150,9 @@ export namespace CompanionReg {
 
             /** HistorySyncConfig supportGroupHistory. */
             public supportGroupHistory: boolean;
+
+            /** HistorySyncConfig onDemandReady. */
+            public onDemandReady: boolean;
 
             /**
              * Creates a new HistorySyncConfig instance using the specified properties.
