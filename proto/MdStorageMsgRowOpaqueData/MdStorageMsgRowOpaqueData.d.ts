@@ -120,6 +120,12 @@ export namespace MdStorageMsgRowOpaqueData {
         /** MsgOpaqueData eventEndTime */
         eventEndTime?: (number|Long|null);
 
+        /** MsgOpaqueData eventIsScheduledCall */
+        eventIsScheduledCall?: (boolean|null);
+
+        /** MsgOpaqueData eventExtraGuestsAllowed */
+        eventExtraGuestsAllowed?: (boolean|null);
+
         /** MsgOpaqueData plainProtobufBytes */
         plainProtobufBytes?: (Uint8Array|null);
     }
@@ -246,6 +252,12 @@ export namespace MdStorageMsgRowOpaqueData {
 
         /** MsgOpaqueData eventEndTime. */
         public eventEndTime: (number|Long);
+
+        /** MsgOpaqueData eventIsScheduledCall. */
+        public eventIsScheduledCall: boolean;
+
+        /** MsgOpaqueData eventExtraGuestsAllowed. */
+        public eventExtraGuestsAllowed: boolean;
 
         /** MsgOpaqueData plainProtobufBytes. */
         public plainProtobufBytes: Uint8Array;
