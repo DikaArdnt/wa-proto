@@ -1,4 +1,5 @@
 exports.Adv = require('./Adv/Adv').Adv;
+exports.BotMetadata = require('./BotMetadata/BotMetadata').BotMetadata;
 exports.Cert = require('./Cert/Cert').Cert;
 exports.ChatLockSettings = require('./ChatLockSettings/ChatLockSettings').ChatLockSettings;
 exports.CompanionReg = require('./CompanionReg/CompanionReg').CompanionReg;
