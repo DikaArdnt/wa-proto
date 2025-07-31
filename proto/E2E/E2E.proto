@@ -796,6 +796,7 @@ message Message {
         optional uint64 kindNegative = 4;
         optional uint64 kindPositive = 5;
         optional ReportKind kindReport = 6;
+        optional SideBySideSurveyMetadata sideBySideSurveyMetadata = 7;
         enum BotFeedbackKind {
             BOT_FEEDBACK_POSITIVE = 0;
             BOT_FEEDBACK_NEGATIVE_GENERIC = 1;
@@ -830,6 +831,20 @@ message Message {
         enum ReportKind {
             NONE = 0;
             GENERIC = 1;
+        }
+        message SideBySideSurveyMetadata {
+            optional string selectedRequestId = 1;
+            optional uint32 surveyId = 2;
+            optional string simonSessionFbid = 3;
+            optional string responseOtid = 4;
+            optional string responseTimestampMsString = 5;
+            optional bool isSelectedResponsePrimary = 6;
+            optional string messageIdToEdit = 7;
+            optional SideBySideSurveyAnalyticsData analyticsData = 8;
+            message SideBySideSurveyAnalyticsData {
+                optional string tessaEvent = 1;
+                optional string tessaSessionFbid = 2;
+            }
         }
     }
     message ButtonsMessage {

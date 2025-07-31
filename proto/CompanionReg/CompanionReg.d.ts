@@ -1031,8 +1031,8 @@ export namespace CompanionReg {
             /** HistorySyncConfig onDemandReady */
             onDemandReady?: (boolean|null);
 
-            /** HistorySyncConfig supportGuestChatHistory */
-            supportGuestChatHistory?: (boolean|null);
+            /** HistorySyncConfig supportGuestChat */
+            supportGuestChat?: (boolean|null);
         }
 
         /** Represents a HistorySyncConfig. */
@@ -1092,8 +1092,8 @@ export namespace CompanionReg {
             /** HistorySyncConfig onDemandReady. */
             public onDemandReady: boolean;
 
-            /** HistorySyncConfig supportGuestChatHistory. */
-            public supportGuestChatHistory: boolean;
+            /** HistorySyncConfig supportGuestChat. */
+            public supportGuestChat: boolean;
 
             /**
              * Creates a new HistorySyncConfig instance using the specified properties.

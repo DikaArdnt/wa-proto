@@ -9676,6 +9676,9 @@ export namespace E2E {
 
             /** BotFeedbackMessage kindReport */
             kindReport?: (E2E.Message.BotFeedbackMessage.ReportKind|null);
+
+            /** BotFeedbackMessage sideBySideSurveyMetadata */
+            sideBySideSurveyMetadata?: (E2E.Message.BotFeedbackMessage.ISideBySideSurveyMetadata|null);
         }
 
         /** Represents a BotFeedbackMessage. */
@@ -9704,6 +9707,9 @@ export namespace E2E {
 
             /** BotFeedbackMessage kindReport. */
             public kindReport: E2E.Message.BotFeedbackMessage.ReportKind;
+
+            /** BotFeedbackMessage sideBySideSurveyMetadata. */
+            public sideBySideSurveyMetadata?: (E2E.Message.BotFeedbackMessage.ISideBySideSurveyMetadata|null);
 
             /**
              * Creates a new BotFeedbackMessage instance using the specified properties.
@@ -9826,6 +9832,251 @@ export namespace E2E {
             enum ReportKind {
                 NONE = 0,
                 GENERIC = 1
+            }
+
+            /** Properties of a SideBySideSurveyMetadata. */
+            interface ISideBySideSurveyMetadata {
+
+                /** SideBySideSurveyMetadata selectedRequestId */
+                selectedRequestId?: (string|null);
+
+                /** SideBySideSurveyMetadata surveyId */
+                surveyId?: (number|null);
+
+                /** SideBySideSurveyMetadata simonSessionFbid */
+                simonSessionFbid?: (string|null);
+
+                /** SideBySideSurveyMetadata responseOtid */
+                responseOtid?: (string|null);
+
+                /** SideBySideSurveyMetadata responseTimestampMsString */
+                responseTimestampMsString?: (string|null);
+
+                /** SideBySideSurveyMetadata isSelectedResponsePrimary */
+                isSelectedResponsePrimary?: (boolean|null);
+
+                /** SideBySideSurveyMetadata messageIdToEdit */
+                messageIdToEdit?: (string|null);
+
+                /** SideBySideSurveyMetadata analyticsData */
+                analyticsData?: (E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.ISideBySideSurveyAnalyticsData|null);
+            }
+
+            /** Represents a SideBySideSurveyMetadata. */
+            class SideBySideSurveyMetadata implements ISideBySideSurveyMetadata {
+
+                /**
+                 * Constructs a new SideBySideSurveyMetadata.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: E2E.Message.BotFeedbackMessage.ISideBySideSurveyMetadata);
+
+                /** SideBySideSurveyMetadata selectedRequestId. */
+                public selectedRequestId: string;
+
+                /** SideBySideSurveyMetadata surveyId. */
+                public surveyId: number;
+
+                /** SideBySideSurveyMetadata simonSessionFbid. */
+                public simonSessionFbid: string;
+
+                /** SideBySideSurveyMetadata responseOtid. */
+                public responseOtid: string;
+
+                /** SideBySideSurveyMetadata responseTimestampMsString. */
+                public responseTimestampMsString: string;
+
+                /** SideBySideSurveyMetadata isSelectedResponsePrimary. */
+                public isSelectedResponsePrimary: boolean;
+
+                /** SideBySideSurveyMetadata messageIdToEdit. */
+                public messageIdToEdit: string;
+
+                /** SideBySideSurveyMetadata analyticsData. */
+                public analyticsData?: (E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.ISideBySideSurveyAnalyticsData|null);
+
+                /**
+                 * Creates a new SideBySideSurveyMetadata instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns SideBySideSurveyMetadata instance
+                 */
+                public static create(properties?: E2E.Message.BotFeedbackMessage.ISideBySideSurveyMetadata): E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata;
+
+                /**
+                 * Encodes the specified SideBySideSurveyMetadata message. Does not implicitly {@link E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.verify|verify} messages.
+                 * @param message SideBySideSurveyMetadata message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: E2E.Message.BotFeedbackMessage.ISideBySideSurveyMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified SideBySideSurveyMetadata message, length delimited. Does not implicitly {@link E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.verify|verify} messages.
+                 * @param message SideBySideSurveyMetadata message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: E2E.Message.BotFeedbackMessage.ISideBySideSurveyMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a SideBySideSurveyMetadata message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns SideBySideSurveyMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata;
+
+                /**
+                 * Decodes a SideBySideSurveyMetadata message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns SideBySideSurveyMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata;
+
+                /**
+                 * Verifies a SideBySideSurveyMetadata message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a SideBySideSurveyMetadata message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns SideBySideSurveyMetadata
+                 */
+                public static fromObject(object: { [k: string]: any }): E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata;
+
+                /**
+                 * Creates a plain object from a SideBySideSurveyMetadata message. Also converts values to other types if specified.
+                 * @param message SideBySideSurveyMetadata
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this SideBySideSurveyMetadata to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for SideBySideSurveyMetadata
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            namespace SideBySideSurveyMetadata {
+
+                /** Properties of a SideBySideSurveyAnalyticsData. */
+                interface ISideBySideSurveyAnalyticsData {
+
+                    /** SideBySideSurveyAnalyticsData tessaEvent */
+                    tessaEvent?: (string|null);
+
+                    /** SideBySideSurveyAnalyticsData tessaSessionFbid */
+                    tessaSessionFbid?: (string|null);
+                }
+
+                /** Represents a SideBySideSurveyAnalyticsData. */
+                class SideBySideSurveyAnalyticsData implements ISideBySideSurveyAnalyticsData {
+
+                    /**
+                     * Constructs a new SideBySideSurveyAnalyticsData.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.ISideBySideSurveyAnalyticsData);
+
+                    /** SideBySideSurveyAnalyticsData tessaEvent. */
+                    public tessaEvent: string;
+
+                    /** SideBySideSurveyAnalyticsData tessaSessionFbid. */
+                    public tessaSessionFbid: string;
+
+                    /**
+                     * Creates a new SideBySideSurveyAnalyticsData instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns SideBySideSurveyAnalyticsData instance
+                     */
+                    public static create(properties?: E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.ISideBySideSurveyAnalyticsData): E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData;
+
+                    /**
+                     * Encodes the specified SideBySideSurveyAnalyticsData message. Does not implicitly {@link E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData.verify|verify} messages.
+                     * @param message SideBySideSurveyAnalyticsData message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.ISideBySideSurveyAnalyticsData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified SideBySideSurveyAnalyticsData message, length delimited. Does not implicitly {@link E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData.verify|verify} messages.
+                     * @param message SideBySideSurveyAnalyticsData message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.ISideBySideSurveyAnalyticsData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a SideBySideSurveyAnalyticsData message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns SideBySideSurveyAnalyticsData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData;
+
+                    /**
+                     * Decodes a SideBySideSurveyAnalyticsData message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns SideBySideSurveyAnalyticsData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData;
+
+                    /**
+                     * Verifies a SideBySideSurveyAnalyticsData message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a SideBySideSurveyAnalyticsData message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns SideBySideSurveyAnalyticsData
+                     */
+                    public static fromObject(object: { [k: string]: any }): E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData;
+
+                    /**
+                     * Creates a plain object from a SideBySideSurveyAnalyticsData message. Also converts values to other types if specified.
+                     * @param message SideBySideSurveyAnalyticsData
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this SideBySideSurveyAnalyticsData to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for SideBySideSurveyAnalyticsData
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
             }
         }
 
@@ -33145,8 +33396,8 @@ export namespace CompanionReg {
             /** HistorySyncConfig onDemandReady */
             onDemandReady?: (boolean|null);
 
-            /** HistorySyncConfig supportGuestChatHistory */
-            supportGuestChatHistory?: (boolean|null);
+            /** HistorySyncConfig supportGuestChat */
+            supportGuestChat?: (boolean|null);
         }
 
         /** Represents a HistorySyncConfig. */
@@ -33206,8 +33457,8 @@ export namespace CompanionReg {
             /** HistorySyncConfig onDemandReady. */
             public onDemandReady: boolean;
 
-            /** HistorySyncConfig supportGuestChatHistory. */
-            public supportGuestChatHistory: boolean;
+            /** HistorySyncConfig supportGuestChat. */
+            public supportGuestChat: boolean;
 
             /**
              * Creates a new HistorySyncConfig instance using the specified properties.

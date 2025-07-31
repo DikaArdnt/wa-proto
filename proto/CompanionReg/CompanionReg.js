@@ -2654,7 +2654,7 @@ $root.CompanionReg = (function() {
              * @property {boolean|null} [supportMessageAssociation] HistorySyncConfig supportMessageAssociation
              * @property {boolean|null} [supportGroupHistory] HistorySyncConfig supportGroupHistory
              * @property {boolean|null} [onDemandReady] HistorySyncConfig onDemandReady
-             * @property {boolean|null} [supportGuestChatHistory] HistorySyncConfig supportGuestChatHistory
+             * @property {boolean|null} [supportGuestChat] HistorySyncConfig supportGuestChat
              */
 
             /**
@@ -2801,12 +2801,12 @@ $root.CompanionReg = (function() {
             HistorySyncConfig.prototype.onDemandReady = false;
 
             /**
-             * HistorySyncConfig supportGuestChatHistory.
-             * @member {boolean} supportGuestChatHistory
+             * HistorySyncConfig supportGuestChat.
+             * @member {boolean} supportGuestChat
              * @memberof CompanionReg.DeviceProps.HistorySyncConfig
              * @instance
              */
-            HistorySyncConfig.prototype.supportGuestChatHistory = false;
+            HistorySyncConfig.prototype.supportGuestChat = false;
 
             /**
              * Creates a new HistorySyncConfig instance using the specified properties.
@@ -2864,8 +2864,8 @@ $root.CompanionReg = (function() {
                     writer.uint32(/* id 15, wireType 0 =*/120).bool(message.supportGroupHistory);
                 if (message.onDemandReady != null && Object.hasOwnProperty.call(message, "onDemandReady"))
                     writer.uint32(/* id 16, wireType 0 =*/128).bool(message.onDemandReady);
-                if (message.supportGuestChatHistory != null && Object.hasOwnProperty.call(message, "supportGuestChatHistory"))
-                    writer.uint32(/* id 17, wireType 0 =*/136).bool(message.supportGuestChatHistory);
+                if (message.supportGuestChat != null && Object.hasOwnProperty.call(message, "supportGuestChat"))
+                    writer.uint32(/* id 17, wireType 0 =*/136).bool(message.supportGuestChat);
                 return writer;
             };
 
@@ -2967,7 +2967,7 @@ $root.CompanionReg = (function() {
                             break;
                         }
                     case 17: {
-                            message.supportGuestChatHistory = reader.bool();
+                            message.supportGuestChat = reader.bool();
                             break;
                         }
                     default:
@@ -3053,9 +3053,9 @@ $root.CompanionReg = (function() {
                 if (message.onDemandReady != null && message.hasOwnProperty("onDemandReady"))
                     if (typeof message.onDemandReady !== "boolean")
                         return "onDemandReady: boolean expected";
-                if (message.supportGuestChatHistory != null && message.hasOwnProperty("supportGuestChatHistory"))
-                    if (typeof message.supportGuestChatHistory !== "boolean")
-                        return "supportGuestChatHistory: boolean expected";
+                if (message.supportGuestChat != null && message.hasOwnProperty("supportGuestChat"))
+                    if (typeof message.supportGuestChat !== "boolean")
+                        return "supportGuestChat: boolean expected";
                 return null;
             };
 
@@ -3103,8 +3103,8 @@ $root.CompanionReg = (function() {
                     message.supportGroupHistory = Boolean(object.supportGroupHistory);
                 if (object.onDemandReady != null)
                     message.onDemandReady = Boolean(object.onDemandReady);
-                if (object.supportGuestChatHistory != null)
-                    message.supportGuestChatHistory = Boolean(object.supportGuestChatHistory);
+                if (object.supportGuestChat != null)
+                    message.supportGuestChat = Boolean(object.supportGuestChat);
                 return message;
             };
 
@@ -3138,7 +3138,7 @@ $root.CompanionReg = (function() {
                     object.supportMessageAssociation = false;
                     object.supportGroupHistory = false;
                     object.onDemandReady = false;
-                    object.supportGuestChatHistory = false;
+                    object.supportGuestChat = false;
                 }
                 if (message.fullSyncDaysLimit != null && message.hasOwnProperty("fullSyncDaysLimit"))
                     object.fullSyncDaysLimit = message.fullSyncDaysLimit;
@@ -3172,8 +3172,8 @@ $root.CompanionReg = (function() {
                     object.supportGroupHistory = message.supportGroupHistory;
                 if (message.onDemandReady != null && message.hasOwnProperty("onDemandReady"))
                     object.onDemandReady = message.onDemandReady;
-                if (message.supportGuestChatHistory != null && message.hasOwnProperty("supportGuestChatHistory"))
-                    object.supportGuestChatHistory = message.supportGuestChatHistory;
+                if (message.supportGuestChat != null && message.hasOwnProperty("supportGuestChat"))
+                    object.supportGuestChat = message.supportGuestChat;
                 return object;
             };
 

@@ -34666,6 +34666,7 @@ $root.E2E = (function() {
              * @property {number|Long|null} [kindNegative] BotFeedbackMessage kindNegative
              * @property {number|Long|null} [kindPositive] BotFeedbackMessage kindPositive
              * @property {E2E.Message.BotFeedbackMessage.ReportKind|null} [kindReport] BotFeedbackMessage kindReport
+             * @property {E2E.Message.BotFeedbackMessage.ISideBySideSurveyMetadata|null} [sideBySideSurveyMetadata] BotFeedbackMessage sideBySideSurveyMetadata
              */
 
             /**
@@ -34732,6 +34733,14 @@ $root.E2E = (function() {
             BotFeedbackMessage.prototype.kindReport = 0;
 
             /**
+             * BotFeedbackMessage sideBySideSurveyMetadata.
+             * @member {E2E.Message.BotFeedbackMessage.ISideBySideSurveyMetadata|null|undefined} sideBySideSurveyMetadata
+             * @memberof E2E.Message.BotFeedbackMessage
+             * @instance
+             */
+            BotFeedbackMessage.prototype.sideBySideSurveyMetadata = null;
+
+            /**
              * Creates a new BotFeedbackMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.BotFeedbackMessage
@@ -34767,6 +34776,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 5, wireType 0 =*/40).uint64(message.kindPositive);
                 if (message.kindReport != null && Object.hasOwnProperty.call(message, "kindReport"))
                     writer.uint32(/* id 6, wireType 0 =*/48).int32(message.kindReport);
+                if (message.sideBySideSurveyMetadata != null && Object.hasOwnProperty.call(message, "sideBySideSurveyMetadata"))
+                    $root.E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.encode(message.sideBySideSurveyMetadata, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
                 return writer;
             };
 
@@ -34825,6 +34836,10 @@ $root.E2E = (function() {
                         }
                     case 6: {
                             message.kindReport = reader.int32();
+                            break;
+                        }
+                    case 7: {
+                            message.sideBySideSurveyMetadata = $root.E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -34905,6 +34920,11 @@ $root.E2E = (function() {
                     case 1:
                         break;
                     }
+                if (message.sideBySideSurveyMetadata != null && message.hasOwnProperty("sideBySideSurveyMetadata")) {
+                    var error = $root.E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.verify(message.sideBySideSurveyMetadata);
+                    if (error)
+                        return "sideBySideSurveyMetadata." + error;
+                }
                 return null;
             };
 
@@ -35029,6 +35049,11 @@ $root.E2E = (function() {
                     message.kindReport = 1;
                     break;
                 }
+                if (object.sideBySideSurveyMetadata != null) {
+                    if (typeof object.sideBySideSurveyMetadata !== "object")
+                        throw TypeError(".E2E.Message.BotFeedbackMessage.sideBySideSurveyMetadata: object expected");
+                    message.sideBySideSurveyMetadata = $root.E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.fromObject(object.sideBySideSurveyMetadata);
+                }
                 return message;
             };
 
@@ -35060,6 +35085,7 @@ $root.E2E = (function() {
                     } else
                         object.kindPositive = options.longs === String ? "0" : 0;
                     object.kindReport = options.enums === String ? "NONE" : 0;
+                    object.sideBySideSurveyMetadata = null;
                 }
                 if (message.messageKey != null && message.hasOwnProperty("messageKey"))
                     object.messageKey = $root.Protocol.MessageKey.toObject(message.messageKey, options);
@@ -35079,6 +35105,8 @@ $root.E2E = (function() {
                         object.kindPositive = options.longs === String ? $util.Long.prototype.toString.call(message.kindPositive) : options.longs === Number ? new $util.LongBits(message.kindPositive.low >>> 0, message.kindPositive.high >>> 0).toNumber(true) : message.kindPositive;
                 if (message.kindReport != null && message.hasOwnProperty("kindReport"))
                     object.kindReport = options.enums === String ? $root.E2E.Message.BotFeedbackMessage.ReportKind[message.kindReport] === undefined ? message.kindReport : $root.E2E.Message.BotFeedbackMessage.ReportKind[message.kindReport] : message.kindReport;
+                if (message.sideBySideSurveyMetadata != null && message.hasOwnProperty("sideBySideSurveyMetadata"))
+                    object.sideBySideSurveyMetadata = $root.E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.toObject(message.sideBySideSurveyMetadata, options);
                 return object;
             };
 
@@ -35200,6 +35228,607 @@ $root.E2E = (function() {
                 values[valuesById[0] = "NONE"] = 0;
                 values[valuesById[1] = "GENERIC"] = 1;
                 return values;
+            })();
+
+            BotFeedbackMessage.SideBySideSurveyMetadata = (function() {
+
+                /**
+                 * Properties of a SideBySideSurveyMetadata.
+                 * @memberof E2E.Message.BotFeedbackMessage
+                 * @interface ISideBySideSurveyMetadata
+                 * @property {string|null} [selectedRequestId] SideBySideSurveyMetadata selectedRequestId
+                 * @property {number|null} [surveyId] SideBySideSurveyMetadata surveyId
+                 * @property {string|null} [simonSessionFbid] SideBySideSurveyMetadata simonSessionFbid
+                 * @property {string|null} [responseOtid] SideBySideSurveyMetadata responseOtid
+                 * @property {string|null} [responseTimestampMsString] SideBySideSurveyMetadata responseTimestampMsString
+                 * @property {boolean|null} [isSelectedResponsePrimary] SideBySideSurveyMetadata isSelectedResponsePrimary
+                 * @property {string|null} [messageIdToEdit] SideBySideSurveyMetadata messageIdToEdit
+                 * @property {E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.ISideBySideSurveyAnalyticsData|null} [analyticsData] SideBySideSurveyMetadata analyticsData
+                 */
+
+                /**
+                 * Constructs a new SideBySideSurveyMetadata.
+                 * @memberof E2E.Message.BotFeedbackMessage
+                 * @classdesc Represents a SideBySideSurveyMetadata.
+                 * @implements ISideBySideSurveyMetadata
+                 * @constructor
+                 * @param {E2E.Message.BotFeedbackMessage.ISideBySideSurveyMetadata=} [properties] Properties to set
+                 */
+                function SideBySideSurveyMetadata(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * SideBySideSurveyMetadata selectedRequestId.
+                 * @member {string} selectedRequestId
+                 * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata
+                 * @instance
+                 */
+                SideBySideSurveyMetadata.prototype.selectedRequestId = "";
+
+                /**
+                 * SideBySideSurveyMetadata surveyId.
+                 * @member {number} surveyId
+                 * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata
+                 * @instance
+                 */
+                SideBySideSurveyMetadata.prototype.surveyId = 0;
+
+                /**
+                 * SideBySideSurveyMetadata simonSessionFbid.
+                 * @member {string} simonSessionFbid
+                 * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata
+                 * @instance
+                 */
+                SideBySideSurveyMetadata.prototype.simonSessionFbid = "";
+
+                /**
+                 * SideBySideSurveyMetadata responseOtid.
+                 * @member {string} responseOtid
+                 * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata
+                 * @instance
+                 */
+                SideBySideSurveyMetadata.prototype.responseOtid = "";
+
+                /**
+                 * SideBySideSurveyMetadata responseTimestampMsString.
+                 * @member {string} responseTimestampMsString
+                 * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata
+                 * @instance
+                 */
+                SideBySideSurveyMetadata.prototype.responseTimestampMsString = "";
+
+                /**
+                 * SideBySideSurveyMetadata isSelectedResponsePrimary.
+                 * @member {boolean} isSelectedResponsePrimary
+                 * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata
+                 * @instance
+                 */
+                SideBySideSurveyMetadata.prototype.isSelectedResponsePrimary = false;
+
+                /**
+                 * SideBySideSurveyMetadata messageIdToEdit.
+                 * @member {string} messageIdToEdit
+                 * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata
+                 * @instance
+                 */
+                SideBySideSurveyMetadata.prototype.messageIdToEdit = "";
+
+                /**
+                 * SideBySideSurveyMetadata analyticsData.
+                 * @member {E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.ISideBySideSurveyAnalyticsData|null|undefined} analyticsData
+                 * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata
+                 * @instance
+                 */
+                SideBySideSurveyMetadata.prototype.analyticsData = null;
+
+                /**
+                 * Creates a new SideBySideSurveyMetadata instance using the specified properties.
+                 * @function create
+                 * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata
+                 * @static
+                 * @param {E2E.Message.BotFeedbackMessage.ISideBySideSurveyMetadata=} [properties] Properties to set
+                 * @returns {E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata} SideBySideSurveyMetadata instance
+                 */
+                SideBySideSurveyMetadata.create = function create(properties) {
+                    return new SideBySideSurveyMetadata(properties);
+                };
+
+                /**
+                 * Encodes the specified SideBySideSurveyMetadata message. Does not implicitly {@link E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.verify|verify} messages.
+                 * @function encode
+                 * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata
+                 * @static
+                 * @param {E2E.Message.BotFeedbackMessage.ISideBySideSurveyMetadata} message SideBySideSurveyMetadata message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                SideBySideSurveyMetadata.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.selectedRequestId != null && Object.hasOwnProperty.call(message, "selectedRequestId"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.selectedRequestId);
+                    if (message.surveyId != null && Object.hasOwnProperty.call(message, "surveyId"))
+                        writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.surveyId);
+                    if (message.simonSessionFbid != null && Object.hasOwnProperty.call(message, "simonSessionFbid"))
+                        writer.uint32(/* id 3, wireType 2 =*/26).string(message.simonSessionFbid);
+                    if (message.responseOtid != null && Object.hasOwnProperty.call(message, "responseOtid"))
+                        writer.uint32(/* id 4, wireType 2 =*/34).string(message.responseOtid);
+                    if (message.responseTimestampMsString != null && Object.hasOwnProperty.call(message, "responseTimestampMsString"))
+                        writer.uint32(/* id 5, wireType 2 =*/42).string(message.responseTimestampMsString);
+                    if (message.isSelectedResponsePrimary != null && Object.hasOwnProperty.call(message, "isSelectedResponsePrimary"))
+                        writer.uint32(/* id 6, wireType 0 =*/48).bool(message.isSelectedResponsePrimary);
+                    if (message.messageIdToEdit != null && Object.hasOwnProperty.call(message, "messageIdToEdit"))
+                        writer.uint32(/* id 7, wireType 2 =*/58).string(message.messageIdToEdit);
+                    if (message.analyticsData != null && Object.hasOwnProperty.call(message, "analyticsData"))
+                        $root.E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData.encode(message.analyticsData, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified SideBySideSurveyMetadata message, length delimited. Does not implicitly {@link E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata
+                 * @static
+                 * @param {E2E.Message.BotFeedbackMessage.ISideBySideSurveyMetadata} message SideBySideSurveyMetadata message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                SideBySideSurveyMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a SideBySideSurveyMetadata message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata} SideBySideSurveyMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                SideBySideSurveyMetadata.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.selectedRequestId = reader.string();
+                                break;
+                            }
+                        case 2: {
+                                message.surveyId = reader.uint32();
+                                break;
+                            }
+                        case 3: {
+                                message.simonSessionFbid = reader.string();
+                                break;
+                            }
+                        case 4: {
+                                message.responseOtid = reader.string();
+                                break;
+                            }
+                        case 5: {
+                                message.responseTimestampMsString = reader.string();
+                                break;
+                            }
+                        case 6: {
+                                message.isSelectedResponsePrimary = reader.bool();
+                                break;
+                            }
+                        case 7: {
+                                message.messageIdToEdit = reader.string();
+                                break;
+                            }
+                        case 8: {
+                                message.analyticsData = $root.E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData.decode(reader, reader.uint32());
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a SideBySideSurveyMetadata message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata} SideBySideSurveyMetadata
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                SideBySideSurveyMetadata.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a SideBySideSurveyMetadata message.
+                 * @function verify
+                 * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                SideBySideSurveyMetadata.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.selectedRequestId != null && message.hasOwnProperty("selectedRequestId"))
+                        if (!$util.isString(message.selectedRequestId))
+                            return "selectedRequestId: string expected";
+                    if (message.surveyId != null && message.hasOwnProperty("surveyId"))
+                        if (!$util.isInteger(message.surveyId))
+                            return "surveyId: integer expected";
+                    if (message.simonSessionFbid != null && message.hasOwnProperty("simonSessionFbid"))
+                        if (!$util.isString(message.simonSessionFbid))
+                            return "simonSessionFbid: string expected";
+                    if (message.responseOtid != null && message.hasOwnProperty("responseOtid"))
+                        if (!$util.isString(message.responseOtid))
+                            return "responseOtid: string expected";
+                    if (message.responseTimestampMsString != null && message.hasOwnProperty("responseTimestampMsString"))
+                        if (!$util.isString(message.responseTimestampMsString))
+                            return "responseTimestampMsString: string expected";
+                    if (message.isSelectedResponsePrimary != null && message.hasOwnProperty("isSelectedResponsePrimary"))
+                        if (typeof message.isSelectedResponsePrimary !== "boolean")
+                            return "isSelectedResponsePrimary: boolean expected";
+                    if (message.messageIdToEdit != null && message.hasOwnProperty("messageIdToEdit"))
+                        if (!$util.isString(message.messageIdToEdit))
+                            return "messageIdToEdit: string expected";
+                    if (message.analyticsData != null && message.hasOwnProperty("analyticsData")) {
+                        var error = $root.E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData.verify(message.analyticsData);
+                        if (error)
+                            return "analyticsData." + error;
+                    }
+                    return null;
+                };
+
+                /**
+                 * Creates a SideBySideSurveyMetadata message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata} SideBySideSurveyMetadata
+                 */
+                SideBySideSurveyMetadata.fromObject = function fromObject(object) {
+                    if (object instanceof $root.E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata)
+                        return object;
+                    var message = new $root.E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata();
+                    if (object.selectedRequestId != null)
+                        message.selectedRequestId = String(object.selectedRequestId);
+                    if (object.surveyId != null)
+                        message.surveyId = object.surveyId >>> 0;
+                    if (object.simonSessionFbid != null)
+                        message.simonSessionFbid = String(object.simonSessionFbid);
+                    if (object.responseOtid != null)
+                        message.responseOtid = String(object.responseOtid);
+                    if (object.responseTimestampMsString != null)
+                        message.responseTimestampMsString = String(object.responseTimestampMsString);
+                    if (object.isSelectedResponsePrimary != null)
+                        message.isSelectedResponsePrimary = Boolean(object.isSelectedResponsePrimary);
+                    if (object.messageIdToEdit != null)
+                        message.messageIdToEdit = String(object.messageIdToEdit);
+                    if (object.analyticsData != null) {
+                        if (typeof object.analyticsData !== "object")
+                            throw TypeError(".E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.analyticsData: object expected");
+                        message.analyticsData = $root.E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData.fromObject(object.analyticsData);
+                    }
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a SideBySideSurveyMetadata message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata
+                 * @static
+                 * @param {E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata} message SideBySideSurveyMetadata
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                SideBySideSurveyMetadata.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        object.selectedRequestId = "";
+                        object.surveyId = 0;
+                        object.simonSessionFbid = "";
+                        object.responseOtid = "";
+                        object.responseTimestampMsString = "";
+                        object.isSelectedResponsePrimary = false;
+                        object.messageIdToEdit = "";
+                        object.analyticsData = null;
+                    }
+                    if (message.selectedRequestId != null && message.hasOwnProperty("selectedRequestId"))
+                        object.selectedRequestId = message.selectedRequestId;
+                    if (message.surveyId != null && message.hasOwnProperty("surveyId"))
+                        object.surveyId = message.surveyId;
+                    if (message.simonSessionFbid != null && message.hasOwnProperty("simonSessionFbid"))
+                        object.simonSessionFbid = message.simonSessionFbid;
+                    if (message.responseOtid != null && message.hasOwnProperty("responseOtid"))
+                        object.responseOtid = message.responseOtid;
+                    if (message.responseTimestampMsString != null && message.hasOwnProperty("responseTimestampMsString"))
+                        object.responseTimestampMsString = message.responseTimestampMsString;
+                    if (message.isSelectedResponsePrimary != null && message.hasOwnProperty("isSelectedResponsePrimary"))
+                        object.isSelectedResponsePrimary = message.isSelectedResponsePrimary;
+                    if (message.messageIdToEdit != null && message.hasOwnProperty("messageIdToEdit"))
+                        object.messageIdToEdit = message.messageIdToEdit;
+                    if (message.analyticsData != null && message.hasOwnProperty("analyticsData"))
+                        object.analyticsData = $root.E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData.toObject(message.analyticsData, options);
+                    return object;
+                };
+
+                /**
+                 * Converts this SideBySideSurveyMetadata to JSON.
+                 * @function toJSON
+                 * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                SideBySideSurveyMetadata.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for SideBySideSurveyMetadata
+                 * @function getTypeUrl
+                 * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                SideBySideSurveyMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata";
+                };
+
+                SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData = (function() {
+
+                    /**
+                     * Properties of a SideBySideSurveyAnalyticsData.
+                     * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata
+                     * @interface ISideBySideSurveyAnalyticsData
+                     * @property {string|null} [tessaEvent] SideBySideSurveyAnalyticsData tessaEvent
+                     * @property {string|null} [tessaSessionFbid] SideBySideSurveyAnalyticsData tessaSessionFbid
+                     */
+
+                    /**
+                     * Constructs a new SideBySideSurveyAnalyticsData.
+                     * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata
+                     * @classdesc Represents a SideBySideSurveyAnalyticsData.
+                     * @implements ISideBySideSurveyAnalyticsData
+                     * @constructor
+                     * @param {E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.ISideBySideSurveyAnalyticsData=} [properties] Properties to set
+                     */
+                    function SideBySideSurveyAnalyticsData(properties) {
+                        if (properties)
+                            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                if (properties[keys[i]] != null)
+                                    this[keys[i]] = properties[keys[i]];
+                    }
+
+                    /**
+                     * SideBySideSurveyAnalyticsData tessaEvent.
+                     * @member {string} tessaEvent
+                     * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData
+                     * @instance
+                     */
+                    SideBySideSurveyAnalyticsData.prototype.tessaEvent = "";
+
+                    /**
+                     * SideBySideSurveyAnalyticsData tessaSessionFbid.
+                     * @member {string} tessaSessionFbid
+                     * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData
+                     * @instance
+                     */
+                    SideBySideSurveyAnalyticsData.prototype.tessaSessionFbid = "";
+
+                    /**
+                     * Creates a new SideBySideSurveyAnalyticsData instance using the specified properties.
+                     * @function create
+                     * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData
+                     * @static
+                     * @param {E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.ISideBySideSurveyAnalyticsData=} [properties] Properties to set
+                     * @returns {E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData} SideBySideSurveyAnalyticsData instance
+                     */
+                    SideBySideSurveyAnalyticsData.create = function create(properties) {
+                        return new SideBySideSurveyAnalyticsData(properties);
+                    };
+
+                    /**
+                     * Encodes the specified SideBySideSurveyAnalyticsData message. Does not implicitly {@link E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData.verify|verify} messages.
+                     * @function encode
+                     * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData
+                     * @static
+                     * @param {E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.ISideBySideSurveyAnalyticsData} message SideBySideSurveyAnalyticsData message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    SideBySideSurveyAnalyticsData.encode = function encode(message, writer) {
+                        if (!writer)
+                            writer = $Writer.create();
+                        if (message.tessaEvent != null && Object.hasOwnProperty.call(message, "tessaEvent"))
+                            writer.uint32(/* id 1, wireType 2 =*/10).string(message.tessaEvent);
+                        if (message.tessaSessionFbid != null && Object.hasOwnProperty.call(message, "tessaSessionFbid"))
+                            writer.uint32(/* id 2, wireType 2 =*/18).string(message.tessaSessionFbid);
+                        return writer;
+                    };
+
+                    /**
+                     * Encodes the specified SideBySideSurveyAnalyticsData message, length delimited. Does not implicitly {@link E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData.verify|verify} messages.
+                     * @function encodeDelimited
+                     * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData
+                     * @static
+                     * @param {E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.ISideBySideSurveyAnalyticsData} message SideBySideSurveyAnalyticsData message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    SideBySideSurveyAnalyticsData.encodeDelimited = function encodeDelimited(message, writer) {
+                        return this.encode(message, writer).ldelim();
+                    };
+
+                    /**
+                     * Decodes a SideBySideSurveyAnalyticsData message from the specified reader or buffer.
+                     * @function decode
+                     * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @param {number} [length] Message length if known beforehand
+                     * @returns {E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData} SideBySideSurveyAnalyticsData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    SideBySideSurveyAnalyticsData.decode = function decode(reader, length, error) {
+                        if (!(reader instanceof $Reader))
+                            reader = $Reader.create(reader);
+                        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData();
+                        while (reader.pos < end) {
+                            var tag = reader.uint32();
+                            if (tag === error)
+                                break;
+                            switch (tag >>> 3) {
+                            case 1: {
+                                    message.tessaEvent = reader.string();
+                                    break;
+                                }
+                            case 2: {
+                                    message.tessaSessionFbid = reader.string();
+                                    break;
+                                }
+                            default:
+                                reader.skipType(tag & 7);
+                                break;
+                            }
+                        }
+                        return message;
+                    };
+
+                    /**
+                     * Decodes a SideBySideSurveyAnalyticsData message from the specified reader or buffer, length delimited.
+                     * @function decodeDelimited
+                     * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @returns {E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData} SideBySideSurveyAnalyticsData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    SideBySideSurveyAnalyticsData.decodeDelimited = function decodeDelimited(reader) {
+                        if (!(reader instanceof $Reader))
+                            reader = new $Reader(reader);
+                        return this.decode(reader, reader.uint32());
+                    };
+
+                    /**
+                     * Verifies a SideBySideSurveyAnalyticsData message.
+                     * @function verify
+                     * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData
+                     * @static
+                     * @param {Object.<string,*>} message Plain object to verify
+                     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                     */
+                    SideBySideSurveyAnalyticsData.verify = function verify(message) {
+                        if (typeof message !== "object" || message === null)
+                            return "object expected";
+                        if (message.tessaEvent != null && message.hasOwnProperty("tessaEvent"))
+                            if (!$util.isString(message.tessaEvent))
+                                return "tessaEvent: string expected";
+                        if (message.tessaSessionFbid != null && message.hasOwnProperty("tessaSessionFbid"))
+                            if (!$util.isString(message.tessaSessionFbid))
+                                return "tessaSessionFbid: string expected";
+                        return null;
+                    };
+
+                    /**
+                     * Creates a SideBySideSurveyAnalyticsData message from a plain object. Also converts values to their respective internal types.
+                     * @function fromObject
+                     * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData
+                     * @static
+                     * @param {Object.<string,*>} object Plain object
+                     * @returns {E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData} SideBySideSurveyAnalyticsData
+                     */
+                    SideBySideSurveyAnalyticsData.fromObject = function fromObject(object) {
+                        if (object instanceof $root.E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData)
+                            return object;
+                        var message = new $root.E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData();
+                        if (object.tessaEvent != null)
+                            message.tessaEvent = String(object.tessaEvent);
+                        if (object.tessaSessionFbid != null)
+                            message.tessaSessionFbid = String(object.tessaSessionFbid);
+                        return message;
+                    };
+
+                    /**
+                     * Creates a plain object from a SideBySideSurveyAnalyticsData message. Also converts values to other types if specified.
+                     * @function toObject
+                     * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData
+                     * @static
+                     * @param {E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData} message SideBySideSurveyAnalyticsData
+                     * @param {$protobuf.IConversionOptions} [options] Conversion options
+                     * @returns {Object.<string,*>} Plain object
+                     */
+                    SideBySideSurveyAnalyticsData.toObject = function toObject(message, options) {
+                        if (!options)
+                            options = {};
+                        var object = {};
+                        if (options.defaults) {
+                            object.tessaEvent = "";
+                            object.tessaSessionFbid = "";
+                        }
+                        if (message.tessaEvent != null && message.hasOwnProperty("tessaEvent"))
+                            object.tessaEvent = message.tessaEvent;
+                        if (message.tessaSessionFbid != null && message.hasOwnProperty("tessaSessionFbid"))
+                            object.tessaSessionFbid = message.tessaSessionFbid;
+                        return object;
+                    };
+
+                    /**
+                     * Converts this SideBySideSurveyAnalyticsData to JSON.
+                     * @function toJSON
+                     * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData
+                     * @instance
+                     * @returns {Object.<string,*>} JSON object
+                     */
+                    SideBySideSurveyAnalyticsData.prototype.toJSON = function toJSON() {
+                        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                    };
+
+                    /**
+                     * Gets the default type url for SideBySideSurveyAnalyticsData
+                     * @function getTypeUrl
+                     * @memberof E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData
+                     * @static
+                     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns {string} The default type url
+                     */
+                    SideBySideSurveyAnalyticsData.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        if (typeUrlPrefix === undefined) {
+                            typeUrlPrefix = "type.googleapis.com";
+                        }
+                        return typeUrlPrefix + "/E2E.Message.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData";
+                    };
+
+                    return SideBySideSurveyAnalyticsData;
+                })();
+
+                return SideBySideSurveyMetadata;
             })();
 
             return BotFeedbackMessage;
@@ -98182,7 +98811,7 @@ $root.CompanionReg = (function() {
              * @property {boolean|null} [supportMessageAssociation] HistorySyncConfig supportMessageAssociation
              * @property {boolean|null} [supportGroupHistory] HistorySyncConfig supportGroupHistory
              * @property {boolean|null} [onDemandReady] HistorySyncConfig onDemandReady
-             * @property {boolean|null} [supportGuestChatHistory] HistorySyncConfig supportGuestChatHistory
+             * @property {boolean|null} [supportGuestChat] HistorySyncConfig supportGuestChat
              */
 
             /**
@@ -98329,12 +98958,12 @@ $root.CompanionReg = (function() {
             HistorySyncConfig.prototype.onDemandReady = false;
 
             /**
-             * HistorySyncConfig supportGuestChatHistory.
-             * @member {boolean} supportGuestChatHistory
+             * HistorySyncConfig supportGuestChat.
+             * @member {boolean} supportGuestChat
              * @memberof CompanionReg.DeviceProps.HistorySyncConfig
              * @instance
              */
-            HistorySyncConfig.prototype.supportGuestChatHistory = false;
+            HistorySyncConfig.prototype.supportGuestChat = false;
 
             /**
              * Creates a new HistorySyncConfig instance using the specified properties.
@@ -98392,8 +99021,8 @@ $root.CompanionReg = (function() {
                     writer.uint32(/* id 15, wireType 0 =*/120).bool(message.supportGroupHistory);
                 if (message.onDemandReady != null && Object.hasOwnProperty.call(message, "onDemandReady"))
                     writer.uint32(/* id 16, wireType 0 =*/128).bool(message.onDemandReady);
-                if (message.supportGuestChatHistory != null && Object.hasOwnProperty.call(message, "supportGuestChatHistory"))
-                    writer.uint32(/* id 17, wireType 0 =*/136).bool(message.supportGuestChatHistory);
+                if (message.supportGuestChat != null && Object.hasOwnProperty.call(message, "supportGuestChat"))
+                    writer.uint32(/* id 17, wireType 0 =*/136).bool(message.supportGuestChat);
                 return writer;
             };
 
@@ -98495,7 +99124,7 @@ $root.CompanionReg = (function() {
                             break;
                         }
                     case 17: {
-                            message.supportGuestChatHistory = reader.bool();
+                            message.supportGuestChat = reader.bool();
                             break;
                         }
                     default:
@@ -98581,9 +99210,9 @@ $root.CompanionReg = (function() {
                 if (message.onDemandReady != null && message.hasOwnProperty("onDemandReady"))
                     if (typeof message.onDemandReady !== "boolean")
                         return "onDemandReady: boolean expected";
-                if (message.supportGuestChatHistory != null && message.hasOwnProperty("supportGuestChatHistory"))
-                    if (typeof message.supportGuestChatHistory !== "boolean")
-                        return "supportGuestChatHistory: boolean expected";
+                if (message.supportGuestChat != null && message.hasOwnProperty("supportGuestChat"))
+                    if (typeof message.supportGuestChat !== "boolean")
+                        return "supportGuestChat: boolean expected";
                 return null;
             };
 
@@ -98631,8 +99260,8 @@ $root.CompanionReg = (function() {
                     message.supportGroupHistory = Boolean(object.supportGroupHistory);
                 if (object.onDemandReady != null)
                     message.onDemandReady = Boolean(object.onDemandReady);
-                if (object.supportGuestChatHistory != null)
-                    message.supportGuestChatHistory = Boolean(object.supportGuestChatHistory);
+                if (object.supportGuestChat != null)
+                    message.supportGuestChat = Boolean(object.supportGuestChat);
                 return message;
             };
 
@@ -98666,7 +99295,7 @@ $root.CompanionReg = (function() {
                     object.supportMessageAssociation = false;
                     object.supportGroupHistory = false;
                     object.onDemandReady = false;
-                    object.supportGuestChatHistory = false;
+                    object.supportGuestChat = false;
                 }
                 if (message.fullSyncDaysLimit != null && message.hasOwnProperty("fullSyncDaysLimit"))
                     object.fullSyncDaysLimit = message.fullSyncDaysLimit;
@@ -98700,8 +99329,8 @@ $root.CompanionReg = (function() {
                     object.supportGroupHistory = message.supportGroupHistory;
                 if (message.onDemandReady != null && message.hasOwnProperty("onDemandReady"))
                     object.onDemandReady = message.onDemandReady;
-                if (message.supportGuestChatHistory != null && message.hasOwnProperty("supportGuestChatHistory"))
-                    object.supportGuestChatHistory = message.supportGuestChatHistory;
+                if (message.supportGuestChat != null && message.hasOwnProperty("supportGuestChat"))
+                    object.supportGuestChat = message.supportGuestChat;
                 return object;
             };
 
