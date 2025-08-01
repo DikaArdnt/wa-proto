@@ -7677,6 +7677,7 @@ $root.BotMetadata = (function() {
                 case 28:
                 case 29:
                 case 30:
+                case 31:
                     break;
                 }
             if (message.threadOrigin != null && message.hasOwnProperty("threadOrigin"))
@@ -7833,6 +7834,10 @@ $root.BotMetadata = (function() {
             case "INVOKE_META_AI_GROUP":
             case 30:
                 message.destinationEntryPoint = 30;
+                break;
+            case "META_AI_FORWARD":
+            case 31:
+                message.destinationEntryPoint = 31;
                 break;
             }
             switch (object.threadOrigin) {
@@ -11965,6 +11970,7 @@ $root.BotMetadata = (function() {
      * @property {number} ASK_META_AI_CONTEXT_MENU_GROUP=28 ASK_META_AI_CONTEXT_MENU_GROUP value
      * @property {number} INVOKE_META_AI_1ON1=29 INVOKE_META_AI_1ON1 value
      * @property {number} INVOKE_META_AI_GROUP=30 INVOKE_META_AI_GROUP value
+     * @property {number} META_AI_FORWARD=31 META_AI_FORWARD value
      */
     BotMetadata.BotMetricsEntryPoint = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -11998,6 +12004,7 @@ $root.BotMetadata = (function() {
         values[valuesById[28] = "ASK_META_AI_CONTEXT_MENU_GROUP"] = 28;
         values[valuesById[29] = "INVOKE_META_AI_1ON1"] = 29;
         values[valuesById[30] = "INVOKE_META_AI_GROUP"] = 30;
+        values[valuesById[31] = "META_AI_FORWARD"] = 31;
         return values;
     })();
 

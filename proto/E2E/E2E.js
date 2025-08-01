@@ -21167,6 +21167,7 @@ $root.E2E = (function() {
          * @property {E2E.Message.IFutureProofMessage|null} [groupStatusMessageV2] Message groupStatusMessageV2
          * @property {E2E.Message.IFutureProofMessage|null} [botForwardedMessage] Message botForwardedMessage
          * @property {E2E.Message.IStatusQuestionAnswerMessage|null} [statusQuestionAnswerMessage] Message statusQuestionAnswerMessage
+         * @property {E2E.Message.IFutureProofMessage|null} [questionReplyMessage] Message questionReplyMessage
          * @property {E2E.Message.IQuestionResponseMessage|null} [questionResponseMessage] Message questionResponseMessage
          */
 
@@ -21898,6 +21899,14 @@ $root.E2E = (function() {
         Message.prototype.statusQuestionAnswerMessage = null;
 
         /**
+         * Message questionReplyMessage.
+         * @member {E2E.Message.IFutureProofMessage|null|undefined} questionReplyMessage
+         * @memberof E2E.Message
+         * @instance
+         */
+        Message.prototype.questionReplyMessage = null;
+
+        /**
          * Message questionResponseMessage.
          * @member {E2E.Message.IQuestionResponseMessage|null|undefined} questionResponseMessage
          * @memberof E2E.Message
@@ -22107,6 +22116,8 @@ $root.E2E = (function() {
                 $root.E2E.Message.FutureProofMessage.encode(message.botForwardedMessage, writer.uint32(/* id 104, wireType 2 =*/834).fork()).ldelim();
             if (message.statusQuestionAnswerMessage != null && Object.hasOwnProperty.call(message, "statusQuestionAnswerMessage"))
                 $root.E2E.Message.StatusQuestionAnswerMessage.encode(message.statusQuestionAnswerMessage, writer.uint32(/* id 105, wireType 2 =*/842).fork()).ldelim();
+            if (message.questionReplyMessage != null && Object.hasOwnProperty.call(message, "questionReplyMessage"))
+                $root.E2E.Message.FutureProofMessage.encode(message.questionReplyMessage, writer.uint32(/* id 106, wireType 2 =*/850).fork()).ldelim();
             if (message.questionResponseMessage != null && Object.hasOwnProperty.call(message, "questionResponseMessage"))
                 $root.E2E.Message.QuestionResponseMessage.encode(message.questionResponseMessage, writer.uint32(/* id 107, wireType 2 =*/858).fork()).ldelim();
             return writer;
@@ -22499,6 +22510,10 @@ $root.E2E = (function() {
                     }
                 case 105: {
                         message.statusQuestionAnswerMessage = $root.E2E.Message.StatusQuestionAnswerMessage.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 106: {
+                        message.questionReplyMessage = $root.E2E.Message.FutureProofMessage.decode(reader, reader.uint32());
                         break;
                     }
                 case 107: {
@@ -22983,6 +22998,11 @@ $root.E2E = (function() {
                 if (error)
                     return "statusQuestionAnswerMessage." + error;
             }
+            if (message.questionReplyMessage != null && message.hasOwnProperty("questionReplyMessage")) {
+                var error = $root.E2E.Message.FutureProofMessage.verify(message.questionReplyMessage);
+                if (error)
+                    return "questionReplyMessage." + error;
+            }
             if (message.questionResponseMessage != null && message.hasOwnProperty("questionResponseMessage")) {
                 var error = $root.E2E.Message.QuestionResponseMessage.verify(message.questionResponseMessage);
                 if (error)
@@ -23445,6 +23465,11 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.Message.statusQuestionAnswerMessage: object expected");
                 message.statusQuestionAnswerMessage = $root.E2E.Message.StatusQuestionAnswerMessage.fromObject(object.statusQuestionAnswerMessage);
             }
+            if (object.questionReplyMessage != null) {
+                if (typeof object.questionReplyMessage !== "object")
+                    throw TypeError(".E2E.Message.questionReplyMessage: object expected");
+                message.questionReplyMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.questionReplyMessage);
+            }
             if (object.questionResponseMessage != null) {
                 if (typeof object.questionResponseMessage !== "object")
                     throw TypeError(".E2E.Message.questionResponseMessage: object expected");
@@ -23556,6 +23581,7 @@ $root.E2E = (function() {
                 object.groupStatusMessageV2 = null;
                 object.botForwardedMessage = null;
                 object.statusQuestionAnswerMessage = null;
+                object.questionReplyMessage = null;
                 object.questionResponseMessage = null;
             }
             if (message.conversation != null && message.hasOwnProperty("conversation"))
@@ -23736,6 +23762,8 @@ $root.E2E = (function() {
                 object.botForwardedMessage = $root.E2E.Message.FutureProofMessage.toObject(message.botForwardedMessage, options);
             if (message.statusQuestionAnswerMessage != null && message.hasOwnProperty("statusQuestionAnswerMessage"))
                 object.statusQuestionAnswerMessage = $root.E2E.Message.StatusQuestionAnswerMessage.toObject(message.statusQuestionAnswerMessage, options);
+            if (message.questionReplyMessage != null && message.hasOwnProperty("questionReplyMessage"))
+                object.questionReplyMessage = $root.E2E.Message.FutureProofMessage.toObject(message.questionReplyMessage, options);
             if (message.questionResponseMessage != null && message.hasOwnProperty("questionResponseMessage"))
                 object.questionResponseMessage = $root.E2E.Message.QuestionResponseMessage.toObject(message.questionResponseMessage, options);
             return object;
@@ -81766,6 +81794,7 @@ $root.BotMetadata = (function() {
                 case 28:
                 case 29:
                 case 30:
+                case 31:
                     break;
                 }
             if (message.threadOrigin != null && message.hasOwnProperty("threadOrigin"))
@@ -81922,6 +81951,10 @@ $root.BotMetadata = (function() {
             case "INVOKE_META_AI_GROUP":
             case 30:
                 message.destinationEntryPoint = 30;
+                break;
+            case "META_AI_FORWARD":
+            case 31:
+                message.destinationEntryPoint = 31;
                 break;
             }
             switch (object.threadOrigin) {
@@ -86054,6 +86087,7 @@ $root.BotMetadata = (function() {
      * @property {number} ASK_META_AI_CONTEXT_MENU_GROUP=28 ASK_META_AI_CONTEXT_MENU_GROUP value
      * @property {number} INVOKE_META_AI_1ON1=29 INVOKE_META_AI_1ON1 value
      * @property {number} INVOKE_META_AI_GROUP=30 INVOKE_META_AI_GROUP value
+     * @property {number} META_AI_FORWARD=31 META_AI_FORWARD value
      */
     BotMetadata.BotMetricsEntryPoint = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -86087,6 +86121,7 @@ $root.BotMetadata = (function() {
         values[valuesById[28] = "ASK_META_AI_CONTEXT_MENU_GROUP"] = 28;
         values[valuesById[29] = "INVOKE_META_AI_1ON1"] = 29;
         values[valuesById[30] = "INVOKE_META_AI_GROUP"] = 30;
+        values[valuesById[31] = "META_AI_FORWARD"] = 31;
         return values;
     })();
 

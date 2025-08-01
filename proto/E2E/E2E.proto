@@ -726,6 +726,7 @@ message Message {
     optional FutureProofMessage groupStatusMessageV2 = 103;
     optional FutureProofMessage botForwardedMessage = 104;
     optional StatusQuestionAnswerMessage statusQuestionAnswerMessage = 105;
+    optional FutureProofMessage questionReplyMessage = 106;
     optional QuestionResponseMessage questionResponseMessage = 107;
     message AlbumMessage {
         optional uint32 expectedImageCount = 2;

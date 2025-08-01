@@ -10847,6 +10847,9 @@ export namespace E2E {
         /** Message statusQuestionAnswerMessage */
         statusQuestionAnswerMessage?: (E2E.Message.IStatusQuestionAnswerMessage|null);
 
+        /** Message questionReplyMessage */
+        questionReplyMessage?: (E2E.Message.IFutureProofMessage|null);
+
         /** Message questionResponseMessage */
         questionResponseMessage?: (E2E.Message.IQuestionResponseMessage|null);
     }
@@ -11126,6 +11129,9 @@ export namespace E2E {
 
         /** Message statusQuestionAnswerMessage. */
         public statusQuestionAnswerMessage?: (E2E.Message.IStatusQuestionAnswerMessage|null);
+
+        /** Message questionReplyMessage. */
+        public questionReplyMessage?: (E2E.Message.IFutureProofMessage|null);
 
         /** Message questionResponseMessage. */
         public questionResponseMessage?: (E2E.Message.IQuestionResponseMessage|null);
@@ -34213,7 +34219,8 @@ export namespace BotMetadata {
         ASK_META_AI_CONTEXT_MENU_1ON1 = 27,
         ASK_META_AI_CONTEXT_MENU_GROUP = 28,
         INVOKE_META_AI_1ON1 = 29,
-        INVOKE_META_AI_GROUP = 30
+        INVOKE_META_AI_GROUP = 30,
+        META_AI_FORWARD = 31
     }
 }
 
