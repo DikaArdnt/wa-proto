@@ -1135,6 +1135,7 @@ $root.HistorySync = (function() {
          * @property {number|null} [weight] StickerMetadata weight
          * @property {number|Long|null} [lastStickerSentTs] StickerMetadata lastStickerSentTs
          * @property {boolean|null} [isLottie] StickerMetadata isLottie
+         * @property {string|null} [imageHash] StickerMetadata imageHash
          * @property {boolean|null} [isAvatarSticker] StickerMetadata isAvatarSticker
          */
 
@@ -1250,6 +1251,14 @@ $root.HistorySync = (function() {
         StickerMetadata.prototype.isLottie = false;
 
         /**
+         * StickerMetadata imageHash.
+         * @member {string} imageHash
+         * @memberof HistorySync.StickerMetadata
+         * @instance
+         */
+        StickerMetadata.prototype.imageHash = "";
+
+        /**
          * StickerMetadata isAvatarSticker.
          * @member {boolean} isAvatarSticker
          * @memberof HistorySync.StickerMetadata
@@ -1305,8 +1314,10 @@ $root.HistorySync = (function() {
                 writer.uint32(/* id 11, wireType 0 =*/88).int64(message.lastStickerSentTs);
             if (message.isLottie != null && Object.hasOwnProperty.call(message, "isLottie"))
                 writer.uint32(/* id 12, wireType 0 =*/96).bool(message.isLottie);
+            if (message.imageHash != null && Object.hasOwnProperty.call(message, "imageHash"))
+                writer.uint32(/* id 13, wireType 2 =*/106).string(message.imageHash);
             if (message.isAvatarSticker != null && Object.hasOwnProperty.call(message, "isAvatarSticker"))
-                writer.uint32(/* id 13, wireType 0 =*/104).bool(message.isAvatarSticker);
+                writer.uint32(/* id 14, wireType 0 =*/112).bool(message.isAvatarSticker);
             return writer;
         };
 
@@ -1392,6 +1403,10 @@ $root.HistorySync = (function() {
                         break;
                     }
                 case 13: {
+                        message.imageHash = reader.string();
+                        break;
+                    }
+                case 14: {
                         message.isAvatarSticker = reader.bool();
                         break;
                     }
@@ -1466,6 +1481,9 @@ $root.HistorySync = (function() {
             if (message.isLottie != null && message.hasOwnProperty("isLottie"))
                 if (typeof message.isLottie !== "boolean")
                     return "isLottie: boolean expected";
+            if (message.imageHash != null && message.hasOwnProperty("imageHash"))
+                if (!$util.isString(message.imageHash))
+                    return "imageHash: string expected";
             if (message.isAvatarSticker != null && message.hasOwnProperty("isAvatarSticker"))
                 if (typeof message.isAvatarSticker !== "boolean")
                     return "isAvatarSticker: boolean expected";
@@ -1531,6 +1549,8 @@ $root.HistorySync = (function() {
                     message.lastStickerSentTs = new $util.LongBits(object.lastStickerSentTs.low >>> 0, object.lastStickerSentTs.high >>> 0).toNumber();
             if (object.isLottie != null)
                 message.isLottie = Boolean(object.isLottie);
+            if (object.imageHash != null)
+                message.imageHash = String(object.imageHash);
             if (object.isAvatarSticker != null)
                 message.isAvatarSticker = Boolean(object.isAvatarSticker);
             return message;
@@ -1588,6 +1608,7 @@ $root.HistorySync = (function() {
                 } else
                     object.lastStickerSentTs = options.longs === String ? "0" : 0;
                 object.isLottie = false;
+                object.imageHash = "";
                 object.isAvatarSticker = false;
             }
             if (message.url != null && message.hasOwnProperty("url"))
@@ -1620,6 +1641,8 @@ $root.HistorySync = (function() {
                     object.lastStickerSentTs = options.longs === String ? $util.Long.prototype.toString.call(message.lastStickerSentTs) : options.longs === Number ? new $util.LongBits(message.lastStickerSentTs.low >>> 0, message.lastStickerSentTs.high >>> 0).toNumber() : message.lastStickerSentTs;
             if (message.isLottie != null && message.hasOwnProperty("isLottie"))
                 object.isLottie = message.isLottie;
+            if (message.imageHash != null && message.hasOwnProperty("imageHash"))
+                object.imageHash = message.imageHash;
             if (message.isAvatarSticker != null && message.hasOwnProperty("isAvatarSticker"))
                 object.isAvatarSticker = message.isAvatarSticker;
             return object;

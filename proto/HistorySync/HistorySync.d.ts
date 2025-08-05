@@ -493,6 +493,9 @@ export namespace HistorySync {
         /** StickerMetadata isLottie */
         isLottie?: (boolean|null);
 
+        /** StickerMetadata imageHash */
+        imageHash?: (string|null);
+
         /** StickerMetadata isAvatarSticker */
         isAvatarSticker?: (boolean|null);
     }
@@ -541,6 +544,9 @@ export namespace HistorySync {
 
         /** StickerMetadata isLottie. */
         public isLottie: boolean;
+
+        /** StickerMetadata imageHash. */
+        public imageHash: string;
 
         /** StickerMetadata isAvatarSticker. */
         public isAvatarSticker: boolean;
