@@ -114110,8 +114110,6 @@ $root.SyncAction = (function() {
          * @property {SyncAction.SyncActionValue.IBusinessBroadcastAssociationAction|null} [businessBroadcastAssociationAction] SyncActionValue businessBroadcastAssociationAction
          * @property {SyncAction.SyncActionValue.IDetectedOutcomesStatusAction|null} [detectedOutcomesStatusAction] SyncActionValue detectedOutcomesStatusAction
          * @property {SyncAction.SyncActionValue.IMaibaAIFeaturesControlAction|null} [maibaAiFeaturesControlAction] SyncActionValue maibaAiFeaturesControlAction
-         * @property {SyncAction.SyncActionValue.IBusinessBroadcastListAction|null} [businessBroadcastListAction] SyncActionValue businessBroadcastListAction
-         * @property {SyncAction.SyncActionValue.IMusicUserIdAction|null} [musicUserIdAction] SyncActionValue musicUserIdAction
          */
 
         /**
@@ -114618,22 +114616,6 @@ $root.SyncAction = (function() {
         SyncActionValue.prototype.maibaAiFeaturesControlAction = null;
 
         /**
-         * SyncActionValue businessBroadcastListAction.
-         * @member {SyncAction.SyncActionValue.IBusinessBroadcastListAction|null|undefined} businessBroadcastListAction
-         * @memberof SyncAction.SyncActionValue
-         * @instance
-         */
-        SyncActionValue.prototype.businessBroadcastListAction = null;
-
-        /**
-         * SyncActionValue musicUserIdAction.
-         * @member {SyncAction.SyncActionValue.IMusicUserIdAction|null|undefined} musicUserIdAction
-         * @memberof SyncAction.SyncActionValue
-         * @instance
-         */
-        SyncActionValue.prototype.musicUserIdAction = null;
-
-        /**
          * Creates a new SyncActionValue instance using the specified properties.
          * @function create
          * @memberof SyncAction.SyncActionValue
@@ -114778,11 +114760,7 @@ $root.SyncAction = (function() {
             if (message.detectedOutcomesStatusAction != null && Object.hasOwnProperty.call(message, "detectedOutcomesStatusAction"))
                 $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction.encode(message.detectedOutcomesStatusAction, writer.uint32(/* id 66, wireType 2 =*/530).fork()).ldelim();
             if (message.maibaAiFeaturesControlAction != null && Object.hasOwnProperty.call(message, "maibaAiFeaturesControlAction"))
-                $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.encode(message.maibaAiFeaturesControlAction, writer.uint32(/* id 68, wireType 2 =*/546).fork()).ldelim();
-            if (message.businessBroadcastListAction != null && Object.hasOwnProperty.call(message, "businessBroadcastListAction"))
-                $root.SyncAction.SyncActionValue.BusinessBroadcastListAction.encode(message.businessBroadcastListAction, writer.uint32(/* id 69, wireType 2 =*/554).fork()).ldelim();
-            if (message.musicUserIdAction != null && Object.hasOwnProperty.call(message, "musicUserIdAction"))
-                $root.SyncAction.SyncActionValue.MusicUserIdAction.encode(message.musicUserIdAction, writer.uint32(/* id 70, wireType 2 =*/562).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.encode(message.maibaAiFeaturesControlAction, writer.uint32(/* id 67, wireType 2 =*/538).fork()).ldelim();
             return writer;
         };
 
@@ -115059,16 +115037,8 @@ $root.SyncAction = (function() {
                         message.detectedOutcomesStatusAction = $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction.decode(reader, reader.uint32());
                         break;
                     }
-                case 68: {
+                case 67: {
                         message.maibaAiFeaturesControlAction = $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.decode(reader, reader.uint32());
-                        break;
-                    }
-                case 69: {
-                        message.businessBroadcastListAction = $root.SyncAction.SyncActionValue.BusinessBroadcastListAction.decode(reader, reader.uint32());
-                        break;
-                    }
-                case 70: {
-                        message.musicUserIdAction = $root.SyncAction.SyncActionValue.MusicUserIdAction.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -115409,16 +115379,6 @@ $root.SyncAction = (function() {
                 if (error)
                     return "maibaAiFeaturesControlAction." + error;
             }
-            if (message.businessBroadcastListAction != null && message.hasOwnProperty("businessBroadcastListAction")) {
-                var error = $root.SyncAction.SyncActionValue.BusinessBroadcastListAction.verify(message.businessBroadcastListAction);
-                if (error)
-                    return "businessBroadcastListAction." + error;
-            }
-            if (message.musicUserIdAction != null && message.hasOwnProperty("musicUserIdAction")) {
-                var error = $root.SyncAction.SyncActionValue.MusicUserIdAction.verify(message.musicUserIdAction);
-                if (error)
-                    return "musicUserIdAction." + error;
-            }
             return null;
         };
 
@@ -115743,16 +115703,6 @@ $root.SyncAction = (function() {
                     throw TypeError(".SyncAction.SyncActionValue.maibaAiFeaturesControlAction: object expected");
                 message.maibaAiFeaturesControlAction = $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.fromObject(object.maibaAiFeaturesControlAction);
             }
-            if (object.businessBroadcastListAction != null) {
-                if (typeof object.businessBroadcastListAction !== "object")
-                    throw TypeError(".SyncAction.SyncActionValue.businessBroadcastListAction: object expected");
-                message.businessBroadcastListAction = $root.SyncAction.SyncActionValue.BusinessBroadcastListAction.fromObject(object.businessBroadcastListAction);
-            }
-            if (object.musicUserIdAction != null) {
-                if (typeof object.musicUserIdAction !== "object")
-                    throw TypeError(".SyncAction.SyncActionValue.musicUserIdAction: object expected");
-                message.musicUserIdAction = $root.SyncAction.SyncActionValue.MusicUserIdAction.fromObject(object.musicUserIdAction);
-            }
             return message;
         };
 
@@ -115835,8 +115785,6 @@ $root.SyncAction = (function() {
                 object.businessBroadcastAssociationAction = null;
                 object.detectedOutcomesStatusAction = null;
                 object.maibaAiFeaturesControlAction = null;
-                object.businessBroadcastListAction = null;
-                object.musicUserIdAction = null;
             }
             if (message.timestamp != null && message.hasOwnProperty("timestamp"))
                 if (typeof message.timestamp === "number")
@@ -115963,10 +115911,6 @@ $root.SyncAction = (function() {
                 object.detectedOutcomesStatusAction = $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction.toObject(message.detectedOutcomesStatusAction, options);
             if (message.maibaAiFeaturesControlAction != null && message.hasOwnProperty("maibaAiFeaturesControlAction"))
                 object.maibaAiFeaturesControlAction = $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.toObject(message.maibaAiFeaturesControlAction, options);
-            if (message.businessBroadcastListAction != null && message.hasOwnProperty("businessBroadcastListAction"))
-                object.businessBroadcastListAction = $root.SyncAction.SyncActionValue.BusinessBroadcastListAction.toObject(message.businessBroadcastListAction, options);
-            if (message.musicUserIdAction != null && message.hasOwnProperty("musicUserIdAction"))
-                object.musicUserIdAction = $root.SyncAction.SyncActionValue.MusicUserIdAction.toObject(message.musicUserIdAction, options);
             return object;
         };
 
@@ -117095,275 +117039,6 @@ $root.SyncAction = (function() {
             };
 
             return BusinessBroadcastAssociationAction;
-        })();
-
-        SyncActionValue.BusinessBroadcastListAction = (function() {
-
-            /**
-             * Properties of a BusinessBroadcastListAction.
-             * @memberof SyncAction.SyncActionValue
-             * @interface IBusinessBroadcastListAction
-             * @property {boolean|null} [deleted] BusinessBroadcastListAction deleted
-             * @property {Array.<string>|null} [phoneNumbers] BusinessBroadcastListAction phoneNumbers
-             * @property {string|null} [listName] BusinessBroadcastListAction listName
-             */
-
-            /**
-             * Constructs a new BusinessBroadcastListAction.
-             * @memberof SyncAction.SyncActionValue
-             * @classdesc Represents a BusinessBroadcastListAction.
-             * @implements IBusinessBroadcastListAction
-             * @constructor
-             * @param {SyncAction.SyncActionValue.IBusinessBroadcastListAction=} [properties] Properties to set
-             */
-            function BusinessBroadcastListAction(properties) {
-                this.phoneNumbers = [];
-                if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
-                            this[keys[i]] = properties[keys[i]];
-            }
-
-            /**
-             * BusinessBroadcastListAction deleted.
-             * @member {boolean} deleted
-             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
-             * @instance
-             */
-            BusinessBroadcastListAction.prototype.deleted = false;
-
-            /**
-             * BusinessBroadcastListAction phoneNumbers.
-             * @member {Array.<string>} phoneNumbers
-             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
-             * @instance
-             */
-            BusinessBroadcastListAction.prototype.phoneNumbers = $util.emptyArray;
-
-            /**
-             * BusinessBroadcastListAction listName.
-             * @member {string} listName
-             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
-             * @instance
-             */
-            BusinessBroadcastListAction.prototype.listName = "";
-
-            /**
-             * Creates a new BusinessBroadcastListAction instance using the specified properties.
-             * @function create
-             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
-             * @static
-             * @param {SyncAction.SyncActionValue.IBusinessBroadcastListAction=} [properties] Properties to set
-             * @returns {SyncAction.SyncActionValue.BusinessBroadcastListAction} BusinessBroadcastListAction instance
-             */
-            BusinessBroadcastListAction.create = function create(properties) {
-                return new BusinessBroadcastListAction(properties);
-            };
-
-            /**
-             * Encodes the specified BusinessBroadcastListAction message. Does not implicitly {@link SyncAction.SyncActionValue.BusinessBroadcastListAction.verify|verify} messages.
-             * @function encode
-             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
-             * @static
-             * @param {SyncAction.SyncActionValue.IBusinessBroadcastListAction} message BusinessBroadcastListAction message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            BusinessBroadcastListAction.encode = function encode(message, writer) {
-                if (!writer)
-                    writer = $Writer.create();
-                if (message.deleted != null && Object.hasOwnProperty.call(message, "deleted"))
-                    writer.uint32(/* id 1, wireType 0 =*/8).bool(message.deleted);
-                if (message.phoneNumbers != null && message.phoneNumbers.length)
-                    for (var i = 0; i < message.phoneNumbers.length; ++i)
-                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.phoneNumbers[i]);
-                if (message.listName != null && Object.hasOwnProperty.call(message, "listName"))
-                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.listName);
-                return writer;
-            };
-
-            /**
-             * Encodes the specified BusinessBroadcastListAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.BusinessBroadcastListAction.verify|verify} messages.
-             * @function encodeDelimited
-             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
-             * @static
-             * @param {SyncAction.SyncActionValue.IBusinessBroadcastListAction} message BusinessBroadcastListAction message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            BusinessBroadcastListAction.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
-            };
-
-            /**
-             * Decodes a BusinessBroadcastListAction message from the specified reader or buffer.
-             * @function decode
-             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @param {number} [length] Message length if known beforehand
-             * @returns {SyncAction.SyncActionValue.BusinessBroadcastListAction} BusinessBroadcastListAction
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            BusinessBroadcastListAction.decode = function decode(reader, length, error) {
-                if (!(reader instanceof $Reader))
-                    reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.BusinessBroadcastListAction();
-                while (reader.pos < end) {
-                    var tag = reader.uint32();
-                    if (tag === error)
-                        break;
-                    switch (tag >>> 3) {
-                    case 1: {
-                            message.deleted = reader.bool();
-                            break;
-                        }
-                    case 2: {
-                            if (!(message.phoneNumbers && message.phoneNumbers.length))
-                                message.phoneNumbers = [];
-                            message.phoneNumbers.push(reader.string());
-                            break;
-                        }
-                    case 3: {
-                            message.listName = reader.string();
-                            break;
-                        }
-                    default:
-                        reader.skipType(tag & 7);
-                        break;
-                    }
-                }
-                return message;
-            };
-
-            /**
-             * Decodes a BusinessBroadcastListAction message from the specified reader or buffer, length delimited.
-             * @function decodeDelimited
-             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @returns {SyncAction.SyncActionValue.BusinessBroadcastListAction} BusinessBroadcastListAction
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            BusinessBroadcastListAction.decodeDelimited = function decodeDelimited(reader) {
-                if (!(reader instanceof $Reader))
-                    reader = new $Reader(reader);
-                return this.decode(reader, reader.uint32());
-            };
-
-            /**
-             * Verifies a BusinessBroadcastListAction message.
-             * @function verify
-             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
-             * @static
-             * @param {Object.<string,*>} message Plain object to verify
-             * @returns {string|null} `null` if valid, otherwise the reason why it is not
-             */
-            BusinessBroadcastListAction.verify = function verify(message) {
-                if (typeof message !== "object" || message === null)
-                    return "object expected";
-                if (message.deleted != null && message.hasOwnProperty("deleted"))
-                    if (typeof message.deleted !== "boolean")
-                        return "deleted: boolean expected";
-                if (message.phoneNumbers != null && message.hasOwnProperty("phoneNumbers")) {
-                    if (!Array.isArray(message.phoneNumbers))
-                        return "phoneNumbers: array expected";
-                    for (var i = 0; i < message.phoneNumbers.length; ++i)
-                        if (!$util.isString(message.phoneNumbers[i]))
-                            return "phoneNumbers: string[] expected";
-                }
-                if (message.listName != null && message.hasOwnProperty("listName"))
-                    if (!$util.isString(message.listName))
-                        return "listName: string expected";
-                return null;
-            };
-
-            /**
-             * Creates a BusinessBroadcastListAction message from a plain object. Also converts values to their respective internal types.
-             * @function fromObject
-             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
-             * @static
-             * @param {Object.<string,*>} object Plain object
-             * @returns {SyncAction.SyncActionValue.BusinessBroadcastListAction} BusinessBroadcastListAction
-             */
-            BusinessBroadcastListAction.fromObject = function fromObject(object) {
-                if (object instanceof $root.SyncAction.SyncActionValue.BusinessBroadcastListAction)
-                    return object;
-                var message = new $root.SyncAction.SyncActionValue.BusinessBroadcastListAction();
-                if (object.deleted != null)
-                    message.deleted = Boolean(object.deleted);
-                if (object.phoneNumbers) {
-                    if (!Array.isArray(object.phoneNumbers))
-                        throw TypeError(".SyncAction.SyncActionValue.BusinessBroadcastListAction.phoneNumbers: array expected");
-                    message.phoneNumbers = [];
-                    for (var i = 0; i < object.phoneNumbers.length; ++i)
-                        message.phoneNumbers[i] = String(object.phoneNumbers[i]);
-                }
-                if (object.listName != null)
-                    message.listName = String(object.listName);
-                return message;
-            };
-
-            /**
-             * Creates a plain object from a BusinessBroadcastListAction message. Also converts values to other types if specified.
-             * @function toObject
-             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
-             * @static
-             * @param {SyncAction.SyncActionValue.BusinessBroadcastListAction} message BusinessBroadcastListAction
-             * @param {$protobuf.IConversionOptions} [options] Conversion options
-             * @returns {Object.<string,*>} Plain object
-             */
-            BusinessBroadcastListAction.toObject = function toObject(message, options) {
-                if (!options)
-                    options = {};
-                var object = {};
-                if (options.arrays || options.defaults)
-                    object.phoneNumbers = [];
-                if (options.defaults) {
-                    object.deleted = false;
-                    object.listName = "";
-                }
-                if (message.deleted != null && message.hasOwnProperty("deleted"))
-                    object.deleted = message.deleted;
-                if (message.phoneNumbers && message.phoneNumbers.length) {
-                    object.phoneNumbers = [];
-                    for (var j = 0; j < message.phoneNumbers.length; ++j)
-                        object.phoneNumbers[j] = message.phoneNumbers[j];
-                }
-                if (message.listName != null && message.hasOwnProperty("listName"))
-                    object.listName = message.listName;
-                return object;
-            };
-
-            /**
-             * Converts this BusinessBroadcastListAction to JSON.
-             * @function toJSON
-             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
-             * @instance
-             * @returns {Object.<string,*>} JSON object
-             */
-            BusinessBroadcastListAction.prototype.toJSON = function toJSON() {
-                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-            };
-
-            /**
-             * Gets the default type url for BusinessBroadcastListAction
-             * @function getTypeUrl
-             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
-             * @static
-             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns {string} The default type url
-             */
-            BusinessBroadcastListAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-                if (typeUrlPrefix === undefined) {
-                    typeUrlPrefix = "type.googleapis.com";
-                }
-                return typeUrlPrefix + "/SyncAction.SyncActionValue.BusinessBroadcastListAction";
-            };
-
-            return BusinessBroadcastListAction;
         })();
 
         SyncActionValue.CallLogAction = (function() {
@@ -124150,211 +123825,6 @@ $root.SyncAction = (function() {
             return MerchantPaymentPartnerAction;
         })();
 
-        SyncActionValue.MusicUserIdAction = (function() {
-
-            /**
-             * Properties of a MusicUserIdAction.
-             * @memberof SyncAction.SyncActionValue
-             * @interface IMusicUserIdAction
-             * @property {string|null} [musicUserId] MusicUserIdAction musicUserId
-             */
-
-            /**
-             * Constructs a new MusicUserIdAction.
-             * @memberof SyncAction.SyncActionValue
-             * @classdesc Represents a MusicUserIdAction.
-             * @implements IMusicUserIdAction
-             * @constructor
-             * @param {SyncAction.SyncActionValue.IMusicUserIdAction=} [properties] Properties to set
-             */
-            function MusicUserIdAction(properties) {
-                if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
-                            this[keys[i]] = properties[keys[i]];
-            }
-
-            /**
-             * MusicUserIdAction musicUserId.
-             * @member {string} musicUserId
-             * @memberof SyncAction.SyncActionValue.MusicUserIdAction
-             * @instance
-             */
-            MusicUserIdAction.prototype.musicUserId = "";
-
-            /**
-             * Creates a new MusicUserIdAction instance using the specified properties.
-             * @function create
-             * @memberof SyncAction.SyncActionValue.MusicUserIdAction
-             * @static
-             * @param {SyncAction.SyncActionValue.IMusicUserIdAction=} [properties] Properties to set
-             * @returns {SyncAction.SyncActionValue.MusicUserIdAction} MusicUserIdAction instance
-             */
-            MusicUserIdAction.create = function create(properties) {
-                return new MusicUserIdAction(properties);
-            };
-
-            /**
-             * Encodes the specified MusicUserIdAction message. Does not implicitly {@link SyncAction.SyncActionValue.MusicUserIdAction.verify|verify} messages.
-             * @function encode
-             * @memberof SyncAction.SyncActionValue.MusicUserIdAction
-             * @static
-             * @param {SyncAction.SyncActionValue.IMusicUserIdAction} message MusicUserIdAction message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            MusicUserIdAction.encode = function encode(message, writer) {
-                if (!writer)
-                    writer = $Writer.create();
-                if (message.musicUserId != null && Object.hasOwnProperty.call(message, "musicUserId"))
-                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.musicUserId);
-                return writer;
-            };
-
-            /**
-             * Encodes the specified MusicUserIdAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.MusicUserIdAction.verify|verify} messages.
-             * @function encodeDelimited
-             * @memberof SyncAction.SyncActionValue.MusicUserIdAction
-             * @static
-             * @param {SyncAction.SyncActionValue.IMusicUserIdAction} message MusicUserIdAction message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            MusicUserIdAction.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
-            };
-
-            /**
-             * Decodes a MusicUserIdAction message from the specified reader or buffer.
-             * @function decode
-             * @memberof SyncAction.SyncActionValue.MusicUserIdAction
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @param {number} [length] Message length if known beforehand
-             * @returns {SyncAction.SyncActionValue.MusicUserIdAction} MusicUserIdAction
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            MusicUserIdAction.decode = function decode(reader, length, error) {
-                if (!(reader instanceof $Reader))
-                    reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.MusicUserIdAction();
-                while (reader.pos < end) {
-                    var tag = reader.uint32();
-                    if (tag === error)
-                        break;
-                    switch (tag >>> 3) {
-                    case 1: {
-                            message.musicUserId = reader.string();
-                            break;
-                        }
-                    default:
-                        reader.skipType(tag & 7);
-                        break;
-                    }
-                }
-                return message;
-            };
-
-            /**
-             * Decodes a MusicUserIdAction message from the specified reader or buffer, length delimited.
-             * @function decodeDelimited
-             * @memberof SyncAction.SyncActionValue.MusicUserIdAction
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @returns {SyncAction.SyncActionValue.MusicUserIdAction} MusicUserIdAction
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            MusicUserIdAction.decodeDelimited = function decodeDelimited(reader) {
-                if (!(reader instanceof $Reader))
-                    reader = new $Reader(reader);
-                return this.decode(reader, reader.uint32());
-            };
-
-            /**
-             * Verifies a MusicUserIdAction message.
-             * @function verify
-             * @memberof SyncAction.SyncActionValue.MusicUserIdAction
-             * @static
-             * @param {Object.<string,*>} message Plain object to verify
-             * @returns {string|null} `null` if valid, otherwise the reason why it is not
-             */
-            MusicUserIdAction.verify = function verify(message) {
-                if (typeof message !== "object" || message === null)
-                    return "object expected";
-                if (message.musicUserId != null && message.hasOwnProperty("musicUserId"))
-                    if (!$util.isString(message.musicUserId))
-                        return "musicUserId: string expected";
-                return null;
-            };
-
-            /**
-             * Creates a MusicUserIdAction message from a plain object. Also converts values to their respective internal types.
-             * @function fromObject
-             * @memberof SyncAction.SyncActionValue.MusicUserIdAction
-             * @static
-             * @param {Object.<string,*>} object Plain object
-             * @returns {SyncAction.SyncActionValue.MusicUserIdAction} MusicUserIdAction
-             */
-            MusicUserIdAction.fromObject = function fromObject(object) {
-                if (object instanceof $root.SyncAction.SyncActionValue.MusicUserIdAction)
-                    return object;
-                var message = new $root.SyncAction.SyncActionValue.MusicUserIdAction();
-                if (object.musicUserId != null)
-                    message.musicUserId = String(object.musicUserId);
-                return message;
-            };
-
-            /**
-             * Creates a plain object from a MusicUserIdAction message. Also converts values to other types if specified.
-             * @function toObject
-             * @memberof SyncAction.SyncActionValue.MusicUserIdAction
-             * @static
-             * @param {SyncAction.SyncActionValue.MusicUserIdAction} message MusicUserIdAction
-             * @param {$protobuf.IConversionOptions} [options] Conversion options
-             * @returns {Object.<string,*>} Plain object
-             */
-            MusicUserIdAction.toObject = function toObject(message, options) {
-                if (!options)
-                    options = {};
-                var object = {};
-                if (options.defaults)
-                    object.musicUserId = "";
-                if (message.musicUserId != null && message.hasOwnProperty("musicUserId"))
-                    object.musicUserId = message.musicUserId;
-                return object;
-            };
-
-            /**
-             * Converts this MusicUserIdAction to JSON.
-             * @function toJSON
-             * @memberof SyncAction.SyncActionValue.MusicUserIdAction
-             * @instance
-             * @returns {Object.<string,*>} JSON object
-             */
-            MusicUserIdAction.prototype.toJSON = function toJSON() {
-                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-            };
-
-            /**
-             * Gets the default type url for MusicUserIdAction
-             * @function getTypeUrl
-             * @memberof SyncAction.SyncActionValue.MusicUserIdAction
-             * @static
-             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns {string} The default type url
-             */
-            MusicUserIdAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-                if (typeUrlPrefix === undefined) {
-                    typeUrlPrefix = "type.googleapis.com";
-                }
-                return typeUrlPrefix + "/SyncAction.SyncActionValue.MusicUserIdAction";
-            };
-
-            return MusicUserIdAction;
-        })();
-
         SyncActionValue.MuteAction = (function() {
 
             /**
@@ -129011,7 +128481,6 @@ $root.SyncAction = (function() {
              * @property {boolean|null} [isFavorite] StickerAction isFavorite
              * @property {number|null} [deviceIdHint] StickerAction deviceIdHint
              * @property {boolean|null} [isLottie] StickerAction isLottie
-             * @property {boolean|null} [isAvatarSticker] StickerAction isAvatarSticker
              */
 
             /**
@@ -129118,14 +128587,6 @@ $root.SyncAction = (function() {
             StickerAction.prototype.isLottie = false;
 
             /**
-             * StickerAction isAvatarSticker.
-             * @member {boolean} isAvatarSticker
-             * @memberof SyncAction.SyncActionValue.StickerAction
-             * @instance
-             */
-            StickerAction.prototype.isAvatarSticker = false;
-
-            /**
              * Creates a new StickerAction instance using the specified properties.
              * @function create
              * @memberof SyncAction.SyncActionValue.StickerAction
@@ -129171,8 +128632,6 @@ $root.SyncAction = (function() {
                     writer.uint32(/* id 10, wireType 0 =*/80).uint32(message.deviceIdHint);
                 if (message.isLottie != null && Object.hasOwnProperty.call(message, "isLottie"))
                     writer.uint32(/* id 11, wireType 0 =*/88).bool(message.isLottie);
-                if (message.isAvatarSticker != null && Object.hasOwnProperty.call(message, "isAvatarSticker"))
-                    writer.uint32(/* id 12, wireType 0 =*/96).bool(message.isAvatarSticker);
                 return writer;
             };
 
@@ -129253,10 +128712,6 @@ $root.SyncAction = (function() {
                             message.isLottie = reader.bool();
                             break;
                         }
-                    case 12: {
-                            message.isAvatarSticker = reader.bool();
-                            break;
-                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -129325,9 +128780,6 @@ $root.SyncAction = (function() {
                 if (message.isLottie != null && message.hasOwnProperty("isLottie"))
                     if (typeof message.isLottie !== "boolean")
                         return "isLottie: boolean expected";
-                if (message.isAvatarSticker != null && message.hasOwnProperty("isAvatarSticker"))
-                    if (typeof message.isAvatarSticker !== "boolean")
-                        return "isAvatarSticker: boolean expected";
                 return null;
             };
 
@@ -129378,8 +128830,6 @@ $root.SyncAction = (function() {
                     message.deviceIdHint = object.deviceIdHint >>> 0;
                 if (object.isLottie != null)
                     message.isLottie = Boolean(object.isLottie);
-                if (object.isAvatarSticker != null)
-                    message.isAvatarSticker = Boolean(object.isAvatarSticker);
                 return message;
             };
 
@@ -129424,7 +128874,6 @@ $root.SyncAction = (function() {
                     object.isFavorite = false;
                     object.deviceIdHint = 0;
                     object.isLottie = false;
-                    object.isAvatarSticker = false;
                 }
                 if (message.url != null && message.hasOwnProperty("url"))
                     object.url = message.url;
@@ -129451,8 +128900,6 @@ $root.SyncAction = (function() {
                     object.deviceIdHint = message.deviceIdHint;
                 if (message.isLottie != null && message.hasOwnProperty("isLottie"))
                     object.isLottie = message.isLottie;
-                if (message.isAvatarSticker != null && message.hasOwnProperty("isAvatarSticker"))
-                    object.isAvatarSticker = message.isAvatarSticker;
                 return object;
             };
 
