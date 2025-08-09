@@ -44,6 +44,7 @@ message StatusAttribution {
             UNKNOWN = 0;
             RAY_BAN_META_GLASSES = 1;
             OAKLEY_META_GLASSES = 2;
+            HYPERNOVA_GLASSES = 3;
         }
     }
     message StatusReshare {

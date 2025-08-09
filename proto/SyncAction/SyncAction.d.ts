@@ -476,6 +476,12 @@ export namespace SyncAction {
 
         /** SyncActionValue maibaAiFeaturesControlAction */
         maibaAiFeaturesControlAction?: (SyncAction.SyncActionValue.IMaibaAIFeaturesControlAction|null);
+
+        /** SyncActionValue businessBroadcastListAction */
+        businessBroadcastListAction?: (SyncAction.SyncActionValue.IBusinessBroadcastListAction|null);
+
+        /** SyncActionValue musicUserIdAction */
+        musicUserIdAction?: (SyncAction.SyncActionValue.IMusicUserIdAction|null);
     }
 
     /** Represents a SyncActionValue. */
@@ -669,6 +675,12 @@ export namespace SyncAction {
 
         /** SyncActionValue maibaAiFeaturesControlAction. */
         public maibaAiFeaturesControlAction?: (SyncAction.SyncActionValue.IMaibaAIFeaturesControlAction|null);
+
+        /** SyncActionValue businessBroadcastListAction. */
+        public businessBroadcastListAction?: (SyncAction.SyncActionValue.IBusinessBroadcastListAction|null);
+
+        /** SyncActionValue musicUserIdAction. */
+        public musicUserIdAction?: (SyncAction.SyncActionValue.IMusicUserIdAction|null);
 
         /**
          * Creates a new SyncActionValue instance using the specified properties.
@@ -1247,6 +1259,115 @@ export namespace SyncAction {
 
             /**
              * Gets the default type url for BusinessBroadcastAssociationAction
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a BusinessBroadcastListAction. */
+        interface IBusinessBroadcastListAction {
+
+            /** BusinessBroadcastListAction deleted */
+            deleted?: (boolean|null);
+
+            /** BusinessBroadcastListAction phoneNumbers */
+            phoneNumbers?: (string[]|null);
+
+            /** BusinessBroadcastListAction listName */
+            listName?: (string|null);
+        }
+
+        /** Represents a BusinessBroadcastListAction. */
+        class BusinessBroadcastListAction implements IBusinessBroadcastListAction {
+
+            /**
+             * Constructs a new BusinessBroadcastListAction.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SyncAction.SyncActionValue.IBusinessBroadcastListAction);
+
+            /** BusinessBroadcastListAction deleted. */
+            public deleted: boolean;
+
+            /** BusinessBroadcastListAction phoneNumbers. */
+            public phoneNumbers: string[];
+
+            /** BusinessBroadcastListAction listName. */
+            public listName: string;
+
+            /**
+             * Creates a new BusinessBroadcastListAction instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns BusinessBroadcastListAction instance
+             */
+            public static create(properties?: SyncAction.SyncActionValue.IBusinessBroadcastListAction): SyncAction.SyncActionValue.BusinessBroadcastListAction;
+
+            /**
+             * Encodes the specified BusinessBroadcastListAction message. Does not implicitly {@link SyncAction.SyncActionValue.BusinessBroadcastListAction.verify|verify} messages.
+             * @param message BusinessBroadcastListAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SyncAction.SyncActionValue.IBusinessBroadcastListAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified BusinessBroadcastListAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.BusinessBroadcastListAction.verify|verify} messages.
+             * @param message BusinessBroadcastListAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SyncAction.SyncActionValue.IBusinessBroadcastListAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a BusinessBroadcastListAction message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns BusinessBroadcastListAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.BusinessBroadcastListAction;
+
+            /**
+             * Decodes a BusinessBroadcastListAction message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns BusinessBroadcastListAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.BusinessBroadcastListAction;
+
+            /**
+             * Verifies a BusinessBroadcastListAction message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a BusinessBroadcastListAction message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns BusinessBroadcastListAction
+             */
+            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.BusinessBroadcastListAction;
+
+            /**
+             * Creates a plain object from a BusinessBroadcastListAction message. Also converts values to other types if specified.
+             * @param message BusinessBroadcastListAction
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SyncAction.SyncActionValue.BusinessBroadcastListAction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this BusinessBroadcastListAction to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for BusinessBroadcastListAction
              * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
              * @returns The default type url
              */
@@ -4200,6 +4321,103 @@ export namespace SyncAction {
             }
         }
 
+        /** Properties of a MusicUserIdAction. */
+        interface IMusicUserIdAction {
+
+            /** MusicUserIdAction musicUserId */
+            musicUserId?: (string|null);
+        }
+
+        /** Represents a MusicUserIdAction. */
+        class MusicUserIdAction implements IMusicUserIdAction {
+
+            /**
+             * Constructs a new MusicUserIdAction.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SyncAction.SyncActionValue.IMusicUserIdAction);
+
+            /** MusicUserIdAction musicUserId. */
+            public musicUserId: string;
+
+            /**
+             * Creates a new MusicUserIdAction instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns MusicUserIdAction instance
+             */
+            public static create(properties?: SyncAction.SyncActionValue.IMusicUserIdAction): SyncAction.SyncActionValue.MusicUserIdAction;
+
+            /**
+             * Encodes the specified MusicUserIdAction message. Does not implicitly {@link SyncAction.SyncActionValue.MusicUserIdAction.verify|verify} messages.
+             * @param message MusicUserIdAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SyncAction.SyncActionValue.IMusicUserIdAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified MusicUserIdAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.MusicUserIdAction.verify|verify} messages.
+             * @param message MusicUserIdAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SyncAction.SyncActionValue.IMusicUserIdAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a MusicUserIdAction message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns MusicUserIdAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.MusicUserIdAction;
+
+            /**
+             * Decodes a MusicUserIdAction message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns MusicUserIdAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.MusicUserIdAction;
+
+            /**
+             * Verifies a MusicUserIdAction message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a MusicUserIdAction message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns MusicUserIdAction
+             */
+            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.MusicUserIdAction;
+
+            /**
+             * Creates a plain object from a MusicUserIdAction message. Also converts values to other types if specified.
+             * @param message MusicUserIdAction
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SyncAction.SyncActionValue.MusicUserIdAction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this MusicUserIdAction to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for MusicUserIdAction
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
         /** Properties of a MuteAction. */
         interface IMuteAction {
 
@@ -6285,6 +6503,12 @@ export namespace SyncAction {
 
             /** StickerAction isLottie */
             isLottie?: (boolean|null);
+
+            /** StickerAction imageHash */
+            imageHash?: (string|null);
+
+            /** StickerAction isAvatarSticker */
+            isAvatarSticker?: (boolean|null);
         }
 
         /** Represents a StickerAction. */
@@ -6328,6 +6552,12 @@ export namespace SyncAction {
 
             /** StickerAction isLottie. */
             public isLottie: boolean;
+
+            /** StickerAction imageHash. */
+            public imageHash: string;
+
+            /** StickerAction isAvatarSticker. */
+            public isAvatarSticker: boolean;
 
             /**
              * Creates a new StickerAction instance using the specified properties.

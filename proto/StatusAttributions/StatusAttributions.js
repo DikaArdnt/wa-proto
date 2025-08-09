@@ -1492,6 +1492,7 @@ $root.StatusAttributions = (function() {
                     case 0:
                     case 1:
                     case 2:
+                    case 3:
                         break;
                     }
                 return null;
@@ -1527,6 +1528,10 @@ $root.StatusAttributions = (function() {
                 case "OAKLEY_META_GLASSES":
                 case 2:
                     message.source = 2;
+                    break;
+                case "HYPERNOVA_GLASSES":
+                case 3:
+                    message.source = 3;
                     break;
                 }
                 return message;
@@ -1585,12 +1590,14 @@ $root.StatusAttributions = (function() {
              * @property {number} UNKNOWN=0 UNKNOWN value
              * @property {number} RAY_BAN_META_GLASSES=1 RAY_BAN_META_GLASSES value
              * @property {number} OAKLEY_META_GLASSES=2 OAKLEY_META_GLASSES value
+             * @property {number} HYPERNOVA_GLASSES=3 HYPERNOVA_GLASSES value
              */
             RLAttribution.Source = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
                 values[valuesById[0] = "UNKNOWN"] = 0;
                 values[valuesById[1] = "RAY_BAN_META_GLASSES"] = 1;
                 values[valuesById[2] = "OAKLEY_META_GLASSES"] = 2;
+                values[valuesById[3] = "HYPERNOVA_GLASSES"] = 3;
                 return values;
             })();
 

@@ -598,7 +598,8 @@ export namespace StatusAttributions {
             enum Source {
                 UNKNOWN = 0,
                 RAY_BAN_META_GLASSES = 1,
-                OAKLEY_META_GLASSES = 2
+                OAKLEY_META_GLASSES = 2,
+                HYPERNOVA_GLASSES = 3
             }
         }
 

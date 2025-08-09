@@ -26480,6 +26480,7 @@ $root.E2E = (function() {
              * @property {boolean|null} [wtwaAdFormat] ExternalAdReplyInfo wtwaAdFormat
              * @property {E2E.ContextInfo.ExternalAdReplyInfo.AdType|null} [adType] ExternalAdReplyInfo adType
              * @property {string|null} [wtwaWebsiteUrl] ExternalAdReplyInfo wtwaWebsiteUrl
+             * @property {string|null} [adPreviewUrl] ExternalAdReplyInfo adPreviewUrl
              */
 
             /**
@@ -26706,6 +26707,14 @@ $root.E2E = (function() {
             ExternalAdReplyInfo.prototype.wtwaWebsiteUrl = "";
 
             /**
+             * ExternalAdReplyInfo adPreviewUrl.
+             * @member {string} adPreviewUrl
+             * @memberof E2E.ContextInfo.ExternalAdReplyInfo
+             * @instance
+             */
+            ExternalAdReplyInfo.prototype.adPreviewUrl = "";
+
+            /**
              * Creates a new ExternalAdReplyInfo instance using the specified properties.
              * @function create
              * @memberof E2E.ContextInfo.ExternalAdReplyInfo
@@ -26781,6 +26790,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 25, wireType 0 =*/200).int32(message.adType);
                 if (message.wtwaWebsiteUrl != null && Object.hasOwnProperty.call(message, "wtwaWebsiteUrl"))
                     writer.uint32(/* id 26, wireType 2 =*/210).string(message.wtwaWebsiteUrl);
+                if (message.adPreviewUrl != null && Object.hasOwnProperty.call(message, "adPreviewUrl"))
+                    writer.uint32(/* id 27, wireType 2 =*/218).string(message.adPreviewUrl);
                 return writer;
             };
 
@@ -26921,6 +26932,10 @@ $root.E2E = (function() {
                             message.wtwaWebsiteUrl = reader.string();
                             break;
                         }
+                    case 27: {
+                            message.adPreviewUrl = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -27045,6 +27060,9 @@ $root.E2E = (function() {
                 if (message.wtwaWebsiteUrl != null && message.hasOwnProperty("wtwaWebsiteUrl"))
                     if (!$util.isString(message.wtwaWebsiteUrl))
                         return "wtwaWebsiteUrl: string expected";
+                if (message.adPreviewUrl != null && message.hasOwnProperty("adPreviewUrl"))
+                    if (!$util.isString(message.adPreviewUrl))
+                        return "adPreviewUrl: string expected";
                 return null;
             };
 
@@ -27147,6 +27165,8 @@ $root.E2E = (function() {
                 }
                 if (object.wtwaWebsiteUrl != null)
                     message.wtwaWebsiteUrl = String(object.wtwaWebsiteUrl);
+                if (object.adPreviewUrl != null)
+                    message.adPreviewUrl = String(object.adPreviewUrl);
                 return message;
             };
 
@@ -27196,6 +27216,7 @@ $root.E2E = (function() {
                     object.wtwaAdFormat = false;
                     object.adType = options.enums === String ? "CTWA" : 0;
                     object.wtwaWebsiteUrl = "";
+                    object.adPreviewUrl = "";
                 }
                 if (message.title != null && message.hasOwnProperty("title"))
                     object.title = message.title;
@@ -27249,6 +27270,8 @@ $root.E2E = (function() {
                     object.adType = options.enums === String ? $root.E2E.ContextInfo.ExternalAdReplyInfo.AdType[message.adType] === undefined ? message.adType : $root.E2E.ContextInfo.ExternalAdReplyInfo.AdType[message.adType] : message.adType;
                 if (message.wtwaWebsiteUrl != null && message.hasOwnProperty("wtwaWebsiteUrl"))
                     object.wtwaWebsiteUrl = message.wtwaWebsiteUrl;
+                if (message.adPreviewUrl != null && message.hasOwnProperty("adPreviewUrl"))
+                    object.adPreviewUrl = message.adPreviewUrl;
                 return object;
             };
 
@@ -49970,6 +49993,7 @@ $root.E2E = (function() {
                  * @interface ICarouselMessage
                  * @property {Array.<E2E.Message.IInteractiveMessage>|null} [cards] CarouselMessage cards
                  * @property {number|null} [messageVersion] CarouselMessage messageVersion
+                 * @property {E2E.Message.InteractiveMessage.CarouselMessage.CarouselCardType|null} [carouselCardType] CarouselMessage carouselCardType
                  */
 
                 /**
@@ -50005,6 +50029,14 @@ $root.E2E = (function() {
                 CarouselMessage.prototype.messageVersion = 0;
 
                 /**
+                 * CarouselMessage carouselCardType.
+                 * @member {E2E.Message.InteractiveMessage.CarouselMessage.CarouselCardType} carouselCardType
+                 * @memberof E2E.Message.InteractiveMessage.CarouselMessage
+                 * @instance
+                 */
+                CarouselMessage.prototype.carouselCardType = 0;
+
+                /**
                  * Creates a new CarouselMessage instance using the specified properties.
                  * @function create
                  * @memberof E2E.Message.InteractiveMessage.CarouselMessage
@@ -50033,6 +50065,8 @@ $root.E2E = (function() {
                             $root.E2E.Message.InteractiveMessage.encode(message.cards[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                     if (message.messageVersion != null && Object.hasOwnProperty.call(message, "messageVersion"))
                         writer.uint32(/* id 2, wireType 0 =*/16).int32(message.messageVersion);
+                    if (message.carouselCardType != null && Object.hasOwnProperty.call(message, "carouselCardType"))
+                        writer.uint32(/* id 3, wireType 0 =*/24).int32(message.carouselCardType);
                     return writer;
                 };
 
@@ -50077,6 +50111,10 @@ $root.E2E = (function() {
                             }
                         case 2: {
                                 message.messageVersion = reader.int32();
+                                break;
+                            }
+                        case 3: {
+                                message.carouselCardType = reader.int32();
                                 break;
                             }
                         default:
@@ -50126,6 +50164,14 @@ $root.E2E = (function() {
                     if (message.messageVersion != null && message.hasOwnProperty("messageVersion"))
                         if (!$util.isInteger(message.messageVersion))
                             return "messageVersion: integer expected";
+                    if (message.carouselCardType != null && message.hasOwnProperty("carouselCardType"))
+                        switch (message.carouselCardType) {
+                        default:
+                            return "carouselCardType: enum value expected";
+                        case 0:
+                        case 1:
+                            break;
+                        }
                     return null;
                 };
 
@@ -50153,6 +50199,22 @@ $root.E2E = (function() {
                     }
                     if (object.messageVersion != null)
                         message.messageVersion = object.messageVersion | 0;
+                    switch (object.carouselCardType) {
+                    default:
+                        if (typeof object.carouselCardType === "number") {
+                            message.carouselCardType = object.carouselCardType;
+                            break;
+                        }
+                        break;
+                    case "DEFAULT":
+                    case 0:
+                        message.carouselCardType = 0;
+                        break;
+                    case "ALBUM":
+                    case 1:
+                        message.carouselCardType = 1;
+                        break;
+                    }
                     return message;
                 };
 
@@ -50171,8 +50233,10 @@ $root.E2E = (function() {
                     var object = {};
                     if (options.arrays || options.defaults)
                         object.cards = [];
-                    if (options.defaults)
+                    if (options.defaults) {
                         object.messageVersion = 0;
+                        object.carouselCardType = options.enums === String ? "DEFAULT" : 0;
+                    }
                     if (message.cards && message.cards.length) {
                         object.cards = [];
                         for (var j = 0; j < message.cards.length; ++j)
@@ -50180,6 +50244,8 @@ $root.E2E = (function() {
                     }
                     if (message.messageVersion != null && message.hasOwnProperty("messageVersion"))
                         object.messageVersion = message.messageVersion;
+                    if (message.carouselCardType != null && message.hasOwnProperty("carouselCardType"))
+                        object.carouselCardType = options.enums === String ? $root.E2E.Message.InteractiveMessage.CarouselMessage.CarouselCardType[message.carouselCardType] === undefined ? message.carouselCardType : $root.E2E.Message.InteractiveMessage.CarouselMessage.CarouselCardType[message.carouselCardType] : message.carouselCardType;
                     return object;
                 };
 
@@ -50208,6 +50274,20 @@ $root.E2E = (function() {
                     }
                     return typeUrlPrefix + "/E2E.Message.InteractiveMessage.CarouselMessage";
                 };
+
+                /**
+                 * CarouselCardType enum.
+                 * @name E2E.Message.InteractiveMessage.CarouselMessage.CarouselCardType
+                 * @enum {number}
+                 * @property {number} DEFAULT=0 DEFAULT value
+                 * @property {number} ALBUM=1 ALBUM value
+                 */
+                CarouselMessage.CarouselCardType = (function() {
+                    var valuesById = {}, values = Object.create(valuesById);
+                    values[valuesById[0] = "DEFAULT"] = 0;
+                    values[valuesById[1] = "ALBUM"] = 1;
+                    return values;
+                })();
 
                 return CarouselMessage;
             })();
@@ -58167,7 +58247,7 @@ $root.E2E = (function() {
              * @memberof E2E.Message
              * @interface IMessageHistoryMetadata
              * @property {Array.<string>|null} [historyReceivers] MessageHistoryMetadata historyReceivers
-             * @property {number|Long|null} [firstMessageTimestamp] MessageHistoryMetadata firstMessageTimestamp
+             * @property {number|Long|null} [oldestMessageTimestamp] MessageHistoryMetadata oldestMessageTimestamp
              * @property {number|Long|null} [messageCount] MessageHistoryMetadata messageCount
              */
 
@@ -58196,12 +58276,12 @@ $root.E2E = (function() {
             MessageHistoryMetadata.prototype.historyReceivers = $util.emptyArray;
 
             /**
-             * MessageHistoryMetadata firstMessageTimestamp.
-             * @member {number|Long} firstMessageTimestamp
+             * MessageHistoryMetadata oldestMessageTimestamp.
+             * @member {number|Long} oldestMessageTimestamp
              * @memberof E2E.Message.MessageHistoryMetadata
              * @instance
              */
-            MessageHistoryMetadata.prototype.firstMessageTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+            MessageHistoryMetadata.prototype.oldestMessageTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
             /**
              * MessageHistoryMetadata messageCount.
@@ -58238,8 +58318,8 @@ $root.E2E = (function() {
                 if (message.historyReceivers != null && message.historyReceivers.length)
                     for (var i = 0; i < message.historyReceivers.length; ++i)
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.historyReceivers[i]);
-                if (message.firstMessageTimestamp != null && Object.hasOwnProperty.call(message, "firstMessageTimestamp"))
-                    writer.uint32(/* id 2, wireType 0 =*/16).int64(message.firstMessageTimestamp);
+                if (message.oldestMessageTimestamp != null && Object.hasOwnProperty.call(message, "oldestMessageTimestamp"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).int64(message.oldestMessageTimestamp);
                 if (message.messageCount != null && Object.hasOwnProperty.call(message, "messageCount"))
                     writer.uint32(/* id 3, wireType 0 =*/24).int64(message.messageCount);
                 return writer;
@@ -58285,7 +58365,7 @@ $root.E2E = (function() {
                             break;
                         }
                     case 2: {
-                            message.firstMessageTimestamp = reader.int64();
+                            message.oldestMessageTimestamp = reader.int64();
                             break;
                         }
                     case 3: {
@@ -58334,9 +58414,9 @@ $root.E2E = (function() {
                         if (!$util.isString(message.historyReceivers[i]))
                             return "historyReceivers: string[] expected";
                 }
-                if (message.firstMessageTimestamp != null && message.hasOwnProperty("firstMessageTimestamp"))
-                    if (!$util.isInteger(message.firstMessageTimestamp) && !(message.firstMessageTimestamp && $util.isInteger(message.firstMessageTimestamp.low) && $util.isInteger(message.firstMessageTimestamp.high)))
-                        return "firstMessageTimestamp: integer|Long expected";
+                if (message.oldestMessageTimestamp != null && message.hasOwnProperty("oldestMessageTimestamp"))
+                    if (!$util.isInteger(message.oldestMessageTimestamp) && !(message.oldestMessageTimestamp && $util.isInteger(message.oldestMessageTimestamp.low) && $util.isInteger(message.oldestMessageTimestamp.high)))
+                        return "oldestMessageTimestamp: integer|Long expected";
                 if (message.messageCount != null && message.hasOwnProperty("messageCount"))
                     if (!$util.isInteger(message.messageCount) && !(message.messageCount && $util.isInteger(message.messageCount.low) && $util.isInteger(message.messageCount.high)))
                         return "messageCount: integer|Long expected";
@@ -58362,15 +58442,15 @@ $root.E2E = (function() {
                     for (var i = 0; i < object.historyReceivers.length; ++i)
                         message.historyReceivers[i] = String(object.historyReceivers[i]);
                 }
-                if (object.firstMessageTimestamp != null)
+                if (object.oldestMessageTimestamp != null)
                     if ($util.Long)
-                        (message.firstMessageTimestamp = $util.Long.fromValue(object.firstMessageTimestamp)).unsigned = false;
-                    else if (typeof object.firstMessageTimestamp === "string")
-                        message.firstMessageTimestamp = parseInt(object.firstMessageTimestamp, 10);
-                    else if (typeof object.firstMessageTimestamp === "number")
-                        message.firstMessageTimestamp = object.firstMessageTimestamp;
-                    else if (typeof object.firstMessageTimestamp === "object")
-                        message.firstMessageTimestamp = new $util.LongBits(object.firstMessageTimestamp.low >>> 0, object.firstMessageTimestamp.high >>> 0).toNumber();
+                        (message.oldestMessageTimestamp = $util.Long.fromValue(object.oldestMessageTimestamp)).unsigned = false;
+                    else if (typeof object.oldestMessageTimestamp === "string")
+                        message.oldestMessageTimestamp = parseInt(object.oldestMessageTimestamp, 10);
+                    else if (typeof object.oldestMessageTimestamp === "number")
+                        message.oldestMessageTimestamp = object.oldestMessageTimestamp;
+                    else if (typeof object.oldestMessageTimestamp === "object")
+                        message.oldestMessageTimestamp = new $util.LongBits(object.oldestMessageTimestamp.low >>> 0, object.oldestMessageTimestamp.high >>> 0).toNumber();
                 if (object.messageCount != null)
                     if ($util.Long)
                         (message.messageCount = $util.Long.fromValue(object.messageCount)).unsigned = false;
@@ -58401,9 +58481,9 @@ $root.E2E = (function() {
                 if (options.defaults) {
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.firstMessageTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.oldestMessageTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                     } else
-                        object.firstMessageTimestamp = options.longs === String ? "0" : 0;
+                        object.oldestMessageTimestamp = options.longs === String ? "0" : 0;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
                         object.messageCount = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
@@ -58415,11 +58495,11 @@ $root.E2E = (function() {
                     for (var j = 0; j < message.historyReceivers.length; ++j)
                         object.historyReceivers[j] = message.historyReceivers[j];
                 }
-                if (message.firstMessageTimestamp != null && message.hasOwnProperty("firstMessageTimestamp"))
-                    if (typeof message.firstMessageTimestamp === "number")
-                        object.firstMessageTimestamp = options.longs === String ? String(message.firstMessageTimestamp) : message.firstMessageTimestamp;
+                if (message.oldestMessageTimestamp != null && message.hasOwnProperty("oldestMessageTimestamp"))
+                    if (typeof message.oldestMessageTimestamp === "number")
+                        object.oldestMessageTimestamp = options.longs === String ? String(message.oldestMessageTimestamp) : message.oldestMessageTimestamp;
                     else
-                        object.firstMessageTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.firstMessageTimestamp) : options.longs === Number ? new $util.LongBits(message.firstMessageTimestamp.low >>> 0, message.firstMessageTimestamp.high >>> 0).toNumber() : message.firstMessageTimestamp;
+                        object.oldestMessageTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.oldestMessageTimestamp) : options.longs === Number ? new $util.LongBits(message.oldestMessageTimestamp.low >>> 0, message.oldestMessageTimestamp.high >>> 0).toNumber() : message.oldestMessageTimestamp;
                 if (message.messageCount != null && message.hasOwnProperty("messageCount"))
                     if (typeof message.messageCount === "number")
                         object.messageCount = options.longs === String ? String(message.messageCount) : message.messageCount;
@@ -63614,6 +63694,8 @@ $root.E2E = (function() {
                      * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult
                      * @interface ICompanionCanonicalUserNonceFetchResponse
                      * @property {string|null} [nonce] CompanionCanonicalUserNonceFetchResponse nonce
+                     * @property {string|null} [waFbid] CompanionCanonicalUserNonceFetchResponse waFbid
+                     * @property {boolean|null} [forceRefresh] CompanionCanonicalUserNonceFetchResponse forceRefresh
                      */
 
                     /**
@@ -63638,6 +63720,22 @@ $root.E2E = (function() {
                      * @instance
                      */
                     CompanionCanonicalUserNonceFetchResponse.prototype.nonce = "";
+
+                    /**
+                     * CompanionCanonicalUserNonceFetchResponse waFbid.
+                     * @member {string} waFbid
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse
+                     * @instance
+                     */
+                    CompanionCanonicalUserNonceFetchResponse.prototype.waFbid = "";
+
+                    /**
+                     * CompanionCanonicalUserNonceFetchResponse forceRefresh.
+                     * @member {boolean} forceRefresh
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse
+                     * @instance
+                     */
+                    CompanionCanonicalUserNonceFetchResponse.prototype.forceRefresh = false;
 
                     /**
                      * Creates a new CompanionCanonicalUserNonceFetchResponse instance using the specified properties.
@@ -63665,6 +63763,10 @@ $root.E2E = (function() {
                             writer = $Writer.create();
                         if (message.nonce != null && Object.hasOwnProperty.call(message, "nonce"))
                             writer.uint32(/* id 1, wireType 2 =*/10).string(message.nonce);
+                        if (message.waFbid != null && Object.hasOwnProperty.call(message, "waFbid"))
+                            writer.uint32(/* id 2, wireType 2 =*/18).string(message.waFbid);
+                        if (message.forceRefresh != null && Object.hasOwnProperty.call(message, "forceRefresh"))
+                            writer.uint32(/* id 3, wireType 0 =*/24).bool(message.forceRefresh);
                         return writer;
                     };
 
@@ -63705,6 +63807,14 @@ $root.E2E = (function() {
                                     message.nonce = reader.string();
                                     break;
                                 }
+                            case 2: {
+                                    message.waFbid = reader.string();
+                                    break;
+                                }
+                            case 3: {
+                                    message.forceRefresh = reader.bool();
+                                    break;
+                                }
                             default:
                                 reader.skipType(tag & 7);
                                 break;
@@ -63743,6 +63853,12 @@ $root.E2E = (function() {
                         if (message.nonce != null && message.hasOwnProperty("nonce"))
                             if (!$util.isString(message.nonce))
                                 return "nonce: string expected";
+                        if (message.waFbid != null && message.hasOwnProperty("waFbid"))
+                            if (!$util.isString(message.waFbid))
+                                return "waFbid: string expected";
+                        if (message.forceRefresh != null && message.hasOwnProperty("forceRefresh"))
+                            if (typeof message.forceRefresh !== "boolean")
+                                return "forceRefresh: boolean expected";
                         return null;
                     };
 
@@ -63760,6 +63876,10 @@ $root.E2E = (function() {
                         var message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse();
                         if (object.nonce != null)
                             message.nonce = String(object.nonce);
+                        if (object.waFbid != null)
+                            message.waFbid = String(object.waFbid);
+                        if (object.forceRefresh != null)
+                            message.forceRefresh = Boolean(object.forceRefresh);
                         return message;
                     };
 
@@ -63776,10 +63896,17 @@ $root.E2E = (function() {
                         if (!options)
                             options = {};
                         var object = {};
-                        if (options.defaults)
+                        if (options.defaults) {
                             object.nonce = "";
+                            object.waFbid = "";
+                            object.forceRefresh = false;
+                        }
                         if (message.nonce != null && message.hasOwnProperty("nonce"))
                             object.nonce = message.nonce;
+                        if (message.waFbid != null && message.hasOwnProperty("waFbid"))
+                            object.waFbid = message.waFbid;
+                        if (message.forceRefresh != null && message.hasOwnProperty("forceRefresh"))
+                            object.forceRefresh = message.forceRefresh;
                         return object;
                     };
 
@@ -73175,6 +73302,7 @@ $root.E2E = (function() {
              * @property {E2E.IMessage|null} [noteMessage] SendPaymentMessage noteMessage
              * @property {Protocol.IMessageKey|null} [requestMessageKey] SendPaymentMessage requestMessageKey
              * @property {E2E.IPaymentBackground|null} [background] SendPaymentMessage background
+             * @property {string|null} [transactionData] SendPaymentMessage transactionData
              */
 
             /**
@@ -73217,6 +73345,14 @@ $root.E2E = (function() {
             SendPaymentMessage.prototype.background = null;
 
             /**
+             * SendPaymentMessage transactionData.
+             * @member {string} transactionData
+             * @memberof E2E.Message.SendPaymentMessage
+             * @instance
+             */
+            SendPaymentMessage.prototype.transactionData = "";
+
+            /**
              * Creates a new SendPaymentMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.SendPaymentMessage
@@ -73246,6 +73382,8 @@ $root.E2E = (function() {
                     $root.Protocol.MessageKey.encode(message.requestMessageKey, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                 if (message.background != null && Object.hasOwnProperty.call(message, "background"))
                     $root.E2E.PaymentBackground.encode(message.background, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                if (message.transactionData != null && Object.hasOwnProperty.call(message, "transactionData"))
+                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.transactionData);
                 return writer;
             };
 
@@ -73292,6 +73430,10 @@ $root.E2E = (function() {
                         }
                     case 4: {
                             message.background = $root.E2E.PaymentBackground.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 5: {
+                            message.transactionData = reader.string();
                             break;
                         }
                     default:
@@ -73344,6 +73486,9 @@ $root.E2E = (function() {
                     if (error)
                         return "background." + error;
                 }
+                if (message.transactionData != null && message.hasOwnProperty("transactionData"))
+                    if (!$util.isString(message.transactionData))
+                        return "transactionData: string expected";
                 return null;
             };
 
@@ -73374,6 +73519,8 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.SendPaymentMessage.background: object expected");
                     message.background = $root.E2E.PaymentBackground.fromObject(object.background);
                 }
+                if (object.transactionData != null)
+                    message.transactionData = String(object.transactionData);
                 return message;
             };
 
@@ -73394,6 +73541,7 @@ $root.E2E = (function() {
                     object.noteMessage = null;
                     object.requestMessageKey = null;
                     object.background = null;
+                    object.transactionData = "";
                 }
                 if (message.noteMessage != null && message.hasOwnProperty("noteMessage"))
                     object.noteMessage = $root.E2E.Message.toObject(message.noteMessage, options);
@@ -73401,6 +73549,8 @@ $root.E2E = (function() {
                     object.requestMessageKey = $root.Protocol.MessageKey.toObject(message.requestMessageKey, options);
                 if (message.background != null && message.hasOwnProperty("background"))
                     object.background = $root.E2E.PaymentBackground.toObject(message.background, options);
+                if (message.transactionData != null && message.hasOwnProperty("transactionData"))
+                    object.transactionData = message.transactionData;
                 return object;
             };
 
@@ -82092,6 +82242,7 @@ $root.BotMetadata = (function() {
          * @property {BotMetadata.IBotSignatureVerificationMetadata|null} [verificationMetadata] BotMetadata verificationMetadata
          * @property {BotMetadata.IBotUnifiedResponseMutation|null} [unifiedResponseMutation] BotMetadata unifiedResponseMutation
          * @property {BotMetadata.IBotMessageOriginMetadata|null} [botMessageOriginMetadata] BotMetadata botMessageOriginMetadata
+         * @property {BotMetadata.IInThreadSurveyMetadata|null} [inThreadSurveyMetadata] BotMetadata inThreadSurveyMetadata
          */
 
         /**
@@ -82342,6 +82493,14 @@ $root.BotMetadata = (function() {
         BotMetadata.prototype.botMessageOriginMetadata = null;
 
         /**
+         * BotMetadata inThreadSurveyMetadata.
+         * @member {BotMetadata.IInThreadSurveyMetadata|null|undefined} inThreadSurveyMetadata
+         * @memberof BotMetadata.BotMetadata
+         * @instance
+         */
+        BotMetadata.prototype.inThreadSurveyMetadata = null;
+
+        /**
          * Creates a new BotMetadata instance using the specified properties.
          * @function create
          * @memberof BotMetadata.BotMetadata
@@ -82423,6 +82582,8 @@ $root.BotMetadata = (function() {
                 $root.BotMetadata.BotUnifiedResponseMutation.encode(message.unifiedResponseMutation, writer.uint32(/* id 28, wireType 2 =*/226).fork()).ldelim();
             if (message.botMessageOriginMetadata != null && Object.hasOwnProperty.call(message, "botMessageOriginMetadata"))
                 $root.BotMetadata.BotMessageOriginMetadata.encode(message.botMessageOriginMetadata, writer.uint32(/* id 29, wireType 2 =*/234).fork()).ldelim();
+            if (message.inThreadSurveyMetadata != null && Object.hasOwnProperty.call(message, "inThreadSurveyMetadata"))
+                $root.BotMetadata.InThreadSurveyMetadata.encode(message.inThreadSurveyMetadata, writer.uint32(/* id 30, wireType 2 =*/242).fork()).ldelim();
             return writer;
         };
 
@@ -82573,6 +82734,10 @@ $root.BotMetadata = (function() {
                     }
                 case 29: {
                         message.botMessageOriginMetadata = $root.BotMetadata.BotMessageOriginMetadata.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 30: {
+                        message.inThreadSurveyMetadata = $root.BotMetadata.InThreadSurveyMetadata.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -82741,6 +82906,11 @@ $root.BotMetadata = (function() {
                 if (error)
                     return "botMessageOriginMetadata." + error;
             }
+            if (message.inThreadSurveyMetadata != null && message.hasOwnProperty("inThreadSurveyMetadata")) {
+                var error = $root.BotMetadata.InThreadSurveyMetadata.verify(message.inThreadSurveyMetadata);
+                if (error)
+                    return "inThreadSurveyMetadata." + error;
+            }
             return null;
         };
 
@@ -82883,6 +83053,11 @@ $root.BotMetadata = (function() {
                     throw TypeError(".BotMetadata.BotMetadata.botMessageOriginMetadata: object expected");
                 message.botMessageOriginMetadata = $root.BotMetadata.BotMessageOriginMetadata.fromObject(object.botMessageOriginMetadata);
             }
+            if (object.inThreadSurveyMetadata != null) {
+                if (typeof object.inThreadSurveyMetadata !== "object")
+                    throw TypeError(".BotMetadata.BotMetadata.inThreadSurveyMetadata: object expected");
+                message.inThreadSurveyMetadata = $root.BotMetadata.InThreadSurveyMetadata.fromObject(object.inThreadSurveyMetadata);
+            }
             return message;
         };
 
@@ -82935,6 +83110,7 @@ $root.BotMetadata = (function() {
                 object.verificationMetadata = null;
                 object.unifiedResponseMutation = null;
                 object.botMessageOriginMetadata = null;
+                object.inThreadSurveyMetadata = null;
             }
             if (message.avatarMetadata != null && message.hasOwnProperty("avatarMetadata"))
                 object.avatarMetadata = $root.BotMetadata.BotAvatarMetadata.toObject(message.avatarMetadata, options);
@@ -82994,6 +83170,8 @@ $root.BotMetadata = (function() {
                 object.unifiedResponseMutation = $root.BotMetadata.BotUnifiedResponseMutation.toObject(message.unifiedResponseMutation, options);
             if (message.botMessageOriginMetadata != null && message.hasOwnProperty("botMessageOriginMetadata"))
                 object.botMessageOriginMetadata = $root.BotMetadata.BotMessageOriginMetadata.toObject(message.botMessageOriginMetadata, options);
+            if (message.inThreadSurveyMetadata != null && message.hasOwnProperty("inThreadSurveyMetadata"))
+                object.inThreadSurveyMetadata = $root.BotMetadata.InThreadSurveyMetadata.toObject(message.inThreadSurveyMetadata, options);
             return object;
         };
 
@@ -83896,6 +84074,1379 @@ $root.BotMetadata = (function() {
         };
 
         return BotMessageOriginMetadata;
+    })();
+
+    BotMetadata.InThreadSurveyMetadata = (function() {
+
+        /**
+         * Properties of an InThreadSurveyMetadata.
+         * @memberof BotMetadata
+         * @interface IInThreadSurveyMetadata
+         * @property {string|null} [tessaSessionId] InThreadSurveyMetadata tessaSessionId
+         * @property {string|null} [simonSessionId] InThreadSurveyMetadata simonSessionId
+         * @property {string|null} [simonSurveyId] InThreadSurveyMetadata simonSurveyId
+         * @property {string|null} [tessaRootId] InThreadSurveyMetadata tessaRootId
+         * @property {string|null} [requestId] InThreadSurveyMetadata requestId
+         * @property {string|null} [tessaEvent] InThreadSurveyMetadata tessaEvent
+         * @property {string|null} [invitationHeaderText] InThreadSurveyMetadata invitationHeaderText
+         * @property {string|null} [invitationBodyText] InThreadSurveyMetadata invitationBodyText
+         * @property {string|null} [invitationCtaText] InThreadSurveyMetadata invitationCtaText
+         * @property {string|null} [invitationCtaUrl] InThreadSurveyMetadata invitationCtaUrl
+         * @property {string|null} [surveyTitle] InThreadSurveyMetadata surveyTitle
+         * @property {Array.<BotMetadata.InThreadSurveyMetadata.IInThreadSurveyQuestion>|null} [questions] InThreadSurveyMetadata questions
+         * @property {string|null} [surveyContinueButtonText] InThreadSurveyMetadata surveyContinueButtonText
+         * @property {string|null} [surveySubmitButtonText] InThreadSurveyMetadata surveySubmitButtonText
+         * @property {string|null} [privacyStatementFull] InThreadSurveyMetadata privacyStatementFull
+         * @property {Array.<BotMetadata.InThreadSurveyMetadata.IInThreadSurveyPrivacyStatementPart>|null} [privacyStatementParts] InThreadSurveyMetadata privacyStatementParts
+         * @property {string|null} [feedbackToastText] InThreadSurveyMetadata feedbackToastText
+         */
+
+        /**
+         * Constructs a new InThreadSurveyMetadata.
+         * @memberof BotMetadata
+         * @classdesc Represents an InThreadSurveyMetadata.
+         * @implements IInThreadSurveyMetadata
+         * @constructor
+         * @param {BotMetadata.IInThreadSurveyMetadata=} [properties] Properties to set
+         */
+        function InThreadSurveyMetadata(properties) {
+            this.questions = [];
+            this.privacyStatementParts = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * InThreadSurveyMetadata tessaSessionId.
+         * @member {string} tessaSessionId
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @instance
+         */
+        InThreadSurveyMetadata.prototype.tessaSessionId = "";
+
+        /**
+         * InThreadSurveyMetadata simonSessionId.
+         * @member {string} simonSessionId
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @instance
+         */
+        InThreadSurveyMetadata.prototype.simonSessionId = "";
+
+        /**
+         * InThreadSurveyMetadata simonSurveyId.
+         * @member {string} simonSurveyId
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @instance
+         */
+        InThreadSurveyMetadata.prototype.simonSurveyId = "";
+
+        /**
+         * InThreadSurveyMetadata tessaRootId.
+         * @member {string} tessaRootId
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @instance
+         */
+        InThreadSurveyMetadata.prototype.tessaRootId = "";
+
+        /**
+         * InThreadSurveyMetadata requestId.
+         * @member {string} requestId
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @instance
+         */
+        InThreadSurveyMetadata.prototype.requestId = "";
+
+        /**
+         * InThreadSurveyMetadata tessaEvent.
+         * @member {string} tessaEvent
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @instance
+         */
+        InThreadSurveyMetadata.prototype.tessaEvent = "";
+
+        /**
+         * InThreadSurveyMetadata invitationHeaderText.
+         * @member {string} invitationHeaderText
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @instance
+         */
+        InThreadSurveyMetadata.prototype.invitationHeaderText = "";
+
+        /**
+         * InThreadSurveyMetadata invitationBodyText.
+         * @member {string} invitationBodyText
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @instance
+         */
+        InThreadSurveyMetadata.prototype.invitationBodyText = "";
+
+        /**
+         * InThreadSurveyMetadata invitationCtaText.
+         * @member {string} invitationCtaText
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @instance
+         */
+        InThreadSurveyMetadata.prototype.invitationCtaText = "";
+
+        /**
+         * InThreadSurveyMetadata invitationCtaUrl.
+         * @member {string} invitationCtaUrl
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @instance
+         */
+        InThreadSurveyMetadata.prototype.invitationCtaUrl = "";
+
+        /**
+         * InThreadSurveyMetadata surveyTitle.
+         * @member {string} surveyTitle
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @instance
+         */
+        InThreadSurveyMetadata.prototype.surveyTitle = "";
+
+        /**
+         * InThreadSurveyMetadata questions.
+         * @member {Array.<BotMetadata.InThreadSurveyMetadata.IInThreadSurveyQuestion>} questions
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @instance
+         */
+        InThreadSurveyMetadata.prototype.questions = $util.emptyArray;
+
+        /**
+         * InThreadSurveyMetadata surveyContinueButtonText.
+         * @member {string} surveyContinueButtonText
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @instance
+         */
+        InThreadSurveyMetadata.prototype.surveyContinueButtonText = "";
+
+        /**
+         * InThreadSurveyMetadata surveySubmitButtonText.
+         * @member {string} surveySubmitButtonText
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @instance
+         */
+        InThreadSurveyMetadata.prototype.surveySubmitButtonText = "";
+
+        /**
+         * InThreadSurveyMetadata privacyStatementFull.
+         * @member {string} privacyStatementFull
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @instance
+         */
+        InThreadSurveyMetadata.prototype.privacyStatementFull = "";
+
+        /**
+         * InThreadSurveyMetadata privacyStatementParts.
+         * @member {Array.<BotMetadata.InThreadSurveyMetadata.IInThreadSurveyPrivacyStatementPart>} privacyStatementParts
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @instance
+         */
+        InThreadSurveyMetadata.prototype.privacyStatementParts = $util.emptyArray;
+
+        /**
+         * InThreadSurveyMetadata feedbackToastText.
+         * @member {string} feedbackToastText
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @instance
+         */
+        InThreadSurveyMetadata.prototype.feedbackToastText = "";
+
+        /**
+         * Creates a new InThreadSurveyMetadata instance using the specified properties.
+         * @function create
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @static
+         * @param {BotMetadata.IInThreadSurveyMetadata=} [properties] Properties to set
+         * @returns {BotMetadata.InThreadSurveyMetadata} InThreadSurveyMetadata instance
+         */
+        InThreadSurveyMetadata.create = function create(properties) {
+            return new InThreadSurveyMetadata(properties);
+        };
+
+        /**
+         * Encodes the specified InThreadSurveyMetadata message. Does not implicitly {@link BotMetadata.InThreadSurveyMetadata.verify|verify} messages.
+         * @function encode
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @static
+         * @param {BotMetadata.IInThreadSurveyMetadata} message InThreadSurveyMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        InThreadSurveyMetadata.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.tessaSessionId != null && Object.hasOwnProperty.call(message, "tessaSessionId"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.tessaSessionId);
+            if (message.simonSessionId != null && Object.hasOwnProperty.call(message, "simonSessionId"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.simonSessionId);
+            if (message.simonSurveyId != null && Object.hasOwnProperty.call(message, "simonSurveyId"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.simonSurveyId);
+            if (message.tessaRootId != null && Object.hasOwnProperty.call(message, "tessaRootId"))
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message.tessaRootId);
+            if (message.requestId != null && Object.hasOwnProperty.call(message, "requestId"))
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.requestId);
+            if (message.tessaEvent != null && Object.hasOwnProperty.call(message, "tessaEvent"))
+                writer.uint32(/* id 6, wireType 2 =*/50).string(message.tessaEvent);
+            if (message.invitationHeaderText != null && Object.hasOwnProperty.call(message, "invitationHeaderText"))
+                writer.uint32(/* id 7, wireType 2 =*/58).string(message.invitationHeaderText);
+            if (message.invitationBodyText != null && Object.hasOwnProperty.call(message, "invitationBodyText"))
+                writer.uint32(/* id 8, wireType 2 =*/66).string(message.invitationBodyText);
+            if (message.invitationCtaText != null && Object.hasOwnProperty.call(message, "invitationCtaText"))
+                writer.uint32(/* id 9, wireType 2 =*/74).string(message.invitationCtaText);
+            if (message.invitationCtaUrl != null && Object.hasOwnProperty.call(message, "invitationCtaUrl"))
+                writer.uint32(/* id 10, wireType 2 =*/82).string(message.invitationCtaUrl);
+            if (message.surveyTitle != null && Object.hasOwnProperty.call(message, "surveyTitle"))
+                writer.uint32(/* id 11, wireType 2 =*/90).string(message.surveyTitle);
+            if (message.questions != null && message.questions.length)
+                for (var i = 0; i < message.questions.length; ++i)
+                    $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion.encode(message.questions[i], writer.uint32(/* id 12, wireType 2 =*/98).fork()).ldelim();
+            if (message.surveyContinueButtonText != null && Object.hasOwnProperty.call(message, "surveyContinueButtonText"))
+                writer.uint32(/* id 13, wireType 2 =*/106).string(message.surveyContinueButtonText);
+            if (message.surveySubmitButtonText != null && Object.hasOwnProperty.call(message, "surveySubmitButtonText"))
+                writer.uint32(/* id 14, wireType 2 =*/114).string(message.surveySubmitButtonText);
+            if (message.privacyStatementFull != null && Object.hasOwnProperty.call(message, "privacyStatementFull"))
+                writer.uint32(/* id 15, wireType 2 =*/122).string(message.privacyStatementFull);
+            if (message.privacyStatementParts != null && message.privacyStatementParts.length)
+                for (var i = 0; i < message.privacyStatementParts.length; ++i)
+                    $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart.encode(message.privacyStatementParts[i], writer.uint32(/* id 16, wireType 2 =*/130).fork()).ldelim();
+            if (message.feedbackToastText != null && Object.hasOwnProperty.call(message, "feedbackToastText"))
+                writer.uint32(/* id 17, wireType 2 =*/138).string(message.feedbackToastText);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified InThreadSurveyMetadata message, length delimited. Does not implicitly {@link BotMetadata.InThreadSurveyMetadata.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @static
+         * @param {BotMetadata.IInThreadSurveyMetadata} message InThreadSurveyMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        InThreadSurveyMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an InThreadSurveyMetadata message from the specified reader or buffer.
+         * @function decode
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {BotMetadata.InThreadSurveyMetadata} InThreadSurveyMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        InThreadSurveyMetadata.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.InThreadSurveyMetadata();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.tessaSessionId = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.simonSessionId = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.simonSurveyId = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.tessaRootId = reader.string();
+                        break;
+                    }
+                case 5: {
+                        message.requestId = reader.string();
+                        break;
+                    }
+                case 6: {
+                        message.tessaEvent = reader.string();
+                        break;
+                    }
+                case 7: {
+                        message.invitationHeaderText = reader.string();
+                        break;
+                    }
+                case 8: {
+                        message.invitationBodyText = reader.string();
+                        break;
+                    }
+                case 9: {
+                        message.invitationCtaText = reader.string();
+                        break;
+                    }
+                case 10: {
+                        message.invitationCtaUrl = reader.string();
+                        break;
+                    }
+                case 11: {
+                        message.surveyTitle = reader.string();
+                        break;
+                    }
+                case 12: {
+                        if (!(message.questions && message.questions.length))
+                            message.questions = [];
+                        message.questions.push($root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 13: {
+                        message.surveyContinueButtonText = reader.string();
+                        break;
+                    }
+                case 14: {
+                        message.surveySubmitButtonText = reader.string();
+                        break;
+                    }
+                case 15: {
+                        message.privacyStatementFull = reader.string();
+                        break;
+                    }
+                case 16: {
+                        if (!(message.privacyStatementParts && message.privacyStatementParts.length))
+                            message.privacyStatementParts = [];
+                        message.privacyStatementParts.push($root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 17: {
+                        message.feedbackToastText = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an InThreadSurveyMetadata message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {BotMetadata.InThreadSurveyMetadata} InThreadSurveyMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        InThreadSurveyMetadata.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an InThreadSurveyMetadata message.
+         * @function verify
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        InThreadSurveyMetadata.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.tessaSessionId != null && message.hasOwnProperty("tessaSessionId"))
+                if (!$util.isString(message.tessaSessionId))
+                    return "tessaSessionId: string expected";
+            if (message.simonSessionId != null && message.hasOwnProperty("simonSessionId"))
+                if (!$util.isString(message.simonSessionId))
+                    return "simonSessionId: string expected";
+            if (message.simonSurveyId != null && message.hasOwnProperty("simonSurveyId"))
+                if (!$util.isString(message.simonSurveyId))
+                    return "simonSurveyId: string expected";
+            if (message.tessaRootId != null && message.hasOwnProperty("tessaRootId"))
+                if (!$util.isString(message.tessaRootId))
+                    return "tessaRootId: string expected";
+            if (message.requestId != null && message.hasOwnProperty("requestId"))
+                if (!$util.isString(message.requestId))
+                    return "requestId: string expected";
+            if (message.tessaEvent != null && message.hasOwnProperty("tessaEvent"))
+                if (!$util.isString(message.tessaEvent))
+                    return "tessaEvent: string expected";
+            if (message.invitationHeaderText != null && message.hasOwnProperty("invitationHeaderText"))
+                if (!$util.isString(message.invitationHeaderText))
+                    return "invitationHeaderText: string expected";
+            if (message.invitationBodyText != null && message.hasOwnProperty("invitationBodyText"))
+                if (!$util.isString(message.invitationBodyText))
+                    return "invitationBodyText: string expected";
+            if (message.invitationCtaText != null && message.hasOwnProperty("invitationCtaText"))
+                if (!$util.isString(message.invitationCtaText))
+                    return "invitationCtaText: string expected";
+            if (message.invitationCtaUrl != null && message.hasOwnProperty("invitationCtaUrl"))
+                if (!$util.isString(message.invitationCtaUrl))
+                    return "invitationCtaUrl: string expected";
+            if (message.surveyTitle != null && message.hasOwnProperty("surveyTitle"))
+                if (!$util.isString(message.surveyTitle))
+                    return "surveyTitle: string expected";
+            if (message.questions != null && message.hasOwnProperty("questions")) {
+                if (!Array.isArray(message.questions))
+                    return "questions: array expected";
+                for (var i = 0; i < message.questions.length; ++i) {
+                    var error = $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion.verify(message.questions[i]);
+                    if (error)
+                        return "questions." + error;
+                }
+            }
+            if (message.surveyContinueButtonText != null && message.hasOwnProperty("surveyContinueButtonText"))
+                if (!$util.isString(message.surveyContinueButtonText))
+                    return "surveyContinueButtonText: string expected";
+            if (message.surveySubmitButtonText != null && message.hasOwnProperty("surveySubmitButtonText"))
+                if (!$util.isString(message.surveySubmitButtonText))
+                    return "surveySubmitButtonText: string expected";
+            if (message.privacyStatementFull != null && message.hasOwnProperty("privacyStatementFull"))
+                if (!$util.isString(message.privacyStatementFull))
+                    return "privacyStatementFull: string expected";
+            if (message.privacyStatementParts != null && message.hasOwnProperty("privacyStatementParts")) {
+                if (!Array.isArray(message.privacyStatementParts))
+                    return "privacyStatementParts: array expected";
+                for (var i = 0; i < message.privacyStatementParts.length; ++i) {
+                    var error = $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart.verify(message.privacyStatementParts[i]);
+                    if (error)
+                        return "privacyStatementParts." + error;
+                }
+            }
+            if (message.feedbackToastText != null && message.hasOwnProperty("feedbackToastText"))
+                if (!$util.isString(message.feedbackToastText))
+                    return "feedbackToastText: string expected";
+            return null;
+        };
+
+        /**
+         * Creates an InThreadSurveyMetadata message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {BotMetadata.InThreadSurveyMetadata} InThreadSurveyMetadata
+         */
+        InThreadSurveyMetadata.fromObject = function fromObject(object) {
+            if (object instanceof $root.BotMetadata.InThreadSurveyMetadata)
+                return object;
+            var message = new $root.BotMetadata.InThreadSurveyMetadata();
+            if (object.tessaSessionId != null)
+                message.tessaSessionId = String(object.tessaSessionId);
+            if (object.simonSessionId != null)
+                message.simonSessionId = String(object.simonSessionId);
+            if (object.simonSurveyId != null)
+                message.simonSurveyId = String(object.simonSurveyId);
+            if (object.tessaRootId != null)
+                message.tessaRootId = String(object.tessaRootId);
+            if (object.requestId != null)
+                message.requestId = String(object.requestId);
+            if (object.tessaEvent != null)
+                message.tessaEvent = String(object.tessaEvent);
+            if (object.invitationHeaderText != null)
+                message.invitationHeaderText = String(object.invitationHeaderText);
+            if (object.invitationBodyText != null)
+                message.invitationBodyText = String(object.invitationBodyText);
+            if (object.invitationCtaText != null)
+                message.invitationCtaText = String(object.invitationCtaText);
+            if (object.invitationCtaUrl != null)
+                message.invitationCtaUrl = String(object.invitationCtaUrl);
+            if (object.surveyTitle != null)
+                message.surveyTitle = String(object.surveyTitle);
+            if (object.questions) {
+                if (!Array.isArray(object.questions))
+                    throw TypeError(".BotMetadata.InThreadSurveyMetadata.questions: array expected");
+                message.questions = [];
+                for (var i = 0; i < object.questions.length; ++i) {
+                    if (typeof object.questions[i] !== "object")
+                        throw TypeError(".BotMetadata.InThreadSurveyMetadata.questions: object expected");
+                    message.questions[i] = $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion.fromObject(object.questions[i]);
+                }
+            }
+            if (object.surveyContinueButtonText != null)
+                message.surveyContinueButtonText = String(object.surveyContinueButtonText);
+            if (object.surveySubmitButtonText != null)
+                message.surveySubmitButtonText = String(object.surveySubmitButtonText);
+            if (object.privacyStatementFull != null)
+                message.privacyStatementFull = String(object.privacyStatementFull);
+            if (object.privacyStatementParts) {
+                if (!Array.isArray(object.privacyStatementParts))
+                    throw TypeError(".BotMetadata.InThreadSurveyMetadata.privacyStatementParts: array expected");
+                message.privacyStatementParts = [];
+                for (var i = 0; i < object.privacyStatementParts.length; ++i) {
+                    if (typeof object.privacyStatementParts[i] !== "object")
+                        throw TypeError(".BotMetadata.InThreadSurveyMetadata.privacyStatementParts: object expected");
+                    message.privacyStatementParts[i] = $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart.fromObject(object.privacyStatementParts[i]);
+                }
+            }
+            if (object.feedbackToastText != null)
+                message.feedbackToastText = String(object.feedbackToastText);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an InThreadSurveyMetadata message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @static
+         * @param {BotMetadata.InThreadSurveyMetadata} message InThreadSurveyMetadata
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        InThreadSurveyMetadata.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults) {
+                object.questions = [];
+                object.privacyStatementParts = [];
+            }
+            if (options.defaults) {
+                object.tessaSessionId = "";
+                object.simonSessionId = "";
+                object.simonSurveyId = "";
+                object.tessaRootId = "";
+                object.requestId = "";
+                object.tessaEvent = "";
+                object.invitationHeaderText = "";
+                object.invitationBodyText = "";
+                object.invitationCtaText = "";
+                object.invitationCtaUrl = "";
+                object.surveyTitle = "";
+                object.surveyContinueButtonText = "";
+                object.surveySubmitButtonText = "";
+                object.privacyStatementFull = "";
+                object.feedbackToastText = "";
+            }
+            if (message.tessaSessionId != null && message.hasOwnProperty("tessaSessionId"))
+                object.tessaSessionId = message.tessaSessionId;
+            if (message.simonSessionId != null && message.hasOwnProperty("simonSessionId"))
+                object.simonSessionId = message.simonSessionId;
+            if (message.simonSurveyId != null && message.hasOwnProperty("simonSurveyId"))
+                object.simonSurveyId = message.simonSurveyId;
+            if (message.tessaRootId != null && message.hasOwnProperty("tessaRootId"))
+                object.tessaRootId = message.tessaRootId;
+            if (message.requestId != null && message.hasOwnProperty("requestId"))
+                object.requestId = message.requestId;
+            if (message.tessaEvent != null && message.hasOwnProperty("tessaEvent"))
+                object.tessaEvent = message.tessaEvent;
+            if (message.invitationHeaderText != null && message.hasOwnProperty("invitationHeaderText"))
+                object.invitationHeaderText = message.invitationHeaderText;
+            if (message.invitationBodyText != null && message.hasOwnProperty("invitationBodyText"))
+                object.invitationBodyText = message.invitationBodyText;
+            if (message.invitationCtaText != null && message.hasOwnProperty("invitationCtaText"))
+                object.invitationCtaText = message.invitationCtaText;
+            if (message.invitationCtaUrl != null && message.hasOwnProperty("invitationCtaUrl"))
+                object.invitationCtaUrl = message.invitationCtaUrl;
+            if (message.surveyTitle != null && message.hasOwnProperty("surveyTitle"))
+                object.surveyTitle = message.surveyTitle;
+            if (message.questions && message.questions.length) {
+                object.questions = [];
+                for (var j = 0; j < message.questions.length; ++j)
+                    object.questions[j] = $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion.toObject(message.questions[j], options);
+            }
+            if (message.surveyContinueButtonText != null && message.hasOwnProperty("surveyContinueButtonText"))
+                object.surveyContinueButtonText = message.surveyContinueButtonText;
+            if (message.surveySubmitButtonText != null && message.hasOwnProperty("surveySubmitButtonText"))
+                object.surveySubmitButtonText = message.surveySubmitButtonText;
+            if (message.privacyStatementFull != null && message.hasOwnProperty("privacyStatementFull"))
+                object.privacyStatementFull = message.privacyStatementFull;
+            if (message.privacyStatementParts && message.privacyStatementParts.length) {
+                object.privacyStatementParts = [];
+                for (var j = 0; j < message.privacyStatementParts.length; ++j)
+                    object.privacyStatementParts[j] = $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart.toObject(message.privacyStatementParts[j], options);
+            }
+            if (message.feedbackToastText != null && message.hasOwnProperty("feedbackToastText"))
+                object.feedbackToastText = message.feedbackToastText;
+            return object;
+        };
+
+        /**
+         * Converts this InThreadSurveyMetadata to JSON.
+         * @function toJSON
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        InThreadSurveyMetadata.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for InThreadSurveyMetadata
+         * @function getTypeUrl
+         * @memberof BotMetadata.InThreadSurveyMetadata
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        InThreadSurveyMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/BotMetadata.InThreadSurveyMetadata";
+        };
+
+        InThreadSurveyMetadata.InThreadSurveyOption = (function() {
+
+            /**
+             * Properties of an InThreadSurveyOption.
+             * @memberof BotMetadata.InThreadSurveyMetadata
+             * @interface IInThreadSurveyOption
+             * @property {string|null} [stringValue] InThreadSurveyOption stringValue
+             * @property {number|null} [numericValue] InThreadSurveyOption numericValue
+             * @property {string|null} [textTranslated] InThreadSurveyOption textTranslated
+             */
+
+            /**
+             * Constructs a new InThreadSurveyOption.
+             * @memberof BotMetadata.InThreadSurveyMetadata
+             * @classdesc Represents an InThreadSurveyOption.
+             * @implements IInThreadSurveyOption
+             * @constructor
+             * @param {BotMetadata.InThreadSurveyMetadata.IInThreadSurveyOption=} [properties] Properties to set
+             */
+            function InThreadSurveyOption(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * InThreadSurveyOption stringValue.
+             * @member {string} stringValue
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption
+             * @instance
+             */
+            InThreadSurveyOption.prototype.stringValue = "";
+
+            /**
+             * InThreadSurveyOption numericValue.
+             * @member {number} numericValue
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption
+             * @instance
+             */
+            InThreadSurveyOption.prototype.numericValue = 0;
+
+            /**
+             * InThreadSurveyOption textTranslated.
+             * @member {string} textTranslated
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption
+             * @instance
+             */
+            InThreadSurveyOption.prototype.textTranslated = "";
+
+            /**
+             * Creates a new InThreadSurveyOption instance using the specified properties.
+             * @function create
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption
+             * @static
+             * @param {BotMetadata.InThreadSurveyMetadata.IInThreadSurveyOption=} [properties] Properties to set
+             * @returns {BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption} InThreadSurveyOption instance
+             */
+            InThreadSurveyOption.create = function create(properties) {
+                return new InThreadSurveyOption(properties);
+            };
+
+            /**
+             * Encodes the specified InThreadSurveyOption message. Does not implicitly {@link BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption.verify|verify} messages.
+             * @function encode
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption
+             * @static
+             * @param {BotMetadata.InThreadSurveyMetadata.IInThreadSurveyOption} message InThreadSurveyOption message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            InThreadSurveyOption.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.stringValue != null && Object.hasOwnProperty.call(message, "stringValue"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.stringValue);
+                if (message.numericValue != null && Object.hasOwnProperty.call(message, "numericValue"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.numericValue);
+                if (message.textTranslated != null && Object.hasOwnProperty.call(message, "textTranslated"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.textTranslated);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified InThreadSurveyOption message, length delimited. Does not implicitly {@link BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption
+             * @static
+             * @param {BotMetadata.InThreadSurveyMetadata.IInThreadSurveyOption} message InThreadSurveyOption message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            InThreadSurveyOption.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes an InThreadSurveyOption message from the specified reader or buffer.
+             * @function decode
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption} InThreadSurveyOption
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            InThreadSurveyOption.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.stringValue = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.numericValue = reader.uint32();
+                            break;
+                        }
+                    case 3: {
+                            message.textTranslated = reader.string();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes an InThreadSurveyOption message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption} InThreadSurveyOption
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            InThreadSurveyOption.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies an InThreadSurveyOption message.
+             * @function verify
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            InThreadSurveyOption.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.stringValue != null && message.hasOwnProperty("stringValue"))
+                    if (!$util.isString(message.stringValue))
+                        return "stringValue: string expected";
+                if (message.numericValue != null && message.hasOwnProperty("numericValue"))
+                    if (!$util.isInteger(message.numericValue))
+                        return "numericValue: integer expected";
+                if (message.textTranslated != null && message.hasOwnProperty("textTranslated"))
+                    if (!$util.isString(message.textTranslated))
+                        return "textTranslated: string expected";
+                return null;
+            };
+
+            /**
+             * Creates an InThreadSurveyOption message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption} InThreadSurveyOption
+             */
+            InThreadSurveyOption.fromObject = function fromObject(object) {
+                if (object instanceof $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption)
+                    return object;
+                var message = new $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption();
+                if (object.stringValue != null)
+                    message.stringValue = String(object.stringValue);
+                if (object.numericValue != null)
+                    message.numericValue = object.numericValue >>> 0;
+                if (object.textTranslated != null)
+                    message.textTranslated = String(object.textTranslated);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from an InThreadSurveyOption message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption
+             * @static
+             * @param {BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption} message InThreadSurveyOption
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            InThreadSurveyOption.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.stringValue = "";
+                    object.numericValue = 0;
+                    object.textTranslated = "";
+                }
+                if (message.stringValue != null && message.hasOwnProperty("stringValue"))
+                    object.stringValue = message.stringValue;
+                if (message.numericValue != null && message.hasOwnProperty("numericValue"))
+                    object.numericValue = message.numericValue;
+                if (message.textTranslated != null && message.hasOwnProperty("textTranslated"))
+                    object.textTranslated = message.textTranslated;
+                return object;
+            };
+
+            /**
+             * Converts this InThreadSurveyOption to JSON.
+             * @function toJSON
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            InThreadSurveyOption.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for InThreadSurveyOption
+             * @function getTypeUrl
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            InThreadSurveyOption.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption";
+            };
+
+            return InThreadSurveyOption;
+        })();
+
+        InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart = (function() {
+
+            /**
+             * Properties of an InThreadSurveyPrivacyStatementPart.
+             * @memberof BotMetadata.InThreadSurveyMetadata
+             * @interface IInThreadSurveyPrivacyStatementPart
+             * @property {string|null} [text] InThreadSurveyPrivacyStatementPart text
+             * @property {string|null} [url] InThreadSurveyPrivacyStatementPart url
+             */
+
+            /**
+             * Constructs a new InThreadSurveyPrivacyStatementPart.
+             * @memberof BotMetadata.InThreadSurveyMetadata
+             * @classdesc Represents an InThreadSurveyPrivacyStatementPart.
+             * @implements IInThreadSurveyPrivacyStatementPart
+             * @constructor
+             * @param {BotMetadata.InThreadSurveyMetadata.IInThreadSurveyPrivacyStatementPart=} [properties] Properties to set
+             */
+            function InThreadSurveyPrivacyStatementPart(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * InThreadSurveyPrivacyStatementPart text.
+             * @member {string} text
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart
+             * @instance
+             */
+            InThreadSurveyPrivacyStatementPart.prototype.text = "";
+
+            /**
+             * InThreadSurveyPrivacyStatementPart url.
+             * @member {string} url
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart
+             * @instance
+             */
+            InThreadSurveyPrivacyStatementPart.prototype.url = "";
+
+            /**
+             * Creates a new InThreadSurveyPrivacyStatementPart instance using the specified properties.
+             * @function create
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart
+             * @static
+             * @param {BotMetadata.InThreadSurveyMetadata.IInThreadSurveyPrivacyStatementPart=} [properties] Properties to set
+             * @returns {BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart} InThreadSurveyPrivacyStatementPart instance
+             */
+            InThreadSurveyPrivacyStatementPart.create = function create(properties) {
+                return new InThreadSurveyPrivacyStatementPart(properties);
+            };
+
+            /**
+             * Encodes the specified InThreadSurveyPrivacyStatementPart message. Does not implicitly {@link BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart.verify|verify} messages.
+             * @function encode
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart
+             * @static
+             * @param {BotMetadata.InThreadSurveyMetadata.IInThreadSurveyPrivacyStatementPart} message InThreadSurveyPrivacyStatementPart message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            InThreadSurveyPrivacyStatementPart.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.text != null && Object.hasOwnProperty.call(message, "text"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.text);
+                if (message.url != null && Object.hasOwnProperty.call(message, "url"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.url);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified InThreadSurveyPrivacyStatementPart message, length delimited. Does not implicitly {@link BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart
+             * @static
+             * @param {BotMetadata.InThreadSurveyMetadata.IInThreadSurveyPrivacyStatementPart} message InThreadSurveyPrivacyStatementPart message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            InThreadSurveyPrivacyStatementPart.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes an InThreadSurveyPrivacyStatementPart message from the specified reader or buffer.
+             * @function decode
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart} InThreadSurveyPrivacyStatementPart
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            InThreadSurveyPrivacyStatementPart.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.text = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.url = reader.string();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes an InThreadSurveyPrivacyStatementPart message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart} InThreadSurveyPrivacyStatementPart
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            InThreadSurveyPrivacyStatementPart.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies an InThreadSurveyPrivacyStatementPart message.
+             * @function verify
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            InThreadSurveyPrivacyStatementPart.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.text != null && message.hasOwnProperty("text"))
+                    if (!$util.isString(message.text))
+                        return "text: string expected";
+                if (message.url != null && message.hasOwnProperty("url"))
+                    if (!$util.isString(message.url))
+                        return "url: string expected";
+                return null;
+            };
+
+            /**
+             * Creates an InThreadSurveyPrivacyStatementPart message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart} InThreadSurveyPrivacyStatementPart
+             */
+            InThreadSurveyPrivacyStatementPart.fromObject = function fromObject(object) {
+                if (object instanceof $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart)
+                    return object;
+                var message = new $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart();
+                if (object.text != null)
+                    message.text = String(object.text);
+                if (object.url != null)
+                    message.url = String(object.url);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from an InThreadSurveyPrivacyStatementPart message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart
+             * @static
+             * @param {BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart} message InThreadSurveyPrivacyStatementPart
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            InThreadSurveyPrivacyStatementPart.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.text = "";
+                    object.url = "";
+                }
+                if (message.text != null && message.hasOwnProperty("text"))
+                    object.text = message.text;
+                if (message.url != null && message.hasOwnProperty("url"))
+                    object.url = message.url;
+                return object;
+            };
+
+            /**
+             * Converts this InThreadSurveyPrivacyStatementPart to JSON.
+             * @function toJSON
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            InThreadSurveyPrivacyStatementPart.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for InThreadSurveyPrivacyStatementPart
+             * @function getTypeUrl
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            InThreadSurveyPrivacyStatementPart.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart";
+            };
+
+            return InThreadSurveyPrivacyStatementPart;
+        })();
+
+        InThreadSurveyMetadata.InThreadSurveyQuestion = (function() {
+
+            /**
+             * Properties of an InThreadSurveyQuestion.
+             * @memberof BotMetadata.InThreadSurveyMetadata
+             * @interface IInThreadSurveyQuestion
+             * @property {string|null} [questionText] InThreadSurveyQuestion questionText
+             * @property {string|null} [questionId] InThreadSurveyQuestion questionId
+             * @property {Array.<BotMetadata.InThreadSurveyMetadata.IInThreadSurveyOption>|null} [questionOptions] InThreadSurveyQuestion questionOptions
+             */
+
+            /**
+             * Constructs a new InThreadSurveyQuestion.
+             * @memberof BotMetadata.InThreadSurveyMetadata
+             * @classdesc Represents an InThreadSurveyQuestion.
+             * @implements IInThreadSurveyQuestion
+             * @constructor
+             * @param {BotMetadata.InThreadSurveyMetadata.IInThreadSurveyQuestion=} [properties] Properties to set
+             */
+            function InThreadSurveyQuestion(properties) {
+                this.questionOptions = [];
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * InThreadSurveyQuestion questionText.
+             * @member {string} questionText
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion
+             * @instance
+             */
+            InThreadSurveyQuestion.prototype.questionText = "";
+
+            /**
+             * InThreadSurveyQuestion questionId.
+             * @member {string} questionId
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion
+             * @instance
+             */
+            InThreadSurveyQuestion.prototype.questionId = "";
+
+            /**
+             * InThreadSurveyQuestion questionOptions.
+             * @member {Array.<BotMetadata.InThreadSurveyMetadata.IInThreadSurveyOption>} questionOptions
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion
+             * @instance
+             */
+            InThreadSurveyQuestion.prototype.questionOptions = $util.emptyArray;
+
+            /**
+             * Creates a new InThreadSurveyQuestion instance using the specified properties.
+             * @function create
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion
+             * @static
+             * @param {BotMetadata.InThreadSurveyMetadata.IInThreadSurveyQuestion=} [properties] Properties to set
+             * @returns {BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion} InThreadSurveyQuestion instance
+             */
+            InThreadSurveyQuestion.create = function create(properties) {
+                return new InThreadSurveyQuestion(properties);
+            };
+
+            /**
+             * Encodes the specified InThreadSurveyQuestion message. Does not implicitly {@link BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion.verify|verify} messages.
+             * @function encode
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion
+             * @static
+             * @param {BotMetadata.InThreadSurveyMetadata.IInThreadSurveyQuestion} message InThreadSurveyQuestion message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            InThreadSurveyQuestion.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.questionText != null && Object.hasOwnProperty.call(message, "questionText"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.questionText);
+                if (message.questionId != null && Object.hasOwnProperty.call(message, "questionId"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.questionId);
+                if (message.questionOptions != null && message.questionOptions.length)
+                    for (var i = 0; i < message.questionOptions.length; ++i)
+                        $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption.encode(message.questionOptions[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                return writer;
+            };
+
+            /**
+             * Encodes the specified InThreadSurveyQuestion message, length delimited. Does not implicitly {@link BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion
+             * @static
+             * @param {BotMetadata.InThreadSurveyMetadata.IInThreadSurveyQuestion} message InThreadSurveyQuestion message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            InThreadSurveyQuestion.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes an InThreadSurveyQuestion message from the specified reader or buffer.
+             * @function decode
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion} InThreadSurveyQuestion
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            InThreadSurveyQuestion.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.questionText = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.questionId = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            if (!(message.questionOptions && message.questionOptions.length))
+                                message.questionOptions = [];
+                            message.questionOptions.push($root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes an InThreadSurveyQuestion message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion} InThreadSurveyQuestion
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            InThreadSurveyQuestion.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies an InThreadSurveyQuestion message.
+             * @function verify
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            InThreadSurveyQuestion.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.questionText != null && message.hasOwnProperty("questionText"))
+                    if (!$util.isString(message.questionText))
+                        return "questionText: string expected";
+                if (message.questionId != null && message.hasOwnProperty("questionId"))
+                    if (!$util.isString(message.questionId))
+                        return "questionId: string expected";
+                if (message.questionOptions != null && message.hasOwnProperty("questionOptions")) {
+                    if (!Array.isArray(message.questionOptions))
+                        return "questionOptions: array expected";
+                    for (var i = 0; i < message.questionOptions.length; ++i) {
+                        var error = $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption.verify(message.questionOptions[i]);
+                        if (error)
+                            return "questionOptions." + error;
+                    }
+                }
+                return null;
+            };
+
+            /**
+             * Creates an InThreadSurveyQuestion message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion} InThreadSurveyQuestion
+             */
+            InThreadSurveyQuestion.fromObject = function fromObject(object) {
+                if (object instanceof $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion)
+                    return object;
+                var message = new $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion();
+                if (object.questionText != null)
+                    message.questionText = String(object.questionText);
+                if (object.questionId != null)
+                    message.questionId = String(object.questionId);
+                if (object.questionOptions) {
+                    if (!Array.isArray(object.questionOptions))
+                        throw TypeError(".BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion.questionOptions: array expected");
+                    message.questionOptions = [];
+                    for (var i = 0; i < object.questionOptions.length; ++i) {
+                        if (typeof object.questionOptions[i] !== "object")
+                            throw TypeError(".BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion.questionOptions: object expected");
+                        message.questionOptions[i] = $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption.fromObject(object.questionOptions[i]);
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from an InThreadSurveyQuestion message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion
+             * @static
+             * @param {BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion} message InThreadSurveyQuestion
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            InThreadSurveyQuestion.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.arrays || options.defaults)
+                    object.questionOptions = [];
+                if (options.defaults) {
+                    object.questionText = "";
+                    object.questionId = "";
+                }
+                if (message.questionText != null && message.hasOwnProperty("questionText"))
+                    object.questionText = message.questionText;
+                if (message.questionId != null && message.hasOwnProperty("questionId"))
+                    object.questionId = message.questionId;
+                if (message.questionOptions && message.questionOptions.length) {
+                    object.questionOptions = [];
+                    for (var j = 0; j < message.questionOptions.length; ++j)
+                        object.questionOptions[j] = $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption.toObject(message.questionOptions[j], options);
+                }
+                return object;
+            };
+
+            /**
+             * Converts this InThreadSurveyQuestion to JSON.
+             * @function toJSON
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            InThreadSurveyQuestion.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for InThreadSurveyQuestion
+             * @function getTypeUrl
+             * @memberof BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            InThreadSurveyQuestion.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion";
+            };
+
+            return InThreadSurveyQuestion;
+        })();
+
+        return InThreadSurveyMetadata;
     })();
 
     BotMetadata.BotSourcesMetadata = (function() {
@@ -90591,6 +92142,7 @@ $root.BotMetadata = (function() {
                     return "promotionType: enum value expected";
                 case 0:
                 case 1:
+                case 2:
                     break;
                 }
             if (message.buttonTitle != null && message.hasOwnProperty("buttonTitle"))
@@ -90625,6 +92177,10 @@ $root.BotMetadata = (function() {
             case "C50":
             case 1:
                 message.promotionType = 1;
+                break;
+            case "SURVEY_PLATFORM":
+            case 2:
+                message.promotionType = 2;
                 break;
             }
             if (object.buttonTitle != null)
@@ -90688,11 +92244,13 @@ $root.BotMetadata = (function() {
          * @enum {number}
          * @property {number} UNKNOWN_TYPE=0 UNKNOWN_TYPE value
          * @property {number} C50=1 C50 value
+         * @property {number} SURVEY_PLATFORM=2 SURVEY_PLATFORM value
          */
         BotPromotionMessageMetadata.BotPromotionType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
             values[valuesById[0] = "UNKNOWN_TYPE"] = 0;
             values[valuesById[1] = "C50"] = 1;
+            values[valuesById[2] = "SURVEY_PLATFORM"] = 2;
             return values;
         })();
 
@@ -95533,6 +97091,7 @@ $root.StatusAttributions = (function() {
                     case 0:
                     case 1:
                     case 2:
+                    case 3:
                         break;
                     }
                 return null;
@@ -95568,6 +97127,10 @@ $root.StatusAttributions = (function() {
                 case "OAKLEY_META_GLASSES":
                 case 2:
                     message.source = 2;
+                    break;
+                case "HYPERNOVA_GLASSES":
+                case 3:
+                    message.source = 3;
                     break;
                 }
                 return message;
@@ -95626,12 +97189,14 @@ $root.StatusAttributions = (function() {
              * @property {number} UNKNOWN=0 UNKNOWN value
              * @property {number} RAY_BAN_META_GLASSES=1 RAY_BAN_META_GLASSES value
              * @property {number} OAKLEY_META_GLASSES=2 OAKLEY_META_GLASSES value
+             * @property {number} HYPERNOVA_GLASSES=3 HYPERNOVA_GLASSES value
              */
             RLAttribution.Source = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
                 values[valuesById[0] = "UNKNOWN"] = 0;
                 values[valuesById[1] = "RAY_BAN_META_GLASSES"] = 1;
                 values[valuesById[2] = "OAKLEY_META_GLASSES"] = 2;
+                values[valuesById[3] = "HYPERNOVA_GLASSES"] = 3;
                 return values;
             })();
 
@@ -114110,6 +115675,8 @@ $root.SyncAction = (function() {
          * @property {SyncAction.SyncActionValue.IBusinessBroadcastAssociationAction|null} [businessBroadcastAssociationAction] SyncActionValue businessBroadcastAssociationAction
          * @property {SyncAction.SyncActionValue.IDetectedOutcomesStatusAction|null} [detectedOutcomesStatusAction] SyncActionValue detectedOutcomesStatusAction
          * @property {SyncAction.SyncActionValue.IMaibaAIFeaturesControlAction|null} [maibaAiFeaturesControlAction] SyncActionValue maibaAiFeaturesControlAction
+         * @property {SyncAction.SyncActionValue.IBusinessBroadcastListAction|null} [businessBroadcastListAction] SyncActionValue businessBroadcastListAction
+         * @property {SyncAction.SyncActionValue.IMusicUserIdAction|null} [musicUserIdAction] SyncActionValue musicUserIdAction
          */
 
         /**
@@ -114616,6 +116183,22 @@ $root.SyncAction = (function() {
         SyncActionValue.prototype.maibaAiFeaturesControlAction = null;
 
         /**
+         * SyncActionValue businessBroadcastListAction.
+         * @member {SyncAction.SyncActionValue.IBusinessBroadcastListAction|null|undefined} businessBroadcastListAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.businessBroadcastListAction = null;
+
+        /**
+         * SyncActionValue musicUserIdAction.
+         * @member {SyncAction.SyncActionValue.IMusicUserIdAction|null|undefined} musicUserIdAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.musicUserIdAction = null;
+
+        /**
          * Creates a new SyncActionValue instance using the specified properties.
          * @function create
          * @memberof SyncAction.SyncActionValue
@@ -114760,7 +116343,11 @@ $root.SyncAction = (function() {
             if (message.detectedOutcomesStatusAction != null && Object.hasOwnProperty.call(message, "detectedOutcomesStatusAction"))
                 $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction.encode(message.detectedOutcomesStatusAction, writer.uint32(/* id 66, wireType 2 =*/530).fork()).ldelim();
             if (message.maibaAiFeaturesControlAction != null && Object.hasOwnProperty.call(message, "maibaAiFeaturesControlAction"))
-                $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.encode(message.maibaAiFeaturesControlAction, writer.uint32(/* id 67, wireType 2 =*/538).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.encode(message.maibaAiFeaturesControlAction, writer.uint32(/* id 68, wireType 2 =*/546).fork()).ldelim();
+            if (message.businessBroadcastListAction != null && Object.hasOwnProperty.call(message, "businessBroadcastListAction"))
+                $root.SyncAction.SyncActionValue.BusinessBroadcastListAction.encode(message.businessBroadcastListAction, writer.uint32(/* id 69, wireType 2 =*/554).fork()).ldelim();
+            if (message.musicUserIdAction != null && Object.hasOwnProperty.call(message, "musicUserIdAction"))
+                $root.SyncAction.SyncActionValue.MusicUserIdAction.encode(message.musicUserIdAction, writer.uint32(/* id 70, wireType 2 =*/562).fork()).ldelim();
             return writer;
         };
 
@@ -115037,8 +116624,16 @@ $root.SyncAction = (function() {
                         message.detectedOutcomesStatusAction = $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction.decode(reader, reader.uint32());
                         break;
                     }
-                case 67: {
+                case 68: {
                         message.maibaAiFeaturesControlAction = $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 69: {
+                        message.businessBroadcastListAction = $root.SyncAction.SyncActionValue.BusinessBroadcastListAction.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 70: {
+                        message.musicUserIdAction = $root.SyncAction.SyncActionValue.MusicUserIdAction.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -115379,6 +116974,16 @@ $root.SyncAction = (function() {
                 if (error)
                     return "maibaAiFeaturesControlAction." + error;
             }
+            if (message.businessBroadcastListAction != null && message.hasOwnProperty("businessBroadcastListAction")) {
+                var error = $root.SyncAction.SyncActionValue.BusinessBroadcastListAction.verify(message.businessBroadcastListAction);
+                if (error)
+                    return "businessBroadcastListAction." + error;
+            }
+            if (message.musicUserIdAction != null && message.hasOwnProperty("musicUserIdAction")) {
+                var error = $root.SyncAction.SyncActionValue.MusicUserIdAction.verify(message.musicUserIdAction);
+                if (error)
+                    return "musicUserIdAction." + error;
+            }
             return null;
         };
 
@@ -115703,6 +117308,16 @@ $root.SyncAction = (function() {
                     throw TypeError(".SyncAction.SyncActionValue.maibaAiFeaturesControlAction: object expected");
                 message.maibaAiFeaturesControlAction = $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.fromObject(object.maibaAiFeaturesControlAction);
             }
+            if (object.businessBroadcastListAction != null) {
+                if (typeof object.businessBroadcastListAction !== "object")
+                    throw TypeError(".SyncAction.SyncActionValue.businessBroadcastListAction: object expected");
+                message.businessBroadcastListAction = $root.SyncAction.SyncActionValue.BusinessBroadcastListAction.fromObject(object.businessBroadcastListAction);
+            }
+            if (object.musicUserIdAction != null) {
+                if (typeof object.musicUserIdAction !== "object")
+                    throw TypeError(".SyncAction.SyncActionValue.musicUserIdAction: object expected");
+                message.musicUserIdAction = $root.SyncAction.SyncActionValue.MusicUserIdAction.fromObject(object.musicUserIdAction);
+            }
             return message;
         };
 
@@ -115785,6 +117400,8 @@ $root.SyncAction = (function() {
                 object.businessBroadcastAssociationAction = null;
                 object.detectedOutcomesStatusAction = null;
                 object.maibaAiFeaturesControlAction = null;
+                object.businessBroadcastListAction = null;
+                object.musicUserIdAction = null;
             }
             if (message.timestamp != null && message.hasOwnProperty("timestamp"))
                 if (typeof message.timestamp === "number")
@@ -115911,6 +117528,10 @@ $root.SyncAction = (function() {
                 object.detectedOutcomesStatusAction = $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction.toObject(message.detectedOutcomesStatusAction, options);
             if (message.maibaAiFeaturesControlAction != null && message.hasOwnProperty("maibaAiFeaturesControlAction"))
                 object.maibaAiFeaturesControlAction = $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.toObject(message.maibaAiFeaturesControlAction, options);
+            if (message.businessBroadcastListAction != null && message.hasOwnProperty("businessBroadcastListAction"))
+                object.businessBroadcastListAction = $root.SyncAction.SyncActionValue.BusinessBroadcastListAction.toObject(message.businessBroadcastListAction, options);
+            if (message.musicUserIdAction != null && message.hasOwnProperty("musicUserIdAction"))
+                object.musicUserIdAction = $root.SyncAction.SyncActionValue.MusicUserIdAction.toObject(message.musicUserIdAction, options);
             return object;
         };
 
@@ -117039,6 +118660,275 @@ $root.SyncAction = (function() {
             };
 
             return BusinessBroadcastAssociationAction;
+        })();
+
+        SyncActionValue.BusinessBroadcastListAction = (function() {
+
+            /**
+             * Properties of a BusinessBroadcastListAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface IBusinessBroadcastListAction
+             * @property {boolean|null} [deleted] BusinessBroadcastListAction deleted
+             * @property {Array.<string>|null} [phoneNumbers] BusinessBroadcastListAction phoneNumbers
+             * @property {string|null} [listName] BusinessBroadcastListAction listName
+             */
+
+            /**
+             * Constructs a new BusinessBroadcastListAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents a BusinessBroadcastListAction.
+             * @implements IBusinessBroadcastListAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.IBusinessBroadcastListAction=} [properties] Properties to set
+             */
+            function BusinessBroadcastListAction(properties) {
+                this.phoneNumbers = [];
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * BusinessBroadcastListAction deleted.
+             * @member {boolean} deleted
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
+             * @instance
+             */
+            BusinessBroadcastListAction.prototype.deleted = false;
+
+            /**
+             * BusinessBroadcastListAction phoneNumbers.
+             * @member {Array.<string>} phoneNumbers
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
+             * @instance
+             */
+            BusinessBroadcastListAction.prototype.phoneNumbers = $util.emptyArray;
+
+            /**
+             * BusinessBroadcastListAction listName.
+             * @member {string} listName
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
+             * @instance
+             */
+            BusinessBroadcastListAction.prototype.listName = "";
+
+            /**
+             * Creates a new BusinessBroadcastListAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IBusinessBroadcastListAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.BusinessBroadcastListAction} BusinessBroadcastListAction instance
+             */
+            BusinessBroadcastListAction.create = function create(properties) {
+                return new BusinessBroadcastListAction(properties);
+            };
+
+            /**
+             * Encodes the specified BusinessBroadcastListAction message. Does not implicitly {@link SyncAction.SyncActionValue.BusinessBroadcastListAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IBusinessBroadcastListAction} message BusinessBroadcastListAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            BusinessBroadcastListAction.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.deleted != null && Object.hasOwnProperty.call(message, "deleted"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).bool(message.deleted);
+                if (message.phoneNumbers != null && message.phoneNumbers.length)
+                    for (var i = 0; i < message.phoneNumbers.length; ++i)
+                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.phoneNumbers[i]);
+                if (message.listName != null && Object.hasOwnProperty.call(message, "listName"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.listName);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified BusinessBroadcastListAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.BusinessBroadcastListAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IBusinessBroadcastListAction} message BusinessBroadcastListAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            BusinessBroadcastListAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a BusinessBroadcastListAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.BusinessBroadcastListAction} BusinessBroadcastListAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            BusinessBroadcastListAction.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.BusinessBroadcastListAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.deleted = reader.bool();
+                            break;
+                        }
+                    case 2: {
+                            if (!(message.phoneNumbers && message.phoneNumbers.length))
+                                message.phoneNumbers = [];
+                            message.phoneNumbers.push(reader.string());
+                            break;
+                        }
+                    case 3: {
+                            message.listName = reader.string();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a BusinessBroadcastListAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.BusinessBroadcastListAction} BusinessBroadcastListAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            BusinessBroadcastListAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a BusinessBroadcastListAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            BusinessBroadcastListAction.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.deleted != null && message.hasOwnProperty("deleted"))
+                    if (typeof message.deleted !== "boolean")
+                        return "deleted: boolean expected";
+                if (message.phoneNumbers != null && message.hasOwnProperty("phoneNumbers")) {
+                    if (!Array.isArray(message.phoneNumbers))
+                        return "phoneNumbers: array expected";
+                    for (var i = 0; i < message.phoneNumbers.length; ++i)
+                        if (!$util.isString(message.phoneNumbers[i]))
+                            return "phoneNumbers: string[] expected";
+                }
+                if (message.listName != null && message.hasOwnProperty("listName"))
+                    if (!$util.isString(message.listName))
+                        return "listName: string expected";
+                return null;
+            };
+
+            /**
+             * Creates a BusinessBroadcastListAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.BusinessBroadcastListAction} BusinessBroadcastListAction
+             */
+            BusinessBroadcastListAction.fromObject = function fromObject(object) {
+                if (object instanceof $root.SyncAction.SyncActionValue.BusinessBroadcastListAction)
+                    return object;
+                var message = new $root.SyncAction.SyncActionValue.BusinessBroadcastListAction();
+                if (object.deleted != null)
+                    message.deleted = Boolean(object.deleted);
+                if (object.phoneNumbers) {
+                    if (!Array.isArray(object.phoneNumbers))
+                        throw TypeError(".SyncAction.SyncActionValue.BusinessBroadcastListAction.phoneNumbers: array expected");
+                    message.phoneNumbers = [];
+                    for (var i = 0; i < object.phoneNumbers.length; ++i)
+                        message.phoneNumbers[i] = String(object.phoneNumbers[i]);
+                }
+                if (object.listName != null)
+                    message.listName = String(object.listName);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a BusinessBroadcastListAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
+             * @static
+             * @param {SyncAction.SyncActionValue.BusinessBroadcastListAction} message BusinessBroadcastListAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            BusinessBroadcastListAction.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.arrays || options.defaults)
+                    object.phoneNumbers = [];
+                if (options.defaults) {
+                    object.deleted = false;
+                    object.listName = "";
+                }
+                if (message.deleted != null && message.hasOwnProperty("deleted"))
+                    object.deleted = message.deleted;
+                if (message.phoneNumbers && message.phoneNumbers.length) {
+                    object.phoneNumbers = [];
+                    for (var j = 0; j < message.phoneNumbers.length; ++j)
+                        object.phoneNumbers[j] = message.phoneNumbers[j];
+                }
+                if (message.listName != null && message.hasOwnProperty("listName"))
+                    object.listName = message.listName;
+                return object;
+            };
+
+            /**
+             * Converts this BusinessBroadcastListAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            BusinessBroadcastListAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for BusinessBroadcastListAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            BusinessBroadcastListAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.BusinessBroadcastListAction";
+            };
+
+            return BusinessBroadcastListAction;
         })();
 
         SyncActionValue.CallLogAction = (function() {
@@ -123825,6 +125715,211 @@ $root.SyncAction = (function() {
             return MerchantPaymentPartnerAction;
         })();
 
+        SyncActionValue.MusicUserIdAction = (function() {
+
+            /**
+             * Properties of a MusicUserIdAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface IMusicUserIdAction
+             * @property {string|null} [musicUserId] MusicUserIdAction musicUserId
+             */
+
+            /**
+             * Constructs a new MusicUserIdAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents a MusicUserIdAction.
+             * @implements IMusicUserIdAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.IMusicUserIdAction=} [properties] Properties to set
+             */
+            function MusicUserIdAction(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * MusicUserIdAction musicUserId.
+             * @member {string} musicUserId
+             * @memberof SyncAction.SyncActionValue.MusicUserIdAction
+             * @instance
+             */
+            MusicUserIdAction.prototype.musicUserId = "";
+
+            /**
+             * Creates a new MusicUserIdAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.MusicUserIdAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IMusicUserIdAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.MusicUserIdAction} MusicUserIdAction instance
+             */
+            MusicUserIdAction.create = function create(properties) {
+                return new MusicUserIdAction(properties);
+            };
+
+            /**
+             * Encodes the specified MusicUserIdAction message. Does not implicitly {@link SyncAction.SyncActionValue.MusicUserIdAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.MusicUserIdAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IMusicUserIdAction} message MusicUserIdAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            MusicUserIdAction.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.musicUserId != null && Object.hasOwnProperty.call(message, "musicUserId"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.musicUserId);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified MusicUserIdAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.MusicUserIdAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.MusicUserIdAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IMusicUserIdAction} message MusicUserIdAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            MusicUserIdAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a MusicUserIdAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.MusicUserIdAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.MusicUserIdAction} MusicUserIdAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            MusicUserIdAction.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.MusicUserIdAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.musicUserId = reader.string();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a MusicUserIdAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.MusicUserIdAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.MusicUserIdAction} MusicUserIdAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            MusicUserIdAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a MusicUserIdAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.MusicUserIdAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            MusicUserIdAction.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.musicUserId != null && message.hasOwnProperty("musicUserId"))
+                    if (!$util.isString(message.musicUserId))
+                        return "musicUserId: string expected";
+                return null;
+            };
+
+            /**
+             * Creates a MusicUserIdAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.MusicUserIdAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.MusicUserIdAction} MusicUserIdAction
+             */
+            MusicUserIdAction.fromObject = function fromObject(object) {
+                if (object instanceof $root.SyncAction.SyncActionValue.MusicUserIdAction)
+                    return object;
+                var message = new $root.SyncAction.SyncActionValue.MusicUserIdAction();
+                if (object.musicUserId != null)
+                    message.musicUserId = String(object.musicUserId);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a MusicUserIdAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.MusicUserIdAction
+             * @static
+             * @param {SyncAction.SyncActionValue.MusicUserIdAction} message MusicUserIdAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            MusicUserIdAction.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.musicUserId = "";
+                if (message.musicUserId != null && message.hasOwnProperty("musicUserId"))
+                    object.musicUserId = message.musicUserId;
+                return object;
+            };
+
+            /**
+             * Converts this MusicUserIdAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.MusicUserIdAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            MusicUserIdAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for MusicUserIdAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.MusicUserIdAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            MusicUserIdAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.MusicUserIdAction";
+            };
+
+            return MusicUserIdAction;
+        })();
+
         SyncActionValue.MuteAction = (function() {
 
             /**
@@ -128481,6 +130576,8 @@ $root.SyncAction = (function() {
              * @property {boolean|null} [isFavorite] StickerAction isFavorite
              * @property {number|null} [deviceIdHint] StickerAction deviceIdHint
              * @property {boolean|null} [isLottie] StickerAction isLottie
+             * @property {string|null} [imageHash] StickerAction imageHash
+             * @property {boolean|null} [isAvatarSticker] StickerAction isAvatarSticker
              */
 
             /**
@@ -128587,6 +130684,22 @@ $root.SyncAction = (function() {
             StickerAction.prototype.isLottie = false;
 
             /**
+             * StickerAction imageHash.
+             * @member {string} imageHash
+             * @memberof SyncAction.SyncActionValue.StickerAction
+             * @instance
+             */
+            StickerAction.prototype.imageHash = "";
+
+            /**
+             * StickerAction isAvatarSticker.
+             * @member {boolean} isAvatarSticker
+             * @memberof SyncAction.SyncActionValue.StickerAction
+             * @instance
+             */
+            StickerAction.prototype.isAvatarSticker = false;
+
+            /**
              * Creates a new StickerAction instance using the specified properties.
              * @function create
              * @memberof SyncAction.SyncActionValue.StickerAction
@@ -128632,6 +130745,10 @@ $root.SyncAction = (function() {
                     writer.uint32(/* id 10, wireType 0 =*/80).uint32(message.deviceIdHint);
                 if (message.isLottie != null && Object.hasOwnProperty.call(message, "isLottie"))
                     writer.uint32(/* id 11, wireType 0 =*/88).bool(message.isLottie);
+                if (message.imageHash != null && Object.hasOwnProperty.call(message, "imageHash"))
+                    writer.uint32(/* id 12, wireType 2 =*/98).string(message.imageHash);
+                if (message.isAvatarSticker != null && Object.hasOwnProperty.call(message, "isAvatarSticker"))
+                    writer.uint32(/* id 13, wireType 0 =*/104).bool(message.isAvatarSticker);
                 return writer;
             };
 
@@ -128712,6 +130829,14 @@ $root.SyncAction = (function() {
                             message.isLottie = reader.bool();
                             break;
                         }
+                    case 12: {
+                            message.imageHash = reader.string();
+                            break;
+                        }
+                    case 13: {
+                            message.isAvatarSticker = reader.bool();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -128780,6 +130905,12 @@ $root.SyncAction = (function() {
                 if (message.isLottie != null && message.hasOwnProperty("isLottie"))
                     if (typeof message.isLottie !== "boolean")
                         return "isLottie: boolean expected";
+                if (message.imageHash != null && message.hasOwnProperty("imageHash"))
+                    if (!$util.isString(message.imageHash))
+                        return "imageHash: string expected";
+                if (message.isAvatarSticker != null && message.hasOwnProperty("isAvatarSticker"))
+                    if (typeof message.isAvatarSticker !== "boolean")
+                        return "isAvatarSticker: boolean expected";
                 return null;
             };
 
@@ -128830,6 +130961,10 @@ $root.SyncAction = (function() {
                     message.deviceIdHint = object.deviceIdHint >>> 0;
                 if (object.isLottie != null)
                     message.isLottie = Boolean(object.isLottie);
+                if (object.imageHash != null)
+                    message.imageHash = String(object.imageHash);
+                if (object.isAvatarSticker != null)
+                    message.isAvatarSticker = Boolean(object.isAvatarSticker);
                 return message;
             };
 
@@ -128874,6 +131009,8 @@ $root.SyncAction = (function() {
                     object.isFavorite = false;
                     object.deviceIdHint = 0;
                     object.isLottie = false;
+                    object.imageHash = "";
+                    object.isAvatarSticker = false;
                 }
                 if (message.url != null && message.hasOwnProperty("url"))
                     object.url = message.url;
@@ -128900,6 +131037,10 @@ $root.SyncAction = (function() {
                     object.deviceIdHint = message.deviceIdHint;
                 if (message.isLottie != null && message.hasOwnProperty("isLottie"))
                     object.isLottie = message.isLottie;
+                if (message.imageHash != null && message.hasOwnProperty("imageHash"))
+                    object.imageHash = message.imageHash;
+                if (message.isAvatarSticker != null && message.hasOwnProperty("isAvatarSticker"))
+                    object.isAvatarSticker = message.isAvatarSticker;
                 return object;
             };
 
