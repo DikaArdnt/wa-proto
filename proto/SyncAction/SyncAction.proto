@@ -121,7 +121,7 @@ message SyncActionValue {
     }
     message BusinessBroadcastListAction {
         optional bool deleted = 1;
-        repeated string phoneNumbers = 2;
+        repeated string lids = 2;
         optional string listName = 3;
     }
     message CallLogAction {

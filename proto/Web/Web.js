@@ -53203,6 +53203,7 @@ $root.E2E = (function() {
              * @property {E2E.Message.ImageMessage.ImageSourceType|null} [imageSourceType] ImageMessage imageSourceType
              * @property {string|null} [accessibilityLabel] ImageMessage accessibilityLabel
              * @property {E2E.Message.MediaKeyDomain|null} [mediaKeyDomain] ImageMessage mediaKeyDomain
+             * @property {string|null} [qrUrl] ImageMessage qrUrl
              */
 
             /**
@@ -53464,6 +53465,14 @@ $root.E2E = (function() {
             ImageMessage.prototype.mediaKeyDomain = 0;
 
             /**
+             * ImageMessage qrUrl.
+             * @member {string} qrUrl
+             * @memberof E2E.Message.ImageMessage
+             * @instance
+             */
+            ImageMessage.prototype.qrUrl = "";
+
+            /**
              * Creates a new ImageMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.ImageMessage
@@ -53550,6 +53559,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 32, wireType 2 =*/258).string(message.accessibilityLabel);
                 if (message.mediaKeyDomain != null && Object.hasOwnProperty.call(message, "mediaKeyDomain"))
                     writer.uint32(/* id 33, wireType 0 =*/264).int32(message.mediaKeyDomain);
+                if (message.qrUrl != null && Object.hasOwnProperty.call(message, "qrUrl"))
+                    writer.uint32(/* id 34, wireType 2 =*/274).string(message.qrUrl);
                 return writer;
             };
 
@@ -53717,6 +53728,10 @@ $root.E2E = (function() {
                             message.mediaKeyDomain = reader.int32();
                             break;
                         }
+                    case 34: {
+                            message.qrUrl = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -53875,6 +53890,9 @@ $root.E2E = (function() {
                     case 4:
                         break;
                     }
+                if (message.qrUrl != null && message.hasOwnProperty("qrUrl"))
+                    if (!$util.isString(message.qrUrl))
+                        return "qrUrl: string expected";
                 return null;
             };
 
@@ -54066,6 +54084,8 @@ $root.E2E = (function() {
                     message.mediaKeyDomain = 4;
                     break;
                 }
+                if (object.qrUrl != null)
+                    message.qrUrl = String(object.qrUrl);
                 return message;
             };
 
@@ -54183,6 +54203,7 @@ $root.E2E = (function() {
                     object.imageSourceType = options.enums === String ? "USER_IMAGE" : 0;
                     object.accessibilityLabel = "";
                     object.mediaKeyDomain = options.enums === String ? "UNSET" : 0;
+                    object.qrUrl = "";
                 }
                 if (message.url != null && message.hasOwnProperty("url"))
                     object.url = message.url;
@@ -54259,6 +54280,8 @@ $root.E2E = (function() {
                     object.accessibilityLabel = message.accessibilityLabel;
                 if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
                     object.mediaKeyDomain = options.enums === String ? $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] === undefined ? message.mediaKeyDomain : $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] : message.mediaKeyDomain;
+                if (message.qrUrl != null && message.hasOwnProperty("qrUrl"))
+                    object.qrUrl = message.qrUrl;
                 return object;
             };
 
@@ -92740,6 +92763,7 @@ $root.BotMetadata = (function() {
                     case 36:
                     case 37:
                     case 38:
+                    case 39:
                         break;
                     }
             }
@@ -92925,6 +92949,10 @@ $root.BotMetadata = (function() {
                     case 38:
                         message.capabilities[i] = 38;
                         break;
+                    case "RICH_RESPONSE_UNIFIED_TEXT_COMPONENT":
+                    case 39:
+                        message.capabilities[i] = 39;
+                        break;
                     }
             }
             return message;
@@ -93022,6 +93050,7 @@ $root.BotMetadata = (function() {
          * @property {number} SIMPLIFIED_PROFILE_PAGE=36 SIMPLIFIED_PROFILE_PAGE value
          * @property {number} RICH_RESPONSE_SOURCES_IN_MESSAGE=37 RICH_RESPONSE_SOURCES_IN_MESSAGE value
          * @property {number} RICH_RESPONSE_SIDE_BY_SIDE_SURVEY=38 RICH_RESPONSE_SIDE_BY_SIDE_SURVEY value
+         * @property {number} RICH_RESPONSE_UNIFIED_TEXT_COMPONENT=39 RICH_RESPONSE_UNIFIED_TEXT_COMPONENT value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -93064,6 +93093,7 @@ $root.BotMetadata = (function() {
             values[valuesById[36] = "SIMPLIFIED_PROFILE_PAGE"] = 36;
             values[valuesById[37] = "RICH_RESPONSE_SOURCES_IN_MESSAGE"] = 37;
             values[valuesById[38] = "RICH_RESPONSE_SIDE_BY_SIDE_SURVEY"] = 38;
+            values[valuesById[39] = "RICH_RESPONSE_UNIFIED_TEXT_COMPONENT"] = 39;
             return values;
         })();
 

@@ -1271,8 +1271,8 @@ export namespace SyncAction {
             /** BusinessBroadcastListAction deleted */
             deleted?: (boolean|null);
 
-            /** BusinessBroadcastListAction phoneNumbers */
-            phoneNumbers?: (string[]|null);
+            /** BusinessBroadcastListAction lids */
+            lids?: (string[]|null);
 
             /** BusinessBroadcastListAction listName */
             listName?: (string|null);
@@ -1290,8 +1290,8 @@ export namespace SyncAction {
             /** BusinessBroadcastListAction deleted. */
             public deleted: boolean;
 
-            /** BusinessBroadcastListAction phoneNumbers. */
-            public phoneNumbers: string[];
+            /** BusinessBroadcastListAction lids. */
+            public lids: string[];
 
             /** BusinessBroadcastListAction listName. */
             public listName: string;

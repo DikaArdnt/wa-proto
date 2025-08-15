@@ -32,6 +32,7 @@ message ClientPayload {
     optional TrafficAnonymization trafficAnonymization = 40;
     optional bool lidDbMigrated = 41;
     optional AccountType accountType = 42;
+    optional sfixed32 connectionSequenceInfo = 43;
     enum AccountType {
         DEFAULT = 0;
         GUEST = 1;

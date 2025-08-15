@@ -5344,6 +5344,7 @@ $root.BotMetadata = (function() {
                     case 36:
                     case 37:
                     case 38:
+                    case 39:
                         break;
                     }
             }
@@ -5529,6 +5530,10 @@ $root.BotMetadata = (function() {
                     case 38:
                         message.capabilities[i] = 38;
                         break;
+                    case "RICH_RESPONSE_UNIFIED_TEXT_COMPONENT":
+                    case 39:
+                        message.capabilities[i] = 39;
+                        break;
                     }
             }
             return message;
@@ -5626,6 +5631,7 @@ $root.BotMetadata = (function() {
          * @property {number} SIMPLIFIED_PROFILE_PAGE=36 SIMPLIFIED_PROFILE_PAGE value
          * @property {number} RICH_RESPONSE_SOURCES_IN_MESSAGE=37 RICH_RESPONSE_SOURCES_IN_MESSAGE value
          * @property {number} RICH_RESPONSE_SIDE_BY_SIDE_SURVEY=38 RICH_RESPONSE_SIDE_BY_SIDE_SURVEY value
+         * @property {number} RICH_RESPONSE_UNIFIED_TEXT_COMPONENT=39 RICH_RESPONSE_UNIFIED_TEXT_COMPONENT value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -5668,6 +5674,7 @@ $root.BotMetadata = (function() {
             values[valuesById[36] = "SIMPLIFIED_PROFILE_PAGE"] = 36;
             values[valuesById[37] = "RICH_RESPONSE_SOURCES_IN_MESSAGE"] = 37;
             values[valuesById[38] = "RICH_RESPONSE_SIDE_BY_SIDE_SURVEY"] = 38;
+            values[valuesById[39] = "RICH_RESPONSE_UNIFIED_TEXT_COMPONENT"] = 39;
             return values;
         })();
 

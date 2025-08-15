@@ -47996,6 +47996,7 @@ $root.E2E = (function() {
              * @property {E2E.Message.ImageMessage.ImageSourceType|null} [imageSourceType] ImageMessage imageSourceType
              * @property {string|null} [accessibilityLabel] ImageMessage accessibilityLabel
              * @property {E2E.Message.MediaKeyDomain|null} [mediaKeyDomain] ImageMessage mediaKeyDomain
+             * @property {string|null} [qrUrl] ImageMessage qrUrl
              */
 
             /**
@@ -48257,6 +48258,14 @@ $root.E2E = (function() {
             ImageMessage.prototype.mediaKeyDomain = 0;
 
             /**
+             * ImageMessage qrUrl.
+             * @member {string} qrUrl
+             * @memberof E2E.Message.ImageMessage
+             * @instance
+             */
+            ImageMessage.prototype.qrUrl = "";
+
+            /**
              * Creates a new ImageMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.ImageMessage
@@ -48343,6 +48352,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 32, wireType 2 =*/258).string(message.accessibilityLabel);
                 if (message.mediaKeyDomain != null && Object.hasOwnProperty.call(message, "mediaKeyDomain"))
                     writer.uint32(/* id 33, wireType 0 =*/264).int32(message.mediaKeyDomain);
+                if (message.qrUrl != null && Object.hasOwnProperty.call(message, "qrUrl"))
+                    writer.uint32(/* id 34, wireType 2 =*/274).string(message.qrUrl);
                 return writer;
             };
 
@@ -48510,6 +48521,10 @@ $root.E2E = (function() {
                             message.mediaKeyDomain = reader.int32();
                             break;
                         }
+                    case 34: {
+                            message.qrUrl = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -48668,6 +48683,9 @@ $root.E2E = (function() {
                     case 4:
                         break;
                     }
+                if (message.qrUrl != null && message.hasOwnProperty("qrUrl"))
+                    if (!$util.isString(message.qrUrl))
+                        return "qrUrl: string expected";
                 return null;
             };
 
@@ -48859,6 +48877,8 @@ $root.E2E = (function() {
                     message.mediaKeyDomain = 4;
                     break;
                 }
+                if (object.qrUrl != null)
+                    message.qrUrl = String(object.qrUrl);
                 return message;
             };
 
@@ -48976,6 +48996,7 @@ $root.E2E = (function() {
                     object.imageSourceType = options.enums === String ? "USER_IMAGE" : 0;
                     object.accessibilityLabel = "";
                     object.mediaKeyDomain = options.enums === String ? "UNSET" : 0;
+                    object.qrUrl = "";
                 }
                 if (message.url != null && message.hasOwnProperty("url"))
                     object.url = message.url;
@@ -49052,6 +49073,8 @@ $root.E2E = (function() {
                     object.accessibilityLabel = message.accessibilityLabel;
                 if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
                     object.mediaKeyDomain = options.enums === String ? $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] === undefined ? message.mediaKeyDomain : $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] : message.mediaKeyDomain;
+                if (message.qrUrl != null && message.hasOwnProperty("qrUrl"))
+                    object.qrUrl = message.qrUrl;
                 return object;
             };
 
@@ -87533,6 +87556,7 @@ $root.BotMetadata = (function() {
                     case 36:
                     case 37:
                     case 38:
+                    case 39:
                         break;
                     }
             }
@@ -87718,6 +87742,10 @@ $root.BotMetadata = (function() {
                     case 38:
                         message.capabilities[i] = 38;
                         break;
+                    case "RICH_RESPONSE_UNIFIED_TEXT_COMPONENT":
+                    case 39:
+                        message.capabilities[i] = 39;
+                        break;
                     }
             }
             return message;
@@ -87815,6 +87843,7 @@ $root.BotMetadata = (function() {
          * @property {number} SIMPLIFIED_PROFILE_PAGE=36 SIMPLIFIED_PROFILE_PAGE value
          * @property {number} RICH_RESPONSE_SOURCES_IN_MESSAGE=37 RICH_RESPONSE_SOURCES_IN_MESSAGE value
          * @property {number} RICH_RESPONSE_SIDE_BY_SIDE_SURVEY=38 RICH_RESPONSE_SIDE_BY_SIDE_SURVEY value
+         * @property {number} RICH_RESPONSE_UNIFIED_TEXT_COMPONENT=39 RICH_RESPONSE_UNIFIED_TEXT_COMPONENT value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -87857,6 +87886,7 @@ $root.BotMetadata = (function() {
             values[valuesById[36] = "SIMPLIFIED_PROFILE_PAGE"] = 36;
             values[valuesById[37] = "RICH_RESPONSE_SOURCES_IN_MESSAGE"] = 37;
             values[valuesById[38] = "RICH_RESPONSE_SIDE_BY_SIDE_SURVEY"] = 38;
+            values[valuesById[39] = "RICH_RESPONSE_UNIFIED_TEXT_COMPONENT"] = 39;
             return values;
         })();
 
@@ -118669,7 +118699,7 @@ $root.SyncAction = (function() {
              * @memberof SyncAction.SyncActionValue
              * @interface IBusinessBroadcastListAction
              * @property {boolean|null} [deleted] BusinessBroadcastListAction deleted
-             * @property {Array.<string>|null} [phoneNumbers] BusinessBroadcastListAction phoneNumbers
+             * @property {Array.<string>|null} [lids] BusinessBroadcastListAction lids
              * @property {string|null} [listName] BusinessBroadcastListAction listName
              */
 
@@ -118682,7 +118712,7 @@ $root.SyncAction = (function() {
              * @param {SyncAction.SyncActionValue.IBusinessBroadcastListAction=} [properties] Properties to set
              */
             function BusinessBroadcastListAction(properties) {
-                this.phoneNumbers = [];
+                this.lids = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -118698,12 +118728,12 @@ $root.SyncAction = (function() {
             BusinessBroadcastListAction.prototype.deleted = false;
 
             /**
-             * BusinessBroadcastListAction phoneNumbers.
-             * @member {Array.<string>} phoneNumbers
+             * BusinessBroadcastListAction lids.
+             * @member {Array.<string>} lids
              * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
              * @instance
              */
-            BusinessBroadcastListAction.prototype.phoneNumbers = $util.emptyArray;
+            BusinessBroadcastListAction.prototype.lids = $util.emptyArray;
 
             /**
              * BusinessBroadcastListAction listName.
@@ -118739,9 +118769,9 @@ $root.SyncAction = (function() {
                     writer = $Writer.create();
                 if (message.deleted != null && Object.hasOwnProperty.call(message, "deleted"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.deleted);
-                if (message.phoneNumbers != null && message.phoneNumbers.length)
-                    for (var i = 0; i < message.phoneNumbers.length; ++i)
-                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.phoneNumbers[i]);
+                if (message.lids != null && message.lids.length)
+                    for (var i = 0; i < message.lids.length; ++i)
+                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.lids[i]);
                 if (message.listName != null && Object.hasOwnProperty.call(message, "listName"))
                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.listName);
                 return writer;
@@ -118785,9 +118815,9 @@ $root.SyncAction = (function() {
                             break;
                         }
                     case 2: {
-                            if (!(message.phoneNumbers && message.phoneNumbers.length))
-                                message.phoneNumbers = [];
-                            message.phoneNumbers.push(reader.string());
+                            if (!(message.lids && message.lids.length))
+                                message.lids = [];
+                            message.lids.push(reader.string());
                             break;
                         }
                     case 3: {
@@ -118832,12 +118862,12 @@ $root.SyncAction = (function() {
                 if (message.deleted != null && message.hasOwnProperty("deleted"))
                     if (typeof message.deleted !== "boolean")
                         return "deleted: boolean expected";
-                if (message.phoneNumbers != null && message.hasOwnProperty("phoneNumbers")) {
-                    if (!Array.isArray(message.phoneNumbers))
-                        return "phoneNumbers: array expected";
-                    for (var i = 0; i < message.phoneNumbers.length; ++i)
-                        if (!$util.isString(message.phoneNumbers[i]))
-                            return "phoneNumbers: string[] expected";
+                if (message.lids != null && message.hasOwnProperty("lids")) {
+                    if (!Array.isArray(message.lids))
+                        return "lids: array expected";
+                    for (var i = 0; i < message.lids.length; ++i)
+                        if (!$util.isString(message.lids[i]))
+                            return "lids: string[] expected";
                 }
                 if (message.listName != null && message.hasOwnProperty("listName"))
                     if (!$util.isString(message.listName))
@@ -118859,12 +118889,12 @@ $root.SyncAction = (function() {
                 var message = new $root.SyncAction.SyncActionValue.BusinessBroadcastListAction();
                 if (object.deleted != null)
                     message.deleted = Boolean(object.deleted);
-                if (object.phoneNumbers) {
-                    if (!Array.isArray(object.phoneNumbers))
-                        throw TypeError(".SyncAction.SyncActionValue.BusinessBroadcastListAction.phoneNumbers: array expected");
-                    message.phoneNumbers = [];
-                    for (var i = 0; i < object.phoneNumbers.length; ++i)
-                        message.phoneNumbers[i] = String(object.phoneNumbers[i]);
+                if (object.lids) {
+                    if (!Array.isArray(object.lids))
+                        throw TypeError(".SyncAction.SyncActionValue.BusinessBroadcastListAction.lids: array expected");
+                    message.lids = [];
+                    for (var i = 0; i < object.lids.length; ++i)
+                        message.lids[i] = String(object.lids[i]);
                 }
                 if (object.listName != null)
                     message.listName = String(object.listName);
@@ -118885,17 +118915,17 @@ $root.SyncAction = (function() {
                     options = {};
                 var object = {};
                 if (options.arrays || options.defaults)
-                    object.phoneNumbers = [];
+                    object.lids = [];
                 if (options.defaults) {
                     object.deleted = false;
                     object.listName = "";
                 }
                 if (message.deleted != null && message.hasOwnProperty("deleted"))
                     object.deleted = message.deleted;
-                if (message.phoneNumbers && message.phoneNumbers.length) {
-                    object.phoneNumbers = [];
-                    for (var j = 0; j < message.phoneNumbers.length; ++j)
-                        object.phoneNumbers[j] = message.phoneNumbers[j];
+                if (message.lids && message.lids.length) {
+                    object.lids = [];
+                    for (var j = 0; j < message.lids.length; ++j)
+                        object.lids[j] = message.lids[j];
                 }
                 if (message.listName != null && message.hasOwnProperty("listName"))
                     object.listName = message.listName;

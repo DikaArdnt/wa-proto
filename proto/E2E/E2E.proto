@@ -1232,6 +1232,7 @@ message Message {
         optional ImageSourceType imageSourceType = 31;
         optional string accessibilityLabel = 32;
         optional Message.MediaKeyDomain mediaKeyDomain = 33;
+        optional string qrUrl = 34;
         enum ImageSourceType {
             USER_IMAGE = 0;
             AI_GENERATED = 1;

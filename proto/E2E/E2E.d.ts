@@ -14538,6 +14538,9 @@ export namespace E2E {
 
             /** ImageMessage mediaKeyDomain */
             mediaKeyDomain?: (E2E.Message.MediaKeyDomain|null);
+
+            /** ImageMessage qrUrl */
+            qrUrl?: (string|null);
         }
 
         /** Represents an ImageMessage. */
@@ -14638,6 +14641,9 @@ export namespace E2E {
 
             /** ImageMessage mediaKeyDomain. */
             public mediaKeyDomain: E2E.Message.MediaKeyDomain;
+
+            /** ImageMessage qrUrl. */
+            public qrUrl: string;
 
             /**
              * Creates a new ImageMessage instance using the specified properties.
@@ -29137,7 +29143,8 @@ export namespace BotMetadata {
             PROMOTION_MESSAGE = 35,
             SIMPLIFIED_PROFILE_PAGE = 36,
             RICH_RESPONSE_SOURCES_IN_MESSAGE = 37,
-            RICH_RESPONSE_SIDE_BY_SIDE_SURVEY = 38
+            RICH_RESPONSE_SIDE_BY_SIDE_SURVEY = 38,
+            RICH_RESPONSE_UNIFIED_TEXT_COMPONENT = 39
         }
     }
 

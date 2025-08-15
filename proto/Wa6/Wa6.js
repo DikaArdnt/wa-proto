@@ -54,6 +54,7 @@ $root.Wa6 = (function() {
          * @property {Wa6.ClientPayload.TrafficAnonymization|null} [trafficAnonymization] ClientPayload trafficAnonymization
          * @property {boolean|null} [lidDbMigrated] ClientPayload lidDbMigrated
          * @property {Wa6.ClientPayload.AccountType|null} [accountType] ClientPayload accountType
+         * @property {number|null} [connectionSequenceInfo] ClientPayload connectionSequenceInfo
          */
 
         /**
@@ -313,6 +314,14 @@ $root.Wa6 = (function() {
         ClientPayload.prototype.accountType = 0;
 
         /**
+         * ClientPayload connectionSequenceInfo.
+         * @member {number} connectionSequenceInfo
+         * @memberof Wa6.ClientPayload
+         * @instance
+         */
+        ClientPayload.prototype.connectionSequenceInfo = 0;
+
+        /**
          * Creates a new ClientPayload instance using the specified properties.
          * @function create
          * @memberof Wa6.ClientPayload
@@ -397,6 +406,8 @@ $root.Wa6 = (function() {
                 writer.uint32(/* id 41, wireType 0 =*/328).bool(message.lidDbMigrated);
             if (message.accountType != null && Object.hasOwnProperty.call(message, "accountType"))
                 writer.uint32(/* id 42, wireType 0 =*/336).int32(message.accountType);
+            if (message.connectionSequenceInfo != null && Object.hasOwnProperty.call(message, "connectionSequenceInfo"))
+                writer.uint32(/* id 43, wireType 5 =*/349).sfixed32(message.connectionSequenceInfo);
             return writer;
         };
 
@@ -558,6 +569,10 @@ $root.Wa6 = (function() {
                     }
                 case 42: {
                         message.accountType = reader.int32();
+                        break;
+                    }
+                case 43: {
+                        message.connectionSequenceInfo = reader.sfixed32();
                         break;
                     }
                 default:
@@ -751,6 +766,9 @@ $root.Wa6 = (function() {
                 case 1:
                     break;
                 }
+            if (message.connectionSequenceInfo != null && message.hasOwnProperty("connectionSequenceInfo"))
+                if (!$util.isInteger(message.connectionSequenceInfo))
+                    return "connectionSequenceInfo: integer expected";
             return null;
         };
 
@@ -1044,6 +1062,8 @@ $root.Wa6 = (function() {
                 message.accountType = 1;
                 break;
             }
+            if (object.connectionSequenceInfo != null)
+                message.connectionSequenceInfo = object.connectionSequenceInfo | 0;
             return message;
         };
 
@@ -1124,6 +1144,7 @@ $root.Wa6 = (function() {
                 object.trafficAnonymization = options.enums === String ? "OFF" : 0;
                 object.lidDbMigrated = false;
                 object.accountType = options.enums === String ? "DEFAULT" : 0;
+                object.connectionSequenceInfo = 0;
             }
             if (message.username != null && message.hasOwnProperty("username"))
                 if (typeof message.username === "number")
@@ -1194,6 +1215,8 @@ $root.Wa6 = (function() {
                 object.lidDbMigrated = message.lidDbMigrated;
             if (message.accountType != null && message.hasOwnProperty("accountType"))
                 object.accountType = options.enums === String ? $root.Wa6.ClientPayload.AccountType[message.accountType] === undefined ? message.accountType : $root.Wa6.ClientPayload.AccountType[message.accountType] : message.accountType;
+            if (message.connectionSequenceInfo != null && message.hasOwnProperty("connectionSequenceInfo"))
+                object.connectionSequenceInfo = message.connectionSequenceInfo;
             return object;
         };
 

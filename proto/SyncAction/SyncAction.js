@@ -3949,7 +3949,7 @@ $root.SyncAction = (function() {
              * @memberof SyncAction.SyncActionValue
              * @interface IBusinessBroadcastListAction
              * @property {boolean|null} [deleted] BusinessBroadcastListAction deleted
-             * @property {Array.<string>|null} [phoneNumbers] BusinessBroadcastListAction phoneNumbers
+             * @property {Array.<string>|null} [lids] BusinessBroadcastListAction lids
              * @property {string|null} [listName] BusinessBroadcastListAction listName
              */
 
@@ -3962,7 +3962,7 @@ $root.SyncAction = (function() {
              * @param {SyncAction.SyncActionValue.IBusinessBroadcastListAction=} [properties] Properties to set
              */
             function BusinessBroadcastListAction(properties) {
-                this.phoneNumbers = [];
+                this.lids = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -3978,12 +3978,12 @@ $root.SyncAction = (function() {
             BusinessBroadcastListAction.prototype.deleted = false;
 
             /**
-             * BusinessBroadcastListAction phoneNumbers.
-             * @member {Array.<string>} phoneNumbers
+             * BusinessBroadcastListAction lids.
+             * @member {Array.<string>} lids
              * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
              * @instance
              */
-            BusinessBroadcastListAction.prototype.phoneNumbers = $util.emptyArray;
+            BusinessBroadcastListAction.prototype.lids = $util.emptyArray;
 
             /**
              * BusinessBroadcastListAction listName.
@@ -4019,9 +4019,9 @@ $root.SyncAction = (function() {
                     writer = $Writer.create();
                 if (message.deleted != null && Object.hasOwnProperty.call(message, "deleted"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.deleted);
-                if (message.phoneNumbers != null && message.phoneNumbers.length)
-                    for (var i = 0; i < message.phoneNumbers.length; ++i)
-                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.phoneNumbers[i]);
+                if (message.lids != null && message.lids.length)
+                    for (var i = 0; i < message.lids.length; ++i)
+                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.lids[i]);
                 if (message.listName != null && Object.hasOwnProperty.call(message, "listName"))
                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.listName);
                 return writer;
@@ -4065,9 +4065,9 @@ $root.SyncAction = (function() {
                             break;
                         }
                     case 2: {
-                            if (!(message.phoneNumbers && message.phoneNumbers.length))
-                                message.phoneNumbers = [];
-                            message.phoneNumbers.push(reader.string());
+                            if (!(message.lids && message.lids.length))
+                                message.lids = [];
+                            message.lids.push(reader.string());
                             break;
                         }
                     case 3: {
@@ -4112,12 +4112,12 @@ $root.SyncAction = (function() {
                 if (message.deleted != null && message.hasOwnProperty("deleted"))
                     if (typeof message.deleted !== "boolean")
                         return "deleted: boolean expected";
-                if (message.phoneNumbers != null && message.hasOwnProperty("phoneNumbers")) {
-                    if (!Array.isArray(message.phoneNumbers))
-                        return "phoneNumbers: array expected";
-                    for (var i = 0; i < message.phoneNumbers.length; ++i)
-                        if (!$util.isString(message.phoneNumbers[i]))
-                            return "phoneNumbers: string[] expected";
+                if (message.lids != null && message.hasOwnProperty("lids")) {
+                    if (!Array.isArray(message.lids))
+                        return "lids: array expected";
+                    for (var i = 0; i < message.lids.length; ++i)
+                        if (!$util.isString(message.lids[i]))
+                            return "lids: string[] expected";
                 }
                 if (message.listName != null && message.hasOwnProperty("listName"))
                     if (!$util.isString(message.listName))
@@ -4139,12 +4139,12 @@ $root.SyncAction = (function() {
                 var message = new $root.SyncAction.SyncActionValue.BusinessBroadcastListAction();
                 if (object.deleted != null)
                     message.deleted = Boolean(object.deleted);
-                if (object.phoneNumbers) {
-                    if (!Array.isArray(object.phoneNumbers))
-                        throw TypeError(".SyncAction.SyncActionValue.BusinessBroadcastListAction.phoneNumbers: array expected");
-                    message.phoneNumbers = [];
-                    for (var i = 0; i < object.phoneNumbers.length; ++i)
-                        message.phoneNumbers[i] = String(object.phoneNumbers[i]);
+                if (object.lids) {
+                    if (!Array.isArray(object.lids))
+                        throw TypeError(".SyncAction.SyncActionValue.BusinessBroadcastListAction.lids: array expected");
+                    message.lids = [];
+                    for (var i = 0; i < object.lids.length; ++i)
+                        message.lids[i] = String(object.lids[i]);
                 }
                 if (object.listName != null)
                     message.listName = String(object.listName);
@@ -4165,17 +4165,17 @@ $root.SyncAction = (function() {
                     options = {};
                 var object = {};
                 if (options.arrays || options.defaults)
-                    object.phoneNumbers = [];
+                    object.lids = [];
                 if (options.defaults) {
                     object.deleted = false;
                     object.listName = "";
                 }
                 if (message.deleted != null && message.hasOwnProperty("deleted"))
                     object.deleted = message.deleted;
-                if (message.phoneNumbers && message.phoneNumbers.length) {
-                    object.phoneNumbers = [];
-                    for (var j = 0; j < message.phoneNumbers.length; ++j)
-                        object.phoneNumbers[j] = message.phoneNumbers[j];
+                if (message.lids && message.lids.length) {
+                    object.lids = [];
+                    for (var j = 0; j < message.lids.length; ++j)
+                        object.lids[j] = message.lids[j];
                 }
                 if (message.listName != null && message.hasOwnProperty("listName"))
                     object.listName = message.listName;
