@@ -482,6 +482,9 @@ export namespace SyncAction {
 
         /** SyncActionValue musicUserIdAction */
         musicUserIdAction?: (SyncAction.SyncActionValue.IMusicUserIdAction|null);
+
+        /** SyncActionValue statusPostOptInNotificationPreferencesAction */
+        statusPostOptInNotificationPreferencesAction?: (SyncAction.SyncActionValue.IStatusPostOptInNotificationPreferencesAction|null);
     }
 
     /** Represents a SyncActionValue. */
@@ -681,6 +684,9 @@ export namespace SyncAction {
 
         /** SyncActionValue musicUserIdAction. */
         public musicUserIdAction?: (SyncAction.SyncActionValue.IMusicUserIdAction|null);
+
+        /** SyncActionValue statusPostOptInNotificationPreferencesAction. */
+        public statusPostOptInNotificationPreferencesAction?: (SyncAction.SyncActionValue.IStatusPostOptInNotificationPreferencesAction|null);
 
         /**
          * Creates a new SyncActionValue instance using the specified properties.
@@ -1168,6 +1174,109 @@ export namespace SyncAction {
             public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
+        /** Properties of a BroadcastListParticipant. */
+        interface IBroadcastListParticipant {
+
+            /** BroadcastListParticipant lidJid */
+            lidJid: string;
+
+            /** BroadcastListParticipant pnJid */
+            pnJid?: (string|null);
+        }
+
+        /** Represents a BroadcastListParticipant. */
+        class BroadcastListParticipant implements IBroadcastListParticipant {
+
+            /**
+             * Constructs a new BroadcastListParticipant.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SyncAction.SyncActionValue.IBroadcastListParticipant);
+
+            /** BroadcastListParticipant lidJid. */
+            public lidJid: string;
+
+            /** BroadcastListParticipant pnJid. */
+            public pnJid: string;
+
+            /**
+             * Creates a new BroadcastListParticipant instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns BroadcastListParticipant instance
+             */
+            public static create(properties?: SyncAction.SyncActionValue.IBroadcastListParticipant): SyncAction.SyncActionValue.BroadcastListParticipant;
+
+            /**
+             * Encodes the specified BroadcastListParticipant message. Does not implicitly {@link SyncAction.SyncActionValue.BroadcastListParticipant.verify|verify} messages.
+             * @param message BroadcastListParticipant message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SyncAction.SyncActionValue.IBroadcastListParticipant, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified BroadcastListParticipant message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.BroadcastListParticipant.verify|verify} messages.
+             * @param message BroadcastListParticipant message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SyncAction.SyncActionValue.IBroadcastListParticipant, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a BroadcastListParticipant message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns BroadcastListParticipant
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.BroadcastListParticipant;
+
+            /**
+             * Decodes a BroadcastListParticipant message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns BroadcastListParticipant
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.BroadcastListParticipant;
+
+            /**
+             * Verifies a BroadcastListParticipant message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a BroadcastListParticipant message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns BroadcastListParticipant
+             */
+            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.BroadcastListParticipant;
+
+            /**
+             * Creates a plain object from a BroadcastListParticipant message. Also converts values to other types if specified.
+             * @param message BroadcastListParticipant
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SyncAction.SyncActionValue.BroadcastListParticipant, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this BroadcastListParticipant to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for BroadcastListParticipant
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
         /** Properties of a BusinessBroadcastAssociationAction. */
         interface IBusinessBroadcastAssociationAction {
 
@@ -1271,8 +1380,8 @@ export namespace SyncAction {
             /** BusinessBroadcastListAction deleted */
             deleted?: (boolean|null);
 
-            /** BusinessBroadcastListAction lids */
-            lids?: (string[]|null);
+            /** BusinessBroadcastListAction participants */
+            participants?: (SyncAction.SyncActionValue.IBroadcastListParticipant[]|null);
 
             /** BusinessBroadcastListAction listName */
             listName?: (string|null);
@@ -1290,8 +1399,8 @@ export namespace SyncAction {
             /** BusinessBroadcastListAction deleted. */
             public deleted: boolean;
 
-            /** BusinessBroadcastListAction lids. */
-            public lids: string[];
+            /** BusinessBroadcastListAction participants. */
+            public participants: SyncAction.SyncActionValue.IBroadcastListParticipant[];
 
             /** BusinessBroadcastListAction listName. */
             public listName: string;
@@ -6349,6 +6458,103 @@ export namespace SyncAction {
 
             /**
              * Gets the default type url for StarAction
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a StatusPostOptInNotificationPreferencesAction. */
+        interface IStatusPostOptInNotificationPreferencesAction {
+
+            /** StatusPostOptInNotificationPreferencesAction enabled */
+            enabled?: (boolean|null);
+        }
+
+        /** Represents a StatusPostOptInNotificationPreferencesAction. */
+        class StatusPostOptInNotificationPreferencesAction implements IStatusPostOptInNotificationPreferencesAction {
+
+            /**
+             * Constructs a new StatusPostOptInNotificationPreferencesAction.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SyncAction.SyncActionValue.IStatusPostOptInNotificationPreferencesAction);
+
+            /** StatusPostOptInNotificationPreferencesAction enabled. */
+            public enabled: boolean;
+
+            /**
+             * Creates a new StatusPostOptInNotificationPreferencesAction instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns StatusPostOptInNotificationPreferencesAction instance
+             */
+            public static create(properties?: SyncAction.SyncActionValue.IStatusPostOptInNotificationPreferencesAction): SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction;
+
+            /**
+             * Encodes the specified StatusPostOptInNotificationPreferencesAction message. Does not implicitly {@link SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction.verify|verify} messages.
+             * @param message StatusPostOptInNotificationPreferencesAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SyncAction.SyncActionValue.IStatusPostOptInNotificationPreferencesAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified StatusPostOptInNotificationPreferencesAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction.verify|verify} messages.
+             * @param message StatusPostOptInNotificationPreferencesAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SyncAction.SyncActionValue.IStatusPostOptInNotificationPreferencesAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a StatusPostOptInNotificationPreferencesAction message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns StatusPostOptInNotificationPreferencesAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction;
+
+            /**
+             * Decodes a StatusPostOptInNotificationPreferencesAction message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns StatusPostOptInNotificationPreferencesAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction;
+
+            /**
+             * Verifies a StatusPostOptInNotificationPreferencesAction message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a StatusPostOptInNotificationPreferencesAction message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns StatusPostOptInNotificationPreferencesAction
+             */
+            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction;
+
+            /**
+             * Creates a plain object from a StatusPostOptInNotificationPreferencesAction message. Also converts values to other types if specified.
+             * @param message StatusPostOptInNotificationPreferencesAction
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this StatusPostOptInNotificationPreferencesAction to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for StatusPostOptInNotificationPreferencesAction
              * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
              * @returns The default type url
              */

@@ -840,7 +840,8 @@ export namespace StatusAttributions {
             MUSIC = 3,
             STATUS_MENTION = 4,
             GROUP_STATUS = 5,
-            RL_ATTRIBUTION = 6
+            RL_ATTRIBUTION = 6,
+            AI_CREATED = 7
         }
     }
 }

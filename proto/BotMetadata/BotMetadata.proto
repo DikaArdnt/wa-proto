@@ -34,6 +34,23 @@ message BotMetadata {
     optional BotUnifiedResponseMutation unifiedResponseMutation = 28;
     optional BotMessageOriginMetadata botMessageOriginMetadata = 29;
     optional InThreadSurveyMetadata inThreadSurveyMetadata = 30;
+    optional AIThreadInfo botThreadInfo = 31;
+}
+
+message AIThreadInfo {
+    optional AIThreadServerInfo serverInfo = 1;
+    optional AIThreadClientInfo clientInfo = 2;
+    message AIThreadClientInfo {
+        optional AIThreadType type = 1;
+        enum AIThreadType {
+            UNKNOWN = 0;
+            DEFAULT = 1;
+            INCOGNITO = 2;
+        }
+    }
+    message AIThreadServerInfo {
+        optional string title = 1;
+    }
 }
 
 message BotUnifiedResponseMutation {
@@ -188,6 +205,7 @@ message BotCapabilityMetadata {
         RICH_RESPONSE_SOURCES_IN_MESSAGE = 37;
         RICH_RESPONSE_SIDE_BY_SIDE_SURVEY = 38;
         RICH_RESPONSE_UNIFIED_TEXT_COMPONENT = 39;
+        AI_SHARED_MEMORY = 40;
     }
 }
 

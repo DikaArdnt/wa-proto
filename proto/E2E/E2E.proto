@@ -273,6 +273,7 @@ message ThreadID {
     enum ThreadType {
         UNKNOWN = 0;
         VIEW_REPLIES = 1;
+        AI_THREAD = 2;
     }
 }
 
@@ -496,6 +497,7 @@ message ContextInfo {
     optional ForwardOrigin forwardOrigin = 67;
     optional QuestionReplyQuotedMessage questionReplyQuotedMessage = 68;
     optional StatusAudienceMetadata statusAudienceMetadata = 69;
+    optional uint32 nonJidMentions = 70;
     message AdReplyInfo {
         optional string advertiserName = 1;
         optional MediaType mediaType = 2;
@@ -577,6 +579,7 @@ message ContextInfo {
         STATUS = 2;
         CHANNELS = 3;
         META_AI = 4;
+        UGC = 5;
     }
     message ForwardedAIBotMessageInfo {
         optional string botName = 1;
@@ -1263,8 +1266,9 @@ message Message {
             optional int32 messageVersion = 2;
             optional CarouselCardType carouselCardType = 3;
             enum CarouselCardType {
-                DEFAULT = 0;
-                ALBUM = 1;
+                UNKNOWN = 0;
+                HSCROLL_CARDS = 1;
+                ALBUM_IMAGE = 2;
             }
         }
         message CollectionMessage {

@@ -957,6 +957,7 @@ $root.SyncAction = (function() {
          * @property {SyncAction.SyncActionValue.IMaibaAIFeaturesControlAction|null} [maibaAiFeaturesControlAction] SyncActionValue maibaAiFeaturesControlAction
          * @property {SyncAction.SyncActionValue.IBusinessBroadcastListAction|null} [businessBroadcastListAction] SyncActionValue businessBroadcastListAction
          * @property {SyncAction.SyncActionValue.IMusicUserIdAction|null} [musicUserIdAction] SyncActionValue musicUserIdAction
+         * @property {SyncAction.SyncActionValue.IStatusPostOptInNotificationPreferencesAction|null} [statusPostOptInNotificationPreferencesAction] SyncActionValue statusPostOptInNotificationPreferencesAction
          */
 
         /**
@@ -1479,6 +1480,14 @@ $root.SyncAction = (function() {
         SyncActionValue.prototype.musicUserIdAction = null;
 
         /**
+         * SyncActionValue statusPostOptInNotificationPreferencesAction.
+         * @member {SyncAction.SyncActionValue.IStatusPostOptInNotificationPreferencesAction|null|undefined} statusPostOptInNotificationPreferencesAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.statusPostOptInNotificationPreferencesAction = null;
+
+        /**
          * Creates a new SyncActionValue instance using the specified properties.
          * @function create
          * @memberof SyncAction.SyncActionValue
@@ -1628,6 +1637,8 @@ $root.SyncAction = (function() {
                 $root.SyncAction.SyncActionValue.BusinessBroadcastListAction.encode(message.businessBroadcastListAction, writer.uint32(/* id 69, wireType 2 =*/554).fork()).ldelim();
             if (message.musicUserIdAction != null && Object.hasOwnProperty.call(message, "musicUserIdAction"))
                 $root.SyncAction.SyncActionValue.MusicUserIdAction.encode(message.musicUserIdAction, writer.uint32(/* id 70, wireType 2 =*/562).fork()).ldelim();
+            if (message.statusPostOptInNotificationPreferencesAction != null && Object.hasOwnProperty.call(message, "statusPostOptInNotificationPreferencesAction"))
+                $root.SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction.encode(message.statusPostOptInNotificationPreferencesAction, writer.uint32(/* id 71, wireType 2 =*/570).fork()).ldelim();
             return writer;
         };
 
@@ -1914,6 +1925,10 @@ $root.SyncAction = (function() {
                     }
                 case 70: {
                         message.musicUserIdAction = $root.SyncAction.SyncActionValue.MusicUserIdAction.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 71: {
+                        message.statusPostOptInNotificationPreferencesAction = $root.SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -2264,6 +2279,11 @@ $root.SyncAction = (function() {
                 if (error)
                     return "musicUserIdAction." + error;
             }
+            if (message.statusPostOptInNotificationPreferencesAction != null && message.hasOwnProperty("statusPostOptInNotificationPreferencesAction")) {
+                var error = $root.SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction.verify(message.statusPostOptInNotificationPreferencesAction);
+                if (error)
+                    return "statusPostOptInNotificationPreferencesAction." + error;
+            }
             return null;
         };
 
@@ -2598,6 +2618,11 @@ $root.SyncAction = (function() {
                     throw TypeError(".SyncAction.SyncActionValue.musicUserIdAction: object expected");
                 message.musicUserIdAction = $root.SyncAction.SyncActionValue.MusicUserIdAction.fromObject(object.musicUserIdAction);
             }
+            if (object.statusPostOptInNotificationPreferencesAction != null) {
+                if (typeof object.statusPostOptInNotificationPreferencesAction !== "object")
+                    throw TypeError(".SyncAction.SyncActionValue.statusPostOptInNotificationPreferencesAction: object expected");
+                message.statusPostOptInNotificationPreferencesAction = $root.SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction.fromObject(object.statusPostOptInNotificationPreferencesAction);
+            }
             return message;
         };
 
@@ -2682,6 +2707,7 @@ $root.SyncAction = (function() {
                 object.maibaAiFeaturesControlAction = null;
                 object.businessBroadcastListAction = null;
                 object.musicUserIdAction = null;
+                object.statusPostOptInNotificationPreferencesAction = null;
             }
             if (message.timestamp != null && message.hasOwnProperty("timestamp"))
                 if (typeof message.timestamp === "number")
@@ -2812,6 +2838,8 @@ $root.SyncAction = (function() {
                 object.businessBroadcastListAction = $root.SyncAction.SyncActionValue.BusinessBroadcastListAction.toObject(message.businessBroadcastListAction, options);
             if (message.musicUserIdAction != null && message.hasOwnProperty("musicUserIdAction"))
                 object.musicUserIdAction = $root.SyncAction.SyncActionValue.MusicUserIdAction.toObject(message.musicUserIdAction, options);
+            if (message.statusPostOptInNotificationPreferencesAction != null && message.hasOwnProperty("statusPostOptInNotificationPreferencesAction"))
+                object.statusPostOptInNotificationPreferencesAction = $root.SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction.toObject(message.statusPostOptInNotificationPreferencesAction, options);
             return object;
         };
 
@@ -3737,6 +3765,235 @@ $root.SyncAction = (function() {
             return BotWelcomeRequestAction;
         })();
 
+        SyncActionValue.BroadcastListParticipant = (function() {
+
+            /**
+             * Properties of a BroadcastListParticipant.
+             * @memberof SyncAction.SyncActionValue
+             * @interface IBroadcastListParticipant
+             * @property {string} lidJid BroadcastListParticipant lidJid
+             * @property {string|null} [pnJid] BroadcastListParticipant pnJid
+             */
+
+            /**
+             * Constructs a new BroadcastListParticipant.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents a BroadcastListParticipant.
+             * @implements IBroadcastListParticipant
+             * @constructor
+             * @param {SyncAction.SyncActionValue.IBroadcastListParticipant=} [properties] Properties to set
+             */
+            function BroadcastListParticipant(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * BroadcastListParticipant lidJid.
+             * @member {string} lidJid
+             * @memberof SyncAction.SyncActionValue.BroadcastListParticipant
+             * @instance
+             */
+            BroadcastListParticipant.prototype.lidJid = "";
+
+            /**
+             * BroadcastListParticipant pnJid.
+             * @member {string} pnJid
+             * @memberof SyncAction.SyncActionValue.BroadcastListParticipant
+             * @instance
+             */
+            BroadcastListParticipant.prototype.pnJid = "";
+
+            /**
+             * Creates a new BroadcastListParticipant instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.BroadcastListParticipant
+             * @static
+             * @param {SyncAction.SyncActionValue.IBroadcastListParticipant=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.BroadcastListParticipant} BroadcastListParticipant instance
+             */
+            BroadcastListParticipant.create = function create(properties) {
+                return new BroadcastListParticipant(properties);
+            };
+
+            /**
+             * Encodes the specified BroadcastListParticipant message. Does not implicitly {@link SyncAction.SyncActionValue.BroadcastListParticipant.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.BroadcastListParticipant
+             * @static
+             * @param {SyncAction.SyncActionValue.IBroadcastListParticipant} message BroadcastListParticipant message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            BroadcastListParticipant.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.lidJid);
+                if (message.pnJid != null && Object.hasOwnProperty.call(message, "pnJid"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.pnJid);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified BroadcastListParticipant message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.BroadcastListParticipant.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.BroadcastListParticipant
+             * @static
+             * @param {SyncAction.SyncActionValue.IBroadcastListParticipant} message BroadcastListParticipant message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            BroadcastListParticipant.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a BroadcastListParticipant message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.BroadcastListParticipant
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.BroadcastListParticipant} BroadcastListParticipant
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            BroadcastListParticipant.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.BroadcastListParticipant();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.lidJid = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.pnJid = reader.string();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                if (!message.hasOwnProperty("lidJid"))
+                    throw $util.ProtocolError("missing required 'lidJid'", { instance: message });
+                return message;
+            };
+
+            /**
+             * Decodes a BroadcastListParticipant message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.BroadcastListParticipant
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.BroadcastListParticipant} BroadcastListParticipant
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            BroadcastListParticipant.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a BroadcastListParticipant message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.BroadcastListParticipant
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            BroadcastListParticipant.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (!$util.isString(message.lidJid))
+                    return "lidJid: string expected";
+                if (message.pnJid != null && message.hasOwnProperty("pnJid"))
+                    if (!$util.isString(message.pnJid))
+                        return "pnJid: string expected";
+                return null;
+            };
+
+            /**
+             * Creates a BroadcastListParticipant message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.BroadcastListParticipant
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.BroadcastListParticipant} BroadcastListParticipant
+             */
+            BroadcastListParticipant.fromObject = function fromObject(object) {
+                if (object instanceof $root.SyncAction.SyncActionValue.BroadcastListParticipant)
+                    return object;
+                var message = new $root.SyncAction.SyncActionValue.BroadcastListParticipant();
+                if (object.lidJid != null)
+                    message.lidJid = String(object.lidJid);
+                if (object.pnJid != null)
+                    message.pnJid = String(object.pnJid);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a BroadcastListParticipant message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.BroadcastListParticipant
+             * @static
+             * @param {SyncAction.SyncActionValue.BroadcastListParticipant} message BroadcastListParticipant
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            BroadcastListParticipant.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.lidJid = "";
+                    object.pnJid = "";
+                }
+                if (message.lidJid != null && message.hasOwnProperty("lidJid"))
+                    object.lidJid = message.lidJid;
+                if (message.pnJid != null && message.hasOwnProperty("pnJid"))
+                    object.pnJid = message.pnJid;
+                return object;
+            };
+
+            /**
+             * Converts this BroadcastListParticipant to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.BroadcastListParticipant
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            BroadcastListParticipant.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for BroadcastListParticipant
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.BroadcastListParticipant
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            BroadcastListParticipant.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.BroadcastListParticipant";
+            };
+
+            return BroadcastListParticipant;
+        })();
+
         SyncActionValue.BusinessBroadcastAssociationAction = (function() {
 
             /**
@@ -3949,7 +4206,7 @@ $root.SyncAction = (function() {
              * @memberof SyncAction.SyncActionValue
              * @interface IBusinessBroadcastListAction
              * @property {boolean|null} [deleted] BusinessBroadcastListAction deleted
-             * @property {Array.<string>|null} [lids] BusinessBroadcastListAction lids
+             * @property {Array.<SyncAction.SyncActionValue.IBroadcastListParticipant>|null} [participants] BusinessBroadcastListAction participants
              * @property {string|null} [listName] BusinessBroadcastListAction listName
              */
 
@@ -3962,7 +4219,7 @@ $root.SyncAction = (function() {
              * @param {SyncAction.SyncActionValue.IBusinessBroadcastListAction=} [properties] Properties to set
              */
             function BusinessBroadcastListAction(properties) {
-                this.lids = [];
+                this.participants = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -3978,12 +4235,12 @@ $root.SyncAction = (function() {
             BusinessBroadcastListAction.prototype.deleted = false;
 
             /**
-             * BusinessBroadcastListAction lids.
-             * @member {Array.<string>} lids
+             * BusinessBroadcastListAction participants.
+             * @member {Array.<SyncAction.SyncActionValue.IBroadcastListParticipant>} participants
              * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
              * @instance
              */
-            BusinessBroadcastListAction.prototype.lids = $util.emptyArray;
+            BusinessBroadcastListAction.prototype.participants = $util.emptyArray;
 
             /**
              * BusinessBroadcastListAction listName.
@@ -4019,9 +4276,9 @@ $root.SyncAction = (function() {
                     writer = $Writer.create();
                 if (message.deleted != null && Object.hasOwnProperty.call(message, "deleted"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.deleted);
-                if (message.lids != null && message.lids.length)
-                    for (var i = 0; i < message.lids.length; ++i)
-                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.lids[i]);
+                if (message.participants != null && message.participants.length)
+                    for (var i = 0; i < message.participants.length; ++i)
+                        $root.SyncAction.SyncActionValue.BroadcastListParticipant.encode(message.participants[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 if (message.listName != null && Object.hasOwnProperty.call(message, "listName"))
                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.listName);
                 return writer;
@@ -4065,9 +4322,9 @@ $root.SyncAction = (function() {
                             break;
                         }
                     case 2: {
-                            if (!(message.lids && message.lids.length))
-                                message.lids = [];
-                            message.lids.push(reader.string());
+                            if (!(message.participants && message.participants.length))
+                                message.participants = [];
+                            message.participants.push($root.SyncAction.SyncActionValue.BroadcastListParticipant.decode(reader, reader.uint32()));
                             break;
                         }
                     case 3: {
@@ -4112,12 +4369,14 @@ $root.SyncAction = (function() {
                 if (message.deleted != null && message.hasOwnProperty("deleted"))
                     if (typeof message.deleted !== "boolean")
                         return "deleted: boolean expected";
-                if (message.lids != null && message.hasOwnProperty("lids")) {
-                    if (!Array.isArray(message.lids))
-                        return "lids: array expected";
-                    for (var i = 0; i < message.lids.length; ++i)
-                        if (!$util.isString(message.lids[i]))
-                            return "lids: string[] expected";
+                if (message.participants != null && message.hasOwnProperty("participants")) {
+                    if (!Array.isArray(message.participants))
+                        return "participants: array expected";
+                    for (var i = 0; i < message.participants.length; ++i) {
+                        var error = $root.SyncAction.SyncActionValue.BroadcastListParticipant.verify(message.participants[i]);
+                        if (error)
+                            return "participants." + error;
+                    }
                 }
                 if (message.listName != null && message.hasOwnProperty("listName"))
                     if (!$util.isString(message.listName))
@@ -4139,12 +4398,15 @@ $root.SyncAction = (function() {
                 var message = new $root.SyncAction.SyncActionValue.BusinessBroadcastListAction();
                 if (object.deleted != null)
                     message.deleted = Boolean(object.deleted);
-                if (object.lids) {
-                    if (!Array.isArray(object.lids))
-                        throw TypeError(".SyncAction.SyncActionValue.BusinessBroadcastListAction.lids: array expected");
-                    message.lids = [];
-                    for (var i = 0; i < object.lids.length; ++i)
-                        message.lids[i] = String(object.lids[i]);
+                if (object.participants) {
+                    if (!Array.isArray(object.participants))
+                        throw TypeError(".SyncAction.SyncActionValue.BusinessBroadcastListAction.participants: array expected");
+                    message.participants = [];
+                    for (var i = 0; i < object.participants.length; ++i) {
+                        if (typeof object.participants[i] !== "object")
+                            throw TypeError(".SyncAction.SyncActionValue.BusinessBroadcastListAction.participants: object expected");
+                        message.participants[i] = $root.SyncAction.SyncActionValue.BroadcastListParticipant.fromObject(object.participants[i]);
+                    }
                 }
                 if (object.listName != null)
                     message.listName = String(object.listName);
@@ -4165,17 +4427,17 @@ $root.SyncAction = (function() {
                     options = {};
                 var object = {};
                 if (options.arrays || options.defaults)
-                    object.lids = [];
+                    object.participants = [];
                 if (options.defaults) {
                     object.deleted = false;
                     object.listName = "";
                 }
                 if (message.deleted != null && message.hasOwnProperty("deleted"))
                     object.deleted = message.deleted;
-                if (message.lids && message.lids.length) {
-                    object.lids = [];
-                    for (var j = 0; j < message.lids.length; ++j)
-                        object.lids[j] = message.lids[j];
+                if (message.participants && message.participants.length) {
+                    object.participants = [];
+                    for (var j = 0; j < message.participants.length; ++j)
+                        object.participants[j] = $root.SyncAction.SyncActionValue.BroadcastListParticipant.toObject(message.participants[j], options);
                 }
                 if (message.listName != null && message.hasOwnProperty("listName"))
                     object.listName = message.listName;
@@ -15552,6 +15814,211 @@ $root.SyncAction = (function() {
             };
 
             return StarAction;
+        })();
+
+        SyncActionValue.StatusPostOptInNotificationPreferencesAction = (function() {
+
+            /**
+             * Properties of a StatusPostOptInNotificationPreferencesAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface IStatusPostOptInNotificationPreferencesAction
+             * @property {boolean|null} [enabled] StatusPostOptInNotificationPreferencesAction enabled
+             */
+
+            /**
+             * Constructs a new StatusPostOptInNotificationPreferencesAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents a StatusPostOptInNotificationPreferencesAction.
+             * @implements IStatusPostOptInNotificationPreferencesAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.IStatusPostOptInNotificationPreferencesAction=} [properties] Properties to set
+             */
+            function StatusPostOptInNotificationPreferencesAction(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * StatusPostOptInNotificationPreferencesAction enabled.
+             * @member {boolean} enabled
+             * @memberof SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction
+             * @instance
+             */
+            StatusPostOptInNotificationPreferencesAction.prototype.enabled = false;
+
+            /**
+             * Creates a new StatusPostOptInNotificationPreferencesAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IStatusPostOptInNotificationPreferencesAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction} StatusPostOptInNotificationPreferencesAction instance
+             */
+            StatusPostOptInNotificationPreferencesAction.create = function create(properties) {
+                return new StatusPostOptInNotificationPreferencesAction(properties);
+            };
+
+            /**
+             * Encodes the specified StatusPostOptInNotificationPreferencesAction message. Does not implicitly {@link SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IStatusPostOptInNotificationPreferencesAction} message StatusPostOptInNotificationPreferencesAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            StatusPostOptInNotificationPreferencesAction.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.enabled != null && Object.hasOwnProperty.call(message, "enabled"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).bool(message.enabled);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified StatusPostOptInNotificationPreferencesAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IStatusPostOptInNotificationPreferencesAction} message StatusPostOptInNotificationPreferencesAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            StatusPostOptInNotificationPreferencesAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a StatusPostOptInNotificationPreferencesAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction} StatusPostOptInNotificationPreferencesAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            StatusPostOptInNotificationPreferencesAction.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.enabled = reader.bool();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a StatusPostOptInNotificationPreferencesAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction} StatusPostOptInNotificationPreferencesAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            StatusPostOptInNotificationPreferencesAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a StatusPostOptInNotificationPreferencesAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            StatusPostOptInNotificationPreferencesAction.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.enabled != null && message.hasOwnProperty("enabled"))
+                    if (typeof message.enabled !== "boolean")
+                        return "enabled: boolean expected";
+                return null;
+            };
+
+            /**
+             * Creates a StatusPostOptInNotificationPreferencesAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction} StatusPostOptInNotificationPreferencesAction
+             */
+            StatusPostOptInNotificationPreferencesAction.fromObject = function fromObject(object) {
+                if (object instanceof $root.SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction)
+                    return object;
+                var message = new $root.SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction();
+                if (object.enabled != null)
+                    message.enabled = Boolean(object.enabled);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a StatusPostOptInNotificationPreferencesAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction
+             * @static
+             * @param {SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction} message StatusPostOptInNotificationPreferencesAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            StatusPostOptInNotificationPreferencesAction.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.enabled = false;
+                if (message.enabled != null && message.hasOwnProperty("enabled"))
+                    object.enabled = message.enabled;
+                return object;
+            };
+
+            /**
+             * Converts this StatusPostOptInNotificationPreferencesAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            StatusPostOptInNotificationPreferencesAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for StatusPostOptInNotificationPreferencesAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            StatusPostOptInNotificationPreferencesAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction";
+            };
+
+            return StatusPostOptInNotificationPreferencesAction;
         })();
 
         SyncActionValue.StatusPrivacyAction = (function() {

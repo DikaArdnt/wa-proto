@@ -101,6 +101,7 @@ message SyncActionValue {
     optional MaibaAIFeaturesControlAction maibaAiFeaturesControlAction = 68;
     optional BusinessBroadcastListAction businessBroadcastListAction = 69;
     optional MusicUserIdAction musicUserIdAction = 70;
+    optional StatusPostOptInNotificationPreferencesAction statusPostOptInNotificationPreferencesAction = 71;
     message AgentAction {
         optional string name = 1;
         optional int32 deviceID = 2;
@@ -116,12 +117,16 @@ message SyncActionValue {
     message BotWelcomeRequestAction {
         optional bool isSent = 1;
     }
+    message BroadcastListParticipant {
+        required string lidJid = 1;
+        optional string pnJid = 2;
+    }
     message BusinessBroadcastAssociationAction {
         optional bool deleted = 1;
     }
     message BusinessBroadcastListAction {
         optional bool deleted = 1;
-        repeated string lids = 2;
+        repeated SyncActionValue.BroadcastListParticipant participants = 2;
         optional string listName = 3;
     }
     message CallLogAction {
@@ -344,6 +349,9 @@ message SyncActionValue {
     }
     message StarAction {
         optional bool starred = 1;
+    }
+    message StatusPostOptInNotificationPreferencesAction {
+        optional bool enabled = 1;
     }
     message StatusPrivacyAction {
         optional StatusDistributionMode mode = 1;

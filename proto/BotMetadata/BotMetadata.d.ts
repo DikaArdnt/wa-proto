@@ -95,6 +95,9 @@ export namespace BotMetadata {
 
         /** BotMetadata inThreadSurveyMetadata */
         inThreadSurveyMetadata?: (BotMetadata.IInThreadSurveyMetadata|null);
+
+        /** BotMetadata botThreadInfo */
+        botThreadInfo?: (BotMetadata.IAIThreadInfo|null);
     }
 
     /** Represents a BotMetadata. */
@@ -196,6 +199,9 @@ export namespace BotMetadata {
         /** BotMetadata inThreadSurveyMetadata. */
         public inThreadSurveyMetadata?: (BotMetadata.IInThreadSurveyMetadata|null);
 
+        /** BotMetadata botThreadInfo. */
+        public botThreadInfo?: (BotMetadata.IAIThreadInfo|null);
+
         /**
          * Creates a new BotMetadata instance using the specified properties.
          * @param [properties] Properties to set
@@ -272,6 +278,316 @@ export namespace BotMetadata {
          * @returns The default type url
          */
         public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a AIThreadInfo. */
+    interface IAIThreadInfo {
+
+        /** AIThreadInfo serverInfo */
+        serverInfo?: (BotMetadata.AIThreadInfo.IAIThreadServerInfo|null);
+
+        /** AIThreadInfo clientInfo */
+        clientInfo?: (BotMetadata.AIThreadInfo.IAIThreadClientInfo|null);
+    }
+
+    /** Represents a AIThreadInfo. */
+    class AIThreadInfo implements IAIThreadInfo {
+
+        /**
+         * Constructs a new AIThreadInfo.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: BotMetadata.IAIThreadInfo);
+
+        /** AIThreadInfo serverInfo. */
+        public serverInfo?: (BotMetadata.AIThreadInfo.IAIThreadServerInfo|null);
+
+        /** AIThreadInfo clientInfo. */
+        public clientInfo?: (BotMetadata.AIThreadInfo.IAIThreadClientInfo|null);
+
+        /**
+         * Creates a new AIThreadInfo instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns AIThreadInfo instance
+         */
+        public static create(properties?: BotMetadata.IAIThreadInfo): BotMetadata.AIThreadInfo;
+
+        /**
+         * Encodes the specified AIThreadInfo message. Does not implicitly {@link BotMetadata.AIThreadInfo.verify|verify} messages.
+         * @param message AIThreadInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: BotMetadata.IAIThreadInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified AIThreadInfo message, length delimited. Does not implicitly {@link BotMetadata.AIThreadInfo.verify|verify} messages.
+         * @param message AIThreadInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: BotMetadata.IAIThreadInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a AIThreadInfo message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns AIThreadInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): BotMetadata.AIThreadInfo;
+
+        /**
+         * Decodes a AIThreadInfo message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns AIThreadInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): BotMetadata.AIThreadInfo;
+
+        /**
+         * Verifies a AIThreadInfo message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a AIThreadInfo message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns AIThreadInfo
+         */
+        public static fromObject(object: { [k: string]: any }): BotMetadata.AIThreadInfo;
+
+        /**
+         * Creates a plain object from a AIThreadInfo message. Also converts values to other types if specified.
+         * @param message AIThreadInfo
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: BotMetadata.AIThreadInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this AIThreadInfo to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for AIThreadInfo
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace AIThreadInfo {
+
+        /** Properties of a AIThreadClientInfo. */
+        interface IAIThreadClientInfo {
+
+            /** AIThreadClientInfo type */
+            type?: (BotMetadata.AIThreadInfo.AIThreadClientInfo.AIThreadType|null);
+        }
+
+        /** Represents a AIThreadClientInfo. */
+        class AIThreadClientInfo implements IAIThreadClientInfo {
+
+            /**
+             * Constructs a new AIThreadClientInfo.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: BotMetadata.AIThreadInfo.IAIThreadClientInfo);
+
+            /** AIThreadClientInfo type. */
+            public type: BotMetadata.AIThreadInfo.AIThreadClientInfo.AIThreadType;
+
+            /**
+             * Creates a new AIThreadClientInfo instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns AIThreadClientInfo instance
+             */
+            public static create(properties?: BotMetadata.AIThreadInfo.IAIThreadClientInfo): BotMetadata.AIThreadInfo.AIThreadClientInfo;
+
+            /**
+             * Encodes the specified AIThreadClientInfo message. Does not implicitly {@link BotMetadata.AIThreadInfo.AIThreadClientInfo.verify|verify} messages.
+             * @param message AIThreadClientInfo message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: BotMetadata.AIThreadInfo.IAIThreadClientInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified AIThreadClientInfo message, length delimited. Does not implicitly {@link BotMetadata.AIThreadInfo.AIThreadClientInfo.verify|verify} messages.
+             * @param message AIThreadClientInfo message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: BotMetadata.AIThreadInfo.IAIThreadClientInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a AIThreadClientInfo message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns AIThreadClientInfo
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): BotMetadata.AIThreadInfo.AIThreadClientInfo;
+
+            /**
+             * Decodes a AIThreadClientInfo message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns AIThreadClientInfo
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): BotMetadata.AIThreadInfo.AIThreadClientInfo;
+
+            /**
+             * Verifies a AIThreadClientInfo message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a AIThreadClientInfo message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns AIThreadClientInfo
+             */
+            public static fromObject(object: { [k: string]: any }): BotMetadata.AIThreadInfo.AIThreadClientInfo;
+
+            /**
+             * Creates a plain object from a AIThreadClientInfo message. Also converts values to other types if specified.
+             * @param message AIThreadClientInfo
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: BotMetadata.AIThreadInfo.AIThreadClientInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this AIThreadClientInfo to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for AIThreadClientInfo
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace AIThreadClientInfo {
+
+            /** AIThreadType enum. */
+            enum AIThreadType {
+                UNKNOWN = 0,
+                DEFAULT = 1,
+                INCOGNITO = 2
+            }
+        }
+
+        /** Properties of a AIThreadServerInfo. */
+        interface IAIThreadServerInfo {
+
+            /** AIThreadServerInfo title */
+            title?: (string|null);
+        }
+
+        /** Represents a AIThreadServerInfo. */
+        class AIThreadServerInfo implements IAIThreadServerInfo {
+
+            /**
+             * Constructs a new AIThreadServerInfo.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: BotMetadata.AIThreadInfo.IAIThreadServerInfo);
+
+            /** AIThreadServerInfo title. */
+            public title: string;
+
+            /**
+             * Creates a new AIThreadServerInfo instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns AIThreadServerInfo instance
+             */
+            public static create(properties?: BotMetadata.AIThreadInfo.IAIThreadServerInfo): BotMetadata.AIThreadInfo.AIThreadServerInfo;
+
+            /**
+             * Encodes the specified AIThreadServerInfo message. Does not implicitly {@link BotMetadata.AIThreadInfo.AIThreadServerInfo.verify|verify} messages.
+             * @param message AIThreadServerInfo message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: BotMetadata.AIThreadInfo.IAIThreadServerInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified AIThreadServerInfo message, length delimited. Does not implicitly {@link BotMetadata.AIThreadInfo.AIThreadServerInfo.verify|verify} messages.
+             * @param message AIThreadServerInfo message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: BotMetadata.AIThreadInfo.IAIThreadServerInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a AIThreadServerInfo message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns AIThreadServerInfo
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): BotMetadata.AIThreadInfo.AIThreadServerInfo;
+
+            /**
+             * Decodes a AIThreadServerInfo message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns AIThreadServerInfo
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): BotMetadata.AIThreadInfo.AIThreadServerInfo;
+
+            /**
+             * Verifies a AIThreadServerInfo message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a AIThreadServerInfo message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns AIThreadServerInfo
+             */
+            public static fromObject(object: { [k: string]: any }): BotMetadata.AIThreadInfo.AIThreadServerInfo;
+
+            /**
+             * Creates a plain object from a AIThreadServerInfo message. Also converts values to other types if specified.
+             * @param message AIThreadServerInfo
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: BotMetadata.AIThreadInfo.AIThreadServerInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this AIThreadServerInfo to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for AIThreadServerInfo
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
     }
 
     /** Properties of a BotUnifiedResponseMutation. */
@@ -2111,7 +2427,8 @@ export namespace BotMetadata {
             SIMPLIFIED_PROFILE_PAGE = 36,
             RICH_RESPONSE_SOURCES_IN_MESSAGE = 37,
             RICH_RESPONSE_SIDE_BY_SIDE_SURVEY = 38,
-            RICH_RESPONSE_UNIFIED_TEXT_COMPONENT = 39
+            RICH_RESPONSE_UNIFIED_TEXT_COMPONENT = 39,
+            AI_SHARED_MEMORY = 40
         }
     }
 
