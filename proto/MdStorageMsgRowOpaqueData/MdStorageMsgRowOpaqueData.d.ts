@@ -30457,7 +30457,9 @@ export namespace BotMetadata {
             RICH_RESPONSE_SOURCES_IN_MESSAGE = 37,
             RICH_RESPONSE_SIDE_BY_SIDE_SURVEY = 38,
             RICH_RESPONSE_UNIFIED_TEXT_COMPONENT = 39,
-            AI_SHARED_MEMORY = 40
+            AI_SHARED_MEMORY = 40,
+            RICH_RESPONSE_UNIFIED_SOURCES = 41,
+            RICH_RESPONSE_UNIFIED_DOMAIN_CITATIONS = 42
         }
     }
 

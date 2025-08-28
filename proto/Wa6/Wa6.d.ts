@@ -98,6 +98,9 @@ export namespace Wa6 {
 
         /** ClientPayload connectionSequenceInfo */
         connectionSequenceInfo?: (number|null);
+
+        /** ClientPayload paaLink */
+        paaLink?: (boolean|null);
     }
 
     /** Represents a ClientPayload. */
@@ -201,6 +204,9 @@ export namespace Wa6 {
 
         /** ClientPayload connectionSequenceInfo. */
         public connectionSequenceInfo: number;
+
+        /** ClientPayload paaLink. */
+        public paaLink: boolean;
 
         /**
          * Creates a new ClientPayload instance using the specified properties.

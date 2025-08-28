@@ -55,6 +55,7 @@ $root.Wa6 = (function() {
          * @property {boolean|null} [lidDbMigrated] ClientPayload lidDbMigrated
          * @property {Wa6.ClientPayload.AccountType|null} [accountType] ClientPayload accountType
          * @property {number|null} [connectionSequenceInfo] ClientPayload connectionSequenceInfo
+         * @property {boolean|null} [paaLink] ClientPayload paaLink
          */
 
         /**
@@ -322,6 +323,14 @@ $root.Wa6 = (function() {
         ClientPayload.prototype.connectionSequenceInfo = 0;
 
         /**
+         * ClientPayload paaLink.
+         * @member {boolean} paaLink
+         * @memberof Wa6.ClientPayload
+         * @instance
+         */
+        ClientPayload.prototype.paaLink = false;
+
+        /**
          * Creates a new ClientPayload instance using the specified properties.
          * @function create
          * @memberof Wa6.ClientPayload
@@ -408,6 +417,8 @@ $root.Wa6 = (function() {
                 writer.uint32(/* id 42, wireType 0 =*/336).int32(message.accountType);
             if (message.connectionSequenceInfo != null && Object.hasOwnProperty.call(message, "connectionSequenceInfo"))
                 writer.uint32(/* id 43, wireType 5 =*/349).sfixed32(message.connectionSequenceInfo);
+            if (message.paaLink != null && Object.hasOwnProperty.call(message, "paaLink"))
+                writer.uint32(/* id 44, wireType 0 =*/352).bool(message.paaLink);
             return writer;
         };
 
@@ -573,6 +584,10 @@ $root.Wa6 = (function() {
                     }
                 case 43: {
                         message.connectionSequenceInfo = reader.sfixed32();
+                        break;
+                    }
+                case 44: {
+                        message.paaLink = reader.bool();
                         break;
                     }
                 default:
@@ -769,6 +784,9 @@ $root.Wa6 = (function() {
             if (message.connectionSequenceInfo != null && message.hasOwnProperty("connectionSequenceInfo"))
                 if (!$util.isInteger(message.connectionSequenceInfo))
                     return "connectionSequenceInfo: integer expected";
+            if (message.paaLink != null && message.hasOwnProperty("paaLink"))
+                if (typeof message.paaLink !== "boolean")
+                    return "paaLink: boolean expected";
             return null;
         };
 
@@ -1064,6 +1082,8 @@ $root.Wa6 = (function() {
             }
             if (object.connectionSequenceInfo != null)
                 message.connectionSequenceInfo = object.connectionSequenceInfo | 0;
+            if (object.paaLink != null)
+                message.paaLink = Boolean(object.paaLink);
             return message;
         };
 
@@ -1145,6 +1165,7 @@ $root.Wa6 = (function() {
                 object.lidDbMigrated = false;
                 object.accountType = options.enums === String ? "DEFAULT" : 0;
                 object.connectionSequenceInfo = 0;
+                object.paaLink = false;
             }
             if (message.username != null && message.hasOwnProperty("username"))
                 if (typeof message.username === "number")
@@ -1217,6 +1238,8 @@ $root.Wa6 = (function() {
                 object.accountType = options.enums === String ? $root.Wa6.ClientPayload.AccountType[message.accountType] === undefined ? message.accountType : $root.Wa6.ClientPayload.AccountType[message.accountType] : message.accountType;
             if (message.connectionSequenceInfo != null && message.hasOwnProperty("connectionSequenceInfo"))
                 object.connectionSequenceInfo = message.connectionSequenceInfo;
+            if (message.paaLink != null && message.hasOwnProperty("paaLink"))
+                object.paaLink = message.paaLink;
             return object;
         };
 

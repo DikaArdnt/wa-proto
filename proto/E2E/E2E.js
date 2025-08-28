@@ -80397,6 +80397,8 @@ $root.BotMetadata = (function() {
                     case 38:
                     case 39:
                     case 40:
+                    case 41:
+                    case 42:
                         break;
                     }
             }
@@ -80590,6 +80592,14 @@ $root.BotMetadata = (function() {
                     case 40:
                         message.capabilities[i] = 40;
                         break;
+                    case "RICH_RESPONSE_UNIFIED_SOURCES":
+                    case 41:
+                        message.capabilities[i] = 41;
+                        break;
+                    case "RICH_RESPONSE_UNIFIED_DOMAIN_CITATIONS":
+                    case 42:
+                        message.capabilities[i] = 42;
+                        break;
                     }
             }
             return message;
@@ -80689,6 +80699,8 @@ $root.BotMetadata = (function() {
          * @property {number} RICH_RESPONSE_SIDE_BY_SIDE_SURVEY=38 RICH_RESPONSE_SIDE_BY_SIDE_SURVEY value
          * @property {number} RICH_RESPONSE_UNIFIED_TEXT_COMPONENT=39 RICH_RESPONSE_UNIFIED_TEXT_COMPONENT value
          * @property {number} AI_SHARED_MEMORY=40 AI_SHARED_MEMORY value
+         * @property {number} RICH_RESPONSE_UNIFIED_SOURCES=41 RICH_RESPONSE_UNIFIED_SOURCES value
+         * @property {number} RICH_RESPONSE_UNIFIED_DOMAIN_CITATIONS=42 RICH_RESPONSE_UNIFIED_DOMAIN_CITATIONS value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -80733,6 +80745,8 @@ $root.BotMetadata = (function() {
             values[valuesById[38] = "RICH_RESPONSE_SIDE_BY_SIDE_SURVEY"] = 38;
             values[valuesById[39] = "RICH_RESPONSE_UNIFIED_TEXT_COMPONENT"] = 39;
             values[valuesById[40] = "AI_SHARED_MEMORY"] = 40;
+            values[valuesById[41] = "RICH_RESPONSE_UNIFIED_SOURCES"] = 41;
+            values[valuesById[42] = "RICH_RESPONSE_UNIFIED_DOMAIN_CITATIONS"] = 42;
             return values;
         })();
 
