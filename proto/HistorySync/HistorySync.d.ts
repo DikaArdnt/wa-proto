@@ -1762,6 +1762,9 @@ export namespace HistorySync {
 
         /** Conversation limitSharingInitiatedByMe */
         limitSharingInitiatedByMe?: (boolean|null);
+
+        /** Conversation maibaAiThreadEnabled */
+        maibaAiThreadEnabled?: (boolean|null);
     }
 
     /** Represents a Conversation. */
@@ -1931,6 +1934,9 @@ export namespace HistorySync {
 
         /** Conversation limitSharingInitiatedByMe. */
         public limitSharingInitiatedByMe: boolean;
+
+        /** Conversation maibaAiThreadEnabled. */
+        public maibaAiThreadEnabled: boolean;
 
         /**
          * Creates a new Conversation instance using the specified properties.

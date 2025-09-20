@@ -175,6 +175,7 @@ message Conversation {
     optional int64 limitSharingSettingTimestamp = 51;
     optional Protocol.LimitSharing.TriggerType limitSharingTrigger = 52;
     optional bool limitSharingInitiatedByMe = 53;
+    optional bool maibaAiThreadEnabled = 54;
     enum EndOfHistoryTransferType {
         COMPLETE_BUT_MORE_MESSAGES_REMAIN_ON_PRIMARY = 0;
         COMPLETE_AND_NO_MORE_MESSAGE_REMAIN_ON_PRIMARY = 1;

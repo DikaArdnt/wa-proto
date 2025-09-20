@@ -4258,6 +4258,7 @@ $root.HistorySync = (function() {
          * @property {number|Long|null} [limitSharingSettingTimestamp] Conversation limitSharingSettingTimestamp
          * @property {Protocol.LimitSharing.TriggerType|null} [limitSharingTrigger] Conversation limitSharingTrigger
          * @property {boolean|null} [limitSharingInitiatedByMe] Conversation limitSharingInitiatedByMe
+         * @property {boolean|null} [maibaAiThreadEnabled] Conversation maibaAiThreadEnabled
          */
 
         /**
@@ -4702,6 +4703,14 @@ $root.HistorySync = (function() {
         Conversation.prototype.limitSharingInitiatedByMe = false;
 
         /**
+         * Conversation maibaAiThreadEnabled.
+         * @member {boolean} maibaAiThreadEnabled
+         * @memberof HistorySync.Conversation
+         * @instance
+         */
+        Conversation.prototype.maibaAiThreadEnabled = false;
+
+        /**
          * Creates a new Conversation instance using the specified properties.
          * @function create
          * @memberof HistorySync.Conversation
@@ -4832,6 +4841,8 @@ $root.HistorySync = (function() {
                 writer.uint32(/* id 52, wireType 0 =*/416).int32(message.limitSharingTrigger);
             if (message.limitSharingInitiatedByMe != null && Object.hasOwnProperty.call(message, "limitSharingInitiatedByMe"))
                 writer.uint32(/* id 53, wireType 0 =*/424).bool(message.limitSharingInitiatedByMe);
+            if (message.maibaAiThreadEnabled != null && Object.hasOwnProperty.call(message, "maibaAiThreadEnabled"))
+                writer.uint32(/* id 54, wireType 0 =*/432).bool(message.maibaAiThreadEnabled);
             return writer;
         };
 
@@ -5084,6 +5095,10 @@ $root.HistorySync = (function() {
                         message.limitSharingInitiatedByMe = reader.bool();
                         break;
                     }
+                case 54: {
+                        message.maibaAiThreadEnabled = reader.bool();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -5320,6 +5335,9 @@ $root.HistorySync = (function() {
             if (message.limitSharingInitiatedByMe != null && message.hasOwnProperty("limitSharingInitiatedByMe"))
                 if (typeof message.limitSharingInitiatedByMe !== "boolean")
                     return "limitSharingInitiatedByMe: boolean expected";
+            if (message.maibaAiThreadEnabled != null && message.hasOwnProperty("maibaAiThreadEnabled"))
+                if (typeof message.maibaAiThreadEnabled !== "boolean")
+                    return "maibaAiThreadEnabled: boolean expected";
             return null;
         };
 
@@ -5601,6 +5619,8 @@ $root.HistorySync = (function() {
             }
             if (object.limitSharingInitiatedByMe != null)
                 message.limitSharingInitiatedByMe = Boolean(object.limitSharingInitiatedByMe);
+            if (object.maibaAiThreadEnabled != null)
+                message.maibaAiThreadEnabled = Boolean(object.maibaAiThreadEnabled);
             return message;
         };
 
@@ -5717,6 +5737,7 @@ $root.HistorySync = (function() {
                     object.limitSharingSettingTimestamp = options.longs === String ? "0" : 0;
                 object.limitSharingTrigger = options.enums === String ? "UNKNOWN" : 0;
                 object.limitSharingInitiatedByMe = false;
+                object.maibaAiThreadEnabled = false;
             }
             if (message.id != null && message.hasOwnProperty("id"))
                 object.id = message.id;
@@ -5854,6 +5875,8 @@ $root.HistorySync = (function() {
                 object.limitSharingTrigger = options.enums === String ? $root.Protocol.LimitSharing.TriggerType[message.limitSharingTrigger] === undefined ? message.limitSharingTrigger : $root.Protocol.LimitSharing.TriggerType[message.limitSharingTrigger] : message.limitSharingTrigger;
             if (message.limitSharingInitiatedByMe != null && message.hasOwnProperty("limitSharingInitiatedByMe"))
                 object.limitSharingInitiatedByMe = message.limitSharingInitiatedByMe;
+            if (message.maibaAiThreadEnabled != null && message.hasOwnProperty("maibaAiThreadEnabled"))
+                object.maibaAiThreadEnabled = message.maibaAiThreadEnabled;
             return object;
         };
 
