@@ -4695,6 +4695,7 @@ $root.Wa6 = (function() {
              * @interface IClientFinish
              * @property {Uint8Array|null} ["static"] ClientFinish static
              * @property {Uint8Array|null} [payload] ClientFinish payload
+             * @property {Uint8Array|null} [extendedCiphertext] ClientFinish extendedCiphertext
              */
 
             /**
@@ -4729,6 +4730,14 @@ $root.Wa6 = (function() {
             ClientFinish.prototype.payload = $util.newBuffer([]);
 
             /**
+             * ClientFinish extendedCiphertext.
+             * @member {Uint8Array} extendedCiphertext
+             * @memberof Wa6.HandshakeMessage.ClientFinish
+             * @instance
+             */
+            ClientFinish.prototype.extendedCiphertext = $util.newBuffer([]);
+
+            /**
              * Creates a new ClientFinish instance using the specified properties.
              * @function create
              * @memberof Wa6.HandshakeMessage.ClientFinish
@@ -4756,6 +4765,8 @@ $root.Wa6 = (function() {
                     writer.uint32(/* id 1, wireType 2 =*/10).bytes(message["static"]);
                 if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.payload);
+                if (message.extendedCiphertext != null && Object.hasOwnProperty.call(message, "extendedCiphertext"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.extendedCiphertext);
                 return writer;
             };
 
@@ -4800,6 +4811,10 @@ $root.Wa6 = (function() {
                             message.payload = reader.bytes();
                             break;
                         }
+                    case 3: {
+                            message.extendedCiphertext = reader.bytes();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -4841,6 +4856,9 @@ $root.Wa6 = (function() {
                 if (message.payload != null && message.hasOwnProperty("payload"))
                     if (!(message.payload && typeof message.payload.length === "number" || $util.isString(message.payload)))
                         return "payload: buffer expected";
+                if (message.extendedCiphertext != null && message.hasOwnProperty("extendedCiphertext"))
+                    if (!(message.extendedCiphertext && typeof message.extendedCiphertext.length === "number" || $util.isString(message.extendedCiphertext)))
+                        return "extendedCiphertext: buffer expected";
                 return null;
             };
 
@@ -4866,6 +4884,11 @@ $root.Wa6 = (function() {
                         $util.base64.decode(object.payload, message.payload = $util.newBuffer($util.base64.length(object.payload)), 0);
                     else if (object.payload.length >= 0)
                         message.payload = object.payload;
+                if (object.extendedCiphertext != null)
+                    if (typeof object.extendedCiphertext === "string")
+                        $util.base64.decode(object.extendedCiphertext, message.extendedCiphertext = $util.newBuffer($util.base64.length(object.extendedCiphertext)), 0);
+                    else if (object.extendedCiphertext.length >= 0)
+                        message.extendedCiphertext = object.extendedCiphertext;
                 return message;
             };
 
@@ -4897,11 +4920,20 @@ $root.Wa6 = (function() {
                         if (options.bytes !== Array)
                             object.payload = $util.newBuffer(object.payload);
                     }
+                    if (options.bytes === String)
+                        object.extendedCiphertext = "";
+                    else {
+                        object.extendedCiphertext = [];
+                        if (options.bytes !== Array)
+                            object.extendedCiphertext = $util.newBuffer(object.extendedCiphertext);
+                    }
                 }
                 if (message["static"] != null && message.hasOwnProperty("static"))
                     object["static"] = options.bytes === String ? $util.base64.encode(message["static"], 0, message["static"].length) : options.bytes === Array ? Array.prototype.slice.call(message["static"]) : message["static"];
                 if (message.payload != null && message.hasOwnProperty("payload"))
                     object.payload = options.bytes === String ? $util.base64.encode(message.payload, 0, message.payload.length) : options.bytes === Array ? Array.prototype.slice.call(message.payload) : message.payload;
+                if (message.extendedCiphertext != null && message.hasOwnProperty("extendedCiphertext"))
+                    object.extendedCiphertext = options.bytes === String ? $util.base64.encode(message.extendedCiphertext, 0, message.extendedCiphertext.length) : options.bytes === Array ? Array.prototype.slice.call(message.extendedCiphertext) : message.extendedCiphertext;
                 return object;
             };
 
@@ -4943,6 +4975,8 @@ $root.Wa6 = (function() {
              * @property {Uint8Array|null} [ephemeral] ClientHello ephemeral
              * @property {Uint8Array|null} ["static"] ClientHello static
              * @property {Uint8Array|null} [payload] ClientHello payload
+             * @property {boolean|null} [useExtended] ClientHello useExtended
+             * @property {Uint8Array|null} [extendedCiphertext] ClientHello extendedCiphertext
              */
 
             /**
@@ -4985,6 +5019,22 @@ $root.Wa6 = (function() {
             ClientHello.prototype.payload = $util.newBuffer([]);
 
             /**
+             * ClientHello useExtended.
+             * @member {boolean} useExtended
+             * @memberof Wa6.HandshakeMessage.ClientHello
+             * @instance
+             */
+            ClientHello.prototype.useExtended = false;
+
+            /**
+             * ClientHello extendedCiphertext.
+             * @member {Uint8Array} extendedCiphertext
+             * @memberof Wa6.HandshakeMessage.ClientHello
+             * @instance
+             */
+            ClientHello.prototype.extendedCiphertext = $util.newBuffer([]);
+
+            /**
              * Creates a new ClientHello instance using the specified properties.
              * @function create
              * @memberof Wa6.HandshakeMessage.ClientHello
@@ -5014,6 +5064,10 @@ $root.Wa6 = (function() {
                     writer.uint32(/* id 2, wireType 2 =*/18).bytes(message["static"]);
                 if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.payload);
+                if (message.useExtended != null && Object.hasOwnProperty.call(message, "useExtended"))
+                    writer.uint32(/* id 4, wireType 0 =*/32).bool(message.useExtended);
+                if (message.extendedCiphertext != null && Object.hasOwnProperty.call(message, "extendedCiphertext"))
+                    writer.uint32(/* id 5, wireType 2 =*/42).bytes(message.extendedCiphertext);
                 return writer;
             };
 
@@ -5062,6 +5116,14 @@ $root.Wa6 = (function() {
                             message.payload = reader.bytes();
                             break;
                         }
+                    case 4: {
+                            message.useExtended = reader.bool();
+                            break;
+                        }
+                    case 5: {
+                            message.extendedCiphertext = reader.bytes();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -5106,6 +5168,12 @@ $root.Wa6 = (function() {
                 if (message.payload != null && message.hasOwnProperty("payload"))
                     if (!(message.payload && typeof message.payload.length === "number" || $util.isString(message.payload)))
                         return "payload: buffer expected";
+                if (message.useExtended != null && message.hasOwnProperty("useExtended"))
+                    if (typeof message.useExtended !== "boolean")
+                        return "useExtended: boolean expected";
+                if (message.extendedCiphertext != null && message.hasOwnProperty("extendedCiphertext"))
+                    if (!(message.extendedCiphertext && typeof message.extendedCiphertext.length === "number" || $util.isString(message.extendedCiphertext)))
+                        return "extendedCiphertext: buffer expected";
                 return null;
             };
 
@@ -5136,6 +5204,13 @@ $root.Wa6 = (function() {
                         $util.base64.decode(object.payload, message.payload = $util.newBuffer($util.base64.length(object.payload)), 0);
                     else if (object.payload.length >= 0)
                         message.payload = object.payload;
+                if (object.useExtended != null)
+                    message.useExtended = Boolean(object.useExtended);
+                if (object.extendedCiphertext != null)
+                    if (typeof object.extendedCiphertext === "string")
+                        $util.base64.decode(object.extendedCiphertext, message.extendedCiphertext = $util.newBuffer($util.base64.length(object.extendedCiphertext)), 0);
+                    else if (object.extendedCiphertext.length >= 0)
+                        message.extendedCiphertext = object.extendedCiphertext;
                 return message;
             };
 
@@ -5174,6 +5249,14 @@ $root.Wa6 = (function() {
                         if (options.bytes !== Array)
                             object.payload = $util.newBuffer(object.payload);
                     }
+                    object.useExtended = false;
+                    if (options.bytes === String)
+                        object.extendedCiphertext = "";
+                    else {
+                        object.extendedCiphertext = [];
+                        if (options.bytes !== Array)
+                            object.extendedCiphertext = $util.newBuffer(object.extendedCiphertext);
+                    }
                 }
                 if (message.ephemeral != null && message.hasOwnProperty("ephemeral"))
                     object.ephemeral = options.bytes === String ? $util.base64.encode(message.ephemeral, 0, message.ephemeral.length) : options.bytes === Array ? Array.prototype.slice.call(message.ephemeral) : message.ephemeral;
@@ -5181,6 +5264,10 @@ $root.Wa6 = (function() {
                     object["static"] = options.bytes === String ? $util.base64.encode(message["static"], 0, message["static"].length) : options.bytes === Array ? Array.prototype.slice.call(message["static"]) : message["static"];
                 if (message.payload != null && message.hasOwnProperty("payload"))
                     object.payload = options.bytes === String ? $util.base64.encode(message.payload, 0, message.payload.length) : options.bytes === Array ? Array.prototype.slice.call(message.payload) : message.payload;
+                if (message.useExtended != null && message.hasOwnProperty("useExtended"))
+                    object.useExtended = message.useExtended;
+                if (message.extendedCiphertext != null && message.hasOwnProperty("extendedCiphertext"))
+                    object.extendedCiphertext = options.bytes === String ? $util.base64.encode(message.extendedCiphertext, 0, message.extendedCiphertext.length) : options.bytes === Array ? Array.prototype.slice.call(message.extendedCiphertext) : message.extendedCiphertext;
                 return object;
             };
 
@@ -5222,6 +5309,7 @@ $root.Wa6 = (function() {
              * @property {Uint8Array|null} [ephemeral] ServerHello ephemeral
              * @property {Uint8Array|null} ["static"] ServerHello static
              * @property {Uint8Array|null} [payload] ServerHello payload
+             * @property {Uint8Array|null} [extendedStatic] ServerHello extendedStatic
              */
 
             /**
@@ -5264,6 +5352,14 @@ $root.Wa6 = (function() {
             ServerHello.prototype.payload = $util.newBuffer([]);
 
             /**
+             * ServerHello extendedStatic.
+             * @member {Uint8Array} extendedStatic
+             * @memberof Wa6.HandshakeMessage.ServerHello
+             * @instance
+             */
+            ServerHello.prototype.extendedStatic = $util.newBuffer([]);
+
+            /**
              * Creates a new ServerHello instance using the specified properties.
              * @function create
              * @memberof Wa6.HandshakeMessage.ServerHello
@@ -5293,6 +5389,8 @@ $root.Wa6 = (function() {
                     writer.uint32(/* id 2, wireType 2 =*/18).bytes(message["static"]);
                 if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.payload);
+                if (message.extendedStatic != null && Object.hasOwnProperty.call(message, "extendedStatic"))
+                    writer.uint32(/* id 4, wireType 2 =*/34).bytes(message.extendedStatic);
                 return writer;
             };
 
@@ -5341,6 +5439,10 @@ $root.Wa6 = (function() {
                             message.payload = reader.bytes();
                             break;
                         }
+                    case 4: {
+                            message.extendedStatic = reader.bytes();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -5385,6 +5487,9 @@ $root.Wa6 = (function() {
                 if (message.payload != null && message.hasOwnProperty("payload"))
                     if (!(message.payload && typeof message.payload.length === "number" || $util.isString(message.payload)))
                         return "payload: buffer expected";
+                if (message.extendedStatic != null && message.hasOwnProperty("extendedStatic"))
+                    if (!(message.extendedStatic && typeof message.extendedStatic.length === "number" || $util.isString(message.extendedStatic)))
+                        return "extendedStatic: buffer expected";
                 return null;
             };
 
@@ -5415,6 +5520,11 @@ $root.Wa6 = (function() {
                         $util.base64.decode(object.payload, message.payload = $util.newBuffer($util.base64.length(object.payload)), 0);
                     else if (object.payload.length >= 0)
                         message.payload = object.payload;
+                if (object.extendedStatic != null)
+                    if (typeof object.extendedStatic === "string")
+                        $util.base64.decode(object.extendedStatic, message.extendedStatic = $util.newBuffer($util.base64.length(object.extendedStatic)), 0);
+                    else if (object.extendedStatic.length >= 0)
+                        message.extendedStatic = object.extendedStatic;
                 return message;
             };
 
@@ -5453,6 +5563,13 @@ $root.Wa6 = (function() {
                         if (options.bytes !== Array)
                             object.payload = $util.newBuffer(object.payload);
                     }
+                    if (options.bytes === String)
+                        object.extendedStatic = "";
+                    else {
+                        object.extendedStatic = [];
+                        if (options.bytes !== Array)
+                            object.extendedStatic = $util.newBuffer(object.extendedStatic);
+                    }
                 }
                 if (message.ephemeral != null && message.hasOwnProperty("ephemeral"))
                     object.ephemeral = options.bytes === String ? $util.base64.encode(message.ephemeral, 0, message.ephemeral.length) : options.bytes === Array ? Array.prototype.slice.call(message.ephemeral) : message.ephemeral;
@@ -5460,6 +5577,8 @@ $root.Wa6 = (function() {
                     object["static"] = options.bytes === String ? $util.base64.encode(message["static"], 0, message["static"].length) : options.bytes === Array ? Array.prototype.slice.call(message["static"]) : message["static"];
                 if (message.payload != null && message.hasOwnProperty("payload"))
                     object.payload = options.bytes === String ? $util.base64.encode(message.payload, 0, message.payload.length) : options.bytes === Array ? Array.prototype.slice.call(message.payload) : message.payload;
+                if (message.extendedStatic != null && message.hasOwnProperty("extendedStatic"))
+                    object.extendedStatic = options.bytes === String ? $util.base64.encode(message.extendedStatic, 0, message.extendedStatic.length) : options.bytes === Array ? Array.prototype.slice.call(message.extendedStatic) : message.extendedStatic;
                 return object;
             };
 

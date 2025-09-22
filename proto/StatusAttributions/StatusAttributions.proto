@@ -10,6 +10,14 @@ message StatusAttribution {
         StatusAttribution.Music music = 5;
         StatusAttribution.GroupStatus groupStatus = 6;
         StatusAttribution.RLAttribution rlAttribution = 7;
+        StatusAttribution.AiCreatedAttribution aiCreatedAttribution = 8;
+    }
+    message AiCreatedAttribution {
+        optional Source source = 1;
+        enum Source {
+            UNKNOWN = 0;
+            STATUS_MIMICRY = 1;
+        }
     }
     message ExternalShare {
         optional string actionUrl = 1;
@@ -25,6 +33,7 @@ message StatusAttribution {
             YOUTUBE = 5;
             PINTEREST = 6;
             THREADS = 7;
+            APPLE_MUSIC = 8;
         }
     }
     message GroupStatus {
@@ -61,6 +70,7 @@ message StatusAttribution {
             INTERNAL_RESHARE = 1;
             MENTION_RESHARE = 2;
             CHANNEL_RESHARE = 3;
+            FORWARD = 4;
         }
     }
     enum Type {

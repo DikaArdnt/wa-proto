@@ -1484,6 +1484,9 @@ export namespace Wa6 {
 
             /** ClientFinish payload */
             payload?: (Uint8Array|null);
+
+            /** ClientFinish extendedCiphertext */
+            extendedCiphertext?: (Uint8Array|null);
         }
 
         /** Represents a ClientFinish. */
@@ -1500,6 +1503,9 @@ export namespace Wa6 {
 
             /** ClientFinish payload. */
             public payload: Uint8Array;
+
+            /** ClientFinish extendedCiphertext. */
+            public extendedCiphertext: Uint8Array;
 
             /**
              * Creates a new ClientFinish instance using the specified properties.
@@ -1590,6 +1596,12 @@ export namespace Wa6 {
 
             /** ClientHello payload */
             payload?: (Uint8Array|null);
+
+            /** ClientHello useExtended */
+            useExtended?: (boolean|null);
+
+            /** ClientHello extendedCiphertext */
+            extendedCiphertext?: (Uint8Array|null);
         }
 
         /** Represents a ClientHello. */
@@ -1609,6 +1621,12 @@ export namespace Wa6 {
 
             /** ClientHello payload. */
             public payload: Uint8Array;
+
+            /** ClientHello useExtended. */
+            public useExtended: boolean;
+
+            /** ClientHello extendedCiphertext. */
+            public extendedCiphertext: Uint8Array;
 
             /**
              * Creates a new ClientHello instance using the specified properties.
@@ -1699,6 +1717,9 @@ export namespace Wa6 {
 
             /** ServerHello payload */
             payload?: (Uint8Array|null);
+
+            /** ServerHello extendedStatic */
+            extendedStatic?: (Uint8Array|null);
         }
 
         /** Represents a ServerHello. */
@@ -1718,6 +1739,9 @@ export namespace Wa6 {
 
             /** ServerHello payload. */
             public payload: Uint8Array;
+
+            /** ServerHello extendedStatic. */
+            public extendedStatic: Uint8Array;
 
             /**
              * Creates a new ServerHello instance using the specified properties.
