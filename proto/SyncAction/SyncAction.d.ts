@@ -172,7 +172,9 @@ export namespace SyncAction {
             UWP = 5,
             DARWIN = 6,
             IPAD = 7,
-            WEAROS = 8
+            WEAROS = 8,
+            WASG = 9,
+            WEARM = 10
         }
     }
 

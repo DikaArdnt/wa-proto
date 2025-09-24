@@ -18,25 +18,25 @@ $root.Web = (function() {
      */
     var Web = {};
 
-    Web.GroupHistoryBundleMessage = (function() {
+    Web.GroupHistoryBundleInfo = (function() {
 
         /**
-         * Properties of a GroupHistoryBundleMessage.
+         * Properties of a GroupHistoryBundleInfo.
          * @memberof Web
-         * @interface IGroupHistoryBundleMessage
-         * @property {E2E.Message.IMessageHistoryBundle|null} [messageHistoryBundle] GroupHistoryBundleMessage messageHistoryBundle
-         * @property {Web.GroupHistoryBundleMessage.ProcessState|null} [processState] GroupHistoryBundleMessage processState
+         * @interface IGroupHistoryBundleInfo
+         * @property {E2E.Message.IMessageHistoryBundle|null} [deprecatedMessageHistoryBundle] GroupHistoryBundleInfo deprecatedMessageHistoryBundle
+         * @property {Web.GroupHistoryBundleInfo.ProcessState|null} [processState] GroupHistoryBundleInfo processState
          */
 
         /**
-         * Constructs a new GroupHistoryBundleMessage.
+         * Constructs a new GroupHistoryBundleInfo.
          * @memberof Web
-         * @classdesc Represents a GroupHistoryBundleMessage.
-         * @implements IGroupHistoryBundleMessage
+         * @classdesc Represents a GroupHistoryBundleInfo.
+         * @implements IGroupHistoryBundleInfo
          * @constructor
-         * @param {Web.IGroupHistoryBundleMessage=} [properties] Properties to set
+         * @param {Web.IGroupHistoryBundleInfo=} [properties] Properties to set
          */
-        function GroupHistoryBundleMessage(properties) {
+        function GroupHistoryBundleInfo(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -44,87 +44,87 @@ $root.Web = (function() {
         }
 
         /**
-         * GroupHistoryBundleMessage messageHistoryBundle.
-         * @member {E2E.Message.IMessageHistoryBundle|null|undefined} messageHistoryBundle
-         * @memberof Web.GroupHistoryBundleMessage
+         * GroupHistoryBundleInfo deprecatedMessageHistoryBundle.
+         * @member {E2E.Message.IMessageHistoryBundle|null|undefined} deprecatedMessageHistoryBundle
+         * @memberof Web.GroupHistoryBundleInfo
          * @instance
          */
-        GroupHistoryBundleMessage.prototype.messageHistoryBundle = null;
+        GroupHistoryBundleInfo.prototype.deprecatedMessageHistoryBundle = null;
 
         /**
-         * GroupHistoryBundleMessage processState.
-         * @member {Web.GroupHistoryBundleMessage.ProcessState} processState
-         * @memberof Web.GroupHistoryBundleMessage
+         * GroupHistoryBundleInfo processState.
+         * @member {Web.GroupHistoryBundleInfo.ProcessState} processState
+         * @memberof Web.GroupHistoryBundleInfo
          * @instance
          */
-        GroupHistoryBundleMessage.prototype.processState = 0;
+        GroupHistoryBundleInfo.prototype.processState = 0;
 
         /**
-         * Creates a new GroupHistoryBundleMessage instance using the specified properties.
+         * Creates a new GroupHistoryBundleInfo instance using the specified properties.
          * @function create
-         * @memberof Web.GroupHistoryBundleMessage
+         * @memberof Web.GroupHistoryBundleInfo
          * @static
-         * @param {Web.IGroupHistoryBundleMessage=} [properties] Properties to set
-         * @returns {Web.GroupHistoryBundleMessage} GroupHistoryBundleMessage instance
+         * @param {Web.IGroupHistoryBundleInfo=} [properties] Properties to set
+         * @returns {Web.GroupHistoryBundleInfo} GroupHistoryBundleInfo instance
          */
-        GroupHistoryBundleMessage.create = function create(properties) {
-            return new GroupHistoryBundleMessage(properties);
+        GroupHistoryBundleInfo.create = function create(properties) {
+            return new GroupHistoryBundleInfo(properties);
         };
 
         /**
-         * Encodes the specified GroupHistoryBundleMessage message. Does not implicitly {@link Web.GroupHistoryBundleMessage.verify|verify} messages.
+         * Encodes the specified GroupHistoryBundleInfo message. Does not implicitly {@link Web.GroupHistoryBundleInfo.verify|verify} messages.
          * @function encode
-         * @memberof Web.GroupHistoryBundleMessage
+         * @memberof Web.GroupHistoryBundleInfo
          * @static
-         * @param {Web.IGroupHistoryBundleMessage} message GroupHistoryBundleMessage message or plain object to encode
+         * @param {Web.IGroupHistoryBundleInfo} message GroupHistoryBundleInfo message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        GroupHistoryBundleMessage.encode = function encode(message, writer) {
+        GroupHistoryBundleInfo.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.messageHistoryBundle != null && Object.hasOwnProperty.call(message, "messageHistoryBundle"))
-                $root.E2E.Message.MessageHistoryBundle.encode(message.messageHistoryBundle, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.deprecatedMessageHistoryBundle != null && Object.hasOwnProperty.call(message, "deprecatedMessageHistoryBundle"))
+                $root.E2E.Message.MessageHistoryBundle.encode(message.deprecatedMessageHistoryBundle, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             if (message.processState != null && Object.hasOwnProperty.call(message, "processState"))
                 writer.uint32(/* id 2, wireType 0 =*/16).int32(message.processState);
             return writer;
         };
 
         /**
-         * Encodes the specified GroupHistoryBundleMessage message, length delimited. Does not implicitly {@link Web.GroupHistoryBundleMessage.verify|verify} messages.
+         * Encodes the specified GroupHistoryBundleInfo message, length delimited. Does not implicitly {@link Web.GroupHistoryBundleInfo.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof Web.GroupHistoryBundleMessage
+         * @memberof Web.GroupHistoryBundleInfo
          * @static
-         * @param {Web.IGroupHistoryBundleMessage} message GroupHistoryBundleMessage message or plain object to encode
+         * @param {Web.IGroupHistoryBundleInfo} message GroupHistoryBundleInfo message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        GroupHistoryBundleMessage.encodeDelimited = function encodeDelimited(message, writer) {
+        GroupHistoryBundleInfo.encodeDelimited = function encodeDelimited(message, writer) {
             return this.encode(message, writer).ldelim();
         };
 
         /**
-         * Decodes a GroupHistoryBundleMessage message from the specified reader or buffer.
+         * Decodes a GroupHistoryBundleInfo message from the specified reader or buffer.
          * @function decode
-         * @memberof Web.GroupHistoryBundleMessage
+         * @memberof Web.GroupHistoryBundleInfo
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {Web.GroupHistoryBundleMessage} GroupHistoryBundleMessage
+         * @returns {Web.GroupHistoryBundleInfo} GroupHistoryBundleInfo
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        GroupHistoryBundleMessage.decode = function decode(reader, length, error) {
+        GroupHistoryBundleInfo.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.GroupHistoryBundleMessage();
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.GroupHistoryBundleInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
                 case 1: {
-                        message.messageHistoryBundle = $root.E2E.Message.MessageHistoryBundle.decode(reader, reader.uint32());
+                        message.deprecatedMessageHistoryBundle = $root.E2E.Message.MessageHistoryBundle.decode(reader, reader.uint32());
                         break;
                     }
                 case 2: {
@@ -140,36 +140,36 @@ $root.Web = (function() {
         };
 
         /**
-         * Decodes a GroupHistoryBundleMessage message from the specified reader or buffer, length delimited.
+         * Decodes a GroupHistoryBundleInfo message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof Web.GroupHistoryBundleMessage
+         * @memberof Web.GroupHistoryBundleInfo
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {Web.GroupHistoryBundleMessage} GroupHistoryBundleMessage
+         * @returns {Web.GroupHistoryBundleInfo} GroupHistoryBundleInfo
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        GroupHistoryBundleMessage.decodeDelimited = function decodeDelimited(reader) {
+        GroupHistoryBundleInfo.decodeDelimited = function decodeDelimited(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
         };
 
         /**
-         * Verifies a GroupHistoryBundleMessage message.
+         * Verifies a GroupHistoryBundleInfo message.
          * @function verify
-         * @memberof Web.GroupHistoryBundleMessage
+         * @memberof Web.GroupHistoryBundleInfo
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        GroupHistoryBundleMessage.verify = function verify(message) {
+        GroupHistoryBundleInfo.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.messageHistoryBundle != null && message.hasOwnProperty("messageHistoryBundle")) {
-                var error = $root.E2E.Message.MessageHistoryBundle.verify(message.messageHistoryBundle);
+            if (message.deprecatedMessageHistoryBundle != null && message.hasOwnProperty("deprecatedMessageHistoryBundle")) {
+                var error = $root.E2E.Message.MessageHistoryBundle.verify(message.deprecatedMessageHistoryBundle);
                 if (error)
-                    return "messageHistoryBundle." + error;
+                    return "deprecatedMessageHistoryBundle." + error;
             }
             if (message.processState != null && message.hasOwnProperty("processState"))
                 switch (message.processState) {
@@ -184,21 +184,21 @@ $root.Web = (function() {
         };
 
         /**
-         * Creates a GroupHistoryBundleMessage message from a plain object. Also converts values to their respective internal types.
+         * Creates a GroupHistoryBundleInfo message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof Web.GroupHistoryBundleMessage
+         * @memberof Web.GroupHistoryBundleInfo
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {Web.GroupHistoryBundleMessage} GroupHistoryBundleMessage
+         * @returns {Web.GroupHistoryBundleInfo} GroupHistoryBundleInfo
          */
-        GroupHistoryBundleMessage.fromObject = function fromObject(object) {
-            if (object instanceof $root.Web.GroupHistoryBundleMessage)
+        GroupHistoryBundleInfo.fromObject = function fromObject(object) {
+            if (object instanceof $root.Web.GroupHistoryBundleInfo)
                 return object;
-            var message = new $root.Web.GroupHistoryBundleMessage();
-            if (object.messageHistoryBundle != null) {
-                if (typeof object.messageHistoryBundle !== "object")
-                    throw TypeError(".Web.GroupHistoryBundleMessage.messageHistoryBundle: object expected");
-                message.messageHistoryBundle = $root.E2E.Message.MessageHistoryBundle.fromObject(object.messageHistoryBundle);
+            var message = new $root.Web.GroupHistoryBundleInfo();
+            if (object.deprecatedMessageHistoryBundle != null) {
+                if (typeof object.deprecatedMessageHistoryBundle !== "object")
+                    throw TypeError(".Web.GroupHistoryBundleInfo.deprecatedMessageHistoryBundle: object expected");
+                message.deprecatedMessageHistoryBundle = $root.E2E.Message.MessageHistoryBundle.fromObject(object.deprecatedMessageHistoryBundle);
             }
             switch (object.processState) {
             default:
@@ -224,64 +224,64 @@ $root.Web = (function() {
         };
 
         /**
-         * Creates a plain object from a GroupHistoryBundleMessage message. Also converts values to other types if specified.
+         * Creates a plain object from a GroupHistoryBundleInfo message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof Web.GroupHistoryBundleMessage
+         * @memberof Web.GroupHistoryBundleInfo
          * @static
-         * @param {Web.GroupHistoryBundleMessage} message GroupHistoryBundleMessage
+         * @param {Web.GroupHistoryBundleInfo} message GroupHistoryBundleInfo
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        GroupHistoryBundleMessage.toObject = function toObject(message, options) {
+        GroupHistoryBundleInfo.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
             var object = {};
             if (options.defaults) {
-                object.messageHistoryBundle = null;
+                object.deprecatedMessageHistoryBundle = null;
                 object.processState = options.enums === String ? "NOT_DOWNLOADED" : 0;
             }
-            if (message.messageHistoryBundle != null && message.hasOwnProperty("messageHistoryBundle"))
-                object.messageHistoryBundle = $root.E2E.Message.MessageHistoryBundle.toObject(message.messageHistoryBundle, options);
+            if (message.deprecatedMessageHistoryBundle != null && message.hasOwnProperty("deprecatedMessageHistoryBundle"))
+                object.deprecatedMessageHistoryBundle = $root.E2E.Message.MessageHistoryBundle.toObject(message.deprecatedMessageHistoryBundle, options);
             if (message.processState != null && message.hasOwnProperty("processState"))
-                object.processState = options.enums === String ? $root.Web.GroupHistoryBundleMessage.ProcessState[message.processState] === undefined ? message.processState : $root.Web.GroupHistoryBundleMessage.ProcessState[message.processState] : message.processState;
+                object.processState = options.enums === String ? $root.Web.GroupHistoryBundleInfo.ProcessState[message.processState] === undefined ? message.processState : $root.Web.GroupHistoryBundleInfo.ProcessState[message.processState] : message.processState;
             return object;
         };
 
         /**
-         * Converts this GroupHistoryBundleMessage to JSON.
+         * Converts this GroupHistoryBundleInfo to JSON.
          * @function toJSON
-         * @memberof Web.GroupHistoryBundleMessage
+         * @memberof Web.GroupHistoryBundleInfo
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        GroupHistoryBundleMessage.prototype.toJSON = function toJSON() {
+        GroupHistoryBundleInfo.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for GroupHistoryBundleMessage
+         * Gets the default type url for GroupHistoryBundleInfo
          * @function getTypeUrl
-         * @memberof Web.GroupHistoryBundleMessage
+         * @memberof Web.GroupHistoryBundleInfo
          * @static
          * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns {string} The default type url
          */
-        GroupHistoryBundleMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        GroupHistoryBundleInfo.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
             if (typeUrlPrefix === undefined) {
                 typeUrlPrefix = "type.googleapis.com";
             }
-            return typeUrlPrefix + "/Web.GroupHistoryBundleMessage";
+            return typeUrlPrefix + "/Web.GroupHistoryBundleInfo";
         };
 
         /**
          * ProcessState enum.
-         * @name Web.GroupHistoryBundleMessage.ProcessState
+         * @name Web.GroupHistoryBundleInfo.ProcessState
          * @enum {number}
          * @property {number} NOT_DOWNLOADED=0 NOT_DOWNLOADED value
          * @property {number} DOWNLOADED=1 DOWNLOADED value
          * @property {number} DOWNLOAD_FAILED=2 DOWNLOAD_FAILED value
          */
-        GroupHistoryBundleMessage.ProcessState = (function() {
+        GroupHistoryBundleInfo.ProcessState = (function() {
             var valuesById = {}, values = Object.create(valuesById);
             values[valuesById[0] = "NOT_DOWNLOADED"] = 0;
             values[valuesById[1] = "DOWNLOADED"] = 1;
@@ -289,7 +289,7 @@ $root.Web = (function() {
             return values;
         })();
 
-        return GroupHistoryBundleMessage;
+        return GroupHistoryBundleInfo;
     })();
 
     Web.GroupHistoryIndividualMessageInfo = (function() {
@@ -10032,7 +10032,7 @@ $root.Web = (function() {
          * @property {Array.<Web.ICitation>|null} [supportAiCitations] WebMessageInfo supportAiCitations
          * @property {string|null} [botTargetId] WebMessageInfo botTargetId
          * @property {Web.IGroupHistoryIndividualMessageInfo|null} [groupHistoryIndividualMessageInfo] WebMessageInfo groupHistoryIndividualMessageInfo
-         * @property {Web.IGroupHistoryBundleMessage|null} [groupHistoryBundleMessage] WebMessageInfo groupHistoryBundleMessage
+         * @property {Web.IGroupHistoryBundleInfo|null} [groupHistoryBundleInfo] WebMessageInfo groupHistoryBundleInfo
          */
 
         /**
@@ -10565,12 +10565,12 @@ $root.Web = (function() {
         WebMessageInfo.prototype.groupHistoryIndividualMessageInfo = null;
 
         /**
-         * WebMessageInfo groupHistoryBundleMessage.
-         * @member {Web.IGroupHistoryBundleMessage|null|undefined} groupHistoryBundleMessage
+         * WebMessageInfo groupHistoryBundleInfo.
+         * @member {Web.IGroupHistoryBundleInfo|null|undefined} groupHistoryBundleInfo
          * @memberof Web.WebMessageInfo
          * @instance
          */
-        WebMessageInfo.prototype.groupHistoryBundleMessage = null;
+        WebMessageInfo.prototype.groupHistoryBundleInfo = null;
 
         /**
          * Creates a new WebMessageInfo instance using the specified properties.
@@ -10731,8 +10731,8 @@ $root.Web = (function() {
                 writer.uint32(/* id 73, wireType 2 =*/586).string(message.botTargetId);
             if (message.groupHistoryIndividualMessageInfo != null && Object.hasOwnProperty.call(message, "groupHistoryIndividualMessageInfo"))
                 $root.Web.GroupHistoryIndividualMessageInfo.encode(message.groupHistoryIndividualMessageInfo, writer.uint32(/* id 74, wireType 2 =*/594).fork()).ldelim();
-            if (message.groupHistoryBundleMessage != null && Object.hasOwnProperty.call(message, "groupHistoryBundleMessage"))
-                $root.Web.GroupHistoryBundleMessage.encode(message.groupHistoryBundleMessage, writer.uint32(/* id 75, wireType 2 =*/602).fork()).ldelim();
+            if (message.groupHistoryBundleInfo != null && Object.hasOwnProperty.call(message, "groupHistoryBundleInfo"))
+                $root.Web.GroupHistoryBundleInfo.encode(message.groupHistoryBundleInfo, writer.uint32(/* id 75, wireType 2 =*/602).fork()).ldelim();
             return writer;
         };
 
@@ -11042,7 +11042,7 @@ $root.Web = (function() {
                         break;
                     }
                 case 75: {
-                        message.groupHistoryBundleMessage = $root.Web.GroupHistoryBundleMessage.decode(reader, reader.uint32());
+                        message.groupHistoryBundleInfo = $root.Web.GroupHistoryBundleInfo.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -11600,10 +11600,10 @@ $root.Web = (function() {
                 if (error)
                     return "groupHistoryIndividualMessageInfo." + error;
             }
-            if (message.groupHistoryBundleMessage != null && message.hasOwnProperty("groupHistoryBundleMessage")) {
-                var error = $root.Web.GroupHistoryBundleMessage.verify(message.groupHistoryBundleMessage);
+            if (message.groupHistoryBundleInfo != null && message.hasOwnProperty("groupHistoryBundleInfo")) {
+                var error = $root.Web.GroupHistoryBundleInfo.verify(message.groupHistoryBundleInfo);
                 if (error)
-                    return "groupHistoryBundleMessage." + error;
+                    return "groupHistoryBundleInfo." + error;
             }
             return null;
         };
@@ -12853,10 +12853,10 @@ $root.Web = (function() {
                     throw TypeError(".Web.WebMessageInfo.groupHistoryIndividualMessageInfo: object expected");
                 message.groupHistoryIndividualMessageInfo = $root.Web.GroupHistoryIndividualMessageInfo.fromObject(object.groupHistoryIndividualMessageInfo);
             }
-            if (object.groupHistoryBundleMessage != null) {
-                if (typeof object.groupHistoryBundleMessage !== "object")
-                    throw TypeError(".Web.WebMessageInfo.groupHistoryBundleMessage: object expected");
-                message.groupHistoryBundleMessage = $root.Web.GroupHistoryBundleMessage.fromObject(object.groupHistoryBundleMessage);
+            if (object.groupHistoryBundleInfo != null) {
+                if (typeof object.groupHistoryBundleInfo !== "object")
+                    throw TypeError(".Web.WebMessageInfo.groupHistoryBundleInfo: object expected");
+                message.groupHistoryBundleInfo = $root.Web.GroupHistoryBundleInfo.fromObject(object.groupHistoryBundleInfo);
             }
             return message;
         };
@@ -12978,7 +12978,7 @@ $root.Web = (function() {
                 object.isSupportAiMessage = false;
                 object.botTargetId = "";
                 object.groupHistoryIndividualMessageInfo = null;
-                object.groupHistoryBundleMessage = null;
+                object.groupHistoryBundleInfo = null;
             }
             if (message.key != null && message.hasOwnProperty("key"))
                 object.key = $root.Protocol.MessageKey.toObject(message.key, options);
@@ -13151,8 +13151,8 @@ $root.Web = (function() {
                 object.botTargetId = message.botTargetId;
             if (message.groupHistoryIndividualMessageInfo != null && message.hasOwnProperty("groupHistoryIndividualMessageInfo"))
                 object.groupHistoryIndividualMessageInfo = $root.Web.GroupHistoryIndividualMessageInfo.toObject(message.groupHistoryIndividualMessageInfo, options);
-            if (message.groupHistoryBundleMessage != null && message.hasOwnProperty("groupHistoryBundleMessage"))
-                object.groupHistoryBundleMessage = $root.Web.GroupHistoryBundleMessage.toObject(message.groupHistoryBundleMessage, options);
+            if (message.groupHistoryBundleInfo != null && message.hasOwnProperty("groupHistoryBundleInfo"))
+                object.groupHistoryBundleInfo = $root.Web.GroupHistoryBundleInfo.toObject(message.groupHistoryBundleInfo, options);
             return object;
         };
 

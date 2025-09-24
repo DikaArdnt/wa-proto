@@ -38203,110 +38203,110 @@ export namespace MmsRetry {
 /** Namespace Web. */
 export namespace Web {
 
-    /** Properties of a GroupHistoryBundleMessage. */
-    interface IGroupHistoryBundleMessage {
+    /** Properties of a GroupHistoryBundleInfo. */
+    interface IGroupHistoryBundleInfo {
 
-        /** GroupHistoryBundleMessage messageHistoryBundle */
-        messageHistoryBundle?: (E2E.Message.IMessageHistoryBundle|null);
+        /** GroupHistoryBundleInfo deprecatedMessageHistoryBundle */
+        deprecatedMessageHistoryBundle?: (E2E.Message.IMessageHistoryBundle|null);
 
-        /** GroupHistoryBundleMessage processState */
-        processState?: (Web.GroupHistoryBundleMessage.ProcessState|null);
+        /** GroupHistoryBundleInfo processState */
+        processState?: (Web.GroupHistoryBundleInfo.ProcessState|null);
     }
 
-    /** Represents a GroupHistoryBundleMessage. */
-    class GroupHistoryBundleMessage implements IGroupHistoryBundleMessage {
+    /** Represents a GroupHistoryBundleInfo. */
+    class GroupHistoryBundleInfo implements IGroupHistoryBundleInfo {
 
         /**
-         * Constructs a new GroupHistoryBundleMessage.
+         * Constructs a new GroupHistoryBundleInfo.
          * @param [properties] Properties to set
          */
-        constructor(properties?: Web.IGroupHistoryBundleMessage);
+        constructor(properties?: Web.IGroupHistoryBundleInfo);
 
-        /** GroupHistoryBundleMessage messageHistoryBundle. */
-        public messageHistoryBundle?: (E2E.Message.IMessageHistoryBundle|null);
+        /** GroupHistoryBundleInfo deprecatedMessageHistoryBundle. */
+        public deprecatedMessageHistoryBundle?: (E2E.Message.IMessageHistoryBundle|null);
 
-        /** GroupHistoryBundleMessage processState. */
-        public processState: Web.GroupHistoryBundleMessage.ProcessState;
+        /** GroupHistoryBundleInfo processState. */
+        public processState: Web.GroupHistoryBundleInfo.ProcessState;
 
         /**
-         * Creates a new GroupHistoryBundleMessage instance using the specified properties.
+         * Creates a new GroupHistoryBundleInfo instance using the specified properties.
          * @param [properties] Properties to set
-         * @returns GroupHistoryBundleMessage instance
+         * @returns GroupHistoryBundleInfo instance
          */
-        public static create(properties?: Web.IGroupHistoryBundleMessage): Web.GroupHistoryBundleMessage;
+        public static create(properties?: Web.IGroupHistoryBundleInfo): Web.GroupHistoryBundleInfo;
 
         /**
-         * Encodes the specified GroupHistoryBundleMessage message. Does not implicitly {@link Web.GroupHistoryBundleMessage.verify|verify} messages.
-         * @param message GroupHistoryBundleMessage message or plain object to encode
+         * Encodes the specified GroupHistoryBundleInfo message. Does not implicitly {@link Web.GroupHistoryBundleInfo.verify|verify} messages.
+         * @param message GroupHistoryBundleInfo message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: Web.IGroupHistoryBundleMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: Web.IGroupHistoryBundleInfo, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified GroupHistoryBundleMessage message, length delimited. Does not implicitly {@link Web.GroupHistoryBundleMessage.verify|verify} messages.
-         * @param message GroupHistoryBundleMessage message or plain object to encode
+         * Encodes the specified GroupHistoryBundleInfo message, length delimited. Does not implicitly {@link Web.GroupHistoryBundleInfo.verify|verify} messages.
+         * @param message GroupHistoryBundleInfo message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: Web.IGroupHistoryBundleMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: Web.IGroupHistoryBundleInfo, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Decodes a GroupHistoryBundleMessage message from the specified reader or buffer.
+         * Decodes a GroupHistoryBundleInfo message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns GroupHistoryBundleMessage
+         * @returns GroupHistoryBundleInfo
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.GroupHistoryBundleMessage;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.GroupHistoryBundleInfo;
 
         /**
-         * Decodes a GroupHistoryBundleMessage message from the specified reader or buffer, length delimited.
+         * Decodes a GroupHistoryBundleInfo message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns GroupHistoryBundleMessage
+         * @returns GroupHistoryBundleInfo
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.GroupHistoryBundleMessage;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.GroupHistoryBundleInfo;
 
         /**
-         * Verifies a GroupHistoryBundleMessage message.
+         * Verifies a GroupHistoryBundleInfo message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
         public static verify(message: { [k: string]: any }): (string|null);
 
         /**
-         * Creates a GroupHistoryBundleMessage message from a plain object. Also converts values to their respective internal types.
+         * Creates a GroupHistoryBundleInfo message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
-         * @returns GroupHistoryBundleMessage
+         * @returns GroupHistoryBundleInfo
          */
-        public static fromObject(object: { [k: string]: any }): Web.GroupHistoryBundleMessage;
+        public static fromObject(object: { [k: string]: any }): Web.GroupHistoryBundleInfo;
 
         /**
-         * Creates a plain object from a GroupHistoryBundleMessage message. Also converts values to other types if specified.
-         * @param message GroupHistoryBundleMessage
+         * Creates a plain object from a GroupHistoryBundleInfo message. Also converts values to other types if specified.
+         * @param message GroupHistoryBundleInfo
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: Web.GroupHistoryBundleMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: Web.GroupHistoryBundleInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
-         * Converts this GroupHistoryBundleMessage to JSON.
+         * Converts this GroupHistoryBundleInfo to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the default type url for GroupHistoryBundleMessage
+         * Gets the default type url for GroupHistoryBundleInfo
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    namespace GroupHistoryBundleMessage {
+    namespace GroupHistoryBundleInfo {
 
         /** ProcessState enum. */
         enum ProcessState {
@@ -41548,8 +41548,8 @@ export namespace Web {
         /** WebMessageInfo groupHistoryIndividualMessageInfo */
         groupHistoryIndividualMessageInfo?: (Web.IGroupHistoryIndividualMessageInfo|null);
 
-        /** WebMessageInfo groupHistoryBundleMessage */
-        groupHistoryBundleMessage?: (Web.IGroupHistoryBundleMessage|null);
+        /** WebMessageInfo groupHistoryBundleInfo */
+        groupHistoryBundleInfo?: (Web.IGroupHistoryBundleInfo|null);
     }
 
     /** Represents a WebMessageInfo. */
@@ -41750,8 +41750,8 @@ export namespace Web {
         /** WebMessageInfo groupHistoryIndividualMessageInfo. */
         public groupHistoryIndividualMessageInfo?: (Web.IGroupHistoryIndividualMessageInfo|null);
 
-        /** WebMessageInfo groupHistoryBundleMessage. */
-        public groupHistoryBundleMessage?: (Web.IGroupHistoryBundleMessage|null);
+        /** WebMessageInfo groupHistoryBundleInfo. */
+        public groupHistoryBundleInfo?: (Web.IGroupHistoryBundleInfo|null);
 
         /**
          * Creates a new WebMessageInfo instance using the specified properties.
@@ -42249,7 +42249,9 @@ export namespace SyncAction {
             UWP = 5,
             DARWIN = 6,
             IPAD = 7,
-            WEAROS = 8
+            WEAROS = 8,
+            WASG = 9,
+            WEARM = 10
         }
     }
 
