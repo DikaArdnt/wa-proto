@@ -27,6 +27,7 @@ $root.DeviceCapabilities = (function() {
          * @property {DeviceCapabilities.DeviceCapabilities.ChatLockSupportLevel|null} [chatLockSupportLevel] DeviceCapabilities chatLockSupportLevel
          * @property {DeviceCapabilities.DeviceCapabilities.ILIDMigration|null} [lidMigration] DeviceCapabilities lidMigration
          * @property {DeviceCapabilities.DeviceCapabilities.IBusinessBroadcast|null} [businessBroadcast] DeviceCapabilities businessBroadcast
+         * @property {DeviceCapabilities.DeviceCapabilities.IUserHasAvatar|null} [userHasAvatar] DeviceCapabilities userHasAvatar
          */
 
         /**
@@ -69,6 +70,14 @@ $root.DeviceCapabilities = (function() {
         DeviceCapabilities.prototype.businessBroadcast = null;
 
         /**
+         * DeviceCapabilities userHasAvatar.
+         * @member {DeviceCapabilities.DeviceCapabilities.IUserHasAvatar|null|undefined} userHasAvatar
+         * @memberof DeviceCapabilities.DeviceCapabilities
+         * @instance
+         */
+        DeviceCapabilities.prototype.userHasAvatar = null;
+
+        /**
          * Creates a new DeviceCapabilities instance using the specified properties.
          * @function create
          * @memberof DeviceCapabilities.DeviceCapabilities
@@ -98,6 +107,8 @@ $root.DeviceCapabilities = (function() {
                 $root.DeviceCapabilities.DeviceCapabilities.LIDMigration.encode(message.lidMigration, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             if (message.businessBroadcast != null && Object.hasOwnProperty.call(message, "businessBroadcast"))
                 $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast.encode(message.businessBroadcast, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.userHasAvatar != null && Object.hasOwnProperty.call(message, "userHasAvatar"))
+                $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar.encode(message.userHasAvatar, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             return writer;
         };
 
@@ -144,6 +155,10 @@ $root.DeviceCapabilities = (function() {
                     }
                 case 3: {
                         message.businessBroadcast = $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        message.userHasAvatar = $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -200,6 +215,11 @@ $root.DeviceCapabilities = (function() {
                 if (error)
                     return "businessBroadcast." + error;
             }
+            if (message.userHasAvatar != null && message.hasOwnProperty("userHasAvatar")) {
+                var error = $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar.verify(message.userHasAvatar);
+                if (error)
+                    return "userHasAvatar." + error;
+            }
             return null;
         };
 
@@ -245,6 +265,11 @@ $root.DeviceCapabilities = (function() {
                     throw TypeError(".DeviceCapabilities.DeviceCapabilities.businessBroadcast: object expected");
                 message.businessBroadcast = $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast.fromObject(object.businessBroadcast);
             }
+            if (object.userHasAvatar != null) {
+                if (typeof object.userHasAvatar !== "object")
+                    throw TypeError(".DeviceCapabilities.DeviceCapabilities.userHasAvatar: object expected");
+                message.userHasAvatar = $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar.fromObject(object.userHasAvatar);
+            }
             return message;
         };
 
@@ -265,6 +290,7 @@ $root.DeviceCapabilities = (function() {
                 object.chatLockSupportLevel = options.enums === String ? "NONE" : 0;
                 object.lidMigration = null;
                 object.businessBroadcast = null;
+                object.userHasAvatar = null;
             }
             if (message.chatLockSupportLevel != null && message.hasOwnProperty("chatLockSupportLevel"))
                 object.chatLockSupportLevel = options.enums === String ? $root.DeviceCapabilities.DeviceCapabilities.ChatLockSupportLevel[message.chatLockSupportLevel] === undefined ? message.chatLockSupportLevel : $root.DeviceCapabilities.DeviceCapabilities.ChatLockSupportLevel[message.chatLockSupportLevel] : message.chatLockSupportLevel;
@@ -272,6 +298,8 @@ $root.DeviceCapabilities = (function() {
                 object.lidMigration = $root.DeviceCapabilities.DeviceCapabilities.LIDMigration.toObject(message.lidMigration, options);
             if (message.businessBroadcast != null && message.hasOwnProperty("businessBroadcast"))
                 object.businessBroadcast = $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast.toObject(message.businessBroadcast, options);
+            if (message.userHasAvatar != null && message.hasOwnProperty("userHasAvatar"))
+                object.userHasAvatar = $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar.toObject(message.userHasAvatar, options);
             return object;
         };
 
@@ -739,6 +767,211 @@ $root.DeviceCapabilities = (function() {
             };
 
             return LIDMigration;
+        })();
+
+        DeviceCapabilities.UserHasAvatar = (function() {
+
+            /**
+             * Properties of a UserHasAvatar.
+             * @memberof DeviceCapabilities.DeviceCapabilities
+             * @interface IUserHasAvatar
+             * @property {boolean|null} [userHasAvatar] UserHasAvatar userHasAvatar
+             */
+
+            /**
+             * Constructs a new UserHasAvatar.
+             * @memberof DeviceCapabilities.DeviceCapabilities
+             * @classdesc Represents a UserHasAvatar.
+             * @implements IUserHasAvatar
+             * @constructor
+             * @param {DeviceCapabilities.DeviceCapabilities.IUserHasAvatar=} [properties] Properties to set
+             */
+            function UserHasAvatar(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * UserHasAvatar userHasAvatar.
+             * @member {boolean} userHasAvatar
+             * @memberof DeviceCapabilities.DeviceCapabilities.UserHasAvatar
+             * @instance
+             */
+            UserHasAvatar.prototype.userHasAvatar = false;
+
+            /**
+             * Creates a new UserHasAvatar instance using the specified properties.
+             * @function create
+             * @memberof DeviceCapabilities.DeviceCapabilities.UserHasAvatar
+             * @static
+             * @param {DeviceCapabilities.DeviceCapabilities.IUserHasAvatar=} [properties] Properties to set
+             * @returns {DeviceCapabilities.DeviceCapabilities.UserHasAvatar} UserHasAvatar instance
+             */
+            UserHasAvatar.create = function create(properties) {
+                return new UserHasAvatar(properties);
+            };
+
+            /**
+             * Encodes the specified UserHasAvatar message. Does not implicitly {@link DeviceCapabilities.DeviceCapabilities.UserHasAvatar.verify|verify} messages.
+             * @function encode
+             * @memberof DeviceCapabilities.DeviceCapabilities.UserHasAvatar
+             * @static
+             * @param {DeviceCapabilities.DeviceCapabilities.IUserHasAvatar} message UserHasAvatar message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            UserHasAvatar.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.userHasAvatar != null && Object.hasOwnProperty.call(message, "userHasAvatar"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).bool(message.userHasAvatar);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified UserHasAvatar message, length delimited. Does not implicitly {@link DeviceCapabilities.DeviceCapabilities.UserHasAvatar.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof DeviceCapabilities.DeviceCapabilities.UserHasAvatar
+             * @static
+             * @param {DeviceCapabilities.DeviceCapabilities.IUserHasAvatar} message UserHasAvatar message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            UserHasAvatar.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a UserHasAvatar message from the specified reader or buffer.
+             * @function decode
+             * @memberof DeviceCapabilities.DeviceCapabilities.UserHasAvatar
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {DeviceCapabilities.DeviceCapabilities.UserHasAvatar} UserHasAvatar
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            UserHasAvatar.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.userHasAvatar = reader.bool();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a UserHasAvatar message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof DeviceCapabilities.DeviceCapabilities.UserHasAvatar
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {DeviceCapabilities.DeviceCapabilities.UserHasAvatar} UserHasAvatar
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            UserHasAvatar.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a UserHasAvatar message.
+             * @function verify
+             * @memberof DeviceCapabilities.DeviceCapabilities.UserHasAvatar
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            UserHasAvatar.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.userHasAvatar != null && message.hasOwnProperty("userHasAvatar"))
+                    if (typeof message.userHasAvatar !== "boolean")
+                        return "userHasAvatar: boolean expected";
+                return null;
+            };
+
+            /**
+             * Creates a UserHasAvatar message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof DeviceCapabilities.DeviceCapabilities.UserHasAvatar
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {DeviceCapabilities.DeviceCapabilities.UserHasAvatar} UserHasAvatar
+             */
+            UserHasAvatar.fromObject = function fromObject(object) {
+                if (object instanceof $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar)
+                    return object;
+                var message = new $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar();
+                if (object.userHasAvatar != null)
+                    message.userHasAvatar = Boolean(object.userHasAvatar);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a UserHasAvatar message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof DeviceCapabilities.DeviceCapabilities.UserHasAvatar
+             * @static
+             * @param {DeviceCapabilities.DeviceCapabilities.UserHasAvatar} message UserHasAvatar
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            UserHasAvatar.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.userHasAvatar = false;
+                if (message.userHasAvatar != null && message.hasOwnProperty("userHasAvatar"))
+                    object.userHasAvatar = message.userHasAvatar;
+                return object;
+            };
+
+            /**
+             * Converts this UserHasAvatar to JSON.
+             * @function toJSON
+             * @memberof DeviceCapabilities.DeviceCapabilities.UserHasAvatar
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            UserHasAvatar.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for UserHasAvatar
+             * @function getTypeUrl
+             * @memberof DeviceCapabilities.DeviceCapabilities.UserHasAvatar
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            UserHasAvatar.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/DeviceCapabilities.DeviceCapabilities.UserHasAvatar";
+            };
+
+            return UserHasAvatar;
         })();
 
         return DeviceCapabilities;

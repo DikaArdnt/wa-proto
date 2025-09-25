@@ -487,6 +487,9 @@ export namespace SyncAction {
 
         /** SyncActionValue statusPostOptInNotificationPreferencesAction */
         statusPostOptInNotificationPreferencesAction?: (SyncAction.SyncActionValue.IStatusPostOptInNotificationPreferencesAction|null);
+
+        /** SyncActionValue avatarUpdatedAction */
+        avatarUpdatedAction?: (SyncAction.SyncActionValue.IAvatarUpdatedAction|null);
     }
 
     /** Represents a SyncActionValue. */
@@ -689,6 +692,9 @@ export namespace SyncAction {
 
         /** SyncActionValue statusPostOptInNotificationPreferencesAction. */
         public statusPostOptInNotificationPreferencesAction?: (SyncAction.SyncActionValue.IStatusPostOptInNotificationPreferencesAction|null);
+
+        /** SyncActionValue avatarUpdatedAction. */
+        public avatarUpdatedAction?: (SyncAction.SyncActionValue.IAvatarUpdatedAction|null);
 
         /**
          * Creates a new SyncActionValue instance using the specified properties.
@@ -1077,6 +1083,119 @@ export namespace SyncAction {
              * @returns The default type url
              */
             public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of an AvatarUpdatedAction. */
+        interface IAvatarUpdatedAction {
+
+            /** AvatarUpdatedAction eventType */
+            eventType?: (SyncAction.SyncActionValue.AvatarUpdatedAction.AvatarEventType|null);
+
+            /** AvatarUpdatedAction recentAvatarStickers */
+            recentAvatarStickers?: (SyncAction.SyncActionValue.IStickerAction[]|null);
+        }
+
+        /** Represents an AvatarUpdatedAction. */
+        class AvatarUpdatedAction implements IAvatarUpdatedAction {
+
+            /**
+             * Constructs a new AvatarUpdatedAction.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SyncAction.SyncActionValue.IAvatarUpdatedAction);
+
+            /** AvatarUpdatedAction eventType. */
+            public eventType: SyncAction.SyncActionValue.AvatarUpdatedAction.AvatarEventType;
+
+            /** AvatarUpdatedAction recentAvatarStickers. */
+            public recentAvatarStickers: SyncAction.SyncActionValue.IStickerAction[];
+
+            /**
+             * Creates a new AvatarUpdatedAction instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns AvatarUpdatedAction instance
+             */
+            public static create(properties?: SyncAction.SyncActionValue.IAvatarUpdatedAction): SyncAction.SyncActionValue.AvatarUpdatedAction;
+
+            /**
+             * Encodes the specified AvatarUpdatedAction message. Does not implicitly {@link SyncAction.SyncActionValue.AvatarUpdatedAction.verify|verify} messages.
+             * @param message AvatarUpdatedAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SyncAction.SyncActionValue.IAvatarUpdatedAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified AvatarUpdatedAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.AvatarUpdatedAction.verify|verify} messages.
+             * @param message AvatarUpdatedAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SyncAction.SyncActionValue.IAvatarUpdatedAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes an AvatarUpdatedAction message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns AvatarUpdatedAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.AvatarUpdatedAction;
+
+            /**
+             * Decodes an AvatarUpdatedAction message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns AvatarUpdatedAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.AvatarUpdatedAction;
+
+            /**
+             * Verifies an AvatarUpdatedAction message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates an AvatarUpdatedAction message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns AvatarUpdatedAction
+             */
+            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.AvatarUpdatedAction;
+
+            /**
+             * Creates a plain object from an AvatarUpdatedAction message. Also converts values to other types if specified.
+             * @param message AvatarUpdatedAction
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SyncAction.SyncActionValue.AvatarUpdatedAction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this AvatarUpdatedAction to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for AvatarUpdatedAction
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace AvatarUpdatedAction {
+
+            /** AvatarEventType enum. */
+            enum AvatarEventType {
+                UPDATED = 0,
+                CREATED = 1,
+                DELETED = 2
+            }
         }
 
         /** Properties of a BotWelcomeRequestAction. */
@@ -8655,6 +8774,9 @@ export namespace DeviceCapabilities {
 
         /** DeviceCapabilities businessBroadcast */
         businessBroadcast?: (DeviceCapabilities.DeviceCapabilities.IBusinessBroadcast|null);
+
+        /** DeviceCapabilities userHasAvatar */
+        userHasAvatar?: (DeviceCapabilities.DeviceCapabilities.IUserHasAvatar|null);
     }
 
     /** Represents a DeviceCapabilities. */
@@ -8674,6 +8796,9 @@ export namespace DeviceCapabilities {
 
         /** DeviceCapabilities businessBroadcast. */
         public businessBroadcast?: (DeviceCapabilities.DeviceCapabilities.IBusinessBroadcast|null);
+
+        /** DeviceCapabilities userHasAvatar. */
+        public userHasAvatar?: (DeviceCapabilities.DeviceCapabilities.IUserHasAvatar|null);
 
         /**
          * Creates a new DeviceCapabilities instance using the specified properties.
@@ -8950,6 +9075,103 @@ export namespace DeviceCapabilities {
 
             /**
              * Gets the default type url for LIDMigration
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a UserHasAvatar. */
+        interface IUserHasAvatar {
+
+            /** UserHasAvatar userHasAvatar */
+            userHasAvatar?: (boolean|null);
+        }
+
+        /** Represents a UserHasAvatar. */
+        class UserHasAvatar implements IUserHasAvatar {
+
+            /**
+             * Constructs a new UserHasAvatar.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: DeviceCapabilities.DeviceCapabilities.IUserHasAvatar);
+
+            /** UserHasAvatar userHasAvatar. */
+            public userHasAvatar: boolean;
+
+            /**
+             * Creates a new UserHasAvatar instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns UserHasAvatar instance
+             */
+            public static create(properties?: DeviceCapabilities.DeviceCapabilities.IUserHasAvatar): DeviceCapabilities.DeviceCapabilities.UserHasAvatar;
+
+            /**
+             * Encodes the specified UserHasAvatar message. Does not implicitly {@link DeviceCapabilities.DeviceCapabilities.UserHasAvatar.verify|verify} messages.
+             * @param message UserHasAvatar message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: DeviceCapabilities.DeviceCapabilities.IUserHasAvatar, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified UserHasAvatar message, length delimited. Does not implicitly {@link DeviceCapabilities.DeviceCapabilities.UserHasAvatar.verify|verify} messages.
+             * @param message UserHasAvatar message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: DeviceCapabilities.DeviceCapabilities.IUserHasAvatar, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a UserHasAvatar message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns UserHasAvatar
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): DeviceCapabilities.DeviceCapabilities.UserHasAvatar;
+
+            /**
+             * Decodes a UserHasAvatar message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns UserHasAvatar
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): DeviceCapabilities.DeviceCapabilities.UserHasAvatar;
+
+            /**
+             * Verifies a UserHasAvatar message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a UserHasAvatar message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns UserHasAvatar
+             */
+            public static fromObject(object: { [k: string]: any }): DeviceCapabilities.DeviceCapabilities.UserHasAvatar;
+
+            /**
+             * Creates a plain object from a UserHasAvatar message. Also converts values to other types if specified.
+             * @param message UserHasAvatar
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: DeviceCapabilities.DeviceCapabilities.UserHasAvatar, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this UserHasAvatar to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for UserHasAvatar
              * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
              * @returns The default type url
              */

@@ -104,6 +104,7 @@ message SyncActionValue {
     optional BusinessBroadcastListAction businessBroadcastListAction = 69;
     optional MusicUserIdAction musicUserIdAction = 70;
     optional StatusPostOptInNotificationPreferencesAction statusPostOptInNotificationPreferencesAction = 71;
+    optional AvatarUpdatedAction avatarUpdatedAction = 72;
     message AgentAction {
         optional string name = 1;
         optional int32 deviceID = 2;
@@ -115,6 +116,15 @@ message SyncActionValue {
     message ArchiveChatAction {
         optional bool archived = 1;
         optional SyncActionValue.SyncActionMessageRange messageRange = 2;
+    }
+    message AvatarUpdatedAction {
+        optional AvatarEventType eventType = 1;
+        repeated SyncActionValue.StickerAction recentAvatarStickers = 2;
+        enum AvatarEventType {
+            UPDATED = 0;
+            CREATED = 1;
+            DELETED = 2;
+        }
     }
     message BotWelcomeRequestAction {
         optional bool isSent = 1;

@@ -5,6 +5,7 @@ message DeviceCapabilities {
     optional ChatLockSupportLevel chatLockSupportLevel = 1;
     optional LIDMigration lidMigration = 2;
     optional BusinessBroadcast businessBroadcast = 3;
+    optional UserHasAvatar userHasAvatar = 4;
     message BusinessBroadcast {
         optional bool importListEnabled = 1;
     }
@@ -15,5 +16,8 @@ message DeviceCapabilities {
     }
     message LIDMigration {
         optional uint64 chatDbMigrationTimestamp = 1;
+    }
+    message UserHasAvatar {
+        optional bool userHasAvatar = 1;
     }
 }
