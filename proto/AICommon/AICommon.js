@@ -11365,6 +11365,7 @@ $root.AICommon = (function() {
          * @interface IBotAgeCollectionMetadata
          * @property {boolean|null} [ageCollectionEligible] BotAgeCollectionMetadata ageCollectionEligible
          * @property {boolean|null} [shouldTriggerAgeCollectionOnClient] BotAgeCollectionMetadata shouldTriggerAgeCollectionOnClient
+         * @property {AICommon.BotAgeCollectionMetadata.AgeCollectionType|null} [ageCollectionType] BotAgeCollectionMetadata ageCollectionType
          */
 
         /**
@@ -11399,6 +11400,14 @@ $root.AICommon = (function() {
         BotAgeCollectionMetadata.prototype.shouldTriggerAgeCollectionOnClient = false;
 
         /**
+         * BotAgeCollectionMetadata ageCollectionType.
+         * @member {AICommon.BotAgeCollectionMetadata.AgeCollectionType} ageCollectionType
+         * @memberof AICommon.BotAgeCollectionMetadata
+         * @instance
+         */
+        BotAgeCollectionMetadata.prototype.ageCollectionType = 0;
+
+        /**
          * Creates a new BotAgeCollectionMetadata instance using the specified properties.
          * @function create
          * @memberof AICommon.BotAgeCollectionMetadata
@@ -11426,6 +11435,8 @@ $root.AICommon = (function() {
                 writer.uint32(/* id 1, wireType 0 =*/8).bool(message.ageCollectionEligible);
             if (message.shouldTriggerAgeCollectionOnClient != null && Object.hasOwnProperty.call(message, "shouldTriggerAgeCollectionOnClient"))
                 writer.uint32(/* id 2, wireType 0 =*/16).bool(message.shouldTriggerAgeCollectionOnClient);
+            if (message.ageCollectionType != null && Object.hasOwnProperty.call(message, "ageCollectionType"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.ageCollectionType);
             return writer;
         };
 
@@ -11470,6 +11481,10 @@ $root.AICommon = (function() {
                         message.shouldTriggerAgeCollectionOnClient = reader.bool();
                         break;
                     }
+                case 3: {
+                        message.ageCollectionType = reader.int32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -11511,6 +11526,14 @@ $root.AICommon = (function() {
             if (message.shouldTriggerAgeCollectionOnClient != null && message.hasOwnProperty("shouldTriggerAgeCollectionOnClient"))
                 if (typeof message.shouldTriggerAgeCollectionOnClient !== "boolean")
                     return "shouldTriggerAgeCollectionOnClient: boolean expected";
+            if (message.ageCollectionType != null && message.hasOwnProperty("ageCollectionType"))
+                switch (message.ageCollectionType) {
+                default:
+                    return "ageCollectionType: enum value expected";
+                case 0:
+                case 1:
+                    break;
+                }
             return null;
         };
 
@@ -11530,6 +11553,22 @@ $root.AICommon = (function() {
                 message.ageCollectionEligible = Boolean(object.ageCollectionEligible);
             if (object.shouldTriggerAgeCollectionOnClient != null)
                 message.shouldTriggerAgeCollectionOnClient = Boolean(object.shouldTriggerAgeCollectionOnClient);
+            switch (object.ageCollectionType) {
+            default:
+                if (typeof object.ageCollectionType === "number") {
+                    message.ageCollectionType = object.ageCollectionType;
+                    break;
+                }
+                break;
+            case "O18_BINARY":
+            case 0:
+                message.ageCollectionType = 0;
+                break;
+            case "WAFFLE":
+            case 1:
+                message.ageCollectionType = 1;
+                break;
+            }
             return message;
         };
 
@@ -11549,11 +11588,14 @@ $root.AICommon = (function() {
             if (options.defaults) {
                 object.ageCollectionEligible = false;
                 object.shouldTriggerAgeCollectionOnClient = false;
+                object.ageCollectionType = options.enums === String ? "O18_BINARY" : 0;
             }
             if (message.ageCollectionEligible != null && message.hasOwnProperty("ageCollectionEligible"))
                 object.ageCollectionEligible = message.ageCollectionEligible;
             if (message.shouldTriggerAgeCollectionOnClient != null && message.hasOwnProperty("shouldTriggerAgeCollectionOnClient"))
                 object.shouldTriggerAgeCollectionOnClient = message.shouldTriggerAgeCollectionOnClient;
+            if (message.ageCollectionType != null && message.hasOwnProperty("ageCollectionType"))
+                object.ageCollectionType = options.enums === String ? $root.AICommon.BotAgeCollectionMetadata.AgeCollectionType[message.ageCollectionType] === undefined ? message.ageCollectionType : $root.AICommon.BotAgeCollectionMetadata.AgeCollectionType[message.ageCollectionType] : message.ageCollectionType;
             return object;
         };
 
@@ -11582,6 +11624,20 @@ $root.AICommon = (function() {
             }
             return typeUrlPrefix + "/AICommon.BotAgeCollectionMetadata";
         };
+
+        /**
+         * AgeCollectionType enum.
+         * @name AICommon.BotAgeCollectionMetadata.AgeCollectionType
+         * @enum {number}
+         * @property {number} O18_BINARY=0 O18_BINARY value
+         * @property {number} WAFFLE=1 WAFFLE value
+         */
+        BotAgeCollectionMetadata.AgeCollectionType = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "O18_BINARY"] = 0;
+            values[valuesById[1] = "WAFFLE"] = 1;
+            return values;
+        })();
 
         return BotAgeCollectionMetadata;
     })();
@@ -16605,6 +16661,8 @@ $root.AICommon = (function() {
                 case 32:
                 case 33:
                 case 34:
+                case 35:
+                case 36:
                     break;
                 }
             if (message.threadOrigin != null && message.hasOwnProperty("threadOrigin"))
@@ -16774,13 +16832,21 @@ $root.AICommon = (function() {
             case 32:
                 message.destinationEntryPoint = 32;
                 break;
-            case "MESSAGE_QUICK_ACTION":
+            case "MESSAGE_QUICK_ACTION_1_ON_1_CHAT":
             case 33:
                 message.destinationEntryPoint = 33;
                 break;
-            case "ATTACHMENT_TRAY":
+            case "MESSAGE_QUICK_ACTION_GROUP_CHAT":
             case 34:
                 message.destinationEntryPoint = 34;
+                break;
+            case "ATTACHMENT_TRAY_1_ON_1_CHAT":
+            case 35:
+                message.destinationEntryPoint = 35;
+                break;
+            case "ATTACHMENT_TRAY_GROUP_CHAT":
+            case 36:
+                message.destinationEntryPoint = 36;
                 break;
             }
             switch (object.threadOrigin) {
@@ -20985,8 +21051,10 @@ $root.AICommon = (function() {
      * @property {number} INVOKE_META_AI_GROUP=30 INVOKE_META_AI_GROUP value
      * @property {number} META_AI_FORWARD=31 META_AI_FORWARD value
      * @property {number} NEW_CHAT_AI_CONTACT=32 NEW_CHAT_AI_CONTACT value
-     * @property {number} MESSAGE_QUICK_ACTION=33 MESSAGE_QUICK_ACTION value
-     * @property {number} ATTACHMENT_TRAY=34 ATTACHMENT_TRAY value
+     * @property {number} MESSAGE_QUICK_ACTION_1_ON_1_CHAT=33 MESSAGE_QUICK_ACTION_1_ON_1_CHAT value
+     * @property {number} MESSAGE_QUICK_ACTION_GROUP_CHAT=34 MESSAGE_QUICK_ACTION_GROUP_CHAT value
+     * @property {number} ATTACHMENT_TRAY_1_ON_1_CHAT=35 ATTACHMENT_TRAY_1_ON_1_CHAT value
+     * @property {number} ATTACHMENT_TRAY_GROUP_CHAT=36 ATTACHMENT_TRAY_GROUP_CHAT value
      */
     AICommon.BotMetricsEntryPoint = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -21023,8 +21091,10 @@ $root.AICommon = (function() {
         values[valuesById[30] = "INVOKE_META_AI_GROUP"] = 30;
         values[valuesById[31] = "META_AI_FORWARD"] = 31;
         values[valuesById[32] = "NEW_CHAT_AI_CONTACT"] = 32;
-        values[valuesById[33] = "MESSAGE_QUICK_ACTION"] = 33;
-        values[valuesById[34] = "ATTACHMENT_TRAY"] = 34;
+        values[valuesById[33] = "MESSAGE_QUICK_ACTION_1_ON_1_CHAT"] = 33;
+        values[valuesById[34] = "MESSAGE_QUICK_ACTION_GROUP_CHAT"] = 34;
+        values[valuesById[35] = "ATTACHMENT_TRAY_1_ON_1_CHAT"] = 35;
+        values[valuesById[36] = "ATTACHMENT_TRAY_GROUP_CHAT"] = 36;
         return values;
     })();
 
