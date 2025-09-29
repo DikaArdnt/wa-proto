@@ -973,6 +973,7 @@ $root.SyncAction = (function() {
          * @property {SyncAction.SyncActionValue.IMusicUserIdAction|null} [musicUserIdAction] SyncActionValue musicUserIdAction
          * @property {SyncAction.SyncActionValue.IStatusPostOptInNotificationPreferencesAction|null} [statusPostOptInNotificationPreferencesAction] SyncActionValue statusPostOptInNotificationPreferencesAction
          * @property {SyncAction.SyncActionValue.IAvatarUpdatedAction|null} [avatarUpdatedAction] SyncActionValue avatarUpdatedAction
+         * @property {SyncAction.SyncActionValue.IGalaxyFlowAction|null} [galaxyFlowAction] SyncActionValue galaxyFlowAction
          */
 
         /**
@@ -1511,6 +1512,14 @@ $root.SyncAction = (function() {
         SyncActionValue.prototype.avatarUpdatedAction = null;
 
         /**
+         * SyncActionValue galaxyFlowAction.
+         * @member {SyncAction.SyncActionValue.IGalaxyFlowAction|null|undefined} galaxyFlowAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.galaxyFlowAction = null;
+
+        /**
          * Creates a new SyncActionValue instance using the specified properties.
          * @function create
          * @memberof SyncAction.SyncActionValue
@@ -1664,6 +1673,8 @@ $root.SyncAction = (function() {
                 $root.SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction.encode(message.statusPostOptInNotificationPreferencesAction, writer.uint32(/* id 71, wireType 2 =*/570).fork()).ldelim();
             if (message.avatarUpdatedAction != null && Object.hasOwnProperty.call(message, "avatarUpdatedAction"))
                 $root.SyncAction.SyncActionValue.AvatarUpdatedAction.encode(message.avatarUpdatedAction, writer.uint32(/* id 72, wireType 2 =*/578).fork()).ldelim();
+            if (message.galaxyFlowAction != null && Object.hasOwnProperty.call(message, "galaxyFlowAction"))
+                $root.SyncAction.SyncActionValue.GalaxyFlowAction.encode(message.galaxyFlowAction, writer.uint32(/* id 73, wireType 2 =*/586).fork()).ldelim();
             return writer;
         };
 
@@ -1958,6 +1969,10 @@ $root.SyncAction = (function() {
                     }
                 case 72: {
                         message.avatarUpdatedAction = $root.SyncAction.SyncActionValue.AvatarUpdatedAction.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 73: {
+                        message.galaxyFlowAction = $root.SyncAction.SyncActionValue.GalaxyFlowAction.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -2318,6 +2333,11 @@ $root.SyncAction = (function() {
                 if (error)
                     return "avatarUpdatedAction." + error;
             }
+            if (message.galaxyFlowAction != null && message.hasOwnProperty("galaxyFlowAction")) {
+                var error = $root.SyncAction.SyncActionValue.GalaxyFlowAction.verify(message.galaxyFlowAction);
+                if (error)
+                    return "galaxyFlowAction." + error;
+            }
             return null;
         };
 
@@ -2662,6 +2682,11 @@ $root.SyncAction = (function() {
                     throw TypeError(".SyncAction.SyncActionValue.avatarUpdatedAction: object expected");
                 message.avatarUpdatedAction = $root.SyncAction.SyncActionValue.AvatarUpdatedAction.fromObject(object.avatarUpdatedAction);
             }
+            if (object.galaxyFlowAction != null) {
+                if (typeof object.galaxyFlowAction !== "object")
+                    throw TypeError(".SyncAction.SyncActionValue.galaxyFlowAction: object expected");
+                message.galaxyFlowAction = $root.SyncAction.SyncActionValue.GalaxyFlowAction.fromObject(object.galaxyFlowAction);
+            }
             return message;
         };
 
@@ -2748,6 +2773,7 @@ $root.SyncAction = (function() {
                 object.musicUserIdAction = null;
                 object.statusPostOptInNotificationPreferencesAction = null;
                 object.avatarUpdatedAction = null;
+                object.galaxyFlowAction = null;
             }
             if (message.timestamp != null && message.hasOwnProperty("timestamp"))
                 if (typeof message.timestamp === "number")
@@ -2882,6 +2908,8 @@ $root.SyncAction = (function() {
                 object.statusPostOptInNotificationPreferencesAction = $root.SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction.toObject(message.statusPostOptInNotificationPreferencesAction, options);
             if (message.avatarUpdatedAction != null && message.hasOwnProperty("avatarUpdatedAction"))
                 object.avatarUpdatedAction = $root.SyncAction.SyncActionValue.AvatarUpdatedAction.toObject(message.avatarUpdatedAction, options);
+            if (message.galaxyFlowAction != null && message.hasOwnProperty("galaxyFlowAction"))
+                object.galaxyFlowAction = $root.SyncAction.SyncActionValue.GalaxyFlowAction.toObject(message.galaxyFlowAction, options);
             return object;
         };
 
@@ -8434,6 +8462,237 @@ $root.SyncAction = (function() {
             })();
 
             return FavoritesAction;
+        })();
+
+        SyncActionValue.GalaxyFlowAction = (function() {
+
+            /**
+             * Properties of a GalaxyFlowAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface IGalaxyFlowAction
+             * @property {SyncAction.SyncActionValue.GalaxyFlowAction.GalaxyFlowActionType} type GalaxyFlowAction type
+             */
+
+            /**
+             * Constructs a new GalaxyFlowAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents a GalaxyFlowAction.
+             * @implements IGalaxyFlowAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.IGalaxyFlowAction=} [properties] Properties to set
+             */
+            function GalaxyFlowAction(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * GalaxyFlowAction type.
+             * @member {SyncAction.SyncActionValue.GalaxyFlowAction.GalaxyFlowActionType} type
+             * @memberof SyncAction.SyncActionValue.GalaxyFlowAction
+             * @instance
+             */
+            GalaxyFlowAction.prototype.type = 1;
+
+            /**
+             * Creates a new GalaxyFlowAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.GalaxyFlowAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IGalaxyFlowAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.GalaxyFlowAction} GalaxyFlowAction instance
+             */
+            GalaxyFlowAction.create = function create(properties) {
+                return new GalaxyFlowAction(properties);
+            };
+
+            /**
+             * Encodes the specified GalaxyFlowAction message. Does not implicitly {@link SyncAction.SyncActionValue.GalaxyFlowAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.GalaxyFlowAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IGalaxyFlowAction} message GalaxyFlowAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            GalaxyFlowAction.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.type);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified GalaxyFlowAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.GalaxyFlowAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.GalaxyFlowAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IGalaxyFlowAction} message GalaxyFlowAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            GalaxyFlowAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a GalaxyFlowAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.GalaxyFlowAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.GalaxyFlowAction} GalaxyFlowAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            GalaxyFlowAction.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.GalaxyFlowAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.type = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                if (!message.hasOwnProperty("type"))
+                    throw $util.ProtocolError("missing required 'type'", { instance: message });
+                return message;
+            };
+
+            /**
+             * Decodes a GalaxyFlowAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.GalaxyFlowAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.GalaxyFlowAction} GalaxyFlowAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            GalaxyFlowAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a GalaxyFlowAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.GalaxyFlowAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            GalaxyFlowAction.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                switch (message.type) {
+                default:
+                    return "type: enum value expected";
+                case 1:
+                    break;
+                }
+                return null;
+            };
+
+            /**
+             * Creates a GalaxyFlowAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.GalaxyFlowAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.GalaxyFlowAction} GalaxyFlowAction
+             */
+            GalaxyFlowAction.fromObject = function fromObject(object) {
+                if (object instanceof $root.SyncAction.SyncActionValue.GalaxyFlowAction)
+                    return object;
+                var message = new $root.SyncAction.SyncActionValue.GalaxyFlowAction();
+                switch (object.type) {
+                default:
+                    if (typeof object.type === "number") {
+                        message.type = object.type;
+                        break;
+                    }
+                    break;
+                case "LAUNCH":
+                case 1:
+                    message.type = 1;
+                    break;
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a GalaxyFlowAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.GalaxyFlowAction
+             * @static
+             * @param {SyncAction.SyncActionValue.GalaxyFlowAction} message GalaxyFlowAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            GalaxyFlowAction.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.type = options.enums === String ? "LAUNCH" : 1;
+                if (message.type != null && message.hasOwnProperty("type"))
+                    object.type = options.enums === String ? $root.SyncAction.SyncActionValue.GalaxyFlowAction.GalaxyFlowActionType[message.type] === undefined ? message.type : $root.SyncAction.SyncActionValue.GalaxyFlowAction.GalaxyFlowActionType[message.type] : message.type;
+                return object;
+            };
+
+            /**
+             * Converts this GalaxyFlowAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.GalaxyFlowAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            GalaxyFlowAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for GalaxyFlowAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.GalaxyFlowAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            GalaxyFlowAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.GalaxyFlowAction";
+            };
+
+            /**
+             * GalaxyFlowActionType enum.
+             * @name SyncAction.SyncActionValue.GalaxyFlowAction.GalaxyFlowActionType
+             * @enum {number}
+             * @property {number} LAUNCH=1 LAUNCH value
+             */
+            GalaxyFlowAction.GalaxyFlowActionType = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[1] = "LAUNCH"] = 1;
+                return values;
+            })();
+
+            return GalaxyFlowAction;
         })();
 
         SyncActionValue.KeyExpiration = (function() {

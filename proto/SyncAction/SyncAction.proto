@@ -105,6 +105,7 @@ message SyncActionValue {
     optional MusicUserIdAction musicUserIdAction = 70;
     optional StatusPostOptInNotificationPreferencesAction statusPostOptInNotificationPreferencesAction = 71;
     optional AvatarUpdatedAction avatarUpdatedAction = 72;
+    optional GalaxyFlowAction galaxyFlowAction = 73;
     message AgentAction {
         optional string name = 1;
         optional int32 deviceID = 2;
@@ -198,6 +199,12 @@ message SyncActionValue {
         repeated Favorite favorites = 1;
         message Favorite {
             optional string id = 1;
+        }
+    }
+    message GalaxyFlowAction {
+        required GalaxyFlowActionType type = 1;
+        enum GalaxyFlowActionType {
+            LAUNCH = 1;
         }
     }
     message KeyExpiration {

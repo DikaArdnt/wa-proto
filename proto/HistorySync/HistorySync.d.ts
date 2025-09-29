@@ -42584,6 +42584,9 @@ export namespace SyncAction {
 
         /** SyncActionValue avatarUpdatedAction */
         avatarUpdatedAction?: (SyncAction.SyncActionValue.IAvatarUpdatedAction|null);
+
+        /** SyncActionValue galaxyFlowAction */
+        galaxyFlowAction?: (SyncAction.SyncActionValue.IGalaxyFlowAction|null);
     }
 
     /** Represents a SyncActionValue. */
@@ -42789,6 +42792,9 @@ export namespace SyncAction {
 
         /** SyncActionValue avatarUpdatedAction. */
         public avatarUpdatedAction?: (SyncAction.SyncActionValue.IAvatarUpdatedAction|null);
+
+        /** SyncActionValue galaxyFlowAction. */
+        public galaxyFlowAction?: (SyncAction.SyncActionValue.IGalaxyFlowAction|null);
 
         /**
          * Creates a new SyncActionValue instance using the specified properties.
@@ -45316,6 +45322,111 @@ export namespace SyncAction {
                  * @returns The default type url
                  */
                 public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+        }
+
+        /** Properties of a GalaxyFlowAction. */
+        interface IGalaxyFlowAction {
+
+            /** GalaxyFlowAction type */
+            type: SyncAction.SyncActionValue.GalaxyFlowAction.GalaxyFlowActionType;
+        }
+
+        /** Represents a GalaxyFlowAction. */
+        class GalaxyFlowAction implements IGalaxyFlowAction {
+
+            /**
+             * Constructs a new GalaxyFlowAction.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SyncAction.SyncActionValue.IGalaxyFlowAction);
+
+            /** GalaxyFlowAction type. */
+            public type: SyncAction.SyncActionValue.GalaxyFlowAction.GalaxyFlowActionType;
+
+            /**
+             * Creates a new GalaxyFlowAction instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns GalaxyFlowAction instance
+             */
+            public static create(properties?: SyncAction.SyncActionValue.IGalaxyFlowAction): SyncAction.SyncActionValue.GalaxyFlowAction;
+
+            /**
+             * Encodes the specified GalaxyFlowAction message. Does not implicitly {@link SyncAction.SyncActionValue.GalaxyFlowAction.verify|verify} messages.
+             * @param message GalaxyFlowAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SyncAction.SyncActionValue.IGalaxyFlowAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified GalaxyFlowAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.GalaxyFlowAction.verify|verify} messages.
+             * @param message GalaxyFlowAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SyncAction.SyncActionValue.IGalaxyFlowAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a GalaxyFlowAction message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns GalaxyFlowAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.GalaxyFlowAction;
+
+            /**
+             * Decodes a GalaxyFlowAction message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns GalaxyFlowAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.GalaxyFlowAction;
+
+            /**
+             * Verifies a GalaxyFlowAction message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a GalaxyFlowAction message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns GalaxyFlowAction
+             */
+            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.GalaxyFlowAction;
+
+            /**
+             * Creates a plain object from a GalaxyFlowAction message. Also converts values to other types if specified.
+             * @param message GalaxyFlowAction
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SyncAction.SyncActionValue.GalaxyFlowAction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this GalaxyFlowAction to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for GalaxyFlowAction
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace GalaxyFlowAction {
+
+            /** GalaxyFlowActionType enum. */
+            enum GalaxyFlowActionType {
+                LAUNCH = 1
             }
         }
 
