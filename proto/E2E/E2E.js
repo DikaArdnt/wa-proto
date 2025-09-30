@@ -36428,6 +36428,8 @@ $root.E2E = (function() {
                  * @memberof E2E.Message.InteractiveMessage
                  * @interface IFooter
                  * @property {string|null} [text] Footer text
+                 * @property {boolean|null} [hasMediaAttachment] Footer hasMediaAttachment
+                 * @property {E2E.Message.IAudioMessage|null} [audioMessage] Footer audioMessage
                  */
 
                 /**
@@ -36452,6 +36454,36 @@ $root.E2E = (function() {
                  * @instance
                  */
                 Footer.prototype.text = "";
+
+                /**
+                 * Footer hasMediaAttachment.
+                 * @member {boolean} hasMediaAttachment
+                 * @memberof E2E.Message.InteractiveMessage.Footer
+                 * @instance
+                 */
+                Footer.prototype.hasMediaAttachment = false;
+
+                /**
+                 * Footer audioMessage.
+                 * @member {E2E.Message.IAudioMessage|null|undefined} audioMessage
+                 * @memberof E2E.Message.InteractiveMessage.Footer
+                 * @instance
+                 */
+                Footer.prototype.audioMessage = null;
+
+                // OneOf field names bound to virtual getters and setters
+                var $oneOfFields;
+
+                /**
+                 * Footer media.
+                 * @member {"audioMessage"|undefined} media
+                 * @memberof E2E.Message.InteractiveMessage.Footer
+                 * @instance
+                 */
+                Object.defineProperty(Footer.prototype, "media", {
+                    get: $util.oneOfGetter($oneOfFields = ["audioMessage"]),
+                    set: $util.oneOfSetter($oneOfFields)
+                });
 
                 /**
                  * Creates a new Footer instance using the specified properties.
@@ -36479,6 +36511,10 @@ $root.E2E = (function() {
                         writer = $Writer.create();
                     if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.text);
+                    if (message.audioMessage != null && Object.hasOwnProperty.call(message, "audioMessage"))
+                        $root.E2E.Message.AudioMessage.encode(message.audioMessage, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                    if (message.hasMediaAttachment != null && Object.hasOwnProperty.call(message, "hasMediaAttachment"))
+                        writer.uint32(/* id 3, wireType 0 =*/24).bool(message.hasMediaAttachment);
                     return writer;
                 };
 
@@ -36519,6 +36555,14 @@ $root.E2E = (function() {
                                 message.text = reader.string();
                                 break;
                             }
+                        case 3: {
+                                message.hasMediaAttachment = reader.bool();
+                                break;
+                            }
+                        case 2: {
+                                message.audioMessage = $root.E2E.Message.AudioMessage.decode(reader, reader.uint32());
+                                break;
+                            }
                         default:
                             reader.skipType(tag & 7);
                             break;
@@ -36554,9 +36598,21 @@ $root.E2E = (function() {
                 Footer.verify = function verify(message) {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
+                    var properties = {};
                     if (message.text != null && message.hasOwnProperty("text"))
                         if (!$util.isString(message.text))
                             return "text: string expected";
+                    if (message.hasMediaAttachment != null && message.hasOwnProperty("hasMediaAttachment"))
+                        if (typeof message.hasMediaAttachment !== "boolean")
+                            return "hasMediaAttachment: boolean expected";
+                    if (message.audioMessage != null && message.hasOwnProperty("audioMessage")) {
+                        properties.media = 1;
+                        {
+                            var error = $root.E2E.Message.AudioMessage.verify(message.audioMessage);
+                            if (error)
+                                return "audioMessage." + error;
+                        }
+                    }
                     return null;
                 };
 
@@ -36574,6 +36630,13 @@ $root.E2E = (function() {
                     var message = new $root.E2E.Message.InteractiveMessage.Footer();
                     if (object.text != null)
                         message.text = String(object.text);
+                    if (object.hasMediaAttachment != null)
+                        message.hasMediaAttachment = Boolean(object.hasMediaAttachment);
+                    if (object.audioMessage != null) {
+                        if (typeof object.audioMessage !== "object")
+                            throw TypeError(".E2E.Message.InteractiveMessage.Footer.audioMessage: object expected");
+                        message.audioMessage = $root.E2E.Message.AudioMessage.fromObject(object.audioMessage);
+                    }
                     return message;
                 };
 
@@ -36590,10 +36653,19 @@ $root.E2E = (function() {
                     if (!options)
                         options = {};
                     var object = {};
-                    if (options.defaults)
+                    if (options.defaults) {
                         object.text = "";
+                        object.hasMediaAttachment = false;
+                    }
                     if (message.text != null && message.hasOwnProperty("text"))
                         object.text = message.text;
+                    if (message.audioMessage != null && message.hasOwnProperty("audioMessage")) {
+                        object.audioMessage = $root.E2E.Message.AudioMessage.toObject(message.audioMessage, options);
+                        if (options.oneofs)
+                            object.media = "audioMessage";
+                    }
+                    if (message.hasMediaAttachment != null && message.hasOwnProperty("hasMediaAttachment"))
+                        object.hasMediaAttachment = message.hasMediaAttachment;
                     return object;
                 };
 
@@ -72917,6 +72989,8 @@ $root.AICommon = (function() {
          * @property {string|null} [botName] ForwardedAIBotMessageInfo botName
          * @property {string|null} [botJid] ForwardedAIBotMessageInfo botJid
          * @property {string|null} [creatorName] ForwardedAIBotMessageInfo creatorName
+         * @property {number|null} [botEntryPointOrigin] ForwardedAIBotMessageInfo botEntryPointOrigin
+         * @property {number|null} [forwardScore] ForwardedAIBotMessageInfo forwardScore
          */
 
         /**
@@ -72959,6 +73033,22 @@ $root.AICommon = (function() {
         ForwardedAIBotMessageInfo.prototype.creatorName = "";
 
         /**
+         * ForwardedAIBotMessageInfo botEntryPointOrigin.
+         * @member {number} botEntryPointOrigin
+         * @memberof AICommon.ForwardedAIBotMessageInfo
+         * @instance
+         */
+        ForwardedAIBotMessageInfo.prototype.botEntryPointOrigin = 0;
+
+        /**
+         * ForwardedAIBotMessageInfo forwardScore.
+         * @member {number} forwardScore
+         * @memberof AICommon.ForwardedAIBotMessageInfo
+         * @instance
+         */
+        ForwardedAIBotMessageInfo.prototype.forwardScore = 0;
+
+        /**
          * Creates a new ForwardedAIBotMessageInfo instance using the specified properties.
          * @function create
          * @memberof AICommon.ForwardedAIBotMessageInfo
@@ -72988,6 +73078,10 @@ $root.AICommon = (function() {
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.botJid);
             if (message.creatorName != null && Object.hasOwnProperty.call(message, "creatorName"))
                 writer.uint32(/* id 3, wireType 2 =*/26).string(message.creatorName);
+            if (message.botEntryPointOrigin != null && Object.hasOwnProperty.call(message, "botEntryPointOrigin"))
+                writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.botEntryPointOrigin);
+            if (message.forwardScore != null && Object.hasOwnProperty.call(message, "forwardScore"))
+                writer.uint32(/* id 5, wireType 0 =*/40).uint32(message.forwardScore);
             return writer;
         };
 
@@ -73036,6 +73130,14 @@ $root.AICommon = (function() {
                         message.creatorName = reader.string();
                         break;
                     }
+                case 4: {
+                        message.botEntryPointOrigin = reader.uint32();
+                        break;
+                    }
+                case 5: {
+                        message.forwardScore = reader.uint32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -73080,6 +73182,12 @@ $root.AICommon = (function() {
             if (message.creatorName != null && message.hasOwnProperty("creatorName"))
                 if (!$util.isString(message.creatorName))
                     return "creatorName: string expected";
+            if (message.botEntryPointOrigin != null && message.hasOwnProperty("botEntryPointOrigin"))
+                if (!$util.isInteger(message.botEntryPointOrigin))
+                    return "botEntryPointOrigin: integer expected";
+            if (message.forwardScore != null && message.hasOwnProperty("forwardScore"))
+                if (!$util.isInteger(message.forwardScore))
+                    return "forwardScore: integer expected";
             return null;
         };
 
@@ -73101,6 +73209,10 @@ $root.AICommon = (function() {
                 message.botJid = String(object.botJid);
             if (object.creatorName != null)
                 message.creatorName = String(object.creatorName);
+            if (object.botEntryPointOrigin != null)
+                message.botEntryPointOrigin = object.botEntryPointOrigin >>> 0;
+            if (object.forwardScore != null)
+                message.forwardScore = object.forwardScore >>> 0;
             return message;
         };
 
@@ -73121,6 +73233,8 @@ $root.AICommon = (function() {
                 object.botName = "";
                 object.botJid = "";
                 object.creatorName = "";
+                object.botEntryPointOrigin = 0;
+                object.forwardScore = 0;
             }
             if (message.botName != null && message.hasOwnProperty("botName"))
                 object.botName = message.botName;
@@ -73128,6 +73242,10 @@ $root.AICommon = (function() {
                 object.botJid = message.botJid;
             if (message.creatorName != null && message.hasOwnProperty("creatorName"))
                 object.creatorName = message.creatorName;
+            if (message.botEntryPointOrigin != null && message.hasOwnProperty("botEntryPointOrigin"))
+                object.botEntryPointOrigin = message.botEntryPointOrigin;
+            if (message.forwardScore != null && message.hasOwnProperty("forwardScore"))
+                object.forwardScore = message.forwardScore;
             return object;
         };
 

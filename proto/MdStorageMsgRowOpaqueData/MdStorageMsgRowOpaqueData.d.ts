@@ -13823,6 +13823,12 @@ export namespace E2E {
 
                 /** Footer text */
                 text?: (string|null);
+
+                /** Footer hasMediaAttachment */
+                hasMediaAttachment?: (boolean|null);
+
+                /** Footer audioMessage */
+                audioMessage?: (E2E.Message.IAudioMessage|null);
             }
 
             /** Represents a Footer. */
@@ -13836,6 +13842,15 @@ export namespace E2E {
 
                 /** Footer text. */
                 public text: string;
+
+                /** Footer hasMediaAttachment. */
+                public hasMediaAttachment: boolean;
+
+                /** Footer audioMessage. */
+                public audioMessage?: (E2E.Message.IAudioMessage|null);
+
+                /** Footer media. */
+                public media?: "audioMessage";
 
                 /**
                  * Creates a new Footer instance using the specified properties.
@@ -27451,6 +27466,12 @@ export namespace AICommon {
 
         /** ForwardedAIBotMessageInfo creatorName */
         creatorName?: (string|null);
+
+        /** ForwardedAIBotMessageInfo botEntryPointOrigin */
+        botEntryPointOrigin?: (number|null);
+
+        /** ForwardedAIBotMessageInfo forwardScore */
+        forwardScore?: (number|null);
     }
 
     /** Represents a ForwardedAIBotMessageInfo. */
@@ -27470,6 +27491,12 @@ export namespace AICommon {
 
         /** ForwardedAIBotMessageInfo creatorName. */
         public creatorName: string;
+
+        /** ForwardedAIBotMessageInfo botEntryPointOrigin. */
+        public botEntryPointOrigin: number;
+
+        /** ForwardedAIBotMessageInfo forwardScore. */
+        public forwardScore: number;
 
         /**
          * Creates a new ForwardedAIBotMessageInfo instance using the specified properties.

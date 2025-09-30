@@ -1091,6 +1091,10 @@ message Message {
         }
         message Footer {
             optional string text = 1;
+            optional bool hasMediaAttachment = 3;
+            oneof media {
+                Message.AudioMessage audioMessage = 2;
+            }
         }
         message Header {
             optional string title = 1;

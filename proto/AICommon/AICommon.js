@@ -5012,6 +5012,8 @@ $root.AICommon = (function() {
          * @property {string|null} [botName] ForwardedAIBotMessageInfo botName
          * @property {string|null} [botJid] ForwardedAIBotMessageInfo botJid
          * @property {string|null} [creatorName] ForwardedAIBotMessageInfo creatorName
+         * @property {number|null} [botEntryPointOrigin] ForwardedAIBotMessageInfo botEntryPointOrigin
+         * @property {number|null} [forwardScore] ForwardedAIBotMessageInfo forwardScore
          */
 
         /**
@@ -5054,6 +5056,22 @@ $root.AICommon = (function() {
         ForwardedAIBotMessageInfo.prototype.creatorName = "";
 
         /**
+         * ForwardedAIBotMessageInfo botEntryPointOrigin.
+         * @member {number} botEntryPointOrigin
+         * @memberof AICommon.ForwardedAIBotMessageInfo
+         * @instance
+         */
+        ForwardedAIBotMessageInfo.prototype.botEntryPointOrigin = 0;
+
+        /**
+         * ForwardedAIBotMessageInfo forwardScore.
+         * @member {number} forwardScore
+         * @memberof AICommon.ForwardedAIBotMessageInfo
+         * @instance
+         */
+        ForwardedAIBotMessageInfo.prototype.forwardScore = 0;
+
+        /**
          * Creates a new ForwardedAIBotMessageInfo instance using the specified properties.
          * @function create
          * @memberof AICommon.ForwardedAIBotMessageInfo
@@ -5083,6 +5101,10 @@ $root.AICommon = (function() {
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.botJid);
             if (message.creatorName != null && Object.hasOwnProperty.call(message, "creatorName"))
                 writer.uint32(/* id 3, wireType 2 =*/26).string(message.creatorName);
+            if (message.botEntryPointOrigin != null && Object.hasOwnProperty.call(message, "botEntryPointOrigin"))
+                writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.botEntryPointOrigin);
+            if (message.forwardScore != null && Object.hasOwnProperty.call(message, "forwardScore"))
+                writer.uint32(/* id 5, wireType 0 =*/40).uint32(message.forwardScore);
             return writer;
         };
 
@@ -5131,6 +5153,14 @@ $root.AICommon = (function() {
                         message.creatorName = reader.string();
                         break;
                     }
+                case 4: {
+                        message.botEntryPointOrigin = reader.uint32();
+                        break;
+                    }
+                case 5: {
+                        message.forwardScore = reader.uint32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -5175,6 +5205,12 @@ $root.AICommon = (function() {
             if (message.creatorName != null && message.hasOwnProperty("creatorName"))
                 if (!$util.isString(message.creatorName))
                     return "creatorName: string expected";
+            if (message.botEntryPointOrigin != null && message.hasOwnProperty("botEntryPointOrigin"))
+                if (!$util.isInteger(message.botEntryPointOrigin))
+                    return "botEntryPointOrigin: integer expected";
+            if (message.forwardScore != null && message.hasOwnProperty("forwardScore"))
+                if (!$util.isInteger(message.forwardScore))
+                    return "forwardScore: integer expected";
             return null;
         };
 
@@ -5196,6 +5232,10 @@ $root.AICommon = (function() {
                 message.botJid = String(object.botJid);
             if (object.creatorName != null)
                 message.creatorName = String(object.creatorName);
+            if (object.botEntryPointOrigin != null)
+                message.botEntryPointOrigin = object.botEntryPointOrigin >>> 0;
+            if (object.forwardScore != null)
+                message.forwardScore = object.forwardScore >>> 0;
             return message;
         };
 
@@ -5216,6 +5256,8 @@ $root.AICommon = (function() {
                 object.botName = "";
                 object.botJid = "";
                 object.creatorName = "";
+                object.botEntryPointOrigin = 0;
+                object.forwardScore = 0;
             }
             if (message.botName != null && message.hasOwnProperty("botName"))
                 object.botName = message.botName;
@@ -5223,6 +5265,10 @@ $root.AICommon = (function() {
                 object.botJid = message.botJid;
             if (message.creatorName != null && message.hasOwnProperty("creatorName"))
                 object.creatorName = message.creatorName;
+            if (message.botEntryPointOrigin != null && message.hasOwnProperty("botEntryPointOrigin"))
+                object.botEntryPointOrigin = message.botEntryPointOrigin;
+            if (message.forwardScore != null && message.hasOwnProperty("forwardScore"))
+                object.forwardScore = message.forwardScore;
             return object;
         };
 

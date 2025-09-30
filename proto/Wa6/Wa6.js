@@ -56,6 +56,8 @@ $root.Wa6 = (function() {
          * @property {Wa6.ClientPayload.AccountType|null} [accountType] ClientPayload accountType
          * @property {number|null} [connectionSequenceInfo] ClientPayload connectionSequenceInfo
          * @property {boolean|null} [paaLink] ClientPayload paaLink
+         * @property {number|null} [preacksCount] ClientPayload preacksCount
+         * @property {number|null} [processingQueueSize] ClientPayload processingQueueSize
          */
 
         /**
@@ -331,6 +333,22 @@ $root.Wa6 = (function() {
         ClientPayload.prototype.paaLink = false;
 
         /**
+         * ClientPayload preacksCount.
+         * @member {number} preacksCount
+         * @memberof Wa6.ClientPayload
+         * @instance
+         */
+        ClientPayload.prototype.preacksCount = 0;
+
+        /**
+         * ClientPayload processingQueueSize.
+         * @member {number} processingQueueSize
+         * @memberof Wa6.ClientPayload
+         * @instance
+         */
+        ClientPayload.prototype.processingQueueSize = 0;
+
+        /**
          * Creates a new ClientPayload instance using the specified properties.
          * @function create
          * @memberof Wa6.ClientPayload
@@ -419,6 +437,10 @@ $root.Wa6 = (function() {
                 writer.uint32(/* id 43, wireType 5 =*/349).sfixed32(message.connectionSequenceInfo);
             if (message.paaLink != null && Object.hasOwnProperty.call(message, "paaLink"))
                 writer.uint32(/* id 44, wireType 0 =*/352).bool(message.paaLink);
+            if (message.preacksCount != null && Object.hasOwnProperty.call(message, "preacksCount"))
+                writer.uint32(/* id 45, wireType 0 =*/360).int32(message.preacksCount);
+            if (message.processingQueueSize != null && Object.hasOwnProperty.call(message, "processingQueueSize"))
+                writer.uint32(/* id 46, wireType 0 =*/368).int32(message.processingQueueSize);
             return writer;
         };
 
@@ -588,6 +610,14 @@ $root.Wa6 = (function() {
                     }
                 case 44: {
                         message.paaLink = reader.bool();
+                        break;
+                    }
+                case 45: {
+                        message.preacksCount = reader.int32();
+                        break;
+                    }
+                case 46: {
+                        message.processingQueueSize = reader.int32();
                         break;
                     }
                 default:
@@ -787,6 +817,12 @@ $root.Wa6 = (function() {
             if (message.paaLink != null && message.hasOwnProperty("paaLink"))
                 if (typeof message.paaLink !== "boolean")
                     return "paaLink: boolean expected";
+            if (message.preacksCount != null && message.hasOwnProperty("preacksCount"))
+                if (!$util.isInteger(message.preacksCount))
+                    return "preacksCount: integer expected";
+            if (message.processingQueueSize != null && message.hasOwnProperty("processingQueueSize"))
+                if (!$util.isInteger(message.processingQueueSize))
+                    return "processingQueueSize: integer expected";
             return null;
         };
 
@@ -1084,6 +1120,10 @@ $root.Wa6 = (function() {
                 message.connectionSequenceInfo = object.connectionSequenceInfo | 0;
             if (object.paaLink != null)
                 message.paaLink = Boolean(object.paaLink);
+            if (object.preacksCount != null)
+                message.preacksCount = object.preacksCount | 0;
+            if (object.processingQueueSize != null)
+                message.processingQueueSize = object.processingQueueSize | 0;
             return message;
         };
 
@@ -1166,6 +1206,8 @@ $root.Wa6 = (function() {
                 object.accountType = options.enums === String ? "DEFAULT" : 0;
                 object.connectionSequenceInfo = 0;
                 object.paaLink = false;
+                object.preacksCount = 0;
+                object.processingQueueSize = 0;
             }
             if (message.username != null && message.hasOwnProperty("username"))
                 if (typeof message.username === "number")
@@ -1240,6 +1282,10 @@ $root.Wa6 = (function() {
                 object.connectionSequenceInfo = message.connectionSequenceInfo;
             if (message.paaLink != null && message.hasOwnProperty("paaLink"))
                 object.paaLink = message.paaLink;
+            if (message.preacksCount != null && message.hasOwnProperty("preacksCount"))
+                object.preacksCount = message.preacksCount;
+            if (message.processingQueueSize != null && message.hasOwnProperty("processingQueueSize"))
+                object.processingQueueSize = message.processingQueueSize;
             return object;
         };
 
