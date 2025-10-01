@@ -10429,6 +10429,7 @@ $root.E2E = (function() {
                 case 15:
                 case 16:
                 case 17:
+                case 18:
                     break;
                 }
             if (message.parentMessageKey != null && message.hasOwnProperty("parentMessageKey")) {
@@ -10533,6 +10534,10 @@ $root.E2E = (function() {
             case 17:
                 message.associationType = 17;
                 break;
+            case "STATUS_REACTION":
+            case 18:
+                message.associationType = 18;
+                break;
             }
             if (object.parentMessageKey != null) {
                 if (typeof object.parentMessageKey !== "object")
@@ -10619,6 +10624,7 @@ $root.E2E = (function() {
          * @property {number} STATUS_ADD_YOURS_AI_IMAGINE=15 STATUS_ADD_YOURS_AI_IMAGINE value
          * @property {number} STATUS_QUESTION=16 STATUS_QUESTION value
          * @property {number} STATUS_ADD_YOURS_DIWALI=17 STATUS_ADD_YOURS_DIWALI value
+         * @property {number} STATUS_REACTION=18 STATUS_REACTION value
          */
         MessageAssociation.AssociationType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -10640,6 +10646,7 @@ $root.E2E = (function() {
             values[valuesById[15] = "STATUS_ADD_YOURS_AI_IMAGINE"] = 15;
             values[valuesById[16] = "STATUS_QUESTION"] = 16;
             values[valuesById[17] = "STATUS_ADD_YOURS_DIWALI"] = 17;
+            values[valuesById[18] = "STATUS_REACTION"] = 18;
             return values;
         })();
 
@@ -16036,6 +16043,7 @@ $root.E2E = (function() {
          * @property {E2E.Message.IQuestionResponseMessage|null} [questionResponseMessage] Message questionResponseMessage
          * @property {E2E.Message.INewsletterFollowerInviteMessage|null} [newsletterFollowerInviteMessage] Message newsletterFollowerInviteMessage
          * @property {E2E.Message.IStatusQuotedMessage|null} [statusQuotedMessage] Message statusQuotedMessage
+         * @property {E2E.Message.IStatusStickerInteractionMessage|null} [statusStickerInteractionMessage] Message statusStickerInteractionMessage
          */
 
         /**
@@ -16798,6 +16806,14 @@ $root.E2E = (function() {
         Message.prototype.statusQuotedMessage = null;
 
         /**
+         * Message statusStickerInteractionMessage.
+         * @member {E2E.Message.IStatusStickerInteractionMessage|null|undefined} statusStickerInteractionMessage
+         * @memberof E2E.Message
+         * @instance
+         */
+        Message.prototype.statusStickerInteractionMessage = null;
+
+        /**
          * Creates a new Message instance using the specified properties.
          * @function create
          * @memberof E2E.Message
@@ -17007,6 +17023,8 @@ $root.E2E = (function() {
                 $root.E2E.Message.NewsletterFollowerInviteMessage.encode(message.newsletterFollowerInviteMessage, writer.uint32(/* id 108, wireType 2 =*/866).fork()).ldelim();
             if (message.statusQuotedMessage != null && Object.hasOwnProperty.call(message, "statusQuotedMessage"))
                 $root.E2E.Message.StatusQuotedMessage.encode(message.statusQuotedMessage, writer.uint32(/* id 109, wireType 2 =*/874).fork()).ldelim();
+            if (message.statusStickerInteractionMessage != null && Object.hasOwnProperty.call(message, "statusStickerInteractionMessage"))
+                $root.E2E.Message.StatusStickerInteractionMessage.encode(message.statusStickerInteractionMessage, writer.uint32(/* id 110, wireType 2 =*/882).fork()).ldelim();
             return writer;
         };
 
@@ -17413,6 +17431,10 @@ $root.E2E = (function() {
                     }
                 case 109: {
                         message.statusQuotedMessage = $root.E2E.Message.StatusQuotedMessage.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 110: {
+                        message.statusStickerInteractionMessage = $root.E2E.Message.StatusStickerInteractionMessage.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -17913,6 +17935,11 @@ $root.E2E = (function() {
                 if (error)
                     return "statusQuotedMessage." + error;
             }
+            if (message.statusStickerInteractionMessage != null && message.hasOwnProperty("statusStickerInteractionMessage")) {
+                var error = $root.E2E.Message.StatusStickerInteractionMessage.verify(message.statusStickerInteractionMessage);
+                if (error)
+                    return "statusStickerInteractionMessage." + error;
+            }
             return null;
         };
 
@@ -18390,6 +18417,11 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.Message.statusQuotedMessage: object expected");
                 message.statusQuotedMessage = $root.E2E.Message.StatusQuotedMessage.fromObject(object.statusQuotedMessage);
             }
+            if (object.statusStickerInteractionMessage != null) {
+                if (typeof object.statusStickerInteractionMessage !== "object")
+                    throw TypeError(".E2E.Message.statusStickerInteractionMessage: object expected");
+                message.statusStickerInteractionMessage = $root.E2E.Message.StatusStickerInteractionMessage.fromObject(object.statusStickerInteractionMessage);
+            }
             return message;
         };
 
@@ -18500,6 +18532,7 @@ $root.E2E = (function() {
                 object.questionResponseMessage = null;
                 object.newsletterFollowerInviteMessage = null;
                 object.statusQuotedMessage = null;
+                object.statusStickerInteractionMessage = null;
             }
             if (message.conversation != null && message.hasOwnProperty("conversation"))
                 object.conversation = message.conversation;
@@ -18687,6 +18720,8 @@ $root.E2E = (function() {
                 object.newsletterFollowerInviteMessage = $root.E2E.Message.NewsletterFollowerInviteMessage.toObject(message.newsletterFollowerInviteMessage, options);
             if (message.statusQuotedMessage != null && message.hasOwnProperty("statusQuotedMessage"))
                 object.statusQuotedMessage = $root.E2E.Message.StatusQuotedMessage.toObject(message.statusQuotedMessage, options);
+            if (message.statusStickerInteractionMessage != null && message.hasOwnProperty("statusStickerInteractionMessage"))
+                object.statusStickerInteractionMessage = $root.E2E.Message.StatusStickerInteractionMessage.toObject(message.statusStickerInteractionMessage, options);
             return object;
         };
 
@@ -61763,6 +61798,296 @@ $root.E2E = (function() {
             return StatusQuotedMessage;
         })();
 
+        Message.StatusStickerInteractionMessage = (function() {
+
+            /**
+             * Properties of a StatusStickerInteractionMessage.
+             * @memberof E2E.Message
+             * @interface IStatusStickerInteractionMessage
+             * @property {Protocol.IMessageKey|null} [key] StatusStickerInteractionMessage key
+             * @property {string|null} [stickerKey] StatusStickerInteractionMessage stickerKey
+             * @property {E2E.Message.StatusStickerInteractionMessage.StatusStickerType|null} [type] StatusStickerInteractionMessage type
+             */
+
+            /**
+             * Constructs a new StatusStickerInteractionMessage.
+             * @memberof E2E.Message
+             * @classdesc Represents a StatusStickerInteractionMessage.
+             * @implements IStatusStickerInteractionMessage
+             * @constructor
+             * @param {E2E.Message.IStatusStickerInteractionMessage=} [properties] Properties to set
+             */
+            function StatusStickerInteractionMessage(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * StatusStickerInteractionMessage key.
+             * @member {Protocol.IMessageKey|null|undefined} key
+             * @memberof E2E.Message.StatusStickerInteractionMessage
+             * @instance
+             */
+            StatusStickerInteractionMessage.prototype.key = null;
+
+            /**
+             * StatusStickerInteractionMessage stickerKey.
+             * @member {string} stickerKey
+             * @memberof E2E.Message.StatusStickerInteractionMessage
+             * @instance
+             */
+            StatusStickerInteractionMessage.prototype.stickerKey = "";
+
+            /**
+             * StatusStickerInteractionMessage type.
+             * @member {E2E.Message.StatusStickerInteractionMessage.StatusStickerType} type
+             * @memberof E2E.Message.StatusStickerInteractionMessage
+             * @instance
+             */
+            StatusStickerInteractionMessage.prototype.type = 0;
+
+            /**
+             * Creates a new StatusStickerInteractionMessage instance using the specified properties.
+             * @function create
+             * @memberof E2E.Message.StatusStickerInteractionMessage
+             * @static
+             * @param {E2E.Message.IStatusStickerInteractionMessage=} [properties] Properties to set
+             * @returns {E2E.Message.StatusStickerInteractionMessage} StatusStickerInteractionMessage instance
+             */
+            StatusStickerInteractionMessage.create = function create(properties) {
+                return new StatusStickerInteractionMessage(properties);
+            };
+
+            /**
+             * Encodes the specified StatusStickerInteractionMessage message. Does not implicitly {@link E2E.Message.StatusStickerInteractionMessage.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.Message.StatusStickerInteractionMessage
+             * @static
+             * @param {E2E.Message.IStatusStickerInteractionMessage} message StatusStickerInteractionMessage message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            StatusStickerInteractionMessage.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.key != null && Object.hasOwnProperty.call(message, "key"))
+                    $root.Protocol.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.stickerKey != null && Object.hasOwnProperty.call(message, "stickerKey"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.stickerKey);
+                if (message.type != null && Object.hasOwnProperty.call(message, "type"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).int32(message.type);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified StatusStickerInteractionMessage message, length delimited. Does not implicitly {@link E2E.Message.StatusStickerInteractionMessage.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.Message.StatusStickerInteractionMessage
+             * @static
+             * @param {E2E.Message.IStatusStickerInteractionMessage} message StatusStickerInteractionMessage message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            StatusStickerInteractionMessage.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a StatusStickerInteractionMessage message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.Message.StatusStickerInteractionMessage
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.Message.StatusStickerInteractionMessage} StatusStickerInteractionMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            StatusStickerInteractionMessage.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.StatusStickerInteractionMessage();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 2: {
+                            message.stickerKey = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.type = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a StatusStickerInteractionMessage message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.Message.StatusStickerInteractionMessage
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.Message.StatusStickerInteractionMessage} StatusStickerInteractionMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            StatusStickerInteractionMessage.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a StatusStickerInteractionMessage message.
+             * @function verify
+             * @memberof E2E.Message.StatusStickerInteractionMessage
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            StatusStickerInteractionMessage.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.key != null && message.hasOwnProperty("key")) {
+                    var error = $root.Protocol.MessageKey.verify(message.key);
+                    if (error)
+                        return "key." + error;
+                }
+                if (message.stickerKey != null && message.hasOwnProperty("stickerKey"))
+                    if (!$util.isString(message.stickerKey))
+                        return "stickerKey: string expected";
+                if (message.type != null && message.hasOwnProperty("type"))
+                    switch (message.type) {
+                    default:
+                        return "type: enum value expected";
+                    case 0:
+                    case 1:
+                        break;
+                    }
+                return null;
+            };
+
+            /**
+             * Creates a StatusStickerInteractionMessage message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.Message.StatusStickerInteractionMessage
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.Message.StatusStickerInteractionMessage} StatusStickerInteractionMessage
+             */
+            StatusStickerInteractionMessage.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.Message.StatusStickerInteractionMessage)
+                    return object;
+                var message = new $root.E2E.Message.StatusStickerInteractionMessage();
+                if (object.key != null) {
+                    if (typeof object.key !== "object")
+                        throw TypeError(".E2E.Message.StatusStickerInteractionMessage.key: object expected");
+                    message.key = $root.Protocol.MessageKey.fromObject(object.key);
+                }
+                if (object.stickerKey != null)
+                    message.stickerKey = String(object.stickerKey);
+                switch (object.type) {
+                default:
+                    if (typeof object.type === "number") {
+                        message.type = object.type;
+                        break;
+                    }
+                    break;
+                case "UNKNOWN":
+                case 0:
+                    message.type = 0;
+                    break;
+                case "REACTION":
+                case 1:
+                    message.type = 1;
+                    break;
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a StatusStickerInteractionMessage message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.Message.StatusStickerInteractionMessage
+             * @static
+             * @param {E2E.Message.StatusStickerInteractionMessage} message StatusStickerInteractionMessage
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            StatusStickerInteractionMessage.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.key = null;
+                    object.stickerKey = "";
+                    object.type = options.enums === String ? "UNKNOWN" : 0;
+                }
+                if (message.key != null && message.hasOwnProperty("key"))
+                    object.key = $root.Protocol.MessageKey.toObject(message.key, options);
+                if (message.stickerKey != null && message.hasOwnProperty("stickerKey"))
+                    object.stickerKey = message.stickerKey;
+                if (message.type != null && message.hasOwnProperty("type"))
+                    object.type = options.enums === String ? $root.E2E.Message.StatusStickerInteractionMessage.StatusStickerType[message.type] === undefined ? message.type : $root.E2E.Message.StatusStickerInteractionMessage.StatusStickerType[message.type] : message.type;
+                return object;
+            };
+
+            /**
+             * Converts this StatusStickerInteractionMessage to JSON.
+             * @function toJSON
+             * @memberof E2E.Message.StatusStickerInteractionMessage
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            StatusStickerInteractionMessage.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for StatusStickerInteractionMessage
+             * @function getTypeUrl
+             * @memberof E2E.Message.StatusStickerInteractionMessage
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            StatusStickerInteractionMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.Message.StatusStickerInteractionMessage";
+            };
+
+            /**
+             * StatusStickerType enum.
+             * @name E2E.Message.StatusStickerInteractionMessage.StatusStickerType
+             * @enum {number}
+             * @property {number} UNKNOWN=0 UNKNOWN value
+             * @property {number} REACTION=1 REACTION value
+             */
+            StatusStickerInteractionMessage.StatusStickerType = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "UNKNOWN"] = 0;
+                values[valuesById[1] = "REACTION"] = 1;
+                return values;
+            })();
+
+            return StatusStickerInteractionMessage;
+        })();
+
         Message.StickerMessage = (function() {
 
             /**
@@ -90063,6 +90388,7 @@ $root.StatusAttributions = (function() {
                     case 6:
                     case 7:
                     case 8:
+                    case 9:
                         break;
                     }
                 if (message.duration != null && message.hasOwnProperty("duration"))
@@ -90130,6 +90456,10 @@ $root.StatusAttributions = (function() {
                 case "APPLE_MUSIC":
                 case 8:
                     message.source = 8;
+                    break;
+                case "SHARECHAT":
+                case 9:
+                    message.source = 9;
                     break;
                 }
                 if (object.duration != null)
@@ -90208,6 +90538,7 @@ $root.StatusAttributions = (function() {
              * @property {number} PINTEREST=6 PINTEREST value
              * @property {number} THREADS=7 THREADS value
              * @property {number} APPLE_MUSIC=8 APPLE_MUSIC value
+             * @property {number} SHARECHAT=9 SHARECHAT value
              */
             ExternalShare.Source = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -90220,6 +90551,7 @@ $root.StatusAttributions = (function() {
                 values[valuesById[6] = "PINTEREST"] = 6;
                 values[valuesById[7] = "THREADS"] = 7;
                 values[valuesById[8] = "APPLE_MUSIC"] = 8;
+                values[valuesById[9] = "SHARECHAT"] = 9;
                 return values;
             })();
 

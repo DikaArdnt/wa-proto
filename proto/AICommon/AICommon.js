@@ -22086,6 +22086,7 @@ $root.StatusAttributions = (function() {
                     case 6:
                     case 7:
                     case 8:
+                    case 9:
                         break;
                     }
                 if (message.duration != null && message.hasOwnProperty("duration"))
@@ -22153,6 +22154,10 @@ $root.StatusAttributions = (function() {
                 case "APPLE_MUSIC":
                 case 8:
                     message.source = 8;
+                    break;
+                case "SHARECHAT":
+                case 9:
+                    message.source = 9;
                     break;
                 }
                 if (object.duration != null)
@@ -22231,6 +22236,7 @@ $root.StatusAttributions = (function() {
              * @property {number} PINTEREST=6 PINTEREST value
              * @property {number} THREADS=7 THREADS value
              * @property {number} APPLE_MUSIC=8 APPLE_MUSIC value
+             * @property {number} SHARECHAT=9 SHARECHAT value
              */
             ExternalShare.Source = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -22243,6 +22249,7 @@ $root.StatusAttributions = (function() {
                 values[valuesById[6] = "PINTEREST"] = 6;
                 values[valuesById[7] = "THREADS"] = 7;
                 values[valuesById[8] = "APPLE_MUSIC"] = 8;
+                values[valuesById[9] = "SHARECHAT"] = 9;
                 return values;
             })();
 

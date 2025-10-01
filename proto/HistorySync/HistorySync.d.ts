@@ -6749,7 +6749,8 @@ export namespace E2E {
             VIEW_ALL_REPLIES = 14,
             STATUS_ADD_YOURS_AI_IMAGINE = 15,
             STATUS_QUESTION = 16,
-            STATUS_ADD_YOURS_DIWALI = 17
+            STATUS_ADD_YOURS_DIWALI = 17,
+            STATUS_REACTION = 18
         }
     }
 
@@ -8804,6 +8805,9 @@ export namespace E2E {
 
         /** Message statusQuotedMessage */
         statusQuotedMessage?: (E2E.Message.IStatusQuotedMessage|null);
+
+        /** Message statusStickerInteractionMessage */
+        statusStickerInteractionMessage?: (E2E.Message.IStatusStickerInteractionMessage|null);
     }
 
     /** Represents a Message. */
@@ -9093,6 +9097,9 @@ export namespace E2E {
 
         /** Message statusQuotedMessage. */
         public statusQuotedMessage?: (E2E.Message.IStatusQuotedMessage|null);
+
+        /** Message statusStickerInteractionMessage. */
+        public statusStickerInteractionMessage?: (E2E.Message.IStatusStickerInteractionMessage|null);
 
         /**
          * Creates a new Message instance using the specified properties.
@@ -25210,6 +25217,124 @@ export namespace E2E {
             }
         }
 
+        /** Properties of a StatusStickerInteractionMessage. */
+        interface IStatusStickerInteractionMessage {
+
+            /** StatusStickerInteractionMessage key */
+            key?: (Protocol.IMessageKey|null);
+
+            /** StatusStickerInteractionMessage stickerKey */
+            stickerKey?: (string|null);
+
+            /** StatusStickerInteractionMessage type */
+            type?: (E2E.Message.StatusStickerInteractionMessage.StatusStickerType|null);
+        }
+
+        /** Represents a StatusStickerInteractionMessage. */
+        class StatusStickerInteractionMessage implements IStatusStickerInteractionMessage {
+
+            /**
+             * Constructs a new StatusStickerInteractionMessage.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IStatusStickerInteractionMessage);
+
+            /** StatusStickerInteractionMessage key. */
+            public key?: (Protocol.IMessageKey|null);
+
+            /** StatusStickerInteractionMessage stickerKey. */
+            public stickerKey: string;
+
+            /** StatusStickerInteractionMessage type. */
+            public type: E2E.Message.StatusStickerInteractionMessage.StatusStickerType;
+
+            /**
+             * Creates a new StatusStickerInteractionMessage instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns StatusStickerInteractionMessage instance
+             */
+            public static create(properties?: E2E.Message.IStatusStickerInteractionMessage): E2E.Message.StatusStickerInteractionMessage;
+
+            /**
+             * Encodes the specified StatusStickerInteractionMessage message. Does not implicitly {@link E2E.Message.StatusStickerInteractionMessage.verify|verify} messages.
+             * @param message StatusStickerInteractionMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IStatusStickerInteractionMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified StatusStickerInteractionMessage message, length delimited. Does not implicitly {@link E2E.Message.StatusStickerInteractionMessage.verify|verify} messages.
+             * @param message StatusStickerInteractionMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IStatusStickerInteractionMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a StatusStickerInteractionMessage message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns StatusStickerInteractionMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.StatusStickerInteractionMessage;
+
+            /**
+             * Decodes a StatusStickerInteractionMessage message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns StatusStickerInteractionMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.StatusStickerInteractionMessage;
+
+            /**
+             * Verifies a StatusStickerInteractionMessage message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a StatusStickerInteractionMessage message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns StatusStickerInteractionMessage
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.StatusStickerInteractionMessage;
+
+            /**
+             * Creates a plain object from a StatusStickerInteractionMessage message. Also converts values to other types if specified.
+             * @param message StatusStickerInteractionMessage
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.StatusStickerInteractionMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this StatusStickerInteractionMessage to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for StatusStickerInteractionMessage
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace StatusStickerInteractionMessage {
+
+            /** StatusStickerType enum. */
+            enum StatusStickerType {
+                UNKNOWN = 0,
+                REACTION = 1
+            }
+        }
+
         /** Properties of a StickerMessage. */
         interface IStickerMessage {
 
@@ -35648,7 +35773,8 @@ export namespace StatusAttributions {
                 YOUTUBE = 5,
                 PINTEREST = 6,
                 THREADS = 7,
-                APPLE_MUSIC = 8
+                APPLE_MUSIC = 8,
+                SHARECHAT = 9
             }
         }
 

@@ -8442,7 +8442,8 @@ export namespace StatusAttributions {
                 YOUTUBE = 5,
                 PINTEREST = 6,
                 THREADS = 7,
-                APPLE_MUSIC = 8
+                APPLE_MUSIC = 8,
+                SHARECHAT = 9
             }
         }
 

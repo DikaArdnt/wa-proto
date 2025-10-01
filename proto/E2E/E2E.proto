@@ -307,6 +307,7 @@ message MessageAssociation {
         STATUS_ADD_YOURS_AI_IMAGINE = 15;
         STATUS_QUESTION = 16;
         STATUS_ADD_YOURS_DIWALI = 17;
+        STATUS_REACTION = 18;
     }
 }
 
@@ -601,6 +602,7 @@ message Message {
     optional QuestionResponseMessage questionResponseMessage = 107;
     optional NewsletterFollowerInviteMessage newsletterFollowerInviteMessage = 108;
     optional StatusQuotedMessage statusQuotedMessage = 109;
+    optional StatusStickerInteractionMessage statusStickerInteractionMessage = 110;
     message AlbumMessage {
         optional uint32 expectedImageCount = 2;
         optional uint32 expectedVideoCount = 3;
@@ -1747,6 +1749,15 @@ message Message {
         optional Protocol.MessageKey originalStatusId = 4;
         enum StatusQuotedMessageType {
             QUESTION_ANSWER = 1;
+        }
+    }
+    message StatusStickerInteractionMessage {
+        optional Protocol.MessageKey key = 1;
+        optional string stickerKey = 2;
+        optional StatusStickerType type = 3;
+        enum StatusStickerType {
+            UNKNOWN = 0;
+            REACTION = 1;
         }
     }
     message StickerMessage {
