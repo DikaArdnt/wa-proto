@@ -308,6 +308,7 @@ message MessageAssociation {
         STATUS_QUESTION = 16;
         STATUS_ADD_YOURS_DIWALI = 17;
         STATUS_REACTION = 18;
+        HEVC_VIDEO_DUAL_UPLOAD = 19;
     }
 }
 
@@ -366,6 +367,7 @@ message ContextInfo {
     optional StatusAudienceMetadata statusAudienceMetadata = 69;
     optional uint32 nonJidMentions = 70;
     optional QuotedType quotedType = 71;
+    optional AICommon.BotMessageSharingInfo botMessageSharingInfo = 72;
     message AdReplyInfo {
         optional string advertiserName = 1;
         optional MediaType mediaType = 2;
@@ -470,6 +472,8 @@ message ContextInfo {
         HD_IMAGE_CHILD = 4;
         MOTION_PHOTO_PARENT = 5;
         MOTION_PHOTO_CHILD = 6;
+        PAIRED_HEVC_PARENT = 7;
+        PAIRED_HEVC_CHILD = 8;
     }
     message QuestionReplyQuotedMessage {
         optional int32 serverQuestionId = 1;

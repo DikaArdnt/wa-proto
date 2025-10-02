@@ -18375,6 +18375,7 @@ $root.E2E = (function() {
                 case 16:
                 case 17:
                 case 18:
+                case 19:
                     break;
                 }
             if (message.parentMessageKey != null && message.hasOwnProperty("parentMessageKey")) {
@@ -18483,6 +18484,10 @@ $root.E2E = (function() {
             case 18:
                 message.associationType = 18;
                 break;
+            case "HEVC_VIDEO_DUAL_UPLOAD":
+            case 19:
+                message.associationType = 19;
+                break;
             }
             if (object.parentMessageKey != null) {
                 if (typeof object.parentMessageKey !== "object")
@@ -18570,6 +18575,7 @@ $root.E2E = (function() {
          * @property {number} STATUS_QUESTION=16 STATUS_QUESTION value
          * @property {number} STATUS_ADD_YOURS_DIWALI=17 STATUS_ADD_YOURS_DIWALI value
          * @property {number} STATUS_REACTION=18 STATUS_REACTION value
+         * @property {number} HEVC_VIDEO_DUAL_UPLOAD=19 HEVC_VIDEO_DUAL_UPLOAD value
          */
         MessageAssociation.AssociationType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -18592,6 +18598,7 @@ $root.E2E = (function() {
             values[valuesById[16] = "STATUS_QUESTION"] = 16;
             values[valuesById[17] = "STATUS_ADD_YOURS_DIWALI"] = 17;
             values[valuesById[18] = "STATUS_REACTION"] = 18;
+            values[valuesById[19] = "HEVC_VIDEO_DUAL_UPLOAD"] = 19;
             return values;
         })();
 
@@ -18658,6 +18665,7 @@ $root.E2E = (function() {
          * @property {E2E.ContextInfo.IStatusAudienceMetadata|null} [statusAudienceMetadata] ContextInfo statusAudienceMetadata
          * @property {number|null} [nonJidMentions] ContextInfo nonJidMentions
          * @property {E2E.ContextInfo.QuotedType|null} [quotedType] ContextInfo quotedType
+         * @property {AICommon.IBotMessageSharingInfo|null} [botMessageSharingInfo] ContextInfo botMessageSharingInfo
          */
 
         /**
@@ -19111,6 +19119,14 @@ $root.E2E = (function() {
         ContextInfo.prototype.quotedType = 0;
 
         /**
+         * ContextInfo botMessageSharingInfo.
+         * @member {AICommon.IBotMessageSharingInfo|null|undefined} botMessageSharingInfo
+         * @memberof E2E.ContextInfo
+         * @instance
+         */
+        ContextInfo.prototype.botMessageSharingInfo = null;
+
+        /**
          * Creates a new ContextInfo instance using the specified properties.
          * @function create
          * @memberof E2E.ContextInfo
@@ -19245,6 +19261,8 @@ $root.E2E = (function() {
                 writer.uint32(/* id 70, wireType 0 =*/560).uint32(message.nonJidMentions);
             if (message.quotedType != null && Object.hasOwnProperty.call(message, "quotedType"))
                 writer.uint32(/* id 71, wireType 0 =*/568).int32(message.quotedType);
+            if (message.botMessageSharingInfo != null && Object.hasOwnProperty.call(message, "botMessageSharingInfo"))
+                $root.AICommon.BotMessageSharingInfo.encode(message.botMessageSharingInfo, writer.uint32(/* id 72, wireType 2 =*/578).fork()).ldelim();
             return writer;
         };
 
@@ -19503,6 +19521,10 @@ $root.E2E = (function() {
                         message.quotedType = reader.int32();
                         break;
                     }
+                case 72: {
+                        message.botMessageSharingInfo = $root.AICommon.BotMessageSharingInfo.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -19719,6 +19741,8 @@ $root.E2E = (function() {
                 case 4:
                 case 5:
                 case 6:
+                case 7:
+                case 8:
                     break;
                 }
             if (message.rankingVersion != null && message.hasOwnProperty("rankingVersion"))
@@ -19789,6 +19813,11 @@ $root.E2E = (function() {
                 case 1:
                     break;
                 }
+            if (message.botMessageSharingInfo != null && message.hasOwnProperty("botMessageSharingInfo")) {
+                var error = $root.AICommon.BotMessageSharingInfo.verify(message.botMessageSharingInfo);
+                if (error)
+                    return "botMessageSharingInfo." + error;
+            }
             return null;
         };
 
@@ -20017,6 +20046,14 @@ $root.E2E = (function() {
             case 6:
                 message.pairedMediaType = 6;
                 break;
+            case "PAIRED_HEVC_PARENT":
+            case 7:
+                message.pairedMediaType = 7;
+                break;
+            case "PAIRED_HEVC_CHILD":
+            case 8:
+                message.pairedMediaType = 8;
+                break;
             }
             if (object.rankingVersion != null)
                 message.rankingVersion = object.rankingVersion >>> 0;
@@ -20131,6 +20168,11 @@ $root.E2E = (function() {
                 message.quotedType = 1;
                 break;
             }
+            if (object.botMessageSharingInfo != null) {
+                if (typeof object.botMessageSharingInfo !== "object")
+                    throw TypeError(".E2E.ContextInfo.botMessageSharingInfo: object expected");
+                message.botMessageSharingInfo = $root.AICommon.BotMessageSharingInfo.fromObject(object.botMessageSharingInfo);
+            }
             return message;
         };
 
@@ -20226,6 +20268,7 @@ $root.E2E = (function() {
                 object.statusAudienceMetadata = null;
                 object.nonJidMentions = 0;
                 object.quotedType = options.enums === String ? "EXPLICIT" : 0;
+                object.botMessageSharingInfo = null;
             }
             if (message.stanzaId != null && message.hasOwnProperty("stanzaId"))
                 object.stanzaId = message.stanzaId;
@@ -20347,6 +20390,8 @@ $root.E2E = (function() {
                 object.nonJidMentions = message.nonJidMentions;
             if (message.quotedType != null && message.hasOwnProperty("quotedType"))
                 object.quotedType = options.enums === String ? $root.E2E.ContextInfo.QuotedType[message.quotedType] === undefined ? message.quotedType : $root.E2E.ContextInfo.QuotedType[message.quotedType] : message.quotedType;
+            if (message.botMessageSharingInfo != null && message.hasOwnProperty("botMessageSharingInfo"))
+                object.botMessageSharingInfo = $root.AICommon.BotMessageSharingInfo.toObject(message.botMessageSharingInfo, options);
             return object;
         };
 
@@ -23088,6 +23133,8 @@ $root.E2E = (function() {
          * @property {number} HD_IMAGE_CHILD=4 HD_IMAGE_CHILD value
          * @property {number} MOTION_PHOTO_PARENT=5 MOTION_PHOTO_PARENT value
          * @property {number} MOTION_PHOTO_CHILD=6 MOTION_PHOTO_CHILD value
+         * @property {number} PAIRED_HEVC_PARENT=7 PAIRED_HEVC_PARENT value
+         * @property {number} PAIRED_HEVC_CHILD=8 PAIRED_HEVC_CHILD value
          */
         ContextInfo.PairedMediaType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -23098,6 +23145,8 @@ $root.E2E = (function() {
             values[valuesById[4] = "HD_IMAGE_CHILD"] = 4;
             values[valuesById[5] = "MOTION_PHOTO_PARENT"] = 5;
             values[valuesById[6] = "MOTION_PHOTO_CHILD"] = 6;
+            values[valuesById[7] = "PAIRED_HEVC_PARENT"] = 7;
+            values[valuesById[8] = "PAIRED_HEVC_CHILD"] = 8;
             return values;
         })();
 
@@ -81250,6 +81299,429 @@ $root.AICommon = (function() {
         return AIRichResponseImageURL;
     })();
 
+    AICommon.BotMessageSharingInfo = (function() {
+
+        /**
+         * Properties of a BotMessageSharingInfo.
+         * @memberof AICommon
+         * @interface IBotMessageSharingInfo
+         * @property {AICommon.BotMetricsEntryPoint|null} [botEntryPointOrigin] BotMessageSharingInfo botEntryPointOrigin
+         * @property {number|null} [forwardScore] BotMessageSharingInfo forwardScore
+         */
+
+        /**
+         * Constructs a new BotMessageSharingInfo.
+         * @memberof AICommon
+         * @classdesc Represents a BotMessageSharingInfo.
+         * @implements IBotMessageSharingInfo
+         * @constructor
+         * @param {AICommon.IBotMessageSharingInfo=} [properties] Properties to set
+         */
+        function BotMessageSharingInfo(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BotMessageSharingInfo botEntryPointOrigin.
+         * @member {AICommon.BotMetricsEntryPoint} botEntryPointOrigin
+         * @memberof AICommon.BotMessageSharingInfo
+         * @instance
+         */
+        BotMessageSharingInfo.prototype.botEntryPointOrigin = 0;
+
+        /**
+         * BotMessageSharingInfo forwardScore.
+         * @member {number} forwardScore
+         * @memberof AICommon.BotMessageSharingInfo
+         * @instance
+         */
+        BotMessageSharingInfo.prototype.forwardScore = 0;
+
+        /**
+         * Creates a new BotMessageSharingInfo instance using the specified properties.
+         * @function create
+         * @memberof AICommon.BotMessageSharingInfo
+         * @static
+         * @param {AICommon.IBotMessageSharingInfo=} [properties] Properties to set
+         * @returns {AICommon.BotMessageSharingInfo} BotMessageSharingInfo instance
+         */
+        BotMessageSharingInfo.create = function create(properties) {
+            return new BotMessageSharingInfo(properties);
+        };
+
+        /**
+         * Encodes the specified BotMessageSharingInfo message. Does not implicitly {@link AICommon.BotMessageSharingInfo.verify|verify} messages.
+         * @function encode
+         * @memberof AICommon.BotMessageSharingInfo
+         * @static
+         * @param {AICommon.IBotMessageSharingInfo} message BotMessageSharingInfo message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotMessageSharingInfo.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.botEntryPointOrigin != null && Object.hasOwnProperty.call(message, "botEntryPointOrigin"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.botEntryPointOrigin);
+            if (message.forwardScore != null && Object.hasOwnProperty.call(message, "forwardScore"))
+                writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.forwardScore);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BotMessageSharingInfo message, length delimited. Does not implicitly {@link AICommon.BotMessageSharingInfo.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof AICommon.BotMessageSharingInfo
+         * @static
+         * @param {AICommon.IBotMessageSharingInfo} message BotMessageSharingInfo message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotMessageSharingInfo.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BotMessageSharingInfo message from the specified reader or buffer.
+         * @function decode
+         * @memberof AICommon.BotMessageSharingInfo
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {AICommon.BotMessageSharingInfo} BotMessageSharingInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotMessageSharingInfo.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotMessageSharingInfo();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.botEntryPointOrigin = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.forwardScore = reader.uint32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BotMessageSharingInfo message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof AICommon.BotMessageSharingInfo
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {AICommon.BotMessageSharingInfo} BotMessageSharingInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotMessageSharingInfo.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BotMessageSharingInfo message.
+         * @function verify
+         * @memberof AICommon.BotMessageSharingInfo
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BotMessageSharingInfo.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.botEntryPointOrigin != null && message.hasOwnProperty("botEntryPointOrigin"))
+                switch (message.botEntryPointOrigin) {
+                default:
+                    return "botEntryPointOrigin: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                case 14:
+                case 15:
+                case 16:
+                case 17:
+                case 18:
+                case 19:
+                case 20:
+                case 21:
+                case 22:
+                case 23:
+                case 24:
+                case 25:
+                case 26:
+                case 27:
+                case 28:
+                case 29:
+                case 30:
+                case 31:
+                case 32:
+                case 33:
+                case 34:
+                case 35:
+                case 36:
+                    break;
+                }
+            if (message.forwardScore != null && message.hasOwnProperty("forwardScore"))
+                if (!$util.isInteger(message.forwardScore))
+                    return "forwardScore: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a BotMessageSharingInfo message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof AICommon.BotMessageSharingInfo
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {AICommon.BotMessageSharingInfo} BotMessageSharingInfo
+         */
+        BotMessageSharingInfo.fromObject = function fromObject(object) {
+            if (object instanceof $root.AICommon.BotMessageSharingInfo)
+                return object;
+            var message = new $root.AICommon.BotMessageSharingInfo();
+            switch (object.botEntryPointOrigin) {
+            default:
+                if (typeof object.botEntryPointOrigin === "number") {
+                    message.botEntryPointOrigin = object.botEntryPointOrigin;
+                    break;
+                }
+                break;
+            case "UNDEFINED_ENTRY_POINT":
+            case 0:
+                message.botEntryPointOrigin = 0;
+                break;
+            case "FAVICON":
+            case 1:
+                message.botEntryPointOrigin = 1;
+                break;
+            case "CHATLIST":
+            case 2:
+                message.botEntryPointOrigin = 2;
+                break;
+            case "AISEARCH_NULL_STATE_PAPER_PLANE":
+            case 3:
+                message.botEntryPointOrigin = 3;
+                break;
+            case "AISEARCH_NULL_STATE_SUGGESTION":
+            case 4:
+                message.botEntryPointOrigin = 4;
+                break;
+            case "AISEARCH_TYPE_AHEAD_SUGGESTION":
+            case 5:
+                message.botEntryPointOrigin = 5;
+                break;
+            case "AISEARCH_TYPE_AHEAD_PAPER_PLANE":
+            case 6:
+                message.botEntryPointOrigin = 6;
+                break;
+            case "AISEARCH_TYPE_AHEAD_RESULT_CHATLIST":
+            case 7:
+                message.botEntryPointOrigin = 7;
+                break;
+            case "AISEARCH_TYPE_AHEAD_RESULT_MESSAGES":
+            case 8:
+                message.botEntryPointOrigin = 8;
+                break;
+            case "AIVOICE_SEARCH_BAR":
+            case 9:
+                message.botEntryPointOrigin = 9;
+                break;
+            case "AIVOICE_FAVICON":
+            case 10:
+                message.botEntryPointOrigin = 10;
+                break;
+            case "AISTUDIO":
+            case 11:
+                message.botEntryPointOrigin = 11;
+                break;
+            case "DEEPLINK":
+            case 12:
+                message.botEntryPointOrigin = 12;
+                break;
+            case "NOTIFICATION":
+            case 13:
+                message.botEntryPointOrigin = 13;
+                break;
+            case "PROFILE_MESSAGE_BUTTON":
+            case 14:
+                message.botEntryPointOrigin = 14;
+                break;
+            case "FORWARD":
+            case 15:
+                message.botEntryPointOrigin = 15;
+                break;
+            case "APP_SHORTCUT":
+            case 16:
+                message.botEntryPointOrigin = 16;
+                break;
+            case "FF_FAMILY":
+            case 17:
+                message.botEntryPointOrigin = 17;
+                break;
+            case "AI_TAB":
+            case 18:
+                message.botEntryPointOrigin = 18;
+                break;
+            case "AI_HOME":
+            case 19:
+                message.botEntryPointOrigin = 19;
+                break;
+            case "AI_DEEPLINK_IMMERSIVE":
+            case 20:
+                message.botEntryPointOrigin = 20;
+                break;
+            case "AI_DEEPLINK":
+            case 21:
+                message.botEntryPointOrigin = 21;
+                break;
+            case "META_AI_CHAT_SHORTCUT_AI_STUDIO":
+            case 22:
+                message.botEntryPointOrigin = 22;
+                break;
+            case "UGC_CHAT_SHORTCUT_AI_STUDIO":
+            case 23:
+                message.botEntryPointOrigin = 23;
+                break;
+            case "NEW_CHAT_AI_STUDIO":
+            case 24:
+                message.botEntryPointOrigin = 24;
+                break;
+            case "AIVOICE_FAVICON_CALL_HISTORY":
+            case 25:
+                message.botEntryPointOrigin = 25;
+                break;
+            case "ASK_META_AI_CONTEXT_MENU":
+            case 26:
+                message.botEntryPointOrigin = 26;
+                break;
+            case "ASK_META_AI_CONTEXT_MENU_1ON1":
+            case 27:
+                message.botEntryPointOrigin = 27;
+                break;
+            case "ASK_META_AI_CONTEXT_MENU_GROUP":
+            case 28:
+                message.botEntryPointOrigin = 28;
+                break;
+            case "INVOKE_META_AI_1ON1":
+            case 29:
+                message.botEntryPointOrigin = 29;
+                break;
+            case "INVOKE_META_AI_GROUP":
+            case 30:
+                message.botEntryPointOrigin = 30;
+                break;
+            case "META_AI_FORWARD":
+            case 31:
+                message.botEntryPointOrigin = 31;
+                break;
+            case "NEW_CHAT_AI_CONTACT":
+            case 32:
+                message.botEntryPointOrigin = 32;
+                break;
+            case "MESSAGE_QUICK_ACTION_1_ON_1_CHAT":
+            case 33:
+                message.botEntryPointOrigin = 33;
+                break;
+            case "MESSAGE_QUICK_ACTION_GROUP_CHAT":
+            case 34:
+                message.botEntryPointOrigin = 34;
+                break;
+            case "ATTACHMENT_TRAY_1_ON_1_CHAT":
+            case 35:
+                message.botEntryPointOrigin = 35;
+                break;
+            case "ATTACHMENT_TRAY_GROUP_CHAT":
+            case 36:
+                message.botEntryPointOrigin = 36;
+                break;
+            }
+            if (object.forwardScore != null)
+                message.forwardScore = object.forwardScore >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BotMessageSharingInfo message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof AICommon.BotMessageSharingInfo
+         * @static
+         * @param {AICommon.BotMessageSharingInfo} message BotMessageSharingInfo
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BotMessageSharingInfo.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.botEntryPointOrigin = options.enums === String ? "UNDEFINED_ENTRY_POINT" : 0;
+                object.forwardScore = 0;
+            }
+            if (message.botEntryPointOrigin != null && message.hasOwnProperty("botEntryPointOrigin"))
+                object.botEntryPointOrigin = options.enums === String ? $root.AICommon.BotMetricsEntryPoint[message.botEntryPointOrigin] === undefined ? message.botEntryPointOrigin : $root.AICommon.BotMetricsEntryPoint[message.botEntryPointOrigin] : message.botEntryPointOrigin;
+            if (message.forwardScore != null && message.hasOwnProperty("forwardScore"))
+                object.forwardScore = message.forwardScore;
+            return object;
+        };
+
+        /**
+         * Converts this BotMessageSharingInfo to JSON.
+         * @function toJSON
+         * @memberof AICommon.BotMessageSharingInfo
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BotMessageSharingInfo.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotMessageSharingInfo
+         * @function getTypeUrl
+         * @memberof AICommon.BotMessageSharingInfo
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotMessageSharingInfo.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/AICommon.BotMessageSharingInfo";
+        };
+
+        return BotMessageSharingInfo;
+    })();
+
     AICommon.ForwardedAIBotMessageInfo = (function() {
 
         /**
@@ -81259,8 +81731,6 @@ $root.AICommon = (function() {
          * @property {string|null} [botName] ForwardedAIBotMessageInfo botName
          * @property {string|null} [botJid] ForwardedAIBotMessageInfo botJid
          * @property {string|null} [creatorName] ForwardedAIBotMessageInfo creatorName
-         * @property {number|null} [botEntryPointOrigin] ForwardedAIBotMessageInfo botEntryPointOrigin
-         * @property {number|null} [forwardScore] ForwardedAIBotMessageInfo forwardScore
          */
 
         /**
@@ -81303,22 +81773,6 @@ $root.AICommon = (function() {
         ForwardedAIBotMessageInfo.prototype.creatorName = "";
 
         /**
-         * ForwardedAIBotMessageInfo botEntryPointOrigin.
-         * @member {number} botEntryPointOrigin
-         * @memberof AICommon.ForwardedAIBotMessageInfo
-         * @instance
-         */
-        ForwardedAIBotMessageInfo.prototype.botEntryPointOrigin = 0;
-
-        /**
-         * ForwardedAIBotMessageInfo forwardScore.
-         * @member {number} forwardScore
-         * @memberof AICommon.ForwardedAIBotMessageInfo
-         * @instance
-         */
-        ForwardedAIBotMessageInfo.prototype.forwardScore = 0;
-
-        /**
          * Creates a new ForwardedAIBotMessageInfo instance using the specified properties.
          * @function create
          * @memberof AICommon.ForwardedAIBotMessageInfo
@@ -81348,10 +81802,6 @@ $root.AICommon = (function() {
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.botJid);
             if (message.creatorName != null && Object.hasOwnProperty.call(message, "creatorName"))
                 writer.uint32(/* id 3, wireType 2 =*/26).string(message.creatorName);
-            if (message.botEntryPointOrigin != null && Object.hasOwnProperty.call(message, "botEntryPointOrigin"))
-                writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.botEntryPointOrigin);
-            if (message.forwardScore != null && Object.hasOwnProperty.call(message, "forwardScore"))
-                writer.uint32(/* id 5, wireType 0 =*/40).uint32(message.forwardScore);
             return writer;
         };
 
@@ -81400,14 +81850,6 @@ $root.AICommon = (function() {
                         message.creatorName = reader.string();
                         break;
                     }
-                case 4: {
-                        message.botEntryPointOrigin = reader.uint32();
-                        break;
-                    }
-                case 5: {
-                        message.forwardScore = reader.uint32();
-                        break;
-                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -81452,12 +81894,6 @@ $root.AICommon = (function() {
             if (message.creatorName != null && message.hasOwnProperty("creatorName"))
                 if (!$util.isString(message.creatorName))
                     return "creatorName: string expected";
-            if (message.botEntryPointOrigin != null && message.hasOwnProperty("botEntryPointOrigin"))
-                if (!$util.isInteger(message.botEntryPointOrigin))
-                    return "botEntryPointOrigin: integer expected";
-            if (message.forwardScore != null && message.hasOwnProperty("forwardScore"))
-                if (!$util.isInteger(message.forwardScore))
-                    return "forwardScore: integer expected";
             return null;
         };
 
@@ -81479,10 +81915,6 @@ $root.AICommon = (function() {
                 message.botJid = String(object.botJid);
             if (object.creatorName != null)
                 message.creatorName = String(object.creatorName);
-            if (object.botEntryPointOrigin != null)
-                message.botEntryPointOrigin = object.botEntryPointOrigin >>> 0;
-            if (object.forwardScore != null)
-                message.forwardScore = object.forwardScore >>> 0;
             return message;
         };
 
@@ -81503,8 +81935,6 @@ $root.AICommon = (function() {
                 object.botName = "";
                 object.botJid = "";
                 object.creatorName = "";
-                object.botEntryPointOrigin = 0;
-                object.forwardScore = 0;
             }
             if (message.botName != null && message.hasOwnProperty("botName"))
                 object.botName = message.botName;
@@ -81512,10 +81942,6 @@ $root.AICommon = (function() {
                 object.botJid = message.botJid;
             if (message.creatorName != null && message.hasOwnProperty("creatorName"))
                 object.creatorName = message.creatorName;
-            if (message.botEntryPointOrigin != null && message.hasOwnProperty("botEntryPointOrigin"))
-                object.botEntryPointOrigin = message.botEntryPointOrigin;
-            if (message.forwardScore != null && message.hasOwnProperty("forwardScore"))
-                object.forwardScore = message.forwardScore;
             return object;
         };
 

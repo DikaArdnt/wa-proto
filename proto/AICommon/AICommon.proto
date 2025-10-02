@@ -134,12 +134,15 @@ message AIRichResponseImageURL {
     optional string sourceUrl = 3;
 }
 
+message BotMessageSharingInfo {
+    optional BotMetricsEntryPoint botEntryPointOrigin = 1;
+    optional uint32 forwardScore = 2;
+}
+
 message ForwardedAIBotMessageInfo {
     optional string botName = 1;
     optional string botJid = 2;
     optional string creatorName = 3;
-    optional uint32 botEntryPointOrigin = 4;
-    optional uint32 forwardScore = 5;
 }
 
 message BotFeedbackMessage {
