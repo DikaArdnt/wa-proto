@@ -17984,6 +17984,9 @@ export namespace E2E {
 
             /** PeerDataOperationRequestMessage historySyncChunkRetryRequest */
             historySyncChunkRetryRequest?: (E2E.Message.PeerDataOperationRequestMessage.IHistorySyncChunkRetryRequest|null);
+
+            /** PeerDataOperationRequestMessage galaxyFlowAction */
+            galaxyFlowAction?: (E2E.Message.PeerDataOperationRequestMessage.IGalaxyFlowAction|null);
         }
 
         /** Represents a PeerDataOperationRequestMessage. */
@@ -18018,6 +18021,9 @@ export namespace E2E {
 
             /** PeerDataOperationRequestMessage historySyncChunkRetryRequest. */
             public historySyncChunkRetryRequest?: (E2E.Message.PeerDataOperationRequestMessage.IHistorySyncChunkRetryRequest|null);
+
+            /** PeerDataOperationRequestMessage galaxyFlowAction. */
+            public galaxyFlowAction?: (E2E.Message.PeerDataOperationRequestMessage.IGalaxyFlowAction|null);
 
             /**
              * Creates a new PeerDataOperationRequestMessage instance using the specified properties.
@@ -18200,6 +18206,123 @@ export namespace E2E {
                  * @returns The default type url
                  */
                 public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            /** Properties of a GalaxyFlowAction. */
+            interface IGalaxyFlowAction {
+
+                /** GalaxyFlowAction type */
+                type: E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.GalaxyFlowActionType;
+
+                /** GalaxyFlowAction flowId */
+                flowId: string;
+
+                /** GalaxyFlowAction stanzaId */
+                stanzaId: string;
+            }
+
+            /** Represents a GalaxyFlowAction. */
+            class GalaxyFlowAction implements IGalaxyFlowAction {
+
+                /**
+                 * Constructs a new GalaxyFlowAction.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: E2E.Message.PeerDataOperationRequestMessage.IGalaxyFlowAction);
+
+                /** GalaxyFlowAction type. */
+                public type: E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.GalaxyFlowActionType;
+
+                /** GalaxyFlowAction flowId. */
+                public flowId: string;
+
+                /** GalaxyFlowAction stanzaId. */
+                public stanzaId: string;
+
+                /**
+                 * Creates a new GalaxyFlowAction instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns GalaxyFlowAction instance
+                 */
+                public static create(properties?: E2E.Message.PeerDataOperationRequestMessage.IGalaxyFlowAction): E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction;
+
+                /**
+                 * Encodes the specified GalaxyFlowAction message. Does not implicitly {@link E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.verify|verify} messages.
+                 * @param message GalaxyFlowAction message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: E2E.Message.PeerDataOperationRequestMessage.IGalaxyFlowAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified GalaxyFlowAction message, length delimited. Does not implicitly {@link E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.verify|verify} messages.
+                 * @param message GalaxyFlowAction message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: E2E.Message.PeerDataOperationRequestMessage.IGalaxyFlowAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a GalaxyFlowAction message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns GalaxyFlowAction
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction;
+
+                /**
+                 * Decodes a GalaxyFlowAction message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns GalaxyFlowAction
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction;
+
+                /**
+                 * Verifies a GalaxyFlowAction message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a GalaxyFlowAction message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns GalaxyFlowAction
+                 */
+                public static fromObject(object: { [k: string]: any }): E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction;
+
+                /**
+                 * Creates a plain object from a GalaxyFlowAction message. Also converts values to other types if specified.
+                 * @param message GalaxyFlowAction
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this GalaxyFlowAction to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for GalaxyFlowAction
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            namespace GalaxyFlowAction {
+
+                /** GalaxyFlowActionType enum. */
+                enum GalaxyFlowActionType {
+                    NOTIFY_LAUNCH = 1
+                }
             }
 
             /** Properties of a HistorySyncChunkRetryRequest. */
@@ -20255,7 +20378,8 @@ export namespace E2E {
             COMPANION_META_NONCE_FETCH = 7,
             COMPANION_SYNCD_SNAPSHOT_FATAL_RECOVERY = 8,
             COMPANION_CANONICAL_USER_NONCE_FETCH = 9,
-            HISTORY_SYNC_CHUNK_RETRY = 10
+            HISTORY_SYNC_CHUNK_RETRY = 10,
+            GALAXY_FLOW_ACTION = 11
         }
 
         /** Properties of a PinInChatMessage. */
@@ -34728,7 +34852,8 @@ export namespace StatusAttributions {
             STATUS_MENTION = 4,
             GROUP_STATUS = 5,
             RL_ATTRIBUTION = 6,
-            AI_CREATED = 7
+            AI_CREATED = 7,
+            LAYOUTS = 8
         }
     }
 }

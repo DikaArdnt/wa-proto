@@ -1386,9 +1386,18 @@ message Message {
         optional FullHistorySyncOnDemandRequest fullHistorySyncOnDemandRequest = 6;
         optional SyncDCollectionFatalRecoveryRequest syncdCollectionFatalRecoveryRequest = 7;
         optional HistorySyncChunkRetryRequest historySyncChunkRetryRequest = 8;
+        optional GalaxyFlowAction galaxyFlowAction = 9;
         message FullHistorySyncOnDemandRequest {
             optional Message.FullHistorySyncOnDemandRequestMetadata requestMetadata = 1;
             optional CompanionReg.DeviceProps.HistorySyncConfig historySyncConfig = 2;
+        }
+        message GalaxyFlowAction {
+            required GalaxyFlowActionType type = 1;
+            required string flowId = 2;
+            required string stanzaId = 3;
+            enum GalaxyFlowActionType {
+                NOTIFY_LAUNCH = 1;
+            }
         }
         message HistorySyncChunkRetryRequest {
             optional Message.HistorySyncType syncType = 1;
@@ -1518,6 +1527,7 @@ message Message {
         COMPANION_SYNCD_SNAPSHOT_FATAL_RECOVERY = 8;
         COMPANION_CANONICAL_USER_NONCE_FETCH = 9;
         HISTORY_SYNC_CHUNK_RETRY = 10;
+        GALAXY_FLOW_ACTION = 11;
     }
     message PinInChatMessage {
         optional Protocol.MessageKey key = 1;

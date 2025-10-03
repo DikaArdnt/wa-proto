@@ -47339,6 +47339,7 @@ $root.E2E = (function() {
              * @property {E2E.Message.PeerDataOperationRequestMessage.IFullHistorySyncOnDemandRequest|null} [fullHistorySyncOnDemandRequest] PeerDataOperationRequestMessage fullHistorySyncOnDemandRequest
              * @property {E2E.Message.PeerDataOperationRequestMessage.ISyncDCollectionFatalRecoveryRequest|null} [syncdCollectionFatalRecoveryRequest] PeerDataOperationRequestMessage syncdCollectionFatalRecoveryRequest
              * @property {E2E.Message.PeerDataOperationRequestMessage.IHistorySyncChunkRetryRequest|null} [historySyncChunkRetryRequest] PeerDataOperationRequestMessage historySyncChunkRetryRequest
+             * @property {E2E.Message.PeerDataOperationRequestMessage.IGalaxyFlowAction|null} [galaxyFlowAction] PeerDataOperationRequestMessage galaxyFlowAction
              */
 
             /**
@@ -47424,6 +47425,14 @@ $root.E2E = (function() {
             PeerDataOperationRequestMessage.prototype.historySyncChunkRetryRequest = null;
 
             /**
+             * PeerDataOperationRequestMessage galaxyFlowAction.
+             * @member {E2E.Message.PeerDataOperationRequestMessage.IGalaxyFlowAction|null|undefined} galaxyFlowAction
+             * @memberof E2E.Message.PeerDataOperationRequestMessage
+             * @instance
+             */
+            PeerDataOperationRequestMessage.prototype.galaxyFlowAction = null;
+
+            /**
              * Creates a new PeerDataOperationRequestMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.PeerDataOperationRequestMessage
@@ -47466,6 +47475,8 @@ $root.E2E = (function() {
                     $root.E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest.encode(message.syncdCollectionFatalRecoveryRequest, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
                 if (message.historySyncChunkRetryRequest != null && Object.hasOwnProperty.call(message, "historySyncChunkRetryRequest"))
                     $root.E2E.Message.PeerDataOperationRequestMessage.HistorySyncChunkRetryRequest.encode(message.historySyncChunkRetryRequest, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+                if (message.galaxyFlowAction != null && Object.hasOwnProperty.call(message, "galaxyFlowAction"))
+                    $root.E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.encode(message.galaxyFlowAction, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
                 return writer;
             };
 
@@ -47540,6 +47551,10 @@ $root.E2E = (function() {
                             message.historySyncChunkRetryRequest = $root.E2E.Message.PeerDataOperationRequestMessage.HistorySyncChunkRetryRequest.decode(reader, reader.uint32());
                             break;
                         }
+                    case 9: {
+                            message.galaxyFlowAction = $root.E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.decode(reader, reader.uint32());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -47590,6 +47605,7 @@ $root.E2E = (function() {
                     case 8:
                     case 9:
                     case 10:
+                    case 11:
                         break;
                     }
                 if (message.requestStickerReupload != null && message.hasOwnProperty("requestStickerReupload")) {
@@ -47638,6 +47654,11 @@ $root.E2E = (function() {
                     var error = $root.E2E.Message.PeerDataOperationRequestMessage.HistorySyncChunkRetryRequest.verify(message.historySyncChunkRetryRequest);
                     if (error)
                         return "historySyncChunkRetryRequest." + error;
+                }
+                if (message.galaxyFlowAction != null && message.hasOwnProperty("galaxyFlowAction")) {
+                    var error = $root.E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.verify(message.galaxyFlowAction);
+                    if (error)
+                        return "galaxyFlowAction." + error;
                 }
                 return null;
             };
@@ -47705,6 +47726,10 @@ $root.E2E = (function() {
                 case 10:
                     message.peerDataOperationRequestType = 10;
                     break;
+                case "GALAXY_FLOW_ACTION":
+                case 11:
+                    message.peerDataOperationRequestType = 11;
+                    break;
                 }
                 if (object.requestStickerReupload) {
                     if (!Array.isArray(object.requestStickerReupload))
@@ -47756,6 +47781,11 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.historySyncChunkRetryRequest: object expected");
                     message.historySyncChunkRetryRequest = $root.E2E.Message.PeerDataOperationRequestMessage.HistorySyncChunkRetryRequest.fromObject(object.historySyncChunkRetryRequest);
                 }
+                if (object.galaxyFlowAction != null) {
+                    if (typeof object.galaxyFlowAction !== "object")
+                        throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.galaxyFlowAction: object expected");
+                    message.galaxyFlowAction = $root.E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.fromObject(object.galaxyFlowAction);
+                }
                 return message;
             };
 
@@ -47783,6 +47813,7 @@ $root.E2E = (function() {
                     object.fullHistorySyncOnDemandRequest = null;
                     object.syncdCollectionFatalRecoveryRequest = null;
                     object.historySyncChunkRetryRequest = null;
+                    object.galaxyFlowAction = null;
                 }
                 if (message.peerDataOperationRequestType != null && message.hasOwnProperty("peerDataOperationRequestType"))
                     object.peerDataOperationRequestType = options.enums === String ? $root.E2E.Message.PeerDataOperationRequestType[message.peerDataOperationRequestType] === undefined ? message.peerDataOperationRequestType : $root.E2E.Message.PeerDataOperationRequestType[message.peerDataOperationRequestType] : message.peerDataOperationRequestType;
@@ -47809,6 +47840,8 @@ $root.E2E = (function() {
                     object.syncdCollectionFatalRecoveryRequest = $root.E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest.toObject(message.syncdCollectionFatalRecoveryRequest, options);
                 if (message.historySyncChunkRetryRequest != null && message.hasOwnProperty("historySyncChunkRetryRequest"))
                     object.historySyncChunkRetryRequest = $root.E2E.Message.PeerDataOperationRequestMessage.HistorySyncChunkRetryRequest.toObject(message.historySyncChunkRetryRequest, options);
+                if (message.galaxyFlowAction != null && message.hasOwnProperty("galaxyFlowAction"))
+                    object.galaxyFlowAction = $root.E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.toObject(message.galaxyFlowAction, options);
                 return object;
             };
 
@@ -48075,6 +48108,284 @@ $root.E2E = (function() {
                 };
 
                 return FullHistorySyncOnDemandRequest;
+            })();
+
+            PeerDataOperationRequestMessage.GalaxyFlowAction = (function() {
+
+                /**
+                 * Properties of a GalaxyFlowAction.
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage
+                 * @interface IGalaxyFlowAction
+                 * @property {E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.GalaxyFlowActionType} type GalaxyFlowAction type
+                 * @property {string} flowId GalaxyFlowAction flowId
+                 * @property {string} stanzaId GalaxyFlowAction stanzaId
+                 */
+
+                /**
+                 * Constructs a new GalaxyFlowAction.
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage
+                 * @classdesc Represents a GalaxyFlowAction.
+                 * @implements IGalaxyFlowAction
+                 * @constructor
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.IGalaxyFlowAction=} [properties] Properties to set
+                 */
+                function GalaxyFlowAction(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * GalaxyFlowAction type.
+                 * @member {E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.GalaxyFlowActionType} type
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction
+                 * @instance
+                 */
+                GalaxyFlowAction.prototype.type = 1;
+
+                /**
+                 * GalaxyFlowAction flowId.
+                 * @member {string} flowId
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction
+                 * @instance
+                 */
+                GalaxyFlowAction.prototype.flowId = "";
+
+                /**
+                 * GalaxyFlowAction stanzaId.
+                 * @member {string} stanzaId
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction
+                 * @instance
+                 */
+                GalaxyFlowAction.prototype.stanzaId = "";
+
+                /**
+                 * Creates a new GalaxyFlowAction instance using the specified properties.
+                 * @function create
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.IGalaxyFlowAction=} [properties] Properties to set
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction} GalaxyFlowAction instance
+                 */
+                GalaxyFlowAction.create = function create(properties) {
+                    return new GalaxyFlowAction(properties);
+                };
+
+                /**
+                 * Encodes the specified GalaxyFlowAction message. Does not implicitly {@link E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.verify|verify} messages.
+                 * @function encode
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.IGalaxyFlowAction} message GalaxyFlowAction message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                GalaxyFlowAction.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.type);
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.flowId);
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.stanzaId);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified GalaxyFlowAction message, length delimited. Does not implicitly {@link E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.IGalaxyFlowAction} message GalaxyFlowAction message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                GalaxyFlowAction.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a GalaxyFlowAction message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction} GalaxyFlowAction
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                GalaxyFlowAction.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.type = reader.int32();
+                                break;
+                            }
+                        case 2: {
+                                message.flowId = reader.string();
+                                break;
+                            }
+                        case 3: {
+                                message.stanzaId = reader.string();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    if (!message.hasOwnProperty("type"))
+                        throw $util.ProtocolError("missing required 'type'", { instance: message });
+                    if (!message.hasOwnProperty("flowId"))
+                        throw $util.ProtocolError("missing required 'flowId'", { instance: message });
+                    if (!message.hasOwnProperty("stanzaId"))
+                        throw $util.ProtocolError("missing required 'stanzaId'", { instance: message });
+                    return message;
+                };
+
+                /**
+                 * Decodes a GalaxyFlowAction message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction} GalaxyFlowAction
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                GalaxyFlowAction.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a GalaxyFlowAction message.
+                 * @function verify
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                GalaxyFlowAction.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    switch (message.type) {
+                    default:
+                        return "type: enum value expected";
+                    case 1:
+                        break;
+                    }
+                    if (!$util.isString(message.flowId))
+                        return "flowId: string expected";
+                    if (!$util.isString(message.stanzaId))
+                        return "stanzaId: string expected";
+                    return null;
+                };
+
+                /**
+                 * Creates a GalaxyFlowAction message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction} GalaxyFlowAction
+                 */
+                GalaxyFlowAction.fromObject = function fromObject(object) {
+                    if (object instanceof $root.E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction)
+                        return object;
+                    var message = new $root.E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction();
+                    switch (object.type) {
+                    default:
+                        if (typeof object.type === "number") {
+                            message.type = object.type;
+                            break;
+                        }
+                        break;
+                    case "NOTIFY_LAUNCH":
+                    case 1:
+                        message.type = 1;
+                        break;
+                    }
+                    if (object.flowId != null)
+                        message.flowId = String(object.flowId);
+                    if (object.stanzaId != null)
+                        message.stanzaId = String(object.stanzaId);
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a GalaxyFlowAction message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction} message GalaxyFlowAction
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                GalaxyFlowAction.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        object.type = options.enums === String ? "NOTIFY_LAUNCH" : 1;
+                        object.flowId = "";
+                        object.stanzaId = "";
+                    }
+                    if (message.type != null && message.hasOwnProperty("type"))
+                        object.type = options.enums === String ? $root.E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.GalaxyFlowActionType[message.type] === undefined ? message.type : $root.E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.GalaxyFlowActionType[message.type] : message.type;
+                    if (message.flowId != null && message.hasOwnProperty("flowId"))
+                        object.flowId = message.flowId;
+                    if (message.stanzaId != null && message.hasOwnProperty("stanzaId"))
+                        object.stanzaId = message.stanzaId;
+                    return object;
+                };
+
+                /**
+                 * Converts this GalaxyFlowAction to JSON.
+                 * @function toJSON
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                GalaxyFlowAction.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for GalaxyFlowAction
+                 * @function getTypeUrl
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                GalaxyFlowAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction";
+                };
+
+                /**
+                 * GalaxyFlowActionType enum.
+                 * @name E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.GalaxyFlowActionType
+                 * @enum {number}
+                 * @property {number} NOTIFY_LAUNCH=1 NOTIFY_LAUNCH value
+                 */
+                GalaxyFlowAction.GalaxyFlowActionType = (function() {
+                    var valuesById = {}, values = Object.create(valuesById);
+                    values[valuesById[1] = "NOTIFY_LAUNCH"] = 1;
+                    return values;
+                })();
+
+                return GalaxyFlowAction;
             })();
 
             PeerDataOperationRequestMessage.HistorySyncChunkRetryRequest = (function() {
@@ -49808,6 +50119,7 @@ $root.E2E = (function() {
                     case 8:
                     case 9:
                     case 10:
+                    case 11:
                         break;
                     }
                 if (message.stanzaId != null && message.hasOwnProperty("stanzaId"))
@@ -49887,6 +50199,10 @@ $root.E2E = (function() {
                 case "HISTORY_SYNC_CHUNK_RETRY":
                 case 10:
                     message.peerDataOperationRequestType = 10;
+                    break;
+                case "GALAXY_FLOW_ACTION":
+                case 11:
+                    message.peerDataOperationRequestType = 11;
                     break;
                 }
                 if (object.stanzaId != null)
@@ -53296,6 +53612,7 @@ $root.E2E = (function() {
          * @property {number} COMPANION_SYNCD_SNAPSHOT_FATAL_RECOVERY=8 COMPANION_SYNCD_SNAPSHOT_FATAL_RECOVERY value
          * @property {number} COMPANION_CANONICAL_USER_NONCE_FETCH=9 COMPANION_CANONICAL_USER_NONCE_FETCH value
          * @property {number} HISTORY_SYNC_CHUNK_RETRY=10 HISTORY_SYNC_CHUNK_RETRY value
+         * @property {number} GALAXY_FLOW_ACTION=11 GALAXY_FLOW_ACTION value
          */
         Message.PeerDataOperationRequestType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -53310,6 +53627,7 @@ $root.E2E = (function() {
             values[valuesById[8] = "COMPANION_SYNCD_SNAPSHOT_FATAL_RECOVERY"] = 8;
             values[valuesById[9] = "COMPANION_CANONICAL_USER_NONCE_FETCH"] = 9;
             values[valuesById[10] = "HISTORY_SYNC_CHUNK_RETRY"] = 10;
+            values[valuesById[11] = "GALAXY_FLOW_ACTION"] = 11;
             return values;
         })();
 
@@ -90149,6 +90467,7 @@ $root.StatusAttributions = (function() {
                 case 5:
                 case 6:
                 case 7:
+                case 8:
                     break;
                 }
             if (message.actionUrl != null && message.hasOwnProperty("actionUrl"))
@@ -90265,6 +90584,10 @@ $root.StatusAttributions = (function() {
             case "AI_CREATED":
             case 7:
                 message.type = 7;
+                break;
+            case "LAYOUTS":
+            case 8:
+                message.type = 8;
                 break;
             }
             if (object.actionUrl != null)
@@ -92337,6 +92660,7 @@ $root.StatusAttributions = (function() {
          * @property {number} GROUP_STATUS=5 GROUP_STATUS value
          * @property {number} RL_ATTRIBUTION=6 RL_ATTRIBUTION value
          * @property {number} AI_CREATED=7 AI_CREATED value
+         * @property {number} LAYOUTS=8 LAYOUTS value
          */
         StatusAttribution.Type = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -92348,6 +92672,7 @@ $root.StatusAttributions = (function() {
             values[valuesById[5] = "GROUP_STATUS"] = 5;
             values[valuesById[6] = "RL_ATTRIBUTION"] = 6;
             values[valuesById[7] = "AI_CREATED"] = 7;
+            values[valuesById[8] = "LAYOUTS"] = 8;
             return values;
         })();
 
