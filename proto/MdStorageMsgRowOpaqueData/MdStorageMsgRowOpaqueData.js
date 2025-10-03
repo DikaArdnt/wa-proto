@@ -14935,11 +14935,11 @@ $root.E2E = (function() {
             case 6:
                 message.pairedMediaType = 6;
                 break;
-            case "PAIRED_HEVC_PARENT":
+            case "HEVC_VIDEO_PARENT":
             case 7:
                 message.pairedMediaType = 7;
                 break;
-            case "PAIRED_HEVC_CHILD":
+            case "HEVC_VIDEO_CHILD":
             case 8:
                 message.pairedMediaType = 8;
                 break;
@@ -18022,8 +18022,8 @@ $root.E2E = (function() {
          * @property {number} HD_IMAGE_CHILD=4 HD_IMAGE_CHILD value
          * @property {number} MOTION_PHOTO_PARENT=5 MOTION_PHOTO_PARENT value
          * @property {number} MOTION_PHOTO_CHILD=6 MOTION_PHOTO_CHILD value
-         * @property {number} PAIRED_HEVC_PARENT=7 PAIRED_HEVC_PARENT value
-         * @property {number} PAIRED_HEVC_CHILD=8 PAIRED_HEVC_CHILD value
+         * @property {number} HEVC_VIDEO_PARENT=7 HEVC_VIDEO_PARENT value
+         * @property {number} HEVC_VIDEO_CHILD=8 HEVC_VIDEO_CHILD value
          */
         ContextInfo.PairedMediaType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -18034,8 +18034,8 @@ $root.E2E = (function() {
             values[valuesById[4] = "HD_IMAGE_CHILD"] = 4;
             values[valuesById[5] = "MOTION_PHOTO_PARENT"] = 5;
             values[valuesById[6] = "MOTION_PHOTO_CHILD"] = 6;
-            values[valuesById[7] = "PAIRED_HEVC_PARENT"] = 7;
-            values[valuesById[8] = "PAIRED_HEVC_CHILD"] = 8;
+            values[valuesById[7] = "HEVC_VIDEO_PARENT"] = 7;
+            values[valuesById[8] = "HEVC_VIDEO_CHILD"] = 8;
             return values;
         })();
 

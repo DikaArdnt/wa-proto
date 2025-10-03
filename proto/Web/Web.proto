@@ -94,6 +94,10 @@ message EventAdditionalMetadata {
     optional bool isStale = 1;
 }
 
+message InteractiveMessageAdditionalMetadata {
+    optional bool isGalaxyFlowCompleted = 1;
+}
+
 message PollAdditionalMetadata {
     optional bool pollInvalidated = 1;
 }
@@ -348,6 +352,7 @@ message WebMessageInfo {
     optional string botTargetId = 73;
     optional GroupHistoryIndividualMessageInfo groupHistoryIndividualMessageInfo = 74;
     optional GroupHistoryBundleInfo groupHistoryBundleInfo = 75;
+    optional InteractiveMessageAdditionalMetadata interactiveMessageAdditionalMetadata = 76;
     enum BizPrivacyStatus {
         E2EE = 0;
         FB = 2;

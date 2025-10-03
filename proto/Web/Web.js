@@ -3459,6 +3459,211 @@ $root.Web = (function() {
         return EventAdditionalMetadata;
     })();
 
+    Web.InteractiveMessageAdditionalMetadata = (function() {
+
+        /**
+         * Properties of an InteractiveMessageAdditionalMetadata.
+         * @memberof Web
+         * @interface IInteractiveMessageAdditionalMetadata
+         * @property {boolean|null} [isGalaxyFlowCompleted] InteractiveMessageAdditionalMetadata isGalaxyFlowCompleted
+         */
+
+        /**
+         * Constructs a new InteractiveMessageAdditionalMetadata.
+         * @memberof Web
+         * @classdesc Represents an InteractiveMessageAdditionalMetadata.
+         * @implements IInteractiveMessageAdditionalMetadata
+         * @constructor
+         * @param {Web.IInteractiveMessageAdditionalMetadata=} [properties] Properties to set
+         */
+        function InteractiveMessageAdditionalMetadata(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * InteractiveMessageAdditionalMetadata isGalaxyFlowCompleted.
+         * @member {boolean} isGalaxyFlowCompleted
+         * @memberof Web.InteractiveMessageAdditionalMetadata
+         * @instance
+         */
+        InteractiveMessageAdditionalMetadata.prototype.isGalaxyFlowCompleted = false;
+
+        /**
+         * Creates a new InteractiveMessageAdditionalMetadata instance using the specified properties.
+         * @function create
+         * @memberof Web.InteractiveMessageAdditionalMetadata
+         * @static
+         * @param {Web.IInteractiveMessageAdditionalMetadata=} [properties] Properties to set
+         * @returns {Web.InteractiveMessageAdditionalMetadata} InteractiveMessageAdditionalMetadata instance
+         */
+        InteractiveMessageAdditionalMetadata.create = function create(properties) {
+            return new InteractiveMessageAdditionalMetadata(properties);
+        };
+
+        /**
+         * Encodes the specified InteractiveMessageAdditionalMetadata message. Does not implicitly {@link Web.InteractiveMessageAdditionalMetadata.verify|verify} messages.
+         * @function encode
+         * @memberof Web.InteractiveMessageAdditionalMetadata
+         * @static
+         * @param {Web.IInteractiveMessageAdditionalMetadata} message InteractiveMessageAdditionalMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        InteractiveMessageAdditionalMetadata.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.isGalaxyFlowCompleted != null && Object.hasOwnProperty.call(message, "isGalaxyFlowCompleted"))
+                writer.uint32(/* id 1, wireType 0 =*/8).bool(message.isGalaxyFlowCompleted);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified InteractiveMessageAdditionalMetadata message, length delimited. Does not implicitly {@link Web.InteractiveMessageAdditionalMetadata.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof Web.InteractiveMessageAdditionalMetadata
+         * @static
+         * @param {Web.IInteractiveMessageAdditionalMetadata} message InteractiveMessageAdditionalMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        InteractiveMessageAdditionalMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an InteractiveMessageAdditionalMetadata message from the specified reader or buffer.
+         * @function decode
+         * @memberof Web.InteractiveMessageAdditionalMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {Web.InteractiveMessageAdditionalMetadata} InteractiveMessageAdditionalMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        InteractiveMessageAdditionalMetadata.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.InteractiveMessageAdditionalMetadata();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.isGalaxyFlowCompleted = reader.bool();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an InteractiveMessageAdditionalMetadata message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof Web.InteractiveMessageAdditionalMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {Web.InteractiveMessageAdditionalMetadata} InteractiveMessageAdditionalMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        InteractiveMessageAdditionalMetadata.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an InteractiveMessageAdditionalMetadata message.
+         * @function verify
+         * @memberof Web.InteractiveMessageAdditionalMetadata
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        InteractiveMessageAdditionalMetadata.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.isGalaxyFlowCompleted != null && message.hasOwnProperty("isGalaxyFlowCompleted"))
+                if (typeof message.isGalaxyFlowCompleted !== "boolean")
+                    return "isGalaxyFlowCompleted: boolean expected";
+            return null;
+        };
+
+        /**
+         * Creates an InteractiveMessageAdditionalMetadata message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof Web.InteractiveMessageAdditionalMetadata
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {Web.InteractiveMessageAdditionalMetadata} InteractiveMessageAdditionalMetadata
+         */
+        InteractiveMessageAdditionalMetadata.fromObject = function fromObject(object) {
+            if (object instanceof $root.Web.InteractiveMessageAdditionalMetadata)
+                return object;
+            var message = new $root.Web.InteractiveMessageAdditionalMetadata();
+            if (object.isGalaxyFlowCompleted != null)
+                message.isGalaxyFlowCompleted = Boolean(object.isGalaxyFlowCompleted);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an InteractiveMessageAdditionalMetadata message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof Web.InteractiveMessageAdditionalMetadata
+         * @static
+         * @param {Web.InteractiveMessageAdditionalMetadata} message InteractiveMessageAdditionalMetadata
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        InteractiveMessageAdditionalMetadata.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.isGalaxyFlowCompleted = false;
+            if (message.isGalaxyFlowCompleted != null && message.hasOwnProperty("isGalaxyFlowCompleted"))
+                object.isGalaxyFlowCompleted = message.isGalaxyFlowCompleted;
+            return object;
+        };
+
+        /**
+         * Converts this InteractiveMessageAdditionalMetadata to JSON.
+         * @function toJSON
+         * @memberof Web.InteractiveMessageAdditionalMetadata
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        InteractiveMessageAdditionalMetadata.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for InteractiveMessageAdditionalMetadata
+         * @function getTypeUrl
+         * @memberof Web.InteractiveMessageAdditionalMetadata
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        InteractiveMessageAdditionalMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/Web.InteractiveMessageAdditionalMetadata";
+        };
+
+        return InteractiveMessageAdditionalMetadata;
+    })();
+
     Web.PollAdditionalMetadata = (function() {
 
         /**
@@ -10033,6 +10238,7 @@ $root.Web = (function() {
          * @property {string|null} [botTargetId] WebMessageInfo botTargetId
          * @property {Web.IGroupHistoryIndividualMessageInfo|null} [groupHistoryIndividualMessageInfo] WebMessageInfo groupHistoryIndividualMessageInfo
          * @property {Web.IGroupHistoryBundleInfo|null} [groupHistoryBundleInfo] WebMessageInfo groupHistoryBundleInfo
+         * @property {Web.IInteractiveMessageAdditionalMetadata|null} [interactiveMessageAdditionalMetadata] WebMessageInfo interactiveMessageAdditionalMetadata
          */
 
         /**
@@ -10573,6 +10779,14 @@ $root.Web = (function() {
         WebMessageInfo.prototype.groupHistoryBundleInfo = null;
 
         /**
+         * WebMessageInfo interactiveMessageAdditionalMetadata.
+         * @member {Web.IInteractiveMessageAdditionalMetadata|null|undefined} interactiveMessageAdditionalMetadata
+         * @memberof Web.WebMessageInfo
+         * @instance
+         */
+        WebMessageInfo.prototype.interactiveMessageAdditionalMetadata = null;
+
+        /**
          * Creates a new WebMessageInfo instance using the specified properties.
          * @function create
          * @memberof Web.WebMessageInfo
@@ -10733,6 +10947,8 @@ $root.Web = (function() {
                 $root.Web.GroupHistoryIndividualMessageInfo.encode(message.groupHistoryIndividualMessageInfo, writer.uint32(/* id 74, wireType 2 =*/594).fork()).ldelim();
             if (message.groupHistoryBundleInfo != null && Object.hasOwnProperty.call(message, "groupHistoryBundleInfo"))
                 $root.Web.GroupHistoryBundleInfo.encode(message.groupHistoryBundleInfo, writer.uint32(/* id 75, wireType 2 =*/602).fork()).ldelim();
+            if (message.interactiveMessageAdditionalMetadata != null && Object.hasOwnProperty.call(message, "interactiveMessageAdditionalMetadata"))
+                $root.Web.InteractiveMessageAdditionalMetadata.encode(message.interactiveMessageAdditionalMetadata, writer.uint32(/* id 76, wireType 2 =*/610).fork()).ldelim();
             return writer;
         };
 
@@ -11043,6 +11259,10 @@ $root.Web = (function() {
                     }
                 case 75: {
                         message.groupHistoryBundleInfo = $root.Web.GroupHistoryBundleInfo.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 76: {
+                        message.interactiveMessageAdditionalMetadata = $root.Web.InteractiveMessageAdditionalMetadata.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -11604,6 +11824,11 @@ $root.Web = (function() {
                 var error = $root.Web.GroupHistoryBundleInfo.verify(message.groupHistoryBundleInfo);
                 if (error)
                     return "groupHistoryBundleInfo." + error;
+            }
+            if (message.interactiveMessageAdditionalMetadata != null && message.hasOwnProperty("interactiveMessageAdditionalMetadata")) {
+                var error = $root.Web.InteractiveMessageAdditionalMetadata.verify(message.interactiveMessageAdditionalMetadata);
+                if (error)
+                    return "interactiveMessageAdditionalMetadata." + error;
             }
             return null;
         };
@@ -12858,6 +13083,11 @@ $root.Web = (function() {
                     throw TypeError(".Web.WebMessageInfo.groupHistoryBundleInfo: object expected");
                 message.groupHistoryBundleInfo = $root.Web.GroupHistoryBundleInfo.fromObject(object.groupHistoryBundleInfo);
             }
+            if (object.interactiveMessageAdditionalMetadata != null) {
+                if (typeof object.interactiveMessageAdditionalMetadata !== "object")
+                    throw TypeError(".Web.WebMessageInfo.interactiveMessageAdditionalMetadata: object expected");
+                message.interactiveMessageAdditionalMetadata = $root.Web.InteractiveMessageAdditionalMetadata.fromObject(object.interactiveMessageAdditionalMetadata);
+            }
             return message;
         };
 
@@ -12979,6 +13209,7 @@ $root.Web = (function() {
                 object.botTargetId = "";
                 object.groupHistoryIndividualMessageInfo = null;
                 object.groupHistoryBundleInfo = null;
+                object.interactiveMessageAdditionalMetadata = null;
             }
             if (message.key != null && message.hasOwnProperty("key"))
                 object.key = $root.Protocol.MessageKey.toObject(message.key, options);
@@ -13153,6 +13384,8 @@ $root.Web = (function() {
                 object.groupHistoryIndividualMessageInfo = $root.Web.GroupHistoryIndividualMessageInfo.toObject(message.groupHistoryIndividualMessageInfo, options);
             if (message.groupHistoryBundleInfo != null && message.hasOwnProperty("groupHistoryBundleInfo"))
                 object.groupHistoryBundleInfo = $root.Web.GroupHistoryBundleInfo.toObject(message.groupHistoryBundleInfo, options);
+            if (message.interactiveMessageAdditionalMetadata != null && message.hasOwnProperty("interactiveMessageAdditionalMetadata"))
+                object.interactiveMessageAdditionalMetadata = $root.Web.InteractiveMessageAdditionalMetadata.toObject(message.interactiveMessageAdditionalMetadata, options);
             return object;
         };
 
@@ -25770,11 +26003,11 @@ $root.E2E = (function() {
             case 6:
                 message.pairedMediaType = 6;
                 break;
-            case "PAIRED_HEVC_PARENT":
+            case "HEVC_VIDEO_PARENT":
             case 7:
                 message.pairedMediaType = 7;
                 break;
-            case "PAIRED_HEVC_CHILD":
+            case "HEVC_VIDEO_CHILD":
             case 8:
                 message.pairedMediaType = 8;
                 break;
@@ -28857,8 +29090,8 @@ $root.E2E = (function() {
          * @property {number} HD_IMAGE_CHILD=4 HD_IMAGE_CHILD value
          * @property {number} MOTION_PHOTO_PARENT=5 MOTION_PHOTO_PARENT value
          * @property {number} MOTION_PHOTO_CHILD=6 MOTION_PHOTO_CHILD value
-         * @property {number} PAIRED_HEVC_PARENT=7 PAIRED_HEVC_PARENT value
-         * @property {number} PAIRED_HEVC_CHILD=8 PAIRED_HEVC_CHILD value
+         * @property {number} HEVC_VIDEO_PARENT=7 HEVC_VIDEO_PARENT value
+         * @property {number} HEVC_VIDEO_CHILD=8 HEVC_VIDEO_CHILD value
          */
         ContextInfo.PairedMediaType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -28869,8 +29102,8 @@ $root.E2E = (function() {
             values[valuesById[4] = "HD_IMAGE_CHILD"] = 4;
             values[valuesById[5] = "MOTION_PHOTO_PARENT"] = 5;
             values[valuesById[6] = "MOTION_PHOTO_CHILD"] = 6;
-            values[valuesById[7] = "PAIRED_HEVC_PARENT"] = 7;
-            values[valuesById[8] = "PAIRED_HEVC_CHILD"] = 8;
+            values[valuesById[7] = "HEVC_VIDEO_PARENT"] = 7;
+            values[valuesById[8] = "HEVC_VIDEO_CHILD"] = 8;
             return values;
         })();
 

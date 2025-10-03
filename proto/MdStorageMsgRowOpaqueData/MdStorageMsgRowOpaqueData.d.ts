@@ -6464,8 +6464,8 @@ export namespace E2E {
             HD_IMAGE_CHILD = 4,
             MOTION_PHOTO_PARENT = 5,
             MOTION_PHOTO_CHILD = 6,
-            PAIRED_HEVC_PARENT = 7,
-            PAIRED_HEVC_CHILD = 8
+            HEVC_VIDEO_PARENT = 7,
+            HEVC_VIDEO_CHILD = 8
         }
 
         /** Properties of a QuestionReplyQuotedMessage. */
