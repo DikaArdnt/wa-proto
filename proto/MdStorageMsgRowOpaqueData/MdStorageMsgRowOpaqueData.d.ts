@@ -4220,9 +4220,6 @@ export namespace E2E {
         /** EmbeddedMusic artworkEncSha256 */
         artworkEncSha256?: (Uint8Array|null);
 
-        /** EmbeddedMusic artworkMediaKey */
-        artworkMediaKey?: (Uint8Array|null);
-
         /** EmbeddedMusic artistAttribution */
         artistAttribution?: (string|null);
 
@@ -4231,6 +4228,18 @@ export namespace E2E {
 
         /** EmbeddedMusic isExplicit */
         isExplicit?: (boolean|null);
+
+        /** EmbeddedMusic artworkMediaKey */
+        artworkMediaKey?: (Uint8Array|null);
+
+        /** EmbeddedMusic musicSongStartTimeInMs */
+        musicSongStartTimeInMs?: (number|Long|null);
+
+        /** EmbeddedMusic derivedContentStartTimeInMs */
+        derivedContentStartTimeInMs?: (number|Long|null);
+
+        /** EmbeddedMusic overlapDurationInMs */
+        overlapDurationInMs?: (number|Long|null);
     }
 
     /** Represents an EmbeddedMusic. */
@@ -4263,9 +4272,6 @@ export namespace E2E {
         /** EmbeddedMusic artworkEncSha256. */
         public artworkEncSha256: Uint8Array;
 
-        /** EmbeddedMusic artworkMediaKey. */
-        public artworkMediaKey: Uint8Array;
-
         /** EmbeddedMusic artistAttribution. */
         public artistAttribution: string;
 
@@ -4274,6 +4280,18 @@ export namespace E2E {
 
         /** EmbeddedMusic isExplicit. */
         public isExplicit: boolean;
+
+        /** EmbeddedMusic artworkMediaKey. */
+        public artworkMediaKey: Uint8Array;
+
+        /** EmbeddedMusic musicSongStartTimeInMs. */
+        public musicSongStartTimeInMs: (number|Long);
+
+        /** EmbeddedMusic derivedContentStartTimeInMs. */
+        public derivedContentStartTimeInMs: (number|Long);
+
+        /** EmbeddedMusic overlapDurationInMs. */
+        public overlapDurationInMs: (number|Long);
 
         /**
          * Creates a new EmbeddedMusic instance using the specified properties.
@@ -7046,9 +7064,6 @@ export namespace E2E {
         /** Message pollCreationMessageV4 */
         pollCreationMessageV4?: (E2E.Message.IFutureProofMessage|null);
 
-        /** Message pollCreationMessageV5 */
-        pollCreationMessageV5?: (E2E.Message.IFutureProofMessage|null);
-
         /** Message statusAddYours */
         statusAddYours?: (E2E.Message.IFutureProofMessage|null);
 
@@ -7096,6 +7111,15 @@ export namespace E2E {
 
         /** Message statusStickerInteractionMessage */
         statusStickerInteractionMessage?: (E2E.Message.IStatusStickerInteractionMessage|null);
+
+        /** Message pollCreationMessageV5 */
+        pollCreationMessageV5?: (E2E.Message.IPollCreationMessage|null);
+
+        /** Message pollResultSnapshotMessageV2 */
+        pollResultSnapshotMessageV2?: (E2E.Message.IPollResultSnapshotMessage|null);
+
+        /** Message newsletterFollowerInviteMessageV2 */
+        newsletterFollowerInviteMessageV2?: (E2E.Message.INewsletterFollowerInviteMessage|null);
     }
 
     /** Represents a Message. */
@@ -7338,9 +7362,6 @@ export namespace E2E {
         /** Message pollCreationMessageV4. */
         public pollCreationMessageV4?: (E2E.Message.IFutureProofMessage|null);
 
-        /** Message pollCreationMessageV5. */
-        public pollCreationMessageV5?: (E2E.Message.IFutureProofMessage|null);
-
         /** Message statusAddYours. */
         public statusAddYours?: (E2E.Message.IFutureProofMessage|null);
 
@@ -7388,6 +7409,15 @@ export namespace E2E {
 
         /** Message statusStickerInteractionMessage. */
         public statusStickerInteractionMessage?: (E2E.Message.IStatusStickerInteractionMessage|null);
+
+        /** Message pollCreationMessageV5. */
+        public pollCreationMessageV5?: (E2E.Message.IPollCreationMessage|null);
+
+        /** Message pollResultSnapshotMessageV2. */
+        public pollResultSnapshotMessageV2?: (E2E.Message.IPollResultSnapshotMessage|null);
+
+        /** Message newsletterFollowerInviteMessageV2. */
+        public newsletterFollowerInviteMessageV2?: (E2E.Message.INewsletterFollowerInviteMessage|null);
 
         /**
          * Creates a new Message instance using the specified properties.
@@ -20635,7 +20665,7 @@ export namespace E2E {
             pollContentType?: (E2E.Message.PollContentType|null);
 
             /** PollCreationMessage pollType */
-            pollType?: (E2E.Message.PollCreationMessage.PollType|null);
+            pollType?: (E2E.Message.PollType|null);
 
             /** PollCreationMessage correctAnswer */
             correctAnswer?: (E2E.Message.PollCreationMessage.IOption|null);
@@ -20669,7 +20699,7 @@ export namespace E2E {
             public pollContentType: E2E.Message.PollContentType;
 
             /** PollCreationMessage pollType. */
-            public pollType: E2E.Message.PollCreationMessage.PollType;
+            public pollType: E2E.Message.PollType;
 
             /** PollCreationMessage correctAnswer. */
             public correctAnswer?: (E2E.Message.PollCreationMessage.IOption|null);
@@ -20856,12 +20886,6 @@ export namespace E2E {
                  */
                 public static getTypeUrl(typeUrlPrefix?: string): string;
             }
-
-            /** PollType enum. */
-            enum PollType {
-                POLL = 0,
-                QUIZ = 1
-            }
         }
 
         /** Properties of a PollEncValue. */
@@ -20978,6 +21002,9 @@ export namespace E2E {
 
             /** PollResultSnapshotMessage contextInfo */
             contextInfo?: (E2E.IContextInfo|null);
+
+            /** PollResultSnapshotMessage pollType */
+            pollType?: (E2E.Message.PollType|null);
         }
 
         /** Represents a PollResultSnapshotMessage. */
@@ -20997,6 +21024,9 @@ export namespace E2E {
 
             /** PollResultSnapshotMessage contextInfo. */
             public contextInfo?: (E2E.IContextInfo|null);
+
+            /** PollResultSnapshotMessage pollType. */
+            public pollType: E2E.Message.PollType;
 
             /**
              * Creates a new PollResultSnapshotMessage instance using the specified properties.
@@ -21180,6 +21210,12 @@ export namespace E2E {
                  */
                 public static getTypeUrl(typeUrlPrefix?: string): string;
             }
+        }
+
+        /** PollType enum. */
+        enum PollType {
+            POLL = 0,
+            QUIZ = 1
         }
 
         /** Properties of a PollUpdateMessage. */

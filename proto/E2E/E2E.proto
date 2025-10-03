@@ -230,10 +230,13 @@ message EmbeddedMusic {
     optional string artworkDirectPath = 5;
     optional bytes artworkSha256 = 6;
     optional bytes artworkEncSha256 = 7;
-    optional bytes artworkMediaKey = 11;
     optional string artistAttribution = 8;
     optional bytes countryBlocklist = 9;
     optional bool isExplicit = 10;
+    optional bytes artworkMediaKey = 11;
+    optional int64 musicSongStartTimeInMs = 12;
+    optional int64 derivedContentStartTimeInMs = 13;
+    optional int64 overlapDurationInMs = 14;
 }
 
 message EmbeddedMessage {
@@ -590,7 +593,6 @@ message Message {
     optional FutureProofMessage associatedChildMessage = 91;
     optional FutureProofMessage groupStatusMentionMessage = 92;
     optional FutureProofMessage pollCreationMessageV4 = 93;
-    optional FutureProofMessage pollCreationMessageV5 = 94;
     optional FutureProofMessage statusAddYours = 95;
     optional FutureProofMessage groupStatusMessage = 96;
     optional AIRichResponseMessage richResponseMessage = 97;
@@ -607,6 +609,9 @@ message Message {
     optional NewsletterFollowerInviteMessage newsletterFollowerInviteMessage = 108;
     optional StatusQuotedMessage statusQuotedMessage = 109;
     optional StatusStickerInteractionMessage statusStickerInteractionMessage = 110;
+    optional PollCreationMessage pollCreationMessageV5 = 111;
+    optional PollResultSnapshotMessage pollResultSnapshotMessageV2 = 112;
+    optional NewsletterFollowerInviteMessage newsletterFollowerInviteMessageV2 = 113;
     message AlbumMessage {
         optional uint32 expectedImageCount = 2;
         optional uint32 expectedVideoCount = 3;
@@ -1557,15 +1562,11 @@ message Message {
         optional uint32 selectableOptionsCount = 4;
         optional ContextInfo contextInfo = 5;
         optional Message.PollContentType pollContentType = 6;
-        optional PollType pollType = 7;
+        optional Message.PollType pollType = 7;
         optional Option correctAnswer = 8;
         message Option {
             optional string optionName = 1;
             optional string optionHash = 2;
-        }
-        enum PollType {
-            POLL = 0;
-            QUIZ = 1;
         }
     }
     message PollEncValue {
@@ -1576,10 +1577,15 @@ message Message {
         optional string name = 1;
         repeated PollVote pollVotes = 2;
         optional ContextInfo contextInfo = 3;
+        optional Message.PollType pollType = 4;
         message PollVote {
             optional string optionName = 1;
             optional int64 optionVoteCount = 2;
         }
+    }
+    enum PollType {
+        POLL = 0;
+        QUIZ = 1;
     }
     message PollUpdateMessage {
         optional Protocol.MessageKey pollCreationMessageKey = 1;

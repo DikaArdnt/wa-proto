@@ -10975,10 +10975,13 @@ $root.E2E = (function() {
          * @property {string|null} [artworkDirectPath] EmbeddedMusic artworkDirectPath
          * @property {Uint8Array|null} [artworkSha256] EmbeddedMusic artworkSha256
          * @property {Uint8Array|null} [artworkEncSha256] EmbeddedMusic artworkEncSha256
-         * @property {Uint8Array|null} [artworkMediaKey] EmbeddedMusic artworkMediaKey
          * @property {string|null} [artistAttribution] EmbeddedMusic artistAttribution
          * @property {Uint8Array|null} [countryBlocklist] EmbeddedMusic countryBlocklist
          * @property {boolean|null} [isExplicit] EmbeddedMusic isExplicit
+         * @property {Uint8Array|null} [artworkMediaKey] EmbeddedMusic artworkMediaKey
+         * @property {number|Long|null} [musicSongStartTimeInMs] EmbeddedMusic musicSongStartTimeInMs
+         * @property {number|Long|null} [derivedContentStartTimeInMs] EmbeddedMusic derivedContentStartTimeInMs
+         * @property {number|Long|null} [overlapDurationInMs] EmbeddedMusic overlapDurationInMs
          */
 
         /**
@@ -11053,14 +11056,6 @@ $root.E2E = (function() {
         EmbeddedMusic.prototype.artworkEncSha256 = $util.newBuffer([]);
 
         /**
-         * EmbeddedMusic artworkMediaKey.
-         * @member {Uint8Array} artworkMediaKey
-         * @memberof E2E.EmbeddedMusic
-         * @instance
-         */
-        EmbeddedMusic.prototype.artworkMediaKey = $util.newBuffer([]);
-
-        /**
          * EmbeddedMusic artistAttribution.
          * @member {string} artistAttribution
          * @memberof E2E.EmbeddedMusic
@@ -11083,6 +11078,38 @@ $root.E2E = (function() {
          * @instance
          */
         EmbeddedMusic.prototype.isExplicit = false;
+
+        /**
+         * EmbeddedMusic artworkMediaKey.
+         * @member {Uint8Array} artworkMediaKey
+         * @memberof E2E.EmbeddedMusic
+         * @instance
+         */
+        EmbeddedMusic.prototype.artworkMediaKey = $util.newBuffer([]);
+
+        /**
+         * EmbeddedMusic musicSongStartTimeInMs.
+         * @member {number|Long} musicSongStartTimeInMs
+         * @memberof E2E.EmbeddedMusic
+         * @instance
+         */
+        EmbeddedMusic.prototype.musicSongStartTimeInMs = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * EmbeddedMusic derivedContentStartTimeInMs.
+         * @member {number|Long} derivedContentStartTimeInMs
+         * @memberof E2E.EmbeddedMusic
+         * @instance
+         */
+        EmbeddedMusic.prototype.derivedContentStartTimeInMs = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * EmbeddedMusic overlapDurationInMs.
+         * @member {number|Long} overlapDurationInMs
+         * @memberof E2E.EmbeddedMusic
+         * @instance
+         */
+        EmbeddedMusic.prototype.overlapDurationInMs = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
         /**
          * Creates a new EmbeddedMusic instance using the specified properties.
@@ -11130,6 +11157,12 @@ $root.E2E = (function() {
                 writer.uint32(/* id 10, wireType 0 =*/80).bool(message.isExplicit);
             if (message.artworkMediaKey != null && Object.hasOwnProperty.call(message, "artworkMediaKey"))
                 writer.uint32(/* id 11, wireType 2 =*/90).bytes(message.artworkMediaKey);
+            if (message.musicSongStartTimeInMs != null && Object.hasOwnProperty.call(message, "musicSongStartTimeInMs"))
+                writer.uint32(/* id 12, wireType 0 =*/96).int64(message.musicSongStartTimeInMs);
+            if (message.derivedContentStartTimeInMs != null && Object.hasOwnProperty.call(message, "derivedContentStartTimeInMs"))
+                writer.uint32(/* id 13, wireType 0 =*/104).int64(message.derivedContentStartTimeInMs);
+            if (message.overlapDurationInMs != null && Object.hasOwnProperty.call(message, "overlapDurationInMs"))
+                writer.uint32(/* id 14, wireType 0 =*/112).int64(message.overlapDurationInMs);
             return writer;
         };
 
@@ -11194,10 +11227,6 @@ $root.E2E = (function() {
                         message.artworkEncSha256 = reader.bytes();
                         break;
                     }
-                case 11: {
-                        message.artworkMediaKey = reader.bytes();
-                        break;
-                    }
                 case 8: {
                         message.artistAttribution = reader.string();
                         break;
@@ -11208,6 +11237,22 @@ $root.E2E = (function() {
                     }
                 case 10: {
                         message.isExplicit = reader.bool();
+                        break;
+                    }
+                case 11: {
+                        message.artworkMediaKey = reader.bytes();
+                        break;
+                    }
+                case 12: {
+                        message.musicSongStartTimeInMs = reader.int64();
+                        break;
+                    }
+                case 13: {
+                        message.derivedContentStartTimeInMs = reader.int64();
+                        break;
+                    }
+                case 14: {
+                        message.overlapDurationInMs = reader.int64();
                         break;
                     }
                 default:
@@ -11266,9 +11311,6 @@ $root.E2E = (function() {
             if (message.artworkEncSha256 != null && message.hasOwnProperty("artworkEncSha256"))
                 if (!(message.artworkEncSha256 && typeof message.artworkEncSha256.length === "number" || $util.isString(message.artworkEncSha256)))
                     return "artworkEncSha256: buffer expected";
-            if (message.artworkMediaKey != null && message.hasOwnProperty("artworkMediaKey"))
-                if (!(message.artworkMediaKey && typeof message.artworkMediaKey.length === "number" || $util.isString(message.artworkMediaKey)))
-                    return "artworkMediaKey: buffer expected";
             if (message.artistAttribution != null && message.hasOwnProperty("artistAttribution"))
                 if (!$util.isString(message.artistAttribution))
                     return "artistAttribution: string expected";
@@ -11278,6 +11320,18 @@ $root.E2E = (function() {
             if (message.isExplicit != null && message.hasOwnProperty("isExplicit"))
                 if (typeof message.isExplicit !== "boolean")
                     return "isExplicit: boolean expected";
+            if (message.artworkMediaKey != null && message.hasOwnProperty("artworkMediaKey"))
+                if (!(message.artworkMediaKey && typeof message.artworkMediaKey.length === "number" || $util.isString(message.artworkMediaKey)))
+                    return "artworkMediaKey: buffer expected";
+            if (message.musicSongStartTimeInMs != null && message.hasOwnProperty("musicSongStartTimeInMs"))
+                if (!$util.isInteger(message.musicSongStartTimeInMs) && !(message.musicSongStartTimeInMs && $util.isInteger(message.musicSongStartTimeInMs.low) && $util.isInteger(message.musicSongStartTimeInMs.high)))
+                    return "musicSongStartTimeInMs: integer|Long expected";
+            if (message.derivedContentStartTimeInMs != null && message.hasOwnProperty("derivedContentStartTimeInMs"))
+                if (!$util.isInteger(message.derivedContentStartTimeInMs) && !(message.derivedContentStartTimeInMs && $util.isInteger(message.derivedContentStartTimeInMs.low) && $util.isInteger(message.derivedContentStartTimeInMs.high)))
+                    return "derivedContentStartTimeInMs: integer|Long expected";
+            if (message.overlapDurationInMs != null && message.hasOwnProperty("overlapDurationInMs"))
+                if (!$util.isInteger(message.overlapDurationInMs) && !(message.overlapDurationInMs && $util.isInteger(message.overlapDurationInMs.low) && $util.isInteger(message.overlapDurationInMs.high)))
+                    return "overlapDurationInMs: integer|Long expected";
             return null;
         };
 
@@ -11313,11 +11367,6 @@ $root.E2E = (function() {
                     $util.base64.decode(object.artworkEncSha256, message.artworkEncSha256 = $util.newBuffer($util.base64.length(object.artworkEncSha256)), 0);
                 else if (object.artworkEncSha256.length >= 0)
                     message.artworkEncSha256 = object.artworkEncSha256;
-            if (object.artworkMediaKey != null)
-                if (typeof object.artworkMediaKey === "string")
-                    $util.base64.decode(object.artworkMediaKey, message.artworkMediaKey = $util.newBuffer($util.base64.length(object.artworkMediaKey)), 0);
-                else if (object.artworkMediaKey.length >= 0)
-                    message.artworkMediaKey = object.artworkMediaKey;
             if (object.artistAttribution != null)
                 message.artistAttribution = String(object.artistAttribution);
             if (object.countryBlocklist != null)
@@ -11327,6 +11376,38 @@ $root.E2E = (function() {
                     message.countryBlocklist = object.countryBlocklist;
             if (object.isExplicit != null)
                 message.isExplicit = Boolean(object.isExplicit);
+            if (object.artworkMediaKey != null)
+                if (typeof object.artworkMediaKey === "string")
+                    $util.base64.decode(object.artworkMediaKey, message.artworkMediaKey = $util.newBuffer($util.base64.length(object.artworkMediaKey)), 0);
+                else if (object.artworkMediaKey.length >= 0)
+                    message.artworkMediaKey = object.artworkMediaKey;
+            if (object.musicSongStartTimeInMs != null)
+                if ($util.Long)
+                    (message.musicSongStartTimeInMs = $util.Long.fromValue(object.musicSongStartTimeInMs)).unsigned = false;
+                else if (typeof object.musicSongStartTimeInMs === "string")
+                    message.musicSongStartTimeInMs = parseInt(object.musicSongStartTimeInMs, 10);
+                else if (typeof object.musicSongStartTimeInMs === "number")
+                    message.musicSongStartTimeInMs = object.musicSongStartTimeInMs;
+                else if (typeof object.musicSongStartTimeInMs === "object")
+                    message.musicSongStartTimeInMs = new $util.LongBits(object.musicSongStartTimeInMs.low >>> 0, object.musicSongStartTimeInMs.high >>> 0).toNumber();
+            if (object.derivedContentStartTimeInMs != null)
+                if ($util.Long)
+                    (message.derivedContentStartTimeInMs = $util.Long.fromValue(object.derivedContentStartTimeInMs)).unsigned = false;
+                else if (typeof object.derivedContentStartTimeInMs === "string")
+                    message.derivedContentStartTimeInMs = parseInt(object.derivedContentStartTimeInMs, 10);
+                else if (typeof object.derivedContentStartTimeInMs === "number")
+                    message.derivedContentStartTimeInMs = object.derivedContentStartTimeInMs;
+                else if (typeof object.derivedContentStartTimeInMs === "object")
+                    message.derivedContentStartTimeInMs = new $util.LongBits(object.derivedContentStartTimeInMs.low >>> 0, object.derivedContentStartTimeInMs.high >>> 0).toNumber();
+            if (object.overlapDurationInMs != null)
+                if ($util.Long)
+                    (message.overlapDurationInMs = $util.Long.fromValue(object.overlapDurationInMs)).unsigned = false;
+                else if (typeof object.overlapDurationInMs === "string")
+                    message.overlapDurationInMs = parseInt(object.overlapDurationInMs, 10);
+                else if (typeof object.overlapDurationInMs === "number")
+                    message.overlapDurationInMs = object.overlapDurationInMs;
+                else if (typeof object.overlapDurationInMs === "object")
+                    message.overlapDurationInMs = new $util.LongBits(object.overlapDurationInMs.low >>> 0, object.overlapDurationInMs.high >>> 0).toNumber();
             return message;
         };
 
@@ -11379,6 +11460,21 @@ $root.E2E = (function() {
                     if (options.bytes !== Array)
                         object.artworkMediaKey = $util.newBuffer(object.artworkMediaKey);
                 }
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.musicSongStartTimeInMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.musicSongStartTimeInMs = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.derivedContentStartTimeInMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.derivedContentStartTimeInMs = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.overlapDurationInMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.overlapDurationInMs = options.longs === String ? "0" : 0;
             }
             if (message.musicContentMediaId != null && message.hasOwnProperty("musicContentMediaId"))
                 object.musicContentMediaId = message.musicContentMediaId;
@@ -11402,6 +11498,21 @@ $root.E2E = (function() {
                 object.isExplicit = message.isExplicit;
             if (message.artworkMediaKey != null && message.hasOwnProperty("artworkMediaKey"))
                 object.artworkMediaKey = options.bytes === String ? $util.base64.encode(message.artworkMediaKey, 0, message.artworkMediaKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.artworkMediaKey) : message.artworkMediaKey;
+            if (message.musicSongStartTimeInMs != null && message.hasOwnProperty("musicSongStartTimeInMs"))
+                if (typeof message.musicSongStartTimeInMs === "number")
+                    object.musicSongStartTimeInMs = options.longs === String ? String(message.musicSongStartTimeInMs) : message.musicSongStartTimeInMs;
+                else
+                    object.musicSongStartTimeInMs = options.longs === String ? $util.Long.prototype.toString.call(message.musicSongStartTimeInMs) : options.longs === Number ? new $util.LongBits(message.musicSongStartTimeInMs.low >>> 0, message.musicSongStartTimeInMs.high >>> 0).toNumber() : message.musicSongStartTimeInMs;
+            if (message.derivedContentStartTimeInMs != null && message.hasOwnProperty("derivedContentStartTimeInMs"))
+                if (typeof message.derivedContentStartTimeInMs === "number")
+                    object.derivedContentStartTimeInMs = options.longs === String ? String(message.derivedContentStartTimeInMs) : message.derivedContentStartTimeInMs;
+                else
+                    object.derivedContentStartTimeInMs = options.longs === String ? $util.Long.prototype.toString.call(message.derivedContentStartTimeInMs) : options.longs === Number ? new $util.LongBits(message.derivedContentStartTimeInMs.low >>> 0, message.derivedContentStartTimeInMs.high >>> 0).toNumber() : message.derivedContentStartTimeInMs;
+            if (message.overlapDurationInMs != null && message.hasOwnProperty("overlapDurationInMs"))
+                if (typeof message.overlapDurationInMs === "number")
+                    object.overlapDurationInMs = options.longs === String ? String(message.overlapDurationInMs) : message.overlapDurationInMs;
+                else
+                    object.overlapDurationInMs = options.longs === String ? $util.Long.prototype.toString.call(message.overlapDurationInMs) : options.longs === Number ? new $util.LongBits(message.overlapDurationInMs.low >>> 0, message.overlapDurationInMs.high >>> 0).toNumber() : message.overlapDurationInMs;
             return object;
         };
 
@@ -18910,7 +19021,6 @@ $root.E2E = (function() {
          * @property {E2E.Message.IFutureProofMessage|null} [associatedChildMessage] Message associatedChildMessage
          * @property {E2E.Message.IFutureProofMessage|null} [groupStatusMentionMessage] Message groupStatusMentionMessage
          * @property {E2E.Message.IFutureProofMessage|null} [pollCreationMessageV4] Message pollCreationMessageV4
-         * @property {E2E.Message.IFutureProofMessage|null} [pollCreationMessageV5] Message pollCreationMessageV5
          * @property {E2E.Message.IFutureProofMessage|null} [statusAddYours] Message statusAddYours
          * @property {E2E.Message.IFutureProofMessage|null} [groupStatusMessage] Message groupStatusMessage
          * @property {E2E.IAIRichResponseMessage|null} [richResponseMessage] Message richResponseMessage
@@ -18927,6 +19037,9 @@ $root.E2E = (function() {
          * @property {E2E.Message.INewsletterFollowerInviteMessage|null} [newsletterFollowerInviteMessage] Message newsletterFollowerInviteMessage
          * @property {E2E.Message.IStatusQuotedMessage|null} [statusQuotedMessage] Message statusQuotedMessage
          * @property {E2E.Message.IStatusStickerInteractionMessage|null} [statusStickerInteractionMessage] Message statusStickerInteractionMessage
+         * @property {E2E.Message.IPollCreationMessage|null} [pollCreationMessageV5] Message pollCreationMessageV5
+         * @property {E2E.Message.IPollResultSnapshotMessage|null} [pollResultSnapshotMessageV2] Message pollResultSnapshotMessageV2
+         * @property {E2E.Message.INewsletterFollowerInviteMessage|null} [newsletterFollowerInviteMessageV2] Message newsletterFollowerInviteMessageV2
          */
 
         /**
@@ -19561,14 +19674,6 @@ $root.E2E = (function() {
         Message.prototype.pollCreationMessageV4 = null;
 
         /**
-         * Message pollCreationMessageV5.
-         * @member {E2E.Message.IFutureProofMessage|null|undefined} pollCreationMessageV5
-         * @memberof E2E.Message
-         * @instance
-         */
-        Message.prototype.pollCreationMessageV5 = null;
-
-        /**
          * Message statusAddYours.
          * @member {E2E.Message.IFutureProofMessage|null|undefined} statusAddYours
          * @memberof E2E.Message
@@ -19695,6 +19800,30 @@ $root.E2E = (function() {
          * @instance
          */
         Message.prototype.statusStickerInteractionMessage = null;
+
+        /**
+         * Message pollCreationMessageV5.
+         * @member {E2E.Message.IPollCreationMessage|null|undefined} pollCreationMessageV5
+         * @memberof E2E.Message
+         * @instance
+         */
+        Message.prototype.pollCreationMessageV5 = null;
+
+        /**
+         * Message pollResultSnapshotMessageV2.
+         * @member {E2E.Message.IPollResultSnapshotMessage|null|undefined} pollResultSnapshotMessageV2
+         * @memberof E2E.Message
+         * @instance
+         */
+        Message.prototype.pollResultSnapshotMessageV2 = null;
+
+        /**
+         * Message newsletterFollowerInviteMessageV2.
+         * @member {E2E.Message.INewsletterFollowerInviteMessage|null|undefined} newsletterFollowerInviteMessageV2
+         * @memberof E2E.Message
+         * @instance
+         */
+        Message.prototype.newsletterFollowerInviteMessageV2 = null;
 
         /**
          * Creates a new Message instance using the specified properties.
@@ -19874,8 +20003,6 @@ $root.E2E = (function() {
                 $root.E2E.Message.FutureProofMessage.encode(message.groupStatusMentionMessage, writer.uint32(/* id 92, wireType 2 =*/738).fork()).ldelim();
             if (message.pollCreationMessageV4 != null && Object.hasOwnProperty.call(message, "pollCreationMessageV4"))
                 $root.E2E.Message.FutureProofMessage.encode(message.pollCreationMessageV4, writer.uint32(/* id 93, wireType 2 =*/746).fork()).ldelim();
-            if (message.pollCreationMessageV5 != null && Object.hasOwnProperty.call(message, "pollCreationMessageV5"))
-                $root.E2E.Message.FutureProofMessage.encode(message.pollCreationMessageV5, writer.uint32(/* id 94, wireType 2 =*/754).fork()).ldelim();
             if (message.statusAddYours != null && Object.hasOwnProperty.call(message, "statusAddYours"))
                 $root.E2E.Message.FutureProofMessage.encode(message.statusAddYours, writer.uint32(/* id 95, wireType 2 =*/762).fork()).ldelim();
             if (message.groupStatusMessage != null && Object.hasOwnProperty.call(message, "groupStatusMessage"))
@@ -19908,6 +20035,12 @@ $root.E2E = (function() {
                 $root.E2E.Message.StatusQuotedMessage.encode(message.statusQuotedMessage, writer.uint32(/* id 109, wireType 2 =*/874).fork()).ldelim();
             if (message.statusStickerInteractionMessage != null && Object.hasOwnProperty.call(message, "statusStickerInteractionMessage"))
                 $root.E2E.Message.StatusStickerInteractionMessage.encode(message.statusStickerInteractionMessage, writer.uint32(/* id 110, wireType 2 =*/882).fork()).ldelim();
+            if (message.pollCreationMessageV5 != null && Object.hasOwnProperty.call(message, "pollCreationMessageV5"))
+                $root.E2E.Message.PollCreationMessage.encode(message.pollCreationMessageV5, writer.uint32(/* id 111, wireType 2 =*/890).fork()).ldelim();
+            if (message.pollResultSnapshotMessageV2 != null && Object.hasOwnProperty.call(message, "pollResultSnapshotMessageV2"))
+                $root.E2E.Message.PollResultSnapshotMessage.encode(message.pollResultSnapshotMessageV2, writer.uint32(/* id 112, wireType 2 =*/898).fork()).ldelim();
+            if (message.newsletterFollowerInviteMessageV2 != null && Object.hasOwnProperty.call(message, "newsletterFollowerInviteMessageV2"))
+                $root.E2E.Message.NewsletterFollowerInviteMessage.encode(message.newsletterFollowerInviteMessageV2, writer.uint32(/* id 113, wireType 2 =*/906).fork()).ldelim();
             return writer;
         };
 
@@ -20252,10 +20385,6 @@ $root.E2E = (function() {
                         message.pollCreationMessageV4 = $root.E2E.Message.FutureProofMessage.decode(reader, reader.uint32());
                         break;
                     }
-                case 94: {
-                        message.pollCreationMessageV5 = $root.E2E.Message.FutureProofMessage.decode(reader, reader.uint32());
-                        break;
-                    }
                 case 95: {
                         message.statusAddYours = $root.E2E.Message.FutureProofMessage.decode(reader, reader.uint32());
                         break;
@@ -20318,6 +20447,18 @@ $root.E2E = (function() {
                     }
                 case 110: {
                         message.statusStickerInteractionMessage = $root.E2E.Message.StatusStickerInteractionMessage.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 111: {
+                        message.pollCreationMessageV5 = $root.E2E.Message.PollCreationMessage.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 112: {
+                        message.pollResultSnapshotMessageV2 = $root.E2E.Message.PollResultSnapshotMessage.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 113: {
+                        message.newsletterFollowerInviteMessageV2 = $root.E2E.Message.NewsletterFollowerInviteMessage.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -20738,11 +20879,6 @@ $root.E2E = (function() {
                 if (error)
                     return "pollCreationMessageV4." + error;
             }
-            if (message.pollCreationMessageV5 != null && message.hasOwnProperty("pollCreationMessageV5")) {
-                var error = $root.E2E.Message.FutureProofMessage.verify(message.pollCreationMessageV5);
-                if (error)
-                    return "pollCreationMessageV5." + error;
-            }
             if (message.statusAddYours != null && message.hasOwnProperty("statusAddYours")) {
                 var error = $root.E2E.Message.FutureProofMessage.verify(message.statusAddYours);
                 if (error)
@@ -20822,6 +20958,21 @@ $root.E2E = (function() {
                 var error = $root.E2E.Message.StatusStickerInteractionMessage.verify(message.statusStickerInteractionMessage);
                 if (error)
                     return "statusStickerInteractionMessage." + error;
+            }
+            if (message.pollCreationMessageV5 != null && message.hasOwnProperty("pollCreationMessageV5")) {
+                var error = $root.E2E.Message.PollCreationMessage.verify(message.pollCreationMessageV5);
+                if (error)
+                    return "pollCreationMessageV5." + error;
+            }
+            if (message.pollResultSnapshotMessageV2 != null && message.hasOwnProperty("pollResultSnapshotMessageV2")) {
+                var error = $root.E2E.Message.PollResultSnapshotMessage.verify(message.pollResultSnapshotMessageV2);
+                if (error)
+                    return "pollResultSnapshotMessageV2." + error;
+            }
+            if (message.newsletterFollowerInviteMessageV2 != null && message.hasOwnProperty("newsletterFollowerInviteMessageV2")) {
+                var error = $root.E2E.Message.NewsletterFollowerInviteMessage.verify(message.newsletterFollowerInviteMessageV2);
+                if (error)
+                    return "newsletterFollowerInviteMessageV2." + error;
             }
             return null;
         };
@@ -21220,11 +21371,6 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.Message.pollCreationMessageV4: object expected");
                 message.pollCreationMessageV4 = $root.E2E.Message.FutureProofMessage.fromObject(object.pollCreationMessageV4);
             }
-            if (object.pollCreationMessageV5 != null) {
-                if (typeof object.pollCreationMessageV5 !== "object")
-                    throw TypeError(".E2E.Message.pollCreationMessageV5: object expected");
-                message.pollCreationMessageV5 = $root.E2E.Message.FutureProofMessage.fromObject(object.pollCreationMessageV5);
-            }
             if (object.statusAddYours != null) {
                 if (typeof object.statusAddYours !== "object")
                     throw TypeError(".E2E.Message.statusAddYours: object expected");
@@ -21304,6 +21450,21 @@ $root.E2E = (function() {
                 if (typeof object.statusStickerInteractionMessage !== "object")
                     throw TypeError(".E2E.Message.statusStickerInteractionMessage: object expected");
                 message.statusStickerInteractionMessage = $root.E2E.Message.StatusStickerInteractionMessage.fromObject(object.statusStickerInteractionMessage);
+            }
+            if (object.pollCreationMessageV5 != null) {
+                if (typeof object.pollCreationMessageV5 !== "object")
+                    throw TypeError(".E2E.Message.pollCreationMessageV5: object expected");
+                message.pollCreationMessageV5 = $root.E2E.Message.PollCreationMessage.fromObject(object.pollCreationMessageV5);
+            }
+            if (object.pollResultSnapshotMessageV2 != null) {
+                if (typeof object.pollResultSnapshotMessageV2 !== "object")
+                    throw TypeError(".E2E.Message.pollResultSnapshotMessageV2: object expected");
+                message.pollResultSnapshotMessageV2 = $root.E2E.Message.PollResultSnapshotMessage.fromObject(object.pollResultSnapshotMessageV2);
+            }
+            if (object.newsletterFollowerInviteMessageV2 != null) {
+                if (typeof object.newsletterFollowerInviteMessageV2 !== "object")
+                    throw TypeError(".E2E.Message.newsletterFollowerInviteMessageV2: object expected");
+                message.newsletterFollowerInviteMessageV2 = $root.E2E.Message.NewsletterFollowerInviteMessage.fromObject(object.newsletterFollowerInviteMessageV2);
             }
             return message;
         };
@@ -21399,7 +21560,6 @@ $root.E2E = (function() {
                 object.associatedChildMessage = null;
                 object.groupStatusMentionMessage = null;
                 object.pollCreationMessageV4 = null;
-                object.pollCreationMessageV5 = null;
                 object.statusAddYours = null;
                 object.groupStatusMessage = null;
                 object.richResponseMessage = null;
@@ -21416,6 +21576,9 @@ $root.E2E = (function() {
                 object.newsletterFollowerInviteMessage = null;
                 object.statusQuotedMessage = null;
                 object.statusStickerInteractionMessage = null;
+                object.pollCreationMessageV5 = null;
+                object.pollResultSnapshotMessageV2 = null;
+                object.newsletterFollowerInviteMessageV2 = null;
             }
             if (message.conversation != null && message.hasOwnProperty("conversation"))
                 object.conversation = message.conversation;
@@ -21571,8 +21734,6 @@ $root.E2E = (function() {
                 object.groupStatusMentionMessage = $root.E2E.Message.FutureProofMessage.toObject(message.groupStatusMentionMessage, options);
             if (message.pollCreationMessageV4 != null && message.hasOwnProperty("pollCreationMessageV4"))
                 object.pollCreationMessageV4 = $root.E2E.Message.FutureProofMessage.toObject(message.pollCreationMessageV4, options);
-            if (message.pollCreationMessageV5 != null && message.hasOwnProperty("pollCreationMessageV5"))
-                object.pollCreationMessageV5 = $root.E2E.Message.FutureProofMessage.toObject(message.pollCreationMessageV5, options);
             if (message.statusAddYours != null && message.hasOwnProperty("statusAddYours"))
                 object.statusAddYours = $root.E2E.Message.FutureProofMessage.toObject(message.statusAddYours, options);
             if (message.groupStatusMessage != null && message.hasOwnProperty("groupStatusMessage"))
@@ -21605,6 +21766,12 @@ $root.E2E = (function() {
                 object.statusQuotedMessage = $root.E2E.Message.StatusQuotedMessage.toObject(message.statusQuotedMessage, options);
             if (message.statusStickerInteractionMessage != null && message.hasOwnProperty("statusStickerInteractionMessage"))
                 object.statusStickerInteractionMessage = $root.E2E.Message.StatusStickerInteractionMessage.toObject(message.statusStickerInteractionMessage, options);
+            if (message.pollCreationMessageV5 != null && message.hasOwnProperty("pollCreationMessageV5"))
+                object.pollCreationMessageV5 = $root.E2E.Message.PollCreationMessage.toObject(message.pollCreationMessageV5, options);
+            if (message.pollResultSnapshotMessageV2 != null && message.hasOwnProperty("pollResultSnapshotMessageV2"))
+                object.pollResultSnapshotMessageV2 = $root.E2E.Message.PollResultSnapshotMessage.toObject(message.pollResultSnapshotMessageV2, options);
+            if (message.newsletterFollowerInviteMessageV2 != null && message.hasOwnProperty("newsletterFollowerInviteMessageV2"))
+                object.newsletterFollowerInviteMessageV2 = $root.E2E.Message.NewsletterFollowerInviteMessage.toObject(message.newsletterFollowerInviteMessageV2, options);
             return object;
         };
 
@@ -57035,7 +57202,7 @@ $root.E2E = (function() {
              * @property {number|null} [selectableOptionsCount] PollCreationMessage selectableOptionsCount
              * @property {E2E.IContextInfo|null} [contextInfo] PollCreationMessage contextInfo
              * @property {E2E.Message.PollContentType|null} [pollContentType] PollCreationMessage pollContentType
-             * @property {E2E.Message.PollCreationMessage.PollType|null} [pollType] PollCreationMessage pollType
+             * @property {E2E.Message.PollType|null} [pollType] PollCreationMessage pollType
              * @property {E2E.Message.PollCreationMessage.IOption|null} [correctAnswer] PollCreationMessage correctAnswer
              */
 
@@ -57105,7 +57272,7 @@ $root.E2E = (function() {
 
             /**
              * PollCreationMessage pollType.
-             * @member {E2E.Message.PollCreationMessage.PollType} pollType
+             * @member {E2E.Message.PollType} pollType
              * @memberof E2E.Message.PollCreationMessage
              * @instance
              */
@@ -57439,7 +57606,7 @@ $root.E2E = (function() {
                 if (message.pollContentType != null && message.hasOwnProperty("pollContentType"))
                     object.pollContentType = options.enums === String ? $root.E2E.Message.PollContentType[message.pollContentType] === undefined ? message.pollContentType : $root.E2E.Message.PollContentType[message.pollContentType] : message.pollContentType;
                 if (message.pollType != null && message.hasOwnProperty("pollType"))
-                    object.pollType = options.enums === String ? $root.E2E.Message.PollCreationMessage.PollType[message.pollType] === undefined ? message.pollType : $root.E2E.Message.PollCreationMessage.PollType[message.pollType] : message.pollType;
+                    object.pollType = options.enums === String ? $root.E2E.Message.PollType[message.pollType] === undefined ? message.pollType : $root.E2E.Message.PollType[message.pollType] : message.pollType;
                 if (message.correctAnswer != null && message.hasOwnProperty("correctAnswer"))
                     object.correctAnswer = $root.E2E.Message.PollCreationMessage.Option.toObject(message.correctAnswer, options);
                 return object;
@@ -57698,20 +57865,6 @@ $root.E2E = (function() {
                 };
 
                 return Option;
-            })();
-
-            /**
-             * PollType enum.
-             * @name E2E.Message.PollCreationMessage.PollType
-             * @enum {number}
-             * @property {number} POLL=0 POLL value
-             * @property {number} QUIZ=1 QUIZ value
-             */
-            PollCreationMessage.PollType = (function() {
-                var valuesById = {}, values = Object.create(valuesById);
-                values[valuesById[0] = "POLL"] = 0;
-                values[valuesById[1] = "QUIZ"] = 1;
-                return values;
             })();
 
             return PollCreationMessage;
@@ -57973,6 +58126,7 @@ $root.E2E = (function() {
              * @property {string|null} [name] PollResultSnapshotMessage name
              * @property {Array.<E2E.Message.PollResultSnapshotMessage.IPollVote>|null} [pollVotes] PollResultSnapshotMessage pollVotes
              * @property {E2E.IContextInfo|null} [contextInfo] PollResultSnapshotMessage contextInfo
+             * @property {E2E.Message.PollType|null} [pollType] PollResultSnapshotMessage pollType
              */
 
             /**
@@ -58016,6 +58170,14 @@ $root.E2E = (function() {
             PollResultSnapshotMessage.prototype.contextInfo = null;
 
             /**
+             * PollResultSnapshotMessage pollType.
+             * @member {E2E.Message.PollType} pollType
+             * @memberof E2E.Message.PollResultSnapshotMessage
+             * @instance
+             */
+            PollResultSnapshotMessage.prototype.pollType = 0;
+
+            /**
              * Creates a new PollResultSnapshotMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.PollResultSnapshotMessage
@@ -58046,6 +58208,8 @@ $root.E2E = (function() {
                         $root.E2E.Message.PollResultSnapshotMessage.PollVote.encode(message.pollVotes[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 if (message.contextInfo != null && Object.hasOwnProperty.call(message, "contextInfo"))
                     $root.E2E.ContextInfo.encode(message.contextInfo, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                if (message.pollType != null && Object.hasOwnProperty.call(message, "pollType"))
+                    writer.uint32(/* id 4, wireType 0 =*/32).int32(message.pollType);
                 return writer;
             };
 
@@ -58094,6 +58258,10 @@ $root.E2E = (function() {
                         }
                     case 3: {
                             message.contextInfo = $root.E2E.ContextInfo.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 4: {
+                            message.pollType = reader.int32();
                             break;
                         }
                     default:
@@ -58148,6 +58316,14 @@ $root.E2E = (function() {
                     if (error)
                         return "contextInfo." + error;
                 }
+                if (message.pollType != null && message.hasOwnProperty("pollType"))
+                    switch (message.pollType) {
+                    default:
+                        return "pollType: enum value expected";
+                    case 0:
+                    case 1:
+                        break;
+                    }
                 return null;
             };
 
@@ -58180,6 +58356,22 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.PollResultSnapshotMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo);
                 }
+                switch (object.pollType) {
+                default:
+                    if (typeof object.pollType === "number") {
+                        message.pollType = object.pollType;
+                        break;
+                    }
+                    break;
+                case "POLL":
+                case 0:
+                    message.pollType = 0;
+                    break;
+                case "QUIZ":
+                case 1:
+                    message.pollType = 1;
+                    break;
+                }
                 return message;
             };
 
@@ -58201,6 +58393,7 @@ $root.E2E = (function() {
                 if (options.defaults) {
                     object.name = "";
                     object.contextInfo = null;
+                    object.pollType = options.enums === String ? "POLL" : 0;
                 }
                 if (message.name != null && message.hasOwnProperty("name"))
                     object.name = message.name;
@@ -58211,6 +58404,8 @@ $root.E2E = (function() {
                 }
                 if (message.contextInfo != null && message.hasOwnProperty("contextInfo"))
                     object.contextInfo = $root.E2E.ContextInfo.toObject(message.contextInfo, options);
+                if (message.pollType != null && message.hasOwnProperty("pollType"))
+                    object.pollType = options.enums === String ? $root.E2E.Message.PollType[message.pollType] === undefined ? message.pollType : $root.E2E.Message.PollType[message.pollType] : message.pollType;
                 return object;
             };
 
@@ -58484,6 +58679,20 @@ $root.E2E = (function() {
             })();
 
             return PollResultSnapshotMessage;
+        })();
+
+        /**
+         * PollType enum.
+         * @name E2E.Message.PollType
+         * @enum {number}
+         * @property {number} POLL=0 POLL value
+         * @property {number} QUIZ=1 QUIZ value
+         */
+        Message.PollType = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "POLL"] = 0;
+            values[valuesById[1] = "QUIZ"] = 1;
+            return values;
         })();
 
         Message.PollUpdateMessage = (function() {
