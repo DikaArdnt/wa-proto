@@ -8841,6 +8841,9 @@ export namespace E2E {
 
         /** Message newsletterFollowerInviteMessageV2 */
         newsletterFollowerInviteMessageV2?: (E2E.Message.INewsletterFollowerInviteMessage|null);
+
+        /** Message requestContactInfoMessage */
+        requestContactInfoMessage?: (E2E.Message.IRequestContactInfoMessage|null);
     }
 
     /** Represents a Message. */
@@ -9139,6 +9142,9 @@ export namespace E2E {
 
         /** Message newsletterFollowerInviteMessageV2. */
         public newsletterFollowerInviteMessageV2?: (E2E.Message.INewsletterFollowerInviteMessage|null);
+
+        /** Message requestContactInfoMessage. */
+        public requestContactInfoMessage?: (E2E.Message.IRequestContactInfoMessage|null);
 
         /**
          * Creates a new Message instance using the specified properties.
@@ -24124,6 +24130,115 @@ export namespace E2E {
 
             /**
              * Gets the default type url for ReactionMessage
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a RequestContactInfoMessage. */
+        interface IRequestContactInfoMessage {
+
+            /** RequestContactInfoMessage text */
+            text?: (string|null);
+
+            /** RequestContactInfoMessage ctaButtonText */
+            ctaButtonText?: (string|null);
+
+            /** RequestContactInfoMessage contextInfo */
+            contextInfo?: (E2E.IContextInfo|null);
+        }
+
+        /** Represents a RequestContactInfoMessage. */
+        class RequestContactInfoMessage implements IRequestContactInfoMessage {
+
+            /**
+             * Constructs a new RequestContactInfoMessage.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IRequestContactInfoMessage);
+
+            /** RequestContactInfoMessage text. */
+            public text: string;
+
+            /** RequestContactInfoMessage ctaButtonText. */
+            public ctaButtonText: string;
+
+            /** RequestContactInfoMessage contextInfo. */
+            public contextInfo?: (E2E.IContextInfo|null);
+
+            /**
+             * Creates a new RequestContactInfoMessage instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns RequestContactInfoMessage instance
+             */
+            public static create(properties?: E2E.Message.IRequestContactInfoMessage): E2E.Message.RequestContactInfoMessage;
+
+            /**
+             * Encodes the specified RequestContactInfoMessage message. Does not implicitly {@link E2E.Message.RequestContactInfoMessage.verify|verify} messages.
+             * @param message RequestContactInfoMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IRequestContactInfoMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified RequestContactInfoMessage message, length delimited. Does not implicitly {@link E2E.Message.RequestContactInfoMessage.verify|verify} messages.
+             * @param message RequestContactInfoMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IRequestContactInfoMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a RequestContactInfoMessage message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns RequestContactInfoMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.RequestContactInfoMessage;
+
+            /**
+             * Decodes a RequestContactInfoMessage message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns RequestContactInfoMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.RequestContactInfoMessage;
+
+            /**
+             * Verifies a RequestContactInfoMessage message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a RequestContactInfoMessage message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns RequestContactInfoMessage
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.RequestContactInfoMessage;
+
+            /**
+             * Creates a plain object from a RequestContactInfoMessage message. Also converts values to other types if specified.
+             * @param message RequestContactInfoMessage
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.RequestContactInfoMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this RequestContactInfoMessage to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for RequestContactInfoMessage
              * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
              * @returns The default type url
              */
