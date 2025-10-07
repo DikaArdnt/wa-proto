@@ -174,7 +174,8 @@ export namespace SyncAction {
             IPAD = 7,
             WEAROS = 8,
             WASG = 9,
-            WEARM = 10
+            WEARM = 10,
+            CAPI = 11
         }
     }
 

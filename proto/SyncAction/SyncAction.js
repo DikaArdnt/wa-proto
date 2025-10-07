@@ -343,6 +343,7 @@ $root.SyncAction = (function() {
                 case 8:
                 case 9:
                 case 10:
+                case 11:
                     break;
                 }
             if (message.isSenderPrimary != null && message.hasOwnProperty("isSenderPrimary"))
@@ -449,6 +450,10 @@ $root.SyncAction = (function() {
             case "WEARM":
             case 10:
                 message.senderPlatform = 10;
+                break;
+            case "CAPI":
+            case 11:
+                message.senderPlatform = 11;
                 break;
             }
             if (object.isSenderPrimary != null)
@@ -584,6 +589,7 @@ $root.SyncAction = (function() {
          * @property {number} WEAROS=8 WEAROS value
          * @property {number} WASG=9 WASG value
          * @property {number} WEARM=10 WEARM value
+         * @property {number} CAPI=11 CAPI value
          */
         PatchDebugData.Platform = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -598,6 +604,7 @@ $root.SyncAction = (function() {
             values[valuesById[8] = "WEAROS"] = 8;
             values[valuesById[9] = "WASG"] = 9;
             values[valuesById[10] = "WEARM"] = 10;
+            values[valuesById[11] = "CAPI"] = 11;
             return values;
         })();
 

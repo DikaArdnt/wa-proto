@@ -905,6 +905,7 @@ message Message {
         repeated Message.VideoEndCard endCardTiles = 36;
         optional string videoContentUrl = 37;
         optional EmbeddedMusic musicMetadata = 38;
+        optional Message.PaymentExtendedMetadata paymentExtendedMetadata = 39;
         enum FontType {
             SYSTEM = 0;
             SYSTEM_TEXT = 1;
@@ -1354,6 +1355,11 @@ message Message {
         enum OrderSurface {
             CATALOG = 1;
         }
+    }
+    message PaymentExtendedMetadata {
+        optional uint32 type = 1;
+        optional string platform = 2;
+        optional string messageParamsJson = 3;
     }
     message PaymentInviteMessage {
         optional ServiceType serviceType = 1;

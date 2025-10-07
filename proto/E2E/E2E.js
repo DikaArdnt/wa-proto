@@ -29524,6 +29524,7 @@ $root.E2E = (function() {
              * @property {Array.<E2E.Message.IVideoEndCard>|null} [endCardTiles] ExtendedTextMessage endCardTiles
              * @property {string|null} [videoContentUrl] ExtendedTextMessage videoContentUrl
              * @property {E2E.IEmbeddedMusic|null} [musicMetadata] ExtendedTextMessage musicMetadata
+             * @property {E2E.Message.IPaymentExtendedMetadata|null} [paymentExtendedMetadata] ExtendedTextMessage paymentExtendedMetadata
              */
 
             /**
@@ -29791,6 +29792,14 @@ $root.E2E = (function() {
             ExtendedTextMessage.prototype.musicMetadata = null;
 
             /**
+             * ExtendedTextMessage paymentExtendedMetadata.
+             * @member {E2E.Message.IPaymentExtendedMetadata|null|undefined} paymentExtendedMetadata
+             * @memberof E2E.Message.ExtendedTextMessage
+             * @instance
+             */
+            ExtendedTextMessage.prototype.paymentExtendedMetadata = null;
+
+            /**
              * Creates a new ExtendedTextMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.ExtendedTextMessage
@@ -29877,6 +29886,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 37, wireType 2 =*/298).string(message.videoContentUrl);
                 if (message.musicMetadata != null && Object.hasOwnProperty.call(message, "musicMetadata"))
                     $root.E2E.EmbeddedMusic.encode(message.musicMetadata, writer.uint32(/* id 38, wireType 2 =*/306).fork()).ldelim();
+                if (message.paymentExtendedMetadata != null && Object.hasOwnProperty.call(message, "paymentExtendedMetadata"))
+                    $root.E2E.Message.PaymentExtendedMetadata.encode(message.paymentExtendedMetadata, writer.uint32(/* id 39, wireType 2 =*/314).fork()).ldelim();
                 return writer;
             };
 
@@ -30037,6 +30048,10 @@ $root.E2E = (function() {
                         }
                     case 38: {
                             message.musicMetadata = $root.E2E.EmbeddedMusic.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 39: {
+                            message.paymentExtendedMetadata = $root.E2E.Message.PaymentExtendedMetadata.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -30216,6 +30231,11 @@ $root.E2E = (function() {
                     var error = $root.E2E.EmbeddedMusic.verify(message.musicMetadata);
                     if (error)
                         return "musicMetadata." + error;
+                }
+                if (message.paymentExtendedMetadata != null && message.hasOwnProperty("paymentExtendedMetadata")) {
+                    var error = $root.E2E.Message.PaymentExtendedMetadata.verify(message.paymentExtendedMetadata);
+                    if (error)
+                        return "paymentExtendedMetadata." + error;
                 }
                 return null;
             };
@@ -30451,6 +30471,11 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.ExtendedTextMessage.musicMetadata: object expected");
                     message.musicMetadata = $root.E2E.EmbeddedMusic.fromObject(object.musicMetadata);
                 }
+                if (object.paymentExtendedMetadata != null) {
+                    if (typeof object.paymentExtendedMetadata !== "object")
+                        throw TypeError(".E2E.Message.ExtendedTextMessage.paymentExtendedMetadata: object expected");
+                    message.paymentExtendedMetadata = $root.E2E.Message.PaymentExtendedMetadata.fromObject(object.paymentExtendedMetadata);
+                }
                 return message;
             };
 
@@ -30534,6 +30559,7 @@ $root.E2E = (function() {
                     object.paymentLinkMetadata = null;
                     object.videoContentUrl = "";
                     object.musicMetadata = null;
+                    object.paymentExtendedMetadata = null;
                 }
                 if (message.text != null && message.hasOwnProperty("text"))
                     object.text = message.text;
@@ -30603,6 +30629,8 @@ $root.E2E = (function() {
                     object.videoContentUrl = message.videoContentUrl;
                 if (message.musicMetadata != null && message.hasOwnProperty("musicMetadata"))
                     object.musicMetadata = $root.E2E.EmbeddedMusic.toObject(message.musicMetadata, options);
+                if (message.paymentExtendedMetadata != null && message.hasOwnProperty("paymentExtendedMetadata"))
+                    object.paymentExtendedMetadata = $root.E2E.Message.PaymentExtendedMetadata.toObject(message.paymentExtendedMetadata, options);
                 return object;
             };
 
@@ -46313,6 +46341,258 @@ $root.E2E = (function() {
             })();
 
             return OrderMessage;
+        })();
+
+        Message.PaymentExtendedMetadata = (function() {
+
+            /**
+             * Properties of a PaymentExtendedMetadata.
+             * @memberof E2E.Message
+             * @interface IPaymentExtendedMetadata
+             * @property {number|null} [type] PaymentExtendedMetadata type
+             * @property {string|null} [platform] PaymentExtendedMetadata platform
+             * @property {string|null} [messageParamsJson] PaymentExtendedMetadata messageParamsJson
+             */
+
+            /**
+             * Constructs a new PaymentExtendedMetadata.
+             * @memberof E2E.Message
+             * @classdesc Represents a PaymentExtendedMetadata.
+             * @implements IPaymentExtendedMetadata
+             * @constructor
+             * @param {E2E.Message.IPaymentExtendedMetadata=} [properties] Properties to set
+             */
+            function PaymentExtendedMetadata(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * PaymentExtendedMetadata type.
+             * @member {number} type
+             * @memberof E2E.Message.PaymentExtendedMetadata
+             * @instance
+             */
+            PaymentExtendedMetadata.prototype.type = 0;
+
+            /**
+             * PaymentExtendedMetadata platform.
+             * @member {string} platform
+             * @memberof E2E.Message.PaymentExtendedMetadata
+             * @instance
+             */
+            PaymentExtendedMetadata.prototype.platform = "";
+
+            /**
+             * PaymentExtendedMetadata messageParamsJson.
+             * @member {string} messageParamsJson
+             * @memberof E2E.Message.PaymentExtendedMetadata
+             * @instance
+             */
+            PaymentExtendedMetadata.prototype.messageParamsJson = "";
+
+            /**
+             * Creates a new PaymentExtendedMetadata instance using the specified properties.
+             * @function create
+             * @memberof E2E.Message.PaymentExtendedMetadata
+             * @static
+             * @param {E2E.Message.IPaymentExtendedMetadata=} [properties] Properties to set
+             * @returns {E2E.Message.PaymentExtendedMetadata} PaymentExtendedMetadata instance
+             */
+            PaymentExtendedMetadata.create = function create(properties) {
+                return new PaymentExtendedMetadata(properties);
+            };
+
+            /**
+             * Encodes the specified PaymentExtendedMetadata message. Does not implicitly {@link E2E.Message.PaymentExtendedMetadata.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.Message.PaymentExtendedMetadata
+             * @static
+             * @param {E2E.Message.IPaymentExtendedMetadata} message PaymentExtendedMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PaymentExtendedMetadata.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.type != null && Object.hasOwnProperty.call(message, "type"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.type);
+                if (message.platform != null && Object.hasOwnProperty.call(message, "platform"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.platform);
+                if (message.messageParamsJson != null && Object.hasOwnProperty.call(message, "messageParamsJson"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.messageParamsJson);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified PaymentExtendedMetadata message, length delimited. Does not implicitly {@link E2E.Message.PaymentExtendedMetadata.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.Message.PaymentExtendedMetadata
+             * @static
+             * @param {E2E.Message.IPaymentExtendedMetadata} message PaymentExtendedMetadata message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PaymentExtendedMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a PaymentExtendedMetadata message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.Message.PaymentExtendedMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.Message.PaymentExtendedMetadata} PaymentExtendedMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PaymentExtendedMetadata.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PaymentExtendedMetadata();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.type = reader.uint32();
+                            break;
+                        }
+                    case 2: {
+                            message.platform = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.messageParamsJson = reader.string();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a PaymentExtendedMetadata message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.Message.PaymentExtendedMetadata
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.Message.PaymentExtendedMetadata} PaymentExtendedMetadata
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PaymentExtendedMetadata.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a PaymentExtendedMetadata message.
+             * @function verify
+             * @memberof E2E.Message.PaymentExtendedMetadata
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            PaymentExtendedMetadata.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.type != null && message.hasOwnProperty("type"))
+                    if (!$util.isInteger(message.type))
+                        return "type: integer expected";
+                if (message.platform != null && message.hasOwnProperty("platform"))
+                    if (!$util.isString(message.platform))
+                        return "platform: string expected";
+                if (message.messageParamsJson != null && message.hasOwnProperty("messageParamsJson"))
+                    if (!$util.isString(message.messageParamsJson))
+                        return "messageParamsJson: string expected";
+                return null;
+            };
+
+            /**
+             * Creates a PaymentExtendedMetadata message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.Message.PaymentExtendedMetadata
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.Message.PaymentExtendedMetadata} PaymentExtendedMetadata
+             */
+            PaymentExtendedMetadata.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.Message.PaymentExtendedMetadata)
+                    return object;
+                var message = new $root.E2E.Message.PaymentExtendedMetadata();
+                if (object.type != null)
+                    message.type = object.type >>> 0;
+                if (object.platform != null)
+                    message.platform = String(object.platform);
+                if (object.messageParamsJson != null)
+                    message.messageParamsJson = String(object.messageParamsJson);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a PaymentExtendedMetadata message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.Message.PaymentExtendedMetadata
+             * @static
+             * @param {E2E.Message.PaymentExtendedMetadata} message PaymentExtendedMetadata
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            PaymentExtendedMetadata.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.type = 0;
+                    object.platform = "";
+                    object.messageParamsJson = "";
+                }
+                if (message.type != null && message.hasOwnProperty("type"))
+                    object.type = message.type;
+                if (message.platform != null && message.hasOwnProperty("platform"))
+                    object.platform = message.platform;
+                if (message.messageParamsJson != null && message.hasOwnProperty("messageParamsJson"))
+                    object.messageParamsJson = message.messageParamsJson;
+                return object;
+            };
+
+            /**
+             * Converts this PaymentExtendedMetadata to JSON.
+             * @function toJSON
+             * @memberof E2E.Message.PaymentExtendedMetadata
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            PaymentExtendedMetadata.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for PaymentExtendedMetadata
+             * @function getTypeUrl
+             * @memberof E2E.Message.PaymentExtendedMetadata
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            PaymentExtendedMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.Message.PaymentExtendedMetadata";
+            };
+
+            return PaymentExtendedMetadata;
         })();
 
         Message.PaymentInviteMessage = (function() {
