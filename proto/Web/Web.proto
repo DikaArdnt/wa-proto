@@ -8,9 +8,10 @@ message GroupHistoryBundleInfo {
     optional E2E.Message.MessageHistoryBundle deprecatedMessageHistoryBundle = 1;
     optional ProcessState processState = 2;
     enum ProcessState {
-        NOT_DOWNLOADED = 0;
-        DOWNLOADED = 1;
-        DOWNLOAD_FAILED = 2;
+        NOT_INJECTED = 0;
+        INJECTED = 1;
+        INJECTED_PARTIAL = 2;
+        INJECTION_FAILED = 3;
     }
 }
 

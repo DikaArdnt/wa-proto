@@ -42720,6 +42720,9 @@ $root.E2E = (function() {
              * @property {number|null} [linkMediaDuration] LinkPreviewMetadata linkMediaDuration
              * @property {E2E.Message.LinkPreviewMetadata.SocialMediaPostType|null} [socialMediaPostType] LinkPreviewMetadata socialMediaPostType
              * @property {boolean|null} [linkInlineVideoMuted] LinkPreviewMetadata linkInlineVideoMuted
+             * @property {string|null} [videoContentUrl] LinkPreviewMetadata videoContentUrl
+             * @property {E2E.IEmbeddedMusic|null} [musicMetadata] LinkPreviewMetadata musicMetadata
+             * @property {string|null} [videoContentCaption] LinkPreviewMetadata videoContentCaption
              */
 
             /**
@@ -42786,6 +42789,30 @@ $root.E2E = (function() {
             LinkPreviewMetadata.prototype.linkInlineVideoMuted = false;
 
             /**
+             * LinkPreviewMetadata videoContentUrl.
+             * @member {string} videoContentUrl
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @instance
+             */
+            LinkPreviewMetadata.prototype.videoContentUrl = "";
+
+            /**
+             * LinkPreviewMetadata musicMetadata.
+             * @member {E2E.IEmbeddedMusic|null|undefined} musicMetadata
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @instance
+             */
+            LinkPreviewMetadata.prototype.musicMetadata = null;
+
+            /**
+             * LinkPreviewMetadata videoContentCaption.
+             * @member {string} videoContentCaption
+             * @memberof E2E.Message.LinkPreviewMetadata
+             * @instance
+             */
+            LinkPreviewMetadata.prototype.videoContentCaption = "";
+
+            /**
              * Creates a new LinkPreviewMetadata instance using the specified properties.
              * @function create
              * @memberof E2E.Message.LinkPreviewMetadata
@@ -42821,6 +42848,12 @@ $root.E2E = (function() {
                     writer.uint32(/* id 5, wireType 0 =*/40).int32(message.socialMediaPostType);
                 if (message.linkInlineVideoMuted != null && Object.hasOwnProperty.call(message, "linkInlineVideoMuted"))
                     writer.uint32(/* id 6, wireType 0 =*/48).bool(message.linkInlineVideoMuted);
+                if (message.videoContentUrl != null && Object.hasOwnProperty.call(message, "videoContentUrl"))
+                    writer.uint32(/* id 7, wireType 2 =*/58).string(message.videoContentUrl);
+                if (message.musicMetadata != null && Object.hasOwnProperty.call(message, "musicMetadata"))
+                    $root.E2E.EmbeddedMusic.encode(message.musicMetadata, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+                if (message.videoContentCaption != null && Object.hasOwnProperty.call(message, "videoContentCaption"))
+                    writer.uint32(/* id 9, wireType 2 =*/74).string(message.videoContentCaption);
                 return writer;
             };
 
@@ -42879,6 +42912,18 @@ $root.E2E = (function() {
                         }
                     case 6: {
                             message.linkInlineVideoMuted = reader.bool();
+                            break;
+                        }
+                    case 7: {
+                            message.videoContentUrl = reader.string();
+                            break;
+                        }
+                    case 8: {
+                            message.musicMetadata = $root.E2E.EmbeddedMusic.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 9: {
+                            message.videoContentCaption = reader.string();
                             break;
                         }
                     default:
@@ -42947,6 +42992,17 @@ $root.E2E = (function() {
                 if (message.linkInlineVideoMuted != null && message.hasOwnProperty("linkInlineVideoMuted"))
                     if (typeof message.linkInlineVideoMuted !== "boolean")
                         return "linkInlineVideoMuted: boolean expected";
+                if (message.videoContentUrl != null && message.hasOwnProperty("videoContentUrl"))
+                    if (!$util.isString(message.videoContentUrl))
+                        return "videoContentUrl: string expected";
+                if (message.musicMetadata != null && message.hasOwnProperty("musicMetadata")) {
+                    var error = $root.E2E.EmbeddedMusic.verify(message.musicMetadata);
+                    if (error)
+                        return "musicMetadata." + error;
+                }
+                if (message.videoContentCaption != null && message.hasOwnProperty("videoContentCaption"))
+                    if (!$util.isString(message.videoContentCaption))
+                        return "videoContentCaption: string expected";
                 return null;
             };
 
@@ -43010,6 +43066,15 @@ $root.E2E = (function() {
                 }
                 if (object.linkInlineVideoMuted != null)
                     message.linkInlineVideoMuted = Boolean(object.linkInlineVideoMuted);
+                if (object.videoContentUrl != null)
+                    message.videoContentUrl = String(object.videoContentUrl);
+                if (object.musicMetadata != null) {
+                    if (typeof object.musicMetadata !== "object")
+                        throw TypeError(".E2E.Message.LinkPreviewMetadata.musicMetadata: object expected");
+                    message.musicMetadata = $root.E2E.EmbeddedMusic.fromObject(object.musicMetadata);
+                }
+                if (object.videoContentCaption != null)
+                    message.videoContentCaption = String(object.videoContentCaption);
                 return message;
             };
 
@@ -43033,6 +43098,9 @@ $root.E2E = (function() {
                     object.linkMediaDuration = 0;
                     object.socialMediaPostType = options.enums === String ? "NONE" : 0;
                     object.linkInlineVideoMuted = false;
+                    object.videoContentUrl = "";
+                    object.musicMetadata = null;
+                    object.videoContentCaption = "";
                 }
                 if (message.paymentLinkMetadata != null && message.hasOwnProperty("paymentLinkMetadata"))
                     object.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.toObject(message.paymentLinkMetadata, options);
@@ -43046,6 +43114,12 @@ $root.E2E = (function() {
                     object.socialMediaPostType = options.enums === String ? $root.E2E.Message.LinkPreviewMetadata.SocialMediaPostType[message.socialMediaPostType] === undefined ? message.socialMediaPostType : $root.E2E.Message.LinkPreviewMetadata.SocialMediaPostType[message.socialMediaPostType] : message.socialMediaPostType;
                 if (message.linkInlineVideoMuted != null && message.hasOwnProperty("linkInlineVideoMuted"))
                     object.linkInlineVideoMuted = message.linkInlineVideoMuted;
+                if (message.videoContentUrl != null && message.hasOwnProperty("videoContentUrl"))
+                    object.videoContentUrl = message.videoContentUrl;
+                if (message.musicMetadata != null && message.hasOwnProperty("musicMetadata"))
+                    object.musicMetadata = $root.E2E.EmbeddedMusic.toObject(message.musicMetadata, options);
+                if (message.videoContentCaption != null && message.hasOwnProperty("videoContentCaption"))
+                    object.videoContentCaption = message.videoContentCaption;
                 return object;
             };
 
@@ -85580,6 +85654,7 @@ $root.AICommon = (function() {
                     case 43:
                     case 44:
                     case 45:
+                    case 46:
                         break;
                     }
             }
@@ -85793,6 +85868,10 @@ $root.AICommon = (function() {
                     case 45:
                         message.capabilities[i] = 45;
                         break;
+                    case "RICH_RESPONSE_IN_APP_SURVEY":
+                    case 46:
+                        message.capabilities[i] = 46;
+                        break;
                     }
             }
             return message;
@@ -85897,6 +85976,7 @@ $root.AICommon = (function() {
          * @property {number} RICH_RESPONSE_UR_INLINE_REELS_ENABLED=43 RICH_RESPONSE_UR_INLINE_REELS_ENABLED value
          * @property {number} RICH_RESPONSE_UR_MEDIA_GRID_ENABLED=44 RICH_RESPONSE_UR_MEDIA_GRID_ENABLED value
          * @property {number} RICH_RESPONSE_UR_TIMESTAMP_PLACEHOLDER=45 RICH_RESPONSE_UR_TIMESTAMP_PLACEHOLDER value
+         * @property {number} RICH_RESPONSE_IN_APP_SURVEY=46 RICH_RESPONSE_IN_APP_SURVEY value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -85946,6 +86026,7 @@ $root.AICommon = (function() {
             values[valuesById[43] = "RICH_RESPONSE_UR_INLINE_REELS_ENABLED"] = 43;
             values[valuesById[44] = "RICH_RESPONSE_UR_MEDIA_GRID_ENABLED"] = 44;
             values[valuesById[45] = "RICH_RESPONSE_UR_TIMESTAMP_PLACEHOLDER"] = 45;
+            values[valuesById[46] = "RICH_RESPONSE_IN_APP_SURVEY"] = 46;
             return values;
         })();
 

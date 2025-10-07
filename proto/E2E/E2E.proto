@@ -1191,6 +1191,9 @@ message Message {
         optional uint32 linkMediaDuration = 4;
         optional SocialMediaPostType socialMediaPostType = 5;
         optional bool linkInlineVideoMuted = 6;
+        optional string videoContentUrl = 7;
+        optional EmbeddedMusic musicMetadata = 8;
+        optional string videoContentCaption = 9;
         enum SocialMediaPostType {
             NONE = 0;
             REEL = 1;

@@ -13303,6 +13303,7 @@ $root.AICommon = (function() {
                     case 43:
                     case 44:
                     case 45:
+                    case 46:
                         break;
                     }
             }
@@ -13516,6 +13517,10 @@ $root.AICommon = (function() {
                     case 45:
                         message.capabilities[i] = 45;
                         break;
+                    case "RICH_RESPONSE_IN_APP_SURVEY":
+                    case 46:
+                        message.capabilities[i] = 46;
+                        break;
                     }
             }
             return message;
@@ -13620,6 +13625,7 @@ $root.AICommon = (function() {
          * @property {number} RICH_RESPONSE_UR_INLINE_REELS_ENABLED=43 RICH_RESPONSE_UR_INLINE_REELS_ENABLED value
          * @property {number} RICH_RESPONSE_UR_MEDIA_GRID_ENABLED=44 RICH_RESPONSE_UR_MEDIA_GRID_ENABLED value
          * @property {number} RICH_RESPONSE_UR_TIMESTAMP_PLACEHOLDER=45 RICH_RESPONSE_UR_TIMESTAMP_PLACEHOLDER value
+         * @property {number} RICH_RESPONSE_IN_APP_SURVEY=46 RICH_RESPONSE_IN_APP_SURVEY value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -13669,6 +13675,7 @@ $root.AICommon = (function() {
             values[valuesById[43] = "RICH_RESPONSE_UR_INLINE_REELS_ENABLED"] = 43;
             values[valuesById[44] = "RICH_RESPONSE_UR_MEDIA_GRID_ENABLED"] = 44;
             values[valuesById[45] = "RICH_RESPONSE_UR_TIMESTAMP_PLACEHOLDER"] = 45;
+            values[valuesById[46] = "RICH_RESPONSE_IN_APP_SURVEY"] = 46;
             return values;
         })();
 
