@@ -17,6 +17,7 @@ message GroupHistoryBundleInfo {
 
 message GroupHistoryIndividualMessageInfo {
     optional Protocol.MessageKey bundleMessageKey = 1;
+    optional bool editedAfterReceivedAsHistory = 2;
 }
 
 message Citation {

@@ -8824,9 +8824,6 @@ export namespace E2E {
         /** Message questionResponseMessage */
         questionResponseMessage?: (E2E.Message.IQuestionResponseMessage|null);
 
-        /** Message newsletterFollowerInviteMessage */
-        newsletterFollowerInviteMessage?: (E2E.Message.INewsletterFollowerInviteMessage|null);
-
         /** Message statusQuotedMessage */
         statusQuotedMessage?: (E2E.Message.IStatusQuotedMessage|null);
 
@@ -9124,9 +9121,6 @@ export namespace E2E {
 
         /** Message questionResponseMessage. */
         public questionResponseMessage?: (E2E.Message.IQuestionResponseMessage|null);
-
-        /** Message newsletterFollowerInviteMessage. */
-        public newsletterFollowerInviteMessage?: (E2E.Message.INewsletterFollowerInviteMessage|null);
 
         /** Message statusQuotedMessage. */
         public statusQuotedMessage?: (E2E.Message.IStatusQuotedMessage|null);
@@ -20102,13 +20096,13 @@ export namespace E2E {
             interface IGalaxyFlowAction {
 
                 /** GalaxyFlowAction type */
-                type: E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.GalaxyFlowActionType;
+                type?: (E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.GalaxyFlowActionType|null);
 
                 /** GalaxyFlowAction flowId */
-                flowId: string;
+                flowId?: (string|null);
 
                 /** GalaxyFlowAction stanzaId */
-                stanzaId: string;
+                stanzaId?: (string|null);
             }
 
             /** Represents a GalaxyFlowAction. */
@@ -39002,6 +38996,9 @@ export namespace Web {
 
         /** GroupHistoryIndividualMessageInfo bundleMessageKey */
         bundleMessageKey?: (Protocol.IMessageKey|null);
+
+        /** GroupHistoryIndividualMessageInfo editedAfterReceivedAsHistory */
+        editedAfterReceivedAsHistory?: (boolean|null);
     }
 
     /** Represents a GroupHistoryIndividualMessageInfo. */
@@ -39015,6 +39012,9 @@ export namespace Web {
 
         /** GroupHistoryIndividualMessageInfo bundleMessageKey. */
         public bundleMessageKey?: (Protocol.IMessageKey|null);
+
+        /** GroupHistoryIndividualMessageInfo editedAfterReceivedAsHistory. */
+        public editedAfterReceivedAsHistory: boolean;
 
         /**
          * Creates a new GroupHistoryIndividualMessageInfo instance using the specified properties.

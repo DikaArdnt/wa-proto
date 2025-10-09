@@ -24145,7 +24145,6 @@ $root.E2E = (function() {
          * @property {E2E.Message.IStatusQuestionAnswerMessage|null} [statusQuestionAnswerMessage] Message statusQuestionAnswerMessage
          * @property {E2E.Message.IFutureProofMessage|null} [questionReplyMessage] Message questionReplyMessage
          * @property {E2E.Message.IQuestionResponseMessage|null} [questionResponseMessage] Message questionResponseMessage
-         * @property {E2E.Message.INewsletterFollowerInviteMessage|null} [newsletterFollowerInviteMessage] Message newsletterFollowerInviteMessage
          * @property {E2E.Message.IStatusQuotedMessage|null} [statusQuotedMessage] Message statusQuotedMessage
          * @property {E2E.Message.IStatusStickerInteractionMessage|null} [statusStickerInteractionMessage] Message statusStickerInteractionMessage
          * @property {E2E.Message.IPollCreationMessage|null} [pollCreationMessageV5] Message pollCreationMessageV5
@@ -24890,14 +24889,6 @@ $root.E2E = (function() {
         Message.prototype.questionResponseMessage = null;
 
         /**
-         * Message newsletterFollowerInviteMessage.
-         * @member {E2E.Message.INewsletterFollowerInviteMessage|null|undefined} newsletterFollowerInviteMessage
-         * @memberof E2E.Message
-         * @instance
-         */
-        Message.prototype.newsletterFollowerInviteMessage = null;
-
-        /**
          * Message statusQuotedMessage.
          * @member {E2E.Message.IStatusQuotedMessage|null|undefined} statusQuotedMessage
          * @memberof E2E.Message
@@ -25149,8 +25140,6 @@ $root.E2E = (function() {
                 $root.E2E.Message.FutureProofMessage.encode(message.questionReplyMessage, writer.uint32(/* id 106, wireType 2 =*/850).fork()).ldelim();
             if (message.questionResponseMessage != null && Object.hasOwnProperty.call(message, "questionResponseMessage"))
                 $root.E2E.Message.QuestionResponseMessage.encode(message.questionResponseMessage, writer.uint32(/* id 107, wireType 2 =*/858).fork()).ldelim();
-            if (message.newsletterFollowerInviteMessage != null && Object.hasOwnProperty.call(message, "newsletterFollowerInviteMessage"))
-                $root.E2E.Message.NewsletterFollowerInviteMessage.encode(message.newsletterFollowerInviteMessage, writer.uint32(/* id 108, wireType 2 =*/866).fork()).ldelim();
             if (message.statusQuotedMessage != null && Object.hasOwnProperty.call(message, "statusQuotedMessage"))
                 $root.E2E.Message.StatusQuotedMessage.encode(message.statusQuotedMessage, writer.uint32(/* id 109, wireType 2 =*/874).fork()).ldelim();
             if (message.statusStickerInteractionMessage != null && Object.hasOwnProperty.call(message, "statusStickerInteractionMessage"))
@@ -25557,10 +25546,6 @@ $root.E2E = (function() {
                     }
                 case 107: {
                         message.questionResponseMessage = $root.E2E.Message.QuestionResponseMessage.decode(reader, reader.uint32());
-                        break;
-                    }
-                case 108: {
-                        message.newsletterFollowerInviteMessage = $root.E2E.Message.NewsletterFollowerInviteMessage.decode(reader, reader.uint32());
                         break;
                     }
                 case 109: {
@@ -26070,11 +26055,6 @@ $root.E2E = (function() {
                 if (error)
                     return "questionResponseMessage." + error;
             }
-            if (message.newsletterFollowerInviteMessage != null && message.hasOwnProperty("newsletterFollowerInviteMessage")) {
-                var error = $root.E2E.Message.NewsletterFollowerInviteMessage.verify(message.newsletterFollowerInviteMessage);
-                if (error)
-                    return "newsletterFollowerInviteMessage." + error;
-            }
             if (message.statusQuotedMessage != null && message.hasOwnProperty("statusQuotedMessage")) {
                 var error = $root.E2E.Message.StatusQuotedMessage.verify(message.statusQuotedMessage);
                 if (error)
@@ -26567,11 +26547,6 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.Message.questionResponseMessage: object expected");
                 message.questionResponseMessage = $root.E2E.Message.QuestionResponseMessage.fromObject(object.questionResponseMessage);
             }
-            if (object.newsletterFollowerInviteMessage != null) {
-                if (typeof object.newsletterFollowerInviteMessage !== "object")
-                    throw TypeError(".E2E.Message.newsletterFollowerInviteMessage: object expected");
-                message.newsletterFollowerInviteMessage = $root.E2E.Message.NewsletterFollowerInviteMessage.fromObject(object.newsletterFollowerInviteMessage);
-            }
             if (object.statusQuotedMessage != null) {
                 if (typeof object.statusQuotedMessage !== "object")
                     throw TypeError(".E2E.Message.statusQuotedMessage: object expected");
@@ -26709,7 +26684,6 @@ $root.E2E = (function() {
                 object.statusQuestionAnswerMessage = null;
                 object.questionReplyMessage = null;
                 object.questionResponseMessage = null;
-                object.newsletterFollowerInviteMessage = null;
                 object.statusQuotedMessage = null;
                 object.statusStickerInteractionMessage = null;
                 object.pollCreationMessageV5 = null;
@@ -26897,8 +26871,6 @@ $root.E2E = (function() {
                 object.questionReplyMessage = $root.E2E.Message.FutureProofMessage.toObject(message.questionReplyMessage, options);
             if (message.questionResponseMessage != null && message.hasOwnProperty("questionResponseMessage"))
                 object.questionResponseMessage = $root.E2E.Message.QuestionResponseMessage.toObject(message.questionResponseMessage, options);
-            if (message.newsletterFollowerInviteMessage != null && message.hasOwnProperty("newsletterFollowerInviteMessage"))
-                object.newsletterFollowerInviteMessage = $root.E2E.Message.NewsletterFollowerInviteMessage.toObject(message.newsletterFollowerInviteMessage, options);
             if (message.statusQuotedMessage != null && message.hasOwnProperty("statusQuotedMessage"))
                 object.statusQuotedMessage = $root.E2E.Message.StatusQuotedMessage.toObject(message.statusQuotedMessage, options);
             if (message.statusStickerInteractionMessage != null && message.hasOwnProperty("statusStickerInteractionMessage"))
@@ -56610,9 +56582,9 @@ $root.E2E = (function() {
                  * Properties of a GalaxyFlowAction.
                  * @memberof E2E.Message.PeerDataOperationRequestMessage
                  * @interface IGalaxyFlowAction
-                 * @property {E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.GalaxyFlowActionType} type GalaxyFlowAction type
-                 * @property {string} flowId GalaxyFlowAction flowId
-                 * @property {string} stanzaId GalaxyFlowAction stanzaId
+                 * @property {E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.GalaxyFlowActionType|null} [type] GalaxyFlowAction type
+                 * @property {string|null} [flowId] GalaxyFlowAction flowId
+                 * @property {string|null} [stanzaId] GalaxyFlowAction stanzaId
                  */
 
                 /**
@@ -56678,9 +56650,12 @@ $root.E2E = (function() {
                 GalaxyFlowAction.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.type);
-                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.flowId);
-                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.stanzaId);
+                    if (message.type != null && Object.hasOwnProperty.call(message, "type"))
+                        writer.uint32(/* id 1, wireType 0 =*/8).int32(message.type);
+                    if (message.flowId != null && Object.hasOwnProperty.call(message, "flowId"))
+                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.flowId);
+                    if (message.stanzaId != null && Object.hasOwnProperty.call(message, "stanzaId"))
+                        writer.uint32(/* id 3, wireType 2 =*/26).string(message.stanzaId);
                     return writer;
                 };
 
@@ -56734,12 +56709,6 @@ $root.E2E = (function() {
                             break;
                         }
                     }
-                    if (!message.hasOwnProperty("type"))
-                        throw $util.ProtocolError("missing required 'type'", { instance: message });
-                    if (!message.hasOwnProperty("flowId"))
-                        throw $util.ProtocolError("missing required 'flowId'", { instance: message });
-                    if (!message.hasOwnProperty("stanzaId"))
-                        throw $util.ProtocolError("missing required 'stanzaId'", { instance: message });
                     return message;
                 };
 
@@ -56770,16 +56739,19 @@ $root.E2E = (function() {
                 GalaxyFlowAction.verify = function verify(message) {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
-                    switch (message.type) {
-                    default:
-                        return "type: enum value expected";
-                    case 1:
-                        break;
-                    }
-                    if (!$util.isString(message.flowId))
-                        return "flowId: string expected";
-                    if (!$util.isString(message.stanzaId))
-                        return "stanzaId: string expected";
+                    if (message.type != null && message.hasOwnProperty("type"))
+                        switch (message.type) {
+                        default:
+                            return "type: enum value expected";
+                        case 1:
+                            break;
+                        }
+                    if (message.flowId != null && message.hasOwnProperty("flowId"))
+                        if (!$util.isString(message.flowId))
+                            return "flowId: string expected";
+                    if (message.stanzaId != null && message.hasOwnProperty("stanzaId"))
+                        if (!$util.isString(message.stanzaId))
+                            return "stanzaId: string expected";
                     return null;
                 };
 
@@ -107201,6 +107173,7 @@ $root.Web = (function() {
          * @memberof Web
          * @interface IGroupHistoryIndividualMessageInfo
          * @property {Protocol.IMessageKey|null} [bundleMessageKey] GroupHistoryIndividualMessageInfo bundleMessageKey
+         * @property {boolean|null} [editedAfterReceivedAsHistory] GroupHistoryIndividualMessageInfo editedAfterReceivedAsHistory
          */
 
         /**
@@ -107225,6 +107198,14 @@ $root.Web = (function() {
          * @instance
          */
         GroupHistoryIndividualMessageInfo.prototype.bundleMessageKey = null;
+
+        /**
+         * GroupHistoryIndividualMessageInfo editedAfterReceivedAsHistory.
+         * @member {boolean} editedAfterReceivedAsHistory
+         * @memberof Web.GroupHistoryIndividualMessageInfo
+         * @instance
+         */
+        GroupHistoryIndividualMessageInfo.prototype.editedAfterReceivedAsHistory = false;
 
         /**
          * Creates a new GroupHistoryIndividualMessageInfo instance using the specified properties.
@@ -107252,6 +107233,8 @@ $root.Web = (function() {
                 writer = $Writer.create();
             if (message.bundleMessageKey != null && Object.hasOwnProperty.call(message, "bundleMessageKey"))
                 $root.Protocol.MessageKey.encode(message.bundleMessageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.editedAfterReceivedAsHistory != null && Object.hasOwnProperty.call(message, "editedAfterReceivedAsHistory"))
+                writer.uint32(/* id 2, wireType 0 =*/16).bool(message.editedAfterReceivedAsHistory);
             return writer;
         };
 
@@ -107290,6 +107273,10 @@ $root.Web = (function() {
                 switch (tag >>> 3) {
                 case 1: {
                         message.bundleMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 2: {
+                        message.editedAfterReceivedAsHistory = reader.bool();
                         break;
                     }
                 default:
@@ -107332,6 +107319,9 @@ $root.Web = (function() {
                 if (error)
                     return "bundleMessageKey." + error;
             }
+            if (message.editedAfterReceivedAsHistory != null && message.hasOwnProperty("editedAfterReceivedAsHistory"))
+                if (typeof message.editedAfterReceivedAsHistory !== "boolean")
+                    return "editedAfterReceivedAsHistory: boolean expected";
             return null;
         };
 
@@ -107352,6 +107342,8 @@ $root.Web = (function() {
                     throw TypeError(".Web.GroupHistoryIndividualMessageInfo.bundleMessageKey: object expected");
                 message.bundleMessageKey = $root.Protocol.MessageKey.fromObject(object.bundleMessageKey);
             }
+            if (object.editedAfterReceivedAsHistory != null)
+                message.editedAfterReceivedAsHistory = Boolean(object.editedAfterReceivedAsHistory);
             return message;
         };
 
@@ -107368,10 +107360,14 @@ $root.Web = (function() {
             if (!options)
                 options = {};
             var object = {};
-            if (options.defaults)
+            if (options.defaults) {
                 object.bundleMessageKey = null;
+                object.editedAfterReceivedAsHistory = false;
+            }
             if (message.bundleMessageKey != null && message.hasOwnProperty("bundleMessageKey"))
                 object.bundleMessageKey = $root.Protocol.MessageKey.toObject(message.bundleMessageKey, options);
+            if (message.editedAfterReceivedAsHistory != null && message.hasOwnProperty("editedAfterReceivedAsHistory"))
+                object.editedAfterReceivedAsHistory = message.editedAfterReceivedAsHistory;
             return object;
         };
 

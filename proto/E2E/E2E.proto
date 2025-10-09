@@ -606,7 +606,6 @@ message Message {
     optional StatusQuestionAnswerMessage statusQuestionAnswerMessage = 105;
     optional FutureProofMessage questionReplyMessage = 106;
     optional QuestionResponseMessage questionResponseMessage = 107;
-    optional NewsletterFollowerInviteMessage newsletterFollowerInviteMessage = 108;
     optional StatusQuotedMessage statusQuotedMessage = 109;
     optional StatusStickerInteractionMessage statusStickerInteractionMessage = 110;
     optional PollCreationMessage pollCreationMessageV5 = 111;
@@ -1407,9 +1406,9 @@ message Message {
             optional CompanionReg.DeviceProps.HistorySyncConfig historySyncConfig = 2;
         }
         message GalaxyFlowAction {
-            required GalaxyFlowActionType type = 1;
-            required string flowId = 2;
-            required string stanzaId = 3;
+            optional GalaxyFlowActionType type = 1;
+            optional string flowId = 2;
+            optional string stanzaId = 3;
             enum GalaxyFlowActionType {
                 NOTIFY_LAUNCH = 1;
             }

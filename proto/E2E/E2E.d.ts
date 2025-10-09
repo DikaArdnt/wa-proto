@@ -6116,9 +6116,6 @@ export namespace E2E {
         /** Message questionResponseMessage */
         questionResponseMessage?: (E2E.Message.IQuestionResponseMessage|null);
 
-        /** Message newsletterFollowerInviteMessage */
-        newsletterFollowerInviteMessage?: (E2E.Message.INewsletterFollowerInviteMessage|null);
-
         /** Message statusQuotedMessage */
         statusQuotedMessage?: (E2E.Message.IStatusQuotedMessage|null);
 
@@ -6416,9 +6413,6 @@ export namespace E2E {
 
         /** Message questionResponseMessage. */
         public questionResponseMessage?: (E2E.Message.IQuestionResponseMessage|null);
-
-        /** Message newsletterFollowerInviteMessage. */
-        public newsletterFollowerInviteMessage?: (E2E.Message.INewsletterFollowerInviteMessage|null);
 
         /** Message statusQuotedMessage. */
         public statusQuotedMessage?: (E2E.Message.IStatusQuotedMessage|null);
@@ -17394,13 +17388,13 @@ export namespace E2E {
             interface IGalaxyFlowAction {
 
                 /** GalaxyFlowAction type */
-                type: E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.GalaxyFlowActionType;
+                type?: (E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.GalaxyFlowActionType|null);
 
                 /** GalaxyFlowAction flowId */
-                flowId: string;
+                flowId?: (string|null);
 
                 /** GalaxyFlowAction stanzaId */
-                stanzaId: string;
+                stanzaId?: (string|null);
             }
 
             /** Represents a GalaxyFlowAction. */
