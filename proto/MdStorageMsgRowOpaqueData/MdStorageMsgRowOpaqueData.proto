@@ -27,6 +27,7 @@ message MsgOpaqueData {
     optional E2E.PollEncValue encPollVote = 24;
     optional bool isSentCagPollCreation = 28;
     optional PollContentType pollContentType = 42;
+    optional PollType pollType = 46;
     optional PollVotesSnapshot pollVotesSnapshot = 41;
     optional string encReactionTargetMessageKey = 25;
     optional bytes encReactionEncPayload = 26;
@@ -61,6 +62,10 @@ message MsgOpaqueData {
     message PollOption {
         optional string name = 1;
         optional string hash = 2;
+    }
+    enum PollType {
+        POLL = 0;
+        QUIZ = 1;
     }
     message PollVoteSnapshot {
         optional MsgOpaqueData.PollOption option = 1;

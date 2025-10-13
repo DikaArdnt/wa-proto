@@ -47,6 +47,7 @@ $root.MdStorageMsgRowOpaqueData = (function() {
          * @property {E2E.Message.IPollEncValue|null} [encPollVote] MsgOpaqueData encPollVote
          * @property {boolean|null} [isSentCagPollCreation] MsgOpaqueData isSentCagPollCreation
          * @property {MdStorageMsgRowOpaqueData.MsgOpaqueData.PollContentType|null} [pollContentType] MsgOpaqueData pollContentType
+         * @property {MdStorageMsgRowOpaqueData.MsgOpaqueData.PollType|null} [pollType] MsgOpaqueData pollType
          * @property {MdStorageMsgRowOpaqueData.MsgOpaqueData.IPollVotesSnapshot|null} [pollVotesSnapshot] MsgOpaqueData pollVotesSnapshot
          * @property {string|null} [encReactionTargetMessageKey] MsgOpaqueData encReactionTargetMessageKey
          * @property {Uint8Array|null} [encReactionEncPayload] MsgOpaqueData encReactionEncPayload
@@ -266,6 +267,14 @@ $root.MdStorageMsgRowOpaqueData = (function() {
          * @instance
          */
         MsgOpaqueData.prototype.pollContentType = 0;
+
+        /**
+         * MsgOpaqueData pollType.
+         * @member {MdStorageMsgRowOpaqueData.MsgOpaqueData.PollType} pollType
+         * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData
+         * @instance
+         */
+        MsgOpaqueData.prototype.pollType = 0;
 
         /**
          * MsgOpaqueData pollVotesSnapshot.
@@ -516,6 +525,8 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 writer.uint32(/* id 44, wireType 0 =*/352).bool(message.eventIsScheduledCall);
             if (message.eventExtraGuestsAllowed != null && Object.hasOwnProperty.call(message, "eventExtraGuestsAllowed"))
                 writer.uint32(/* id 45, wireType 0 =*/360).bool(message.eventExtraGuestsAllowed);
+            if (message.pollType != null && Object.hasOwnProperty.call(message, "pollType"))
+                writer.uint32(/* id 46, wireType 0 =*/368).int32(message.pollType);
             if (message.originalSelfAuthor != null && Object.hasOwnProperty.call(message, "originalSelfAuthor"))
                 writer.uint32(/* id 51, wireType 2 =*/410).string(message.originalSelfAuthor);
             return writer;
@@ -646,6 +657,10 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                     }
                 case 42: {
                         message.pollContentType = reader.int32();
+                        break;
+                    }
+                case 46: {
+                        message.pollType = reader.int32();
                         break;
                     }
                 case 41: {
@@ -838,6 +853,14 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 case 2:
                     break;
                 }
+            if (message.pollType != null && message.hasOwnProperty("pollType"))
+                switch (message.pollType) {
+                default:
+                    return "pollType: enum value expected";
+                case 0:
+                case 1:
+                    break;
+                }
             if (message.pollVotesSnapshot != null && message.hasOwnProperty("pollVotesSnapshot")) {
                 var error = $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.PollVotesSnapshot.verify(message.pollVotesSnapshot);
                 if (error)
@@ -997,6 +1020,22 @@ $root.MdStorageMsgRowOpaqueData = (function() {
             case "IMAGE":
             case 2:
                 message.pollContentType = 2;
+                break;
+            }
+            switch (object.pollType) {
+            default:
+                if (typeof object.pollType === "number") {
+                    message.pollType = object.pollType;
+                    break;
+                }
+                break;
+            case "POLL":
+            case 0:
+                message.pollType = 0;
+                break;
+            case "QUIZ":
+            case 1:
+                message.pollType = 1;
                 break;
             }
             if (object.pollVotesSnapshot != null) {
@@ -1191,6 +1230,7 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 }
                 object.eventIsScheduledCall = false;
                 object.eventExtraGuestsAllowed = false;
+                object.pollType = options.enums === String ? "POLL" : 0;
                 object.originalSelfAuthor = "";
             }
             if (message.body != null && message.hasOwnProperty("body"))
@@ -1285,6 +1325,8 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 object.eventIsScheduledCall = message.eventIsScheduledCall;
             if (message.eventExtraGuestsAllowed != null && message.hasOwnProperty("eventExtraGuestsAllowed"))
                 object.eventExtraGuestsAllowed = message.eventExtraGuestsAllowed;
+            if (message.pollType != null && message.hasOwnProperty("pollType"))
+                object.pollType = options.enums === String ? $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.PollType[message.pollType] === undefined ? message.pollType : $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.PollType[message.pollType] : message.pollType;
             if (message.originalSelfAuthor != null && message.hasOwnProperty("originalSelfAuthor"))
                 object.originalSelfAuthor = message.originalSelfAuthor;
             return object;
@@ -1889,6 +1931,20 @@ $root.MdStorageMsgRowOpaqueData = (function() {
             };
 
             return PollOption;
+        })();
+
+        /**
+         * PollType enum.
+         * @name MdStorageMsgRowOpaqueData.MsgOpaqueData.PollType
+         * @enum {number}
+         * @property {number} POLL=0 POLL value
+         * @property {number} QUIZ=1 QUIZ value
+         */
+        MsgOpaqueData.PollType = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "POLL"] = 0;
+            values[valuesById[1] = "QUIZ"] = 1;
+            return values;
         })();
 
         MsgOpaqueData.PollVoteSnapshot = (function() {

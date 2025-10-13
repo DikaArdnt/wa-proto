@@ -75,6 +75,9 @@ export namespace MdStorageMsgRowOpaqueData {
         /** MsgOpaqueData pollContentType */
         pollContentType?: (MdStorageMsgRowOpaqueData.MsgOpaqueData.PollContentType|null);
 
+        /** MsgOpaqueData pollType */
+        pollType?: (MdStorageMsgRowOpaqueData.MsgOpaqueData.PollType|null);
+
         /** MsgOpaqueData pollVotesSnapshot */
         pollVotesSnapshot?: (MdStorageMsgRowOpaqueData.MsgOpaqueData.IPollVotesSnapshot|null);
 
@@ -207,6 +210,9 @@ export namespace MdStorageMsgRowOpaqueData {
 
         /** MsgOpaqueData pollContentType. */
         public pollContentType: MdStorageMsgRowOpaqueData.MsgOpaqueData.PollContentType;
+
+        /** MsgOpaqueData pollType. */
+        public pollType: MdStorageMsgRowOpaqueData.MsgOpaqueData.PollType;
 
         /** MsgOpaqueData pollVotesSnapshot. */
         public pollVotesSnapshot?: (MdStorageMsgRowOpaqueData.MsgOpaqueData.IPollVotesSnapshot|null);
@@ -577,6 +583,12 @@ export namespace MdStorageMsgRowOpaqueData {
              * @returns The default type url
              */
             public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** PollType enum. */
+        enum PollType {
+            POLL = 0,
+            QUIZ = 1
         }
 
         /** Properties of a PollVoteSnapshot. */
