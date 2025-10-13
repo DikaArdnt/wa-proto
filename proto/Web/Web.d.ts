@@ -3,6 +3,109 @@ import Long = require("long");
 /** Namespace Web. */
 export namespace Web {
 
+    /** Properties of a QuarantinedMessage. */
+    interface IQuarantinedMessage {
+
+        /** QuarantinedMessage originalData */
+        originalData?: (Uint8Array|null);
+
+        /** QuarantinedMessage extractedText */
+        extractedText?: (string|null);
+    }
+
+    /** Represents a QuarantinedMessage. */
+    class QuarantinedMessage implements IQuarantinedMessage {
+
+        /**
+         * Constructs a new QuarantinedMessage.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Web.IQuarantinedMessage);
+
+        /** QuarantinedMessage originalData. */
+        public originalData: Uint8Array;
+
+        /** QuarantinedMessage extractedText. */
+        public extractedText: string;
+
+        /**
+         * Creates a new QuarantinedMessage instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns QuarantinedMessage instance
+         */
+        public static create(properties?: Web.IQuarantinedMessage): Web.QuarantinedMessage;
+
+        /**
+         * Encodes the specified QuarantinedMessage message. Does not implicitly {@link Web.QuarantinedMessage.verify|verify} messages.
+         * @param message QuarantinedMessage message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Web.IQuarantinedMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified QuarantinedMessage message, length delimited. Does not implicitly {@link Web.QuarantinedMessage.verify|verify} messages.
+         * @param message QuarantinedMessage message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Web.IQuarantinedMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a QuarantinedMessage message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns QuarantinedMessage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.QuarantinedMessage;
+
+        /**
+         * Decodes a QuarantinedMessage message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns QuarantinedMessage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.QuarantinedMessage;
+
+        /**
+         * Verifies a QuarantinedMessage message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a QuarantinedMessage message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns QuarantinedMessage
+         */
+        public static fromObject(object: { [k: string]: any }): Web.QuarantinedMessage;
+
+        /**
+         * Creates a plain object from a QuarantinedMessage message. Also converts values to other types if specified.
+         * @param message QuarantinedMessage
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Web.QuarantinedMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this QuarantinedMessage to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for QuarantinedMessage
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
     /** Properties of a GroupHistoryBundleInfo. */
     interface IGroupHistoryBundleInfo {
 
@@ -3457,6 +3560,9 @@ export namespace Web {
 
         /** WebMessageInfo interactiveMessageAdditionalMetadata */
         interactiveMessageAdditionalMetadata?: (Web.IInteractiveMessageAdditionalMetadata|null);
+
+        /** WebMessageInfo quarantinedMessage */
+        quarantinedMessage?: (Web.IQuarantinedMessage|null);
     }
 
     /** Represents a WebMessageInfo. */
@@ -3662,6 +3768,9 @@ export namespace Web {
 
         /** WebMessageInfo interactiveMessageAdditionalMetadata. */
         public interactiveMessageAdditionalMetadata?: (Web.IInteractiveMessageAdditionalMetadata|null);
+
+        /** WebMessageInfo quarantinedMessage. */
+        public quarantinedMessage?: (Web.IQuarantinedMessage|null);
 
         /**
          * Creates a new WebMessageInfo instance using the specified properties.
@@ -3982,7 +4091,8 @@ export namespace Web {
             CHANGE_LIMIT_SHARING = 216,
             GROUP_MEMBER_LINK_MODE = 217,
             BIZ_AUTOMATICALLY_LABELED_CHAT_SYSTEM_MESSAGE = 218,
-            PHONE_NUMBER_HIDING_CHAT_DEPRECATED_MESSAGE = 219
+            PHONE_NUMBER_HIDING_CHAT_DEPRECATED_MESSAGE = 219,
+            QUARANTINED_MESSAGE = 220
         }
     }
 }
@@ -31407,6 +31517,9 @@ export namespace AICommon {
 
             /** SideBySideSurveyMetadata analyticsData */
             analyticsData?: (AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.ISideBySideSurveyAnalyticsData|null);
+
+            /** SideBySideSurveyMetadata metaAiAnalyticsData */
+            metaAiAnalyticsData?: (AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.ISidebySideSurveyMetaAiAnalyticsData|null);
         }
 
         /** Represents a SideBySideSurveyMetadata. */
@@ -31441,6 +31554,9 @@ export namespace AICommon {
 
             /** SideBySideSurveyMetadata analyticsData. */
             public analyticsData?: (AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.ISideBySideSurveyAnalyticsData|null);
+
+            /** SideBySideSurveyMetadata metaAiAnalyticsData. */
+            public metaAiAnalyticsData?: (AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.ISidebySideSurveyMetaAiAnalyticsData|null);
 
             /**
              * Creates a new SideBySideSurveyMetadata instance using the specified properties.
@@ -31623,6 +31739,639 @@ export namespace AICommon {
                  * @returns The default type url
                  */
                 public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            /** Properties of a SidebySideSurveyMetaAiAnalyticsData. */
+            interface ISidebySideSurveyMetaAiAnalyticsData {
+
+                /** SidebySideSurveyMetaAiAnalyticsData surveyId */
+                surveyId?: (number|null);
+
+                /** SidebySideSurveyMetaAiAnalyticsData primaryResponseId */
+                primaryResponseId?: (string|null);
+
+                /** SidebySideSurveyMetaAiAnalyticsData testArmName */
+                testArmName?: (string|null);
+
+                /** SidebySideSurveyMetaAiAnalyticsData timestampMsString */
+                timestampMsString?: (string|null);
+
+                /** SidebySideSurveyMetaAiAnalyticsData ctaImpressionEvent */
+                ctaImpressionEvent?: (AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCTAImpressionEventData|null);
+
+                /** SidebySideSurveyMetaAiAnalyticsData ctaClickEvent */
+                ctaClickEvent?: (AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCTAClickEventData|null);
+
+                /** SidebySideSurveyMetaAiAnalyticsData cardImpressionEvent */
+                cardImpressionEvent?: (AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCardImpressionEventData|null);
+
+                /** SidebySideSurveyMetaAiAnalyticsData responseEvent */
+                responseEvent?: (AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyResponseEventData|null);
+
+                /** SidebySideSurveyMetaAiAnalyticsData abandonEvent */
+                abandonEvent?: (AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyAbandonEventData|null);
+            }
+
+            /** Represents a SidebySideSurveyMetaAiAnalyticsData. */
+            class SidebySideSurveyMetaAiAnalyticsData implements ISidebySideSurveyMetaAiAnalyticsData {
+
+                /**
+                 * Constructs a new SidebySideSurveyMetaAiAnalyticsData.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.ISidebySideSurveyMetaAiAnalyticsData);
+
+                /** SidebySideSurveyMetaAiAnalyticsData surveyId. */
+                public surveyId: number;
+
+                /** SidebySideSurveyMetaAiAnalyticsData primaryResponseId. */
+                public primaryResponseId: string;
+
+                /** SidebySideSurveyMetaAiAnalyticsData testArmName. */
+                public testArmName: string;
+
+                /** SidebySideSurveyMetaAiAnalyticsData timestampMsString. */
+                public timestampMsString: string;
+
+                /** SidebySideSurveyMetaAiAnalyticsData ctaImpressionEvent. */
+                public ctaImpressionEvent?: (AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCTAImpressionEventData|null);
+
+                /** SidebySideSurveyMetaAiAnalyticsData ctaClickEvent. */
+                public ctaClickEvent?: (AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCTAClickEventData|null);
+
+                /** SidebySideSurveyMetaAiAnalyticsData cardImpressionEvent. */
+                public cardImpressionEvent?: (AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCardImpressionEventData|null);
+
+                /** SidebySideSurveyMetaAiAnalyticsData responseEvent. */
+                public responseEvent?: (AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyResponseEventData|null);
+
+                /** SidebySideSurveyMetaAiAnalyticsData abandonEvent. */
+                public abandonEvent?: (AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyAbandonEventData|null);
+
+                /**
+                 * Creates a new SidebySideSurveyMetaAiAnalyticsData instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns SidebySideSurveyMetaAiAnalyticsData instance
+                 */
+                public static create(properties?: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.ISidebySideSurveyMetaAiAnalyticsData): AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData;
+
+                /**
+                 * Encodes the specified SidebySideSurveyMetaAiAnalyticsData message. Does not implicitly {@link AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.verify|verify} messages.
+                 * @param message SidebySideSurveyMetaAiAnalyticsData message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.ISidebySideSurveyMetaAiAnalyticsData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified SidebySideSurveyMetaAiAnalyticsData message, length delimited. Does not implicitly {@link AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.verify|verify} messages.
+                 * @param message SidebySideSurveyMetaAiAnalyticsData message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.ISidebySideSurveyMetaAiAnalyticsData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a SidebySideSurveyMetaAiAnalyticsData message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns SidebySideSurveyMetaAiAnalyticsData
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData;
+
+                /**
+                 * Decodes a SidebySideSurveyMetaAiAnalyticsData message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns SidebySideSurveyMetaAiAnalyticsData
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData;
+
+                /**
+                 * Verifies a SidebySideSurveyMetaAiAnalyticsData message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a SidebySideSurveyMetaAiAnalyticsData message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns SidebySideSurveyMetaAiAnalyticsData
+                 */
+                public static fromObject(object: { [k: string]: any }): AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData;
+
+                /**
+                 * Creates a plain object from a SidebySideSurveyMetaAiAnalyticsData message. Also converts values to other types if specified.
+                 * @param message SidebySideSurveyMetaAiAnalyticsData
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this SidebySideSurveyMetaAiAnalyticsData to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for SidebySideSurveyMetaAiAnalyticsData
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            namespace SidebySideSurveyMetaAiAnalyticsData {
+
+                /** Properties of a SideBySideSurveyAbandonEventData. */
+                interface ISideBySideSurveyAbandonEventData {
+
+                    /** SideBySideSurveyAbandonEventData abandonDwellTimeMsString */
+                    abandonDwellTimeMsString?: (string|null);
+                }
+
+                /** Represents a SideBySideSurveyAbandonEventData. */
+                class SideBySideSurveyAbandonEventData implements ISideBySideSurveyAbandonEventData {
+
+                    /**
+                     * Constructs a new SideBySideSurveyAbandonEventData.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyAbandonEventData);
+
+                    /** SideBySideSurveyAbandonEventData abandonDwellTimeMsString. */
+                    public abandonDwellTimeMsString: string;
+
+                    /**
+                     * Creates a new SideBySideSurveyAbandonEventData instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns SideBySideSurveyAbandonEventData instance
+                     */
+                    public static create(properties?: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyAbandonEventData): AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData;
+
+                    /**
+                     * Encodes the specified SideBySideSurveyAbandonEventData message. Does not implicitly {@link AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData.verify|verify} messages.
+                     * @param message SideBySideSurveyAbandonEventData message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyAbandonEventData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified SideBySideSurveyAbandonEventData message, length delimited. Does not implicitly {@link AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData.verify|verify} messages.
+                     * @param message SideBySideSurveyAbandonEventData message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyAbandonEventData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a SideBySideSurveyAbandonEventData message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns SideBySideSurveyAbandonEventData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData;
+
+                    /**
+                     * Decodes a SideBySideSurveyAbandonEventData message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns SideBySideSurveyAbandonEventData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData;
+
+                    /**
+                     * Verifies a SideBySideSurveyAbandonEventData message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a SideBySideSurveyAbandonEventData message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns SideBySideSurveyAbandonEventData
+                     */
+                    public static fromObject(object: { [k: string]: any }): AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData;
+
+                    /**
+                     * Creates a plain object from a SideBySideSurveyAbandonEventData message. Also converts values to other types if specified.
+                     * @param message SideBySideSurveyAbandonEventData
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this SideBySideSurveyAbandonEventData to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for SideBySideSurveyAbandonEventData
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a SideBySideSurveyCTAClickEventData. */
+                interface ISideBySideSurveyCTAClickEventData {
+
+                    /** SideBySideSurveyCTAClickEventData isSurveyExpired */
+                    isSurveyExpired?: (boolean|null);
+
+                    /** SideBySideSurveyCTAClickEventData clickDwellTimeMsString */
+                    clickDwellTimeMsString?: (string|null);
+                }
+
+                /** Represents a SideBySideSurveyCTAClickEventData. */
+                class SideBySideSurveyCTAClickEventData implements ISideBySideSurveyCTAClickEventData {
+
+                    /**
+                     * Constructs a new SideBySideSurveyCTAClickEventData.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCTAClickEventData);
+
+                    /** SideBySideSurveyCTAClickEventData isSurveyExpired. */
+                    public isSurveyExpired: boolean;
+
+                    /** SideBySideSurveyCTAClickEventData clickDwellTimeMsString. */
+                    public clickDwellTimeMsString: string;
+
+                    /**
+                     * Creates a new SideBySideSurveyCTAClickEventData instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns SideBySideSurveyCTAClickEventData instance
+                     */
+                    public static create(properties?: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCTAClickEventData): AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData;
+
+                    /**
+                     * Encodes the specified SideBySideSurveyCTAClickEventData message. Does not implicitly {@link AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData.verify|verify} messages.
+                     * @param message SideBySideSurveyCTAClickEventData message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCTAClickEventData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified SideBySideSurveyCTAClickEventData message, length delimited. Does not implicitly {@link AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData.verify|verify} messages.
+                     * @param message SideBySideSurveyCTAClickEventData message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCTAClickEventData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a SideBySideSurveyCTAClickEventData message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns SideBySideSurveyCTAClickEventData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData;
+
+                    /**
+                     * Decodes a SideBySideSurveyCTAClickEventData message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns SideBySideSurveyCTAClickEventData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData;
+
+                    /**
+                     * Verifies a SideBySideSurveyCTAClickEventData message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a SideBySideSurveyCTAClickEventData message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns SideBySideSurveyCTAClickEventData
+                     */
+                    public static fromObject(object: { [k: string]: any }): AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData;
+
+                    /**
+                     * Creates a plain object from a SideBySideSurveyCTAClickEventData message. Also converts values to other types if specified.
+                     * @param message SideBySideSurveyCTAClickEventData
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this SideBySideSurveyCTAClickEventData to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for SideBySideSurveyCTAClickEventData
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a SideBySideSurveyCTAImpressionEventData. */
+                interface ISideBySideSurveyCTAImpressionEventData {
+
+                    /** SideBySideSurveyCTAImpressionEventData isSurveyExpired */
+                    isSurveyExpired?: (boolean|null);
+                }
+
+                /** Represents a SideBySideSurveyCTAImpressionEventData. */
+                class SideBySideSurveyCTAImpressionEventData implements ISideBySideSurveyCTAImpressionEventData {
+
+                    /**
+                     * Constructs a new SideBySideSurveyCTAImpressionEventData.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCTAImpressionEventData);
+
+                    /** SideBySideSurveyCTAImpressionEventData isSurveyExpired. */
+                    public isSurveyExpired: boolean;
+
+                    /**
+                     * Creates a new SideBySideSurveyCTAImpressionEventData instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns SideBySideSurveyCTAImpressionEventData instance
+                     */
+                    public static create(properties?: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCTAImpressionEventData): AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData;
+
+                    /**
+                     * Encodes the specified SideBySideSurveyCTAImpressionEventData message. Does not implicitly {@link AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData.verify|verify} messages.
+                     * @param message SideBySideSurveyCTAImpressionEventData message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCTAImpressionEventData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified SideBySideSurveyCTAImpressionEventData message, length delimited. Does not implicitly {@link AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData.verify|verify} messages.
+                     * @param message SideBySideSurveyCTAImpressionEventData message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCTAImpressionEventData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a SideBySideSurveyCTAImpressionEventData message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns SideBySideSurveyCTAImpressionEventData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData;
+
+                    /**
+                     * Decodes a SideBySideSurveyCTAImpressionEventData message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns SideBySideSurveyCTAImpressionEventData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData;
+
+                    /**
+                     * Verifies a SideBySideSurveyCTAImpressionEventData message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a SideBySideSurveyCTAImpressionEventData message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns SideBySideSurveyCTAImpressionEventData
+                     */
+                    public static fromObject(object: { [k: string]: any }): AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData;
+
+                    /**
+                     * Creates a plain object from a SideBySideSurveyCTAImpressionEventData message. Also converts values to other types if specified.
+                     * @param message SideBySideSurveyCTAImpressionEventData
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this SideBySideSurveyCTAImpressionEventData to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for SideBySideSurveyCTAImpressionEventData
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a SideBySideSurveyCardImpressionEventData. */
+                interface ISideBySideSurveyCardImpressionEventData {
+                }
+
+                /** Represents a SideBySideSurveyCardImpressionEventData. */
+                class SideBySideSurveyCardImpressionEventData implements ISideBySideSurveyCardImpressionEventData {
+
+                    /**
+                     * Constructs a new SideBySideSurveyCardImpressionEventData.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCardImpressionEventData);
+
+                    /**
+                     * Creates a new SideBySideSurveyCardImpressionEventData instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns SideBySideSurveyCardImpressionEventData instance
+                     */
+                    public static create(properties?: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCardImpressionEventData): AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData;
+
+                    /**
+                     * Encodes the specified SideBySideSurveyCardImpressionEventData message. Does not implicitly {@link AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData.verify|verify} messages.
+                     * @param message SideBySideSurveyCardImpressionEventData message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCardImpressionEventData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified SideBySideSurveyCardImpressionEventData message, length delimited. Does not implicitly {@link AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData.verify|verify} messages.
+                     * @param message SideBySideSurveyCardImpressionEventData message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCardImpressionEventData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a SideBySideSurveyCardImpressionEventData message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns SideBySideSurveyCardImpressionEventData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData;
+
+                    /**
+                     * Decodes a SideBySideSurveyCardImpressionEventData message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns SideBySideSurveyCardImpressionEventData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData;
+
+                    /**
+                     * Verifies a SideBySideSurveyCardImpressionEventData message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a SideBySideSurveyCardImpressionEventData message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns SideBySideSurveyCardImpressionEventData
+                     */
+                    public static fromObject(object: { [k: string]: any }): AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData;
+
+                    /**
+                     * Creates a plain object from a SideBySideSurveyCardImpressionEventData message. Also converts values to other types if specified.
+                     * @param message SideBySideSurveyCardImpressionEventData
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this SideBySideSurveyCardImpressionEventData to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for SideBySideSurveyCardImpressionEventData
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a SideBySideSurveyResponseEventData. */
+                interface ISideBySideSurveyResponseEventData {
+
+                    /** SideBySideSurveyResponseEventData responseDwellTimeMsString */
+                    responseDwellTimeMsString?: (string|null);
+                }
+
+                /** Represents a SideBySideSurveyResponseEventData. */
+                class SideBySideSurveyResponseEventData implements ISideBySideSurveyResponseEventData {
+
+                    /**
+                     * Constructs a new SideBySideSurveyResponseEventData.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyResponseEventData);
+
+                    /** SideBySideSurveyResponseEventData responseDwellTimeMsString. */
+                    public responseDwellTimeMsString: string;
+
+                    /**
+                     * Creates a new SideBySideSurveyResponseEventData instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns SideBySideSurveyResponseEventData instance
+                     */
+                    public static create(properties?: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyResponseEventData): AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData;
+
+                    /**
+                     * Encodes the specified SideBySideSurveyResponseEventData message. Does not implicitly {@link AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData.verify|verify} messages.
+                     * @param message SideBySideSurveyResponseEventData message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyResponseEventData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified SideBySideSurveyResponseEventData message, length delimited. Does not implicitly {@link AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData.verify|verify} messages.
+                     * @param message SideBySideSurveyResponseEventData message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyResponseEventData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a SideBySideSurveyResponseEventData message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns SideBySideSurveyResponseEventData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData;
+
+                    /**
+                     * Decodes a SideBySideSurveyResponseEventData message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns SideBySideSurveyResponseEventData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData;
+
+                    /**
+                     * Verifies a SideBySideSurveyResponseEventData message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a SideBySideSurveyResponseEventData message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns SideBySideSurveyResponseEventData
+                     */
+                    public static fromObject(object: { [k: string]: any }): AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData;
+
+                    /**
+                     * Creates a plain object from a SideBySideSurveyResponseEventData message. Also converts values to other types if specified.
+                     * @param message SideBySideSurveyResponseEventData
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this SideBySideSurveyResponseEventData to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for SideBySideSurveyResponseEventData
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
             }
         }
     }
@@ -34808,6 +35557,9 @@ export namespace AICommon {
 
         /** BotModelMetadata premiumModelStatus */
         premiumModelStatus?: (AICommon.BotModelMetadata.PremiumModelStatus|null);
+
+        /** BotModelMetadata modelNameOverride */
+        modelNameOverride?: (string|null);
     }
 
     /** Represents a BotModelMetadata. */
@@ -34824,6 +35576,9 @@ export namespace AICommon {
 
         /** BotModelMetadata premiumModelStatus. */
         public premiumModelStatus: AICommon.BotModelMetadata.PremiumModelStatus;
+
+        /** BotModelMetadata modelNameOverride. */
+        public modelNameOverride: string;
 
         /**
          * Creates a new BotModelMetadata instance using the specified properties.

@@ -4,6 +4,11 @@ package Web;
 import "../E2E/E2E.proto";
 import "../Protocol/Protocol.proto";
 
+message QuarantinedMessage {
+    optional bytes originalData = 1;
+    optional string extractedText = 2;
+}
+
 message GroupHistoryBundleInfo {
     optional E2E.Message.MessageHistoryBundle deprecatedMessageHistoryBundle = 1;
     optional ProcessState processState = 2;
@@ -355,6 +360,7 @@ message WebMessageInfo {
     optional GroupHistoryIndividualMessageInfo groupHistoryIndividualMessageInfo = 74;
     optional GroupHistoryBundleInfo groupHistoryBundleInfo = 75;
     optional InteractiveMessageAdditionalMetadata interactiveMessageAdditionalMetadata = 76;
+    optional QuarantinedMessage quarantinedMessage = 77;
     enum BizPrivacyStatus {
         E2EE = 0;
         FB = 2;
@@ -590,5 +596,6 @@ message WebMessageInfo {
         GROUP_MEMBER_LINK_MODE = 217;
         BIZ_AUTOMATICALLY_LABELED_CHAT_SYSTEM_MESSAGE = 218;
         PHONE_NUMBER_HIDING_CHAT_DEPRECATED_MESSAGE = 219;
+        QUARANTINED_MESSAGE = 220;
     }
 }

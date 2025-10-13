@@ -18,6 +18,244 @@ $root.Web = (function() {
      */
     var Web = {};
 
+    Web.QuarantinedMessage = (function() {
+
+        /**
+         * Properties of a QuarantinedMessage.
+         * @memberof Web
+         * @interface IQuarantinedMessage
+         * @property {Uint8Array|null} [originalData] QuarantinedMessage originalData
+         * @property {string|null} [extractedText] QuarantinedMessage extractedText
+         */
+
+        /**
+         * Constructs a new QuarantinedMessage.
+         * @memberof Web
+         * @classdesc Represents a QuarantinedMessage.
+         * @implements IQuarantinedMessage
+         * @constructor
+         * @param {Web.IQuarantinedMessage=} [properties] Properties to set
+         */
+        function QuarantinedMessage(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * QuarantinedMessage originalData.
+         * @member {Uint8Array} originalData
+         * @memberof Web.QuarantinedMessage
+         * @instance
+         */
+        QuarantinedMessage.prototype.originalData = $util.newBuffer([]);
+
+        /**
+         * QuarantinedMessage extractedText.
+         * @member {string} extractedText
+         * @memberof Web.QuarantinedMessage
+         * @instance
+         */
+        QuarantinedMessage.prototype.extractedText = "";
+
+        /**
+         * Creates a new QuarantinedMessage instance using the specified properties.
+         * @function create
+         * @memberof Web.QuarantinedMessage
+         * @static
+         * @param {Web.IQuarantinedMessage=} [properties] Properties to set
+         * @returns {Web.QuarantinedMessage} QuarantinedMessage instance
+         */
+        QuarantinedMessage.create = function create(properties) {
+            return new QuarantinedMessage(properties);
+        };
+
+        /**
+         * Encodes the specified QuarantinedMessage message. Does not implicitly {@link Web.QuarantinedMessage.verify|verify} messages.
+         * @function encode
+         * @memberof Web.QuarantinedMessage
+         * @static
+         * @param {Web.IQuarantinedMessage} message QuarantinedMessage message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        QuarantinedMessage.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.originalData != null && Object.hasOwnProperty.call(message, "originalData"))
+                writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.originalData);
+            if (message.extractedText != null && Object.hasOwnProperty.call(message, "extractedText"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.extractedText);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified QuarantinedMessage message, length delimited. Does not implicitly {@link Web.QuarantinedMessage.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof Web.QuarantinedMessage
+         * @static
+         * @param {Web.IQuarantinedMessage} message QuarantinedMessage message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        QuarantinedMessage.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a QuarantinedMessage message from the specified reader or buffer.
+         * @function decode
+         * @memberof Web.QuarantinedMessage
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {Web.QuarantinedMessage} QuarantinedMessage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        QuarantinedMessage.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.QuarantinedMessage();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.originalData = reader.bytes();
+                        break;
+                    }
+                case 2: {
+                        message.extractedText = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a QuarantinedMessage message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof Web.QuarantinedMessage
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {Web.QuarantinedMessage} QuarantinedMessage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        QuarantinedMessage.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a QuarantinedMessage message.
+         * @function verify
+         * @memberof Web.QuarantinedMessage
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        QuarantinedMessage.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.originalData != null && message.hasOwnProperty("originalData"))
+                if (!(message.originalData && typeof message.originalData.length === "number" || $util.isString(message.originalData)))
+                    return "originalData: buffer expected";
+            if (message.extractedText != null && message.hasOwnProperty("extractedText"))
+                if (!$util.isString(message.extractedText))
+                    return "extractedText: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a QuarantinedMessage message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof Web.QuarantinedMessage
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {Web.QuarantinedMessage} QuarantinedMessage
+         */
+        QuarantinedMessage.fromObject = function fromObject(object) {
+            if (object instanceof $root.Web.QuarantinedMessage)
+                return object;
+            var message = new $root.Web.QuarantinedMessage();
+            if (object.originalData != null)
+                if (typeof object.originalData === "string")
+                    $util.base64.decode(object.originalData, message.originalData = $util.newBuffer($util.base64.length(object.originalData)), 0);
+                else if (object.originalData.length >= 0)
+                    message.originalData = object.originalData;
+            if (object.extractedText != null)
+                message.extractedText = String(object.extractedText);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a QuarantinedMessage message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof Web.QuarantinedMessage
+         * @static
+         * @param {Web.QuarantinedMessage} message QuarantinedMessage
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        QuarantinedMessage.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if (options.bytes === String)
+                    object.originalData = "";
+                else {
+                    object.originalData = [];
+                    if (options.bytes !== Array)
+                        object.originalData = $util.newBuffer(object.originalData);
+                }
+                object.extractedText = "";
+            }
+            if (message.originalData != null && message.hasOwnProperty("originalData"))
+                object.originalData = options.bytes === String ? $util.base64.encode(message.originalData, 0, message.originalData.length) : options.bytes === Array ? Array.prototype.slice.call(message.originalData) : message.originalData;
+            if (message.extractedText != null && message.hasOwnProperty("extractedText"))
+                object.extractedText = message.extractedText;
+            return object;
+        };
+
+        /**
+         * Converts this QuarantinedMessage to JSON.
+         * @function toJSON
+         * @memberof Web.QuarantinedMessage
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        QuarantinedMessage.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for QuarantinedMessage
+         * @function getTypeUrl
+         * @memberof Web.QuarantinedMessage
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        QuarantinedMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/Web.QuarantinedMessage";
+        };
+
+        return QuarantinedMessage;
+    })();
+
     Web.GroupHistoryBundleInfo = (function() {
 
         /**
@@ -10270,6 +10508,7 @@ $root.Web = (function() {
          * @property {Web.IGroupHistoryIndividualMessageInfo|null} [groupHistoryIndividualMessageInfo] WebMessageInfo groupHistoryIndividualMessageInfo
          * @property {Web.IGroupHistoryBundleInfo|null} [groupHistoryBundleInfo] WebMessageInfo groupHistoryBundleInfo
          * @property {Web.IInteractiveMessageAdditionalMetadata|null} [interactiveMessageAdditionalMetadata] WebMessageInfo interactiveMessageAdditionalMetadata
+         * @property {Web.IQuarantinedMessage|null} [quarantinedMessage] WebMessageInfo quarantinedMessage
          */
 
         /**
@@ -10818,6 +11057,14 @@ $root.Web = (function() {
         WebMessageInfo.prototype.interactiveMessageAdditionalMetadata = null;
 
         /**
+         * WebMessageInfo quarantinedMessage.
+         * @member {Web.IQuarantinedMessage|null|undefined} quarantinedMessage
+         * @memberof Web.WebMessageInfo
+         * @instance
+         */
+        WebMessageInfo.prototype.quarantinedMessage = null;
+
+        /**
          * Creates a new WebMessageInfo instance using the specified properties.
          * @function create
          * @memberof Web.WebMessageInfo
@@ -10980,6 +11227,8 @@ $root.Web = (function() {
                 $root.Web.GroupHistoryBundleInfo.encode(message.groupHistoryBundleInfo, writer.uint32(/* id 75, wireType 2 =*/602).fork()).ldelim();
             if (message.interactiveMessageAdditionalMetadata != null && Object.hasOwnProperty.call(message, "interactiveMessageAdditionalMetadata"))
                 $root.Web.InteractiveMessageAdditionalMetadata.encode(message.interactiveMessageAdditionalMetadata, writer.uint32(/* id 76, wireType 2 =*/610).fork()).ldelim();
+            if (message.quarantinedMessage != null && Object.hasOwnProperty.call(message, "quarantinedMessage"))
+                $root.Web.QuarantinedMessage.encode(message.quarantinedMessage, writer.uint32(/* id 77, wireType 2 =*/618).fork()).ldelim();
             return writer;
         };
 
@@ -11294,6 +11543,10 @@ $root.Web = (function() {
                     }
                 case 76: {
                         message.interactiveMessageAdditionalMetadata = $root.Web.InteractiveMessageAdditionalMetadata.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 77: {
+                        message.quarantinedMessage = $root.Web.QuarantinedMessage.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -11612,6 +11865,7 @@ $root.Web = (function() {
                 case 217:
                 case 218:
                 case 219:
+                case 220:
                     break;
                 }
             if (message.clearMedia != null && message.hasOwnProperty("clearMedia"))
@@ -11860,6 +12114,11 @@ $root.Web = (function() {
                 var error = $root.Web.InteractiveMessageAdditionalMetadata.verify(message.interactiveMessageAdditionalMetadata);
                 if (error)
                     return "interactiveMessageAdditionalMetadata." + error;
+            }
+            if (message.quarantinedMessage != null && message.hasOwnProperty("quarantinedMessage")) {
+                var error = $root.Web.QuarantinedMessage.verify(message.quarantinedMessage);
+                if (error)
+                    return "quarantinedMessage." + error;
             }
             return null;
         };
@@ -12844,6 +13103,10 @@ $root.Web = (function() {
             case 219:
                 message.messageStubType = 219;
                 break;
+            case "QUARANTINED_MESSAGE":
+            case 220:
+                message.messageStubType = 220;
+                break;
             }
             if (object.clearMedia != null)
                 message.clearMedia = Boolean(object.clearMedia);
@@ -13119,6 +13382,11 @@ $root.Web = (function() {
                     throw TypeError(".Web.WebMessageInfo.interactiveMessageAdditionalMetadata: object expected");
                 message.interactiveMessageAdditionalMetadata = $root.Web.InteractiveMessageAdditionalMetadata.fromObject(object.interactiveMessageAdditionalMetadata);
             }
+            if (object.quarantinedMessage != null) {
+                if (typeof object.quarantinedMessage !== "object")
+                    throw TypeError(".Web.WebMessageInfo.quarantinedMessage: object expected");
+                message.quarantinedMessage = $root.Web.QuarantinedMessage.fromObject(object.quarantinedMessage);
+            }
             return message;
         };
 
@@ -13241,6 +13509,7 @@ $root.Web = (function() {
                 object.groupHistoryIndividualMessageInfo = null;
                 object.groupHistoryBundleInfo = null;
                 object.interactiveMessageAdditionalMetadata = null;
+                object.quarantinedMessage = null;
             }
             if (message.key != null && message.hasOwnProperty("key"))
                 object.key = $root.Protocol.MessageKey.toObject(message.key, options);
@@ -13417,6 +13686,8 @@ $root.Web = (function() {
                 object.groupHistoryBundleInfo = $root.Web.GroupHistoryBundleInfo.toObject(message.groupHistoryBundleInfo, options);
             if (message.interactiveMessageAdditionalMetadata != null && message.hasOwnProperty("interactiveMessageAdditionalMetadata"))
                 object.interactiveMessageAdditionalMetadata = $root.Web.InteractiveMessageAdditionalMetadata.toObject(message.interactiveMessageAdditionalMetadata, options);
+            if (message.quarantinedMessage != null && message.hasOwnProperty("quarantinedMessage"))
+                object.quarantinedMessage = $root.Web.QuarantinedMessage.toObject(message.quarantinedMessage, options);
             return object;
         };
 
@@ -13710,6 +13981,7 @@ $root.Web = (function() {
          * @property {number} GROUP_MEMBER_LINK_MODE=217 GROUP_MEMBER_LINK_MODE value
          * @property {number} BIZ_AUTOMATICALLY_LABELED_CHAT_SYSTEM_MESSAGE=218 BIZ_AUTOMATICALLY_LABELED_CHAT_SYSTEM_MESSAGE value
          * @property {number} PHONE_NUMBER_HIDING_CHAT_DEPRECATED_MESSAGE=219 PHONE_NUMBER_HIDING_CHAT_DEPRECATED_MESSAGE value
+         * @property {number} QUARANTINED_MESSAGE=220 QUARANTINED_MESSAGE value
          */
         WebMessageInfo.StubType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -13933,6 +14205,7 @@ $root.Web = (function() {
             values[valuesById[217] = "GROUP_MEMBER_LINK_MODE"] = 217;
             values[valuesById[218] = "BIZ_AUTOMATICALLY_LABELED_CHAT_SYSTEM_MESSAGE"] = 218;
             values[valuesById[219] = "PHONE_NUMBER_HIDING_CHAT_DEPRECATED_MESSAGE"] = 219;
+            values[valuesById[220] = "QUARANTINED_MESSAGE"] = 220;
             return values;
         })();
 
@@ -89690,6 +89963,7 @@ $root.AICommon = (function() {
              * @property {boolean|null} [isSelectedResponsePrimary] SideBySideSurveyMetadata isSelectedResponsePrimary
              * @property {string|null} [messageIdToEdit] SideBySideSurveyMetadata messageIdToEdit
              * @property {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.ISideBySideSurveyAnalyticsData|null} [analyticsData] SideBySideSurveyMetadata analyticsData
+             * @property {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.ISidebySideSurveyMetaAiAnalyticsData|null} [metaAiAnalyticsData] SideBySideSurveyMetadata metaAiAnalyticsData
              */
 
             /**
@@ -89772,6 +90046,14 @@ $root.AICommon = (function() {
             SideBySideSurveyMetadata.prototype.analyticsData = null;
 
             /**
+             * SideBySideSurveyMetadata metaAiAnalyticsData.
+             * @member {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.ISidebySideSurveyMetaAiAnalyticsData|null|undefined} metaAiAnalyticsData
+             * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata
+             * @instance
+             */
+            SideBySideSurveyMetadata.prototype.metaAiAnalyticsData = null;
+
+            /**
              * Creates a new SideBySideSurveyMetadata instance using the specified properties.
              * @function create
              * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata
@@ -89811,6 +90093,8 @@ $root.AICommon = (function() {
                     writer.uint32(/* id 7, wireType 2 =*/58).string(message.messageIdToEdit);
                 if (message.analyticsData != null && Object.hasOwnProperty.call(message, "analyticsData"))
                     $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData.encode(message.analyticsData, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+                if (message.metaAiAnalyticsData != null && Object.hasOwnProperty.call(message, "metaAiAnalyticsData"))
+                    $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.encode(message.metaAiAnalyticsData, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
                 return writer;
             };
 
@@ -89879,6 +90163,10 @@ $root.AICommon = (function() {
                             message.analyticsData = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData.decode(reader, reader.uint32());
                             break;
                         }
+                    case 9: {
+                            message.metaAiAnalyticsData = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.decode(reader, reader.uint32());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -89940,6 +90228,11 @@ $root.AICommon = (function() {
                     if (error)
                         return "analyticsData." + error;
                 }
+                if (message.metaAiAnalyticsData != null && message.hasOwnProperty("metaAiAnalyticsData")) {
+                    var error = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.verify(message.metaAiAnalyticsData);
+                    if (error)
+                        return "metaAiAnalyticsData." + error;
+                }
                 return null;
             };
 
@@ -89974,6 +90267,11 @@ $root.AICommon = (function() {
                         throw TypeError(".AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.analyticsData: object expected");
                     message.analyticsData = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData.fromObject(object.analyticsData);
                 }
+                if (object.metaAiAnalyticsData != null) {
+                    if (typeof object.metaAiAnalyticsData !== "object")
+                        throw TypeError(".AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.metaAiAnalyticsData: object expected");
+                    message.metaAiAnalyticsData = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.fromObject(object.metaAiAnalyticsData);
+                }
                 return message;
             };
 
@@ -89999,6 +90297,7 @@ $root.AICommon = (function() {
                     object.isSelectedResponsePrimary = false;
                     object.messageIdToEdit = "";
                     object.analyticsData = null;
+                    object.metaAiAnalyticsData = null;
                 }
                 if (message.selectedRequestId != null && message.hasOwnProperty("selectedRequestId"))
                     object.selectedRequestId = message.selectedRequestId;
@@ -90016,6 +90315,8 @@ $root.AICommon = (function() {
                     object.messageIdToEdit = message.messageIdToEdit;
                 if (message.analyticsData != null && message.hasOwnProperty("analyticsData"))
                     object.analyticsData = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData.toObject(message.analyticsData, options);
+                if (message.metaAiAnalyticsData != null && message.hasOwnProperty("metaAiAnalyticsData"))
+                    object.metaAiAnalyticsData = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.toObject(message.metaAiAnalyticsData, options);
                 return object;
             };
 
@@ -90272,6 +90573,1442 @@ $root.AICommon = (function() {
                 };
 
                 return SideBySideSurveyAnalyticsData;
+            })();
+
+            SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData = (function() {
+
+                /**
+                 * Properties of a SidebySideSurveyMetaAiAnalyticsData.
+                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata
+                 * @interface ISidebySideSurveyMetaAiAnalyticsData
+                 * @property {number|null} [surveyId] SidebySideSurveyMetaAiAnalyticsData surveyId
+                 * @property {string|null} [primaryResponseId] SidebySideSurveyMetaAiAnalyticsData primaryResponseId
+                 * @property {string|null} [testArmName] SidebySideSurveyMetaAiAnalyticsData testArmName
+                 * @property {string|null} [timestampMsString] SidebySideSurveyMetaAiAnalyticsData timestampMsString
+                 * @property {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCTAImpressionEventData|null} [ctaImpressionEvent] SidebySideSurveyMetaAiAnalyticsData ctaImpressionEvent
+                 * @property {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCTAClickEventData|null} [ctaClickEvent] SidebySideSurveyMetaAiAnalyticsData ctaClickEvent
+                 * @property {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCardImpressionEventData|null} [cardImpressionEvent] SidebySideSurveyMetaAiAnalyticsData cardImpressionEvent
+                 * @property {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyResponseEventData|null} [responseEvent] SidebySideSurveyMetaAiAnalyticsData responseEvent
+                 * @property {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyAbandonEventData|null} [abandonEvent] SidebySideSurveyMetaAiAnalyticsData abandonEvent
+                 */
+
+                /**
+                 * Constructs a new SidebySideSurveyMetaAiAnalyticsData.
+                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata
+                 * @classdesc Represents a SidebySideSurveyMetaAiAnalyticsData.
+                 * @implements ISidebySideSurveyMetaAiAnalyticsData
+                 * @constructor
+                 * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.ISidebySideSurveyMetaAiAnalyticsData=} [properties] Properties to set
+                 */
+                function SidebySideSurveyMetaAiAnalyticsData(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * SidebySideSurveyMetaAiAnalyticsData surveyId.
+                 * @member {number} surveyId
+                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                 * @instance
+                 */
+                SidebySideSurveyMetaAiAnalyticsData.prototype.surveyId = 0;
+
+                /**
+                 * SidebySideSurveyMetaAiAnalyticsData primaryResponseId.
+                 * @member {string} primaryResponseId
+                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                 * @instance
+                 */
+                SidebySideSurveyMetaAiAnalyticsData.prototype.primaryResponseId = "";
+
+                /**
+                 * SidebySideSurveyMetaAiAnalyticsData testArmName.
+                 * @member {string} testArmName
+                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                 * @instance
+                 */
+                SidebySideSurveyMetaAiAnalyticsData.prototype.testArmName = "";
+
+                /**
+                 * SidebySideSurveyMetaAiAnalyticsData timestampMsString.
+                 * @member {string} timestampMsString
+                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                 * @instance
+                 */
+                SidebySideSurveyMetaAiAnalyticsData.prototype.timestampMsString = "";
+
+                /**
+                 * SidebySideSurveyMetaAiAnalyticsData ctaImpressionEvent.
+                 * @member {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCTAImpressionEventData|null|undefined} ctaImpressionEvent
+                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                 * @instance
+                 */
+                SidebySideSurveyMetaAiAnalyticsData.prototype.ctaImpressionEvent = null;
+
+                /**
+                 * SidebySideSurveyMetaAiAnalyticsData ctaClickEvent.
+                 * @member {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCTAClickEventData|null|undefined} ctaClickEvent
+                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                 * @instance
+                 */
+                SidebySideSurveyMetaAiAnalyticsData.prototype.ctaClickEvent = null;
+
+                /**
+                 * SidebySideSurveyMetaAiAnalyticsData cardImpressionEvent.
+                 * @member {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCardImpressionEventData|null|undefined} cardImpressionEvent
+                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                 * @instance
+                 */
+                SidebySideSurveyMetaAiAnalyticsData.prototype.cardImpressionEvent = null;
+
+                /**
+                 * SidebySideSurveyMetaAiAnalyticsData responseEvent.
+                 * @member {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyResponseEventData|null|undefined} responseEvent
+                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                 * @instance
+                 */
+                SidebySideSurveyMetaAiAnalyticsData.prototype.responseEvent = null;
+
+                /**
+                 * SidebySideSurveyMetaAiAnalyticsData abandonEvent.
+                 * @member {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyAbandonEventData|null|undefined} abandonEvent
+                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                 * @instance
+                 */
+                SidebySideSurveyMetaAiAnalyticsData.prototype.abandonEvent = null;
+
+                /**
+                 * Creates a new SidebySideSurveyMetaAiAnalyticsData instance using the specified properties.
+                 * @function create
+                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                 * @static
+                 * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.ISidebySideSurveyMetaAiAnalyticsData=} [properties] Properties to set
+                 * @returns {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData} SidebySideSurveyMetaAiAnalyticsData instance
+                 */
+                SidebySideSurveyMetaAiAnalyticsData.create = function create(properties) {
+                    return new SidebySideSurveyMetaAiAnalyticsData(properties);
+                };
+
+                /**
+                 * Encodes the specified SidebySideSurveyMetaAiAnalyticsData message. Does not implicitly {@link AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.verify|verify} messages.
+                 * @function encode
+                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                 * @static
+                 * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.ISidebySideSurveyMetaAiAnalyticsData} message SidebySideSurveyMetaAiAnalyticsData message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                SidebySideSurveyMetaAiAnalyticsData.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.surveyId != null && Object.hasOwnProperty.call(message, "surveyId"))
+                        writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.surveyId);
+                    if (message.primaryResponseId != null && Object.hasOwnProperty.call(message, "primaryResponseId"))
+                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.primaryResponseId);
+                    if (message.testArmName != null && Object.hasOwnProperty.call(message, "testArmName"))
+                        writer.uint32(/* id 3, wireType 2 =*/26).string(message.testArmName);
+                    if (message.timestampMsString != null && Object.hasOwnProperty.call(message, "timestampMsString"))
+                        writer.uint32(/* id 4, wireType 2 =*/34).string(message.timestampMsString);
+                    if (message.ctaImpressionEvent != null && Object.hasOwnProperty.call(message, "ctaImpressionEvent"))
+                        $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData.encode(message.ctaImpressionEvent, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                    if (message.ctaClickEvent != null && Object.hasOwnProperty.call(message, "ctaClickEvent"))
+                        $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData.encode(message.ctaClickEvent, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
+                    if (message.cardImpressionEvent != null && Object.hasOwnProperty.call(message, "cardImpressionEvent"))
+                        $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData.encode(message.cardImpressionEvent, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+                    if (message.responseEvent != null && Object.hasOwnProperty.call(message, "responseEvent"))
+                        $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData.encode(message.responseEvent, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+                    if (message.abandonEvent != null && Object.hasOwnProperty.call(message, "abandonEvent"))
+                        $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData.encode(message.abandonEvent, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified SidebySideSurveyMetaAiAnalyticsData message, length delimited. Does not implicitly {@link AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                 * @static
+                 * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.ISidebySideSurveyMetaAiAnalyticsData} message SidebySideSurveyMetaAiAnalyticsData message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                SidebySideSurveyMetaAiAnalyticsData.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a SidebySideSurveyMetaAiAnalyticsData message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData} SidebySideSurveyMetaAiAnalyticsData
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                SidebySideSurveyMetaAiAnalyticsData.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.surveyId = reader.uint32();
+                                break;
+                            }
+                        case 2: {
+                                message.primaryResponseId = reader.string();
+                                break;
+                            }
+                        case 3: {
+                                message.testArmName = reader.string();
+                                break;
+                            }
+                        case 4: {
+                                message.timestampMsString = reader.string();
+                                break;
+                            }
+                        case 5: {
+                                message.ctaImpressionEvent = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData.decode(reader, reader.uint32());
+                                break;
+                            }
+                        case 6: {
+                                message.ctaClickEvent = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData.decode(reader, reader.uint32());
+                                break;
+                            }
+                        case 7: {
+                                message.cardImpressionEvent = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData.decode(reader, reader.uint32());
+                                break;
+                            }
+                        case 8: {
+                                message.responseEvent = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData.decode(reader, reader.uint32());
+                                break;
+                            }
+                        case 9: {
+                                message.abandonEvent = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData.decode(reader, reader.uint32());
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a SidebySideSurveyMetaAiAnalyticsData message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData} SidebySideSurveyMetaAiAnalyticsData
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                SidebySideSurveyMetaAiAnalyticsData.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a SidebySideSurveyMetaAiAnalyticsData message.
+                 * @function verify
+                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                SidebySideSurveyMetaAiAnalyticsData.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.surveyId != null && message.hasOwnProperty("surveyId"))
+                        if (!$util.isInteger(message.surveyId))
+                            return "surveyId: integer expected";
+                    if (message.primaryResponseId != null && message.hasOwnProperty("primaryResponseId"))
+                        if (!$util.isString(message.primaryResponseId))
+                            return "primaryResponseId: string expected";
+                    if (message.testArmName != null && message.hasOwnProperty("testArmName"))
+                        if (!$util.isString(message.testArmName))
+                            return "testArmName: string expected";
+                    if (message.timestampMsString != null && message.hasOwnProperty("timestampMsString"))
+                        if (!$util.isString(message.timestampMsString))
+                            return "timestampMsString: string expected";
+                    if (message.ctaImpressionEvent != null && message.hasOwnProperty("ctaImpressionEvent")) {
+                        var error = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData.verify(message.ctaImpressionEvent);
+                        if (error)
+                            return "ctaImpressionEvent." + error;
+                    }
+                    if (message.ctaClickEvent != null && message.hasOwnProperty("ctaClickEvent")) {
+                        var error = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData.verify(message.ctaClickEvent);
+                        if (error)
+                            return "ctaClickEvent." + error;
+                    }
+                    if (message.cardImpressionEvent != null && message.hasOwnProperty("cardImpressionEvent")) {
+                        var error = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData.verify(message.cardImpressionEvent);
+                        if (error)
+                            return "cardImpressionEvent." + error;
+                    }
+                    if (message.responseEvent != null && message.hasOwnProperty("responseEvent")) {
+                        var error = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData.verify(message.responseEvent);
+                        if (error)
+                            return "responseEvent." + error;
+                    }
+                    if (message.abandonEvent != null && message.hasOwnProperty("abandonEvent")) {
+                        var error = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData.verify(message.abandonEvent);
+                        if (error)
+                            return "abandonEvent." + error;
+                    }
+                    return null;
+                };
+
+                /**
+                 * Creates a SidebySideSurveyMetaAiAnalyticsData message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData} SidebySideSurveyMetaAiAnalyticsData
+                 */
+                SidebySideSurveyMetaAiAnalyticsData.fromObject = function fromObject(object) {
+                    if (object instanceof $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData)
+                        return object;
+                    var message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData();
+                    if (object.surveyId != null)
+                        message.surveyId = object.surveyId >>> 0;
+                    if (object.primaryResponseId != null)
+                        message.primaryResponseId = String(object.primaryResponseId);
+                    if (object.testArmName != null)
+                        message.testArmName = String(object.testArmName);
+                    if (object.timestampMsString != null)
+                        message.timestampMsString = String(object.timestampMsString);
+                    if (object.ctaImpressionEvent != null) {
+                        if (typeof object.ctaImpressionEvent !== "object")
+                            throw TypeError(".AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ctaImpressionEvent: object expected");
+                        message.ctaImpressionEvent = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData.fromObject(object.ctaImpressionEvent);
+                    }
+                    if (object.ctaClickEvent != null) {
+                        if (typeof object.ctaClickEvent !== "object")
+                            throw TypeError(".AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ctaClickEvent: object expected");
+                        message.ctaClickEvent = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData.fromObject(object.ctaClickEvent);
+                    }
+                    if (object.cardImpressionEvent != null) {
+                        if (typeof object.cardImpressionEvent !== "object")
+                            throw TypeError(".AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.cardImpressionEvent: object expected");
+                        message.cardImpressionEvent = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData.fromObject(object.cardImpressionEvent);
+                    }
+                    if (object.responseEvent != null) {
+                        if (typeof object.responseEvent !== "object")
+                            throw TypeError(".AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.responseEvent: object expected");
+                        message.responseEvent = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData.fromObject(object.responseEvent);
+                    }
+                    if (object.abandonEvent != null) {
+                        if (typeof object.abandonEvent !== "object")
+                            throw TypeError(".AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.abandonEvent: object expected");
+                        message.abandonEvent = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData.fromObject(object.abandonEvent);
+                    }
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a SidebySideSurveyMetaAiAnalyticsData message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                 * @static
+                 * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData} message SidebySideSurveyMetaAiAnalyticsData
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                SidebySideSurveyMetaAiAnalyticsData.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        object.surveyId = 0;
+                        object.primaryResponseId = "";
+                        object.testArmName = "";
+                        object.timestampMsString = "";
+                        object.ctaImpressionEvent = null;
+                        object.ctaClickEvent = null;
+                        object.cardImpressionEvent = null;
+                        object.responseEvent = null;
+                        object.abandonEvent = null;
+                    }
+                    if (message.surveyId != null && message.hasOwnProperty("surveyId"))
+                        object.surveyId = message.surveyId;
+                    if (message.primaryResponseId != null && message.hasOwnProperty("primaryResponseId"))
+                        object.primaryResponseId = message.primaryResponseId;
+                    if (message.testArmName != null && message.hasOwnProperty("testArmName"))
+                        object.testArmName = message.testArmName;
+                    if (message.timestampMsString != null && message.hasOwnProperty("timestampMsString"))
+                        object.timestampMsString = message.timestampMsString;
+                    if (message.ctaImpressionEvent != null && message.hasOwnProperty("ctaImpressionEvent"))
+                        object.ctaImpressionEvent = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData.toObject(message.ctaImpressionEvent, options);
+                    if (message.ctaClickEvent != null && message.hasOwnProperty("ctaClickEvent"))
+                        object.ctaClickEvent = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData.toObject(message.ctaClickEvent, options);
+                    if (message.cardImpressionEvent != null && message.hasOwnProperty("cardImpressionEvent"))
+                        object.cardImpressionEvent = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData.toObject(message.cardImpressionEvent, options);
+                    if (message.responseEvent != null && message.hasOwnProperty("responseEvent"))
+                        object.responseEvent = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData.toObject(message.responseEvent, options);
+                    if (message.abandonEvent != null && message.hasOwnProperty("abandonEvent"))
+                        object.abandonEvent = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData.toObject(message.abandonEvent, options);
+                    return object;
+                };
+
+                /**
+                 * Converts this SidebySideSurveyMetaAiAnalyticsData to JSON.
+                 * @function toJSON
+                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                SidebySideSurveyMetaAiAnalyticsData.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for SidebySideSurveyMetaAiAnalyticsData
+                 * @function getTypeUrl
+                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                SidebySideSurveyMetaAiAnalyticsData.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData";
+                };
+
+                SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData = (function() {
+
+                    /**
+                     * Properties of a SideBySideSurveyAbandonEventData.
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                     * @interface ISideBySideSurveyAbandonEventData
+                     * @property {string|null} [abandonDwellTimeMsString] SideBySideSurveyAbandonEventData abandonDwellTimeMsString
+                     */
+
+                    /**
+                     * Constructs a new SideBySideSurveyAbandonEventData.
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                     * @classdesc Represents a SideBySideSurveyAbandonEventData.
+                     * @implements ISideBySideSurveyAbandonEventData
+                     * @constructor
+                     * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyAbandonEventData=} [properties] Properties to set
+                     */
+                    function SideBySideSurveyAbandonEventData(properties) {
+                        if (properties)
+                            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                if (properties[keys[i]] != null)
+                                    this[keys[i]] = properties[keys[i]];
+                    }
+
+                    /**
+                     * SideBySideSurveyAbandonEventData abandonDwellTimeMsString.
+                     * @member {string} abandonDwellTimeMsString
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData
+                     * @instance
+                     */
+                    SideBySideSurveyAbandonEventData.prototype.abandonDwellTimeMsString = "";
+
+                    /**
+                     * Creates a new SideBySideSurveyAbandonEventData instance using the specified properties.
+                     * @function create
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData
+                     * @static
+                     * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyAbandonEventData=} [properties] Properties to set
+                     * @returns {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData} SideBySideSurveyAbandonEventData instance
+                     */
+                    SideBySideSurveyAbandonEventData.create = function create(properties) {
+                        return new SideBySideSurveyAbandonEventData(properties);
+                    };
+
+                    /**
+                     * Encodes the specified SideBySideSurveyAbandonEventData message. Does not implicitly {@link AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData.verify|verify} messages.
+                     * @function encode
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData
+                     * @static
+                     * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyAbandonEventData} message SideBySideSurveyAbandonEventData message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    SideBySideSurveyAbandonEventData.encode = function encode(message, writer) {
+                        if (!writer)
+                            writer = $Writer.create();
+                        if (message.abandonDwellTimeMsString != null && Object.hasOwnProperty.call(message, "abandonDwellTimeMsString"))
+                            writer.uint32(/* id 1, wireType 2 =*/10).string(message.abandonDwellTimeMsString);
+                        return writer;
+                    };
+
+                    /**
+                     * Encodes the specified SideBySideSurveyAbandonEventData message, length delimited. Does not implicitly {@link AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData.verify|verify} messages.
+                     * @function encodeDelimited
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData
+                     * @static
+                     * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyAbandonEventData} message SideBySideSurveyAbandonEventData message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    SideBySideSurveyAbandonEventData.encodeDelimited = function encodeDelimited(message, writer) {
+                        return this.encode(message, writer).ldelim();
+                    };
+
+                    /**
+                     * Decodes a SideBySideSurveyAbandonEventData message from the specified reader or buffer.
+                     * @function decode
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @param {number} [length] Message length if known beforehand
+                     * @returns {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData} SideBySideSurveyAbandonEventData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    SideBySideSurveyAbandonEventData.decode = function decode(reader, length, error) {
+                        if (!(reader instanceof $Reader))
+                            reader = $Reader.create(reader);
+                        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData();
+                        while (reader.pos < end) {
+                            var tag = reader.uint32();
+                            if (tag === error)
+                                break;
+                            switch (tag >>> 3) {
+                            case 1: {
+                                    message.abandonDwellTimeMsString = reader.string();
+                                    break;
+                                }
+                            default:
+                                reader.skipType(tag & 7);
+                                break;
+                            }
+                        }
+                        return message;
+                    };
+
+                    /**
+                     * Decodes a SideBySideSurveyAbandonEventData message from the specified reader or buffer, length delimited.
+                     * @function decodeDelimited
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @returns {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData} SideBySideSurveyAbandonEventData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    SideBySideSurveyAbandonEventData.decodeDelimited = function decodeDelimited(reader) {
+                        if (!(reader instanceof $Reader))
+                            reader = new $Reader(reader);
+                        return this.decode(reader, reader.uint32());
+                    };
+
+                    /**
+                     * Verifies a SideBySideSurveyAbandonEventData message.
+                     * @function verify
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData
+                     * @static
+                     * @param {Object.<string,*>} message Plain object to verify
+                     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                     */
+                    SideBySideSurveyAbandonEventData.verify = function verify(message) {
+                        if (typeof message !== "object" || message === null)
+                            return "object expected";
+                        if (message.abandonDwellTimeMsString != null && message.hasOwnProperty("abandonDwellTimeMsString"))
+                            if (!$util.isString(message.abandonDwellTimeMsString))
+                                return "abandonDwellTimeMsString: string expected";
+                        return null;
+                    };
+
+                    /**
+                     * Creates a SideBySideSurveyAbandonEventData message from a plain object. Also converts values to their respective internal types.
+                     * @function fromObject
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData
+                     * @static
+                     * @param {Object.<string,*>} object Plain object
+                     * @returns {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData} SideBySideSurveyAbandonEventData
+                     */
+                    SideBySideSurveyAbandonEventData.fromObject = function fromObject(object) {
+                        if (object instanceof $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData)
+                            return object;
+                        var message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData();
+                        if (object.abandonDwellTimeMsString != null)
+                            message.abandonDwellTimeMsString = String(object.abandonDwellTimeMsString);
+                        return message;
+                    };
+
+                    /**
+                     * Creates a plain object from a SideBySideSurveyAbandonEventData message. Also converts values to other types if specified.
+                     * @function toObject
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData
+                     * @static
+                     * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData} message SideBySideSurveyAbandonEventData
+                     * @param {$protobuf.IConversionOptions} [options] Conversion options
+                     * @returns {Object.<string,*>} Plain object
+                     */
+                    SideBySideSurveyAbandonEventData.toObject = function toObject(message, options) {
+                        if (!options)
+                            options = {};
+                        var object = {};
+                        if (options.defaults)
+                            object.abandonDwellTimeMsString = "";
+                        if (message.abandonDwellTimeMsString != null && message.hasOwnProperty("abandonDwellTimeMsString"))
+                            object.abandonDwellTimeMsString = message.abandonDwellTimeMsString;
+                        return object;
+                    };
+
+                    /**
+                     * Converts this SideBySideSurveyAbandonEventData to JSON.
+                     * @function toJSON
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData
+                     * @instance
+                     * @returns {Object.<string,*>} JSON object
+                     */
+                    SideBySideSurveyAbandonEventData.prototype.toJSON = function toJSON() {
+                        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                    };
+
+                    /**
+                     * Gets the default type url for SideBySideSurveyAbandonEventData
+                     * @function getTypeUrl
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData
+                     * @static
+                     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns {string} The default type url
+                     */
+                    SideBySideSurveyAbandonEventData.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        if (typeUrlPrefix === undefined) {
+                            typeUrlPrefix = "type.googleapis.com";
+                        }
+                        return typeUrlPrefix + "/AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData";
+                    };
+
+                    return SideBySideSurveyAbandonEventData;
+                })();
+
+                SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData = (function() {
+
+                    /**
+                     * Properties of a SideBySideSurveyCTAClickEventData.
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                     * @interface ISideBySideSurveyCTAClickEventData
+                     * @property {boolean|null} [isSurveyExpired] SideBySideSurveyCTAClickEventData isSurveyExpired
+                     * @property {string|null} [clickDwellTimeMsString] SideBySideSurveyCTAClickEventData clickDwellTimeMsString
+                     */
+
+                    /**
+                     * Constructs a new SideBySideSurveyCTAClickEventData.
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                     * @classdesc Represents a SideBySideSurveyCTAClickEventData.
+                     * @implements ISideBySideSurveyCTAClickEventData
+                     * @constructor
+                     * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCTAClickEventData=} [properties] Properties to set
+                     */
+                    function SideBySideSurveyCTAClickEventData(properties) {
+                        if (properties)
+                            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                if (properties[keys[i]] != null)
+                                    this[keys[i]] = properties[keys[i]];
+                    }
+
+                    /**
+                     * SideBySideSurveyCTAClickEventData isSurveyExpired.
+                     * @member {boolean} isSurveyExpired
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData
+                     * @instance
+                     */
+                    SideBySideSurveyCTAClickEventData.prototype.isSurveyExpired = false;
+
+                    /**
+                     * SideBySideSurveyCTAClickEventData clickDwellTimeMsString.
+                     * @member {string} clickDwellTimeMsString
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData
+                     * @instance
+                     */
+                    SideBySideSurveyCTAClickEventData.prototype.clickDwellTimeMsString = "";
+
+                    /**
+                     * Creates a new SideBySideSurveyCTAClickEventData instance using the specified properties.
+                     * @function create
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData
+                     * @static
+                     * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCTAClickEventData=} [properties] Properties to set
+                     * @returns {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData} SideBySideSurveyCTAClickEventData instance
+                     */
+                    SideBySideSurveyCTAClickEventData.create = function create(properties) {
+                        return new SideBySideSurveyCTAClickEventData(properties);
+                    };
+
+                    /**
+                     * Encodes the specified SideBySideSurveyCTAClickEventData message. Does not implicitly {@link AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData.verify|verify} messages.
+                     * @function encode
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData
+                     * @static
+                     * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCTAClickEventData} message SideBySideSurveyCTAClickEventData message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    SideBySideSurveyCTAClickEventData.encode = function encode(message, writer) {
+                        if (!writer)
+                            writer = $Writer.create();
+                        if (message.isSurveyExpired != null && Object.hasOwnProperty.call(message, "isSurveyExpired"))
+                            writer.uint32(/* id 1, wireType 0 =*/8).bool(message.isSurveyExpired);
+                        if (message.clickDwellTimeMsString != null && Object.hasOwnProperty.call(message, "clickDwellTimeMsString"))
+                            writer.uint32(/* id 2, wireType 2 =*/18).string(message.clickDwellTimeMsString);
+                        return writer;
+                    };
+
+                    /**
+                     * Encodes the specified SideBySideSurveyCTAClickEventData message, length delimited. Does not implicitly {@link AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData.verify|verify} messages.
+                     * @function encodeDelimited
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData
+                     * @static
+                     * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCTAClickEventData} message SideBySideSurveyCTAClickEventData message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    SideBySideSurveyCTAClickEventData.encodeDelimited = function encodeDelimited(message, writer) {
+                        return this.encode(message, writer).ldelim();
+                    };
+
+                    /**
+                     * Decodes a SideBySideSurveyCTAClickEventData message from the specified reader or buffer.
+                     * @function decode
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @param {number} [length] Message length if known beforehand
+                     * @returns {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData} SideBySideSurveyCTAClickEventData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    SideBySideSurveyCTAClickEventData.decode = function decode(reader, length, error) {
+                        if (!(reader instanceof $Reader))
+                            reader = $Reader.create(reader);
+                        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData();
+                        while (reader.pos < end) {
+                            var tag = reader.uint32();
+                            if (tag === error)
+                                break;
+                            switch (tag >>> 3) {
+                            case 1: {
+                                    message.isSurveyExpired = reader.bool();
+                                    break;
+                                }
+                            case 2: {
+                                    message.clickDwellTimeMsString = reader.string();
+                                    break;
+                                }
+                            default:
+                                reader.skipType(tag & 7);
+                                break;
+                            }
+                        }
+                        return message;
+                    };
+
+                    /**
+                     * Decodes a SideBySideSurveyCTAClickEventData message from the specified reader or buffer, length delimited.
+                     * @function decodeDelimited
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @returns {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData} SideBySideSurveyCTAClickEventData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    SideBySideSurveyCTAClickEventData.decodeDelimited = function decodeDelimited(reader) {
+                        if (!(reader instanceof $Reader))
+                            reader = new $Reader(reader);
+                        return this.decode(reader, reader.uint32());
+                    };
+
+                    /**
+                     * Verifies a SideBySideSurveyCTAClickEventData message.
+                     * @function verify
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData
+                     * @static
+                     * @param {Object.<string,*>} message Plain object to verify
+                     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                     */
+                    SideBySideSurveyCTAClickEventData.verify = function verify(message) {
+                        if (typeof message !== "object" || message === null)
+                            return "object expected";
+                        if (message.isSurveyExpired != null && message.hasOwnProperty("isSurveyExpired"))
+                            if (typeof message.isSurveyExpired !== "boolean")
+                                return "isSurveyExpired: boolean expected";
+                        if (message.clickDwellTimeMsString != null && message.hasOwnProperty("clickDwellTimeMsString"))
+                            if (!$util.isString(message.clickDwellTimeMsString))
+                                return "clickDwellTimeMsString: string expected";
+                        return null;
+                    };
+
+                    /**
+                     * Creates a SideBySideSurveyCTAClickEventData message from a plain object. Also converts values to their respective internal types.
+                     * @function fromObject
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData
+                     * @static
+                     * @param {Object.<string,*>} object Plain object
+                     * @returns {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData} SideBySideSurveyCTAClickEventData
+                     */
+                    SideBySideSurveyCTAClickEventData.fromObject = function fromObject(object) {
+                        if (object instanceof $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData)
+                            return object;
+                        var message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData();
+                        if (object.isSurveyExpired != null)
+                            message.isSurveyExpired = Boolean(object.isSurveyExpired);
+                        if (object.clickDwellTimeMsString != null)
+                            message.clickDwellTimeMsString = String(object.clickDwellTimeMsString);
+                        return message;
+                    };
+
+                    /**
+                     * Creates a plain object from a SideBySideSurveyCTAClickEventData message. Also converts values to other types if specified.
+                     * @function toObject
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData
+                     * @static
+                     * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData} message SideBySideSurveyCTAClickEventData
+                     * @param {$protobuf.IConversionOptions} [options] Conversion options
+                     * @returns {Object.<string,*>} Plain object
+                     */
+                    SideBySideSurveyCTAClickEventData.toObject = function toObject(message, options) {
+                        if (!options)
+                            options = {};
+                        var object = {};
+                        if (options.defaults) {
+                            object.isSurveyExpired = false;
+                            object.clickDwellTimeMsString = "";
+                        }
+                        if (message.isSurveyExpired != null && message.hasOwnProperty("isSurveyExpired"))
+                            object.isSurveyExpired = message.isSurveyExpired;
+                        if (message.clickDwellTimeMsString != null && message.hasOwnProperty("clickDwellTimeMsString"))
+                            object.clickDwellTimeMsString = message.clickDwellTimeMsString;
+                        return object;
+                    };
+
+                    /**
+                     * Converts this SideBySideSurveyCTAClickEventData to JSON.
+                     * @function toJSON
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData
+                     * @instance
+                     * @returns {Object.<string,*>} JSON object
+                     */
+                    SideBySideSurveyCTAClickEventData.prototype.toJSON = function toJSON() {
+                        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                    };
+
+                    /**
+                     * Gets the default type url for SideBySideSurveyCTAClickEventData
+                     * @function getTypeUrl
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData
+                     * @static
+                     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns {string} The default type url
+                     */
+                    SideBySideSurveyCTAClickEventData.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        if (typeUrlPrefix === undefined) {
+                            typeUrlPrefix = "type.googleapis.com";
+                        }
+                        return typeUrlPrefix + "/AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData";
+                    };
+
+                    return SideBySideSurveyCTAClickEventData;
+                })();
+
+                SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData = (function() {
+
+                    /**
+                     * Properties of a SideBySideSurveyCTAImpressionEventData.
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                     * @interface ISideBySideSurveyCTAImpressionEventData
+                     * @property {boolean|null} [isSurveyExpired] SideBySideSurveyCTAImpressionEventData isSurveyExpired
+                     */
+
+                    /**
+                     * Constructs a new SideBySideSurveyCTAImpressionEventData.
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                     * @classdesc Represents a SideBySideSurveyCTAImpressionEventData.
+                     * @implements ISideBySideSurveyCTAImpressionEventData
+                     * @constructor
+                     * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCTAImpressionEventData=} [properties] Properties to set
+                     */
+                    function SideBySideSurveyCTAImpressionEventData(properties) {
+                        if (properties)
+                            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                if (properties[keys[i]] != null)
+                                    this[keys[i]] = properties[keys[i]];
+                    }
+
+                    /**
+                     * SideBySideSurveyCTAImpressionEventData isSurveyExpired.
+                     * @member {boolean} isSurveyExpired
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData
+                     * @instance
+                     */
+                    SideBySideSurveyCTAImpressionEventData.prototype.isSurveyExpired = false;
+
+                    /**
+                     * Creates a new SideBySideSurveyCTAImpressionEventData instance using the specified properties.
+                     * @function create
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData
+                     * @static
+                     * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCTAImpressionEventData=} [properties] Properties to set
+                     * @returns {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData} SideBySideSurveyCTAImpressionEventData instance
+                     */
+                    SideBySideSurveyCTAImpressionEventData.create = function create(properties) {
+                        return new SideBySideSurveyCTAImpressionEventData(properties);
+                    };
+
+                    /**
+                     * Encodes the specified SideBySideSurveyCTAImpressionEventData message. Does not implicitly {@link AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData.verify|verify} messages.
+                     * @function encode
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData
+                     * @static
+                     * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCTAImpressionEventData} message SideBySideSurveyCTAImpressionEventData message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    SideBySideSurveyCTAImpressionEventData.encode = function encode(message, writer) {
+                        if (!writer)
+                            writer = $Writer.create();
+                        if (message.isSurveyExpired != null && Object.hasOwnProperty.call(message, "isSurveyExpired"))
+                            writer.uint32(/* id 1, wireType 0 =*/8).bool(message.isSurveyExpired);
+                        return writer;
+                    };
+
+                    /**
+                     * Encodes the specified SideBySideSurveyCTAImpressionEventData message, length delimited. Does not implicitly {@link AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData.verify|verify} messages.
+                     * @function encodeDelimited
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData
+                     * @static
+                     * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCTAImpressionEventData} message SideBySideSurveyCTAImpressionEventData message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    SideBySideSurveyCTAImpressionEventData.encodeDelimited = function encodeDelimited(message, writer) {
+                        return this.encode(message, writer).ldelim();
+                    };
+
+                    /**
+                     * Decodes a SideBySideSurveyCTAImpressionEventData message from the specified reader or buffer.
+                     * @function decode
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @param {number} [length] Message length if known beforehand
+                     * @returns {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData} SideBySideSurveyCTAImpressionEventData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    SideBySideSurveyCTAImpressionEventData.decode = function decode(reader, length, error) {
+                        if (!(reader instanceof $Reader))
+                            reader = $Reader.create(reader);
+                        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData();
+                        while (reader.pos < end) {
+                            var tag = reader.uint32();
+                            if (tag === error)
+                                break;
+                            switch (tag >>> 3) {
+                            case 1: {
+                                    message.isSurveyExpired = reader.bool();
+                                    break;
+                                }
+                            default:
+                                reader.skipType(tag & 7);
+                                break;
+                            }
+                        }
+                        return message;
+                    };
+
+                    /**
+                     * Decodes a SideBySideSurveyCTAImpressionEventData message from the specified reader or buffer, length delimited.
+                     * @function decodeDelimited
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @returns {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData} SideBySideSurveyCTAImpressionEventData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    SideBySideSurveyCTAImpressionEventData.decodeDelimited = function decodeDelimited(reader) {
+                        if (!(reader instanceof $Reader))
+                            reader = new $Reader(reader);
+                        return this.decode(reader, reader.uint32());
+                    };
+
+                    /**
+                     * Verifies a SideBySideSurveyCTAImpressionEventData message.
+                     * @function verify
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData
+                     * @static
+                     * @param {Object.<string,*>} message Plain object to verify
+                     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                     */
+                    SideBySideSurveyCTAImpressionEventData.verify = function verify(message) {
+                        if (typeof message !== "object" || message === null)
+                            return "object expected";
+                        if (message.isSurveyExpired != null && message.hasOwnProperty("isSurveyExpired"))
+                            if (typeof message.isSurveyExpired !== "boolean")
+                                return "isSurveyExpired: boolean expected";
+                        return null;
+                    };
+
+                    /**
+                     * Creates a SideBySideSurveyCTAImpressionEventData message from a plain object. Also converts values to their respective internal types.
+                     * @function fromObject
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData
+                     * @static
+                     * @param {Object.<string,*>} object Plain object
+                     * @returns {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData} SideBySideSurveyCTAImpressionEventData
+                     */
+                    SideBySideSurveyCTAImpressionEventData.fromObject = function fromObject(object) {
+                        if (object instanceof $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData)
+                            return object;
+                        var message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData();
+                        if (object.isSurveyExpired != null)
+                            message.isSurveyExpired = Boolean(object.isSurveyExpired);
+                        return message;
+                    };
+
+                    /**
+                     * Creates a plain object from a SideBySideSurveyCTAImpressionEventData message. Also converts values to other types if specified.
+                     * @function toObject
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData
+                     * @static
+                     * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData} message SideBySideSurveyCTAImpressionEventData
+                     * @param {$protobuf.IConversionOptions} [options] Conversion options
+                     * @returns {Object.<string,*>} Plain object
+                     */
+                    SideBySideSurveyCTAImpressionEventData.toObject = function toObject(message, options) {
+                        if (!options)
+                            options = {};
+                        var object = {};
+                        if (options.defaults)
+                            object.isSurveyExpired = false;
+                        if (message.isSurveyExpired != null && message.hasOwnProperty("isSurveyExpired"))
+                            object.isSurveyExpired = message.isSurveyExpired;
+                        return object;
+                    };
+
+                    /**
+                     * Converts this SideBySideSurveyCTAImpressionEventData to JSON.
+                     * @function toJSON
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData
+                     * @instance
+                     * @returns {Object.<string,*>} JSON object
+                     */
+                    SideBySideSurveyCTAImpressionEventData.prototype.toJSON = function toJSON() {
+                        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                    };
+
+                    /**
+                     * Gets the default type url for SideBySideSurveyCTAImpressionEventData
+                     * @function getTypeUrl
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData
+                     * @static
+                     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns {string} The default type url
+                     */
+                    SideBySideSurveyCTAImpressionEventData.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        if (typeUrlPrefix === undefined) {
+                            typeUrlPrefix = "type.googleapis.com";
+                        }
+                        return typeUrlPrefix + "/AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData";
+                    };
+
+                    return SideBySideSurveyCTAImpressionEventData;
+                })();
+
+                SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData = (function() {
+
+                    /**
+                     * Properties of a SideBySideSurveyCardImpressionEventData.
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                     * @interface ISideBySideSurveyCardImpressionEventData
+                     */
+
+                    /**
+                     * Constructs a new SideBySideSurveyCardImpressionEventData.
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                     * @classdesc Represents a SideBySideSurveyCardImpressionEventData.
+                     * @implements ISideBySideSurveyCardImpressionEventData
+                     * @constructor
+                     * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCardImpressionEventData=} [properties] Properties to set
+                     */
+                    function SideBySideSurveyCardImpressionEventData(properties) {
+                        if (properties)
+                            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                if (properties[keys[i]] != null)
+                                    this[keys[i]] = properties[keys[i]];
+                    }
+
+                    /**
+                     * Creates a new SideBySideSurveyCardImpressionEventData instance using the specified properties.
+                     * @function create
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData
+                     * @static
+                     * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCardImpressionEventData=} [properties] Properties to set
+                     * @returns {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData} SideBySideSurveyCardImpressionEventData instance
+                     */
+                    SideBySideSurveyCardImpressionEventData.create = function create(properties) {
+                        return new SideBySideSurveyCardImpressionEventData(properties);
+                    };
+
+                    /**
+                     * Encodes the specified SideBySideSurveyCardImpressionEventData message. Does not implicitly {@link AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData.verify|verify} messages.
+                     * @function encode
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData
+                     * @static
+                     * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCardImpressionEventData} message SideBySideSurveyCardImpressionEventData message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    SideBySideSurveyCardImpressionEventData.encode = function encode(message, writer) {
+                        if (!writer)
+                            writer = $Writer.create();
+                        return writer;
+                    };
+
+                    /**
+                     * Encodes the specified SideBySideSurveyCardImpressionEventData message, length delimited. Does not implicitly {@link AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData.verify|verify} messages.
+                     * @function encodeDelimited
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData
+                     * @static
+                     * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyCardImpressionEventData} message SideBySideSurveyCardImpressionEventData message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    SideBySideSurveyCardImpressionEventData.encodeDelimited = function encodeDelimited(message, writer) {
+                        return this.encode(message, writer).ldelim();
+                    };
+
+                    /**
+                     * Decodes a SideBySideSurveyCardImpressionEventData message from the specified reader or buffer.
+                     * @function decode
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @param {number} [length] Message length if known beforehand
+                     * @returns {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData} SideBySideSurveyCardImpressionEventData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    SideBySideSurveyCardImpressionEventData.decode = function decode(reader, length, error) {
+                        if (!(reader instanceof $Reader))
+                            reader = $Reader.create(reader);
+                        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData();
+                        while (reader.pos < end) {
+                            var tag = reader.uint32();
+                            if (tag === error)
+                                break;
+                            switch (tag >>> 3) {
+                            default:
+                                reader.skipType(tag & 7);
+                                break;
+                            }
+                        }
+                        return message;
+                    };
+
+                    /**
+                     * Decodes a SideBySideSurveyCardImpressionEventData message from the specified reader or buffer, length delimited.
+                     * @function decodeDelimited
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @returns {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData} SideBySideSurveyCardImpressionEventData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    SideBySideSurveyCardImpressionEventData.decodeDelimited = function decodeDelimited(reader) {
+                        if (!(reader instanceof $Reader))
+                            reader = new $Reader(reader);
+                        return this.decode(reader, reader.uint32());
+                    };
+
+                    /**
+                     * Verifies a SideBySideSurveyCardImpressionEventData message.
+                     * @function verify
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData
+                     * @static
+                     * @param {Object.<string,*>} message Plain object to verify
+                     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                     */
+                    SideBySideSurveyCardImpressionEventData.verify = function verify(message) {
+                        if (typeof message !== "object" || message === null)
+                            return "object expected";
+                        return null;
+                    };
+
+                    /**
+                     * Creates a SideBySideSurveyCardImpressionEventData message from a plain object. Also converts values to their respective internal types.
+                     * @function fromObject
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData
+                     * @static
+                     * @param {Object.<string,*>} object Plain object
+                     * @returns {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData} SideBySideSurveyCardImpressionEventData
+                     */
+                    SideBySideSurveyCardImpressionEventData.fromObject = function fromObject(object) {
+                        if (object instanceof $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData)
+                            return object;
+                        return new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData();
+                    };
+
+                    /**
+                     * Creates a plain object from a SideBySideSurveyCardImpressionEventData message. Also converts values to other types if specified.
+                     * @function toObject
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData
+                     * @static
+                     * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData} message SideBySideSurveyCardImpressionEventData
+                     * @param {$protobuf.IConversionOptions} [options] Conversion options
+                     * @returns {Object.<string,*>} Plain object
+                     */
+                    SideBySideSurveyCardImpressionEventData.toObject = function toObject() {
+                        return {};
+                    };
+
+                    /**
+                     * Converts this SideBySideSurveyCardImpressionEventData to JSON.
+                     * @function toJSON
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData
+                     * @instance
+                     * @returns {Object.<string,*>} JSON object
+                     */
+                    SideBySideSurveyCardImpressionEventData.prototype.toJSON = function toJSON() {
+                        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                    };
+
+                    /**
+                     * Gets the default type url for SideBySideSurveyCardImpressionEventData
+                     * @function getTypeUrl
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData
+                     * @static
+                     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns {string} The default type url
+                     */
+                    SideBySideSurveyCardImpressionEventData.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        if (typeUrlPrefix === undefined) {
+                            typeUrlPrefix = "type.googleapis.com";
+                        }
+                        return typeUrlPrefix + "/AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData";
+                    };
+
+                    return SideBySideSurveyCardImpressionEventData;
+                })();
+
+                SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData = (function() {
+
+                    /**
+                     * Properties of a SideBySideSurveyResponseEventData.
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                     * @interface ISideBySideSurveyResponseEventData
+                     * @property {string|null} [responseDwellTimeMsString] SideBySideSurveyResponseEventData responseDwellTimeMsString
+                     */
+
+                    /**
+                     * Constructs a new SideBySideSurveyResponseEventData.
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
+                     * @classdesc Represents a SideBySideSurveyResponseEventData.
+                     * @implements ISideBySideSurveyResponseEventData
+                     * @constructor
+                     * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyResponseEventData=} [properties] Properties to set
+                     */
+                    function SideBySideSurveyResponseEventData(properties) {
+                        if (properties)
+                            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                if (properties[keys[i]] != null)
+                                    this[keys[i]] = properties[keys[i]];
+                    }
+
+                    /**
+                     * SideBySideSurveyResponseEventData responseDwellTimeMsString.
+                     * @member {string} responseDwellTimeMsString
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData
+                     * @instance
+                     */
+                    SideBySideSurveyResponseEventData.prototype.responseDwellTimeMsString = "";
+
+                    /**
+                     * Creates a new SideBySideSurveyResponseEventData instance using the specified properties.
+                     * @function create
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData
+                     * @static
+                     * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyResponseEventData=} [properties] Properties to set
+                     * @returns {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData} SideBySideSurveyResponseEventData instance
+                     */
+                    SideBySideSurveyResponseEventData.create = function create(properties) {
+                        return new SideBySideSurveyResponseEventData(properties);
+                    };
+
+                    /**
+                     * Encodes the specified SideBySideSurveyResponseEventData message. Does not implicitly {@link AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData.verify|verify} messages.
+                     * @function encode
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData
+                     * @static
+                     * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyResponseEventData} message SideBySideSurveyResponseEventData message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    SideBySideSurveyResponseEventData.encode = function encode(message, writer) {
+                        if (!writer)
+                            writer = $Writer.create();
+                        if (message.responseDwellTimeMsString != null && Object.hasOwnProperty.call(message, "responseDwellTimeMsString"))
+                            writer.uint32(/* id 1, wireType 2 =*/10).string(message.responseDwellTimeMsString);
+                        return writer;
+                    };
+
+                    /**
+                     * Encodes the specified SideBySideSurveyResponseEventData message, length delimited. Does not implicitly {@link AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData.verify|verify} messages.
+                     * @function encodeDelimited
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData
+                     * @static
+                     * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ISideBySideSurveyResponseEventData} message SideBySideSurveyResponseEventData message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    SideBySideSurveyResponseEventData.encodeDelimited = function encodeDelimited(message, writer) {
+                        return this.encode(message, writer).ldelim();
+                    };
+
+                    /**
+                     * Decodes a SideBySideSurveyResponseEventData message from the specified reader or buffer.
+                     * @function decode
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @param {number} [length] Message length if known beforehand
+                     * @returns {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData} SideBySideSurveyResponseEventData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    SideBySideSurveyResponseEventData.decode = function decode(reader, length, error) {
+                        if (!(reader instanceof $Reader))
+                            reader = $Reader.create(reader);
+                        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData();
+                        while (reader.pos < end) {
+                            var tag = reader.uint32();
+                            if (tag === error)
+                                break;
+                            switch (tag >>> 3) {
+                            case 1: {
+                                    message.responseDwellTimeMsString = reader.string();
+                                    break;
+                                }
+                            default:
+                                reader.skipType(tag & 7);
+                                break;
+                            }
+                        }
+                        return message;
+                    };
+
+                    /**
+                     * Decodes a SideBySideSurveyResponseEventData message from the specified reader or buffer, length delimited.
+                     * @function decodeDelimited
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @returns {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData} SideBySideSurveyResponseEventData
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    SideBySideSurveyResponseEventData.decodeDelimited = function decodeDelimited(reader) {
+                        if (!(reader instanceof $Reader))
+                            reader = new $Reader(reader);
+                        return this.decode(reader, reader.uint32());
+                    };
+
+                    /**
+                     * Verifies a SideBySideSurveyResponseEventData message.
+                     * @function verify
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData
+                     * @static
+                     * @param {Object.<string,*>} message Plain object to verify
+                     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                     */
+                    SideBySideSurveyResponseEventData.verify = function verify(message) {
+                        if (typeof message !== "object" || message === null)
+                            return "object expected";
+                        if (message.responseDwellTimeMsString != null && message.hasOwnProperty("responseDwellTimeMsString"))
+                            if (!$util.isString(message.responseDwellTimeMsString))
+                                return "responseDwellTimeMsString: string expected";
+                        return null;
+                    };
+
+                    /**
+                     * Creates a SideBySideSurveyResponseEventData message from a plain object. Also converts values to their respective internal types.
+                     * @function fromObject
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData
+                     * @static
+                     * @param {Object.<string,*>} object Plain object
+                     * @returns {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData} SideBySideSurveyResponseEventData
+                     */
+                    SideBySideSurveyResponseEventData.fromObject = function fromObject(object) {
+                        if (object instanceof $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData)
+                            return object;
+                        var message = new $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData();
+                        if (object.responseDwellTimeMsString != null)
+                            message.responseDwellTimeMsString = String(object.responseDwellTimeMsString);
+                        return message;
+                    };
+
+                    /**
+                     * Creates a plain object from a SideBySideSurveyResponseEventData message. Also converts values to other types if specified.
+                     * @function toObject
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData
+                     * @static
+                     * @param {AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData} message SideBySideSurveyResponseEventData
+                     * @param {$protobuf.IConversionOptions} [options] Conversion options
+                     * @returns {Object.<string,*>} Plain object
+                     */
+                    SideBySideSurveyResponseEventData.toObject = function toObject(message, options) {
+                        if (!options)
+                            options = {};
+                        var object = {};
+                        if (options.defaults)
+                            object.responseDwellTimeMsString = "";
+                        if (message.responseDwellTimeMsString != null && message.hasOwnProperty("responseDwellTimeMsString"))
+                            object.responseDwellTimeMsString = message.responseDwellTimeMsString;
+                        return object;
+                    };
+
+                    /**
+                     * Converts this SideBySideSurveyResponseEventData to JSON.
+                     * @function toJSON
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData
+                     * @instance
+                     * @returns {Object.<string,*>} JSON object
+                     */
+                    SideBySideSurveyResponseEventData.prototype.toJSON = function toJSON() {
+                        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                    };
+
+                    /**
+                     * Gets the default type url for SideBySideSurveyResponseEventData
+                     * @function getTypeUrl
+                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData
+                     * @static
+                     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns {string} The default type url
+                     */
+                    SideBySideSurveyResponseEventData.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        if (typeUrlPrefix === undefined) {
+                            typeUrlPrefix = "type.googleapis.com";
+                        }
+                        return typeUrlPrefix + "/AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData";
+                    };
+
+                    return SideBySideSurveyResponseEventData;
+                })();
+
+                return SidebySideSurveyMetaAiAnalyticsData;
             })();
 
             return SideBySideSurveyMetadata;
@@ -98692,6 +100429,7 @@ $root.AICommon = (function() {
          * @interface IBotModelMetadata
          * @property {AICommon.BotModelMetadata.ModelType|null} [modelType] BotModelMetadata modelType
          * @property {AICommon.BotModelMetadata.PremiumModelStatus|null} [premiumModelStatus] BotModelMetadata premiumModelStatus
+         * @property {string|null} [modelNameOverride] BotModelMetadata modelNameOverride
          */
 
         /**
@@ -98726,6 +100464,14 @@ $root.AICommon = (function() {
         BotModelMetadata.prototype.premiumModelStatus = 0;
 
         /**
+         * BotModelMetadata modelNameOverride.
+         * @member {string} modelNameOverride
+         * @memberof AICommon.BotModelMetadata
+         * @instance
+         */
+        BotModelMetadata.prototype.modelNameOverride = "";
+
+        /**
          * Creates a new BotModelMetadata instance using the specified properties.
          * @function create
          * @memberof AICommon.BotModelMetadata
@@ -98753,6 +100499,8 @@ $root.AICommon = (function() {
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.modelType);
             if (message.premiumModelStatus != null && Object.hasOwnProperty.call(message, "premiumModelStatus"))
                 writer.uint32(/* id 2, wireType 0 =*/16).int32(message.premiumModelStatus);
+            if (message.modelNameOverride != null && Object.hasOwnProperty.call(message, "modelNameOverride"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.modelNameOverride);
             return writer;
         };
 
@@ -98795,6 +100543,10 @@ $root.AICommon = (function() {
                     }
                 case 2: {
                         message.premiumModelStatus = reader.int32();
+                        break;
+                    }
+                case 3: {
+                        message.modelNameOverride = reader.string();
                         break;
                     }
                 default:
@@ -98850,6 +100602,9 @@ $root.AICommon = (function() {
                 case 2:
                     break;
                 }
+            if (message.modelNameOverride != null && message.hasOwnProperty("modelNameOverride"))
+                if (!$util.isString(message.modelNameOverride))
+                    return "modelNameOverride: string expected";
             return null;
         };
 
@@ -98905,6 +100660,8 @@ $root.AICommon = (function() {
                 message.premiumModelStatus = 2;
                 break;
             }
+            if (object.modelNameOverride != null)
+                message.modelNameOverride = String(object.modelNameOverride);
             return message;
         };
 
@@ -98924,11 +100681,14 @@ $root.AICommon = (function() {
             if (options.defaults) {
                 object.modelType = options.enums === String ? "UNKNOWN_TYPE" : 0;
                 object.premiumModelStatus = options.enums === String ? "UNKNOWN_STATUS" : 0;
+                object.modelNameOverride = "";
             }
             if (message.modelType != null && message.hasOwnProperty("modelType"))
                 object.modelType = options.enums === String ? $root.AICommon.BotModelMetadata.ModelType[message.modelType] === undefined ? message.modelType : $root.AICommon.BotModelMetadata.ModelType[message.modelType] : message.modelType;
             if (message.premiumModelStatus != null && message.hasOwnProperty("premiumModelStatus"))
                 object.premiumModelStatus = options.enums === String ? $root.AICommon.BotModelMetadata.PremiumModelStatus[message.premiumModelStatus] === undefined ? message.premiumModelStatus : $root.AICommon.BotModelMetadata.PremiumModelStatus[message.premiumModelStatus] : message.premiumModelStatus;
+            if (message.modelNameOverride != null && message.hasOwnProperty("modelNameOverride"))
+                object.modelNameOverride = message.modelNameOverride;
             return object;
         };
 
