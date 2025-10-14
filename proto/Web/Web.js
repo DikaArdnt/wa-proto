@@ -98463,6 +98463,7 @@ $root.AICommon = (function() {
                     case 44:
                     case 45:
                     case 46:
+                    case 47:
                         break;
                     }
             }
@@ -98680,6 +98681,10 @@ $root.AICommon = (function() {
                     case 46:
                         message.capabilities[i] = 46;
                         break;
+                    case "AI_RESPONSE_MODEL_BRANDING":
+                    case 47:
+                        message.capabilities[i] = 47;
+                        break;
                     }
             }
             return message;
@@ -98785,6 +98790,7 @@ $root.AICommon = (function() {
          * @property {number} RICH_RESPONSE_UR_MEDIA_GRID_ENABLED=44 RICH_RESPONSE_UR_MEDIA_GRID_ENABLED value
          * @property {number} RICH_RESPONSE_UR_TIMESTAMP_PLACEHOLDER=45 RICH_RESPONSE_UR_TIMESTAMP_PLACEHOLDER value
          * @property {number} RICH_RESPONSE_IN_APP_SURVEY=46 RICH_RESPONSE_IN_APP_SURVEY value
+         * @property {number} AI_RESPONSE_MODEL_BRANDING=47 AI_RESPONSE_MODEL_BRANDING value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -98835,6 +98841,7 @@ $root.AICommon = (function() {
             values[valuesById[44] = "RICH_RESPONSE_UR_MEDIA_GRID_ENABLED"] = 44;
             values[valuesById[45] = "RICH_RESPONSE_UR_TIMESTAMP_PLACEHOLDER"] = 45;
             values[valuesById[46] = "RICH_RESPONSE_IN_APP_SURVEY"] = 46;
+            values[valuesById[47] = "AI_RESPONSE_MODEL_BRANDING"] = 47;
             return values;
         })();
 
