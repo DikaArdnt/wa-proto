@@ -28,6 +28,7 @@ message MsgOpaqueData {
     optional bool isSentCagPollCreation = 28;
     optional PollContentType pollContentType = 42;
     optional PollType pollType = 46;
+    optional int32 correctOptionIndex = 47;
     optional PollVotesSnapshot pollVotesSnapshot = 41;
     optional string encReactionTargetMessageKey = 25;
     optional bytes encReactionEncPayload = 26;

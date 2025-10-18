@@ -78,6 +78,9 @@ export namespace MdStorageMsgRowOpaqueData {
         /** MsgOpaqueData pollType */
         pollType?: (MdStorageMsgRowOpaqueData.MsgOpaqueData.PollType|null);
 
+        /** MsgOpaqueData correctOptionIndex */
+        correctOptionIndex?: (number|null);
+
         /** MsgOpaqueData pollVotesSnapshot */
         pollVotesSnapshot?: (MdStorageMsgRowOpaqueData.MsgOpaqueData.IPollVotesSnapshot|null);
 
@@ -213,6 +216,9 @@ export namespace MdStorageMsgRowOpaqueData {
 
         /** MsgOpaqueData pollType. */
         public pollType: MdStorageMsgRowOpaqueData.MsgOpaqueData.PollType;
+
+        /** MsgOpaqueData correctOptionIndex. */
+        public correctOptionIndex: number;
 
         /** MsgOpaqueData pollVotesSnapshot. */
         public pollVotesSnapshot?: (MdStorageMsgRowOpaqueData.MsgOpaqueData.IPollVotesSnapshot|null);

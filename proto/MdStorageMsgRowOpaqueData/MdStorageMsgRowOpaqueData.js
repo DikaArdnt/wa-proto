@@ -48,6 +48,7 @@ $root.MdStorageMsgRowOpaqueData = (function() {
          * @property {boolean|null} [isSentCagPollCreation] MsgOpaqueData isSentCagPollCreation
          * @property {MdStorageMsgRowOpaqueData.MsgOpaqueData.PollContentType|null} [pollContentType] MsgOpaqueData pollContentType
          * @property {MdStorageMsgRowOpaqueData.MsgOpaqueData.PollType|null} [pollType] MsgOpaqueData pollType
+         * @property {number|null} [correctOptionIndex] MsgOpaqueData correctOptionIndex
          * @property {MdStorageMsgRowOpaqueData.MsgOpaqueData.IPollVotesSnapshot|null} [pollVotesSnapshot] MsgOpaqueData pollVotesSnapshot
          * @property {string|null} [encReactionTargetMessageKey] MsgOpaqueData encReactionTargetMessageKey
          * @property {Uint8Array|null} [encReactionEncPayload] MsgOpaqueData encReactionEncPayload
@@ -275,6 +276,14 @@ $root.MdStorageMsgRowOpaqueData = (function() {
          * @instance
          */
         MsgOpaqueData.prototype.pollType = 0;
+
+        /**
+         * MsgOpaqueData correctOptionIndex.
+         * @member {number} correctOptionIndex
+         * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData
+         * @instance
+         */
+        MsgOpaqueData.prototype.correctOptionIndex = 0;
 
         /**
          * MsgOpaqueData pollVotesSnapshot.
@@ -527,6 +536,8 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 writer.uint32(/* id 45, wireType 0 =*/360).bool(message.eventExtraGuestsAllowed);
             if (message.pollType != null && Object.hasOwnProperty.call(message, "pollType"))
                 writer.uint32(/* id 46, wireType 0 =*/368).int32(message.pollType);
+            if (message.correctOptionIndex != null && Object.hasOwnProperty.call(message, "correctOptionIndex"))
+                writer.uint32(/* id 47, wireType 0 =*/376).int32(message.correctOptionIndex);
             if (message.originalSelfAuthor != null && Object.hasOwnProperty.call(message, "originalSelfAuthor"))
                 writer.uint32(/* id 51, wireType 2 =*/410).string(message.originalSelfAuthor);
             return writer;
@@ -661,6 +672,10 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                     }
                 case 46: {
                         message.pollType = reader.int32();
+                        break;
+                    }
+                case 47: {
+                        message.correctOptionIndex = reader.int32();
                         break;
                     }
                 case 41: {
@@ -861,6 +876,9 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 case 1:
                     break;
                 }
+            if (message.correctOptionIndex != null && message.hasOwnProperty("correctOptionIndex"))
+                if (!$util.isInteger(message.correctOptionIndex))
+                    return "correctOptionIndex: integer expected";
             if (message.pollVotesSnapshot != null && message.hasOwnProperty("pollVotesSnapshot")) {
                 var error = $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.PollVotesSnapshot.verify(message.pollVotesSnapshot);
                 if (error)
@@ -1038,6 +1056,8 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 message.pollType = 1;
                 break;
             }
+            if (object.correctOptionIndex != null)
+                message.correctOptionIndex = object.correctOptionIndex | 0;
             if (object.pollVotesSnapshot != null) {
                 if (typeof object.pollVotesSnapshot !== "object")
                     throw TypeError(".MdStorageMsgRowOpaqueData.MsgOpaqueData.pollVotesSnapshot: object expected");
@@ -1231,6 +1251,7 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 object.eventIsScheduledCall = false;
                 object.eventExtraGuestsAllowed = false;
                 object.pollType = options.enums === String ? "POLL" : 0;
+                object.correctOptionIndex = 0;
                 object.originalSelfAuthor = "";
             }
             if (message.body != null && message.hasOwnProperty("body"))
@@ -1327,6 +1348,8 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 object.eventExtraGuestsAllowed = message.eventExtraGuestsAllowed;
             if (message.pollType != null && message.hasOwnProperty("pollType"))
                 object.pollType = options.enums === String ? $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.PollType[message.pollType] === undefined ? message.pollType : $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.PollType[message.pollType] : message.pollType;
+            if (message.correctOptionIndex != null && message.hasOwnProperty("correctOptionIndex"))
+                object.correctOptionIndex = message.correctOptionIndex;
             if (message.originalSelfAuthor != null && message.hasOwnProperty("originalSelfAuthor"))
                 object.originalSelfAuthor = message.originalSelfAuthor;
             return object;
