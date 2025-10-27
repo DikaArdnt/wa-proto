@@ -17,6 +17,9 @@ export namespace DeviceCapabilities {
 
         /** DeviceCapabilities userHasAvatar */
         userHasAvatar?: (DeviceCapabilities.DeviceCapabilities.IUserHasAvatar|null);
+
+        /** DeviceCapabilities memberNameTagPrimarySupport */
+        memberNameTagPrimarySupport?: (DeviceCapabilities.DeviceCapabilities.MemberNameTagPrimarySupport|null);
     }
 
     /** Represents a DeviceCapabilities. */
@@ -39,6 +42,9 @@ export namespace DeviceCapabilities {
 
         /** DeviceCapabilities userHasAvatar. */
         public userHasAvatar?: (DeviceCapabilities.DeviceCapabilities.IUserHasAvatar|null);
+
+        /** DeviceCapabilities memberNameTagPrimarySupport. */
+        public memberNameTagPrimarySupport: DeviceCapabilities.DeviceCapabilities.MemberNameTagPrimarySupport;
 
         /**
          * Creates a new DeviceCapabilities instance using the specified properties.
@@ -319,6 +325,13 @@ export namespace DeviceCapabilities {
              * @returns The default type url
              */
             public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** MemberNameTagPrimarySupport enum. */
+        enum MemberNameTagPrimarySupport {
+            DISABLED = 0,
+            RECEIVER_ENABLED = 1,
+            SENDER_ENABLED = 2
         }
 
         /** Properties of a UserHasAvatar. */

@@ -381,7 +381,8 @@ export namespace StatusAttributions {
                 PINTEREST = 6,
                 THREADS = 7,
                 APPLE_MUSIC = 8,
-                SHARECHAT = 9
+                SHARECHAT = 9,
+                GOOGLE_PHOTOS = 10
             }
         }
 

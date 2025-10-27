@@ -46,7 +46,6 @@ message SyncActionValue {
     optional ContactAction contactAction = 3;
     optional MuteAction muteAction = 4;
     optional PinAction pinAction = 5;
-    optional SecurityNotificationSetting securityNotificationSetting = 6;
     optional PushNameSetting pushNameSetting = 7;
     optional QuickReplyAction quickReplyAction = 8;
     optional RecentEmojiWeightsAction recentEmojiWeightsAction = 11;
@@ -78,6 +77,7 @@ message SyncActionValue {
     optional ExternalWebBetaAction externalWebBetaAction = 40;
     optional PrivacySettingRelayAllCalls privacySettingRelayAllCalls = 41;
     optional CallLogAction callLogAction = 42;
+    optional UGCBot ugcBot = 43;
     optional StatusPrivacyAction statusPrivacy = 44;
     optional BotWelcomeRequestAction botWelcomeRequestAction = 45;
     optional DeleteIndividualCallLogAction deleteIndividualCallLog = 46;
@@ -106,7 +106,8 @@ message SyncActionValue {
     optional MusicUserIdAction musicUserIdAction = 70;
     optional StatusPostOptInNotificationPreferencesAction statusPostOptInNotificationPreferencesAction = 71;
     optional AvatarUpdatedAction avatarUpdatedAction = 72;
-    optional GalaxyFlowAction galaxyFlowAction = 73;
+    optional PrivateProcessingSettingAction privateProcessingSettingAction = 74;
+    optional NewsletterSavedInterestsAction newsletterSavedInterestsAction = 75;
     message AgentAction {
         optional string name = 1;
         optional int32 deviceID = 2;
@@ -202,12 +203,6 @@ message SyncActionValue {
             optional string id = 1;
         }
     }
-    message GalaxyFlowAction {
-        required GalaxyFlowActionType type = 1;
-        enum GalaxyFlowActionType {
-            LAUNCH = 1;
-        }
-    }
     message KeyExpiration {
         optional int32 expiredKeyEpoch = 1;
     }
@@ -223,6 +218,7 @@ message SyncActionValue {
         optional bool isActive = 6;
         optional ListType type = 7;
         optional bool isImmutable = 8;
+        optional int64 muteEndTimeMs = 9;
         enum ListType {
             NONE = 0;
             UNREAD = 1;
@@ -232,6 +228,7 @@ message SyncActionValue {
             CUSTOM = 5;
             COMMUNITY = 6;
             SERVER_ASSIGNED = 7;
+            DRAFTED = 8;
         }
     }
     message LabelReorderingAction {
@@ -241,7 +238,6 @@ message SyncActionValue {
         optional string fullName = 1;
         optional string firstName = 2;
         optional string username = 3;
-        optional bool saveOnPrimaryAddressbook = 4;
     }
     message LocaleSetting {
         optional string locale = 1;
@@ -288,11 +284,15 @@ message SyncActionValue {
     }
     message MusicUserIdAction {
         optional string musicUserId = 1;
+        map<string, string> music_user_id_map = 2;
     }
     message MuteAction {
         optional bool muted = 1;
         optional int64 muteEndTimestamp = 2;
         optional bool autoMuted = 3;
+    }
+    message NewsletterSavedInterestsAction {
+        optional string newsletterSavedInterests = 1;
     }
     message NoteEditAction {
         optional NoteType type = 1;
@@ -348,6 +348,14 @@ message SyncActionValue {
     message PrivacySettingRelayAllCalls {
         optional bool isEnabled = 1;
     }
+    message PrivateProcessingSettingAction {
+        optional PrivateProcessingStatus privateProcessingStatus = 1;
+        enum PrivateProcessingStatus {
+            UNDEFINED = 0;
+            ENABLED = 1;
+            DISABLED = 2;
+        }
+    }
     message PushNameSetting {
         optional string name = 1;
     }
@@ -364,9 +372,6 @@ message SyncActionValue {
     message RemoveRecentStickerAction {
         optional int64 lastStickerSentTs = 1;
     }
-    message SecurityNotificationSetting {
-        optional bool showNotification = 1;
-    }
     message StarAction {
         optional bool starred = 1;
     }
@@ -380,6 +385,7 @@ message SyncActionValue {
             ALLOW_LIST = 0;
             DENY_LIST = 1;
             CONTACTS = 2;
+            CLOSE_FRIENDS = 3;
         }
     }
     message StickerAction {
@@ -414,6 +420,9 @@ message SyncActionValue {
     message TimeFormatAction {
         optional bool isTwentyFourHourFormatEnabled = 1;
     }
+    message UGCBot {
+        optional bytes definition = 1;
+    }
     message UnarchiveChatsSetting {
         optional bool unarchiveChats = 1;
     }
@@ -431,6 +440,8 @@ message SyncActionValue {
         optional AccountLinkState linkState = 2;
         enum AccountLinkState {
             ACTIVE = 0;
+            PAUSED = 1;
+            UNLINKED = 2;
         }
     }
     message WamoUserIdentifierAction {

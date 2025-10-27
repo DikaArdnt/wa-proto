@@ -2655,6 +2655,8 @@ $root.CompanionReg = (function() {
              * @property {boolean|null} [supportGroupHistory] HistorySyncConfig supportGroupHistory
              * @property {boolean|null} [onDemandReady] HistorySyncConfig onDemandReady
              * @property {boolean|null} [supportGuestChat] HistorySyncConfig supportGuestChat
+             * @property {boolean|null} [completeOnDemandReady] HistorySyncConfig completeOnDemandReady
+             * @property {number|null} [thumbnailSyncDaysLimit] HistorySyncConfig thumbnailSyncDaysLimit
              */
 
             /**
@@ -2809,6 +2811,22 @@ $root.CompanionReg = (function() {
             HistorySyncConfig.prototype.supportGuestChat = false;
 
             /**
+             * HistorySyncConfig completeOnDemandReady.
+             * @member {boolean} completeOnDemandReady
+             * @memberof CompanionReg.DeviceProps.HistorySyncConfig
+             * @instance
+             */
+            HistorySyncConfig.prototype.completeOnDemandReady = false;
+
+            /**
+             * HistorySyncConfig thumbnailSyncDaysLimit.
+             * @member {number} thumbnailSyncDaysLimit
+             * @memberof CompanionReg.DeviceProps.HistorySyncConfig
+             * @instance
+             */
+            HistorySyncConfig.prototype.thumbnailSyncDaysLimit = 0;
+
+            /**
              * Creates a new HistorySyncConfig instance using the specified properties.
              * @function create
              * @memberof CompanionReg.DeviceProps.HistorySyncConfig
@@ -2866,6 +2884,10 @@ $root.CompanionReg = (function() {
                     writer.uint32(/* id 16, wireType 0 =*/128).bool(message.onDemandReady);
                 if (message.supportGuestChat != null && Object.hasOwnProperty.call(message, "supportGuestChat"))
                     writer.uint32(/* id 17, wireType 0 =*/136).bool(message.supportGuestChat);
+                if (message.completeOnDemandReady != null && Object.hasOwnProperty.call(message, "completeOnDemandReady"))
+                    writer.uint32(/* id 18, wireType 0 =*/144).bool(message.completeOnDemandReady);
+                if (message.thumbnailSyncDaysLimit != null && Object.hasOwnProperty.call(message, "thumbnailSyncDaysLimit"))
+                    writer.uint32(/* id 19, wireType 0 =*/152).uint32(message.thumbnailSyncDaysLimit);
                 return writer;
             };
 
@@ -2970,6 +2992,14 @@ $root.CompanionReg = (function() {
                             message.supportGuestChat = reader.bool();
                             break;
                         }
+                    case 18: {
+                            message.completeOnDemandReady = reader.bool();
+                            break;
+                        }
+                    case 19: {
+                            message.thumbnailSyncDaysLimit = reader.uint32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -3056,6 +3086,12 @@ $root.CompanionReg = (function() {
                 if (message.supportGuestChat != null && message.hasOwnProperty("supportGuestChat"))
                     if (typeof message.supportGuestChat !== "boolean")
                         return "supportGuestChat: boolean expected";
+                if (message.completeOnDemandReady != null && message.hasOwnProperty("completeOnDemandReady"))
+                    if (typeof message.completeOnDemandReady !== "boolean")
+                        return "completeOnDemandReady: boolean expected";
+                if (message.thumbnailSyncDaysLimit != null && message.hasOwnProperty("thumbnailSyncDaysLimit"))
+                    if (!$util.isInteger(message.thumbnailSyncDaysLimit))
+                        return "thumbnailSyncDaysLimit: integer expected";
                 return null;
             };
 
@@ -3105,6 +3141,10 @@ $root.CompanionReg = (function() {
                     message.onDemandReady = Boolean(object.onDemandReady);
                 if (object.supportGuestChat != null)
                     message.supportGuestChat = Boolean(object.supportGuestChat);
+                if (object.completeOnDemandReady != null)
+                    message.completeOnDemandReady = Boolean(object.completeOnDemandReady);
+                if (object.thumbnailSyncDaysLimit != null)
+                    message.thumbnailSyncDaysLimit = object.thumbnailSyncDaysLimit >>> 0;
                 return message;
             };
 
@@ -3139,6 +3179,8 @@ $root.CompanionReg = (function() {
                     object.supportGroupHistory = false;
                     object.onDemandReady = false;
                     object.supportGuestChat = false;
+                    object.completeOnDemandReady = false;
+                    object.thumbnailSyncDaysLimit = 0;
                 }
                 if (message.fullSyncDaysLimit != null && message.hasOwnProperty("fullSyncDaysLimit"))
                     object.fullSyncDaysLimit = message.fullSyncDaysLimit;
@@ -3174,6 +3216,10 @@ $root.CompanionReg = (function() {
                     object.onDemandReady = message.onDemandReady;
                 if (message.supportGuestChat != null && message.hasOwnProperty("supportGuestChat"))
                     object.supportGuestChat = message.supportGuestChat;
+                if (message.completeOnDemandReady != null && message.hasOwnProperty("completeOnDemandReady"))
+                    object.completeOnDemandReady = message.completeOnDemandReady;
+                if (message.thumbnailSyncDaysLimit != null && message.hasOwnProperty("thumbnailSyncDaysLimit"))
+                    object.thumbnailSyncDaysLimit = message.thumbnailSyncDaysLimit;
                 return object;
             };
 

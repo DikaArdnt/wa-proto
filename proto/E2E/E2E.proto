@@ -271,6 +271,7 @@ message MessageContextInfo {
     optional Protocol.LimitSharing limitSharing = 13;
     optional Protocol.LimitSharing limitSharingV2 = 14;
     repeated ThreadID threadId = 15;
+    optional WebLinkRenderConfig weblinkRenderConfig = 16;
     enum MessageAddonExpiryType {
         STATIC = 1;
         DEPENDENT_ON_PARENT = 2;
@@ -609,9 +610,9 @@ message Message {
     optional StatusQuotedMessage statusQuotedMessage = 109;
     optional StatusStickerInteractionMessage statusStickerInteractionMessage = 110;
     optional PollCreationMessage pollCreationMessageV5 = 111;
-    optional PollResultSnapshotMessage pollResultSnapshotMessageV2 = 112;
     optional NewsletterFollowerInviteMessage newsletterFollowerInviteMessageV2 = 113;
     optional RequestContactInfoMessage requestContactInfoMessage = 114;
+    optional PollResultSnapshotMessage pollResultSnapshotMessageV3 = 115;
     message AlbumMessage {
         optional uint32 expectedImageCount = 2;
         optional uint32 expectedVideoCount = 3;
@@ -1003,6 +1004,9 @@ message Message {
             }
         }
     }
+    message HistorySyncMessageAccessStatus {
+        optional bool completeAccessGranted = 1;
+    }
     message HistorySyncNotification {
         optional bytes fileSha256 = 1;
         optional uint64 fileLength = 2;
@@ -1018,6 +1022,7 @@ message Message {
         optional string peerDataRequestSessionId = 12;
         optional Message.FullHistorySyncOnDemandRequestMetadata fullHistorySyncOnDemandRequestMetadata = 13;
         optional string encHandle = 14;
+        optional Message.HistorySyncMessageAccessStatus messageAccessStatus = 15;
     }
     enum HistorySyncType {
         INITIAL_BOOTSTRAP = 0;
@@ -1028,6 +1033,7 @@ message Message {
         NON_BLOCKING_DATA = 5;
         ON_DEMAND = 6;
         NO_HISTORY = 7;
+        MESSAGE_ACCESS_STATUS = 8;
     }
     message ImageMessage {
         optional string url = 1;
@@ -1960,4 +1966,9 @@ enum KeepType {
     UNKNOWN = 0;
     KEEP_FOR_ALL = 1;
     UNDO_KEEP_FOR_ALL = 2;
+}
+
+enum WebLinkRenderConfig {
+    WEBVIEW = 0;
+    SYSTEM = 1;
 }

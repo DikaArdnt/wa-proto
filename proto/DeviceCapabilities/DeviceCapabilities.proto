@@ -6,6 +6,7 @@ message DeviceCapabilities {
     optional LIDMigration lidMigration = 2;
     optional BusinessBroadcast businessBroadcast = 3;
     optional UserHasAvatar userHasAvatar = 4;
+    optional MemberNameTagPrimarySupport memberNameTagPrimarySupport = 5;
     message BusinessBroadcast {
         optional bool importListEnabled = 1;
     }
@@ -16,6 +17,11 @@ message DeviceCapabilities {
     }
     message LIDMigration {
         optional uint64 chatDbMigrationTimestamp = 1;
+    }
+    enum MemberNameTagPrimarySupport {
+        DISABLED = 0;
+        RECEIVER_ENABLED = 1;
+        SENDER_ENABLED = 2;
     }
     message UserHasAvatar {
         optional bool userHasAvatar = 1;

@@ -17,6 +17,7 @@ message GroupHistoryBundleInfo {
         INJECTED = 1;
         INJECTED_PARTIAL = 2;
         INJECTION_FAILED = 3;
+        INJECTION_FAILED_NO_RETRY = 4;
     }
 }
 
@@ -597,5 +598,7 @@ message WebMessageInfo {
         BIZ_AUTOMATICALLY_LABELED_CHAT_SYSTEM_MESSAGE = 218;
         PHONE_NUMBER_HIDING_CHAT_DEPRECATED_MESSAGE = 219;
         QUARANTINED_MESSAGE = 220;
+        FIRST_JOIN_VIA_LINK = 221;
+        FLOOD_OF_JOIN_VIA_LINK = 222;
     }
 }
