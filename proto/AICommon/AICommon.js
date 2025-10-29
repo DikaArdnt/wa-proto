@@ -16084,6 +16084,7 @@ $root.AICommon = (function() {
                     case 46:
                     case 47:
                     case 48:
+                    case 49:
                         break;
                     }
             }
@@ -16309,6 +16310,10 @@ $root.AICommon = (function() {
                     case 48:
                         message.capabilities[i] = 48;
                         break;
+                    case "RICH_RESPONSE_UR_REASONING":
+                    case 49:
+                        message.capabilities[i] = 49;
+                        break;
                     }
             }
             return message;
@@ -16416,6 +16421,7 @@ $root.AICommon = (function() {
          * @property {number} RICH_RESPONSE_IN_APP_SURVEY=46 RICH_RESPONSE_IN_APP_SURVEY value
          * @property {number} AI_RESPONSE_MODEL_BRANDING=47 AI_RESPONSE_MODEL_BRANDING value
          * @property {number} SESSION_TRANSPARENCY_SYSTEM_MESSAGE=48 SESSION_TRANSPARENCY_SYSTEM_MESSAGE value
+         * @property {number} RICH_RESPONSE_UR_REASONING=49 RICH_RESPONSE_UR_REASONING value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -16468,6 +16474,7 @@ $root.AICommon = (function() {
             values[valuesById[46] = "RICH_RESPONSE_IN_APP_SURVEY"] = 46;
             values[valuesById[47] = "AI_RESPONSE_MODEL_BRANDING"] = 47;
             values[valuesById[48] = "SESSION_TRANSPARENCY_SYSTEM_MESSAGE"] = 48;
+            values[valuesById[49] = "RICH_RESPONSE_UR_REASONING"] = 49;
             return values;
         })();
 

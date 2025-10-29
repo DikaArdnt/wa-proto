@@ -490,6 +490,7 @@ message BotCapabilityMetadata {
         RICH_RESPONSE_IN_APP_SURVEY = 46;
         AI_RESPONSE_MODEL_BRANDING = 47;
         SESSION_TRANSPARENCY_SYSTEM_MESSAGE = 48;
+        RICH_RESPONSE_UR_REASONING = 49;
     }
 }
 

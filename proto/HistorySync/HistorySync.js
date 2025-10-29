@@ -93824,6 +93824,7 @@ $root.AICommon = (function() {
                     case 46:
                     case 47:
                     case 48:
+                    case 49:
                         break;
                     }
             }
@@ -94049,6 +94050,10 @@ $root.AICommon = (function() {
                     case 48:
                         message.capabilities[i] = 48;
                         break;
+                    case "RICH_RESPONSE_UR_REASONING":
+                    case 49:
+                        message.capabilities[i] = 49;
+                        break;
                     }
             }
             return message;
@@ -94156,6 +94161,7 @@ $root.AICommon = (function() {
          * @property {number} RICH_RESPONSE_IN_APP_SURVEY=46 RICH_RESPONSE_IN_APP_SURVEY value
          * @property {number} AI_RESPONSE_MODEL_BRANDING=47 AI_RESPONSE_MODEL_BRANDING value
          * @property {number} SESSION_TRANSPARENCY_SYSTEM_MESSAGE=48 SESSION_TRANSPARENCY_SYSTEM_MESSAGE value
+         * @property {number} RICH_RESPONSE_UR_REASONING=49 RICH_RESPONSE_UR_REASONING value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -94208,6 +94214,7 @@ $root.AICommon = (function() {
             values[valuesById[46] = "RICH_RESPONSE_IN_APP_SURVEY"] = 46;
             values[valuesById[47] = "AI_RESPONSE_MODEL_BRANDING"] = 47;
             values[valuesById[48] = "SESSION_TRANSPARENCY_SYSTEM_MESSAGE"] = 48;
+            values[valuesById[49] = "RICH_RESPONSE_UR_REASONING"] = 49;
             return values;
         })();
 
@@ -121928,8 +121935,6 @@ $root.Web = (function() {
                 case 218:
                 case 219:
                 case 220:
-                case 221:
-                case 222:
                     break;
                 }
             if (message.clearMedia != null && message.hasOwnProperty("clearMedia"))
@@ -123171,14 +123176,6 @@ $root.Web = (function() {
             case 220:
                 message.messageStubType = 220;
                 break;
-            case "FIRST_JOIN_VIA_LINK":
-            case 221:
-                message.messageStubType = 221;
-                break;
-            case "FLOOD_OF_JOIN_VIA_LINK":
-            case 222:
-                message.messageStubType = 222;
-                break;
             }
             if (object.clearMedia != null)
                 message.clearMedia = Boolean(object.clearMedia);
@@ -124054,8 +124051,6 @@ $root.Web = (function() {
          * @property {number} BIZ_AUTOMATICALLY_LABELED_CHAT_SYSTEM_MESSAGE=218 BIZ_AUTOMATICALLY_LABELED_CHAT_SYSTEM_MESSAGE value
          * @property {number} PHONE_NUMBER_HIDING_CHAT_DEPRECATED_MESSAGE=219 PHONE_NUMBER_HIDING_CHAT_DEPRECATED_MESSAGE value
          * @property {number} QUARANTINED_MESSAGE=220 QUARANTINED_MESSAGE value
-         * @property {number} FIRST_JOIN_VIA_LINK=221 FIRST_JOIN_VIA_LINK value
-         * @property {number} FLOOD_OF_JOIN_VIA_LINK=222 FLOOD_OF_JOIN_VIA_LINK value
          */
         WebMessageInfo.StubType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -124280,8 +124275,6 @@ $root.Web = (function() {
             values[valuesById[218] = "BIZ_AUTOMATICALLY_LABELED_CHAT_SYSTEM_MESSAGE"] = 218;
             values[valuesById[219] = "PHONE_NUMBER_HIDING_CHAT_DEPRECATED_MESSAGE"] = 219;
             values[valuesById[220] = "QUARANTINED_MESSAGE"] = 220;
-            values[valuesById[221] = "FIRST_JOIN_VIA_LINK"] = 221;
-            values[valuesById[222] = "FLOOD_OF_JOIN_VIA_LINK"] = 222;
             return values;
         })();
 
