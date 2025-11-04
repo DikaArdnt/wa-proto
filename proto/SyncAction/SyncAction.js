@@ -982,6 +982,8 @@ $root.SyncAction = (function() {
          * @property {SyncAction.SyncActionValue.IAvatarUpdatedAction|null} [avatarUpdatedAction] SyncActionValue avatarUpdatedAction
          * @property {SyncAction.SyncActionValue.IPrivateProcessingSettingAction|null} [privateProcessingSettingAction] SyncActionValue privateProcessingSettingAction
          * @property {SyncAction.SyncActionValue.INewsletterSavedInterestsAction|null} [newsletterSavedInterestsAction] SyncActionValue newsletterSavedInterestsAction
+         * @property {SyncAction.SyncActionValue.IAiThreadRenameAction|null} [aiThreadRenameAction] SyncActionValue aiThreadRenameAction
+         * @property {SyncAction.SyncActionValue.IInteractiveMessageAction|null} [interactiveMessageAction] SyncActionValue interactiveMessageAction
          */
 
         /**
@@ -1536,6 +1538,22 @@ $root.SyncAction = (function() {
         SyncActionValue.prototype.newsletterSavedInterestsAction = null;
 
         /**
+         * SyncActionValue aiThreadRenameAction.
+         * @member {SyncAction.SyncActionValue.IAiThreadRenameAction|null|undefined} aiThreadRenameAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.aiThreadRenameAction = null;
+
+        /**
+         * SyncActionValue interactiveMessageAction.
+         * @member {SyncAction.SyncActionValue.IInteractiveMessageAction|null|undefined} interactiveMessageAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.interactiveMessageAction = null;
+
+        /**
          * Creates a new SyncActionValue instance using the specified properties.
          * @function create
          * @memberof SyncAction.SyncActionValue
@@ -1693,6 +1711,10 @@ $root.SyncAction = (function() {
                 $root.SyncAction.SyncActionValue.PrivateProcessingSettingAction.encode(message.privateProcessingSettingAction, writer.uint32(/* id 74, wireType 2 =*/594).fork()).ldelim();
             if (message.newsletterSavedInterestsAction != null && Object.hasOwnProperty.call(message, "newsletterSavedInterestsAction"))
                 $root.SyncAction.SyncActionValue.NewsletterSavedInterestsAction.encode(message.newsletterSavedInterestsAction, writer.uint32(/* id 75, wireType 2 =*/602).fork()).ldelim();
+            if (message.aiThreadRenameAction != null && Object.hasOwnProperty.call(message, "aiThreadRenameAction"))
+                $root.SyncAction.SyncActionValue.AiThreadRenameAction.encode(message.aiThreadRenameAction, writer.uint32(/* id 76, wireType 2 =*/610).fork()).ldelim();
+            if (message.interactiveMessageAction != null && Object.hasOwnProperty.call(message, "interactiveMessageAction"))
+                $root.SyncAction.SyncActionValue.InteractiveMessageAction.encode(message.interactiveMessageAction, writer.uint32(/* id 77, wireType 2 =*/618).fork()).ldelim();
             return writer;
         };
 
@@ -1995,6 +2017,14 @@ $root.SyncAction = (function() {
                     }
                 case 75: {
                         message.newsletterSavedInterestsAction = $root.SyncAction.SyncActionValue.NewsletterSavedInterestsAction.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 76: {
+                        message.aiThreadRenameAction = $root.SyncAction.SyncActionValue.AiThreadRenameAction.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 77: {
+                        message.interactiveMessageAction = $root.SyncAction.SyncActionValue.InteractiveMessageAction.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -2365,6 +2395,16 @@ $root.SyncAction = (function() {
                 if (error)
                     return "newsletterSavedInterestsAction." + error;
             }
+            if (message.aiThreadRenameAction != null && message.hasOwnProperty("aiThreadRenameAction")) {
+                var error = $root.SyncAction.SyncActionValue.AiThreadRenameAction.verify(message.aiThreadRenameAction);
+                if (error)
+                    return "aiThreadRenameAction." + error;
+            }
+            if (message.interactiveMessageAction != null && message.hasOwnProperty("interactiveMessageAction")) {
+                var error = $root.SyncAction.SyncActionValue.InteractiveMessageAction.verify(message.interactiveMessageAction);
+                if (error)
+                    return "interactiveMessageAction." + error;
+            }
             return null;
         };
 
@@ -2719,6 +2759,16 @@ $root.SyncAction = (function() {
                     throw TypeError(".SyncAction.SyncActionValue.newsletterSavedInterestsAction: object expected");
                 message.newsletterSavedInterestsAction = $root.SyncAction.SyncActionValue.NewsletterSavedInterestsAction.fromObject(object.newsletterSavedInterestsAction);
             }
+            if (object.aiThreadRenameAction != null) {
+                if (typeof object.aiThreadRenameAction !== "object")
+                    throw TypeError(".SyncAction.SyncActionValue.aiThreadRenameAction: object expected");
+                message.aiThreadRenameAction = $root.SyncAction.SyncActionValue.AiThreadRenameAction.fromObject(object.aiThreadRenameAction);
+            }
+            if (object.interactiveMessageAction != null) {
+                if (typeof object.interactiveMessageAction !== "object")
+                    throw TypeError(".SyncAction.SyncActionValue.interactiveMessageAction: object expected");
+                message.interactiveMessageAction = $root.SyncAction.SyncActionValue.InteractiveMessageAction.fromObject(object.interactiveMessageAction);
+            }
             return message;
         };
 
@@ -2807,6 +2857,8 @@ $root.SyncAction = (function() {
                 object.avatarUpdatedAction = null;
                 object.privateProcessingSettingAction = null;
                 object.newsletterSavedInterestsAction = null;
+                object.aiThreadRenameAction = null;
+                object.interactiveMessageAction = null;
             }
             if (message.timestamp != null && message.hasOwnProperty("timestamp"))
                 if (typeof message.timestamp === "number")
@@ -2945,6 +2997,10 @@ $root.SyncAction = (function() {
                 object.privateProcessingSettingAction = $root.SyncAction.SyncActionValue.PrivateProcessingSettingAction.toObject(message.privateProcessingSettingAction, options);
             if (message.newsletterSavedInterestsAction != null && message.hasOwnProperty("newsletterSavedInterestsAction"))
                 object.newsletterSavedInterestsAction = $root.SyncAction.SyncActionValue.NewsletterSavedInterestsAction.toObject(message.newsletterSavedInterestsAction, options);
+            if (message.aiThreadRenameAction != null && message.hasOwnProperty("aiThreadRenameAction"))
+                object.aiThreadRenameAction = $root.SyncAction.SyncActionValue.AiThreadRenameAction.toObject(message.aiThreadRenameAction, options);
+            if (message.interactiveMessageAction != null && message.hasOwnProperty("interactiveMessageAction"))
+                object.interactiveMessageAction = $root.SyncAction.SyncActionValue.InteractiveMessageAction.toObject(message.interactiveMessageAction, options);
             return object;
         };
 
@@ -3224,6 +3280,235 @@ $root.SyncAction = (function() {
             };
 
             return AgentAction;
+        })();
+
+        SyncActionValue.AiThreadRenameAction = (function() {
+
+            /**
+             * Properties of an AiThreadRenameAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface IAiThreadRenameAction
+             * @property {string|null} [newTitle] AiThreadRenameAction newTitle
+             * @property {boolean|null} [isFromServer] AiThreadRenameAction isFromServer
+             */
+
+            /**
+             * Constructs a new AiThreadRenameAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents an AiThreadRenameAction.
+             * @implements IAiThreadRenameAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.IAiThreadRenameAction=} [properties] Properties to set
+             */
+            function AiThreadRenameAction(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * AiThreadRenameAction newTitle.
+             * @member {string} newTitle
+             * @memberof SyncAction.SyncActionValue.AiThreadRenameAction
+             * @instance
+             */
+            AiThreadRenameAction.prototype.newTitle = "";
+
+            /**
+             * AiThreadRenameAction isFromServer.
+             * @member {boolean} isFromServer
+             * @memberof SyncAction.SyncActionValue.AiThreadRenameAction
+             * @instance
+             */
+            AiThreadRenameAction.prototype.isFromServer = false;
+
+            /**
+             * Creates a new AiThreadRenameAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.AiThreadRenameAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IAiThreadRenameAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.AiThreadRenameAction} AiThreadRenameAction instance
+             */
+            AiThreadRenameAction.create = function create(properties) {
+                return new AiThreadRenameAction(properties);
+            };
+
+            /**
+             * Encodes the specified AiThreadRenameAction message. Does not implicitly {@link SyncAction.SyncActionValue.AiThreadRenameAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.AiThreadRenameAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IAiThreadRenameAction} message AiThreadRenameAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            AiThreadRenameAction.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.newTitle != null && Object.hasOwnProperty.call(message, "newTitle"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.newTitle);
+                if (message.isFromServer != null && Object.hasOwnProperty.call(message, "isFromServer"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).bool(message.isFromServer);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified AiThreadRenameAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.AiThreadRenameAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.AiThreadRenameAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IAiThreadRenameAction} message AiThreadRenameAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            AiThreadRenameAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes an AiThreadRenameAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.AiThreadRenameAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.AiThreadRenameAction} AiThreadRenameAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            AiThreadRenameAction.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.AiThreadRenameAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.newTitle = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.isFromServer = reader.bool();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes an AiThreadRenameAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.AiThreadRenameAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.AiThreadRenameAction} AiThreadRenameAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            AiThreadRenameAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies an AiThreadRenameAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.AiThreadRenameAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            AiThreadRenameAction.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.newTitle != null && message.hasOwnProperty("newTitle"))
+                    if (!$util.isString(message.newTitle))
+                        return "newTitle: string expected";
+                if (message.isFromServer != null && message.hasOwnProperty("isFromServer"))
+                    if (typeof message.isFromServer !== "boolean")
+                        return "isFromServer: boolean expected";
+                return null;
+            };
+
+            /**
+             * Creates an AiThreadRenameAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.AiThreadRenameAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.AiThreadRenameAction} AiThreadRenameAction
+             */
+            AiThreadRenameAction.fromObject = function fromObject(object) {
+                if (object instanceof $root.SyncAction.SyncActionValue.AiThreadRenameAction)
+                    return object;
+                var message = new $root.SyncAction.SyncActionValue.AiThreadRenameAction();
+                if (object.newTitle != null)
+                    message.newTitle = String(object.newTitle);
+                if (object.isFromServer != null)
+                    message.isFromServer = Boolean(object.isFromServer);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from an AiThreadRenameAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.AiThreadRenameAction
+             * @static
+             * @param {SyncAction.SyncActionValue.AiThreadRenameAction} message AiThreadRenameAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            AiThreadRenameAction.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.newTitle = "";
+                    object.isFromServer = false;
+                }
+                if (message.newTitle != null && message.hasOwnProperty("newTitle"))
+                    object.newTitle = message.newTitle;
+                if (message.isFromServer != null && message.hasOwnProperty("isFromServer"))
+                    object.isFromServer = message.isFromServer;
+                return object;
+            };
+
+            /**
+             * Converts this AiThreadRenameAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.AiThreadRenameAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            AiThreadRenameAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for AiThreadRenameAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.AiThreadRenameAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            AiThreadRenameAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.AiThreadRenameAction";
+            };
+
+            return AiThreadRenameAction;
         })();
 
         SyncActionValue.AndroidUnsupportedActions = (function() {
@@ -8499,6 +8784,237 @@ $root.SyncAction = (function() {
             return FavoritesAction;
         })();
 
+        SyncActionValue.InteractiveMessageAction = (function() {
+
+            /**
+             * Properties of an InteractiveMessageAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface IInteractiveMessageAction
+             * @property {SyncAction.SyncActionValue.InteractiveMessageAction.InteractiveMessageActionMode} type InteractiveMessageAction type
+             */
+
+            /**
+             * Constructs a new InteractiveMessageAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents an InteractiveMessageAction.
+             * @implements IInteractiveMessageAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.IInteractiveMessageAction=} [properties] Properties to set
+             */
+            function InteractiveMessageAction(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * InteractiveMessageAction type.
+             * @member {SyncAction.SyncActionValue.InteractiveMessageAction.InteractiveMessageActionMode} type
+             * @memberof SyncAction.SyncActionValue.InteractiveMessageAction
+             * @instance
+             */
+            InteractiveMessageAction.prototype.type = 1;
+
+            /**
+             * Creates a new InteractiveMessageAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.InteractiveMessageAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IInteractiveMessageAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.InteractiveMessageAction} InteractiveMessageAction instance
+             */
+            InteractiveMessageAction.create = function create(properties) {
+                return new InteractiveMessageAction(properties);
+            };
+
+            /**
+             * Encodes the specified InteractiveMessageAction message. Does not implicitly {@link SyncAction.SyncActionValue.InteractiveMessageAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.InteractiveMessageAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IInteractiveMessageAction} message InteractiveMessageAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            InteractiveMessageAction.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.type);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified InteractiveMessageAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.InteractiveMessageAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.InteractiveMessageAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IInteractiveMessageAction} message InteractiveMessageAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            InteractiveMessageAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes an InteractiveMessageAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.InteractiveMessageAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.InteractiveMessageAction} InteractiveMessageAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            InteractiveMessageAction.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.InteractiveMessageAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.type = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                if (!message.hasOwnProperty("type"))
+                    throw $util.ProtocolError("missing required 'type'", { instance: message });
+                return message;
+            };
+
+            /**
+             * Decodes an InteractiveMessageAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.InteractiveMessageAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.InteractiveMessageAction} InteractiveMessageAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            InteractiveMessageAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies an InteractiveMessageAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.InteractiveMessageAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            InteractiveMessageAction.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                switch (message.type) {
+                default:
+                    return "type: enum value expected";
+                case 1:
+                    break;
+                }
+                return null;
+            };
+
+            /**
+             * Creates an InteractiveMessageAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.InteractiveMessageAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.InteractiveMessageAction} InteractiveMessageAction
+             */
+            InteractiveMessageAction.fromObject = function fromObject(object) {
+                if (object instanceof $root.SyncAction.SyncActionValue.InteractiveMessageAction)
+                    return object;
+                var message = new $root.SyncAction.SyncActionValue.InteractiveMessageAction();
+                switch (object.type) {
+                default:
+                    if (typeof object.type === "number") {
+                        message.type = object.type;
+                        break;
+                    }
+                    break;
+                case "DISABLE_CTA":
+                case 1:
+                    message.type = 1;
+                    break;
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from an InteractiveMessageAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.InteractiveMessageAction
+             * @static
+             * @param {SyncAction.SyncActionValue.InteractiveMessageAction} message InteractiveMessageAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            InteractiveMessageAction.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.type = options.enums === String ? "DISABLE_CTA" : 1;
+                if (message.type != null && message.hasOwnProperty("type"))
+                    object.type = options.enums === String ? $root.SyncAction.SyncActionValue.InteractiveMessageAction.InteractiveMessageActionMode[message.type] === undefined ? message.type : $root.SyncAction.SyncActionValue.InteractiveMessageAction.InteractiveMessageActionMode[message.type] : message.type;
+                return object;
+            };
+
+            /**
+             * Converts this InteractiveMessageAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.InteractiveMessageAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            InteractiveMessageAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for InteractiveMessageAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.InteractiveMessageAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            InteractiveMessageAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.InteractiveMessageAction";
+            };
+
+            /**
+             * InteractiveMessageActionMode enum.
+             * @name SyncAction.SyncActionValue.InteractiveMessageAction.InteractiveMessageActionMode
+             * @enum {number}
+             * @property {number} DISABLE_CTA=1 DISABLE_CTA value
+             */
+            InteractiveMessageAction.InteractiveMessageActionMode = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[1] = "DISABLE_CTA"] = 1;
+                return values;
+            })();
+
+            return InteractiveMessageAction;
+        })();
+
         SyncActionValue.KeyExpiration = (function() {
 
             /**
@@ -9193,6 +9709,7 @@ $root.SyncAction = (function() {
                     case 6:
                     case 7:
                     case 8:
+                    case 9:
                         break;
                     }
                 if (message.isImmutable != null && message.hasOwnProperty("isImmutable"))
@@ -9270,6 +9787,10 @@ $root.SyncAction = (function() {
                 case "DRAFTED":
                 case 8:
                     message.type = 8;
+                    break;
+                case "AI_HANDOFF":
+                case 9:
+                    message.type = 9;
                     break;
                 }
                 if (object.isImmutable != null)
@@ -9377,6 +9898,7 @@ $root.SyncAction = (function() {
              * @property {number} COMMUNITY=6 COMMUNITY value
              * @property {number} SERVER_ASSIGNED=7 SERVER_ASSIGNED value
              * @property {number} DRAFTED=8 DRAFTED value
+             * @property {number} AI_HANDOFF=9 AI_HANDOFF value
              */
             LabelEditAction.ListType = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -9389,6 +9911,7 @@ $root.SyncAction = (function() {
                 values[valuesById[6] = "COMMUNITY"] = 6;
                 values[valuesById[7] = "SERVER_ASSIGNED"] = 7;
                 values[valuesById[8] = "DRAFTED"] = 8;
+                values[valuesById[9] = "AI_HANDOFF"] = 9;
                 return values;
             })();
 

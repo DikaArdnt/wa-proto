@@ -44741,6 +44741,12 @@ export namespace SyncAction {
 
         /** SyncActionValue newsletterSavedInterestsAction */
         newsletterSavedInterestsAction?: (SyncAction.SyncActionValue.INewsletterSavedInterestsAction|null);
+
+        /** SyncActionValue aiThreadRenameAction */
+        aiThreadRenameAction?: (SyncAction.SyncActionValue.IAiThreadRenameAction|null);
+
+        /** SyncActionValue interactiveMessageAction */
+        interactiveMessageAction?: (SyncAction.SyncActionValue.IInteractiveMessageAction|null);
     }
 
     /** Represents a SyncActionValue. */
@@ -44953,6 +44959,12 @@ export namespace SyncAction {
         /** SyncActionValue newsletterSavedInterestsAction. */
         public newsletterSavedInterestsAction?: (SyncAction.SyncActionValue.INewsletterSavedInterestsAction|null);
 
+        /** SyncActionValue aiThreadRenameAction. */
+        public aiThreadRenameAction?: (SyncAction.SyncActionValue.IAiThreadRenameAction|null);
+
+        /** SyncActionValue interactiveMessageAction. */
+        public interactiveMessageAction?: (SyncAction.SyncActionValue.IInteractiveMessageAction|null);
+
         /**
          * Creates a new SyncActionValue instance using the specified properties.
          * @param [properties] Properties to set
@@ -45136,6 +45148,109 @@ export namespace SyncAction {
 
             /**
              * Gets the default type url for AgentAction
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of an AiThreadRenameAction. */
+        interface IAiThreadRenameAction {
+
+            /** AiThreadRenameAction newTitle */
+            newTitle?: (string|null);
+
+            /** AiThreadRenameAction isFromServer */
+            isFromServer?: (boolean|null);
+        }
+
+        /** Represents an AiThreadRenameAction. */
+        class AiThreadRenameAction implements IAiThreadRenameAction {
+
+            /**
+             * Constructs a new AiThreadRenameAction.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SyncAction.SyncActionValue.IAiThreadRenameAction);
+
+            /** AiThreadRenameAction newTitle. */
+            public newTitle: string;
+
+            /** AiThreadRenameAction isFromServer. */
+            public isFromServer: boolean;
+
+            /**
+             * Creates a new AiThreadRenameAction instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns AiThreadRenameAction instance
+             */
+            public static create(properties?: SyncAction.SyncActionValue.IAiThreadRenameAction): SyncAction.SyncActionValue.AiThreadRenameAction;
+
+            /**
+             * Encodes the specified AiThreadRenameAction message. Does not implicitly {@link SyncAction.SyncActionValue.AiThreadRenameAction.verify|verify} messages.
+             * @param message AiThreadRenameAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SyncAction.SyncActionValue.IAiThreadRenameAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified AiThreadRenameAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.AiThreadRenameAction.verify|verify} messages.
+             * @param message AiThreadRenameAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SyncAction.SyncActionValue.IAiThreadRenameAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes an AiThreadRenameAction message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns AiThreadRenameAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.AiThreadRenameAction;
+
+            /**
+             * Decodes an AiThreadRenameAction message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns AiThreadRenameAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.AiThreadRenameAction;
+
+            /**
+             * Verifies an AiThreadRenameAction message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates an AiThreadRenameAction message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns AiThreadRenameAction
+             */
+            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.AiThreadRenameAction;
+
+            /**
+             * Creates a plain object from an AiThreadRenameAction message. Also converts values to other types if specified.
+             * @param message AiThreadRenameAction
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SyncAction.SyncActionValue.AiThreadRenameAction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this AiThreadRenameAction to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for AiThreadRenameAction
              * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
              * @returns The default type url
              */
@@ -47482,6 +47597,111 @@ export namespace SyncAction {
             }
         }
 
+        /** Properties of an InteractiveMessageAction. */
+        interface IInteractiveMessageAction {
+
+            /** InteractiveMessageAction type */
+            type: SyncAction.SyncActionValue.InteractiveMessageAction.InteractiveMessageActionMode;
+        }
+
+        /** Represents an InteractiveMessageAction. */
+        class InteractiveMessageAction implements IInteractiveMessageAction {
+
+            /**
+             * Constructs a new InteractiveMessageAction.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SyncAction.SyncActionValue.IInteractiveMessageAction);
+
+            /** InteractiveMessageAction type. */
+            public type: SyncAction.SyncActionValue.InteractiveMessageAction.InteractiveMessageActionMode;
+
+            /**
+             * Creates a new InteractiveMessageAction instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns InteractiveMessageAction instance
+             */
+            public static create(properties?: SyncAction.SyncActionValue.IInteractiveMessageAction): SyncAction.SyncActionValue.InteractiveMessageAction;
+
+            /**
+             * Encodes the specified InteractiveMessageAction message. Does not implicitly {@link SyncAction.SyncActionValue.InteractiveMessageAction.verify|verify} messages.
+             * @param message InteractiveMessageAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SyncAction.SyncActionValue.IInteractiveMessageAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified InteractiveMessageAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.InteractiveMessageAction.verify|verify} messages.
+             * @param message InteractiveMessageAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SyncAction.SyncActionValue.IInteractiveMessageAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes an InteractiveMessageAction message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns InteractiveMessageAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.InteractiveMessageAction;
+
+            /**
+             * Decodes an InteractiveMessageAction message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns InteractiveMessageAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.InteractiveMessageAction;
+
+            /**
+             * Verifies an InteractiveMessageAction message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates an InteractiveMessageAction message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns InteractiveMessageAction
+             */
+            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.InteractiveMessageAction;
+
+            /**
+             * Creates a plain object from an InteractiveMessageAction message. Also converts values to other types if specified.
+             * @param message InteractiveMessageAction
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SyncAction.SyncActionValue.InteractiveMessageAction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this InteractiveMessageAction to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for InteractiveMessageAction
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace InteractiveMessageAction {
+
+            /** InteractiveMessageActionMode enum. */
+            enum InteractiveMessageActionMode {
+                DISABLE_CTA = 1
+            }
+        }
+
         /** Properties of a KeyExpiration. */
         interface IKeyExpiration {
 
@@ -47833,7 +48053,8 @@ export namespace SyncAction {
                 CUSTOM = 5,
                 COMMUNITY = 6,
                 SERVER_ASSIGNED = 7,
-                DRAFTED = 8
+                DRAFTED = 8,
+                AI_HANDOFF = 9
             }
         }
 

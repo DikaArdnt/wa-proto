@@ -108,10 +108,16 @@ message SyncActionValue {
     optional AvatarUpdatedAction avatarUpdatedAction = 72;
     optional PrivateProcessingSettingAction privateProcessingSettingAction = 74;
     optional NewsletterSavedInterestsAction newsletterSavedInterestsAction = 75;
+    optional AiThreadRenameAction aiThreadRenameAction = 76;
+    optional InteractiveMessageAction interactiveMessageAction = 77;
     message AgentAction {
         optional string name = 1;
         optional int32 deviceID = 2;
         optional bool isDeleted = 3;
+    }
+    message AiThreadRenameAction {
+        optional string newTitle = 1;
+        optional bool isFromServer = 2;
     }
     message AndroidUnsupportedActions {
         optional bool allowed = 1;
@@ -203,6 +209,12 @@ message SyncActionValue {
             optional string id = 1;
         }
     }
+    message InteractiveMessageAction {
+        required InteractiveMessageActionMode type = 1;
+        enum InteractiveMessageActionMode {
+            DISABLE_CTA = 1;
+        }
+    }
     message KeyExpiration {
         optional int32 expiredKeyEpoch = 1;
     }
@@ -229,6 +241,7 @@ message SyncActionValue {
             COMMUNITY = 6;
             SERVER_ASSIGNED = 7;
             DRAFTED = 8;
+            AI_HANDOFF = 9;
         }
     }
     message LabelReorderingAction {
