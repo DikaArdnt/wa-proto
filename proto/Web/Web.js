@@ -11873,6 +11873,7 @@ $root.Web = (function() {
                 case 218:
                 case 219:
                 case 220:
+                case 221:
                     break;
                 }
             if (message.clearMedia != null && message.hasOwnProperty("clearMedia"))
@@ -13114,6 +13115,10 @@ $root.Web = (function() {
             case 220:
                 message.messageStubType = 220;
                 break;
+            case "GROUP_MEMBER_SHARE_GROUP_HISTORY_MODE":
+            case 221:
+                message.messageStubType = 221;
+                break;
             }
             if (object.clearMedia != null)
                 message.clearMedia = Boolean(object.clearMedia);
@@ -13989,6 +13994,7 @@ $root.Web = (function() {
          * @property {number} BIZ_AUTOMATICALLY_LABELED_CHAT_SYSTEM_MESSAGE=218 BIZ_AUTOMATICALLY_LABELED_CHAT_SYSTEM_MESSAGE value
          * @property {number} PHONE_NUMBER_HIDING_CHAT_DEPRECATED_MESSAGE=219 PHONE_NUMBER_HIDING_CHAT_DEPRECATED_MESSAGE value
          * @property {number} QUARANTINED_MESSAGE=220 QUARANTINED_MESSAGE value
+         * @property {number} GROUP_MEMBER_SHARE_GROUP_HISTORY_MODE=221 GROUP_MEMBER_SHARE_GROUP_HISTORY_MODE value
          */
         WebMessageInfo.StubType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -14213,6 +14219,7 @@ $root.Web = (function() {
             values[valuesById[218] = "BIZ_AUTOMATICALLY_LABELED_CHAT_SYSTEM_MESSAGE"] = 218;
             values[valuesById[219] = "PHONE_NUMBER_HIDING_CHAT_DEPRECATED_MESSAGE"] = 219;
             values[valuesById[220] = "QUARANTINED_MESSAGE"] = 220;
+            values[valuesById[221] = "GROUP_MEMBER_SHARE_GROUP_HISTORY_MODE"] = 221;
             return values;
         })();
 
