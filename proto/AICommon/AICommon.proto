@@ -28,6 +28,7 @@ message AIHomeState {
 message SessionTransparencyMetadata {
     optional string disclaimerText = 1;
     optional string hcaId = 2;
+    optional SessionTransparencyType sessionTransparencyType = 3;
 }
 
 message AIRegenerateMetadata {
@@ -714,6 +715,11 @@ message BotAvatarMetadata {
     optional uint32 action = 3;
     optional uint32 intensity = 4;
     optional uint32 wordCount = 5;
+}
+
+enum SessionTransparencyType {
+    UNKNOWN_TYPE = 0;
+    NY_AI_SAFETY_DISCLAIMER = 1;
 }
 
 enum AIRichResponseSubMessageType {
