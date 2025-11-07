@@ -30466,7 +30466,6 @@ $root.E2E = (function() {
          * @property {E2E.Message.IStatusStickerInteractionMessage|null} [statusStickerInteractionMessage] Message statusStickerInteractionMessage
          * @property {E2E.Message.IPollCreationMessage|null} [pollCreationMessageV5] Message pollCreationMessageV5
          * @property {E2E.Message.INewsletterFollowerInviteMessage|null} [newsletterFollowerInviteMessageV2] Message newsletterFollowerInviteMessageV2
-         * @property {E2E.Message.IRequestContactInfoMessage|null} [requestContactInfoMessage] Message requestContactInfoMessage
          * @property {E2E.Message.IPollResultSnapshotMessage|null} [pollResultSnapshotMessageV3] Message pollResultSnapshotMessageV3
          */
 
@@ -31238,14 +31237,6 @@ $root.E2E = (function() {
         Message.prototype.newsletterFollowerInviteMessageV2 = null;
 
         /**
-         * Message requestContactInfoMessage.
-         * @member {E2E.Message.IRequestContactInfoMessage|null|undefined} requestContactInfoMessage
-         * @memberof E2E.Message
-         * @instance
-         */
-        Message.prototype.requestContactInfoMessage = null;
-
-        /**
          * Message pollResultSnapshotMessageV3.
          * @member {E2E.Message.IPollResultSnapshotMessage|null|undefined} pollResultSnapshotMessageV3
          * @memberof E2E.Message
@@ -31465,10 +31456,8 @@ $root.E2E = (function() {
                 $root.E2E.Message.PollCreationMessage.encode(message.pollCreationMessageV5, writer.uint32(/* id 111, wireType 2 =*/890).fork()).ldelim();
             if (message.newsletterFollowerInviteMessageV2 != null && Object.hasOwnProperty.call(message, "newsletterFollowerInviteMessageV2"))
                 $root.E2E.Message.NewsletterFollowerInviteMessage.encode(message.newsletterFollowerInviteMessageV2, writer.uint32(/* id 113, wireType 2 =*/906).fork()).ldelim();
-            if (message.requestContactInfoMessage != null && Object.hasOwnProperty.call(message, "requestContactInfoMessage"))
-                $root.E2E.Message.RequestContactInfoMessage.encode(message.requestContactInfoMessage, writer.uint32(/* id 114, wireType 2 =*/914).fork()).ldelim();
             if (message.pollResultSnapshotMessageV3 != null && Object.hasOwnProperty.call(message, "pollResultSnapshotMessageV3"))
-                $root.E2E.Message.PollResultSnapshotMessage.encode(message.pollResultSnapshotMessageV3, writer.uint32(/* id 115, wireType 2 =*/922).fork()).ldelim();
+                $root.E2E.Message.PollResultSnapshotMessage.encode(message.pollResultSnapshotMessageV3, writer.uint32(/* id 114, wireType 2 =*/914).fork()).ldelim();
             return writer;
         };
 
@@ -31882,10 +31871,6 @@ $root.E2E = (function() {
                         break;
                     }
                 case 114: {
-                        message.requestContactInfoMessage = $root.E2E.Message.RequestContactInfoMessage.decode(reader, reader.uint32());
-                        break;
-                    }
-                case 115: {
                         message.pollResultSnapshotMessageV3 = $root.E2E.Message.PollResultSnapshotMessage.decode(reader, reader.uint32());
                         break;
                     }
@@ -32392,11 +32377,6 @@ $root.E2E = (function() {
                 if (error)
                     return "newsletterFollowerInviteMessageV2." + error;
             }
-            if (message.requestContactInfoMessage != null && message.hasOwnProperty("requestContactInfoMessage")) {
-                var error = $root.E2E.Message.RequestContactInfoMessage.verify(message.requestContactInfoMessage);
-                if (error)
-                    return "requestContactInfoMessage." + error;
-            }
             if (message.pollResultSnapshotMessageV3 != null && message.hasOwnProperty("pollResultSnapshotMessageV3")) {
                 var error = $root.E2E.Message.PollResultSnapshotMessage.verify(message.pollResultSnapshotMessageV3);
                 if (error)
@@ -32884,11 +32864,6 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.Message.newsletterFollowerInviteMessageV2: object expected");
                 message.newsletterFollowerInviteMessageV2 = $root.E2E.Message.NewsletterFollowerInviteMessage.fromObject(object.newsletterFollowerInviteMessageV2);
             }
-            if (object.requestContactInfoMessage != null) {
-                if (typeof object.requestContactInfoMessage !== "object")
-                    throw TypeError(".E2E.Message.requestContactInfoMessage: object expected");
-                message.requestContactInfoMessage = $root.E2E.Message.RequestContactInfoMessage.fromObject(object.requestContactInfoMessage);
-            }
             if (object.pollResultSnapshotMessageV3 != null) {
                 if (typeof object.pollResultSnapshotMessageV3 !== "object")
                     throw TypeError(".E2E.Message.pollResultSnapshotMessageV3: object expected");
@@ -33005,7 +32980,6 @@ $root.E2E = (function() {
                 object.statusStickerInteractionMessage = null;
                 object.pollCreationMessageV5 = null;
                 object.newsletterFollowerInviteMessageV2 = null;
-                object.requestContactInfoMessage = null;
                 object.pollResultSnapshotMessageV3 = null;
             }
             if (message.conversation != null && message.hasOwnProperty("conversation"))
@@ -33196,8 +33170,6 @@ $root.E2E = (function() {
                 object.pollCreationMessageV5 = $root.E2E.Message.PollCreationMessage.toObject(message.pollCreationMessageV5, options);
             if (message.newsletterFollowerInviteMessageV2 != null && message.hasOwnProperty("newsletterFollowerInviteMessageV2"))
                 object.newsletterFollowerInviteMessageV2 = $root.E2E.Message.NewsletterFollowerInviteMessage.toObject(message.newsletterFollowerInviteMessageV2, options);
-            if (message.requestContactInfoMessage != null && message.hasOwnProperty("requestContactInfoMessage"))
-                object.requestContactInfoMessage = $root.E2E.Message.RequestContactInfoMessage.toObject(message.requestContactInfoMessage, options);
             if (message.pollResultSnapshotMessageV3 != null && message.hasOwnProperty("pollResultSnapshotMessageV3"))
                 object.pollResultSnapshotMessageV3 = $root.E2E.Message.PollResultSnapshotMessage.toObject(message.pollResultSnapshotMessageV3, options);
             return object;
@@ -42973,6 +42945,8 @@ $root.E2E = (function() {
              * @property {number|Long|null} [endTime] EventMessage endTime
              * @property {boolean|null} [extraGuestsAllowed] EventMessage extraGuestsAllowed
              * @property {boolean|null} [isScheduleCall] EventMessage isScheduleCall
+             * @property {boolean|null} [hasReminder] EventMessage hasReminder
+             * @property {number|Long|null} [reminderOffsetSec] EventMessage reminderOffsetSec
              */
 
             /**
@@ -43071,6 +43045,22 @@ $root.E2E = (function() {
             EventMessage.prototype.isScheduleCall = false;
 
             /**
+             * EventMessage hasReminder.
+             * @member {boolean} hasReminder
+             * @memberof E2E.Message.EventMessage
+             * @instance
+             */
+            EventMessage.prototype.hasReminder = false;
+
+            /**
+             * EventMessage reminderOffsetSec.
+             * @member {number|Long} reminderOffsetSec
+             * @memberof E2E.Message.EventMessage
+             * @instance
+             */
+            EventMessage.prototype.reminderOffsetSec = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+            /**
              * Creates a new EventMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.EventMessage
@@ -43114,6 +43104,10 @@ $root.E2E = (function() {
                     writer.uint32(/* id 9, wireType 0 =*/72).bool(message.extraGuestsAllowed);
                 if (message.isScheduleCall != null && Object.hasOwnProperty.call(message, "isScheduleCall"))
                     writer.uint32(/* id 10, wireType 0 =*/80).bool(message.isScheduleCall);
+                if (message.hasReminder != null && Object.hasOwnProperty.call(message, "hasReminder"))
+                    writer.uint32(/* id 11, wireType 0 =*/88).bool(message.hasReminder);
+                if (message.reminderOffsetSec != null && Object.hasOwnProperty.call(message, "reminderOffsetSec"))
+                    writer.uint32(/* id 12, wireType 0 =*/96).int64(message.reminderOffsetSec);
                 return writer;
             };
 
@@ -43190,6 +43184,14 @@ $root.E2E = (function() {
                             message.isScheduleCall = reader.bool();
                             break;
                         }
+                    case 11: {
+                            message.hasReminder = reader.bool();
+                            break;
+                        }
+                    case 12: {
+                            message.reminderOffsetSec = reader.int64();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -43259,6 +43261,12 @@ $root.E2E = (function() {
                 if (message.isScheduleCall != null && message.hasOwnProperty("isScheduleCall"))
                     if (typeof message.isScheduleCall !== "boolean")
                         return "isScheduleCall: boolean expected";
+                if (message.hasReminder != null && message.hasOwnProperty("hasReminder"))
+                    if (typeof message.hasReminder !== "boolean")
+                        return "hasReminder: boolean expected";
+                if (message.reminderOffsetSec != null && message.hasOwnProperty("reminderOffsetSec"))
+                    if (!$util.isInteger(message.reminderOffsetSec) && !(message.reminderOffsetSec && $util.isInteger(message.reminderOffsetSec.low) && $util.isInteger(message.reminderOffsetSec.high)))
+                        return "reminderOffsetSec: integer|Long expected";
                 return null;
             };
 
@@ -43314,6 +43322,17 @@ $root.E2E = (function() {
                     message.extraGuestsAllowed = Boolean(object.extraGuestsAllowed);
                 if (object.isScheduleCall != null)
                     message.isScheduleCall = Boolean(object.isScheduleCall);
+                if (object.hasReminder != null)
+                    message.hasReminder = Boolean(object.hasReminder);
+                if (object.reminderOffsetSec != null)
+                    if ($util.Long)
+                        (message.reminderOffsetSec = $util.Long.fromValue(object.reminderOffsetSec)).unsigned = false;
+                    else if (typeof object.reminderOffsetSec === "string")
+                        message.reminderOffsetSec = parseInt(object.reminderOffsetSec, 10);
+                    else if (typeof object.reminderOffsetSec === "number")
+                        message.reminderOffsetSec = object.reminderOffsetSec;
+                    else if (typeof object.reminderOffsetSec === "object")
+                        message.reminderOffsetSec = new $util.LongBits(object.reminderOffsetSec.low >>> 0, object.reminderOffsetSec.high >>> 0).toNumber();
                 return message;
             };
 
@@ -43349,6 +43368,12 @@ $root.E2E = (function() {
                         object.endTime = options.longs === String ? "0" : 0;
                     object.extraGuestsAllowed = false;
                     object.isScheduleCall = false;
+                    object.hasReminder = false;
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.reminderOffsetSec = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    } else
+                        object.reminderOffsetSec = options.longs === String ? "0" : 0;
                 }
                 if (message.contextInfo != null && message.hasOwnProperty("contextInfo"))
                     object.contextInfo = $root.E2E.ContextInfo.toObject(message.contextInfo, options);
@@ -43376,6 +43401,13 @@ $root.E2E = (function() {
                     object.extraGuestsAllowed = message.extraGuestsAllowed;
                 if (message.isScheduleCall != null && message.hasOwnProperty("isScheduleCall"))
                     object.isScheduleCall = message.isScheduleCall;
+                if (message.hasReminder != null && message.hasOwnProperty("hasReminder"))
+                    object.hasReminder = message.hasReminder;
+                if (message.reminderOffsetSec != null && message.hasOwnProperty("reminderOffsetSec"))
+                    if (typeof message.reminderOffsetSec === "number")
+                        object.reminderOffsetSec = options.longs === String ? String(message.reminderOffsetSec) : message.reminderOffsetSec;
+                    else
+                        object.reminderOffsetSec = options.longs === String ? $util.Long.prototype.toString.call(message.reminderOffsetSec) : options.longs === Number ? new $util.LongBits(message.reminderOffsetSec.low >>> 0, message.reminderOffsetSec.high >>> 0).toNumber() : message.reminderOffsetSec;
                 return object;
             };
 
@@ -74108,263 +74140,6 @@ $root.E2E = (function() {
             return ReactionMessage;
         })();
 
-        Message.RequestContactInfoMessage = (function() {
-
-            /**
-             * Properties of a RequestContactInfoMessage.
-             * @memberof E2E.Message
-             * @interface IRequestContactInfoMessage
-             * @property {string|null} [text] RequestContactInfoMessage text
-             * @property {string|null} [ctaButtonText] RequestContactInfoMessage ctaButtonText
-             * @property {E2E.IContextInfo|null} [contextInfo] RequestContactInfoMessage contextInfo
-             */
-
-            /**
-             * Constructs a new RequestContactInfoMessage.
-             * @memberof E2E.Message
-             * @classdesc Represents a RequestContactInfoMessage.
-             * @implements IRequestContactInfoMessage
-             * @constructor
-             * @param {E2E.Message.IRequestContactInfoMessage=} [properties] Properties to set
-             */
-            function RequestContactInfoMessage(properties) {
-                if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
-                            this[keys[i]] = properties[keys[i]];
-            }
-
-            /**
-             * RequestContactInfoMessage text.
-             * @member {string} text
-             * @memberof E2E.Message.RequestContactInfoMessage
-             * @instance
-             */
-            RequestContactInfoMessage.prototype.text = "";
-
-            /**
-             * RequestContactInfoMessage ctaButtonText.
-             * @member {string} ctaButtonText
-             * @memberof E2E.Message.RequestContactInfoMessage
-             * @instance
-             */
-            RequestContactInfoMessage.prototype.ctaButtonText = "";
-
-            /**
-             * RequestContactInfoMessage contextInfo.
-             * @member {E2E.IContextInfo|null|undefined} contextInfo
-             * @memberof E2E.Message.RequestContactInfoMessage
-             * @instance
-             */
-            RequestContactInfoMessage.prototype.contextInfo = null;
-
-            /**
-             * Creates a new RequestContactInfoMessage instance using the specified properties.
-             * @function create
-             * @memberof E2E.Message.RequestContactInfoMessage
-             * @static
-             * @param {E2E.Message.IRequestContactInfoMessage=} [properties] Properties to set
-             * @returns {E2E.Message.RequestContactInfoMessage} RequestContactInfoMessage instance
-             */
-            RequestContactInfoMessage.create = function create(properties) {
-                return new RequestContactInfoMessage(properties);
-            };
-
-            /**
-             * Encodes the specified RequestContactInfoMessage message. Does not implicitly {@link E2E.Message.RequestContactInfoMessage.verify|verify} messages.
-             * @function encode
-             * @memberof E2E.Message.RequestContactInfoMessage
-             * @static
-             * @param {E2E.Message.IRequestContactInfoMessage} message RequestContactInfoMessage message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            RequestContactInfoMessage.encode = function encode(message, writer) {
-                if (!writer)
-                    writer = $Writer.create();
-                if (message.text != null && Object.hasOwnProperty.call(message, "text"))
-                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.text);
-                if (message.ctaButtonText != null && Object.hasOwnProperty.call(message, "ctaButtonText"))
-                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.ctaButtonText);
-                if (message.contextInfo != null && Object.hasOwnProperty.call(message, "contextInfo"))
-                    $root.E2E.ContextInfo.encode(message.contextInfo, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-                return writer;
-            };
-
-            /**
-             * Encodes the specified RequestContactInfoMessage message, length delimited. Does not implicitly {@link E2E.Message.RequestContactInfoMessage.verify|verify} messages.
-             * @function encodeDelimited
-             * @memberof E2E.Message.RequestContactInfoMessage
-             * @static
-             * @param {E2E.Message.IRequestContactInfoMessage} message RequestContactInfoMessage message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            RequestContactInfoMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
-            };
-
-            /**
-             * Decodes a RequestContactInfoMessage message from the specified reader or buffer.
-             * @function decode
-             * @memberof E2E.Message.RequestContactInfoMessage
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @param {number} [length] Message length if known beforehand
-             * @returns {E2E.Message.RequestContactInfoMessage} RequestContactInfoMessage
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            RequestContactInfoMessage.decode = function decode(reader, length, error) {
-                if (!(reader instanceof $Reader))
-                    reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.RequestContactInfoMessage();
-                while (reader.pos < end) {
-                    var tag = reader.uint32();
-                    if (tag === error)
-                        break;
-                    switch (tag >>> 3) {
-                    case 1: {
-                            message.text = reader.string();
-                            break;
-                        }
-                    case 2: {
-                            message.ctaButtonText = reader.string();
-                            break;
-                        }
-                    case 3: {
-                            message.contextInfo = $root.E2E.ContextInfo.decode(reader, reader.uint32());
-                            break;
-                        }
-                    default:
-                        reader.skipType(tag & 7);
-                        break;
-                    }
-                }
-                return message;
-            };
-
-            /**
-             * Decodes a RequestContactInfoMessage message from the specified reader or buffer, length delimited.
-             * @function decodeDelimited
-             * @memberof E2E.Message.RequestContactInfoMessage
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @returns {E2E.Message.RequestContactInfoMessage} RequestContactInfoMessage
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            RequestContactInfoMessage.decodeDelimited = function decodeDelimited(reader) {
-                if (!(reader instanceof $Reader))
-                    reader = new $Reader(reader);
-                return this.decode(reader, reader.uint32());
-            };
-
-            /**
-             * Verifies a RequestContactInfoMessage message.
-             * @function verify
-             * @memberof E2E.Message.RequestContactInfoMessage
-             * @static
-             * @param {Object.<string,*>} message Plain object to verify
-             * @returns {string|null} `null` if valid, otherwise the reason why it is not
-             */
-            RequestContactInfoMessage.verify = function verify(message) {
-                if (typeof message !== "object" || message === null)
-                    return "object expected";
-                if (message.text != null && message.hasOwnProperty("text"))
-                    if (!$util.isString(message.text))
-                        return "text: string expected";
-                if (message.ctaButtonText != null && message.hasOwnProperty("ctaButtonText"))
-                    if (!$util.isString(message.ctaButtonText))
-                        return "ctaButtonText: string expected";
-                if (message.contextInfo != null && message.hasOwnProperty("contextInfo")) {
-                    var error = $root.E2E.ContextInfo.verify(message.contextInfo);
-                    if (error)
-                        return "contextInfo." + error;
-                }
-                return null;
-            };
-
-            /**
-             * Creates a RequestContactInfoMessage message from a plain object. Also converts values to their respective internal types.
-             * @function fromObject
-             * @memberof E2E.Message.RequestContactInfoMessage
-             * @static
-             * @param {Object.<string,*>} object Plain object
-             * @returns {E2E.Message.RequestContactInfoMessage} RequestContactInfoMessage
-             */
-            RequestContactInfoMessage.fromObject = function fromObject(object) {
-                if (object instanceof $root.E2E.Message.RequestContactInfoMessage)
-                    return object;
-                var message = new $root.E2E.Message.RequestContactInfoMessage();
-                if (object.text != null)
-                    message.text = String(object.text);
-                if (object.ctaButtonText != null)
-                    message.ctaButtonText = String(object.ctaButtonText);
-                if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
-                        throw TypeError(".E2E.Message.RequestContactInfoMessage.contextInfo: object expected");
-                    message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo);
-                }
-                return message;
-            };
-
-            /**
-             * Creates a plain object from a RequestContactInfoMessage message. Also converts values to other types if specified.
-             * @function toObject
-             * @memberof E2E.Message.RequestContactInfoMessage
-             * @static
-             * @param {E2E.Message.RequestContactInfoMessage} message RequestContactInfoMessage
-             * @param {$protobuf.IConversionOptions} [options] Conversion options
-             * @returns {Object.<string,*>} Plain object
-             */
-            RequestContactInfoMessage.toObject = function toObject(message, options) {
-                if (!options)
-                    options = {};
-                var object = {};
-                if (options.defaults) {
-                    object.text = "";
-                    object.ctaButtonText = "";
-                    object.contextInfo = null;
-                }
-                if (message.text != null && message.hasOwnProperty("text"))
-                    object.text = message.text;
-                if (message.ctaButtonText != null && message.hasOwnProperty("ctaButtonText"))
-                    object.ctaButtonText = message.ctaButtonText;
-                if (message.contextInfo != null && message.hasOwnProperty("contextInfo"))
-                    object.contextInfo = $root.E2E.ContextInfo.toObject(message.contextInfo, options);
-                return object;
-            };
-
-            /**
-             * Converts this RequestContactInfoMessage to JSON.
-             * @function toJSON
-             * @memberof E2E.Message.RequestContactInfoMessage
-             * @instance
-             * @returns {Object.<string,*>} JSON object
-             */
-            RequestContactInfoMessage.prototype.toJSON = function toJSON() {
-                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-            };
-
-            /**
-             * Gets the default type url for RequestContactInfoMessage
-             * @function getTypeUrl
-             * @memberof E2E.Message.RequestContactInfoMessage
-             * @static
-             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns {string} The default type url
-             */
-            RequestContactInfoMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-                if (typeUrlPrefix === undefined) {
-                    typeUrlPrefix = "type.googleapis.com";
-                }
-                return typeUrlPrefix + "/E2E.Message.RequestContactInfoMessage";
-            };
-
-            return RequestContactInfoMessage;
-        })();
-
         Message.RequestPaymentMessage = (function() {
 
             /**
@@ -84741,6 +84516,7 @@ $root.AICommon = (function() {
          * @interface ISessionTransparencyMetadata
          * @property {string|null} [disclaimerText] SessionTransparencyMetadata disclaimerText
          * @property {string|null} [hcaId] SessionTransparencyMetadata hcaId
+         * @property {AICommon.SessionTransparencyType|null} [sessionTransparencyType] SessionTransparencyMetadata sessionTransparencyType
          */
 
         /**
@@ -84775,6 +84551,14 @@ $root.AICommon = (function() {
         SessionTransparencyMetadata.prototype.hcaId = "";
 
         /**
+         * SessionTransparencyMetadata sessionTransparencyType.
+         * @member {AICommon.SessionTransparencyType} sessionTransparencyType
+         * @memberof AICommon.SessionTransparencyMetadata
+         * @instance
+         */
+        SessionTransparencyMetadata.prototype.sessionTransparencyType = 0;
+
+        /**
          * Creates a new SessionTransparencyMetadata instance using the specified properties.
          * @function create
          * @memberof AICommon.SessionTransparencyMetadata
@@ -84802,6 +84586,8 @@ $root.AICommon = (function() {
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.disclaimerText);
             if (message.hcaId != null && Object.hasOwnProperty.call(message, "hcaId"))
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.hcaId);
+            if (message.sessionTransparencyType != null && Object.hasOwnProperty.call(message, "sessionTransparencyType"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.sessionTransparencyType);
             return writer;
         };
 
@@ -84846,6 +84632,10 @@ $root.AICommon = (function() {
                         message.hcaId = reader.string();
                         break;
                     }
+                case 3: {
+                        message.sessionTransparencyType = reader.int32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -84887,6 +84677,14 @@ $root.AICommon = (function() {
             if (message.hcaId != null && message.hasOwnProperty("hcaId"))
                 if (!$util.isString(message.hcaId))
                     return "hcaId: string expected";
+            if (message.sessionTransparencyType != null && message.hasOwnProperty("sessionTransparencyType"))
+                switch (message.sessionTransparencyType) {
+                default:
+                    return "sessionTransparencyType: enum value expected";
+                case 0:
+                case 1:
+                    break;
+                }
             return null;
         };
 
@@ -84906,6 +84704,22 @@ $root.AICommon = (function() {
                 message.disclaimerText = String(object.disclaimerText);
             if (object.hcaId != null)
                 message.hcaId = String(object.hcaId);
+            switch (object.sessionTransparencyType) {
+            default:
+                if (typeof object.sessionTransparencyType === "number") {
+                    message.sessionTransparencyType = object.sessionTransparencyType;
+                    break;
+                }
+                break;
+            case "UNKNOWN_TYPE":
+            case 0:
+                message.sessionTransparencyType = 0;
+                break;
+            case "NY_AI_SAFETY_DISCLAIMER":
+            case 1:
+                message.sessionTransparencyType = 1;
+                break;
+            }
             return message;
         };
 
@@ -84925,11 +84739,14 @@ $root.AICommon = (function() {
             if (options.defaults) {
                 object.disclaimerText = "";
                 object.hcaId = "";
+                object.sessionTransparencyType = options.enums === String ? "UNKNOWN_TYPE" : 0;
             }
             if (message.disclaimerText != null && message.hasOwnProperty("disclaimerText"))
                 object.disclaimerText = message.disclaimerText;
             if (message.hcaId != null && message.hasOwnProperty("hcaId"))
                 object.hcaId = message.hcaId;
+            if (message.sessionTransparencyType != null && message.hasOwnProperty("sessionTransparencyType"))
+                object.sessionTransparencyType = options.enums === String ? $root.AICommon.SessionTransparencyType[message.sessionTransparencyType] === undefined ? message.sessionTransparencyType : $root.AICommon.SessionTransparencyType[message.sessionTransparencyType] : message.sessionTransparencyType;
             return object;
         };
 
@@ -108201,6 +108018,20 @@ $root.AICommon = (function() {
         };
 
         return BotAvatarMetadata;
+    })();
+
+    /**
+     * SessionTransparencyType enum.
+     * @name AICommon.SessionTransparencyType
+     * @enum {number}
+     * @property {number} UNKNOWN_TYPE=0 UNKNOWN_TYPE value
+     * @property {number} NY_AI_SAFETY_DISCLAIMER=1 NY_AI_SAFETY_DISCLAIMER value
+     */
+    AICommon.SessionTransparencyType = (function() {
+        var valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "UNKNOWN_TYPE"] = 0;
+        values[valuesById[1] = "NY_AI_SAFETY_DISCLAIMER"] = 1;
+        return values;
     })();
 
     /**
