@@ -267,9 +267,6 @@ export namespace AICommon {
 
         /** SessionTransparencyMetadata hcaId */
         hcaId?: (string|null);
-
-        /** SessionTransparencyMetadata sessionTransparencyType */
-        sessionTransparencyType?: (AICommon.SessionTransparencyType|null);
     }
 
     /** Represents a SessionTransparencyMetadata. */
@@ -286,9 +283,6 @@ export namespace AICommon {
 
         /** SessionTransparencyMetadata hcaId. */
         public hcaId: string;
-
-        /** SessionTransparencyMetadata sessionTransparencyType. */
-        public sessionTransparencyType: AICommon.SessionTransparencyType;
 
         /**
          * Creates a new SessionTransparencyMetadata instance using the specified properties.
@@ -9216,12 +9210,6 @@ export namespace AICommon {
          * @returns The default type url
          */
         public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** SessionTransparencyType enum. */
-    enum SessionTransparencyType {
-        UNKNOWN_TYPE = 0,
-        NY_AI_SAFETY_DISCLAIMER = 1
     }
 
     /** AIRichResponseSubMessageType enum. */
