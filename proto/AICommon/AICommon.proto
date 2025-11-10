@@ -361,6 +361,7 @@ message InThreadSurveyMetadata {
     optional string privacyStatementFull = 15;
     repeated InThreadSurveyPrivacyStatementPart privacyStatementParts = 16;
     optional string feedbackToastText = 17;
+    optional int32 startQuestionIndex = 18;
     message InThreadSurveyOption {
         optional string stringValue = 1;
         optional uint32 numericValue = 2;

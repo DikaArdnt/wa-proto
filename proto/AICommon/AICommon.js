@@ -12626,6 +12626,7 @@ $root.AICommon = (function() {
          * @property {string|null} [privacyStatementFull] InThreadSurveyMetadata privacyStatementFull
          * @property {Array.<AICommon.InThreadSurveyMetadata.IInThreadSurveyPrivacyStatementPart>|null} [privacyStatementParts] InThreadSurveyMetadata privacyStatementParts
          * @property {string|null} [feedbackToastText] InThreadSurveyMetadata feedbackToastText
+         * @property {number|null} [startQuestionIndex] InThreadSurveyMetadata startQuestionIndex
          */
 
         /**
@@ -12782,6 +12783,14 @@ $root.AICommon = (function() {
         InThreadSurveyMetadata.prototype.feedbackToastText = "";
 
         /**
+         * InThreadSurveyMetadata startQuestionIndex.
+         * @member {number} startQuestionIndex
+         * @memberof AICommon.InThreadSurveyMetadata
+         * @instance
+         */
+        InThreadSurveyMetadata.prototype.startQuestionIndex = 0;
+
+        /**
          * Creates a new InThreadSurveyMetadata instance using the specified properties.
          * @function create
          * @memberof AICommon.InThreadSurveyMetadata
@@ -12841,6 +12850,8 @@ $root.AICommon = (function() {
                     $root.AICommon.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart.encode(message.privacyStatementParts[i], writer.uint32(/* id 16, wireType 2 =*/130).fork()).ldelim();
             if (message.feedbackToastText != null && Object.hasOwnProperty.call(message, "feedbackToastText"))
                 writer.uint32(/* id 17, wireType 2 =*/138).string(message.feedbackToastText);
+            if (message.startQuestionIndex != null && Object.hasOwnProperty.call(message, "startQuestionIndex"))
+                writer.uint32(/* id 18, wireType 0 =*/144).int32(message.startQuestionIndex);
             return writer;
         };
 
@@ -12949,6 +12960,10 @@ $root.AICommon = (function() {
                         message.feedbackToastText = reader.string();
                         break;
                     }
+                case 18: {
+                        message.startQuestionIndex = reader.int32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -13047,6 +13062,9 @@ $root.AICommon = (function() {
             if (message.feedbackToastText != null && message.hasOwnProperty("feedbackToastText"))
                 if (!$util.isString(message.feedbackToastText))
                     return "feedbackToastText: string expected";
+            if (message.startQuestionIndex != null && message.hasOwnProperty("startQuestionIndex"))
+                if (!$util.isInteger(message.startQuestionIndex))
+                    return "startQuestionIndex: integer expected";
             return null;
         };
 
@@ -13112,6 +13130,8 @@ $root.AICommon = (function() {
             }
             if (object.feedbackToastText != null)
                 message.feedbackToastText = String(object.feedbackToastText);
+            if (object.startQuestionIndex != null)
+                message.startQuestionIndex = object.startQuestionIndex | 0;
             return message;
         };
 
@@ -13148,6 +13168,7 @@ $root.AICommon = (function() {
                 object.surveySubmitButtonText = "";
                 object.privacyStatementFull = "";
                 object.feedbackToastText = "";
+                object.startQuestionIndex = 0;
             }
             if (message.tessaSessionId != null && message.hasOwnProperty("tessaSessionId"))
                 object.tessaSessionId = message.tessaSessionId;
@@ -13189,6 +13210,8 @@ $root.AICommon = (function() {
             }
             if (message.feedbackToastText != null && message.hasOwnProperty("feedbackToastText"))
                 object.feedbackToastText = message.feedbackToastText;
+            if (message.startQuestionIndex != null && message.hasOwnProperty("startQuestionIndex"))
+                object.startQuestionIndex = message.startQuestionIndex;
             return object;
         };
 

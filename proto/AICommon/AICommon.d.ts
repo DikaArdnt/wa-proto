@@ -4903,6 +4903,9 @@ export namespace AICommon {
 
         /** InThreadSurveyMetadata feedbackToastText */
         feedbackToastText?: (string|null);
+
+        /** InThreadSurveyMetadata startQuestionIndex */
+        startQuestionIndex?: (number|null);
     }
 
     /** Represents an InThreadSurveyMetadata. */
@@ -4964,6 +4967,9 @@ export namespace AICommon {
 
         /** InThreadSurveyMetadata feedbackToastText. */
         public feedbackToastText: string;
+
+        /** InThreadSurveyMetadata startQuestionIndex. */
+        public startQuestionIndex: number;
 
         /**
          * Creates a new InThreadSurveyMetadata instance using the specified properties.
