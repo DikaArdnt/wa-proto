@@ -25306,6 +25306,112 @@ export namespace AICommon {
         }
     }
 
+    /** Properties of a BotDocumentMessageMetadata. */
+    interface IBotDocumentMessageMetadata {
+
+        /** BotDocumentMessageMetadata pluginType */
+        pluginType?: (AICommon.BotDocumentMessageMetadata.DocumentPluginType|null);
+    }
+
+    /** Represents a BotDocumentMessageMetadata. */
+    class BotDocumentMessageMetadata implements IBotDocumentMessageMetadata {
+
+        /**
+         * Constructs a new BotDocumentMessageMetadata.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: AICommon.IBotDocumentMessageMetadata);
+
+        /** BotDocumentMessageMetadata pluginType. */
+        public pluginType: AICommon.BotDocumentMessageMetadata.DocumentPluginType;
+
+        /**
+         * Creates a new BotDocumentMessageMetadata instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BotDocumentMessageMetadata instance
+         */
+        public static create(properties?: AICommon.IBotDocumentMessageMetadata): AICommon.BotDocumentMessageMetadata;
+
+        /**
+         * Encodes the specified BotDocumentMessageMetadata message. Does not implicitly {@link AICommon.BotDocumentMessageMetadata.verify|verify} messages.
+         * @param message BotDocumentMessageMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: AICommon.IBotDocumentMessageMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BotDocumentMessageMetadata message, length delimited. Does not implicitly {@link AICommon.BotDocumentMessageMetadata.verify|verify} messages.
+         * @param message BotDocumentMessageMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: AICommon.IBotDocumentMessageMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BotDocumentMessageMetadata message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BotDocumentMessageMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AICommon.BotDocumentMessageMetadata;
+
+        /**
+         * Decodes a BotDocumentMessageMetadata message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BotDocumentMessageMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AICommon.BotDocumentMessageMetadata;
+
+        /**
+         * Verifies a BotDocumentMessageMetadata message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BotDocumentMessageMetadata message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BotDocumentMessageMetadata
+         */
+        public static fromObject(object: { [k: string]: any }): AICommon.BotDocumentMessageMetadata;
+
+        /**
+         * Creates a plain object from a BotDocumentMessageMetadata message. Also converts values to other types if specified.
+         * @param message BotDocumentMessageMetadata
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: AICommon.BotDocumentMessageMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BotDocumentMessageMetadata to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for BotDocumentMessageMetadata
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    namespace BotDocumentMessageMetadata {
+
+        /** DocumentPluginType enum. */
+        enum DocumentPluginType {
+            TEXT_EXTRACTION = 0,
+            OCR_AND_IMAGES = 1
+        }
+    }
+
     /** Properties of a SessionTransparencyMetadata. */
     interface ISessionTransparencyMetadata {
 
@@ -28772,6 +28878,200 @@ export namespace AICommon {
         }
     }
 
+    /** Properties of a BotGroupParticipantMetadata. */
+    interface IBotGroupParticipantMetadata {
+
+        /** BotGroupParticipantMetadata botFbid */
+        botFbid?: (string|null);
+    }
+
+    /** Represents a BotGroupParticipantMetadata. */
+    class BotGroupParticipantMetadata implements IBotGroupParticipantMetadata {
+
+        /**
+         * Constructs a new BotGroupParticipantMetadata.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: AICommon.IBotGroupParticipantMetadata);
+
+        /** BotGroupParticipantMetadata botFbid. */
+        public botFbid: string;
+
+        /**
+         * Creates a new BotGroupParticipantMetadata instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BotGroupParticipantMetadata instance
+         */
+        public static create(properties?: AICommon.IBotGroupParticipantMetadata): AICommon.BotGroupParticipantMetadata;
+
+        /**
+         * Encodes the specified BotGroupParticipantMetadata message. Does not implicitly {@link AICommon.BotGroupParticipantMetadata.verify|verify} messages.
+         * @param message BotGroupParticipantMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: AICommon.IBotGroupParticipantMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BotGroupParticipantMetadata message, length delimited. Does not implicitly {@link AICommon.BotGroupParticipantMetadata.verify|verify} messages.
+         * @param message BotGroupParticipantMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: AICommon.IBotGroupParticipantMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BotGroupParticipantMetadata message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BotGroupParticipantMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AICommon.BotGroupParticipantMetadata;
+
+        /**
+         * Decodes a BotGroupParticipantMetadata message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BotGroupParticipantMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AICommon.BotGroupParticipantMetadata;
+
+        /**
+         * Verifies a BotGroupParticipantMetadata message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BotGroupParticipantMetadata message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BotGroupParticipantMetadata
+         */
+        public static fromObject(object: { [k: string]: any }): AICommon.BotGroupParticipantMetadata;
+
+        /**
+         * Creates a plain object from a BotGroupParticipantMetadata message. Also converts values to other types if specified.
+         * @param message BotGroupParticipantMetadata
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: AICommon.BotGroupParticipantMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BotGroupParticipantMetadata to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for BotGroupParticipantMetadata
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a BotGroupMetadata. */
+    interface IBotGroupMetadata {
+
+        /** BotGroupMetadata participantsMetadata */
+        participantsMetadata?: (AICommon.IBotGroupParticipantMetadata[]|null);
+    }
+
+    /** Represents a BotGroupMetadata. */
+    class BotGroupMetadata implements IBotGroupMetadata {
+
+        /**
+         * Constructs a new BotGroupMetadata.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: AICommon.IBotGroupMetadata);
+
+        /** BotGroupMetadata participantsMetadata. */
+        public participantsMetadata: AICommon.IBotGroupParticipantMetadata[];
+
+        /**
+         * Creates a new BotGroupMetadata instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BotGroupMetadata instance
+         */
+        public static create(properties?: AICommon.IBotGroupMetadata): AICommon.BotGroupMetadata;
+
+        /**
+         * Encodes the specified BotGroupMetadata message. Does not implicitly {@link AICommon.BotGroupMetadata.verify|verify} messages.
+         * @param message BotGroupMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: AICommon.IBotGroupMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BotGroupMetadata message, length delimited. Does not implicitly {@link AICommon.BotGroupMetadata.verify|verify} messages.
+         * @param message BotGroupMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: AICommon.IBotGroupMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BotGroupMetadata message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BotGroupMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AICommon.BotGroupMetadata;
+
+        /**
+         * Decodes a BotGroupMetadata message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BotGroupMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AICommon.BotGroupMetadata;
+
+        /**
+         * Verifies a BotGroupMetadata message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BotGroupMetadata message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BotGroupMetadata
+         */
+        public static fromObject(object: { [k: string]: any }): AICommon.BotGroupMetadata;
+
+        /**
+         * Creates a plain object from a BotGroupMetadata message. Also converts values to other types if specified.
+         * @param message BotGroupMetadata
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: AICommon.BotGroupMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BotGroupMetadata to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for BotGroupMetadata
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
     /** Properties of a BotMetadata. */
     interface IBotMetadata {
 
@@ -28873,6 +29173,12 @@ export namespace AICommon {
 
         /** BotMetadata sessionTransparencyMetadata */
         sessionTransparencyMetadata?: (AICommon.ISessionTransparencyMetadata|null);
+
+        /** BotMetadata botDocumentMessageMetadata */
+        botDocumentMessageMetadata?: (AICommon.IBotDocumentMessageMetadata|null);
+
+        /** BotMetadata botGroupMetadata */
+        botGroupMetadata?: (AICommon.IBotGroupMetadata|null);
 
         /** BotMetadata internalMetadata */
         internalMetadata?: (Uint8Array|null);
@@ -28985,6 +29291,12 @@ export namespace AICommon {
 
         /** BotMetadata sessionTransparencyMetadata. */
         public sessionTransparencyMetadata?: (AICommon.ISessionTransparencyMetadata|null);
+
+        /** BotMetadata botDocumentMessageMetadata. */
+        public botDocumentMessageMetadata?: (AICommon.IBotDocumentMessageMetadata|null);
+
+        /** BotMetadata botGroupMetadata. */
+        public botGroupMetadata?: (AICommon.IBotGroupMetadata|null);
 
         /** BotMetadata internalMetadata. */
         public internalMetadata: Uint8Array;

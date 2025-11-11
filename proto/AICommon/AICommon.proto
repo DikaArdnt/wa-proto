@@ -25,6 +25,14 @@ message AIHomeState {
     }
 }
 
+message BotDocumentMessageMetadata {
+    optional DocumentPluginType pluginType = 1;
+    enum DocumentPluginType {
+        TEXT_EXTRACTION = 0;
+        OCR_AND_IMAGES = 1;
+    }
+}
+
 message SessionTransparencyMetadata {
     optional string disclaimerText = 1;
     optional string hcaId = 2;
@@ -265,6 +273,14 @@ message BotFeedbackMessage {
     }
 }
 
+message BotGroupParticipantMetadata {
+    optional string botFbid = 1;
+}
+
+message BotGroupMetadata {
+    repeated BotGroupParticipantMetadata participantsMetadata = 1;
+}
+
 message BotMetadata {
     optional BotAvatarMetadata avatarMetadata = 1;
     optional string personaId = 2;
@@ -299,6 +315,8 @@ message BotMetadata {
     optional AIThreadInfo botThreadInfo = 31;
     optional AIRegenerateMetadata regenerateMetadata = 32;
     optional SessionTransparencyMetadata sessionTransparencyMetadata = 33;
+    optional BotDocumentMessageMetadata botDocumentMessageMetadata = 34;
+    optional BotGroupMetadata botGroupMetadata = 35;
     optional bytes internalMetadata = 999;
 }
 

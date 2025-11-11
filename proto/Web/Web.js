@@ -84508,6 +84508,244 @@ $root.AICommon = (function() {
         return AIHomeState;
     })();
 
+    AICommon.BotDocumentMessageMetadata = (function() {
+
+        /**
+         * Properties of a BotDocumentMessageMetadata.
+         * @memberof AICommon
+         * @interface IBotDocumentMessageMetadata
+         * @property {AICommon.BotDocumentMessageMetadata.DocumentPluginType|null} [pluginType] BotDocumentMessageMetadata pluginType
+         */
+
+        /**
+         * Constructs a new BotDocumentMessageMetadata.
+         * @memberof AICommon
+         * @classdesc Represents a BotDocumentMessageMetadata.
+         * @implements IBotDocumentMessageMetadata
+         * @constructor
+         * @param {AICommon.IBotDocumentMessageMetadata=} [properties] Properties to set
+         */
+        function BotDocumentMessageMetadata(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BotDocumentMessageMetadata pluginType.
+         * @member {AICommon.BotDocumentMessageMetadata.DocumentPluginType} pluginType
+         * @memberof AICommon.BotDocumentMessageMetadata
+         * @instance
+         */
+        BotDocumentMessageMetadata.prototype.pluginType = 0;
+
+        /**
+         * Creates a new BotDocumentMessageMetadata instance using the specified properties.
+         * @function create
+         * @memberof AICommon.BotDocumentMessageMetadata
+         * @static
+         * @param {AICommon.IBotDocumentMessageMetadata=} [properties] Properties to set
+         * @returns {AICommon.BotDocumentMessageMetadata} BotDocumentMessageMetadata instance
+         */
+        BotDocumentMessageMetadata.create = function create(properties) {
+            return new BotDocumentMessageMetadata(properties);
+        };
+
+        /**
+         * Encodes the specified BotDocumentMessageMetadata message. Does not implicitly {@link AICommon.BotDocumentMessageMetadata.verify|verify} messages.
+         * @function encode
+         * @memberof AICommon.BotDocumentMessageMetadata
+         * @static
+         * @param {AICommon.IBotDocumentMessageMetadata} message BotDocumentMessageMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotDocumentMessageMetadata.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.pluginType != null && Object.hasOwnProperty.call(message, "pluginType"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.pluginType);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BotDocumentMessageMetadata message, length delimited. Does not implicitly {@link AICommon.BotDocumentMessageMetadata.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof AICommon.BotDocumentMessageMetadata
+         * @static
+         * @param {AICommon.IBotDocumentMessageMetadata} message BotDocumentMessageMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotDocumentMessageMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BotDocumentMessageMetadata message from the specified reader or buffer.
+         * @function decode
+         * @memberof AICommon.BotDocumentMessageMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {AICommon.BotDocumentMessageMetadata} BotDocumentMessageMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotDocumentMessageMetadata.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotDocumentMessageMetadata();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.pluginType = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BotDocumentMessageMetadata message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof AICommon.BotDocumentMessageMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {AICommon.BotDocumentMessageMetadata} BotDocumentMessageMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotDocumentMessageMetadata.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BotDocumentMessageMetadata message.
+         * @function verify
+         * @memberof AICommon.BotDocumentMessageMetadata
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BotDocumentMessageMetadata.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.pluginType != null && message.hasOwnProperty("pluginType"))
+                switch (message.pluginType) {
+                default:
+                    return "pluginType: enum value expected";
+                case 0:
+                case 1:
+                    break;
+                }
+            return null;
+        };
+
+        /**
+         * Creates a BotDocumentMessageMetadata message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof AICommon.BotDocumentMessageMetadata
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {AICommon.BotDocumentMessageMetadata} BotDocumentMessageMetadata
+         */
+        BotDocumentMessageMetadata.fromObject = function fromObject(object) {
+            if (object instanceof $root.AICommon.BotDocumentMessageMetadata)
+                return object;
+            var message = new $root.AICommon.BotDocumentMessageMetadata();
+            switch (object.pluginType) {
+            default:
+                if (typeof object.pluginType === "number") {
+                    message.pluginType = object.pluginType;
+                    break;
+                }
+                break;
+            case "TEXT_EXTRACTION":
+            case 0:
+                message.pluginType = 0;
+                break;
+            case "OCR_AND_IMAGES":
+            case 1:
+                message.pluginType = 1;
+                break;
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BotDocumentMessageMetadata message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof AICommon.BotDocumentMessageMetadata
+         * @static
+         * @param {AICommon.BotDocumentMessageMetadata} message BotDocumentMessageMetadata
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BotDocumentMessageMetadata.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.pluginType = options.enums === String ? "TEXT_EXTRACTION" : 0;
+            if (message.pluginType != null && message.hasOwnProperty("pluginType"))
+                object.pluginType = options.enums === String ? $root.AICommon.BotDocumentMessageMetadata.DocumentPluginType[message.pluginType] === undefined ? message.pluginType : $root.AICommon.BotDocumentMessageMetadata.DocumentPluginType[message.pluginType] : message.pluginType;
+            return object;
+        };
+
+        /**
+         * Converts this BotDocumentMessageMetadata to JSON.
+         * @function toJSON
+         * @memberof AICommon.BotDocumentMessageMetadata
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BotDocumentMessageMetadata.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotDocumentMessageMetadata
+         * @function getTypeUrl
+         * @memberof AICommon.BotDocumentMessageMetadata
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotDocumentMessageMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/AICommon.BotDocumentMessageMetadata";
+        };
+
+        /**
+         * DocumentPluginType enum.
+         * @name AICommon.BotDocumentMessageMetadata.DocumentPluginType
+         * @enum {number}
+         * @property {number} TEXT_EXTRACTION=0 TEXT_EXTRACTION value
+         * @property {number} OCR_AND_IMAGES=1 OCR_AND_IMAGES value
+         */
+        BotDocumentMessageMetadata.DocumentPluginType = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "TEXT_EXTRACTION"] = 0;
+            values[valuesById[1] = "OCR_AND_IMAGES"] = 1;
+            return values;
+        })();
+
+        return BotDocumentMessageMetadata;
+    })();
+
     AICommon.SessionTransparencyMetadata = (function() {
 
         /**
@@ -93388,6 +93626,437 @@ $root.AICommon = (function() {
         return BotFeedbackMessage;
     })();
 
+    AICommon.BotGroupParticipantMetadata = (function() {
+
+        /**
+         * Properties of a BotGroupParticipantMetadata.
+         * @memberof AICommon
+         * @interface IBotGroupParticipantMetadata
+         * @property {string|null} [botFbid] BotGroupParticipantMetadata botFbid
+         */
+
+        /**
+         * Constructs a new BotGroupParticipantMetadata.
+         * @memberof AICommon
+         * @classdesc Represents a BotGroupParticipantMetadata.
+         * @implements IBotGroupParticipantMetadata
+         * @constructor
+         * @param {AICommon.IBotGroupParticipantMetadata=} [properties] Properties to set
+         */
+        function BotGroupParticipantMetadata(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BotGroupParticipantMetadata botFbid.
+         * @member {string} botFbid
+         * @memberof AICommon.BotGroupParticipantMetadata
+         * @instance
+         */
+        BotGroupParticipantMetadata.prototype.botFbid = "";
+
+        /**
+         * Creates a new BotGroupParticipantMetadata instance using the specified properties.
+         * @function create
+         * @memberof AICommon.BotGroupParticipantMetadata
+         * @static
+         * @param {AICommon.IBotGroupParticipantMetadata=} [properties] Properties to set
+         * @returns {AICommon.BotGroupParticipantMetadata} BotGroupParticipantMetadata instance
+         */
+        BotGroupParticipantMetadata.create = function create(properties) {
+            return new BotGroupParticipantMetadata(properties);
+        };
+
+        /**
+         * Encodes the specified BotGroupParticipantMetadata message. Does not implicitly {@link AICommon.BotGroupParticipantMetadata.verify|verify} messages.
+         * @function encode
+         * @memberof AICommon.BotGroupParticipantMetadata
+         * @static
+         * @param {AICommon.IBotGroupParticipantMetadata} message BotGroupParticipantMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotGroupParticipantMetadata.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.botFbid != null && Object.hasOwnProperty.call(message, "botFbid"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.botFbid);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BotGroupParticipantMetadata message, length delimited. Does not implicitly {@link AICommon.BotGroupParticipantMetadata.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof AICommon.BotGroupParticipantMetadata
+         * @static
+         * @param {AICommon.IBotGroupParticipantMetadata} message BotGroupParticipantMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotGroupParticipantMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BotGroupParticipantMetadata message from the specified reader or buffer.
+         * @function decode
+         * @memberof AICommon.BotGroupParticipantMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {AICommon.BotGroupParticipantMetadata} BotGroupParticipantMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotGroupParticipantMetadata.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotGroupParticipantMetadata();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.botFbid = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BotGroupParticipantMetadata message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof AICommon.BotGroupParticipantMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {AICommon.BotGroupParticipantMetadata} BotGroupParticipantMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotGroupParticipantMetadata.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BotGroupParticipantMetadata message.
+         * @function verify
+         * @memberof AICommon.BotGroupParticipantMetadata
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BotGroupParticipantMetadata.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.botFbid != null && message.hasOwnProperty("botFbid"))
+                if (!$util.isString(message.botFbid))
+                    return "botFbid: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a BotGroupParticipantMetadata message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof AICommon.BotGroupParticipantMetadata
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {AICommon.BotGroupParticipantMetadata} BotGroupParticipantMetadata
+         */
+        BotGroupParticipantMetadata.fromObject = function fromObject(object) {
+            if (object instanceof $root.AICommon.BotGroupParticipantMetadata)
+                return object;
+            var message = new $root.AICommon.BotGroupParticipantMetadata();
+            if (object.botFbid != null)
+                message.botFbid = String(object.botFbid);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BotGroupParticipantMetadata message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof AICommon.BotGroupParticipantMetadata
+         * @static
+         * @param {AICommon.BotGroupParticipantMetadata} message BotGroupParticipantMetadata
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BotGroupParticipantMetadata.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.botFbid = "";
+            if (message.botFbid != null && message.hasOwnProperty("botFbid"))
+                object.botFbid = message.botFbid;
+            return object;
+        };
+
+        /**
+         * Converts this BotGroupParticipantMetadata to JSON.
+         * @function toJSON
+         * @memberof AICommon.BotGroupParticipantMetadata
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BotGroupParticipantMetadata.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotGroupParticipantMetadata
+         * @function getTypeUrl
+         * @memberof AICommon.BotGroupParticipantMetadata
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotGroupParticipantMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/AICommon.BotGroupParticipantMetadata";
+        };
+
+        return BotGroupParticipantMetadata;
+    })();
+
+    AICommon.BotGroupMetadata = (function() {
+
+        /**
+         * Properties of a BotGroupMetadata.
+         * @memberof AICommon
+         * @interface IBotGroupMetadata
+         * @property {Array.<AICommon.IBotGroupParticipantMetadata>|null} [participantsMetadata] BotGroupMetadata participantsMetadata
+         */
+
+        /**
+         * Constructs a new BotGroupMetadata.
+         * @memberof AICommon
+         * @classdesc Represents a BotGroupMetadata.
+         * @implements IBotGroupMetadata
+         * @constructor
+         * @param {AICommon.IBotGroupMetadata=} [properties] Properties to set
+         */
+        function BotGroupMetadata(properties) {
+            this.participantsMetadata = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BotGroupMetadata participantsMetadata.
+         * @member {Array.<AICommon.IBotGroupParticipantMetadata>} participantsMetadata
+         * @memberof AICommon.BotGroupMetadata
+         * @instance
+         */
+        BotGroupMetadata.prototype.participantsMetadata = $util.emptyArray;
+
+        /**
+         * Creates a new BotGroupMetadata instance using the specified properties.
+         * @function create
+         * @memberof AICommon.BotGroupMetadata
+         * @static
+         * @param {AICommon.IBotGroupMetadata=} [properties] Properties to set
+         * @returns {AICommon.BotGroupMetadata} BotGroupMetadata instance
+         */
+        BotGroupMetadata.create = function create(properties) {
+            return new BotGroupMetadata(properties);
+        };
+
+        /**
+         * Encodes the specified BotGroupMetadata message. Does not implicitly {@link AICommon.BotGroupMetadata.verify|verify} messages.
+         * @function encode
+         * @memberof AICommon.BotGroupMetadata
+         * @static
+         * @param {AICommon.IBotGroupMetadata} message BotGroupMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotGroupMetadata.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.participantsMetadata != null && message.participantsMetadata.length)
+                for (var i = 0; i < message.participantsMetadata.length; ++i)
+                    $root.AICommon.BotGroupParticipantMetadata.encode(message.participantsMetadata[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BotGroupMetadata message, length delimited. Does not implicitly {@link AICommon.BotGroupMetadata.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof AICommon.BotGroupMetadata
+         * @static
+         * @param {AICommon.IBotGroupMetadata} message BotGroupMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotGroupMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BotGroupMetadata message from the specified reader or buffer.
+         * @function decode
+         * @memberof AICommon.BotGroupMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {AICommon.BotGroupMetadata} BotGroupMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotGroupMetadata.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotGroupMetadata();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        if (!(message.participantsMetadata && message.participantsMetadata.length))
+                            message.participantsMetadata = [];
+                        message.participantsMetadata.push($root.AICommon.BotGroupParticipantMetadata.decode(reader, reader.uint32()));
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BotGroupMetadata message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof AICommon.BotGroupMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {AICommon.BotGroupMetadata} BotGroupMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotGroupMetadata.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BotGroupMetadata message.
+         * @function verify
+         * @memberof AICommon.BotGroupMetadata
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BotGroupMetadata.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.participantsMetadata != null && message.hasOwnProperty("participantsMetadata")) {
+                if (!Array.isArray(message.participantsMetadata))
+                    return "participantsMetadata: array expected";
+                for (var i = 0; i < message.participantsMetadata.length; ++i) {
+                    var error = $root.AICommon.BotGroupParticipantMetadata.verify(message.participantsMetadata[i]);
+                    if (error)
+                        return "participantsMetadata." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a BotGroupMetadata message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof AICommon.BotGroupMetadata
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {AICommon.BotGroupMetadata} BotGroupMetadata
+         */
+        BotGroupMetadata.fromObject = function fromObject(object) {
+            if (object instanceof $root.AICommon.BotGroupMetadata)
+                return object;
+            var message = new $root.AICommon.BotGroupMetadata();
+            if (object.participantsMetadata) {
+                if (!Array.isArray(object.participantsMetadata))
+                    throw TypeError(".AICommon.BotGroupMetadata.participantsMetadata: array expected");
+                message.participantsMetadata = [];
+                for (var i = 0; i < object.participantsMetadata.length; ++i) {
+                    if (typeof object.participantsMetadata[i] !== "object")
+                        throw TypeError(".AICommon.BotGroupMetadata.participantsMetadata: object expected");
+                    message.participantsMetadata[i] = $root.AICommon.BotGroupParticipantMetadata.fromObject(object.participantsMetadata[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BotGroupMetadata message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof AICommon.BotGroupMetadata
+         * @static
+         * @param {AICommon.BotGroupMetadata} message BotGroupMetadata
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BotGroupMetadata.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.participantsMetadata = [];
+            if (message.participantsMetadata && message.participantsMetadata.length) {
+                object.participantsMetadata = [];
+                for (var j = 0; j < message.participantsMetadata.length; ++j)
+                    object.participantsMetadata[j] = $root.AICommon.BotGroupParticipantMetadata.toObject(message.participantsMetadata[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this BotGroupMetadata to JSON.
+         * @function toJSON
+         * @memberof AICommon.BotGroupMetadata
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BotGroupMetadata.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotGroupMetadata
+         * @function getTypeUrl
+         * @memberof AICommon.BotGroupMetadata
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotGroupMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/AICommon.BotGroupMetadata";
+        };
+
+        return BotGroupMetadata;
+    })();
+
     AICommon.BotMetadata = (function() {
 
         /**
@@ -93427,6 +94096,8 @@ $root.AICommon = (function() {
          * @property {AICommon.IAIThreadInfo|null} [botThreadInfo] BotMetadata botThreadInfo
          * @property {AICommon.IAIRegenerateMetadata|null} [regenerateMetadata] BotMetadata regenerateMetadata
          * @property {AICommon.ISessionTransparencyMetadata|null} [sessionTransparencyMetadata] BotMetadata sessionTransparencyMetadata
+         * @property {AICommon.IBotDocumentMessageMetadata|null} [botDocumentMessageMetadata] BotMetadata botDocumentMessageMetadata
+         * @property {AICommon.IBotGroupMetadata|null} [botGroupMetadata] BotMetadata botGroupMetadata
          * @property {Uint8Array|null} [internalMetadata] BotMetadata internalMetadata
          */
 
@@ -93710,6 +94381,22 @@ $root.AICommon = (function() {
         BotMetadata.prototype.sessionTransparencyMetadata = null;
 
         /**
+         * BotMetadata botDocumentMessageMetadata.
+         * @member {AICommon.IBotDocumentMessageMetadata|null|undefined} botDocumentMessageMetadata
+         * @memberof AICommon.BotMetadata
+         * @instance
+         */
+        BotMetadata.prototype.botDocumentMessageMetadata = null;
+
+        /**
+         * BotMetadata botGroupMetadata.
+         * @member {AICommon.IBotGroupMetadata|null|undefined} botGroupMetadata
+         * @memberof AICommon.BotMetadata
+         * @instance
+         */
+        BotMetadata.prototype.botGroupMetadata = null;
+
+        /**
          * BotMetadata internalMetadata.
          * @member {Uint8Array} internalMetadata
          * @memberof AICommon.BotMetadata
@@ -93807,6 +94494,10 @@ $root.AICommon = (function() {
                 $root.AICommon.AIRegenerateMetadata.encode(message.regenerateMetadata, writer.uint32(/* id 32, wireType 2 =*/258).fork()).ldelim();
             if (message.sessionTransparencyMetadata != null && Object.hasOwnProperty.call(message, "sessionTransparencyMetadata"))
                 $root.AICommon.SessionTransparencyMetadata.encode(message.sessionTransparencyMetadata, writer.uint32(/* id 33, wireType 2 =*/266).fork()).ldelim();
+            if (message.botDocumentMessageMetadata != null && Object.hasOwnProperty.call(message, "botDocumentMessageMetadata"))
+                $root.AICommon.BotDocumentMessageMetadata.encode(message.botDocumentMessageMetadata, writer.uint32(/* id 34, wireType 2 =*/274).fork()).ldelim();
+            if (message.botGroupMetadata != null && Object.hasOwnProperty.call(message, "botGroupMetadata"))
+                $root.AICommon.BotGroupMetadata.encode(message.botGroupMetadata, writer.uint32(/* id 35, wireType 2 =*/282).fork()).ldelim();
             if (message.internalMetadata != null && Object.hasOwnProperty.call(message, "internalMetadata"))
                 writer.uint32(/* id 999, wireType 2 =*/7994).bytes(message.internalMetadata);
             return writer;
@@ -93975,6 +94666,14 @@ $root.AICommon = (function() {
                     }
                 case 33: {
                         message.sessionTransparencyMetadata = $root.AICommon.SessionTransparencyMetadata.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 34: {
+                        message.botDocumentMessageMetadata = $root.AICommon.BotDocumentMessageMetadata.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 35: {
+                        message.botGroupMetadata = $root.AICommon.BotGroupMetadata.decode(reader, reader.uint32());
                         break;
                     }
                 case 999: {
@@ -94167,6 +94866,16 @@ $root.AICommon = (function() {
                 if (error)
                     return "sessionTransparencyMetadata." + error;
             }
+            if (message.botDocumentMessageMetadata != null && message.hasOwnProperty("botDocumentMessageMetadata")) {
+                var error = $root.AICommon.BotDocumentMessageMetadata.verify(message.botDocumentMessageMetadata);
+                if (error)
+                    return "botDocumentMessageMetadata." + error;
+            }
+            if (message.botGroupMetadata != null && message.hasOwnProperty("botGroupMetadata")) {
+                var error = $root.AICommon.BotGroupMetadata.verify(message.botGroupMetadata);
+                if (error)
+                    return "botGroupMetadata." + error;
+            }
             if (message.internalMetadata != null && message.hasOwnProperty("internalMetadata"))
                 if (!(message.internalMetadata && typeof message.internalMetadata.length === "number" || $util.isString(message.internalMetadata)))
                     return "internalMetadata: buffer expected";
@@ -94332,6 +95041,16 @@ $root.AICommon = (function() {
                     throw TypeError(".AICommon.BotMetadata.sessionTransparencyMetadata: object expected");
                 message.sessionTransparencyMetadata = $root.AICommon.SessionTransparencyMetadata.fromObject(object.sessionTransparencyMetadata);
             }
+            if (object.botDocumentMessageMetadata != null) {
+                if (typeof object.botDocumentMessageMetadata !== "object")
+                    throw TypeError(".AICommon.BotMetadata.botDocumentMessageMetadata: object expected");
+                message.botDocumentMessageMetadata = $root.AICommon.BotDocumentMessageMetadata.fromObject(object.botDocumentMessageMetadata);
+            }
+            if (object.botGroupMetadata != null) {
+                if (typeof object.botGroupMetadata !== "object")
+                    throw TypeError(".AICommon.BotMetadata.botGroupMetadata: object expected");
+                message.botGroupMetadata = $root.AICommon.BotGroupMetadata.fromObject(object.botGroupMetadata);
+            }
             if (object.internalMetadata != null)
                 if (typeof object.internalMetadata === "string")
                     $util.base64.decode(object.internalMetadata, message.internalMetadata = $util.newBuffer($util.base64.length(object.internalMetadata)), 0);
@@ -94393,6 +95112,8 @@ $root.AICommon = (function() {
                 object.botThreadInfo = null;
                 object.regenerateMetadata = null;
                 object.sessionTransparencyMetadata = null;
+                object.botDocumentMessageMetadata = null;
+                object.botGroupMetadata = null;
                 if (options.bytes === String)
                     object.internalMetadata = "";
                 else {
@@ -94467,6 +95188,10 @@ $root.AICommon = (function() {
                 object.regenerateMetadata = $root.AICommon.AIRegenerateMetadata.toObject(message.regenerateMetadata, options);
             if (message.sessionTransparencyMetadata != null && message.hasOwnProperty("sessionTransparencyMetadata"))
                 object.sessionTransparencyMetadata = $root.AICommon.SessionTransparencyMetadata.toObject(message.sessionTransparencyMetadata, options);
+            if (message.botDocumentMessageMetadata != null && message.hasOwnProperty("botDocumentMessageMetadata"))
+                object.botDocumentMessageMetadata = $root.AICommon.BotDocumentMessageMetadata.toObject(message.botDocumentMessageMetadata, options);
+            if (message.botGroupMetadata != null && message.hasOwnProperty("botGroupMetadata"))
+                object.botGroupMetadata = $root.AICommon.BotGroupMetadata.toObject(message.botGroupMetadata, options);
             if (message.internalMetadata != null && message.hasOwnProperty("internalMetadata"))
                 object.internalMetadata = options.bytes === String ? $util.base64.encode(message.internalMetadata, 0, message.internalMetadata.length) : options.bytes === Array ? Array.prototype.slice.call(message.internalMetadata) : message.internalMetadata;
             return object;
