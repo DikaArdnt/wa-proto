@@ -7,6 +7,15 @@ message DeviceCapabilities {
     optional BusinessBroadcast businessBroadcast = 3;
     optional UserHasAvatar userHasAvatar = 4;
     optional MemberNameTagPrimarySupport memberNameTagPrimarySupport = 5;
+    optional AiThread aiThread = 6;
+    message AiThread {
+        optional SupportLevel supportLevel = 1;
+        enum SupportLevel {
+            NONE = 0;
+            INFRA = 1;
+            FULL = 2;
+        }
+    }
     message BusinessBroadcast {
         optional bool importListEnabled = 1;
     }

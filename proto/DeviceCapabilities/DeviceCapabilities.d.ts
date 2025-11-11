@@ -20,6 +20,9 @@ export namespace DeviceCapabilities {
 
         /** DeviceCapabilities memberNameTagPrimarySupport */
         memberNameTagPrimarySupport?: (DeviceCapabilities.DeviceCapabilities.MemberNameTagPrimarySupport|null);
+
+        /** DeviceCapabilities aiThread */
+        aiThread?: (DeviceCapabilities.DeviceCapabilities.IAiThread|null);
     }
 
     /** Represents a DeviceCapabilities. */
@@ -45,6 +48,9 @@ export namespace DeviceCapabilities {
 
         /** DeviceCapabilities memberNameTagPrimarySupport. */
         public memberNameTagPrimarySupport: DeviceCapabilities.DeviceCapabilities.MemberNameTagPrimarySupport;
+
+        /** DeviceCapabilities aiThread. */
+        public aiThread?: (DeviceCapabilities.DeviceCapabilities.IAiThread|null);
 
         /**
          * Creates a new DeviceCapabilities instance using the specified properties.
@@ -125,6 +131,113 @@ export namespace DeviceCapabilities {
     }
 
     namespace DeviceCapabilities {
+
+        /** Properties of an AiThread. */
+        interface IAiThread {
+
+            /** AiThread supportLevel */
+            supportLevel?: (DeviceCapabilities.DeviceCapabilities.AiThread.SupportLevel|null);
+        }
+
+        /** Represents an AiThread. */
+        class AiThread implements IAiThread {
+
+            /**
+             * Constructs a new AiThread.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: DeviceCapabilities.DeviceCapabilities.IAiThread);
+
+            /** AiThread supportLevel. */
+            public supportLevel: DeviceCapabilities.DeviceCapabilities.AiThread.SupportLevel;
+
+            /**
+             * Creates a new AiThread instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns AiThread instance
+             */
+            public static create(properties?: DeviceCapabilities.DeviceCapabilities.IAiThread): DeviceCapabilities.DeviceCapabilities.AiThread;
+
+            /**
+             * Encodes the specified AiThread message. Does not implicitly {@link DeviceCapabilities.DeviceCapabilities.AiThread.verify|verify} messages.
+             * @param message AiThread message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: DeviceCapabilities.DeviceCapabilities.IAiThread, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified AiThread message, length delimited. Does not implicitly {@link DeviceCapabilities.DeviceCapabilities.AiThread.verify|verify} messages.
+             * @param message AiThread message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: DeviceCapabilities.DeviceCapabilities.IAiThread, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes an AiThread message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns AiThread
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): DeviceCapabilities.DeviceCapabilities.AiThread;
+
+            /**
+             * Decodes an AiThread message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns AiThread
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): DeviceCapabilities.DeviceCapabilities.AiThread;
+
+            /**
+             * Verifies an AiThread message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates an AiThread message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns AiThread
+             */
+            public static fromObject(object: { [k: string]: any }): DeviceCapabilities.DeviceCapabilities.AiThread;
+
+            /**
+             * Creates a plain object from an AiThread message. Also converts values to other types if specified.
+             * @param message AiThread
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: DeviceCapabilities.DeviceCapabilities.AiThread, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this AiThread to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for AiThread
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace AiThread {
+
+            /** SupportLevel enum. */
+            enum SupportLevel {
+                NONE = 0,
+                INFRA = 1,
+                FULL = 2
+            }
+        }
 
         /** Properties of a BusinessBroadcast. */
         interface IBusinessBroadcast {
