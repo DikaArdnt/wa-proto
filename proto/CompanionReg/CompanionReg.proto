@@ -5,6 +5,7 @@ message ClientPairingProps {
     optional bool isChatDbLidMigrated = 1;
     optional bool isSyncdPureLidSession = 2;
     optional bool isSyncdSnapshotRecoveryEnabled = 3;
+    optional bool isHsThumbnailSyncEnabled = 4;
 }
 
 message EncryptedPairingRequest {

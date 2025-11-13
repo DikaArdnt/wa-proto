@@ -101807,6 +101807,7 @@ $root.CompanionReg = (function() {
          * @property {boolean|null} [isChatDbLidMigrated] ClientPairingProps isChatDbLidMigrated
          * @property {boolean|null} [isSyncdPureLidSession] ClientPairingProps isSyncdPureLidSession
          * @property {boolean|null} [isSyncdSnapshotRecoveryEnabled] ClientPairingProps isSyncdSnapshotRecoveryEnabled
+         * @property {boolean|null} [isHsThumbnailSyncEnabled] ClientPairingProps isHsThumbnailSyncEnabled
          */
 
         /**
@@ -101849,6 +101850,14 @@ $root.CompanionReg = (function() {
         ClientPairingProps.prototype.isSyncdSnapshotRecoveryEnabled = false;
 
         /**
+         * ClientPairingProps isHsThumbnailSyncEnabled.
+         * @member {boolean} isHsThumbnailSyncEnabled
+         * @memberof CompanionReg.ClientPairingProps
+         * @instance
+         */
+        ClientPairingProps.prototype.isHsThumbnailSyncEnabled = false;
+
+        /**
          * Creates a new ClientPairingProps instance using the specified properties.
          * @function create
          * @memberof CompanionReg.ClientPairingProps
@@ -101878,6 +101887,8 @@ $root.CompanionReg = (function() {
                 writer.uint32(/* id 2, wireType 0 =*/16).bool(message.isSyncdPureLidSession);
             if (message.isSyncdSnapshotRecoveryEnabled != null && Object.hasOwnProperty.call(message, "isSyncdSnapshotRecoveryEnabled"))
                 writer.uint32(/* id 3, wireType 0 =*/24).bool(message.isSyncdSnapshotRecoveryEnabled);
+            if (message.isHsThumbnailSyncEnabled != null && Object.hasOwnProperty.call(message, "isHsThumbnailSyncEnabled"))
+                writer.uint32(/* id 4, wireType 0 =*/32).bool(message.isHsThumbnailSyncEnabled);
             return writer;
         };
 
@@ -101926,6 +101937,10 @@ $root.CompanionReg = (function() {
                         message.isSyncdSnapshotRecoveryEnabled = reader.bool();
                         break;
                     }
+                case 4: {
+                        message.isHsThumbnailSyncEnabled = reader.bool();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -101970,6 +101985,9 @@ $root.CompanionReg = (function() {
             if (message.isSyncdSnapshotRecoveryEnabled != null && message.hasOwnProperty("isSyncdSnapshotRecoveryEnabled"))
                 if (typeof message.isSyncdSnapshotRecoveryEnabled !== "boolean")
                     return "isSyncdSnapshotRecoveryEnabled: boolean expected";
+            if (message.isHsThumbnailSyncEnabled != null && message.hasOwnProperty("isHsThumbnailSyncEnabled"))
+                if (typeof message.isHsThumbnailSyncEnabled !== "boolean")
+                    return "isHsThumbnailSyncEnabled: boolean expected";
             return null;
         };
 
@@ -101991,6 +102009,8 @@ $root.CompanionReg = (function() {
                 message.isSyncdPureLidSession = Boolean(object.isSyncdPureLidSession);
             if (object.isSyncdSnapshotRecoveryEnabled != null)
                 message.isSyncdSnapshotRecoveryEnabled = Boolean(object.isSyncdSnapshotRecoveryEnabled);
+            if (object.isHsThumbnailSyncEnabled != null)
+                message.isHsThumbnailSyncEnabled = Boolean(object.isHsThumbnailSyncEnabled);
             return message;
         };
 
@@ -102011,6 +102031,7 @@ $root.CompanionReg = (function() {
                 object.isChatDbLidMigrated = false;
                 object.isSyncdPureLidSession = false;
                 object.isSyncdSnapshotRecoveryEnabled = false;
+                object.isHsThumbnailSyncEnabled = false;
             }
             if (message.isChatDbLidMigrated != null && message.hasOwnProperty("isChatDbLidMigrated"))
                 object.isChatDbLidMigrated = message.isChatDbLidMigrated;
@@ -102018,6 +102039,8 @@ $root.CompanionReg = (function() {
                 object.isSyncdPureLidSession = message.isSyncdPureLidSession;
             if (message.isSyncdSnapshotRecoveryEnabled != null && message.hasOwnProperty("isSyncdSnapshotRecoveryEnabled"))
                 object.isSyncdSnapshotRecoveryEnabled = message.isSyncdSnapshotRecoveryEnabled;
+            if (message.isHsThumbnailSyncEnabled != null && message.hasOwnProperty("isHsThumbnailSyncEnabled"))
+                object.isHsThumbnailSyncEnabled = message.isHsThumbnailSyncEnabled;
             return object;
         };
 
