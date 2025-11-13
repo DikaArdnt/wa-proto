@@ -17237,7 +17237,7 @@ $root.E2E = (function() {
             if (message.newsletterFollowerInviteMessageV2 != null && Object.hasOwnProperty.call(message, "newsletterFollowerInviteMessageV2"))
                 $root.E2E.Message.NewsletterFollowerInviteMessage.encode(message.newsletterFollowerInviteMessageV2, writer.uint32(/* id 113, wireType 2 =*/906).fork()).ldelim();
             if (message.pollResultSnapshotMessageV3 != null && Object.hasOwnProperty.call(message, "pollResultSnapshotMessageV3"))
-                $root.E2E.Message.PollResultSnapshotMessage.encode(message.pollResultSnapshotMessageV3, writer.uint32(/* id 114, wireType 2 =*/914).fork()).ldelim();
+                $root.E2E.Message.PollResultSnapshotMessage.encode(message.pollResultSnapshotMessageV3, writer.uint32(/* id 115, wireType 2 =*/922).fork()).ldelim();
             return writer;
         };
 
@@ -17650,7 +17650,7 @@ $root.E2E = (function() {
                         message.newsletterFollowerInviteMessageV2 = $root.E2E.Message.NewsletterFollowerInviteMessage.decode(reader, reader.uint32());
                         break;
                     }
-                case 114: {
+                case 115: {
                         message.pollResultSnapshotMessageV3 = $root.E2E.Message.PollResultSnapshotMessage.decode(reader, reader.uint32());
                         break;
                     }
@@ -23650,6 +23650,7 @@ $root.E2E = (function() {
              * @property {E2E.IContextInfo|null} [contextInfo] Call contextInfo
              * @property {string|null} [nativeFlowCallButtonPayload] Call nativeFlowCallButtonPayload
              * @property {string|null} [deeplinkPayload] Call deeplinkPayload
+             * @property {E2E.IMessageContextInfo|null} [messageContextInfo] Call messageContextInfo
              */
 
             /**
@@ -23740,6 +23741,14 @@ $root.E2E = (function() {
             Call.prototype.deeplinkPayload = "";
 
             /**
+             * Call messageContextInfo.
+             * @member {E2E.IMessageContextInfo|null|undefined} messageContextInfo
+             * @memberof E2E.Message.Call
+             * @instance
+             */
+            Call.prototype.messageContextInfo = null;
+
+            /**
              * Creates a new Call instance using the specified properties.
              * @function create
              * @memberof E2E.Message.Call
@@ -23781,6 +23790,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 8, wireType 2 =*/66).string(message.nativeFlowCallButtonPayload);
                 if (message.deeplinkPayload != null && Object.hasOwnProperty.call(message, "deeplinkPayload"))
                     writer.uint32(/* id 9, wireType 2 =*/74).string(message.deeplinkPayload);
+                if (message.messageContextInfo != null && Object.hasOwnProperty.call(message, "messageContextInfo"))
+                    $root.E2E.MessageContextInfo.encode(message.messageContextInfo, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
                 return writer;
             };
 
@@ -23853,6 +23864,10 @@ $root.E2E = (function() {
                             message.deeplinkPayload = reader.string();
                             break;
                         }
+                    case 10: {
+                            message.messageContextInfo = $root.E2E.MessageContextInfo.decode(reader, reader.uint32());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -23917,6 +23932,11 @@ $root.E2E = (function() {
                 if (message.deeplinkPayload != null && message.hasOwnProperty("deeplinkPayload"))
                     if (!$util.isString(message.deeplinkPayload))
                         return "deeplinkPayload: string expected";
+                if (message.messageContextInfo != null && message.hasOwnProperty("messageContextInfo")) {
+                    var error = $root.E2E.MessageContextInfo.verify(message.messageContextInfo);
+                    if (error)
+                        return "messageContextInfo." + error;
+                }
                 return null;
             };
 
@@ -23962,6 +23982,11 @@ $root.E2E = (function() {
                     message.nativeFlowCallButtonPayload = String(object.nativeFlowCallButtonPayload);
                 if (object.deeplinkPayload != null)
                     message.deeplinkPayload = String(object.deeplinkPayload);
+                if (object.messageContextInfo != null) {
+                    if (typeof object.messageContextInfo !== "object")
+                        throw TypeError(".E2E.Message.Call.messageContextInfo: object expected");
+                    message.messageContextInfo = $root.E2E.MessageContextInfo.fromObject(object.messageContextInfo);
+                }
                 return message;
             };
 
@@ -24006,6 +24031,7 @@ $root.E2E = (function() {
                     object.contextInfo = null;
                     object.nativeFlowCallButtonPayload = "";
                     object.deeplinkPayload = "";
+                    object.messageContextInfo = null;
                 }
                 if (message.callKey != null && message.hasOwnProperty("callKey"))
                     object.callKey = options.bytes === String ? $util.base64.encode(message.callKey, 0, message.callKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.callKey) : message.callKey;
@@ -24025,6 +24051,8 @@ $root.E2E = (function() {
                     object.nativeFlowCallButtonPayload = message.nativeFlowCallButtonPayload;
                 if (message.deeplinkPayload != null && message.hasOwnProperty("deeplinkPayload"))
                     object.deeplinkPayload = message.deeplinkPayload;
+                if (message.messageContextInfo != null && message.hasOwnProperty("messageContextInfo"))
+                    object.messageContextInfo = $root.E2E.MessageContextInfo.toObject(message.messageContextInfo, options);
                 return object;
             };
 

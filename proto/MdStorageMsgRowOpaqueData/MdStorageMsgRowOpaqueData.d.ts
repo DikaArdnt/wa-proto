@@ -9308,6 +9308,9 @@ export namespace E2E {
 
             /** Call deeplinkPayload */
             deeplinkPayload?: (string|null);
+
+            /** Call messageContextInfo */
+            messageContextInfo?: (E2E.IMessageContextInfo|null);
         }
 
         /** Represents a Call. */
@@ -9345,6 +9348,9 @@ export namespace E2E {
 
             /** Call deeplinkPayload. */
             public deeplinkPayload: string;
+
+            /** Call messageContextInfo. */
+            public messageContextInfo?: (E2E.IMessageContextInfo|null);
 
             /**
              * Creates a new Call instance using the specified properties.
