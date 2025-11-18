@@ -600,5 +600,6 @@ message WebMessageInfo {
         QUARANTINED_MESSAGE = 220;
         GROUP_MEMBER_SHARE_GROUP_HISTORY_MODE = 221;
         GROUP_OPEN_BOT_ADDED = 222;
+        GROUP_TEE_BOT_ADDED = 223;
     }
 }

@@ -4095,7 +4095,8 @@ export namespace Web {
             PHONE_NUMBER_HIDING_CHAT_DEPRECATED_MESSAGE = 219,
             QUARANTINED_MESSAGE = 220,
             GROUP_MEMBER_SHARE_GROUP_HISTORY_MODE = 221,
-            GROUP_OPEN_BOT_ADDED = 222
+            GROUP_OPEN_BOT_ADDED = 222,
+            GROUP_TEE_BOT_ADDED = 223
         }
     }
 }
@@ -20729,9 +20730,6 @@ export namespace E2E {
 
             /** PaymentExtendedMetadata platform */
             platform?: (string|null);
-
-            /** PaymentExtendedMetadata messageParamsJson */
-            messageParamsJson?: (string|null);
         }
 
         /** Represents a PaymentExtendedMetadata. */
@@ -20748,9 +20746,6 @@ export namespace E2E {
 
             /** PaymentExtendedMetadata platform. */
             public platform: string;
-
-            /** PaymentExtendedMetadata messageParamsJson. */
-            public messageParamsJson: string;
 
             /**
              * Creates a new PaymentExtendedMetadata instance using the specified properties.

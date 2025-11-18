@@ -11875,6 +11875,7 @@ $root.Web = (function() {
                 case 220:
                 case 221:
                 case 222:
+                case 223:
                     break;
                 }
             if (message.clearMedia != null && message.hasOwnProperty("clearMedia"))
@@ -13124,6 +13125,10 @@ $root.Web = (function() {
             case 222:
                 message.messageStubType = 222;
                 break;
+            case "GROUP_TEE_BOT_ADDED":
+            case 223:
+                message.messageStubType = 223;
+                break;
             }
             if (object.clearMedia != null)
                 message.clearMedia = Boolean(object.clearMedia);
@@ -14001,6 +14006,7 @@ $root.Web = (function() {
          * @property {number} QUARANTINED_MESSAGE=220 QUARANTINED_MESSAGE value
          * @property {number} GROUP_MEMBER_SHARE_GROUP_HISTORY_MODE=221 GROUP_MEMBER_SHARE_GROUP_HISTORY_MODE value
          * @property {number} GROUP_OPEN_BOT_ADDED=222 GROUP_OPEN_BOT_ADDED value
+         * @property {number} GROUP_TEE_BOT_ADDED=223 GROUP_TEE_BOT_ADDED value
          */
         WebMessageInfo.StubType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -14227,6 +14233,7 @@ $root.Web = (function() {
             values[valuesById[220] = "QUARANTINED_MESSAGE"] = 220;
             values[valuesById[221] = "GROUP_MEMBER_SHARE_GROUP_HISTORY_MODE"] = 221;
             values[valuesById[222] = "GROUP_OPEN_BOT_ADDED"] = 222;
+            values[valuesById[223] = "GROUP_TEE_BOT_ADDED"] = 223;
             return values;
         })();
 
@@ -60966,7 +60973,6 @@ $root.E2E = (function() {
              * @interface IPaymentExtendedMetadata
              * @property {number|null} [type] PaymentExtendedMetadata type
              * @property {string|null} [platform] PaymentExtendedMetadata platform
-             * @property {string|null} [messageParamsJson] PaymentExtendedMetadata messageParamsJson
              */
 
             /**
@@ -61001,14 +61007,6 @@ $root.E2E = (function() {
             PaymentExtendedMetadata.prototype.platform = "";
 
             /**
-             * PaymentExtendedMetadata messageParamsJson.
-             * @member {string} messageParamsJson
-             * @memberof E2E.Message.PaymentExtendedMetadata
-             * @instance
-             */
-            PaymentExtendedMetadata.prototype.messageParamsJson = "";
-
-            /**
              * Creates a new PaymentExtendedMetadata instance using the specified properties.
              * @function create
              * @memberof E2E.Message.PaymentExtendedMetadata
@@ -61036,8 +61034,6 @@ $root.E2E = (function() {
                     writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.type);
                 if (message.platform != null && Object.hasOwnProperty.call(message, "platform"))
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.platform);
-                if (message.messageParamsJson != null && Object.hasOwnProperty.call(message, "messageParamsJson"))
-                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.messageParamsJson);
                 return writer;
             };
 
@@ -61082,10 +61078,6 @@ $root.E2E = (function() {
                             message.platform = reader.string();
                             break;
                         }
-                    case 3: {
-                            message.messageParamsJson = reader.string();
-                            break;
-                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -61127,9 +61119,6 @@ $root.E2E = (function() {
                 if (message.platform != null && message.hasOwnProperty("platform"))
                     if (!$util.isString(message.platform))
                         return "platform: string expected";
-                if (message.messageParamsJson != null && message.hasOwnProperty("messageParamsJson"))
-                    if (!$util.isString(message.messageParamsJson))
-                        return "messageParamsJson: string expected";
                 return null;
             };
 
@@ -61149,8 +61138,6 @@ $root.E2E = (function() {
                     message.type = object.type >>> 0;
                 if (object.platform != null)
                     message.platform = String(object.platform);
-                if (object.messageParamsJson != null)
-                    message.messageParamsJson = String(object.messageParamsJson);
                 return message;
             };
 
@@ -61170,14 +61157,11 @@ $root.E2E = (function() {
                 if (options.defaults) {
                     object.type = 0;
                     object.platform = "";
-                    object.messageParamsJson = "";
                 }
                 if (message.type != null && message.hasOwnProperty("type"))
                     object.type = message.type;
                 if (message.platform != null && message.hasOwnProperty("platform"))
                     object.platform = message.platform;
-                if (message.messageParamsJson != null && message.hasOwnProperty("messageParamsJson"))
-                    object.messageParamsJson = message.messageParamsJson;
                 return object;
             };
 

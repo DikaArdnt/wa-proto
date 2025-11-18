@@ -49652,7 +49652,6 @@ $root.E2E = (function() {
              * @interface IPaymentExtendedMetadata
              * @property {number|null} [type] PaymentExtendedMetadata type
              * @property {string|null} [platform] PaymentExtendedMetadata platform
-             * @property {string|null} [messageParamsJson] PaymentExtendedMetadata messageParamsJson
              */
 
             /**
@@ -49687,14 +49686,6 @@ $root.E2E = (function() {
             PaymentExtendedMetadata.prototype.platform = "";
 
             /**
-             * PaymentExtendedMetadata messageParamsJson.
-             * @member {string} messageParamsJson
-             * @memberof E2E.Message.PaymentExtendedMetadata
-             * @instance
-             */
-            PaymentExtendedMetadata.prototype.messageParamsJson = "";
-
-            /**
              * Creates a new PaymentExtendedMetadata instance using the specified properties.
              * @function create
              * @memberof E2E.Message.PaymentExtendedMetadata
@@ -49722,8 +49713,6 @@ $root.E2E = (function() {
                     writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.type);
                 if (message.platform != null && Object.hasOwnProperty.call(message, "platform"))
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.platform);
-                if (message.messageParamsJson != null && Object.hasOwnProperty.call(message, "messageParamsJson"))
-                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.messageParamsJson);
                 return writer;
             };
 
@@ -49768,10 +49757,6 @@ $root.E2E = (function() {
                             message.platform = reader.string();
                             break;
                         }
-                    case 3: {
-                            message.messageParamsJson = reader.string();
-                            break;
-                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -49813,9 +49798,6 @@ $root.E2E = (function() {
                 if (message.platform != null && message.hasOwnProperty("platform"))
                     if (!$util.isString(message.platform))
                         return "platform: string expected";
-                if (message.messageParamsJson != null && message.hasOwnProperty("messageParamsJson"))
-                    if (!$util.isString(message.messageParamsJson))
-                        return "messageParamsJson: string expected";
                 return null;
             };
 
@@ -49835,8 +49817,6 @@ $root.E2E = (function() {
                     message.type = object.type >>> 0;
                 if (object.platform != null)
                     message.platform = String(object.platform);
-                if (object.messageParamsJson != null)
-                    message.messageParamsJson = String(object.messageParamsJson);
                 return message;
             };
 
@@ -49856,14 +49836,11 @@ $root.E2E = (function() {
                 if (options.defaults) {
                     object.type = 0;
                     object.platform = "";
-                    object.messageParamsJson = "";
                 }
                 if (message.type != null && message.hasOwnProperty("type"))
                     object.type = message.type;
                 if (message.platform != null && message.hasOwnProperty("platform"))
                     object.platform = message.platform;
-                if (message.messageParamsJson != null && message.hasOwnProperty("messageParamsJson"))
-                    object.messageParamsJson = message.messageParamsJson;
                 return object;
             };
 

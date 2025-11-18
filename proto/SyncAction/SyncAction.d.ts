@@ -471,9 +471,6 @@ export namespace SyncAction {
         /** SyncActionValue privacySettingChannelsPersonalisedRecommendationAction */
         privacySettingChannelsPersonalisedRecommendationAction?: (SyncAction.SyncActionValue.IPrivacySettingChannelsPersonalisedRecommendationAction|null);
 
-        /** SyncActionValue businessBroadcastAssociationAction */
-        businessBroadcastAssociationAction?: (SyncAction.SyncActionValue.IBusinessBroadcastAssociationAction|null);
-
         /** SyncActionValue detectedOutcomesStatusAction */
         detectedOutcomesStatusAction?: (SyncAction.SyncActionValue.IDetectedOutcomesStatusAction|null);
 
@@ -503,6 +500,9 @@ export namespace SyncAction {
 
         /** SyncActionValue interactiveMessageAction */
         interactiveMessageAction?: (SyncAction.SyncActionValue.IInteractiveMessageAction|null);
+
+        /** SyncActionValue settingsSyncAction */
+        settingsSyncAction?: (SyncAction.SyncActionValue.ISettingsSyncAction|null);
     }
 
     /** Represents a SyncActionValue. */
@@ -688,9 +688,6 @@ export namespace SyncAction {
         /** SyncActionValue privacySettingChannelsPersonalisedRecommendationAction. */
         public privacySettingChannelsPersonalisedRecommendationAction?: (SyncAction.SyncActionValue.IPrivacySettingChannelsPersonalisedRecommendationAction|null);
 
-        /** SyncActionValue businessBroadcastAssociationAction. */
-        public businessBroadcastAssociationAction?: (SyncAction.SyncActionValue.IBusinessBroadcastAssociationAction|null);
-
         /** SyncActionValue detectedOutcomesStatusAction. */
         public detectedOutcomesStatusAction?: (SyncAction.SyncActionValue.IDetectedOutcomesStatusAction|null);
 
@@ -720,6 +717,9 @@ export namespace SyncAction {
 
         /** SyncActionValue interactiveMessageAction. */
         public interactiveMessageAction?: (SyncAction.SyncActionValue.IInteractiveMessageAction|null);
+
+        /** SyncActionValue settingsSyncAction. */
+        public settingsSyncAction?: (SyncAction.SyncActionValue.ISettingsSyncAction|null);
 
         /**
          * Creates a new SyncActionValue instance using the specified properties.
@@ -6830,6 +6830,283 @@ export namespace SyncAction {
             public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
+        /** Properties of a SettingsSyncAction. */
+        interface ISettingsSyncAction {
+
+            /** SettingsSyncAction startAtLogin */
+            startAtLogin?: (boolean|null);
+
+            /** SettingsSyncAction minimizeToTray */
+            minimizeToTray?: (boolean|null);
+
+            /** SettingsSyncAction language */
+            language?: (string|null);
+
+            /** SettingsSyncAction replaceTextWithEmoji */
+            replaceTextWithEmoji?: (boolean|null);
+
+            /** SettingsSyncAction bannerNotificationDisplayMode */
+            bannerNotificationDisplayMode?: (SyncAction.SyncActionValue.SettingsSyncAction.DisplayMode|null);
+
+            /** SettingsSyncAction unreadCounterBadgeDisplayMode */
+            unreadCounterBadgeDisplayMode?: (SyncAction.SyncActionValue.SettingsSyncAction.DisplayMode|null);
+
+            /** SettingsSyncAction isMessagesNotificationEnabled */
+            isMessagesNotificationEnabled?: (boolean|null);
+
+            /** SettingsSyncAction isCallsNotificationEnabled */
+            isCallsNotificationEnabled?: (boolean|null);
+
+            /** SettingsSyncAction isReactionsNotificationEnabled */
+            isReactionsNotificationEnabled?: (boolean|null);
+
+            /** SettingsSyncAction isStatusReactionsNotificationEnabled */
+            isStatusReactionsNotificationEnabled?: (boolean|null);
+
+            /** SettingsSyncAction isTextPreviewForNotificationEnabled */
+            isTextPreviewForNotificationEnabled?: (boolean|null);
+
+            /** SettingsSyncAction defaultNotificationToneId */
+            defaultNotificationToneId?: (number|null);
+
+            /** SettingsSyncAction groupDefaultNotificationToneId */
+            groupDefaultNotificationToneId?: (number|null);
+
+            /** SettingsSyncAction appTheme */
+            appTheme?: (number|null);
+
+            /** SettingsSyncAction wallpaperId */
+            wallpaperId?: (number|null);
+
+            /** SettingsSyncAction isDoodleWallpaperEnabled */
+            isDoodleWallpaperEnabled?: (boolean|null);
+
+            /** SettingsSyncAction fontSize */
+            fontSize?: (number|null);
+
+            /** SettingsSyncAction isPhotosAutodownloadEnabled */
+            isPhotosAutodownloadEnabled?: (boolean|null);
+
+            /** SettingsSyncAction isAudiosAutodownloadEnabled */
+            isAudiosAutodownloadEnabled?: (boolean|null);
+
+            /** SettingsSyncAction isVideosAutodownloadEnabled */
+            isVideosAutodownloadEnabled?: (boolean|null);
+
+            /** SettingsSyncAction isDocumentsAutodownloadEnabled */
+            isDocumentsAutodownloadEnabled?: (boolean|null);
+
+            /** SettingsSyncAction disableLinkPreviews */
+            disableLinkPreviews?: (boolean|null);
+
+            /** SettingsSyncAction notificationToneId */
+            notificationToneId?: (number|null);
+        }
+
+        /** Represents a SettingsSyncAction. */
+        class SettingsSyncAction implements ISettingsSyncAction {
+
+            /**
+             * Constructs a new SettingsSyncAction.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SyncAction.SyncActionValue.ISettingsSyncAction);
+
+            /** SettingsSyncAction startAtLogin. */
+            public startAtLogin: boolean;
+
+            /** SettingsSyncAction minimizeToTray. */
+            public minimizeToTray: boolean;
+
+            /** SettingsSyncAction language. */
+            public language: string;
+
+            /** SettingsSyncAction replaceTextWithEmoji. */
+            public replaceTextWithEmoji: boolean;
+
+            /** SettingsSyncAction bannerNotificationDisplayMode. */
+            public bannerNotificationDisplayMode: SyncAction.SyncActionValue.SettingsSyncAction.DisplayMode;
+
+            /** SettingsSyncAction unreadCounterBadgeDisplayMode. */
+            public unreadCounterBadgeDisplayMode: SyncAction.SyncActionValue.SettingsSyncAction.DisplayMode;
+
+            /** SettingsSyncAction isMessagesNotificationEnabled. */
+            public isMessagesNotificationEnabled: boolean;
+
+            /** SettingsSyncAction isCallsNotificationEnabled. */
+            public isCallsNotificationEnabled: boolean;
+
+            /** SettingsSyncAction isReactionsNotificationEnabled. */
+            public isReactionsNotificationEnabled: boolean;
+
+            /** SettingsSyncAction isStatusReactionsNotificationEnabled. */
+            public isStatusReactionsNotificationEnabled: boolean;
+
+            /** SettingsSyncAction isTextPreviewForNotificationEnabled. */
+            public isTextPreviewForNotificationEnabled: boolean;
+
+            /** SettingsSyncAction defaultNotificationToneId. */
+            public defaultNotificationToneId: number;
+
+            /** SettingsSyncAction groupDefaultNotificationToneId. */
+            public groupDefaultNotificationToneId: number;
+
+            /** SettingsSyncAction appTheme. */
+            public appTheme: number;
+
+            /** SettingsSyncAction wallpaperId. */
+            public wallpaperId: number;
+
+            /** SettingsSyncAction isDoodleWallpaperEnabled. */
+            public isDoodleWallpaperEnabled: boolean;
+
+            /** SettingsSyncAction fontSize. */
+            public fontSize: number;
+
+            /** SettingsSyncAction isPhotosAutodownloadEnabled. */
+            public isPhotosAutodownloadEnabled: boolean;
+
+            /** SettingsSyncAction isAudiosAutodownloadEnabled. */
+            public isAudiosAutodownloadEnabled: boolean;
+
+            /** SettingsSyncAction isVideosAutodownloadEnabled. */
+            public isVideosAutodownloadEnabled: boolean;
+
+            /** SettingsSyncAction isDocumentsAutodownloadEnabled. */
+            public isDocumentsAutodownloadEnabled: boolean;
+
+            /** SettingsSyncAction disableLinkPreviews. */
+            public disableLinkPreviews: boolean;
+
+            /** SettingsSyncAction notificationToneId. */
+            public notificationToneId: number;
+
+            /**
+             * Creates a new SettingsSyncAction instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns SettingsSyncAction instance
+             */
+            public static create(properties?: SyncAction.SyncActionValue.ISettingsSyncAction): SyncAction.SyncActionValue.SettingsSyncAction;
+
+            /**
+             * Encodes the specified SettingsSyncAction message. Does not implicitly {@link SyncAction.SyncActionValue.SettingsSyncAction.verify|verify} messages.
+             * @param message SettingsSyncAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SyncAction.SyncActionValue.ISettingsSyncAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified SettingsSyncAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.SettingsSyncAction.verify|verify} messages.
+             * @param message SettingsSyncAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SyncAction.SyncActionValue.ISettingsSyncAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a SettingsSyncAction message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns SettingsSyncAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.SettingsSyncAction;
+
+            /**
+             * Decodes a SettingsSyncAction message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns SettingsSyncAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.SettingsSyncAction;
+
+            /**
+             * Verifies a SettingsSyncAction message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a SettingsSyncAction message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns SettingsSyncAction
+             */
+            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.SettingsSyncAction;
+
+            /**
+             * Creates a plain object from a SettingsSyncAction message. Also converts values to other types if specified.
+             * @param message SettingsSyncAction
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SyncAction.SyncActionValue.SettingsSyncAction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this SettingsSyncAction to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for SettingsSyncAction
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace SettingsSyncAction {
+
+            /** DisplayMode enum. */
+            enum DisplayMode {
+                DISPLAY_MODE_UNKNOWN = 0,
+                ALWAYS = 1,
+                NEVER = 2,
+                ONLY_WHEN_APP_IS_OPEN = 3
+            }
+
+            /** SettingKey enum. */
+            enum SettingKey {
+                SETTING_KEY_UNKNOWN = 0,
+                START_AT_LOGIN = 1,
+                MINIMIZE_TO_TRAY = 2,
+                LANGUAGE = 3,
+                REPLACE_TEXT_WITH_EMOJI = 4,
+                BANNER_NOTIFICATION_DISPLAY_MODE = 5,
+                UNREAD_COUNTER_BADGE_DISPLAY_MODE = 6,
+                IS_MESSAGES_NOTIFICATION_ENABLED = 7,
+                IS_CALLS_NOTIFICATION_ENABLED = 8,
+                IS_REACTIONS_NOTIFICATION_ENABLED = 9,
+                IS_STATUS_REACTIONS_NOTIFICATION_ENABLED = 10,
+                IS_TEXT_PREVIEW_FOR_NOTIFICATION_ENABLED = 11,
+                DEFAULT_NOTIFICATION_TONE_ID = 12,
+                GROUP_DEFAULT_NOTIFICATION_TONE_ID = 13,
+                APP_THEME = 14,
+                WALLPAPER_ID = 15,
+                IS_DOODLE_WALLPAPER_ENABLED = 16,
+                FONT_SIZE = 17,
+                IS_PHOTOS_AUTODOWNLOAD_ENABLED = 18,
+                IS_AUDIOS_AUTODOWNLOAD_ENABLED = 19,
+                IS_VIDEOS_AUTODOWNLOAD_ENABLED = 20,
+                IS_DOCUMENTS_AUTODOWNLOAD_ENABLED = 21,
+                DISABLE_LINK_PREVIEWS = 22,
+                NOTIFICATION_TONE_ID = 23
+            }
+
+            /** SettingPlatform enum. */
+            enum SettingPlatform {
+                PLATFORM_UNKNOWN = 0,
+                WEB = 1,
+                HYBRID = 2,
+                WINDOWS = 3,
+                MAC = 4
+            }
+        }
+
         /** Properties of a StarAction. */
         interface IStarAction {
 
@@ -8820,6 +9097,7 @@ export namespace SyncAction {
         NEWSLETTER_SAVED_INTERESTS_ACTION = 75,
         AI_THREAD_RENAME_ACTION = 76,
         INTERACTIVE_MESSAGE_ACTION = 77,
+        SETTINGS_SYNC_ACTION = 78,
         SHARE_OWN_PN = 10001,
         BUSINESS_BROADCAST_ACTION = 10002
     }

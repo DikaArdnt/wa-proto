@@ -1369,7 +1369,6 @@ message Message {
     message PaymentExtendedMetadata {
         optional uint32 type = 1;
         optional string platform = 2;
-        optional string messageParamsJson = 3;
     }
     message PaymentInviteMessage {
         optional ServiceType serviceType = 1;

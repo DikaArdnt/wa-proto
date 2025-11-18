@@ -17634,9 +17634,6 @@ export namespace E2E {
 
             /** PaymentExtendedMetadata platform */
             platform?: (string|null);
-
-            /** PaymentExtendedMetadata messageParamsJson */
-            messageParamsJson?: (string|null);
         }
 
         /** Represents a PaymentExtendedMetadata. */
@@ -17653,9 +17650,6 @@ export namespace E2E {
 
             /** PaymentExtendedMetadata platform. */
             public platform: string;
-
-            /** PaymentExtendedMetadata messageParamsJson. */
-            public messageParamsJson: string;
 
             /**
              * Creates a new PaymentExtendedMetadata instance using the specified properties.
