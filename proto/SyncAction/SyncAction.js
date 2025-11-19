@@ -22609,6 +22609,7 @@ $root.SyncAction = (function() {
      * @property {number} SETTINGS_SYNC_ACTION=78 SETTINGS_SYNC_ACTION value
      * @property {number} SHARE_OWN_PN=10001 SHARE_OWN_PN value
      * @property {number} BUSINESS_BROADCAST_ACTION=10002 BUSINESS_BROADCAST_ACTION value
+     * @property {number} AI_THREAD_DELETE_ACTION=10003 AI_THREAD_DELETE_ACTION value
      */
     SyncAction.MutationProps = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -22686,6 +22687,7 @@ $root.SyncAction = (function() {
         values[valuesById[78] = "SETTINGS_SYNC_ACTION"] = 78;
         values[valuesById[10001] = "SHARE_OWN_PN"] = 10001;
         values[valuesById[10002] = "BUSINESS_BROADCAST_ACTION"] = 10002;
+        values[valuesById[10003] = "AI_THREAD_DELETE_ACTION"] = 10003;
         return values;
     })();
 
