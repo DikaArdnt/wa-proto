@@ -84171,6 +84171,7 @@ $root.AICommon = (function() {
                 case 36:
                 case 37:
                 case 38:
+                case 45:
                     break;
                 }
             if (message.forwardScore != null && message.hasOwnProperty("forwardScore"))
@@ -84353,6 +84354,10 @@ $root.AICommon = (function() {
             case "ASK_META_AI_MEDIA_VIEWER_GROUP":
             case 38:
                 message.botEntryPointOrigin = 38;
+                break;
+            case "META_AI_SETTINGS":
+            case 45:
+                message.botEntryPointOrigin = 45;
                 break;
             }
             if (object.forwardScore != null)
@@ -98227,6 +98232,7 @@ $root.AICommon = (function() {
                 case 36:
                 case 37:
                 case 38:
+                case 45:
                     break;
                 }
             if (message.threadOrigin != null && message.hasOwnProperty("threadOrigin"))
@@ -98419,6 +98425,10 @@ $root.AICommon = (function() {
             case "ASK_META_AI_MEDIA_VIEWER_GROUP":
             case 38:
                 message.destinationEntryPoint = 38;
+                break;
+            case "META_AI_SETTINGS":
+            case 45:
+                message.destinationEntryPoint = 45;
                 break;
             }
             switch (object.threadOrigin) {
@@ -102643,6 +102653,7 @@ $root.AICommon = (function() {
      * @property {number} ATTACHMENT_TRAY_GROUP_CHAT=36 ATTACHMENT_TRAY_GROUP_CHAT value
      * @property {number} ASK_META_AI_MEDIA_VIEWER_1ON1=37 ASK_META_AI_MEDIA_VIEWER_1ON1 value
      * @property {number} ASK_META_AI_MEDIA_VIEWER_GROUP=38 ASK_META_AI_MEDIA_VIEWER_GROUP value
+     * @property {number} META_AI_SETTINGS=45 META_AI_SETTINGS value
      */
     AICommon.BotMetricsEntryPoint = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -102685,6 +102696,7 @@ $root.AICommon = (function() {
         values[valuesById[36] = "ATTACHMENT_TRAY_GROUP_CHAT"] = 36;
         values[valuesById[37] = "ASK_META_AI_MEDIA_VIEWER_1ON1"] = 37;
         values[valuesById[38] = "ASK_META_AI_MEDIA_VIEWER_GROUP"] = 38;
+        values[valuesById[45] = "META_AI_SETTINGS"] = 45;
         return values;
     })();
 
