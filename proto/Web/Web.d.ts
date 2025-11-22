@@ -9479,6 +9479,9 @@ export namespace E2E {
 
             /** ForwardedNewsletterMessageInfo accessibilityText */
             accessibilityText?: (string|null);
+
+            /** ForwardedNewsletterMessageInfo profileName */
+            profileName?: (string|null);
         }
 
         /** Represents a ForwardedNewsletterMessageInfo. */
@@ -9504,6 +9507,9 @@ export namespace E2E {
 
             /** ForwardedNewsletterMessageInfo accessibilityText. */
             public accessibilityText: string;
+
+            /** ForwardedNewsletterMessageInfo profileName. */
+            public profileName: string;
 
             /**
              * Creates a new ForwardedNewsletterMessageInfo instance using the specified properties.
@@ -10237,6 +10243,9 @@ export namespace E2E {
 
         /** Message pollResultSnapshotMessageV3 */
         pollResultSnapshotMessageV3?: (E2E.Message.IPollResultSnapshotMessage|null);
+
+        /** Message newsletterAdminProfileMessage */
+        newsletterAdminProfileMessage?: (E2E.Message.IFutureProofMessage|null);
     }
 
     /** Represents a Message. */
@@ -10532,6 +10541,9 @@ export namespace E2E {
 
         /** Message pollResultSnapshotMessageV3. */
         public pollResultSnapshotMessageV3?: (E2E.Message.IPollResultSnapshotMessage|null);
+
+        /** Message newsletterAdminProfileMessage. */
+        public newsletterAdminProfileMessage?: (E2E.Message.IFutureProofMessage|null);
 
         /**
          * Creates a new Message instance using the specified properties.
@@ -38771,6 +38783,8 @@ export namespace AICommon {
         ATTACHMENT_TRAY_GROUP_CHAT = 36,
         ASK_META_AI_MEDIA_VIEWER_1ON1 = 37,
         ASK_META_AI_MEDIA_VIEWER_GROUP = 38,
+        MEDIA_PICKER_1_ON_1_CHAT = 39,
+        MEDIA_PICKER_GROUP_CHAT = 40,
         META_AI_SETTINGS = 45
     }
 }

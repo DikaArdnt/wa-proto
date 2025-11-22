@@ -17916,6 +17916,7 @@ $root.E2E = (function() {
              * @property {string|null} [newsletterName] ForwardedNewsletterMessageInfo newsletterName
              * @property {E2E.ContextInfo.ForwardedNewsletterMessageInfo.ContentType|null} [contentType] ForwardedNewsletterMessageInfo contentType
              * @property {string|null} [accessibilityText] ForwardedNewsletterMessageInfo accessibilityText
+             * @property {string|null} [profileName] ForwardedNewsletterMessageInfo profileName
              */
 
             /**
@@ -17974,6 +17975,14 @@ $root.E2E = (function() {
             ForwardedNewsletterMessageInfo.prototype.accessibilityText = "";
 
             /**
+             * ForwardedNewsletterMessageInfo profileName.
+             * @member {string} profileName
+             * @memberof E2E.ContextInfo.ForwardedNewsletterMessageInfo
+             * @instance
+             */
+            ForwardedNewsletterMessageInfo.prototype.profileName = "";
+
+            /**
              * Creates a new ForwardedNewsletterMessageInfo instance using the specified properties.
              * @function create
              * @memberof E2E.ContextInfo.ForwardedNewsletterMessageInfo
@@ -18007,6 +18016,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 4, wireType 0 =*/32).int32(message.contentType);
                 if (message.accessibilityText != null && Object.hasOwnProperty.call(message, "accessibilityText"))
                     writer.uint32(/* id 5, wireType 2 =*/42).string(message.accessibilityText);
+                if (message.profileName != null && Object.hasOwnProperty.call(message, "profileName"))
+                    writer.uint32(/* id 6, wireType 2 =*/50).string(message.profileName);
                 return writer;
             };
 
@@ -18061,6 +18072,10 @@ $root.E2E = (function() {
                         }
                     case 5: {
                             message.accessibilityText = reader.string();
+                            break;
+                        }
+                    case 6: {
+                            message.profileName = reader.string();
                             break;
                         }
                     default:
@@ -18119,6 +18134,9 @@ $root.E2E = (function() {
                 if (message.accessibilityText != null && message.hasOwnProperty("accessibilityText"))
                     if (!$util.isString(message.accessibilityText))
                         return "accessibilityText: string expected";
+                if (message.profileName != null && message.hasOwnProperty("profileName"))
+                    if (!$util.isString(message.profileName))
+                        return "profileName: string expected";
                 return null;
             };
 
@@ -18162,6 +18180,8 @@ $root.E2E = (function() {
                 }
                 if (object.accessibilityText != null)
                     message.accessibilityText = String(object.accessibilityText);
+                if (object.profileName != null)
+                    message.profileName = String(object.profileName);
                 return message;
             };
 
@@ -18184,6 +18204,7 @@ $root.E2E = (function() {
                     object.newsletterName = "";
                     object.contentType = options.enums === String ? "UPDATE" : 1;
                     object.accessibilityText = "";
+                    object.profileName = "";
                 }
                 if (message.newsletterJid != null && message.hasOwnProperty("newsletterJid"))
                     object.newsletterJid = message.newsletterJid;
@@ -18195,6 +18216,8 @@ $root.E2E = (function() {
                     object.contentType = options.enums === String ? $root.E2E.ContextInfo.ForwardedNewsletterMessageInfo.ContentType[message.contentType] === undefined ? message.contentType : $root.E2E.ContextInfo.ForwardedNewsletterMessageInfo.ContentType[message.contentType] : message.contentType;
                 if (message.accessibilityText != null && message.hasOwnProperty("accessibilityText"))
                     object.accessibilityText = message.accessibilityText;
+                if (message.profileName != null && message.hasOwnProperty("profileName"))
+                    object.profileName = message.profileName;
                 return object;
             };
 
@@ -19160,6 +19183,7 @@ $root.E2E = (function() {
          * @property {E2E.Message.IPollCreationMessage|null} [pollCreationMessageV5] Message pollCreationMessageV5
          * @property {E2E.Message.INewsletterFollowerInviteMessage|null} [newsletterFollowerInviteMessageV2] Message newsletterFollowerInviteMessageV2
          * @property {E2E.Message.IPollResultSnapshotMessage|null} [pollResultSnapshotMessageV3] Message pollResultSnapshotMessageV3
+         * @property {E2E.Message.IFutureProofMessage|null} [newsletterAdminProfileMessage] Message newsletterAdminProfileMessage
          */
 
         /**
@@ -19938,6 +19962,14 @@ $root.E2E = (function() {
         Message.prototype.pollResultSnapshotMessageV3 = null;
 
         /**
+         * Message newsletterAdminProfileMessage.
+         * @member {E2E.Message.IFutureProofMessage|null|undefined} newsletterAdminProfileMessage
+         * @memberof E2E.Message
+         * @instance
+         */
+        Message.prototype.newsletterAdminProfileMessage = null;
+
+        /**
          * Creates a new Message instance using the specified properties.
          * @function create
          * @memberof E2E.Message
@@ -20151,6 +20183,8 @@ $root.E2E = (function() {
                 $root.E2E.Message.NewsletterFollowerInviteMessage.encode(message.newsletterFollowerInviteMessageV2, writer.uint32(/* id 113, wireType 2 =*/906).fork()).ldelim();
             if (message.pollResultSnapshotMessageV3 != null && Object.hasOwnProperty.call(message, "pollResultSnapshotMessageV3"))
                 $root.E2E.Message.PollResultSnapshotMessage.encode(message.pollResultSnapshotMessageV3, writer.uint32(/* id 115, wireType 2 =*/922).fork()).ldelim();
+            if (message.newsletterAdminProfileMessage != null && Object.hasOwnProperty.call(message, "newsletterAdminProfileMessage"))
+                $root.E2E.Message.FutureProofMessage.encode(message.newsletterAdminProfileMessage, writer.uint32(/* id 116, wireType 2 =*/930).fork()).ldelim();
             return writer;
         };
 
@@ -20565,6 +20599,10 @@ $root.E2E = (function() {
                     }
                 case 115: {
                         message.pollResultSnapshotMessageV3 = $root.E2E.Message.PollResultSnapshotMessage.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 116: {
+                        message.newsletterAdminProfileMessage = $root.E2E.Message.FutureProofMessage.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -21075,6 +21113,11 @@ $root.E2E = (function() {
                 if (error)
                     return "pollResultSnapshotMessageV3." + error;
             }
+            if (message.newsletterAdminProfileMessage != null && message.hasOwnProperty("newsletterAdminProfileMessage")) {
+                var error = $root.E2E.Message.FutureProofMessage.verify(message.newsletterAdminProfileMessage);
+                if (error)
+                    return "newsletterAdminProfileMessage." + error;
+            }
             return null;
         };
 
@@ -21562,6 +21605,11 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.Message.pollResultSnapshotMessageV3: object expected");
                 message.pollResultSnapshotMessageV3 = $root.E2E.Message.PollResultSnapshotMessage.fromObject(object.pollResultSnapshotMessageV3);
             }
+            if (object.newsletterAdminProfileMessage != null) {
+                if (typeof object.newsletterAdminProfileMessage !== "object")
+                    throw TypeError(".E2E.Message.newsletterAdminProfileMessage: object expected");
+                message.newsletterAdminProfileMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.newsletterAdminProfileMessage);
+            }
             return message;
         };
 
@@ -21674,6 +21722,7 @@ $root.E2E = (function() {
                 object.pollCreationMessageV5 = null;
                 object.newsletterFollowerInviteMessageV2 = null;
                 object.pollResultSnapshotMessageV3 = null;
+                object.newsletterAdminProfileMessage = null;
             }
             if (message.conversation != null && message.hasOwnProperty("conversation"))
                 object.conversation = message.conversation;
@@ -21865,6 +21914,8 @@ $root.E2E = (function() {
                 object.newsletterFollowerInviteMessageV2 = $root.E2E.Message.NewsletterFollowerInviteMessage.toObject(message.newsletterFollowerInviteMessageV2, options);
             if (message.pollResultSnapshotMessageV3 != null && message.hasOwnProperty("pollResultSnapshotMessageV3"))
                 object.pollResultSnapshotMessageV3 = $root.E2E.Message.PollResultSnapshotMessage.toObject(message.pollResultSnapshotMessageV3, options);
+            if (message.newsletterAdminProfileMessage != null && message.hasOwnProperty("newsletterAdminProfileMessage"))
+                object.newsletterAdminProfileMessage = $root.E2E.Message.FutureProofMessage.toObject(message.newsletterAdminProfileMessage, options);
             return object;
         };
 
@@ -79139,6 +79190,8 @@ $root.AICommon = (function() {
                 case 36:
                 case 37:
                 case 38:
+                case 39:
+                case 40:
                 case 45:
                     break;
                 }
@@ -79322,6 +79375,14 @@ $root.AICommon = (function() {
             case "ASK_META_AI_MEDIA_VIEWER_GROUP":
             case 38:
                 message.botEntryPointOrigin = 38;
+                break;
+            case "MEDIA_PICKER_1_ON_1_CHAT":
+            case 39:
+                message.botEntryPointOrigin = 39;
+                break;
+            case "MEDIA_PICKER_GROUP_CHAT":
+            case 40:
+                message.botEntryPointOrigin = 40;
                 break;
             case "META_AI_SETTINGS":
             case 45:
@@ -93200,6 +93261,8 @@ $root.AICommon = (function() {
                 case 36:
                 case 37:
                 case 38:
+                case 39:
+                case 40:
                 case 45:
                     break;
                 }
@@ -93393,6 +93456,14 @@ $root.AICommon = (function() {
             case "ASK_META_AI_MEDIA_VIEWER_GROUP":
             case 38:
                 message.destinationEntryPoint = 38;
+                break;
+            case "MEDIA_PICKER_1_ON_1_CHAT":
+            case 39:
+                message.destinationEntryPoint = 39;
+                break;
+            case "MEDIA_PICKER_GROUP_CHAT":
+            case 40:
+                message.destinationEntryPoint = 40;
                 break;
             case "META_AI_SETTINGS":
             case 45:
@@ -97621,6 +97692,8 @@ $root.AICommon = (function() {
      * @property {number} ATTACHMENT_TRAY_GROUP_CHAT=36 ATTACHMENT_TRAY_GROUP_CHAT value
      * @property {number} ASK_META_AI_MEDIA_VIEWER_1ON1=37 ASK_META_AI_MEDIA_VIEWER_1ON1 value
      * @property {number} ASK_META_AI_MEDIA_VIEWER_GROUP=38 ASK_META_AI_MEDIA_VIEWER_GROUP value
+     * @property {number} MEDIA_PICKER_1_ON_1_CHAT=39 MEDIA_PICKER_1_ON_1_CHAT value
+     * @property {number} MEDIA_PICKER_GROUP_CHAT=40 MEDIA_PICKER_GROUP_CHAT value
      * @property {number} META_AI_SETTINGS=45 META_AI_SETTINGS value
      */
     AICommon.BotMetricsEntryPoint = (function() {
@@ -97664,6 +97737,8 @@ $root.AICommon = (function() {
         values[valuesById[36] = "ATTACHMENT_TRAY_GROUP_CHAT"] = 36;
         values[valuesById[37] = "ASK_META_AI_MEDIA_VIEWER_1ON1"] = 37;
         values[valuesById[38] = "ASK_META_AI_MEDIA_VIEWER_GROUP"] = 38;
+        values[valuesById[39] = "MEDIA_PICKER_1_ON_1_CHAT"] = 39;
+        values[valuesById[40] = "MEDIA_PICKER_GROUP_CHAT"] = 40;
         values[valuesById[45] = "META_AI_SETTINGS"] = 45;
         return values;
     })();

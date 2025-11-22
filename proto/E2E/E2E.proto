@@ -462,6 +462,7 @@ message ContextInfo {
         optional string newsletterName = 3;
         optional ContentType contentType = 4;
         optional string accessibilityText = 5;
+        optional string profileName = 6;
         enum ContentType {
             UPDATE = 1;
             UPDATE_CARD = 2;
@@ -612,6 +613,7 @@ message Message {
     optional PollCreationMessage pollCreationMessageV5 = 111;
     optional NewsletterFollowerInviteMessage newsletterFollowerInviteMessageV2 = 113;
     optional PollResultSnapshotMessage pollResultSnapshotMessageV3 = 115;
+    optional FutureProofMessage newsletterAdminProfileMessage = 116;
     message AlbumMessage {
         optional uint32 expectedImageCount = 2;
         optional uint32 expectedVideoCount = 3;

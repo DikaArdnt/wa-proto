@@ -6651,6 +6651,8 @@ $root.AICommon = (function() {
                 case 36:
                 case 37:
                 case 38:
+                case 39:
+                case 40:
                 case 45:
                     break;
                 }
@@ -6834,6 +6836,14 @@ $root.AICommon = (function() {
             case "ASK_META_AI_MEDIA_VIEWER_GROUP":
             case 38:
                 message.botEntryPointOrigin = 38;
+                break;
+            case "MEDIA_PICKER_1_ON_1_CHAT":
+            case 39:
+                message.botEntryPointOrigin = 39;
+                break;
+            case "MEDIA_PICKER_GROUP_CHAT":
+            case 40:
+                message.botEntryPointOrigin = 40;
                 break;
             case "META_AI_SETTINGS":
             case 45:
@@ -20712,6 +20722,8 @@ $root.AICommon = (function() {
                 case 36:
                 case 37:
                 case 38:
+                case 39:
+                case 40:
                 case 45:
                     break;
                 }
@@ -20905,6 +20917,14 @@ $root.AICommon = (function() {
             case "ASK_META_AI_MEDIA_VIEWER_GROUP":
             case 38:
                 message.destinationEntryPoint = 38;
+                break;
+            case "MEDIA_PICKER_1_ON_1_CHAT":
+            case 39:
+                message.destinationEntryPoint = 39;
+                break;
+            case "MEDIA_PICKER_GROUP_CHAT":
+            case 40:
+                message.destinationEntryPoint = 40;
                 break;
             case "META_AI_SETTINGS":
             case 45:
@@ -25133,6 +25153,8 @@ $root.AICommon = (function() {
      * @property {number} ATTACHMENT_TRAY_GROUP_CHAT=36 ATTACHMENT_TRAY_GROUP_CHAT value
      * @property {number} ASK_META_AI_MEDIA_VIEWER_1ON1=37 ASK_META_AI_MEDIA_VIEWER_1ON1 value
      * @property {number} ASK_META_AI_MEDIA_VIEWER_GROUP=38 ASK_META_AI_MEDIA_VIEWER_GROUP value
+     * @property {number} MEDIA_PICKER_1_ON_1_CHAT=39 MEDIA_PICKER_1_ON_1_CHAT value
+     * @property {number} MEDIA_PICKER_GROUP_CHAT=40 MEDIA_PICKER_GROUP_CHAT value
      * @property {number} META_AI_SETTINGS=45 META_AI_SETTINGS value
      */
     AICommon.BotMetricsEntryPoint = (function() {
@@ -25176,6 +25198,8 @@ $root.AICommon = (function() {
         values[valuesById[36] = "ATTACHMENT_TRAY_GROUP_CHAT"] = 36;
         values[valuesById[37] = "ASK_META_AI_MEDIA_VIEWER_1ON1"] = 37;
         values[valuesById[38] = "ASK_META_AI_MEDIA_VIEWER_GROUP"] = 38;
+        values[valuesById[39] = "MEDIA_PICKER_1_ON_1_CHAT"] = 39;
+        values[valuesById[40] = "MEDIA_PICKER_GROUP_CHAT"] = 40;
         values[valuesById[45] = "META_AI_SETTINGS"] = 45;
         return values;
     })();
