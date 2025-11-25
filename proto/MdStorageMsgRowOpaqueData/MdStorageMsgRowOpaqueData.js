@@ -79192,7 +79192,16 @@ $root.AICommon = (function() {
                 case 38:
                 case 39:
                 case 40:
+                case 41:
                 case 45:
+                case 46:
+                case 47:
+                case 48:
+                case 49:
+                case 50:
+                case 51:
+                case 52:
+                case 53:
                     break;
                 }
             if (message.forwardScore != null && message.hasOwnProperty("forwardScore"))
@@ -79384,9 +79393,45 @@ $root.AICommon = (function() {
             case 40:
                 message.botEntryPointOrigin = 40;
                 break;
+            case "ASK_META_AI_NO_SEARCH_RESULTS":
+            case 41:
+                message.botEntryPointOrigin = 41;
+                break;
             case "META_AI_SETTINGS":
             case 45:
                 message.botEntryPointOrigin = 45;
+                break;
+            case "AI_HOME_LEARN":
+            case 46:
+                message.botEntryPointOrigin = 46;
+                break;
+            case "AI_HOME_WRITE":
+            case 47:
+                message.botEntryPointOrigin = 47;
+                break;
+            case "AI_HOME_CREATE_IMAGE":
+            case 48:
+                message.botEntryPointOrigin = 48;
+                break;
+            case "AI_HOME_ANIMATE_PHOTO":
+            case 49:
+                message.botEntryPointOrigin = 49;
+                break;
+            case "AI_HOME_GET_ADVICE":
+            case 50:
+                message.botEntryPointOrigin = 50;
+                break;
+            case "AI_HOME_ANALYZE_FILE":
+            case 51:
+                message.botEntryPointOrigin = 51;
+                break;
+            case "AI_HOME_PLAN":
+            case 52:
+                message.botEntryPointOrigin = 52;
+                break;
+            case "AI_HOME_HAVE_FUN":
+            case 53:
+                message.botEntryPointOrigin = 53;
                 break;
             }
             if (object.forwardScore != null)
@@ -89429,6 +89474,9 @@ $root.AICommon = (function() {
                     case 47:
                     case 48:
                     case 49:
+                    case 50:
+                    case 51:
+                    case 52:
                         break;
                     }
             }
@@ -89658,6 +89706,18 @@ $root.AICommon = (function() {
                     case 49:
                         message.capabilities[i] = 49;
                         break;
+                    case "RICH_RESPONSE_UR_ZEITGEIST_CITATIONS":
+                    case 50:
+                        message.capabilities[i] = 50;
+                        break;
+                    case "RICH_RESPONSE_UR_ZEITGEIST_CAROUSEL":
+                    case 51:
+                        message.capabilities[i] = 51;
+                        break;
+                    case "AI_IMAGINE_LOADING_INDICATOR":
+                    case 52:
+                        message.capabilities[i] = 52;
+                        break;
                     }
             }
             return message;
@@ -89766,6 +89826,9 @@ $root.AICommon = (function() {
          * @property {number} AI_RESPONSE_MODEL_BRANDING=47 AI_RESPONSE_MODEL_BRANDING value
          * @property {number} SESSION_TRANSPARENCY_SYSTEM_MESSAGE=48 SESSION_TRANSPARENCY_SYSTEM_MESSAGE value
          * @property {number} RICH_RESPONSE_UR_REASONING=49 RICH_RESPONSE_UR_REASONING value
+         * @property {number} RICH_RESPONSE_UR_ZEITGEIST_CITATIONS=50 RICH_RESPONSE_UR_ZEITGEIST_CITATIONS value
+         * @property {number} RICH_RESPONSE_UR_ZEITGEIST_CAROUSEL=51 RICH_RESPONSE_UR_ZEITGEIST_CAROUSEL value
+         * @property {number} AI_IMAGINE_LOADING_INDICATOR=52 AI_IMAGINE_LOADING_INDICATOR value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -89819,6 +89882,9 @@ $root.AICommon = (function() {
             values[valuesById[47] = "AI_RESPONSE_MODEL_BRANDING"] = 47;
             values[valuesById[48] = "SESSION_TRANSPARENCY_SYSTEM_MESSAGE"] = 48;
             values[valuesById[49] = "RICH_RESPONSE_UR_REASONING"] = 49;
+            values[valuesById[50] = "RICH_RESPONSE_UR_ZEITGEIST_CITATIONS"] = 50;
+            values[valuesById[51] = "RICH_RESPONSE_UR_ZEITGEIST_CAROUSEL"] = 51;
+            values[valuesById[52] = "AI_IMAGINE_LOADING_INDICATOR"] = 52;
             return values;
         })();
 
@@ -93263,7 +93329,16 @@ $root.AICommon = (function() {
                 case 38:
                 case 39:
                 case 40:
+                case 41:
                 case 45:
+                case 46:
+                case 47:
+                case 48:
+                case 49:
+                case 50:
+                case 51:
+                case 52:
+                case 53:
                     break;
                 }
             if (message.threadOrigin != null && message.hasOwnProperty("threadOrigin"))
@@ -93465,9 +93540,45 @@ $root.AICommon = (function() {
             case 40:
                 message.destinationEntryPoint = 40;
                 break;
+            case "ASK_META_AI_NO_SEARCH_RESULTS":
+            case 41:
+                message.destinationEntryPoint = 41;
+                break;
             case "META_AI_SETTINGS":
             case 45:
                 message.destinationEntryPoint = 45;
+                break;
+            case "AI_HOME_LEARN":
+            case 46:
+                message.destinationEntryPoint = 46;
+                break;
+            case "AI_HOME_WRITE":
+            case 47:
+                message.destinationEntryPoint = 47;
+                break;
+            case "AI_HOME_CREATE_IMAGE":
+            case 48:
+                message.destinationEntryPoint = 48;
+                break;
+            case "AI_HOME_ANIMATE_PHOTO":
+            case 49:
+                message.destinationEntryPoint = 49;
+                break;
+            case "AI_HOME_GET_ADVICE":
+            case 50:
+                message.destinationEntryPoint = 50;
+                break;
+            case "AI_HOME_ANALYZE_FILE":
+            case 51:
+                message.destinationEntryPoint = 51;
+                break;
+            case "AI_HOME_PLAN":
+            case 52:
+                message.destinationEntryPoint = 52;
+                break;
+            case "AI_HOME_HAVE_FUN":
+            case 53:
+                message.destinationEntryPoint = 53;
                 break;
             }
             switch (object.threadOrigin) {
@@ -97694,7 +97805,16 @@ $root.AICommon = (function() {
      * @property {number} ASK_META_AI_MEDIA_VIEWER_GROUP=38 ASK_META_AI_MEDIA_VIEWER_GROUP value
      * @property {number} MEDIA_PICKER_1_ON_1_CHAT=39 MEDIA_PICKER_1_ON_1_CHAT value
      * @property {number} MEDIA_PICKER_GROUP_CHAT=40 MEDIA_PICKER_GROUP_CHAT value
+     * @property {number} ASK_META_AI_NO_SEARCH_RESULTS=41 ASK_META_AI_NO_SEARCH_RESULTS value
      * @property {number} META_AI_SETTINGS=45 META_AI_SETTINGS value
+     * @property {number} AI_HOME_LEARN=46 AI_HOME_LEARN value
+     * @property {number} AI_HOME_WRITE=47 AI_HOME_WRITE value
+     * @property {number} AI_HOME_CREATE_IMAGE=48 AI_HOME_CREATE_IMAGE value
+     * @property {number} AI_HOME_ANIMATE_PHOTO=49 AI_HOME_ANIMATE_PHOTO value
+     * @property {number} AI_HOME_GET_ADVICE=50 AI_HOME_GET_ADVICE value
+     * @property {number} AI_HOME_ANALYZE_FILE=51 AI_HOME_ANALYZE_FILE value
+     * @property {number} AI_HOME_PLAN=52 AI_HOME_PLAN value
+     * @property {number} AI_HOME_HAVE_FUN=53 AI_HOME_HAVE_FUN value
      */
     AICommon.BotMetricsEntryPoint = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -97739,7 +97859,16 @@ $root.AICommon = (function() {
         values[valuesById[38] = "ASK_META_AI_MEDIA_VIEWER_GROUP"] = 38;
         values[valuesById[39] = "MEDIA_PICKER_1_ON_1_CHAT"] = 39;
         values[valuesById[40] = "MEDIA_PICKER_GROUP_CHAT"] = 40;
+        values[valuesById[41] = "ASK_META_AI_NO_SEARCH_RESULTS"] = 41;
         values[valuesById[45] = "META_AI_SETTINGS"] = 45;
+        values[valuesById[46] = "AI_HOME_LEARN"] = 46;
+        values[valuesById[47] = "AI_HOME_WRITE"] = 47;
+        values[valuesById[48] = "AI_HOME_CREATE_IMAGE"] = 48;
+        values[valuesById[49] = "AI_HOME_ANIMATE_PHOTO"] = 49;
+        values[valuesById[50] = "AI_HOME_GET_ADVICE"] = 50;
+        values[valuesById[51] = "AI_HOME_ANALYZE_FILE"] = 51;
+        values[valuesById[52] = "AI_HOME_PLAN"] = 52;
+        values[valuesById[53] = "AI_HOME_HAVE_FUN"] = 53;
         return values;
     })();
 
