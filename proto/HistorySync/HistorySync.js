@@ -5178,6 +5178,7 @@ $root.HistorySync = (function() {
                 case 0:
                 case 1:
                 case 2:
+                case 3:
                     break;
                 }
             if (message.conversationTimestamp != null && message.hasOwnProperty("conversationTimestamp"))
@@ -5413,6 +5414,10 @@ $root.HistorySync = (function() {
             case "COMPLETE_ON_DEMAND_SYNC_BUT_MORE_MSG_REMAIN_ON_PRIMARY":
             case 2:
                 message.endOfHistoryTransferType = 2;
+                break;
+            case "COMPLETE_ON_DEMAND_SYNC_WITH_MORE_MSG_ON_PRIMARY_BUT_NO_ACCESS":
+            case 3:
+                message.endOfHistoryTransferType = 3;
                 break;
             }
             if (object.conversationTimestamp != null)
@@ -5913,12 +5918,14 @@ $root.HistorySync = (function() {
          * @property {number} COMPLETE_BUT_MORE_MESSAGES_REMAIN_ON_PRIMARY=0 COMPLETE_BUT_MORE_MESSAGES_REMAIN_ON_PRIMARY value
          * @property {number} COMPLETE_AND_NO_MORE_MESSAGE_REMAIN_ON_PRIMARY=1 COMPLETE_AND_NO_MORE_MESSAGE_REMAIN_ON_PRIMARY value
          * @property {number} COMPLETE_ON_DEMAND_SYNC_BUT_MORE_MSG_REMAIN_ON_PRIMARY=2 COMPLETE_ON_DEMAND_SYNC_BUT_MORE_MSG_REMAIN_ON_PRIMARY value
+         * @property {number} COMPLETE_ON_DEMAND_SYNC_WITH_MORE_MSG_ON_PRIMARY_BUT_NO_ACCESS=3 COMPLETE_ON_DEMAND_SYNC_WITH_MORE_MSG_ON_PRIMARY_BUT_NO_ACCESS value
          */
         Conversation.EndOfHistoryTransferType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
             values[valuesById[0] = "COMPLETE_BUT_MORE_MESSAGES_REMAIN_ON_PRIMARY"] = 0;
             values[valuesById[1] = "COMPLETE_AND_NO_MORE_MESSAGE_REMAIN_ON_PRIMARY"] = 1;
             values[valuesById[2] = "COMPLETE_ON_DEMAND_SYNC_BUT_MORE_MSG_REMAIN_ON_PRIMARY"] = 2;
+            values[valuesById[3] = "COMPLETE_ON_DEMAND_SYNC_WITH_MORE_MSG_ON_PRIMARY_BUT_NO_ACCESS"] = 3;
             return values;
         })();
 
