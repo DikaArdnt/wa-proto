@@ -194,6 +194,8 @@ message ClientPayload {
         optional string version = 2;
         optional WebdPayload webdPayload = 3;
         optional WebSubPlatform webSubPlatform = 4;
+        optional string browser = 5;
+        optional string browserVersion = 6;
         enum WebSubPlatform {
             WEB_BROWSER = 0;
             APP_STORE = 1;

@@ -1108,6 +1108,12 @@ export namespace Wa6 {
 
             /** WebInfo webSubPlatform */
             webSubPlatform?: (Wa6.ClientPayload.WebInfo.WebSubPlatform|null);
+
+            /** WebInfo browser */
+            browser?: (string|null);
+
+            /** WebInfo browserVersion */
+            browserVersion?: (string|null);
         }
 
         /** Represents a WebInfo. */
@@ -1130,6 +1136,12 @@ export namespace Wa6 {
 
             /** WebInfo webSubPlatform. */
             public webSubPlatform: Wa6.ClientPayload.WebInfo.WebSubPlatform;
+
+            /** WebInfo browser. */
+            public browser: string;
+
+            /** WebInfo browserVersion. */
+            public browserVersion: string;
 
             /**
              * Creates a new WebInfo instance using the specified properties.

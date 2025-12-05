@@ -3711,6 +3711,8 @@ $root.Wa6 = (function() {
              * @property {string|null} [version] WebInfo version
              * @property {Wa6.ClientPayload.WebInfo.IWebdPayload|null} [webdPayload] WebInfo webdPayload
              * @property {Wa6.ClientPayload.WebInfo.WebSubPlatform|null} [webSubPlatform] WebInfo webSubPlatform
+             * @property {string|null} [browser] WebInfo browser
+             * @property {string|null} [browserVersion] WebInfo browserVersion
              */
 
             /**
@@ -3761,6 +3763,22 @@ $root.Wa6 = (function() {
             WebInfo.prototype.webSubPlatform = 0;
 
             /**
+             * WebInfo browser.
+             * @member {string} browser
+             * @memberof Wa6.ClientPayload.WebInfo
+             * @instance
+             */
+            WebInfo.prototype.browser = "";
+
+            /**
+             * WebInfo browserVersion.
+             * @member {string} browserVersion
+             * @memberof Wa6.ClientPayload.WebInfo
+             * @instance
+             */
+            WebInfo.prototype.browserVersion = "";
+
+            /**
              * Creates a new WebInfo instance using the specified properties.
              * @function create
              * @memberof Wa6.ClientPayload.WebInfo
@@ -3792,6 +3810,10 @@ $root.Wa6 = (function() {
                     $root.Wa6.ClientPayload.WebInfo.WebdPayload.encode(message.webdPayload, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                 if (message.webSubPlatform != null && Object.hasOwnProperty.call(message, "webSubPlatform"))
                     writer.uint32(/* id 4, wireType 0 =*/32).int32(message.webSubPlatform);
+                if (message.browser != null && Object.hasOwnProperty.call(message, "browser"))
+                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.browser);
+                if (message.browserVersion != null && Object.hasOwnProperty.call(message, "browserVersion"))
+                    writer.uint32(/* id 6, wireType 2 =*/50).string(message.browserVersion);
                 return writer;
             };
 
@@ -3842,6 +3864,14 @@ $root.Wa6 = (function() {
                         }
                     case 4: {
                             message.webSubPlatform = reader.int32();
+                            break;
+                        }
+                    case 5: {
+                            message.browser = reader.string();
+                            break;
+                        }
+                    case 6: {
+                            message.browserVersion = reader.string();
                             break;
                         }
                     default:
@@ -3902,6 +3932,12 @@ $root.Wa6 = (function() {
                     case 5:
                         break;
                     }
+                if (message.browser != null && message.hasOwnProperty("browser"))
+                    if (!$util.isString(message.browser))
+                        return "browser: string expected";
+                if (message.browserVersion != null && message.hasOwnProperty("browserVersion"))
+                    if (!$util.isString(message.browserVersion))
+                        return "browserVersion: string expected";
                 return null;
             };
 
@@ -3958,6 +3994,10 @@ $root.Wa6 = (function() {
                     message.webSubPlatform = 5;
                     break;
                 }
+                if (object.browser != null)
+                    message.browser = String(object.browser);
+                if (object.browserVersion != null)
+                    message.browserVersion = String(object.browserVersion);
                 return message;
             };
 
@@ -3979,6 +4019,8 @@ $root.Wa6 = (function() {
                     object.version = "";
                     object.webdPayload = null;
                     object.webSubPlatform = options.enums === String ? "WEB_BROWSER" : 0;
+                    object.browser = "";
+                    object.browserVersion = "";
                 }
                 if (message.refToken != null && message.hasOwnProperty("refToken"))
                     object.refToken = message.refToken;
@@ -3988,6 +4030,10 @@ $root.Wa6 = (function() {
                     object.webdPayload = $root.Wa6.ClientPayload.WebInfo.WebdPayload.toObject(message.webdPayload, options);
                 if (message.webSubPlatform != null && message.hasOwnProperty("webSubPlatform"))
                     object.webSubPlatform = options.enums === String ? $root.Wa6.ClientPayload.WebInfo.WebSubPlatform[message.webSubPlatform] === undefined ? message.webSubPlatform : $root.Wa6.ClientPayload.WebInfo.WebSubPlatform[message.webSubPlatform] : message.webSubPlatform;
+                if (message.browser != null && message.hasOwnProperty("browser"))
+                    object.browser = message.browser;
+                if (message.browserVersion != null && message.hasOwnProperty("browserVersion"))
+                    object.browserVersion = message.browserVersion;
                 return object;
             };
 
