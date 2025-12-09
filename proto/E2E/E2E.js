@@ -76281,14 +76281,6 @@ $root.AICommon = (function() {
                 case 40:
                 case 41:
                 case 45:
-                case 46:
-                case 47:
-                case 48:
-                case 49:
-                case 50:
-                case 51:
-                case 52:
-                case 53:
                     break;
                 }
             if (message.forwardScore != null && message.hasOwnProperty("forwardScore"))
@@ -76487,38 +76479,6 @@ $root.AICommon = (function() {
             case "META_AI_SETTINGS":
             case 45:
                 message.botEntryPointOrigin = 45;
-                break;
-            case "AI_HOME_LEARN":
-            case 46:
-                message.botEntryPointOrigin = 46;
-                break;
-            case "AI_HOME_WRITE":
-            case 47:
-                message.botEntryPointOrigin = 47;
-                break;
-            case "AI_HOME_CREATE_IMAGE":
-            case 48:
-                message.botEntryPointOrigin = 48;
-                break;
-            case "AI_HOME_ANIMATE_PHOTO":
-            case 49:
-                message.botEntryPointOrigin = 49;
-                break;
-            case "AI_HOME_GET_ADVICE":
-            case 50:
-                message.botEntryPointOrigin = 50;
-                break;
-            case "AI_HOME_ANALYZE_FILE":
-            case 51:
-                message.botEntryPointOrigin = 51;
-                break;
-            case "AI_HOME_PLAN":
-            case 52:
-                message.botEntryPointOrigin = 52;
-                break;
-            case "AI_HOME_HAVE_FUN":
-            case 53:
-                message.botEntryPointOrigin = 53;
                 break;
             }
             if (object.forwardScore != null)
@@ -86564,6 +86524,7 @@ $root.AICommon = (function() {
                     case 50:
                     case 51:
                     case 52:
+                    case 53:
                         break;
                     }
             }
@@ -86805,6 +86766,10 @@ $root.AICommon = (function() {
                     case 52:
                         message.capabilities[i] = 52;
                         break;
+                    case "RICH_RESPONSE_UR_IMAGINE":
+                    case 53:
+                        message.capabilities[i] = 53;
+                        break;
                     }
             }
             return message;
@@ -86916,6 +86881,7 @@ $root.AICommon = (function() {
          * @property {number} RICH_RESPONSE_UR_ZEITGEIST_CITATIONS=50 RICH_RESPONSE_UR_ZEITGEIST_CITATIONS value
          * @property {number} RICH_RESPONSE_UR_ZEITGEIST_CAROUSEL=51 RICH_RESPONSE_UR_ZEITGEIST_CAROUSEL value
          * @property {number} AI_IMAGINE_LOADING_INDICATOR=52 AI_IMAGINE_LOADING_INDICATOR value
+         * @property {number} RICH_RESPONSE_UR_IMAGINE=53 RICH_RESPONSE_UR_IMAGINE value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -86972,6 +86938,7 @@ $root.AICommon = (function() {
             values[valuesById[50] = "RICH_RESPONSE_UR_ZEITGEIST_CITATIONS"] = 50;
             values[valuesById[51] = "RICH_RESPONSE_UR_ZEITGEIST_CAROUSEL"] = 51;
             values[valuesById[52] = "AI_IMAGINE_LOADING_INDICATOR"] = 52;
+            values[valuesById[53] = "RICH_RESPONSE_UR_IMAGINE"] = 53;
             return values;
         })();
 
@@ -86986,6 +86953,7 @@ $root.AICommon = (function() {
          * @interface IBotProgressIndicatorMetadata
          * @property {string|null} [progressDescription] BotProgressIndicatorMetadata progressDescription
          * @property {Array.<AICommon.BotProgressIndicatorMetadata.IBotPlanningStepMetadata>|null} [stepsMetadata] BotProgressIndicatorMetadata stepsMetadata
+         * @property {number|Long|null} [estimatedCompletionTime] BotProgressIndicatorMetadata estimatedCompletionTime
          */
 
         /**
@@ -87021,6 +86989,14 @@ $root.AICommon = (function() {
         BotProgressIndicatorMetadata.prototype.stepsMetadata = $util.emptyArray;
 
         /**
+         * BotProgressIndicatorMetadata estimatedCompletionTime.
+         * @member {number|Long} estimatedCompletionTime
+         * @memberof AICommon.BotProgressIndicatorMetadata
+         * @instance
+         */
+        BotProgressIndicatorMetadata.prototype.estimatedCompletionTime = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
          * Creates a new BotProgressIndicatorMetadata instance using the specified properties.
          * @function create
          * @memberof AICommon.BotProgressIndicatorMetadata
@@ -87049,6 +87025,8 @@ $root.AICommon = (function() {
             if (message.stepsMetadata != null && message.stepsMetadata.length)
                 for (var i = 0; i < message.stepsMetadata.length; ++i)
                     $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.encode(message.stepsMetadata[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.estimatedCompletionTime != null && Object.hasOwnProperty.call(message, "estimatedCompletionTime"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int64(message.estimatedCompletionTime);
             return writer;
         };
 
@@ -87093,6 +87071,10 @@ $root.AICommon = (function() {
                         if (!(message.stepsMetadata && message.stepsMetadata.length))
                             message.stepsMetadata = [];
                         message.stepsMetadata.push($root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 3: {
+                        message.estimatedCompletionTime = reader.int64();
                         break;
                     }
                 default:
@@ -87142,6 +87124,9 @@ $root.AICommon = (function() {
                         return "stepsMetadata." + error;
                 }
             }
+            if (message.estimatedCompletionTime != null && message.hasOwnProperty("estimatedCompletionTime"))
+                if (!$util.isInteger(message.estimatedCompletionTime) && !(message.estimatedCompletionTime && $util.isInteger(message.estimatedCompletionTime.low) && $util.isInteger(message.estimatedCompletionTime.high)))
+                    return "estimatedCompletionTime: integer|Long expected";
             return null;
         };
 
@@ -87169,6 +87154,15 @@ $root.AICommon = (function() {
                     message.stepsMetadata[i] = $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.fromObject(object.stepsMetadata[i]);
                 }
             }
+            if (object.estimatedCompletionTime != null)
+                if ($util.Long)
+                    (message.estimatedCompletionTime = $util.Long.fromValue(object.estimatedCompletionTime)).unsigned = false;
+                else if (typeof object.estimatedCompletionTime === "string")
+                    message.estimatedCompletionTime = parseInt(object.estimatedCompletionTime, 10);
+                else if (typeof object.estimatedCompletionTime === "number")
+                    message.estimatedCompletionTime = object.estimatedCompletionTime;
+                else if (typeof object.estimatedCompletionTime === "object")
+                    message.estimatedCompletionTime = new $util.LongBits(object.estimatedCompletionTime.low >>> 0, object.estimatedCompletionTime.high >>> 0).toNumber();
             return message;
         };
 
@@ -87187,8 +87181,14 @@ $root.AICommon = (function() {
             var object = {};
             if (options.arrays || options.defaults)
                 object.stepsMetadata = [];
-            if (options.defaults)
+            if (options.defaults) {
                 object.progressDescription = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.estimatedCompletionTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.estimatedCompletionTime = options.longs === String ? "0" : 0;
+            }
             if (message.progressDescription != null && message.hasOwnProperty("progressDescription"))
                 object.progressDescription = message.progressDescription;
             if (message.stepsMetadata && message.stepsMetadata.length) {
@@ -87196,6 +87196,11 @@ $root.AICommon = (function() {
                 for (var j = 0; j < message.stepsMetadata.length; ++j)
                     object.stepsMetadata[j] = $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.toObject(message.stepsMetadata[j], options);
             }
+            if (message.estimatedCompletionTime != null && message.hasOwnProperty("estimatedCompletionTime"))
+                if (typeof message.estimatedCompletionTime === "number")
+                    object.estimatedCompletionTime = options.longs === String ? String(message.estimatedCompletionTime) : message.estimatedCompletionTime;
+                else
+                    object.estimatedCompletionTime = options.longs === String ? $util.Long.prototype.toString.call(message.estimatedCompletionTime) : options.longs === Number ? new $util.LongBits(message.estimatedCompletionTime.low >>> 0, message.estimatedCompletionTime.high >>> 0).toNumber() : message.estimatedCompletionTime;
             return object;
         };
 
@@ -90418,14 +90423,6 @@ $root.AICommon = (function() {
                 case 40:
                 case 41:
                 case 45:
-                case 46:
-                case 47:
-                case 48:
-                case 49:
-                case 50:
-                case 51:
-                case 52:
-                case 53:
                     break;
                 }
             if (message.threadOrigin != null && message.hasOwnProperty("threadOrigin"))
@@ -90634,38 +90631,6 @@ $root.AICommon = (function() {
             case "META_AI_SETTINGS":
             case 45:
                 message.destinationEntryPoint = 45;
-                break;
-            case "AI_HOME_LEARN":
-            case 46:
-                message.destinationEntryPoint = 46;
-                break;
-            case "AI_HOME_WRITE":
-            case 47:
-                message.destinationEntryPoint = 47;
-                break;
-            case "AI_HOME_CREATE_IMAGE":
-            case 48:
-                message.destinationEntryPoint = 48;
-                break;
-            case "AI_HOME_ANIMATE_PHOTO":
-            case 49:
-                message.destinationEntryPoint = 49;
-                break;
-            case "AI_HOME_GET_ADVICE":
-            case 50:
-                message.destinationEntryPoint = 50;
-                break;
-            case "AI_HOME_ANALYZE_FILE":
-            case 51:
-                message.destinationEntryPoint = 51;
-                break;
-            case "AI_HOME_PLAN":
-            case 52:
-                message.destinationEntryPoint = 52;
-                break;
-            case "AI_HOME_HAVE_FUN":
-            case 53:
-                message.destinationEntryPoint = 53;
                 break;
             }
             switch (object.threadOrigin) {
@@ -94894,14 +94859,6 @@ $root.AICommon = (function() {
      * @property {number} MEDIA_PICKER_GROUP_CHAT=40 MEDIA_PICKER_GROUP_CHAT value
      * @property {number} ASK_META_AI_NO_SEARCH_RESULTS=41 ASK_META_AI_NO_SEARCH_RESULTS value
      * @property {number} META_AI_SETTINGS=45 META_AI_SETTINGS value
-     * @property {number} AI_HOME_LEARN=46 AI_HOME_LEARN value
-     * @property {number} AI_HOME_WRITE=47 AI_HOME_WRITE value
-     * @property {number} AI_HOME_CREATE_IMAGE=48 AI_HOME_CREATE_IMAGE value
-     * @property {number} AI_HOME_ANIMATE_PHOTO=49 AI_HOME_ANIMATE_PHOTO value
-     * @property {number} AI_HOME_GET_ADVICE=50 AI_HOME_GET_ADVICE value
-     * @property {number} AI_HOME_ANALYZE_FILE=51 AI_HOME_ANALYZE_FILE value
-     * @property {number} AI_HOME_PLAN=52 AI_HOME_PLAN value
-     * @property {number} AI_HOME_HAVE_FUN=53 AI_HOME_HAVE_FUN value
      */
     AICommon.BotMetricsEntryPoint = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -94948,14 +94905,6 @@ $root.AICommon = (function() {
         values[valuesById[40] = "MEDIA_PICKER_GROUP_CHAT"] = 40;
         values[valuesById[41] = "ASK_META_AI_NO_SEARCH_RESULTS"] = 41;
         values[valuesById[45] = "META_AI_SETTINGS"] = 45;
-        values[valuesById[46] = "AI_HOME_LEARN"] = 46;
-        values[valuesById[47] = "AI_HOME_WRITE"] = 47;
-        values[valuesById[48] = "AI_HOME_CREATE_IMAGE"] = 48;
-        values[valuesById[49] = "AI_HOME_ANIMATE_PHOTO"] = 49;
-        values[valuesById[50] = "AI_HOME_GET_ADVICE"] = 50;
-        values[valuesById[51] = "AI_HOME_ANALYZE_FILE"] = 51;
-        values[valuesById[52] = "AI_HOME_PLAN"] = 52;
-        values[valuesById[53] = "AI_HOME_HAVE_FUN"] = 53;
         return values;
     })();
 
