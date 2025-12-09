@@ -772,6 +772,7 @@ enum BotSessionSource {
     EMU_FLASH = 4;
     EMU_FLASH_FOLLOWUP = 5;
     VOICE = 6;
+    AI_HOME_SESSION = 7;
 }
 
 enum BotMetricsThreadEntryPoint {

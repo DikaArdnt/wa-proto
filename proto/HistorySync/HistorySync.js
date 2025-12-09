@@ -98051,6 +98051,7 @@ $root.AICommon = (function() {
                 case 4:
                 case 5:
                 case 6:
+                case 7:
                     break;
                 }
             return null;
@@ -98104,6 +98105,10 @@ $root.AICommon = (function() {
             case "VOICE":
             case 6:
                 message.sessionSource = 6;
+                break;
+            case "AI_HOME_SESSION":
+            case 7:
+                message.sessionSource = 7;
                 break;
             }
             return message;
@@ -102731,6 +102736,7 @@ $root.AICommon = (function() {
      * @property {number} EMU_FLASH=4 EMU_FLASH value
      * @property {number} EMU_FLASH_FOLLOWUP=5 EMU_FLASH_FOLLOWUP value
      * @property {number} VOICE=6 VOICE value
+     * @property {number} AI_HOME_SESSION=7 AI_HOME_SESSION value
      */
     AICommon.BotSessionSource = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -102741,6 +102747,7 @@ $root.AICommon = (function() {
         values[valuesById[4] = "EMU_FLASH"] = 4;
         values[valuesById[5] = "EMU_FLASH_FOLLOWUP"] = 5;
         values[valuesById[6] = "VOICE"] = 6;
+        values[valuesById[7] = "AI_HOME_SESSION"] = 7;
         return values;
     })();
 
