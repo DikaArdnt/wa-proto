@@ -89438,6 +89438,7 @@ $root.AICommon = (function() {
                     case 51:
                     case 52:
                     case 53:
+                    case 54:
                         break;
                     }
             }
@@ -89683,6 +89684,10 @@ $root.AICommon = (function() {
                     case 53:
                         message.capabilities[i] = 53;
                         break;
+                    case "AI_IMAGINE_UR_TO_NATIVE_LOADING_INDICATOR":
+                    case 54:
+                        message.capabilities[i] = 54;
+                        break;
                     }
             }
             return message;
@@ -89795,6 +89800,7 @@ $root.AICommon = (function() {
          * @property {number} RICH_RESPONSE_UR_ZEITGEIST_CAROUSEL=51 RICH_RESPONSE_UR_ZEITGEIST_CAROUSEL value
          * @property {number} AI_IMAGINE_LOADING_INDICATOR=52 AI_IMAGINE_LOADING_INDICATOR value
          * @property {number} RICH_RESPONSE_UR_IMAGINE=53 RICH_RESPONSE_UR_IMAGINE value
+         * @property {number} AI_IMAGINE_UR_TO_NATIVE_LOADING_INDICATOR=54 AI_IMAGINE_UR_TO_NATIVE_LOADING_INDICATOR value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -89852,6 +89858,7 @@ $root.AICommon = (function() {
             values[valuesById[51] = "RICH_RESPONSE_UR_ZEITGEIST_CAROUSEL"] = 51;
             values[valuesById[52] = "AI_IMAGINE_LOADING_INDICATOR"] = 52;
             values[valuesById[53] = "RICH_RESPONSE_UR_IMAGINE"] = 53;
+            values[valuesById[54] = "AI_IMAGINE_UR_TO_NATIVE_LOADING_INDICATOR"] = 54;
             return values;
         })();
 
