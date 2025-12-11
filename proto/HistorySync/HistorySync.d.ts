@@ -43971,6 +43971,9 @@ export namespace Web {
 
         /** WebMessageInfo quarantinedMessage */
         quarantinedMessage?: (Web.IQuarantinedMessage|null);
+
+        /** WebMessageInfo nonJidMentions */
+        nonJidMentions?: (number|null);
     }
 
     /** Represents a WebMessageInfo. */
@@ -44179,6 +44182,9 @@ export namespace Web {
 
         /** WebMessageInfo quarantinedMessage. */
         public quarantinedMessage?: (Web.IQuarantinedMessage|null);
+
+        /** WebMessageInfo nonJidMentions. */
+        public nonJidMentions: number;
 
         /**
          * Creates a new WebMessageInfo instance using the specified properties.
