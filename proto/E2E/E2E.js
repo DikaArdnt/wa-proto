@@ -79687,6 +79687,235 @@ $root.AICommon = (function() {
         return BotGroupParticipantMetadata;
     })();
 
+    AICommon.BotRenderingConfigMetadata = (function() {
+
+        /**
+         * Properties of a BotRenderingConfigMetadata.
+         * @memberof AICommon
+         * @interface IBotRenderingConfigMetadata
+         * @property {string|null} [bloksVersioningId] BotRenderingConfigMetadata bloksVersioningId
+         * @property {number|null} [pixelDensity] BotRenderingConfigMetadata pixelDensity
+         */
+
+        /**
+         * Constructs a new BotRenderingConfigMetadata.
+         * @memberof AICommon
+         * @classdesc Represents a BotRenderingConfigMetadata.
+         * @implements IBotRenderingConfigMetadata
+         * @constructor
+         * @param {AICommon.IBotRenderingConfigMetadata=} [properties] Properties to set
+         */
+        function BotRenderingConfigMetadata(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BotRenderingConfigMetadata bloksVersioningId.
+         * @member {string} bloksVersioningId
+         * @memberof AICommon.BotRenderingConfigMetadata
+         * @instance
+         */
+        BotRenderingConfigMetadata.prototype.bloksVersioningId = "";
+
+        /**
+         * BotRenderingConfigMetadata pixelDensity.
+         * @member {number} pixelDensity
+         * @memberof AICommon.BotRenderingConfigMetadata
+         * @instance
+         */
+        BotRenderingConfigMetadata.prototype.pixelDensity = 0;
+
+        /**
+         * Creates a new BotRenderingConfigMetadata instance using the specified properties.
+         * @function create
+         * @memberof AICommon.BotRenderingConfigMetadata
+         * @static
+         * @param {AICommon.IBotRenderingConfigMetadata=} [properties] Properties to set
+         * @returns {AICommon.BotRenderingConfigMetadata} BotRenderingConfigMetadata instance
+         */
+        BotRenderingConfigMetadata.create = function create(properties) {
+            return new BotRenderingConfigMetadata(properties);
+        };
+
+        /**
+         * Encodes the specified BotRenderingConfigMetadata message. Does not implicitly {@link AICommon.BotRenderingConfigMetadata.verify|verify} messages.
+         * @function encode
+         * @memberof AICommon.BotRenderingConfigMetadata
+         * @static
+         * @param {AICommon.IBotRenderingConfigMetadata} message BotRenderingConfigMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotRenderingConfigMetadata.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.bloksVersioningId != null && Object.hasOwnProperty.call(message, "bloksVersioningId"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.bloksVersioningId);
+            if (message.pixelDensity != null && Object.hasOwnProperty.call(message, "pixelDensity"))
+                writer.uint32(/* id 2, wireType 1 =*/17).double(message.pixelDensity);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BotRenderingConfigMetadata message, length delimited. Does not implicitly {@link AICommon.BotRenderingConfigMetadata.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof AICommon.BotRenderingConfigMetadata
+         * @static
+         * @param {AICommon.IBotRenderingConfigMetadata} message BotRenderingConfigMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotRenderingConfigMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BotRenderingConfigMetadata message from the specified reader or buffer.
+         * @function decode
+         * @memberof AICommon.BotRenderingConfigMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {AICommon.BotRenderingConfigMetadata} BotRenderingConfigMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotRenderingConfigMetadata.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotRenderingConfigMetadata();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.bloksVersioningId = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.pixelDensity = reader.double();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BotRenderingConfigMetadata message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof AICommon.BotRenderingConfigMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {AICommon.BotRenderingConfigMetadata} BotRenderingConfigMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotRenderingConfigMetadata.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BotRenderingConfigMetadata message.
+         * @function verify
+         * @memberof AICommon.BotRenderingConfigMetadata
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BotRenderingConfigMetadata.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.bloksVersioningId != null && message.hasOwnProperty("bloksVersioningId"))
+                if (!$util.isString(message.bloksVersioningId))
+                    return "bloksVersioningId: string expected";
+            if (message.pixelDensity != null && message.hasOwnProperty("pixelDensity"))
+                if (typeof message.pixelDensity !== "number")
+                    return "pixelDensity: number expected";
+            return null;
+        };
+
+        /**
+         * Creates a BotRenderingConfigMetadata message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof AICommon.BotRenderingConfigMetadata
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {AICommon.BotRenderingConfigMetadata} BotRenderingConfigMetadata
+         */
+        BotRenderingConfigMetadata.fromObject = function fromObject(object) {
+            if (object instanceof $root.AICommon.BotRenderingConfigMetadata)
+                return object;
+            var message = new $root.AICommon.BotRenderingConfigMetadata();
+            if (object.bloksVersioningId != null)
+                message.bloksVersioningId = String(object.bloksVersioningId);
+            if (object.pixelDensity != null)
+                message.pixelDensity = Number(object.pixelDensity);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BotRenderingConfigMetadata message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof AICommon.BotRenderingConfigMetadata
+         * @static
+         * @param {AICommon.BotRenderingConfigMetadata} message BotRenderingConfigMetadata
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BotRenderingConfigMetadata.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.bloksVersioningId = "";
+                object.pixelDensity = 0;
+            }
+            if (message.bloksVersioningId != null && message.hasOwnProperty("bloksVersioningId"))
+                object.bloksVersioningId = message.bloksVersioningId;
+            if (message.pixelDensity != null && message.hasOwnProperty("pixelDensity"))
+                object.pixelDensity = options.json && !isFinite(message.pixelDensity) ? String(message.pixelDensity) : message.pixelDensity;
+            return object;
+        };
+
+        /**
+         * Converts this BotRenderingConfigMetadata to JSON.
+         * @function toJSON
+         * @memberof AICommon.BotRenderingConfigMetadata
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BotRenderingConfigMetadata.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotRenderingConfigMetadata
+         * @function getTypeUrl
+         * @memberof AICommon.BotRenderingConfigMetadata
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotRenderingConfigMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/AICommon.BotRenderingConfigMetadata";
+        };
+
+        return BotRenderingConfigMetadata;
+    })();
+
     AICommon.BotGroupMetadata = (function() {
 
         /**
@@ -79954,6 +80183,7 @@ $root.AICommon = (function() {
          * @property {AICommon.ISessionTransparencyMetadata|null} [sessionTransparencyMetadata] BotMetadata sessionTransparencyMetadata
          * @property {AICommon.IBotDocumentMessageMetadata|null} [botDocumentMessageMetadata] BotMetadata botDocumentMessageMetadata
          * @property {AICommon.IBotGroupMetadata|null} [botGroupMetadata] BotMetadata botGroupMetadata
+         * @property {AICommon.IBotRenderingConfigMetadata|null} [botRenderingConfigMetadata] BotMetadata botRenderingConfigMetadata
          * @property {Uint8Array|null} [internalMetadata] BotMetadata internalMetadata
          */
 
@@ -80253,6 +80483,14 @@ $root.AICommon = (function() {
         BotMetadata.prototype.botGroupMetadata = null;
 
         /**
+         * BotMetadata botRenderingConfigMetadata.
+         * @member {AICommon.IBotRenderingConfigMetadata|null|undefined} botRenderingConfigMetadata
+         * @memberof AICommon.BotMetadata
+         * @instance
+         */
+        BotMetadata.prototype.botRenderingConfigMetadata = null;
+
+        /**
          * BotMetadata internalMetadata.
          * @member {Uint8Array} internalMetadata
          * @memberof AICommon.BotMetadata
@@ -80354,6 +80592,8 @@ $root.AICommon = (function() {
                 $root.AICommon.BotDocumentMessageMetadata.encode(message.botDocumentMessageMetadata, writer.uint32(/* id 34, wireType 2 =*/274).fork()).ldelim();
             if (message.botGroupMetadata != null && Object.hasOwnProperty.call(message, "botGroupMetadata"))
                 $root.AICommon.BotGroupMetadata.encode(message.botGroupMetadata, writer.uint32(/* id 35, wireType 2 =*/282).fork()).ldelim();
+            if (message.botRenderingConfigMetadata != null && Object.hasOwnProperty.call(message, "botRenderingConfigMetadata"))
+                $root.AICommon.BotRenderingConfigMetadata.encode(message.botRenderingConfigMetadata, writer.uint32(/* id 36, wireType 2 =*/290).fork()).ldelim();
             if (message.internalMetadata != null && Object.hasOwnProperty.call(message, "internalMetadata"))
                 writer.uint32(/* id 999, wireType 2 =*/7994).bytes(message.internalMetadata);
             return writer;
@@ -80530,6 +80770,10 @@ $root.AICommon = (function() {
                     }
                 case 35: {
                         message.botGroupMetadata = $root.AICommon.BotGroupMetadata.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 36: {
+                        message.botRenderingConfigMetadata = $root.AICommon.BotRenderingConfigMetadata.decode(reader, reader.uint32());
                         break;
                     }
                 case 999: {
@@ -80732,6 +80976,11 @@ $root.AICommon = (function() {
                 if (error)
                     return "botGroupMetadata." + error;
             }
+            if (message.botRenderingConfigMetadata != null && message.hasOwnProperty("botRenderingConfigMetadata")) {
+                var error = $root.AICommon.BotRenderingConfigMetadata.verify(message.botRenderingConfigMetadata);
+                if (error)
+                    return "botRenderingConfigMetadata." + error;
+            }
             if (message.internalMetadata != null && message.hasOwnProperty("internalMetadata"))
                 if (!(message.internalMetadata && typeof message.internalMetadata.length === "number" || $util.isString(message.internalMetadata)))
                     return "internalMetadata: buffer expected";
@@ -80907,6 +81156,11 @@ $root.AICommon = (function() {
                     throw TypeError(".AICommon.BotMetadata.botGroupMetadata: object expected");
                 message.botGroupMetadata = $root.AICommon.BotGroupMetadata.fromObject(object.botGroupMetadata);
             }
+            if (object.botRenderingConfigMetadata != null) {
+                if (typeof object.botRenderingConfigMetadata !== "object")
+                    throw TypeError(".AICommon.BotMetadata.botRenderingConfigMetadata: object expected");
+                message.botRenderingConfigMetadata = $root.AICommon.BotRenderingConfigMetadata.fromObject(object.botRenderingConfigMetadata);
+            }
             if (object.internalMetadata != null)
                 if (typeof object.internalMetadata === "string")
                     $util.base64.decode(object.internalMetadata, message.internalMetadata = $util.newBuffer($util.base64.length(object.internalMetadata)), 0);
@@ -80970,6 +81224,7 @@ $root.AICommon = (function() {
                 object.sessionTransparencyMetadata = null;
                 object.botDocumentMessageMetadata = null;
                 object.botGroupMetadata = null;
+                object.botRenderingConfigMetadata = null;
                 if (options.bytes === String)
                     object.internalMetadata = "";
                 else {
@@ -81048,6 +81303,8 @@ $root.AICommon = (function() {
                 object.botDocumentMessageMetadata = $root.AICommon.BotDocumentMessageMetadata.toObject(message.botDocumentMessageMetadata, options);
             if (message.botGroupMetadata != null && message.hasOwnProperty("botGroupMetadata"))
                 object.botGroupMetadata = $root.AICommon.BotGroupMetadata.toObject(message.botGroupMetadata, options);
+            if (message.botRenderingConfigMetadata != null && message.hasOwnProperty("botRenderingConfigMetadata"))
+                object.botRenderingConfigMetadata = $root.AICommon.BotRenderingConfigMetadata.toObject(message.botRenderingConfigMetadata, options);
             if (message.internalMetadata != null && message.hasOwnProperty("internalMetadata"))
                 object.internalMetadata = options.bytes === String ? $util.base64.encode(message.internalMetadata, 0, message.internalMetadata.length) : options.bytes === Array ? Array.prototype.slice.call(message.internalMetadata) : message.internalMetadata;
             return object;

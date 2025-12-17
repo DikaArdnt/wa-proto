@@ -277,6 +277,11 @@ message BotGroupParticipantMetadata {
     optional string botFbid = 1;
 }
 
+message BotRenderingConfigMetadata {
+    optional string bloksVersioningId = 1;
+    optional double pixelDensity = 2;
+}
+
 message BotGroupMetadata {
     repeated BotGroupParticipantMetadata participantsMetadata = 1;
 }
@@ -317,6 +322,7 @@ message BotMetadata {
     optional SessionTransparencyMetadata sessionTransparencyMetadata = 33;
     optional BotDocumentMessageMetadata botDocumentMessageMetadata = 34;
     optional BotGroupMetadata botGroupMetadata = 35;
+    optional BotRenderingConfigMetadata botRenderingConfigMetadata = 36;
     optional bytes internalMetadata = 999;
 }
 
