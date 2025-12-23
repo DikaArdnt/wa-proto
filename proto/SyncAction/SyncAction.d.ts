@@ -1628,6 +1628,9 @@ export namespace SyncAction {
 
             /** BusinessBroadcastListAction listName */
             listName?: (string|null);
+
+            /** BusinessBroadcastListAction labelIds */
+            labelIds?: (string[]|null);
         }
 
         /** Represents a BusinessBroadcastListAction. */
@@ -1647,6 +1650,9 @@ export namespace SyncAction {
 
             /** BusinessBroadcastListAction listName. */
             public listName: string;
+
+            /** BusinessBroadcastListAction labelIds. */
+            public labelIds: string[];
 
             /**
              * Creates a new BusinessBroadcastListAction instance using the specified properties.

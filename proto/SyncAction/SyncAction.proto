@@ -148,6 +148,7 @@ message SyncActionValue {
         optional bool deleted = 1;
         repeated SyncActionValue.BroadcastListParticipant participants = 2;
         optional string listName = 3;
+        repeated string labelIds = 4;
     }
     message CallLogAction {
         optional CallLogRecord callLogRecord = 1;

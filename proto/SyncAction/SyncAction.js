@@ -4864,6 +4864,7 @@ $root.SyncAction = (function() {
              * @property {boolean|null} [deleted] BusinessBroadcastListAction deleted
              * @property {Array.<SyncAction.SyncActionValue.IBroadcastListParticipant>|null} [participants] BusinessBroadcastListAction participants
              * @property {string|null} [listName] BusinessBroadcastListAction listName
+             * @property {Array.<string>|null} [labelIds] BusinessBroadcastListAction labelIds
              */
 
             /**
@@ -4876,6 +4877,7 @@ $root.SyncAction = (function() {
              */
             function BusinessBroadcastListAction(properties) {
                 this.participants = [];
+                this.labelIds = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -4905,6 +4907,14 @@ $root.SyncAction = (function() {
              * @instance
              */
             BusinessBroadcastListAction.prototype.listName = "";
+
+            /**
+             * BusinessBroadcastListAction labelIds.
+             * @member {Array.<string>} labelIds
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
+             * @instance
+             */
+            BusinessBroadcastListAction.prototype.labelIds = $util.emptyArray;
 
             /**
              * Creates a new BusinessBroadcastListAction instance using the specified properties.
@@ -4937,6 +4947,9 @@ $root.SyncAction = (function() {
                         $root.SyncAction.SyncActionValue.BroadcastListParticipant.encode(message.participants[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 if (message.listName != null && Object.hasOwnProperty.call(message, "listName"))
                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.listName);
+                if (message.labelIds != null && message.labelIds.length)
+                    for (var i = 0; i < message.labelIds.length; ++i)
+                        writer.uint32(/* id 4, wireType 2 =*/34).string(message.labelIds[i]);
                 return writer;
             };
 
@@ -4985,6 +4998,12 @@ $root.SyncAction = (function() {
                         }
                     case 3: {
                             message.listName = reader.string();
+                            break;
+                        }
+                    case 4: {
+                            if (!(message.labelIds && message.labelIds.length))
+                                message.labelIds = [];
+                            message.labelIds.push(reader.string());
                             break;
                         }
                     default:
@@ -5037,6 +5056,13 @@ $root.SyncAction = (function() {
                 if (message.listName != null && message.hasOwnProperty("listName"))
                     if (!$util.isString(message.listName))
                         return "listName: string expected";
+                if (message.labelIds != null && message.hasOwnProperty("labelIds")) {
+                    if (!Array.isArray(message.labelIds))
+                        return "labelIds: array expected";
+                    for (var i = 0; i < message.labelIds.length; ++i)
+                        if (!$util.isString(message.labelIds[i]))
+                            return "labelIds: string[] expected";
+                }
                 return null;
             };
 
@@ -5066,6 +5092,13 @@ $root.SyncAction = (function() {
                 }
                 if (object.listName != null)
                     message.listName = String(object.listName);
+                if (object.labelIds) {
+                    if (!Array.isArray(object.labelIds))
+                        throw TypeError(".SyncAction.SyncActionValue.BusinessBroadcastListAction.labelIds: array expected");
+                    message.labelIds = [];
+                    for (var i = 0; i < object.labelIds.length; ++i)
+                        message.labelIds[i] = String(object.labelIds[i]);
+                }
                 return message;
             };
 
@@ -5082,8 +5115,10 @@ $root.SyncAction = (function() {
                 if (!options)
                     options = {};
                 var object = {};
-                if (options.arrays || options.defaults)
+                if (options.arrays || options.defaults) {
                     object.participants = [];
+                    object.labelIds = [];
+                }
                 if (options.defaults) {
                     object.deleted = false;
                     object.listName = "";
@@ -5097,6 +5132,11 @@ $root.SyncAction = (function() {
                 }
                 if (message.listName != null && message.hasOwnProperty("listName"))
                     object.listName = message.listName;
+                if (message.labelIds && message.labelIds.length) {
+                    object.labelIds = [];
+                    for (var j = 0; j < message.labelIds.length; ++j)
+                        object.labelIds[j] = message.labelIds[j];
+                }
                 return object;
             };
 
