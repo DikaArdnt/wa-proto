@@ -101960,6 +101960,7 @@ $root.CompanionReg = (function() {
              * @property {boolean|null} [supportGuestChat] HistorySyncConfig supportGuestChat
              * @property {boolean|null} [completeOnDemandReady] HistorySyncConfig completeOnDemandReady
              * @property {number|null} [thumbnailSyncDaysLimit] HistorySyncConfig thumbnailSyncDaysLimit
+             * @property {number|null} [initialSyncMaxMessagesPerChat] HistorySyncConfig initialSyncMaxMessagesPerChat
              */
 
             /**
@@ -102130,6 +102131,14 @@ $root.CompanionReg = (function() {
             HistorySyncConfig.prototype.thumbnailSyncDaysLimit = 0;
 
             /**
+             * HistorySyncConfig initialSyncMaxMessagesPerChat.
+             * @member {number} initialSyncMaxMessagesPerChat
+             * @memberof CompanionReg.DeviceProps.HistorySyncConfig
+             * @instance
+             */
+            HistorySyncConfig.prototype.initialSyncMaxMessagesPerChat = 0;
+
+            /**
              * Creates a new HistorySyncConfig instance using the specified properties.
              * @function create
              * @memberof CompanionReg.DeviceProps.HistorySyncConfig
@@ -102191,6 +102200,8 @@ $root.CompanionReg = (function() {
                     writer.uint32(/* id 18, wireType 0 =*/144).bool(message.completeOnDemandReady);
                 if (message.thumbnailSyncDaysLimit != null && Object.hasOwnProperty.call(message, "thumbnailSyncDaysLimit"))
                     writer.uint32(/* id 19, wireType 0 =*/152).uint32(message.thumbnailSyncDaysLimit);
+                if (message.initialSyncMaxMessagesPerChat != null && Object.hasOwnProperty.call(message, "initialSyncMaxMessagesPerChat"))
+                    writer.uint32(/* id 20, wireType 0 =*/160).uint32(message.initialSyncMaxMessagesPerChat);
                 return writer;
             };
 
@@ -102303,6 +102314,10 @@ $root.CompanionReg = (function() {
                             message.thumbnailSyncDaysLimit = reader.uint32();
                             break;
                         }
+                    case 20: {
+                            message.initialSyncMaxMessagesPerChat = reader.uint32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -102395,6 +102410,9 @@ $root.CompanionReg = (function() {
                 if (message.thumbnailSyncDaysLimit != null && message.hasOwnProperty("thumbnailSyncDaysLimit"))
                     if (!$util.isInteger(message.thumbnailSyncDaysLimit))
                         return "thumbnailSyncDaysLimit: integer expected";
+                if (message.initialSyncMaxMessagesPerChat != null && message.hasOwnProperty("initialSyncMaxMessagesPerChat"))
+                    if (!$util.isInteger(message.initialSyncMaxMessagesPerChat))
+                        return "initialSyncMaxMessagesPerChat: integer expected";
                 return null;
             };
 
@@ -102448,6 +102466,8 @@ $root.CompanionReg = (function() {
                     message.completeOnDemandReady = Boolean(object.completeOnDemandReady);
                 if (object.thumbnailSyncDaysLimit != null)
                     message.thumbnailSyncDaysLimit = object.thumbnailSyncDaysLimit >>> 0;
+                if (object.initialSyncMaxMessagesPerChat != null)
+                    message.initialSyncMaxMessagesPerChat = object.initialSyncMaxMessagesPerChat >>> 0;
                 return message;
             };
 
@@ -102484,6 +102504,7 @@ $root.CompanionReg = (function() {
                     object.supportGuestChat = false;
                     object.completeOnDemandReady = false;
                     object.thumbnailSyncDaysLimit = 0;
+                    object.initialSyncMaxMessagesPerChat = 0;
                 }
                 if (message.fullSyncDaysLimit != null && message.hasOwnProperty("fullSyncDaysLimit"))
                     object.fullSyncDaysLimit = message.fullSyncDaysLimit;
@@ -102523,6 +102544,8 @@ $root.CompanionReg = (function() {
                     object.completeOnDemandReady = message.completeOnDemandReady;
                 if (message.thumbnailSyncDaysLimit != null && message.hasOwnProperty("thumbnailSyncDaysLimit"))
                     object.thumbnailSyncDaysLimit = message.thumbnailSyncDaysLimit;
+                if (message.initialSyncMaxMessagesPerChat != null && message.hasOwnProperty("initialSyncMaxMessagesPerChat"))
+                    object.initialSyncMaxMessagesPerChat = message.initialSyncMaxMessagesPerChat;
                 return object;
             };
 

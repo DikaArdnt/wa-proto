@@ -41510,6 +41510,9 @@ export namespace CompanionReg {
 
             /** HistorySyncConfig thumbnailSyncDaysLimit */
             thumbnailSyncDaysLimit?: (number|null);
+
+            /** HistorySyncConfig initialSyncMaxMessagesPerChat */
+            initialSyncMaxMessagesPerChat?: (number|null);
         }
 
         /** Represents a HistorySyncConfig. */
@@ -41577,6 +41580,9 @@ export namespace CompanionReg {
 
             /** HistorySyncConfig thumbnailSyncDaysLimit. */
             public thumbnailSyncDaysLimit: number;
+
+            /** HistorySyncConfig initialSyncMaxMessagesPerChat. */
+            public initialSyncMaxMessagesPerChat: number;
 
             /**
              * Creates a new HistorySyncConfig instance using the specified properties.
