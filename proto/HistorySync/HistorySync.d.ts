@@ -8854,6 +8854,9 @@ export namespace E2E {
 
         /** Message newsletterAdminProfileMessage */
         newsletterAdminProfileMessage?: (E2E.Message.IFutureProofMessage|null);
+
+        /** Message newsletterAdminProfileMessageV2 */
+        newsletterAdminProfileMessageV2?: (E2E.Message.IFutureProofMessage|null);
     }
 
     /** Represents a Message. */
@@ -9152,6 +9155,9 @@ export namespace E2E {
 
         /** Message newsletterAdminProfileMessage. */
         public newsletterAdminProfileMessage?: (E2E.Message.IFutureProofMessage|null);
+
+        /** Message newsletterAdminProfileMessageV2. */
+        public newsletterAdminProfileMessageV2?: (E2E.Message.IFutureProofMessage|null);
 
         /**
          * Creates a new Message instance using the specified properties.
@@ -34353,8 +34359,8 @@ export namespace AICommon {
 
         /** BotUserSelectionMode enum. */
         enum BotUserSelectionMode {
-            UNKNOWN_MODE = 0,
-            REASONING_MODE = 1
+            DEFAULT_MODE = 0,
+            THINK_HARD_MODE = 1
         }
     }
 
@@ -34513,7 +34519,9 @@ export namespace AICommon {
             RICH_RESPONSE_UR_ZEITGEIST_CAROUSEL = 51,
             AI_IMAGINE_LOADING_INDICATOR = 52,
             RICH_RESPONSE_UR_IMAGINE = 53,
-            AI_IMAGINE_UR_TO_NATIVE_LOADING_INDICATOR = 54
+            AI_IMAGINE_UR_TO_NATIVE_LOADING_INDICATOR = 54,
+            RICH_RESPONSE_UR_BLOKS_ENABLED = 55,
+            RICH_RESPONSE_INLINE_LINKS_ENABLED = 56
         }
     }
 

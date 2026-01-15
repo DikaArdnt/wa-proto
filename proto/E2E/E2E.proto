@@ -614,6 +614,7 @@ message Message {
     optional NewsletterFollowerInviteMessage newsletterFollowerInviteMessageV2 = 113;
     optional PollResultSnapshotMessage pollResultSnapshotMessageV3 = 115;
     optional FutureProofMessage newsletterAdminProfileMessage = 116;
+    optional FutureProofMessage newsletterAdminProfileMessageV2 = 117;
     message AlbumMessage {
         optional uint32 expectedImageCount = 2;
         optional uint32 expectedVideoCount = 3;
