@@ -800,6 +800,7 @@ message Message {
         optional string displayName = 1;
         optional string vcard = 16;
         optional ContextInfo contextInfo = 17;
+        optional bool isSelfContact = 18;
     }
     message ContactsArrayMessage {
         optional string displayName = 1;
@@ -1376,6 +1377,7 @@ message Message {
     message PaymentInviteMessage {
         optional ServiceType serviceType = 1;
         optional int64 expiryTimestamp = 2;
+        optional bool incentiveEligible = 3;
         enum ServiceType {
             UNKNOWN = 0;
             FBPAY = 1;

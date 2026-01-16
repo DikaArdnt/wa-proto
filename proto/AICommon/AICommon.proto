@@ -16,6 +16,7 @@ message AIHomeState {
         optional string imageWdsIdentifier = 5;
         optional string imageTintColor = 6;
         optional string imageBackgroundColor = 7;
+        optional string cardTypeId = 8;
         enum AIHomeActionType {
             PROMPT = 0;
             CREATE_IMAGE = 1;

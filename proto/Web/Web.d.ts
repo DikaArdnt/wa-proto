@@ -13350,6 +13350,9 @@ export namespace E2E {
 
             /** ContactMessage contextInfo */
             contextInfo?: (E2E.IContextInfo|null);
+
+            /** ContactMessage isSelfContact */
+            isSelfContact?: (boolean|null);
         }
 
         /** Represents a ContactMessage. */
@@ -13369,6 +13372,9 @@ export namespace E2E {
 
             /** ContactMessage contextInfo. */
             public contextInfo?: (E2E.IContextInfo|null);
+
+            /** ContactMessage isSelfContact. */
+            public isSelfContact: boolean;
 
             /**
              * Creates a new ContactMessage instance using the specified properties.
@@ -20857,6 +20863,9 @@ export namespace E2E {
 
             /** PaymentInviteMessage expiryTimestamp */
             expiryTimestamp?: (number|Long|null);
+
+            /** PaymentInviteMessage incentiveEligible */
+            incentiveEligible?: (boolean|null);
         }
 
         /** Represents a PaymentInviteMessage. */
@@ -20873,6 +20882,9 @@ export namespace E2E {
 
             /** PaymentInviteMessage expiryTimestamp. */
             public expiryTimestamp: (number|Long);
+
+            /** PaymentInviteMessage incentiveEligible. */
+            public incentiveEligible: boolean;
 
             /**
              * Creates a new PaymentInviteMessage instance using the specified properties.
@@ -29309,6 +29321,9 @@ export namespace AICommon {
 
             /** AIHomeOption imageBackgroundColor */
             imageBackgroundColor?: (string|null);
+
+            /** AIHomeOption cardTypeId */
+            cardTypeId?: (string|null);
         }
 
         /** Represents a AIHomeOption. */
@@ -29340,6 +29355,9 @@ export namespace AICommon {
 
             /** AIHomeOption imageBackgroundColor. */
             public imageBackgroundColor: string;
+
+            /** AIHomeOption cardTypeId. */
+            public cardTypeId: string;
 
             /**
              * Creates a new AIHomeOption instance using the specified properties.

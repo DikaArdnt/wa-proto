@@ -29100,6 +29100,7 @@ $root.E2E = (function() {
              * @property {string|null} [displayName] ContactMessage displayName
              * @property {string|null} [vcard] ContactMessage vcard
              * @property {E2E.IContextInfo|null} [contextInfo] ContactMessage contextInfo
+             * @property {boolean|null} [isSelfContact] ContactMessage isSelfContact
              */
 
             /**
@@ -29142,6 +29143,14 @@ $root.E2E = (function() {
             ContactMessage.prototype.contextInfo = null;
 
             /**
+             * ContactMessage isSelfContact.
+             * @member {boolean} isSelfContact
+             * @memberof E2E.Message.ContactMessage
+             * @instance
+             */
+            ContactMessage.prototype.isSelfContact = false;
+
+            /**
              * Creates a new ContactMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.ContactMessage
@@ -29171,6 +29180,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 16, wireType 2 =*/130).string(message.vcard);
                 if (message.contextInfo != null && Object.hasOwnProperty.call(message, "contextInfo"))
                     $root.E2E.ContextInfo.encode(message.contextInfo, writer.uint32(/* id 17, wireType 2 =*/138).fork()).ldelim();
+                if (message.isSelfContact != null && Object.hasOwnProperty.call(message, "isSelfContact"))
+                    writer.uint32(/* id 18, wireType 0 =*/144).bool(message.isSelfContact);
                 return writer;
             };
 
@@ -29219,6 +29230,10 @@ $root.E2E = (function() {
                             message.contextInfo = $root.E2E.ContextInfo.decode(reader, reader.uint32());
                             break;
                         }
+                    case 18: {
+                            message.isSelfContact = reader.bool();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -29265,6 +29280,9 @@ $root.E2E = (function() {
                     if (error)
                         return "contextInfo." + error;
                 }
+                if (message.isSelfContact != null && message.hasOwnProperty("isSelfContact"))
+                    if (typeof message.isSelfContact !== "boolean")
+                        return "isSelfContact: boolean expected";
                 return null;
             };
 
@@ -29289,6 +29307,8 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.ContactMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo);
                 }
+                if (object.isSelfContact != null)
+                    message.isSelfContact = Boolean(object.isSelfContact);
                 return message;
             };
 
@@ -29309,6 +29329,7 @@ $root.E2E = (function() {
                     object.displayName = "";
                     object.vcard = "";
                     object.contextInfo = null;
+                    object.isSelfContact = false;
                 }
                 if (message.displayName != null && message.hasOwnProperty("displayName"))
                     object.displayName = message.displayName;
@@ -29316,6 +29337,8 @@ $root.E2E = (function() {
                     object.vcard = message.vcard;
                 if (message.contextInfo != null && message.hasOwnProperty("contextInfo"))
                     object.contextInfo = $root.E2E.ContextInfo.toObject(message.contextInfo, options);
+                if (message.isSelfContact != null && message.hasOwnProperty("isSelfContact"))
+                    object.isSelfContact = message.isSelfContact;
                 return object;
             };
 
@@ -49960,6 +49983,7 @@ $root.E2E = (function() {
              * @interface IPaymentInviteMessage
              * @property {E2E.Message.PaymentInviteMessage.ServiceType|null} [serviceType] PaymentInviteMessage serviceType
              * @property {number|Long|null} [expiryTimestamp] PaymentInviteMessage expiryTimestamp
+             * @property {boolean|null} [incentiveEligible] PaymentInviteMessage incentiveEligible
              */
 
             /**
@@ -49994,6 +50018,14 @@ $root.E2E = (function() {
             PaymentInviteMessage.prototype.expiryTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
             /**
+             * PaymentInviteMessage incentiveEligible.
+             * @member {boolean} incentiveEligible
+             * @memberof E2E.Message.PaymentInviteMessage
+             * @instance
+             */
+            PaymentInviteMessage.prototype.incentiveEligible = false;
+
+            /**
              * Creates a new PaymentInviteMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.PaymentInviteMessage
@@ -50021,6 +50053,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.serviceType);
                 if (message.expiryTimestamp != null && Object.hasOwnProperty.call(message, "expiryTimestamp"))
                     writer.uint32(/* id 2, wireType 0 =*/16).int64(message.expiryTimestamp);
+                if (message.incentiveEligible != null && Object.hasOwnProperty.call(message, "incentiveEligible"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).bool(message.incentiveEligible);
                 return writer;
             };
 
@@ -50063,6 +50097,10 @@ $root.E2E = (function() {
                         }
                     case 2: {
                             message.expiryTimestamp = reader.int64();
+                            break;
+                        }
+                    case 3: {
+                            message.incentiveEligible = reader.bool();
                             break;
                         }
                     default:
@@ -50113,6 +50151,9 @@ $root.E2E = (function() {
                 if (message.expiryTimestamp != null && message.hasOwnProperty("expiryTimestamp"))
                     if (!$util.isInteger(message.expiryTimestamp) && !(message.expiryTimestamp && $util.isInteger(message.expiryTimestamp.low) && $util.isInteger(message.expiryTimestamp.high)))
                         return "expiryTimestamp: integer|Long expected";
+                if (message.incentiveEligible != null && message.hasOwnProperty("incentiveEligible"))
+                    if (typeof message.incentiveEligible !== "boolean")
+                        return "incentiveEligible: boolean expected";
                 return null;
             };
 
@@ -50161,6 +50202,8 @@ $root.E2E = (function() {
                         message.expiryTimestamp = object.expiryTimestamp;
                     else if (typeof object.expiryTimestamp === "object")
                         message.expiryTimestamp = new $util.LongBits(object.expiryTimestamp.low >>> 0, object.expiryTimestamp.high >>> 0).toNumber();
+                if (object.incentiveEligible != null)
+                    message.incentiveEligible = Boolean(object.incentiveEligible);
                 return message;
             };
 
@@ -50184,6 +50227,7 @@ $root.E2E = (function() {
                         object.expiryTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                     } else
                         object.expiryTimestamp = options.longs === String ? "0" : 0;
+                    object.incentiveEligible = false;
                 }
                 if (message.serviceType != null && message.hasOwnProperty("serviceType"))
                     object.serviceType = options.enums === String ? $root.E2E.Message.PaymentInviteMessage.ServiceType[message.serviceType] === undefined ? message.serviceType : $root.E2E.Message.PaymentInviteMessage.ServiceType[message.serviceType] : message.serviceType;
@@ -50192,6 +50236,8 @@ $root.E2E = (function() {
                         object.expiryTimestamp = options.longs === String ? String(message.expiryTimestamp) : message.expiryTimestamp;
                     else
                         object.expiryTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.expiryTimestamp) : options.longs === Number ? new $util.LongBits(message.expiryTimestamp.low >>> 0, message.expiryTimestamp.high >>> 0).toNumber() : message.expiryTimestamp;
+                if (message.incentiveEligible != null && message.hasOwnProperty("incentiveEligible"))
+                    object.incentiveEligible = message.incentiveEligible;
                 return object;
             };
 
@@ -72904,6 +72950,7 @@ $root.AICommon = (function() {
              * @property {string|null} [imageWdsIdentifier] AIHomeOption imageWdsIdentifier
              * @property {string|null} [imageTintColor] AIHomeOption imageTintColor
              * @property {string|null} [imageBackgroundColor] AIHomeOption imageBackgroundColor
+             * @property {string|null} [cardTypeId] AIHomeOption cardTypeId
              */
 
             /**
@@ -72978,6 +73025,14 @@ $root.AICommon = (function() {
             AIHomeOption.prototype.imageBackgroundColor = "";
 
             /**
+             * AIHomeOption cardTypeId.
+             * @member {string} cardTypeId
+             * @memberof AICommon.AIHomeState.AIHomeOption
+             * @instance
+             */
+            AIHomeOption.prototype.cardTypeId = "";
+
+            /**
              * Creates a new AIHomeOption instance using the specified properties.
              * @function create
              * @memberof AICommon.AIHomeState.AIHomeOption
@@ -73015,6 +73070,8 @@ $root.AICommon = (function() {
                     writer.uint32(/* id 6, wireType 2 =*/50).string(message.imageTintColor);
                 if (message.imageBackgroundColor != null && Object.hasOwnProperty.call(message, "imageBackgroundColor"))
                     writer.uint32(/* id 7, wireType 2 =*/58).string(message.imageBackgroundColor);
+                if (message.cardTypeId != null && Object.hasOwnProperty.call(message, "cardTypeId"))
+                    writer.uint32(/* id 8, wireType 2 =*/66).string(message.cardTypeId);
                 return writer;
             };
 
@@ -73077,6 +73134,10 @@ $root.AICommon = (function() {
                         }
                     case 7: {
                             message.imageBackgroundColor = reader.string();
+                            break;
+                        }
+                    case 8: {
+                            message.cardTypeId = reader.string();
                             break;
                         }
                     default:
@@ -73142,6 +73203,9 @@ $root.AICommon = (function() {
                 if (message.imageBackgroundColor != null && message.hasOwnProperty("imageBackgroundColor"))
                     if (!$util.isString(message.imageBackgroundColor))
                         return "imageBackgroundColor: string expected";
+                if (message.cardTypeId != null && message.hasOwnProperty("cardTypeId"))
+                    if (!$util.isString(message.cardTypeId))
+                        return "cardTypeId: string expected";
                 return null;
             };
 
@@ -73193,6 +73257,8 @@ $root.AICommon = (function() {
                     message.imageTintColor = String(object.imageTintColor);
                 if (object.imageBackgroundColor != null)
                     message.imageBackgroundColor = String(object.imageBackgroundColor);
+                if (object.cardTypeId != null)
+                    message.cardTypeId = String(object.cardTypeId);
                 return message;
             };
 
@@ -73217,6 +73283,7 @@ $root.AICommon = (function() {
                     object.imageWdsIdentifier = "";
                     object.imageTintColor = "";
                     object.imageBackgroundColor = "";
+                    object.cardTypeId = "";
                 }
                 if (message.type != null && message.hasOwnProperty("type"))
                     object.type = options.enums === String ? $root.AICommon.AIHomeState.AIHomeOption.AIHomeActionType[message.type] === undefined ? message.type : $root.AICommon.AIHomeState.AIHomeOption.AIHomeActionType[message.type] : message.type;
@@ -73232,6 +73299,8 @@ $root.AICommon = (function() {
                     object.imageTintColor = message.imageTintColor;
                 if (message.imageBackgroundColor != null && message.hasOwnProperty("imageBackgroundColor"))
                     object.imageBackgroundColor = message.imageBackgroundColor;
+                if (message.cardTypeId != null && message.hasOwnProperty("cardTypeId"))
+                    object.cardTypeId = message.cardTypeId;
                 return object;
             };
 

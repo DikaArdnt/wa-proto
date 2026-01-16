@@ -137,6 +137,9 @@ export namespace AICommon {
 
             /** AIHomeOption imageBackgroundColor */
             imageBackgroundColor?: (string|null);
+
+            /** AIHomeOption cardTypeId */
+            cardTypeId?: (string|null);
         }
 
         /** Represents a AIHomeOption. */
@@ -168,6 +171,9 @@ export namespace AICommon {
 
             /** AIHomeOption imageBackgroundColor. */
             public imageBackgroundColor: string;
+
+            /** AIHomeOption cardTypeId. */
+            public cardTypeId: string;
 
             /**
              * Creates a new AIHomeOption instance using the specified properties.
