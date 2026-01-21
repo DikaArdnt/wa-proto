@@ -435,6 +435,7 @@ message BotAgeCollectionMetadata {
 
 message BotImagineMetadata {
     optional ImagineType imagineType = 1;
+    optional string shortPrompt = 2;
     enum ImagineType {
         UNKNOWN = 0;
         IMAGINE = 1;

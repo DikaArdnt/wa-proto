@@ -35352,6 +35352,9 @@ export namespace AICommon {
 
         /** BotImagineMetadata imagineType */
         imagineType?: (AICommon.BotImagineMetadata.ImagineType|null);
+
+        /** BotImagineMetadata shortPrompt */
+        shortPrompt?: (string|null);
     }
 
     /** Represents a BotImagineMetadata. */
@@ -35365,6 +35368,9 @@ export namespace AICommon {
 
         /** BotImagineMetadata imagineType. */
         public imagineType: AICommon.BotImagineMetadata.ImagineType;
+
+        /** BotImagineMetadata shortPrompt. */
+        public shortPrompt: string;
 
         /**
          * Creates a new BotImagineMetadata instance using the specified properties.

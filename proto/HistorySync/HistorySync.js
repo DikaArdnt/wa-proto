@@ -93592,6 +93592,7 @@ $root.AICommon = (function() {
          * @memberof AICommon
          * @interface IBotImagineMetadata
          * @property {AICommon.BotImagineMetadata.ImagineType|null} [imagineType] BotImagineMetadata imagineType
+         * @property {string|null} [shortPrompt] BotImagineMetadata shortPrompt
          */
 
         /**
@@ -93616,6 +93617,14 @@ $root.AICommon = (function() {
          * @instance
          */
         BotImagineMetadata.prototype.imagineType = 0;
+
+        /**
+         * BotImagineMetadata shortPrompt.
+         * @member {string} shortPrompt
+         * @memberof AICommon.BotImagineMetadata
+         * @instance
+         */
+        BotImagineMetadata.prototype.shortPrompt = "";
 
         /**
          * Creates a new BotImagineMetadata instance using the specified properties.
@@ -93643,6 +93652,8 @@ $root.AICommon = (function() {
                 writer = $Writer.create();
             if (message.imagineType != null && Object.hasOwnProperty.call(message, "imagineType"))
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.imagineType);
+            if (message.shortPrompt != null && Object.hasOwnProperty.call(message, "shortPrompt"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.shortPrompt);
             return writer;
         };
 
@@ -93681,6 +93692,10 @@ $root.AICommon = (function() {
                 switch (tag >>> 3) {
                 case 1: {
                         message.imagineType = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.shortPrompt = reader.string();
                         break;
                     }
                 default:
@@ -93729,6 +93744,9 @@ $root.AICommon = (function() {
                 case 4:
                     break;
                 }
+            if (message.shortPrompt != null && message.hasOwnProperty("shortPrompt"))
+                if (!$util.isString(message.shortPrompt))
+                    return "shortPrompt: string expected";
             return null;
         };
 
@@ -93772,6 +93790,8 @@ $root.AICommon = (function() {
                 message.imagineType = 4;
                 break;
             }
+            if (object.shortPrompt != null)
+                message.shortPrompt = String(object.shortPrompt);
             return message;
         };
 
@@ -93788,10 +93808,14 @@ $root.AICommon = (function() {
             if (!options)
                 options = {};
             var object = {};
-            if (options.defaults)
+            if (options.defaults) {
                 object.imagineType = options.enums === String ? "UNKNOWN" : 0;
+                object.shortPrompt = "";
+            }
             if (message.imagineType != null && message.hasOwnProperty("imagineType"))
                 object.imagineType = options.enums === String ? $root.AICommon.BotImagineMetadata.ImagineType[message.imagineType] === undefined ? message.imagineType : $root.AICommon.BotImagineMetadata.ImagineType[message.imagineType] : message.imagineType;
+            if (message.shortPrompt != null && message.hasOwnProperty("shortPrompt"))
+                object.shortPrompt = message.shortPrompt;
             return object;
         };
 
