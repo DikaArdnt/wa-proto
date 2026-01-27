@@ -4,6 +4,14 @@ package AICommon;
 import "../Protocol/Protocol.proto";
 import "../StatusAttributions/StatusAttributions.proto";
 
+message BotInfrastructureDiagnostics {
+    optional BotBackend botBackend = 1;
+    enum BotBackend {
+        AAPI = 0;
+        CLIPPY = 1;
+    }
+}
+
 message AIHomeState {
     optional int64 lastFetchTime = 1;
     repeated AIHomeOption capabilityOptions = 2;
@@ -324,6 +332,7 @@ message BotMetadata {
     optional BotDocumentMessageMetadata botDocumentMessageMetadata = 34;
     optional BotGroupMetadata botGroupMetadata = 35;
     optional BotRenderingConfigMetadata botRenderingConfigMetadata = 36;
+    optional BotInfrastructureDiagnostics botInfrastructureDiagnostics = 37;
     optional bytes internalMetadata = 999;
 }
 
