@@ -15684,6 +15684,8 @@ $root.E2E = (function() {
              * @memberof E2E.ContextInfo
              * @interface IStatusAudienceMetadata
              * @property {E2E.ContextInfo.StatusAudienceMetadata.AudienceType|null} [audienceType] StatusAudienceMetadata audienceType
+             * @property {string|null} [listName] StatusAudienceMetadata listName
+             * @property {string|null} [listEmoji] StatusAudienceMetadata listEmoji
              */
 
             /**
@@ -15708,6 +15710,22 @@ $root.E2E = (function() {
              * @instance
              */
             StatusAudienceMetadata.prototype.audienceType = 0;
+
+            /**
+             * StatusAudienceMetadata listName.
+             * @member {string} listName
+             * @memberof E2E.ContextInfo.StatusAudienceMetadata
+             * @instance
+             */
+            StatusAudienceMetadata.prototype.listName = "";
+
+            /**
+             * StatusAudienceMetadata listEmoji.
+             * @member {string} listEmoji
+             * @memberof E2E.ContextInfo.StatusAudienceMetadata
+             * @instance
+             */
+            StatusAudienceMetadata.prototype.listEmoji = "";
 
             /**
              * Creates a new StatusAudienceMetadata instance using the specified properties.
@@ -15735,6 +15753,10 @@ $root.E2E = (function() {
                     writer = $Writer.create();
                 if (message.audienceType != null && Object.hasOwnProperty.call(message, "audienceType"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.audienceType);
+                if (message.listName != null && Object.hasOwnProperty.call(message, "listName"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.listName);
+                if (message.listEmoji != null && Object.hasOwnProperty.call(message, "listEmoji"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.listEmoji);
                 return writer;
             };
 
@@ -15773,6 +15795,14 @@ $root.E2E = (function() {
                     switch (tag >>> 3) {
                     case 1: {
                             message.audienceType = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.listName = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.listEmoji = reader.string();
                             break;
                         }
                     default:
@@ -15818,6 +15848,12 @@ $root.E2E = (function() {
                     case 1:
                         break;
                     }
+                if (message.listName != null && message.hasOwnProperty("listName"))
+                    if (!$util.isString(message.listName))
+                        return "listName: string expected";
+                if (message.listEmoji != null && message.hasOwnProperty("listEmoji"))
+                    if (!$util.isString(message.listEmoji))
+                        return "listEmoji: string expected";
                 return null;
             };
 
@@ -15849,6 +15885,10 @@ $root.E2E = (function() {
                     message.audienceType = 1;
                     break;
                 }
+                if (object.listName != null)
+                    message.listName = String(object.listName);
+                if (object.listEmoji != null)
+                    message.listEmoji = String(object.listEmoji);
                 return message;
             };
 
@@ -15865,10 +15905,17 @@ $root.E2E = (function() {
                 if (!options)
                     options = {};
                 var object = {};
-                if (options.defaults)
+                if (options.defaults) {
                     object.audienceType = options.enums === String ? "UNKNOWN" : 0;
+                    object.listName = "";
+                    object.listEmoji = "";
+                }
                 if (message.audienceType != null && message.hasOwnProperty("audienceType"))
                     object.audienceType = options.enums === String ? $root.E2E.ContextInfo.StatusAudienceMetadata.AudienceType[message.audienceType] === undefined ? message.audienceType : $root.E2E.ContextInfo.StatusAudienceMetadata.AudienceType[message.audienceType] : message.audienceType;
+                if (message.listName != null && message.hasOwnProperty("listName"))
+                    object.listName = message.listName;
+                if (message.listEmoji != null && message.hasOwnProperty("listEmoji"))
+                    object.listEmoji = message.listEmoji;
                 return object;
             };
 
@@ -95858,6 +95905,7 @@ $root.StatusAttributions = (function() {
                 case 6:
                 case 7:
                 case 8:
+                case 9:
                     break;
                 }
             if (message.actionUrl != null && message.hasOwnProperty("actionUrl"))
@@ -95978,6 +96026,10 @@ $root.StatusAttributions = (function() {
             case "LAYOUTS":
             case 8:
                 message.type = 8;
+                break;
+            case "STATUS_CLOSE_SHARING":
+            case 9:
+                message.type = 9;
                 break;
             }
             if (object.actionUrl != null)
@@ -98058,6 +98110,7 @@ $root.StatusAttributions = (function() {
          * @property {number} RL_ATTRIBUTION=6 RL_ATTRIBUTION value
          * @property {number} AI_CREATED=7 AI_CREATED value
          * @property {number} LAYOUTS=8 LAYOUTS value
+         * @property {number} STATUS_CLOSE_SHARING=9 STATUS_CLOSE_SHARING value
          */
         StatusAttribution.Type = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -98070,6 +98123,7 @@ $root.StatusAttributions = (function() {
             values[valuesById[6] = "RL_ATTRIBUTION"] = 6;
             values[valuesById[7] = "AI_CREATED"] = 7;
             values[valuesById[8] = "LAYOUTS"] = 8;
+            values[valuesById[9] = "STATUS_CLOSE_SHARING"] = 9;
             return values;
         })();
 

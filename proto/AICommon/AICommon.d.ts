@@ -11080,7 +11080,8 @@ export namespace StatusAttributions {
             GROUP_STATUS = 5,
             RL_ATTRIBUTION = 6,
             AI_CREATED = 7,
-            LAYOUTS = 8
+            LAYOUTS = 8,
+            STATUS_CLOSE_SHARING = 9
         }
     }
 }

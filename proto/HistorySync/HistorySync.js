@@ -23636,6 +23636,8 @@ $root.E2E = (function() {
              * @memberof E2E.ContextInfo
              * @interface IStatusAudienceMetadata
              * @property {E2E.ContextInfo.StatusAudienceMetadata.AudienceType|null} [audienceType] StatusAudienceMetadata audienceType
+             * @property {string|null} [listName] StatusAudienceMetadata listName
+             * @property {string|null} [listEmoji] StatusAudienceMetadata listEmoji
              */
 
             /**
@@ -23660,6 +23662,22 @@ $root.E2E = (function() {
              * @instance
              */
             StatusAudienceMetadata.prototype.audienceType = 0;
+
+            /**
+             * StatusAudienceMetadata listName.
+             * @member {string} listName
+             * @memberof E2E.ContextInfo.StatusAudienceMetadata
+             * @instance
+             */
+            StatusAudienceMetadata.prototype.listName = "";
+
+            /**
+             * StatusAudienceMetadata listEmoji.
+             * @member {string} listEmoji
+             * @memberof E2E.ContextInfo.StatusAudienceMetadata
+             * @instance
+             */
+            StatusAudienceMetadata.prototype.listEmoji = "";
 
             /**
              * Creates a new StatusAudienceMetadata instance using the specified properties.
@@ -23687,6 +23705,10 @@ $root.E2E = (function() {
                     writer = $Writer.create();
                 if (message.audienceType != null && Object.hasOwnProperty.call(message, "audienceType"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.audienceType);
+                if (message.listName != null && Object.hasOwnProperty.call(message, "listName"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.listName);
+                if (message.listEmoji != null && Object.hasOwnProperty.call(message, "listEmoji"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.listEmoji);
                 return writer;
             };
 
@@ -23725,6 +23747,14 @@ $root.E2E = (function() {
                     switch (tag >>> 3) {
                     case 1: {
                             message.audienceType = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.listName = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.listEmoji = reader.string();
                             break;
                         }
                     default:
@@ -23770,6 +23800,12 @@ $root.E2E = (function() {
                     case 1:
                         break;
                     }
+                if (message.listName != null && message.hasOwnProperty("listName"))
+                    if (!$util.isString(message.listName))
+                        return "listName: string expected";
+                if (message.listEmoji != null && message.hasOwnProperty("listEmoji"))
+                    if (!$util.isString(message.listEmoji))
+                        return "listEmoji: string expected";
                 return null;
             };
 
@@ -23801,6 +23837,10 @@ $root.E2E = (function() {
                     message.audienceType = 1;
                     break;
                 }
+                if (object.listName != null)
+                    message.listName = String(object.listName);
+                if (object.listEmoji != null)
+                    message.listEmoji = String(object.listEmoji);
                 return message;
             };
 
@@ -23817,10 +23857,17 @@ $root.E2E = (function() {
                 if (!options)
                     options = {};
                 var object = {};
-                if (options.defaults)
+                if (options.defaults) {
                     object.audienceType = options.enums === String ? "UNKNOWN" : 0;
+                    object.listName = "";
+                    object.listEmoji = "";
+                }
                 if (message.audienceType != null && message.hasOwnProperty("audienceType"))
                     object.audienceType = options.enums === String ? $root.E2E.ContextInfo.StatusAudienceMetadata.AudienceType[message.audienceType] === undefined ? message.audienceType : $root.E2E.ContextInfo.StatusAudienceMetadata.AudienceType[message.audienceType] : message.audienceType;
+                if (message.listName != null && message.hasOwnProperty("listName"))
+                    object.listName = message.listName;
+                if (message.listEmoji != null && message.hasOwnProperty("listEmoji"))
+                    object.listEmoji = message.listEmoji;
                 return object;
             };
 
@@ -103810,6 +103857,7 @@ $root.StatusAttributions = (function() {
                 case 6:
                 case 7:
                 case 8:
+                case 9:
                     break;
                 }
             if (message.actionUrl != null && message.hasOwnProperty("actionUrl"))
@@ -103930,6 +103978,10 @@ $root.StatusAttributions = (function() {
             case "LAYOUTS":
             case 8:
                 message.type = 8;
+                break;
+            case "STATUS_CLOSE_SHARING":
+            case 9:
+                message.type = 9;
                 break;
             }
             if (object.actionUrl != null)
@@ -106010,6 +106062,7 @@ $root.StatusAttributions = (function() {
          * @property {number} RL_ATTRIBUTION=6 RL_ATTRIBUTION value
          * @property {number} AI_CREATED=7 AI_CREATED value
          * @property {number} LAYOUTS=8 LAYOUTS value
+         * @property {number} STATUS_CLOSE_SHARING=9 STATUS_CLOSE_SHARING value
          */
         StatusAttribution.Type = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -106022,6 +106075,7 @@ $root.StatusAttributions = (function() {
             values[valuesById[6] = "RL_ATTRIBUTION"] = 6;
             values[valuesById[7] = "AI_CREATED"] = 7;
             values[valuesById[8] = "LAYOUTS"] = 8;
+            values[valuesById[9] = "STATUS_CLOSE_SHARING"] = 9;
             return values;
         })();
 
@@ -142692,6 +142746,14 @@ $root.SyncAction = (function() {
              * @property {boolean|null} [isDocumentsAutodownloadEnabled] SettingsSyncAction isDocumentsAutodownloadEnabled
              * @property {boolean|null} [disableLinkPreviews] SettingsSyncAction disableLinkPreviews
              * @property {number|null} [notificationToneId] SettingsSyncAction notificationToneId
+             * @property {SyncAction.SyncActionValue.SettingsSyncAction.MediaQualitySetting|null} [mediaUploadQuality] SettingsSyncAction mediaUploadQuality
+             * @property {boolean|null} [isSpellCheckEnabled] SettingsSyncAction isSpellCheckEnabled
+             * @property {boolean|null} [isEnterToSendEnabled] SettingsSyncAction isEnterToSendEnabled
+             * @property {boolean|null} [isGroupMessageNotificationEnabled] SettingsSyncAction isGroupMessageNotificationEnabled
+             * @property {boolean|null} [isGroupReactionsNotificationEnabled] SettingsSyncAction isGroupReactionsNotificationEnabled
+             * @property {boolean|null} [isStatusNotificationEnabled] SettingsSyncAction isStatusNotificationEnabled
+             * @property {number|null} [statusNotificationToneId] SettingsSyncAction statusNotificationToneId
+             * @property {boolean|null} [shouldPlaySoundForCallNotification] SettingsSyncAction shouldPlaySoundForCallNotification
              */
 
             /**
@@ -142894,6 +142956,70 @@ $root.SyncAction = (function() {
             SettingsSyncAction.prototype.notificationToneId = 0;
 
             /**
+             * SettingsSyncAction mediaUploadQuality.
+             * @member {SyncAction.SyncActionValue.SettingsSyncAction.MediaQualitySetting} mediaUploadQuality
+             * @memberof SyncAction.SyncActionValue.SettingsSyncAction
+             * @instance
+             */
+            SettingsSyncAction.prototype.mediaUploadQuality = 0;
+
+            /**
+             * SettingsSyncAction isSpellCheckEnabled.
+             * @member {boolean} isSpellCheckEnabled
+             * @memberof SyncAction.SyncActionValue.SettingsSyncAction
+             * @instance
+             */
+            SettingsSyncAction.prototype.isSpellCheckEnabled = false;
+
+            /**
+             * SettingsSyncAction isEnterToSendEnabled.
+             * @member {boolean} isEnterToSendEnabled
+             * @memberof SyncAction.SyncActionValue.SettingsSyncAction
+             * @instance
+             */
+            SettingsSyncAction.prototype.isEnterToSendEnabled = false;
+
+            /**
+             * SettingsSyncAction isGroupMessageNotificationEnabled.
+             * @member {boolean} isGroupMessageNotificationEnabled
+             * @memberof SyncAction.SyncActionValue.SettingsSyncAction
+             * @instance
+             */
+            SettingsSyncAction.prototype.isGroupMessageNotificationEnabled = false;
+
+            /**
+             * SettingsSyncAction isGroupReactionsNotificationEnabled.
+             * @member {boolean} isGroupReactionsNotificationEnabled
+             * @memberof SyncAction.SyncActionValue.SettingsSyncAction
+             * @instance
+             */
+            SettingsSyncAction.prototype.isGroupReactionsNotificationEnabled = false;
+
+            /**
+             * SettingsSyncAction isStatusNotificationEnabled.
+             * @member {boolean} isStatusNotificationEnabled
+             * @memberof SyncAction.SyncActionValue.SettingsSyncAction
+             * @instance
+             */
+            SettingsSyncAction.prototype.isStatusNotificationEnabled = false;
+
+            /**
+             * SettingsSyncAction statusNotificationToneId.
+             * @member {number} statusNotificationToneId
+             * @memberof SyncAction.SyncActionValue.SettingsSyncAction
+             * @instance
+             */
+            SettingsSyncAction.prototype.statusNotificationToneId = 0;
+
+            /**
+             * SettingsSyncAction shouldPlaySoundForCallNotification.
+             * @member {boolean} shouldPlaySoundForCallNotification
+             * @memberof SyncAction.SyncActionValue.SettingsSyncAction
+             * @instance
+             */
+            SettingsSyncAction.prototype.shouldPlaySoundForCallNotification = false;
+
+            /**
              * Creates a new SettingsSyncAction instance using the specified properties.
              * @function create
              * @memberof SyncAction.SyncActionValue.SettingsSyncAction
@@ -142963,6 +143089,22 @@ $root.SyncAction = (function() {
                     writer.uint32(/* id 22, wireType 0 =*/176).bool(message.disableLinkPreviews);
                 if (message.notificationToneId != null && Object.hasOwnProperty.call(message, "notificationToneId"))
                     writer.uint32(/* id 23, wireType 0 =*/184).int32(message.notificationToneId);
+                if (message.mediaUploadQuality != null && Object.hasOwnProperty.call(message, "mediaUploadQuality"))
+                    writer.uint32(/* id 24, wireType 0 =*/192).int32(message.mediaUploadQuality);
+                if (message.isSpellCheckEnabled != null && Object.hasOwnProperty.call(message, "isSpellCheckEnabled"))
+                    writer.uint32(/* id 25, wireType 0 =*/200).bool(message.isSpellCheckEnabled);
+                if (message.isEnterToSendEnabled != null && Object.hasOwnProperty.call(message, "isEnterToSendEnabled"))
+                    writer.uint32(/* id 26, wireType 0 =*/208).bool(message.isEnterToSendEnabled);
+                if (message.isGroupMessageNotificationEnabled != null && Object.hasOwnProperty.call(message, "isGroupMessageNotificationEnabled"))
+                    writer.uint32(/* id 27, wireType 0 =*/216).bool(message.isGroupMessageNotificationEnabled);
+                if (message.isGroupReactionsNotificationEnabled != null && Object.hasOwnProperty.call(message, "isGroupReactionsNotificationEnabled"))
+                    writer.uint32(/* id 28, wireType 0 =*/224).bool(message.isGroupReactionsNotificationEnabled);
+                if (message.isStatusNotificationEnabled != null && Object.hasOwnProperty.call(message, "isStatusNotificationEnabled"))
+                    writer.uint32(/* id 29, wireType 0 =*/232).bool(message.isStatusNotificationEnabled);
+                if (message.statusNotificationToneId != null && Object.hasOwnProperty.call(message, "statusNotificationToneId"))
+                    writer.uint32(/* id 30, wireType 0 =*/240).int32(message.statusNotificationToneId);
+                if (message.shouldPlaySoundForCallNotification != null && Object.hasOwnProperty.call(message, "shouldPlaySoundForCallNotification"))
+                    writer.uint32(/* id 31, wireType 0 =*/248).bool(message.shouldPlaySoundForCallNotification);
                 return writer;
             };
 
@@ -143091,6 +143233,38 @@ $root.SyncAction = (function() {
                             message.notificationToneId = reader.int32();
                             break;
                         }
+                    case 24: {
+                            message.mediaUploadQuality = reader.int32();
+                            break;
+                        }
+                    case 25: {
+                            message.isSpellCheckEnabled = reader.bool();
+                            break;
+                        }
+                    case 26: {
+                            message.isEnterToSendEnabled = reader.bool();
+                            break;
+                        }
+                    case 27: {
+                            message.isGroupMessageNotificationEnabled = reader.bool();
+                            break;
+                        }
+                    case 28: {
+                            message.isGroupReactionsNotificationEnabled = reader.bool();
+                            break;
+                        }
+                    case 29: {
+                            message.isStatusNotificationEnabled = reader.bool();
+                            break;
+                        }
+                    case 30: {
+                            message.statusNotificationToneId = reader.int32();
+                            break;
+                        }
+                    case 31: {
+                            message.shouldPlaySoundForCallNotification = reader.bool();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -143209,6 +143383,36 @@ $root.SyncAction = (function() {
                 if (message.notificationToneId != null && message.hasOwnProperty("notificationToneId"))
                     if (!$util.isInteger(message.notificationToneId))
                         return "notificationToneId: integer expected";
+                if (message.mediaUploadQuality != null && message.hasOwnProperty("mediaUploadQuality"))
+                    switch (message.mediaUploadQuality) {
+                    default:
+                        return "mediaUploadQuality: enum value expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                        break;
+                    }
+                if (message.isSpellCheckEnabled != null && message.hasOwnProperty("isSpellCheckEnabled"))
+                    if (typeof message.isSpellCheckEnabled !== "boolean")
+                        return "isSpellCheckEnabled: boolean expected";
+                if (message.isEnterToSendEnabled != null && message.hasOwnProperty("isEnterToSendEnabled"))
+                    if (typeof message.isEnterToSendEnabled !== "boolean")
+                        return "isEnterToSendEnabled: boolean expected";
+                if (message.isGroupMessageNotificationEnabled != null && message.hasOwnProperty("isGroupMessageNotificationEnabled"))
+                    if (typeof message.isGroupMessageNotificationEnabled !== "boolean")
+                        return "isGroupMessageNotificationEnabled: boolean expected";
+                if (message.isGroupReactionsNotificationEnabled != null && message.hasOwnProperty("isGroupReactionsNotificationEnabled"))
+                    if (typeof message.isGroupReactionsNotificationEnabled !== "boolean")
+                        return "isGroupReactionsNotificationEnabled: boolean expected";
+                if (message.isStatusNotificationEnabled != null && message.hasOwnProperty("isStatusNotificationEnabled"))
+                    if (typeof message.isStatusNotificationEnabled !== "boolean")
+                        return "isStatusNotificationEnabled: boolean expected";
+                if (message.statusNotificationToneId != null && message.hasOwnProperty("statusNotificationToneId"))
+                    if (!$util.isInteger(message.statusNotificationToneId))
+                        return "statusNotificationToneId: integer expected";
+                if (message.shouldPlaySoundForCallNotification != null && message.hasOwnProperty("shouldPlaySoundForCallNotification"))
+                    if (typeof message.shouldPlaySoundForCallNotification !== "boolean")
+                        return "shouldPlaySoundForCallNotification: boolean expected";
                 return null;
             };
 
@@ -143314,6 +143518,40 @@ $root.SyncAction = (function() {
                     message.disableLinkPreviews = Boolean(object.disableLinkPreviews);
                 if (object.notificationToneId != null)
                     message.notificationToneId = object.notificationToneId | 0;
+                switch (object.mediaUploadQuality) {
+                default:
+                    if (typeof object.mediaUploadQuality === "number") {
+                        message.mediaUploadQuality = object.mediaUploadQuality;
+                        break;
+                    }
+                    break;
+                case "MEDIA_QUALITY_UNKNOWN":
+                case 0:
+                    message.mediaUploadQuality = 0;
+                    break;
+                case "STANDARD":
+                case 1:
+                    message.mediaUploadQuality = 1;
+                    break;
+                case "HD":
+                case 2:
+                    message.mediaUploadQuality = 2;
+                    break;
+                }
+                if (object.isSpellCheckEnabled != null)
+                    message.isSpellCheckEnabled = Boolean(object.isSpellCheckEnabled);
+                if (object.isEnterToSendEnabled != null)
+                    message.isEnterToSendEnabled = Boolean(object.isEnterToSendEnabled);
+                if (object.isGroupMessageNotificationEnabled != null)
+                    message.isGroupMessageNotificationEnabled = Boolean(object.isGroupMessageNotificationEnabled);
+                if (object.isGroupReactionsNotificationEnabled != null)
+                    message.isGroupReactionsNotificationEnabled = Boolean(object.isGroupReactionsNotificationEnabled);
+                if (object.isStatusNotificationEnabled != null)
+                    message.isStatusNotificationEnabled = Boolean(object.isStatusNotificationEnabled);
+                if (object.statusNotificationToneId != null)
+                    message.statusNotificationToneId = object.statusNotificationToneId | 0;
+                if (object.shouldPlaySoundForCallNotification != null)
+                    message.shouldPlaySoundForCallNotification = Boolean(object.shouldPlaySoundForCallNotification);
                 return message;
             };
 
@@ -143354,6 +143592,14 @@ $root.SyncAction = (function() {
                     object.isDocumentsAutodownloadEnabled = false;
                     object.disableLinkPreviews = false;
                     object.notificationToneId = 0;
+                    object.mediaUploadQuality = options.enums === String ? "MEDIA_QUALITY_UNKNOWN" : 0;
+                    object.isSpellCheckEnabled = false;
+                    object.isEnterToSendEnabled = false;
+                    object.isGroupMessageNotificationEnabled = false;
+                    object.isGroupReactionsNotificationEnabled = false;
+                    object.isStatusNotificationEnabled = false;
+                    object.statusNotificationToneId = 0;
+                    object.shouldPlaySoundForCallNotification = false;
                 }
                 if (message.startAtLogin != null && message.hasOwnProperty("startAtLogin"))
                     object.startAtLogin = message.startAtLogin;
@@ -143401,6 +143647,22 @@ $root.SyncAction = (function() {
                     object.disableLinkPreviews = message.disableLinkPreviews;
                 if (message.notificationToneId != null && message.hasOwnProperty("notificationToneId"))
                     object.notificationToneId = message.notificationToneId;
+                if (message.mediaUploadQuality != null && message.hasOwnProperty("mediaUploadQuality"))
+                    object.mediaUploadQuality = options.enums === String ? $root.SyncAction.SyncActionValue.SettingsSyncAction.MediaQualitySetting[message.mediaUploadQuality] === undefined ? message.mediaUploadQuality : $root.SyncAction.SyncActionValue.SettingsSyncAction.MediaQualitySetting[message.mediaUploadQuality] : message.mediaUploadQuality;
+                if (message.isSpellCheckEnabled != null && message.hasOwnProperty("isSpellCheckEnabled"))
+                    object.isSpellCheckEnabled = message.isSpellCheckEnabled;
+                if (message.isEnterToSendEnabled != null && message.hasOwnProperty("isEnterToSendEnabled"))
+                    object.isEnterToSendEnabled = message.isEnterToSendEnabled;
+                if (message.isGroupMessageNotificationEnabled != null && message.hasOwnProperty("isGroupMessageNotificationEnabled"))
+                    object.isGroupMessageNotificationEnabled = message.isGroupMessageNotificationEnabled;
+                if (message.isGroupReactionsNotificationEnabled != null && message.hasOwnProperty("isGroupReactionsNotificationEnabled"))
+                    object.isGroupReactionsNotificationEnabled = message.isGroupReactionsNotificationEnabled;
+                if (message.isStatusNotificationEnabled != null && message.hasOwnProperty("isStatusNotificationEnabled"))
+                    object.isStatusNotificationEnabled = message.isStatusNotificationEnabled;
+                if (message.statusNotificationToneId != null && message.hasOwnProperty("statusNotificationToneId"))
+                    object.statusNotificationToneId = message.statusNotificationToneId;
+                if (message.shouldPlaySoundForCallNotification != null && message.hasOwnProperty("shouldPlaySoundForCallNotification"))
+                    object.shouldPlaySoundForCallNotification = message.shouldPlaySoundForCallNotification;
                 return object;
             };
 
@@ -143449,6 +143711,22 @@ $root.SyncAction = (function() {
             })();
 
             /**
+             * MediaQualitySetting enum.
+             * @name SyncAction.SyncActionValue.SettingsSyncAction.MediaQualitySetting
+             * @enum {number}
+             * @property {number} MEDIA_QUALITY_UNKNOWN=0 MEDIA_QUALITY_UNKNOWN value
+             * @property {number} STANDARD=1 STANDARD value
+             * @property {number} HD=2 HD value
+             */
+            SettingsSyncAction.MediaQualitySetting = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "MEDIA_QUALITY_UNKNOWN"] = 0;
+                values[valuesById[1] = "STANDARD"] = 1;
+                values[valuesById[2] = "HD"] = 2;
+                return values;
+            })();
+
+            /**
              * SettingKey enum.
              * @name SyncAction.SyncActionValue.SettingsSyncAction.SettingKey
              * @enum {number}
@@ -143476,6 +143754,14 @@ $root.SyncAction = (function() {
              * @property {number} IS_DOCUMENTS_AUTODOWNLOAD_ENABLED=21 IS_DOCUMENTS_AUTODOWNLOAD_ENABLED value
              * @property {number} DISABLE_LINK_PREVIEWS=22 DISABLE_LINK_PREVIEWS value
              * @property {number} NOTIFICATION_TONE_ID=23 NOTIFICATION_TONE_ID value
+             * @property {number} MEDIA_UPLOAD_QUALITY=24 MEDIA_UPLOAD_QUALITY value
+             * @property {number} IS_SPELL_CHECK_ENABLED=25 IS_SPELL_CHECK_ENABLED value
+             * @property {number} IS_ENTER_TO_SEND_ENABLED=26 IS_ENTER_TO_SEND_ENABLED value
+             * @property {number} IS_GROUP_MESSAGE_NOTIFICATION_ENABLED=27 IS_GROUP_MESSAGE_NOTIFICATION_ENABLED value
+             * @property {number} IS_GROUP_REACTIONS_NOTIFICATION_ENABLED=28 IS_GROUP_REACTIONS_NOTIFICATION_ENABLED value
+             * @property {number} IS_STATUS_NOTIFICATION_ENABLED=29 IS_STATUS_NOTIFICATION_ENABLED value
+             * @property {number} STATUS_NOTIFICATION_TONE_ID=30 STATUS_NOTIFICATION_TONE_ID value
+             * @property {number} SHOULD_PLAY_SOUND_FOR_CALL_NOTIFICATION=31 SHOULD_PLAY_SOUND_FOR_CALL_NOTIFICATION value
              */
             SettingsSyncAction.SettingKey = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -143503,6 +143789,14 @@ $root.SyncAction = (function() {
                 values[valuesById[21] = "IS_DOCUMENTS_AUTODOWNLOAD_ENABLED"] = 21;
                 values[valuesById[22] = "DISABLE_LINK_PREVIEWS"] = 22;
                 values[valuesById[23] = "NOTIFICATION_TONE_ID"] = 23;
+                values[valuesById[24] = "MEDIA_UPLOAD_QUALITY"] = 24;
+                values[valuesById[25] = "IS_SPELL_CHECK_ENABLED"] = 25;
+                values[valuesById[26] = "IS_ENTER_TO_SEND_ENABLED"] = 26;
+                values[valuesById[27] = "IS_GROUP_MESSAGE_NOTIFICATION_ENABLED"] = 27;
+                values[valuesById[28] = "IS_GROUP_REACTIONS_NOTIFICATION_ENABLED"] = 28;
+                values[valuesById[29] = "IS_STATUS_NOTIFICATION_ENABLED"] = 29;
+                values[valuesById[30] = "STATUS_NOTIFICATION_TONE_ID"] = 30;
+                values[valuesById[31] = "SHOULD_PLAY_SOUND_FOR_CALL_NOTIFICATION"] = 31;
                 return values;
             })();
 

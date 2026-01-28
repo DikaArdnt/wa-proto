@@ -6907,6 +6907,30 @@ export namespace SyncAction {
 
             /** SettingsSyncAction notificationToneId */
             notificationToneId?: (number|null);
+
+            /** SettingsSyncAction mediaUploadQuality */
+            mediaUploadQuality?: (SyncAction.SyncActionValue.SettingsSyncAction.MediaQualitySetting|null);
+
+            /** SettingsSyncAction isSpellCheckEnabled */
+            isSpellCheckEnabled?: (boolean|null);
+
+            /** SettingsSyncAction isEnterToSendEnabled */
+            isEnterToSendEnabled?: (boolean|null);
+
+            /** SettingsSyncAction isGroupMessageNotificationEnabled */
+            isGroupMessageNotificationEnabled?: (boolean|null);
+
+            /** SettingsSyncAction isGroupReactionsNotificationEnabled */
+            isGroupReactionsNotificationEnabled?: (boolean|null);
+
+            /** SettingsSyncAction isStatusNotificationEnabled */
+            isStatusNotificationEnabled?: (boolean|null);
+
+            /** SettingsSyncAction statusNotificationToneId */
+            statusNotificationToneId?: (number|null);
+
+            /** SettingsSyncAction shouldPlaySoundForCallNotification */
+            shouldPlaySoundForCallNotification?: (boolean|null);
         }
 
         /** Represents a SettingsSyncAction. */
@@ -6986,6 +7010,30 @@ export namespace SyncAction {
 
             /** SettingsSyncAction notificationToneId. */
             public notificationToneId: number;
+
+            /** SettingsSyncAction mediaUploadQuality. */
+            public mediaUploadQuality: SyncAction.SyncActionValue.SettingsSyncAction.MediaQualitySetting;
+
+            /** SettingsSyncAction isSpellCheckEnabled. */
+            public isSpellCheckEnabled: boolean;
+
+            /** SettingsSyncAction isEnterToSendEnabled. */
+            public isEnterToSendEnabled: boolean;
+
+            /** SettingsSyncAction isGroupMessageNotificationEnabled. */
+            public isGroupMessageNotificationEnabled: boolean;
+
+            /** SettingsSyncAction isGroupReactionsNotificationEnabled. */
+            public isGroupReactionsNotificationEnabled: boolean;
+
+            /** SettingsSyncAction isStatusNotificationEnabled. */
+            public isStatusNotificationEnabled: boolean;
+
+            /** SettingsSyncAction statusNotificationToneId. */
+            public statusNotificationToneId: number;
+
+            /** SettingsSyncAction shouldPlaySoundForCallNotification. */
+            public shouldPlaySoundForCallNotification: boolean;
 
             /**
              * Creates a new SettingsSyncAction instance using the specified properties.
@@ -7075,6 +7123,13 @@ export namespace SyncAction {
                 ONLY_WHEN_APP_IS_OPEN = 3
             }
 
+            /** MediaQualitySetting enum. */
+            enum MediaQualitySetting {
+                MEDIA_QUALITY_UNKNOWN = 0,
+                STANDARD = 1,
+                HD = 2
+            }
+
             /** SettingKey enum. */
             enum SettingKey {
                 SETTING_KEY_UNKNOWN = 0,
@@ -7100,7 +7155,15 @@ export namespace SyncAction {
                 IS_VIDEOS_AUTODOWNLOAD_ENABLED = 20,
                 IS_DOCUMENTS_AUTODOWNLOAD_ENABLED = 21,
                 DISABLE_LINK_PREVIEWS = 22,
-                NOTIFICATION_TONE_ID = 23
+                NOTIFICATION_TONE_ID = 23,
+                MEDIA_UPLOAD_QUALITY = 24,
+                IS_SPELL_CHECK_ENABLED = 25,
+                IS_ENTER_TO_SEND_ENABLED = 26,
+                IS_GROUP_MESSAGE_NOTIFICATION_ENABLED = 27,
+                IS_GROUP_REACTIONS_NOTIFICATION_ENABLED = 28,
+                IS_STATUS_NOTIFICATION_ENABLED = 29,
+                STATUS_NOTIFICATION_TONE_ID = 30,
+                SHOULD_PLAY_SOUND_FOR_CALL_NOTIFICATION = 31
             }
 
             /** SettingPlatform enum. */

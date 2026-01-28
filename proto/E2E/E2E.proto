@@ -498,6 +498,8 @@ message ContextInfo {
     }
     message StatusAudienceMetadata {
         optional AudienceType audienceType = 1;
+        optional string listName = 2;
+        optional string listEmoji = 3;
         enum AudienceType {
             UNKNOWN = 0;
             CLOSE_FRIENDS = 1;

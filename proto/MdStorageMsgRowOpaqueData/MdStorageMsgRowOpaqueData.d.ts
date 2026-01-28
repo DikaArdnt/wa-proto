@@ -6645,6 +6645,12 @@ export namespace E2E {
 
             /** StatusAudienceMetadata audienceType */
             audienceType?: (E2E.ContextInfo.StatusAudienceMetadata.AudienceType|null);
+
+            /** StatusAudienceMetadata listName */
+            listName?: (string|null);
+
+            /** StatusAudienceMetadata listEmoji */
+            listEmoji?: (string|null);
         }
 
         /** Represents a StatusAudienceMetadata. */
@@ -6658,6 +6664,12 @@ export namespace E2E {
 
             /** StatusAudienceMetadata audienceType. */
             public audienceType: E2E.ContextInfo.StatusAudienceMetadata.AudienceType;
+
+            /** StatusAudienceMetadata listName. */
+            public listName: string;
+
+            /** StatusAudienceMetadata listEmoji. */
+            public listEmoji: string;
 
             /**
              * Creates a new StatusAudienceMetadata instance using the specified properties.
@@ -36917,7 +36929,8 @@ export namespace StatusAttributions {
             GROUP_STATUS = 5,
             RL_ATTRIBUTION = 6,
             AI_CREATED = 7,
-            LAYOUTS = 8
+            LAYOUTS = 8,
+            STATUS_CLOSE_SHARING = 9
         }
     }
 }

@@ -26781,6 +26781,7 @@ $root.StatusAttributions = (function() {
                 case 6:
                 case 7:
                 case 8:
+                case 9:
                     break;
                 }
             if (message.actionUrl != null && message.hasOwnProperty("actionUrl"))
@@ -26901,6 +26902,10 @@ $root.StatusAttributions = (function() {
             case "LAYOUTS":
             case 8:
                 message.type = 8;
+                break;
+            case "STATUS_CLOSE_SHARING":
+            case 9:
+                message.type = 9;
                 break;
             }
             if (object.actionUrl != null)
@@ -28981,6 +28986,7 @@ $root.StatusAttributions = (function() {
          * @property {number} RL_ATTRIBUTION=6 RL_ATTRIBUTION value
          * @property {number} AI_CREATED=7 AI_CREATED value
          * @property {number} LAYOUTS=8 LAYOUTS value
+         * @property {number} STATUS_CLOSE_SHARING=9 STATUS_CLOSE_SHARING value
          */
         StatusAttribution.Type = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -28993,6 +28999,7 @@ $root.StatusAttributions = (function() {
             values[valuesById[6] = "RL_ATTRIBUTION"] = 6;
             values[valuesById[7] = "AI_CREATED"] = 7;
             values[valuesById[8] = "LAYOUTS"] = 8;
+            values[valuesById[9] = "STATUS_CLOSE_SHARING"] = 9;
             return values;
         })();
 
