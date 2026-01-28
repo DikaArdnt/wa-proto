@@ -138332,6 +138332,7 @@ $root.SyncAction = (function() {
              * @property {boolean|null} [muted] MuteAction muted
              * @property {number|Long|null} [muteEndTimestamp] MuteAction muteEndTimestamp
              * @property {boolean|null} [autoMuted] MuteAction autoMuted
+             * @property {number|Long|null} [muteEveryoneMentionEndTimestamp] MuteAction muteEveryoneMentionEndTimestamp
              */
 
             /**
@@ -138374,6 +138375,14 @@ $root.SyncAction = (function() {
             MuteAction.prototype.autoMuted = false;
 
             /**
+             * MuteAction muteEveryoneMentionEndTimestamp.
+             * @member {number|Long} muteEveryoneMentionEndTimestamp
+             * @memberof SyncAction.SyncActionValue.MuteAction
+             * @instance
+             */
+            MuteAction.prototype.muteEveryoneMentionEndTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+            /**
              * Creates a new MuteAction instance using the specified properties.
              * @function create
              * @memberof SyncAction.SyncActionValue.MuteAction
@@ -138403,6 +138412,8 @@ $root.SyncAction = (function() {
                     writer.uint32(/* id 2, wireType 0 =*/16).int64(message.muteEndTimestamp);
                 if (message.autoMuted != null && Object.hasOwnProperty.call(message, "autoMuted"))
                     writer.uint32(/* id 3, wireType 0 =*/24).bool(message.autoMuted);
+                if (message.muteEveryoneMentionEndTimestamp != null && Object.hasOwnProperty.call(message, "muteEveryoneMentionEndTimestamp"))
+                    writer.uint32(/* id 4, wireType 0 =*/32).int64(message.muteEveryoneMentionEndTimestamp);
                 return writer;
             };
 
@@ -138451,6 +138462,10 @@ $root.SyncAction = (function() {
                             message.autoMuted = reader.bool();
                             break;
                         }
+                    case 4: {
+                            message.muteEveryoneMentionEndTimestamp = reader.int64();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -138495,6 +138510,9 @@ $root.SyncAction = (function() {
                 if (message.autoMuted != null && message.hasOwnProperty("autoMuted"))
                     if (typeof message.autoMuted !== "boolean")
                         return "autoMuted: boolean expected";
+                if (message.muteEveryoneMentionEndTimestamp != null && message.hasOwnProperty("muteEveryoneMentionEndTimestamp"))
+                    if (!$util.isInteger(message.muteEveryoneMentionEndTimestamp) && !(message.muteEveryoneMentionEndTimestamp && $util.isInteger(message.muteEveryoneMentionEndTimestamp.low) && $util.isInteger(message.muteEveryoneMentionEndTimestamp.high)))
+                        return "muteEveryoneMentionEndTimestamp: integer|Long expected";
                 return null;
             };
 
@@ -138523,6 +138541,15 @@ $root.SyncAction = (function() {
                         message.muteEndTimestamp = new $util.LongBits(object.muteEndTimestamp.low >>> 0, object.muteEndTimestamp.high >>> 0).toNumber();
                 if (object.autoMuted != null)
                     message.autoMuted = Boolean(object.autoMuted);
+                if (object.muteEveryoneMentionEndTimestamp != null)
+                    if ($util.Long)
+                        (message.muteEveryoneMentionEndTimestamp = $util.Long.fromValue(object.muteEveryoneMentionEndTimestamp)).unsigned = false;
+                    else if (typeof object.muteEveryoneMentionEndTimestamp === "string")
+                        message.muteEveryoneMentionEndTimestamp = parseInt(object.muteEveryoneMentionEndTimestamp, 10);
+                    else if (typeof object.muteEveryoneMentionEndTimestamp === "number")
+                        message.muteEveryoneMentionEndTimestamp = object.muteEveryoneMentionEndTimestamp;
+                    else if (typeof object.muteEveryoneMentionEndTimestamp === "object")
+                        message.muteEveryoneMentionEndTimestamp = new $util.LongBits(object.muteEveryoneMentionEndTimestamp.low >>> 0, object.muteEveryoneMentionEndTimestamp.high >>> 0).toNumber();
                 return message;
             };
 
@@ -138547,6 +138574,11 @@ $root.SyncAction = (function() {
                     } else
                         object.muteEndTimestamp = options.longs === String ? "0" : 0;
                     object.autoMuted = false;
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.muteEveryoneMentionEndTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    } else
+                        object.muteEveryoneMentionEndTimestamp = options.longs === String ? "0" : 0;
                 }
                 if (message.muted != null && message.hasOwnProperty("muted"))
                     object.muted = message.muted;
@@ -138557,6 +138589,11 @@ $root.SyncAction = (function() {
                         object.muteEndTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.muteEndTimestamp) : options.longs === Number ? new $util.LongBits(message.muteEndTimestamp.low >>> 0, message.muteEndTimestamp.high >>> 0).toNumber() : message.muteEndTimestamp;
                 if (message.autoMuted != null && message.hasOwnProperty("autoMuted"))
                     object.autoMuted = message.autoMuted;
+                if (message.muteEveryoneMentionEndTimestamp != null && message.hasOwnProperty("muteEveryoneMentionEndTimestamp"))
+                    if (typeof message.muteEveryoneMentionEndTimestamp === "number")
+                        object.muteEveryoneMentionEndTimestamp = options.longs === String ? String(message.muteEveryoneMentionEndTimestamp) : message.muteEveryoneMentionEndTimestamp;
+                    else
+                        object.muteEveryoneMentionEndTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.muteEveryoneMentionEndTimestamp) : options.longs === Number ? new $util.LongBits(message.muteEveryoneMentionEndTimestamp.low >>> 0, message.muteEveryoneMentionEndTimestamp.high >>> 0).toNumber() : message.muteEveryoneMentionEndTimestamp;
                 return object;
             };
 

@@ -49686,6 +49686,9 @@ export namespace SyncAction {
 
             /** MuteAction autoMuted */
             autoMuted?: (boolean|null);
+
+            /** MuteAction muteEveryoneMentionEndTimestamp */
+            muteEveryoneMentionEndTimestamp?: (number|Long|null);
         }
 
         /** Represents a MuteAction. */
@@ -49705,6 +49708,9 @@ export namespace SyncAction {
 
             /** MuteAction autoMuted. */
             public autoMuted: boolean;
+
+            /** MuteAction muteEveryoneMentionEndTimestamp. */
+            public muteEveryoneMentionEndTimestamp: (number|Long);
 
             /**
              * Creates a new MuteAction instance using the specified properties.

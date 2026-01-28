@@ -303,6 +303,7 @@ message SyncActionValue {
         optional bool muted = 1;
         optional int64 muteEndTimestamp = 2;
         optional bool autoMuted = 3;
+        optional int64 muteEveryoneMentionEndTimestamp = 4;
     }
     message NewsletterSavedInterestsAction {
         optional string newsletterSavedInterests = 1;
