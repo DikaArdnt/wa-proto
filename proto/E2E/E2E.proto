@@ -1678,6 +1678,7 @@ message Message {
         optional bytes aiPsiMetadata = 25;
         optional AIQueryFanout aiQueryFanout = 26;
         optional MemberLabel memberLabel = 27;
+        optional AICommon.AIMediaCollectionMessage aiMediaCollectionMessage = 28;
         enum Type {
             REVOKE = 0;
             EPHEMERAL_SETTING = 3;
@@ -1705,6 +1706,7 @@ message Message {
             AI_PSI_METADATA = 28;
             AI_QUERY_FANOUT = 29;
             GROUP_MEMBER_LABEL_CHANGE = 30;
+            AI_MEDIA_COLLECTION_MESSAGE = 31;
         }
     }
     message QuestionResponseMessage {
@@ -1832,6 +1834,7 @@ message Message {
         optional bool isAiSticker = 20;
         optional bool isLottie = 21;
         optional string accessibilityLabel = 22;
+        optional int32 premium = 24;
     }
     message StickerPackMessage {
         optional string stickerPackId = 1;

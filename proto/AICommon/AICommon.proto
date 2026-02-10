@@ -335,7 +335,18 @@ message BotMetadata {
     optional BotGroupMetadata botGroupMetadata = 35;
     optional BotRenderingConfigMetadata botRenderingConfigMetadata = 36;
     optional BotInfrastructureDiagnostics botInfrastructureDiagnostics = 37;
+    optional AIMediaCollectionMetadata aiMediaCollectionMetadata = 38;
     optional bytes internalMetadata = 999;
+}
+
+message AIMediaCollectionMessage {
+    optional string collectionId = 1;
+    optional uint32 expectedMediaCount = 2;
+    optional bool hasGlobalCaption = 3;
+}
+
+message AIMediaCollectionMetadata {
+    optional string collectionId = 1;
 }
 
 message AIThreadInfo {

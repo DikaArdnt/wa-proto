@@ -22521,6 +22521,9 @@ export namespace E2E {
 
             /** ProtocolMessage memberLabel */
             memberLabel?: (E2E.IMemberLabel|null);
+
+            /** ProtocolMessage aiMediaCollectionMessage */
+            aiMediaCollectionMessage?: (AICommon.IAIMediaCollectionMessage|null);
         }
 
         /** Represents a ProtocolMessage. */
@@ -22603,6 +22606,9 @@ export namespace E2E {
 
             /** ProtocolMessage memberLabel. */
             public memberLabel?: (E2E.IMemberLabel|null);
+
+            /** ProtocolMessage aiMediaCollectionMessage. */
+            public aiMediaCollectionMessage?: (AICommon.IAIMediaCollectionMessage|null);
 
             /**
              * Creates a new ProtocolMessage instance using the specified properties.
@@ -22711,7 +22717,8 @@ export namespace E2E {
                 LIMIT_SHARING = 27,
                 AI_PSI_METADATA = 28,
                 AI_QUERY_FANOUT = 29,
-                GROUP_MEMBER_LABEL_CHANGE = 30
+                GROUP_MEMBER_LABEL_CHANGE = 30,
+                AI_MEDIA_COLLECTION_MESSAGE = 31
             }
         }
 
@@ -24377,6 +24384,9 @@ export namespace E2E {
 
             /** StickerMessage accessibilityLabel */
             accessibilityLabel?: (string|null);
+
+            /** StickerMessage premium */
+            premium?: (number|null);
         }
 
         /** Represents a StickerMessage. */
@@ -24447,6 +24457,9 @@ export namespace E2E {
 
             /** StickerMessage accessibilityLabel. */
             public accessibilityLabel: string;
+
+            /** StickerMessage premium. */
+            public premium: number;
 
             /**
              * Creates a new StickerMessage instance using the specified properties.
@@ -30673,6 +30686,9 @@ export namespace AICommon {
         /** BotMetadata botInfrastructureDiagnostics */
         botInfrastructureDiagnostics?: (AICommon.IBotInfrastructureDiagnostics|null);
 
+        /** BotMetadata aiMediaCollectionMetadata */
+        aiMediaCollectionMetadata?: (AICommon.IAIMediaCollectionMetadata|null);
+
         /** BotMetadata internalMetadata */
         internalMetadata?: (Uint8Array|null);
     }
@@ -30797,6 +30813,9 @@ export namespace AICommon {
         /** BotMetadata botInfrastructureDiagnostics. */
         public botInfrastructureDiagnostics?: (AICommon.IBotInfrastructureDiagnostics|null);
 
+        /** BotMetadata aiMediaCollectionMetadata. */
+        public aiMediaCollectionMetadata?: (AICommon.IAIMediaCollectionMetadata|null);
+
         /** BotMetadata internalMetadata. */
         public internalMetadata: Uint8Array;
 
@@ -30872,6 +30891,212 @@ export namespace AICommon {
 
         /**
          * Gets the default type url for BotMetadata
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a AIMediaCollectionMessage. */
+    interface IAIMediaCollectionMessage {
+
+        /** AIMediaCollectionMessage collectionId */
+        collectionId?: (string|null);
+
+        /** AIMediaCollectionMessage expectedMediaCount */
+        expectedMediaCount?: (number|null);
+
+        /** AIMediaCollectionMessage hasGlobalCaption */
+        hasGlobalCaption?: (boolean|null);
+    }
+
+    /** Represents a AIMediaCollectionMessage. */
+    class AIMediaCollectionMessage implements IAIMediaCollectionMessage {
+
+        /**
+         * Constructs a new AIMediaCollectionMessage.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: AICommon.IAIMediaCollectionMessage);
+
+        /** AIMediaCollectionMessage collectionId. */
+        public collectionId: string;
+
+        /** AIMediaCollectionMessage expectedMediaCount. */
+        public expectedMediaCount: number;
+
+        /** AIMediaCollectionMessage hasGlobalCaption. */
+        public hasGlobalCaption: boolean;
+
+        /**
+         * Creates a new AIMediaCollectionMessage instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns AIMediaCollectionMessage instance
+         */
+        public static create(properties?: AICommon.IAIMediaCollectionMessage): AICommon.AIMediaCollectionMessage;
+
+        /**
+         * Encodes the specified AIMediaCollectionMessage message. Does not implicitly {@link AICommon.AIMediaCollectionMessage.verify|verify} messages.
+         * @param message AIMediaCollectionMessage message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: AICommon.IAIMediaCollectionMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified AIMediaCollectionMessage message, length delimited. Does not implicitly {@link AICommon.AIMediaCollectionMessage.verify|verify} messages.
+         * @param message AIMediaCollectionMessage message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: AICommon.IAIMediaCollectionMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a AIMediaCollectionMessage message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns AIMediaCollectionMessage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AICommon.AIMediaCollectionMessage;
+
+        /**
+         * Decodes a AIMediaCollectionMessage message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns AIMediaCollectionMessage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AICommon.AIMediaCollectionMessage;
+
+        /**
+         * Verifies a AIMediaCollectionMessage message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a AIMediaCollectionMessage message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns AIMediaCollectionMessage
+         */
+        public static fromObject(object: { [k: string]: any }): AICommon.AIMediaCollectionMessage;
+
+        /**
+         * Creates a plain object from a AIMediaCollectionMessage message. Also converts values to other types if specified.
+         * @param message AIMediaCollectionMessage
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: AICommon.AIMediaCollectionMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this AIMediaCollectionMessage to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for AIMediaCollectionMessage
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a AIMediaCollectionMetadata. */
+    interface IAIMediaCollectionMetadata {
+
+        /** AIMediaCollectionMetadata collectionId */
+        collectionId?: (string|null);
+    }
+
+    /** Represents a AIMediaCollectionMetadata. */
+    class AIMediaCollectionMetadata implements IAIMediaCollectionMetadata {
+
+        /**
+         * Constructs a new AIMediaCollectionMetadata.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: AICommon.IAIMediaCollectionMetadata);
+
+        /** AIMediaCollectionMetadata collectionId. */
+        public collectionId: string;
+
+        /**
+         * Creates a new AIMediaCollectionMetadata instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns AIMediaCollectionMetadata instance
+         */
+        public static create(properties?: AICommon.IAIMediaCollectionMetadata): AICommon.AIMediaCollectionMetadata;
+
+        /**
+         * Encodes the specified AIMediaCollectionMetadata message. Does not implicitly {@link AICommon.AIMediaCollectionMetadata.verify|verify} messages.
+         * @param message AIMediaCollectionMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: AICommon.IAIMediaCollectionMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified AIMediaCollectionMetadata message, length delimited. Does not implicitly {@link AICommon.AIMediaCollectionMetadata.verify|verify} messages.
+         * @param message AIMediaCollectionMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: AICommon.IAIMediaCollectionMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a AIMediaCollectionMetadata message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns AIMediaCollectionMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AICommon.AIMediaCollectionMetadata;
+
+        /**
+         * Decodes a AIMediaCollectionMetadata message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns AIMediaCollectionMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AICommon.AIMediaCollectionMetadata;
+
+        /**
+         * Verifies a AIMediaCollectionMetadata message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a AIMediaCollectionMetadata message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns AIMediaCollectionMetadata
+         */
+        public static fromObject(object: { [k: string]: any }): AICommon.AIMediaCollectionMetadata;
+
+        /**
+         * Creates a plain object from a AIMediaCollectionMetadata message. Also converts values to other types if specified.
+         * @param message AIMediaCollectionMetadata
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: AICommon.AIMediaCollectionMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this AIMediaCollectionMetadata to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for AIMediaCollectionMetadata
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */

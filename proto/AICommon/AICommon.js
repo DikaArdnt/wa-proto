@@ -10867,6 +10867,7 @@ $root.AICommon = (function() {
          * @property {AICommon.IBotGroupMetadata|null} [botGroupMetadata] BotMetadata botGroupMetadata
          * @property {AICommon.IBotRenderingConfigMetadata|null} [botRenderingConfigMetadata] BotMetadata botRenderingConfigMetadata
          * @property {AICommon.IBotInfrastructureDiagnostics|null} [botInfrastructureDiagnostics] BotMetadata botInfrastructureDiagnostics
+         * @property {AICommon.IAIMediaCollectionMetadata|null} [aiMediaCollectionMetadata] BotMetadata aiMediaCollectionMetadata
          * @property {Uint8Array|null} [internalMetadata] BotMetadata internalMetadata
          */
 
@@ -11182,6 +11183,14 @@ $root.AICommon = (function() {
         BotMetadata.prototype.botInfrastructureDiagnostics = null;
 
         /**
+         * BotMetadata aiMediaCollectionMetadata.
+         * @member {AICommon.IAIMediaCollectionMetadata|null|undefined} aiMediaCollectionMetadata
+         * @memberof AICommon.BotMetadata
+         * @instance
+         */
+        BotMetadata.prototype.aiMediaCollectionMetadata = null;
+
+        /**
          * BotMetadata internalMetadata.
          * @member {Uint8Array} internalMetadata
          * @memberof AICommon.BotMetadata
@@ -11287,6 +11296,8 @@ $root.AICommon = (function() {
                 $root.AICommon.BotRenderingConfigMetadata.encode(message.botRenderingConfigMetadata, writer.uint32(/* id 36, wireType 2 =*/290).fork()).ldelim();
             if (message.botInfrastructureDiagnostics != null && Object.hasOwnProperty.call(message, "botInfrastructureDiagnostics"))
                 $root.AICommon.BotInfrastructureDiagnostics.encode(message.botInfrastructureDiagnostics, writer.uint32(/* id 37, wireType 2 =*/298).fork()).ldelim();
+            if (message.aiMediaCollectionMetadata != null && Object.hasOwnProperty.call(message, "aiMediaCollectionMetadata"))
+                $root.AICommon.AIMediaCollectionMetadata.encode(message.aiMediaCollectionMetadata, writer.uint32(/* id 38, wireType 2 =*/306).fork()).ldelim();
             if (message.internalMetadata != null && Object.hasOwnProperty.call(message, "internalMetadata"))
                 writer.uint32(/* id 999, wireType 2 =*/7994).bytes(message.internalMetadata);
             return writer;
@@ -11471,6 +11482,10 @@ $root.AICommon = (function() {
                     }
                 case 37: {
                         message.botInfrastructureDiagnostics = $root.AICommon.BotInfrastructureDiagnostics.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 38: {
+                        message.aiMediaCollectionMetadata = $root.AICommon.AIMediaCollectionMetadata.decode(reader, reader.uint32());
                         break;
                     }
                 case 999: {
@@ -11683,6 +11698,11 @@ $root.AICommon = (function() {
                 if (error)
                     return "botInfrastructureDiagnostics." + error;
             }
+            if (message.aiMediaCollectionMetadata != null && message.hasOwnProperty("aiMediaCollectionMetadata")) {
+                var error = $root.AICommon.AIMediaCollectionMetadata.verify(message.aiMediaCollectionMetadata);
+                if (error)
+                    return "aiMediaCollectionMetadata." + error;
+            }
             if (message.internalMetadata != null && message.hasOwnProperty("internalMetadata"))
                 if (!(message.internalMetadata && typeof message.internalMetadata.length === "number" || $util.isString(message.internalMetadata)))
                     return "internalMetadata: buffer expected";
@@ -11868,6 +11888,11 @@ $root.AICommon = (function() {
                     throw TypeError(".AICommon.BotMetadata.botInfrastructureDiagnostics: object expected");
                 message.botInfrastructureDiagnostics = $root.AICommon.BotInfrastructureDiagnostics.fromObject(object.botInfrastructureDiagnostics);
             }
+            if (object.aiMediaCollectionMetadata != null) {
+                if (typeof object.aiMediaCollectionMetadata !== "object")
+                    throw TypeError(".AICommon.BotMetadata.aiMediaCollectionMetadata: object expected");
+                message.aiMediaCollectionMetadata = $root.AICommon.AIMediaCollectionMetadata.fromObject(object.aiMediaCollectionMetadata);
+            }
             if (object.internalMetadata != null)
                 if (typeof object.internalMetadata === "string")
                     $util.base64.decode(object.internalMetadata, message.internalMetadata = $util.newBuffer($util.base64.length(object.internalMetadata)), 0);
@@ -11933,6 +11958,7 @@ $root.AICommon = (function() {
                 object.botGroupMetadata = null;
                 object.botRenderingConfigMetadata = null;
                 object.botInfrastructureDiagnostics = null;
+                object.aiMediaCollectionMetadata = null;
                 if (options.bytes === String)
                     object.internalMetadata = "";
                 else {
@@ -12015,6 +12041,8 @@ $root.AICommon = (function() {
                 object.botRenderingConfigMetadata = $root.AICommon.BotRenderingConfigMetadata.toObject(message.botRenderingConfigMetadata, options);
             if (message.botInfrastructureDiagnostics != null && message.hasOwnProperty("botInfrastructureDiagnostics"))
                 object.botInfrastructureDiagnostics = $root.AICommon.BotInfrastructureDiagnostics.toObject(message.botInfrastructureDiagnostics, options);
+            if (message.aiMediaCollectionMetadata != null && message.hasOwnProperty("aiMediaCollectionMetadata"))
+                object.aiMediaCollectionMetadata = $root.AICommon.AIMediaCollectionMetadata.toObject(message.aiMediaCollectionMetadata, options);
             if (message.internalMetadata != null && message.hasOwnProperty("internalMetadata"))
                 object.internalMetadata = options.bytes === String ? $util.base64.encode(message.internalMetadata, 0, message.internalMetadata.length) : options.bytes === Array ? Array.prototype.slice.call(message.internalMetadata) : message.internalMetadata;
             return object;
@@ -12047,6 +12075,463 @@ $root.AICommon = (function() {
         };
 
         return BotMetadata;
+    })();
+
+    AICommon.AIMediaCollectionMessage = (function() {
+
+        /**
+         * Properties of a AIMediaCollectionMessage.
+         * @memberof AICommon
+         * @interface IAIMediaCollectionMessage
+         * @property {string|null} [collectionId] AIMediaCollectionMessage collectionId
+         * @property {number|null} [expectedMediaCount] AIMediaCollectionMessage expectedMediaCount
+         * @property {boolean|null} [hasGlobalCaption] AIMediaCollectionMessage hasGlobalCaption
+         */
+
+        /**
+         * Constructs a new AIMediaCollectionMessage.
+         * @memberof AICommon
+         * @classdesc Represents a AIMediaCollectionMessage.
+         * @implements IAIMediaCollectionMessage
+         * @constructor
+         * @param {AICommon.IAIMediaCollectionMessage=} [properties] Properties to set
+         */
+        function AIMediaCollectionMessage(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AIMediaCollectionMessage collectionId.
+         * @member {string} collectionId
+         * @memberof AICommon.AIMediaCollectionMessage
+         * @instance
+         */
+        AIMediaCollectionMessage.prototype.collectionId = "";
+
+        /**
+         * AIMediaCollectionMessage expectedMediaCount.
+         * @member {number} expectedMediaCount
+         * @memberof AICommon.AIMediaCollectionMessage
+         * @instance
+         */
+        AIMediaCollectionMessage.prototype.expectedMediaCount = 0;
+
+        /**
+         * AIMediaCollectionMessage hasGlobalCaption.
+         * @member {boolean} hasGlobalCaption
+         * @memberof AICommon.AIMediaCollectionMessage
+         * @instance
+         */
+        AIMediaCollectionMessage.prototype.hasGlobalCaption = false;
+
+        /**
+         * Creates a new AIMediaCollectionMessage instance using the specified properties.
+         * @function create
+         * @memberof AICommon.AIMediaCollectionMessage
+         * @static
+         * @param {AICommon.IAIMediaCollectionMessage=} [properties] Properties to set
+         * @returns {AICommon.AIMediaCollectionMessage} AIMediaCollectionMessage instance
+         */
+        AIMediaCollectionMessage.create = function create(properties) {
+            return new AIMediaCollectionMessage(properties);
+        };
+
+        /**
+         * Encodes the specified AIMediaCollectionMessage message. Does not implicitly {@link AICommon.AIMediaCollectionMessage.verify|verify} messages.
+         * @function encode
+         * @memberof AICommon.AIMediaCollectionMessage
+         * @static
+         * @param {AICommon.IAIMediaCollectionMessage} message AIMediaCollectionMessage message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AIMediaCollectionMessage.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.collectionId != null && Object.hasOwnProperty.call(message, "collectionId"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.collectionId);
+            if (message.expectedMediaCount != null && Object.hasOwnProperty.call(message, "expectedMediaCount"))
+                writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.expectedMediaCount);
+            if (message.hasGlobalCaption != null && Object.hasOwnProperty.call(message, "hasGlobalCaption"))
+                writer.uint32(/* id 3, wireType 0 =*/24).bool(message.hasGlobalCaption);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AIMediaCollectionMessage message, length delimited. Does not implicitly {@link AICommon.AIMediaCollectionMessage.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof AICommon.AIMediaCollectionMessage
+         * @static
+         * @param {AICommon.IAIMediaCollectionMessage} message AIMediaCollectionMessage message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AIMediaCollectionMessage.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a AIMediaCollectionMessage message from the specified reader or buffer.
+         * @function decode
+         * @memberof AICommon.AIMediaCollectionMessage
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {AICommon.AIMediaCollectionMessage} AIMediaCollectionMessage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AIMediaCollectionMessage.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.AIMediaCollectionMessage();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.collectionId = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.expectedMediaCount = reader.uint32();
+                        break;
+                    }
+                case 3: {
+                        message.hasGlobalCaption = reader.bool();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a AIMediaCollectionMessage message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof AICommon.AIMediaCollectionMessage
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {AICommon.AIMediaCollectionMessage} AIMediaCollectionMessage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AIMediaCollectionMessage.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a AIMediaCollectionMessage message.
+         * @function verify
+         * @memberof AICommon.AIMediaCollectionMessage
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AIMediaCollectionMessage.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.collectionId != null && message.hasOwnProperty("collectionId"))
+                if (!$util.isString(message.collectionId))
+                    return "collectionId: string expected";
+            if (message.expectedMediaCount != null && message.hasOwnProperty("expectedMediaCount"))
+                if (!$util.isInteger(message.expectedMediaCount))
+                    return "expectedMediaCount: integer expected";
+            if (message.hasGlobalCaption != null && message.hasOwnProperty("hasGlobalCaption"))
+                if (typeof message.hasGlobalCaption !== "boolean")
+                    return "hasGlobalCaption: boolean expected";
+            return null;
+        };
+
+        /**
+         * Creates a AIMediaCollectionMessage message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof AICommon.AIMediaCollectionMessage
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {AICommon.AIMediaCollectionMessage} AIMediaCollectionMessage
+         */
+        AIMediaCollectionMessage.fromObject = function fromObject(object) {
+            if (object instanceof $root.AICommon.AIMediaCollectionMessage)
+                return object;
+            var message = new $root.AICommon.AIMediaCollectionMessage();
+            if (object.collectionId != null)
+                message.collectionId = String(object.collectionId);
+            if (object.expectedMediaCount != null)
+                message.expectedMediaCount = object.expectedMediaCount >>> 0;
+            if (object.hasGlobalCaption != null)
+                message.hasGlobalCaption = Boolean(object.hasGlobalCaption);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a AIMediaCollectionMessage message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof AICommon.AIMediaCollectionMessage
+         * @static
+         * @param {AICommon.AIMediaCollectionMessage} message AIMediaCollectionMessage
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AIMediaCollectionMessage.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.collectionId = "";
+                object.expectedMediaCount = 0;
+                object.hasGlobalCaption = false;
+            }
+            if (message.collectionId != null && message.hasOwnProperty("collectionId"))
+                object.collectionId = message.collectionId;
+            if (message.expectedMediaCount != null && message.hasOwnProperty("expectedMediaCount"))
+                object.expectedMediaCount = message.expectedMediaCount;
+            if (message.hasGlobalCaption != null && message.hasOwnProperty("hasGlobalCaption"))
+                object.hasGlobalCaption = message.hasGlobalCaption;
+            return object;
+        };
+
+        /**
+         * Converts this AIMediaCollectionMessage to JSON.
+         * @function toJSON
+         * @memberof AICommon.AIMediaCollectionMessage
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AIMediaCollectionMessage.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for AIMediaCollectionMessage
+         * @function getTypeUrl
+         * @memberof AICommon.AIMediaCollectionMessage
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AIMediaCollectionMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/AICommon.AIMediaCollectionMessage";
+        };
+
+        return AIMediaCollectionMessage;
+    })();
+
+    AICommon.AIMediaCollectionMetadata = (function() {
+
+        /**
+         * Properties of a AIMediaCollectionMetadata.
+         * @memberof AICommon
+         * @interface IAIMediaCollectionMetadata
+         * @property {string|null} [collectionId] AIMediaCollectionMetadata collectionId
+         */
+
+        /**
+         * Constructs a new AIMediaCollectionMetadata.
+         * @memberof AICommon
+         * @classdesc Represents a AIMediaCollectionMetadata.
+         * @implements IAIMediaCollectionMetadata
+         * @constructor
+         * @param {AICommon.IAIMediaCollectionMetadata=} [properties] Properties to set
+         */
+        function AIMediaCollectionMetadata(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AIMediaCollectionMetadata collectionId.
+         * @member {string} collectionId
+         * @memberof AICommon.AIMediaCollectionMetadata
+         * @instance
+         */
+        AIMediaCollectionMetadata.prototype.collectionId = "";
+
+        /**
+         * Creates a new AIMediaCollectionMetadata instance using the specified properties.
+         * @function create
+         * @memberof AICommon.AIMediaCollectionMetadata
+         * @static
+         * @param {AICommon.IAIMediaCollectionMetadata=} [properties] Properties to set
+         * @returns {AICommon.AIMediaCollectionMetadata} AIMediaCollectionMetadata instance
+         */
+        AIMediaCollectionMetadata.create = function create(properties) {
+            return new AIMediaCollectionMetadata(properties);
+        };
+
+        /**
+         * Encodes the specified AIMediaCollectionMetadata message. Does not implicitly {@link AICommon.AIMediaCollectionMetadata.verify|verify} messages.
+         * @function encode
+         * @memberof AICommon.AIMediaCollectionMetadata
+         * @static
+         * @param {AICommon.IAIMediaCollectionMetadata} message AIMediaCollectionMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AIMediaCollectionMetadata.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.collectionId != null && Object.hasOwnProperty.call(message, "collectionId"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.collectionId);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AIMediaCollectionMetadata message, length delimited. Does not implicitly {@link AICommon.AIMediaCollectionMetadata.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof AICommon.AIMediaCollectionMetadata
+         * @static
+         * @param {AICommon.IAIMediaCollectionMetadata} message AIMediaCollectionMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AIMediaCollectionMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a AIMediaCollectionMetadata message from the specified reader or buffer.
+         * @function decode
+         * @memberof AICommon.AIMediaCollectionMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {AICommon.AIMediaCollectionMetadata} AIMediaCollectionMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AIMediaCollectionMetadata.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.AIMediaCollectionMetadata();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.collectionId = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a AIMediaCollectionMetadata message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof AICommon.AIMediaCollectionMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {AICommon.AIMediaCollectionMetadata} AIMediaCollectionMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AIMediaCollectionMetadata.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a AIMediaCollectionMetadata message.
+         * @function verify
+         * @memberof AICommon.AIMediaCollectionMetadata
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AIMediaCollectionMetadata.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.collectionId != null && message.hasOwnProperty("collectionId"))
+                if (!$util.isString(message.collectionId))
+                    return "collectionId: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a AIMediaCollectionMetadata message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof AICommon.AIMediaCollectionMetadata
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {AICommon.AIMediaCollectionMetadata} AIMediaCollectionMetadata
+         */
+        AIMediaCollectionMetadata.fromObject = function fromObject(object) {
+            if (object instanceof $root.AICommon.AIMediaCollectionMetadata)
+                return object;
+            var message = new $root.AICommon.AIMediaCollectionMetadata();
+            if (object.collectionId != null)
+                message.collectionId = String(object.collectionId);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a AIMediaCollectionMetadata message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof AICommon.AIMediaCollectionMetadata
+         * @static
+         * @param {AICommon.AIMediaCollectionMetadata} message AIMediaCollectionMetadata
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AIMediaCollectionMetadata.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.collectionId = "";
+            if (message.collectionId != null && message.hasOwnProperty("collectionId"))
+                object.collectionId = message.collectionId;
+            return object;
+        };
+
+        /**
+         * Converts this AIMediaCollectionMetadata to JSON.
+         * @function toJSON
+         * @memberof AICommon.AIMediaCollectionMetadata
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AIMediaCollectionMetadata.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for AIMediaCollectionMetadata
+         * @function getTypeUrl
+         * @memberof AICommon.AIMediaCollectionMetadata
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AIMediaCollectionMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/AICommon.AIMediaCollectionMetadata";
+        };
+
+        return AIMediaCollectionMetadata;
     })();
 
     AICommon.AIThreadInfo = (function() {
