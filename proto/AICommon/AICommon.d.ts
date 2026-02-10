@@ -8,6 +8,9 @@ export namespace AICommon {
 
         /** BotInfrastructureDiagnostics botBackend */
         botBackend?: (AICommon.BotInfrastructureDiagnostics.BotBackend|null);
+
+        /** BotInfrastructureDiagnostics toolsUsed */
+        toolsUsed?: (string[]|null);
     }
 
     /** Represents a BotInfrastructureDiagnostics. */
@@ -21,6 +24,9 @@ export namespace AICommon {
 
         /** BotInfrastructureDiagnostics botBackend. */
         public botBackend: AICommon.BotInfrastructureDiagnostics.BotBackend;
+
+        /** BotInfrastructureDiagnostics toolsUsed. */
+        public toolsUsed: string[];
 
         /**
          * Creates a new BotInfrastructureDiagnostics instance using the specified properties.
@@ -366,7 +372,8 @@ export namespace AICommon {
                 PROMPT = 0,
                 CREATE_IMAGE = 1,
                 ANIMATE_PHOTO = 2,
-                ANALYZE_FILE = 3
+                ANALYZE_FILE = 3,
+                COLLABORATE = 4
             }
         }
     }
@@ -6613,6 +6620,9 @@ export namespace AICommon {
 
         /** BotModeSelectionMetadata mode */
         mode?: (AICommon.BotModeSelectionMetadata.BotUserSelectionMode[]|null);
+
+        /** BotModeSelectionMetadata overrideMode */
+        overrideMode?: (number[]|null);
     }
 
     /** Represents a BotModeSelectionMetadata. */
@@ -6626,6 +6636,9 @@ export namespace AICommon {
 
         /** BotModeSelectionMetadata mode. */
         public mode: AICommon.BotModeSelectionMetadata.BotUserSelectionMode[];
+
+        /** BotModeSelectionMetadata overrideMode. */
+        public overrideMode: number[];
 
         /**
          * Creates a new BotModeSelectionMetadata instance using the specified properties.
@@ -6871,7 +6884,8 @@ export namespace AICommon {
             RICH_RESPONSE_UR_IMAGINE = 53,
             AI_IMAGINE_UR_TO_NATIVE_LOADING_INDICATOR = 54,
             RICH_RESPONSE_UR_BLOKS_ENABLED = 55,
-            RICH_RESPONSE_INLINE_LINKS_ENABLED = 56
+            RICH_RESPONSE_INLINE_LINKS_ENABLED = 56,
+            RICH_RESPONSE_UR_IMAGINE_VIDEO = 57
         }
     }
 
@@ -11081,7 +11095,7 @@ export namespace StatusAttributions {
             RL_ATTRIBUTION = 6,
             AI_CREATED = 7,
             LAYOUTS = 8,
-            STATUS_CLOSE_SHARING = 9
+            NEWSLETTER_STATUS = 9
         }
     }
 }

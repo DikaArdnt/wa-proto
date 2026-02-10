@@ -959,7 +959,7 @@ export namespace StatusAttributions {
             RL_ATTRIBUTION = 6,
             AI_CREATED = 7,
             LAYOUTS = 8,
-            STATUS_CLOSE_SHARING = 9
+            NEWSLETTER_STATUS = 9
         }
     }
 }

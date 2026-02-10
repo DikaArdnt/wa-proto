@@ -6,6 +6,7 @@ import "../StatusAttributions/StatusAttributions.proto";
 
 message BotInfrastructureDiagnostics {
     optional BotBackend botBackend = 1;
+    repeated string toolsUsed = 2;
     enum BotBackend {
         AAPI = 0;
         CLIPPY = 1;
@@ -30,6 +31,7 @@ message AIHomeState {
             CREATE_IMAGE = 1;
             ANIMATE_PHOTO = 2;
             ANALYZE_FILE = 3;
+            COLLABORATE = 4;
         }
     }
 }
@@ -469,6 +471,7 @@ message BotQuotaMetadata {
 
 message BotModeSelectionMetadata {
     repeated BotUserSelectionMode mode = 1;
+    repeated uint32 overrideMode = 2;
     enum BotUserSelectionMode {
         DEFAULT_MODE = 0;
         THINK_HARD_MODE = 1;
@@ -535,6 +538,7 @@ message BotCapabilityMetadata {
         AI_IMAGINE_UR_TO_NATIVE_LOADING_INDICATOR = 54;
         RICH_RESPONSE_UR_BLOKS_ENABLED = 55;
         RICH_RESPONSE_INLINE_LINKS_ENABLED = 56;
+        RICH_RESPONSE_UR_IMAGINE_VIDEO = 57;
     }
 }
 

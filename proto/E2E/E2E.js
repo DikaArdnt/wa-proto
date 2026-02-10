@@ -10874,6 +10874,9 @@ $root.E2E = (function() {
          * @property {number|null} [nonJidMentions] ContextInfo nonJidMentions
          * @property {E2E.ContextInfo.QuotedType|null} [quotedType] ContextInfo quotedType
          * @property {AICommon.IBotMessageSharingInfo|null} [botMessageSharingInfo] ContextInfo botMessageSharingInfo
+         * @property {boolean|null} [isSpoiler] ContextInfo isSpoiler
+         * @property {E2E.IMediaDomainInfo|null} [mediaDomainInfo] ContextInfo mediaDomainInfo
+         * @property {E2E.ContextInfo.IPartiallySelectedContent|null} [partiallySelectedContent] ContextInfo partiallySelectedContent
          */
 
         /**
@@ -11335,6 +11338,30 @@ $root.E2E = (function() {
         ContextInfo.prototype.botMessageSharingInfo = null;
 
         /**
+         * ContextInfo isSpoiler.
+         * @member {boolean} isSpoiler
+         * @memberof E2E.ContextInfo
+         * @instance
+         */
+        ContextInfo.prototype.isSpoiler = false;
+
+        /**
+         * ContextInfo mediaDomainInfo.
+         * @member {E2E.IMediaDomainInfo|null|undefined} mediaDomainInfo
+         * @memberof E2E.ContextInfo
+         * @instance
+         */
+        ContextInfo.prototype.mediaDomainInfo = null;
+
+        /**
+         * ContextInfo partiallySelectedContent.
+         * @member {E2E.ContextInfo.IPartiallySelectedContent|null|undefined} partiallySelectedContent
+         * @memberof E2E.ContextInfo
+         * @instance
+         */
+        ContextInfo.prototype.partiallySelectedContent = null;
+
+        /**
          * Creates a new ContextInfo instance using the specified properties.
          * @function create
          * @memberof E2E.ContextInfo
@@ -11471,6 +11498,12 @@ $root.E2E = (function() {
                 writer.uint32(/* id 71, wireType 0 =*/568).int32(message.quotedType);
             if (message.botMessageSharingInfo != null && Object.hasOwnProperty.call(message, "botMessageSharingInfo"))
                 $root.AICommon.BotMessageSharingInfo.encode(message.botMessageSharingInfo, writer.uint32(/* id 72, wireType 2 =*/578).fork()).ldelim();
+            if (message.isSpoiler != null && Object.hasOwnProperty.call(message, "isSpoiler"))
+                writer.uint32(/* id 73, wireType 0 =*/584).bool(message.isSpoiler);
+            if (message.mediaDomainInfo != null && Object.hasOwnProperty.call(message, "mediaDomainInfo"))
+                $root.E2E.MediaDomainInfo.encode(message.mediaDomainInfo, writer.uint32(/* id 74, wireType 2 =*/594).fork()).ldelim();
+            if (message.partiallySelectedContent != null && Object.hasOwnProperty.call(message, "partiallySelectedContent"))
+                $root.E2E.ContextInfo.PartiallySelectedContent.encode(message.partiallySelectedContent, writer.uint32(/* id 75, wireType 2 =*/602).fork()).ldelim();
             return writer;
         };
 
@@ -11731,6 +11764,18 @@ $root.E2E = (function() {
                     }
                 case 72: {
                         message.botMessageSharingInfo = $root.AICommon.BotMessageSharingInfo.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 73: {
+                        message.isSpoiler = reader.bool();
+                        break;
+                    }
+                case 74: {
+                        message.mediaDomainInfo = $root.E2E.MediaDomainInfo.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 75: {
+                        message.partiallySelectedContent = $root.E2E.ContextInfo.PartiallySelectedContent.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -12025,6 +12070,19 @@ $root.E2E = (function() {
                 var error = $root.AICommon.BotMessageSharingInfo.verify(message.botMessageSharingInfo);
                 if (error)
                     return "botMessageSharingInfo." + error;
+            }
+            if (message.isSpoiler != null && message.hasOwnProperty("isSpoiler"))
+                if (typeof message.isSpoiler !== "boolean")
+                    return "isSpoiler: boolean expected";
+            if (message.mediaDomainInfo != null && message.hasOwnProperty("mediaDomainInfo")) {
+                var error = $root.E2E.MediaDomainInfo.verify(message.mediaDomainInfo);
+                if (error)
+                    return "mediaDomainInfo." + error;
+            }
+            if (message.partiallySelectedContent != null && message.hasOwnProperty("partiallySelectedContent")) {
+                var error = $root.E2E.ContextInfo.PartiallySelectedContent.verify(message.partiallySelectedContent);
+                if (error)
+                    return "partiallySelectedContent." + error;
             }
             return null;
         };
@@ -12381,6 +12439,18 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.ContextInfo.botMessageSharingInfo: object expected");
                 message.botMessageSharingInfo = $root.AICommon.BotMessageSharingInfo.fromObject(object.botMessageSharingInfo);
             }
+            if (object.isSpoiler != null)
+                message.isSpoiler = Boolean(object.isSpoiler);
+            if (object.mediaDomainInfo != null) {
+                if (typeof object.mediaDomainInfo !== "object")
+                    throw TypeError(".E2E.ContextInfo.mediaDomainInfo: object expected");
+                message.mediaDomainInfo = $root.E2E.MediaDomainInfo.fromObject(object.mediaDomainInfo);
+            }
+            if (object.partiallySelectedContent != null) {
+                if (typeof object.partiallySelectedContent !== "object")
+                    throw TypeError(".E2E.ContextInfo.partiallySelectedContent: object expected");
+                message.partiallySelectedContent = $root.E2E.ContextInfo.PartiallySelectedContent.fromObject(object.partiallySelectedContent);
+            }
             return message;
         };
 
@@ -12477,6 +12547,9 @@ $root.E2E = (function() {
                 object.nonJidMentions = 0;
                 object.quotedType = options.enums === String ? "EXPLICIT" : 0;
                 object.botMessageSharingInfo = null;
+                object.isSpoiler = false;
+                object.mediaDomainInfo = null;
+                object.partiallySelectedContent = null;
             }
             if (message.stanzaId != null && message.hasOwnProperty("stanzaId"))
                 object.stanzaId = message.stanzaId;
@@ -12600,6 +12673,12 @@ $root.E2E = (function() {
                 object.quotedType = options.enums === String ? $root.E2E.ContextInfo.QuotedType[message.quotedType] === undefined ? message.quotedType : $root.E2E.ContextInfo.QuotedType[message.quotedType] : message.quotedType;
             if (message.botMessageSharingInfo != null && message.hasOwnProperty("botMessageSharingInfo"))
                 object.botMessageSharingInfo = $root.AICommon.BotMessageSharingInfo.toObject(message.botMessageSharingInfo, options);
+            if (message.isSpoiler != null && message.hasOwnProperty("isSpoiler"))
+                object.isSpoiler = message.isSpoiler;
+            if (message.mediaDomainInfo != null && message.hasOwnProperty("mediaDomainInfo"))
+                object.mediaDomainInfo = $root.E2E.MediaDomainInfo.toObject(message.mediaDomainInfo, options);
+            if (message.partiallySelectedContent != null && message.hasOwnProperty("partiallySelectedContent"))
+                object.partiallySelectedContent = $root.E2E.ContextInfo.PartiallySelectedContent.toObject(message.partiallySelectedContent, options);
             return object;
         };
 
@@ -15381,6 +15460,211 @@ $root.E2E = (function() {
             return values;
         })();
 
+        ContextInfo.PartiallySelectedContent = (function() {
+
+            /**
+             * Properties of a PartiallySelectedContent.
+             * @memberof E2E.ContextInfo
+             * @interface IPartiallySelectedContent
+             * @property {string|null} [text] PartiallySelectedContent text
+             */
+
+            /**
+             * Constructs a new PartiallySelectedContent.
+             * @memberof E2E.ContextInfo
+             * @classdesc Represents a PartiallySelectedContent.
+             * @implements IPartiallySelectedContent
+             * @constructor
+             * @param {E2E.ContextInfo.IPartiallySelectedContent=} [properties] Properties to set
+             */
+            function PartiallySelectedContent(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * PartiallySelectedContent text.
+             * @member {string} text
+             * @memberof E2E.ContextInfo.PartiallySelectedContent
+             * @instance
+             */
+            PartiallySelectedContent.prototype.text = "";
+
+            /**
+             * Creates a new PartiallySelectedContent instance using the specified properties.
+             * @function create
+             * @memberof E2E.ContextInfo.PartiallySelectedContent
+             * @static
+             * @param {E2E.ContextInfo.IPartiallySelectedContent=} [properties] Properties to set
+             * @returns {E2E.ContextInfo.PartiallySelectedContent} PartiallySelectedContent instance
+             */
+            PartiallySelectedContent.create = function create(properties) {
+                return new PartiallySelectedContent(properties);
+            };
+
+            /**
+             * Encodes the specified PartiallySelectedContent message. Does not implicitly {@link E2E.ContextInfo.PartiallySelectedContent.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.ContextInfo.PartiallySelectedContent
+             * @static
+             * @param {E2E.ContextInfo.IPartiallySelectedContent} message PartiallySelectedContent message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PartiallySelectedContent.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.text != null && Object.hasOwnProperty.call(message, "text"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.text);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified PartiallySelectedContent message, length delimited. Does not implicitly {@link E2E.ContextInfo.PartiallySelectedContent.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.ContextInfo.PartiallySelectedContent
+             * @static
+             * @param {E2E.ContextInfo.IPartiallySelectedContent} message PartiallySelectedContent message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PartiallySelectedContent.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a PartiallySelectedContent message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.ContextInfo.PartiallySelectedContent
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.ContextInfo.PartiallySelectedContent} PartiallySelectedContent
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PartiallySelectedContent.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ContextInfo.PartiallySelectedContent();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.text = reader.string();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a PartiallySelectedContent message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.ContextInfo.PartiallySelectedContent
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.ContextInfo.PartiallySelectedContent} PartiallySelectedContent
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PartiallySelectedContent.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a PartiallySelectedContent message.
+             * @function verify
+             * @memberof E2E.ContextInfo.PartiallySelectedContent
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            PartiallySelectedContent.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.text != null && message.hasOwnProperty("text"))
+                    if (!$util.isString(message.text))
+                        return "text: string expected";
+                return null;
+            };
+
+            /**
+             * Creates a PartiallySelectedContent message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.ContextInfo.PartiallySelectedContent
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.ContextInfo.PartiallySelectedContent} PartiallySelectedContent
+             */
+            PartiallySelectedContent.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.ContextInfo.PartiallySelectedContent)
+                    return object;
+                var message = new $root.E2E.ContextInfo.PartiallySelectedContent();
+                if (object.text != null)
+                    message.text = String(object.text);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a PartiallySelectedContent message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.ContextInfo.PartiallySelectedContent
+             * @static
+             * @param {E2E.ContextInfo.PartiallySelectedContent} message PartiallySelectedContent
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            PartiallySelectedContent.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.text = "";
+                if (message.text != null && message.hasOwnProperty("text"))
+                    object.text = message.text;
+                return object;
+            };
+
+            /**
+             * Converts this PartiallySelectedContent to JSON.
+             * @function toJSON
+             * @memberof E2E.ContextInfo.PartiallySelectedContent
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            PartiallySelectedContent.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for PartiallySelectedContent
+             * @function getTypeUrl
+             * @memberof E2E.ContextInfo.PartiallySelectedContent
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            PartiallySelectedContent.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.ContextInfo.PartiallySelectedContent";
+            };
+
+            return PartiallySelectedContent;
+        })();
+
         ContextInfo.QuestionReplyQuotedMessage = (function() {
 
             /**
@@ -16216,6 +16500,268 @@ $root.E2E = (function() {
         return ContextInfo;
     })();
 
+    E2E.MediaDomainInfo = (function() {
+
+        /**
+         * Properties of a MediaDomainInfo.
+         * @memberof E2E
+         * @interface IMediaDomainInfo
+         * @property {E2E.MediaKeyDomain|null} [mediaKeyDomain] MediaDomainInfo mediaKeyDomain
+         * @property {Uint8Array|null} [e2EeMediaKey] MediaDomainInfo e2EeMediaKey
+         */
+
+        /**
+         * Constructs a new MediaDomainInfo.
+         * @memberof E2E
+         * @classdesc Represents a MediaDomainInfo.
+         * @implements IMediaDomainInfo
+         * @constructor
+         * @param {E2E.IMediaDomainInfo=} [properties] Properties to set
+         */
+        function MediaDomainInfo(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * MediaDomainInfo mediaKeyDomain.
+         * @member {E2E.MediaKeyDomain} mediaKeyDomain
+         * @memberof E2E.MediaDomainInfo
+         * @instance
+         */
+        MediaDomainInfo.prototype.mediaKeyDomain = 0;
+
+        /**
+         * MediaDomainInfo e2EeMediaKey.
+         * @member {Uint8Array} e2EeMediaKey
+         * @memberof E2E.MediaDomainInfo
+         * @instance
+         */
+        MediaDomainInfo.prototype.e2EeMediaKey = $util.newBuffer([]);
+
+        /**
+         * Creates a new MediaDomainInfo instance using the specified properties.
+         * @function create
+         * @memberof E2E.MediaDomainInfo
+         * @static
+         * @param {E2E.IMediaDomainInfo=} [properties] Properties to set
+         * @returns {E2E.MediaDomainInfo} MediaDomainInfo instance
+         */
+        MediaDomainInfo.create = function create(properties) {
+            return new MediaDomainInfo(properties);
+        };
+
+        /**
+         * Encodes the specified MediaDomainInfo message. Does not implicitly {@link E2E.MediaDomainInfo.verify|verify} messages.
+         * @function encode
+         * @memberof E2E.MediaDomainInfo
+         * @static
+         * @param {E2E.IMediaDomainInfo} message MediaDomainInfo message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        MediaDomainInfo.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.mediaKeyDomain != null && Object.hasOwnProperty.call(message, "mediaKeyDomain"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.mediaKeyDomain);
+            if (message.e2EeMediaKey != null && Object.hasOwnProperty.call(message, "e2EeMediaKey"))
+                writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.e2EeMediaKey);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified MediaDomainInfo message, length delimited. Does not implicitly {@link E2E.MediaDomainInfo.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof E2E.MediaDomainInfo
+         * @static
+         * @param {E2E.IMediaDomainInfo} message MediaDomainInfo message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        MediaDomainInfo.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a MediaDomainInfo message from the specified reader or buffer.
+         * @function decode
+         * @memberof E2E.MediaDomainInfo
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {E2E.MediaDomainInfo} MediaDomainInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        MediaDomainInfo.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.MediaDomainInfo();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.mediaKeyDomain = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.e2EeMediaKey = reader.bytes();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a MediaDomainInfo message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof E2E.MediaDomainInfo
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {E2E.MediaDomainInfo} MediaDomainInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        MediaDomainInfo.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a MediaDomainInfo message.
+         * @function verify
+         * @memberof E2E.MediaDomainInfo
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        MediaDomainInfo.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
+                switch (message.mediaKeyDomain) {
+                default:
+                    return "mediaKeyDomain: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                    break;
+                }
+            if (message.e2EeMediaKey != null && message.hasOwnProperty("e2EeMediaKey"))
+                if (!(message.e2EeMediaKey && typeof message.e2EeMediaKey.length === "number" || $util.isString(message.e2EeMediaKey)))
+                    return "e2EeMediaKey: buffer expected";
+            return null;
+        };
+
+        /**
+         * Creates a MediaDomainInfo message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof E2E.MediaDomainInfo
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {E2E.MediaDomainInfo} MediaDomainInfo
+         */
+        MediaDomainInfo.fromObject = function fromObject(object) {
+            if (object instanceof $root.E2E.MediaDomainInfo)
+                return object;
+            var message = new $root.E2E.MediaDomainInfo();
+            switch (object.mediaKeyDomain) {
+            default:
+                if (typeof object.mediaKeyDomain === "number") {
+                    message.mediaKeyDomain = object.mediaKeyDomain;
+                    break;
+                }
+                break;
+            case "MEDIA_KEY_DOMAIN_UNKNOWN":
+            case 0:
+                message.mediaKeyDomain = 0;
+                break;
+            case "MEDIA_KEY_DOMAIN_E2EE":
+            case 1:
+                message.mediaKeyDomain = 1;
+                break;
+            case "MEDIA_KEY_DOMAIN_NON_E2EE":
+            case 2:
+                message.mediaKeyDomain = 2;
+                break;
+            }
+            if (object.e2EeMediaKey != null)
+                if (typeof object.e2EeMediaKey === "string")
+                    $util.base64.decode(object.e2EeMediaKey, message.e2EeMediaKey = $util.newBuffer($util.base64.length(object.e2EeMediaKey)), 0);
+                else if (object.e2EeMediaKey.length >= 0)
+                    message.e2EeMediaKey = object.e2EeMediaKey;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a MediaDomainInfo message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof E2E.MediaDomainInfo
+         * @static
+         * @param {E2E.MediaDomainInfo} message MediaDomainInfo
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        MediaDomainInfo.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.mediaKeyDomain = options.enums === String ? "MEDIA_KEY_DOMAIN_UNKNOWN" : 0;
+                if (options.bytes === String)
+                    object.e2EeMediaKey = "";
+                else {
+                    object.e2EeMediaKey = [];
+                    if (options.bytes !== Array)
+                        object.e2EeMediaKey = $util.newBuffer(object.e2EeMediaKey);
+                }
+            }
+            if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
+                object.mediaKeyDomain = options.enums === String ? $root.E2E.MediaKeyDomain[message.mediaKeyDomain] === undefined ? message.mediaKeyDomain : $root.E2E.MediaKeyDomain[message.mediaKeyDomain] : message.mediaKeyDomain;
+            if (message.e2EeMediaKey != null && message.hasOwnProperty("e2EeMediaKey"))
+                object.e2EeMediaKey = options.bytes === String ? $util.base64.encode(message.e2EeMediaKey, 0, message.e2EeMediaKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.e2EeMediaKey) : message.e2EeMediaKey;
+            return object;
+        };
+
+        /**
+         * Converts this MediaDomainInfo to JSON.
+         * @function toJSON
+         * @memberof E2E.MediaDomainInfo
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        MediaDomainInfo.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for MediaDomainInfo
+         * @function getTypeUrl
+         * @memberof E2E.MediaDomainInfo
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        MediaDomainInfo.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/E2E.MediaDomainInfo";
+        };
+
+        return MediaDomainInfo;
+    })();
+
     E2E.Message = (function() {
 
         /**
@@ -16319,6 +16865,8 @@ $root.E2E = (function() {
          * @property {E2E.Message.IPollResultSnapshotMessage|null} [pollResultSnapshotMessageV3] Message pollResultSnapshotMessageV3
          * @property {E2E.Message.IFutureProofMessage|null} [newsletterAdminProfileMessage] Message newsletterAdminProfileMessage
          * @property {E2E.Message.IFutureProofMessage|null} [newsletterAdminProfileMessageV2] Message newsletterAdminProfileMessageV2
+         * @property {E2E.Message.IFutureProofMessage|null} [spoilerMessage] Message spoilerMessage
+         * @property {E2E.Message.IFutureProofMessage|null} [pollCreationMessageV6] Message pollCreationMessageV6
          */
 
         /**
@@ -17113,6 +17661,22 @@ $root.E2E = (function() {
         Message.prototype.newsletterAdminProfileMessageV2 = null;
 
         /**
+         * Message spoilerMessage.
+         * @member {E2E.Message.IFutureProofMessage|null|undefined} spoilerMessage
+         * @memberof E2E.Message
+         * @instance
+         */
+        Message.prototype.spoilerMessage = null;
+
+        /**
+         * Message pollCreationMessageV6.
+         * @member {E2E.Message.IFutureProofMessage|null|undefined} pollCreationMessageV6
+         * @memberof E2E.Message
+         * @instance
+         */
+        Message.prototype.pollCreationMessageV6 = null;
+
+        /**
          * Creates a new Message instance using the specified properties.
          * @function create
          * @memberof E2E.Message
@@ -17330,6 +17894,10 @@ $root.E2E = (function() {
                 $root.E2E.Message.FutureProofMessage.encode(message.newsletterAdminProfileMessage, writer.uint32(/* id 116, wireType 2 =*/930).fork()).ldelim();
             if (message.newsletterAdminProfileMessageV2 != null && Object.hasOwnProperty.call(message, "newsletterAdminProfileMessageV2"))
                 $root.E2E.Message.FutureProofMessage.encode(message.newsletterAdminProfileMessageV2, writer.uint32(/* id 117, wireType 2 =*/938).fork()).ldelim();
+            if (message.spoilerMessage != null && Object.hasOwnProperty.call(message, "spoilerMessage"))
+                $root.E2E.Message.FutureProofMessage.encode(message.spoilerMessage, writer.uint32(/* id 118, wireType 2 =*/946).fork()).ldelim();
+            if (message.pollCreationMessageV6 != null && Object.hasOwnProperty.call(message, "pollCreationMessageV6"))
+                $root.E2E.Message.FutureProofMessage.encode(message.pollCreationMessageV6, writer.uint32(/* id 119, wireType 2 =*/954).fork()).ldelim();
             return writer;
         };
 
@@ -17752,6 +18320,14 @@ $root.E2E = (function() {
                     }
                 case 117: {
                         message.newsletterAdminProfileMessageV2 = $root.E2E.Message.FutureProofMessage.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 118: {
+                        message.spoilerMessage = $root.E2E.Message.FutureProofMessage.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 119: {
+                        message.pollCreationMessageV6 = $root.E2E.Message.FutureProofMessage.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -18272,6 +18848,16 @@ $root.E2E = (function() {
                 if (error)
                     return "newsletterAdminProfileMessageV2." + error;
             }
+            if (message.spoilerMessage != null && message.hasOwnProperty("spoilerMessage")) {
+                var error = $root.E2E.Message.FutureProofMessage.verify(message.spoilerMessage);
+                if (error)
+                    return "spoilerMessage." + error;
+            }
+            if (message.pollCreationMessageV6 != null && message.hasOwnProperty("pollCreationMessageV6")) {
+                var error = $root.E2E.Message.FutureProofMessage.verify(message.pollCreationMessageV6);
+                if (error)
+                    return "pollCreationMessageV6." + error;
+            }
             return null;
         };
 
@@ -18769,6 +19355,16 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.Message.newsletterAdminProfileMessageV2: object expected");
                 message.newsletterAdminProfileMessageV2 = $root.E2E.Message.FutureProofMessage.fromObject(object.newsletterAdminProfileMessageV2);
             }
+            if (object.spoilerMessage != null) {
+                if (typeof object.spoilerMessage !== "object")
+                    throw TypeError(".E2E.Message.spoilerMessage: object expected");
+                message.spoilerMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.spoilerMessage);
+            }
+            if (object.pollCreationMessageV6 != null) {
+                if (typeof object.pollCreationMessageV6 !== "object")
+                    throw TypeError(".E2E.Message.pollCreationMessageV6: object expected");
+                message.pollCreationMessageV6 = $root.E2E.Message.FutureProofMessage.fromObject(object.pollCreationMessageV6);
+            }
             return message;
         };
 
@@ -18883,6 +19479,8 @@ $root.E2E = (function() {
                 object.pollResultSnapshotMessageV3 = null;
                 object.newsletterAdminProfileMessage = null;
                 object.newsletterAdminProfileMessageV2 = null;
+                object.spoilerMessage = null;
+                object.pollCreationMessageV6 = null;
             }
             if (message.conversation != null && message.hasOwnProperty("conversation"))
                 object.conversation = message.conversation;
@@ -19078,6 +19676,10 @@ $root.E2E = (function() {
                 object.newsletterAdminProfileMessage = $root.E2E.Message.FutureProofMessage.toObject(message.newsletterAdminProfileMessage, options);
             if (message.newsletterAdminProfileMessageV2 != null && message.hasOwnProperty("newsletterAdminProfileMessageV2"))
                 object.newsletterAdminProfileMessageV2 = $root.E2E.Message.FutureProofMessage.toObject(message.newsletterAdminProfileMessageV2, options);
+            if (message.spoilerMessage != null && message.hasOwnProperty("spoilerMessage"))
+                object.spoilerMessage = $root.E2E.Message.FutureProofMessage.toObject(message.spoilerMessage, options);
+            if (message.pollCreationMessageV6 != null && message.hasOwnProperty("pollCreationMessageV6"))
+                object.pollCreationMessageV6 = $root.E2E.Message.FutureProofMessage.toObject(message.pollCreationMessageV6, options);
             return object;
         };
 
@@ -21107,7 +21709,6 @@ $root.E2E = (function() {
              * @property {number|null} [backgroundArgb] AudioMessage backgroundArgb
              * @property {boolean|null} [viewOnce] AudioMessage viewOnce
              * @property {string|null} [accessibilityLabel] AudioMessage accessibilityLabel
-             * @property {E2E.Message.MediaKeyDomain|null} [mediaKeyDomain] AudioMessage mediaKeyDomain
              */
 
             /**
@@ -21254,14 +21855,6 @@ $root.E2E = (function() {
             AudioMessage.prototype.accessibilityLabel = "";
 
             /**
-             * AudioMessage mediaKeyDomain.
-             * @member {E2E.Message.MediaKeyDomain} mediaKeyDomain
-             * @memberof E2E.Message.AudioMessage
-             * @instance
-             */
-            AudioMessage.prototype.mediaKeyDomain = 0;
-
-            /**
              * Creates a new AudioMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.AudioMessage
@@ -21317,8 +21910,6 @@ $root.E2E = (function() {
                     writer.uint32(/* id 21, wireType 0 =*/168).bool(message.viewOnce);
                 if (message.accessibilityLabel != null && Object.hasOwnProperty.call(message, "accessibilityLabel"))
                     writer.uint32(/* id 22, wireType 2 =*/178).string(message.accessibilityLabel);
-                if (message.mediaKeyDomain != null && Object.hasOwnProperty.call(message, "mediaKeyDomain"))
-                    writer.uint32(/* id 23, wireType 0 =*/184).int32(message.mediaKeyDomain);
                 return writer;
             };
 
@@ -21419,10 +22010,6 @@ $root.E2E = (function() {
                             message.accessibilityLabel = reader.string();
                             break;
                         }
-                    case 23: {
-                            message.mediaKeyDomain = reader.int32();
-                            break;
-                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -21508,17 +22095,6 @@ $root.E2E = (function() {
                 if (message.accessibilityLabel != null && message.hasOwnProperty("accessibilityLabel"))
                     if (!$util.isString(message.accessibilityLabel))
                         return "accessibilityLabel: string expected";
-                if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
-                    switch (message.mediaKeyDomain) {
-                    default:
-                        return "mediaKeyDomain: enum value expected";
-                    case 0:
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 4:
-                        break;
-                    }
                 return null;
             };
 
@@ -21598,34 +22174,6 @@ $root.E2E = (function() {
                     message.viewOnce = Boolean(object.viewOnce);
                 if (object.accessibilityLabel != null)
                     message.accessibilityLabel = String(object.accessibilityLabel);
-                switch (object.mediaKeyDomain) {
-                default:
-                    if (typeof object.mediaKeyDomain === "number") {
-                        message.mediaKeyDomain = object.mediaKeyDomain;
-                        break;
-                    }
-                    break;
-                case "UNSET":
-                case 0:
-                    message.mediaKeyDomain = 0;
-                    break;
-                case "E2EE_CHAT":
-                case 1:
-                    message.mediaKeyDomain = 1;
-                    break;
-                case "STATUS":
-                case 2:
-                    message.mediaKeyDomain = 2;
-                    break;
-                case "CAPI":
-                case 3:
-                    message.mediaKeyDomain = 3;
-                    break;
-                case "BOT":
-                case 4:
-                    message.mediaKeyDomain = 4;
-                    break;
-                }
                 return message;
             };
 
@@ -21697,7 +22245,6 @@ $root.E2E = (function() {
                     object.backgroundArgb = 0;
                     object.viewOnce = false;
                     object.accessibilityLabel = "";
-                    object.mediaKeyDomain = options.enums === String ? "UNSET" : 0;
                 }
                 if (message.url != null && message.hasOwnProperty("url"))
                     object.url = message.url;
@@ -21737,8 +22284,6 @@ $root.E2E = (function() {
                     object.viewOnce = message.viewOnce;
                 if (message.accessibilityLabel != null && message.hasOwnProperty("accessibilityLabel"))
                     object.accessibilityLabel = message.accessibilityLabel;
-                if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
-                    object.mediaKeyDomain = options.enums === String ? $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] === undefined ? message.mediaKeyDomain : $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] : message.mediaKeyDomain;
                 return object;
             };
 
@@ -27278,7 +27823,6 @@ $root.E2E = (function() {
              * @property {number|null} [thumbnailWidth] DocumentMessage thumbnailWidth
              * @property {string|null} [caption] DocumentMessage caption
              * @property {string|null} [accessibilityLabel] DocumentMessage accessibilityLabel
-             * @property {E2E.Message.MediaKeyDomain|null} [mediaKeyDomain] DocumentMessage mediaKeyDomain
              */
 
             /**
@@ -27465,14 +28009,6 @@ $root.E2E = (function() {
             DocumentMessage.prototype.accessibilityLabel = "";
 
             /**
-             * DocumentMessage mediaKeyDomain.
-             * @member {E2E.Message.MediaKeyDomain} mediaKeyDomain
-             * @memberof E2E.Message.DocumentMessage
-             * @instance
-             */
-            DocumentMessage.prototype.mediaKeyDomain = 0;
-
-            /**
              * Creates a new DocumentMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.DocumentMessage
@@ -27538,8 +28074,6 @@ $root.E2E = (function() {
                     writer.uint32(/* id 20, wireType 2 =*/162).string(message.caption);
                 if (message.accessibilityLabel != null && Object.hasOwnProperty.call(message, "accessibilityLabel"))
                     writer.uint32(/* id 21, wireType 2 =*/170).string(message.accessibilityLabel);
-                if (message.mediaKeyDomain != null && Object.hasOwnProperty.call(message, "mediaKeyDomain"))
-                    writer.uint32(/* id 22, wireType 0 =*/176).int32(message.mediaKeyDomain);
                 return writer;
             };
 
@@ -27660,10 +28194,6 @@ $root.E2E = (function() {
                             message.accessibilityLabel = reader.string();
                             break;
                         }
-                    case 22: {
-                            message.mediaKeyDomain = reader.int32();
-                            break;
-                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -27764,17 +28294,6 @@ $root.E2E = (function() {
                 if (message.accessibilityLabel != null && message.hasOwnProperty("accessibilityLabel"))
                     if (!$util.isString(message.accessibilityLabel))
                         return "accessibilityLabel: string expected";
-                if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
-                    switch (message.mediaKeyDomain) {
-                    default:
-                        return "mediaKeyDomain: enum value expected";
-                    case 0:
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 4:
-                        break;
-                    }
                 return null;
             };
 
@@ -27867,34 +28386,6 @@ $root.E2E = (function() {
                     message.caption = String(object.caption);
                 if (object.accessibilityLabel != null)
                     message.accessibilityLabel = String(object.accessibilityLabel);
-                switch (object.mediaKeyDomain) {
-                default:
-                    if (typeof object.mediaKeyDomain === "number") {
-                        message.mediaKeyDomain = object.mediaKeyDomain;
-                        break;
-                    }
-                    break;
-                case "UNSET":
-                case 0:
-                    message.mediaKeyDomain = 0;
-                    break;
-                case "E2EE_CHAT":
-                case 1:
-                    message.mediaKeyDomain = 1;
-                    break;
-                case "STATUS":
-                case 2:
-                    message.mediaKeyDomain = 2;
-                    break;
-                case "CAPI":
-                case 3:
-                    message.mediaKeyDomain = 3;
-                    break;
-                case "BOT":
-                case 4:
-                    message.mediaKeyDomain = 4;
-                    break;
-                }
                 return message;
             };
 
@@ -27977,7 +28468,6 @@ $root.E2E = (function() {
                     object.thumbnailWidth = 0;
                     object.caption = "";
                     object.accessibilityLabel = "";
-                    object.mediaKeyDomain = options.enums === String ? "UNSET" : 0;
                 }
                 if (message.url != null && message.hasOwnProperty("url"))
                     object.url = message.url;
@@ -28027,8 +28517,6 @@ $root.E2E = (function() {
                     object.caption = message.caption;
                 if (message.accessibilityLabel != null && message.hasOwnProperty("accessibilityLabel"))
                     object.accessibilityLabel = message.accessibilityLabel;
-                if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
-                    object.mediaKeyDomain = options.enums === String ? $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] === undefined ? message.mediaKeyDomain : $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] : message.mediaKeyDomain;
                 return object;
             };
 
@@ -34612,7 +35100,6 @@ $root.E2E = (function() {
              * @property {Array.<E2E.IInteractiveAnnotation>|null} [annotations] ImageMessage annotations
              * @property {E2E.Message.ImageMessage.ImageSourceType|null} [imageSourceType] ImageMessage imageSourceType
              * @property {string|null} [accessibilityLabel] ImageMessage accessibilityLabel
-             * @property {E2E.Message.MediaKeyDomain|null} [mediaKeyDomain] ImageMessage mediaKeyDomain
              * @property {string|null} [qrUrl] ImageMessage qrUrl
              */
 
@@ -34867,14 +35354,6 @@ $root.E2E = (function() {
             ImageMessage.prototype.accessibilityLabel = "";
 
             /**
-             * ImageMessage mediaKeyDomain.
-             * @member {E2E.Message.MediaKeyDomain} mediaKeyDomain
-             * @memberof E2E.Message.ImageMessage
-             * @instance
-             */
-            ImageMessage.prototype.mediaKeyDomain = 0;
-
-            /**
              * ImageMessage qrUrl.
              * @member {string} qrUrl
              * @memberof E2E.Message.ImageMessage
@@ -34967,8 +35446,6 @@ $root.E2E = (function() {
                     writer.uint32(/* id 31, wireType 0 =*/248).int32(message.imageSourceType);
                 if (message.accessibilityLabel != null && Object.hasOwnProperty.call(message, "accessibilityLabel"))
                     writer.uint32(/* id 32, wireType 2 =*/258).string(message.accessibilityLabel);
-                if (message.mediaKeyDomain != null && Object.hasOwnProperty.call(message, "mediaKeyDomain"))
-                    writer.uint32(/* id 33, wireType 0 =*/264).int32(message.mediaKeyDomain);
                 if (message.qrUrl != null && Object.hasOwnProperty.call(message, "qrUrl"))
                     writer.uint32(/* id 34, wireType 2 =*/274).string(message.qrUrl);
                 return writer;
@@ -35134,10 +35611,6 @@ $root.E2E = (function() {
                             message.accessibilityLabel = reader.string();
                             break;
                         }
-                    case 33: {
-                            message.mediaKeyDomain = reader.int32();
-                            break;
-                        }
                     case 34: {
                             message.qrUrl = reader.string();
                             break;
@@ -35289,17 +35762,6 @@ $root.E2E = (function() {
                 if (message.accessibilityLabel != null && message.hasOwnProperty("accessibilityLabel"))
                     if (!$util.isString(message.accessibilityLabel))
                         return "accessibilityLabel: string expected";
-                if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
-                    switch (message.mediaKeyDomain) {
-                    default:
-                        return "mediaKeyDomain: enum value expected";
-                    case 0:
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 4:
-                        break;
-                    }
                 if (message.qrUrl != null && message.hasOwnProperty("qrUrl"))
                     if (!$util.isString(message.qrUrl))
                         return "qrUrl: string expected";
@@ -35466,34 +35928,6 @@ $root.E2E = (function() {
                 }
                 if (object.accessibilityLabel != null)
                     message.accessibilityLabel = String(object.accessibilityLabel);
-                switch (object.mediaKeyDomain) {
-                default:
-                    if (typeof object.mediaKeyDomain === "number") {
-                        message.mediaKeyDomain = object.mediaKeyDomain;
-                        break;
-                    }
-                    break;
-                case "UNSET":
-                case 0:
-                    message.mediaKeyDomain = 0;
-                    break;
-                case "E2EE_CHAT":
-                case 1:
-                    message.mediaKeyDomain = 1;
-                    break;
-                case "STATUS":
-                case 2:
-                    message.mediaKeyDomain = 2;
-                    break;
-                case "CAPI":
-                case 3:
-                    message.mediaKeyDomain = 3;
-                    break;
-                case "BOT":
-                case 4:
-                    message.mediaKeyDomain = 4;
-                    break;
-                }
                 if (object.qrUrl != null)
                     message.qrUrl = String(object.qrUrl);
                 return message;
@@ -35612,7 +36046,6 @@ $root.E2E = (function() {
                     object.staticUrl = "";
                     object.imageSourceType = options.enums === String ? "USER_IMAGE" : 0;
                     object.accessibilityLabel = "";
-                    object.mediaKeyDomain = options.enums === String ? "UNSET" : 0;
                     object.qrUrl = "";
                 }
                 if (message.url != null && message.hasOwnProperty("url"))
@@ -35688,8 +36121,6 @@ $root.E2E = (function() {
                     object.imageSourceType = options.enums === String ? $root.E2E.Message.ImageMessage.ImageSourceType[message.imageSourceType] === undefined ? message.imageSourceType : $root.E2E.Message.ImageMessage.ImageSourceType[message.imageSourceType] : message.imageSourceType;
                 if (message.accessibilityLabel != null && message.hasOwnProperty("accessibilityLabel"))
                     object.accessibilityLabel = message.accessibilityLabel;
-                if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
-                    object.mediaKeyDomain = options.enums === String ? $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] === undefined ? message.mediaKeyDomain : $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] : message.mediaKeyDomain;
                 if (message.qrUrl != null && message.hasOwnProperty("qrUrl"))
                     object.qrUrl = message.qrUrl;
                 return object;
@@ -44189,7 +44620,6 @@ $root.E2E = (function() {
              * @property {number|Long|null} [mediaKeyTimestamp] MMSThumbnailMetadata mediaKeyTimestamp
              * @property {number|null} [thumbnailHeight] MMSThumbnailMetadata thumbnailHeight
              * @property {number|null} [thumbnailWidth] MMSThumbnailMetadata thumbnailWidth
-             * @property {E2E.Message.MediaKeyDomain|null} [mediaKeyDomain] MMSThumbnailMetadata mediaKeyDomain
              */
 
             /**
@@ -44264,14 +44694,6 @@ $root.E2E = (function() {
             MMSThumbnailMetadata.prototype.thumbnailWidth = 0;
 
             /**
-             * MMSThumbnailMetadata mediaKeyDomain.
-             * @member {E2E.Message.MediaKeyDomain} mediaKeyDomain
-             * @memberof E2E.Message.MMSThumbnailMetadata
-             * @instance
-             */
-            MMSThumbnailMetadata.prototype.mediaKeyDomain = 0;
-
-            /**
              * Creates a new MMSThumbnailMetadata instance using the specified properties.
              * @function create
              * @memberof E2E.Message.MMSThumbnailMetadata
@@ -44309,8 +44731,6 @@ $root.E2E = (function() {
                     writer.uint32(/* id 6, wireType 0 =*/48).uint32(message.thumbnailHeight);
                 if (message.thumbnailWidth != null && Object.hasOwnProperty.call(message, "thumbnailWidth"))
                     writer.uint32(/* id 7, wireType 0 =*/56).uint32(message.thumbnailWidth);
-                if (message.mediaKeyDomain != null && Object.hasOwnProperty.call(message, "mediaKeyDomain"))
-                    writer.uint32(/* id 8, wireType 0 =*/64).int32(message.mediaKeyDomain);
                 return writer;
             };
 
@@ -44375,10 +44795,6 @@ $root.E2E = (function() {
                             message.thumbnailWidth = reader.uint32();
                             break;
                         }
-                    case 8: {
-                            message.mediaKeyDomain = reader.int32();
-                            break;
-                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -44435,17 +44851,6 @@ $root.E2E = (function() {
                 if (message.thumbnailWidth != null && message.hasOwnProperty("thumbnailWidth"))
                     if (!$util.isInteger(message.thumbnailWidth))
                         return "thumbnailWidth: integer expected";
-                if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
-                    switch (message.mediaKeyDomain) {
-                    default:
-                        return "mediaKeyDomain: enum value expected";
-                    case 0:
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 4:
-                        break;
-                    }
                 return null;
             };
 
@@ -44491,34 +44896,6 @@ $root.E2E = (function() {
                     message.thumbnailHeight = object.thumbnailHeight >>> 0;
                 if (object.thumbnailWidth != null)
                     message.thumbnailWidth = object.thumbnailWidth >>> 0;
-                switch (object.mediaKeyDomain) {
-                default:
-                    if (typeof object.mediaKeyDomain === "number") {
-                        message.mediaKeyDomain = object.mediaKeyDomain;
-                        break;
-                    }
-                    break;
-                case "UNSET":
-                case 0:
-                    message.mediaKeyDomain = 0;
-                    break;
-                case "E2EE_CHAT":
-                case 1:
-                    message.mediaKeyDomain = 1;
-                    break;
-                case "STATUS":
-                case 2:
-                    message.mediaKeyDomain = 2;
-                    break;
-                case "CAPI":
-                case 3:
-                    message.mediaKeyDomain = 3;
-                    break;
-                case "BOT":
-                case 4:
-                    message.mediaKeyDomain = 4;
-                    break;
-                }
                 return message;
             };
 
@@ -44565,7 +44942,6 @@ $root.E2E = (function() {
                         object.mediaKeyTimestamp = options.longs === String ? "0" : 0;
                     object.thumbnailHeight = 0;
                     object.thumbnailWidth = 0;
-                    object.mediaKeyDomain = options.enums === String ? "UNSET" : 0;
                 }
                 if (message.thumbnailDirectPath != null && message.hasOwnProperty("thumbnailDirectPath"))
                     object.thumbnailDirectPath = message.thumbnailDirectPath;
@@ -44584,8 +44960,6 @@ $root.E2E = (function() {
                     object.thumbnailHeight = message.thumbnailHeight;
                 if (message.thumbnailWidth != null && message.hasOwnProperty("thumbnailWidth"))
                     object.thumbnailWidth = message.thumbnailWidth;
-                if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
-                    object.mediaKeyDomain = options.enums === String ? $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] === undefined ? message.mediaKeyDomain : $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] : message.mediaKeyDomain;
                 return object;
             };
 
@@ -44616,26 +44990,6 @@ $root.E2E = (function() {
             };
 
             return MMSThumbnailMetadata;
-        })();
-
-        /**
-         * MediaKeyDomain enum.
-         * @name E2E.Message.MediaKeyDomain
-         * @enum {number}
-         * @property {number} UNSET=0 UNSET value
-         * @property {number} E2EE_CHAT=1 E2EE_CHAT value
-         * @property {number} STATUS=2 STATUS value
-         * @property {number} CAPI=3 CAPI value
-         * @property {number} BOT=4 BOT value
-         */
-        Message.MediaKeyDomain = (function() {
-            var valuesById = {}, values = Object.create(valuesById);
-            values[valuesById[0] = "UNSET"] = 0;
-            values[valuesById[1] = "E2EE_CHAT"] = 1;
-            values[valuesById[2] = "STATUS"] = 2;
-            values[valuesById[3] = "CAPI"] = 3;
-            values[valuesById[4] = "BOT"] = 4;
-            return values;
         })();
 
         Message.MessageHistoryBundle = (function() {
@@ -45065,6 +45419,7 @@ $root.E2E = (function() {
              * @property {Array.<string>|null} [historyReceivers] MessageHistoryMetadata historyReceivers
              * @property {number|Long|null} [oldestMessageTimestamp] MessageHistoryMetadata oldestMessageTimestamp
              * @property {number|Long|null} [messageCount] MessageHistoryMetadata messageCount
+             * @property {Array.<string>|null} [nonHistoryReceivers] MessageHistoryMetadata nonHistoryReceivers
              */
 
             /**
@@ -45077,6 +45432,7 @@ $root.E2E = (function() {
              */
             function MessageHistoryMetadata(properties) {
                 this.historyReceivers = [];
+                this.nonHistoryReceivers = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -45106,6 +45462,14 @@ $root.E2E = (function() {
              * @instance
              */
             MessageHistoryMetadata.prototype.messageCount = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+            /**
+             * MessageHistoryMetadata nonHistoryReceivers.
+             * @member {Array.<string>} nonHistoryReceivers
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @instance
+             */
+            MessageHistoryMetadata.prototype.nonHistoryReceivers = $util.emptyArray;
 
             /**
              * Creates a new MessageHistoryMetadata instance using the specified properties.
@@ -45138,6 +45502,9 @@ $root.E2E = (function() {
                     writer.uint32(/* id 2, wireType 0 =*/16).int64(message.oldestMessageTimestamp);
                 if (message.messageCount != null && Object.hasOwnProperty.call(message, "messageCount"))
                     writer.uint32(/* id 3, wireType 0 =*/24).int64(message.messageCount);
+                if (message.nonHistoryReceivers != null && message.nonHistoryReceivers.length)
+                    for (var i = 0; i < message.nonHistoryReceivers.length; ++i)
+                        writer.uint32(/* id 4, wireType 2 =*/34).string(message.nonHistoryReceivers[i]);
                 return writer;
             };
 
@@ -45188,6 +45555,12 @@ $root.E2E = (function() {
                             message.messageCount = reader.int64();
                             break;
                         }
+                    case 4: {
+                            if (!(message.nonHistoryReceivers && message.nonHistoryReceivers.length))
+                                message.nonHistoryReceivers = [];
+                            message.nonHistoryReceivers.push(reader.string());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -45236,6 +45609,13 @@ $root.E2E = (function() {
                 if (message.messageCount != null && message.hasOwnProperty("messageCount"))
                     if (!$util.isInteger(message.messageCount) && !(message.messageCount && $util.isInteger(message.messageCount.low) && $util.isInteger(message.messageCount.high)))
                         return "messageCount: integer|Long expected";
+                if (message.nonHistoryReceivers != null && message.hasOwnProperty("nonHistoryReceivers")) {
+                    if (!Array.isArray(message.nonHistoryReceivers))
+                        return "nonHistoryReceivers: array expected";
+                    for (var i = 0; i < message.nonHistoryReceivers.length; ++i)
+                        if (!$util.isString(message.nonHistoryReceivers[i]))
+                            return "nonHistoryReceivers: string[] expected";
+                }
                 return null;
             };
 
@@ -45276,6 +45656,13 @@ $root.E2E = (function() {
                         message.messageCount = object.messageCount;
                     else if (typeof object.messageCount === "object")
                         message.messageCount = new $util.LongBits(object.messageCount.low >>> 0, object.messageCount.high >>> 0).toNumber();
+                if (object.nonHistoryReceivers) {
+                    if (!Array.isArray(object.nonHistoryReceivers))
+                        throw TypeError(".E2E.Message.MessageHistoryMetadata.nonHistoryReceivers: array expected");
+                    message.nonHistoryReceivers = [];
+                    for (var i = 0; i < object.nonHistoryReceivers.length; ++i)
+                        message.nonHistoryReceivers[i] = String(object.nonHistoryReceivers[i]);
+                }
                 return message;
             };
 
@@ -45292,8 +45679,10 @@ $root.E2E = (function() {
                 if (!options)
                     options = {};
                 var object = {};
-                if (options.arrays || options.defaults)
+                if (options.arrays || options.defaults) {
                     object.historyReceivers = [];
+                    object.nonHistoryReceivers = [];
+                }
                 if (options.defaults) {
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
@@ -45321,6 +45710,11 @@ $root.E2E = (function() {
                         object.messageCount = options.longs === String ? String(message.messageCount) : message.messageCount;
                     else
                         object.messageCount = options.longs === String ? $util.Long.prototype.toString.call(message.messageCount) : options.longs === Number ? new $util.LongBits(message.messageCount.low >>> 0, message.messageCount.high >>> 0).toNumber() : message.messageCount;
+                if (message.nonHistoryReceivers && message.nonHistoryReceivers.length) {
+                    object.nonHistoryReceivers = [];
+                    for (var j = 0; j < message.nonHistoryReceivers.length; ++j)
+                        object.nonHistoryReceivers[j] = message.nonHistoryReceivers[j];
+                }
                 return object;
             };
 
@@ -55225,6 +55619,8 @@ $root.E2E = (function() {
              * @property {E2E.Message.PollContentType|null} [pollContentType] PollCreationMessage pollContentType
              * @property {E2E.Message.PollType|null} [pollType] PollCreationMessage pollType
              * @property {E2E.Message.PollCreationMessage.IOption|null} [correctAnswer] PollCreationMessage correctAnswer
+             * @property {number|Long|null} [endTime] PollCreationMessage endTime
+             * @property {boolean|null} [hideParticipantName] PollCreationMessage hideParticipantName
              */
 
             /**
@@ -55308,6 +55704,22 @@ $root.E2E = (function() {
             PollCreationMessage.prototype.correctAnswer = null;
 
             /**
+             * PollCreationMessage endTime.
+             * @member {number|Long} endTime
+             * @memberof E2E.Message.PollCreationMessage
+             * @instance
+             */
+            PollCreationMessage.prototype.endTime = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+            /**
+             * PollCreationMessage hideParticipantName.
+             * @member {boolean} hideParticipantName
+             * @memberof E2E.Message.PollCreationMessage
+             * @instance
+             */
+            PollCreationMessage.prototype.hideParticipantName = false;
+
+            /**
              * Creates a new PollCreationMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.PollCreationMessage
@@ -55348,6 +55760,10 @@ $root.E2E = (function() {
                     writer.uint32(/* id 7, wireType 0 =*/56).int32(message.pollType);
                 if (message.correctAnswer != null && Object.hasOwnProperty.call(message, "correctAnswer"))
                     $root.E2E.Message.PollCreationMessage.Option.encode(message.correctAnswer, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+                if (message.endTime != null && Object.hasOwnProperty.call(message, "endTime"))
+                    writer.uint32(/* id 9, wireType 0 =*/72).int64(message.endTime);
+                if (message.hideParticipantName != null && Object.hasOwnProperty.call(message, "hideParticipantName"))
+                    writer.uint32(/* id 10, wireType 0 =*/80).bool(message.hideParticipantName);
                 return writer;
             };
 
@@ -55416,6 +55832,14 @@ $root.E2E = (function() {
                         }
                     case 8: {
                             message.correctAnswer = $root.E2E.Message.PollCreationMessage.Option.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 9: {
+                            message.endTime = reader.int64();
+                            break;
+                        }
+                    case 10: {
+                            message.hideParticipantName = reader.bool();
                             break;
                         }
                     default:
@@ -55498,6 +55922,12 @@ $root.E2E = (function() {
                     if (error)
                         return "correctAnswer." + error;
                 }
+                if (message.endTime != null && message.hasOwnProperty("endTime"))
+                    if (!$util.isInteger(message.endTime) && !(message.endTime && $util.isInteger(message.endTime.low) && $util.isInteger(message.endTime.high)))
+                        return "endTime: integer|Long expected";
+                if (message.hideParticipantName != null && message.hasOwnProperty("hideParticipantName"))
+                    if (typeof message.hideParticipantName !== "boolean")
+                        return "hideParticipantName: boolean expected";
                 return null;
             };
 
@@ -55578,6 +56008,17 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.PollCreationMessage.correctAnswer: object expected");
                     message.correctAnswer = $root.E2E.Message.PollCreationMessage.Option.fromObject(object.correctAnswer);
                 }
+                if (object.endTime != null)
+                    if ($util.Long)
+                        (message.endTime = $util.Long.fromValue(object.endTime)).unsigned = false;
+                    else if (typeof object.endTime === "string")
+                        message.endTime = parseInt(object.endTime, 10);
+                    else if (typeof object.endTime === "number")
+                        message.endTime = object.endTime;
+                    else if (typeof object.endTime === "object")
+                        message.endTime = new $util.LongBits(object.endTime.low >>> 0, object.endTime.high >>> 0).toNumber();
+                if (object.hideParticipantName != null)
+                    message.hideParticipantName = Boolean(object.hideParticipantName);
                 return message;
             };
 
@@ -55610,6 +56051,12 @@ $root.E2E = (function() {
                     object.pollContentType = options.enums === String ? "UNKNOWN" : 0;
                     object.pollType = options.enums === String ? "POLL" : 0;
                     object.correctAnswer = null;
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.endTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    } else
+                        object.endTime = options.longs === String ? "0" : 0;
+                    object.hideParticipantName = false;
                 }
                 if (message.encKey != null && message.hasOwnProperty("encKey"))
                     object.encKey = options.bytes === String ? $util.base64.encode(message.encKey, 0, message.encKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.encKey) : message.encKey;
@@ -55630,6 +56077,13 @@ $root.E2E = (function() {
                     object.pollType = options.enums === String ? $root.E2E.Message.PollType[message.pollType] === undefined ? message.pollType : $root.E2E.Message.PollType[message.pollType] : message.pollType;
                 if (message.correctAnswer != null && message.hasOwnProperty("correctAnswer"))
                     object.correctAnswer = $root.E2E.Message.PollCreationMessage.Option.toObject(message.correctAnswer, options);
+                if (message.endTime != null && message.hasOwnProperty("endTime"))
+                    if (typeof message.endTime === "number")
+                        object.endTime = options.longs === String ? String(message.endTime) : message.endTime;
+                    else
+                        object.endTime = options.longs === String ? $util.Long.prototype.toString.call(message.endTime) : options.longs === Number ? new $util.LongBits(message.endTime.low >>> 0, message.endTime.high >>> 0).toNumber() : message.endTime;
+                if (message.hideParticipantName != null && message.hasOwnProperty("hideParticipantName"))
+                    object.hideParticipantName = message.hideParticipantName;
                 return object;
             };
 
@@ -61515,6 +61969,7 @@ $root.E2E = (function() {
              * @property {Uint8Array|null} [encPayload] SecretEncryptedMessage encPayload
              * @property {Uint8Array|null} [encIv] SecretEncryptedMessage encIv
              * @property {E2E.Message.SecretEncryptedMessage.SecretEncType|null} [secretEncType] SecretEncryptedMessage secretEncType
+             * @property {string|null} [remoteKeyId] SecretEncryptedMessage remoteKeyId
              */
 
             /**
@@ -61565,6 +62020,14 @@ $root.E2E = (function() {
             SecretEncryptedMessage.prototype.secretEncType = 0;
 
             /**
+             * SecretEncryptedMessage remoteKeyId.
+             * @member {string} remoteKeyId
+             * @memberof E2E.Message.SecretEncryptedMessage
+             * @instance
+             */
+            SecretEncryptedMessage.prototype.remoteKeyId = "";
+
+            /**
              * Creates a new SecretEncryptedMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.SecretEncryptedMessage
@@ -61596,6 +62059,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.encIv);
                 if (message.secretEncType != null && Object.hasOwnProperty.call(message, "secretEncType"))
                     writer.uint32(/* id 4, wireType 0 =*/32).int32(message.secretEncType);
+                if (message.remoteKeyId != null && Object.hasOwnProperty.call(message, "remoteKeyId"))
+                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.remoteKeyId);
                 return writer;
             };
 
@@ -61646,6 +62111,10 @@ $root.E2E = (function() {
                         }
                     case 4: {
                             message.secretEncType = reader.int32();
+                            break;
+                        }
+                    case 5: {
+                            message.remoteKeyId = reader.string();
                             break;
                         }
                     default:
@@ -61701,8 +62170,13 @@ $root.E2E = (function() {
                     case 0:
                     case 1:
                     case 2:
+                    case 3:
+                    case 4:
                         break;
                     }
+                if (message.remoteKeyId != null && message.hasOwnProperty("remoteKeyId"))
+                    if (!$util.isString(message.remoteKeyId))
+                        return "remoteKeyId: string expected";
                 return null;
             };
 
@@ -61752,7 +62226,17 @@ $root.E2E = (function() {
                 case 2:
                     message.secretEncType = 2;
                     break;
+                case "MESSAGE_SCHEDULE":
+                case 3:
+                    message.secretEncType = 3;
+                    break;
+                case "POLL_EDIT":
+                case 4:
+                    message.secretEncType = 4;
+                    break;
                 }
+                if (object.remoteKeyId != null)
+                    message.remoteKeyId = String(object.remoteKeyId);
                 return message;
             };
 
@@ -61786,6 +62270,7 @@ $root.E2E = (function() {
                             object.encIv = $util.newBuffer(object.encIv);
                     }
                     object.secretEncType = options.enums === String ? "UNKNOWN" : 0;
+                    object.remoteKeyId = "";
                 }
                 if (message.targetMessageKey != null && message.hasOwnProperty("targetMessageKey"))
                     object.targetMessageKey = $root.Protocol.MessageKey.toObject(message.targetMessageKey, options);
@@ -61795,6 +62280,8 @@ $root.E2E = (function() {
                     object.encIv = options.bytes === String ? $util.base64.encode(message.encIv, 0, message.encIv.length) : options.bytes === Array ? Array.prototype.slice.call(message.encIv) : message.encIv;
                 if (message.secretEncType != null && message.hasOwnProperty("secretEncType"))
                     object.secretEncType = options.enums === String ? $root.E2E.Message.SecretEncryptedMessage.SecretEncType[message.secretEncType] === undefined ? message.secretEncType : $root.E2E.Message.SecretEncryptedMessage.SecretEncType[message.secretEncType] : message.secretEncType;
+                if (message.remoteKeyId != null && message.hasOwnProperty("remoteKeyId"))
+                    object.remoteKeyId = message.remoteKeyId;
                 return object;
             };
 
@@ -61831,12 +62318,16 @@ $root.E2E = (function() {
              * @property {number} UNKNOWN=0 UNKNOWN value
              * @property {number} EVENT_EDIT=1 EVENT_EDIT value
              * @property {number} MESSAGE_EDIT=2 MESSAGE_EDIT value
+             * @property {number} MESSAGE_SCHEDULE=3 MESSAGE_SCHEDULE value
+             * @property {number} POLL_EDIT=4 POLL_EDIT value
              */
             SecretEncryptedMessage.SecretEncType = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
                 values[valuesById[0] = "UNKNOWN"] = 0;
                 values[valuesById[1] = "EVENT_EDIT"] = 1;
                 values[valuesById[2] = "MESSAGE_EDIT"] = 2;
+                values[valuesById[3] = "MESSAGE_SCHEDULE"] = 3;
+                values[valuesById[4] = "POLL_EDIT"] = 4;
                 return values;
             })();
 
@@ -63545,7 +64036,6 @@ $root.E2E = (function() {
              * @property {boolean|null} [isAiSticker] StickerMessage isAiSticker
              * @property {boolean|null} [isLottie] StickerMessage isLottie
              * @property {string|null} [accessibilityLabel] StickerMessage accessibilityLabel
-             * @property {E2E.Message.MediaKeyDomain|null} [mediaKeyDomain] StickerMessage mediaKeyDomain
              */
 
             /**
@@ -63724,14 +64214,6 @@ $root.E2E = (function() {
             StickerMessage.prototype.accessibilityLabel = "";
 
             /**
-             * StickerMessage mediaKeyDomain.
-             * @member {E2E.Message.MediaKeyDomain} mediaKeyDomain
-             * @memberof E2E.Message.StickerMessage
-             * @instance
-             */
-            StickerMessage.prototype.mediaKeyDomain = 0;
-
-            /**
              * Creates a new StickerMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.StickerMessage
@@ -63795,8 +64277,6 @@ $root.E2E = (function() {
                     writer.uint32(/* id 21, wireType 0 =*/168).bool(message.isLottie);
                 if (message.accessibilityLabel != null && Object.hasOwnProperty.call(message, "accessibilityLabel"))
                     writer.uint32(/* id 22, wireType 2 =*/178).string(message.accessibilityLabel);
-                if (message.mediaKeyDomain != null && Object.hasOwnProperty.call(message, "mediaKeyDomain"))
-                    writer.uint32(/* id 23, wireType 0 =*/184).int32(message.mediaKeyDomain);
                 return writer;
             };
 
@@ -63913,10 +64393,6 @@ $root.E2E = (function() {
                             message.accessibilityLabel = reader.string();
                             break;
                         }
-                    case 23: {
-                            message.mediaKeyDomain = reader.int32();
-                            break;
-                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -64014,17 +64490,6 @@ $root.E2E = (function() {
                 if (message.accessibilityLabel != null && message.hasOwnProperty("accessibilityLabel"))
                     if (!$util.isString(message.accessibilityLabel))
                         return "accessibilityLabel: string expected";
-                if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
-                    switch (message.mediaKeyDomain) {
-                    default:
-                        return "mediaKeyDomain: enum value expected";
-                    case 0:
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 4:
-                        break;
-                    }
                 return null;
             };
 
@@ -64119,34 +64584,6 @@ $root.E2E = (function() {
                     message.isLottie = Boolean(object.isLottie);
                 if (object.accessibilityLabel != null)
                     message.accessibilityLabel = String(object.accessibilityLabel);
-                switch (object.mediaKeyDomain) {
-                default:
-                    if (typeof object.mediaKeyDomain === "number") {
-                        message.mediaKeyDomain = object.mediaKeyDomain;
-                        break;
-                    }
-                    break;
-                case "UNSET":
-                case 0:
-                    message.mediaKeyDomain = 0;
-                    break;
-                case "E2EE_CHAT":
-                case 1:
-                    message.mediaKeyDomain = 1;
-                    break;
-                case "STATUS":
-                case 2:
-                    message.mediaKeyDomain = 2;
-                    break;
-                case "CAPI":
-                case 3:
-                    message.mediaKeyDomain = 3;
-                    break;
-                case "BOT":
-                case 4:
-                    message.mediaKeyDomain = 4;
-                    break;
-                }
                 return message;
             };
 
@@ -64226,7 +64663,6 @@ $root.E2E = (function() {
                     object.isAiSticker = false;
                     object.isLottie = false;
                     object.accessibilityLabel = "";
-                    object.mediaKeyDomain = options.enums === String ? "UNSET" : 0;
                 }
                 if (message.url != null && message.hasOwnProperty("url"))
                     object.url = message.url;
@@ -64277,8 +64713,6 @@ $root.E2E = (function() {
                     object.isLottie = message.isLottie;
                 if (message.accessibilityLabel != null && message.hasOwnProperty("accessibilityLabel"))
                     object.accessibilityLabel = message.accessibilityLabel;
-                if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
-                    object.mediaKeyDomain = options.enums === String ? $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] === undefined ? message.mediaKeyDomain : $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] : message.mediaKeyDomain;
                 return object;
             };
 
@@ -67948,7 +68382,6 @@ $root.E2E = (function() {
              * @property {number|Long|null} [motionPhotoPresentationOffsetMs] VideoMessage motionPhotoPresentationOffsetMs
              * @property {string|null} [metadataUrl] VideoMessage metadataUrl
              * @property {E2E.Message.VideoMessage.VideoSourceType|null} [videoSourceType] VideoMessage videoSourceType
-             * @property {E2E.Message.MediaKeyDomain|null} [mediaKeyDomain] VideoMessage mediaKeyDomain
              */
 
             /**
@@ -68210,14 +68643,6 @@ $root.E2E = (function() {
             VideoMessage.prototype.videoSourceType = 0;
 
             /**
-             * VideoMessage mediaKeyDomain.
-             * @member {E2E.Message.MediaKeyDomain} mediaKeyDomain
-             * @memberof E2E.Message.VideoMessage
-             * @instance
-             */
-            VideoMessage.prototype.mediaKeyDomain = 0;
-
-            /**
              * Creates a new VideoMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.VideoMessage
@@ -68304,8 +68729,6 @@ $root.E2E = (function() {
                     writer.uint32(/* id 30, wireType 2 =*/242).string(message.metadataUrl);
                 if (message.videoSourceType != null && Object.hasOwnProperty.call(message, "videoSourceType"))
                     writer.uint32(/* id 31, wireType 0 =*/248).int32(message.videoSourceType);
-                if (message.mediaKeyDomain != null && Object.hasOwnProperty.call(message, "mediaKeyDomain"))
-                    writer.uint32(/* id 32, wireType 0 =*/256).int32(message.mediaKeyDomain);
                 return writer;
             };
 
@@ -68468,10 +68891,6 @@ $root.E2E = (function() {
                             message.videoSourceType = reader.int32();
                             break;
                         }
-                    case 32: {
-                            message.mediaKeyDomain = reader.int32();
-                            break;
-                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -68627,17 +69046,6 @@ $root.E2E = (function() {
                         return "videoSourceType: enum value expected";
                     case 0:
                     case 1:
-                        break;
-                    }
-                if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
-                    switch (message.mediaKeyDomain) {
-                    default:
-                        return "mediaKeyDomain: enum value expected";
-                    case 0:
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 4:
                         break;
                     }
                 return null;
@@ -68820,34 +69228,6 @@ $root.E2E = (function() {
                     message.videoSourceType = 1;
                     break;
                 }
-                switch (object.mediaKeyDomain) {
-                default:
-                    if (typeof object.mediaKeyDomain === "number") {
-                        message.mediaKeyDomain = object.mediaKeyDomain;
-                        break;
-                    }
-                    break;
-                case "UNSET":
-                case 0:
-                    message.mediaKeyDomain = 0;
-                    break;
-                case "E2EE_CHAT":
-                case 1:
-                    message.mediaKeyDomain = 1;
-                    break;
-                case "STATUS":
-                case 2:
-                    message.mediaKeyDomain = 2;
-                    break;
-                case "CAPI":
-                case 3:
-                    message.mediaKeyDomain = 3;
-                    break;
-                case "BOT":
-                case 4:
-                    message.mediaKeyDomain = 4;
-                    break;
-                }
                 return message;
             };
 
@@ -68951,7 +69331,6 @@ $root.E2E = (function() {
                         object.motionPhotoPresentationOffsetMs = options.longs === String ? "0" : 0;
                     object.metadataUrl = "";
                     object.videoSourceType = options.enums === String ? "USER_VIDEO" : 0;
-                    object.mediaKeyDomain = options.enums === String ? "UNSET" : 0;
                 }
                 if (message.url != null && message.hasOwnProperty("url"))
                     object.url = message.url;
@@ -69031,8 +69410,6 @@ $root.E2E = (function() {
                     object.metadataUrl = message.metadataUrl;
                 if (message.videoSourceType != null && message.hasOwnProperty("videoSourceType"))
                     object.videoSourceType = options.enums === String ? $root.E2E.Message.VideoMessage.VideoSourceType[message.videoSourceType] === undefined ? message.videoSourceType : $root.E2E.Message.VideoMessage.VideoSourceType[message.videoSourceType] : message.videoSourceType;
-                if (message.mediaKeyDomain != null && message.hasOwnProperty("mediaKeyDomain"))
-                    object.mediaKeyDomain = options.enums === String ? $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] === undefined ? message.mediaKeyDomain : $root.E2E.Message.MediaKeyDomain[message.mediaKeyDomain] : message.mediaKeyDomain;
                 return object;
             };
 
@@ -69127,6 +69504,22 @@ $root.E2E = (function() {
         var valuesById = {}, values = Object.create(valuesById);
         values[valuesById[0] = "WEBVIEW"] = 0;
         values[valuesById[1] = "SYSTEM"] = 1;
+        return values;
+    })();
+
+    /**
+     * MediaKeyDomain enum.
+     * @name E2E.MediaKeyDomain
+     * @enum {number}
+     * @property {number} MEDIA_KEY_DOMAIN_UNKNOWN=0 MEDIA_KEY_DOMAIN_UNKNOWN value
+     * @property {number} MEDIA_KEY_DOMAIN_E2EE=1 MEDIA_KEY_DOMAIN_E2EE value
+     * @property {number} MEDIA_KEY_DOMAIN_NON_E2EE=2 MEDIA_KEY_DOMAIN_NON_E2EE value
+     */
+    E2E.MediaKeyDomain = (function() {
+        var valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "MEDIA_KEY_DOMAIN_UNKNOWN"] = 0;
+        values[valuesById[1] = "MEDIA_KEY_DOMAIN_E2EE"] = 1;
+        values[valuesById[2] = "MEDIA_KEY_DOMAIN_NON_E2EE"] = 2;
         return values;
     })();
 
@@ -69772,6 +70165,7 @@ $root.AICommon = (function() {
          * @memberof AICommon
          * @interface IBotInfrastructureDiagnostics
          * @property {AICommon.BotInfrastructureDiagnostics.BotBackend|null} [botBackend] BotInfrastructureDiagnostics botBackend
+         * @property {Array.<string>|null} [toolsUsed] BotInfrastructureDiagnostics toolsUsed
          */
 
         /**
@@ -69783,6 +70177,7 @@ $root.AICommon = (function() {
          * @param {AICommon.IBotInfrastructureDiagnostics=} [properties] Properties to set
          */
         function BotInfrastructureDiagnostics(properties) {
+            this.toolsUsed = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -69796,6 +70191,14 @@ $root.AICommon = (function() {
          * @instance
          */
         BotInfrastructureDiagnostics.prototype.botBackend = 0;
+
+        /**
+         * BotInfrastructureDiagnostics toolsUsed.
+         * @member {Array.<string>} toolsUsed
+         * @memberof AICommon.BotInfrastructureDiagnostics
+         * @instance
+         */
+        BotInfrastructureDiagnostics.prototype.toolsUsed = $util.emptyArray;
 
         /**
          * Creates a new BotInfrastructureDiagnostics instance using the specified properties.
@@ -69823,6 +70226,9 @@ $root.AICommon = (function() {
                 writer = $Writer.create();
             if (message.botBackend != null && Object.hasOwnProperty.call(message, "botBackend"))
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.botBackend);
+            if (message.toolsUsed != null && message.toolsUsed.length)
+                for (var i = 0; i < message.toolsUsed.length; ++i)
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.toolsUsed[i]);
             return writer;
         };
 
@@ -69861,6 +70267,12 @@ $root.AICommon = (function() {
                 switch (tag >>> 3) {
                 case 1: {
                         message.botBackend = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        if (!(message.toolsUsed && message.toolsUsed.length))
+                            message.toolsUsed = [];
+                        message.toolsUsed.push(reader.string());
                         break;
                     }
                 default:
@@ -69906,6 +70318,13 @@ $root.AICommon = (function() {
                 case 1:
                     break;
                 }
+            if (message.toolsUsed != null && message.hasOwnProperty("toolsUsed")) {
+                if (!Array.isArray(message.toolsUsed))
+                    return "toolsUsed: array expected";
+                for (var i = 0; i < message.toolsUsed.length; ++i)
+                    if (!$util.isString(message.toolsUsed[i]))
+                        return "toolsUsed: string[] expected";
+            }
             return null;
         };
 
@@ -69937,6 +70356,13 @@ $root.AICommon = (function() {
                 message.botBackend = 1;
                 break;
             }
+            if (object.toolsUsed) {
+                if (!Array.isArray(object.toolsUsed))
+                    throw TypeError(".AICommon.BotInfrastructureDiagnostics.toolsUsed: array expected");
+                message.toolsUsed = [];
+                for (var i = 0; i < object.toolsUsed.length; ++i)
+                    message.toolsUsed[i] = String(object.toolsUsed[i]);
+            }
             return message;
         };
 
@@ -69953,10 +70379,17 @@ $root.AICommon = (function() {
             if (!options)
                 options = {};
             var object = {};
+            if (options.arrays || options.defaults)
+                object.toolsUsed = [];
             if (options.defaults)
                 object.botBackend = options.enums === String ? "AAPI" : 0;
             if (message.botBackend != null && message.hasOwnProperty("botBackend"))
                 object.botBackend = options.enums === String ? $root.AICommon.BotInfrastructureDiagnostics.BotBackend[message.botBackend] === undefined ? message.botBackend : $root.AICommon.BotInfrastructureDiagnostics.BotBackend[message.botBackend] : message.botBackend;
+            if (message.toolsUsed && message.toolsUsed.length) {
+                object.toolsUsed = [];
+                for (var j = 0; j < message.toolsUsed.length; ++j)
+                    object.toolsUsed[j] = message.toolsUsed[j];
+            }
             return object;
         };
 
@@ -70555,6 +70988,7 @@ $root.AICommon = (function() {
                     case 1:
                     case 2:
                     case 3:
+                    case 4:
                         break;
                     }
                 if (message.title != null && message.hasOwnProperty("title"))
@@ -70615,6 +71049,10 @@ $root.AICommon = (function() {
                 case "ANALYZE_FILE":
                 case 3:
                     message.type = 3;
+                    break;
+                case "COLLABORATE":
+                case 4:
+                    message.type = 4;
                     break;
                 }
                 if (object.title != null)
@@ -70710,6 +71148,7 @@ $root.AICommon = (function() {
              * @property {number} CREATE_IMAGE=1 CREATE_IMAGE value
              * @property {number} ANIMATE_PHOTO=2 ANIMATE_PHOTO value
              * @property {number} ANALYZE_FILE=3 ANALYZE_FILE value
+             * @property {number} COLLABORATE=4 COLLABORATE value
              */
             AIHomeOption.AIHomeActionType = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -70717,6 +71156,7 @@ $root.AICommon = (function() {
                 values[valuesById[1] = "CREATE_IMAGE"] = 1;
                 values[valuesById[2] = "ANIMATE_PHOTO"] = 2;
                 values[valuesById[3] = "ANALYZE_FILE"] = 3;
+                values[valuesById[4] = "COLLABORATE"] = 4;
                 return values;
             })();
 
@@ -86761,6 +87201,7 @@ $root.AICommon = (function() {
          * @memberof AICommon
          * @interface IBotModeSelectionMetadata
          * @property {Array.<AICommon.BotModeSelectionMetadata.BotUserSelectionMode>|null} [mode] BotModeSelectionMetadata mode
+         * @property {Array.<number>|null} [overrideMode] BotModeSelectionMetadata overrideMode
          */
 
         /**
@@ -86773,6 +87214,7 @@ $root.AICommon = (function() {
          */
         function BotModeSelectionMetadata(properties) {
             this.mode = [];
+            this.overrideMode = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -86786,6 +87228,14 @@ $root.AICommon = (function() {
          * @instance
          */
         BotModeSelectionMetadata.prototype.mode = $util.emptyArray;
+
+        /**
+         * BotModeSelectionMetadata overrideMode.
+         * @member {Array.<number>} overrideMode
+         * @memberof AICommon.BotModeSelectionMetadata
+         * @instance
+         */
+        BotModeSelectionMetadata.prototype.overrideMode = $util.emptyArray;
 
         /**
          * Creates a new BotModeSelectionMetadata instance using the specified properties.
@@ -86814,6 +87264,9 @@ $root.AICommon = (function() {
             if (message.mode != null && message.mode.length)
                 for (var i = 0; i < message.mode.length; ++i)
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.mode[i]);
+            if (message.overrideMode != null && message.overrideMode.length)
+                for (var i = 0; i < message.overrideMode.length; ++i)
+                    writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.overrideMode[i]);
             return writer;
         };
 
@@ -86859,6 +87312,17 @@ $root.AICommon = (function() {
                                 message.mode.push(reader.int32());
                         } else
                             message.mode.push(reader.int32());
+                        break;
+                    }
+                case 2: {
+                        if (!(message.overrideMode && message.overrideMode.length))
+                            message.overrideMode = [];
+                        if ((tag & 7) === 2) {
+                            var end2 = reader.uint32() + reader.pos;
+                            while (reader.pos < end2)
+                                message.overrideMode.push(reader.uint32());
+                        } else
+                            message.overrideMode.push(reader.uint32());
                         break;
                     }
                 default:
@@ -86908,6 +87372,13 @@ $root.AICommon = (function() {
                         break;
                     }
             }
+            if (message.overrideMode != null && message.hasOwnProperty("overrideMode")) {
+                if (!Array.isArray(message.overrideMode))
+                    return "overrideMode: array expected";
+                for (var i = 0; i < message.overrideMode.length; ++i)
+                    if (!$util.isInteger(message.overrideMode[i]))
+                        return "overrideMode: integer[] expected";
+            }
             return null;
         };
 
@@ -86944,6 +87415,13 @@ $root.AICommon = (function() {
                         break;
                     }
             }
+            if (object.overrideMode) {
+                if (!Array.isArray(object.overrideMode))
+                    throw TypeError(".AICommon.BotModeSelectionMetadata.overrideMode: array expected");
+                message.overrideMode = [];
+                for (var i = 0; i < object.overrideMode.length; ++i)
+                    message.overrideMode[i] = object.overrideMode[i] >>> 0;
+            }
             return message;
         };
 
@@ -86960,12 +87438,19 @@ $root.AICommon = (function() {
             if (!options)
                 options = {};
             var object = {};
-            if (options.arrays || options.defaults)
+            if (options.arrays || options.defaults) {
                 object.mode = [];
+                object.overrideMode = [];
+            }
             if (message.mode && message.mode.length) {
                 object.mode = [];
                 for (var j = 0; j < message.mode.length; ++j)
                     object.mode[j] = options.enums === String ? $root.AICommon.BotModeSelectionMetadata.BotUserSelectionMode[message.mode[j]] === undefined ? message.mode[j] : $root.AICommon.BotModeSelectionMetadata.BotUserSelectionMode[message.mode[j]] : message.mode[j];
+            }
+            if (message.overrideMode && message.overrideMode.length) {
+                object.overrideMode = [];
+                for (var j = 0; j < message.overrideMode.length; ++j)
+                    object.overrideMode[j] = message.overrideMode[j];
             }
             return object;
         };
@@ -87219,6 +87704,7 @@ $root.AICommon = (function() {
                     case 54:
                     case 55:
                     case 56:
+                    case 57:
                         break;
                     }
             }
@@ -87476,6 +87962,10 @@ $root.AICommon = (function() {
                     case 56:
                         message.capabilities[i] = 56;
                         break;
+                    case "RICH_RESPONSE_UR_IMAGINE_VIDEO":
+                    case 57:
+                        message.capabilities[i] = 57;
+                        break;
                     }
             }
             return message;
@@ -87591,6 +88081,7 @@ $root.AICommon = (function() {
          * @property {number} AI_IMAGINE_UR_TO_NATIVE_LOADING_INDICATOR=54 AI_IMAGINE_UR_TO_NATIVE_LOADING_INDICATOR value
          * @property {number} RICH_RESPONSE_UR_BLOKS_ENABLED=55 RICH_RESPONSE_UR_BLOKS_ENABLED value
          * @property {number} RICH_RESPONSE_INLINE_LINKS_ENABLED=56 RICH_RESPONSE_INLINE_LINKS_ENABLED value
+         * @property {number} RICH_RESPONSE_UR_IMAGINE_VIDEO=57 RICH_RESPONSE_UR_IMAGINE_VIDEO value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -87651,6 +88142,7 @@ $root.AICommon = (function() {
             values[valuesById[54] = "AI_IMAGINE_UR_TO_NATIVE_LOADING_INDICATOR"] = 54;
             values[valuesById[55] = "RICH_RESPONSE_UR_BLOKS_ENABLED"] = 55;
             values[valuesById[56] = "RICH_RESPONSE_INLINE_LINKS_ENABLED"] = 56;
+            values[valuesById[57] = "RICH_RESPONSE_UR_IMAGINE_VIDEO"] = 57;
             return values;
         })();
 
@@ -96027,7 +96519,7 @@ $root.StatusAttributions = (function() {
             case 8:
                 message.type = 8;
                 break;
-            case "STATUS_CLOSE_SHARING":
+            case "NEWSLETTER_STATUS":
             case 9:
                 message.type = 9;
                 break;
@@ -98110,7 +98602,7 @@ $root.StatusAttributions = (function() {
          * @property {number} RL_ATTRIBUTION=6 RL_ATTRIBUTION value
          * @property {number} AI_CREATED=7 AI_CREATED value
          * @property {number} LAYOUTS=8 LAYOUTS value
-         * @property {number} STATUS_CLOSE_SHARING=9 STATUS_CLOSE_SHARING value
+         * @property {number} NEWSLETTER_STATUS=9 NEWSLETTER_STATUS value
          */
         StatusAttribution.Type = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -98123,7 +98615,7 @@ $root.StatusAttributions = (function() {
             values[valuesById[6] = "RL_ATTRIBUTION"] = 6;
             values[valuesById[7] = "AI_CREATED"] = 7;
             values[valuesById[8] = "LAYOUTS"] = 8;
-            values[valuesById[9] = "STATUS_CLOSE_SHARING"] = 9;
+            values[valuesById[9] = "NEWSLETTER_STATUS"] = 9;
             return values;
         })();
 

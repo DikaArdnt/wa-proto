@@ -5243,6 +5243,15 @@ export namespace E2E {
 
         /** ContextInfo botMessageSharingInfo */
         botMessageSharingInfo?: (AICommon.IBotMessageSharingInfo|null);
+
+        /** ContextInfo isSpoiler */
+        isSpoiler?: (boolean|null);
+
+        /** ContextInfo mediaDomainInfo */
+        mediaDomainInfo?: (E2E.IMediaDomainInfo|null);
+
+        /** ContextInfo partiallySelectedContent */
+        partiallySelectedContent?: (E2E.ContextInfo.IPartiallySelectedContent|null);
     }
 
     /** Represents a ContextInfo. */
@@ -5418,6 +5427,15 @@ export namespace E2E {
 
         /** ContextInfo botMessageSharingInfo. */
         public botMessageSharingInfo?: (AICommon.IBotMessageSharingInfo|null);
+
+        /** ContextInfo isSpoiler. */
+        public isSpoiler: boolean;
+
+        /** ContextInfo mediaDomainInfo. */
+        public mediaDomainInfo?: (E2E.IMediaDomainInfo|null);
+
+        /** ContextInfo partiallySelectedContent. */
+        public partiallySelectedContent?: (E2E.ContextInfo.IPartiallySelectedContent|null);
 
         /**
          * Creates a new ContextInfo instance using the specified properties.
@@ -6516,6 +6534,103 @@ export namespace E2E {
             HEVC_VIDEO_CHILD = 8
         }
 
+        /** Properties of a PartiallySelectedContent. */
+        interface IPartiallySelectedContent {
+
+            /** PartiallySelectedContent text */
+            text?: (string|null);
+        }
+
+        /** Represents a PartiallySelectedContent. */
+        class PartiallySelectedContent implements IPartiallySelectedContent {
+
+            /**
+             * Constructs a new PartiallySelectedContent.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.ContextInfo.IPartiallySelectedContent);
+
+            /** PartiallySelectedContent text. */
+            public text: string;
+
+            /**
+             * Creates a new PartiallySelectedContent instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns PartiallySelectedContent instance
+             */
+            public static create(properties?: E2E.ContextInfo.IPartiallySelectedContent): E2E.ContextInfo.PartiallySelectedContent;
+
+            /**
+             * Encodes the specified PartiallySelectedContent message. Does not implicitly {@link E2E.ContextInfo.PartiallySelectedContent.verify|verify} messages.
+             * @param message PartiallySelectedContent message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.ContextInfo.IPartiallySelectedContent, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified PartiallySelectedContent message, length delimited. Does not implicitly {@link E2E.ContextInfo.PartiallySelectedContent.verify|verify} messages.
+             * @param message PartiallySelectedContent message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.ContextInfo.IPartiallySelectedContent, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a PartiallySelectedContent message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns PartiallySelectedContent
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.ContextInfo.PartiallySelectedContent;
+
+            /**
+             * Decodes a PartiallySelectedContent message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns PartiallySelectedContent
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.ContextInfo.PartiallySelectedContent;
+
+            /**
+             * Verifies a PartiallySelectedContent message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a PartiallySelectedContent message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns PartiallySelectedContent
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.ContextInfo.PartiallySelectedContent;
+
+            /**
+             * Creates a plain object from a PartiallySelectedContent message. Also converts values to other types if specified.
+             * @param message PartiallySelectedContent
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.ContextInfo.PartiallySelectedContent, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this PartiallySelectedContent to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for PartiallySelectedContent
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
         /** Properties of a QuestionReplyQuotedMessage. */
         interface IQuestionReplyQuotedMessage {
 
@@ -6872,6 +6987,109 @@ export namespace E2E {
         }
     }
 
+    /** Properties of a MediaDomainInfo. */
+    interface IMediaDomainInfo {
+
+        /** MediaDomainInfo mediaKeyDomain */
+        mediaKeyDomain?: (E2E.MediaKeyDomain|null);
+
+        /** MediaDomainInfo e2EeMediaKey */
+        e2EeMediaKey?: (Uint8Array|null);
+    }
+
+    /** Represents a MediaDomainInfo. */
+    class MediaDomainInfo implements IMediaDomainInfo {
+
+        /**
+         * Constructs a new MediaDomainInfo.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: E2E.IMediaDomainInfo);
+
+        /** MediaDomainInfo mediaKeyDomain. */
+        public mediaKeyDomain: E2E.MediaKeyDomain;
+
+        /** MediaDomainInfo e2EeMediaKey. */
+        public e2EeMediaKey: Uint8Array;
+
+        /**
+         * Creates a new MediaDomainInfo instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns MediaDomainInfo instance
+         */
+        public static create(properties?: E2E.IMediaDomainInfo): E2E.MediaDomainInfo;
+
+        /**
+         * Encodes the specified MediaDomainInfo message. Does not implicitly {@link E2E.MediaDomainInfo.verify|verify} messages.
+         * @param message MediaDomainInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: E2E.IMediaDomainInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified MediaDomainInfo message, length delimited. Does not implicitly {@link E2E.MediaDomainInfo.verify|verify} messages.
+         * @param message MediaDomainInfo message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: E2E.IMediaDomainInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a MediaDomainInfo message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns MediaDomainInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.MediaDomainInfo;
+
+        /**
+         * Decodes a MediaDomainInfo message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns MediaDomainInfo
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.MediaDomainInfo;
+
+        /**
+         * Verifies a MediaDomainInfo message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a MediaDomainInfo message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns MediaDomainInfo
+         */
+        public static fromObject(object: { [k: string]: any }): E2E.MediaDomainInfo;
+
+        /**
+         * Creates a plain object from a MediaDomainInfo message. Also converts values to other types if specified.
+         * @param message MediaDomainInfo
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: E2E.MediaDomainInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this MediaDomainInfo to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for MediaDomainInfo
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
     /** Properties of a Message. */
     interface IMessage {
 
@@ -7165,6 +7383,12 @@ export namespace E2E {
 
         /** Message newsletterAdminProfileMessageV2 */
         newsletterAdminProfileMessageV2?: (E2E.Message.IFutureProofMessage|null);
+
+        /** Message spoilerMessage */
+        spoilerMessage?: (E2E.Message.IFutureProofMessage|null);
+
+        /** Message pollCreationMessageV6 */
+        pollCreationMessageV6?: (E2E.Message.IFutureProofMessage|null);
     }
 
     /** Represents a Message. */
@@ -7466,6 +7690,12 @@ export namespace E2E {
 
         /** Message newsletterAdminProfileMessageV2. */
         public newsletterAdminProfileMessageV2?: (E2E.Message.IFutureProofMessage|null);
+
+        /** Message spoilerMessage. */
+        public spoilerMessage?: (E2E.Message.IFutureProofMessage|null);
+
+        /** Message pollCreationMessageV6. */
+        public pollCreationMessageV6?: (E2E.Message.IFutureProofMessage|null);
 
         /**
          * Creates a new Message instance using the specified properties.
@@ -8421,9 +8651,6 @@ export namespace E2E {
 
             /** AudioMessage accessibilityLabel */
             accessibilityLabel?: (string|null);
-
-            /** AudioMessage mediaKeyDomain */
-            mediaKeyDomain?: (E2E.Message.MediaKeyDomain|null);
         }
 
         /** Represents an AudioMessage. */
@@ -8482,9 +8709,6 @@ export namespace E2E {
 
             /** AudioMessage accessibilityLabel. */
             public accessibilityLabel: string;
-
-            /** AudioMessage mediaKeyDomain. */
-            public mediaKeyDomain: E2E.Message.MediaKeyDomain;
 
             /**
              * Creates a new AudioMessage instance using the specified properties.
@@ -10744,9 +10968,6 @@ export namespace E2E {
 
             /** DocumentMessage accessibilityLabel */
             accessibilityLabel?: (string|null);
-
-            /** DocumentMessage mediaKeyDomain */
-            mediaKeyDomain?: (E2E.Message.MediaKeyDomain|null);
         }
 
         /** Represents a DocumentMessage. */
@@ -10820,9 +11041,6 @@ export namespace E2E {
 
             /** DocumentMessage accessibilityLabel. */
             public accessibilityLabel: string;
-
-            /** DocumentMessage mediaKeyDomain. */
-            public mediaKeyDomain: E2E.Message.MediaKeyDomain;
 
             /**
              * Creates a new DocumentMessage instance using the specified properties.
@@ -13276,9 +13494,6 @@ export namespace E2E {
             /** ImageMessage accessibilityLabel */
             accessibilityLabel?: (string|null);
 
-            /** ImageMessage mediaKeyDomain */
-            mediaKeyDomain?: (E2E.Message.MediaKeyDomain|null);
-
             /** ImageMessage qrUrl */
             qrUrl?: (string|null);
         }
@@ -13378,9 +13593,6 @@ export namespace E2E {
 
             /** ImageMessage accessibilityLabel. */
             public accessibilityLabel: string;
-
-            /** ImageMessage mediaKeyDomain. */
-            public mediaKeyDomain: E2E.Message.MediaKeyDomain;
 
             /** ImageMessage qrUrl. */
             public qrUrl: string;
@@ -16742,9 +16954,6 @@ export namespace E2E {
 
             /** MMSThumbnailMetadata thumbnailWidth */
             thumbnailWidth?: (number|null);
-
-            /** MMSThumbnailMetadata mediaKeyDomain */
-            mediaKeyDomain?: (E2E.Message.MediaKeyDomain|null);
         }
 
         /** Represents a MMSThumbnailMetadata. */
@@ -16776,9 +16985,6 @@ export namespace E2E {
 
             /** MMSThumbnailMetadata thumbnailWidth. */
             public thumbnailWidth: number;
-
-            /** MMSThumbnailMetadata mediaKeyDomain. */
-            public mediaKeyDomain: E2E.Message.MediaKeyDomain;
 
             /**
              * Creates a new MMSThumbnailMetadata instance using the specified properties.
@@ -16856,15 +17062,6 @@ export namespace E2E {
              * @returns The default type url
              */
             public static getTypeUrl(typeUrlPrefix?: string): string;
-        }
-
-        /** MediaKeyDomain enum. */
-        enum MediaKeyDomain {
-            UNSET = 0,
-            E2EE_CHAT = 1,
-            STATUS = 2,
-            CAPI = 3,
-            BOT = 4
         }
 
         /** Properties of a MessageHistoryBundle. */
@@ -17017,6 +17214,9 @@ export namespace E2E {
 
             /** MessageHistoryMetadata messageCount */
             messageCount?: (number|Long|null);
+
+            /** MessageHistoryMetadata nonHistoryReceivers */
+            nonHistoryReceivers?: (string[]|null);
         }
 
         /** Represents a MessageHistoryMetadata. */
@@ -17036,6 +17236,9 @@ export namespace E2E {
 
             /** MessageHistoryMetadata messageCount. */
             public messageCount: (number|Long);
+
+            /** MessageHistoryMetadata nonHistoryReceivers. */
+            public nonHistoryReceivers: string[];
 
             /**
              * Creates a new MessageHistoryMetadata instance using the specified properties.
@@ -20978,6 +21181,12 @@ export namespace E2E {
 
             /** PollCreationMessage correctAnswer */
             correctAnswer?: (E2E.Message.PollCreationMessage.IOption|null);
+
+            /** PollCreationMessage endTime */
+            endTime?: (number|Long|null);
+
+            /** PollCreationMessage hideParticipantName */
+            hideParticipantName?: (boolean|null);
         }
 
         /** Represents a PollCreationMessage. */
@@ -21012,6 +21221,12 @@ export namespace E2E {
 
             /** PollCreationMessage correctAnswer. */
             public correctAnswer?: (E2E.Message.PollCreationMessage.IOption|null);
+
+            /** PollCreationMessage endTime. */
+            public endTime: (number|Long);
+
+            /** PollCreationMessage hideParticipantName. */
+            public hideParticipantName: boolean;
 
             /**
              * Creates a new PollCreationMessage instance using the specified properties.
@@ -23299,6 +23514,9 @@ export namespace E2E {
 
             /** SecretEncryptedMessage secretEncType */
             secretEncType?: (E2E.Message.SecretEncryptedMessage.SecretEncType|null);
+
+            /** SecretEncryptedMessage remoteKeyId */
+            remoteKeyId?: (string|null);
         }
 
         /** Represents a SecretEncryptedMessage. */
@@ -23321,6 +23539,9 @@ export namespace E2E {
 
             /** SecretEncryptedMessage secretEncType. */
             public secretEncType: E2E.Message.SecretEncryptedMessage.SecretEncType;
+
+            /** SecretEncryptedMessage remoteKeyId. */
+            public remoteKeyId: string;
 
             /**
              * Creates a new SecretEncryptedMessage instance using the specified properties.
@@ -23406,7 +23627,9 @@ export namespace E2E {
             enum SecretEncType {
                 UNKNOWN = 0,
                 EVENT_EDIT = 1,
-                MESSAGE_EDIT = 2
+                MESSAGE_EDIT = 2,
+                MESSAGE_SCHEDULE = 3,
+                POLL_EDIT = 4
             }
         }
 
@@ -24154,9 +24377,6 @@ export namespace E2E {
 
             /** StickerMessage accessibilityLabel */
             accessibilityLabel?: (string|null);
-
-            /** StickerMessage mediaKeyDomain */
-            mediaKeyDomain?: (E2E.Message.MediaKeyDomain|null);
         }
 
         /** Represents a StickerMessage. */
@@ -24227,9 +24447,6 @@ export namespace E2E {
 
             /** StickerMessage accessibilityLabel. */
             public accessibilityLabel: string;
-
-            /** StickerMessage mediaKeyDomain. */
-            public mediaKeyDomain: E2E.Message.MediaKeyDomain;
 
             /**
              * Creates a new StickerMessage instance using the specified properties.
@@ -25632,9 +25849,6 @@ export namespace E2E {
 
             /** VideoMessage videoSourceType */
             videoSourceType?: (E2E.Message.VideoMessage.VideoSourceType|null);
-
-            /** VideoMessage mediaKeyDomain */
-            mediaKeyDomain?: (E2E.Message.MediaKeyDomain|null);
         }
 
         /** Represents a VideoMessage. */
@@ -25735,9 +25949,6 @@ export namespace E2E {
 
             /** VideoMessage videoSourceType. */
             public videoSourceType: E2E.Message.VideoMessage.VideoSourceType;
-
-            /** VideoMessage mediaKeyDomain. */
-            public mediaKeyDomain: E2E.Message.MediaKeyDomain;
 
             /**
              * Creates a new VideoMessage instance using the specified properties.
@@ -25846,6 +26057,13 @@ export namespace E2E {
     enum WebLinkRenderConfig {
         WEBVIEW = 0,
         SYSTEM = 1
+    }
+
+    /** MediaKeyDomain enum. */
+    enum MediaKeyDomain {
+        MEDIA_KEY_DOMAIN_UNKNOWN = 0,
+        MEDIA_KEY_DOMAIN_E2EE = 1,
+        MEDIA_KEY_DOMAIN_NON_E2EE = 2
     }
 }
 
@@ -26102,6 +26320,9 @@ export namespace AICommon {
 
         /** BotInfrastructureDiagnostics botBackend */
         botBackend?: (AICommon.BotInfrastructureDiagnostics.BotBackend|null);
+
+        /** BotInfrastructureDiagnostics toolsUsed */
+        toolsUsed?: (string[]|null);
     }
 
     /** Represents a BotInfrastructureDiagnostics. */
@@ -26115,6 +26336,9 @@ export namespace AICommon {
 
         /** BotInfrastructureDiagnostics botBackend. */
         public botBackend: AICommon.BotInfrastructureDiagnostics.BotBackend;
+
+        /** BotInfrastructureDiagnostics toolsUsed. */
+        public toolsUsed: string[];
 
         /**
          * Creates a new BotInfrastructureDiagnostics instance using the specified properties.
@@ -26460,7 +26684,8 @@ export namespace AICommon {
                 PROMPT = 0,
                 CREATE_IMAGE = 1,
                 ANIMATE_PHOTO = 2,
-                ANALYZE_FILE = 3
+                ANALYZE_FILE = 3,
+                COLLABORATE = 4
             }
         }
     }
@@ -32707,6 +32932,9 @@ export namespace AICommon {
 
         /** BotModeSelectionMetadata mode */
         mode?: (AICommon.BotModeSelectionMetadata.BotUserSelectionMode[]|null);
+
+        /** BotModeSelectionMetadata overrideMode */
+        overrideMode?: (number[]|null);
     }
 
     /** Represents a BotModeSelectionMetadata. */
@@ -32720,6 +32948,9 @@ export namespace AICommon {
 
         /** BotModeSelectionMetadata mode. */
         public mode: AICommon.BotModeSelectionMetadata.BotUserSelectionMode[];
+
+        /** BotModeSelectionMetadata overrideMode. */
+        public overrideMode: number[];
 
         /**
          * Creates a new BotModeSelectionMetadata instance using the specified properties.
@@ -32965,7 +33196,8 @@ export namespace AICommon {
             RICH_RESPONSE_UR_IMAGINE = 53,
             AI_IMAGINE_UR_TO_NATIVE_LOADING_INDICATOR = 54,
             RICH_RESPONSE_UR_BLOKS_ENABLED = 55,
-            RICH_RESPONSE_INLINE_LINKS_ENABLED = 56
+            RICH_RESPONSE_INLINE_LINKS_ENABLED = 56,
+            RICH_RESPONSE_UR_IMAGINE_VIDEO = 57
         }
     }
 
@@ -36930,7 +37162,7 @@ export namespace StatusAttributions {
             RL_ATTRIBUTION = 6,
             AI_CREATED = 7,
             LAYOUTS = 8,
-            STATUS_CLOSE_SHARING = 9
+            NEWSLETTER_STATUS = 9
         }
     }
 }
