@@ -57029,6 +57029,7 @@ $root.E2E = (function() {
              * @property {E2E.Message.PeerDataOperationRequestMessage.ISyncDCollectionFatalRecoveryRequest|null} [syncdCollectionFatalRecoveryRequest] PeerDataOperationRequestMessage syncdCollectionFatalRecoveryRequest
              * @property {E2E.Message.PeerDataOperationRequestMessage.IHistorySyncChunkRetryRequest|null} [historySyncChunkRetryRequest] PeerDataOperationRequestMessage historySyncChunkRetryRequest
              * @property {E2E.Message.PeerDataOperationRequestMessage.IGalaxyFlowAction|null} [galaxyFlowAction] PeerDataOperationRequestMessage galaxyFlowAction
+             * @property {E2E.Message.PeerDataOperationRequestMessage.ICompanionCanonicalUserNonceFetchRequest|null} [companionCanonicalUserNonceFetchRequest] PeerDataOperationRequestMessage companionCanonicalUserNonceFetchRequest
              */
 
             /**
@@ -57122,6 +57123,14 @@ $root.E2E = (function() {
             PeerDataOperationRequestMessage.prototype.galaxyFlowAction = null;
 
             /**
+             * PeerDataOperationRequestMessage companionCanonicalUserNonceFetchRequest.
+             * @member {E2E.Message.PeerDataOperationRequestMessage.ICompanionCanonicalUserNonceFetchRequest|null|undefined} companionCanonicalUserNonceFetchRequest
+             * @memberof E2E.Message.PeerDataOperationRequestMessage
+             * @instance
+             */
+            PeerDataOperationRequestMessage.prototype.companionCanonicalUserNonceFetchRequest = null;
+
+            /**
              * Creates a new PeerDataOperationRequestMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.PeerDataOperationRequestMessage
@@ -57166,6 +57175,8 @@ $root.E2E = (function() {
                     $root.E2E.Message.PeerDataOperationRequestMessage.HistorySyncChunkRetryRequest.encode(message.historySyncChunkRetryRequest, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
                 if (message.galaxyFlowAction != null && Object.hasOwnProperty.call(message, "galaxyFlowAction"))
                     $root.E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.encode(message.galaxyFlowAction, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
+                if (message.companionCanonicalUserNonceFetchRequest != null && Object.hasOwnProperty.call(message, "companionCanonicalUserNonceFetchRequest"))
+                    $root.E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest.encode(message.companionCanonicalUserNonceFetchRequest, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
                 return writer;
             };
 
@@ -57242,6 +57253,10 @@ $root.E2E = (function() {
                         }
                     case 9: {
                             message.galaxyFlowAction = $root.E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 10: {
+                            message.companionCanonicalUserNonceFetchRequest = $root.E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -57348,6 +57363,11 @@ $root.E2E = (function() {
                     var error = $root.E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.verify(message.galaxyFlowAction);
                     if (error)
                         return "galaxyFlowAction." + error;
+                }
+                if (message.companionCanonicalUserNonceFetchRequest != null && message.hasOwnProperty("companionCanonicalUserNonceFetchRequest")) {
+                    var error = $root.E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest.verify(message.companionCanonicalUserNonceFetchRequest);
+                    if (error)
+                        return "companionCanonicalUserNonceFetchRequest." + error;
                 }
                 return null;
             };
@@ -57475,6 +57495,11 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.galaxyFlowAction: object expected");
                     message.galaxyFlowAction = $root.E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.fromObject(object.galaxyFlowAction);
                 }
+                if (object.companionCanonicalUserNonceFetchRequest != null) {
+                    if (typeof object.companionCanonicalUserNonceFetchRequest !== "object")
+                        throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.companionCanonicalUserNonceFetchRequest: object expected");
+                    message.companionCanonicalUserNonceFetchRequest = $root.E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest.fromObject(object.companionCanonicalUserNonceFetchRequest);
+                }
                 return message;
             };
 
@@ -57503,6 +57528,7 @@ $root.E2E = (function() {
                     object.syncdCollectionFatalRecoveryRequest = null;
                     object.historySyncChunkRetryRequest = null;
                     object.galaxyFlowAction = null;
+                    object.companionCanonicalUserNonceFetchRequest = null;
                 }
                 if (message.peerDataOperationRequestType != null && message.hasOwnProperty("peerDataOperationRequestType"))
                     object.peerDataOperationRequestType = options.enums === String ? $root.E2E.Message.PeerDataOperationRequestType[message.peerDataOperationRequestType] === undefined ? message.peerDataOperationRequestType : $root.E2E.Message.PeerDataOperationRequestType[message.peerDataOperationRequestType] : message.peerDataOperationRequestType;
@@ -57531,6 +57557,8 @@ $root.E2E = (function() {
                     object.historySyncChunkRetryRequest = $root.E2E.Message.PeerDataOperationRequestMessage.HistorySyncChunkRetryRequest.toObject(message.historySyncChunkRetryRequest, options);
                 if (message.galaxyFlowAction != null && message.hasOwnProperty("galaxyFlowAction"))
                     object.galaxyFlowAction = $root.E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.toObject(message.galaxyFlowAction, options);
+                if (message.companionCanonicalUserNonceFetchRequest != null && message.hasOwnProperty("companionCanonicalUserNonceFetchRequest"))
+                    object.companionCanonicalUserNonceFetchRequest = $root.E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest.toObject(message.companionCanonicalUserNonceFetchRequest, options);
                 return object;
             };
 
@@ -57559,6 +57587,211 @@ $root.E2E = (function() {
                 }
                 return typeUrlPrefix + "/E2E.Message.PeerDataOperationRequestMessage";
             };
+
+            PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest = (function() {
+
+                /**
+                 * Properties of a CompanionCanonicalUserNonceFetchRequest.
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage
+                 * @interface ICompanionCanonicalUserNonceFetchRequest
+                 * @property {string|null} [registrationTraceId] CompanionCanonicalUserNonceFetchRequest registrationTraceId
+                 */
+
+                /**
+                 * Constructs a new CompanionCanonicalUserNonceFetchRequest.
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage
+                 * @classdesc Represents a CompanionCanonicalUserNonceFetchRequest.
+                 * @implements ICompanionCanonicalUserNonceFetchRequest
+                 * @constructor
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.ICompanionCanonicalUserNonceFetchRequest=} [properties] Properties to set
+                 */
+                function CompanionCanonicalUserNonceFetchRequest(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * CompanionCanonicalUserNonceFetchRequest registrationTraceId.
+                 * @member {string} registrationTraceId
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest
+                 * @instance
+                 */
+                CompanionCanonicalUserNonceFetchRequest.prototype.registrationTraceId = "";
+
+                /**
+                 * Creates a new CompanionCanonicalUserNonceFetchRequest instance using the specified properties.
+                 * @function create
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.ICompanionCanonicalUserNonceFetchRequest=} [properties] Properties to set
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest} CompanionCanonicalUserNonceFetchRequest instance
+                 */
+                CompanionCanonicalUserNonceFetchRequest.create = function create(properties) {
+                    return new CompanionCanonicalUserNonceFetchRequest(properties);
+                };
+
+                /**
+                 * Encodes the specified CompanionCanonicalUserNonceFetchRequest message. Does not implicitly {@link E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest.verify|verify} messages.
+                 * @function encode
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.ICompanionCanonicalUserNonceFetchRequest} message CompanionCanonicalUserNonceFetchRequest message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                CompanionCanonicalUserNonceFetchRequest.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.registrationTraceId != null && Object.hasOwnProperty.call(message, "registrationTraceId"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.registrationTraceId);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified CompanionCanonicalUserNonceFetchRequest message, length delimited. Does not implicitly {@link E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.ICompanionCanonicalUserNonceFetchRequest} message CompanionCanonicalUserNonceFetchRequest message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                CompanionCanonicalUserNonceFetchRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a CompanionCanonicalUserNonceFetchRequest message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest} CompanionCanonicalUserNonceFetchRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                CompanionCanonicalUserNonceFetchRequest.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.registrationTraceId = reader.string();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a CompanionCanonicalUserNonceFetchRequest message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest} CompanionCanonicalUserNonceFetchRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                CompanionCanonicalUserNonceFetchRequest.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a CompanionCanonicalUserNonceFetchRequest message.
+                 * @function verify
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                CompanionCanonicalUserNonceFetchRequest.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.registrationTraceId != null && message.hasOwnProperty("registrationTraceId"))
+                        if (!$util.isString(message.registrationTraceId))
+                            return "registrationTraceId: string expected";
+                    return null;
+                };
+
+                /**
+                 * Creates a CompanionCanonicalUserNonceFetchRequest message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest} CompanionCanonicalUserNonceFetchRequest
+                 */
+                CompanionCanonicalUserNonceFetchRequest.fromObject = function fromObject(object) {
+                    if (object instanceof $root.E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest)
+                        return object;
+                    var message = new $root.E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest();
+                    if (object.registrationTraceId != null)
+                        message.registrationTraceId = String(object.registrationTraceId);
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a CompanionCanonicalUserNonceFetchRequest message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest} message CompanionCanonicalUserNonceFetchRequest
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                CompanionCanonicalUserNonceFetchRequest.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults)
+                        object.registrationTraceId = "";
+                    if (message.registrationTraceId != null && message.hasOwnProperty("registrationTraceId"))
+                        object.registrationTraceId = message.registrationTraceId;
+                    return object;
+                };
+
+                /**
+                 * Converts this CompanionCanonicalUserNonceFetchRequest to JSON.
+                 * @function toJSON
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                CompanionCanonicalUserNonceFetchRequest.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for CompanionCanonicalUserNonceFetchRequest
+                 * @function getTypeUrl
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                CompanionCanonicalUserNonceFetchRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest";
+                };
+
+                return CompanionCanonicalUserNonceFetchRequest;
+            })();
 
             PeerDataOperationRequestMessage.FullHistorySyncOnDemandRequest = (function() {
 
@@ -62385,6 +62618,9 @@ $root.E2E = (function() {
                          * @interface IPaymentLinkPreviewMetadata
                          * @property {boolean|null} [isBusinessVerified] PaymentLinkPreviewMetadata isBusinessVerified
                          * @property {string|null} [providerName] PaymentLinkPreviewMetadata providerName
+                         * @property {string|null} [amount] PaymentLinkPreviewMetadata amount
+                         * @property {string|null} [offset] PaymentLinkPreviewMetadata offset
+                         * @property {string|null} [currency] PaymentLinkPreviewMetadata currency
                          */
 
                         /**
@@ -62419,6 +62655,30 @@ $root.E2E = (function() {
                         PaymentLinkPreviewMetadata.prototype.providerName = "";
 
                         /**
+                         * PaymentLinkPreviewMetadata amount.
+                         * @member {string} amount
+                         * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata
+                         * @instance
+                         */
+                        PaymentLinkPreviewMetadata.prototype.amount = "";
+
+                        /**
+                         * PaymentLinkPreviewMetadata offset.
+                         * @member {string} offset
+                         * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata
+                         * @instance
+                         */
+                        PaymentLinkPreviewMetadata.prototype.offset = "";
+
+                        /**
+                         * PaymentLinkPreviewMetadata currency.
+                         * @member {string} currency
+                         * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata
+                         * @instance
+                         */
+                        PaymentLinkPreviewMetadata.prototype.currency = "";
+
+                        /**
                          * Creates a new PaymentLinkPreviewMetadata instance using the specified properties.
                          * @function create
                          * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata
@@ -62446,6 +62706,12 @@ $root.E2E = (function() {
                                 writer.uint32(/* id 1, wireType 0 =*/8).bool(message.isBusinessVerified);
                             if (message.providerName != null && Object.hasOwnProperty.call(message, "providerName"))
                                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.providerName);
+                            if (message.amount != null && Object.hasOwnProperty.call(message, "amount"))
+                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.amount);
+                            if (message.offset != null && Object.hasOwnProperty.call(message, "offset"))
+                                writer.uint32(/* id 4, wireType 2 =*/34).string(message.offset);
+                            if (message.currency != null && Object.hasOwnProperty.call(message, "currency"))
+                                writer.uint32(/* id 5, wireType 2 =*/42).string(message.currency);
                             return writer;
                         };
 
@@ -62490,6 +62756,18 @@ $root.E2E = (function() {
                                         message.providerName = reader.string();
                                         break;
                                     }
+                                case 3: {
+                                        message.amount = reader.string();
+                                        break;
+                                    }
+                                case 4: {
+                                        message.offset = reader.string();
+                                        break;
+                                    }
+                                case 5: {
+                                        message.currency = reader.string();
+                                        break;
+                                    }
                                 default:
                                     reader.skipType(tag & 7);
                                     break;
@@ -62531,6 +62809,15 @@ $root.E2E = (function() {
                             if (message.providerName != null && message.hasOwnProperty("providerName"))
                                 if (!$util.isString(message.providerName))
                                     return "providerName: string expected";
+                            if (message.amount != null && message.hasOwnProperty("amount"))
+                                if (!$util.isString(message.amount))
+                                    return "amount: string expected";
+                            if (message.offset != null && message.hasOwnProperty("offset"))
+                                if (!$util.isString(message.offset))
+                                    return "offset: string expected";
+                            if (message.currency != null && message.hasOwnProperty("currency"))
+                                if (!$util.isString(message.currency))
+                                    return "currency: string expected";
                             return null;
                         };
 
@@ -62550,6 +62837,12 @@ $root.E2E = (function() {
                                 message.isBusinessVerified = Boolean(object.isBusinessVerified);
                             if (object.providerName != null)
                                 message.providerName = String(object.providerName);
+                            if (object.amount != null)
+                                message.amount = String(object.amount);
+                            if (object.offset != null)
+                                message.offset = String(object.offset);
+                            if (object.currency != null)
+                                message.currency = String(object.currency);
                             return message;
                         };
 
@@ -62569,11 +62862,20 @@ $root.E2E = (function() {
                             if (options.defaults) {
                                 object.isBusinessVerified = false;
                                 object.providerName = "";
+                                object.amount = "";
+                                object.offset = "";
+                                object.currency = "";
                             }
                             if (message.isBusinessVerified != null && message.hasOwnProperty("isBusinessVerified"))
                                 object.isBusinessVerified = message.isBusinessVerified;
                             if (message.providerName != null && message.hasOwnProperty("providerName"))
                                 object.providerName = message.providerName;
+                            if (message.amount != null && message.hasOwnProperty("amount"))
+                                object.amount = message.amount;
+                            if (message.offset != null && message.hasOwnProperty("offset"))
+                                object.offset = message.offset;
+                            if (message.currency != null && message.hasOwnProperty("currency"))
+                                object.currency = message.currency;
                             return object;
                         };
 

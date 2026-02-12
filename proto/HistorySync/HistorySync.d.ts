@@ -20360,6 +20360,9 @@ export namespace E2E {
 
             /** PeerDataOperationRequestMessage galaxyFlowAction */
             galaxyFlowAction?: (E2E.Message.PeerDataOperationRequestMessage.IGalaxyFlowAction|null);
+
+            /** PeerDataOperationRequestMessage companionCanonicalUserNonceFetchRequest */
+            companionCanonicalUserNonceFetchRequest?: (E2E.Message.PeerDataOperationRequestMessage.ICompanionCanonicalUserNonceFetchRequest|null);
         }
 
         /** Represents a PeerDataOperationRequestMessage. */
@@ -20397,6 +20400,9 @@ export namespace E2E {
 
             /** PeerDataOperationRequestMessage galaxyFlowAction. */
             public galaxyFlowAction?: (E2E.Message.PeerDataOperationRequestMessage.IGalaxyFlowAction|null);
+
+            /** PeerDataOperationRequestMessage companionCanonicalUserNonceFetchRequest. */
+            public companionCanonicalUserNonceFetchRequest?: (E2E.Message.PeerDataOperationRequestMessage.ICompanionCanonicalUserNonceFetchRequest|null);
 
             /**
              * Creates a new PeerDataOperationRequestMessage instance using the specified properties.
@@ -20477,6 +20483,103 @@ export namespace E2E {
         }
 
         namespace PeerDataOperationRequestMessage {
+
+            /** Properties of a CompanionCanonicalUserNonceFetchRequest. */
+            interface ICompanionCanonicalUserNonceFetchRequest {
+
+                /** CompanionCanonicalUserNonceFetchRequest registrationTraceId */
+                registrationTraceId?: (string|null);
+            }
+
+            /** Represents a CompanionCanonicalUserNonceFetchRequest. */
+            class CompanionCanonicalUserNonceFetchRequest implements ICompanionCanonicalUserNonceFetchRequest {
+
+                /**
+                 * Constructs a new CompanionCanonicalUserNonceFetchRequest.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: E2E.Message.PeerDataOperationRequestMessage.ICompanionCanonicalUserNonceFetchRequest);
+
+                /** CompanionCanonicalUserNonceFetchRequest registrationTraceId. */
+                public registrationTraceId: string;
+
+                /**
+                 * Creates a new CompanionCanonicalUserNonceFetchRequest instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns CompanionCanonicalUserNonceFetchRequest instance
+                 */
+                public static create(properties?: E2E.Message.PeerDataOperationRequestMessage.ICompanionCanonicalUserNonceFetchRequest): E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest;
+
+                /**
+                 * Encodes the specified CompanionCanonicalUserNonceFetchRequest message. Does not implicitly {@link E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest.verify|verify} messages.
+                 * @param message CompanionCanonicalUserNonceFetchRequest message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: E2E.Message.PeerDataOperationRequestMessage.ICompanionCanonicalUserNonceFetchRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified CompanionCanonicalUserNonceFetchRequest message, length delimited. Does not implicitly {@link E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest.verify|verify} messages.
+                 * @param message CompanionCanonicalUserNonceFetchRequest message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: E2E.Message.PeerDataOperationRequestMessage.ICompanionCanonicalUserNonceFetchRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a CompanionCanonicalUserNonceFetchRequest message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns CompanionCanonicalUserNonceFetchRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest;
+
+                /**
+                 * Decodes a CompanionCanonicalUserNonceFetchRequest message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns CompanionCanonicalUserNonceFetchRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest;
+
+                /**
+                 * Verifies a CompanionCanonicalUserNonceFetchRequest message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a CompanionCanonicalUserNonceFetchRequest message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns CompanionCanonicalUserNonceFetchRequest
+                 */
+                public static fromObject(object: { [k: string]: any }): E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest;
+
+                /**
+                 * Creates a plain object from a CompanionCanonicalUserNonceFetchRequest message. Also converts values to other types if specified.
+                 * @param message CompanionCanonicalUserNonceFetchRequest
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this CompanionCanonicalUserNonceFetchRequest to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for CompanionCanonicalUserNonceFetchRequest
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
 
             /** Properties of a FullHistorySyncOnDemandRequest. */
             interface IFullHistorySyncOnDemandRequest {
@@ -22338,6 +22441,15 @@ export namespace E2E {
 
                         /** PaymentLinkPreviewMetadata providerName */
                         providerName?: (string|null);
+
+                        /** PaymentLinkPreviewMetadata amount */
+                        amount?: (string|null);
+
+                        /** PaymentLinkPreviewMetadata offset */
+                        offset?: (string|null);
+
+                        /** PaymentLinkPreviewMetadata currency */
+                        currency?: (string|null);
                     }
 
                     /** Represents a PaymentLinkPreviewMetadata. */
@@ -22354,6 +22466,15 @@ export namespace E2E {
 
                         /** PaymentLinkPreviewMetadata providerName. */
                         public providerName: string;
+
+                        /** PaymentLinkPreviewMetadata amount. */
+                        public amount: string;
+
+                        /** PaymentLinkPreviewMetadata offset. */
+                        public offset: string;
+
+                        /** PaymentLinkPreviewMetadata currency. */
+                        public currency: string;
 
                         /**
                          * Creates a new PaymentLinkPreviewMetadata instance using the specified properties.

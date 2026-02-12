@@ -1426,6 +1426,10 @@ message Message {
         optional SyncDCollectionFatalRecoveryRequest syncdCollectionFatalRecoveryRequest = 7;
         optional HistorySyncChunkRetryRequest historySyncChunkRetryRequest = 8;
         optional GalaxyFlowAction galaxyFlowAction = 9;
+        optional CompanionCanonicalUserNonceFetchRequest companionCanonicalUserNonceFetchRequest = 10;
+        message CompanionCanonicalUserNonceFetchRequest {
+            optional string registrationTraceId = 1;
+        }
         message FullHistorySyncOnDemandRequest {
             optional Message.FullHistorySyncOnDemandRequestMetadata requestMetadata = 1;
             optional CompanionReg.DeviceProps.HistorySyncConfig historySyncConfig = 2;
@@ -1539,6 +1543,9 @@ message Message {
                 message PaymentLinkPreviewMetadata {
                     optional bool isBusinessVerified = 1;
                     optional string providerName = 2;
+                    optional string amount = 3;
+                    optional string offset = 4;
+                    optional string currency = 5;
                 }
             }
             message PlaceholderMessageResendResponse {
