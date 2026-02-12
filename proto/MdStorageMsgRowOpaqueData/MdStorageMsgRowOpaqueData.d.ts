@@ -134,6 +134,9 @@ export namespace MdStorageMsgRowOpaqueData {
 
         /** MsgOpaqueData plainProtobufBytes */
         plainProtobufBytes?: (Uint8Array|null);
+
+        /** MsgOpaqueData quarantineExtractedText */
+        quarantineExtractedText?: (string|null);
     }
 
     /** Represents a MsgOpaqueData. */
@@ -273,6 +276,9 @@ export namespace MdStorageMsgRowOpaqueData {
 
         /** MsgOpaqueData plainProtobufBytes. */
         public plainProtobufBytes: Uint8Array;
+
+        /** MsgOpaqueData quarantineExtractedText. */
+        public quarantineExtractedText: string;
 
         /**
          * Creates a new MsgOpaqueData instance using the specified properties.
@@ -17979,6 +17985,9 @@ export namespace E2E {
 
             /** PaymentInviteMessage incentiveEligible */
             incentiveEligible?: (boolean|null);
+
+            /** PaymentInviteMessage referralId */
+            referralId?: (string|null);
         }
 
         /** Represents a PaymentInviteMessage. */
@@ -17998,6 +18007,9 @@ export namespace E2E {
 
             /** PaymentInviteMessage incentiveEligible. */
             public incentiveEligible: boolean;
+
+            /** PaymentInviteMessage referralId. */
+            public referralId: string;
 
             /**
              * Creates a new PaymentInviteMessage instance using the specified properties.
@@ -22718,7 +22730,8 @@ export namespace E2E {
                 AI_PSI_METADATA = 28,
                 AI_QUERY_FANOUT = 29,
                 GROUP_MEMBER_LABEL_CHANGE = 30,
-                AI_MEDIA_COLLECTION_MESSAGE = 31
+                AI_MEDIA_COLLECTION_MESSAGE = 31,
+                MESSAGE_UNSCHEDULE = 32
             }
         }
 

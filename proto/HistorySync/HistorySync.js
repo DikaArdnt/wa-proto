@@ -55464,6 +55464,7 @@ $root.E2E = (function() {
              * @property {E2E.Message.PaymentInviteMessage.ServiceType|null} [serviceType] PaymentInviteMessage serviceType
              * @property {number|Long|null} [expiryTimestamp] PaymentInviteMessage expiryTimestamp
              * @property {boolean|null} [incentiveEligible] PaymentInviteMessage incentiveEligible
+             * @property {string|null} [referralId] PaymentInviteMessage referralId
              */
 
             /**
@@ -55506,6 +55507,14 @@ $root.E2E = (function() {
             PaymentInviteMessage.prototype.incentiveEligible = false;
 
             /**
+             * PaymentInviteMessage referralId.
+             * @member {string} referralId
+             * @memberof E2E.Message.PaymentInviteMessage
+             * @instance
+             */
+            PaymentInviteMessage.prototype.referralId = "";
+
+            /**
              * Creates a new PaymentInviteMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.PaymentInviteMessage
@@ -55535,6 +55544,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 2, wireType 0 =*/16).int64(message.expiryTimestamp);
                 if (message.incentiveEligible != null && Object.hasOwnProperty.call(message, "incentiveEligible"))
                     writer.uint32(/* id 3, wireType 0 =*/24).bool(message.incentiveEligible);
+                if (message.referralId != null && Object.hasOwnProperty.call(message, "referralId"))
+                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.referralId);
                 return writer;
             };
 
@@ -55581,6 +55592,10 @@ $root.E2E = (function() {
                         }
                     case 3: {
                             message.incentiveEligible = reader.bool();
+                            break;
+                        }
+                    case 4: {
+                            message.referralId = reader.string();
                             break;
                         }
                     default:
@@ -55634,6 +55649,9 @@ $root.E2E = (function() {
                 if (message.incentiveEligible != null && message.hasOwnProperty("incentiveEligible"))
                     if (typeof message.incentiveEligible !== "boolean")
                         return "incentiveEligible: boolean expected";
+                if (message.referralId != null && message.hasOwnProperty("referralId"))
+                    if (!$util.isString(message.referralId))
+                        return "referralId: string expected";
                 return null;
             };
 
@@ -55684,6 +55702,8 @@ $root.E2E = (function() {
                         message.expiryTimestamp = new $util.LongBits(object.expiryTimestamp.low >>> 0, object.expiryTimestamp.high >>> 0).toNumber();
                 if (object.incentiveEligible != null)
                     message.incentiveEligible = Boolean(object.incentiveEligible);
+                if (object.referralId != null)
+                    message.referralId = String(object.referralId);
                 return message;
             };
 
@@ -55708,6 +55728,7 @@ $root.E2E = (function() {
                     } else
                         object.expiryTimestamp = options.longs === String ? "0" : 0;
                     object.incentiveEligible = false;
+                    object.referralId = "";
                 }
                 if (message.serviceType != null && message.hasOwnProperty("serviceType"))
                     object.serviceType = options.enums === String ? $root.E2E.Message.PaymentInviteMessage.ServiceType[message.serviceType] === undefined ? message.serviceType : $root.E2E.Message.PaymentInviteMessage.ServiceType[message.serviceType] : message.serviceType;
@@ -55718,6 +55739,8 @@ $root.E2E = (function() {
                         object.expiryTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.expiryTimestamp) : options.longs === Number ? new $util.LongBits(message.expiryTimestamp.low >>> 0, message.expiryTimestamp.high >>> 0).toNumber() : message.expiryTimestamp;
                 if (message.incentiveEligible != null && message.hasOwnProperty("incentiveEligible"))
                     object.incentiveEligible = message.incentiveEligible;
+                if (message.referralId != null && message.hasOwnProperty("referralId"))
+                    object.referralId = message.referralId;
                 return object;
             };
 
@@ -67441,6 +67464,7 @@ $root.E2E = (function() {
                     case 29:
                     case 30:
                     case 31:
+                    case 32:
                         break;
                     }
                 if (message.ephemeralExpiration != null && message.hasOwnProperty("ephemeralExpiration"))
@@ -67682,6 +67706,10 @@ $root.E2E = (function() {
                 case "AI_MEDIA_COLLECTION_MESSAGE":
                 case 31:
                     message.type = 31;
+                    break;
+                case "MESSAGE_UNSCHEDULE":
+                case 32:
+                    message.type = 32;
                     break;
                 }
                 if (object.ephemeralExpiration != null)
@@ -67974,6 +68002,7 @@ $root.E2E = (function() {
              * @property {number} AI_QUERY_FANOUT=29 AI_QUERY_FANOUT value
              * @property {number} GROUP_MEMBER_LABEL_CHANGE=30 GROUP_MEMBER_LABEL_CHANGE value
              * @property {number} AI_MEDIA_COLLECTION_MESSAGE=31 AI_MEDIA_COLLECTION_MESSAGE value
+             * @property {number} MESSAGE_UNSCHEDULE=32 MESSAGE_UNSCHEDULE value
              */
             ProtocolMessage.Type = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -68004,6 +68033,7 @@ $root.E2E = (function() {
                 values[valuesById[29] = "AI_QUERY_FANOUT"] = 29;
                 values[valuesById[30] = "GROUP_MEMBER_LABEL_CHANGE"] = 30;
                 values[valuesById[31] = "AI_MEDIA_COLLECTION_MESSAGE"] = 31;
+                values[valuesById[32] = "MESSAGE_UNSCHEDULE"] = 32;
                 return values;
             })();
 
