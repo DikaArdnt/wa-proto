@@ -26,6 +26,7 @@ $root.AICommon = (function() {
          * @interface IBotInfrastructureDiagnostics
          * @property {AICommon.BotInfrastructureDiagnostics.BotBackend|null} [botBackend] BotInfrastructureDiagnostics botBackend
          * @property {Array.<string>|null} [toolsUsed] BotInfrastructureDiagnostics toolsUsed
+         * @property {boolean|null} [isThinking] BotInfrastructureDiagnostics isThinking
          */
 
         /**
@@ -61,6 +62,14 @@ $root.AICommon = (function() {
         BotInfrastructureDiagnostics.prototype.toolsUsed = $util.emptyArray;
 
         /**
+         * BotInfrastructureDiagnostics isThinking.
+         * @member {boolean} isThinking
+         * @memberof AICommon.BotInfrastructureDiagnostics
+         * @instance
+         */
+        BotInfrastructureDiagnostics.prototype.isThinking = false;
+
+        /**
          * Creates a new BotInfrastructureDiagnostics instance using the specified properties.
          * @function create
          * @memberof AICommon.BotInfrastructureDiagnostics
@@ -89,6 +98,8 @@ $root.AICommon = (function() {
             if (message.toolsUsed != null && message.toolsUsed.length)
                 for (var i = 0; i < message.toolsUsed.length; ++i)
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.toolsUsed[i]);
+            if (message.isThinking != null && Object.hasOwnProperty.call(message, "isThinking"))
+                writer.uint32(/* id 3, wireType 0 =*/24).bool(message.isThinking);
             return writer;
         };
 
@@ -133,6 +144,10 @@ $root.AICommon = (function() {
                         if (!(message.toolsUsed && message.toolsUsed.length))
                             message.toolsUsed = [];
                         message.toolsUsed.push(reader.string());
+                        break;
+                    }
+                case 3: {
+                        message.isThinking = reader.bool();
                         break;
                     }
                 default:
@@ -185,6 +200,9 @@ $root.AICommon = (function() {
                     if (!$util.isString(message.toolsUsed[i]))
                         return "toolsUsed: string[] expected";
             }
+            if (message.isThinking != null && message.hasOwnProperty("isThinking"))
+                if (typeof message.isThinking !== "boolean")
+                    return "isThinking: boolean expected";
             return null;
         };
 
@@ -223,6 +241,8 @@ $root.AICommon = (function() {
                 for (var i = 0; i < object.toolsUsed.length; ++i)
                     message.toolsUsed[i] = String(object.toolsUsed[i]);
             }
+            if (object.isThinking != null)
+                message.isThinking = Boolean(object.isThinking);
             return message;
         };
 
@@ -241,8 +261,10 @@ $root.AICommon = (function() {
             var object = {};
             if (options.arrays || options.defaults)
                 object.toolsUsed = [];
-            if (options.defaults)
+            if (options.defaults) {
                 object.botBackend = options.enums === String ? "AAPI" : 0;
+                object.isThinking = false;
+            }
             if (message.botBackend != null && message.hasOwnProperty("botBackend"))
                 object.botBackend = options.enums === String ? $root.AICommon.BotInfrastructureDiagnostics.BotBackend[message.botBackend] === undefined ? message.botBackend : $root.AICommon.BotInfrastructureDiagnostics.BotBackend[message.botBackend] : message.botBackend;
             if (message.toolsUsed && message.toolsUsed.length) {
@@ -250,6 +272,8 @@ $root.AICommon = (function() {
                 for (var j = 0; j < message.toolsUsed.length; ++j)
                     object.toolsUsed[j] = message.toolsUsed[j];
             }
+            if (message.isThinking != null && message.hasOwnProperty("isThinking"))
+                object.isThinking = message.isThinking;
             return object;
         };
 
@@ -6963,6 +6987,8 @@ $root.AICommon = (function() {
                 case 40:
                 case 41:
                 case 45:
+                case 46:
+                case 47:
                     break;
                 }
             if (message.forwardScore != null && message.hasOwnProperty("forwardScore"))
@@ -7161,6 +7187,14 @@ $root.AICommon = (function() {
             case "META_AI_SETTINGS":
             case 45:
                 message.botEntryPointOrigin = 45;
+                break;
+            case "WEB_INTRO_PANEL":
+            case 46:
+                message.botEntryPointOrigin = 46;
+                break;
+            case "WEB_NAVIGATION_BAR":
+            case 47:
+                message.botEntryPointOrigin = 47;
                 break;
             }
             if (object.forwardScore != null)
@@ -21977,6 +22011,8 @@ $root.AICommon = (function() {
                 case 40:
                 case 41:
                 case 45:
+                case 46:
+                case 47:
                     break;
                 }
             if (message.threadOrigin != null && message.hasOwnProperty("threadOrigin"))
@@ -22185,6 +22221,14 @@ $root.AICommon = (function() {
             case "META_AI_SETTINGS":
             case 45:
                 message.destinationEntryPoint = 45;
+                break;
+            case "WEB_INTRO_PANEL":
+            case 46:
+                message.destinationEntryPoint = 46;
+                break;
+            case "WEB_NAVIGATION_BAR":
+            case 47:
+                message.destinationEntryPoint = 47;
                 break;
             }
             switch (object.threadOrigin) {
@@ -26415,6 +26459,8 @@ $root.AICommon = (function() {
      * @property {number} MEDIA_PICKER_GROUP_CHAT=40 MEDIA_PICKER_GROUP_CHAT value
      * @property {number} ASK_META_AI_NO_SEARCH_RESULTS=41 ASK_META_AI_NO_SEARCH_RESULTS value
      * @property {number} META_AI_SETTINGS=45 META_AI_SETTINGS value
+     * @property {number} WEB_INTRO_PANEL=46 WEB_INTRO_PANEL value
+     * @property {number} WEB_NAVIGATION_BAR=47 WEB_NAVIGATION_BAR value
      */
     AICommon.BotMetricsEntryPoint = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -26461,6 +26507,8 @@ $root.AICommon = (function() {
         values[valuesById[40] = "MEDIA_PICKER_GROUP_CHAT"] = 40;
         values[valuesById[41] = "ASK_META_AI_NO_SEARCH_RESULTS"] = 41;
         values[valuesById[45] = "META_AI_SETTINGS"] = 45;
+        values[valuesById[46] = "WEB_INTRO_PANEL"] = 46;
+        values[valuesById[47] = "WEB_NAVIGATION_BAR"] = 47;
         return values;
     })();
 

@@ -11,6 +11,9 @@ export namespace AICommon {
 
         /** BotInfrastructureDiagnostics toolsUsed */
         toolsUsed?: (string[]|null);
+
+        /** BotInfrastructureDiagnostics isThinking */
+        isThinking?: (boolean|null);
     }
 
     /** Represents a BotInfrastructureDiagnostics. */
@@ -27,6 +30,9 @@ export namespace AICommon {
 
         /** BotInfrastructureDiagnostics toolsUsed. */
         public toolsUsed: string[];
+
+        /** BotInfrastructureDiagnostics isThinking. */
+        public isThinking: boolean;
 
         /**
          * Creates a new BotInfrastructureDiagnostics instance using the specified properties.
@@ -10099,7 +10105,9 @@ export namespace AICommon {
         MEDIA_PICKER_1_ON_1_CHAT = 39,
         MEDIA_PICKER_GROUP_CHAT = 40,
         ASK_META_AI_NO_SEARCH_RESULTS = 41,
-        META_AI_SETTINGS = 45
+        META_AI_SETTINGS = 45,
+        WEB_INTRO_PANEL = 46,
+        WEB_NAVIGATION_BAR = 47
     }
 }
 

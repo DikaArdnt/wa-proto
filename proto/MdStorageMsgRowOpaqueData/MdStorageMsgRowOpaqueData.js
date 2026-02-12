@@ -39323,6 +39323,7 @@ $root.E2E = (function() {
              * @property {E2E.Message.InteractiveMessage.IHeader|null} [header] InteractiveMessage header
              * @property {E2E.Message.InteractiveMessage.IBody|null} [body] InteractiveMessage body
              * @property {E2E.Message.InteractiveMessage.IFooter|null} [footer] InteractiveMessage footer
+             * @property {E2E.Message.InteractiveMessage.IBloksWidget|null} [bloksWidget] InteractiveMessage bloksWidget
              * @property {E2E.IContextInfo|null} [contextInfo] InteractiveMessage contextInfo
              * @property {E2E.IUrlTrackingMap|null} [urlTrackingMap] InteractiveMessage urlTrackingMap
              * @property {E2E.Message.InteractiveMessage.IShopMessage|null} [shopStorefrontMessage] InteractiveMessage shopStorefrontMessage
@@ -39369,6 +39370,14 @@ $root.E2E = (function() {
              * @instance
              */
             InteractiveMessage.prototype.footer = null;
+
+            /**
+             * InteractiveMessage bloksWidget.
+             * @member {E2E.Message.InteractiveMessage.IBloksWidget|null|undefined} bloksWidget
+             * @memberof E2E.Message.InteractiveMessage
+             * @instance
+             */
+            InteractiveMessage.prototype.bloksWidget = null;
 
             /**
              * InteractiveMessage contextInfo.
@@ -39470,6 +39479,8 @@ $root.E2E = (function() {
                     $root.E2E.Message.InteractiveMessage.NativeFlowMessage.encode(message.nativeFlowMessage, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
                 if (message.carouselMessage != null && Object.hasOwnProperty.call(message, "carouselMessage"))
                     $root.E2E.Message.InteractiveMessage.CarouselMessage.encode(message.carouselMessage, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+                if (message.bloksWidget != null && Object.hasOwnProperty.call(message, "bloksWidget"))
+                    $root.E2E.Message.InteractiveMessage.BloksWidget.encode(message.bloksWidget, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
                 if (message.contextInfo != null && Object.hasOwnProperty.call(message, "contextInfo"))
                     $root.E2E.ContextInfo.encode(message.contextInfo, writer.uint32(/* id 15, wireType 2 =*/122).fork()).ldelim();
                 if (message.urlTrackingMap != null && Object.hasOwnProperty.call(message, "urlTrackingMap"))
@@ -39520,6 +39531,10 @@ $root.E2E = (function() {
                         }
                     case 3: {
                             message.footer = $root.E2E.Message.InteractiveMessage.Footer.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 8: {
+                            message.bloksWidget = $root.E2E.Message.InteractiveMessage.BloksWidget.decode(reader, reader.uint32());
                             break;
                         }
                     case 15: {
@@ -39596,6 +39611,11 @@ $root.E2E = (function() {
                     var error = $root.E2E.Message.InteractiveMessage.Footer.verify(message.footer);
                     if (error)
                         return "footer." + error;
+                }
+                if (message.bloksWidget != null && message.hasOwnProperty("bloksWidget")) {
+                    var error = $root.E2E.Message.InteractiveMessage.BloksWidget.verify(message.bloksWidget);
+                    if (error)
+                        return "bloksWidget." + error;
                 }
                 if (message.contextInfo != null && message.hasOwnProperty("contextInfo")) {
                     var error = $root.E2E.ContextInfo.verify(message.contextInfo);
@@ -39675,6 +39695,11 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.InteractiveMessage.footer: object expected");
                     message.footer = $root.E2E.Message.InteractiveMessage.Footer.fromObject(object.footer);
                 }
+                if (object.bloksWidget != null) {
+                    if (typeof object.bloksWidget !== "object")
+                        throw TypeError(".E2E.Message.InteractiveMessage.bloksWidget: object expected");
+                    message.bloksWidget = $root.E2E.Message.InteractiveMessage.BloksWidget.fromObject(object.bloksWidget);
+                }
                 if (object.contextInfo != null) {
                     if (typeof object.contextInfo !== "object")
                         throw TypeError(".E2E.Message.InteractiveMessage.contextInfo: object expected");
@@ -39725,6 +39750,7 @@ $root.E2E = (function() {
                     object.header = null;
                     object.body = null;
                     object.footer = null;
+                    object.bloksWidget = null;
                     object.contextInfo = null;
                     object.urlTrackingMap = null;
                 }
@@ -39754,6 +39780,8 @@ $root.E2E = (function() {
                     if (options.oneofs)
                         object.interactiveMessage = "carouselMessage";
                 }
+                if (message.bloksWidget != null && message.hasOwnProperty("bloksWidget"))
+                    object.bloksWidget = $root.E2E.Message.InteractiveMessage.BloksWidget.toObject(message.bloksWidget, options);
                 if (message.contextInfo != null && message.hasOwnProperty("contextInfo"))
                     object.contextInfo = $root.E2E.ContextInfo.toObject(message.contextInfo, options);
                 if (message.urlTrackingMap != null && message.hasOwnProperty("urlTrackingMap"))
@@ -39786,6 +39814,258 @@ $root.E2E = (function() {
                 }
                 return typeUrlPrefix + "/E2E.Message.InteractiveMessage";
             };
+
+            InteractiveMessage.BloksWidget = (function() {
+
+                /**
+                 * Properties of a BloksWidget.
+                 * @memberof E2E.Message.InteractiveMessage
+                 * @interface IBloksWidget
+                 * @property {string|null} [uuid] BloksWidget uuid
+                 * @property {string|null} [data] BloksWidget data
+                 * @property {string|null} [type] BloksWidget type
+                 */
+
+                /**
+                 * Constructs a new BloksWidget.
+                 * @memberof E2E.Message.InteractiveMessage
+                 * @classdesc Represents a BloksWidget.
+                 * @implements IBloksWidget
+                 * @constructor
+                 * @param {E2E.Message.InteractiveMessage.IBloksWidget=} [properties] Properties to set
+                 */
+                function BloksWidget(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * BloksWidget uuid.
+                 * @member {string} uuid
+                 * @memberof E2E.Message.InteractiveMessage.BloksWidget
+                 * @instance
+                 */
+                BloksWidget.prototype.uuid = "";
+
+                /**
+                 * BloksWidget data.
+                 * @member {string} data
+                 * @memberof E2E.Message.InteractiveMessage.BloksWidget
+                 * @instance
+                 */
+                BloksWidget.prototype.data = "";
+
+                /**
+                 * BloksWidget type.
+                 * @member {string} type
+                 * @memberof E2E.Message.InteractiveMessage.BloksWidget
+                 * @instance
+                 */
+                BloksWidget.prototype.type = "";
+
+                /**
+                 * Creates a new BloksWidget instance using the specified properties.
+                 * @function create
+                 * @memberof E2E.Message.InteractiveMessage.BloksWidget
+                 * @static
+                 * @param {E2E.Message.InteractiveMessage.IBloksWidget=} [properties] Properties to set
+                 * @returns {E2E.Message.InteractiveMessage.BloksWidget} BloksWidget instance
+                 */
+                BloksWidget.create = function create(properties) {
+                    return new BloksWidget(properties);
+                };
+
+                /**
+                 * Encodes the specified BloksWidget message. Does not implicitly {@link E2E.Message.InteractiveMessage.BloksWidget.verify|verify} messages.
+                 * @function encode
+                 * @memberof E2E.Message.InteractiveMessage.BloksWidget
+                 * @static
+                 * @param {E2E.Message.InteractiveMessage.IBloksWidget} message BloksWidget message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                BloksWidget.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.uuid != null && Object.hasOwnProperty.call(message, "uuid"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.uuid);
+                    if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.data);
+                    if (message.type != null && Object.hasOwnProperty.call(message, "type"))
+                        writer.uint32(/* id 3, wireType 2 =*/26).string(message.type);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified BloksWidget message, length delimited. Does not implicitly {@link E2E.Message.InteractiveMessage.BloksWidget.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof E2E.Message.InteractiveMessage.BloksWidget
+                 * @static
+                 * @param {E2E.Message.InteractiveMessage.IBloksWidget} message BloksWidget message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                BloksWidget.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a BloksWidget message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof E2E.Message.InteractiveMessage.BloksWidget
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {E2E.Message.InteractiveMessage.BloksWidget} BloksWidget
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                BloksWidget.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.InteractiveMessage.BloksWidget();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.uuid = reader.string();
+                                break;
+                            }
+                        case 2: {
+                                message.data = reader.string();
+                                break;
+                            }
+                        case 3: {
+                                message.type = reader.string();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a BloksWidget message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof E2E.Message.InteractiveMessage.BloksWidget
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {E2E.Message.InteractiveMessage.BloksWidget} BloksWidget
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                BloksWidget.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a BloksWidget message.
+                 * @function verify
+                 * @memberof E2E.Message.InteractiveMessage.BloksWidget
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                BloksWidget.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.uuid != null && message.hasOwnProperty("uuid"))
+                        if (!$util.isString(message.uuid))
+                            return "uuid: string expected";
+                    if (message.data != null && message.hasOwnProperty("data"))
+                        if (!$util.isString(message.data))
+                            return "data: string expected";
+                    if (message.type != null && message.hasOwnProperty("type"))
+                        if (!$util.isString(message.type))
+                            return "type: string expected";
+                    return null;
+                };
+
+                /**
+                 * Creates a BloksWidget message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof E2E.Message.InteractiveMessage.BloksWidget
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {E2E.Message.InteractiveMessage.BloksWidget} BloksWidget
+                 */
+                BloksWidget.fromObject = function fromObject(object) {
+                    if (object instanceof $root.E2E.Message.InteractiveMessage.BloksWidget)
+                        return object;
+                    var message = new $root.E2E.Message.InteractiveMessage.BloksWidget();
+                    if (object.uuid != null)
+                        message.uuid = String(object.uuid);
+                    if (object.data != null)
+                        message.data = String(object.data);
+                    if (object.type != null)
+                        message.type = String(object.type);
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a BloksWidget message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof E2E.Message.InteractiveMessage.BloksWidget
+                 * @static
+                 * @param {E2E.Message.InteractiveMessage.BloksWidget} message BloksWidget
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                BloksWidget.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        object.uuid = "";
+                        object.data = "";
+                        object.type = "";
+                    }
+                    if (message.uuid != null && message.hasOwnProperty("uuid"))
+                        object.uuid = message.uuid;
+                    if (message.data != null && message.hasOwnProperty("data"))
+                        object.data = message.data;
+                    if (message.type != null && message.hasOwnProperty("type"))
+                        object.type = message.type;
+                    return object;
+                };
+
+                /**
+                 * Converts this BloksWidget to JSON.
+                 * @function toJSON
+                 * @memberof E2E.Message.InteractiveMessage.BloksWidget
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                BloksWidget.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for BloksWidget
+                 * @function getTypeUrl
+                 * @memberof E2E.Message.InteractiveMessage.BloksWidget
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                BloksWidget.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/E2E.Message.InteractiveMessage.BloksWidget";
+                };
+
+                return BloksWidget;
+            })();
 
             InteractiveMessage.Body = (function() {
 
@@ -40844,6 +41124,7 @@ $root.E2E = (function() {
                  * @property {string|null} [title] Header title
                  * @property {string|null} [subtitle] Header subtitle
                  * @property {boolean|null} [hasMediaAttachment] Header hasMediaAttachment
+                 * @property {E2E.Message.InteractiveMessage.IBloksWidget|null} [bloksWidget] Header bloksWidget
                  * @property {E2E.Message.IDocumentMessage|null} [documentMessage] Header documentMessage
                  * @property {E2E.Message.IImageMessage|null} [imageMessage] Header imageMessage
                  * @property {Uint8Array|null} [jpegThumbnail] Header jpegThumbnail
@@ -40890,6 +41171,14 @@ $root.E2E = (function() {
                  * @instance
                  */
                 Header.prototype.hasMediaAttachment = false;
+
+                /**
+                 * Header bloksWidget.
+                 * @member {E2E.Message.InteractiveMessage.IBloksWidget|null|undefined} bloksWidget
+                 * @memberof E2E.Message.InteractiveMessage.Header
+                 * @instance
+                 */
+                Header.prototype.bloksWidget = null;
 
                 /**
                  * Header documentMessage.
@@ -40995,6 +41284,8 @@ $root.E2E = (function() {
                         $root.E2E.Message.LocationMessage.encode(message.locationMessage, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
                     if (message.productMessage != null && Object.hasOwnProperty.call(message, "productMessage"))
                         $root.E2E.Message.ProductMessage.encode(message.productMessage, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
+                    if (message.bloksWidget != null && Object.hasOwnProperty.call(message, "bloksWidget"))
+                        $root.E2E.Message.InteractiveMessage.BloksWidget.encode(message.bloksWidget, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
                     return writer;
                 };
 
@@ -41041,6 +41332,10 @@ $root.E2E = (function() {
                             }
                         case 5: {
                                 message.hasMediaAttachment = reader.bool();
+                                break;
+                            }
+                        case 10: {
+                                message.bloksWidget = $root.E2E.Message.InteractiveMessage.BloksWidget.decode(reader, reader.uint32());
                                 break;
                             }
                         case 3: {
@@ -41112,6 +41407,11 @@ $root.E2E = (function() {
                     if (message.hasMediaAttachment != null && message.hasOwnProperty("hasMediaAttachment"))
                         if (typeof message.hasMediaAttachment !== "boolean")
                             return "hasMediaAttachment: boolean expected";
+                    if (message.bloksWidget != null && message.hasOwnProperty("bloksWidget")) {
+                        var error = $root.E2E.Message.InteractiveMessage.BloksWidget.verify(message.bloksWidget);
+                        if (error)
+                            return "bloksWidget." + error;
+                    }
                     if (message.documentMessage != null && message.hasOwnProperty("documentMessage")) {
                         properties.media = 1;
                         {
@@ -41188,6 +41488,11 @@ $root.E2E = (function() {
                         message.subtitle = String(object.subtitle);
                     if (object.hasMediaAttachment != null)
                         message.hasMediaAttachment = Boolean(object.hasMediaAttachment);
+                    if (object.bloksWidget != null) {
+                        if (typeof object.bloksWidget !== "object")
+                            throw TypeError(".E2E.Message.InteractiveMessage.Header.bloksWidget: object expected");
+                        message.bloksWidget = $root.E2E.Message.InteractiveMessage.BloksWidget.fromObject(object.bloksWidget);
+                    }
                     if (object.documentMessage != null) {
                         if (typeof object.documentMessage !== "object")
                             throw TypeError(".E2E.Message.InteractiveMessage.Header.documentMessage: object expected");
@@ -41238,6 +41543,7 @@ $root.E2E = (function() {
                         object.title = "";
                         object.subtitle = "";
                         object.hasMediaAttachment = false;
+                        object.bloksWidget = null;
                     }
                     if (message.title != null && message.hasOwnProperty("title"))
                         object.title = message.title;
@@ -41275,6 +41581,8 @@ $root.E2E = (function() {
                         if (options.oneofs)
                             object.media = "productMessage";
                     }
+                    if (message.bloksWidget != null && message.hasOwnProperty("bloksWidget"))
+                        object.bloksWidget = $root.E2E.Message.InteractiveMessage.BloksWidget.toObject(message.bloksWidget, options);
                     return object;
                 };
 
@@ -73190,6 +73498,7 @@ $root.AICommon = (function() {
          * @interface IBotInfrastructureDiagnostics
          * @property {AICommon.BotInfrastructureDiagnostics.BotBackend|null} [botBackend] BotInfrastructureDiagnostics botBackend
          * @property {Array.<string>|null} [toolsUsed] BotInfrastructureDiagnostics toolsUsed
+         * @property {boolean|null} [isThinking] BotInfrastructureDiagnostics isThinking
          */
 
         /**
@@ -73225,6 +73534,14 @@ $root.AICommon = (function() {
         BotInfrastructureDiagnostics.prototype.toolsUsed = $util.emptyArray;
 
         /**
+         * BotInfrastructureDiagnostics isThinking.
+         * @member {boolean} isThinking
+         * @memberof AICommon.BotInfrastructureDiagnostics
+         * @instance
+         */
+        BotInfrastructureDiagnostics.prototype.isThinking = false;
+
+        /**
          * Creates a new BotInfrastructureDiagnostics instance using the specified properties.
          * @function create
          * @memberof AICommon.BotInfrastructureDiagnostics
@@ -73253,6 +73570,8 @@ $root.AICommon = (function() {
             if (message.toolsUsed != null && message.toolsUsed.length)
                 for (var i = 0; i < message.toolsUsed.length; ++i)
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.toolsUsed[i]);
+            if (message.isThinking != null && Object.hasOwnProperty.call(message, "isThinking"))
+                writer.uint32(/* id 3, wireType 0 =*/24).bool(message.isThinking);
             return writer;
         };
 
@@ -73297,6 +73616,10 @@ $root.AICommon = (function() {
                         if (!(message.toolsUsed && message.toolsUsed.length))
                             message.toolsUsed = [];
                         message.toolsUsed.push(reader.string());
+                        break;
+                    }
+                case 3: {
+                        message.isThinking = reader.bool();
                         break;
                     }
                 default:
@@ -73349,6 +73672,9 @@ $root.AICommon = (function() {
                     if (!$util.isString(message.toolsUsed[i]))
                         return "toolsUsed: string[] expected";
             }
+            if (message.isThinking != null && message.hasOwnProperty("isThinking"))
+                if (typeof message.isThinking !== "boolean")
+                    return "isThinking: boolean expected";
             return null;
         };
 
@@ -73387,6 +73713,8 @@ $root.AICommon = (function() {
                 for (var i = 0; i < object.toolsUsed.length; ++i)
                     message.toolsUsed[i] = String(object.toolsUsed[i]);
             }
+            if (object.isThinking != null)
+                message.isThinking = Boolean(object.isThinking);
             return message;
         };
 
@@ -73405,8 +73733,10 @@ $root.AICommon = (function() {
             var object = {};
             if (options.arrays || options.defaults)
                 object.toolsUsed = [];
-            if (options.defaults)
+            if (options.defaults) {
                 object.botBackend = options.enums === String ? "AAPI" : 0;
+                object.isThinking = false;
+            }
             if (message.botBackend != null && message.hasOwnProperty("botBackend"))
                 object.botBackend = options.enums === String ? $root.AICommon.BotInfrastructureDiagnostics.BotBackend[message.botBackend] === undefined ? message.botBackend : $root.AICommon.BotInfrastructureDiagnostics.BotBackend[message.botBackend] : message.botBackend;
             if (message.toolsUsed && message.toolsUsed.length) {
@@ -73414,6 +73744,8 @@ $root.AICommon = (function() {
                 for (var j = 0; j < message.toolsUsed.length; ++j)
                     object.toolsUsed[j] = message.toolsUsed[j];
             }
+            if (message.isThinking != null && message.hasOwnProperty("isThinking"))
+                object.isThinking = message.isThinking;
             return object;
         };
 
@@ -80127,6 +80459,8 @@ $root.AICommon = (function() {
                 case 40:
                 case 41:
                 case 45:
+                case 46:
+                case 47:
                     break;
                 }
             if (message.forwardScore != null && message.hasOwnProperty("forwardScore"))
@@ -80325,6 +80659,14 @@ $root.AICommon = (function() {
             case "META_AI_SETTINGS":
             case 45:
                 message.botEntryPointOrigin = 45;
+                break;
+            case "WEB_INTRO_PANEL":
+            case 46:
+                message.botEntryPointOrigin = 46;
+                break;
+            case "WEB_NAVIGATION_BAR":
+            case 47:
+                message.botEntryPointOrigin = 47;
                 break;
             }
             if (object.forwardScore != null)
@@ -95141,6 +95483,8 @@ $root.AICommon = (function() {
                 case 40:
                 case 41:
                 case 45:
+                case 46:
+                case 47:
                     break;
                 }
             if (message.threadOrigin != null && message.hasOwnProperty("threadOrigin"))
@@ -95349,6 +95693,14 @@ $root.AICommon = (function() {
             case "META_AI_SETTINGS":
             case 45:
                 message.destinationEntryPoint = 45;
+                break;
+            case "WEB_INTRO_PANEL":
+            case 46:
+                message.destinationEntryPoint = 46;
+                break;
+            case "WEB_NAVIGATION_BAR":
+            case 47:
+                message.destinationEntryPoint = 47;
                 break;
             }
             switch (object.threadOrigin) {
@@ -99579,6 +99931,8 @@ $root.AICommon = (function() {
      * @property {number} MEDIA_PICKER_GROUP_CHAT=40 MEDIA_PICKER_GROUP_CHAT value
      * @property {number} ASK_META_AI_NO_SEARCH_RESULTS=41 ASK_META_AI_NO_SEARCH_RESULTS value
      * @property {number} META_AI_SETTINGS=45 META_AI_SETTINGS value
+     * @property {number} WEB_INTRO_PANEL=46 WEB_INTRO_PANEL value
+     * @property {number} WEB_NAVIGATION_BAR=47 WEB_NAVIGATION_BAR value
      */
     AICommon.BotMetricsEntryPoint = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -99625,6 +99979,8 @@ $root.AICommon = (function() {
         values[valuesById[40] = "MEDIA_PICKER_GROUP_CHAT"] = 40;
         values[valuesById[41] = "ASK_META_AI_NO_SEARCH_RESULTS"] = 41;
         values[valuesById[45] = "META_AI_SETTINGS"] = 45;
+        values[valuesById[46] = "WEB_INTRO_PANEL"] = 46;
+        values[valuesById[47] = "WEB_NAVIGATION_BAR"] = 47;
         return values;
     })();
 
