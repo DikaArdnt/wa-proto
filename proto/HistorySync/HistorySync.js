@@ -128554,6 +128554,7 @@ $root.SyncAction = (function() {
          * @property {SyncAction.SyncActionValue.IAiThreadRenameAction|null} [aiThreadRenameAction] SyncActionValue aiThreadRenameAction
          * @property {SyncAction.SyncActionValue.IInteractiveMessageAction|null} [interactiveMessageAction] SyncActionValue interactiveMessageAction
          * @property {SyncAction.SyncActionValue.ISettingsSyncAction|null} [settingsSyncAction] SyncActionValue settingsSyncAction
+         * @property {SyncAction.SyncActionValue.IOutContactAction|null} [outContactAction] SyncActionValue outContactAction
          */
 
         /**
@@ -129124,6 +129125,14 @@ $root.SyncAction = (function() {
         SyncActionValue.prototype.settingsSyncAction = null;
 
         /**
+         * SyncActionValue outContactAction.
+         * @member {SyncAction.SyncActionValue.IOutContactAction|null|undefined} outContactAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.outContactAction = null;
+
+        /**
          * Creates a new SyncActionValue instance using the specified properties.
          * @function create
          * @memberof SyncAction.SyncActionValue
@@ -129285,6 +129294,8 @@ $root.SyncAction = (function() {
                 $root.SyncAction.SyncActionValue.InteractiveMessageAction.encode(message.interactiveMessageAction, writer.uint32(/* id 77, wireType 2 =*/618).fork()).ldelim();
             if (message.settingsSyncAction != null && Object.hasOwnProperty.call(message, "settingsSyncAction"))
                 $root.SyncAction.SyncActionValue.SettingsSyncAction.encode(message.settingsSyncAction, writer.uint32(/* id 78, wireType 2 =*/626).fork()).ldelim();
+            if (message.outContactAction != null && Object.hasOwnProperty.call(message, "outContactAction"))
+                $root.SyncAction.SyncActionValue.OutContactAction.encode(message.outContactAction, writer.uint32(/* id 79, wireType 2 =*/634).fork()).ldelim();
             return writer;
         };
 
@@ -129595,6 +129606,10 @@ $root.SyncAction = (function() {
                     }
                 case 78: {
                         message.settingsSyncAction = $root.SyncAction.SyncActionValue.SettingsSyncAction.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 79: {
+                        message.outContactAction = $root.SyncAction.SyncActionValue.OutContactAction.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -129975,6 +129990,11 @@ $root.SyncAction = (function() {
                 if (error)
                     return "settingsSyncAction." + error;
             }
+            if (message.outContactAction != null && message.hasOwnProperty("outContactAction")) {
+                var error = $root.SyncAction.SyncActionValue.OutContactAction.verify(message.outContactAction);
+                if (error)
+                    return "outContactAction." + error;
+            }
             return null;
         };
 
@@ -130339,6 +130359,11 @@ $root.SyncAction = (function() {
                     throw TypeError(".SyncAction.SyncActionValue.settingsSyncAction: object expected");
                 message.settingsSyncAction = $root.SyncAction.SyncActionValue.SettingsSyncAction.fromObject(object.settingsSyncAction);
             }
+            if (object.outContactAction != null) {
+                if (typeof object.outContactAction !== "object")
+                    throw TypeError(".SyncAction.SyncActionValue.outContactAction: object expected");
+                message.outContactAction = $root.SyncAction.SyncActionValue.OutContactAction.fromObject(object.outContactAction);
+            }
             return message;
         };
 
@@ -130429,6 +130454,7 @@ $root.SyncAction = (function() {
                 object.aiThreadRenameAction = null;
                 object.interactiveMessageAction = null;
                 object.settingsSyncAction = null;
+                object.outContactAction = null;
             }
             if (message.timestamp != null && message.hasOwnProperty("timestamp"))
                 if (typeof message.timestamp === "number")
@@ -130571,6 +130597,8 @@ $root.SyncAction = (function() {
                 object.interactiveMessageAction = $root.SyncAction.SyncActionValue.InteractiveMessageAction.toObject(message.interactiveMessageAction, options);
             if (message.settingsSyncAction != null && message.hasOwnProperty("settingsSyncAction"))
                 object.settingsSyncAction = $root.SyncAction.SyncActionValue.SettingsSyncAction.toObject(message.settingsSyncAction, options);
+            if (message.outContactAction != null && message.hasOwnProperty("outContactAction"))
+                object.outContactAction = $root.SyncAction.SyncActionValue.OutContactAction.toObject(message.outContactAction, options);
             return object;
         };
 
@@ -141356,6 +141384,235 @@ $root.SyncAction = (function() {
             return NuxAction;
         })();
 
+        SyncActionValue.OutContactAction = (function() {
+
+            /**
+             * Properties of an OutContactAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface IOutContactAction
+             * @property {string|null} [fullName] OutContactAction fullName
+             * @property {string|null} [firstName] OutContactAction firstName
+             */
+
+            /**
+             * Constructs a new OutContactAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents an OutContactAction.
+             * @implements IOutContactAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.IOutContactAction=} [properties] Properties to set
+             */
+            function OutContactAction(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * OutContactAction fullName.
+             * @member {string} fullName
+             * @memberof SyncAction.SyncActionValue.OutContactAction
+             * @instance
+             */
+            OutContactAction.prototype.fullName = "";
+
+            /**
+             * OutContactAction firstName.
+             * @member {string} firstName
+             * @memberof SyncAction.SyncActionValue.OutContactAction
+             * @instance
+             */
+            OutContactAction.prototype.firstName = "";
+
+            /**
+             * Creates a new OutContactAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.OutContactAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IOutContactAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.OutContactAction} OutContactAction instance
+             */
+            OutContactAction.create = function create(properties) {
+                return new OutContactAction(properties);
+            };
+
+            /**
+             * Encodes the specified OutContactAction message. Does not implicitly {@link SyncAction.SyncActionValue.OutContactAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.OutContactAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IOutContactAction} message OutContactAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            OutContactAction.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.fullName != null && Object.hasOwnProperty.call(message, "fullName"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.fullName);
+                if (message.firstName != null && Object.hasOwnProperty.call(message, "firstName"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.firstName);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified OutContactAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.OutContactAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.OutContactAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IOutContactAction} message OutContactAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            OutContactAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes an OutContactAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.OutContactAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.OutContactAction} OutContactAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            OutContactAction.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.OutContactAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.fullName = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.firstName = reader.string();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes an OutContactAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.OutContactAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.OutContactAction} OutContactAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            OutContactAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies an OutContactAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.OutContactAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            OutContactAction.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.fullName != null && message.hasOwnProperty("fullName"))
+                    if (!$util.isString(message.fullName))
+                        return "fullName: string expected";
+                if (message.firstName != null && message.hasOwnProperty("firstName"))
+                    if (!$util.isString(message.firstName))
+                        return "firstName: string expected";
+                return null;
+            };
+
+            /**
+             * Creates an OutContactAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.OutContactAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.OutContactAction} OutContactAction
+             */
+            OutContactAction.fromObject = function fromObject(object) {
+                if (object instanceof $root.SyncAction.SyncActionValue.OutContactAction)
+                    return object;
+                var message = new $root.SyncAction.SyncActionValue.OutContactAction();
+                if (object.fullName != null)
+                    message.fullName = String(object.fullName);
+                if (object.firstName != null)
+                    message.firstName = String(object.firstName);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from an OutContactAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.OutContactAction
+             * @static
+             * @param {SyncAction.SyncActionValue.OutContactAction} message OutContactAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            OutContactAction.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.fullName = "";
+                    object.firstName = "";
+                }
+                if (message.fullName != null && message.hasOwnProperty("fullName"))
+                    object.fullName = message.fullName;
+                if (message.firstName != null && message.hasOwnProperty("firstName"))
+                    object.firstName = message.firstName;
+                return object;
+            };
+
+            /**
+             * Converts this OutContactAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.OutContactAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            OutContactAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for OutContactAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.OutContactAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            OutContactAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.OutContactAction";
+            };
+
+            return OutContactAction;
+        })();
+
         SyncActionValue.PaymentInfoAction = (function() {
 
             /**
@@ -150494,6 +150751,7 @@ $root.SyncAction = (function() {
      * @property {number} AI_THREAD_RENAME_ACTION=76 AI_THREAD_RENAME_ACTION value
      * @property {number} INTERACTIVE_MESSAGE_ACTION=77 INTERACTIVE_MESSAGE_ACTION value
      * @property {number} SETTINGS_SYNC_ACTION=78 SETTINGS_SYNC_ACTION value
+     * @property {number} OUT_CONTACT_ACTION=79 OUT_CONTACT_ACTION value
      * @property {number} SHARE_OWN_PN=10001 SHARE_OWN_PN value
      * @property {number} BUSINESS_BROADCAST_ACTION=10002 BUSINESS_BROADCAST_ACTION value
      * @property {number} AI_THREAD_DELETE_ACTION=10003 AI_THREAD_DELETE_ACTION value
@@ -150572,6 +150830,7 @@ $root.SyncAction = (function() {
         values[valuesById[76] = "AI_THREAD_RENAME_ACTION"] = 76;
         values[valuesById[77] = "INTERACTIVE_MESSAGE_ACTION"] = 77;
         values[valuesById[78] = "SETTINGS_SYNC_ACTION"] = 78;
+        values[valuesById[79] = "OUT_CONTACT_ACTION"] = 79;
         values[valuesById[10001] = "SHARE_OWN_PN"] = 10001;
         values[valuesById[10002] = "BUSINESS_BROADCAST_ACTION"] = 10002;
         values[valuesById[10003] = "AI_THREAD_DELETE_ACTION"] = 10003;

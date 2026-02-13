@@ -110,6 +110,7 @@ message SyncActionValue {
     optional AiThreadRenameAction aiThreadRenameAction = 76;
     optional InteractiveMessageAction interactiveMessageAction = 77;
     optional SettingsSyncAction settingsSyncAction = 78;
+    optional OutContactAction outContactAction = 79;
     message AgentAction {
         optional string name = 1;
         optional int32 deviceID = 2;
@@ -330,6 +331,10 @@ message SyncActionValue {
     }
     message NuxAction {
         optional bool acknowledged = 1;
+    }
+    message OutContactAction {
+        optional string fullName = 1;
+        optional string firstName = 2;
     }
     message PaymentInfoAction {
         optional string cpi = 1;
@@ -672,6 +677,7 @@ enum MutationProps {
     AI_THREAD_RENAME_ACTION = 76;
     INTERACTIVE_MESSAGE_ACTION = 77;
     SETTINGS_SYNC_ACTION = 78;
+    OUT_CONTACT_ACTION = 79;
     SHARE_OWN_PN = 10001;
     BUSINESS_BROADCAST_ACTION = 10002;
     AI_THREAD_DELETE_ACTION = 10003;
