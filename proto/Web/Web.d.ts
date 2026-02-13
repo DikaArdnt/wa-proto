@@ -15148,11 +15148,120 @@ export namespace E2E {
             }
         }
 
+        /** Properties of a FullHistorySyncOnDemandConfig. */
+        interface IFullHistorySyncOnDemandConfig {
+
+            /** FullHistorySyncOnDemandConfig historyFromTimestamp */
+            historyFromTimestamp?: (number|Long|null);
+
+            /** FullHistorySyncOnDemandConfig historyDurationDays */
+            historyDurationDays?: (number|null);
+        }
+
+        /** Represents a FullHistorySyncOnDemandConfig. */
+        class FullHistorySyncOnDemandConfig implements IFullHistorySyncOnDemandConfig {
+
+            /**
+             * Constructs a new FullHistorySyncOnDemandConfig.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IFullHistorySyncOnDemandConfig);
+
+            /** FullHistorySyncOnDemandConfig historyFromTimestamp. */
+            public historyFromTimestamp: (number|Long);
+
+            /** FullHistorySyncOnDemandConfig historyDurationDays. */
+            public historyDurationDays: number;
+
+            /**
+             * Creates a new FullHistorySyncOnDemandConfig instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns FullHistorySyncOnDemandConfig instance
+             */
+            public static create(properties?: E2E.Message.IFullHistorySyncOnDemandConfig): E2E.Message.FullHistorySyncOnDemandConfig;
+
+            /**
+             * Encodes the specified FullHistorySyncOnDemandConfig message. Does not implicitly {@link E2E.Message.FullHistorySyncOnDemandConfig.verify|verify} messages.
+             * @param message FullHistorySyncOnDemandConfig message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IFullHistorySyncOnDemandConfig, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified FullHistorySyncOnDemandConfig message, length delimited. Does not implicitly {@link E2E.Message.FullHistorySyncOnDemandConfig.verify|verify} messages.
+             * @param message FullHistorySyncOnDemandConfig message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IFullHistorySyncOnDemandConfig, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a FullHistorySyncOnDemandConfig message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns FullHistorySyncOnDemandConfig
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.FullHistorySyncOnDemandConfig;
+
+            /**
+             * Decodes a FullHistorySyncOnDemandConfig message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns FullHistorySyncOnDemandConfig
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.FullHistorySyncOnDemandConfig;
+
+            /**
+             * Verifies a FullHistorySyncOnDemandConfig message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a FullHistorySyncOnDemandConfig message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns FullHistorySyncOnDemandConfig
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.FullHistorySyncOnDemandConfig;
+
+            /**
+             * Creates a plain object from a FullHistorySyncOnDemandConfig message. Also converts values to other types if specified.
+             * @param message FullHistorySyncOnDemandConfig
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.FullHistorySyncOnDemandConfig, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this FullHistorySyncOnDemandConfig to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for FullHistorySyncOnDemandConfig
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
         /** Properties of a FullHistorySyncOnDemandRequestMetadata. */
         interface IFullHistorySyncOnDemandRequestMetadata {
 
             /** FullHistorySyncOnDemandRequestMetadata requestId */
             requestId?: (string|null);
+
+            /** FullHistorySyncOnDemandRequestMetadata businessProduct */
+            businessProduct?: (string|null);
+
+            /** FullHistorySyncOnDemandRequestMetadata opaqueClientData */
+            opaqueClientData?: (Uint8Array|null);
         }
 
         /** Represents a FullHistorySyncOnDemandRequestMetadata. */
@@ -15166,6 +15275,12 @@ export namespace E2E {
 
             /** FullHistorySyncOnDemandRequestMetadata requestId. */
             public requestId: string;
+
+            /** FullHistorySyncOnDemandRequestMetadata businessProduct. */
+            public businessProduct: string;
+
+            /** FullHistorySyncOnDemandRequestMetadata opaqueClientData. */
+            public opaqueClientData: Uint8Array;
 
             /**
              * Creates a new FullHistorySyncOnDemandRequestMetadata instance using the specified properties.
@@ -21987,6 +22102,9 @@ export namespace E2E {
 
                 /** FullHistorySyncOnDemandRequest historySyncConfig */
                 historySyncConfig?: (CompanionReg.DeviceProps.IHistorySyncConfig|null);
+
+                /** FullHistorySyncOnDemandRequest fullHistorySyncOnDemandConfig */
+                fullHistorySyncOnDemandConfig?: (E2E.Message.IFullHistorySyncOnDemandConfig|null);
             }
 
             /** Represents a FullHistorySyncOnDemandRequest. */
@@ -22003,6 +22121,9 @@ export namespace E2E {
 
                 /** FullHistorySyncOnDemandRequest historySyncConfig. */
                 public historySyncConfig?: (CompanionReg.DeviceProps.IHistorySyncConfig|null);
+
+                /** FullHistorySyncOnDemandRequest fullHistorySyncOnDemandConfig. */
+                public fullHistorySyncOnDemandConfig?: (E2E.Message.IFullHistorySyncOnDemandConfig|null);
 
                 /**
                  * Creates a new FullHistorySyncOnDemandRequest instance using the specified properties.
@@ -25874,6 +25995,9 @@ export namespace E2E {
 
             /** ProtocolMessage aiMediaCollectionMessage */
             aiMediaCollectionMessage?: (AICommon.IAIMediaCollectionMessage|null);
+
+            /** ProtocolMessage afterReadDurationMs */
+            afterReadDurationMs?: (number|null);
         }
 
         /** Represents a ProtocolMessage. */
@@ -25959,6 +26083,9 @@ export namespace E2E {
 
             /** ProtocolMessage aiMediaCollectionMessage. */
             public aiMediaCollectionMessage?: (AICommon.IAIMediaCollectionMessage|null);
+
+            /** ProtocolMessage afterReadDurationMs. */
+            public afterReadDurationMs: number;
 
             /**
              * Creates a new ProtocolMessage instance using the specified properties.
@@ -33932,9 +34059,6 @@ export namespace AICommon {
     /** Properties of a BotMetadata. */
     interface IBotMetadata {
 
-        /** BotMetadata avatarMetadata */
-        avatarMetadata?: (AICommon.IBotAvatarMetadata|null);
-
         /** BotMetadata personaId */
         personaId?: (string|null);
 
@@ -34058,9 +34182,6 @@ export namespace AICommon {
          * @param [properties] Properties to set
          */
         constructor(properties?: AICommon.IBotMetadata);
-
-        /** BotMetadata avatarMetadata. */
-        public avatarMetadata?: (AICommon.IBotAvatarMetadata|null);
 
         /** BotMetadata personaId. */
         public personaId: string;
@@ -39567,127 +39688,6 @@ export namespace AICommon {
             GOOGLE = 2,
             SUPPORT = 3
         }
-    }
-
-    /** Properties of a BotAvatarMetadata. */
-    interface IBotAvatarMetadata {
-
-        /** BotAvatarMetadata sentiment */
-        sentiment?: (number|null);
-
-        /** BotAvatarMetadata behaviorGraph */
-        behaviorGraph?: (string|null);
-
-        /** BotAvatarMetadata action */
-        action?: (number|null);
-
-        /** BotAvatarMetadata intensity */
-        intensity?: (number|null);
-
-        /** BotAvatarMetadata wordCount */
-        wordCount?: (number|null);
-    }
-
-    /** Represents a BotAvatarMetadata. */
-    class BotAvatarMetadata implements IBotAvatarMetadata {
-
-        /**
-         * Constructs a new BotAvatarMetadata.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: AICommon.IBotAvatarMetadata);
-
-        /** BotAvatarMetadata sentiment. */
-        public sentiment: number;
-
-        /** BotAvatarMetadata behaviorGraph. */
-        public behaviorGraph: string;
-
-        /** BotAvatarMetadata action. */
-        public action: number;
-
-        /** BotAvatarMetadata intensity. */
-        public intensity: number;
-
-        /** BotAvatarMetadata wordCount. */
-        public wordCount: number;
-
-        /**
-         * Creates a new BotAvatarMetadata instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns BotAvatarMetadata instance
-         */
-        public static create(properties?: AICommon.IBotAvatarMetadata): AICommon.BotAvatarMetadata;
-
-        /**
-         * Encodes the specified BotAvatarMetadata message. Does not implicitly {@link AICommon.BotAvatarMetadata.verify|verify} messages.
-         * @param message BotAvatarMetadata message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: AICommon.IBotAvatarMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified BotAvatarMetadata message, length delimited. Does not implicitly {@link AICommon.BotAvatarMetadata.verify|verify} messages.
-         * @param message BotAvatarMetadata message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: AICommon.IBotAvatarMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a BotAvatarMetadata message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns BotAvatarMetadata
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AICommon.BotAvatarMetadata;
-
-        /**
-         * Decodes a BotAvatarMetadata message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns BotAvatarMetadata
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AICommon.BotAvatarMetadata;
-
-        /**
-         * Verifies a BotAvatarMetadata message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a BotAvatarMetadata message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns BotAvatarMetadata
-         */
-        public static fromObject(object: { [k: string]: any }): AICommon.BotAvatarMetadata;
-
-        /**
-         * Creates a plain object from a BotAvatarMetadata message. Also converts values to other types if specified.
-         * @param message BotAvatarMetadata
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: AICommon.BotAvatarMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this BotAvatarMetadata to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for BotAvatarMetadata
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
     /** SessionTransparencyType enum. */

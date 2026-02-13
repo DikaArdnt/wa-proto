@@ -950,8 +950,14 @@ message Message {
             PROFILE = 7;
         }
     }
+    message FullHistorySyncOnDemandConfig {
+        optional uint64 historyFromTimestamp = 1;
+        optional uint32 historyDurationDays = 2;
+    }
     message FullHistorySyncOnDemandRequestMetadata {
         optional string requestId = 1;
+        optional string businessProduct = 2;
+        optional bytes opaqueClientData = 3;
     }
     message FutureProofMessage {
         optional Message message = 1;
@@ -1433,6 +1439,7 @@ message Message {
         message FullHistorySyncOnDemandRequest {
             optional Message.FullHistorySyncOnDemandRequestMetadata requestMetadata = 1;
             optional CompanionReg.DeviceProps.HistorySyncConfig historySyncConfig = 2;
+            optional Message.FullHistorySyncOnDemandConfig fullHistorySyncOnDemandConfig = 3;
         }
         message GalaxyFlowAction {
             optional GalaxyFlowActionType type = 1;
@@ -1694,6 +1701,7 @@ message Message {
         optional AIQueryFanout aiQueryFanout = 26;
         optional MemberLabel memberLabel = 27;
         optional AICommon.AIMediaCollectionMessage aiMediaCollectionMessage = 28;
+        optional uint32 afterReadDurationMs = 29;
         enum Type {
             REVOKE = 0;
             EPHEMERAL_SETTING = 3;
