@@ -48,6 +48,8 @@ message MsgOpaqueData {
     optional bool eventExtraGuestsAllowed = 45;
     optional bytes plainProtobufBytes = 43;
     optional string quarantineExtractedText = 48;
+    optional int64 pollEndTime = 49;
+    optional bool pollHideVoterNames = 50;
     message EventLocation {
         optional double degreesLatitude = 1;
         optional double degreesLongitude = 2;

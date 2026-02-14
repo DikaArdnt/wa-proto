@@ -506,6 +506,9 @@ export namespace SyncAction {
 
         /** SyncActionValue outContactAction */
         outContactAction?: (SyncAction.SyncActionValue.IOutContactAction|null);
+
+        /** SyncActionValue nctSaltSyncAction */
+        nctSaltSyncAction?: (SyncAction.SyncActionValue.INctSaltSyncAction|null);
     }
 
     /** Represents a SyncActionValue. */
@@ -726,6 +729,9 @@ export namespace SyncAction {
 
         /** SyncActionValue outContactAction. */
         public outContactAction?: (SyncAction.SyncActionValue.IOutContactAction|null);
+
+        /** SyncActionValue nctSaltSyncAction. */
+        public nctSaltSyncAction?: (SyncAction.SyncActionValue.INctSaltSyncAction|null);
 
         /**
          * Creates a new SyncActionValue instance using the specified properties.
@@ -3364,6 +3370,9 @@ export namespace SyncAction {
 
             /** InteractiveMessageAction type */
             type: SyncAction.SyncActionValue.InteractiveMessageAction.InteractiveMessageActionMode;
+
+            /** InteractiveMessageAction agmId */
+            agmId?: (string|null);
         }
 
         /** Represents an InteractiveMessageAction. */
@@ -3377,6 +3386,9 @@ export namespace SyncAction {
 
             /** InteractiveMessageAction type. */
             public type: SyncAction.SyncActionValue.InteractiveMessageAction.InteractiveMessageActionMode;
+
+            /** InteractiveMessageAction agmId. */
+            public agmId: string;
 
             /**
              * Creates a new InteractiveMessageAction instance using the specified properties.
@@ -5004,6 +5016,103 @@ export namespace SyncAction {
 
             /**
              * Gets the default type url for MuteAction
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a NctSaltSyncAction. */
+        interface INctSaltSyncAction {
+
+            /** NctSaltSyncAction salt */
+            salt?: (Uint8Array|null);
+        }
+
+        /** Represents a NctSaltSyncAction. */
+        class NctSaltSyncAction implements INctSaltSyncAction {
+
+            /**
+             * Constructs a new NctSaltSyncAction.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SyncAction.SyncActionValue.INctSaltSyncAction);
+
+            /** NctSaltSyncAction salt. */
+            public salt: Uint8Array;
+
+            /**
+             * Creates a new NctSaltSyncAction instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns NctSaltSyncAction instance
+             */
+            public static create(properties?: SyncAction.SyncActionValue.INctSaltSyncAction): SyncAction.SyncActionValue.NctSaltSyncAction;
+
+            /**
+             * Encodes the specified NctSaltSyncAction message. Does not implicitly {@link SyncAction.SyncActionValue.NctSaltSyncAction.verify|verify} messages.
+             * @param message NctSaltSyncAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SyncAction.SyncActionValue.INctSaltSyncAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified NctSaltSyncAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.NctSaltSyncAction.verify|verify} messages.
+             * @param message NctSaltSyncAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SyncAction.SyncActionValue.INctSaltSyncAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a NctSaltSyncAction message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns NctSaltSyncAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.NctSaltSyncAction;
+
+            /**
+             * Decodes a NctSaltSyncAction message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns NctSaltSyncAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.NctSaltSyncAction;
+
+            /**
+             * Verifies a NctSaltSyncAction message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a NctSaltSyncAction message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns NctSaltSyncAction
+             */
+            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.NctSaltSyncAction;
+
+            /**
+             * Creates a plain object from a NctSaltSyncAction message. Also converts values to other types if specified.
+             * @param message NctSaltSyncAction
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SyncAction.SyncActionValue.NctSaltSyncAction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this NctSaltSyncAction to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for NctSaltSyncAction
              * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
              * @returns The default type url
              */
@@ -9283,6 +9392,7 @@ export namespace SyncAction {
         INTERACTIVE_MESSAGE_ACTION = 77,
         SETTINGS_SYNC_ACTION = 78,
         OUT_CONTACT_ACTION = 79,
+        NCT_SALT_SYNC_ACTION = 80,
         SHARE_OWN_PN = 10001,
         BUSINESS_BROADCAST_ACTION = 10002,
         AI_THREAD_DELETE_ACTION = 10003

@@ -11269,6 +11269,9 @@ export namespace E2E {
 
             /** Call messageContextInfo */
             messageContextInfo?: (E2E.IMessageContextInfo|null);
+
+            /** Call callEntryPoint */
+            callEntryPoint?: (number|null);
         }
 
         /** Represents a Call. */
@@ -11309,6 +11312,9 @@ export namespace E2E {
 
             /** Call messageContextInfo. */
             public messageContextInfo?: (E2E.IMessageContextInfo|null);
+
+            /** Call callEntryPoint. */
+            public callEntryPoint: number;
 
             /**
              * Creates a new Call instance using the specified properties.
@@ -20816,6 +20822,12 @@ export namespace E2E {
 
                 /** GalaxyFlowAction stanzaId */
                 stanzaId?: (string|null);
+
+                /** GalaxyFlowAction galaxyFlowDownloadRequestId */
+                galaxyFlowDownloadRequestId?: (string|null);
+
+                /** GalaxyFlowAction agmId */
+                agmId?: (string|null);
             }
 
             /** Represents a GalaxyFlowAction. */
@@ -20835,6 +20847,12 @@ export namespace E2E {
 
                 /** GalaxyFlowAction stanzaId. */
                 public stanzaId: string;
+
+                /** GalaxyFlowAction galaxyFlowDownloadRequestId. */
+                public galaxyFlowDownloadRequestId: string;
+
+                /** GalaxyFlowAction agmId. */
+                public agmId: string;
 
                 /**
                  * Creates a new GalaxyFlowAction instance using the specified properties.
@@ -20918,7 +20936,8 @@ export namespace E2E {
 
                 /** GalaxyFlowActionType enum. */
                 enum GalaxyFlowActionType {
-                    NOTIFY_LAUNCH = 1
+                    NOTIFY_LAUNCH = 1,
+                    DOWNLOAD_RESPONSES = 2
                 }
             }
 
@@ -21708,6 +21727,9 @@ export namespace E2E {
 
                 /** PeerDataOperationResult historySyncChunkRetryResponse */
                 historySyncChunkRetryResponse?: (E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IHistorySyncChunkRetryResponse|null);
+
+                /** PeerDataOperationResult flowResponsesCsvBundle */
+                flowResponsesCsvBundle?: (E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IFlowResponsesCsvBundle|null);
             }
 
             /** Represents a PeerDataOperationResult. */
@@ -21748,6 +21770,9 @@ export namespace E2E {
 
                 /** PeerDataOperationResult historySyncChunkRetryResponse. */
                 public historySyncChunkRetryResponse?: (E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IHistorySyncChunkRetryResponse|null);
+
+                /** PeerDataOperationResult flowResponsesCsvBundle. */
+                public flowResponsesCsvBundle?: (E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IFlowResponsesCsvBundle|null);
 
                 /**
                  * Creates a new PeerDataOperationResult instance using the specified properties.
@@ -22029,6 +22054,157 @@ export namespace E2E {
 
                     /**
                      * Gets the default type url for CompanionMetaNonceFetchResponse
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a FlowResponsesCsvBundle. */
+                interface IFlowResponsesCsvBundle {
+
+                    /** FlowResponsesCsvBundle flowId */
+                    flowId?: (string|null);
+
+                    /** FlowResponsesCsvBundle galaxyFlowDownloadRequestId */
+                    galaxyFlowDownloadRequestId?: (string|null);
+
+                    /** FlowResponsesCsvBundle fileName */
+                    fileName?: (string|null);
+
+                    /** FlowResponsesCsvBundle mimetype */
+                    mimetype?: (string|null);
+
+                    /** FlowResponsesCsvBundle fileSha256 */
+                    fileSha256?: (Uint8Array|null);
+
+                    /** FlowResponsesCsvBundle mediaKey */
+                    mediaKey?: (Uint8Array|null);
+
+                    /** FlowResponsesCsvBundle fileEncSha256 */
+                    fileEncSha256?: (Uint8Array|null);
+
+                    /** FlowResponsesCsvBundle directPath */
+                    directPath?: (string|null);
+
+                    /** FlowResponsesCsvBundle mediaKeyTimestamp */
+                    mediaKeyTimestamp?: (number|Long|null);
+
+                    /** FlowResponsesCsvBundle fileLength */
+                    fileLength?: (number|Long|null);
+                }
+
+                /** Represents a FlowResponsesCsvBundle. */
+                class FlowResponsesCsvBundle implements IFlowResponsesCsvBundle {
+
+                    /**
+                     * Constructs a new FlowResponsesCsvBundle.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IFlowResponsesCsvBundle);
+
+                    /** FlowResponsesCsvBundle flowId. */
+                    public flowId: string;
+
+                    /** FlowResponsesCsvBundle galaxyFlowDownloadRequestId. */
+                    public galaxyFlowDownloadRequestId: string;
+
+                    /** FlowResponsesCsvBundle fileName. */
+                    public fileName: string;
+
+                    /** FlowResponsesCsvBundle mimetype. */
+                    public mimetype: string;
+
+                    /** FlowResponsesCsvBundle fileSha256. */
+                    public fileSha256: Uint8Array;
+
+                    /** FlowResponsesCsvBundle mediaKey. */
+                    public mediaKey: Uint8Array;
+
+                    /** FlowResponsesCsvBundle fileEncSha256. */
+                    public fileEncSha256: Uint8Array;
+
+                    /** FlowResponsesCsvBundle directPath. */
+                    public directPath: string;
+
+                    /** FlowResponsesCsvBundle mediaKeyTimestamp. */
+                    public mediaKeyTimestamp: (number|Long);
+
+                    /** FlowResponsesCsvBundle fileLength. */
+                    public fileLength: (number|Long);
+
+                    /**
+                     * Creates a new FlowResponsesCsvBundle instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns FlowResponsesCsvBundle instance
+                     */
+                    public static create(properties?: E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IFlowResponsesCsvBundle): E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle;
+
+                    /**
+                     * Encodes the specified FlowResponsesCsvBundle message. Does not implicitly {@link E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle.verify|verify} messages.
+                     * @param message FlowResponsesCsvBundle message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IFlowResponsesCsvBundle, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified FlowResponsesCsvBundle message, length delimited. Does not implicitly {@link E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle.verify|verify} messages.
+                     * @param message FlowResponsesCsvBundle message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IFlowResponsesCsvBundle, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a FlowResponsesCsvBundle message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns FlowResponsesCsvBundle
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle;
+
+                    /**
+                     * Decodes a FlowResponsesCsvBundle message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns FlowResponsesCsvBundle
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle;
+
+                    /**
+                     * Verifies a FlowResponsesCsvBundle message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a FlowResponsesCsvBundle message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns FlowResponsesCsvBundle
+                     */
+                    public static fromObject(object: { [k: string]: any }): E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle;
+
+                    /**
+                     * Creates a plain object from a FlowResponsesCsvBundle message. Also converts values to other types if specified.
+                     * @param message FlowResponsesCsvBundle
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this FlowResponsesCsvBundle to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for FlowResponsesCsvBundle
                      * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns The default type url
                      */
@@ -46006,6 +46182,9 @@ export namespace SyncAction {
 
         /** SyncActionValue outContactAction */
         outContactAction?: (SyncAction.SyncActionValue.IOutContactAction|null);
+
+        /** SyncActionValue nctSaltSyncAction */
+        nctSaltSyncAction?: (SyncAction.SyncActionValue.INctSaltSyncAction|null);
     }
 
     /** Represents a SyncActionValue. */
@@ -46226,6 +46405,9 @@ export namespace SyncAction {
 
         /** SyncActionValue outContactAction. */
         public outContactAction?: (SyncAction.SyncActionValue.IOutContactAction|null);
+
+        /** SyncActionValue nctSaltSyncAction. */
+        public nctSaltSyncAction?: (SyncAction.SyncActionValue.INctSaltSyncAction|null);
 
         /**
          * Creates a new SyncActionValue instance using the specified properties.
@@ -48864,6 +49046,9 @@ export namespace SyncAction {
 
             /** InteractiveMessageAction type */
             type: SyncAction.SyncActionValue.InteractiveMessageAction.InteractiveMessageActionMode;
+
+            /** InteractiveMessageAction agmId */
+            agmId?: (string|null);
         }
 
         /** Represents an InteractiveMessageAction. */
@@ -48877,6 +49062,9 @@ export namespace SyncAction {
 
             /** InteractiveMessageAction type. */
             public type: SyncAction.SyncActionValue.InteractiveMessageAction.InteractiveMessageActionMode;
+
+            /** InteractiveMessageAction agmId. */
+            public agmId: string;
 
             /**
              * Creates a new InteractiveMessageAction instance using the specified properties.
@@ -50504,6 +50692,103 @@ export namespace SyncAction {
 
             /**
              * Gets the default type url for MuteAction
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a NctSaltSyncAction. */
+        interface INctSaltSyncAction {
+
+            /** NctSaltSyncAction salt */
+            salt?: (Uint8Array|null);
+        }
+
+        /** Represents a NctSaltSyncAction. */
+        class NctSaltSyncAction implements INctSaltSyncAction {
+
+            /**
+             * Constructs a new NctSaltSyncAction.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SyncAction.SyncActionValue.INctSaltSyncAction);
+
+            /** NctSaltSyncAction salt. */
+            public salt: Uint8Array;
+
+            /**
+             * Creates a new NctSaltSyncAction instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns NctSaltSyncAction instance
+             */
+            public static create(properties?: SyncAction.SyncActionValue.INctSaltSyncAction): SyncAction.SyncActionValue.NctSaltSyncAction;
+
+            /**
+             * Encodes the specified NctSaltSyncAction message. Does not implicitly {@link SyncAction.SyncActionValue.NctSaltSyncAction.verify|verify} messages.
+             * @param message NctSaltSyncAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SyncAction.SyncActionValue.INctSaltSyncAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified NctSaltSyncAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.NctSaltSyncAction.verify|verify} messages.
+             * @param message NctSaltSyncAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SyncAction.SyncActionValue.INctSaltSyncAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a NctSaltSyncAction message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns NctSaltSyncAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.NctSaltSyncAction;
+
+            /**
+             * Decodes a NctSaltSyncAction message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns NctSaltSyncAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.NctSaltSyncAction;
+
+            /**
+             * Verifies a NctSaltSyncAction message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a NctSaltSyncAction message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns NctSaltSyncAction
+             */
+            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.NctSaltSyncAction;
+
+            /**
+             * Creates a plain object from a NctSaltSyncAction message. Also converts values to other types if specified.
+             * @param message NctSaltSyncAction
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SyncAction.SyncActionValue.NctSaltSyncAction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this NctSaltSyncAction to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for NctSaltSyncAction
              * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
              * @returns The default type url
              */
@@ -54783,6 +55068,7 @@ export namespace SyncAction {
         INTERACTIVE_MESSAGE_ACTION = 77,
         SETTINGS_SYNC_ACTION = 78,
         OUT_CONTACT_ACTION = 79,
+        NCT_SALT_SYNC_ACTION = 80,
         SHARE_OWN_PN = 10001,
         BUSINESS_BROADCAST_ACTION = 10002,
         AI_THREAD_DELETE_ACTION = 10003

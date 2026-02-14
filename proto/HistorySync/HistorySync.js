@@ -32274,6 +32274,7 @@ $root.E2E = (function() {
              * @property {string|null} [nativeFlowCallButtonPayload] Call nativeFlowCallButtonPayload
              * @property {string|null} [deeplinkPayload] Call deeplinkPayload
              * @property {E2E.IMessageContextInfo|null} [messageContextInfo] Call messageContextInfo
+             * @property {number|null} [callEntryPoint] Call callEntryPoint
              */
 
             /**
@@ -32372,6 +32373,14 @@ $root.E2E = (function() {
             Call.prototype.messageContextInfo = null;
 
             /**
+             * Call callEntryPoint.
+             * @member {number} callEntryPoint
+             * @memberof E2E.Message.Call
+             * @instance
+             */
+            Call.prototype.callEntryPoint = 0;
+
+            /**
              * Creates a new Call instance using the specified properties.
              * @function create
              * @memberof E2E.Message.Call
@@ -32415,6 +32424,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 9, wireType 2 =*/74).string(message.deeplinkPayload);
                 if (message.messageContextInfo != null && Object.hasOwnProperty.call(message, "messageContextInfo"))
                     $root.E2E.MessageContextInfo.encode(message.messageContextInfo, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
+                if (message.callEntryPoint != null && Object.hasOwnProperty.call(message, "callEntryPoint"))
+                    writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.callEntryPoint);
                 return writer;
             };
 
@@ -32491,6 +32502,10 @@ $root.E2E = (function() {
                             message.messageContextInfo = $root.E2E.MessageContextInfo.decode(reader, reader.uint32());
                             break;
                         }
+                    case 11: {
+                            message.callEntryPoint = reader.uint32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -32560,6 +32575,9 @@ $root.E2E = (function() {
                     if (error)
                         return "messageContextInfo." + error;
                 }
+                if (message.callEntryPoint != null && message.hasOwnProperty("callEntryPoint"))
+                    if (!$util.isInteger(message.callEntryPoint))
+                        return "callEntryPoint: integer expected";
                 return null;
             };
 
@@ -32610,6 +32628,8 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.Call.messageContextInfo: object expected");
                     message.messageContextInfo = $root.E2E.MessageContextInfo.fromObject(object.messageContextInfo);
                 }
+                if (object.callEntryPoint != null)
+                    message.callEntryPoint = object.callEntryPoint >>> 0;
                 return message;
             };
 
@@ -32655,6 +32675,7 @@ $root.E2E = (function() {
                     object.nativeFlowCallButtonPayload = "";
                     object.deeplinkPayload = "";
                     object.messageContextInfo = null;
+                    object.callEntryPoint = 0;
                 }
                 if (message.callKey != null && message.hasOwnProperty("callKey"))
                     object.callKey = options.bytes === String ? $util.base64.encode(message.callKey, 0, message.callKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.callKey) : message.callKey;
@@ -32676,6 +32697,8 @@ $root.E2E = (function() {
                     object.deeplinkPayload = message.deeplinkPayload;
                 if (message.messageContextInfo != null && message.hasOwnProperty("messageContextInfo"))
                     object.messageContextInfo = $root.E2E.MessageContextInfo.toObject(message.messageContextInfo, options);
+                if (message.callEntryPoint != null && message.hasOwnProperty("callEntryPoint"))
+                    object.callEntryPoint = message.callEntryPoint;
                 return object;
             };
 
@@ -58368,6 +58391,8 @@ $root.E2E = (function() {
                  * @property {E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.GalaxyFlowActionType|null} [type] GalaxyFlowAction type
                  * @property {string|null} [flowId] GalaxyFlowAction flowId
                  * @property {string|null} [stanzaId] GalaxyFlowAction stanzaId
+                 * @property {string|null} [galaxyFlowDownloadRequestId] GalaxyFlowAction galaxyFlowDownloadRequestId
+                 * @property {string|null} [agmId] GalaxyFlowAction agmId
                  */
 
                 /**
@@ -58410,6 +58435,22 @@ $root.E2E = (function() {
                 GalaxyFlowAction.prototype.stanzaId = "";
 
                 /**
+                 * GalaxyFlowAction galaxyFlowDownloadRequestId.
+                 * @member {string} galaxyFlowDownloadRequestId
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction
+                 * @instance
+                 */
+                GalaxyFlowAction.prototype.galaxyFlowDownloadRequestId = "";
+
+                /**
+                 * GalaxyFlowAction agmId.
+                 * @member {string} agmId
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction
+                 * @instance
+                 */
+                GalaxyFlowAction.prototype.agmId = "";
+
+                /**
                  * Creates a new GalaxyFlowAction instance using the specified properties.
                  * @function create
                  * @memberof E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction
@@ -58439,6 +58480,10 @@ $root.E2E = (function() {
                         writer.uint32(/* id 2, wireType 2 =*/18).string(message.flowId);
                     if (message.stanzaId != null && Object.hasOwnProperty.call(message, "stanzaId"))
                         writer.uint32(/* id 3, wireType 2 =*/26).string(message.stanzaId);
+                    if (message.galaxyFlowDownloadRequestId != null && Object.hasOwnProperty.call(message, "galaxyFlowDownloadRequestId"))
+                        writer.uint32(/* id 4, wireType 2 =*/34).string(message.galaxyFlowDownloadRequestId);
+                    if (message.agmId != null && Object.hasOwnProperty.call(message, "agmId"))
+                        writer.uint32(/* id 5, wireType 2 =*/42).string(message.agmId);
                     return writer;
                 };
 
@@ -58487,6 +58532,14 @@ $root.E2E = (function() {
                                 message.stanzaId = reader.string();
                                 break;
                             }
+                        case 4: {
+                                message.galaxyFlowDownloadRequestId = reader.string();
+                                break;
+                            }
+                        case 5: {
+                                message.agmId = reader.string();
+                                break;
+                            }
                         default:
                             reader.skipType(tag & 7);
                             break;
@@ -58527,6 +58580,7 @@ $root.E2E = (function() {
                         default:
                             return "type: enum value expected";
                         case 1:
+                        case 2:
                             break;
                         }
                     if (message.flowId != null && message.hasOwnProperty("flowId"))
@@ -58535,6 +58589,12 @@ $root.E2E = (function() {
                     if (message.stanzaId != null && message.hasOwnProperty("stanzaId"))
                         if (!$util.isString(message.stanzaId))
                             return "stanzaId: string expected";
+                    if (message.galaxyFlowDownloadRequestId != null && message.hasOwnProperty("galaxyFlowDownloadRequestId"))
+                        if (!$util.isString(message.galaxyFlowDownloadRequestId))
+                            return "galaxyFlowDownloadRequestId: string expected";
+                    if (message.agmId != null && message.hasOwnProperty("agmId"))
+                        if (!$util.isString(message.agmId))
+                            return "agmId: string expected";
                     return null;
                 };
 
@@ -58561,11 +58621,19 @@ $root.E2E = (function() {
                     case 1:
                         message.type = 1;
                         break;
+                    case "DOWNLOAD_RESPONSES":
+                    case 2:
+                        message.type = 2;
+                        break;
                     }
                     if (object.flowId != null)
                         message.flowId = String(object.flowId);
                     if (object.stanzaId != null)
                         message.stanzaId = String(object.stanzaId);
+                    if (object.galaxyFlowDownloadRequestId != null)
+                        message.galaxyFlowDownloadRequestId = String(object.galaxyFlowDownloadRequestId);
+                    if (object.agmId != null)
+                        message.agmId = String(object.agmId);
                     return message;
                 };
 
@@ -58586,6 +58654,8 @@ $root.E2E = (function() {
                         object.type = options.enums === String ? "NOTIFY_LAUNCH" : 1;
                         object.flowId = "";
                         object.stanzaId = "";
+                        object.galaxyFlowDownloadRequestId = "";
+                        object.agmId = "";
                     }
                     if (message.type != null && message.hasOwnProperty("type"))
                         object.type = options.enums === String ? $root.E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.GalaxyFlowActionType[message.type] === undefined ? message.type : $root.E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.GalaxyFlowActionType[message.type] : message.type;
@@ -58593,6 +58663,10 @@ $root.E2E = (function() {
                         object.flowId = message.flowId;
                     if (message.stanzaId != null && message.hasOwnProperty("stanzaId"))
                         object.stanzaId = message.stanzaId;
+                    if (message.galaxyFlowDownloadRequestId != null && message.hasOwnProperty("galaxyFlowDownloadRequestId"))
+                        object.galaxyFlowDownloadRequestId = message.galaxyFlowDownloadRequestId;
+                    if (message.agmId != null && message.hasOwnProperty("agmId"))
+                        object.agmId = message.agmId;
                     return object;
                 };
 
@@ -58627,10 +58701,12 @@ $root.E2E = (function() {
                  * @name E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.GalaxyFlowActionType
                  * @enum {number}
                  * @property {number} NOTIFY_LAUNCH=1 NOTIFY_LAUNCH value
+                 * @property {number} DOWNLOAD_RESPONSES=2 DOWNLOAD_RESPONSES value
                  */
                 GalaxyFlowAction.GalaxyFlowActionType = (function() {
                     var valuesById = {}, values = Object.create(valuesById);
                     values[valuesById[1] = "NOTIFY_LAUNCH"] = 1;
+                    values[valuesById[2] = "DOWNLOAD_RESPONSES"] = 2;
                     return values;
                 })();
 
@@ -60547,6 +60623,7 @@ $root.E2E = (function() {
                  * @property {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ISyncDSnapshotFatalRecoveryResponse|null} [syncdSnapshotFatalRecoveryResponse] PeerDataOperationResult syncdSnapshotFatalRecoveryResponse
                  * @property {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ICompanionCanonicalUserNonceFetchResponse|null} [companionCanonicalUserNonceFetchRequestResponse] PeerDataOperationResult companionCanonicalUserNonceFetchRequestResponse
                  * @property {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IHistorySyncChunkRetryResponse|null} [historySyncChunkRetryResponse] PeerDataOperationResult historySyncChunkRetryResponse
+                 * @property {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IFlowResponsesCsvBundle|null} [flowResponsesCsvBundle] PeerDataOperationResult flowResponsesCsvBundle
                  */
 
                 /**
@@ -60645,6 +60722,14 @@ $root.E2E = (function() {
                 PeerDataOperationResult.prototype.historySyncChunkRetryResponse = null;
 
                 /**
+                 * PeerDataOperationResult flowResponsesCsvBundle.
+                 * @member {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IFlowResponsesCsvBundle|null|undefined} flowResponsesCsvBundle
+                 * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult
+                 * @instance
+                 */
+                PeerDataOperationResult.prototype.flowResponsesCsvBundle = null;
+
+                /**
                  * Creates a new PeerDataOperationResult instance using the specified properties.
                  * @function create
                  * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult
@@ -60688,6 +60773,8 @@ $root.E2E = (function() {
                         $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse.encode(message.companionCanonicalUserNonceFetchRequestResponse, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
                     if (message.historySyncChunkRetryResponse != null && Object.hasOwnProperty.call(message, "historySyncChunkRetryResponse"))
                         $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.HistorySyncChunkRetryResponse.encode(message.historySyncChunkRetryResponse, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
+                    if (message.flowResponsesCsvBundle != null && Object.hasOwnProperty.call(message, "flowResponsesCsvBundle"))
+                        $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle.encode(message.flowResponsesCsvBundle, writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
                     return writer;
                 };
 
@@ -60762,6 +60849,10 @@ $root.E2E = (function() {
                             }
                         case 10: {
                                 message.historySyncChunkRetryResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.HistorySyncChunkRetryResponse.decode(reader, reader.uint32());
+                                break;
+                            }
+                        case 11: {
+                                message.flowResponsesCsvBundle = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle.decode(reader, reader.uint32());
                                 break;
                             }
                         default:
@@ -60854,6 +60945,11 @@ $root.E2E = (function() {
                         if (error)
                             return "historySyncChunkRetryResponse." + error;
                     }
+                    if (message.flowResponsesCsvBundle != null && message.hasOwnProperty("flowResponsesCsvBundle")) {
+                        var error = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle.verify(message.flowResponsesCsvBundle);
+                        if (error)
+                            return "flowResponsesCsvBundle." + error;
+                    }
                     return null;
                 };
 
@@ -60938,6 +61034,11 @@ $root.E2E = (function() {
                             throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.historySyncChunkRetryResponse: object expected");
                         message.historySyncChunkRetryResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.HistorySyncChunkRetryResponse.fromObject(object.historySyncChunkRetryResponse);
                     }
+                    if (object.flowResponsesCsvBundle != null) {
+                        if (typeof object.flowResponsesCsvBundle !== "object")
+                            throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.flowResponsesCsvBundle: object expected");
+                        message.flowResponsesCsvBundle = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle.fromObject(object.flowResponsesCsvBundle);
+                    }
                     return message;
                 };
 
@@ -60965,6 +61066,7 @@ $root.E2E = (function() {
                         object.syncdSnapshotFatalRecoveryResponse = null;
                         object.companionCanonicalUserNonceFetchRequestResponse = null;
                         object.historySyncChunkRetryResponse = null;
+                        object.flowResponsesCsvBundle = null;
                     }
                     if (message.mediaUploadResult != null && message.hasOwnProperty("mediaUploadResult"))
                         object.mediaUploadResult = options.enums === String ? $root.MmsRetry.MediaRetryNotification.ResultType[message.mediaUploadResult] === undefined ? message.mediaUploadResult : $root.MmsRetry.MediaRetryNotification.ResultType[message.mediaUploadResult] : message.mediaUploadResult;
@@ -60986,6 +61088,8 @@ $root.E2E = (function() {
                         object.companionCanonicalUserNonceFetchRequestResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse.toObject(message.companionCanonicalUserNonceFetchRequestResponse, options);
                     if (message.historySyncChunkRetryResponse != null && message.hasOwnProperty("historySyncChunkRetryResponse"))
                         object.historySyncChunkRetryResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.HistorySyncChunkRetryResponse.toObject(message.historySyncChunkRetryResponse, options);
+                    if (message.flowResponsesCsvBundle != null && message.hasOwnProperty("flowResponsesCsvBundle"))
+                        object.flowResponsesCsvBundle = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle.toObject(message.flowResponsesCsvBundle, options);
                     return object;
                 };
 
@@ -61470,6 +61574,474 @@ $root.E2E = (function() {
                     };
 
                     return CompanionMetaNonceFetchResponse;
+                })();
+
+                PeerDataOperationResult.FlowResponsesCsvBundle = (function() {
+
+                    /**
+                     * Properties of a FlowResponsesCsvBundle.
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult
+                     * @interface IFlowResponsesCsvBundle
+                     * @property {string|null} [flowId] FlowResponsesCsvBundle flowId
+                     * @property {string|null} [galaxyFlowDownloadRequestId] FlowResponsesCsvBundle galaxyFlowDownloadRequestId
+                     * @property {string|null} [fileName] FlowResponsesCsvBundle fileName
+                     * @property {string|null} [mimetype] FlowResponsesCsvBundle mimetype
+                     * @property {Uint8Array|null} [fileSha256] FlowResponsesCsvBundle fileSha256
+                     * @property {Uint8Array|null} [mediaKey] FlowResponsesCsvBundle mediaKey
+                     * @property {Uint8Array|null} [fileEncSha256] FlowResponsesCsvBundle fileEncSha256
+                     * @property {string|null} [directPath] FlowResponsesCsvBundle directPath
+                     * @property {number|Long|null} [mediaKeyTimestamp] FlowResponsesCsvBundle mediaKeyTimestamp
+                     * @property {number|Long|null} [fileLength] FlowResponsesCsvBundle fileLength
+                     */
+
+                    /**
+                     * Constructs a new FlowResponsesCsvBundle.
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult
+                     * @classdesc Represents a FlowResponsesCsvBundle.
+                     * @implements IFlowResponsesCsvBundle
+                     * @constructor
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IFlowResponsesCsvBundle=} [properties] Properties to set
+                     */
+                    function FlowResponsesCsvBundle(properties) {
+                        if (properties)
+                            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                if (properties[keys[i]] != null)
+                                    this[keys[i]] = properties[keys[i]];
+                    }
+
+                    /**
+                     * FlowResponsesCsvBundle flowId.
+                     * @member {string} flowId
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle
+                     * @instance
+                     */
+                    FlowResponsesCsvBundle.prototype.flowId = "";
+
+                    /**
+                     * FlowResponsesCsvBundle galaxyFlowDownloadRequestId.
+                     * @member {string} galaxyFlowDownloadRequestId
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle
+                     * @instance
+                     */
+                    FlowResponsesCsvBundle.prototype.galaxyFlowDownloadRequestId = "";
+
+                    /**
+                     * FlowResponsesCsvBundle fileName.
+                     * @member {string} fileName
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle
+                     * @instance
+                     */
+                    FlowResponsesCsvBundle.prototype.fileName = "";
+
+                    /**
+                     * FlowResponsesCsvBundle mimetype.
+                     * @member {string} mimetype
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle
+                     * @instance
+                     */
+                    FlowResponsesCsvBundle.prototype.mimetype = "";
+
+                    /**
+                     * FlowResponsesCsvBundle fileSha256.
+                     * @member {Uint8Array} fileSha256
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle
+                     * @instance
+                     */
+                    FlowResponsesCsvBundle.prototype.fileSha256 = $util.newBuffer([]);
+
+                    /**
+                     * FlowResponsesCsvBundle mediaKey.
+                     * @member {Uint8Array} mediaKey
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle
+                     * @instance
+                     */
+                    FlowResponsesCsvBundle.prototype.mediaKey = $util.newBuffer([]);
+
+                    /**
+                     * FlowResponsesCsvBundle fileEncSha256.
+                     * @member {Uint8Array} fileEncSha256
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle
+                     * @instance
+                     */
+                    FlowResponsesCsvBundle.prototype.fileEncSha256 = $util.newBuffer([]);
+
+                    /**
+                     * FlowResponsesCsvBundle directPath.
+                     * @member {string} directPath
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle
+                     * @instance
+                     */
+                    FlowResponsesCsvBundle.prototype.directPath = "";
+
+                    /**
+                     * FlowResponsesCsvBundle mediaKeyTimestamp.
+                     * @member {number|Long} mediaKeyTimestamp
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle
+                     * @instance
+                     */
+                    FlowResponsesCsvBundle.prototype.mediaKeyTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+                    /**
+                     * FlowResponsesCsvBundle fileLength.
+                     * @member {number|Long} fileLength
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle
+                     * @instance
+                     */
+                    FlowResponsesCsvBundle.prototype.fileLength = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+                    /**
+                     * Creates a new FlowResponsesCsvBundle instance using the specified properties.
+                     * @function create
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle
+                     * @static
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IFlowResponsesCsvBundle=} [properties] Properties to set
+                     * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle} FlowResponsesCsvBundle instance
+                     */
+                    FlowResponsesCsvBundle.create = function create(properties) {
+                        return new FlowResponsesCsvBundle(properties);
+                    };
+
+                    /**
+                     * Encodes the specified FlowResponsesCsvBundle message. Does not implicitly {@link E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle.verify|verify} messages.
+                     * @function encode
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle
+                     * @static
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IFlowResponsesCsvBundle} message FlowResponsesCsvBundle message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    FlowResponsesCsvBundle.encode = function encode(message, writer) {
+                        if (!writer)
+                            writer = $Writer.create();
+                        if (message.flowId != null && Object.hasOwnProperty.call(message, "flowId"))
+                            writer.uint32(/* id 1, wireType 2 =*/10).string(message.flowId);
+                        if (message.galaxyFlowDownloadRequestId != null && Object.hasOwnProperty.call(message, "galaxyFlowDownloadRequestId"))
+                            writer.uint32(/* id 2, wireType 2 =*/18).string(message.galaxyFlowDownloadRequestId);
+                        if (message.fileName != null && Object.hasOwnProperty.call(message, "fileName"))
+                            writer.uint32(/* id 3, wireType 2 =*/26).string(message.fileName);
+                        if (message.mimetype != null && Object.hasOwnProperty.call(message, "mimetype"))
+                            writer.uint32(/* id 4, wireType 2 =*/34).string(message.mimetype);
+                        if (message.fileSha256 != null && Object.hasOwnProperty.call(message, "fileSha256"))
+                            writer.uint32(/* id 5, wireType 2 =*/42).bytes(message.fileSha256);
+                        if (message.mediaKey != null && Object.hasOwnProperty.call(message, "mediaKey"))
+                            writer.uint32(/* id 6, wireType 2 =*/50).bytes(message.mediaKey);
+                        if (message.fileEncSha256 != null && Object.hasOwnProperty.call(message, "fileEncSha256"))
+                            writer.uint32(/* id 7, wireType 2 =*/58).bytes(message.fileEncSha256);
+                        if (message.directPath != null && Object.hasOwnProperty.call(message, "directPath"))
+                            writer.uint32(/* id 8, wireType 2 =*/66).string(message.directPath);
+                        if (message.mediaKeyTimestamp != null && Object.hasOwnProperty.call(message, "mediaKeyTimestamp"))
+                            writer.uint32(/* id 9, wireType 0 =*/72).int64(message.mediaKeyTimestamp);
+                        if (message.fileLength != null && Object.hasOwnProperty.call(message, "fileLength"))
+                            writer.uint32(/* id 10, wireType 0 =*/80).uint64(message.fileLength);
+                        return writer;
+                    };
+
+                    /**
+                     * Encodes the specified FlowResponsesCsvBundle message, length delimited. Does not implicitly {@link E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle.verify|verify} messages.
+                     * @function encodeDelimited
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle
+                     * @static
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IFlowResponsesCsvBundle} message FlowResponsesCsvBundle message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    FlowResponsesCsvBundle.encodeDelimited = function encodeDelimited(message, writer) {
+                        return this.encode(message, writer).ldelim();
+                    };
+
+                    /**
+                     * Decodes a FlowResponsesCsvBundle message from the specified reader or buffer.
+                     * @function decode
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @param {number} [length] Message length if known beforehand
+                     * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle} FlowResponsesCsvBundle
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    FlowResponsesCsvBundle.decode = function decode(reader, length, error) {
+                        if (!(reader instanceof $Reader))
+                            reader = $Reader.create(reader);
+                        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle();
+                        while (reader.pos < end) {
+                            var tag = reader.uint32();
+                            if (tag === error)
+                                break;
+                            switch (tag >>> 3) {
+                            case 1: {
+                                    message.flowId = reader.string();
+                                    break;
+                                }
+                            case 2: {
+                                    message.galaxyFlowDownloadRequestId = reader.string();
+                                    break;
+                                }
+                            case 3: {
+                                    message.fileName = reader.string();
+                                    break;
+                                }
+                            case 4: {
+                                    message.mimetype = reader.string();
+                                    break;
+                                }
+                            case 5: {
+                                    message.fileSha256 = reader.bytes();
+                                    break;
+                                }
+                            case 6: {
+                                    message.mediaKey = reader.bytes();
+                                    break;
+                                }
+                            case 7: {
+                                    message.fileEncSha256 = reader.bytes();
+                                    break;
+                                }
+                            case 8: {
+                                    message.directPath = reader.string();
+                                    break;
+                                }
+                            case 9: {
+                                    message.mediaKeyTimestamp = reader.int64();
+                                    break;
+                                }
+                            case 10: {
+                                    message.fileLength = reader.uint64();
+                                    break;
+                                }
+                            default:
+                                reader.skipType(tag & 7);
+                                break;
+                            }
+                        }
+                        return message;
+                    };
+
+                    /**
+                     * Decodes a FlowResponsesCsvBundle message from the specified reader or buffer, length delimited.
+                     * @function decodeDelimited
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle} FlowResponsesCsvBundle
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    FlowResponsesCsvBundle.decodeDelimited = function decodeDelimited(reader) {
+                        if (!(reader instanceof $Reader))
+                            reader = new $Reader(reader);
+                        return this.decode(reader, reader.uint32());
+                    };
+
+                    /**
+                     * Verifies a FlowResponsesCsvBundle message.
+                     * @function verify
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle
+                     * @static
+                     * @param {Object.<string,*>} message Plain object to verify
+                     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                     */
+                    FlowResponsesCsvBundle.verify = function verify(message) {
+                        if (typeof message !== "object" || message === null)
+                            return "object expected";
+                        if (message.flowId != null && message.hasOwnProperty("flowId"))
+                            if (!$util.isString(message.flowId))
+                                return "flowId: string expected";
+                        if (message.galaxyFlowDownloadRequestId != null && message.hasOwnProperty("galaxyFlowDownloadRequestId"))
+                            if (!$util.isString(message.galaxyFlowDownloadRequestId))
+                                return "galaxyFlowDownloadRequestId: string expected";
+                        if (message.fileName != null && message.hasOwnProperty("fileName"))
+                            if (!$util.isString(message.fileName))
+                                return "fileName: string expected";
+                        if (message.mimetype != null && message.hasOwnProperty("mimetype"))
+                            if (!$util.isString(message.mimetype))
+                                return "mimetype: string expected";
+                        if (message.fileSha256 != null && message.hasOwnProperty("fileSha256"))
+                            if (!(message.fileSha256 && typeof message.fileSha256.length === "number" || $util.isString(message.fileSha256)))
+                                return "fileSha256: buffer expected";
+                        if (message.mediaKey != null && message.hasOwnProperty("mediaKey"))
+                            if (!(message.mediaKey && typeof message.mediaKey.length === "number" || $util.isString(message.mediaKey)))
+                                return "mediaKey: buffer expected";
+                        if (message.fileEncSha256 != null && message.hasOwnProperty("fileEncSha256"))
+                            if (!(message.fileEncSha256 && typeof message.fileEncSha256.length === "number" || $util.isString(message.fileEncSha256)))
+                                return "fileEncSha256: buffer expected";
+                        if (message.directPath != null && message.hasOwnProperty("directPath"))
+                            if (!$util.isString(message.directPath))
+                                return "directPath: string expected";
+                        if (message.mediaKeyTimestamp != null && message.hasOwnProperty("mediaKeyTimestamp"))
+                            if (!$util.isInteger(message.mediaKeyTimestamp) && !(message.mediaKeyTimestamp && $util.isInteger(message.mediaKeyTimestamp.low) && $util.isInteger(message.mediaKeyTimestamp.high)))
+                                return "mediaKeyTimestamp: integer|Long expected";
+                        if (message.fileLength != null && message.hasOwnProperty("fileLength"))
+                            if (!$util.isInteger(message.fileLength) && !(message.fileLength && $util.isInteger(message.fileLength.low) && $util.isInteger(message.fileLength.high)))
+                                return "fileLength: integer|Long expected";
+                        return null;
+                    };
+
+                    /**
+                     * Creates a FlowResponsesCsvBundle message from a plain object. Also converts values to their respective internal types.
+                     * @function fromObject
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle
+                     * @static
+                     * @param {Object.<string,*>} object Plain object
+                     * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle} FlowResponsesCsvBundle
+                     */
+                    FlowResponsesCsvBundle.fromObject = function fromObject(object) {
+                        if (object instanceof $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle)
+                            return object;
+                        var message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle();
+                        if (object.flowId != null)
+                            message.flowId = String(object.flowId);
+                        if (object.galaxyFlowDownloadRequestId != null)
+                            message.galaxyFlowDownloadRequestId = String(object.galaxyFlowDownloadRequestId);
+                        if (object.fileName != null)
+                            message.fileName = String(object.fileName);
+                        if (object.mimetype != null)
+                            message.mimetype = String(object.mimetype);
+                        if (object.fileSha256 != null)
+                            if (typeof object.fileSha256 === "string")
+                                $util.base64.decode(object.fileSha256, message.fileSha256 = $util.newBuffer($util.base64.length(object.fileSha256)), 0);
+                            else if (object.fileSha256.length >= 0)
+                                message.fileSha256 = object.fileSha256;
+                        if (object.mediaKey != null)
+                            if (typeof object.mediaKey === "string")
+                                $util.base64.decode(object.mediaKey, message.mediaKey = $util.newBuffer($util.base64.length(object.mediaKey)), 0);
+                            else if (object.mediaKey.length >= 0)
+                                message.mediaKey = object.mediaKey;
+                        if (object.fileEncSha256 != null)
+                            if (typeof object.fileEncSha256 === "string")
+                                $util.base64.decode(object.fileEncSha256, message.fileEncSha256 = $util.newBuffer($util.base64.length(object.fileEncSha256)), 0);
+                            else if (object.fileEncSha256.length >= 0)
+                                message.fileEncSha256 = object.fileEncSha256;
+                        if (object.directPath != null)
+                            message.directPath = String(object.directPath);
+                        if (object.mediaKeyTimestamp != null)
+                            if ($util.Long)
+                                (message.mediaKeyTimestamp = $util.Long.fromValue(object.mediaKeyTimestamp)).unsigned = false;
+                            else if (typeof object.mediaKeyTimestamp === "string")
+                                message.mediaKeyTimestamp = parseInt(object.mediaKeyTimestamp, 10);
+                            else if (typeof object.mediaKeyTimestamp === "number")
+                                message.mediaKeyTimestamp = object.mediaKeyTimestamp;
+                            else if (typeof object.mediaKeyTimestamp === "object")
+                                message.mediaKeyTimestamp = new $util.LongBits(object.mediaKeyTimestamp.low >>> 0, object.mediaKeyTimestamp.high >>> 0).toNumber();
+                        if (object.fileLength != null)
+                            if ($util.Long)
+                                (message.fileLength = $util.Long.fromValue(object.fileLength)).unsigned = true;
+                            else if (typeof object.fileLength === "string")
+                                message.fileLength = parseInt(object.fileLength, 10);
+                            else if (typeof object.fileLength === "number")
+                                message.fileLength = object.fileLength;
+                            else if (typeof object.fileLength === "object")
+                                message.fileLength = new $util.LongBits(object.fileLength.low >>> 0, object.fileLength.high >>> 0).toNumber(true);
+                        return message;
+                    };
+
+                    /**
+                     * Creates a plain object from a FlowResponsesCsvBundle message. Also converts values to other types if specified.
+                     * @function toObject
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle
+                     * @static
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle} message FlowResponsesCsvBundle
+                     * @param {$protobuf.IConversionOptions} [options] Conversion options
+                     * @returns {Object.<string,*>} Plain object
+                     */
+                    FlowResponsesCsvBundle.toObject = function toObject(message, options) {
+                        if (!options)
+                            options = {};
+                        var object = {};
+                        if (options.defaults) {
+                            object.flowId = "";
+                            object.galaxyFlowDownloadRequestId = "";
+                            object.fileName = "";
+                            object.mimetype = "";
+                            if (options.bytes === String)
+                                object.fileSha256 = "";
+                            else {
+                                object.fileSha256 = [];
+                                if (options.bytes !== Array)
+                                    object.fileSha256 = $util.newBuffer(object.fileSha256);
+                            }
+                            if (options.bytes === String)
+                                object.mediaKey = "";
+                            else {
+                                object.mediaKey = [];
+                                if (options.bytes !== Array)
+                                    object.mediaKey = $util.newBuffer(object.mediaKey);
+                            }
+                            if (options.bytes === String)
+                                object.fileEncSha256 = "";
+                            else {
+                                object.fileEncSha256 = [];
+                                if (options.bytes !== Array)
+                                    object.fileEncSha256 = $util.newBuffer(object.fileEncSha256);
+                            }
+                            object.directPath = "";
+                            if ($util.Long) {
+                                var long = new $util.Long(0, 0, false);
+                                object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                            } else
+                                object.mediaKeyTimestamp = options.longs === String ? "0" : 0;
+                            if ($util.Long) {
+                                var long = new $util.Long(0, 0, true);
+                                object.fileLength = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                            } else
+                                object.fileLength = options.longs === String ? "0" : 0;
+                        }
+                        if (message.flowId != null && message.hasOwnProperty("flowId"))
+                            object.flowId = message.flowId;
+                        if (message.galaxyFlowDownloadRequestId != null && message.hasOwnProperty("galaxyFlowDownloadRequestId"))
+                            object.galaxyFlowDownloadRequestId = message.galaxyFlowDownloadRequestId;
+                        if (message.fileName != null && message.hasOwnProperty("fileName"))
+                            object.fileName = message.fileName;
+                        if (message.mimetype != null && message.hasOwnProperty("mimetype"))
+                            object.mimetype = message.mimetype;
+                        if (message.fileSha256 != null && message.hasOwnProperty("fileSha256"))
+                            object.fileSha256 = options.bytes === String ? $util.base64.encode(message.fileSha256, 0, message.fileSha256.length) : options.bytes === Array ? Array.prototype.slice.call(message.fileSha256) : message.fileSha256;
+                        if (message.mediaKey != null && message.hasOwnProperty("mediaKey"))
+                            object.mediaKey = options.bytes === String ? $util.base64.encode(message.mediaKey, 0, message.mediaKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.mediaKey) : message.mediaKey;
+                        if (message.fileEncSha256 != null && message.hasOwnProperty("fileEncSha256"))
+                            object.fileEncSha256 = options.bytes === String ? $util.base64.encode(message.fileEncSha256, 0, message.fileEncSha256.length) : options.bytes === Array ? Array.prototype.slice.call(message.fileEncSha256) : message.fileEncSha256;
+                        if (message.directPath != null && message.hasOwnProperty("directPath"))
+                            object.directPath = message.directPath;
+                        if (message.mediaKeyTimestamp != null && message.hasOwnProperty("mediaKeyTimestamp"))
+                            if (typeof message.mediaKeyTimestamp === "number")
+                                object.mediaKeyTimestamp = options.longs === String ? String(message.mediaKeyTimestamp) : message.mediaKeyTimestamp;
+                            else
+                                object.mediaKeyTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.mediaKeyTimestamp) : options.longs === Number ? new $util.LongBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0).toNumber() : message.mediaKeyTimestamp;
+                        if (message.fileLength != null && message.hasOwnProperty("fileLength"))
+                            if (typeof message.fileLength === "number")
+                                object.fileLength = options.longs === String ? String(message.fileLength) : message.fileLength;
+                            else
+                                object.fileLength = options.longs === String ? $util.Long.prototype.toString.call(message.fileLength) : options.longs === Number ? new $util.LongBits(message.fileLength.low >>> 0, message.fileLength.high >>> 0).toNumber(true) : message.fileLength;
+                        return object;
+                    };
+
+                    /**
+                     * Converts this FlowResponsesCsvBundle to JSON.
+                     * @function toJSON
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle
+                     * @instance
+                     * @returns {Object.<string,*>} JSON object
+                     */
+                    FlowResponsesCsvBundle.prototype.toJSON = function toJSON() {
+                        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                    };
+
+                    /**
+                     * Gets the default type url for FlowResponsesCsvBundle
+                     * @function getTypeUrl
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle
+                     * @static
+                     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns {string} The default type url
+                     */
+                    FlowResponsesCsvBundle.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        if (typeUrlPrefix === undefined) {
+                            typeUrlPrefix = "type.googleapis.com";
+                        }
+                        return typeUrlPrefix + "/E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle";
+                    };
+
+                    return FlowResponsesCsvBundle;
                 })();
 
                 PeerDataOperationResult.FullHistorySyncOnDemandRequestResponse = (function() {
@@ -128579,6 +129151,7 @@ $root.SyncAction = (function() {
          * @property {SyncAction.SyncActionValue.IInteractiveMessageAction|null} [interactiveMessageAction] SyncActionValue interactiveMessageAction
          * @property {SyncAction.SyncActionValue.ISettingsSyncAction|null} [settingsSyncAction] SyncActionValue settingsSyncAction
          * @property {SyncAction.SyncActionValue.IOutContactAction|null} [outContactAction] SyncActionValue outContactAction
+         * @property {SyncAction.SyncActionValue.INctSaltSyncAction|null} [nctSaltSyncAction] SyncActionValue nctSaltSyncAction
          */
 
         /**
@@ -129157,6 +129730,14 @@ $root.SyncAction = (function() {
         SyncActionValue.prototype.outContactAction = null;
 
         /**
+         * SyncActionValue nctSaltSyncAction.
+         * @member {SyncAction.SyncActionValue.INctSaltSyncAction|null|undefined} nctSaltSyncAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.nctSaltSyncAction = null;
+
+        /**
          * Creates a new SyncActionValue instance using the specified properties.
          * @function create
          * @memberof SyncAction.SyncActionValue
@@ -129320,6 +129901,8 @@ $root.SyncAction = (function() {
                 $root.SyncAction.SyncActionValue.SettingsSyncAction.encode(message.settingsSyncAction, writer.uint32(/* id 78, wireType 2 =*/626).fork()).ldelim();
             if (message.outContactAction != null && Object.hasOwnProperty.call(message, "outContactAction"))
                 $root.SyncAction.SyncActionValue.OutContactAction.encode(message.outContactAction, writer.uint32(/* id 79, wireType 2 =*/634).fork()).ldelim();
+            if (message.nctSaltSyncAction != null && Object.hasOwnProperty.call(message, "nctSaltSyncAction"))
+                $root.SyncAction.SyncActionValue.NctSaltSyncAction.encode(message.nctSaltSyncAction, writer.uint32(/* id 80, wireType 2 =*/642).fork()).ldelim();
             return writer;
         };
 
@@ -129634,6 +130217,10 @@ $root.SyncAction = (function() {
                     }
                 case 79: {
                         message.outContactAction = $root.SyncAction.SyncActionValue.OutContactAction.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 80: {
+                        message.nctSaltSyncAction = $root.SyncAction.SyncActionValue.NctSaltSyncAction.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -130019,6 +130606,11 @@ $root.SyncAction = (function() {
                 if (error)
                     return "outContactAction." + error;
             }
+            if (message.nctSaltSyncAction != null && message.hasOwnProperty("nctSaltSyncAction")) {
+                var error = $root.SyncAction.SyncActionValue.NctSaltSyncAction.verify(message.nctSaltSyncAction);
+                if (error)
+                    return "nctSaltSyncAction." + error;
+            }
             return null;
         };
 
@@ -130388,6 +130980,11 @@ $root.SyncAction = (function() {
                     throw TypeError(".SyncAction.SyncActionValue.outContactAction: object expected");
                 message.outContactAction = $root.SyncAction.SyncActionValue.OutContactAction.fromObject(object.outContactAction);
             }
+            if (object.nctSaltSyncAction != null) {
+                if (typeof object.nctSaltSyncAction !== "object")
+                    throw TypeError(".SyncAction.SyncActionValue.nctSaltSyncAction: object expected");
+                message.nctSaltSyncAction = $root.SyncAction.SyncActionValue.NctSaltSyncAction.fromObject(object.nctSaltSyncAction);
+            }
             return message;
         };
 
@@ -130479,6 +131076,7 @@ $root.SyncAction = (function() {
                 object.interactiveMessageAction = null;
                 object.settingsSyncAction = null;
                 object.outContactAction = null;
+                object.nctSaltSyncAction = null;
             }
             if (message.timestamp != null && message.hasOwnProperty("timestamp"))
                 if (typeof message.timestamp === "number")
@@ -130623,6 +131221,8 @@ $root.SyncAction = (function() {
                 object.settingsSyncAction = $root.SyncAction.SyncActionValue.SettingsSyncAction.toObject(message.settingsSyncAction, options);
             if (message.outContactAction != null && message.hasOwnProperty("outContactAction"))
                 object.outContactAction = $root.SyncAction.SyncActionValue.OutContactAction.toObject(message.outContactAction, options);
+            if (message.nctSaltSyncAction != null && message.hasOwnProperty("nctSaltSyncAction"))
+                object.nctSaltSyncAction = $root.SyncAction.SyncActionValue.NctSaltSyncAction.toObject(message.nctSaltSyncAction, options);
             return object;
         };
 
@@ -136429,6 +137029,7 @@ $root.SyncAction = (function() {
              * @memberof SyncAction.SyncActionValue
              * @interface IInteractiveMessageAction
              * @property {SyncAction.SyncActionValue.InteractiveMessageAction.InteractiveMessageActionMode} type InteractiveMessageAction type
+             * @property {string|null} [agmId] InteractiveMessageAction agmId
              */
 
             /**
@@ -136455,6 +137056,14 @@ $root.SyncAction = (function() {
             InteractiveMessageAction.prototype.type = 1;
 
             /**
+             * InteractiveMessageAction agmId.
+             * @member {string} agmId
+             * @memberof SyncAction.SyncActionValue.InteractiveMessageAction
+             * @instance
+             */
+            InteractiveMessageAction.prototype.agmId = "";
+
+            /**
              * Creates a new InteractiveMessageAction instance using the specified properties.
              * @function create
              * @memberof SyncAction.SyncActionValue.InteractiveMessageAction
@@ -136479,6 +137088,8 @@ $root.SyncAction = (function() {
                 if (!writer)
                     writer = $Writer.create();
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.type);
+                if (message.agmId != null && Object.hasOwnProperty.call(message, "agmId"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.agmId);
                 return writer;
             };
 
@@ -136517,6 +137128,10 @@ $root.SyncAction = (function() {
                     switch (tag >>> 3) {
                     case 1: {
                             message.type = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.agmId = reader.string();
                             break;
                         }
                     default:
@@ -136562,6 +137177,9 @@ $root.SyncAction = (function() {
                 case 1:
                     break;
                 }
+                if (message.agmId != null && message.hasOwnProperty("agmId"))
+                    if (!$util.isString(message.agmId))
+                        return "agmId: string expected";
                 return null;
             };
 
@@ -136589,6 +137207,8 @@ $root.SyncAction = (function() {
                     message.type = 1;
                     break;
                 }
+                if (object.agmId != null)
+                    message.agmId = String(object.agmId);
                 return message;
             };
 
@@ -136605,10 +137225,14 @@ $root.SyncAction = (function() {
                 if (!options)
                     options = {};
                 var object = {};
-                if (options.defaults)
+                if (options.defaults) {
                     object.type = options.enums === String ? "DISABLE_CTA" : 1;
+                    object.agmId = "";
+                }
                 if (message.type != null && message.hasOwnProperty("type"))
                     object.type = options.enums === String ? $root.SyncAction.SyncActionValue.InteractiveMessageAction.InteractiveMessageActionMode[message.type] === undefined ? message.type : $root.SyncAction.SyncActionValue.InteractiveMessageAction.InteractiveMessageActionMode[message.type] : message.type;
+                if (message.agmId != null && message.hasOwnProperty("agmId"))
+                    object.agmId = message.agmId;
                 return object;
             };
 
@@ -140399,6 +141023,220 @@ $root.SyncAction = (function() {
             };
 
             return MuteAction;
+        })();
+
+        SyncActionValue.NctSaltSyncAction = (function() {
+
+            /**
+             * Properties of a NctSaltSyncAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface INctSaltSyncAction
+             * @property {Uint8Array|null} [salt] NctSaltSyncAction salt
+             */
+
+            /**
+             * Constructs a new NctSaltSyncAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents a NctSaltSyncAction.
+             * @implements INctSaltSyncAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.INctSaltSyncAction=} [properties] Properties to set
+             */
+            function NctSaltSyncAction(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * NctSaltSyncAction salt.
+             * @member {Uint8Array} salt
+             * @memberof SyncAction.SyncActionValue.NctSaltSyncAction
+             * @instance
+             */
+            NctSaltSyncAction.prototype.salt = $util.newBuffer([]);
+
+            /**
+             * Creates a new NctSaltSyncAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.NctSaltSyncAction
+             * @static
+             * @param {SyncAction.SyncActionValue.INctSaltSyncAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.NctSaltSyncAction} NctSaltSyncAction instance
+             */
+            NctSaltSyncAction.create = function create(properties) {
+                return new NctSaltSyncAction(properties);
+            };
+
+            /**
+             * Encodes the specified NctSaltSyncAction message. Does not implicitly {@link SyncAction.SyncActionValue.NctSaltSyncAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.NctSaltSyncAction
+             * @static
+             * @param {SyncAction.SyncActionValue.INctSaltSyncAction} message NctSaltSyncAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            NctSaltSyncAction.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.salt != null && Object.hasOwnProperty.call(message, "salt"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.salt);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified NctSaltSyncAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.NctSaltSyncAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.NctSaltSyncAction
+             * @static
+             * @param {SyncAction.SyncActionValue.INctSaltSyncAction} message NctSaltSyncAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            NctSaltSyncAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a NctSaltSyncAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.NctSaltSyncAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.NctSaltSyncAction} NctSaltSyncAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            NctSaltSyncAction.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.NctSaltSyncAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.salt = reader.bytes();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a NctSaltSyncAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.NctSaltSyncAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.NctSaltSyncAction} NctSaltSyncAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            NctSaltSyncAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a NctSaltSyncAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.NctSaltSyncAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            NctSaltSyncAction.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.salt != null && message.hasOwnProperty("salt"))
+                    if (!(message.salt && typeof message.salt.length === "number" || $util.isString(message.salt)))
+                        return "salt: buffer expected";
+                return null;
+            };
+
+            /**
+             * Creates a NctSaltSyncAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.NctSaltSyncAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.NctSaltSyncAction} NctSaltSyncAction
+             */
+            NctSaltSyncAction.fromObject = function fromObject(object) {
+                if (object instanceof $root.SyncAction.SyncActionValue.NctSaltSyncAction)
+                    return object;
+                var message = new $root.SyncAction.SyncActionValue.NctSaltSyncAction();
+                if (object.salt != null)
+                    if (typeof object.salt === "string")
+                        $util.base64.decode(object.salt, message.salt = $util.newBuffer($util.base64.length(object.salt)), 0);
+                    else if (object.salt.length >= 0)
+                        message.salt = object.salt;
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a NctSaltSyncAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.NctSaltSyncAction
+             * @static
+             * @param {SyncAction.SyncActionValue.NctSaltSyncAction} message NctSaltSyncAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            NctSaltSyncAction.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    if (options.bytes === String)
+                        object.salt = "";
+                    else {
+                        object.salt = [];
+                        if (options.bytes !== Array)
+                            object.salt = $util.newBuffer(object.salt);
+                    }
+                if (message.salt != null && message.hasOwnProperty("salt"))
+                    object.salt = options.bytes === String ? $util.base64.encode(message.salt, 0, message.salt.length) : options.bytes === Array ? Array.prototype.slice.call(message.salt) : message.salt;
+                return object;
+            };
+
+            /**
+             * Converts this NctSaltSyncAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.NctSaltSyncAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            NctSaltSyncAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for NctSaltSyncAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.NctSaltSyncAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            NctSaltSyncAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.NctSaltSyncAction";
+            };
+
+            return NctSaltSyncAction;
         })();
 
         SyncActionValue.NewsletterSavedInterestsAction = (function() {
@@ -150776,6 +151614,7 @@ $root.SyncAction = (function() {
      * @property {number} INTERACTIVE_MESSAGE_ACTION=77 INTERACTIVE_MESSAGE_ACTION value
      * @property {number} SETTINGS_SYNC_ACTION=78 SETTINGS_SYNC_ACTION value
      * @property {number} OUT_CONTACT_ACTION=79 OUT_CONTACT_ACTION value
+     * @property {number} NCT_SALT_SYNC_ACTION=80 NCT_SALT_SYNC_ACTION value
      * @property {number} SHARE_OWN_PN=10001 SHARE_OWN_PN value
      * @property {number} BUSINESS_BROADCAST_ACTION=10002 BUSINESS_BROADCAST_ACTION value
      * @property {number} AI_THREAD_DELETE_ACTION=10003 AI_THREAD_DELETE_ACTION value
@@ -150855,6 +151694,7 @@ $root.SyncAction = (function() {
         values[valuesById[77] = "INTERACTIVE_MESSAGE_ACTION"] = 77;
         values[valuesById[78] = "SETTINGS_SYNC_ACTION"] = 78;
         values[valuesById[79] = "OUT_CONTACT_ACTION"] = 79;
+        values[valuesById[80] = "NCT_SALT_SYNC_ACTION"] = 80;
         values[valuesById[10001] = "SHARE_OWN_PN"] = 10001;
         values[valuesById[10002] = "BUSINESS_BROADCAST_ACTION"] = 10002;
         values[valuesById[10003] = "AI_THREAD_DELETE_ACTION"] = 10003;

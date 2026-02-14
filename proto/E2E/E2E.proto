@@ -755,6 +755,7 @@ message Message {
         optional string nativeFlowCallButtonPayload = 8;
         optional string deeplinkPayload = 9;
         optional MessageContextInfo messageContextInfo = 10;
+        optional uint32 callEntryPoint = 11;
     }
     message CallLogMessage {
         optional bool isVideo = 1;
@@ -1445,8 +1446,11 @@ message Message {
             optional GalaxyFlowActionType type = 1;
             optional string flowId = 2;
             optional string stanzaId = 3;
+            optional string galaxyFlowDownloadRequestId = 4;
+            optional string agmId = 5;
             enum GalaxyFlowActionType {
                 NOTIFY_LAUNCH = 1;
+                DOWNLOAD_RESPONSES = 2;
             }
         }
         message HistorySyncChunkRetryRequest {
@@ -1493,6 +1497,7 @@ message Message {
             optional SyncDSnapshotFatalRecoveryResponse syncdSnapshotFatalRecoveryResponse = 8;
             optional CompanionCanonicalUserNonceFetchResponse companionCanonicalUserNonceFetchRequestResponse = 9;
             optional HistorySyncChunkRetryResponse historySyncChunkRetryResponse = 10;
+            optional FlowResponsesCsvBundle flowResponsesCsvBundle = 11;
             message CompanionCanonicalUserNonceFetchResponse {
                 optional string nonce = 1;
                 optional string waFbid = 2;
@@ -1500,6 +1505,18 @@ message Message {
             }
             message CompanionMetaNonceFetchResponse {
                 optional string nonce = 1;
+            }
+            message FlowResponsesCsvBundle {
+                optional string flowId = 1;
+                optional string galaxyFlowDownloadRequestId = 2;
+                optional string fileName = 3;
+                optional string mimetype = 4;
+                optional bytes fileSha256 = 5;
+                optional bytes mediaKey = 6;
+                optional bytes fileEncSha256 = 7;
+                optional string directPath = 8;
+                optional int64 mediaKeyTimestamp = 9;
+                optional uint64 fileLength = 10;
             }
             message FullHistorySyncOnDemandRequestResponse {
                 optional Message.FullHistorySyncOnDemandRequestMetadata requestMetadata = 1;
