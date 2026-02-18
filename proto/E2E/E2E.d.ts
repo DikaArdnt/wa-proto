@@ -38453,6 +38453,9 @@ export namespace CompanionReg {
 
             /** HistorySyncConfig initialSyncMaxMessagesPerChat */
             initialSyncMaxMessagesPerChat?: (number|null);
+
+            /** HistorySyncConfig supportManusHistory */
+            supportManusHistory?: (boolean|null);
         }
 
         /** Represents a HistorySyncConfig. */
@@ -38523,6 +38526,9 @@ export namespace CompanionReg {
 
             /** HistorySyncConfig initialSyncMaxMessagesPerChat. */
             public initialSyncMaxMessagesPerChat: number;
+
+            /** HistorySyncConfig supportManusHistory. */
+            public supportManusHistory: boolean;
 
             /**
              * Creates a new HistorySyncConfig instance using the specified properties.

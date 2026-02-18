@@ -73,6 +73,7 @@ message DeviceProps {
         optional bool completeOnDemandReady = 18;
         optional uint32 thumbnailSyncDaysLimit = 19;
         optional uint32 initialSyncMaxMessagesPerChat = 20;
+        optional bool supportManusHistory = 21;
     }
     enum PlatformType {
         UNKNOWN = 0;
