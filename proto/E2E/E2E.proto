@@ -375,6 +375,7 @@ message ContextInfo {
     optional bool isSpoiler = 73;
     optional MediaDomainInfo mediaDomainInfo = 74;
     optional PartiallySelectedContent partiallySelectedContent = 75;
+    optional uint32 afterReadDurationMs = 76;
     message AdReplyInfo {
         optional string advertiserName = 1;
         optional MediaType mediaType = 2;
@@ -1774,9 +1775,14 @@ message Message {
     }
     message RequestWelcomeMessageMetadata {
         optional LocalChatState localChatState = 1;
+        optional WelcomeTrigger welcomeTrigger = 2;
         enum LocalChatState {
             EMPTY = 0;
             NON_EMPTY = 1;
+        }
+        enum WelcomeTrigger {
+            CHAT_OPEN = 0;
+            COMPANION_PAIRING = 1;
         }
     }
     message ScheduledCallCreationMessage {
@@ -1907,6 +1913,7 @@ message Message {
             optional string accessibilityLabel = 4;
             optional bool isLottie = 5;
             optional string mimetype = 6;
+            optional int32 premium = 7;
         }
         enum StickerPackOrigin {
             FIRST_PARTY = 0;
