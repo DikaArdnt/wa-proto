@@ -37026,7 +37026,8 @@ export namespace AICommon {
         ASK_META_AI_NO_SEARCH_RESULTS = 41,
         META_AI_SETTINGS = 45,
         WEB_INTRO_PANEL = 46,
-        WEB_NAVIGATION_BAR = 47
+        WEB_NAVIGATION_BAR = 47,
+        GROUP_MEMBER = 54
     }
 }
 
