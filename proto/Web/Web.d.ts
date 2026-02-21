@@ -10496,7 +10496,7 @@ export namespace E2E {
         spoilerMessage?: (E2E.Message.IFutureProofMessage|null);
 
         /** Message pollCreationMessageV6 */
-        pollCreationMessageV6?: (E2E.Message.IFutureProofMessage|null);
+        pollCreationMessageV6?: (E2E.Message.IPollCreationMessage|null);
     }
 
     /** Represents a Message. */
@@ -10803,7 +10803,7 @@ export namespace E2E {
         public spoilerMessage?: (E2E.Message.IFutureProofMessage|null);
 
         /** Message pollCreationMessageV6. */
-        public pollCreationMessageV6?: (E2E.Message.IFutureProofMessage|null);
+        public pollCreationMessageV6?: (E2E.Message.IPollCreationMessage|null);
 
         /**
          * Creates a new Message instance using the specified properties.

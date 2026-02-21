@@ -2700,6 +2700,7 @@ $root.HistorySync = (function() {
          * @interface IWallpaperSettings
          * @property {string|null} [filename] WallpaperSettings filename
          * @property {number|null} [opacity] WallpaperSettings opacity
+         * @property {boolean|null} [isGenAi] WallpaperSettings isGenAi
          */
 
         /**
@@ -2734,6 +2735,14 @@ $root.HistorySync = (function() {
         WallpaperSettings.prototype.opacity = 0;
 
         /**
+         * WallpaperSettings isGenAi.
+         * @member {boolean} isGenAi
+         * @memberof HistorySync.WallpaperSettings
+         * @instance
+         */
+        WallpaperSettings.prototype.isGenAi = false;
+
+        /**
          * Creates a new WallpaperSettings instance using the specified properties.
          * @function create
          * @memberof HistorySync.WallpaperSettings
@@ -2761,6 +2770,8 @@ $root.HistorySync = (function() {
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.filename);
             if (message.opacity != null && Object.hasOwnProperty.call(message, "opacity"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.opacity);
+            if (message.isGenAi != null && Object.hasOwnProperty.call(message, "isGenAi"))
+                writer.uint32(/* id 3, wireType 0 =*/24).bool(message.isGenAi);
             return writer;
         };
 
@@ -2805,6 +2816,10 @@ $root.HistorySync = (function() {
                         message.opacity = reader.uint32();
                         break;
                     }
+                case 3: {
+                        message.isGenAi = reader.bool();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -2846,6 +2861,9 @@ $root.HistorySync = (function() {
             if (message.opacity != null && message.hasOwnProperty("opacity"))
                 if (!$util.isInteger(message.opacity))
                     return "opacity: integer expected";
+            if (message.isGenAi != null && message.hasOwnProperty("isGenAi"))
+                if (typeof message.isGenAi !== "boolean")
+                    return "isGenAi: boolean expected";
             return null;
         };
 
@@ -2865,6 +2883,8 @@ $root.HistorySync = (function() {
                 message.filename = String(object.filename);
             if (object.opacity != null)
                 message.opacity = object.opacity >>> 0;
+            if (object.isGenAi != null)
+                message.isGenAi = Boolean(object.isGenAi);
             return message;
         };
 
@@ -2884,11 +2904,14 @@ $root.HistorySync = (function() {
             if (options.defaults) {
                 object.filename = "";
                 object.opacity = 0;
+                object.isGenAi = false;
             }
             if (message.filename != null && message.hasOwnProperty("filename"))
                 object.filename = message.filename;
             if (message.opacity != null && message.hasOwnProperty("opacity"))
                 object.opacity = message.opacity;
+            if (message.isGenAi != null && message.hasOwnProperty("isGenAi"))
+                object.isGenAi = message.isGenAi;
             return object;
         };
 
@@ -24841,7 +24864,7 @@ $root.E2E = (function() {
          * @property {E2E.Message.IFutureProofMessage|null} [newsletterAdminProfileMessage] Message newsletterAdminProfileMessage
          * @property {E2E.Message.IFutureProofMessage|null} [newsletterAdminProfileMessageV2] Message newsletterAdminProfileMessageV2
          * @property {E2E.Message.IFutureProofMessage|null} [spoilerMessage] Message spoilerMessage
-         * @property {E2E.Message.IFutureProofMessage|null} [pollCreationMessageV6] Message pollCreationMessageV6
+         * @property {E2E.Message.IPollCreationMessage|null} [pollCreationMessageV6] Message pollCreationMessageV6
          */
 
         /**
@@ -25645,7 +25668,7 @@ $root.E2E = (function() {
 
         /**
          * Message pollCreationMessageV6.
-         * @member {E2E.Message.IFutureProofMessage|null|undefined} pollCreationMessageV6
+         * @member {E2E.Message.IPollCreationMessage|null|undefined} pollCreationMessageV6
          * @memberof E2E.Message
          * @instance
          */
@@ -25872,7 +25895,7 @@ $root.E2E = (function() {
             if (message.spoilerMessage != null && Object.hasOwnProperty.call(message, "spoilerMessage"))
                 $root.E2E.Message.FutureProofMessage.encode(message.spoilerMessage, writer.uint32(/* id 118, wireType 2 =*/946).fork()).ldelim();
             if (message.pollCreationMessageV6 != null && Object.hasOwnProperty.call(message, "pollCreationMessageV6"))
-                $root.E2E.Message.FutureProofMessage.encode(message.pollCreationMessageV6, writer.uint32(/* id 119, wireType 2 =*/954).fork()).ldelim();
+                $root.E2E.Message.PollCreationMessage.encode(message.pollCreationMessageV6, writer.uint32(/* id 119, wireType 2 =*/954).fork()).ldelim();
             return writer;
         };
 
@@ -26302,7 +26325,7 @@ $root.E2E = (function() {
                         break;
                     }
                 case 119: {
-                        message.pollCreationMessageV6 = $root.E2E.Message.FutureProofMessage.decode(reader, reader.uint32());
+                        message.pollCreationMessageV6 = $root.E2E.Message.PollCreationMessage.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -26829,7 +26852,7 @@ $root.E2E = (function() {
                     return "spoilerMessage." + error;
             }
             if (message.pollCreationMessageV6 != null && message.hasOwnProperty("pollCreationMessageV6")) {
-                var error = $root.E2E.Message.FutureProofMessage.verify(message.pollCreationMessageV6);
+                var error = $root.E2E.Message.PollCreationMessage.verify(message.pollCreationMessageV6);
                 if (error)
                     return "pollCreationMessageV6." + error;
             }
@@ -27338,7 +27361,7 @@ $root.E2E = (function() {
             if (object.pollCreationMessageV6 != null) {
                 if (typeof object.pollCreationMessageV6 !== "object")
                     throw TypeError(".E2E.Message.pollCreationMessageV6: object expected");
-                message.pollCreationMessageV6 = $root.E2E.Message.FutureProofMessage.fromObject(object.pollCreationMessageV6);
+                message.pollCreationMessageV6 = $root.E2E.Message.PollCreationMessage.fromObject(object.pollCreationMessageV6);
             }
             return message;
         };
@@ -27654,7 +27677,7 @@ $root.E2E = (function() {
             if (message.spoilerMessage != null && message.hasOwnProperty("spoilerMessage"))
                 object.spoilerMessage = $root.E2E.Message.FutureProofMessage.toObject(message.spoilerMessage, options);
             if (message.pollCreationMessageV6 != null && message.hasOwnProperty("pollCreationMessageV6"))
-                object.pollCreationMessageV6 = $root.E2E.Message.FutureProofMessage.toObject(message.pollCreationMessageV6, options);
+                object.pollCreationMessageV6 = $root.E2E.Message.PollCreationMessage.toObject(message.pollCreationMessageV6, options);
             return object;
         };
 
