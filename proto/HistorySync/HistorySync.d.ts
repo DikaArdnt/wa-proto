@@ -46350,6 +46350,9 @@ export namespace SyncAction {
 
         /** SyncActionValue nctSaltSyncAction */
         nctSaltSyncAction?: (SyncAction.SyncActionValue.INctSaltSyncAction|null);
+
+        /** SyncActionValue businessBroadcastCampaignAction */
+        businessBroadcastCampaignAction?: (SyncAction.SyncActionValue.IBusinessBroadcastCampaignAction|null);
     }
 
     /** Represents a SyncActionValue. */
@@ -46573,6 +46576,9 @@ export namespace SyncAction {
 
         /** SyncActionValue nctSaltSyncAction. */
         public nctSaltSyncAction?: (SyncAction.SyncActionValue.INctSaltSyncAction|null);
+
+        /** SyncActionValue businessBroadcastCampaignAction. */
+        public businessBroadcastCampaignAction?: (SyncAction.SyncActionValue.IBusinessBroadcastCampaignAction|null);
 
         /**
          * Creates a new SyncActionValue instance using the specified properties.
@@ -47468,6 +47474,184 @@ export namespace SyncAction {
              * @returns The default type url
              */
             public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a BusinessBroadcastCampaignAction. */
+        interface IBusinessBroadcastCampaignAction {
+
+            /** BusinessBroadcastCampaignAction deviceId */
+            deviceId?: (number|null);
+
+            /** BusinessBroadcastCampaignAction adId */
+            adId?: (string|null);
+
+            /** BusinessBroadcastCampaignAction name */
+            name?: (string|null);
+
+            /** BusinessBroadcastCampaignAction msgId */
+            msgId?: (string|null);
+
+            /** BusinessBroadcastCampaignAction broadcastJid */
+            broadcastJid?: (string|null);
+
+            /** BusinessBroadcastCampaignAction reservedQuota */
+            reservedQuota?: (number|null);
+
+            /** BusinessBroadcastCampaignAction scheduledTimestamp */
+            scheduledTimestamp?: (number|Long|null);
+
+            /** BusinessBroadcastCampaignAction createTimestamp */
+            createTimestamp?: (number|Long|null);
+
+            /** BusinessBroadcastCampaignAction status */
+            status?: (SyncAction.SyncActionValue.BusinessBroadcastCampaignStatus|null);
+
+            /** BusinessBroadcastCampaignAction messageBody */
+            messageBody?: (string|null);
+
+            /** BusinessBroadcastCampaignAction mediaData */
+            mediaData?: (Uint8Array|null);
+
+            /** BusinessBroadcastCampaignAction mediaMetadata */
+            mediaMetadata?: (string|null);
+
+            /** BusinessBroadcastCampaignAction ctaButtonJson */
+            ctaButtonJson?: (string|null);
+        }
+
+        /** Represents a BusinessBroadcastCampaignAction. */
+        class BusinessBroadcastCampaignAction implements IBusinessBroadcastCampaignAction {
+
+            /**
+             * Constructs a new BusinessBroadcastCampaignAction.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SyncAction.SyncActionValue.IBusinessBroadcastCampaignAction);
+
+            /** BusinessBroadcastCampaignAction deviceId. */
+            public deviceId: number;
+
+            /** BusinessBroadcastCampaignAction adId. */
+            public adId: string;
+
+            /** BusinessBroadcastCampaignAction name. */
+            public name: string;
+
+            /** BusinessBroadcastCampaignAction msgId. */
+            public msgId: string;
+
+            /** BusinessBroadcastCampaignAction broadcastJid. */
+            public broadcastJid: string;
+
+            /** BusinessBroadcastCampaignAction reservedQuota. */
+            public reservedQuota: number;
+
+            /** BusinessBroadcastCampaignAction scheduledTimestamp. */
+            public scheduledTimestamp: (number|Long);
+
+            /** BusinessBroadcastCampaignAction createTimestamp. */
+            public createTimestamp: (number|Long);
+
+            /** BusinessBroadcastCampaignAction status. */
+            public status: SyncAction.SyncActionValue.BusinessBroadcastCampaignStatus;
+
+            /** BusinessBroadcastCampaignAction messageBody. */
+            public messageBody: string;
+
+            /** BusinessBroadcastCampaignAction mediaData. */
+            public mediaData: Uint8Array;
+
+            /** BusinessBroadcastCampaignAction mediaMetadata. */
+            public mediaMetadata: string;
+
+            /** BusinessBroadcastCampaignAction ctaButtonJson. */
+            public ctaButtonJson: string;
+
+            /**
+             * Creates a new BusinessBroadcastCampaignAction instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns BusinessBroadcastCampaignAction instance
+             */
+            public static create(properties?: SyncAction.SyncActionValue.IBusinessBroadcastCampaignAction): SyncAction.SyncActionValue.BusinessBroadcastCampaignAction;
+
+            /**
+             * Encodes the specified BusinessBroadcastCampaignAction message. Does not implicitly {@link SyncAction.SyncActionValue.BusinessBroadcastCampaignAction.verify|verify} messages.
+             * @param message BusinessBroadcastCampaignAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SyncAction.SyncActionValue.IBusinessBroadcastCampaignAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified BusinessBroadcastCampaignAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.BusinessBroadcastCampaignAction.verify|verify} messages.
+             * @param message BusinessBroadcastCampaignAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SyncAction.SyncActionValue.IBusinessBroadcastCampaignAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a BusinessBroadcastCampaignAction message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns BusinessBroadcastCampaignAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.BusinessBroadcastCampaignAction;
+
+            /**
+             * Decodes a BusinessBroadcastCampaignAction message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns BusinessBroadcastCampaignAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.BusinessBroadcastCampaignAction;
+
+            /**
+             * Verifies a BusinessBroadcastCampaignAction message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a BusinessBroadcastCampaignAction message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns BusinessBroadcastCampaignAction
+             */
+            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.BusinessBroadcastCampaignAction;
+
+            /**
+             * Creates a plain object from a BusinessBroadcastCampaignAction message. Also converts values to other types if specified.
+             * @param message BusinessBroadcastCampaignAction
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SyncAction.SyncActionValue.BusinessBroadcastCampaignAction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this BusinessBroadcastCampaignAction to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for BusinessBroadcastCampaignAction
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** BusinessBroadcastCampaignStatus enum. */
+        enum BusinessBroadcastCampaignStatus {
+            DRAFT = 1,
+            SCHEDULED = 2,
+            PROCESSING = 3,
+            FAILED = 4,
+            SENT = 5
         }
 
         /** Properties of a BusinessBroadcastListAction. */
@@ -55234,6 +55418,7 @@ export namespace SyncAction {
         SETTINGS_SYNC_ACTION = 78,
         OUT_CONTACT_ACTION = 79,
         NCT_SALT_SYNC_ACTION = 80,
+        BUSINESS_BROADCAST_CAMPAIGN_ACTION = 81,
         SHARE_OWN_PN = 10001,
         BUSINESS_BROADCAST_ACTION = 10002,
         AI_THREAD_DELETE_ACTION = 10003
