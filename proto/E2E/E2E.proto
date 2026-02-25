@@ -631,6 +631,7 @@ message Message {
     optional FutureProofMessage newsletterAdminProfileMessageV2 = 117;
     optional FutureProofMessage spoilerMessage = 118;
     optional PollCreationMessage pollCreationMessageV6 = 119;
+    optional ConditionalRevealMessage conditionalRevealMessage = 120;
     message AlbumMessage {
         optional uint32 expectedImageCount = 2;
         optional uint32 expectedVideoCount = 3;
@@ -811,6 +812,16 @@ message Message {
     message CommentMessage {
         optional Message message = 1;
         optional Protocol.MessageKey targetMessageKey = 2;
+    }
+    message ConditionalRevealMessage {
+        optional bytes encPayload = 1;
+        optional bytes encIv = 2;
+        optional ConditionalRevealMessageType conditionalRevealMessageType = 3;
+        optional string revealKeyId = 4;
+        enum ConditionalRevealMessageType {
+            UNKNOWN = 0;
+            SCHEDULED_MESSAGE = 1;
+        }
     }
     message ContactMessage {
         optional string displayName = 1;

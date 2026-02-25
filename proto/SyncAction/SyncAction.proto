@@ -513,6 +513,8 @@ message SyncActionValue {
     message StatusPrivacyAction {
         optional StatusDistributionMode mode = 1;
         repeated string userJid = 2;
+        optional bool shareToFB = 3;
+        optional bool shareToIG = 4;
         enum StatusDistributionMode {
             ALLOW_LIST = 0;
             DENY_LIST = 1;

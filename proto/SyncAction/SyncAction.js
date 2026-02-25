@@ -19555,6 +19555,8 @@ $root.SyncAction = (function() {
              * @interface IStatusPrivacyAction
              * @property {SyncAction.SyncActionValue.StatusPrivacyAction.StatusDistributionMode|null} [mode] StatusPrivacyAction mode
              * @property {Array.<string>|null} [userJid] StatusPrivacyAction userJid
+             * @property {boolean|null} [shareToFB] StatusPrivacyAction shareToFB
+             * @property {boolean|null} [shareToIG] StatusPrivacyAction shareToIG
              */
 
             /**
@@ -19590,6 +19592,22 @@ $root.SyncAction = (function() {
             StatusPrivacyAction.prototype.userJid = $util.emptyArray;
 
             /**
+             * StatusPrivacyAction shareToFB.
+             * @member {boolean} shareToFB
+             * @memberof SyncAction.SyncActionValue.StatusPrivacyAction
+             * @instance
+             */
+            StatusPrivacyAction.prototype.shareToFB = false;
+
+            /**
+             * StatusPrivacyAction shareToIG.
+             * @member {boolean} shareToIG
+             * @memberof SyncAction.SyncActionValue.StatusPrivacyAction
+             * @instance
+             */
+            StatusPrivacyAction.prototype.shareToIG = false;
+
+            /**
              * Creates a new StatusPrivacyAction instance using the specified properties.
              * @function create
              * @memberof SyncAction.SyncActionValue.StatusPrivacyAction
@@ -19618,6 +19636,10 @@ $root.SyncAction = (function() {
                 if (message.userJid != null && message.userJid.length)
                     for (var i = 0; i < message.userJid.length; ++i)
                         writer.uint32(/* id 2, wireType 2 =*/18).string(message.userJid[i]);
+                if (message.shareToFB != null && Object.hasOwnProperty.call(message, "shareToFB"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).bool(message.shareToFB);
+                if (message.shareToIG != null && Object.hasOwnProperty.call(message, "shareToIG"))
+                    writer.uint32(/* id 4, wireType 0 =*/32).bool(message.shareToIG);
                 return writer;
             };
 
@@ -19662,6 +19684,14 @@ $root.SyncAction = (function() {
                             if (!(message.userJid && message.userJid.length))
                                 message.userJid = [];
                             message.userJid.push(reader.string());
+                            break;
+                        }
+                    case 3: {
+                            message.shareToFB = reader.bool();
+                            break;
+                        }
+                    case 4: {
+                            message.shareToIG = reader.bool();
                             break;
                         }
                     default:
@@ -19716,6 +19746,12 @@ $root.SyncAction = (function() {
                         if (!$util.isString(message.userJid[i]))
                             return "userJid: string[] expected";
                 }
+                if (message.shareToFB != null && message.hasOwnProperty("shareToFB"))
+                    if (typeof message.shareToFB !== "boolean")
+                        return "shareToFB: boolean expected";
+                if (message.shareToIG != null && message.hasOwnProperty("shareToIG"))
+                    if (typeof message.shareToIG !== "boolean")
+                        return "shareToIG: boolean expected";
                 return null;
             };
 
@@ -19762,6 +19798,10 @@ $root.SyncAction = (function() {
                     for (var i = 0; i < object.userJid.length; ++i)
                         message.userJid[i] = String(object.userJid[i]);
                 }
+                if (object.shareToFB != null)
+                    message.shareToFB = Boolean(object.shareToFB);
+                if (object.shareToIG != null)
+                    message.shareToIG = Boolean(object.shareToIG);
                 return message;
             };
 
@@ -19780,8 +19820,11 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.arrays || options.defaults)
                     object.userJid = [];
-                if (options.defaults)
+                if (options.defaults) {
                     object.mode = options.enums === String ? "ALLOW_LIST" : 0;
+                    object.shareToFB = false;
+                    object.shareToIG = false;
+                }
                 if (message.mode != null && message.hasOwnProperty("mode"))
                     object.mode = options.enums === String ? $root.SyncAction.SyncActionValue.StatusPrivacyAction.StatusDistributionMode[message.mode] === undefined ? message.mode : $root.SyncAction.SyncActionValue.StatusPrivacyAction.StatusDistributionMode[message.mode] : message.mode;
                 if (message.userJid && message.userJid.length) {
@@ -19789,6 +19832,10 @@ $root.SyncAction = (function() {
                     for (var j = 0; j < message.userJid.length; ++j)
                         object.userJid[j] = message.userJid[j];
                 }
+                if (message.shareToFB != null && message.hasOwnProperty("shareToFB"))
+                    object.shareToFB = message.shareToFB;
+                if (message.shareToIG != null && message.hasOwnProperty("shareToIG"))
+                    object.shareToIG = message.shareToIG;
                 return object;
             };
 
@@ -26794,6 +26841,7 @@ $root.Protocol = (function() {
                 case 1:
                 case 2:
                 case 3:
+                case 4:
                     break;
                 }
             if (message.limitSharingSettingTimestamp != null && message.hasOwnProperty("limitSharingSettingTimestamp"))
@@ -26841,6 +26889,10 @@ $root.Protocol = (function() {
             case "UNKNOWN_GROUP":
             case 3:
                 message.trigger = 3;
+                break;
+            case "DEPRECATION":
+            case 4:
+                message.trigger = 4;
                 break;
             }
             if (object.limitSharingSettingTimestamp != null)
@@ -26928,6 +26980,7 @@ $root.Protocol = (function() {
          * @property {number} CHAT_SETTING=1 CHAT_SETTING value
          * @property {number} BIZ_SUPPORTS_FB_HOSTING=2 BIZ_SUPPORTS_FB_HOSTING value
          * @property {number} UNKNOWN_GROUP=3 UNKNOWN_GROUP value
+         * @property {number} DEPRECATION=4 DEPRECATION value
          */
         LimitSharing.TriggerType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -26935,6 +26988,7 @@ $root.Protocol = (function() {
             values[valuesById[1] = "CHAT_SETTING"] = 1;
             values[valuesById[2] = "BIZ_SUPPORTS_FB_HOSTING"] = 2;
             values[valuesById[3] = "UNKNOWN_GROUP"] = 3;
+            values[valuesById[4] = "DEPRECATION"] = 4;
             return values;
         })();
 

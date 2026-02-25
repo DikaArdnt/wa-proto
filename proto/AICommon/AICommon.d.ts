@@ -8870,7 +8870,8 @@ export namespace AICommon {
         /** BotSignatureUseCase enum. */
         enum BotSignatureUseCase {
             UNSPECIFIED = 0,
-            WA_BOT_MSG = 1
+            WA_BOT_MSG = 1,
+            WA_TEE_BOT_MSG = 2
         }
     }
 
@@ -10237,7 +10238,8 @@ export namespace Protocol {
             UNKNOWN = 0,
             CHAT_SETTING = 1,
             BIZ_SUPPORTS_FB_HOSTING = 2,
-            UNKNOWN_GROUP = 3
+            UNKNOWN_GROUP = 3,
+            DEPRECATION = 4
         }
     }
 

@@ -7786,6 +7786,12 @@ export namespace SyncAction {
 
             /** StatusPrivacyAction userJid */
             userJid?: (string[]|null);
+
+            /** StatusPrivacyAction shareToFB */
+            shareToFB?: (boolean|null);
+
+            /** StatusPrivacyAction shareToIG */
+            shareToIG?: (boolean|null);
         }
 
         /** Represents a StatusPrivacyAction. */
@@ -7802,6 +7808,12 @@ export namespace SyncAction {
 
             /** StatusPrivacyAction userJid. */
             public userJid: string[];
+
+            /** StatusPrivacyAction shareToFB. */
+            public shareToFB: boolean;
+
+            /** StatusPrivacyAction shareToIG. */
+            public shareToIG: boolean;
 
             /**
              * Creates a new StatusPrivacyAction instance using the specified properties.
@@ -10719,7 +10731,8 @@ export namespace Protocol {
             UNKNOWN = 0,
             CHAT_SETTING = 1,
             BIZ_SUPPORTS_FB_HOSTING = 2,
-            UNKNOWN_GROUP = 3
+            UNKNOWN_GROUP = 3,
+            DEPRECATION = 4
         }
     }
 

@@ -125,7 +125,8 @@ export namespace Protocol {
             UNKNOWN = 0,
             CHAT_SETTING = 1,
             BIZ_SUPPORTS_FB_HOSTING = 2,
-            UNKNOWN_GROUP = 3
+            UNKNOWN_GROUP = 3,
+            DEPRECATION = 4
         }
     }
 

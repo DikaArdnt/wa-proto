@@ -2086,6 +2086,9 @@ export namespace HistorySync {
 
         /** HistorySync accounts */
         accounts?: (HistorySync.IAccount[]|null);
+
+        /** HistorySync nctSalt */
+        nctSalt?: (Uint8Array|null);
     }
 
     /** Represents a HistorySync. */
@@ -2147,6 +2150,9 @@ export namespace HistorySync {
 
         /** HistorySync accounts. */
         public accounts: HistorySync.IAccount[];
+
+        /** HistorySync nctSalt. */
+        public nctSalt: Uint8Array;
 
         /**
          * Creates a new HistorySync instance using the specified properties.
@@ -9105,6 +9111,9 @@ export namespace E2E {
 
         /** Message pollCreationMessageV6 */
         pollCreationMessageV6?: (E2E.Message.IPollCreationMessage|null);
+
+        /** Message conditionalRevealMessage */
+        conditionalRevealMessage?: (E2E.Message.IConditionalRevealMessage|null);
     }
 
     /** Represents a Message. */
@@ -9412,6 +9421,9 @@ export namespace E2E {
 
         /** Message pollCreationMessageV6. */
         public pollCreationMessageV6?: (E2E.Message.IPollCreationMessage|null);
+
+        /** Message conditionalRevealMessage. */
+        public conditionalRevealMessage?: (E2E.Message.IConditionalRevealMessage|null);
 
         /**
          * Creates a new Message instance using the specified properties.
@@ -12193,6 +12205,130 @@ export namespace E2E {
              * @returns The default type url
              */
             public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a ConditionalRevealMessage. */
+        interface IConditionalRevealMessage {
+
+            /** ConditionalRevealMessage encPayload */
+            encPayload?: (Uint8Array|null);
+
+            /** ConditionalRevealMessage encIv */
+            encIv?: (Uint8Array|null);
+
+            /** ConditionalRevealMessage conditionalRevealMessageType */
+            conditionalRevealMessageType?: (E2E.Message.ConditionalRevealMessage.ConditionalRevealMessageType|null);
+
+            /** ConditionalRevealMessage revealKeyId */
+            revealKeyId?: (string|null);
+        }
+
+        /** Represents a ConditionalRevealMessage. */
+        class ConditionalRevealMessage implements IConditionalRevealMessage {
+
+            /**
+             * Constructs a new ConditionalRevealMessage.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IConditionalRevealMessage);
+
+            /** ConditionalRevealMessage encPayload. */
+            public encPayload: Uint8Array;
+
+            /** ConditionalRevealMessage encIv. */
+            public encIv: Uint8Array;
+
+            /** ConditionalRevealMessage conditionalRevealMessageType. */
+            public conditionalRevealMessageType: E2E.Message.ConditionalRevealMessage.ConditionalRevealMessageType;
+
+            /** ConditionalRevealMessage revealKeyId. */
+            public revealKeyId: string;
+
+            /**
+             * Creates a new ConditionalRevealMessage instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns ConditionalRevealMessage instance
+             */
+            public static create(properties?: E2E.Message.IConditionalRevealMessage): E2E.Message.ConditionalRevealMessage;
+
+            /**
+             * Encodes the specified ConditionalRevealMessage message. Does not implicitly {@link E2E.Message.ConditionalRevealMessage.verify|verify} messages.
+             * @param message ConditionalRevealMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IConditionalRevealMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified ConditionalRevealMessage message, length delimited. Does not implicitly {@link E2E.Message.ConditionalRevealMessage.verify|verify} messages.
+             * @param message ConditionalRevealMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IConditionalRevealMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a ConditionalRevealMessage message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns ConditionalRevealMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.ConditionalRevealMessage;
+
+            /**
+             * Decodes a ConditionalRevealMessage message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns ConditionalRevealMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.ConditionalRevealMessage;
+
+            /**
+             * Verifies a ConditionalRevealMessage message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a ConditionalRevealMessage message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns ConditionalRevealMessage
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.ConditionalRevealMessage;
+
+            /**
+             * Creates a plain object from a ConditionalRevealMessage message. Also converts values to other types if specified.
+             * @param message ConditionalRevealMessage
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.ConditionalRevealMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this ConditionalRevealMessage to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for ConditionalRevealMessage
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace ConditionalRevealMessage {
+
+            /** ConditionalRevealMessageType enum. */
+            enum ConditionalRevealMessageType {
+                UNKNOWN = 0,
+                SCHEDULED_MESSAGE = 1
+            }
         }
 
         /** Properties of a ContactMessage. */
@@ -28491,7 +28627,8 @@ export namespace Protocol {
             UNKNOWN = 0,
             CHAT_SETTING = 1,
             BIZ_SUPPORTS_FB_HOSTING = 2,
-            UNKNOWN_GROUP = 3
+            UNKNOWN_GROUP = 3,
+            DEPRECATION = 4
         }
     }
 
@@ -37481,7 +37618,8 @@ export namespace AICommon {
         /** BotSignatureUseCase enum. */
         enum BotSignatureUseCase {
             UNSPECIFIED = 0,
-            WA_BOT_MSG = 1
+            WA_BOT_MSG = 1,
+            WA_TEE_BOT_MSG = 2
         }
     }
 
@@ -53627,6 +53765,12 @@ export namespace SyncAction {
 
             /** StatusPrivacyAction userJid */
             userJid?: (string[]|null);
+
+            /** StatusPrivacyAction shareToFB */
+            shareToFB?: (boolean|null);
+
+            /** StatusPrivacyAction shareToIG */
+            shareToIG?: (boolean|null);
         }
 
         /** Represents a StatusPrivacyAction. */
@@ -53643,6 +53787,12 @@ export namespace SyncAction {
 
             /** StatusPrivacyAction userJid. */
             public userJid: string[];
+
+            /** StatusPrivacyAction shareToFB. */
+            public shareToFB: boolean;
+
+            /** StatusPrivacyAction shareToIG. */
+            public shareToIG: boolean;
 
             /**
              * Creates a new StatusPrivacyAction instance using the specified properties.

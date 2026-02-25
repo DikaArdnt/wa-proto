@@ -5354,6 +5354,7 @@ $root.HistorySync = (function() {
                 case 1:
                 case 2:
                 case 3:
+                case 4:
                     break;
                 }
             if (message.limitSharingInitiatedByMe != null && message.hasOwnProperty("limitSharingInitiatedByMe"))
@@ -5643,6 +5644,10 @@ $root.HistorySync = (function() {
             case "UNKNOWN_GROUP":
             case 3:
                 message.limitSharingTrigger = 3;
+                break;
+            case "DEPRECATION":
+            case 4:
+                message.limitSharingTrigger = 4;
                 break;
             }
             if (object.limitSharingInitiatedByMe != null)
@@ -5978,6 +5983,7 @@ $root.HistorySync = (function() {
          * @property {string|null} [companionMetaNonce] HistorySync companionMetaNonce
          * @property {Uint8Array|null} [shareableChatIdentifierEncryptionKey] HistorySync shareableChatIdentifierEncryptionKey
          * @property {Array.<HistorySync.IAccount>|null} [accounts] HistorySync accounts
+         * @property {Uint8Array|null} [nctSalt] HistorySync nctSalt
          */
 
         /**
@@ -6140,6 +6146,14 @@ $root.HistorySync = (function() {
         HistorySync.prototype.accounts = $util.emptyArray;
 
         /**
+         * HistorySync nctSalt.
+         * @member {Uint8Array} nctSalt
+         * @memberof HistorySync.HistorySync
+         * @instance
+         */
+        HistorySync.prototype.nctSalt = $util.newBuffer([]);
+
+        /**
          * Creates a new HistorySync instance using the specified properties.
          * @function create
          * @memberof HistorySync.HistorySync
@@ -6204,6 +6218,8 @@ $root.HistorySync = (function() {
             if (message.accounts != null && message.accounts.length)
                 for (var i = 0; i < message.accounts.length; ++i)
                     $root.HistorySync.Account.encode(message.accounts[i], writer.uint32(/* id 18, wireType 2 =*/146).fork()).ldelim();
+            if (message.nctSalt != null && Object.hasOwnProperty.call(message, "nctSalt"))
+                writer.uint32(/* id 19, wireType 2 =*/154).bytes(message.nctSalt);
             return writer;
         };
 
@@ -6322,6 +6338,10 @@ $root.HistorySync = (function() {
                         if (!(message.accounts && message.accounts.length))
                             message.accounts = [];
                         message.accounts.push($root.HistorySync.Account.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 19: {
+                        message.nctSalt = reader.bytes();
                         break;
                     }
                 default:
@@ -6476,6 +6496,9 @@ $root.HistorySync = (function() {
                         return "accounts." + error;
                 }
             }
+            if (message.nctSalt != null && message.hasOwnProperty("nctSalt"))
+                if (!(message.nctSalt && typeof message.nctSalt.length === "number" || $util.isString(message.nctSalt)))
+                    return "nctSalt: buffer expected";
             return null;
         };
 
@@ -6646,6 +6669,11 @@ $root.HistorySync = (function() {
                     message.accounts[i] = $root.HistorySync.Account.fromObject(object.accounts[i]);
                 }
             }
+            if (object.nctSalt != null)
+                if (typeof object.nctSalt === "string")
+                    $util.base64.decode(object.nctSalt, message.nctSalt = $util.newBuffer($util.base64.length(object.nctSalt)), 0);
+                else if (object.nctSalt.length >= 0)
+                    message.nctSalt = object.nctSalt;
             return message;
         };
 
@@ -6693,6 +6721,13 @@ $root.HistorySync = (function() {
                     object.shareableChatIdentifierEncryptionKey = [];
                     if (options.bytes !== Array)
                         object.shareableChatIdentifierEncryptionKey = $util.newBuffer(object.shareableChatIdentifierEncryptionKey);
+                }
+                if (options.bytes === String)
+                    object.nctSalt = "";
+                else {
+                    object.nctSalt = [];
+                    if (options.bytes !== Array)
+                        object.nctSalt = $util.newBuffer(object.nctSalt);
                 }
             }
             if (message.syncType != null && message.hasOwnProperty("syncType"))
@@ -6753,6 +6788,8 @@ $root.HistorySync = (function() {
                 for (var j = 0; j < message.accounts.length; ++j)
                     object.accounts[j] = $root.HistorySync.Account.toObject(message.accounts[j], options);
             }
+            if (message.nctSalt != null && message.hasOwnProperty("nctSalt"))
+                object.nctSalt = options.bytes === String ? $util.base64.encode(message.nctSalt, 0, message.nctSalt.length) : options.bytes === Array ? Array.prototype.slice.call(message.nctSalt) : message.nctSalt;
             return object;
         };
 
@@ -24865,6 +24902,7 @@ $root.E2E = (function() {
          * @property {E2E.Message.IFutureProofMessage|null} [newsletterAdminProfileMessageV2] Message newsletterAdminProfileMessageV2
          * @property {E2E.Message.IFutureProofMessage|null} [spoilerMessage] Message spoilerMessage
          * @property {E2E.Message.IPollCreationMessage|null} [pollCreationMessageV6] Message pollCreationMessageV6
+         * @property {E2E.Message.IConditionalRevealMessage|null} [conditionalRevealMessage] Message conditionalRevealMessage
          */
 
         /**
@@ -25675,6 +25713,14 @@ $root.E2E = (function() {
         Message.prototype.pollCreationMessageV6 = null;
 
         /**
+         * Message conditionalRevealMessage.
+         * @member {E2E.Message.IConditionalRevealMessage|null|undefined} conditionalRevealMessage
+         * @memberof E2E.Message
+         * @instance
+         */
+        Message.prototype.conditionalRevealMessage = null;
+
+        /**
          * Creates a new Message instance using the specified properties.
          * @function create
          * @memberof E2E.Message
@@ -25896,6 +25942,8 @@ $root.E2E = (function() {
                 $root.E2E.Message.FutureProofMessage.encode(message.spoilerMessage, writer.uint32(/* id 118, wireType 2 =*/946).fork()).ldelim();
             if (message.pollCreationMessageV6 != null && Object.hasOwnProperty.call(message, "pollCreationMessageV6"))
                 $root.E2E.Message.PollCreationMessage.encode(message.pollCreationMessageV6, writer.uint32(/* id 119, wireType 2 =*/954).fork()).ldelim();
+            if (message.conditionalRevealMessage != null && Object.hasOwnProperty.call(message, "conditionalRevealMessage"))
+                $root.E2E.Message.ConditionalRevealMessage.encode(message.conditionalRevealMessage, writer.uint32(/* id 120, wireType 2 =*/962).fork()).ldelim();
             return writer;
         };
 
@@ -26326,6 +26374,10 @@ $root.E2E = (function() {
                     }
                 case 119: {
                         message.pollCreationMessageV6 = $root.E2E.Message.PollCreationMessage.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 120: {
+                        message.conditionalRevealMessage = $root.E2E.Message.ConditionalRevealMessage.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -26856,6 +26908,11 @@ $root.E2E = (function() {
                 if (error)
                     return "pollCreationMessageV6." + error;
             }
+            if (message.conditionalRevealMessage != null && message.hasOwnProperty("conditionalRevealMessage")) {
+                var error = $root.E2E.Message.ConditionalRevealMessage.verify(message.conditionalRevealMessage);
+                if (error)
+                    return "conditionalRevealMessage." + error;
+            }
             return null;
         };
 
@@ -27363,6 +27420,11 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.Message.pollCreationMessageV6: object expected");
                 message.pollCreationMessageV6 = $root.E2E.Message.PollCreationMessage.fromObject(object.pollCreationMessageV6);
             }
+            if (object.conditionalRevealMessage != null) {
+                if (typeof object.conditionalRevealMessage !== "object")
+                    throw TypeError(".E2E.Message.conditionalRevealMessage: object expected");
+                message.conditionalRevealMessage = $root.E2E.Message.ConditionalRevealMessage.fromObject(object.conditionalRevealMessage);
+            }
             return message;
         };
 
@@ -27479,6 +27541,7 @@ $root.E2E = (function() {
                 object.newsletterAdminProfileMessageV2 = null;
                 object.spoilerMessage = null;
                 object.pollCreationMessageV6 = null;
+                object.conditionalRevealMessage = null;
             }
             if (message.conversation != null && message.hasOwnProperty("conversation"))
                 object.conversation = message.conversation;
@@ -27678,6 +27741,8 @@ $root.E2E = (function() {
                 object.spoilerMessage = $root.E2E.Message.FutureProofMessage.toObject(message.spoilerMessage, options);
             if (message.pollCreationMessageV6 != null && message.hasOwnProperty("pollCreationMessageV6"))
                 object.pollCreationMessageV6 = $root.E2E.Message.PollCreationMessage.toObject(message.pollCreationMessageV6, options);
+            if (message.conditionalRevealMessage != null && message.hasOwnProperty("conditionalRevealMessage"))
+                object.conditionalRevealMessage = $root.E2E.Message.ConditionalRevealMessage.toObject(message.conditionalRevealMessage, options);
             return object;
         };
 
@@ -34789,6 +34854,332 @@ $root.E2E = (function() {
             };
 
             return CommentMessage;
+        })();
+
+        Message.ConditionalRevealMessage = (function() {
+
+            /**
+             * Properties of a ConditionalRevealMessage.
+             * @memberof E2E.Message
+             * @interface IConditionalRevealMessage
+             * @property {Uint8Array|null} [encPayload] ConditionalRevealMessage encPayload
+             * @property {Uint8Array|null} [encIv] ConditionalRevealMessage encIv
+             * @property {E2E.Message.ConditionalRevealMessage.ConditionalRevealMessageType|null} [conditionalRevealMessageType] ConditionalRevealMessage conditionalRevealMessageType
+             * @property {string|null} [revealKeyId] ConditionalRevealMessage revealKeyId
+             */
+
+            /**
+             * Constructs a new ConditionalRevealMessage.
+             * @memberof E2E.Message
+             * @classdesc Represents a ConditionalRevealMessage.
+             * @implements IConditionalRevealMessage
+             * @constructor
+             * @param {E2E.Message.IConditionalRevealMessage=} [properties] Properties to set
+             */
+            function ConditionalRevealMessage(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * ConditionalRevealMessage encPayload.
+             * @member {Uint8Array} encPayload
+             * @memberof E2E.Message.ConditionalRevealMessage
+             * @instance
+             */
+            ConditionalRevealMessage.prototype.encPayload = $util.newBuffer([]);
+
+            /**
+             * ConditionalRevealMessage encIv.
+             * @member {Uint8Array} encIv
+             * @memberof E2E.Message.ConditionalRevealMessage
+             * @instance
+             */
+            ConditionalRevealMessage.prototype.encIv = $util.newBuffer([]);
+
+            /**
+             * ConditionalRevealMessage conditionalRevealMessageType.
+             * @member {E2E.Message.ConditionalRevealMessage.ConditionalRevealMessageType} conditionalRevealMessageType
+             * @memberof E2E.Message.ConditionalRevealMessage
+             * @instance
+             */
+            ConditionalRevealMessage.prototype.conditionalRevealMessageType = 0;
+
+            /**
+             * ConditionalRevealMessage revealKeyId.
+             * @member {string} revealKeyId
+             * @memberof E2E.Message.ConditionalRevealMessage
+             * @instance
+             */
+            ConditionalRevealMessage.prototype.revealKeyId = "";
+
+            /**
+             * Creates a new ConditionalRevealMessage instance using the specified properties.
+             * @function create
+             * @memberof E2E.Message.ConditionalRevealMessage
+             * @static
+             * @param {E2E.Message.IConditionalRevealMessage=} [properties] Properties to set
+             * @returns {E2E.Message.ConditionalRevealMessage} ConditionalRevealMessage instance
+             */
+            ConditionalRevealMessage.create = function create(properties) {
+                return new ConditionalRevealMessage(properties);
+            };
+
+            /**
+             * Encodes the specified ConditionalRevealMessage message. Does not implicitly {@link E2E.Message.ConditionalRevealMessage.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.Message.ConditionalRevealMessage
+             * @static
+             * @param {E2E.Message.IConditionalRevealMessage} message ConditionalRevealMessage message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ConditionalRevealMessage.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.encPayload != null && Object.hasOwnProperty.call(message, "encPayload"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.encPayload);
+                if (message.encIv != null && Object.hasOwnProperty.call(message, "encIv"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.encIv);
+                if (message.conditionalRevealMessageType != null && Object.hasOwnProperty.call(message, "conditionalRevealMessageType"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).int32(message.conditionalRevealMessageType);
+                if (message.revealKeyId != null && Object.hasOwnProperty.call(message, "revealKeyId"))
+                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.revealKeyId);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified ConditionalRevealMessage message, length delimited. Does not implicitly {@link E2E.Message.ConditionalRevealMessage.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.Message.ConditionalRevealMessage
+             * @static
+             * @param {E2E.Message.IConditionalRevealMessage} message ConditionalRevealMessage message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ConditionalRevealMessage.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a ConditionalRevealMessage message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.Message.ConditionalRevealMessage
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.Message.ConditionalRevealMessage} ConditionalRevealMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ConditionalRevealMessage.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.ConditionalRevealMessage();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.encPayload = reader.bytes();
+                            break;
+                        }
+                    case 2: {
+                            message.encIv = reader.bytes();
+                            break;
+                        }
+                    case 3: {
+                            message.conditionalRevealMessageType = reader.int32();
+                            break;
+                        }
+                    case 4: {
+                            message.revealKeyId = reader.string();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a ConditionalRevealMessage message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.Message.ConditionalRevealMessage
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.Message.ConditionalRevealMessage} ConditionalRevealMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ConditionalRevealMessage.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a ConditionalRevealMessage message.
+             * @function verify
+             * @memberof E2E.Message.ConditionalRevealMessage
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ConditionalRevealMessage.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.encPayload != null && message.hasOwnProperty("encPayload"))
+                    if (!(message.encPayload && typeof message.encPayload.length === "number" || $util.isString(message.encPayload)))
+                        return "encPayload: buffer expected";
+                if (message.encIv != null && message.hasOwnProperty("encIv"))
+                    if (!(message.encIv && typeof message.encIv.length === "number" || $util.isString(message.encIv)))
+                        return "encIv: buffer expected";
+                if (message.conditionalRevealMessageType != null && message.hasOwnProperty("conditionalRevealMessageType"))
+                    switch (message.conditionalRevealMessageType) {
+                    default:
+                        return "conditionalRevealMessageType: enum value expected";
+                    case 0:
+                    case 1:
+                        break;
+                    }
+                if (message.revealKeyId != null && message.hasOwnProperty("revealKeyId"))
+                    if (!$util.isString(message.revealKeyId))
+                        return "revealKeyId: string expected";
+                return null;
+            };
+
+            /**
+             * Creates a ConditionalRevealMessage message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.Message.ConditionalRevealMessage
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.Message.ConditionalRevealMessage} ConditionalRevealMessage
+             */
+            ConditionalRevealMessage.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.Message.ConditionalRevealMessage)
+                    return object;
+                var message = new $root.E2E.Message.ConditionalRevealMessage();
+                if (object.encPayload != null)
+                    if (typeof object.encPayload === "string")
+                        $util.base64.decode(object.encPayload, message.encPayload = $util.newBuffer($util.base64.length(object.encPayload)), 0);
+                    else if (object.encPayload.length >= 0)
+                        message.encPayload = object.encPayload;
+                if (object.encIv != null)
+                    if (typeof object.encIv === "string")
+                        $util.base64.decode(object.encIv, message.encIv = $util.newBuffer($util.base64.length(object.encIv)), 0);
+                    else if (object.encIv.length >= 0)
+                        message.encIv = object.encIv;
+                switch (object.conditionalRevealMessageType) {
+                default:
+                    if (typeof object.conditionalRevealMessageType === "number") {
+                        message.conditionalRevealMessageType = object.conditionalRevealMessageType;
+                        break;
+                    }
+                    break;
+                case "UNKNOWN":
+                case 0:
+                    message.conditionalRevealMessageType = 0;
+                    break;
+                case "SCHEDULED_MESSAGE":
+                case 1:
+                    message.conditionalRevealMessageType = 1;
+                    break;
+                }
+                if (object.revealKeyId != null)
+                    message.revealKeyId = String(object.revealKeyId);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a ConditionalRevealMessage message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.Message.ConditionalRevealMessage
+             * @static
+             * @param {E2E.Message.ConditionalRevealMessage} message ConditionalRevealMessage
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ConditionalRevealMessage.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    if (options.bytes === String)
+                        object.encPayload = "";
+                    else {
+                        object.encPayload = [];
+                        if (options.bytes !== Array)
+                            object.encPayload = $util.newBuffer(object.encPayload);
+                    }
+                    if (options.bytes === String)
+                        object.encIv = "";
+                    else {
+                        object.encIv = [];
+                        if (options.bytes !== Array)
+                            object.encIv = $util.newBuffer(object.encIv);
+                    }
+                    object.conditionalRevealMessageType = options.enums === String ? "UNKNOWN" : 0;
+                    object.revealKeyId = "";
+                }
+                if (message.encPayload != null && message.hasOwnProperty("encPayload"))
+                    object.encPayload = options.bytes === String ? $util.base64.encode(message.encPayload, 0, message.encPayload.length) : options.bytes === Array ? Array.prototype.slice.call(message.encPayload) : message.encPayload;
+                if (message.encIv != null && message.hasOwnProperty("encIv"))
+                    object.encIv = options.bytes === String ? $util.base64.encode(message.encIv, 0, message.encIv.length) : options.bytes === Array ? Array.prototype.slice.call(message.encIv) : message.encIv;
+                if (message.conditionalRevealMessageType != null && message.hasOwnProperty("conditionalRevealMessageType"))
+                    object.conditionalRevealMessageType = options.enums === String ? $root.E2E.Message.ConditionalRevealMessage.ConditionalRevealMessageType[message.conditionalRevealMessageType] === undefined ? message.conditionalRevealMessageType : $root.E2E.Message.ConditionalRevealMessage.ConditionalRevealMessageType[message.conditionalRevealMessageType] : message.conditionalRevealMessageType;
+                if (message.revealKeyId != null && message.hasOwnProperty("revealKeyId"))
+                    object.revealKeyId = message.revealKeyId;
+                return object;
+            };
+
+            /**
+             * Converts this ConditionalRevealMessage to JSON.
+             * @function toJSON
+             * @memberof E2E.Message.ConditionalRevealMessage
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ConditionalRevealMessage.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for ConditionalRevealMessage
+             * @function getTypeUrl
+             * @memberof E2E.Message.ConditionalRevealMessage
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ConditionalRevealMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.Message.ConditionalRevealMessage";
+            };
+
+            /**
+             * ConditionalRevealMessageType enum.
+             * @name E2E.Message.ConditionalRevealMessage.ConditionalRevealMessageType
+             * @enum {number}
+             * @property {number} UNKNOWN=0 UNKNOWN value
+             * @property {number} SCHEDULED_MESSAGE=1 SCHEDULED_MESSAGE value
+             */
+            ConditionalRevealMessage.ConditionalRevealMessageType = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "UNKNOWN"] = 0;
+                values[valuesById[1] = "SCHEDULED_MESSAGE"] = 1;
+                return values;
+            })();
+
+            return ConditionalRevealMessage;
         })();
 
         Message.ContactMessage = (function() {
@@ -79422,6 +79813,7 @@ $root.Protocol = (function() {
                 case 1:
                 case 2:
                 case 3:
+                case 4:
                     break;
                 }
             if (message.limitSharingSettingTimestamp != null && message.hasOwnProperty("limitSharingSettingTimestamp"))
@@ -79469,6 +79861,10 @@ $root.Protocol = (function() {
             case "UNKNOWN_GROUP":
             case 3:
                 message.trigger = 3;
+                break;
+            case "DEPRECATION":
+            case 4:
+                message.trigger = 4;
                 break;
             }
             if (object.limitSharingSettingTimestamp != null)
@@ -79556,6 +79952,7 @@ $root.Protocol = (function() {
          * @property {number} CHAT_SETTING=1 CHAT_SETTING value
          * @property {number} BIZ_SUPPORTS_FB_HOSTING=2 BIZ_SUPPORTS_FB_HOSTING value
          * @property {number} UNKNOWN_GROUP=3 UNKNOWN_GROUP value
+         * @property {number} DEPRECATION=4 DEPRECATION value
          */
         LimitSharing.TriggerType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -79563,6 +79960,7 @@ $root.Protocol = (function() {
             values[valuesById[1] = "CHAT_SETTING"] = 1;
             values[valuesById[2] = "BIZ_SUPPORTS_FB_HOSTING"] = 2;
             values[valuesById[3] = "UNKNOWN_GROUP"] = 3;
+            values[valuesById[4] = "DEPRECATION"] = 4;
             return values;
         })();
 
@@ -103097,6 +103495,7 @@ $root.AICommon = (function() {
                     return "useCase: enum value expected";
                 case 0:
                 case 1:
+                case 2:
                     break;
                 }
             if (message.signature != null && message.hasOwnProperty("signature"))
@@ -103140,6 +103539,10 @@ $root.AICommon = (function() {
             case "WA_BOT_MSG":
             case 1:
                 message.useCase = 1;
+                break;
+            case "WA_TEE_BOT_MSG":
+            case 2:
+                message.useCase = 2;
                 break;
             }
             if (object.signature != null)
@@ -103232,11 +103635,13 @@ $root.AICommon = (function() {
          * @enum {number}
          * @property {number} UNSPECIFIED=0 UNSPECIFIED value
          * @property {number} WA_BOT_MSG=1 WA_BOT_MSG value
+         * @property {number} WA_TEE_BOT_MSG=2 WA_TEE_BOT_MSG value
          */
         BotSignatureVerificationUseCaseProof.BotSignatureUseCase = (function() {
             var valuesById = {}, values = Object.create(valuesById);
             values[valuesById[0] = "UNSPECIFIED"] = 0;
             values[valuesById[1] = "WA_BOT_MSG"] = 1;
+            values[valuesById[2] = "WA_TEE_BOT_MSG"] = 2;
             return values;
         })();
 
@@ -148215,6 +148620,8 @@ $root.SyncAction = (function() {
              * @interface IStatusPrivacyAction
              * @property {SyncAction.SyncActionValue.StatusPrivacyAction.StatusDistributionMode|null} [mode] StatusPrivacyAction mode
              * @property {Array.<string>|null} [userJid] StatusPrivacyAction userJid
+             * @property {boolean|null} [shareToFB] StatusPrivacyAction shareToFB
+             * @property {boolean|null} [shareToIG] StatusPrivacyAction shareToIG
              */
 
             /**
@@ -148250,6 +148657,22 @@ $root.SyncAction = (function() {
             StatusPrivacyAction.prototype.userJid = $util.emptyArray;
 
             /**
+             * StatusPrivacyAction shareToFB.
+             * @member {boolean} shareToFB
+             * @memberof SyncAction.SyncActionValue.StatusPrivacyAction
+             * @instance
+             */
+            StatusPrivacyAction.prototype.shareToFB = false;
+
+            /**
+             * StatusPrivacyAction shareToIG.
+             * @member {boolean} shareToIG
+             * @memberof SyncAction.SyncActionValue.StatusPrivacyAction
+             * @instance
+             */
+            StatusPrivacyAction.prototype.shareToIG = false;
+
+            /**
              * Creates a new StatusPrivacyAction instance using the specified properties.
              * @function create
              * @memberof SyncAction.SyncActionValue.StatusPrivacyAction
@@ -148278,6 +148701,10 @@ $root.SyncAction = (function() {
                 if (message.userJid != null && message.userJid.length)
                     for (var i = 0; i < message.userJid.length; ++i)
                         writer.uint32(/* id 2, wireType 2 =*/18).string(message.userJid[i]);
+                if (message.shareToFB != null && Object.hasOwnProperty.call(message, "shareToFB"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).bool(message.shareToFB);
+                if (message.shareToIG != null && Object.hasOwnProperty.call(message, "shareToIG"))
+                    writer.uint32(/* id 4, wireType 0 =*/32).bool(message.shareToIG);
                 return writer;
             };
 
@@ -148322,6 +148749,14 @@ $root.SyncAction = (function() {
                             if (!(message.userJid && message.userJid.length))
                                 message.userJid = [];
                             message.userJid.push(reader.string());
+                            break;
+                        }
+                    case 3: {
+                            message.shareToFB = reader.bool();
+                            break;
+                        }
+                    case 4: {
+                            message.shareToIG = reader.bool();
                             break;
                         }
                     default:
@@ -148376,6 +148811,12 @@ $root.SyncAction = (function() {
                         if (!$util.isString(message.userJid[i]))
                             return "userJid: string[] expected";
                 }
+                if (message.shareToFB != null && message.hasOwnProperty("shareToFB"))
+                    if (typeof message.shareToFB !== "boolean")
+                        return "shareToFB: boolean expected";
+                if (message.shareToIG != null && message.hasOwnProperty("shareToIG"))
+                    if (typeof message.shareToIG !== "boolean")
+                        return "shareToIG: boolean expected";
                 return null;
             };
 
@@ -148422,6 +148863,10 @@ $root.SyncAction = (function() {
                     for (var i = 0; i < object.userJid.length; ++i)
                         message.userJid[i] = String(object.userJid[i]);
                 }
+                if (object.shareToFB != null)
+                    message.shareToFB = Boolean(object.shareToFB);
+                if (object.shareToIG != null)
+                    message.shareToIG = Boolean(object.shareToIG);
                 return message;
             };
 
@@ -148440,8 +148885,11 @@ $root.SyncAction = (function() {
                 var object = {};
                 if (options.arrays || options.defaults)
                     object.userJid = [];
-                if (options.defaults)
+                if (options.defaults) {
                     object.mode = options.enums === String ? "ALLOW_LIST" : 0;
+                    object.shareToFB = false;
+                    object.shareToIG = false;
+                }
                 if (message.mode != null && message.hasOwnProperty("mode"))
                     object.mode = options.enums === String ? $root.SyncAction.SyncActionValue.StatusPrivacyAction.StatusDistributionMode[message.mode] === undefined ? message.mode : $root.SyncAction.SyncActionValue.StatusPrivacyAction.StatusDistributionMode[message.mode] : message.mode;
                 if (message.userJid && message.userJid.length) {
@@ -148449,6 +148897,10 @@ $root.SyncAction = (function() {
                     for (var j = 0; j < message.userJid.length; ++j)
                         object.userJid[j] = message.userJid[j];
                 }
+                if (message.shareToFB != null && message.hasOwnProperty("shareToFB"))
+                    object.shareToFB = message.shareToFB;
+                if (message.shareToIG != null && message.hasOwnProperty("shareToIG"))
+                    object.shareToIG = message.shareToIG;
                 return object;
             };
 
