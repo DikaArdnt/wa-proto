@@ -2,6 +2,7 @@ syntax = "proto2";
 package E2E;
 
 import "../Protocol/Protocol.proto";
+import "../AICommonDeprecated/AICommonDeprecated.proto";
 import "../AICommon/AICommon.proto";
 import "../Adv/Adv.proto";
 import "../StatusAttributions/StatusAttributions.proto";
@@ -15,8 +16,8 @@ message AIQueryFanout {
 }
 
 message AIRichResponseMessage {
-    optional AICommon.AIRichResponseMessageType messageType = 1;
-    repeated AICommon.AIRichResponseSubMessage submessages = 2;
+    optional AICommonDeprecated.AIRichResponseMessageType messageType = 1;
+    repeated AICommonDeprecated.AIRichResponseSubMessage submessages = 2;
     optional AICommon.AIRichResponseUnifiedResponse unifiedResponse = 3;
     optional ContextInfo contextInfo = 4;
 }
@@ -281,6 +282,7 @@ message MessageContextInfo {
 message ThreadID {
     optional ThreadType threadType = 1;
     optional Protocol.MessageKey threadKey = 2;
+    optional string sourceChatJid = 3;
     enum ThreadType {
         UNKNOWN = 0;
         VIEW_REPLIES = 1;
@@ -313,6 +315,7 @@ message MessageAssociation {
         STATUS_ADD_YOURS_DIWALI = 17;
         STATUS_REACTION = 18;
         HEVC_VIDEO_DUAL_UPLOAD = 19;
+        POLL_ADD_OPTION = 20;
     }
 }
 
@@ -375,7 +378,7 @@ message ContextInfo {
     optional bool isSpoiler = 73;
     optional MediaDomainInfo mediaDomainInfo = 74;
     optional PartiallySelectedContent partiallySelectedContent = 75;
-    optional uint32 afterReadDurationMs = 76;
+    optional uint32 afterReadDuration = 76;
     message AdReplyInfo {
         optional string advertiserName = 1;
         optional MediaType mediaType = 2;
@@ -632,6 +635,7 @@ message Message {
     optional FutureProofMessage spoilerMessage = 118;
     optional PollCreationMessage pollCreationMessageV6 = 119;
     optional ConditionalRevealMessage conditionalRevealMessage = 120;
+    optional PollAddOptionMessage pollAddOptionMessage = 121;
     message AlbumMessage {
         optional uint32 expectedImageCount = 2;
         optional uint32 expectedVideoCount = 3;
@@ -1627,6 +1631,10 @@ message Message {
             MASK_LINKED_DEVICES = 0;
         }
     }
+    message PollAddOptionMessage {
+        optional Protocol.MessageKey pollCreationMessageKey = 1;
+        optional Message.PollCreationMessage.Option addOption = 2;
+    }
     enum PollContentType {
         UNKNOWN = 0;
         TEXT = 1;
@@ -1643,6 +1651,7 @@ message Message {
         optional Option correctAnswer = 8;
         optional int64 endTime = 9;
         optional bool hideParticipantName = 10;
+        optional bool allowAddOption = 11;
         message Option {
             optional string optionName = 1;
             optional string optionHash = 2;
@@ -1730,7 +1739,7 @@ message Message {
         optional AIQueryFanout aiQueryFanout = 26;
         optional MemberLabel memberLabel = 27;
         optional AICommon.AIMediaCollectionMessage aiMediaCollectionMessage = 28;
-        optional uint32 afterReadDurationMs = 29;
+        optional uint32 afterReadDuration = 29;
         enum Type {
             REVOKE = 0;
             EPHEMERAL_SETTING = 3;
@@ -1826,6 +1835,7 @@ message Message {
             MESSAGE_EDIT = 2;
             MESSAGE_SCHEDULE = 3;
             POLL_EDIT = 4;
+            POLL_ADD_OPTION = 5;
         }
     }
     message SendPaymentMessage {

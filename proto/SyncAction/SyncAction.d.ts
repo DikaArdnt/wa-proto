@@ -512,6 +512,9 @@ export namespace SyncAction {
 
         /** SyncActionValue businessBroadcastCampaignAction */
         businessBroadcastCampaignAction?: (SyncAction.SyncActionValue.IBusinessBroadcastCampaignAction|null);
+
+        /** SyncActionValue businessBroadcastInsightsAction */
+        businessBroadcastInsightsAction?: (SyncAction.SyncActionValue.IBusinessBroadcastInsightsAction|null);
     }
 
     /** Represents a SyncActionValue. */
@@ -738,6 +741,9 @@ export namespace SyncAction {
 
         /** SyncActionValue businessBroadcastCampaignAction. */
         public businessBroadcastCampaignAction?: (SyncAction.SyncActionValue.IBusinessBroadcastCampaignAction|null);
+
+        /** SyncActionValue businessBroadcastInsightsAction. */
+        public businessBroadcastInsightsAction?: (SyncAction.SyncActionValue.IBusinessBroadcastInsightsAction|null);
 
         /**
          * Creates a new SyncActionValue instance using the specified properties.
@@ -1664,18 +1670,6 @@ export namespace SyncAction {
 
             /** BusinessBroadcastCampaignAction status */
             status?: (SyncAction.SyncActionValue.BusinessBroadcastCampaignStatus|null);
-
-            /** BusinessBroadcastCampaignAction messageBody */
-            messageBody?: (string|null);
-
-            /** BusinessBroadcastCampaignAction mediaData */
-            mediaData?: (Uint8Array|null);
-
-            /** BusinessBroadcastCampaignAction mediaMetadata */
-            mediaMetadata?: (string|null);
-
-            /** BusinessBroadcastCampaignAction ctaButtonJson */
-            ctaButtonJson?: (string|null);
         }
 
         /** Represents a BusinessBroadcastCampaignAction. */
@@ -1713,18 +1707,6 @@ export namespace SyncAction {
 
             /** BusinessBroadcastCampaignAction status. */
             public status: SyncAction.SyncActionValue.BusinessBroadcastCampaignStatus;
-
-            /** BusinessBroadcastCampaignAction messageBody. */
-            public messageBody: string;
-
-            /** BusinessBroadcastCampaignAction mediaData. */
-            public mediaData: Uint8Array;
-
-            /** BusinessBroadcastCampaignAction mediaMetadata. */
-            public mediaMetadata: string;
-
-            /** BusinessBroadcastCampaignAction ctaButtonJson. */
-            public ctaButtonJson: string;
 
             /**
              * Creates a new BusinessBroadcastCampaignAction instance using the specified properties.
@@ -1811,6 +1793,127 @@ export namespace SyncAction {
             PROCESSING = 3,
             FAILED = 4,
             SENT = 5
+        }
+
+        /** Properties of a BusinessBroadcastInsightsAction. */
+        interface IBusinessBroadcastInsightsAction {
+
+            /** BusinessBroadcastInsightsAction recipientCount */
+            recipientCount?: (number|null);
+
+            /** BusinessBroadcastInsightsAction deliveredCount */
+            deliveredCount?: (number|null);
+
+            /** BusinessBroadcastInsightsAction readCount */
+            readCount?: (number|null);
+
+            /** BusinessBroadcastInsightsAction repliedCount */
+            repliedCount?: (number|null);
+
+            /** BusinessBroadcastInsightsAction quickReplyCount */
+            quickReplyCount?: (number|null);
+        }
+
+        /** Represents a BusinessBroadcastInsightsAction. */
+        class BusinessBroadcastInsightsAction implements IBusinessBroadcastInsightsAction {
+
+            /**
+             * Constructs a new BusinessBroadcastInsightsAction.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SyncAction.SyncActionValue.IBusinessBroadcastInsightsAction);
+
+            /** BusinessBroadcastInsightsAction recipientCount. */
+            public recipientCount: number;
+
+            /** BusinessBroadcastInsightsAction deliveredCount. */
+            public deliveredCount: number;
+
+            /** BusinessBroadcastInsightsAction readCount. */
+            public readCount: number;
+
+            /** BusinessBroadcastInsightsAction repliedCount. */
+            public repliedCount: number;
+
+            /** BusinessBroadcastInsightsAction quickReplyCount. */
+            public quickReplyCount: number;
+
+            /**
+             * Creates a new BusinessBroadcastInsightsAction instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns BusinessBroadcastInsightsAction instance
+             */
+            public static create(properties?: SyncAction.SyncActionValue.IBusinessBroadcastInsightsAction): SyncAction.SyncActionValue.BusinessBroadcastInsightsAction;
+
+            /**
+             * Encodes the specified BusinessBroadcastInsightsAction message. Does not implicitly {@link SyncAction.SyncActionValue.BusinessBroadcastInsightsAction.verify|verify} messages.
+             * @param message BusinessBroadcastInsightsAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SyncAction.SyncActionValue.IBusinessBroadcastInsightsAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified BusinessBroadcastInsightsAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.BusinessBroadcastInsightsAction.verify|verify} messages.
+             * @param message BusinessBroadcastInsightsAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SyncAction.SyncActionValue.IBusinessBroadcastInsightsAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a BusinessBroadcastInsightsAction message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns BusinessBroadcastInsightsAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.BusinessBroadcastInsightsAction;
+
+            /**
+             * Decodes a BusinessBroadcastInsightsAction message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns BusinessBroadcastInsightsAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.BusinessBroadcastInsightsAction;
+
+            /**
+             * Verifies a BusinessBroadcastInsightsAction message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a BusinessBroadcastInsightsAction message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns BusinessBroadcastInsightsAction
+             */
+            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.BusinessBroadcastInsightsAction;
+
+            /**
+             * Creates a plain object from a BusinessBroadcastInsightsAction message. Also converts values to other types if specified.
+             * @param message BusinessBroadcastInsightsAction
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SyncAction.SyncActionValue.BusinessBroadcastInsightsAction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this BusinessBroadcastInsightsAction to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for BusinessBroadcastInsightsAction
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
         /** Properties of a BusinessBroadcastListAction. */
@@ -4012,7 +4115,8 @@ export namespace SyncAction {
                 COMMUNITY = 6,
                 SERVER_ASSIGNED = 7,
                 DRAFTED = 8,
-                AI_HANDOFF = 9
+                AI_HANDOFF = 9,
+                CHANNELS = 10
             }
         }
 
@@ -9590,6 +9694,7 @@ export namespace SyncAction {
         OUT_CONTACT_ACTION = 79,
         NCT_SALT_SYNC_ACTION = 80,
         BUSINESS_BROADCAST_CAMPAIGN_ACTION = 81,
+        BUSINESS_BROADCAST_INSIGHTS_ACTION = 82,
         SHARE_OWN_PN = 10001,
         BUSINESS_BROADCAST_ACTION = 10002,
         AI_THREAD_DELETE_ACTION = 10003

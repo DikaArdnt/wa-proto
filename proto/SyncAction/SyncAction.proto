@@ -113,6 +113,7 @@ message SyncActionValue {
     optional OutContactAction outContactAction = 79;
     optional NctSaltSyncAction nctSaltSyncAction = 80;
     optional BusinessBroadcastCampaignAction businessBroadcastCampaignAction = 81;
+    optional BusinessBroadcastInsightsAction businessBroadcastInsightsAction = 82;
     message AgentAction {
         optional string name = 1;
         optional int32 deviceID = 2;
@@ -157,10 +158,6 @@ message SyncActionValue {
         optional int64 scheduledTimestamp = 7;
         optional int64 createTimestamp = 8;
         optional SyncActionValue.BusinessBroadcastCampaignStatus status = 9;
-        optional string messageBody = 10;
-        optional bytes mediaData = 11;
-        optional string mediaMetadata = 12;
-        optional string ctaButtonJson = 13;
     }
     enum BusinessBroadcastCampaignStatus {
         DRAFT = 1;
@@ -168,6 +165,13 @@ message SyncActionValue {
         PROCESSING = 3;
         FAILED = 4;
         SENT = 5;
+    }
+    message BusinessBroadcastInsightsAction {
+        optional int32 recipientCount = 1;
+        optional int32 deliveredCount = 2;
+        optional int32 readCount = 3;
+        optional int32 repliedCount = 4;
+        optional int32 quickReplyCount = 5;
     }
     message BusinessBroadcastListAction {
         optional bool deleted = 1;
@@ -268,6 +272,7 @@ message SyncActionValue {
             SERVER_ASSIGNED = 7;
             DRAFTED = 8;
             AI_HANDOFF = 9;
+            CHANNELS = 10;
         }
     }
     message LabelReorderingAction {
@@ -710,6 +715,7 @@ enum MutationProps {
     OUT_CONTACT_ACTION = 79;
     NCT_SALT_SYNC_ACTION = 80;
     BUSINESS_BROADCAST_CAMPAIGN_ACTION = 81;
+    BUSINESS_BROADCAST_INSIGHTS_ACTION = 82;
     SHARE_OWN_PN = 10001;
     BUSINESS_BROADCAST_ACTION = 10002;
     AI_THREAD_DELETE_ACTION = 10003;
