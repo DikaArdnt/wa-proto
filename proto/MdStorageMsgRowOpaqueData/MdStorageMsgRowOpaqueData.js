@@ -70,6 +70,7 @@ $root.MdStorageMsgRowOpaqueData = (function() {
          * @property {string|null} [quarantineExtractedText] MsgOpaqueData quarantineExtractedText
          * @property {number|Long|null} [pollEndTime] MsgOpaqueData pollEndTime
          * @property {boolean|null} [pollHideVoterNames] MsgOpaqueData pollHideVoterNames
+         * @property {boolean|null} [pollAllowAddOption] MsgOpaqueData pollAllowAddOption
          */
 
         /**
@@ -457,6 +458,14 @@ $root.MdStorageMsgRowOpaqueData = (function() {
         MsgOpaqueData.prototype.pollHideVoterNames = false;
 
         /**
+         * MsgOpaqueData pollAllowAddOption.
+         * @member {boolean} pollAllowAddOption
+         * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData
+         * @instance
+         */
+        MsgOpaqueData.prototype.pollAllowAddOption = false;
+
+        /**
          * Creates a new MsgOpaqueData instance using the specified properties.
          * @function create
          * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData
@@ -573,6 +582,8 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 writer.uint32(/* id 50, wireType 0 =*/400).bool(message.pollHideVoterNames);
             if (message.originalSelfAuthor != null && Object.hasOwnProperty.call(message, "originalSelfAuthor"))
                 writer.uint32(/* id 51, wireType 2 =*/410).string(message.originalSelfAuthor);
+            if (message.pollAllowAddOption != null && Object.hasOwnProperty.call(message, "pollAllowAddOption"))
+                writer.uint32(/* id 52, wireType 0 =*/416).bool(message.pollAllowAddOption);
             return writer;
         };
 
@@ -795,6 +806,10 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                         message.pollHideVoterNames = reader.bool();
                         break;
                     }
+                case 52: {
+                        message.pollAllowAddOption = reader.bool();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -991,6 +1006,9 @@ $root.MdStorageMsgRowOpaqueData = (function() {
             if (message.pollHideVoterNames != null && message.hasOwnProperty("pollHideVoterNames"))
                 if (typeof message.pollHideVoterNames !== "boolean")
                     return "pollHideVoterNames: boolean expected";
+            if (message.pollAllowAddOption != null && message.hasOwnProperty("pollAllowAddOption"))
+                if (typeof message.pollAllowAddOption !== "boolean")
+                    return "pollAllowAddOption: boolean expected";
             return null;
         };
 
@@ -1199,6 +1217,8 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                     message.pollEndTime = new $util.LongBits(object.pollEndTime.low >>> 0, object.pollEndTime.high >>> 0).toNumber();
             if (object.pollHideVoterNames != null)
                 message.pollHideVoterNames = Boolean(object.pollHideVoterNames);
+            if (object.pollAllowAddOption != null)
+                message.pollAllowAddOption = Boolean(object.pollAllowAddOption);
             return message;
         };
 
@@ -1327,6 +1347,7 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                     object.pollEndTime = options.longs === String ? "0" : 0;
                 object.pollHideVoterNames = false;
                 object.originalSelfAuthor = "";
+                object.pollAllowAddOption = false;
             }
             if (message.body != null && message.hasOwnProperty("body"))
                 object.body = message.body;
@@ -1435,6 +1456,8 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 object.pollHideVoterNames = message.pollHideVoterNames;
             if (message.originalSelfAuthor != null && message.hasOwnProperty("originalSelfAuthor"))
                 object.originalSelfAuthor = message.originalSelfAuthor;
+            if (message.pollAllowAddOption != null && message.hasOwnProperty("pollAllowAddOption"))
+                object.pollAllowAddOption = message.pollAllowAddOption;
             return object;
         };
 

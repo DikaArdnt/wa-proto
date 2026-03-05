@@ -50,6 +50,7 @@ message MsgOpaqueData {
     optional string quarantineExtractedText = 48;
     optional int64 pollEndTime = 49;
     optional bool pollHideVoterNames = 50;
+    optional bool pollAllowAddOption = 52;
     message EventLocation {
         optional double degreesLatitude = 1;
         optional double degreesLongitude = 2;

@@ -143,6 +143,9 @@ export namespace MdStorageMsgRowOpaqueData {
 
         /** MsgOpaqueData pollHideVoterNames */
         pollHideVoterNames?: (boolean|null);
+
+        /** MsgOpaqueData pollAllowAddOption */
+        pollAllowAddOption?: (boolean|null);
     }
 
     /** Represents a MsgOpaqueData. */
@@ -291,6 +294,9 @@ export namespace MdStorageMsgRowOpaqueData {
 
         /** MsgOpaqueData pollHideVoterNames. */
         public pollHideVoterNames: boolean;
+
+        /** MsgOpaqueData pollAllowAddOption. */
+        public pollAllowAddOption: boolean;
 
         /**
          * Creates a new MsgOpaqueData instance using the specified properties.
