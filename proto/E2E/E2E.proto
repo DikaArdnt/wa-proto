@@ -282,7 +282,6 @@ message MessageContextInfo {
 message ThreadID {
     optional ThreadType threadType = 1;
     optional Protocol.MessageKey threadKey = 2;
-    optional string sourceChatJid = 3;
     enum ThreadType {
         UNKNOWN = 0;
         VIEW_REPLIES = 1;
@@ -1118,6 +1117,13 @@ message Message {
     message InitialSecurityNotificationSettingSync {
         optional bool securityNotificationEnabled = 1;
     }
+    enum InsightDeliveryState {
+        SENT = 0;
+        DELIVERED = 1;
+        READ = 2;
+        REPLIED = 3;
+        QUICK_REPLIED = 4;
+    }
     message InteractiveMessage {
         optional Header header = 1;
         optional Body body = 2;
@@ -1450,6 +1456,14 @@ message Message {
         optional HistorySyncChunkRetryRequest historySyncChunkRetryRequest = 8;
         optional GalaxyFlowAction galaxyFlowAction = 9;
         optional CompanionCanonicalUserNonceFetchRequest companionCanonicalUserNonceFetchRequest = 10;
+        optional BizBroadcastInsightsContactListRequest bizBroadcastInsightsContactListRequest = 11;
+        optional BizBroadcastInsightsRefreshRequest bizBroadcastInsightsRefreshRequest = 12;
+        message BizBroadcastInsightsContactListRequest {
+            optional string campaignId = 1;
+        }
+        message BizBroadcastInsightsRefreshRequest {
+            optional string campaignId = 1;
+        }
         message CompanionCanonicalUserNonceFetchRequest {
             optional string registrationTraceId = 1;
         }
@@ -1514,6 +1528,16 @@ message Message {
             optional CompanionCanonicalUserNonceFetchResponse companionCanonicalUserNonceFetchRequestResponse = 9;
             optional HistorySyncChunkRetryResponse historySyncChunkRetryResponse = 10;
             optional FlowResponsesCsvBundle flowResponsesCsvBundle = 11;
+            optional BizBroadcastInsightsContactListResponse bizBroadcastInsightsContactListResponse = 12;
+            message BizBroadcastInsightsContactListResponse {
+                optional string campaignId = 1;
+                optional int64 timestampMs = 2;
+                repeated Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState contacts = 3;
+            }
+            message BizBroadcastInsightsContactState {
+                optional string contactJid = 1;
+                optional Message.InsightDeliveryState state = 2;
+            }
             message CompanionCanonicalUserNonceFetchResponse {
                 optional string nonce = 1;
                 optional string waFbid = 2;
@@ -1614,6 +1638,8 @@ message Message {
         COMPANION_CANONICAL_USER_NONCE_FETCH = 9;
         HISTORY_SYNC_CHUNK_RETRY = 10;
         GALAXY_FLOW_ACTION = 11;
+        BUSINESS_BROADCAST_INSIGHTS_DELIVERED_TO = 12;
+        BUSINESS_BROADCAST_INSIGHTS_REFRESH = 13;
     }
     message PinInChatMessage {
         optional Protocol.MessageKey key = 1;

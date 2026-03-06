@@ -36,6 +36,7 @@ message ClientPayload {
     optional bool paaLink = 44;
     optional int32 preacksCount = 45;
     optional int32 processingQueueSize = 46;
+    repeated string pairedPeripherals = 47;
     enum AccountType {
         DEFAULT = 0;
         GUEST = 1;

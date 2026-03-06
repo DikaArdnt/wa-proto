@@ -1051,6 +1051,9 @@ export namespace CompanionReg {
 
             /** HistorySyncConfig supportManusHistory */
             supportManusHistory?: (boolean|null);
+
+            /** HistorySyncConfig supportHatchHistory */
+            supportHatchHistory?: (boolean|null);
         }
 
         /** Represents a HistorySyncConfig. */
@@ -1124,6 +1127,9 @@ export namespace CompanionReg {
 
             /** HistorySyncConfig supportManusHistory. */
             public supportManusHistory: boolean;
+
+            /** HistorySyncConfig supportHatchHistory. */
+            public supportHatchHistory: boolean;
 
             /**
              * Creates a new HistorySyncConfig instance using the specified properties.

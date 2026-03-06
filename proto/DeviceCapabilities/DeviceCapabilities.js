@@ -656,6 +656,7 @@ $root.DeviceCapabilities = (function() {
              * @memberof DeviceCapabilities.DeviceCapabilities
              * @interface IBusinessBroadcast
              * @property {boolean|null} [importListEnabled] BusinessBroadcast importListEnabled
+             * @property {boolean|null} [companionSupportEnabled] BusinessBroadcast companionSupportEnabled
              */
 
             /**
@@ -680,6 +681,14 @@ $root.DeviceCapabilities = (function() {
              * @instance
              */
             BusinessBroadcast.prototype.importListEnabled = false;
+
+            /**
+             * BusinessBroadcast companionSupportEnabled.
+             * @member {boolean} companionSupportEnabled
+             * @memberof DeviceCapabilities.DeviceCapabilities.BusinessBroadcast
+             * @instance
+             */
+            BusinessBroadcast.prototype.companionSupportEnabled = false;
 
             /**
              * Creates a new BusinessBroadcast instance using the specified properties.
@@ -707,6 +716,8 @@ $root.DeviceCapabilities = (function() {
                     writer = $Writer.create();
                 if (message.importListEnabled != null && Object.hasOwnProperty.call(message, "importListEnabled"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.importListEnabled);
+                if (message.companionSupportEnabled != null && Object.hasOwnProperty.call(message, "companionSupportEnabled"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).bool(message.companionSupportEnabled);
                 return writer;
             };
 
@@ -747,6 +758,10 @@ $root.DeviceCapabilities = (function() {
                             message.importListEnabled = reader.bool();
                             break;
                         }
+                    case 2: {
+                            message.companionSupportEnabled = reader.bool();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -785,6 +800,9 @@ $root.DeviceCapabilities = (function() {
                 if (message.importListEnabled != null && message.hasOwnProperty("importListEnabled"))
                     if (typeof message.importListEnabled !== "boolean")
                         return "importListEnabled: boolean expected";
+                if (message.companionSupportEnabled != null && message.hasOwnProperty("companionSupportEnabled"))
+                    if (typeof message.companionSupportEnabled !== "boolean")
+                        return "companionSupportEnabled: boolean expected";
                 return null;
             };
 
@@ -802,6 +820,8 @@ $root.DeviceCapabilities = (function() {
                 var message = new $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast();
                 if (object.importListEnabled != null)
                     message.importListEnabled = Boolean(object.importListEnabled);
+                if (object.companionSupportEnabled != null)
+                    message.companionSupportEnabled = Boolean(object.companionSupportEnabled);
                 return message;
             };
 
@@ -818,10 +838,14 @@ $root.DeviceCapabilities = (function() {
                 if (!options)
                     options = {};
                 var object = {};
-                if (options.defaults)
+                if (options.defaults) {
                     object.importListEnabled = false;
+                    object.companionSupportEnabled = false;
+                }
                 if (message.importListEnabled != null && message.hasOwnProperty("importListEnabled"))
                     object.importListEnabled = message.importListEnabled;
+                if (message.companionSupportEnabled != null && message.hasOwnProperty("companionSupportEnabled"))
+                    object.companionSupportEnabled = message.companionSupportEnabled;
                 return object;
             };
 

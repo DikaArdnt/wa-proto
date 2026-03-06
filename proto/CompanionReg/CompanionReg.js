@@ -2682,6 +2682,7 @@ $root.CompanionReg = (function() {
              * @property {number|null} [thumbnailSyncDaysLimit] HistorySyncConfig thumbnailSyncDaysLimit
              * @property {number|null} [initialSyncMaxMessagesPerChat] HistorySyncConfig initialSyncMaxMessagesPerChat
              * @property {boolean|null} [supportManusHistory] HistorySyncConfig supportManusHistory
+             * @property {boolean|null} [supportHatchHistory] HistorySyncConfig supportHatchHistory
              */
 
             /**
@@ -2868,6 +2869,14 @@ $root.CompanionReg = (function() {
             HistorySyncConfig.prototype.supportManusHistory = false;
 
             /**
+             * HistorySyncConfig supportHatchHistory.
+             * @member {boolean} supportHatchHistory
+             * @memberof CompanionReg.DeviceProps.HistorySyncConfig
+             * @instance
+             */
+            HistorySyncConfig.prototype.supportHatchHistory = false;
+
+            /**
              * Creates a new HistorySyncConfig instance using the specified properties.
              * @function create
              * @memberof CompanionReg.DeviceProps.HistorySyncConfig
@@ -2933,6 +2942,8 @@ $root.CompanionReg = (function() {
                     writer.uint32(/* id 20, wireType 0 =*/160).uint32(message.initialSyncMaxMessagesPerChat);
                 if (message.supportManusHistory != null && Object.hasOwnProperty.call(message, "supportManusHistory"))
                     writer.uint32(/* id 21, wireType 0 =*/168).bool(message.supportManusHistory);
+                if (message.supportHatchHistory != null && Object.hasOwnProperty.call(message, "supportHatchHistory"))
+                    writer.uint32(/* id 22, wireType 0 =*/176).bool(message.supportHatchHistory);
                 return writer;
             };
 
@@ -3053,6 +3064,10 @@ $root.CompanionReg = (function() {
                             message.supportManusHistory = reader.bool();
                             break;
                         }
+                    case 22: {
+                            message.supportHatchHistory = reader.bool();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -3151,6 +3166,9 @@ $root.CompanionReg = (function() {
                 if (message.supportManusHistory != null && message.hasOwnProperty("supportManusHistory"))
                     if (typeof message.supportManusHistory !== "boolean")
                         return "supportManusHistory: boolean expected";
+                if (message.supportHatchHistory != null && message.hasOwnProperty("supportHatchHistory"))
+                    if (typeof message.supportHatchHistory !== "boolean")
+                        return "supportHatchHistory: boolean expected";
                 return null;
             };
 
@@ -3208,6 +3226,8 @@ $root.CompanionReg = (function() {
                     message.initialSyncMaxMessagesPerChat = object.initialSyncMaxMessagesPerChat >>> 0;
                 if (object.supportManusHistory != null)
                     message.supportManusHistory = Boolean(object.supportManusHistory);
+                if (object.supportHatchHistory != null)
+                    message.supportHatchHistory = Boolean(object.supportHatchHistory);
                 return message;
             };
 
@@ -3246,6 +3266,7 @@ $root.CompanionReg = (function() {
                     object.thumbnailSyncDaysLimit = 0;
                     object.initialSyncMaxMessagesPerChat = 0;
                     object.supportManusHistory = false;
+                    object.supportHatchHistory = false;
                 }
                 if (message.fullSyncDaysLimit != null && message.hasOwnProperty("fullSyncDaysLimit"))
                     object.fullSyncDaysLimit = message.fullSyncDaysLimit;
@@ -3289,6 +3310,8 @@ $root.CompanionReg = (function() {
                     object.initialSyncMaxMessagesPerChat = message.initialSyncMaxMessagesPerChat;
                 if (message.supportManusHistory != null && message.hasOwnProperty("supportManusHistory"))
                     object.supportManusHistory = message.supportManusHistory;
+                if (message.supportHatchHistory != null && message.hasOwnProperty("supportHatchHistory"))
+                    object.supportHatchHistory = message.supportHatchHistory;
                 return object;
             };
 

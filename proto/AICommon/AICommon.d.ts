@@ -2816,6 +2816,9 @@ export namespace AICommon {
 
         /** AIMediaCollectionMetadata collectionId */
         collectionId?: (string|null);
+
+        /** AIMediaCollectionMetadata uploadOrderIndex */
+        uploadOrderIndex?: (number|null);
     }
 
     /** Represents a AIMediaCollectionMetadata. */
@@ -2829,6 +2832,9 @@ export namespace AICommon {
 
         /** AIMediaCollectionMetadata collectionId. */
         public collectionId: string;
+
+        /** AIMediaCollectionMetadata uploadOrderIndex. */
+        public uploadOrderIndex: number;
 
         /**
          * Creates a new AIMediaCollectionMetadata instance using the specified properties.
@@ -3018,6 +3024,9 @@ export namespace AICommon {
 
             /** AIThreadClientInfo type */
             type?: (AICommon.AIThreadInfo.AIThreadClientInfo.AIThreadType|null);
+
+            /** AIThreadClientInfo sourceChatJid */
+            sourceChatJid?: (string|null);
         }
 
         /** Represents a AIThreadClientInfo. */
@@ -3031,6 +3040,9 @@ export namespace AICommon {
 
             /** AIThreadClientInfo type. */
             public type: AICommon.AIThreadInfo.AIThreadClientInfo.AIThreadType;
+
+            /** AIThreadClientInfo sourceChatJid. */
+            public sourceChatJid: string;
 
             /**
              * Creates a new AIThreadClientInfo instance using the specified properties.
@@ -3116,7 +3128,8 @@ export namespace AICommon {
             enum AIThreadType {
                 UNKNOWN = 0,
                 DEFAULT = 1,
-                INCOGNITO = 2
+                INCOGNITO = 2,
+                SIDE_CHAT = 3
             }
         }
 
@@ -5227,7 +5240,8 @@ export namespace AICommon {
             AI_IMAGINE_UR_TO_NATIVE_LOADING_INDICATOR = 54,
             RICH_RESPONSE_UR_BLOKS_ENABLED = 55,
             RICH_RESPONSE_INLINE_LINKS_ENABLED = 56,
-            RICH_RESPONSE_UR_IMAGINE_VIDEO = 57
+            RICH_RESPONSE_UR_IMAGINE_VIDEO = 57,
+            JSON_PATCH_STREAMING = 58
         }
     }
 
@@ -8092,7 +8106,8 @@ export namespace AICommon {
         META_AI_SETTINGS = 45,
         WEB_INTRO_PANEL = 46,
         WEB_NAVIGATION_BAR = 47,
-        GROUP_MEMBER = 54
+        GROUP_MEMBER = 54,
+        CHATLIST_SEARCH = 55
     }
 }
 

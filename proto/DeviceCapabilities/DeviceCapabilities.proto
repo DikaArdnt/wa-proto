@@ -18,6 +18,7 @@ message DeviceCapabilities {
     }
     message BusinessBroadcast {
         optional bool importListEnabled = 1;
+        optional bool companionSupportEnabled = 2;
     }
     enum ChatLockSupportLevel {
         NONE = 0;

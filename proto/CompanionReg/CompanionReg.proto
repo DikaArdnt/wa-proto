@@ -74,6 +74,7 @@ message DeviceProps {
         optional uint32 thumbnailSyncDaysLimit = 19;
         optional uint32 initialSyncMaxMessagesPerChat = 20;
         optional bool supportManusHistory = 21;
+        optional bool supportHatchHistory = 22;
     }
     enum PlatformType {
         UNKNOWN = 0;

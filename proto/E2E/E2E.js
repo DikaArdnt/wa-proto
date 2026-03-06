@@ -10131,7 +10131,6 @@ $root.E2E = (function() {
          * @interface IThreadID
          * @property {E2E.ThreadID.ThreadType|null} [threadType] ThreadID threadType
          * @property {Protocol.IMessageKey|null} [threadKey] ThreadID threadKey
-         * @property {string|null} [sourceChatJid] ThreadID sourceChatJid
          */
 
         /**
@@ -10166,14 +10165,6 @@ $root.E2E = (function() {
         ThreadID.prototype.threadKey = null;
 
         /**
-         * ThreadID sourceChatJid.
-         * @member {string} sourceChatJid
-         * @memberof E2E.ThreadID
-         * @instance
-         */
-        ThreadID.prototype.sourceChatJid = "";
-
-        /**
          * Creates a new ThreadID instance using the specified properties.
          * @function create
          * @memberof E2E.ThreadID
@@ -10201,8 +10192,6 @@ $root.E2E = (function() {
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.threadType);
             if (message.threadKey != null && Object.hasOwnProperty.call(message, "threadKey"))
                 $root.Protocol.MessageKey.encode(message.threadKey, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-            if (message.sourceChatJid != null && Object.hasOwnProperty.call(message, "sourceChatJid"))
-                writer.uint32(/* id 3, wireType 2 =*/26).string(message.sourceChatJid);
             return writer;
         };
 
@@ -10245,10 +10234,6 @@ $root.E2E = (function() {
                     }
                 case 2: {
                         message.threadKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
-                        break;
-                    }
-                case 3: {
-                        message.sourceChatJid = reader.string();
                         break;
                     }
                 default:
@@ -10300,9 +10285,6 @@ $root.E2E = (function() {
                 if (error)
                     return "threadKey." + error;
             }
-            if (message.sourceChatJid != null && message.hasOwnProperty("sourceChatJid"))
-                if (!$util.isString(message.sourceChatJid))
-                    return "sourceChatJid: string expected";
             return null;
         };
 
@@ -10343,8 +10325,6 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.ThreadID.threadKey: object expected");
                 message.threadKey = $root.Protocol.MessageKey.fromObject(object.threadKey);
             }
-            if (object.sourceChatJid != null)
-                message.sourceChatJid = String(object.sourceChatJid);
             return message;
         };
 
@@ -10364,14 +10344,11 @@ $root.E2E = (function() {
             if (options.defaults) {
                 object.threadType = options.enums === String ? "UNKNOWN" : 0;
                 object.threadKey = null;
-                object.sourceChatJid = "";
             }
             if (message.threadType != null && message.hasOwnProperty("threadType"))
                 object.threadType = options.enums === String ? $root.E2E.ThreadID.ThreadType[message.threadType] === undefined ? message.threadType : $root.E2E.ThreadID.ThreadType[message.threadType] : message.threadType;
             if (message.threadKey != null && message.hasOwnProperty("threadKey"))
                 object.threadKey = $root.Protocol.MessageKey.toObject(message.threadKey, options);
-            if (message.sourceChatJid != null && message.hasOwnProperty("sourceChatJid"))
-                object.sourceChatJid = message.sourceChatJid;
             return object;
         };
 
@@ -37135,6 +37112,26 @@ $root.E2E = (function() {
             return InitialSecurityNotificationSettingSync;
         })();
 
+        /**
+         * InsightDeliveryState enum.
+         * @name E2E.Message.InsightDeliveryState
+         * @enum {number}
+         * @property {number} SENT=0 SENT value
+         * @property {number} DELIVERED=1 DELIVERED value
+         * @property {number} READ=2 READ value
+         * @property {number} REPLIED=3 REPLIED value
+         * @property {number} QUICK_REPLIED=4 QUICK_REPLIED value
+         */
+        Message.InsightDeliveryState = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "SENT"] = 0;
+            values[valuesById[1] = "DELIVERED"] = 1;
+            values[valuesById[2] = "READ"] = 2;
+            values[valuesById[3] = "REPLIED"] = 3;
+            values[valuesById[4] = "QUICK_REPLIED"] = 4;
+            return values;
+        })();
+
         Message.InteractiveMessage = (function() {
 
             /**
@@ -49835,6 +49832,8 @@ $root.E2E = (function() {
              * @property {E2E.Message.PeerDataOperationRequestMessage.IHistorySyncChunkRetryRequest|null} [historySyncChunkRetryRequest] PeerDataOperationRequestMessage historySyncChunkRetryRequest
              * @property {E2E.Message.PeerDataOperationRequestMessage.IGalaxyFlowAction|null} [galaxyFlowAction] PeerDataOperationRequestMessage galaxyFlowAction
              * @property {E2E.Message.PeerDataOperationRequestMessage.ICompanionCanonicalUserNonceFetchRequest|null} [companionCanonicalUserNonceFetchRequest] PeerDataOperationRequestMessage companionCanonicalUserNonceFetchRequest
+             * @property {E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsContactListRequest|null} [bizBroadcastInsightsContactListRequest] PeerDataOperationRequestMessage bizBroadcastInsightsContactListRequest
+             * @property {E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsRefreshRequest|null} [bizBroadcastInsightsRefreshRequest] PeerDataOperationRequestMessage bizBroadcastInsightsRefreshRequest
              */
 
             /**
@@ -49936,6 +49935,22 @@ $root.E2E = (function() {
             PeerDataOperationRequestMessage.prototype.companionCanonicalUserNonceFetchRequest = null;
 
             /**
+             * PeerDataOperationRequestMessage bizBroadcastInsightsContactListRequest.
+             * @member {E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsContactListRequest|null|undefined} bizBroadcastInsightsContactListRequest
+             * @memberof E2E.Message.PeerDataOperationRequestMessage
+             * @instance
+             */
+            PeerDataOperationRequestMessage.prototype.bizBroadcastInsightsContactListRequest = null;
+
+            /**
+             * PeerDataOperationRequestMessage bizBroadcastInsightsRefreshRequest.
+             * @member {E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsRefreshRequest|null|undefined} bizBroadcastInsightsRefreshRequest
+             * @memberof E2E.Message.PeerDataOperationRequestMessage
+             * @instance
+             */
+            PeerDataOperationRequestMessage.prototype.bizBroadcastInsightsRefreshRequest = null;
+
+            /**
              * Creates a new PeerDataOperationRequestMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.PeerDataOperationRequestMessage
@@ -49982,6 +49997,10 @@ $root.E2E = (function() {
                     $root.E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.encode(message.galaxyFlowAction, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
                 if (message.companionCanonicalUserNonceFetchRequest != null && Object.hasOwnProperty.call(message, "companionCanonicalUserNonceFetchRequest"))
                     $root.E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest.encode(message.companionCanonicalUserNonceFetchRequest, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
+                if (message.bizBroadcastInsightsContactListRequest != null && Object.hasOwnProperty.call(message, "bizBroadcastInsightsContactListRequest"))
+                    $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest.encode(message.bizBroadcastInsightsContactListRequest, writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
+                if (message.bizBroadcastInsightsRefreshRequest != null && Object.hasOwnProperty.call(message, "bizBroadcastInsightsRefreshRequest"))
+                    $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest.encode(message.bizBroadcastInsightsRefreshRequest, writer.uint32(/* id 12, wireType 2 =*/98).fork()).ldelim();
                 return writer;
             };
 
@@ -50064,6 +50083,14 @@ $root.E2E = (function() {
                             message.companionCanonicalUserNonceFetchRequest = $root.E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest.decode(reader, reader.uint32());
                             break;
                         }
+                    case 11: {
+                            message.bizBroadcastInsightsContactListRequest = $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 12: {
+                            message.bizBroadcastInsightsRefreshRequest = $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest.decode(reader, reader.uint32());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -50115,6 +50142,8 @@ $root.E2E = (function() {
                     case 9:
                     case 10:
                     case 11:
+                    case 12:
+                    case 13:
                         break;
                     }
                 if (message.requestStickerReupload != null && message.hasOwnProperty("requestStickerReupload")) {
@@ -50173,6 +50202,16 @@ $root.E2E = (function() {
                     var error = $root.E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest.verify(message.companionCanonicalUserNonceFetchRequest);
                     if (error)
                         return "companionCanonicalUserNonceFetchRequest." + error;
+                }
+                if (message.bizBroadcastInsightsContactListRequest != null && message.hasOwnProperty("bizBroadcastInsightsContactListRequest")) {
+                    var error = $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest.verify(message.bizBroadcastInsightsContactListRequest);
+                    if (error)
+                        return "bizBroadcastInsightsContactListRequest." + error;
+                }
+                if (message.bizBroadcastInsightsRefreshRequest != null && message.hasOwnProperty("bizBroadcastInsightsRefreshRequest")) {
+                    var error = $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest.verify(message.bizBroadcastInsightsRefreshRequest);
+                    if (error)
+                        return "bizBroadcastInsightsRefreshRequest." + error;
                 }
                 return null;
             };
@@ -50244,6 +50283,14 @@ $root.E2E = (function() {
                 case 11:
                     message.peerDataOperationRequestType = 11;
                     break;
+                case "BUSINESS_BROADCAST_INSIGHTS_DELIVERED_TO":
+                case 12:
+                    message.peerDataOperationRequestType = 12;
+                    break;
+                case "BUSINESS_BROADCAST_INSIGHTS_REFRESH":
+                case 13:
+                    message.peerDataOperationRequestType = 13;
+                    break;
                 }
                 if (object.requestStickerReupload) {
                     if (!Array.isArray(object.requestStickerReupload))
@@ -50305,6 +50352,16 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.companionCanonicalUserNonceFetchRequest: object expected");
                     message.companionCanonicalUserNonceFetchRequest = $root.E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest.fromObject(object.companionCanonicalUserNonceFetchRequest);
                 }
+                if (object.bizBroadcastInsightsContactListRequest != null) {
+                    if (typeof object.bizBroadcastInsightsContactListRequest !== "object")
+                        throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.bizBroadcastInsightsContactListRequest: object expected");
+                    message.bizBroadcastInsightsContactListRequest = $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest.fromObject(object.bizBroadcastInsightsContactListRequest);
+                }
+                if (object.bizBroadcastInsightsRefreshRequest != null) {
+                    if (typeof object.bizBroadcastInsightsRefreshRequest !== "object")
+                        throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.bizBroadcastInsightsRefreshRequest: object expected");
+                    message.bizBroadcastInsightsRefreshRequest = $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest.fromObject(object.bizBroadcastInsightsRefreshRequest);
+                }
                 return message;
             };
 
@@ -50334,6 +50391,8 @@ $root.E2E = (function() {
                     object.historySyncChunkRetryRequest = null;
                     object.galaxyFlowAction = null;
                     object.companionCanonicalUserNonceFetchRequest = null;
+                    object.bizBroadcastInsightsContactListRequest = null;
+                    object.bizBroadcastInsightsRefreshRequest = null;
                 }
                 if (message.peerDataOperationRequestType != null && message.hasOwnProperty("peerDataOperationRequestType"))
                     object.peerDataOperationRequestType = options.enums === String ? $root.E2E.Message.PeerDataOperationRequestType[message.peerDataOperationRequestType] === undefined ? message.peerDataOperationRequestType : $root.E2E.Message.PeerDataOperationRequestType[message.peerDataOperationRequestType] : message.peerDataOperationRequestType;
@@ -50364,6 +50423,10 @@ $root.E2E = (function() {
                     object.galaxyFlowAction = $root.E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.toObject(message.galaxyFlowAction, options);
                 if (message.companionCanonicalUserNonceFetchRequest != null && message.hasOwnProperty("companionCanonicalUserNonceFetchRequest"))
                     object.companionCanonicalUserNonceFetchRequest = $root.E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest.toObject(message.companionCanonicalUserNonceFetchRequest, options);
+                if (message.bizBroadcastInsightsContactListRequest != null && message.hasOwnProperty("bizBroadcastInsightsContactListRequest"))
+                    object.bizBroadcastInsightsContactListRequest = $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest.toObject(message.bizBroadcastInsightsContactListRequest, options);
+                if (message.bizBroadcastInsightsRefreshRequest != null && message.hasOwnProperty("bizBroadcastInsightsRefreshRequest"))
+                    object.bizBroadcastInsightsRefreshRequest = $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest.toObject(message.bizBroadcastInsightsRefreshRequest, options);
                 return object;
             };
 
@@ -50392,6 +50455,416 @@ $root.E2E = (function() {
                 }
                 return typeUrlPrefix + "/E2E.Message.PeerDataOperationRequestMessage";
             };
+
+            PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest = (function() {
+
+                /**
+                 * Properties of a BizBroadcastInsightsContactListRequest.
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage
+                 * @interface IBizBroadcastInsightsContactListRequest
+                 * @property {string|null} [campaignId] BizBroadcastInsightsContactListRequest campaignId
+                 */
+
+                /**
+                 * Constructs a new BizBroadcastInsightsContactListRequest.
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage
+                 * @classdesc Represents a BizBroadcastInsightsContactListRequest.
+                 * @implements IBizBroadcastInsightsContactListRequest
+                 * @constructor
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsContactListRequest=} [properties] Properties to set
+                 */
+                function BizBroadcastInsightsContactListRequest(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * BizBroadcastInsightsContactListRequest campaignId.
+                 * @member {string} campaignId
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest
+                 * @instance
+                 */
+                BizBroadcastInsightsContactListRequest.prototype.campaignId = "";
+
+                /**
+                 * Creates a new BizBroadcastInsightsContactListRequest instance using the specified properties.
+                 * @function create
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsContactListRequest=} [properties] Properties to set
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest} BizBroadcastInsightsContactListRequest instance
+                 */
+                BizBroadcastInsightsContactListRequest.create = function create(properties) {
+                    return new BizBroadcastInsightsContactListRequest(properties);
+                };
+
+                /**
+                 * Encodes the specified BizBroadcastInsightsContactListRequest message. Does not implicitly {@link E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest.verify|verify} messages.
+                 * @function encode
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsContactListRequest} message BizBroadcastInsightsContactListRequest message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                BizBroadcastInsightsContactListRequest.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.campaignId != null && Object.hasOwnProperty.call(message, "campaignId"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.campaignId);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified BizBroadcastInsightsContactListRequest message, length delimited. Does not implicitly {@link E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsContactListRequest} message BizBroadcastInsightsContactListRequest message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                BizBroadcastInsightsContactListRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a BizBroadcastInsightsContactListRequest message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest} BizBroadcastInsightsContactListRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                BizBroadcastInsightsContactListRequest.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.campaignId = reader.string();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a BizBroadcastInsightsContactListRequest message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest} BizBroadcastInsightsContactListRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                BizBroadcastInsightsContactListRequest.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a BizBroadcastInsightsContactListRequest message.
+                 * @function verify
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                BizBroadcastInsightsContactListRequest.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.campaignId != null && message.hasOwnProperty("campaignId"))
+                        if (!$util.isString(message.campaignId))
+                            return "campaignId: string expected";
+                    return null;
+                };
+
+                /**
+                 * Creates a BizBroadcastInsightsContactListRequest message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest} BizBroadcastInsightsContactListRequest
+                 */
+                BizBroadcastInsightsContactListRequest.fromObject = function fromObject(object) {
+                    if (object instanceof $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest)
+                        return object;
+                    var message = new $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest();
+                    if (object.campaignId != null)
+                        message.campaignId = String(object.campaignId);
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a BizBroadcastInsightsContactListRequest message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest} message BizBroadcastInsightsContactListRequest
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                BizBroadcastInsightsContactListRequest.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults)
+                        object.campaignId = "";
+                    if (message.campaignId != null && message.hasOwnProperty("campaignId"))
+                        object.campaignId = message.campaignId;
+                    return object;
+                };
+
+                /**
+                 * Converts this BizBroadcastInsightsContactListRequest to JSON.
+                 * @function toJSON
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                BizBroadcastInsightsContactListRequest.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for BizBroadcastInsightsContactListRequest
+                 * @function getTypeUrl
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                BizBroadcastInsightsContactListRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest";
+                };
+
+                return BizBroadcastInsightsContactListRequest;
+            })();
+
+            PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest = (function() {
+
+                /**
+                 * Properties of a BizBroadcastInsightsRefreshRequest.
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage
+                 * @interface IBizBroadcastInsightsRefreshRequest
+                 * @property {string|null} [campaignId] BizBroadcastInsightsRefreshRequest campaignId
+                 */
+
+                /**
+                 * Constructs a new BizBroadcastInsightsRefreshRequest.
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage
+                 * @classdesc Represents a BizBroadcastInsightsRefreshRequest.
+                 * @implements IBizBroadcastInsightsRefreshRequest
+                 * @constructor
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsRefreshRequest=} [properties] Properties to set
+                 */
+                function BizBroadcastInsightsRefreshRequest(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * BizBroadcastInsightsRefreshRequest campaignId.
+                 * @member {string} campaignId
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest
+                 * @instance
+                 */
+                BizBroadcastInsightsRefreshRequest.prototype.campaignId = "";
+
+                /**
+                 * Creates a new BizBroadcastInsightsRefreshRequest instance using the specified properties.
+                 * @function create
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsRefreshRequest=} [properties] Properties to set
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest} BizBroadcastInsightsRefreshRequest instance
+                 */
+                BizBroadcastInsightsRefreshRequest.create = function create(properties) {
+                    return new BizBroadcastInsightsRefreshRequest(properties);
+                };
+
+                /**
+                 * Encodes the specified BizBroadcastInsightsRefreshRequest message. Does not implicitly {@link E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest.verify|verify} messages.
+                 * @function encode
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsRefreshRequest} message BizBroadcastInsightsRefreshRequest message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                BizBroadcastInsightsRefreshRequest.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.campaignId != null && Object.hasOwnProperty.call(message, "campaignId"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.campaignId);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified BizBroadcastInsightsRefreshRequest message, length delimited. Does not implicitly {@link E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsRefreshRequest} message BizBroadcastInsightsRefreshRequest message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                BizBroadcastInsightsRefreshRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a BizBroadcastInsightsRefreshRequest message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest} BizBroadcastInsightsRefreshRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                BizBroadcastInsightsRefreshRequest.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.campaignId = reader.string();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a BizBroadcastInsightsRefreshRequest message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest} BizBroadcastInsightsRefreshRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                BizBroadcastInsightsRefreshRequest.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a BizBroadcastInsightsRefreshRequest message.
+                 * @function verify
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                BizBroadcastInsightsRefreshRequest.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.campaignId != null && message.hasOwnProperty("campaignId"))
+                        if (!$util.isString(message.campaignId))
+                            return "campaignId: string expected";
+                    return null;
+                };
+
+                /**
+                 * Creates a BizBroadcastInsightsRefreshRequest message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest} BizBroadcastInsightsRefreshRequest
+                 */
+                BizBroadcastInsightsRefreshRequest.fromObject = function fromObject(object) {
+                    if (object instanceof $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest)
+                        return object;
+                    var message = new $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest();
+                    if (object.campaignId != null)
+                        message.campaignId = String(object.campaignId);
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a BizBroadcastInsightsRefreshRequest message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest
+                 * @static
+                 * @param {E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest} message BizBroadcastInsightsRefreshRequest
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                BizBroadcastInsightsRefreshRequest.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults)
+                        object.campaignId = "";
+                    if (message.campaignId != null && message.hasOwnProperty("campaignId"))
+                        object.campaignId = message.campaignId;
+                    return object;
+                };
+
+                /**
+                 * Converts this BizBroadcastInsightsRefreshRequest to JSON.
+                 * @function toJSON
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                BizBroadcastInsightsRefreshRequest.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for BizBroadcastInsightsRefreshRequest
+                 * @function getTypeUrl
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                BizBroadcastInsightsRefreshRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest";
+                };
+
+                return BizBroadcastInsightsRefreshRequest;
+            })();
 
             PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest = (function() {
 
@@ -52933,6 +53406,8 @@ $root.E2E = (function() {
                     case 9:
                     case 10:
                     case 11:
+                    case 12:
+                    case 13:
                         break;
                     }
                 if (message.stanzaId != null && message.hasOwnProperty("stanzaId"))
@@ -53016,6 +53491,14 @@ $root.E2E = (function() {
                 case "GALAXY_FLOW_ACTION":
                 case 11:
                     message.peerDataOperationRequestType = 11;
+                    break;
+                case "BUSINESS_BROADCAST_INSIGHTS_DELIVERED_TO":
+                case 12:
+                    message.peerDataOperationRequestType = 12;
+                    break;
+                case "BUSINESS_BROADCAST_INSIGHTS_REFRESH":
+                case 13:
+                    message.peerDataOperationRequestType = 13;
                     break;
                 }
                 if (object.stanzaId != null)
@@ -53107,6 +53590,7 @@ $root.E2E = (function() {
                  * @property {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.ICompanionCanonicalUserNonceFetchResponse|null} [companionCanonicalUserNonceFetchRequestResponse] PeerDataOperationResult companionCanonicalUserNonceFetchRequestResponse
                  * @property {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IHistorySyncChunkRetryResponse|null} [historySyncChunkRetryResponse] PeerDataOperationResult historySyncChunkRetryResponse
                  * @property {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IFlowResponsesCsvBundle|null} [flowResponsesCsvBundle] PeerDataOperationResult flowResponsesCsvBundle
+                 * @property {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IBizBroadcastInsightsContactListResponse|null} [bizBroadcastInsightsContactListResponse] PeerDataOperationResult bizBroadcastInsightsContactListResponse
                  */
 
                 /**
@@ -53213,6 +53697,14 @@ $root.E2E = (function() {
                 PeerDataOperationResult.prototype.flowResponsesCsvBundle = null;
 
                 /**
+                 * PeerDataOperationResult bizBroadcastInsightsContactListResponse.
+                 * @member {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IBizBroadcastInsightsContactListResponse|null|undefined} bizBroadcastInsightsContactListResponse
+                 * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult
+                 * @instance
+                 */
+                PeerDataOperationResult.prototype.bizBroadcastInsightsContactListResponse = null;
+
+                /**
                  * Creates a new PeerDataOperationResult instance using the specified properties.
                  * @function create
                  * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult
@@ -53258,6 +53750,8 @@ $root.E2E = (function() {
                         $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.HistorySyncChunkRetryResponse.encode(message.historySyncChunkRetryResponse, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
                     if (message.flowResponsesCsvBundle != null && Object.hasOwnProperty.call(message, "flowResponsesCsvBundle"))
                         $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle.encode(message.flowResponsesCsvBundle, writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
+                    if (message.bizBroadcastInsightsContactListResponse != null && Object.hasOwnProperty.call(message, "bizBroadcastInsightsContactListResponse"))
+                        $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse.encode(message.bizBroadcastInsightsContactListResponse, writer.uint32(/* id 12, wireType 2 =*/98).fork()).ldelim();
                     return writer;
                 };
 
@@ -53336,6 +53830,10 @@ $root.E2E = (function() {
                             }
                         case 11: {
                                 message.flowResponsesCsvBundle = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle.decode(reader, reader.uint32());
+                                break;
+                            }
+                        case 12: {
+                                message.bizBroadcastInsightsContactListResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse.decode(reader, reader.uint32());
                                 break;
                             }
                         default:
@@ -53433,6 +53931,11 @@ $root.E2E = (function() {
                         if (error)
                             return "flowResponsesCsvBundle." + error;
                     }
+                    if (message.bizBroadcastInsightsContactListResponse != null && message.hasOwnProperty("bizBroadcastInsightsContactListResponse")) {
+                        var error = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse.verify(message.bizBroadcastInsightsContactListResponse);
+                        if (error)
+                            return "bizBroadcastInsightsContactListResponse." + error;
+                    }
                     return null;
                 };
 
@@ -53522,6 +54025,11 @@ $root.E2E = (function() {
                             throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.flowResponsesCsvBundle: object expected");
                         message.flowResponsesCsvBundle = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle.fromObject(object.flowResponsesCsvBundle);
                     }
+                    if (object.bizBroadcastInsightsContactListResponse != null) {
+                        if (typeof object.bizBroadcastInsightsContactListResponse !== "object")
+                            throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.bizBroadcastInsightsContactListResponse: object expected");
+                        message.bizBroadcastInsightsContactListResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse.fromObject(object.bizBroadcastInsightsContactListResponse);
+                    }
                     return message;
                 };
 
@@ -53550,6 +54058,7 @@ $root.E2E = (function() {
                         object.companionCanonicalUserNonceFetchRequestResponse = null;
                         object.historySyncChunkRetryResponse = null;
                         object.flowResponsesCsvBundle = null;
+                        object.bizBroadcastInsightsContactListResponse = null;
                     }
                     if (message.mediaUploadResult != null && message.hasOwnProperty("mediaUploadResult"))
                         object.mediaUploadResult = options.enums === String ? $root.MmsRetry.MediaRetryNotification.ResultType[message.mediaUploadResult] === undefined ? message.mediaUploadResult : $root.MmsRetry.MediaRetryNotification.ResultType[message.mediaUploadResult] : message.mediaUploadResult;
@@ -53573,6 +54082,8 @@ $root.E2E = (function() {
                         object.historySyncChunkRetryResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.HistorySyncChunkRetryResponse.toObject(message.historySyncChunkRetryResponse, options);
                     if (message.flowResponsesCsvBundle != null && message.hasOwnProperty("flowResponsesCsvBundle"))
                         object.flowResponsesCsvBundle = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle.toObject(message.flowResponsesCsvBundle, options);
+                    if (message.bizBroadcastInsightsContactListResponse != null && message.hasOwnProperty("bizBroadcastInsightsContactListResponse"))
+                        object.bizBroadcastInsightsContactListResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse.toObject(message.bizBroadcastInsightsContactListResponse, options);
                     return object;
                 };
 
@@ -53601,6 +54112,557 @@ $root.E2E = (function() {
                     }
                     return typeUrlPrefix + "/E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult";
                 };
+
+                PeerDataOperationResult.BizBroadcastInsightsContactListResponse = (function() {
+
+                    /**
+                     * Properties of a BizBroadcastInsightsContactListResponse.
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult
+                     * @interface IBizBroadcastInsightsContactListResponse
+                     * @property {string|null} [campaignId] BizBroadcastInsightsContactListResponse campaignId
+                     * @property {number|Long|null} [timestampMs] BizBroadcastInsightsContactListResponse timestampMs
+                     * @property {Array.<E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IBizBroadcastInsightsContactState>|null} [contacts] BizBroadcastInsightsContactListResponse contacts
+                     */
+
+                    /**
+                     * Constructs a new BizBroadcastInsightsContactListResponse.
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult
+                     * @classdesc Represents a BizBroadcastInsightsContactListResponse.
+                     * @implements IBizBroadcastInsightsContactListResponse
+                     * @constructor
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IBizBroadcastInsightsContactListResponse=} [properties] Properties to set
+                     */
+                    function BizBroadcastInsightsContactListResponse(properties) {
+                        this.contacts = [];
+                        if (properties)
+                            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                if (properties[keys[i]] != null)
+                                    this[keys[i]] = properties[keys[i]];
+                    }
+
+                    /**
+                     * BizBroadcastInsightsContactListResponse campaignId.
+                     * @member {string} campaignId
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse
+                     * @instance
+                     */
+                    BizBroadcastInsightsContactListResponse.prototype.campaignId = "";
+
+                    /**
+                     * BizBroadcastInsightsContactListResponse timestampMs.
+                     * @member {number|Long} timestampMs
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse
+                     * @instance
+                     */
+                    BizBroadcastInsightsContactListResponse.prototype.timestampMs = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+                    /**
+                     * BizBroadcastInsightsContactListResponse contacts.
+                     * @member {Array.<E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IBizBroadcastInsightsContactState>} contacts
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse
+                     * @instance
+                     */
+                    BizBroadcastInsightsContactListResponse.prototype.contacts = $util.emptyArray;
+
+                    /**
+                     * Creates a new BizBroadcastInsightsContactListResponse instance using the specified properties.
+                     * @function create
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse
+                     * @static
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IBizBroadcastInsightsContactListResponse=} [properties] Properties to set
+                     * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse} BizBroadcastInsightsContactListResponse instance
+                     */
+                    BizBroadcastInsightsContactListResponse.create = function create(properties) {
+                        return new BizBroadcastInsightsContactListResponse(properties);
+                    };
+
+                    /**
+                     * Encodes the specified BizBroadcastInsightsContactListResponse message. Does not implicitly {@link E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse.verify|verify} messages.
+                     * @function encode
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse
+                     * @static
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IBizBroadcastInsightsContactListResponse} message BizBroadcastInsightsContactListResponse message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    BizBroadcastInsightsContactListResponse.encode = function encode(message, writer) {
+                        if (!writer)
+                            writer = $Writer.create();
+                        if (message.campaignId != null && Object.hasOwnProperty.call(message, "campaignId"))
+                            writer.uint32(/* id 1, wireType 2 =*/10).string(message.campaignId);
+                        if (message.timestampMs != null && Object.hasOwnProperty.call(message, "timestampMs"))
+                            writer.uint32(/* id 2, wireType 0 =*/16).int64(message.timestampMs);
+                        if (message.contacts != null && message.contacts.length)
+                            for (var i = 0; i < message.contacts.length; ++i)
+                                $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState.encode(message.contacts[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                        return writer;
+                    };
+
+                    /**
+                     * Encodes the specified BizBroadcastInsightsContactListResponse message, length delimited. Does not implicitly {@link E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse.verify|verify} messages.
+                     * @function encodeDelimited
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse
+                     * @static
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IBizBroadcastInsightsContactListResponse} message BizBroadcastInsightsContactListResponse message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    BizBroadcastInsightsContactListResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                        return this.encode(message, writer).ldelim();
+                    };
+
+                    /**
+                     * Decodes a BizBroadcastInsightsContactListResponse message from the specified reader or buffer.
+                     * @function decode
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @param {number} [length] Message length if known beforehand
+                     * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse} BizBroadcastInsightsContactListResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    BizBroadcastInsightsContactListResponse.decode = function decode(reader, length, error) {
+                        if (!(reader instanceof $Reader))
+                            reader = $Reader.create(reader);
+                        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse();
+                        while (reader.pos < end) {
+                            var tag = reader.uint32();
+                            if (tag === error)
+                                break;
+                            switch (tag >>> 3) {
+                            case 1: {
+                                    message.campaignId = reader.string();
+                                    break;
+                                }
+                            case 2: {
+                                    message.timestampMs = reader.int64();
+                                    break;
+                                }
+                            case 3: {
+                                    if (!(message.contacts && message.contacts.length))
+                                        message.contacts = [];
+                                    message.contacts.push($root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState.decode(reader, reader.uint32()));
+                                    break;
+                                }
+                            default:
+                                reader.skipType(tag & 7);
+                                break;
+                            }
+                        }
+                        return message;
+                    };
+
+                    /**
+                     * Decodes a BizBroadcastInsightsContactListResponse message from the specified reader or buffer, length delimited.
+                     * @function decodeDelimited
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse} BizBroadcastInsightsContactListResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    BizBroadcastInsightsContactListResponse.decodeDelimited = function decodeDelimited(reader) {
+                        if (!(reader instanceof $Reader))
+                            reader = new $Reader(reader);
+                        return this.decode(reader, reader.uint32());
+                    };
+
+                    /**
+                     * Verifies a BizBroadcastInsightsContactListResponse message.
+                     * @function verify
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse
+                     * @static
+                     * @param {Object.<string,*>} message Plain object to verify
+                     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                     */
+                    BizBroadcastInsightsContactListResponse.verify = function verify(message) {
+                        if (typeof message !== "object" || message === null)
+                            return "object expected";
+                        if (message.campaignId != null && message.hasOwnProperty("campaignId"))
+                            if (!$util.isString(message.campaignId))
+                                return "campaignId: string expected";
+                        if (message.timestampMs != null && message.hasOwnProperty("timestampMs"))
+                            if (!$util.isInteger(message.timestampMs) && !(message.timestampMs && $util.isInteger(message.timestampMs.low) && $util.isInteger(message.timestampMs.high)))
+                                return "timestampMs: integer|Long expected";
+                        if (message.contacts != null && message.hasOwnProperty("contacts")) {
+                            if (!Array.isArray(message.contacts))
+                                return "contacts: array expected";
+                            for (var i = 0; i < message.contacts.length; ++i) {
+                                var error = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState.verify(message.contacts[i]);
+                                if (error)
+                                    return "contacts." + error;
+                            }
+                        }
+                        return null;
+                    };
+
+                    /**
+                     * Creates a BizBroadcastInsightsContactListResponse message from a plain object. Also converts values to their respective internal types.
+                     * @function fromObject
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse
+                     * @static
+                     * @param {Object.<string,*>} object Plain object
+                     * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse} BizBroadcastInsightsContactListResponse
+                     */
+                    BizBroadcastInsightsContactListResponse.fromObject = function fromObject(object) {
+                        if (object instanceof $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse)
+                            return object;
+                        var message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse();
+                        if (object.campaignId != null)
+                            message.campaignId = String(object.campaignId);
+                        if (object.timestampMs != null)
+                            if ($util.Long)
+                                (message.timestampMs = $util.Long.fromValue(object.timestampMs)).unsigned = false;
+                            else if (typeof object.timestampMs === "string")
+                                message.timestampMs = parseInt(object.timestampMs, 10);
+                            else if (typeof object.timestampMs === "number")
+                                message.timestampMs = object.timestampMs;
+                            else if (typeof object.timestampMs === "object")
+                                message.timestampMs = new $util.LongBits(object.timestampMs.low >>> 0, object.timestampMs.high >>> 0).toNumber();
+                        if (object.contacts) {
+                            if (!Array.isArray(object.contacts))
+                                throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse.contacts: array expected");
+                            message.contacts = [];
+                            for (var i = 0; i < object.contacts.length; ++i) {
+                                if (typeof object.contacts[i] !== "object")
+                                    throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse.contacts: object expected");
+                                message.contacts[i] = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState.fromObject(object.contacts[i]);
+                            }
+                        }
+                        return message;
+                    };
+
+                    /**
+                     * Creates a plain object from a BizBroadcastInsightsContactListResponse message. Also converts values to other types if specified.
+                     * @function toObject
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse
+                     * @static
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse} message BizBroadcastInsightsContactListResponse
+                     * @param {$protobuf.IConversionOptions} [options] Conversion options
+                     * @returns {Object.<string,*>} Plain object
+                     */
+                    BizBroadcastInsightsContactListResponse.toObject = function toObject(message, options) {
+                        if (!options)
+                            options = {};
+                        var object = {};
+                        if (options.arrays || options.defaults)
+                            object.contacts = [];
+                        if (options.defaults) {
+                            object.campaignId = "";
+                            if ($util.Long) {
+                                var long = new $util.Long(0, 0, false);
+                                object.timestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                            } else
+                                object.timestampMs = options.longs === String ? "0" : 0;
+                        }
+                        if (message.campaignId != null && message.hasOwnProperty("campaignId"))
+                            object.campaignId = message.campaignId;
+                        if (message.timestampMs != null && message.hasOwnProperty("timestampMs"))
+                            if (typeof message.timestampMs === "number")
+                                object.timestampMs = options.longs === String ? String(message.timestampMs) : message.timestampMs;
+                            else
+                                object.timestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.timestampMs) : options.longs === Number ? new $util.LongBits(message.timestampMs.low >>> 0, message.timestampMs.high >>> 0).toNumber() : message.timestampMs;
+                        if (message.contacts && message.contacts.length) {
+                            object.contacts = [];
+                            for (var j = 0; j < message.contacts.length; ++j)
+                                object.contacts[j] = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState.toObject(message.contacts[j], options);
+                        }
+                        return object;
+                    };
+
+                    /**
+                     * Converts this BizBroadcastInsightsContactListResponse to JSON.
+                     * @function toJSON
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse
+                     * @instance
+                     * @returns {Object.<string,*>} JSON object
+                     */
+                    BizBroadcastInsightsContactListResponse.prototype.toJSON = function toJSON() {
+                        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                    };
+
+                    /**
+                     * Gets the default type url for BizBroadcastInsightsContactListResponse
+                     * @function getTypeUrl
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse
+                     * @static
+                     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns {string} The default type url
+                     */
+                    BizBroadcastInsightsContactListResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        if (typeUrlPrefix === undefined) {
+                            typeUrlPrefix = "type.googleapis.com";
+                        }
+                        return typeUrlPrefix + "/E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse";
+                    };
+
+                    return BizBroadcastInsightsContactListResponse;
+                })();
+
+                PeerDataOperationResult.BizBroadcastInsightsContactState = (function() {
+
+                    /**
+                     * Properties of a BizBroadcastInsightsContactState.
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult
+                     * @interface IBizBroadcastInsightsContactState
+                     * @property {string|null} [contactJid] BizBroadcastInsightsContactState contactJid
+                     * @property {E2E.Message.InsightDeliveryState|null} [state] BizBroadcastInsightsContactState state
+                     */
+
+                    /**
+                     * Constructs a new BizBroadcastInsightsContactState.
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult
+                     * @classdesc Represents a BizBroadcastInsightsContactState.
+                     * @implements IBizBroadcastInsightsContactState
+                     * @constructor
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IBizBroadcastInsightsContactState=} [properties] Properties to set
+                     */
+                    function BizBroadcastInsightsContactState(properties) {
+                        if (properties)
+                            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                if (properties[keys[i]] != null)
+                                    this[keys[i]] = properties[keys[i]];
+                    }
+
+                    /**
+                     * BizBroadcastInsightsContactState contactJid.
+                     * @member {string} contactJid
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState
+                     * @instance
+                     */
+                    BizBroadcastInsightsContactState.prototype.contactJid = "";
+
+                    /**
+                     * BizBroadcastInsightsContactState state.
+                     * @member {E2E.Message.InsightDeliveryState} state
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState
+                     * @instance
+                     */
+                    BizBroadcastInsightsContactState.prototype.state = 0;
+
+                    /**
+                     * Creates a new BizBroadcastInsightsContactState instance using the specified properties.
+                     * @function create
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState
+                     * @static
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IBizBroadcastInsightsContactState=} [properties] Properties to set
+                     * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState} BizBroadcastInsightsContactState instance
+                     */
+                    BizBroadcastInsightsContactState.create = function create(properties) {
+                        return new BizBroadcastInsightsContactState(properties);
+                    };
+
+                    /**
+                     * Encodes the specified BizBroadcastInsightsContactState message. Does not implicitly {@link E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState.verify|verify} messages.
+                     * @function encode
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState
+                     * @static
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IBizBroadcastInsightsContactState} message BizBroadcastInsightsContactState message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    BizBroadcastInsightsContactState.encode = function encode(message, writer) {
+                        if (!writer)
+                            writer = $Writer.create();
+                        if (message.contactJid != null && Object.hasOwnProperty.call(message, "contactJid"))
+                            writer.uint32(/* id 1, wireType 2 =*/10).string(message.contactJid);
+                        if (message.state != null && Object.hasOwnProperty.call(message, "state"))
+                            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.state);
+                        return writer;
+                    };
+
+                    /**
+                     * Encodes the specified BizBroadcastInsightsContactState message, length delimited. Does not implicitly {@link E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState.verify|verify} messages.
+                     * @function encodeDelimited
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState
+                     * @static
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IBizBroadcastInsightsContactState} message BizBroadcastInsightsContactState message or plain object to encode
+                     * @param {$protobuf.Writer} [writer] Writer to encode to
+                     * @returns {$protobuf.Writer} Writer
+                     */
+                    BizBroadcastInsightsContactState.encodeDelimited = function encodeDelimited(message, writer) {
+                        return this.encode(message, writer).ldelim();
+                    };
+
+                    /**
+                     * Decodes a BizBroadcastInsightsContactState message from the specified reader or buffer.
+                     * @function decode
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @param {number} [length] Message length if known beforehand
+                     * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState} BizBroadcastInsightsContactState
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    BizBroadcastInsightsContactState.decode = function decode(reader, length, error) {
+                        if (!(reader instanceof $Reader))
+                            reader = $Reader.create(reader);
+                        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState();
+                        while (reader.pos < end) {
+                            var tag = reader.uint32();
+                            if (tag === error)
+                                break;
+                            switch (tag >>> 3) {
+                            case 1: {
+                                    message.contactJid = reader.string();
+                                    break;
+                                }
+                            case 2: {
+                                    message.state = reader.int32();
+                                    break;
+                                }
+                            default:
+                                reader.skipType(tag & 7);
+                                break;
+                            }
+                        }
+                        return message;
+                    };
+
+                    /**
+                     * Decodes a BizBroadcastInsightsContactState message from the specified reader or buffer, length delimited.
+                     * @function decodeDelimited
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState
+                     * @static
+                     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                     * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState} BizBroadcastInsightsContactState
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    BizBroadcastInsightsContactState.decodeDelimited = function decodeDelimited(reader) {
+                        if (!(reader instanceof $Reader))
+                            reader = new $Reader(reader);
+                        return this.decode(reader, reader.uint32());
+                    };
+
+                    /**
+                     * Verifies a BizBroadcastInsightsContactState message.
+                     * @function verify
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState
+                     * @static
+                     * @param {Object.<string,*>} message Plain object to verify
+                     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                     */
+                    BizBroadcastInsightsContactState.verify = function verify(message) {
+                        if (typeof message !== "object" || message === null)
+                            return "object expected";
+                        if (message.contactJid != null && message.hasOwnProperty("contactJid"))
+                            if (!$util.isString(message.contactJid))
+                                return "contactJid: string expected";
+                        if (message.state != null && message.hasOwnProperty("state"))
+                            switch (message.state) {
+                            default:
+                                return "state: enum value expected";
+                            case 0:
+                            case 1:
+                            case 2:
+                            case 3:
+                            case 4:
+                                break;
+                            }
+                        return null;
+                    };
+
+                    /**
+                     * Creates a BizBroadcastInsightsContactState message from a plain object. Also converts values to their respective internal types.
+                     * @function fromObject
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState
+                     * @static
+                     * @param {Object.<string,*>} object Plain object
+                     * @returns {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState} BizBroadcastInsightsContactState
+                     */
+                    BizBroadcastInsightsContactState.fromObject = function fromObject(object) {
+                        if (object instanceof $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState)
+                            return object;
+                        var message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState();
+                        if (object.contactJid != null)
+                            message.contactJid = String(object.contactJid);
+                        switch (object.state) {
+                        default:
+                            if (typeof object.state === "number") {
+                                message.state = object.state;
+                                break;
+                            }
+                            break;
+                        case "SENT":
+                        case 0:
+                            message.state = 0;
+                            break;
+                        case "DELIVERED":
+                        case 1:
+                            message.state = 1;
+                            break;
+                        case "READ":
+                        case 2:
+                            message.state = 2;
+                            break;
+                        case "REPLIED":
+                        case 3:
+                            message.state = 3;
+                            break;
+                        case "QUICK_REPLIED":
+                        case 4:
+                            message.state = 4;
+                            break;
+                        }
+                        return message;
+                    };
+
+                    /**
+                     * Creates a plain object from a BizBroadcastInsightsContactState message. Also converts values to other types if specified.
+                     * @function toObject
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState
+                     * @static
+                     * @param {E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState} message BizBroadcastInsightsContactState
+                     * @param {$protobuf.IConversionOptions} [options] Conversion options
+                     * @returns {Object.<string,*>} Plain object
+                     */
+                    BizBroadcastInsightsContactState.toObject = function toObject(message, options) {
+                        if (!options)
+                            options = {};
+                        var object = {};
+                        if (options.defaults) {
+                            object.contactJid = "";
+                            object.state = options.enums === String ? "SENT" : 0;
+                        }
+                        if (message.contactJid != null && message.hasOwnProperty("contactJid"))
+                            object.contactJid = message.contactJid;
+                        if (message.state != null && message.hasOwnProperty("state"))
+                            object.state = options.enums === String ? $root.E2E.Message.InsightDeliveryState[message.state] === undefined ? message.state : $root.E2E.Message.InsightDeliveryState[message.state] : message.state;
+                        return object;
+                    };
+
+                    /**
+                     * Converts this BizBroadcastInsightsContactState to JSON.
+                     * @function toJSON
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState
+                     * @instance
+                     * @returns {Object.<string,*>} JSON object
+                     */
+                    BizBroadcastInsightsContactState.prototype.toJSON = function toJSON() {
+                        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                    };
+
+                    /**
+                     * Gets the default type url for BizBroadcastInsightsContactState
+                     * @function getTypeUrl
+                     * @memberof E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState
+                     * @static
+                     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns {string} The default type url
+                     */
+                    BizBroadcastInsightsContactState.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                        if (typeUrlPrefix === undefined) {
+                            typeUrlPrefix = "type.googleapis.com";
+                        }
+                        return typeUrlPrefix + "/E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState";
+                    };
+
+                    return BizBroadcastInsightsContactState;
+                })();
 
                 PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse = (function() {
 
@@ -56996,6 +58058,8 @@ $root.E2E = (function() {
          * @property {number} COMPANION_CANONICAL_USER_NONCE_FETCH=9 COMPANION_CANONICAL_USER_NONCE_FETCH value
          * @property {number} HISTORY_SYNC_CHUNK_RETRY=10 HISTORY_SYNC_CHUNK_RETRY value
          * @property {number} GALAXY_FLOW_ACTION=11 GALAXY_FLOW_ACTION value
+         * @property {number} BUSINESS_BROADCAST_INSIGHTS_DELIVERED_TO=12 BUSINESS_BROADCAST_INSIGHTS_DELIVERED_TO value
+         * @property {number} BUSINESS_BROADCAST_INSIGHTS_REFRESH=13 BUSINESS_BROADCAST_INSIGHTS_REFRESH value
          */
         Message.PeerDataOperationRequestType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -57011,6 +58075,8 @@ $root.E2E = (function() {
             values[valuesById[9] = "COMPANION_CANONICAL_USER_NONCE_FETCH"] = 9;
             values[valuesById[10] = "HISTORY_SYNC_CHUNK_RETRY"] = 10;
             values[valuesById[11] = "GALAXY_FLOW_ACTION"] = 11;
+            values[valuesById[12] = "BUSINESS_BROADCAST_INSIGHTS_DELIVERED_TO"] = 12;
+            values[valuesById[13] = "BUSINESS_BROADCAST_INSIGHTS_REFRESH"] = 13;
             return values;
         })();
 
@@ -82107,6 +83173,7 @@ $root.AICommon = (function() {
                 case 46:
                 case 47:
                 case 54:
+                case 55:
                     break;
                 }
             if (message.forwardScore != null && message.hasOwnProperty("forwardScore"))
@@ -82317,6 +83384,10 @@ $root.AICommon = (function() {
             case "GROUP_MEMBER":
             case 54:
                 message.botEntryPointOrigin = 54;
+                break;
+            case "CHATLIST_SEARCH":
+            case 55:
+                message.botEntryPointOrigin = 55;
                 break;
             }
             if (object.forwardScore != null)
@@ -87464,6 +88535,7 @@ $root.AICommon = (function() {
          * @memberof AICommon
          * @interface IAIMediaCollectionMetadata
          * @property {string|null} [collectionId] AIMediaCollectionMetadata collectionId
+         * @property {number|null} [uploadOrderIndex] AIMediaCollectionMetadata uploadOrderIndex
          */
 
         /**
@@ -87488,6 +88560,14 @@ $root.AICommon = (function() {
          * @instance
          */
         AIMediaCollectionMetadata.prototype.collectionId = "";
+
+        /**
+         * AIMediaCollectionMetadata uploadOrderIndex.
+         * @member {number} uploadOrderIndex
+         * @memberof AICommon.AIMediaCollectionMetadata
+         * @instance
+         */
+        AIMediaCollectionMetadata.prototype.uploadOrderIndex = 0;
 
         /**
          * Creates a new AIMediaCollectionMetadata instance using the specified properties.
@@ -87515,6 +88595,8 @@ $root.AICommon = (function() {
                 writer = $Writer.create();
             if (message.collectionId != null && Object.hasOwnProperty.call(message, "collectionId"))
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.collectionId);
+            if (message.uploadOrderIndex != null && Object.hasOwnProperty.call(message, "uploadOrderIndex"))
+                writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.uploadOrderIndex);
             return writer;
         };
 
@@ -87555,6 +88637,10 @@ $root.AICommon = (function() {
                         message.collectionId = reader.string();
                         break;
                     }
+                case 2: {
+                        message.uploadOrderIndex = reader.uint32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -87593,6 +88679,9 @@ $root.AICommon = (function() {
             if (message.collectionId != null && message.hasOwnProperty("collectionId"))
                 if (!$util.isString(message.collectionId))
                     return "collectionId: string expected";
+            if (message.uploadOrderIndex != null && message.hasOwnProperty("uploadOrderIndex"))
+                if (!$util.isInteger(message.uploadOrderIndex))
+                    return "uploadOrderIndex: integer expected";
             return null;
         };
 
@@ -87610,6 +88699,8 @@ $root.AICommon = (function() {
             var message = new $root.AICommon.AIMediaCollectionMetadata();
             if (object.collectionId != null)
                 message.collectionId = String(object.collectionId);
+            if (object.uploadOrderIndex != null)
+                message.uploadOrderIndex = object.uploadOrderIndex >>> 0;
             return message;
         };
 
@@ -87626,10 +88717,14 @@ $root.AICommon = (function() {
             if (!options)
                 options = {};
             var object = {};
-            if (options.defaults)
+            if (options.defaults) {
                 object.collectionId = "";
+                object.uploadOrderIndex = 0;
+            }
             if (message.collectionId != null && message.hasOwnProperty("collectionId"))
                 object.collectionId = message.collectionId;
+            if (message.uploadOrderIndex != null && message.hasOwnProperty("uploadOrderIndex"))
+                object.uploadOrderIndex = message.uploadOrderIndex;
             return object;
         };
 
@@ -87905,6 +89000,7 @@ $root.AICommon = (function() {
              * @memberof AICommon.AIThreadInfo
              * @interface IAIThreadClientInfo
              * @property {AICommon.AIThreadInfo.AIThreadClientInfo.AIThreadType|null} [type] AIThreadClientInfo type
+             * @property {string|null} [sourceChatJid] AIThreadClientInfo sourceChatJid
              */
 
             /**
@@ -87929,6 +89025,14 @@ $root.AICommon = (function() {
              * @instance
              */
             AIThreadClientInfo.prototype.type = 0;
+
+            /**
+             * AIThreadClientInfo sourceChatJid.
+             * @member {string} sourceChatJid
+             * @memberof AICommon.AIThreadInfo.AIThreadClientInfo
+             * @instance
+             */
+            AIThreadClientInfo.prototype.sourceChatJid = "";
 
             /**
              * Creates a new AIThreadClientInfo instance using the specified properties.
@@ -87956,6 +89060,8 @@ $root.AICommon = (function() {
                     writer = $Writer.create();
                 if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.type);
+                if (message.sourceChatJid != null && Object.hasOwnProperty.call(message, "sourceChatJid"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.sourceChatJid);
                 return writer;
             };
 
@@ -87994,6 +89100,10 @@ $root.AICommon = (function() {
                     switch (tag >>> 3) {
                     case 1: {
                             message.type = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.sourceChatJid = reader.string();
                             break;
                         }
                     default:
@@ -88038,8 +89148,12 @@ $root.AICommon = (function() {
                     case 0:
                     case 1:
                     case 2:
+                    case 3:
                         break;
                     }
+                if (message.sourceChatJid != null && message.hasOwnProperty("sourceChatJid"))
+                    if (!$util.isString(message.sourceChatJid))
+                        return "sourceChatJid: string expected";
                 return null;
             };
 
@@ -88074,7 +89188,13 @@ $root.AICommon = (function() {
                 case 2:
                     message.type = 2;
                     break;
+                case "SIDE_CHAT":
+                case 3:
+                    message.type = 3;
+                    break;
                 }
+                if (object.sourceChatJid != null)
+                    message.sourceChatJid = String(object.sourceChatJid);
                 return message;
             };
 
@@ -88091,10 +89211,14 @@ $root.AICommon = (function() {
                 if (!options)
                     options = {};
                 var object = {};
-                if (options.defaults)
+                if (options.defaults) {
                     object.type = options.enums === String ? "UNKNOWN" : 0;
+                    object.sourceChatJid = "";
+                }
                 if (message.type != null && message.hasOwnProperty("type"))
                     object.type = options.enums === String ? $root.AICommon.AIThreadInfo.AIThreadClientInfo.AIThreadType[message.type] === undefined ? message.type : $root.AICommon.AIThreadInfo.AIThreadClientInfo.AIThreadType[message.type] : message.type;
+                if (message.sourceChatJid != null && message.hasOwnProperty("sourceChatJid"))
+                    object.sourceChatJid = message.sourceChatJid;
                 return object;
             };
 
@@ -88131,12 +89255,14 @@ $root.AICommon = (function() {
              * @property {number} UNKNOWN=0 UNKNOWN value
              * @property {number} DEFAULT=1 DEFAULT value
              * @property {number} INCOGNITO=2 INCOGNITO value
+             * @property {number} SIDE_CHAT=3 SIDE_CHAT value
              */
             AIThreadClientInfo.AIThreadType = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
                 values[valuesById[0] = "UNKNOWN"] = 0;
                 values[valuesById[1] = "DEFAULT"] = 1;
                 values[valuesById[2] = "INCOGNITO"] = 2;
+                values[valuesById[3] = "SIDE_CHAT"] = 3;
                 return values;
             })();
 
@@ -93178,6 +94304,7 @@ $root.AICommon = (function() {
                     case 55:
                     case 56:
                     case 57:
+                    case 58:
                         break;
                     }
             }
@@ -93439,6 +94566,10 @@ $root.AICommon = (function() {
                     case 57:
                         message.capabilities[i] = 57;
                         break;
+                    case "JSON_PATCH_STREAMING":
+                    case 58:
+                        message.capabilities[i] = 58;
+                        break;
                     }
             }
             return message;
@@ -93555,6 +94686,7 @@ $root.AICommon = (function() {
          * @property {number} RICH_RESPONSE_UR_BLOKS_ENABLED=55 RICH_RESPONSE_UR_BLOKS_ENABLED value
          * @property {number} RICH_RESPONSE_INLINE_LINKS_ENABLED=56 RICH_RESPONSE_INLINE_LINKS_ENABLED value
          * @property {number} RICH_RESPONSE_UR_IMAGINE_VIDEO=57 RICH_RESPONSE_UR_IMAGINE_VIDEO value
+         * @property {number} JSON_PATCH_STREAMING=58 JSON_PATCH_STREAMING value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -93616,6 +94748,7 @@ $root.AICommon = (function() {
             values[valuesById[55] = "RICH_RESPONSE_UR_BLOKS_ENABLED"] = 55;
             values[valuesById[56] = "RICH_RESPONSE_INLINE_LINKS_ENABLED"] = 56;
             values[valuesById[57] = "RICH_RESPONSE_UR_IMAGINE_VIDEO"] = 57;
+            values[valuesById[58] = "JSON_PATCH_STREAMING"] = 58;
             return values;
         })();
 
@@ -97108,6 +98241,7 @@ $root.AICommon = (function() {
                 case 46:
                 case 47:
                 case 54:
+                case 55:
                     break;
                 }
             if (message.threadOrigin != null && message.hasOwnProperty("threadOrigin"))
@@ -97328,6 +98462,10 @@ $root.AICommon = (function() {
             case "GROUP_MEMBER":
             case 54:
                 message.destinationEntryPoint = 54;
+                break;
+            case "CHATLIST_SEARCH":
+            case 55:
+                message.destinationEntryPoint = 55;
                 break;
             }
             switch (object.threadOrigin) {
@@ -101226,6 +102364,7 @@ $root.AICommon = (function() {
      * @property {number} WEB_INTRO_PANEL=46 WEB_INTRO_PANEL value
      * @property {number} WEB_NAVIGATION_BAR=47 WEB_NAVIGATION_BAR value
      * @property {number} GROUP_MEMBER=54 GROUP_MEMBER value
+     * @property {number} CHATLIST_SEARCH=55 CHATLIST_SEARCH value
      */
     AICommon.BotMetricsEntryPoint = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -101275,6 +102414,7 @@ $root.AICommon = (function() {
         values[valuesById[46] = "WEB_INTRO_PANEL"] = 46;
         values[valuesById[47] = "WEB_NAVIGATION_BAR"] = 47;
         values[valuesById[54] = "GROUP_MEMBER"] = 54;
+        values[valuesById[55] = "CHATLIST_SEARCH"] = 55;
         return values;
     })();
 
@@ -105565,6 +106705,7 @@ $root.CompanionReg = (function() {
              * @property {number|null} [thumbnailSyncDaysLimit] HistorySyncConfig thumbnailSyncDaysLimit
              * @property {number|null} [initialSyncMaxMessagesPerChat] HistorySyncConfig initialSyncMaxMessagesPerChat
              * @property {boolean|null} [supportManusHistory] HistorySyncConfig supportManusHistory
+             * @property {boolean|null} [supportHatchHistory] HistorySyncConfig supportHatchHistory
              */
 
             /**
@@ -105751,6 +106892,14 @@ $root.CompanionReg = (function() {
             HistorySyncConfig.prototype.supportManusHistory = false;
 
             /**
+             * HistorySyncConfig supportHatchHistory.
+             * @member {boolean} supportHatchHistory
+             * @memberof CompanionReg.DeviceProps.HistorySyncConfig
+             * @instance
+             */
+            HistorySyncConfig.prototype.supportHatchHistory = false;
+
+            /**
              * Creates a new HistorySyncConfig instance using the specified properties.
              * @function create
              * @memberof CompanionReg.DeviceProps.HistorySyncConfig
@@ -105816,6 +106965,8 @@ $root.CompanionReg = (function() {
                     writer.uint32(/* id 20, wireType 0 =*/160).uint32(message.initialSyncMaxMessagesPerChat);
                 if (message.supportManusHistory != null && Object.hasOwnProperty.call(message, "supportManusHistory"))
                     writer.uint32(/* id 21, wireType 0 =*/168).bool(message.supportManusHistory);
+                if (message.supportHatchHistory != null && Object.hasOwnProperty.call(message, "supportHatchHistory"))
+                    writer.uint32(/* id 22, wireType 0 =*/176).bool(message.supportHatchHistory);
                 return writer;
             };
 
@@ -105936,6 +107087,10 @@ $root.CompanionReg = (function() {
                             message.supportManusHistory = reader.bool();
                             break;
                         }
+                    case 22: {
+                            message.supportHatchHistory = reader.bool();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -106034,6 +107189,9 @@ $root.CompanionReg = (function() {
                 if (message.supportManusHistory != null && message.hasOwnProperty("supportManusHistory"))
                     if (typeof message.supportManusHistory !== "boolean")
                         return "supportManusHistory: boolean expected";
+                if (message.supportHatchHistory != null && message.hasOwnProperty("supportHatchHistory"))
+                    if (typeof message.supportHatchHistory !== "boolean")
+                        return "supportHatchHistory: boolean expected";
                 return null;
             };
 
@@ -106091,6 +107249,8 @@ $root.CompanionReg = (function() {
                     message.initialSyncMaxMessagesPerChat = object.initialSyncMaxMessagesPerChat >>> 0;
                 if (object.supportManusHistory != null)
                     message.supportManusHistory = Boolean(object.supportManusHistory);
+                if (object.supportHatchHistory != null)
+                    message.supportHatchHistory = Boolean(object.supportHatchHistory);
                 return message;
             };
 
@@ -106129,6 +107289,7 @@ $root.CompanionReg = (function() {
                     object.thumbnailSyncDaysLimit = 0;
                     object.initialSyncMaxMessagesPerChat = 0;
                     object.supportManusHistory = false;
+                    object.supportHatchHistory = false;
                 }
                 if (message.fullSyncDaysLimit != null && message.hasOwnProperty("fullSyncDaysLimit"))
                     object.fullSyncDaysLimit = message.fullSyncDaysLimit;
@@ -106172,6 +107333,8 @@ $root.CompanionReg = (function() {
                     object.initialSyncMaxMessagesPerChat = message.initialSyncMaxMessagesPerChat;
                 if (message.supportManusHistory != null && message.hasOwnProperty("supportManusHistory"))
                     object.supportManusHistory = message.supportManusHistory;
+                if (message.supportHatchHistory != null && message.hasOwnProperty("supportHatchHistory"))
+                    object.supportHatchHistory = message.supportHatchHistory;
                 return object;
             };
 

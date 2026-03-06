@@ -2219,6 +2219,7 @@ $root.AICommon = (function() {
                 case 46:
                 case 47:
                 case 54:
+                case 55:
                     break;
                 }
             if (message.forwardScore != null && message.hasOwnProperty("forwardScore"))
@@ -2429,6 +2430,10 @@ $root.AICommon = (function() {
             case "GROUP_MEMBER":
             case 54:
                 message.botEntryPointOrigin = 54;
+                break;
+            case "CHATLIST_SEARCH":
+            case 55:
+                message.botEntryPointOrigin = 55;
                 break;
             }
             if (object.forwardScore != null)
@@ -7576,6 +7581,7 @@ $root.AICommon = (function() {
          * @memberof AICommon
          * @interface IAIMediaCollectionMetadata
          * @property {string|null} [collectionId] AIMediaCollectionMetadata collectionId
+         * @property {number|null} [uploadOrderIndex] AIMediaCollectionMetadata uploadOrderIndex
          */
 
         /**
@@ -7600,6 +7606,14 @@ $root.AICommon = (function() {
          * @instance
          */
         AIMediaCollectionMetadata.prototype.collectionId = "";
+
+        /**
+         * AIMediaCollectionMetadata uploadOrderIndex.
+         * @member {number} uploadOrderIndex
+         * @memberof AICommon.AIMediaCollectionMetadata
+         * @instance
+         */
+        AIMediaCollectionMetadata.prototype.uploadOrderIndex = 0;
 
         /**
          * Creates a new AIMediaCollectionMetadata instance using the specified properties.
@@ -7627,6 +7641,8 @@ $root.AICommon = (function() {
                 writer = $Writer.create();
             if (message.collectionId != null && Object.hasOwnProperty.call(message, "collectionId"))
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.collectionId);
+            if (message.uploadOrderIndex != null && Object.hasOwnProperty.call(message, "uploadOrderIndex"))
+                writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.uploadOrderIndex);
             return writer;
         };
 
@@ -7667,6 +7683,10 @@ $root.AICommon = (function() {
                         message.collectionId = reader.string();
                         break;
                     }
+                case 2: {
+                        message.uploadOrderIndex = reader.uint32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -7705,6 +7725,9 @@ $root.AICommon = (function() {
             if (message.collectionId != null && message.hasOwnProperty("collectionId"))
                 if (!$util.isString(message.collectionId))
                     return "collectionId: string expected";
+            if (message.uploadOrderIndex != null && message.hasOwnProperty("uploadOrderIndex"))
+                if (!$util.isInteger(message.uploadOrderIndex))
+                    return "uploadOrderIndex: integer expected";
             return null;
         };
 
@@ -7722,6 +7745,8 @@ $root.AICommon = (function() {
             var message = new $root.AICommon.AIMediaCollectionMetadata();
             if (object.collectionId != null)
                 message.collectionId = String(object.collectionId);
+            if (object.uploadOrderIndex != null)
+                message.uploadOrderIndex = object.uploadOrderIndex >>> 0;
             return message;
         };
 
@@ -7738,10 +7763,14 @@ $root.AICommon = (function() {
             if (!options)
                 options = {};
             var object = {};
-            if (options.defaults)
+            if (options.defaults) {
                 object.collectionId = "";
+                object.uploadOrderIndex = 0;
+            }
             if (message.collectionId != null && message.hasOwnProperty("collectionId"))
                 object.collectionId = message.collectionId;
+            if (message.uploadOrderIndex != null && message.hasOwnProperty("uploadOrderIndex"))
+                object.uploadOrderIndex = message.uploadOrderIndex;
             return object;
         };
 
@@ -8017,6 +8046,7 @@ $root.AICommon = (function() {
              * @memberof AICommon.AIThreadInfo
              * @interface IAIThreadClientInfo
              * @property {AICommon.AIThreadInfo.AIThreadClientInfo.AIThreadType|null} [type] AIThreadClientInfo type
+             * @property {string|null} [sourceChatJid] AIThreadClientInfo sourceChatJid
              */
 
             /**
@@ -8041,6 +8071,14 @@ $root.AICommon = (function() {
              * @instance
              */
             AIThreadClientInfo.prototype.type = 0;
+
+            /**
+             * AIThreadClientInfo sourceChatJid.
+             * @member {string} sourceChatJid
+             * @memberof AICommon.AIThreadInfo.AIThreadClientInfo
+             * @instance
+             */
+            AIThreadClientInfo.prototype.sourceChatJid = "";
 
             /**
              * Creates a new AIThreadClientInfo instance using the specified properties.
@@ -8068,6 +8106,8 @@ $root.AICommon = (function() {
                     writer = $Writer.create();
                 if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.type);
+                if (message.sourceChatJid != null && Object.hasOwnProperty.call(message, "sourceChatJid"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.sourceChatJid);
                 return writer;
             };
 
@@ -8106,6 +8146,10 @@ $root.AICommon = (function() {
                     switch (tag >>> 3) {
                     case 1: {
                             message.type = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.sourceChatJid = reader.string();
                             break;
                         }
                     default:
@@ -8150,8 +8194,12 @@ $root.AICommon = (function() {
                     case 0:
                     case 1:
                     case 2:
+                    case 3:
                         break;
                     }
+                if (message.sourceChatJid != null && message.hasOwnProperty("sourceChatJid"))
+                    if (!$util.isString(message.sourceChatJid))
+                        return "sourceChatJid: string expected";
                 return null;
             };
 
@@ -8186,7 +8234,13 @@ $root.AICommon = (function() {
                 case 2:
                     message.type = 2;
                     break;
+                case "SIDE_CHAT":
+                case 3:
+                    message.type = 3;
+                    break;
                 }
+                if (object.sourceChatJid != null)
+                    message.sourceChatJid = String(object.sourceChatJid);
                 return message;
             };
 
@@ -8203,10 +8257,14 @@ $root.AICommon = (function() {
                 if (!options)
                     options = {};
                 var object = {};
-                if (options.defaults)
+                if (options.defaults) {
                     object.type = options.enums === String ? "UNKNOWN" : 0;
+                    object.sourceChatJid = "";
+                }
                 if (message.type != null && message.hasOwnProperty("type"))
                     object.type = options.enums === String ? $root.AICommon.AIThreadInfo.AIThreadClientInfo.AIThreadType[message.type] === undefined ? message.type : $root.AICommon.AIThreadInfo.AIThreadClientInfo.AIThreadType[message.type] : message.type;
+                if (message.sourceChatJid != null && message.hasOwnProperty("sourceChatJid"))
+                    object.sourceChatJid = message.sourceChatJid;
                 return object;
             };
 
@@ -8243,12 +8301,14 @@ $root.AICommon = (function() {
              * @property {number} UNKNOWN=0 UNKNOWN value
              * @property {number} DEFAULT=1 DEFAULT value
              * @property {number} INCOGNITO=2 INCOGNITO value
+             * @property {number} SIDE_CHAT=3 SIDE_CHAT value
              */
             AIThreadClientInfo.AIThreadType = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
                 values[valuesById[0] = "UNKNOWN"] = 0;
                 values[valuesById[1] = "DEFAULT"] = 1;
                 values[valuesById[2] = "INCOGNITO"] = 2;
+                values[valuesById[3] = "SIDE_CHAT"] = 3;
                 return values;
             })();
 
@@ -13290,6 +13350,7 @@ $root.AICommon = (function() {
                     case 55:
                     case 56:
                     case 57:
+                    case 58:
                         break;
                     }
             }
@@ -13551,6 +13612,10 @@ $root.AICommon = (function() {
                     case 57:
                         message.capabilities[i] = 57;
                         break;
+                    case "JSON_PATCH_STREAMING":
+                    case 58:
+                        message.capabilities[i] = 58;
+                        break;
                     }
             }
             return message;
@@ -13667,6 +13732,7 @@ $root.AICommon = (function() {
          * @property {number} RICH_RESPONSE_UR_BLOKS_ENABLED=55 RICH_RESPONSE_UR_BLOKS_ENABLED value
          * @property {number} RICH_RESPONSE_INLINE_LINKS_ENABLED=56 RICH_RESPONSE_INLINE_LINKS_ENABLED value
          * @property {number} RICH_RESPONSE_UR_IMAGINE_VIDEO=57 RICH_RESPONSE_UR_IMAGINE_VIDEO value
+         * @property {number} JSON_PATCH_STREAMING=58 JSON_PATCH_STREAMING value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -13728,6 +13794,7 @@ $root.AICommon = (function() {
             values[valuesById[55] = "RICH_RESPONSE_UR_BLOKS_ENABLED"] = 55;
             values[valuesById[56] = "RICH_RESPONSE_INLINE_LINKS_ENABLED"] = 56;
             values[valuesById[57] = "RICH_RESPONSE_UR_IMAGINE_VIDEO"] = 57;
+            values[valuesById[58] = "JSON_PATCH_STREAMING"] = 58;
             return values;
         })();
 
@@ -17220,6 +17287,7 @@ $root.AICommon = (function() {
                 case 46:
                 case 47:
                 case 54:
+                case 55:
                     break;
                 }
             if (message.threadOrigin != null && message.hasOwnProperty("threadOrigin"))
@@ -17440,6 +17508,10 @@ $root.AICommon = (function() {
             case "GROUP_MEMBER":
             case 54:
                 message.destinationEntryPoint = 54;
+                break;
+            case "CHATLIST_SEARCH":
+            case 55:
+                message.destinationEntryPoint = 55;
                 break;
             }
             switch (object.threadOrigin) {
@@ -21338,6 +21410,7 @@ $root.AICommon = (function() {
      * @property {number} WEB_INTRO_PANEL=46 WEB_INTRO_PANEL value
      * @property {number} WEB_NAVIGATION_BAR=47 WEB_NAVIGATION_BAR value
      * @property {number} GROUP_MEMBER=54 GROUP_MEMBER value
+     * @property {number} CHATLIST_SEARCH=55 CHATLIST_SEARCH value
      */
     AICommon.BotMetricsEntryPoint = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -21387,6 +21460,7 @@ $root.AICommon = (function() {
         values[valuesById[46] = "WEB_INTRO_PANEL"] = 46;
         values[valuesById[47] = "WEB_NAVIGATION_BAR"] = 47;
         values[valuesById[54] = "GROUP_MEMBER"] = 54;
+        values[valuesById[55] = "CHATLIST_SEARCH"] = 55;
         return values;
     })();
 

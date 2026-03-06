@@ -3830,9 +3830,6 @@ export namespace E2E {
 
         /** ThreadID threadKey */
         threadKey?: (Protocol.IMessageKey|null);
-
-        /** ThreadID sourceChatJid */
-        sourceChatJid?: (string|null);
     }
 
     /** Represents a ThreadID. */
@@ -3849,9 +3846,6 @@ export namespace E2E {
 
         /** ThreadID threadKey. */
         public threadKey?: (Protocol.IMessageKey|null);
-
-        /** ThreadID sourceChatJid. */
-        public sourceChatJid: string;
 
         /**
          * Creates a new ThreadID instance using the specified properties.
@@ -13048,6 +13042,15 @@ export namespace E2E {
             public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
+        /** InsightDeliveryState enum. */
+        enum InsightDeliveryState {
+            SENT = 0,
+            DELIVERED = 1,
+            READ = 2,
+            REPLIED = 3,
+            QUICK_REPLIED = 4
+        }
+
         /** Properties of an InteractiveMessage. */
         interface IInteractiveMessage {
 
@@ -17924,6 +17927,12 @@ export namespace E2E {
 
             /** PeerDataOperationRequestMessage companionCanonicalUserNonceFetchRequest */
             companionCanonicalUserNonceFetchRequest?: (E2E.Message.PeerDataOperationRequestMessage.ICompanionCanonicalUserNonceFetchRequest|null);
+
+            /** PeerDataOperationRequestMessage bizBroadcastInsightsContactListRequest */
+            bizBroadcastInsightsContactListRequest?: (E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsContactListRequest|null);
+
+            /** PeerDataOperationRequestMessage bizBroadcastInsightsRefreshRequest */
+            bizBroadcastInsightsRefreshRequest?: (E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsRefreshRequest|null);
         }
 
         /** Represents a PeerDataOperationRequestMessage. */
@@ -17964,6 +17973,12 @@ export namespace E2E {
 
             /** PeerDataOperationRequestMessage companionCanonicalUserNonceFetchRequest. */
             public companionCanonicalUserNonceFetchRequest?: (E2E.Message.PeerDataOperationRequestMessage.ICompanionCanonicalUserNonceFetchRequest|null);
+
+            /** PeerDataOperationRequestMessage bizBroadcastInsightsContactListRequest. */
+            public bizBroadcastInsightsContactListRequest?: (E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsContactListRequest|null);
+
+            /** PeerDataOperationRequestMessage bizBroadcastInsightsRefreshRequest. */
+            public bizBroadcastInsightsRefreshRequest?: (E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsRefreshRequest|null);
 
             /**
              * Creates a new PeerDataOperationRequestMessage instance using the specified properties.
@@ -18044,6 +18059,200 @@ export namespace E2E {
         }
 
         namespace PeerDataOperationRequestMessage {
+
+            /** Properties of a BizBroadcastInsightsContactListRequest. */
+            interface IBizBroadcastInsightsContactListRequest {
+
+                /** BizBroadcastInsightsContactListRequest campaignId */
+                campaignId?: (string|null);
+            }
+
+            /** Represents a BizBroadcastInsightsContactListRequest. */
+            class BizBroadcastInsightsContactListRequest implements IBizBroadcastInsightsContactListRequest {
+
+                /**
+                 * Constructs a new BizBroadcastInsightsContactListRequest.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsContactListRequest);
+
+                /** BizBroadcastInsightsContactListRequest campaignId. */
+                public campaignId: string;
+
+                /**
+                 * Creates a new BizBroadcastInsightsContactListRequest instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns BizBroadcastInsightsContactListRequest instance
+                 */
+                public static create(properties?: E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsContactListRequest): E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest;
+
+                /**
+                 * Encodes the specified BizBroadcastInsightsContactListRequest message. Does not implicitly {@link E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest.verify|verify} messages.
+                 * @param message BizBroadcastInsightsContactListRequest message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsContactListRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified BizBroadcastInsightsContactListRequest message, length delimited. Does not implicitly {@link E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest.verify|verify} messages.
+                 * @param message BizBroadcastInsightsContactListRequest message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsContactListRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a BizBroadcastInsightsContactListRequest message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns BizBroadcastInsightsContactListRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest;
+
+                /**
+                 * Decodes a BizBroadcastInsightsContactListRequest message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns BizBroadcastInsightsContactListRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest;
+
+                /**
+                 * Verifies a BizBroadcastInsightsContactListRequest message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a BizBroadcastInsightsContactListRequest message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns BizBroadcastInsightsContactListRequest
+                 */
+                public static fromObject(object: { [k: string]: any }): E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest;
+
+                /**
+                 * Creates a plain object from a BizBroadcastInsightsContactListRequest message. Also converts values to other types if specified.
+                 * @param message BizBroadcastInsightsContactListRequest
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this BizBroadcastInsightsContactListRequest to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for BizBroadcastInsightsContactListRequest
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            /** Properties of a BizBroadcastInsightsRefreshRequest. */
+            interface IBizBroadcastInsightsRefreshRequest {
+
+                /** BizBroadcastInsightsRefreshRequest campaignId */
+                campaignId?: (string|null);
+            }
+
+            /** Represents a BizBroadcastInsightsRefreshRequest. */
+            class BizBroadcastInsightsRefreshRequest implements IBizBroadcastInsightsRefreshRequest {
+
+                /**
+                 * Constructs a new BizBroadcastInsightsRefreshRequest.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsRefreshRequest);
+
+                /** BizBroadcastInsightsRefreshRequest campaignId. */
+                public campaignId: string;
+
+                /**
+                 * Creates a new BizBroadcastInsightsRefreshRequest instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns BizBroadcastInsightsRefreshRequest instance
+                 */
+                public static create(properties?: E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsRefreshRequest): E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest;
+
+                /**
+                 * Encodes the specified BizBroadcastInsightsRefreshRequest message. Does not implicitly {@link E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest.verify|verify} messages.
+                 * @param message BizBroadcastInsightsRefreshRequest message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsRefreshRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified BizBroadcastInsightsRefreshRequest message, length delimited. Does not implicitly {@link E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest.verify|verify} messages.
+                 * @param message BizBroadcastInsightsRefreshRequest message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: E2E.Message.PeerDataOperationRequestMessage.IBizBroadcastInsightsRefreshRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a BizBroadcastInsightsRefreshRequest message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns BizBroadcastInsightsRefreshRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest;
+
+                /**
+                 * Decodes a BizBroadcastInsightsRefreshRequest message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns BizBroadcastInsightsRefreshRequest
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest;
+
+                /**
+                 * Verifies a BizBroadcastInsightsRefreshRequest message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a BizBroadcastInsightsRefreshRequest message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns BizBroadcastInsightsRefreshRequest
+                 */
+                public static fromObject(object: { [k: string]: any }): E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest;
+
+                /**
+                 * Creates a plain object from a BizBroadcastInsightsRefreshRequest message. Also converts values to other types if specified.
+                 * @param message BizBroadcastInsightsRefreshRequest
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this BizBroadcastInsightsRefreshRequest to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for BizBroadcastInsightsRefreshRequest
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
 
             /** Properties of a CompanionCanonicalUserNonceFetchRequest. */
             interface ICompanionCanonicalUserNonceFetchRequest {
@@ -19170,6 +19379,9 @@ export namespace E2E {
 
                 /** PeerDataOperationResult flowResponsesCsvBundle */
                 flowResponsesCsvBundle?: (E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IFlowResponsesCsvBundle|null);
+
+                /** PeerDataOperationResult bizBroadcastInsightsContactListResponse */
+                bizBroadcastInsightsContactListResponse?: (E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IBizBroadcastInsightsContactListResponse|null);
             }
 
             /** Represents a PeerDataOperationResult. */
@@ -19213,6 +19425,9 @@ export namespace E2E {
 
                 /** PeerDataOperationResult flowResponsesCsvBundle. */
                 public flowResponsesCsvBundle?: (E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IFlowResponsesCsvBundle|null);
+
+                /** PeerDataOperationResult bizBroadcastInsightsContactListResponse. */
+                public bizBroadcastInsightsContactListResponse?: (E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IBizBroadcastInsightsContactListResponse|null);
 
                 /**
                  * Creates a new PeerDataOperationResult instance using the specified properties.
@@ -19293,6 +19508,218 @@ export namespace E2E {
             }
 
             namespace PeerDataOperationResult {
+
+                /** Properties of a BizBroadcastInsightsContactListResponse. */
+                interface IBizBroadcastInsightsContactListResponse {
+
+                    /** BizBroadcastInsightsContactListResponse campaignId */
+                    campaignId?: (string|null);
+
+                    /** BizBroadcastInsightsContactListResponse timestampMs */
+                    timestampMs?: (number|Long|null);
+
+                    /** BizBroadcastInsightsContactListResponse contacts */
+                    contacts?: (E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IBizBroadcastInsightsContactState[]|null);
+                }
+
+                /** Represents a BizBroadcastInsightsContactListResponse. */
+                class BizBroadcastInsightsContactListResponse implements IBizBroadcastInsightsContactListResponse {
+
+                    /**
+                     * Constructs a new BizBroadcastInsightsContactListResponse.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IBizBroadcastInsightsContactListResponse);
+
+                    /** BizBroadcastInsightsContactListResponse campaignId. */
+                    public campaignId: string;
+
+                    /** BizBroadcastInsightsContactListResponse timestampMs. */
+                    public timestampMs: (number|Long);
+
+                    /** BizBroadcastInsightsContactListResponse contacts. */
+                    public contacts: E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IBizBroadcastInsightsContactState[];
+
+                    /**
+                     * Creates a new BizBroadcastInsightsContactListResponse instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns BizBroadcastInsightsContactListResponse instance
+                     */
+                    public static create(properties?: E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IBizBroadcastInsightsContactListResponse): E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse;
+
+                    /**
+                     * Encodes the specified BizBroadcastInsightsContactListResponse message. Does not implicitly {@link E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse.verify|verify} messages.
+                     * @param message BizBroadcastInsightsContactListResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IBizBroadcastInsightsContactListResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified BizBroadcastInsightsContactListResponse message, length delimited. Does not implicitly {@link E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse.verify|verify} messages.
+                     * @param message BizBroadcastInsightsContactListResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IBizBroadcastInsightsContactListResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a BizBroadcastInsightsContactListResponse message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns BizBroadcastInsightsContactListResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse;
+
+                    /**
+                     * Decodes a BizBroadcastInsightsContactListResponse message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns BizBroadcastInsightsContactListResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse;
+
+                    /**
+                     * Verifies a BizBroadcastInsightsContactListResponse message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a BizBroadcastInsightsContactListResponse message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns BizBroadcastInsightsContactListResponse
+                     */
+                    public static fromObject(object: { [k: string]: any }): E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse;
+
+                    /**
+                     * Creates a plain object from a BizBroadcastInsightsContactListResponse message. Also converts values to other types if specified.
+                     * @param message BizBroadcastInsightsContactListResponse
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this BizBroadcastInsightsContactListResponse to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for BizBroadcastInsightsContactListResponse
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a BizBroadcastInsightsContactState. */
+                interface IBizBroadcastInsightsContactState {
+
+                    /** BizBroadcastInsightsContactState contactJid */
+                    contactJid?: (string|null);
+
+                    /** BizBroadcastInsightsContactState state */
+                    state?: (E2E.Message.InsightDeliveryState|null);
+                }
+
+                /** Represents a BizBroadcastInsightsContactState. */
+                class BizBroadcastInsightsContactState implements IBizBroadcastInsightsContactState {
+
+                    /**
+                     * Constructs a new BizBroadcastInsightsContactState.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IBizBroadcastInsightsContactState);
+
+                    /** BizBroadcastInsightsContactState contactJid. */
+                    public contactJid: string;
+
+                    /** BizBroadcastInsightsContactState state. */
+                    public state: E2E.Message.InsightDeliveryState;
+
+                    /**
+                     * Creates a new BizBroadcastInsightsContactState instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns BizBroadcastInsightsContactState instance
+                     */
+                    public static create(properties?: E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IBizBroadcastInsightsContactState): E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState;
+
+                    /**
+                     * Encodes the specified BizBroadcastInsightsContactState message. Does not implicitly {@link E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState.verify|verify} messages.
+                     * @param message BizBroadcastInsightsContactState message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IBizBroadcastInsightsContactState, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified BizBroadcastInsightsContactState message, length delimited. Does not implicitly {@link E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState.verify|verify} messages.
+                     * @param message BizBroadcastInsightsContactState message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.IBizBroadcastInsightsContactState, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a BizBroadcastInsightsContactState message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns BizBroadcastInsightsContactState
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState;
+
+                    /**
+                     * Decodes a BizBroadcastInsightsContactState message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns BizBroadcastInsightsContactState
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState;
+
+                    /**
+                     * Verifies a BizBroadcastInsightsContactState message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a BizBroadcastInsightsContactState message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns BizBroadcastInsightsContactState
+                     */
+                    public static fromObject(object: { [k: string]: any }): E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState;
+
+                    /**
+                     * Creates a plain object from a BizBroadcastInsightsContactState message. Also converts values to other types if specified.
+                     * @param message BizBroadcastInsightsContactState
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this BizBroadcastInsightsContactState to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for BizBroadcastInsightsContactState
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
 
                 /** Properties of a CompanionCanonicalUserNonceFetchResponse. */
                 interface ICompanionCanonicalUserNonceFetchResponse {
@@ -20610,7 +21037,9 @@ export namespace E2E {
             COMPANION_SYNCD_SNAPSHOT_FATAL_RECOVERY = 8,
             COMPANION_CANONICAL_USER_NONCE_FETCH = 9,
             HISTORY_SYNC_CHUNK_RETRY = 10,
-            GALAXY_FLOW_ACTION = 11
+            GALAXY_FLOW_ACTION = 11,
+            BUSINESS_BROADCAST_INSIGHTS_DELIVERED_TO = 12,
+            BUSINESS_BROADCAST_INSIGHTS_REFRESH = 13
         }
 
         /** Properties of a PinInChatMessage. */
@@ -31825,6 +32254,9 @@ export namespace AICommon {
 
         /** AIMediaCollectionMetadata collectionId */
         collectionId?: (string|null);
+
+        /** AIMediaCollectionMetadata uploadOrderIndex */
+        uploadOrderIndex?: (number|null);
     }
 
     /** Represents a AIMediaCollectionMetadata. */
@@ -31838,6 +32270,9 @@ export namespace AICommon {
 
         /** AIMediaCollectionMetadata collectionId. */
         public collectionId: string;
+
+        /** AIMediaCollectionMetadata uploadOrderIndex. */
+        public uploadOrderIndex: number;
 
         /**
          * Creates a new AIMediaCollectionMetadata instance using the specified properties.
@@ -32027,6 +32462,9 @@ export namespace AICommon {
 
             /** AIThreadClientInfo type */
             type?: (AICommon.AIThreadInfo.AIThreadClientInfo.AIThreadType|null);
+
+            /** AIThreadClientInfo sourceChatJid */
+            sourceChatJid?: (string|null);
         }
 
         /** Represents a AIThreadClientInfo. */
@@ -32040,6 +32478,9 @@ export namespace AICommon {
 
             /** AIThreadClientInfo type. */
             public type: AICommon.AIThreadInfo.AIThreadClientInfo.AIThreadType;
+
+            /** AIThreadClientInfo sourceChatJid. */
+            public sourceChatJid: string;
 
             /**
              * Creates a new AIThreadClientInfo instance using the specified properties.
@@ -32125,7 +32566,8 @@ export namespace AICommon {
             enum AIThreadType {
                 UNKNOWN = 0,
                 DEFAULT = 1,
-                INCOGNITO = 2
+                INCOGNITO = 2,
+                SIDE_CHAT = 3
             }
         }
 
@@ -34236,7 +34678,8 @@ export namespace AICommon {
             AI_IMAGINE_UR_TO_NATIVE_LOADING_INDICATOR = 54,
             RICH_RESPONSE_UR_BLOKS_ENABLED = 55,
             RICH_RESPONSE_INLINE_LINKS_ENABLED = 56,
-            RICH_RESPONSE_UR_IMAGINE_VIDEO = 57
+            RICH_RESPONSE_UR_IMAGINE_VIDEO = 57,
+            JSON_PATCH_STREAMING = 58
         }
     }
 
@@ -37101,7 +37544,8 @@ export namespace AICommon {
         META_AI_SETTINGS = 45,
         WEB_INTRO_PANEL = 46,
         WEB_NAVIGATION_BAR = 47,
-        GROUP_MEMBER = 54
+        GROUP_MEMBER = 54,
+        CHATLIST_SEARCH = 55
     }
 }
 
@@ -38741,6 +39185,9 @@ export namespace CompanionReg {
 
             /** HistorySyncConfig supportManusHistory */
             supportManusHistory?: (boolean|null);
+
+            /** HistorySyncConfig supportHatchHistory */
+            supportHatchHistory?: (boolean|null);
         }
 
         /** Represents a HistorySyncConfig. */
@@ -38814,6 +39261,9 @@ export namespace CompanionReg {
 
             /** HistorySyncConfig supportManusHistory. */
             public supportManusHistory: boolean;
+
+            /** HistorySyncConfig supportHatchHistory. */
+            public supportHatchHistory: boolean;
 
             /**
              * Creates a new HistorySyncConfig instance using the specified properties.

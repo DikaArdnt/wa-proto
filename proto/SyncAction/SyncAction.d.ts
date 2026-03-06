@@ -515,6 +515,9 @@ export namespace SyncAction {
 
         /** SyncActionValue businessBroadcastInsightsAction */
         businessBroadcastInsightsAction?: (SyncAction.SyncActionValue.IBusinessBroadcastInsightsAction|null);
+
+        /** SyncActionValue customerDataAction */
+        customerDataAction?: (SyncAction.SyncActionValue.ICustomerDataAction|null);
     }
 
     /** Represents a SyncActionValue. */
@@ -744,6 +747,9 @@ export namespace SyncAction {
 
         /** SyncActionValue businessBroadcastInsightsAction. */
         public businessBroadcastInsightsAction?: (SyncAction.SyncActionValue.IBusinessBroadcastInsightsAction|null);
+
+        /** SyncActionValue customerDataAction. */
+        public customerDataAction?: (SyncAction.SyncActionValue.ICustomerDataAction|null);
 
         /**
          * Creates a new SyncActionValue instance using the specified properties.
@@ -2952,6 +2958,163 @@ export namespace SyncAction {
 
             /**
              * Gets the default type url for CustomPaymentMethodsAction
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a CustomerDataAction. */
+        interface ICustomerDataAction {
+
+            /** CustomerDataAction chatJid */
+            chatJid?: (string|null);
+
+            /** CustomerDataAction contactType */
+            contactType?: (number|null);
+
+            /** CustomerDataAction email */
+            email?: (string|null);
+
+            /** CustomerDataAction altPhoneNumbers */
+            altPhoneNumbers?: (string|null);
+
+            /** CustomerDataAction birthday */
+            birthday?: (number|Long|null);
+
+            /** CustomerDataAction address */
+            address?: (string|null);
+
+            /** CustomerDataAction acquisitionSource */
+            acquisitionSource?: (number|null);
+
+            /** CustomerDataAction leadStage */
+            leadStage?: (number|null);
+
+            /** CustomerDataAction lastOrder */
+            lastOrder?: (number|Long|null);
+
+            /** CustomerDataAction createdAt */
+            createdAt?: (number|Long|null);
+
+            /** CustomerDataAction modifiedAt */
+            modifiedAt?: (number|Long|null);
+        }
+
+        /** Represents a CustomerDataAction. */
+        class CustomerDataAction implements ICustomerDataAction {
+
+            /**
+             * Constructs a new CustomerDataAction.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SyncAction.SyncActionValue.ICustomerDataAction);
+
+            /** CustomerDataAction chatJid. */
+            public chatJid: string;
+
+            /** CustomerDataAction contactType. */
+            public contactType: number;
+
+            /** CustomerDataAction email. */
+            public email: string;
+
+            /** CustomerDataAction altPhoneNumbers. */
+            public altPhoneNumbers: string;
+
+            /** CustomerDataAction birthday. */
+            public birthday: (number|Long);
+
+            /** CustomerDataAction address. */
+            public address: string;
+
+            /** CustomerDataAction acquisitionSource. */
+            public acquisitionSource: number;
+
+            /** CustomerDataAction leadStage. */
+            public leadStage: number;
+
+            /** CustomerDataAction lastOrder. */
+            public lastOrder: (number|Long);
+
+            /** CustomerDataAction createdAt. */
+            public createdAt: (number|Long);
+
+            /** CustomerDataAction modifiedAt. */
+            public modifiedAt: (number|Long);
+
+            /**
+             * Creates a new CustomerDataAction instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns CustomerDataAction instance
+             */
+            public static create(properties?: SyncAction.SyncActionValue.ICustomerDataAction): SyncAction.SyncActionValue.CustomerDataAction;
+
+            /**
+             * Encodes the specified CustomerDataAction message. Does not implicitly {@link SyncAction.SyncActionValue.CustomerDataAction.verify|verify} messages.
+             * @param message CustomerDataAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SyncAction.SyncActionValue.ICustomerDataAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified CustomerDataAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.CustomerDataAction.verify|verify} messages.
+             * @param message CustomerDataAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SyncAction.SyncActionValue.ICustomerDataAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a CustomerDataAction message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns CustomerDataAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.CustomerDataAction;
+
+            /**
+             * Decodes a CustomerDataAction message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns CustomerDataAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.CustomerDataAction;
+
+            /**
+             * Verifies a CustomerDataAction message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a CustomerDataAction message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns CustomerDataAction
+             */
+            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.CustomerDataAction;
+
+            /**
+             * Creates a plain object from a CustomerDataAction message. Also converts values to other types if specified.
+             * @param message CustomerDataAction
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SyncAction.SyncActionValue.CustomerDataAction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this CustomerDataAction to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for CustomerDataAction
              * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
              * @returns The default type url
              */
@@ -9695,6 +9858,7 @@ export namespace SyncAction {
         NCT_SALT_SYNC_ACTION = 80,
         BUSINESS_BROADCAST_CAMPAIGN_ACTION = 81,
         BUSINESS_BROADCAST_INSIGHTS_ACTION = 82,
+        CUSTOMER_DATA_ACTION = 83,
         SHARE_OWN_PN = 10001,
         BUSINESS_BROADCAST_ACTION = 10002,
         AI_THREAD_DELETE_ACTION = 10003
@@ -10409,6 +10573,9 @@ export namespace DeviceCapabilities {
 
             /** BusinessBroadcast importListEnabled */
             importListEnabled?: (boolean|null);
+
+            /** BusinessBroadcast companionSupportEnabled */
+            companionSupportEnabled?: (boolean|null);
         }
 
         /** Represents a BusinessBroadcast. */
@@ -10422,6 +10589,9 @@ export namespace DeviceCapabilities {
 
             /** BusinessBroadcast importListEnabled. */
             public importListEnabled: boolean;
+
+            /** BusinessBroadcast companionSupportEnabled. */
+            public companionSupportEnabled: boolean;
 
             /**
              * Creates a new BusinessBroadcast instance using the specified properties.

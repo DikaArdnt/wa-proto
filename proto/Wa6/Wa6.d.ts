@@ -107,6 +107,9 @@ export namespace Wa6 {
 
         /** ClientPayload processingQueueSize */
         processingQueueSize?: (number|null);
+
+        /** ClientPayload pairedPeripherals */
+        pairedPeripherals?: (string[]|null);
     }
 
     /** Represents a ClientPayload. */
@@ -219,6 +222,9 @@ export namespace Wa6 {
 
         /** ClientPayload processingQueueSize. */
         public processingQueueSize: number;
+
+        /** ClientPayload pairedPeripherals. */
+        public pairedPeripherals: string[];
 
         /**
          * Creates a new ClientPayload instance using the specified properties.

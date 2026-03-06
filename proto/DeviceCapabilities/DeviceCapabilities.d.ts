@@ -244,6 +244,9 @@ export namespace DeviceCapabilities {
 
             /** BusinessBroadcast importListEnabled */
             importListEnabled?: (boolean|null);
+
+            /** BusinessBroadcast companionSupportEnabled */
+            companionSupportEnabled?: (boolean|null);
         }
 
         /** Represents a BusinessBroadcast. */
@@ -257,6 +260,9 @@ export namespace DeviceCapabilities {
 
             /** BusinessBroadcast importListEnabled. */
             public importListEnabled: boolean;
+
+            /** BusinessBroadcast companionSupportEnabled. */
+            public companionSupportEnabled: boolean;
 
             /**
              * Creates a new BusinessBroadcast instance using the specified properties.

@@ -58,6 +58,7 @@ $root.Wa6 = (function() {
          * @property {boolean|null} [paaLink] ClientPayload paaLink
          * @property {number|null} [preacksCount] ClientPayload preacksCount
          * @property {number|null} [processingQueueSize] ClientPayload processingQueueSize
+         * @property {Array.<string>|null} [pairedPeripherals] ClientPayload pairedPeripherals
          */
 
         /**
@@ -70,6 +71,7 @@ $root.Wa6 = (function() {
          */
         function ClientPayload(properties) {
             this.shards = [];
+            this.pairedPeripherals = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -349,6 +351,14 @@ $root.Wa6 = (function() {
         ClientPayload.prototype.processingQueueSize = 0;
 
         /**
+         * ClientPayload pairedPeripherals.
+         * @member {Array.<string>} pairedPeripherals
+         * @memberof Wa6.ClientPayload
+         * @instance
+         */
+        ClientPayload.prototype.pairedPeripherals = $util.emptyArray;
+
+        /**
          * Creates a new ClientPayload instance using the specified properties.
          * @function create
          * @memberof Wa6.ClientPayload
@@ -441,6 +451,9 @@ $root.Wa6 = (function() {
                 writer.uint32(/* id 45, wireType 0 =*/360).int32(message.preacksCount);
             if (message.processingQueueSize != null && Object.hasOwnProperty.call(message, "processingQueueSize"))
                 writer.uint32(/* id 46, wireType 0 =*/368).int32(message.processingQueueSize);
+            if (message.pairedPeripherals != null && message.pairedPeripherals.length)
+                for (var i = 0; i < message.pairedPeripherals.length; ++i)
+                    writer.uint32(/* id 47, wireType 2 =*/378).string(message.pairedPeripherals[i]);
             return writer;
         };
 
@@ -618,6 +631,12 @@ $root.Wa6 = (function() {
                     }
                 case 46: {
                         message.processingQueueSize = reader.int32();
+                        break;
+                    }
+                case 47: {
+                        if (!(message.pairedPeripherals && message.pairedPeripherals.length))
+                            message.pairedPeripherals = [];
+                        message.pairedPeripherals.push(reader.string());
                         break;
                     }
                 default:
@@ -823,6 +842,13 @@ $root.Wa6 = (function() {
             if (message.processingQueueSize != null && message.hasOwnProperty("processingQueueSize"))
                 if (!$util.isInteger(message.processingQueueSize))
                     return "processingQueueSize: integer expected";
+            if (message.pairedPeripherals != null && message.hasOwnProperty("pairedPeripherals")) {
+                if (!Array.isArray(message.pairedPeripherals))
+                    return "pairedPeripherals: array expected";
+                for (var i = 0; i < message.pairedPeripherals.length; ++i)
+                    if (!$util.isString(message.pairedPeripherals[i]))
+                        return "pairedPeripherals: string[] expected";
+            }
             return null;
         };
 
@@ -1124,6 +1150,13 @@ $root.Wa6 = (function() {
                 message.preacksCount = object.preacksCount | 0;
             if (object.processingQueueSize != null)
                 message.processingQueueSize = object.processingQueueSize | 0;
+            if (object.pairedPeripherals) {
+                if (!Array.isArray(object.pairedPeripherals))
+                    throw TypeError(".Wa6.ClientPayload.pairedPeripherals: array expected");
+                message.pairedPeripherals = [];
+                for (var i = 0; i < object.pairedPeripherals.length; ++i)
+                    message.pairedPeripherals[i] = String(object.pairedPeripherals[i]);
+            }
             return message;
         };
 
@@ -1140,8 +1173,10 @@ $root.Wa6 = (function() {
             if (!options)
                 options = {};
             var object = {};
-            if (options.arrays || options.defaults)
+            if (options.arrays || options.defaults) {
                 object.shards = [];
+                object.pairedPeripherals = [];
+            }
             if (options.defaults) {
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
@@ -1286,6 +1321,11 @@ $root.Wa6 = (function() {
                 object.preacksCount = message.preacksCount;
             if (message.processingQueueSize != null && message.hasOwnProperty("processingQueueSize"))
                 object.processingQueueSize = message.processingQueueSize;
+            if (message.pairedPeripherals && message.pairedPeripherals.length) {
+                object.pairedPeripherals = [];
+                for (var j = 0; j < message.pairedPeripherals.length; ++j)
+                    object.pairedPeripherals[j] = message.pairedPeripherals[j];
+            }
             return object;
         };
 

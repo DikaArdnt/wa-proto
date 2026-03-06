@@ -220,6 +220,7 @@ message AIMediaCollectionMessage {
 
 message AIMediaCollectionMetadata {
     optional string collectionId = 1;
+    optional uint32 uploadOrderIndex = 2;
 }
 
 message AIThreadInfo {
@@ -227,10 +228,12 @@ message AIThreadInfo {
     optional AIThreadClientInfo clientInfo = 2;
     message AIThreadClientInfo {
         optional AIThreadType type = 1;
+        optional string sourceChatJid = 2;
         enum AIThreadType {
             UNKNOWN = 0;
             DEFAULT = 1;
             INCOGNITO = 2;
+            SIDE_CHAT = 3;
         }
     }
     message AIThreadServerInfo {
@@ -423,6 +426,7 @@ message BotCapabilityMetadata {
         RICH_RESPONSE_UR_BLOKS_ENABLED = 55;
         RICH_RESPONSE_INLINE_LINKS_ENABLED = 56;
         RICH_RESPONSE_UR_IMAGINE_VIDEO = 57;
+        JSON_PATCH_STREAMING = 58;
     }
 }
 
@@ -713,4 +717,5 @@ enum BotMetricsEntryPoint {
     WEB_INTRO_PANEL = 46;
     WEB_NAVIGATION_BAR = 47;
     GROUP_MEMBER = 54;
+    CHATLIST_SEARCH = 55;
 }

@@ -114,6 +114,7 @@ message SyncActionValue {
     optional NctSaltSyncAction nctSaltSyncAction = 80;
     optional BusinessBroadcastCampaignAction businessBroadcastCampaignAction = 81;
     optional BusinessBroadcastInsightsAction businessBroadcastInsightsAction = 82;
+    optional CustomerDataAction customerDataAction = 83;
     message AgentAction {
         optional string name = 1;
         optional int32 deviceID = 2;
@@ -214,6 +215,19 @@ message SyncActionValue {
     }
     message CustomPaymentMethodsAction {
         repeated SyncActionValue.CustomPaymentMethod customPaymentMethods = 1;
+    }
+    message CustomerDataAction {
+        optional string chatJid = 1;
+        optional int32 contactType = 2;
+        optional string email = 3;
+        optional string altPhoneNumbers = 4;
+        optional int64 birthday = 5;
+        optional string address = 6;
+        optional int32 acquisitionSource = 7;
+        optional int32 leadStage = 8;
+        optional int64 lastOrder = 9;
+        optional int64 createdAt = 10;
+        optional int64 modifiedAt = 11;
     }
     message DeleteChatAction {
         optional SyncActionValue.SyncActionMessageRange messageRange = 1;
@@ -716,6 +730,7 @@ enum MutationProps {
     NCT_SALT_SYNC_ACTION = 80;
     BUSINESS_BROADCAST_CAMPAIGN_ACTION = 81;
     BUSINESS_BROADCAST_INSIGHTS_ACTION = 82;
+    CUSTOMER_DATA_ACTION = 83;
     SHARE_OWN_PN = 10001;
     BUSINESS_BROADCAST_ACTION = 10002;
     AI_THREAD_DELETE_ACTION = 10003;
