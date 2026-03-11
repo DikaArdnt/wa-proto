@@ -635,6 +635,7 @@ message Message {
     optional PollCreationMessage pollCreationMessageV6 = 119;
     optional ConditionalRevealMessage conditionalRevealMessage = 120;
     optional PollAddOptionMessage pollAddOptionMessage = 121;
+    optional EventInviteMessage eventInviteMessage = 122;
     message AlbumMessage {
         optional uint32 expectedImageCount = 2;
         optional uint32 expectedVideoCount = 3;
@@ -882,6 +883,15 @@ message Message {
         optional Protocol.MessageKey targetMessageKey = 1;
         optional bytes encPayload = 2;
         optional bytes encIv = 3;
+    }
+    message EventInviteMessage {
+        optional ContextInfo contextInfo = 1;
+        optional string eventId = 2;
+        optional string eventTitle = 3;
+        optional bytes jpegThumbnail = 4;
+        optional int64 startTime = 5;
+        optional string caption = 6;
+        optional bool isCanceled = 7;
     }
     message EventMessage {
         optional ContextInfo contextInfo = 1;
@@ -1363,9 +1373,10 @@ message Message {
     }
     message MessageHistoryMetadata {
         repeated string historyReceivers = 1;
-        optional int64 oldestMessageTimestamp = 2;
+        optional int64 oldestMessageTimestampInWindow = 2;
         optional int64 messageCount = 3;
         repeated string nonHistoryReceivers = 4;
+        optional int64 oldestMessageTimestampInBundle = 5;
     }
     message MessageHistoryNotice {
         optional ContextInfo contextInfo = 1;
@@ -1822,6 +1833,7 @@ message Message {
     message RequestWelcomeMessageMetadata {
         optional LocalChatState localChatState = 1;
         optional WelcomeTrigger welcomeTrigger = 2;
+        optional AICommon.BotAgentMetadata botAgentMetadata = 3;
         enum LocalChatState {
             EMPTY = 0;
             NON_EMPTY = 1;

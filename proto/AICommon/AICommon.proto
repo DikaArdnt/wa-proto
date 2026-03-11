@@ -3,6 +3,14 @@ package AICommon;
 
 import "../Protocol/Protocol.proto";
 
+message BotAgentDeepLinkMetadata {
+    optional string token = 1;
+}
+
+message BotAgentMetadata {
+    optional BotAgentDeepLinkMetadata deepLinkMetadata = 1;
+}
+
 message BotInfrastructureDiagnostics {
     optional BotBackend botBackend = 1;
     repeated string toolsUsed = 2;

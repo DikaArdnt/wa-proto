@@ -657,6 +657,8 @@ $root.DeviceCapabilities = (function() {
              * @interface IBusinessBroadcast
              * @property {boolean|null} [importListEnabled] BusinessBroadcast importListEnabled
              * @property {boolean|null} [companionSupportEnabled] BusinessBroadcast companionSupportEnabled
+             * @property {boolean|null} [campaignSyncEnabled] BusinessBroadcast campaignSyncEnabled
+             * @property {boolean|null} [insightsSyncEnabled] BusinessBroadcast insightsSyncEnabled
              */
 
             /**
@@ -691,6 +693,22 @@ $root.DeviceCapabilities = (function() {
             BusinessBroadcast.prototype.companionSupportEnabled = false;
 
             /**
+             * BusinessBroadcast campaignSyncEnabled.
+             * @member {boolean} campaignSyncEnabled
+             * @memberof DeviceCapabilities.DeviceCapabilities.BusinessBroadcast
+             * @instance
+             */
+            BusinessBroadcast.prototype.campaignSyncEnabled = false;
+
+            /**
+             * BusinessBroadcast insightsSyncEnabled.
+             * @member {boolean} insightsSyncEnabled
+             * @memberof DeviceCapabilities.DeviceCapabilities.BusinessBroadcast
+             * @instance
+             */
+            BusinessBroadcast.prototype.insightsSyncEnabled = false;
+
+            /**
              * Creates a new BusinessBroadcast instance using the specified properties.
              * @function create
              * @memberof DeviceCapabilities.DeviceCapabilities.BusinessBroadcast
@@ -718,6 +736,10 @@ $root.DeviceCapabilities = (function() {
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.importListEnabled);
                 if (message.companionSupportEnabled != null && Object.hasOwnProperty.call(message, "companionSupportEnabled"))
                     writer.uint32(/* id 2, wireType 0 =*/16).bool(message.companionSupportEnabled);
+                if (message.campaignSyncEnabled != null && Object.hasOwnProperty.call(message, "campaignSyncEnabled"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).bool(message.campaignSyncEnabled);
+                if (message.insightsSyncEnabled != null && Object.hasOwnProperty.call(message, "insightsSyncEnabled"))
+                    writer.uint32(/* id 4, wireType 0 =*/32).bool(message.insightsSyncEnabled);
                 return writer;
             };
 
@@ -762,6 +784,14 @@ $root.DeviceCapabilities = (function() {
                             message.companionSupportEnabled = reader.bool();
                             break;
                         }
+                    case 3: {
+                            message.campaignSyncEnabled = reader.bool();
+                            break;
+                        }
+                    case 4: {
+                            message.insightsSyncEnabled = reader.bool();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -803,6 +833,12 @@ $root.DeviceCapabilities = (function() {
                 if (message.companionSupportEnabled != null && message.hasOwnProperty("companionSupportEnabled"))
                     if (typeof message.companionSupportEnabled !== "boolean")
                         return "companionSupportEnabled: boolean expected";
+                if (message.campaignSyncEnabled != null && message.hasOwnProperty("campaignSyncEnabled"))
+                    if (typeof message.campaignSyncEnabled !== "boolean")
+                        return "campaignSyncEnabled: boolean expected";
+                if (message.insightsSyncEnabled != null && message.hasOwnProperty("insightsSyncEnabled"))
+                    if (typeof message.insightsSyncEnabled !== "boolean")
+                        return "insightsSyncEnabled: boolean expected";
                 return null;
             };
 
@@ -822,6 +858,10 @@ $root.DeviceCapabilities = (function() {
                     message.importListEnabled = Boolean(object.importListEnabled);
                 if (object.companionSupportEnabled != null)
                     message.companionSupportEnabled = Boolean(object.companionSupportEnabled);
+                if (object.campaignSyncEnabled != null)
+                    message.campaignSyncEnabled = Boolean(object.campaignSyncEnabled);
+                if (object.insightsSyncEnabled != null)
+                    message.insightsSyncEnabled = Boolean(object.insightsSyncEnabled);
                 return message;
             };
 
@@ -841,11 +881,17 @@ $root.DeviceCapabilities = (function() {
                 if (options.defaults) {
                     object.importListEnabled = false;
                     object.companionSupportEnabled = false;
+                    object.campaignSyncEnabled = false;
+                    object.insightsSyncEnabled = false;
                 }
                 if (message.importListEnabled != null && message.hasOwnProperty("importListEnabled"))
                     object.importListEnabled = message.importListEnabled;
                 if (message.companionSupportEnabled != null && message.hasOwnProperty("companionSupportEnabled"))
                     object.companionSupportEnabled = message.companionSupportEnabled;
+                if (message.campaignSyncEnabled != null && message.hasOwnProperty("campaignSyncEnabled"))
+                    object.campaignSyncEnabled = message.campaignSyncEnabled;
+                if (message.insightsSyncEnabled != null && message.hasOwnProperty("insightsSyncEnabled"))
+                    object.insightsSyncEnabled = message.insightsSyncEnabled;
                 return object;
             };
 

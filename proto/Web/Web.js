@@ -31179,6 +31179,7 @@ $root.E2E = (function() {
          * @property {E2E.Message.IPollCreationMessage|null} [pollCreationMessageV6] Message pollCreationMessageV6
          * @property {E2E.Message.IConditionalRevealMessage|null} [conditionalRevealMessage] Message conditionalRevealMessage
          * @property {E2E.Message.IPollAddOptionMessage|null} [pollAddOptionMessage] Message pollAddOptionMessage
+         * @property {E2E.Message.IEventInviteMessage|null} [eventInviteMessage] Message eventInviteMessage
          */
 
         /**
@@ -32005,6 +32006,14 @@ $root.E2E = (function() {
         Message.prototype.pollAddOptionMessage = null;
 
         /**
+         * Message eventInviteMessage.
+         * @member {E2E.Message.IEventInviteMessage|null|undefined} eventInviteMessage
+         * @memberof E2E.Message
+         * @instance
+         */
+        Message.prototype.eventInviteMessage = null;
+
+        /**
          * Creates a new Message instance using the specified properties.
          * @function create
          * @memberof E2E.Message
@@ -32230,6 +32239,8 @@ $root.E2E = (function() {
                 $root.E2E.Message.ConditionalRevealMessage.encode(message.conditionalRevealMessage, writer.uint32(/* id 120, wireType 2 =*/962).fork()).ldelim();
             if (message.pollAddOptionMessage != null && Object.hasOwnProperty.call(message, "pollAddOptionMessage"))
                 $root.E2E.Message.PollAddOptionMessage.encode(message.pollAddOptionMessage, writer.uint32(/* id 121, wireType 2 =*/970).fork()).ldelim();
+            if (message.eventInviteMessage != null && Object.hasOwnProperty.call(message, "eventInviteMessage"))
+                $root.E2E.Message.EventInviteMessage.encode(message.eventInviteMessage, writer.uint32(/* id 122, wireType 2 =*/978).fork()).ldelim();
             return writer;
         };
 
@@ -32668,6 +32679,10 @@ $root.E2E = (function() {
                     }
                 case 121: {
                         message.pollAddOptionMessage = $root.E2E.Message.PollAddOptionMessage.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 122: {
+                        message.eventInviteMessage = $root.E2E.Message.EventInviteMessage.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -33208,6 +33223,11 @@ $root.E2E = (function() {
                 if (error)
                     return "pollAddOptionMessage." + error;
             }
+            if (message.eventInviteMessage != null && message.hasOwnProperty("eventInviteMessage")) {
+                var error = $root.E2E.Message.EventInviteMessage.verify(message.eventInviteMessage);
+                if (error)
+                    return "eventInviteMessage." + error;
+            }
             return null;
         };
 
@@ -33725,6 +33745,11 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.Message.pollAddOptionMessage: object expected");
                 message.pollAddOptionMessage = $root.E2E.Message.PollAddOptionMessage.fromObject(object.pollAddOptionMessage);
             }
+            if (object.eventInviteMessage != null) {
+                if (typeof object.eventInviteMessage !== "object")
+                    throw TypeError(".E2E.Message.eventInviteMessage: object expected");
+                message.eventInviteMessage = $root.E2E.Message.EventInviteMessage.fromObject(object.eventInviteMessage);
+            }
             return message;
         };
 
@@ -33843,6 +33868,7 @@ $root.E2E = (function() {
                 object.pollCreationMessageV6 = null;
                 object.conditionalRevealMessage = null;
                 object.pollAddOptionMessage = null;
+                object.eventInviteMessage = null;
             }
             if (message.conversation != null && message.hasOwnProperty("conversation"))
                 object.conversation = message.conversation;
@@ -34046,6 +34072,8 @@ $root.E2E = (function() {
                 object.conditionalRevealMessage = $root.E2E.Message.ConditionalRevealMessage.toObject(message.conditionalRevealMessage, options);
             if (message.pollAddOptionMessage != null && message.hasOwnProperty("pollAddOptionMessage"))
                 object.pollAddOptionMessage = $root.E2E.Message.PollAddOptionMessage.toObject(message.pollAddOptionMessage, options);
+            if (message.eventInviteMessage != null && message.hasOwnProperty("eventInviteMessage"))
+                object.eventInviteMessage = $root.E2E.Message.EventInviteMessage.toObject(message.eventInviteMessage, options);
             return object;
         };
 
@@ -44087,6 +44115,378 @@ $root.E2E = (function() {
             };
 
             return EncReactionMessage;
+        })();
+
+        Message.EventInviteMessage = (function() {
+
+            /**
+             * Properties of an EventInviteMessage.
+             * @memberof E2E.Message
+             * @interface IEventInviteMessage
+             * @property {E2E.IContextInfo|null} [contextInfo] EventInviteMessage contextInfo
+             * @property {string|null} [eventId] EventInviteMessage eventId
+             * @property {string|null} [eventTitle] EventInviteMessage eventTitle
+             * @property {Uint8Array|null} [jpegThumbnail] EventInviteMessage jpegThumbnail
+             * @property {number|Long|null} [startTime] EventInviteMessage startTime
+             * @property {string|null} [caption] EventInviteMessage caption
+             * @property {boolean|null} [isCanceled] EventInviteMessage isCanceled
+             */
+
+            /**
+             * Constructs a new EventInviteMessage.
+             * @memberof E2E.Message
+             * @classdesc Represents an EventInviteMessage.
+             * @implements IEventInviteMessage
+             * @constructor
+             * @param {E2E.Message.IEventInviteMessage=} [properties] Properties to set
+             */
+            function EventInviteMessage(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * EventInviteMessage contextInfo.
+             * @member {E2E.IContextInfo|null|undefined} contextInfo
+             * @memberof E2E.Message.EventInviteMessage
+             * @instance
+             */
+            EventInviteMessage.prototype.contextInfo = null;
+
+            /**
+             * EventInviteMessage eventId.
+             * @member {string} eventId
+             * @memberof E2E.Message.EventInviteMessage
+             * @instance
+             */
+            EventInviteMessage.prototype.eventId = "";
+
+            /**
+             * EventInviteMessage eventTitle.
+             * @member {string} eventTitle
+             * @memberof E2E.Message.EventInviteMessage
+             * @instance
+             */
+            EventInviteMessage.prototype.eventTitle = "";
+
+            /**
+             * EventInviteMessage jpegThumbnail.
+             * @member {Uint8Array} jpegThumbnail
+             * @memberof E2E.Message.EventInviteMessage
+             * @instance
+             */
+            EventInviteMessage.prototype.jpegThumbnail = $util.newBuffer([]);
+
+            /**
+             * EventInviteMessage startTime.
+             * @member {number|Long} startTime
+             * @memberof E2E.Message.EventInviteMessage
+             * @instance
+             */
+            EventInviteMessage.prototype.startTime = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+            /**
+             * EventInviteMessage caption.
+             * @member {string} caption
+             * @memberof E2E.Message.EventInviteMessage
+             * @instance
+             */
+            EventInviteMessage.prototype.caption = "";
+
+            /**
+             * EventInviteMessage isCanceled.
+             * @member {boolean} isCanceled
+             * @memberof E2E.Message.EventInviteMessage
+             * @instance
+             */
+            EventInviteMessage.prototype.isCanceled = false;
+
+            /**
+             * Creates a new EventInviteMessage instance using the specified properties.
+             * @function create
+             * @memberof E2E.Message.EventInviteMessage
+             * @static
+             * @param {E2E.Message.IEventInviteMessage=} [properties] Properties to set
+             * @returns {E2E.Message.EventInviteMessage} EventInviteMessage instance
+             */
+            EventInviteMessage.create = function create(properties) {
+                return new EventInviteMessage(properties);
+            };
+
+            /**
+             * Encodes the specified EventInviteMessage message. Does not implicitly {@link E2E.Message.EventInviteMessage.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.Message.EventInviteMessage
+             * @static
+             * @param {E2E.Message.IEventInviteMessage} message EventInviteMessage message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            EventInviteMessage.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.contextInfo != null && Object.hasOwnProperty.call(message, "contextInfo"))
+                    $root.E2E.ContextInfo.encode(message.contextInfo, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.eventId != null && Object.hasOwnProperty.call(message, "eventId"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.eventId);
+                if (message.eventTitle != null && Object.hasOwnProperty.call(message, "eventTitle"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.eventTitle);
+                if (message.jpegThumbnail != null && Object.hasOwnProperty.call(message, "jpegThumbnail"))
+                    writer.uint32(/* id 4, wireType 2 =*/34).bytes(message.jpegThumbnail);
+                if (message.startTime != null && Object.hasOwnProperty.call(message, "startTime"))
+                    writer.uint32(/* id 5, wireType 0 =*/40).int64(message.startTime);
+                if (message.caption != null && Object.hasOwnProperty.call(message, "caption"))
+                    writer.uint32(/* id 6, wireType 2 =*/50).string(message.caption);
+                if (message.isCanceled != null && Object.hasOwnProperty.call(message, "isCanceled"))
+                    writer.uint32(/* id 7, wireType 0 =*/56).bool(message.isCanceled);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified EventInviteMessage message, length delimited. Does not implicitly {@link E2E.Message.EventInviteMessage.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.Message.EventInviteMessage
+             * @static
+             * @param {E2E.Message.IEventInviteMessage} message EventInviteMessage message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            EventInviteMessage.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes an EventInviteMessage message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.Message.EventInviteMessage
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.Message.EventInviteMessage} EventInviteMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            EventInviteMessage.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.EventInviteMessage();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.contextInfo = $root.E2E.ContextInfo.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 2: {
+                            message.eventId = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.eventTitle = reader.string();
+                            break;
+                        }
+                    case 4: {
+                            message.jpegThumbnail = reader.bytes();
+                            break;
+                        }
+                    case 5: {
+                            message.startTime = reader.int64();
+                            break;
+                        }
+                    case 6: {
+                            message.caption = reader.string();
+                            break;
+                        }
+                    case 7: {
+                            message.isCanceled = reader.bool();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes an EventInviteMessage message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.Message.EventInviteMessage
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.Message.EventInviteMessage} EventInviteMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            EventInviteMessage.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies an EventInviteMessage message.
+             * @function verify
+             * @memberof E2E.Message.EventInviteMessage
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            EventInviteMessage.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.contextInfo != null && message.hasOwnProperty("contextInfo")) {
+                    var error = $root.E2E.ContextInfo.verify(message.contextInfo);
+                    if (error)
+                        return "contextInfo." + error;
+                }
+                if (message.eventId != null && message.hasOwnProperty("eventId"))
+                    if (!$util.isString(message.eventId))
+                        return "eventId: string expected";
+                if (message.eventTitle != null && message.hasOwnProperty("eventTitle"))
+                    if (!$util.isString(message.eventTitle))
+                        return "eventTitle: string expected";
+                if (message.jpegThumbnail != null && message.hasOwnProperty("jpegThumbnail"))
+                    if (!(message.jpegThumbnail && typeof message.jpegThumbnail.length === "number" || $util.isString(message.jpegThumbnail)))
+                        return "jpegThumbnail: buffer expected";
+                if (message.startTime != null && message.hasOwnProperty("startTime"))
+                    if (!$util.isInteger(message.startTime) && !(message.startTime && $util.isInteger(message.startTime.low) && $util.isInteger(message.startTime.high)))
+                        return "startTime: integer|Long expected";
+                if (message.caption != null && message.hasOwnProperty("caption"))
+                    if (!$util.isString(message.caption))
+                        return "caption: string expected";
+                if (message.isCanceled != null && message.hasOwnProperty("isCanceled"))
+                    if (typeof message.isCanceled !== "boolean")
+                        return "isCanceled: boolean expected";
+                return null;
+            };
+
+            /**
+             * Creates an EventInviteMessage message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.Message.EventInviteMessage
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.Message.EventInviteMessage} EventInviteMessage
+             */
+            EventInviteMessage.fromObject = function fromObject(object) {
+                if (object instanceof $root.E2E.Message.EventInviteMessage)
+                    return object;
+                var message = new $root.E2E.Message.EventInviteMessage();
+                if (object.contextInfo != null) {
+                    if (typeof object.contextInfo !== "object")
+                        throw TypeError(".E2E.Message.EventInviteMessage.contextInfo: object expected");
+                    message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo);
+                }
+                if (object.eventId != null)
+                    message.eventId = String(object.eventId);
+                if (object.eventTitle != null)
+                    message.eventTitle = String(object.eventTitle);
+                if (object.jpegThumbnail != null)
+                    if (typeof object.jpegThumbnail === "string")
+                        $util.base64.decode(object.jpegThumbnail, message.jpegThumbnail = $util.newBuffer($util.base64.length(object.jpegThumbnail)), 0);
+                    else if (object.jpegThumbnail.length >= 0)
+                        message.jpegThumbnail = object.jpegThumbnail;
+                if (object.startTime != null)
+                    if ($util.Long)
+                        (message.startTime = $util.Long.fromValue(object.startTime)).unsigned = false;
+                    else if (typeof object.startTime === "string")
+                        message.startTime = parseInt(object.startTime, 10);
+                    else if (typeof object.startTime === "number")
+                        message.startTime = object.startTime;
+                    else if (typeof object.startTime === "object")
+                        message.startTime = new $util.LongBits(object.startTime.low >>> 0, object.startTime.high >>> 0).toNumber();
+                if (object.caption != null)
+                    message.caption = String(object.caption);
+                if (object.isCanceled != null)
+                    message.isCanceled = Boolean(object.isCanceled);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from an EventInviteMessage message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.Message.EventInviteMessage
+             * @static
+             * @param {E2E.Message.EventInviteMessage} message EventInviteMessage
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            EventInviteMessage.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.contextInfo = null;
+                    object.eventId = "";
+                    object.eventTitle = "";
+                    if (options.bytes === String)
+                        object.jpegThumbnail = "";
+                    else {
+                        object.jpegThumbnail = [];
+                        if (options.bytes !== Array)
+                            object.jpegThumbnail = $util.newBuffer(object.jpegThumbnail);
+                    }
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.startTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    } else
+                        object.startTime = options.longs === String ? "0" : 0;
+                    object.caption = "";
+                    object.isCanceled = false;
+                }
+                if (message.contextInfo != null && message.hasOwnProperty("contextInfo"))
+                    object.contextInfo = $root.E2E.ContextInfo.toObject(message.contextInfo, options);
+                if (message.eventId != null && message.hasOwnProperty("eventId"))
+                    object.eventId = message.eventId;
+                if (message.eventTitle != null && message.hasOwnProperty("eventTitle"))
+                    object.eventTitle = message.eventTitle;
+                if (message.jpegThumbnail != null && message.hasOwnProperty("jpegThumbnail"))
+                    object.jpegThumbnail = options.bytes === String ? $util.base64.encode(message.jpegThumbnail, 0, message.jpegThumbnail.length) : options.bytes === Array ? Array.prototype.slice.call(message.jpegThumbnail) : message.jpegThumbnail;
+                if (message.startTime != null && message.hasOwnProperty("startTime"))
+                    if (typeof message.startTime === "number")
+                        object.startTime = options.longs === String ? String(message.startTime) : message.startTime;
+                    else
+                        object.startTime = options.longs === String ? $util.Long.prototype.toString.call(message.startTime) : options.longs === Number ? new $util.LongBits(message.startTime.low >>> 0, message.startTime.high >>> 0).toNumber() : message.startTime;
+                if (message.caption != null && message.hasOwnProperty("caption"))
+                    object.caption = message.caption;
+                if (message.isCanceled != null && message.hasOwnProperty("isCanceled"))
+                    object.isCanceled = message.isCanceled;
+                return object;
+            };
+
+            /**
+             * Converts this EventInviteMessage to JSON.
+             * @function toJSON
+             * @memberof E2E.Message.EventInviteMessage
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            EventInviteMessage.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for EventInviteMessage
+             * @function getTypeUrl
+             * @memberof E2E.Message.EventInviteMessage
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            EventInviteMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.Message.EventInviteMessage";
+            };
+
+            return EventInviteMessage;
         })();
 
         Message.EventMessage = (function() {
@@ -60759,9 +61159,10 @@ $root.E2E = (function() {
              * @memberof E2E.Message
              * @interface IMessageHistoryMetadata
              * @property {Array.<string>|null} [historyReceivers] MessageHistoryMetadata historyReceivers
-             * @property {number|Long|null} [oldestMessageTimestamp] MessageHistoryMetadata oldestMessageTimestamp
+             * @property {number|Long|null} [oldestMessageTimestampInWindow] MessageHistoryMetadata oldestMessageTimestampInWindow
              * @property {number|Long|null} [messageCount] MessageHistoryMetadata messageCount
              * @property {Array.<string>|null} [nonHistoryReceivers] MessageHistoryMetadata nonHistoryReceivers
+             * @property {number|Long|null} [oldestMessageTimestampInBundle] MessageHistoryMetadata oldestMessageTimestampInBundle
              */
 
             /**
@@ -60790,12 +61191,12 @@ $root.E2E = (function() {
             MessageHistoryMetadata.prototype.historyReceivers = $util.emptyArray;
 
             /**
-             * MessageHistoryMetadata oldestMessageTimestamp.
-             * @member {number|Long} oldestMessageTimestamp
+             * MessageHistoryMetadata oldestMessageTimestampInWindow.
+             * @member {number|Long} oldestMessageTimestampInWindow
              * @memberof E2E.Message.MessageHistoryMetadata
              * @instance
              */
-            MessageHistoryMetadata.prototype.oldestMessageTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+            MessageHistoryMetadata.prototype.oldestMessageTimestampInWindow = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
             /**
              * MessageHistoryMetadata messageCount.
@@ -60812,6 +61213,14 @@ $root.E2E = (function() {
              * @instance
              */
             MessageHistoryMetadata.prototype.nonHistoryReceivers = $util.emptyArray;
+
+            /**
+             * MessageHistoryMetadata oldestMessageTimestampInBundle.
+             * @member {number|Long} oldestMessageTimestampInBundle
+             * @memberof E2E.Message.MessageHistoryMetadata
+             * @instance
+             */
+            MessageHistoryMetadata.prototype.oldestMessageTimestampInBundle = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
             /**
              * Creates a new MessageHistoryMetadata instance using the specified properties.
@@ -60840,13 +61249,15 @@ $root.E2E = (function() {
                 if (message.historyReceivers != null && message.historyReceivers.length)
                     for (var i = 0; i < message.historyReceivers.length; ++i)
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.historyReceivers[i]);
-                if (message.oldestMessageTimestamp != null && Object.hasOwnProperty.call(message, "oldestMessageTimestamp"))
-                    writer.uint32(/* id 2, wireType 0 =*/16).int64(message.oldestMessageTimestamp);
+                if (message.oldestMessageTimestampInWindow != null && Object.hasOwnProperty.call(message, "oldestMessageTimestampInWindow"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).int64(message.oldestMessageTimestampInWindow);
                 if (message.messageCount != null && Object.hasOwnProperty.call(message, "messageCount"))
                     writer.uint32(/* id 3, wireType 0 =*/24).int64(message.messageCount);
                 if (message.nonHistoryReceivers != null && message.nonHistoryReceivers.length)
                     for (var i = 0; i < message.nonHistoryReceivers.length; ++i)
                         writer.uint32(/* id 4, wireType 2 =*/34).string(message.nonHistoryReceivers[i]);
+                if (message.oldestMessageTimestampInBundle != null && Object.hasOwnProperty.call(message, "oldestMessageTimestampInBundle"))
+                    writer.uint32(/* id 5, wireType 0 =*/40).int64(message.oldestMessageTimestampInBundle);
                 return writer;
             };
 
@@ -60890,7 +61301,7 @@ $root.E2E = (function() {
                             break;
                         }
                     case 2: {
-                            message.oldestMessageTimestamp = reader.int64();
+                            message.oldestMessageTimestampInWindow = reader.int64();
                             break;
                         }
                     case 3: {
@@ -60901,6 +61312,10 @@ $root.E2E = (function() {
                             if (!(message.nonHistoryReceivers && message.nonHistoryReceivers.length))
                                 message.nonHistoryReceivers = [];
                             message.nonHistoryReceivers.push(reader.string());
+                            break;
+                        }
+                    case 5: {
+                            message.oldestMessageTimestampInBundle = reader.int64();
                             break;
                         }
                     default:
@@ -60945,9 +61360,9 @@ $root.E2E = (function() {
                         if (!$util.isString(message.historyReceivers[i]))
                             return "historyReceivers: string[] expected";
                 }
-                if (message.oldestMessageTimestamp != null && message.hasOwnProperty("oldestMessageTimestamp"))
-                    if (!$util.isInteger(message.oldestMessageTimestamp) && !(message.oldestMessageTimestamp && $util.isInteger(message.oldestMessageTimestamp.low) && $util.isInteger(message.oldestMessageTimestamp.high)))
-                        return "oldestMessageTimestamp: integer|Long expected";
+                if (message.oldestMessageTimestampInWindow != null && message.hasOwnProperty("oldestMessageTimestampInWindow"))
+                    if (!$util.isInteger(message.oldestMessageTimestampInWindow) && !(message.oldestMessageTimestampInWindow && $util.isInteger(message.oldestMessageTimestampInWindow.low) && $util.isInteger(message.oldestMessageTimestampInWindow.high)))
+                        return "oldestMessageTimestampInWindow: integer|Long expected";
                 if (message.messageCount != null && message.hasOwnProperty("messageCount"))
                     if (!$util.isInteger(message.messageCount) && !(message.messageCount && $util.isInteger(message.messageCount.low) && $util.isInteger(message.messageCount.high)))
                         return "messageCount: integer|Long expected";
@@ -60958,6 +61373,9 @@ $root.E2E = (function() {
                         if (!$util.isString(message.nonHistoryReceivers[i]))
                             return "nonHistoryReceivers: string[] expected";
                 }
+                if (message.oldestMessageTimestampInBundle != null && message.hasOwnProperty("oldestMessageTimestampInBundle"))
+                    if (!$util.isInteger(message.oldestMessageTimestampInBundle) && !(message.oldestMessageTimestampInBundle && $util.isInteger(message.oldestMessageTimestampInBundle.low) && $util.isInteger(message.oldestMessageTimestampInBundle.high)))
+                        return "oldestMessageTimestampInBundle: integer|Long expected";
                 return null;
             };
 
@@ -60980,15 +61398,15 @@ $root.E2E = (function() {
                     for (var i = 0; i < object.historyReceivers.length; ++i)
                         message.historyReceivers[i] = String(object.historyReceivers[i]);
                 }
-                if (object.oldestMessageTimestamp != null)
+                if (object.oldestMessageTimestampInWindow != null)
                     if ($util.Long)
-                        (message.oldestMessageTimestamp = $util.Long.fromValue(object.oldestMessageTimestamp)).unsigned = false;
-                    else if (typeof object.oldestMessageTimestamp === "string")
-                        message.oldestMessageTimestamp = parseInt(object.oldestMessageTimestamp, 10);
-                    else if (typeof object.oldestMessageTimestamp === "number")
-                        message.oldestMessageTimestamp = object.oldestMessageTimestamp;
-                    else if (typeof object.oldestMessageTimestamp === "object")
-                        message.oldestMessageTimestamp = new $util.LongBits(object.oldestMessageTimestamp.low >>> 0, object.oldestMessageTimestamp.high >>> 0).toNumber();
+                        (message.oldestMessageTimestampInWindow = $util.Long.fromValue(object.oldestMessageTimestampInWindow)).unsigned = false;
+                    else if (typeof object.oldestMessageTimestampInWindow === "string")
+                        message.oldestMessageTimestampInWindow = parseInt(object.oldestMessageTimestampInWindow, 10);
+                    else if (typeof object.oldestMessageTimestampInWindow === "number")
+                        message.oldestMessageTimestampInWindow = object.oldestMessageTimestampInWindow;
+                    else if (typeof object.oldestMessageTimestampInWindow === "object")
+                        message.oldestMessageTimestampInWindow = new $util.LongBits(object.oldestMessageTimestampInWindow.low >>> 0, object.oldestMessageTimestampInWindow.high >>> 0).toNumber();
                 if (object.messageCount != null)
                     if ($util.Long)
                         (message.messageCount = $util.Long.fromValue(object.messageCount)).unsigned = false;
@@ -61005,6 +61423,15 @@ $root.E2E = (function() {
                     for (var i = 0; i < object.nonHistoryReceivers.length; ++i)
                         message.nonHistoryReceivers[i] = String(object.nonHistoryReceivers[i]);
                 }
+                if (object.oldestMessageTimestampInBundle != null)
+                    if ($util.Long)
+                        (message.oldestMessageTimestampInBundle = $util.Long.fromValue(object.oldestMessageTimestampInBundle)).unsigned = false;
+                    else if (typeof object.oldestMessageTimestampInBundle === "string")
+                        message.oldestMessageTimestampInBundle = parseInt(object.oldestMessageTimestampInBundle, 10);
+                    else if (typeof object.oldestMessageTimestampInBundle === "number")
+                        message.oldestMessageTimestampInBundle = object.oldestMessageTimestampInBundle;
+                    else if (typeof object.oldestMessageTimestampInBundle === "object")
+                        message.oldestMessageTimestampInBundle = new $util.LongBits(object.oldestMessageTimestampInBundle.low >>> 0, object.oldestMessageTimestampInBundle.high >>> 0).toNumber();
                 return message;
             };
 
@@ -61028,25 +61455,30 @@ $root.E2E = (function() {
                 if (options.defaults) {
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.oldestMessageTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.oldestMessageTimestampInWindow = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                     } else
-                        object.oldestMessageTimestamp = options.longs === String ? "0" : 0;
+                        object.oldestMessageTimestampInWindow = options.longs === String ? "0" : 0;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
                         object.messageCount = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                     } else
                         object.messageCount = options.longs === String ? "0" : 0;
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.oldestMessageTimestampInBundle = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    } else
+                        object.oldestMessageTimestampInBundle = options.longs === String ? "0" : 0;
                 }
                 if (message.historyReceivers && message.historyReceivers.length) {
                     object.historyReceivers = [];
                     for (var j = 0; j < message.historyReceivers.length; ++j)
                         object.historyReceivers[j] = message.historyReceivers[j];
                 }
-                if (message.oldestMessageTimestamp != null && message.hasOwnProperty("oldestMessageTimestamp"))
-                    if (typeof message.oldestMessageTimestamp === "number")
-                        object.oldestMessageTimestamp = options.longs === String ? String(message.oldestMessageTimestamp) : message.oldestMessageTimestamp;
+                if (message.oldestMessageTimestampInWindow != null && message.hasOwnProperty("oldestMessageTimestampInWindow"))
+                    if (typeof message.oldestMessageTimestampInWindow === "number")
+                        object.oldestMessageTimestampInWindow = options.longs === String ? String(message.oldestMessageTimestampInWindow) : message.oldestMessageTimestampInWindow;
                     else
-                        object.oldestMessageTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.oldestMessageTimestamp) : options.longs === Number ? new $util.LongBits(message.oldestMessageTimestamp.low >>> 0, message.oldestMessageTimestamp.high >>> 0).toNumber() : message.oldestMessageTimestamp;
+                        object.oldestMessageTimestampInWindow = options.longs === String ? $util.Long.prototype.toString.call(message.oldestMessageTimestampInWindow) : options.longs === Number ? new $util.LongBits(message.oldestMessageTimestampInWindow.low >>> 0, message.oldestMessageTimestampInWindow.high >>> 0).toNumber() : message.oldestMessageTimestampInWindow;
                 if (message.messageCount != null && message.hasOwnProperty("messageCount"))
                     if (typeof message.messageCount === "number")
                         object.messageCount = options.longs === String ? String(message.messageCount) : message.messageCount;
@@ -61057,6 +61489,11 @@ $root.E2E = (function() {
                     for (var j = 0; j < message.nonHistoryReceivers.length; ++j)
                         object.nonHistoryReceivers[j] = message.nonHistoryReceivers[j];
                 }
+                if (message.oldestMessageTimestampInBundle != null && message.hasOwnProperty("oldestMessageTimestampInBundle"))
+                    if (typeof message.oldestMessageTimestampInBundle === "number")
+                        object.oldestMessageTimestampInBundle = options.longs === String ? String(message.oldestMessageTimestampInBundle) : message.oldestMessageTimestampInBundle;
+                    else
+                        object.oldestMessageTimestampInBundle = options.longs === String ? $util.Long.prototype.toString.call(message.oldestMessageTimestampInBundle) : options.longs === Number ? new $util.LongBits(message.oldestMessageTimestampInBundle.low >>> 0, message.oldestMessageTimestampInBundle.high >>> 0).toNumber() : message.oldestMessageTimestampInBundle;
                 return object;
             };
 
@@ -78796,6 +79233,7 @@ $root.E2E = (function() {
              * @interface IRequestWelcomeMessageMetadata
              * @property {E2E.Message.RequestWelcomeMessageMetadata.LocalChatState|null} [localChatState] RequestWelcomeMessageMetadata localChatState
              * @property {E2E.Message.RequestWelcomeMessageMetadata.WelcomeTrigger|null} [welcomeTrigger] RequestWelcomeMessageMetadata welcomeTrigger
+             * @property {AICommon.IBotAgentMetadata|null} [botAgentMetadata] RequestWelcomeMessageMetadata botAgentMetadata
              */
 
             /**
@@ -78830,6 +79268,14 @@ $root.E2E = (function() {
             RequestWelcomeMessageMetadata.prototype.welcomeTrigger = 0;
 
             /**
+             * RequestWelcomeMessageMetadata botAgentMetadata.
+             * @member {AICommon.IBotAgentMetadata|null|undefined} botAgentMetadata
+             * @memberof E2E.Message.RequestWelcomeMessageMetadata
+             * @instance
+             */
+            RequestWelcomeMessageMetadata.prototype.botAgentMetadata = null;
+
+            /**
              * Creates a new RequestWelcomeMessageMetadata instance using the specified properties.
              * @function create
              * @memberof E2E.Message.RequestWelcomeMessageMetadata
@@ -78857,6 +79303,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.localChatState);
                 if (message.welcomeTrigger != null && Object.hasOwnProperty.call(message, "welcomeTrigger"))
                     writer.uint32(/* id 2, wireType 0 =*/16).int32(message.welcomeTrigger);
+                if (message.botAgentMetadata != null && Object.hasOwnProperty.call(message, "botAgentMetadata"))
+                    $root.AICommon.BotAgentMetadata.encode(message.botAgentMetadata, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                 return writer;
             };
 
@@ -78899,6 +79347,10 @@ $root.E2E = (function() {
                         }
                     case 2: {
                             message.welcomeTrigger = reader.int32();
+                            break;
+                        }
+                    case 3: {
+                            message.botAgentMetadata = $root.AICommon.BotAgentMetadata.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -78952,6 +79404,11 @@ $root.E2E = (function() {
                     case 1:
                         break;
                     }
+                if (message.botAgentMetadata != null && message.hasOwnProperty("botAgentMetadata")) {
+                    var error = $root.AICommon.BotAgentMetadata.verify(message.botAgentMetadata);
+                    if (error)
+                        return "botAgentMetadata." + error;
+                }
                 return null;
             };
 
@@ -78999,6 +79456,11 @@ $root.E2E = (function() {
                     message.welcomeTrigger = 1;
                     break;
                 }
+                if (object.botAgentMetadata != null) {
+                    if (typeof object.botAgentMetadata !== "object")
+                        throw TypeError(".E2E.Message.RequestWelcomeMessageMetadata.botAgentMetadata: object expected");
+                    message.botAgentMetadata = $root.AICommon.BotAgentMetadata.fromObject(object.botAgentMetadata);
+                }
                 return message;
             };
 
@@ -79018,11 +79480,14 @@ $root.E2E = (function() {
                 if (options.defaults) {
                     object.localChatState = options.enums === String ? "EMPTY" : 0;
                     object.welcomeTrigger = options.enums === String ? "CHAT_OPEN" : 0;
+                    object.botAgentMetadata = null;
                 }
                 if (message.localChatState != null && message.hasOwnProperty("localChatState"))
                     object.localChatState = options.enums === String ? $root.E2E.Message.RequestWelcomeMessageMetadata.LocalChatState[message.localChatState] === undefined ? message.localChatState : $root.E2E.Message.RequestWelcomeMessageMetadata.LocalChatState[message.localChatState] : message.localChatState;
                 if (message.welcomeTrigger != null && message.hasOwnProperty("welcomeTrigger"))
                     object.welcomeTrigger = options.enums === String ? $root.E2E.Message.RequestWelcomeMessageMetadata.WelcomeTrigger[message.welcomeTrigger] === undefined ? message.welcomeTrigger : $root.E2E.Message.RequestWelcomeMessageMetadata.WelcomeTrigger[message.welcomeTrigger] : message.welcomeTrigger;
+                if (message.botAgentMetadata != null && message.hasOwnProperty("botAgentMetadata"))
+                    object.botAgentMetadata = $root.AICommon.BotAgentMetadata.toObject(message.botAgentMetadata, options);
                 return object;
             };
 
@@ -95251,6 +95716,421 @@ $root.AICommon = (function() {
      * @namespace
      */
     var AICommon = {};
+
+    AICommon.BotAgentDeepLinkMetadata = (function() {
+
+        /**
+         * Properties of a BotAgentDeepLinkMetadata.
+         * @memberof AICommon
+         * @interface IBotAgentDeepLinkMetadata
+         * @property {string|null} [token] BotAgentDeepLinkMetadata token
+         */
+
+        /**
+         * Constructs a new BotAgentDeepLinkMetadata.
+         * @memberof AICommon
+         * @classdesc Represents a BotAgentDeepLinkMetadata.
+         * @implements IBotAgentDeepLinkMetadata
+         * @constructor
+         * @param {AICommon.IBotAgentDeepLinkMetadata=} [properties] Properties to set
+         */
+        function BotAgentDeepLinkMetadata(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BotAgentDeepLinkMetadata token.
+         * @member {string} token
+         * @memberof AICommon.BotAgentDeepLinkMetadata
+         * @instance
+         */
+        BotAgentDeepLinkMetadata.prototype.token = "";
+
+        /**
+         * Creates a new BotAgentDeepLinkMetadata instance using the specified properties.
+         * @function create
+         * @memberof AICommon.BotAgentDeepLinkMetadata
+         * @static
+         * @param {AICommon.IBotAgentDeepLinkMetadata=} [properties] Properties to set
+         * @returns {AICommon.BotAgentDeepLinkMetadata} BotAgentDeepLinkMetadata instance
+         */
+        BotAgentDeepLinkMetadata.create = function create(properties) {
+            return new BotAgentDeepLinkMetadata(properties);
+        };
+
+        /**
+         * Encodes the specified BotAgentDeepLinkMetadata message. Does not implicitly {@link AICommon.BotAgentDeepLinkMetadata.verify|verify} messages.
+         * @function encode
+         * @memberof AICommon.BotAgentDeepLinkMetadata
+         * @static
+         * @param {AICommon.IBotAgentDeepLinkMetadata} message BotAgentDeepLinkMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotAgentDeepLinkMetadata.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.token != null && Object.hasOwnProperty.call(message, "token"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.token);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BotAgentDeepLinkMetadata message, length delimited. Does not implicitly {@link AICommon.BotAgentDeepLinkMetadata.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof AICommon.BotAgentDeepLinkMetadata
+         * @static
+         * @param {AICommon.IBotAgentDeepLinkMetadata} message BotAgentDeepLinkMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotAgentDeepLinkMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BotAgentDeepLinkMetadata message from the specified reader or buffer.
+         * @function decode
+         * @memberof AICommon.BotAgentDeepLinkMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {AICommon.BotAgentDeepLinkMetadata} BotAgentDeepLinkMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotAgentDeepLinkMetadata.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotAgentDeepLinkMetadata();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.token = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BotAgentDeepLinkMetadata message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof AICommon.BotAgentDeepLinkMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {AICommon.BotAgentDeepLinkMetadata} BotAgentDeepLinkMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotAgentDeepLinkMetadata.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BotAgentDeepLinkMetadata message.
+         * @function verify
+         * @memberof AICommon.BotAgentDeepLinkMetadata
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BotAgentDeepLinkMetadata.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.token != null && message.hasOwnProperty("token"))
+                if (!$util.isString(message.token))
+                    return "token: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a BotAgentDeepLinkMetadata message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof AICommon.BotAgentDeepLinkMetadata
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {AICommon.BotAgentDeepLinkMetadata} BotAgentDeepLinkMetadata
+         */
+        BotAgentDeepLinkMetadata.fromObject = function fromObject(object) {
+            if (object instanceof $root.AICommon.BotAgentDeepLinkMetadata)
+                return object;
+            var message = new $root.AICommon.BotAgentDeepLinkMetadata();
+            if (object.token != null)
+                message.token = String(object.token);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BotAgentDeepLinkMetadata message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof AICommon.BotAgentDeepLinkMetadata
+         * @static
+         * @param {AICommon.BotAgentDeepLinkMetadata} message BotAgentDeepLinkMetadata
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BotAgentDeepLinkMetadata.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.token = "";
+            if (message.token != null && message.hasOwnProperty("token"))
+                object.token = message.token;
+            return object;
+        };
+
+        /**
+         * Converts this BotAgentDeepLinkMetadata to JSON.
+         * @function toJSON
+         * @memberof AICommon.BotAgentDeepLinkMetadata
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BotAgentDeepLinkMetadata.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotAgentDeepLinkMetadata
+         * @function getTypeUrl
+         * @memberof AICommon.BotAgentDeepLinkMetadata
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotAgentDeepLinkMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/AICommon.BotAgentDeepLinkMetadata";
+        };
+
+        return BotAgentDeepLinkMetadata;
+    })();
+
+    AICommon.BotAgentMetadata = (function() {
+
+        /**
+         * Properties of a BotAgentMetadata.
+         * @memberof AICommon
+         * @interface IBotAgentMetadata
+         * @property {AICommon.IBotAgentDeepLinkMetadata|null} [deepLinkMetadata] BotAgentMetadata deepLinkMetadata
+         */
+
+        /**
+         * Constructs a new BotAgentMetadata.
+         * @memberof AICommon
+         * @classdesc Represents a BotAgentMetadata.
+         * @implements IBotAgentMetadata
+         * @constructor
+         * @param {AICommon.IBotAgentMetadata=} [properties] Properties to set
+         */
+        function BotAgentMetadata(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BotAgentMetadata deepLinkMetadata.
+         * @member {AICommon.IBotAgentDeepLinkMetadata|null|undefined} deepLinkMetadata
+         * @memberof AICommon.BotAgentMetadata
+         * @instance
+         */
+        BotAgentMetadata.prototype.deepLinkMetadata = null;
+
+        /**
+         * Creates a new BotAgentMetadata instance using the specified properties.
+         * @function create
+         * @memberof AICommon.BotAgentMetadata
+         * @static
+         * @param {AICommon.IBotAgentMetadata=} [properties] Properties to set
+         * @returns {AICommon.BotAgentMetadata} BotAgentMetadata instance
+         */
+        BotAgentMetadata.create = function create(properties) {
+            return new BotAgentMetadata(properties);
+        };
+
+        /**
+         * Encodes the specified BotAgentMetadata message. Does not implicitly {@link AICommon.BotAgentMetadata.verify|verify} messages.
+         * @function encode
+         * @memberof AICommon.BotAgentMetadata
+         * @static
+         * @param {AICommon.IBotAgentMetadata} message BotAgentMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotAgentMetadata.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.deepLinkMetadata != null && Object.hasOwnProperty.call(message, "deepLinkMetadata"))
+                $root.AICommon.BotAgentDeepLinkMetadata.encode(message.deepLinkMetadata, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BotAgentMetadata message, length delimited. Does not implicitly {@link AICommon.BotAgentMetadata.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof AICommon.BotAgentMetadata
+         * @static
+         * @param {AICommon.IBotAgentMetadata} message BotAgentMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotAgentMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BotAgentMetadata message from the specified reader or buffer.
+         * @function decode
+         * @memberof AICommon.BotAgentMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {AICommon.BotAgentMetadata} BotAgentMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotAgentMetadata.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotAgentMetadata();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.deepLinkMetadata = $root.AICommon.BotAgentDeepLinkMetadata.decode(reader, reader.uint32());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BotAgentMetadata message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof AICommon.BotAgentMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {AICommon.BotAgentMetadata} BotAgentMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotAgentMetadata.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BotAgentMetadata message.
+         * @function verify
+         * @memberof AICommon.BotAgentMetadata
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BotAgentMetadata.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.deepLinkMetadata != null && message.hasOwnProperty("deepLinkMetadata")) {
+                var error = $root.AICommon.BotAgentDeepLinkMetadata.verify(message.deepLinkMetadata);
+                if (error)
+                    return "deepLinkMetadata." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a BotAgentMetadata message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof AICommon.BotAgentMetadata
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {AICommon.BotAgentMetadata} BotAgentMetadata
+         */
+        BotAgentMetadata.fromObject = function fromObject(object) {
+            if (object instanceof $root.AICommon.BotAgentMetadata)
+                return object;
+            var message = new $root.AICommon.BotAgentMetadata();
+            if (object.deepLinkMetadata != null) {
+                if (typeof object.deepLinkMetadata !== "object")
+                    throw TypeError(".AICommon.BotAgentMetadata.deepLinkMetadata: object expected");
+                message.deepLinkMetadata = $root.AICommon.BotAgentDeepLinkMetadata.fromObject(object.deepLinkMetadata);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BotAgentMetadata message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof AICommon.BotAgentMetadata
+         * @static
+         * @param {AICommon.BotAgentMetadata} message BotAgentMetadata
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BotAgentMetadata.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.deepLinkMetadata = null;
+            if (message.deepLinkMetadata != null && message.hasOwnProperty("deepLinkMetadata"))
+                object.deepLinkMetadata = $root.AICommon.BotAgentDeepLinkMetadata.toObject(message.deepLinkMetadata, options);
+            return object;
+        };
+
+        /**
+         * Converts this BotAgentMetadata to JSON.
+         * @function toJSON
+         * @memberof AICommon.BotAgentMetadata
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BotAgentMetadata.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotAgentMetadata
+         * @function getTypeUrl
+         * @memberof AICommon.BotAgentMetadata
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotAgentMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/AICommon.BotAgentMetadata";
+        };
+
+        return BotAgentMetadata;
+    })();
 
     AICommon.BotInfrastructureDiagnostics = (function() {
 

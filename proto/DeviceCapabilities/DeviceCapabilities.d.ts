@@ -247,6 +247,12 @@ export namespace DeviceCapabilities {
 
             /** BusinessBroadcast companionSupportEnabled */
             companionSupportEnabled?: (boolean|null);
+
+            /** BusinessBroadcast campaignSyncEnabled */
+            campaignSyncEnabled?: (boolean|null);
+
+            /** BusinessBroadcast insightsSyncEnabled */
+            insightsSyncEnabled?: (boolean|null);
         }
 
         /** Represents a BusinessBroadcast. */
@@ -263,6 +269,12 @@ export namespace DeviceCapabilities {
 
             /** BusinessBroadcast companionSupportEnabled. */
             public companionSupportEnabled: boolean;
+
+            /** BusinessBroadcast campaignSyncEnabled. */
+            public campaignSyncEnabled: boolean;
+
+            /** BusinessBroadcast insightsSyncEnabled. */
+            public insightsSyncEnabled: boolean;
 
             /**
              * Creates a new BusinessBroadcast instance using the specified properties.

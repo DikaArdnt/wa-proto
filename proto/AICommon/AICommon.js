@@ -18,6 +18,421 @@ $root.AICommon = (function() {
      */
     var AICommon = {};
 
+    AICommon.BotAgentDeepLinkMetadata = (function() {
+
+        /**
+         * Properties of a BotAgentDeepLinkMetadata.
+         * @memberof AICommon
+         * @interface IBotAgentDeepLinkMetadata
+         * @property {string|null} [token] BotAgentDeepLinkMetadata token
+         */
+
+        /**
+         * Constructs a new BotAgentDeepLinkMetadata.
+         * @memberof AICommon
+         * @classdesc Represents a BotAgentDeepLinkMetadata.
+         * @implements IBotAgentDeepLinkMetadata
+         * @constructor
+         * @param {AICommon.IBotAgentDeepLinkMetadata=} [properties] Properties to set
+         */
+        function BotAgentDeepLinkMetadata(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BotAgentDeepLinkMetadata token.
+         * @member {string} token
+         * @memberof AICommon.BotAgentDeepLinkMetadata
+         * @instance
+         */
+        BotAgentDeepLinkMetadata.prototype.token = "";
+
+        /**
+         * Creates a new BotAgentDeepLinkMetadata instance using the specified properties.
+         * @function create
+         * @memberof AICommon.BotAgentDeepLinkMetadata
+         * @static
+         * @param {AICommon.IBotAgentDeepLinkMetadata=} [properties] Properties to set
+         * @returns {AICommon.BotAgentDeepLinkMetadata} BotAgentDeepLinkMetadata instance
+         */
+        BotAgentDeepLinkMetadata.create = function create(properties) {
+            return new BotAgentDeepLinkMetadata(properties);
+        };
+
+        /**
+         * Encodes the specified BotAgentDeepLinkMetadata message. Does not implicitly {@link AICommon.BotAgentDeepLinkMetadata.verify|verify} messages.
+         * @function encode
+         * @memberof AICommon.BotAgentDeepLinkMetadata
+         * @static
+         * @param {AICommon.IBotAgentDeepLinkMetadata} message BotAgentDeepLinkMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotAgentDeepLinkMetadata.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.token != null && Object.hasOwnProperty.call(message, "token"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.token);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BotAgentDeepLinkMetadata message, length delimited. Does not implicitly {@link AICommon.BotAgentDeepLinkMetadata.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof AICommon.BotAgentDeepLinkMetadata
+         * @static
+         * @param {AICommon.IBotAgentDeepLinkMetadata} message BotAgentDeepLinkMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotAgentDeepLinkMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BotAgentDeepLinkMetadata message from the specified reader or buffer.
+         * @function decode
+         * @memberof AICommon.BotAgentDeepLinkMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {AICommon.BotAgentDeepLinkMetadata} BotAgentDeepLinkMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotAgentDeepLinkMetadata.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotAgentDeepLinkMetadata();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.token = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BotAgentDeepLinkMetadata message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof AICommon.BotAgentDeepLinkMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {AICommon.BotAgentDeepLinkMetadata} BotAgentDeepLinkMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotAgentDeepLinkMetadata.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BotAgentDeepLinkMetadata message.
+         * @function verify
+         * @memberof AICommon.BotAgentDeepLinkMetadata
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BotAgentDeepLinkMetadata.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.token != null && message.hasOwnProperty("token"))
+                if (!$util.isString(message.token))
+                    return "token: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a BotAgentDeepLinkMetadata message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof AICommon.BotAgentDeepLinkMetadata
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {AICommon.BotAgentDeepLinkMetadata} BotAgentDeepLinkMetadata
+         */
+        BotAgentDeepLinkMetadata.fromObject = function fromObject(object) {
+            if (object instanceof $root.AICommon.BotAgentDeepLinkMetadata)
+                return object;
+            var message = new $root.AICommon.BotAgentDeepLinkMetadata();
+            if (object.token != null)
+                message.token = String(object.token);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BotAgentDeepLinkMetadata message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof AICommon.BotAgentDeepLinkMetadata
+         * @static
+         * @param {AICommon.BotAgentDeepLinkMetadata} message BotAgentDeepLinkMetadata
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BotAgentDeepLinkMetadata.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.token = "";
+            if (message.token != null && message.hasOwnProperty("token"))
+                object.token = message.token;
+            return object;
+        };
+
+        /**
+         * Converts this BotAgentDeepLinkMetadata to JSON.
+         * @function toJSON
+         * @memberof AICommon.BotAgentDeepLinkMetadata
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BotAgentDeepLinkMetadata.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotAgentDeepLinkMetadata
+         * @function getTypeUrl
+         * @memberof AICommon.BotAgentDeepLinkMetadata
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotAgentDeepLinkMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/AICommon.BotAgentDeepLinkMetadata";
+        };
+
+        return BotAgentDeepLinkMetadata;
+    })();
+
+    AICommon.BotAgentMetadata = (function() {
+
+        /**
+         * Properties of a BotAgentMetadata.
+         * @memberof AICommon
+         * @interface IBotAgentMetadata
+         * @property {AICommon.IBotAgentDeepLinkMetadata|null} [deepLinkMetadata] BotAgentMetadata deepLinkMetadata
+         */
+
+        /**
+         * Constructs a new BotAgentMetadata.
+         * @memberof AICommon
+         * @classdesc Represents a BotAgentMetadata.
+         * @implements IBotAgentMetadata
+         * @constructor
+         * @param {AICommon.IBotAgentMetadata=} [properties] Properties to set
+         */
+        function BotAgentMetadata(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BotAgentMetadata deepLinkMetadata.
+         * @member {AICommon.IBotAgentDeepLinkMetadata|null|undefined} deepLinkMetadata
+         * @memberof AICommon.BotAgentMetadata
+         * @instance
+         */
+        BotAgentMetadata.prototype.deepLinkMetadata = null;
+
+        /**
+         * Creates a new BotAgentMetadata instance using the specified properties.
+         * @function create
+         * @memberof AICommon.BotAgentMetadata
+         * @static
+         * @param {AICommon.IBotAgentMetadata=} [properties] Properties to set
+         * @returns {AICommon.BotAgentMetadata} BotAgentMetadata instance
+         */
+        BotAgentMetadata.create = function create(properties) {
+            return new BotAgentMetadata(properties);
+        };
+
+        /**
+         * Encodes the specified BotAgentMetadata message. Does not implicitly {@link AICommon.BotAgentMetadata.verify|verify} messages.
+         * @function encode
+         * @memberof AICommon.BotAgentMetadata
+         * @static
+         * @param {AICommon.IBotAgentMetadata} message BotAgentMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotAgentMetadata.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.deepLinkMetadata != null && Object.hasOwnProperty.call(message, "deepLinkMetadata"))
+                $root.AICommon.BotAgentDeepLinkMetadata.encode(message.deepLinkMetadata, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BotAgentMetadata message, length delimited. Does not implicitly {@link AICommon.BotAgentMetadata.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof AICommon.BotAgentMetadata
+         * @static
+         * @param {AICommon.IBotAgentMetadata} message BotAgentMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotAgentMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BotAgentMetadata message from the specified reader or buffer.
+         * @function decode
+         * @memberof AICommon.BotAgentMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {AICommon.BotAgentMetadata} BotAgentMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotAgentMetadata.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotAgentMetadata();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.deepLinkMetadata = $root.AICommon.BotAgentDeepLinkMetadata.decode(reader, reader.uint32());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BotAgentMetadata message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof AICommon.BotAgentMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {AICommon.BotAgentMetadata} BotAgentMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotAgentMetadata.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BotAgentMetadata message.
+         * @function verify
+         * @memberof AICommon.BotAgentMetadata
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BotAgentMetadata.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.deepLinkMetadata != null && message.hasOwnProperty("deepLinkMetadata")) {
+                var error = $root.AICommon.BotAgentDeepLinkMetadata.verify(message.deepLinkMetadata);
+                if (error)
+                    return "deepLinkMetadata." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a BotAgentMetadata message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof AICommon.BotAgentMetadata
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {AICommon.BotAgentMetadata} BotAgentMetadata
+         */
+        BotAgentMetadata.fromObject = function fromObject(object) {
+            if (object instanceof $root.AICommon.BotAgentMetadata)
+                return object;
+            var message = new $root.AICommon.BotAgentMetadata();
+            if (object.deepLinkMetadata != null) {
+                if (typeof object.deepLinkMetadata !== "object")
+                    throw TypeError(".AICommon.BotAgentMetadata.deepLinkMetadata: object expected");
+                message.deepLinkMetadata = $root.AICommon.BotAgentDeepLinkMetadata.fromObject(object.deepLinkMetadata);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BotAgentMetadata message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof AICommon.BotAgentMetadata
+         * @static
+         * @param {AICommon.BotAgentMetadata} message BotAgentMetadata
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BotAgentMetadata.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.deepLinkMetadata = null;
+            if (message.deepLinkMetadata != null && message.hasOwnProperty("deepLinkMetadata"))
+                object.deepLinkMetadata = $root.AICommon.BotAgentDeepLinkMetadata.toObject(message.deepLinkMetadata, options);
+            return object;
+        };
+
+        /**
+         * Converts this BotAgentMetadata to JSON.
+         * @function toJSON
+         * @memberof AICommon.BotAgentMetadata
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BotAgentMetadata.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotAgentMetadata
+         * @function getTypeUrl
+         * @memberof AICommon.BotAgentMetadata
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotAgentMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/AICommon.BotAgentMetadata";
+        };
+
+        return BotAgentMetadata;
+    })();
+
     AICommon.BotInfrastructureDiagnostics = (function() {
 
         /**
