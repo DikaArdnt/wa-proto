@@ -990,6 +990,7 @@ $root.SyncAction = (function() {
          * @property {SyncAction.SyncActionValue.IBusinessBroadcastInsightsAction|null} [businessBroadcastInsightsAction] SyncActionValue businessBroadcastInsightsAction
          * @property {SyncAction.SyncActionValue.ICustomerDataAction|null} [customerDataAction] SyncActionValue customerDataAction
          * @property {SyncAction.SyncActionValue.ISubscriptionsSyncV2Action|null} [subscriptionsSyncV2Action] SyncActionValue subscriptionsSyncV2Action
+         * @property {SyncAction.SyncActionValue.IThreadPinAction|null} [threadPinAction] SyncActionValue threadPinAction
          */
 
         /**
@@ -1608,6 +1609,14 @@ $root.SyncAction = (function() {
         SyncActionValue.prototype.subscriptionsSyncV2Action = null;
 
         /**
+         * SyncActionValue threadPinAction.
+         * @member {SyncAction.SyncActionValue.IThreadPinAction|null|undefined} threadPinAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.threadPinAction = null;
+
+        /**
          * Creates a new SyncActionValue instance using the specified properties.
          * @function create
          * @memberof SyncAction.SyncActionValue
@@ -1781,6 +1790,8 @@ $root.SyncAction = (function() {
                 $root.SyncAction.SyncActionValue.CustomerDataAction.encode(message.customerDataAction, writer.uint32(/* id 83, wireType 2 =*/666).fork()).ldelim();
             if (message.subscriptionsSyncV2Action != null && Object.hasOwnProperty.call(message, "subscriptionsSyncV2Action"))
                 $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.encode(message.subscriptionsSyncV2Action, writer.uint32(/* id 84, wireType 2 =*/674).fork()).ldelim();
+            if (message.threadPinAction != null && Object.hasOwnProperty.call(message, "threadPinAction"))
+                $root.SyncAction.SyncActionValue.ThreadPinAction.encode(message.threadPinAction, writer.uint32(/* id 85, wireType 2 =*/682).fork()).ldelim();
             return writer;
         };
 
@@ -2115,6 +2126,10 @@ $root.SyncAction = (function() {
                     }
                 case 84: {
                         message.subscriptionsSyncV2Action = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 85: {
+                        message.threadPinAction = $root.SyncAction.SyncActionValue.ThreadPinAction.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -2525,6 +2540,11 @@ $root.SyncAction = (function() {
                 if (error)
                     return "subscriptionsSyncV2Action." + error;
             }
+            if (message.threadPinAction != null && message.hasOwnProperty("threadPinAction")) {
+                var error = $root.SyncAction.SyncActionValue.ThreadPinAction.verify(message.threadPinAction);
+                if (error)
+                    return "threadPinAction." + error;
+            }
             return null;
         };
 
@@ -2919,6 +2939,11 @@ $root.SyncAction = (function() {
                     throw TypeError(".SyncAction.SyncActionValue.subscriptionsSyncV2Action: object expected");
                 message.subscriptionsSyncV2Action = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.fromObject(object.subscriptionsSyncV2Action);
             }
+            if (object.threadPinAction != null) {
+                if (typeof object.threadPinAction !== "object")
+                    throw TypeError(".SyncAction.SyncActionValue.threadPinAction: object expected");
+                message.threadPinAction = $root.SyncAction.SyncActionValue.ThreadPinAction.fromObject(object.threadPinAction);
+            }
             return message;
         };
 
@@ -3015,6 +3040,7 @@ $root.SyncAction = (function() {
                 object.businessBroadcastInsightsAction = null;
                 object.customerDataAction = null;
                 object.subscriptionsSyncV2Action = null;
+                object.threadPinAction = null;
             }
             if (message.timestamp != null && message.hasOwnProperty("timestamp"))
                 if (typeof message.timestamp === "number")
@@ -3169,6 +3195,8 @@ $root.SyncAction = (function() {
                 object.customerDataAction = $root.SyncAction.SyncActionValue.CustomerDataAction.toObject(message.customerDataAction, options);
             if (message.subscriptionsSyncV2Action != null && message.hasOwnProperty("subscriptionsSyncV2Action"))
                 object.subscriptionsSyncV2Action = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.toObject(message.subscriptionsSyncV2Action, options);
+            if (message.threadPinAction != null && message.hasOwnProperty("threadPinAction"))
+                object.threadPinAction = $root.SyncAction.SyncActionValue.ThreadPinAction.toObject(message.threadPinAction, options);
             return object;
         };
 
@@ -22965,6 +22993,211 @@ $root.SyncAction = (function() {
             return SyncActionMessageRange;
         })();
 
+        SyncActionValue.ThreadPinAction = (function() {
+
+            /**
+             * Properties of a ThreadPinAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface IThreadPinAction
+             * @property {boolean|null} [pinned] ThreadPinAction pinned
+             */
+
+            /**
+             * Constructs a new ThreadPinAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents a ThreadPinAction.
+             * @implements IThreadPinAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.IThreadPinAction=} [properties] Properties to set
+             */
+            function ThreadPinAction(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * ThreadPinAction pinned.
+             * @member {boolean} pinned
+             * @memberof SyncAction.SyncActionValue.ThreadPinAction
+             * @instance
+             */
+            ThreadPinAction.prototype.pinned = false;
+
+            /**
+             * Creates a new ThreadPinAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.ThreadPinAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IThreadPinAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.ThreadPinAction} ThreadPinAction instance
+             */
+            ThreadPinAction.create = function create(properties) {
+                return new ThreadPinAction(properties);
+            };
+
+            /**
+             * Encodes the specified ThreadPinAction message. Does not implicitly {@link SyncAction.SyncActionValue.ThreadPinAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.ThreadPinAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IThreadPinAction} message ThreadPinAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ThreadPinAction.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.pinned != null && Object.hasOwnProperty.call(message, "pinned"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).bool(message.pinned);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified ThreadPinAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.ThreadPinAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.ThreadPinAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IThreadPinAction} message ThreadPinAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ThreadPinAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a ThreadPinAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.ThreadPinAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.ThreadPinAction} ThreadPinAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ThreadPinAction.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.ThreadPinAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.pinned = reader.bool();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a ThreadPinAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.ThreadPinAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.ThreadPinAction} ThreadPinAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ThreadPinAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a ThreadPinAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.ThreadPinAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ThreadPinAction.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.pinned != null && message.hasOwnProperty("pinned"))
+                    if (typeof message.pinned !== "boolean")
+                        return "pinned: boolean expected";
+                return null;
+            };
+
+            /**
+             * Creates a ThreadPinAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.ThreadPinAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.ThreadPinAction} ThreadPinAction
+             */
+            ThreadPinAction.fromObject = function fromObject(object) {
+                if (object instanceof $root.SyncAction.SyncActionValue.ThreadPinAction)
+                    return object;
+                var message = new $root.SyncAction.SyncActionValue.ThreadPinAction();
+                if (object.pinned != null)
+                    message.pinned = Boolean(object.pinned);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a ThreadPinAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.ThreadPinAction
+             * @static
+             * @param {SyncAction.SyncActionValue.ThreadPinAction} message ThreadPinAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ThreadPinAction.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.pinned = false;
+                if (message.pinned != null && message.hasOwnProperty("pinned"))
+                    object.pinned = message.pinned;
+                return object;
+            };
+
+            /**
+             * Converts this ThreadPinAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.ThreadPinAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ThreadPinAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for ThreadPinAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.ThreadPinAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ThreadPinAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.ThreadPinAction";
+            };
+
+            return ThreadPinAction;
+        })();
+
         SyncActionValue.TimeFormatAction = (function() {
 
             /**
@@ -25850,6 +26083,7 @@ $root.SyncAction = (function() {
      * @property {number} BUSINESS_BROADCAST_INSIGHTS_ACTION=82 BUSINESS_BROADCAST_INSIGHTS_ACTION value
      * @property {number} CUSTOMER_DATA_ACTION=83 CUSTOMER_DATA_ACTION value
      * @property {number} SUBSCRIPTIONS_SYNC_V2_ACTION=84 SUBSCRIPTIONS_SYNC_V2_ACTION value
+     * @property {number} THREAD_PIN_ACTION=85 THREAD_PIN_ACTION value
      * @property {number} SHARE_OWN_PN=10001 SHARE_OWN_PN value
      * @property {number} BUSINESS_BROADCAST_ACTION=10002 BUSINESS_BROADCAST_ACTION value
      * @property {number} AI_THREAD_DELETE_ACTION=10003 AI_THREAD_DELETE_ACTION value
@@ -25934,6 +26168,7 @@ $root.SyncAction = (function() {
         values[valuesById[82] = "BUSINESS_BROADCAST_INSIGHTS_ACTION"] = 82;
         values[valuesById[83] = "CUSTOMER_DATA_ACTION"] = 83;
         values[valuesById[84] = "SUBSCRIPTIONS_SYNC_V2_ACTION"] = 84;
+        values[valuesById[85] = "THREAD_PIN_ACTION"] = 85;
         values[valuesById[10001] = "SHARE_OWN_PN"] = 10001;
         values[valuesById[10002] = "BUSINESS_BROADCAST_ACTION"] = 10002;
         values[valuesById[10003] = "AI_THREAD_DELETE_ACTION"] = 10003;

@@ -63292,6 +63292,7 @@ $root.E2E = (function() {
              * @property {number|Long|null} [expiryTimestamp] PaymentInviteMessage expiryTimestamp
              * @property {boolean|null} [incentiveEligible] PaymentInviteMessage incentiveEligible
              * @property {string|null} [referralId] PaymentInviteMessage referralId
+             * @property {E2E.Message.PaymentInviteMessage.InviteType|null} [inviteType] PaymentInviteMessage inviteType
              */
 
             /**
@@ -63342,6 +63343,14 @@ $root.E2E = (function() {
             PaymentInviteMessage.prototype.referralId = "";
 
             /**
+             * PaymentInviteMessage inviteType.
+             * @member {E2E.Message.PaymentInviteMessage.InviteType} inviteType
+             * @memberof E2E.Message.PaymentInviteMessage
+             * @instance
+             */
+            PaymentInviteMessage.prototype.inviteType = 0;
+
+            /**
              * Creates a new PaymentInviteMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.PaymentInviteMessage
@@ -63373,6 +63382,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 3, wireType 0 =*/24).bool(message.incentiveEligible);
                 if (message.referralId != null && Object.hasOwnProperty.call(message, "referralId"))
                     writer.uint32(/* id 4, wireType 2 =*/34).string(message.referralId);
+                if (message.inviteType != null && Object.hasOwnProperty.call(message, "inviteType"))
+                    writer.uint32(/* id 5, wireType 0 =*/40).int32(message.inviteType);
                 return writer;
             };
 
@@ -63423,6 +63434,10 @@ $root.E2E = (function() {
                         }
                     case 4: {
                             message.referralId = reader.string();
+                            break;
+                        }
+                    case 5: {
+                            message.inviteType = reader.int32();
                             break;
                         }
                     default:
@@ -63479,6 +63494,14 @@ $root.E2E = (function() {
                 if (message.referralId != null && message.hasOwnProperty("referralId"))
                     if (!$util.isString(message.referralId))
                         return "referralId: string expected";
+                if (message.inviteType != null && message.hasOwnProperty("inviteType"))
+                    switch (message.inviteType) {
+                    default:
+                        return "inviteType: enum value expected";
+                    case 0:
+                    case 1:
+                        break;
+                    }
                 return null;
             };
 
@@ -63531,6 +63554,22 @@ $root.E2E = (function() {
                     message.incentiveEligible = Boolean(object.incentiveEligible);
                 if (object.referralId != null)
                     message.referralId = String(object.referralId);
+                switch (object.inviteType) {
+                default:
+                    if (typeof object.inviteType === "number") {
+                        message.inviteType = object.inviteType;
+                        break;
+                    }
+                    break;
+                case "DEFAULT":
+                case 0:
+                    message.inviteType = 0;
+                    break;
+                case "MAPPER":
+                case 1:
+                    message.inviteType = 1;
+                    break;
+                }
                 return message;
             };
 
@@ -63556,6 +63595,7 @@ $root.E2E = (function() {
                         object.expiryTimestamp = options.longs === String ? "0" : 0;
                     object.incentiveEligible = false;
                     object.referralId = "";
+                    object.inviteType = options.enums === String ? "DEFAULT" : 0;
                 }
                 if (message.serviceType != null && message.hasOwnProperty("serviceType"))
                     object.serviceType = options.enums === String ? $root.E2E.Message.PaymentInviteMessage.ServiceType[message.serviceType] === undefined ? message.serviceType : $root.E2E.Message.PaymentInviteMessage.ServiceType[message.serviceType] : message.serviceType;
@@ -63568,6 +63608,8 @@ $root.E2E = (function() {
                     object.incentiveEligible = message.incentiveEligible;
                 if (message.referralId != null && message.hasOwnProperty("referralId"))
                     object.referralId = message.referralId;
+                if (message.inviteType != null && message.hasOwnProperty("inviteType"))
+                    object.inviteType = options.enums === String ? $root.E2E.Message.PaymentInviteMessage.InviteType[message.inviteType] === undefined ? message.inviteType : $root.E2E.Message.PaymentInviteMessage.InviteType[message.inviteType] : message.inviteType;
                 return object;
             };
 
@@ -63596,6 +63638,20 @@ $root.E2E = (function() {
                 }
                 return typeUrlPrefix + "/E2E.Message.PaymentInviteMessage";
             };
+
+            /**
+             * InviteType enum.
+             * @name E2E.Message.PaymentInviteMessage.InviteType
+             * @enum {number}
+             * @property {number} DEFAULT=0 DEFAULT value
+             * @property {number} MAPPER=1 MAPPER value
+             */
+            PaymentInviteMessage.InviteType = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "DEFAULT"] = 0;
+                values[valuesById[1] = "MAPPER"] = 1;
+                return values;
+            })();
 
             /**
              * ServiceType enum.
@@ -94154,6 +94210,7 @@ $root.StatusAttributions = (function() {
                     case 8:
                     case 9:
                     case 10:
+                    case 11:
                         break;
                     }
                 if (message.duration != null && message.hasOwnProperty("duration"))
@@ -94229,6 +94286,10 @@ $root.StatusAttributions = (function() {
                 case "GOOGLE_PHOTOS":
                 case 10:
                     message.source = 10;
+                    break;
+                case "SOUNDCLOUD":
+                case 11:
+                    message.source = 11;
                     break;
                 }
                 if (object.duration != null)
@@ -94309,6 +94370,7 @@ $root.StatusAttributions = (function() {
              * @property {number} APPLE_MUSIC=8 APPLE_MUSIC value
              * @property {number} SHARECHAT=9 SHARECHAT value
              * @property {number} GOOGLE_PHOTOS=10 GOOGLE_PHOTOS value
+             * @property {number} SOUNDCLOUD=11 SOUNDCLOUD value
              */
             ExternalShare.Source = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -94323,6 +94385,7 @@ $root.StatusAttributions = (function() {
                 values[valuesById[8] = "APPLE_MUSIC"] = 8;
                 values[valuesById[9] = "SHARECHAT"] = 9;
                 values[valuesById[10] = "GOOGLE_PHOTOS"] = 10;
+                values[valuesById[11] = "SOUNDCLOUD"] = 11;
                 return values;
             })();
 
@@ -109465,6 +109528,7 @@ $root.AICommon = (function() {
                     case 56:
                     case 57:
                     case 58:
+                    case 59:
                         break;
                     }
             }
@@ -109730,6 +109794,10 @@ $root.AICommon = (function() {
                     case 58:
                         message.capabilities[i] = 58;
                         break;
+                    case "AI_TAB_FORCE_CLIPPY":
+                    case 59:
+                        message.capabilities[i] = 59;
+                        break;
                     }
             }
             return message;
@@ -109847,6 +109915,7 @@ $root.AICommon = (function() {
          * @property {number} RICH_RESPONSE_INLINE_LINKS_ENABLED=56 RICH_RESPONSE_INLINE_LINKS_ENABLED value
          * @property {number} RICH_RESPONSE_UR_IMAGINE_VIDEO=57 RICH_RESPONSE_UR_IMAGINE_VIDEO value
          * @property {number} JSON_PATCH_STREAMING=58 JSON_PATCH_STREAMING value
+         * @property {number} AI_TAB_FORCE_CLIPPY=59 AI_TAB_FORCE_CLIPPY value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -109909,6 +109978,7 @@ $root.AICommon = (function() {
             values[valuesById[56] = "RICH_RESPONSE_INLINE_LINKS_ENABLED"] = 56;
             values[valuesById[57] = "RICH_RESPONSE_UR_IMAGINE_VIDEO"] = 57;
             values[valuesById[58] = "JSON_PATCH_STREAMING"] = 58;
+            values[valuesById[59] = "AI_TAB_FORCE_CLIPPY"] = 59;
             return values;
         })();
 
@@ -119211,6 +119281,7 @@ $root.CompanionReg = (function() {
          * @property {boolean|null} [isSyncdPureLidSession] ClientPairingProps isSyncdPureLidSession
          * @property {boolean|null} [isSyncdSnapshotRecoveryEnabled] ClientPairingProps isSyncdSnapshotRecoveryEnabled
          * @property {boolean|null} [isHsThumbnailSyncEnabled] ClientPairingProps isHsThumbnailSyncEnabled
+         * @property {Uint8Array|null} [subscriptionSyncPayload] ClientPairingProps subscriptionSyncPayload
          */
 
         /**
@@ -119261,6 +119332,14 @@ $root.CompanionReg = (function() {
         ClientPairingProps.prototype.isHsThumbnailSyncEnabled = false;
 
         /**
+         * ClientPairingProps subscriptionSyncPayload.
+         * @member {Uint8Array} subscriptionSyncPayload
+         * @memberof CompanionReg.ClientPairingProps
+         * @instance
+         */
+        ClientPairingProps.prototype.subscriptionSyncPayload = $util.newBuffer([]);
+
+        /**
          * Creates a new ClientPairingProps instance using the specified properties.
          * @function create
          * @memberof CompanionReg.ClientPairingProps
@@ -119292,6 +119371,8 @@ $root.CompanionReg = (function() {
                 writer.uint32(/* id 3, wireType 0 =*/24).bool(message.isSyncdSnapshotRecoveryEnabled);
             if (message.isHsThumbnailSyncEnabled != null && Object.hasOwnProperty.call(message, "isHsThumbnailSyncEnabled"))
                 writer.uint32(/* id 4, wireType 0 =*/32).bool(message.isHsThumbnailSyncEnabled);
+            if (message.subscriptionSyncPayload != null && Object.hasOwnProperty.call(message, "subscriptionSyncPayload"))
+                writer.uint32(/* id 5, wireType 2 =*/42).bytes(message.subscriptionSyncPayload);
             return writer;
         };
 
@@ -119344,6 +119425,10 @@ $root.CompanionReg = (function() {
                         message.isHsThumbnailSyncEnabled = reader.bool();
                         break;
                     }
+                case 5: {
+                        message.subscriptionSyncPayload = reader.bytes();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -119391,6 +119476,9 @@ $root.CompanionReg = (function() {
             if (message.isHsThumbnailSyncEnabled != null && message.hasOwnProperty("isHsThumbnailSyncEnabled"))
                 if (typeof message.isHsThumbnailSyncEnabled !== "boolean")
                     return "isHsThumbnailSyncEnabled: boolean expected";
+            if (message.subscriptionSyncPayload != null && message.hasOwnProperty("subscriptionSyncPayload"))
+                if (!(message.subscriptionSyncPayload && typeof message.subscriptionSyncPayload.length === "number" || $util.isString(message.subscriptionSyncPayload)))
+                    return "subscriptionSyncPayload: buffer expected";
             return null;
         };
 
@@ -119414,6 +119502,11 @@ $root.CompanionReg = (function() {
                 message.isSyncdSnapshotRecoveryEnabled = Boolean(object.isSyncdSnapshotRecoveryEnabled);
             if (object.isHsThumbnailSyncEnabled != null)
                 message.isHsThumbnailSyncEnabled = Boolean(object.isHsThumbnailSyncEnabled);
+            if (object.subscriptionSyncPayload != null)
+                if (typeof object.subscriptionSyncPayload === "string")
+                    $util.base64.decode(object.subscriptionSyncPayload, message.subscriptionSyncPayload = $util.newBuffer($util.base64.length(object.subscriptionSyncPayload)), 0);
+                else if (object.subscriptionSyncPayload.length >= 0)
+                    message.subscriptionSyncPayload = object.subscriptionSyncPayload;
             return message;
         };
 
@@ -119435,6 +119528,13 @@ $root.CompanionReg = (function() {
                 object.isSyncdPureLidSession = false;
                 object.isSyncdSnapshotRecoveryEnabled = false;
                 object.isHsThumbnailSyncEnabled = false;
+                if (options.bytes === String)
+                    object.subscriptionSyncPayload = "";
+                else {
+                    object.subscriptionSyncPayload = [];
+                    if (options.bytes !== Array)
+                        object.subscriptionSyncPayload = $util.newBuffer(object.subscriptionSyncPayload);
+                }
             }
             if (message.isChatDbLidMigrated != null && message.hasOwnProperty("isChatDbLidMigrated"))
                 object.isChatDbLidMigrated = message.isChatDbLidMigrated;
@@ -119444,6 +119544,8 @@ $root.CompanionReg = (function() {
                 object.isSyncdSnapshotRecoveryEnabled = message.isSyncdSnapshotRecoveryEnabled;
             if (message.isHsThumbnailSyncEnabled != null && message.hasOwnProperty("isHsThumbnailSyncEnabled"))
                 object.isHsThumbnailSyncEnabled = message.isHsThumbnailSyncEnabled;
+            if (message.subscriptionSyncPayload != null && message.hasOwnProperty("subscriptionSyncPayload"))
+                object.subscriptionSyncPayload = options.bytes === String ? $util.base64.encode(message.subscriptionSyncPayload, 0, message.subscriptionSyncPayload.length) : options.bytes === Array ? Array.prototype.slice.call(message.subscriptionSyncPayload) : message.subscriptionSyncPayload;
             return object;
         };
 

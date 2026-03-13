@@ -4283,6 +4283,7 @@ $root.HistorySync = (function() {
          * @property {boolean|null} [limitSharingInitiatedByMe] Conversation limitSharingInitiatedByMe
          * @property {boolean|null} [maibaAiThreadEnabled] Conversation maibaAiThreadEnabled
          * @property {boolean|null} [isMarketingMessageThread] Conversation isMarketingMessageThread
+         * @property {boolean|null} [isSenderNewAccount] Conversation isSenderNewAccount
          */
 
         /**
@@ -4743,6 +4744,14 @@ $root.HistorySync = (function() {
         Conversation.prototype.isMarketingMessageThread = false;
 
         /**
+         * Conversation isSenderNewAccount.
+         * @member {boolean} isSenderNewAccount
+         * @memberof HistorySync.Conversation
+         * @instance
+         */
+        Conversation.prototype.isSenderNewAccount = false;
+
+        /**
          * Creates a new Conversation instance using the specified properties.
          * @function create
          * @memberof HistorySync.Conversation
@@ -4877,6 +4886,8 @@ $root.HistorySync = (function() {
                 writer.uint32(/* id 54, wireType 0 =*/432).bool(message.maibaAiThreadEnabled);
             if (message.isMarketingMessageThread != null && Object.hasOwnProperty.call(message, "isMarketingMessageThread"))
                 writer.uint32(/* id 55, wireType 0 =*/440).bool(message.isMarketingMessageThread);
+            if (message.isSenderNewAccount != null && Object.hasOwnProperty.call(message, "isSenderNewAccount"))
+                writer.uint32(/* id 56, wireType 0 =*/448).bool(message.isSenderNewAccount);
             return writer;
         };
 
@@ -5137,6 +5148,10 @@ $root.HistorySync = (function() {
                         message.isMarketingMessageThread = reader.bool();
                         break;
                     }
+                case 56: {
+                        message.isSenderNewAccount = reader.bool();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -5381,6 +5396,9 @@ $root.HistorySync = (function() {
             if (message.isMarketingMessageThread != null && message.hasOwnProperty("isMarketingMessageThread"))
                 if (typeof message.isMarketingMessageThread !== "boolean")
                     return "isMarketingMessageThread: boolean expected";
+            if (message.isSenderNewAccount != null && message.hasOwnProperty("isSenderNewAccount"))
+                if (typeof message.isSenderNewAccount !== "boolean")
+                    return "isSenderNewAccount: boolean expected";
             return null;
         };
 
@@ -5674,6 +5692,8 @@ $root.HistorySync = (function() {
                 message.maibaAiThreadEnabled = Boolean(object.maibaAiThreadEnabled);
             if (object.isMarketingMessageThread != null)
                 message.isMarketingMessageThread = Boolean(object.isMarketingMessageThread);
+            if (object.isSenderNewAccount != null)
+                message.isSenderNewAccount = Boolean(object.isSenderNewAccount);
             return message;
         };
 
@@ -5792,6 +5812,7 @@ $root.HistorySync = (function() {
                 object.limitSharingInitiatedByMe = false;
                 object.maibaAiThreadEnabled = false;
                 object.isMarketingMessageThread = false;
+                object.isSenderNewAccount = false;
             }
             if (message.id != null && message.hasOwnProperty("id"))
                 object.id = message.id;
@@ -5933,6 +5954,8 @@ $root.HistorySync = (function() {
                 object.maibaAiThreadEnabled = message.maibaAiThreadEnabled;
             if (message.isMarketingMessageThread != null && message.hasOwnProperty("isMarketingMessageThread"))
                 object.isMarketingMessageThread = message.isMarketingMessageThread;
+            if (message.isSenderNewAccount != null && message.hasOwnProperty("isSenderNewAccount"))
+                object.isSenderNewAccount = message.isSenderNewAccount;
             return object;
         };
 
@@ -57047,6 +57070,7 @@ $root.E2E = (function() {
              * @property {number|Long|null} [expiryTimestamp] PaymentInviteMessage expiryTimestamp
              * @property {boolean|null} [incentiveEligible] PaymentInviteMessage incentiveEligible
              * @property {string|null} [referralId] PaymentInviteMessage referralId
+             * @property {E2E.Message.PaymentInviteMessage.InviteType|null} [inviteType] PaymentInviteMessage inviteType
              */
 
             /**
@@ -57097,6 +57121,14 @@ $root.E2E = (function() {
             PaymentInviteMessage.prototype.referralId = "";
 
             /**
+             * PaymentInviteMessage inviteType.
+             * @member {E2E.Message.PaymentInviteMessage.InviteType} inviteType
+             * @memberof E2E.Message.PaymentInviteMessage
+             * @instance
+             */
+            PaymentInviteMessage.prototype.inviteType = 0;
+
+            /**
              * Creates a new PaymentInviteMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.PaymentInviteMessage
@@ -57128,6 +57160,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 3, wireType 0 =*/24).bool(message.incentiveEligible);
                 if (message.referralId != null && Object.hasOwnProperty.call(message, "referralId"))
                     writer.uint32(/* id 4, wireType 2 =*/34).string(message.referralId);
+                if (message.inviteType != null && Object.hasOwnProperty.call(message, "inviteType"))
+                    writer.uint32(/* id 5, wireType 0 =*/40).int32(message.inviteType);
                 return writer;
             };
 
@@ -57178,6 +57212,10 @@ $root.E2E = (function() {
                         }
                     case 4: {
                             message.referralId = reader.string();
+                            break;
+                        }
+                    case 5: {
+                            message.inviteType = reader.int32();
                             break;
                         }
                     default:
@@ -57234,6 +57272,14 @@ $root.E2E = (function() {
                 if (message.referralId != null && message.hasOwnProperty("referralId"))
                     if (!$util.isString(message.referralId))
                         return "referralId: string expected";
+                if (message.inviteType != null && message.hasOwnProperty("inviteType"))
+                    switch (message.inviteType) {
+                    default:
+                        return "inviteType: enum value expected";
+                    case 0:
+                    case 1:
+                        break;
+                    }
                 return null;
             };
 
@@ -57286,6 +57332,22 @@ $root.E2E = (function() {
                     message.incentiveEligible = Boolean(object.incentiveEligible);
                 if (object.referralId != null)
                     message.referralId = String(object.referralId);
+                switch (object.inviteType) {
+                default:
+                    if (typeof object.inviteType === "number") {
+                        message.inviteType = object.inviteType;
+                        break;
+                    }
+                    break;
+                case "DEFAULT":
+                case 0:
+                    message.inviteType = 0;
+                    break;
+                case "MAPPER":
+                case 1:
+                    message.inviteType = 1;
+                    break;
+                }
                 return message;
             };
 
@@ -57311,6 +57373,7 @@ $root.E2E = (function() {
                         object.expiryTimestamp = options.longs === String ? "0" : 0;
                     object.incentiveEligible = false;
                     object.referralId = "";
+                    object.inviteType = options.enums === String ? "DEFAULT" : 0;
                 }
                 if (message.serviceType != null && message.hasOwnProperty("serviceType"))
                     object.serviceType = options.enums === String ? $root.E2E.Message.PaymentInviteMessage.ServiceType[message.serviceType] === undefined ? message.serviceType : $root.E2E.Message.PaymentInviteMessage.ServiceType[message.serviceType] : message.serviceType;
@@ -57323,6 +57386,8 @@ $root.E2E = (function() {
                     object.incentiveEligible = message.incentiveEligible;
                 if (message.referralId != null && message.hasOwnProperty("referralId"))
                     object.referralId = message.referralId;
+                if (message.inviteType != null && message.hasOwnProperty("inviteType"))
+                    object.inviteType = options.enums === String ? $root.E2E.Message.PaymentInviteMessage.InviteType[message.inviteType] === undefined ? message.inviteType : $root.E2E.Message.PaymentInviteMessage.InviteType[message.inviteType] : message.inviteType;
                 return object;
             };
 
@@ -57351,6 +57416,20 @@ $root.E2E = (function() {
                 }
                 return typeUrlPrefix + "/E2E.Message.PaymentInviteMessage";
             };
+
+            /**
+             * InviteType enum.
+             * @name E2E.Message.PaymentInviteMessage.InviteType
+             * @enum {number}
+             * @property {number} DEFAULT=0 DEFAULT value
+             * @property {number} MAPPER=1 MAPPER value
+             */
+            PaymentInviteMessage.InviteType = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "DEFAULT"] = 0;
+                values[valuesById[1] = "MAPPER"] = 1;
+                return values;
+            })();
 
             /**
              * ServiceType enum.
@@ -87909,6 +87988,7 @@ $root.StatusAttributions = (function() {
                     case 8:
                     case 9:
                     case 10:
+                    case 11:
                         break;
                     }
                 if (message.duration != null && message.hasOwnProperty("duration"))
@@ -87984,6 +88064,10 @@ $root.StatusAttributions = (function() {
                 case "GOOGLE_PHOTOS":
                 case 10:
                     message.source = 10;
+                    break;
+                case "SOUNDCLOUD":
+                case 11:
+                    message.source = 11;
                     break;
                 }
                 if (object.duration != null)
@@ -88064,6 +88148,7 @@ $root.StatusAttributions = (function() {
              * @property {number} APPLE_MUSIC=8 APPLE_MUSIC value
              * @property {number} SHARECHAT=9 SHARECHAT value
              * @property {number} GOOGLE_PHOTOS=10 GOOGLE_PHOTOS value
+             * @property {number} SOUNDCLOUD=11 SOUNDCLOUD value
              */
             ExternalShare.Source = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -88078,6 +88163,7 @@ $root.StatusAttributions = (function() {
                 values[valuesById[8] = "APPLE_MUSIC"] = 8;
                 values[valuesById[9] = "SHARECHAT"] = 9;
                 values[valuesById[10] = "GOOGLE_PHOTOS"] = 10;
+                values[valuesById[11] = "SOUNDCLOUD"] = 11;
                 return values;
             })();
 
@@ -103220,6 +103306,7 @@ $root.AICommon = (function() {
                     case 56:
                     case 57:
                     case 58:
+                    case 59:
                         break;
                     }
             }
@@ -103485,6 +103572,10 @@ $root.AICommon = (function() {
                     case 58:
                         message.capabilities[i] = 58;
                         break;
+                    case "AI_TAB_FORCE_CLIPPY":
+                    case 59:
+                        message.capabilities[i] = 59;
+                        break;
                     }
             }
             return message;
@@ -103602,6 +103693,7 @@ $root.AICommon = (function() {
          * @property {number} RICH_RESPONSE_INLINE_LINKS_ENABLED=56 RICH_RESPONSE_INLINE_LINKS_ENABLED value
          * @property {number} RICH_RESPONSE_UR_IMAGINE_VIDEO=57 RICH_RESPONSE_UR_IMAGINE_VIDEO value
          * @property {number} JSON_PATCH_STREAMING=58 JSON_PATCH_STREAMING value
+         * @property {number} AI_TAB_FORCE_CLIPPY=59 AI_TAB_FORCE_CLIPPY value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -103664,6 +103756,7 @@ $root.AICommon = (function() {
             values[valuesById[56] = "RICH_RESPONSE_INLINE_LINKS_ENABLED"] = 56;
             values[valuesById[57] = "RICH_RESPONSE_UR_IMAGINE_VIDEO"] = 57;
             values[valuesById[58] = "JSON_PATCH_STREAMING"] = 58;
+            values[valuesById[59] = "AI_TAB_FORCE_CLIPPY"] = 59;
             return values;
         })();
 
@@ -112966,6 +113059,7 @@ $root.CompanionReg = (function() {
          * @property {boolean|null} [isSyncdPureLidSession] ClientPairingProps isSyncdPureLidSession
          * @property {boolean|null} [isSyncdSnapshotRecoveryEnabled] ClientPairingProps isSyncdSnapshotRecoveryEnabled
          * @property {boolean|null} [isHsThumbnailSyncEnabled] ClientPairingProps isHsThumbnailSyncEnabled
+         * @property {Uint8Array|null} [subscriptionSyncPayload] ClientPairingProps subscriptionSyncPayload
          */
 
         /**
@@ -113016,6 +113110,14 @@ $root.CompanionReg = (function() {
         ClientPairingProps.prototype.isHsThumbnailSyncEnabled = false;
 
         /**
+         * ClientPairingProps subscriptionSyncPayload.
+         * @member {Uint8Array} subscriptionSyncPayload
+         * @memberof CompanionReg.ClientPairingProps
+         * @instance
+         */
+        ClientPairingProps.prototype.subscriptionSyncPayload = $util.newBuffer([]);
+
+        /**
          * Creates a new ClientPairingProps instance using the specified properties.
          * @function create
          * @memberof CompanionReg.ClientPairingProps
@@ -113047,6 +113149,8 @@ $root.CompanionReg = (function() {
                 writer.uint32(/* id 3, wireType 0 =*/24).bool(message.isSyncdSnapshotRecoveryEnabled);
             if (message.isHsThumbnailSyncEnabled != null && Object.hasOwnProperty.call(message, "isHsThumbnailSyncEnabled"))
                 writer.uint32(/* id 4, wireType 0 =*/32).bool(message.isHsThumbnailSyncEnabled);
+            if (message.subscriptionSyncPayload != null && Object.hasOwnProperty.call(message, "subscriptionSyncPayload"))
+                writer.uint32(/* id 5, wireType 2 =*/42).bytes(message.subscriptionSyncPayload);
             return writer;
         };
 
@@ -113099,6 +113203,10 @@ $root.CompanionReg = (function() {
                         message.isHsThumbnailSyncEnabled = reader.bool();
                         break;
                     }
+                case 5: {
+                        message.subscriptionSyncPayload = reader.bytes();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -113146,6 +113254,9 @@ $root.CompanionReg = (function() {
             if (message.isHsThumbnailSyncEnabled != null && message.hasOwnProperty("isHsThumbnailSyncEnabled"))
                 if (typeof message.isHsThumbnailSyncEnabled !== "boolean")
                     return "isHsThumbnailSyncEnabled: boolean expected";
+            if (message.subscriptionSyncPayload != null && message.hasOwnProperty("subscriptionSyncPayload"))
+                if (!(message.subscriptionSyncPayload && typeof message.subscriptionSyncPayload.length === "number" || $util.isString(message.subscriptionSyncPayload)))
+                    return "subscriptionSyncPayload: buffer expected";
             return null;
         };
 
@@ -113169,6 +113280,11 @@ $root.CompanionReg = (function() {
                 message.isSyncdSnapshotRecoveryEnabled = Boolean(object.isSyncdSnapshotRecoveryEnabled);
             if (object.isHsThumbnailSyncEnabled != null)
                 message.isHsThumbnailSyncEnabled = Boolean(object.isHsThumbnailSyncEnabled);
+            if (object.subscriptionSyncPayload != null)
+                if (typeof object.subscriptionSyncPayload === "string")
+                    $util.base64.decode(object.subscriptionSyncPayload, message.subscriptionSyncPayload = $util.newBuffer($util.base64.length(object.subscriptionSyncPayload)), 0);
+                else if (object.subscriptionSyncPayload.length >= 0)
+                    message.subscriptionSyncPayload = object.subscriptionSyncPayload;
             return message;
         };
 
@@ -113190,6 +113306,13 @@ $root.CompanionReg = (function() {
                 object.isSyncdPureLidSession = false;
                 object.isSyncdSnapshotRecoveryEnabled = false;
                 object.isHsThumbnailSyncEnabled = false;
+                if (options.bytes === String)
+                    object.subscriptionSyncPayload = "";
+                else {
+                    object.subscriptionSyncPayload = [];
+                    if (options.bytes !== Array)
+                        object.subscriptionSyncPayload = $util.newBuffer(object.subscriptionSyncPayload);
+                }
             }
             if (message.isChatDbLidMigrated != null && message.hasOwnProperty("isChatDbLidMigrated"))
                 object.isChatDbLidMigrated = message.isChatDbLidMigrated;
@@ -113199,6 +113322,8 @@ $root.CompanionReg = (function() {
                 object.isSyncdSnapshotRecoveryEnabled = message.isSyncdSnapshotRecoveryEnabled;
             if (message.isHsThumbnailSyncEnabled != null && message.hasOwnProperty("isHsThumbnailSyncEnabled"))
                 object.isHsThumbnailSyncEnabled = message.isHsThumbnailSyncEnabled;
+            if (message.subscriptionSyncPayload != null && message.hasOwnProperty("subscriptionSyncPayload"))
+                object.subscriptionSyncPayload = options.bytes === String ? $util.base64.encode(message.subscriptionSyncPayload, 0, message.subscriptionSyncPayload.length) : options.bytes === Array ? Array.prototype.slice.call(message.subscriptionSyncPayload) : message.subscriptionSyncPayload;
             return object;
         };
 
@@ -132157,6 +132282,7 @@ $root.SyncAction = (function() {
          * @property {SyncAction.SyncActionValue.IBusinessBroadcastInsightsAction|null} [businessBroadcastInsightsAction] SyncActionValue businessBroadcastInsightsAction
          * @property {SyncAction.SyncActionValue.ICustomerDataAction|null} [customerDataAction] SyncActionValue customerDataAction
          * @property {SyncAction.SyncActionValue.ISubscriptionsSyncV2Action|null} [subscriptionsSyncV2Action] SyncActionValue subscriptionsSyncV2Action
+         * @property {SyncAction.SyncActionValue.IThreadPinAction|null} [threadPinAction] SyncActionValue threadPinAction
          */
 
         /**
@@ -132775,6 +132901,14 @@ $root.SyncAction = (function() {
         SyncActionValue.prototype.subscriptionsSyncV2Action = null;
 
         /**
+         * SyncActionValue threadPinAction.
+         * @member {SyncAction.SyncActionValue.IThreadPinAction|null|undefined} threadPinAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.threadPinAction = null;
+
+        /**
          * Creates a new SyncActionValue instance using the specified properties.
          * @function create
          * @memberof SyncAction.SyncActionValue
@@ -132948,6 +133082,8 @@ $root.SyncAction = (function() {
                 $root.SyncAction.SyncActionValue.CustomerDataAction.encode(message.customerDataAction, writer.uint32(/* id 83, wireType 2 =*/666).fork()).ldelim();
             if (message.subscriptionsSyncV2Action != null && Object.hasOwnProperty.call(message, "subscriptionsSyncV2Action"))
                 $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.encode(message.subscriptionsSyncV2Action, writer.uint32(/* id 84, wireType 2 =*/674).fork()).ldelim();
+            if (message.threadPinAction != null && Object.hasOwnProperty.call(message, "threadPinAction"))
+                $root.SyncAction.SyncActionValue.ThreadPinAction.encode(message.threadPinAction, writer.uint32(/* id 85, wireType 2 =*/682).fork()).ldelim();
             return writer;
         };
 
@@ -133282,6 +133418,10 @@ $root.SyncAction = (function() {
                     }
                 case 84: {
                         message.subscriptionsSyncV2Action = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 85: {
+                        message.threadPinAction = $root.SyncAction.SyncActionValue.ThreadPinAction.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -133692,6 +133832,11 @@ $root.SyncAction = (function() {
                 if (error)
                     return "subscriptionsSyncV2Action." + error;
             }
+            if (message.threadPinAction != null && message.hasOwnProperty("threadPinAction")) {
+                var error = $root.SyncAction.SyncActionValue.ThreadPinAction.verify(message.threadPinAction);
+                if (error)
+                    return "threadPinAction." + error;
+            }
             return null;
         };
 
@@ -134086,6 +134231,11 @@ $root.SyncAction = (function() {
                     throw TypeError(".SyncAction.SyncActionValue.subscriptionsSyncV2Action: object expected");
                 message.subscriptionsSyncV2Action = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.fromObject(object.subscriptionsSyncV2Action);
             }
+            if (object.threadPinAction != null) {
+                if (typeof object.threadPinAction !== "object")
+                    throw TypeError(".SyncAction.SyncActionValue.threadPinAction: object expected");
+                message.threadPinAction = $root.SyncAction.SyncActionValue.ThreadPinAction.fromObject(object.threadPinAction);
+            }
             return message;
         };
 
@@ -134182,6 +134332,7 @@ $root.SyncAction = (function() {
                 object.businessBroadcastInsightsAction = null;
                 object.customerDataAction = null;
                 object.subscriptionsSyncV2Action = null;
+                object.threadPinAction = null;
             }
             if (message.timestamp != null && message.hasOwnProperty("timestamp"))
                 if (typeof message.timestamp === "number")
@@ -134336,6 +134487,8 @@ $root.SyncAction = (function() {
                 object.customerDataAction = $root.SyncAction.SyncActionValue.CustomerDataAction.toObject(message.customerDataAction, options);
             if (message.subscriptionsSyncV2Action != null && message.hasOwnProperty("subscriptionsSyncV2Action"))
                 object.subscriptionsSyncV2Action = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.toObject(message.subscriptionsSyncV2Action, options);
+            if (message.threadPinAction != null && message.hasOwnProperty("threadPinAction"))
+                object.threadPinAction = $root.SyncAction.SyncActionValue.ThreadPinAction.toObject(message.threadPinAction, options);
             return object;
         };
 
@@ -154132,6 +154285,211 @@ $root.SyncAction = (function() {
             return SyncActionMessageRange;
         })();
 
+        SyncActionValue.ThreadPinAction = (function() {
+
+            /**
+             * Properties of a ThreadPinAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface IThreadPinAction
+             * @property {boolean|null} [pinned] ThreadPinAction pinned
+             */
+
+            /**
+             * Constructs a new ThreadPinAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents a ThreadPinAction.
+             * @implements IThreadPinAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.IThreadPinAction=} [properties] Properties to set
+             */
+            function ThreadPinAction(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * ThreadPinAction pinned.
+             * @member {boolean} pinned
+             * @memberof SyncAction.SyncActionValue.ThreadPinAction
+             * @instance
+             */
+            ThreadPinAction.prototype.pinned = false;
+
+            /**
+             * Creates a new ThreadPinAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.ThreadPinAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IThreadPinAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.ThreadPinAction} ThreadPinAction instance
+             */
+            ThreadPinAction.create = function create(properties) {
+                return new ThreadPinAction(properties);
+            };
+
+            /**
+             * Encodes the specified ThreadPinAction message. Does not implicitly {@link SyncAction.SyncActionValue.ThreadPinAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.ThreadPinAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IThreadPinAction} message ThreadPinAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ThreadPinAction.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.pinned != null && Object.hasOwnProperty.call(message, "pinned"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).bool(message.pinned);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified ThreadPinAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.ThreadPinAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.ThreadPinAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IThreadPinAction} message ThreadPinAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ThreadPinAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a ThreadPinAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.ThreadPinAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.ThreadPinAction} ThreadPinAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ThreadPinAction.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.ThreadPinAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.pinned = reader.bool();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a ThreadPinAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.ThreadPinAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.ThreadPinAction} ThreadPinAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ThreadPinAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a ThreadPinAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.ThreadPinAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ThreadPinAction.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.pinned != null && message.hasOwnProperty("pinned"))
+                    if (typeof message.pinned !== "boolean")
+                        return "pinned: boolean expected";
+                return null;
+            };
+
+            /**
+             * Creates a ThreadPinAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.ThreadPinAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.ThreadPinAction} ThreadPinAction
+             */
+            ThreadPinAction.fromObject = function fromObject(object) {
+                if (object instanceof $root.SyncAction.SyncActionValue.ThreadPinAction)
+                    return object;
+                var message = new $root.SyncAction.SyncActionValue.ThreadPinAction();
+                if (object.pinned != null)
+                    message.pinned = Boolean(object.pinned);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a ThreadPinAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.ThreadPinAction
+             * @static
+             * @param {SyncAction.SyncActionValue.ThreadPinAction} message ThreadPinAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ThreadPinAction.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.pinned = false;
+                if (message.pinned != null && message.hasOwnProperty("pinned"))
+                    object.pinned = message.pinned;
+                return object;
+            };
+
+            /**
+             * Converts this ThreadPinAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.ThreadPinAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ThreadPinAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for ThreadPinAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.ThreadPinAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ThreadPinAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.ThreadPinAction";
+            };
+
+            return ThreadPinAction;
+        })();
+
         SyncActionValue.TimeFormatAction = (function() {
 
             /**
@@ -157017,6 +157375,7 @@ $root.SyncAction = (function() {
      * @property {number} BUSINESS_BROADCAST_INSIGHTS_ACTION=82 BUSINESS_BROADCAST_INSIGHTS_ACTION value
      * @property {number} CUSTOMER_DATA_ACTION=83 CUSTOMER_DATA_ACTION value
      * @property {number} SUBSCRIPTIONS_SYNC_V2_ACTION=84 SUBSCRIPTIONS_SYNC_V2_ACTION value
+     * @property {number} THREAD_PIN_ACTION=85 THREAD_PIN_ACTION value
      * @property {number} SHARE_OWN_PN=10001 SHARE_OWN_PN value
      * @property {number} BUSINESS_BROADCAST_ACTION=10002 BUSINESS_BROADCAST_ACTION value
      * @property {number} AI_THREAD_DELETE_ACTION=10003 AI_THREAD_DELETE_ACTION value
@@ -157101,6 +157460,7 @@ $root.SyncAction = (function() {
         values[valuesById[82] = "BUSINESS_BROADCAST_INSIGHTS_ACTION"] = 82;
         values[valuesById[83] = "CUSTOMER_DATA_ACTION"] = 83;
         values[valuesById[84] = "SUBSCRIPTIONS_SYNC_V2_ACTION"] = 84;
+        values[valuesById[85] = "THREAD_PIN_ACTION"] = 85;
         values[valuesById[10001] = "SHARE_OWN_PN"] = 10001;
         values[valuesById[10002] = "BUSINESS_BROADCAST_ACTION"] = 10002;
         values[valuesById[10003] = "AI_THREAD_DELETE_ACTION"] = 10003;

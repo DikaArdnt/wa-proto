@@ -1520,6 +1520,12 @@ export namespace Wa6 {
 
             /** ClientFinish extendedCiphertext */
             extendedCiphertext?: (Uint8Array|null);
+
+            /** ClientFinish paddedBytes */
+            paddedBytes?: (Uint8Array|null);
+
+            /** ClientFinish simulateXxkemFs */
+            simulateXxkemFs?: (boolean|null);
         }
 
         /** Represents a ClientFinish. */
@@ -1539,6 +1545,12 @@ export namespace Wa6 {
 
             /** ClientFinish extendedCiphertext. */
             public extendedCiphertext: Uint8Array;
+
+            /** ClientFinish paddedBytes. */
+            public paddedBytes: Uint8Array;
+
+            /** ClientFinish simulateXxkemFs. */
+            public simulateXxkemFs: boolean;
 
             /**
              * Creates a new ClientFinish instance using the specified properties.
@@ -1635,6 +1647,15 @@ export namespace Wa6 {
 
             /** ClientHello extendedCiphertext */
             extendedCiphertext?: (Uint8Array|null);
+
+            /** ClientHello paddedBytes */
+            paddedBytes?: (Uint8Array|null);
+
+            /** ClientHello sendServerHelloPaddedBytes */
+            sendServerHelloPaddedBytes?: (boolean|null);
+
+            /** ClientHello simulateXxkemFs */
+            simulateXxkemFs?: (boolean|null);
         }
 
         /** Represents a ClientHello. */
@@ -1660,6 +1681,15 @@ export namespace Wa6 {
 
             /** ClientHello extendedCiphertext. */
             public extendedCiphertext: Uint8Array;
+
+            /** ClientHello paddedBytes. */
+            public paddedBytes: Uint8Array;
+
+            /** ClientHello sendServerHelloPaddedBytes. */
+            public sendServerHelloPaddedBytes: boolean;
+
+            /** ClientHello simulateXxkemFs. */
+            public simulateXxkemFs: boolean;
 
             /**
              * Creates a new ClientHello instance using the specified properties.
@@ -1753,6 +1783,9 @@ export namespace Wa6 {
 
             /** ServerHello extendedStatic */
             extendedStatic?: (Uint8Array|null);
+
+            /** ServerHello paddingBytes */
+            paddingBytes?: (Uint8Array|null);
         }
 
         /** Represents a ServerHello. */
@@ -1775,6 +1808,9 @@ export namespace Wa6 {
 
             /** ServerHello extendedStatic. */
             public extendedStatic: Uint8Array;
+
+            /** ServerHello paddingBytes. */
+            public paddingBytes: Uint8Array;
 
             /**
              * Creates a new ServerHello instance using the specified properties.

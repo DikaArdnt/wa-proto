@@ -21629,6 +21629,9 @@ export namespace E2E {
 
             /** PaymentInviteMessage referralId */
             referralId?: (string|null);
+
+            /** PaymentInviteMessage inviteType */
+            inviteType?: (E2E.Message.PaymentInviteMessage.InviteType|null);
         }
 
         /** Represents a PaymentInviteMessage. */
@@ -21651,6 +21654,9 @@ export namespace E2E {
 
             /** PaymentInviteMessage referralId. */
             public referralId: string;
+
+            /** PaymentInviteMessage inviteType. */
+            public inviteType: E2E.Message.PaymentInviteMessage.InviteType;
 
             /**
              * Creates a new PaymentInviteMessage instance using the specified properties.
@@ -21731,6 +21737,12 @@ export namespace E2E {
         }
 
         namespace PaymentInviteMessage {
+
+            /** InviteType enum. */
+            enum InviteType {
+                DEFAULT = 0,
+                MAPPER = 1
+            }
 
             /** ServiceType enum. */
             enum ServiceType {
@@ -33119,7 +33131,8 @@ export namespace StatusAttributions {
                 THREADS = 7,
                 APPLE_MUSIC = 8,
                 SHARECHAT = 9,
-                GOOGLE_PHOTOS = 10
+                GOOGLE_PHOTOS = 10,
+                SOUNDCLOUD = 11
             }
         }
 
@@ -39137,7 +39150,8 @@ export namespace AICommon {
             RICH_RESPONSE_UR_BLOKS_ENABLED = 55,
             RICH_RESPONSE_INLINE_LINKS_ENABLED = 56,
             RICH_RESPONSE_UR_IMAGINE_VIDEO = 57,
-            JSON_PATCH_STREAMING = 58
+            JSON_PATCH_STREAMING = 58,
+            AI_TAB_FORCE_CLIPPY = 59
         }
     }
 
@@ -42609,6 +42623,9 @@ export namespace CompanionReg {
 
         /** ClientPairingProps isHsThumbnailSyncEnabled */
         isHsThumbnailSyncEnabled?: (boolean|null);
+
+        /** ClientPairingProps subscriptionSyncPayload */
+        subscriptionSyncPayload?: (Uint8Array|null);
     }
 
     /** Represents a ClientPairingProps. */
@@ -42631,6 +42648,9 @@ export namespace CompanionReg {
 
         /** ClientPairingProps isHsThumbnailSyncEnabled. */
         public isHsThumbnailSyncEnabled: boolean;
+
+        /** ClientPairingProps subscriptionSyncPayload. */
+        public subscriptionSyncPayload: Uint8Array;
 
         /**
          * Creates a new ClientPairingProps instance using the specified properties.

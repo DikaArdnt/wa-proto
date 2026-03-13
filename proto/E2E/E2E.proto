@@ -1431,6 +1431,11 @@ message Message {
         optional int64 expiryTimestamp = 2;
         optional bool incentiveEligible = 3;
         optional string referralId = 4;
+        optional InviteType inviteType = 5;
+        enum InviteType {
+            DEFAULT = 0;
+            MAPPER = 1;
+        }
         enum ServiceType {
             UNKNOWN = 0;
             FBPAY = 1;

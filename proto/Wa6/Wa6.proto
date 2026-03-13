@@ -229,6 +229,8 @@ message HandshakeMessage {
         optional bytes static = 1;
         optional bytes payload = 2;
         optional bytes extendedCiphertext = 3;
+        optional bytes paddedBytes = 4;
+        optional bool simulateXxkemFs = 5;
     }
     message ClientHello {
         optional bytes ephemeral = 1;
@@ -236,11 +238,15 @@ message HandshakeMessage {
         optional bytes payload = 3;
         optional bool useExtended = 4;
         optional bytes extendedCiphertext = 5;
+        optional bytes paddedBytes = 6;
+        optional bool sendServerHelloPaddedBytes = 7;
+        optional bool simulateXxkemFs = 8;
     }
     message ServerHello {
         optional bytes ephemeral = 1;
         optional bytes static = 2;
         optional bytes payload = 3;
         optional bytes extendedStatic = 4;
+        optional bytes paddingBytes = 5;
     }
 }

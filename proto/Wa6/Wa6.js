@@ -4849,6 +4849,8 @@ $root.Wa6 = (function() {
              * @property {Uint8Array|null} ["static"] ClientFinish static
              * @property {Uint8Array|null} [payload] ClientFinish payload
              * @property {Uint8Array|null} [extendedCiphertext] ClientFinish extendedCiphertext
+             * @property {Uint8Array|null} [paddedBytes] ClientFinish paddedBytes
+             * @property {boolean|null} [simulateXxkemFs] ClientFinish simulateXxkemFs
              */
 
             /**
@@ -4891,6 +4893,22 @@ $root.Wa6 = (function() {
             ClientFinish.prototype.extendedCiphertext = $util.newBuffer([]);
 
             /**
+             * ClientFinish paddedBytes.
+             * @member {Uint8Array} paddedBytes
+             * @memberof Wa6.HandshakeMessage.ClientFinish
+             * @instance
+             */
+            ClientFinish.prototype.paddedBytes = $util.newBuffer([]);
+
+            /**
+             * ClientFinish simulateXxkemFs.
+             * @member {boolean} simulateXxkemFs
+             * @memberof Wa6.HandshakeMessage.ClientFinish
+             * @instance
+             */
+            ClientFinish.prototype.simulateXxkemFs = false;
+
+            /**
              * Creates a new ClientFinish instance using the specified properties.
              * @function create
              * @memberof Wa6.HandshakeMessage.ClientFinish
@@ -4920,6 +4938,10 @@ $root.Wa6 = (function() {
                     writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.payload);
                 if (message.extendedCiphertext != null && Object.hasOwnProperty.call(message, "extendedCiphertext"))
                     writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.extendedCiphertext);
+                if (message.paddedBytes != null && Object.hasOwnProperty.call(message, "paddedBytes"))
+                    writer.uint32(/* id 4, wireType 2 =*/34).bytes(message.paddedBytes);
+                if (message.simulateXxkemFs != null && Object.hasOwnProperty.call(message, "simulateXxkemFs"))
+                    writer.uint32(/* id 5, wireType 0 =*/40).bool(message.simulateXxkemFs);
                 return writer;
             };
 
@@ -4968,6 +4990,14 @@ $root.Wa6 = (function() {
                             message.extendedCiphertext = reader.bytes();
                             break;
                         }
+                    case 4: {
+                            message.paddedBytes = reader.bytes();
+                            break;
+                        }
+                    case 5: {
+                            message.simulateXxkemFs = reader.bool();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -5012,6 +5042,12 @@ $root.Wa6 = (function() {
                 if (message.extendedCiphertext != null && message.hasOwnProperty("extendedCiphertext"))
                     if (!(message.extendedCiphertext && typeof message.extendedCiphertext.length === "number" || $util.isString(message.extendedCiphertext)))
                         return "extendedCiphertext: buffer expected";
+                if (message.paddedBytes != null && message.hasOwnProperty("paddedBytes"))
+                    if (!(message.paddedBytes && typeof message.paddedBytes.length === "number" || $util.isString(message.paddedBytes)))
+                        return "paddedBytes: buffer expected";
+                if (message.simulateXxkemFs != null && message.hasOwnProperty("simulateXxkemFs"))
+                    if (typeof message.simulateXxkemFs !== "boolean")
+                        return "simulateXxkemFs: boolean expected";
                 return null;
             };
 
@@ -5042,6 +5078,13 @@ $root.Wa6 = (function() {
                         $util.base64.decode(object.extendedCiphertext, message.extendedCiphertext = $util.newBuffer($util.base64.length(object.extendedCiphertext)), 0);
                     else if (object.extendedCiphertext.length >= 0)
                         message.extendedCiphertext = object.extendedCiphertext;
+                if (object.paddedBytes != null)
+                    if (typeof object.paddedBytes === "string")
+                        $util.base64.decode(object.paddedBytes, message.paddedBytes = $util.newBuffer($util.base64.length(object.paddedBytes)), 0);
+                    else if (object.paddedBytes.length >= 0)
+                        message.paddedBytes = object.paddedBytes;
+                if (object.simulateXxkemFs != null)
+                    message.simulateXxkemFs = Boolean(object.simulateXxkemFs);
                 return message;
             };
 
@@ -5080,6 +5123,14 @@ $root.Wa6 = (function() {
                         if (options.bytes !== Array)
                             object.extendedCiphertext = $util.newBuffer(object.extendedCiphertext);
                     }
+                    if (options.bytes === String)
+                        object.paddedBytes = "";
+                    else {
+                        object.paddedBytes = [];
+                        if (options.bytes !== Array)
+                            object.paddedBytes = $util.newBuffer(object.paddedBytes);
+                    }
+                    object.simulateXxkemFs = false;
                 }
                 if (message["static"] != null && message.hasOwnProperty("static"))
                     object["static"] = options.bytes === String ? $util.base64.encode(message["static"], 0, message["static"].length) : options.bytes === Array ? Array.prototype.slice.call(message["static"]) : message["static"];
@@ -5087,6 +5138,10 @@ $root.Wa6 = (function() {
                     object.payload = options.bytes === String ? $util.base64.encode(message.payload, 0, message.payload.length) : options.bytes === Array ? Array.prototype.slice.call(message.payload) : message.payload;
                 if (message.extendedCiphertext != null && message.hasOwnProperty("extendedCiphertext"))
                     object.extendedCiphertext = options.bytes === String ? $util.base64.encode(message.extendedCiphertext, 0, message.extendedCiphertext.length) : options.bytes === Array ? Array.prototype.slice.call(message.extendedCiphertext) : message.extendedCiphertext;
+                if (message.paddedBytes != null && message.hasOwnProperty("paddedBytes"))
+                    object.paddedBytes = options.bytes === String ? $util.base64.encode(message.paddedBytes, 0, message.paddedBytes.length) : options.bytes === Array ? Array.prototype.slice.call(message.paddedBytes) : message.paddedBytes;
+                if (message.simulateXxkemFs != null && message.hasOwnProperty("simulateXxkemFs"))
+                    object.simulateXxkemFs = message.simulateXxkemFs;
                 return object;
             };
 
@@ -5130,6 +5185,9 @@ $root.Wa6 = (function() {
              * @property {Uint8Array|null} [payload] ClientHello payload
              * @property {boolean|null} [useExtended] ClientHello useExtended
              * @property {Uint8Array|null} [extendedCiphertext] ClientHello extendedCiphertext
+             * @property {Uint8Array|null} [paddedBytes] ClientHello paddedBytes
+             * @property {boolean|null} [sendServerHelloPaddedBytes] ClientHello sendServerHelloPaddedBytes
+             * @property {boolean|null} [simulateXxkemFs] ClientHello simulateXxkemFs
              */
 
             /**
@@ -5188,6 +5246,30 @@ $root.Wa6 = (function() {
             ClientHello.prototype.extendedCiphertext = $util.newBuffer([]);
 
             /**
+             * ClientHello paddedBytes.
+             * @member {Uint8Array} paddedBytes
+             * @memberof Wa6.HandshakeMessage.ClientHello
+             * @instance
+             */
+            ClientHello.prototype.paddedBytes = $util.newBuffer([]);
+
+            /**
+             * ClientHello sendServerHelloPaddedBytes.
+             * @member {boolean} sendServerHelloPaddedBytes
+             * @memberof Wa6.HandshakeMessage.ClientHello
+             * @instance
+             */
+            ClientHello.prototype.sendServerHelloPaddedBytes = false;
+
+            /**
+             * ClientHello simulateXxkemFs.
+             * @member {boolean} simulateXxkemFs
+             * @memberof Wa6.HandshakeMessage.ClientHello
+             * @instance
+             */
+            ClientHello.prototype.simulateXxkemFs = false;
+
+            /**
              * Creates a new ClientHello instance using the specified properties.
              * @function create
              * @memberof Wa6.HandshakeMessage.ClientHello
@@ -5221,6 +5303,12 @@ $root.Wa6 = (function() {
                     writer.uint32(/* id 4, wireType 0 =*/32).bool(message.useExtended);
                 if (message.extendedCiphertext != null && Object.hasOwnProperty.call(message, "extendedCiphertext"))
                     writer.uint32(/* id 5, wireType 2 =*/42).bytes(message.extendedCiphertext);
+                if (message.paddedBytes != null && Object.hasOwnProperty.call(message, "paddedBytes"))
+                    writer.uint32(/* id 6, wireType 2 =*/50).bytes(message.paddedBytes);
+                if (message.sendServerHelloPaddedBytes != null && Object.hasOwnProperty.call(message, "sendServerHelloPaddedBytes"))
+                    writer.uint32(/* id 7, wireType 0 =*/56).bool(message.sendServerHelloPaddedBytes);
+                if (message.simulateXxkemFs != null && Object.hasOwnProperty.call(message, "simulateXxkemFs"))
+                    writer.uint32(/* id 8, wireType 0 =*/64).bool(message.simulateXxkemFs);
                 return writer;
             };
 
@@ -5277,6 +5365,18 @@ $root.Wa6 = (function() {
                             message.extendedCiphertext = reader.bytes();
                             break;
                         }
+                    case 6: {
+                            message.paddedBytes = reader.bytes();
+                            break;
+                        }
+                    case 7: {
+                            message.sendServerHelloPaddedBytes = reader.bool();
+                            break;
+                        }
+                    case 8: {
+                            message.simulateXxkemFs = reader.bool();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -5327,6 +5427,15 @@ $root.Wa6 = (function() {
                 if (message.extendedCiphertext != null && message.hasOwnProperty("extendedCiphertext"))
                     if (!(message.extendedCiphertext && typeof message.extendedCiphertext.length === "number" || $util.isString(message.extendedCiphertext)))
                         return "extendedCiphertext: buffer expected";
+                if (message.paddedBytes != null && message.hasOwnProperty("paddedBytes"))
+                    if (!(message.paddedBytes && typeof message.paddedBytes.length === "number" || $util.isString(message.paddedBytes)))
+                        return "paddedBytes: buffer expected";
+                if (message.sendServerHelloPaddedBytes != null && message.hasOwnProperty("sendServerHelloPaddedBytes"))
+                    if (typeof message.sendServerHelloPaddedBytes !== "boolean")
+                        return "sendServerHelloPaddedBytes: boolean expected";
+                if (message.simulateXxkemFs != null && message.hasOwnProperty("simulateXxkemFs"))
+                    if (typeof message.simulateXxkemFs !== "boolean")
+                        return "simulateXxkemFs: boolean expected";
                 return null;
             };
 
@@ -5364,6 +5473,15 @@ $root.Wa6 = (function() {
                         $util.base64.decode(object.extendedCiphertext, message.extendedCiphertext = $util.newBuffer($util.base64.length(object.extendedCiphertext)), 0);
                     else if (object.extendedCiphertext.length >= 0)
                         message.extendedCiphertext = object.extendedCiphertext;
+                if (object.paddedBytes != null)
+                    if (typeof object.paddedBytes === "string")
+                        $util.base64.decode(object.paddedBytes, message.paddedBytes = $util.newBuffer($util.base64.length(object.paddedBytes)), 0);
+                    else if (object.paddedBytes.length >= 0)
+                        message.paddedBytes = object.paddedBytes;
+                if (object.sendServerHelloPaddedBytes != null)
+                    message.sendServerHelloPaddedBytes = Boolean(object.sendServerHelloPaddedBytes);
+                if (object.simulateXxkemFs != null)
+                    message.simulateXxkemFs = Boolean(object.simulateXxkemFs);
                 return message;
             };
 
@@ -5410,6 +5528,15 @@ $root.Wa6 = (function() {
                         if (options.bytes !== Array)
                             object.extendedCiphertext = $util.newBuffer(object.extendedCiphertext);
                     }
+                    if (options.bytes === String)
+                        object.paddedBytes = "";
+                    else {
+                        object.paddedBytes = [];
+                        if (options.bytes !== Array)
+                            object.paddedBytes = $util.newBuffer(object.paddedBytes);
+                    }
+                    object.sendServerHelloPaddedBytes = false;
+                    object.simulateXxkemFs = false;
                 }
                 if (message.ephemeral != null && message.hasOwnProperty("ephemeral"))
                     object.ephemeral = options.bytes === String ? $util.base64.encode(message.ephemeral, 0, message.ephemeral.length) : options.bytes === Array ? Array.prototype.slice.call(message.ephemeral) : message.ephemeral;
@@ -5421,6 +5548,12 @@ $root.Wa6 = (function() {
                     object.useExtended = message.useExtended;
                 if (message.extendedCiphertext != null && message.hasOwnProperty("extendedCiphertext"))
                     object.extendedCiphertext = options.bytes === String ? $util.base64.encode(message.extendedCiphertext, 0, message.extendedCiphertext.length) : options.bytes === Array ? Array.prototype.slice.call(message.extendedCiphertext) : message.extendedCiphertext;
+                if (message.paddedBytes != null && message.hasOwnProperty("paddedBytes"))
+                    object.paddedBytes = options.bytes === String ? $util.base64.encode(message.paddedBytes, 0, message.paddedBytes.length) : options.bytes === Array ? Array.prototype.slice.call(message.paddedBytes) : message.paddedBytes;
+                if (message.sendServerHelloPaddedBytes != null && message.hasOwnProperty("sendServerHelloPaddedBytes"))
+                    object.sendServerHelloPaddedBytes = message.sendServerHelloPaddedBytes;
+                if (message.simulateXxkemFs != null && message.hasOwnProperty("simulateXxkemFs"))
+                    object.simulateXxkemFs = message.simulateXxkemFs;
                 return object;
             };
 
@@ -5463,6 +5596,7 @@ $root.Wa6 = (function() {
              * @property {Uint8Array|null} ["static"] ServerHello static
              * @property {Uint8Array|null} [payload] ServerHello payload
              * @property {Uint8Array|null} [extendedStatic] ServerHello extendedStatic
+             * @property {Uint8Array|null} [paddingBytes] ServerHello paddingBytes
              */
 
             /**
@@ -5513,6 +5647,14 @@ $root.Wa6 = (function() {
             ServerHello.prototype.extendedStatic = $util.newBuffer([]);
 
             /**
+             * ServerHello paddingBytes.
+             * @member {Uint8Array} paddingBytes
+             * @memberof Wa6.HandshakeMessage.ServerHello
+             * @instance
+             */
+            ServerHello.prototype.paddingBytes = $util.newBuffer([]);
+
+            /**
              * Creates a new ServerHello instance using the specified properties.
              * @function create
              * @memberof Wa6.HandshakeMessage.ServerHello
@@ -5544,6 +5686,8 @@ $root.Wa6 = (function() {
                     writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.payload);
                 if (message.extendedStatic != null && Object.hasOwnProperty.call(message, "extendedStatic"))
                     writer.uint32(/* id 4, wireType 2 =*/34).bytes(message.extendedStatic);
+                if (message.paddingBytes != null && Object.hasOwnProperty.call(message, "paddingBytes"))
+                    writer.uint32(/* id 5, wireType 2 =*/42).bytes(message.paddingBytes);
                 return writer;
             };
 
@@ -5596,6 +5740,10 @@ $root.Wa6 = (function() {
                             message.extendedStatic = reader.bytes();
                             break;
                         }
+                    case 5: {
+                            message.paddingBytes = reader.bytes();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -5643,6 +5791,9 @@ $root.Wa6 = (function() {
                 if (message.extendedStatic != null && message.hasOwnProperty("extendedStatic"))
                     if (!(message.extendedStatic && typeof message.extendedStatic.length === "number" || $util.isString(message.extendedStatic)))
                         return "extendedStatic: buffer expected";
+                if (message.paddingBytes != null && message.hasOwnProperty("paddingBytes"))
+                    if (!(message.paddingBytes && typeof message.paddingBytes.length === "number" || $util.isString(message.paddingBytes)))
+                        return "paddingBytes: buffer expected";
                 return null;
             };
 
@@ -5678,6 +5829,11 @@ $root.Wa6 = (function() {
                         $util.base64.decode(object.extendedStatic, message.extendedStatic = $util.newBuffer($util.base64.length(object.extendedStatic)), 0);
                     else if (object.extendedStatic.length >= 0)
                         message.extendedStatic = object.extendedStatic;
+                if (object.paddingBytes != null)
+                    if (typeof object.paddingBytes === "string")
+                        $util.base64.decode(object.paddingBytes, message.paddingBytes = $util.newBuffer($util.base64.length(object.paddingBytes)), 0);
+                    else if (object.paddingBytes.length >= 0)
+                        message.paddingBytes = object.paddingBytes;
                 return message;
             };
 
@@ -5723,6 +5879,13 @@ $root.Wa6 = (function() {
                         if (options.bytes !== Array)
                             object.extendedStatic = $util.newBuffer(object.extendedStatic);
                     }
+                    if (options.bytes === String)
+                        object.paddingBytes = "";
+                    else {
+                        object.paddingBytes = [];
+                        if (options.bytes !== Array)
+                            object.paddingBytes = $util.newBuffer(object.paddingBytes);
+                    }
                 }
                 if (message.ephemeral != null && message.hasOwnProperty("ephemeral"))
                     object.ephemeral = options.bytes === String ? $util.base64.encode(message.ephemeral, 0, message.ephemeral.length) : options.bytes === Array ? Array.prototype.slice.call(message.ephemeral) : message.ephemeral;
@@ -5732,6 +5895,8 @@ $root.Wa6 = (function() {
                     object.payload = options.bytes === String ? $util.base64.encode(message.payload, 0, message.payload.length) : options.bytes === Array ? Array.prototype.slice.call(message.payload) : message.payload;
                 if (message.extendedStatic != null && message.hasOwnProperty("extendedStatic"))
                     object.extendedStatic = options.bytes === String ? $util.base64.encode(message.extendedStatic, 0, message.extendedStatic.length) : options.bytes === Array ? Array.prototype.slice.call(message.extendedStatic) : message.extendedStatic;
+                if (message.paddingBytes != null && message.hasOwnProperty("paddingBytes"))
+                    object.paddingBytes = options.bytes === String ? $util.base64.encode(message.paddingBytes, 0, message.paddingBytes.length) : options.bytes === Array ? Array.prototype.slice.call(message.paddingBytes) : message.paddingBytes;
                 return object;
             };
 

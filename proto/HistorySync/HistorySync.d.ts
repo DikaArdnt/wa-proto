@@ -1774,6 +1774,9 @@ export namespace HistorySync {
 
         /** Conversation isMarketingMessageThread */
         isMarketingMessageThread?: (boolean|null);
+
+        /** Conversation isSenderNewAccount */
+        isSenderNewAccount?: (boolean|null);
     }
 
     /** Represents a Conversation. */
@@ -1949,6 +1952,9 @@ export namespace HistorySync {
 
         /** Conversation isMarketingMessageThread. */
         public isMarketingMessageThread: boolean;
+
+        /** Conversation isSenderNewAccount. */
+        public isSenderNewAccount: boolean;
 
         /**
          * Creates a new Conversation instance using the specified properties.
@@ -20243,6 +20249,9 @@ export namespace E2E {
 
             /** PaymentInviteMessage referralId */
             referralId?: (string|null);
+
+            /** PaymentInviteMessage inviteType */
+            inviteType?: (E2E.Message.PaymentInviteMessage.InviteType|null);
         }
 
         /** Represents a PaymentInviteMessage. */
@@ -20265,6 +20274,9 @@ export namespace E2E {
 
             /** PaymentInviteMessage referralId. */
             public referralId: string;
+
+            /** PaymentInviteMessage inviteType. */
+            public inviteType: E2E.Message.PaymentInviteMessage.InviteType;
 
             /**
              * Creates a new PaymentInviteMessage instance using the specified properties.
@@ -20345,6 +20357,12 @@ export namespace E2E {
         }
 
         namespace PaymentInviteMessage {
+
+            /** InviteType enum. */
+            enum InviteType {
+                DEFAULT = 0,
+                MAPPER = 1
+            }
 
             /** ServiceType enum. */
             enum ServiceType {
@@ -31733,7 +31751,8 @@ export namespace StatusAttributions {
                 THREADS = 7,
                 APPLE_MUSIC = 8,
                 SHARECHAT = 9,
-                GOOGLE_PHOTOS = 10
+                GOOGLE_PHOTOS = 10,
+                SOUNDCLOUD = 11
             }
         }
 
@@ -37751,7 +37770,8 @@ export namespace AICommon {
             RICH_RESPONSE_UR_BLOKS_ENABLED = 55,
             RICH_RESPONSE_INLINE_LINKS_ENABLED = 56,
             RICH_RESPONSE_UR_IMAGINE_VIDEO = 57,
-            JSON_PATCH_STREAMING = 58
+            JSON_PATCH_STREAMING = 58,
+            AI_TAB_FORCE_CLIPPY = 59
         }
     }
 
@@ -41223,6 +41243,9 @@ export namespace CompanionReg {
 
         /** ClientPairingProps isHsThumbnailSyncEnabled */
         isHsThumbnailSyncEnabled?: (boolean|null);
+
+        /** ClientPairingProps subscriptionSyncPayload */
+        subscriptionSyncPayload?: (Uint8Array|null);
     }
 
     /** Represents a ClientPairingProps. */
@@ -41245,6 +41268,9 @@ export namespace CompanionReg {
 
         /** ClientPairingProps isHsThumbnailSyncEnabled. */
         public isHsThumbnailSyncEnabled: boolean;
+
+        /** ClientPairingProps subscriptionSyncPayload. */
+        public subscriptionSyncPayload: Uint8Array;
 
         /**
          * Creates a new ClientPairingProps instance using the specified properties.
@@ -47307,6 +47333,9 @@ export namespace SyncAction {
 
         /** SyncActionValue subscriptionsSyncV2Action */
         subscriptionsSyncV2Action?: (SyncAction.SyncActionValue.ISubscriptionsSyncV2Action|null);
+
+        /** SyncActionValue threadPinAction */
+        threadPinAction?: (SyncAction.SyncActionValue.IThreadPinAction|null);
     }
 
     /** Represents a SyncActionValue. */
@@ -47542,6 +47571,9 @@ export namespace SyncAction {
 
         /** SyncActionValue subscriptionsSyncV2Action. */
         public subscriptionsSyncV2Action?: (SyncAction.SyncActionValue.ISubscriptionsSyncV2Action|null);
+
+        /** SyncActionValue threadPinAction. */
+        public threadPinAction?: (SyncAction.SyncActionValue.IThreadPinAction|null);
 
         /**
          * Creates a new SyncActionValue instance using the specified properties.
@@ -55813,6 +55845,103 @@ export namespace SyncAction {
             public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
+        /** Properties of a ThreadPinAction. */
+        interface IThreadPinAction {
+
+            /** ThreadPinAction pinned */
+            pinned?: (boolean|null);
+        }
+
+        /** Represents a ThreadPinAction. */
+        class ThreadPinAction implements IThreadPinAction {
+
+            /**
+             * Constructs a new ThreadPinAction.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SyncAction.SyncActionValue.IThreadPinAction);
+
+            /** ThreadPinAction pinned. */
+            public pinned: boolean;
+
+            /**
+             * Creates a new ThreadPinAction instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns ThreadPinAction instance
+             */
+            public static create(properties?: SyncAction.SyncActionValue.IThreadPinAction): SyncAction.SyncActionValue.ThreadPinAction;
+
+            /**
+             * Encodes the specified ThreadPinAction message. Does not implicitly {@link SyncAction.SyncActionValue.ThreadPinAction.verify|verify} messages.
+             * @param message ThreadPinAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SyncAction.SyncActionValue.IThreadPinAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified ThreadPinAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.ThreadPinAction.verify|verify} messages.
+             * @param message ThreadPinAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SyncAction.SyncActionValue.IThreadPinAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a ThreadPinAction message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns ThreadPinAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.ThreadPinAction;
+
+            /**
+             * Decodes a ThreadPinAction message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns ThreadPinAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.ThreadPinAction;
+
+            /**
+             * Verifies a ThreadPinAction message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a ThreadPinAction message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns ThreadPinAction
+             */
+            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.ThreadPinAction;
+
+            /**
+             * Creates a plain object from a ThreadPinAction message. Also converts values to other types if specified.
+             * @param message ThreadPinAction
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SyncAction.SyncActionValue.ThreadPinAction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this ThreadPinAction to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for ThreadPinAction
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
         /** Properties of a TimeFormatAction. */
         interface ITimeFormatAction {
 
@@ -57012,6 +57141,7 @@ export namespace SyncAction {
         BUSINESS_BROADCAST_INSIGHTS_ACTION = 82,
         CUSTOMER_DATA_ACTION = 83,
         SUBSCRIPTIONS_SYNC_V2_ACTION = 84,
+        THREAD_PIN_ACTION = 85,
         SHARE_OWN_PN = 10001,
         BUSINESS_BROADCAST_ACTION = 10002,
         AI_THREAD_DELETE_ACTION = 10003

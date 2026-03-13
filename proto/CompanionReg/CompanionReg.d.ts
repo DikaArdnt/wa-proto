@@ -17,6 +17,9 @@ export namespace CompanionReg {
 
         /** ClientPairingProps isHsThumbnailSyncEnabled */
         isHsThumbnailSyncEnabled?: (boolean|null);
+
+        /** ClientPairingProps subscriptionSyncPayload */
+        subscriptionSyncPayload?: (Uint8Array|null);
     }
 
     /** Represents a ClientPairingProps. */
@@ -39,6 +42,9 @@ export namespace CompanionReg {
 
         /** ClientPairingProps isHsThumbnailSyncEnabled. */
         public isHsThumbnailSyncEnabled: boolean;
+
+        /** ClientPairingProps subscriptionSyncPayload. */
+        public subscriptionSyncPayload: Uint8Array;
 
         /**
          * Creates a new ClientPairingProps instance using the specified properties.

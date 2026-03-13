@@ -28,6 +28,7 @@ $root.CompanionReg = (function() {
          * @property {boolean|null} [isSyncdPureLidSession] ClientPairingProps isSyncdPureLidSession
          * @property {boolean|null} [isSyncdSnapshotRecoveryEnabled] ClientPairingProps isSyncdSnapshotRecoveryEnabled
          * @property {boolean|null} [isHsThumbnailSyncEnabled] ClientPairingProps isHsThumbnailSyncEnabled
+         * @property {Uint8Array|null} [subscriptionSyncPayload] ClientPairingProps subscriptionSyncPayload
          */
 
         /**
@@ -78,6 +79,14 @@ $root.CompanionReg = (function() {
         ClientPairingProps.prototype.isHsThumbnailSyncEnabled = false;
 
         /**
+         * ClientPairingProps subscriptionSyncPayload.
+         * @member {Uint8Array} subscriptionSyncPayload
+         * @memberof CompanionReg.ClientPairingProps
+         * @instance
+         */
+        ClientPairingProps.prototype.subscriptionSyncPayload = $util.newBuffer([]);
+
+        /**
          * Creates a new ClientPairingProps instance using the specified properties.
          * @function create
          * @memberof CompanionReg.ClientPairingProps
@@ -109,6 +118,8 @@ $root.CompanionReg = (function() {
                 writer.uint32(/* id 3, wireType 0 =*/24).bool(message.isSyncdSnapshotRecoveryEnabled);
             if (message.isHsThumbnailSyncEnabled != null && Object.hasOwnProperty.call(message, "isHsThumbnailSyncEnabled"))
                 writer.uint32(/* id 4, wireType 0 =*/32).bool(message.isHsThumbnailSyncEnabled);
+            if (message.subscriptionSyncPayload != null && Object.hasOwnProperty.call(message, "subscriptionSyncPayload"))
+                writer.uint32(/* id 5, wireType 2 =*/42).bytes(message.subscriptionSyncPayload);
             return writer;
         };
 
@@ -161,6 +172,10 @@ $root.CompanionReg = (function() {
                         message.isHsThumbnailSyncEnabled = reader.bool();
                         break;
                     }
+                case 5: {
+                        message.subscriptionSyncPayload = reader.bytes();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -208,6 +223,9 @@ $root.CompanionReg = (function() {
             if (message.isHsThumbnailSyncEnabled != null && message.hasOwnProperty("isHsThumbnailSyncEnabled"))
                 if (typeof message.isHsThumbnailSyncEnabled !== "boolean")
                     return "isHsThumbnailSyncEnabled: boolean expected";
+            if (message.subscriptionSyncPayload != null && message.hasOwnProperty("subscriptionSyncPayload"))
+                if (!(message.subscriptionSyncPayload && typeof message.subscriptionSyncPayload.length === "number" || $util.isString(message.subscriptionSyncPayload)))
+                    return "subscriptionSyncPayload: buffer expected";
             return null;
         };
 
@@ -231,6 +249,11 @@ $root.CompanionReg = (function() {
                 message.isSyncdSnapshotRecoveryEnabled = Boolean(object.isSyncdSnapshotRecoveryEnabled);
             if (object.isHsThumbnailSyncEnabled != null)
                 message.isHsThumbnailSyncEnabled = Boolean(object.isHsThumbnailSyncEnabled);
+            if (object.subscriptionSyncPayload != null)
+                if (typeof object.subscriptionSyncPayload === "string")
+                    $util.base64.decode(object.subscriptionSyncPayload, message.subscriptionSyncPayload = $util.newBuffer($util.base64.length(object.subscriptionSyncPayload)), 0);
+                else if (object.subscriptionSyncPayload.length >= 0)
+                    message.subscriptionSyncPayload = object.subscriptionSyncPayload;
             return message;
         };
 
@@ -252,6 +275,13 @@ $root.CompanionReg = (function() {
                 object.isSyncdPureLidSession = false;
                 object.isSyncdSnapshotRecoveryEnabled = false;
                 object.isHsThumbnailSyncEnabled = false;
+                if (options.bytes === String)
+                    object.subscriptionSyncPayload = "";
+                else {
+                    object.subscriptionSyncPayload = [];
+                    if (options.bytes !== Array)
+                        object.subscriptionSyncPayload = $util.newBuffer(object.subscriptionSyncPayload);
+                }
             }
             if (message.isChatDbLidMigrated != null && message.hasOwnProperty("isChatDbLidMigrated"))
                 object.isChatDbLidMigrated = message.isChatDbLidMigrated;
@@ -261,6 +291,8 @@ $root.CompanionReg = (function() {
                 object.isSyncdSnapshotRecoveryEnabled = message.isSyncdSnapshotRecoveryEnabled;
             if (message.isHsThumbnailSyncEnabled != null && message.hasOwnProperty("isHsThumbnailSyncEnabled"))
                 object.isHsThumbnailSyncEnabled = message.isHsThumbnailSyncEnabled;
+            if (message.subscriptionSyncPayload != null && message.hasOwnProperty("subscriptionSyncPayload"))
+                object.subscriptionSyncPayload = options.bytes === String ? $util.base64.encode(message.subscriptionSyncPayload, 0, message.subscriptionSyncPayload.length) : options.bytes === Array ? Array.prototype.slice.call(message.subscriptionSyncPayload) : message.subscriptionSyncPayload;
             return object;
         };
 

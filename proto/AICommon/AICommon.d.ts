@@ -5435,7 +5435,8 @@ export namespace AICommon {
             RICH_RESPONSE_UR_BLOKS_ENABLED = 55,
             RICH_RESPONSE_INLINE_LINKS_ENABLED = 56,
             RICH_RESPONSE_UR_IMAGINE_VIDEO = 57,
-            JSON_PATCH_STREAMING = 58
+            JSON_PATCH_STREAMING = 58,
+            AI_TAB_FORCE_CLIPPY = 59
         }
     }
 
