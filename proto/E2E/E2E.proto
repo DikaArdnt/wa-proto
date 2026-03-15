@@ -437,6 +437,7 @@ message ContextInfo {
         optional AdType adType = 25;
         optional string wtwaWebsiteUrl = 26;
         optional string adPreviewUrl = 27;
+        optional bool containsCtwaFlowsAutoReply = 28;
         enum AdType {
             CTWA = 0;
             CAWC = 1;
@@ -1811,6 +1812,7 @@ message Message {
             GROUP_MEMBER_LABEL_CHANGE = 30;
             AI_MEDIA_COLLECTION_MESSAGE = 31;
             MESSAGE_UNSCHEDULE = 32;
+            BOT_UNLINK_MESSAGE = 33;
         }
     }
     message QuestionResponseMessage {

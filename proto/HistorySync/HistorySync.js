@@ -4284,6 +4284,7 @@ $root.HistorySync = (function() {
          * @property {boolean|null} [maibaAiThreadEnabled] Conversation maibaAiThreadEnabled
          * @property {boolean|null} [isMarketingMessageThread] Conversation isMarketingMessageThread
          * @property {boolean|null} [isSenderNewAccount] Conversation isSenderNewAccount
+         * @property {number|null} [afterReadDuration] Conversation afterReadDuration
          */
 
         /**
@@ -4752,6 +4753,14 @@ $root.HistorySync = (function() {
         Conversation.prototype.isSenderNewAccount = false;
 
         /**
+         * Conversation afterReadDuration.
+         * @member {number} afterReadDuration
+         * @memberof HistorySync.Conversation
+         * @instance
+         */
+        Conversation.prototype.afterReadDuration = 0;
+
+        /**
          * Creates a new Conversation instance using the specified properties.
          * @function create
          * @memberof HistorySync.Conversation
@@ -4888,6 +4897,8 @@ $root.HistorySync = (function() {
                 writer.uint32(/* id 55, wireType 0 =*/440).bool(message.isMarketingMessageThread);
             if (message.isSenderNewAccount != null && Object.hasOwnProperty.call(message, "isSenderNewAccount"))
                 writer.uint32(/* id 56, wireType 0 =*/448).bool(message.isSenderNewAccount);
+            if (message.afterReadDuration != null && Object.hasOwnProperty.call(message, "afterReadDuration"))
+                writer.uint32(/* id 57, wireType 0 =*/456).uint32(message.afterReadDuration);
             return writer;
         };
 
@@ -5152,6 +5163,10 @@ $root.HistorySync = (function() {
                         message.isSenderNewAccount = reader.bool();
                         break;
                     }
+                case 57: {
+                        message.afterReadDuration = reader.uint32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -5399,6 +5414,9 @@ $root.HistorySync = (function() {
             if (message.isSenderNewAccount != null && message.hasOwnProperty("isSenderNewAccount"))
                 if (typeof message.isSenderNewAccount !== "boolean")
                     return "isSenderNewAccount: boolean expected";
+            if (message.afterReadDuration != null && message.hasOwnProperty("afterReadDuration"))
+                if (!$util.isInteger(message.afterReadDuration))
+                    return "afterReadDuration: integer expected";
             return null;
         };
 
@@ -5694,6 +5712,8 @@ $root.HistorySync = (function() {
                 message.isMarketingMessageThread = Boolean(object.isMarketingMessageThread);
             if (object.isSenderNewAccount != null)
                 message.isSenderNewAccount = Boolean(object.isSenderNewAccount);
+            if (object.afterReadDuration != null)
+                message.afterReadDuration = object.afterReadDuration >>> 0;
             return message;
         };
 
@@ -5813,6 +5833,7 @@ $root.HistorySync = (function() {
                 object.maibaAiThreadEnabled = false;
                 object.isMarketingMessageThread = false;
                 object.isSenderNewAccount = false;
+                object.afterReadDuration = 0;
             }
             if (message.id != null && message.hasOwnProperty("id"))
                 object.id = message.id;
@@ -5956,6 +5977,8 @@ $root.HistorySync = (function() {
                 object.isMarketingMessageThread = message.isMarketingMessageThread;
             if (message.isSenderNewAccount != null && message.hasOwnProperty("isSenderNewAccount"))
                 object.isSenderNewAccount = message.isSenderNewAccount;
+            if (message.afterReadDuration != null && message.hasOwnProperty("afterReadDuration"))
+                object.afterReadDuration = message.afterReadDuration;
             return object;
         };
 
@@ -21986,6 +22009,7 @@ $root.E2E = (function() {
              * @property {E2E.ContextInfo.ExternalAdReplyInfo.AdType|null} [adType] ExternalAdReplyInfo adType
              * @property {string|null} [wtwaWebsiteUrl] ExternalAdReplyInfo wtwaWebsiteUrl
              * @property {string|null} [adPreviewUrl] ExternalAdReplyInfo adPreviewUrl
+             * @property {boolean|null} [containsCtwaFlowsAutoReply] ExternalAdReplyInfo containsCtwaFlowsAutoReply
              */
 
             /**
@@ -22220,6 +22244,14 @@ $root.E2E = (function() {
             ExternalAdReplyInfo.prototype.adPreviewUrl = "";
 
             /**
+             * ExternalAdReplyInfo containsCtwaFlowsAutoReply.
+             * @member {boolean} containsCtwaFlowsAutoReply
+             * @memberof E2E.ContextInfo.ExternalAdReplyInfo
+             * @instance
+             */
+            ExternalAdReplyInfo.prototype.containsCtwaFlowsAutoReply = false;
+
+            /**
              * Creates a new ExternalAdReplyInfo instance using the specified properties.
              * @function create
              * @memberof E2E.ContextInfo.ExternalAdReplyInfo
@@ -22297,6 +22329,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 26, wireType 2 =*/210).string(message.wtwaWebsiteUrl);
                 if (message.adPreviewUrl != null && Object.hasOwnProperty.call(message, "adPreviewUrl"))
                     writer.uint32(/* id 27, wireType 2 =*/218).string(message.adPreviewUrl);
+                if (message.containsCtwaFlowsAutoReply != null && Object.hasOwnProperty.call(message, "containsCtwaFlowsAutoReply"))
+                    writer.uint32(/* id 28, wireType 0 =*/224).bool(message.containsCtwaFlowsAutoReply);
                 return writer;
             };
 
@@ -22441,6 +22475,10 @@ $root.E2E = (function() {
                             message.adPreviewUrl = reader.string();
                             break;
                         }
+                    case 28: {
+                            message.containsCtwaFlowsAutoReply = reader.bool();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -22568,6 +22606,9 @@ $root.E2E = (function() {
                 if (message.adPreviewUrl != null && message.hasOwnProperty("adPreviewUrl"))
                     if (!$util.isString(message.adPreviewUrl))
                         return "adPreviewUrl: string expected";
+                if (message.containsCtwaFlowsAutoReply != null && message.hasOwnProperty("containsCtwaFlowsAutoReply"))
+                    if (typeof message.containsCtwaFlowsAutoReply !== "boolean")
+                        return "containsCtwaFlowsAutoReply: boolean expected";
                 return null;
             };
 
@@ -22672,6 +22713,8 @@ $root.E2E = (function() {
                     message.wtwaWebsiteUrl = String(object.wtwaWebsiteUrl);
                 if (object.adPreviewUrl != null)
                     message.adPreviewUrl = String(object.adPreviewUrl);
+                if (object.containsCtwaFlowsAutoReply != null)
+                    message.containsCtwaFlowsAutoReply = Boolean(object.containsCtwaFlowsAutoReply);
                 return message;
             };
 
@@ -22722,6 +22765,7 @@ $root.E2E = (function() {
                     object.adType = options.enums === String ? "CTWA" : 0;
                     object.wtwaWebsiteUrl = "";
                     object.adPreviewUrl = "";
+                    object.containsCtwaFlowsAutoReply = false;
                 }
                 if (message.title != null && message.hasOwnProperty("title"))
                     object.title = message.title;
@@ -22777,6 +22821,8 @@ $root.E2E = (function() {
                     object.wtwaWebsiteUrl = message.wtwaWebsiteUrl;
                 if (message.adPreviewUrl != null && message.hasOwnProperty("adPreviewUrl"))
                     object.adPreviewUrl = message.adPreviewUrl;
+                if (message.containsCtwaFlowsAutoReply != null && message.hasOwnProperty("containsCtwaFlowsAutoReply"))
+                    object.containsCtwaFlowsAutoReply = message.containsCtwaFlowsAutoReply;
                 return object;
             };
 
@@ -71351,6 +71397,7 @@ $root.E2E = (function() {
                     case 30:
                     case 31:
                     case 32:
+                    case 33:
                         break;
                     }
                 if (message.ephemeralExpiration != null && message.hasOwnProperty("ephemeralExpiration"))
@@ -71599,6 +71646,10 @@ $root.E2E = (function() {
                 case "MESSAGE_UNSCHEDULE":
                 case 32:
                     message.type = 32;
+                    break;
+                case "BOT_UNLINK_MESSAGE":
+                case 33:
+                    message.type = 33;
                     break;
                 }
                 if (object.ephemeralExpiration != null)
@@ -71897,6 +71948,7 @@ $root.E2E = (function() {
              * @property {number} GROUP_MEMBER_LABEL_CHANGE=30 GROUP_MEMBER_LABEL_CHANGE value
              * @property {number} AI_MEDIA_COLLECTION_MESSAGE=31 AI_MEDIA_COLLECTION_MESSAGE value
              * @property {number} MESSAGE_UNSCHEDULE=32 MESSAGE_UNSCHEDULE value
+             * @property {number} BOT_UNLINK_MESSAGE=33 BOT_UNLINK_MESSAGE value
              */
             ProtocolMessage.Type = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -71928,6 +71980,7 @@ $root.E2E = (function() {
                 values[valuesById[30] = "GROUP_MEMBER_LABEL_CHANGE"] = 30;
                 values[valuesById[31] = "AI_MEDIA_COLLECTION_MESSAGE"] = 31;
                 values[valuesById[32] = "MESSAGE_UNSCHEDULE"] = 32;
+                values[valuesById[33] = "BOT_UNLINK_MESSAGE"] = 33;
                 return values;
             })();
 
@@ -103307,6 +103360,7 @@ $root.AICommon = (function() {
                     case 57:
                     case 58:
                     case 59:
+                    case 60:
                         break;
                     }
             }
@@ -103576,6 +103630,10 @@ $root.AICommon = (function() {
                     case 59:
                         message.capabilities[i] = 59;
                         break;
+                    case "UNIFIED_RESPONSE_EMBEDDED_SCREENS":
+                    case 60:
+                        message.capabilities[i] = 60;
+                        break;
                     }
             }
             return message;
@@ -103694,6 +103752,7 @@ $root.AICommon = (function() {
          * @property {number} RICH_RESPONSE_UR_IMAGINE_VIDEO=57 RICH_RESPONSE_UR_IMAGINE_VIDEO value
          * @property {number} JSON_PATCH_STREAMING=58 JSON_PATCH_STREAMING value
          * @property {number} AI_TAB_FORCE_CLIPPY=59 AI_TAB_FORCE_CLIPPY value
+         * @property {number} UNIFIED_RESPONSE_EMBEDDED_SCREENS=60 UNIFIED_RESPONSE_EMBEDDED_SCREENS value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -103757,6 +103816,7 @@ $root.AICommon = (function() {
             values[valuesById[57] = "RICH_RESPONSE_UR_IMAGINE_VIDEO"] = 57;
             values[valuesById[58] = "JSON_PATCH_STREAMING"] = 58;
             values[valuesById[59] = "AI_TAB_FORCE_CLIPPY"] = 59;
+            values[valuesById[60] = "UNIFIED_RESPONSE_EMBEDDED_SCREENS"] = 60;
             return values;
         })();
 

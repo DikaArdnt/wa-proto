@@ -1777,6 +1777,9 @@ export namespace HistorySync {
 
         /** Conversation isSenderNewAccount */
         isSenderNewAccount?: (boolean|null);
+
+        /** Conversation afterReadDuration */
+        afterReadDuration?: (number|null);
     }
 
     /** Represents a Conversation. */
@@ -1955,6 +1958,9 @@ export namespace HistorySync {
 
         /** Conversation isSenderNewAccount. */
         public isSenderNewAccount: boolean;
+
+        /** Conversation afterReadDuration. */
+        public afterReadDuration: number;
 
         /**
          * Creates a new Conversation instance using the specified properties.
@@ -7802,6 +7808,9 @@ export namespace E2E {
 
             /** ExternalAdReplyInfo adPreviewUrl */
             adPreviewUrl?: (string|null);
+
+            /** ExternalAdReplyInfo containsCtwaFlowsAutoReply */
+            containsCtwaFlowsAutoReply?: (boolean|null);
         }
 
         /** Represents an ExternalAdReplyInfo. */
@@ -7893,6 +7902,9 @@ export namespace E2E {
 
             /** ExternalAdReplyInfo adPreviewUrl. */
             public adPreviewUrl: string;
+
+            /** ExternalAdReplyInfo containsCtwaFlowsAutoReply. */
+            public containsCtwaFlowsAutoReply: boolean;
 
             /**
              * Creates a new ExternalAdReplyInfo instance using the specified properties.
@@ -25842,7 +25854,8 @@ export namespace E2E {
                 AI_QUERY_FANOUT = 29,
                 GROUP_MEMBER_LABEL_CHANGE = 30,
                 AI_MEDIA_COLLECTION_MESSAGE = 31,
-                MESSAGE_UNSCHEDULE = 32
+                MESSAGE_UNSCHEDULE = 32,
+                BOT_UNLINK_MESSAGE = 33
             }
         }
 
@@ -37771,7 +37784,8 @@ export namespace AICommon {
             RICH_RESPONSE_INLINE_LINKS_ENABLED = 56,
             RICH_RESPONSE_UR_IMAGINE_VIDEO = 57,
             JSON_PATCH_STREAMING = 58,
-            AI_TAB_FORCE_CLIPPY = 59
+            AI_TAB_FORCE_CLIPPY = 59,
+            UNIFIED_RESPONSE_EMBEDDED_SCREENS = 60
         }
     }
 
