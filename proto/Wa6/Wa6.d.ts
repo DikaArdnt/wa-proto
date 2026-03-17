@@ -1656,6 +1656,9 @@ export namespace Wa6 {
 
             /** ClientHello simulateXxkemFs */
             simulateXxkemFs?: (boolean|null);
+
+            /** ClientHello pqMode */
+            pqMode?: (Wa6.HandshakeMessage.HandshakePqMode|null);
         }
 
         /** Represents a ClientHello. */
@@ -1690,6 +1693,9 @@ export namespace Wa6 {
 
             /** ClientHello simulateXxkemFs. */
             public simulateXxkemFs: boolean;
+
+            /** ClientHello pqMode. */
+            public pqMode: Wa6.HandshakeMessage.HandshakePqMode;
 
             /**
              * Creates a new ClientHello instance using the specified properties.
@@ -1767,6 +1773,19 @@ export namespace Wa6 {
              * @returns The default type url
              */
             public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** HandshakePqMode enum. */
+        enum HandshakePqMode {
+            HANDSHAKE_PQ_MODE_UNKNOWN = 0,
+            XXKEM = 1,
+            XXKEM_FS = 2,
+            WA_CLASSICAL = 3,
+            WA_PQ = 4,
+            IKKEM = 5,
+            IKKEM_FS = 6,
+            XXKEM_2 = 7,
+            IKKEM_2 = 8
         }
 
         /** Properties of a ServerHello. */
