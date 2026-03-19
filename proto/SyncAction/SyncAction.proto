@@ -181,6 +181,7 @@ message SyncActionValue {
         repeated SyncActionValue.BroadcastListParticipant participants = 2;
         optional string listName = 3;
         repeated string labelIds = 4;
+        optional string audienceExpression = 5;
     }
     message CallLogAction {
         optional CallLogRecord callLogRecord = 1;

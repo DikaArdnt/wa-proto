@@ -5399,7 +5399,6 @@ $root.HistorySync = (function() {
                 case 1:
                 case 2:
                 case 3:
-                case 4:
                     break;
                 }
             if (message.limitSharingInitiatedByMe != null && message.hasOwnProperty("limitSharingInitiatedByMe"))
@@ -5698,10 +5697,6 @@ $root.HistorySync = (function() {
             case "UNKNOWN_GROUP":
             case 3:
                 message.limitSharingTrigger = 3;
-                break;
-            case "DEPRECATION":
-            case 4:
-                message.limitSharingTrigger = 4;
                 break;
             }
             if (object.limitSharingInitiatedByMe != null)
@@ -81826,7 +81821,6 @@ $root.Protocol = (function() {
                 case 1:
                 case 2:
                 case 3:
-                case 4:
                     break;
                 }
             if (message.limitSharingSettingTimestamp != null && message.hasOwnProperty("limitSharingSettingTimestamp"))
@@ -81874,10 +81868,6 @@ $root.Protocol = (function() {
             case "UNKNOWN_GROUP":
             case 3:
                 message.trigger = 3;
-                break;
-            case "DEPRECATION":
-            case 4:
-                message.trigger = 4;
                 break;
             }
             if (object.limitSharingSettingTimestamp != null)
@@ -81965,7 +81955,6 @@ $root.Protocol = (function() {
          * @property {number} CHAT_SETTING=1 CHAT_SETTING value
          * @property {number} BIZ_SUPPORTS_FB_HOSTING=2 BIZ_SUPPORTS_FB_HOSTING value
          * @property {number} UNKNOWN_GROUP=3 UNKNOWN_GROUP value
-         * @property {number} DEPRECATION=4 DEPRECATION value
          */
         LimitSharing.TriggerType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -81973,7 +81962,6 @@ $root.Protocol = (function() {
             values[valuesById[1] = "CHAT_SETTING"] = 1;
             values[valuesById[2] = "BIZ_SUPPORTS_FB_HOSTING"] = 2;
             values[valuesById[3] = "UNKNOWN_GROUP"] = 3;
-            values[valuesById[4] = "DEPRECATION"] = 4;
             return values;
         })();
 
@@ -137190,6 +137178,7 @@ $root.SyncAction = (function() {
              * @property {Array.<SyncAction.SyncActionValue.IBroadcastListParticipant>|null} [participants] BusinessBroadcastListAction participants
              * @property {string|null} [listName] BusinessBroadcastListAction listName
              * @property {Array.<string>|null} [labelIds] BusinessBroadcastListAction labelIds
+             * @property {string|null} [audienceExpression] BusinessBroadcastListAction audienceExpression
              */
 
             /**
@@ -137242,6 +137231,14 @@ $root.SyncAction = (function() {
             BusinessBroadcastListAction.prototype.labelIds = $util.emptyArray;
 
             /**
+             * BusinessBroadcastListAction audienceExpression.
+             * @member {string} audienceExpression
+             * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
+             * @instance
+             */
+            BusinessBroadcastListAction.prototype.audienceExpression = "";
+
+            /**
              * Creates a new BusinessBroadcastListAction instance using the specified properties.
              * @function create
              * @memberof SyncAction.SyncActionValue.BusinessBroadcastListAction
@@ -137275,6 +137272,8 @@ $root.SyncAction = (function() {
                 if (message.labelIds != null && message.labelIds.length)
                     for (var i = 0; i < message.labelIds.length; ++i)
                         writer.uint32(/* id 4, wireType 2 =*/34).string(message.labelIds[i]);
+                if (message.audienceExpression != null && Object.hasOwnProperty.call(message, "audienceExpression"))
+                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.audienceExpression);
                 return writer;
             };
 
@@ -137329,6 +137328,10 @@ $root.SyncAction = (function() {
                             if (!(message.labelIds && message.labelIds.length))
                                 message.labelIds = [];
                             message.labelIds.push(reader.string());
+                            break;
+                        }
+                    case 5: {
+                            message.audienceExpression = reader.string();
                             break;
                         }
                     default:
@@ -137388,6 +137391,9 @@ $root.SyncAction = (function() {
                         if (!$util.isString(message.labelIds[i]))
                             return "labelIds: string[] expected";
                 }
+                if (message.audienceExpression != null && message.hasOwnProperty("audienceExpression"))
+                    if (!$util.isString(message.audienceExpression))
+                        return "audienceExpression: string expected";
                 return null;
             };
 
@@ -137424,6 +137430,8 @@ $root.SyncAction = (function() {
                     for (var i = 0; i < object.labelIds.length; ++i)
                         message.labelIds[i] = String(object.labelIds[i]);
                 }
+                if (object.audienceExpression != null)
+                    message.audienceExpression = String(object.audienceExpression);
                 return message;
             };
 
@@ -137447,6 +137455,7 @@ $root.SyncAction = (function() {
                 if (options.defaults) {
                     object.deleted = false;
                     object.listName = "";
+                    object.audienceExpression = "";
                 }
                 if (message.deleted != null && message.hasOwnProperty("deleted"))
                     object.deleted = message.deleted;
@@ -137462,6 +137471,8 @@ $root.SyncAction = (function() {
                     for (var j = 0; j < message.labelIds.length; ++j)
                         object.labelIds[j] = message.labelIds[j];
                 }
+                if (message.audienceExpression != null && message.hasOwnProperty("audienceExpression"))
+                    object.audienceExpression = message.audienceExpression;
                 return object;
             };
 
