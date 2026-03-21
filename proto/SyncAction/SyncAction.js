@@ -20388,6 +20388,7 @@ $root.SyncAction = (function() {
              * @property {Array.<string>|null} [userJid] StatusPrivacyAction userJid
              * @property {boolean|null} [shareToFB] StatusPrivacyAction shareToFB
              * @property {boolean|null} [shareToIG] StatusPrivacyAction shareToIG
+             * @property {Array.<SyncAction.SyncActionValue.StatusPrivacyAction.ICustomList>|null} [customLists] StatusPrivacyAction customLists
              */
 
             /**
@@ -20400,6 +20401,7 @@ $root.SyncAction = (function() {
              */
             function StatusPrivacyAction(properties) {
                 this.userJid = [];
+                this.customLists = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -20439,6 +20441,14 @@ $root.SyncAction = (function() {
             StatusPrivacyAction.prototype.shareToIG = false;
 
             /**
+             * StatusPrivacyAction customLists.
+             * @member {Array.<SyncAction.SyncActionValue.StatusPrivacyAction.ICustomList>} customLists
+             * @memberof SyncAction.SyncActionValue.StatusPrivacyAction
+             * @instance
+             */
+            StatusPrivacyAction.prototype.customLists = $util.emptyArray;
+
+            /**
              * Creates a new StatusPrivacyAction instance using the specified properties.
              * @function create
              * @memberof SyncAction.SyncActionValue.StatusPrivacyAction
@@ -20471,6 +20481,9 @@ $root.SyncAction = (function() {
                     writer.uint32(/* id 3, wireType 0 =*/24).bool(message.shareToFB);
                 if (message.shareToIG != null && Object.hasOwnProperty.call(message, "shareToIG"))
                     writer.uint32(/* id 4, wireType 0 =*/32).bool(message.shareToIG);
+                if (message.customLists != null && message.customLists.length)
+                    for (var i = 0; i < message.customLists.length; ++i)
+                        $root.SyncAction.SyncActionValue.StatusPrivacyAction.CustomList.encode(message.customLists[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                 return writer;
             };
 
@@ -20525,6 +20538,12 @@ $root.SyncAction = (function() {
                             message.shareToIG = reader.bool();
                             break;
                         }
+                    case 5: {
+                            if (!(message.customLists && message.customLists.length))
+                                message.customLists = [];
+                            message.customLists.push($root.SyncAction.SyncActionValue.StatusPrivacyAction.CustomList.decode(reader, reader.uint32()));
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -20568,6 +20587,7 @@ $root.SyncAction = (function() {
                     case 1:
                     case 2:
                     case 3:
+                    case 4:
                         break;
                     }
                 if (message.userJid != null && message.hasOwnProperty("userJid")) {
@@ -20583,6 +20603,15 @@ $root.SyncAction = (function() {
                 if (message.shareToIG != null && message.hasOwnProperty("shareToIG"))
                     if (typeof message.shareToIG !== "boolean")
                         return "shareToIG: boolean expected";
+                if (message.customLists != null && message.hasOwnProperty("customLists")) {
+                    if (!Array.isArray(message.customLists))
+                        return "customLists: array expected";
+                    for (var i = 0; i < message.customLists.length; ++i) {
+                        var error = $root.SyncAction.SyncActionValue.StatusPrivacyAction.CustomList.verify(message.customLists[i]);
+                        if (error)
+                            return "customLists." + error;
+                    }
+                }
                 return null;
             };
 
@@ -20621,6 +20650,10 @@ $root.SyncAction = (function() {
                 case 3:
                     message.mode = 3;
                     break;
+                case "CUSTOM_LIST":
+                case 4:
+                    message.mode = 4;
+                    break;
                 }
                 if (object.userJid) {
                     if (!Array.isArray(object.userJid))
@@ -20633,6 +20666,16 @@ $root.SyncAction = (function() {
                     message.shareToFB = Boolean(object.shareToFB);
                 if (object.shareToIG != null)
                     message.shareToIG = Boolean(object.shareToIG);
+                if (object.customLists) {
+                    if (!Array.isArray(object.customLists))
+                        throw TypeError(".SyncAction.SyncActionValue.StatusPrivacyAction.customLists: array expected");
+                    message.customLists = [];
+                    for (var i = 0; i < object.customLists.length; ++i) {
+                        if (typeof object.customLists[i] !== "object")
+                            throw TypeError(".SyncAction.SyncActionValue.StatusPrivacyAction.customLists: object expected");
+                        message.customLists[i] = $root.SyncAction.SyncActionValue.StatusPrivacyAction.CustomList.fromObject(object.customLists[i]);
+                    }
+                }
                 return message;
             };
 
@@ -20649,8 +20692,10 @@ $root.SyncAction = (function() {
                 if (!options)
                     options = {};
                 var object = {};
-                if (options.arrays || options.defaults)
+                if (options.arrays || options.defaults) {
                     object.userJid = [];
+                    object.customLists = [];
+                }
                 if (options.defaults) {
                     object.mode = options.enums === String ? "ALLOW_LIST" : 0;
                     object.shareToFB = false;
@@ -20667,6 +20712,11 @@ $root.SyncAction = (function() {
                     object.shareToFB = message.shareToFB;
                 if (message.shareToIG != null && message.hasOwnProperty("shareToIG"))
                     object.shareToIG = message.shareToIG;
+                if (message.customLists && message.customLists.length) {
+                    object.customLists = [];
+                    for (var j = 0; j < message.customLists.length; ++j)
+                        object.customLists[j] = $root.SyncAction.SyncActionValue.StatusPrivacyAction.CustomList.toObject(message.customLists[j], options);
+                }
                 return object;
             };
 
@@ -20696,6 +20746,335 @@ $root.SyncAction = (function() {
                 return typeUrlPrefix + "/SyncAction.SyncActionValue.StatusPrivacyAction";
             };
 
+            StatusPrivacyAction.CustomList = (function() {
+
+                /**
+                 * Properties of a CustomList.
+                 * @memberof SyncAction.SyncActionValue.StatusPrivacyAction
+                 * @interface ICustomList
+                 * @property {number|Long|null} [id] CustomList id
+                 * @property {string|null} [name] CustomList name
+                 * @property {string|null} [emoji] CustomList emoji
+                 * @property {boolean|null} [isSelected] CustomList isSelected
+                 * @property {Array.<string>|null} [userJid] CustomList userJid
+                 */
+
+                /**
+                 * Constructs a new CustomList.
+                 * @memberof SyncAction.SyncActionValue.StatusPrivacyAction
+                 * @classdesc Represents a CustomList.
+                 * @implements ICustomList
+                 * @constructor
+                 * @param {SyncAction.SyncActionValue.StatusPrivacyAction.ICustomList=} [properties] Properties to set
+                 */
+                function CustomList(properties) {
+                    this.userJid = [];
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * CustomList id.
+                 * @member {number|Long} id
+                 * @memberof SyncAction.SyncActionValue.StatusPrivacyAction.CustomList
+                 * @instance
+                 */
+                CustomList.prototype.id = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+                /**
+                 * CustomList name.
+                 * @member {string} name
+                 * @memberof SyncAction.SyncActionValue.StatusPrivacyAction.CustomList
+                 * @instance
+                 */
+                CustomList.prototype.name = "";
+
+                /**
+                 * CustomList emoji.
+                 * @member {string} emoji
+                 * @memberof SyncAction.SyncActionValue.StatusPrivacyAction.CustomList
+                 * @instance
+                 */
+                CustomList.prototype.emoji = "";
+
+                /**
+                 * CustomList isSelected.
+                 * @member {boolean} isSelected
+                 * @memberof SyncAction.SyncActionValue.StatusPrivacyAction.CustomList
+                 * @instance
+                 */
+                CustomList.prototype.isSelected = false;
+
+                /**
+                 * CustomList userJid.
+                 * @member {Array.<string>} userJid
+                 * @memberof SyncAction.SyncActionValue.StatusPrivacyAction.CustomList
+                 * @instance
+                 */
+                CustomList.prototype.userJid = $util.emptyArray;
+
+                /**
+                 * Creates a new CustomList instance using the specified properties.
+                 * @function create
+                 * @memberof SyncAction.SyncActionValue.StatusPrivacyAction.CustomList
+                 * @static
+                 * @param {SyncAction.SyncActionValue.StatusPrivacyAction.ICustomList=} [properties] Properties to set
+                 * @returns {SyncAction.SyncActionValue.StatusPrivacyAction.CustomList} CustomList instance
+                 */
+                CustomList.create = function create(properties) {
+                    return new CustomList(properties);
+                };
+
+                /**
+                 * Encodes the specified CustomList message. Does not implicitly {@link SyncAction.SyncActionValue.StatusPrivacyAction.CustomList.verify|verify} messages.
+                 * @function encode
+                 * @memberof SyncAction.SyncActionValue.StatusPrivacyAction.CustomList
+                 * @static
+                 * @param {SyncAction.SyncActionValue.StatusPrivacyAction.ICustomList} message CustomList message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                CustomList.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                        writer.uint32(/* id 1, wireType 0 =*/8).int64(message.id);
+                    if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
+                    if (message.emoji != null && Object.hasOwnProperty.call(message, "emoji"))
+                        writer.uint32(/* id 3, wireType 2 =*/26).string(message.emoji);
+                    if (message.isSelected != null && Object.hasOwnProperty.call(message, "isSelected"))
+                        writer.uint32(/* id 4, wireType 0 =*/32).bool(message.isSelected);
+                    if (message.userJid != null && message.userJid.length)
+                        for (var i = 0; i < message.userJid.length; ++i)
+                            writer.uint32(/* id 5, wireType 2 =*/42).string(message.userJid[i]);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified CustomList message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.StatusPrivacyAction.CustomList.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof SyncAction.SyncActionValue.StatusPrivacyAction.CustomList
+                 * @static
+                 * @param {SyncAction.SyncActionValue.StatusPrivacyAction.ICustomList} message CustomList message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                CustomList.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a CustomList message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof SyncAction.SyncActionValue.StatusPrivacyAction.CustomList
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {SyncAction.SyncActionValue.StatusPrivacyAction.CustomList} CustomList
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                CustomList.decode = function decode(reader, length, error) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.StatusPrivacyAction.CustomList();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.id = reader.int64();
+                                break;
+                            }
+                        case 2: {
+                                message.name = reader.string();
+                                break;
+                            }
+                        case 3: {
+                                message.emoji = reader.string();
+                                break;
+                            }
+                        case 4: {
+                                message.isSelected = reader.bool();
+                                break;
+                            }
+                        case 5: {
+                                if (!(message.userJid && message.userJid.length))
+                                    message.userJid = [];
+                                message.userJid.push(reader.string());
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a CustomList message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof SyncAction.SyncActionValue.StatusPrivacyAction.CustomList
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {SyncAction.SyncActionValue.StatusPrivacyAction.CustomList} CustomList
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                CustomList.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a CustomList message.
+                 * @function verify
+                 * @memberof SyncAction.SyncActionValue.StatusPrivacyAction.CustomList
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                CustomList.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.id != null && message.hasOwnProperty("id"))
+                        if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                            return "id: integer|Long expected";
+                    if (message.name != null && message.hasOwnProperty("name"))
+                        if (!$util.isString(message.name))
+                            return "name: string expected";
+                    if (message.emoji != null && message.hasOwnProperty("emoji"))
+                        if (!$util.isString(message.emoji))
+                            return "emoji: string expected";
+                    if (message.isSelected != null && message.hasOwnProperty("isSelected"))
+                        if (typeof message.isSelected !== "boolean")
+                            return "isSelected: boolean expected";
+                    if (message.userJid != null && message.hasOwnProperty("userJid")) {
+                        if (!Array.isArray(message.userJid))
+                            return "userJid: array expected";
+                        for (var i = 0; i < message.userJid.length; ++i)
+                            if (!$util.isString(message.userJid[i]))
+                                return "userJid: string[] expected";
+                    }
+                    return null;
+                };
+
+                /**
+                 * Creates a CustomList message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof SyncAction.SyncActionValue.StatusPrivacyAction.CustomList
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {SyncAction.SyncActionValue.StatusPrivacyAction.CustomList} CustomList
+                 */
+                CustomList.fromObject = function fromObject(object) {
+                    if (object instanceof $root.SyncAction.SyncActionValue.StatusPrivacyAction.CustomList)
+                        return object;
+                    var message = new $root.SyncAction.SyncActionValue.StatusPrivacyAction.CustomList();
+                    if (object.id != null)
+                        if ($util.Long)
+                            (message.id = $util.Long.fromValue(object.id)).unsigned = false;
+                        else if (typeof object.id === "string")
+                            message.id = parseInt(object.id, 10);
+                        else if (typeof object.id === "number")
+                            message.id = object.id;
+                        else if (typeof object.id === "object")
+                            message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber();
+                    if (object.name != null)
+                        message.name = String(object.name);
+                    if (object.emoji != null)
+                        message.emoji = String(object.emoji);
+                    if (object.isSelected != null)
+                        message.isSelected = Boolean(object.isSelected);
+                    if (object.userJid) {
+                        if (!Array.isArray(object.userJid))
+                            throw TypeError(".SyncAction.SyncActionValue.StatusPrivacyAction.CustomList.userJid: array expected");
+                        message.userJid = [];
+                        for (var i = 0; i < object.userJid.length; ++i)
+                            message.userJid[i] = String(object.userJid[i]);
+                    }
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a CustomList message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof SyncAction.SyncActionValue.StatusPrivacyAction.CustomList
+                 * @static
+                 * @param {SyncAction.SyncActionValue.StatusPrivacyAction.CustomList} message CustomList
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                CustomList.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.arrays || options.defaults)
+                        object.userJid = [];
+                    if (options.defaults) {
+                        if ($util.Long) {
+                            var long = new $util.Long(0, 0, false);
+                            object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        } else
+                            object.id = options.longs === String ? "0" : 0;
+                        object.name = "";
+                        object.emoji = "";
+                        object.isSelected = false;
+                    }
+                    if (message.id != null && message.hasOwnProperty("id"))
+                        if (typeof message.id === "number")
+                            object.id = options.longs === String ? String(message.id) : message.id;
+                        else
+                            object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber() : message.id;
+                    if (message.name != null && message.hasOwnProperty("name"))
+                        object.name = message.name;
+                    if (message.emoji != null && message.hasOwnProperty("emoji"))
+                        object.emoji = message.emoji;
+                    if (message.isSelected != null && message.hasOwnProperty("isSelected"))
+                        object.isSelected = message.isSelected;
+                    if (message.userJid && message.userJid.length) {
+                        object.userJid = [];
+                        for (var j = 0; j < message.userJid.length; ++j)
+                            object.userJid[j] = message.userJid[j];
+                    }
+                    return object;
+                };
+
+                /**
+                 * Converts this CustomList to JSON.
+                 * @function toJSON
+                 * @memberof SyncAction.SyncActionValue.StatusPrivacyAction.CustomList
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                CustomList.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for CustomList
+                 * @function getTypeUrl
+                 * @memberof SyncAction.SyncActionValue.StatusPrivacyAction.CustomList
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                CustomList.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/SyncAction.SyncActionValue.StatusPrivacyAction.CustomList";
+                };
+
+                return CustomList;
+            })();
+
             /**
              * StatusDistributionMode enum.
              * @name SyncAction.SyncActionValue.StatusPrivacyAction.StatusDistributionMode
@@ -20704,6 +21083,7 @@ $root.SyncAction = (function() {
              * @property {number} DENY_LIST=1 DENY_LIST value
              * @property {number} CONTACTS=2 CONTACTS value
              * @property {number} CLOSE_FRIENDS=3 CLOSE_FRIENDS value
+             * @property {number} CUSTOM_LIST=4 CUSTOM_LIST value
              */
             StatusPrivacyAction.StatusDistributionMode = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -20711,6 +21091,7 @@ $root.SyncAction = (function() {
                 values[valuesById[1] = "DENY_LIST"] = 1;
                 values[valuesById[2] = "CONTACTS"] = 2;
                 values[valuesById[3] = "CLOSE_FRIENDS"] = 3;
+                values[valuesById[4] = "CUSTOM_LIST"] = 4;
                 return values;
             })();
 
