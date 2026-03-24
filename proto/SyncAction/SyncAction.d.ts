@@ -8189,8 +8189,8 @@ export namespace SyncAction {
             /** Properties of a CustomList. */
             interface ICustomList {
 
-                /** CustomList id */
-                id?: (number|Long|null);
+                /** CustomList listId */
+                listId?: (string|null);
 
                 /** CustomList name */
                 name?: (string|null);
@@ -8214,8 +8214,8 @@ export namespace SyncAction {
                  */
                 constructor(properties?: SyncAction.SyncActionValue.StatusPrivacyAction.ICustomList);
 
-                /** CustomList id. */
-                public id: (number|Long);
+                /** CustomList listId. */
+                public listId: string;
 
                 /** CustomList name. */
                 public name: string;
