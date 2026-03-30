@@ -2715,6 +2715,8 @@ $root.CompanionReg = (function() {
              * @property {number|null} [initialSyncMaxMessagesPerChat] HistorySyncConfig initialSyncMaxMessagesPerChat
              * @property {boolean|null} [supportManusHistory] HistorySyncConfig supportManusHistory
              * @property {boolean|null} [supportHatchHistory] HistorySyncConfig supportHatchHistory
+             * @property {Array.<string>|null} [supportedBotChannelFbids] HistorySyncConfig supportedBotChannelFbids
+             * @property {boolean|null} [supportInlineContacts] HistorySyncConfig supportInlineContacts
              */
 
             /**
@@ -2726,6 +2728,7 @@ $root.CompanionReg = (function() {
              * @param {CompanionReg.DeviceProps.IHistorySyncConfig=} [properties] Properties to set
              */
             function HistorySyncConfig(properties) {
+                this.supportedBotChannelFbids = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -2909,6 +2912,22 @@ $root.CompanionReg = (function() {
             HistorySyncConfig.prototype.supportHatchHistory = false;
 
             /**
+             * HistorySyncConfig supportedBotChannelFbids.
+             * @member {Array.<string>} supportedBotChannelFbids
+             * @memberof CompanionReg.DeviceProps.HistorySyncConfig
+             * @instance
+             */
+            HistorySyncConfig.prototype.supportedBotChannelFbids = $util.emptyArray;
+
+            /**
+             * HistorySyncConfig supportInlineContacts.
+             * @member {boolean} supportInlineContacts
+             * @memberof CompanionReg.DeviceProps.HistorySyncConfig
+             * @instance
+             */
+            HistorySyncConfig.prototype.supportInlineContacts = false;
+
+            /**
              * Creates a new HistorySyncConfig instance using the specified properties.
              * @function create
              * @memberof CompanionReg.DeviceProps.HistorySyncConfig
@@ -2976,6 +2995,11 @@ $root.CompanionReg = (function() {
                     writer.uint32(/* id 21, wireType 0 =*/168).bool(message.supportManusHistory);
                 if (message.supportHatchHistory != null && Object.hasOwnProperty.call(message, "supportHatchHistory"))
                     writer.uint32(/* id 22, wireType 0 =*/176).bool(message.supportHatchHistory);
+                if (message.supportedBotChannelFbids != null && message.supportedBotChannelFbids.length)
+                    for (var i = 0; i < message.supportedBotChannelFbids.length; ++i)
+                        writer.uint32(/* id 23, wireType 2 =*/186).string(message.supportedBotChannelFbids[i]);
+                if (message.supportInlineContacts != null && Object.hasOwnProperty.call(message, "supportInlineContacts"))
+                    writer.uint32(/* id 24, wireType 0 =*/192).bool(message.supportInlineContacts);
                 return writer;
             };
 
@@ -3100,6 +3124,16 @@ $root.CompanionReg = (function() {
                             message.supportHatchHistory = reader.bool();
                             break;
                         }
+                    case 23: {
+                            if (!(message.supportedBotChannelFbids && message.supportedBotChannelFbids.length))
+                                message.supportedBotChannelFbids = [];
+                            message.supportedBotChannelFbids.push(reader.string());
+                            break;
+                        }
+                    case 24: {
+                            message.supportInlineContacts = reader.bool();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -3201,6 +3235,16 @@ $root.CompanionReg = (function() {
                 if (message.supportHatchHistory != null && message.hasOwnProperty("supportHatchHistory"))
                     if (typeof message.supportHatchHistory !== "boolean")
                         return "supportHatchHistory: boolean expected";
+                if (message.supportedBotChannelFbids != null && message.hasOwnProperty("supportedBotChannelFbids")) {
+                    if (!Array.isArray(message.supportedBotChannelFbids))
+                        return "supportedBotChannelFbids: array expected";
+                    for (var i = 0; i < message.supportedBotChannelFbids.length; ++i)
+                        if (!$util.isString(message.supportedBotChannelFbids[i]))
+                            return "supportedBotChannelFbids: string[] expected";
+                }
+                if (message.supportInlineContacts != null && message.hasOwnProperty("supportInlineContacts"))
+                    if (typeof message.supportInlineContacts !== "boolean")
+                        return "supportInlineContacts: boolean expected";
                 return null;
             };
 
@@ -3260,6 +3304,15 @@ $root.CompanionReg = (function() {
                     message.supportManusHistory = Boolean(object.supportManusHistory);
                 if (object.supportHatchHistory != null)
                     message.supportHatchHistory = Boolean(object.supportHatchHistory);
+                if (object.supportedBotChannelFbids) {
+                    if (!Array.isArray(object.supportedBotChannelFbids))
+                        throw TypeError(".CompanionReg.DeviceProps.HistorySyncConfig.supportedBotChannelFbids: array expected");
+                    message.supportedBotChannelFbids = [];
+                    for (var i = 0; i < object.supportedBotChannelFbids.length; ++i)
+                        message.supportedBotChannelFbids[i] = String(object.supportedBotChannelFbids[i]);
+                }
+                if (object.supportInlineContacts != null)
+                    message.supportInlineContacts = Boolean(object.supportInlineContacts);
                 return message;
             };
 
@@ -3276,6 +3329,8 @@ $root.CompanionReg = (function() {
                 if (!options)
                     options = {};
                 var object = {};
+                if (options.arrays || options.defaults)
+                    object.supportedBotChannelFbids = [];
                 if (options.defaults) {
                     object.fullSyncDaysLimit = 0;
                     object.fullSyncSizeMbLimit = 0;
@@ -3299,6 +3354,7 @@ $root.CompanionReg = (function() {
                     object.initialSyncMaxMessagesPerChat = 0;
                     object.supportManusHistory = false;
                     object.supportHatchHistory = false;
+                    object.supportInlineContacts = false;
                 }
                 if (message.fullSyncDaysLimit != null && message.hasOwnProperty("fullSyncDaysLimit"))
                     object.fullSyncDaysLimit = message.fullSyncDaysLimit;
@@ -3344,6 +3400,13 @@ $root.CompanionReg = (function() {
                     object.supportManusHistory = message.supportManusHistory;
                 if (message.supportHatchHistory != null && message.hasOwnProperty("supportHatchHistory"))
                     object.supportHatchHistory = message.supportHatchHistory;
+                if (message.supportedBotChannelFbids && message.supportedBotChannelFbids.length) {
+                    object.supportedBotChannelFbids = [];
+                    for (var j = 0; j < message.supportedBotChannelFbids.length; ++j)
+                        object.supportedBotChannelFbids[j] = message.supportedBotChannelFbids[j];
+                }
+                if (message.supportInlineContacts != null && message.hasOwnProperty("supportInlineContacts"))
+                    object.supportInlineContacts = message.supportInlineContacts;
                 return object;
             };
 

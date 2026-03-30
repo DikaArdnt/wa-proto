@@ -18,6 +18,507 @@ $root.E2E = (function() {
      */
     var E2E = {};
 
+    E2E.GroupRootKeyShareEntry = (function() {
+
+        /**
+         * Properties of a GroupRootKeyShareEntry.
+         * @memberof E2E
+         * @interface IGroupRootKeyShareEntry
+         * @property {Uint8Array|null} [groupRootKey] GroupRootKeyShareEntry groupRootKey
+         * @property {string|null} [keyId] GroupRootKeyShareEntry keyId
+         * @property {number|Long|null} [expiryTimestampMs] GroupRootKeyShareEntry expiryTimestampMs
+         */
+
+        /**
+         * Constructs a new GroupRootKeyShareEntry.
+         * @memberof E2E
+         * @classdesc Represents a GroupRootKeyShareEntry.
+         * @implements IGroupRootKeyShareEntry
+         * @constructor
+         * @param {E2E.IGroupRootKeyShareEntry=} [properties] Properties to set
+         */
+        function GroupRootKeyShareEntry(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GroupRootKeyShareEntry groupRootKey.
+         * @member {Uint8Array} groupRootKey
+         * @memberof E2E.GroupRootKeyShareEntry
+         * @instance
+         */
+        GroupRootKeyShareEntry.prototype.groupRootKey = $util.newBuffer([]);
+
+        /**
+         * GroupRootKeyShareEntry keyId.
+         * @member {string} keyId
+         * @memberof E2E.GroupRootKeyShareEntry
+         * @instance
+         */
+        GroupRootKeyShareEntry.prototype.keyId = "";
+
+        /**
+         * GroupRootKeyShareEntry expiryTimestampMs.
+         * @member {number|Long} expiryTimestampMs
+         * @memberof E2E.GroupRootKeyShareEntry
+         * @instance
+         */
+        GroupRootKeyShareEntry.prototype.expiryTimestampMs = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * Creates a new GroupRootKeyShareEntry instance using the specified properties.
+         * @function create
+         * @memberof E2E.GroupRootKeyShareEntry
+         * @static
+         * @param {E2E.IGroupRootKeyShareEntry=} [properties] Properties to set
+         * @returns {E2E.GroupRootKeyShareEntry} GroupRootKeyShareEntry instance
+         */
+        GroupRootKeyShareEntry.create = function create(properties) {
+            return new GroupRootKeyShareEntry(properties);
+        };
+
+        /**
+         * Encodes the specified GroupRootKeyShareEntry message. Does not implicitly {@link E2E.GroupRootKeyShareEntry.verify|verify} messages.
+         * @function encode
+         * @memberof E2E.GroupRootKeyShareEntry
+         * @static
+         * @param {E2E.IGroupRootKeyShareEntry} message GroupRootKeyShareEntry message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GroupRootKeyShareEntry.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.groupRootKey != null && Object.hasOwnProperty.call(message, "groupRootKey"))
+                writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.groupRootKey);
+            if (message.keyId != null && Object.hasOwnProperty.call(message, "keyId"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.keyId);
+            if (message.expiryTimestampMs != null && Object.hasOwnProperty.call(message, "expiryTimestampMs"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int64(message.expiryTimestampMs);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GroupRootKeyShareEntry message, length delimited. Does not implicitly {@link E2E.GroupRootKeyShareEntry.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof E2E.GroupRootKeyShareEntry
+         * @static
+         * @param {E2E.IGroupRootKeyShareEntry} message GroupRootKeyShareEntry message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GroupRootKeyShareEntry.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GroupRootKeyShareEntry message from the specified reader or buffer.
+         * @function decode
+         * @memberof E2E.GroupRootKeyShareEntry
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {E2E.GroupRootKeyShareEntry} GroupRootKeyShareEntry
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GroupRootKeyShareEntry.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.GroupRootKeyShareEntry();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.groupRootKey = reader.bytes();
+                        break;
+                    }
+                case 2: {
+                        message.keyId = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.expiryTimestampMs = reader.int64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GroupRootKeyShareEntry message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof E2E.GroupRootKeyShareEntry
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {E2E.GroupRootKeyShareEntry} GroupRootKeyShareEntry
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GroupRootKeyShareEntry.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GroupRootKeyShareEntry message.
+         * @function verify
+         * @memberof E2E.GroupRootKeyShareEntry
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GroupRootKeyShareEntry.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.groupRootKey != null && message.hasOwnProperty("groupRootKey"))
+                if (!(message.groupRootKey && typeof message.groupRootKey.length === "number" || $util.isString(message.groupRootKey)))
+                    return "groupRootKey: buffer expected";
+            if (message.keyId != null && message.hasOwnProperty("keyId"))
+                if (!$util.isString(message.keyId))
+                    return "keyId: string expected";
+            if (message.expiryTimestampMs != null && message.hasOwnProperty("expiryTimestampMs"))
+                if (!$util.isInteger(message.expiryTimestampMs) && !(message.expiryTimestampMs && $util.isInteger(message.expiryTimestampMs.low) && $util.isInteger(message.expiryTimestampMs.high)))
+                    return "expiryTimestampMs: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a GroupRootKeyShareEntry message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof E2E.GroupRootKeyShareEntry
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {E2E.GroupRootKeyShareEntry} GroupRootKeyShareEntry
+         */
+        GroupRootKeyShareEntry.fromObject = function fromObject(object) {
+            if (object instanceof $root.E2E.GroupRootKeyShareEntry)
+                return object;
+            var message = new $root.E2E.GroupRootKeyShareEntry();
+            if (object.groupRootKey != null)
+                if (typeof object.groupRootKey === "string")
+                    $util.base64.decode(object.groupRootKey, message.groupRootKey = $util.newBuffer($util.base64.length(object.groupRootKey)), 0);
+                else if (object.groupRootKey.length >= 0)
+                    message.groupRootKey = object.groupRootKey;
+            if (object.keyId != null)
+                message.keyId = String(object.keyId);
+            if (object.expiryTimestampMs != null)
+                if ($util.Long)
+                    (message.expiryTimestampMs = $util.Long.fromValue(object.expiryTimestampMs)).unsigned = false;
+                else if (typeof object.expiryTimestampMs === "string")
+                    message.expiryTimestampMs = parseInt(object.expiryTimestampMs, 10);
+                else if (typeof object.expiryTimestampMs === "number")
+                    message.expiryTimestampMs = object.expiryTimestampMs;
+                else if (typeof object.expiryTimestampMs === "object")
+                    message.expiryTimestampMs = new $util.LongBits(object.expiryTimestampMs.low >>> 0, object.expiryTimestampMs.high >>> 0).toNumber();
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GroupRootKeyShareEntry message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof E2E.GroupRootKeyShareEntry
+         * @static
+         * @param {E2E.GroupRootKeyShareEntry} message GroupRootKeyShareEntry
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GroupRootKeyShareEntry.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if (options.bytes === String)
+                    object.groupRootKey = "";
+                else {
+                    object.groupRootKey = [];
+                    if (options.bytes !== Array)
+                        object.groupRootKey = $util.newBuffer(object.groupRootKey);
+                }
+                object.keyId = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.expiryTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.expiryTimestampMs = options.longs === String ? "0" : 0;
+            }
+            if (message.groupRootKey != null && message.hasOwnProperty("groupRootKey"))
+                object.groupRootKey = options.bytes === String ? $util.base64.encode(message.groupRootKey, 0, message.groupRootKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.groupRootKey) : message.groupRootKey;
+            if (message.keyId != null && message.hasOwnProperty("keyId"))
+                object.keyId = message.keyId;
+            if (message.expiryTimestampMs != null && message.hasOwnProperty("expiryTimestampMs"))
+                if (typeof message.expiryTimestampMs === "number")
+                    object.expiryTimestampMs = options.longs === String ? String(message.expiryTimestampMs) : message.expiryTimestampMs;
+                else
+                    object.expiryTimestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.expiryTimestampMs) : options.longs === Number ? new $util.LongBits(message.expiryTimestampMs.low >>> 0, message.expiryTimestampMs.high >>> 0).toNumber() : message.expiryTimestampMs;
+            return object;
+        };
+
+        /**
+         * Converts this GroupRootKeyShareEntry to JSON.
+         * @function toJSON
+         * @memberof E2E.GroupRootKeyShareEntry
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GroupRootKeyShareEntry.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GroupRootKeyShareEntry
+         * @function getTypeUrl
+         * @memberof E2E.GroupRootKeyShareEntry
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GroupRootKeyShareEntry.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/E2E.GroupRootKeyShareEntry";
+        };
+
+        return GroupRootKeyShareEntry;
+    })();
+
+    E2E.GroupRootKeyShare = (function() {
+
+        /**
+         * Properties of a GroupRootKeyShare.
+         * @memberof E2E
+         * @interface IGroupRootKeyShare
+         * @property {Array.<E2E.IGroupRootKeyShareEntry>|null} [keys] GroupRootKeyShare keys
+         */
+
+        /**
+         * Constructs a new GroupRootKeyShare.
+         * @memberof E2E
+         * @classdesc Represents a GroupRootKeyShare.
+         * @implements IGroupRootKeyShare
+         * @constructor
+         * @param {E2E.IGroupRootKeyShare=} [properties] Properties to set
+         */
+        function GroupRootKeyShare(properties) {
+            this.keys = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GroupRootKeyShare keys.
+         * @member {Array.<E2E.IGroupRootKeyShareEntry>} keys
+         * @memberof E2E.GroupRootKeyShare
+         * @instance
+         */
+        GroupRootKeyShare.prototype.keys = $util.emptyArray;
+
+        /**
+         * Creates a new GroupRootKeyShare instance using the specified properties.
+         * @function create
+         * @memberof E2E.GroupRootKeyShare
+         * @static
+         * @param {E2E.IGroupRootKeyShare=} [properties] Properties to set
+         * @returns {E2E.GroupRootKeyShare} GroupRootKeyShare instance
+         */
+        GroupRootKeyShare.create = function create(properties) {
+            return new GroupRootKeyShare(properties);
+        };
+
+        /**
+         * Encodes the specified GroupRootKeyShare message. Does not implicitly {@link E2E.GroupRootKeyShare.verify|verify} messages.
+         * @function encode
+         * @memberof E2E.GroupRootKeyShare
+         * @static
+         * @param {E2E.IGroupRootKeyShare} message GroupRootKeyShare message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GroupRootKeyShare.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.keys != null && message.keys.length)
+                for (var i = 0; i < message.keys.length; ++i)
+                    $root.E2E.GroupRootKeyShareEntry.encode(message.keys[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GroupRootKeyShare message, length delimited. Does not implicitly {@link E2E.GroupRootKeyShare.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof E2E.GroupRootKeyShare
+         * @static
+         * @param {E2E.IGroupRootKeyShare} message GroupRootKeyShare message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GroupRootKeyShare.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GroupRootKeyShare message from the specified reader or buffer.
+         * @function decode
+         * @memberof E2E.GroupRootKeyShare
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {E2E.GroupRootKeyShare} GroupRootKeyShare
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GroupRootKeyShare.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.GroupRootKeyShare();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        if (!(message.keys && message.keys.length))
+                            message.keys = [];
+                        message.keys.push($root.E2E.GroupRootKeyShareEntry.decode(reader, reader.uint32()));
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GroupRootKeyShare message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof E2E.GroupRootKeyShare
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {E2E.GroupRootKeyShare} GroupRootKeyShare
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GroupRootKeyShare.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GroupRootKeyShare message.
+         * @function verify
+         * @memberof E2E.GroupRootKeyShare
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GroupRootKeyShare.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.keys != null && message.hasOwnProperty("keys")) {
+                if (!Array.isArray(message.keys))
+                    return "keys: array expected";
+                for (var i = 0; i < message.keys.length; ++i) {
+                    var error = $root.E2E.GroupRootKeyShareEntry.verify(message.keys[i]);
+                    if (error)
+                        return "keys." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a GroupRootKeyShare message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof E2E.GroupRootKeyShare
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {E2E.GroupRootKeyShare} GroupRootKeyShare
+         */
+        GroupRootKeyShare.fromObject = function fromObject(object) {
+            if (object instanceof $root.E2E.GroupRootKeyShare)
+                return object;
+            var message = new $root.E2E.GroupRootKeyShare();
+            if (object.keys) {
+                if (!Array.isArray(object.keys))
+                    throw TypeError(".E2E.GroupRootKeyShare.keys: array expected");
+                message.keys = [];
+                for (var i = 0; i < object.keys.length; ++i) {
+                    if (typeof object.keys[i] !== "object")
+                        throw TypeError(".E2E.GroupRootKeyShare.keys: object expected");
+                    message.keys[i] = $root.E2E.GroupRootKeyShareEntry.fromObject(object.keys[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GroupRootKeyShare message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof E2E.GroupRootKeyShare
+         * @static
+         * @param {E2E.GroupRootKeyShare} message GroupRootKeyShare
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GroupRootKeyShare.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.keys = [];
+            if (message.keys && message.keys.length) {
+                object.keys = [];
+                for (var j = 0; j < message.keys.length; ++j)
+                    object.keys[j] = $root.E2E.GroupRootKeyShareEntry.toObject(message.keys[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this GroupRootKeyShare to JSON.
+         * @function toJSON
+         * @memberof E2E.GroupRootKeyShare
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GroupRootKeyShare.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GroupRootKeyShare
+         * @function getTypeUrl
+         * @memberof E2E.GroupRootKeyShare
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GroupRootKeyShare.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/E2E.GroupRootKeyShare";
+        };
+
+        return GroupRootKeyShare;
+    })();
+
     E2E.AIQueryFanout = (function() {
 
         /**
@@ -9468,6 +9969,7 @@ $root.E2E = (function() {
          * @property {Protocol.ILimitSharing|null} [limitSharingV2] MessageContextInfo limitSharingV2
          * @property {Array.<E2E.IThreadID>|null} [threadId] MessageContextInfo threadId
          * @property {E2E.WebLinkRenderConfig|null} [weblinkRenderConfig] MessageContextInfo weblinkRenderConfig
+         * @property {Uint8Array|null} [teeBotMetadata] MessageContextInfo teeBotMetadata
          */
 
         /**
@@ -9615,6 +10117,14 @@ $root.E2E = (function() {
         MessageContextInfo.prototype.weblinkRenderConfig = 0;
 
         /**
+         * MessageContextInfo teeBotMetadata.
+         * @member {Uint8Array} teeBotMetadata
+         * @memberof E2E.MessageContextInfo
+         * @instance
+         */
+        MessageContextInfo.prototype.teeBotMetadata = $util.newBuffer([]);
+
+        /**
          * Creates a new MessageContextInfo instance using the specified properties.
          * @function create
          * @memberof E2E.MessageContextInfo
@@ -9671,6 +10181,8 @@ $root.E2E = (function() {
                     $root.E2E.ThreadID.encode(message.threadId[i], writer.uint32(/* id 15, wireType 2 =*/122).fork()).ldelim();
             if (message.weblinkRenderConfig != null && Object.hasOwnProperty.call(message, "weblinkRenderConfig"))
                 writer.uint32(/* id 16, wireType 0 =*/128).int32(message.weblinkRenderConfig);
+            if (message.teeBotMetadata != null && Object.hasOwnProperty.call(message, "teeBotMetadata"))
+                writer.uint32(/* id 17, wireType 2 =*/138).bytes(message.teeBotMetadata);
             return writer;
         };
 
@@ -9771,6 +10283,10 @@ $root.E2E = (function() {
                     }
                 case 16: {
                         message.weblinkRenderConfig = reader.int32();
+                        break;
+                    }
+                case 17: {
+                        message.teeBotMetadata = reader.bytes();
                         break;
                     }
                 default:
@@ -9882,6 +10398,9 @@ $root.E2E = (function() {
                 case 1:
                     break;
                 }
+            if (message.teeBotMetadata != null && message.hasOwnProperty("teeBotMetadata"))
+                if (!(message.teeBotMetadata && typeof message.teeBotMetadata.length === "number" || $util.isString(message.teeBotMetadata)))
+                    return "teeBotMetadata: buffer expected";
             return null;
         };
 
@@ -9989,6 +10508,11 @@ $root.E2E = (function() {
                 message.weblinkRenderConfig = 1;
                 break;
             }
+            if (object.teeBotMetadata != null)
+                if (typeof object.teeBotMetadata === "string")
+                    $util.base64.decode(object.teeBotMetadata, message.teeBotMetadata = $util.newBuffer($util.base64.length(object.teeBotMetadata)), 0);
+                else if (object.teeBotMetadata.length >= 0)
+                    message.teeBotMetadata = object.teeBotMetadata;
             return message;
         };
 
@@ -10041,6 +10565,13 @@ $root.E2E = (function() {
                 object.limitSharing = null;
                 object.limitSharingV2 = null;
                 object.weblinkRenderConfig = options.enums === String ? "WEBVIEW" : 0;
+                if (options.bytes === String)
+                    object.teeBotMetadata = "";
+                else {
+                    object.teeBotMetadata = [];
+                    if (options.bytes !== Array)
+                        object.teeBotMetadata = $util.newBuffer(object.teeBotMetadata);
+                }
             }
             if (message.deviceListMetadata != null && message.hasOwnProperty("deviceListMetadata"))
                 object.deviceListMetadata = $root.E2E.DeviceListMetadata.toObject(message.deviceListMetadata, options);
@@ -10077,6 +10608,8 @@ $root.E2E = (function() {
             }
             if (message.weblinkRenderConfig != null && message.hasOwnProperty("weblinkRenderConfig"))
                 object.weblinkRenderConfig = options.enums === String ? $root.E2E.WebLinkRenderConfig[message.weblinkRenderConfig] === undefined ? message.weblinkRenderConfig : $root.E2E.WebLinkRenderConfig[message.weblinkRenderConfig] : message.weblinkRenderConfig;
+            if (message.teeBotMetadata != null && message.hasOwnProperty("teeBotMetadata"))
+                object.teeBotMetadata = options.bytes === String ? $util.base64.encode(message.teeBotMetadata, 0, message.teeBotMetadata.length) : options.bytes === Array ? Array.prototype.slice.call(message.teeBotMetadata) : message.teeBotMetadata;
             return object;
         };
 
@@ -13929,6 +14462,10 @@ $root.E2E = (function() {
              * @property {string|null} [wtwaWebsiteUrl] ExternalAdReplyInfo wtwaWebsiteUrl
              * @property {string|null} [adPreviewUrl] ExternalAdReplyInfo adPreviewUrl
              * @property {boolean|null} [containsCtwaFlowsAutoReply] ExternalAdReplyInfo containsCtwaFlowsAutoReply
+             * @property {number|null} [agmThumbnailStrategy] ExternalAdReplyInfo agmThumbnailStrategy
+             * @property {number|null} [agmTitleStrategy] ExternalAdReplyInfo agmTitleStrategy
+             * @property {number|null} [agmSubtitleStrategy] ExternalAdReplyInfo agmSubtitleStrategy
+             * @property {number|null} [agmHeaderInteractionStrategy] ExternalAdReplyInfo agmHeaderInteractionStrategy
              */
 
             /**
@@ -14171,6 +14708,38 @@ $root.E2E = (function() {
             ExternalAdReplyInfo.prototype.containsCtwaFlowsAutoReply = false;
 
             /**
+             * ExternalAdReplyInfo agmThumbnailStrategy.
+             * @member {number} agmThumbnailStrategy
+             * @memberof E2E.ContextInfo.ExternalAdReplyInfo
+             * @instance
+             */
+            ExternalAdReplyInfo.prototype.agmThumbnailStrategy = 0;
+
+            /**
+             * ExternalAdReplyInfo agmTitleStrategy.
+             * @member {number} agmTitleStrategy
+             * @memberof E2E.ContextInfo.ExternalAdReplyInfo
+             * @instance
+             */
+            ExternalAdReplyInfo.prototype.agmTitleStrategy = 0;
+
+            /**
+             * ExternalAdReplyInfo agmSubtitleStrategy.
+             * @member {number} agmSubtitleStrategy
+             * @memberof E2E.ContextInfo.ExternalAdReplyInfo
+             * @instance
+             */
+            ExternalAdReplyInfo.prototype.agmSubtitleStrategy = 0;
+
+            /**
+             * ExternalAdReplyInfo agmHeaderInteractionStrategy.
+             * @member {number} agmHeaderInteractionStrategy
+             * @memberof E2E.ContextInfo.ExternalAdReplyInfo
+             * @instance
+             */
+            ExternalAdReplyInfo.prototype.agmHeaderInteractionStrategy = 0;
+
+            /**
              * Creates a new ExternalAdReplyInfo instance using the specified properties.
              * @function create
              * @memberof E2E.ContextInfo.ExternalAdReplyInfo
@@ -14250,6 +14819,14 @@ $root.E2E = (function() {
                     writer.uint32(/* id 27, wireType 2 =*/218).string(message.adPreviewUrl);
                 if (message.containsCtwaFlowsAutoReply != null && Object.hasOwnProperty.call(message, "containsCtwaFlowsAutoReply"))
                     writer.uint32(/* id 28, wireType 0 =*/224).bool(message.containsCtwaFlowsAutoReply);
+                if (message.agmThumbnailStrategy != null && Object.hasOwnProperty.call(message, "agmThumbnailStrategy"))
+                    writer.uint32(/* id 29, wireType 0 =*/232).int32(message.agmThumbnailStrategy);
+                if (message.agmTitleStrategy != null && Object.hasOwnProperty.call(message, "agmTitleStrategy"))
+                    writer.uint32(/* id 30, wireType 0 =*/240).int32(message.agmTitleStrategy);
+                if (message.agmSubtitleStrategy != null && Object.hasOwnProperty.call(message, "agmSubtitleStrategy"))
+                    writer.uint32(/* id 31, wireType 0 =*/248).int32(message.agmSubtitleStrategy);
+                if (message.agmHeaderInteractionStrategy != null && Object.hasOwnProperty.call(message, "agmHeaderInteractionStrategy"))
+                    writer.uint32(/* id 32, wireType 0 =*/256).int32(message.agmHeaderInteractionStrategy);
                 return writer;
             };
 
@@ -14398,6 +14975,22 @@ $root.E2E = (function() {
                             message.containsCtwaFlowsAutoReply = reader.bool();
                             break;
                         }
+                    case 29: {
+                            message.agmThumbnailStrategy = reader.int32();
+                            break;
+                        }
+                    case 30: {
+                            message.agmTitleStrategy = reader.int32();
+                            break;
+                        }
+                    case 31: {
+                            message.agmSubtitleStrategy = reader.int32();
+                            break;
+                        }
+                    case 32: {
+                            message.agmHeaderInteractionStrategy = reader.int32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -14528,6 +15121,18 @@ $root.E2E = (function() {
                 if (message.containsCtwaFlowsAutoReply != null && message.hasOwnProperty("containsCtwaFlowsAutoReply"))
                     if (typeof message.containsCtwaFlowsAutoReply !== "boolean")
                         return "containsCtwaFlowsAutoReply: boolean expected";
+                if (message.agmThumbnailStrategy != null && message.hasOwnProperty("agmThumbnailStrategy"))
+                    if (!$util.isInteger(message.agmThumbnailStrategy))
+                        return "agmThumbnailStrategy: integer expected";
+                if (message.agmTitleStrategy != null && message.hasOwnProperty("agmTitleStrategy"))
+                    if (!$util.isInteger(message.agmTitleStrategy))
+                        return "agmTitleStrategy: integer expected";
+                if (message.agmSubtitleStrategy != null && message.hasOwnProperty("agmSubtitleStrategy"))
+                    if (!$util.isInteger(message.agmSubtitleStrategy))
+                        return "agmSubtitleStrategy: integer expected";
+                if (message.agmHeaderInteractionStrategy != null && message.hasOwnProperty("agmHeaderInteractionStrategy"))
+                    if (!$util.isInteger(message.agmHeaderInteractionStrategy))
+                        return "agmHeaderInteractionStrategy: integer expected";
                 return null;
             };
 
@@ -14634,6 +15239,14 @@ $root.E2E = (function() {
                     message.adPreviewUrl = String(object.adPreviewUrl);
                 if (object.containsCtwaFlowsAutoReply != null)
                     message.containsCtwaFlowsAutoReply = Boolean(object.containsCtwaFlowsAutoReply);
+                if (object.agmThumbnailStrategy != null)
+                    message.agmThumbnailStrategy = object.agmThumbnailStrategy | 0;
+                if (object.agmTitleStrategy != null)
+                    message.agmTitleStrategy = object.agmTitleStrategy | 0;
+                if (object.agmSubtitleStrategy != null)
+                    message.agmSubtitleStrategy = object.agmSubtitleStrategy | 0;
+                if (object.agmHeaderInteractionStrategy != null)
+                    message.agmHeaderInteractionStrategy = object.agmHeaderInteractionStrategy | 0;
                 return message;
             };
 
@@ -14685,6 +15298,10 @@ $root.E2E = (function() {
                     object.wtwaWebsiteUrl = "";
                     object.adPreviewUrl = "";
                     object.containsCtwaFlowsAutoReply = false;
+                    object.agmThumbnailStrategy = 0;
+                    object.agmTitleStrategy = 0;
+                    object.agmSubtitleStrategy = 0;
+                    object.agmHeaderInteractionStrategy = 0;
                 }
                 if (message.title != null && message.hasOwnProperty("title"))
                     object.title = message.title;
@@ -14742,6 +15359,14 @@ $root.E2E = (function() {
                     object.adPreviewUrl = message.adPreviewUrl;
                 if (message.containsCtwaFlowsAutoReply != null && message.hasOwnProperty("containsCtwaFlowsAutoReply"))
                     object.containsCtwaFlowsAutoReply = message.containsCtwaFlowsAutoReply;
+                if (message.agmThumbnailStrategy != null && message.hasOwnProperty("agmThumbnailStrategy"))
+                    object.agmThumbnailStrategy = message.agmThumbnailStrategy;
+                if (message.agmTitleStrategy != null && message.hasOwnProperty("agmTitleStrategy"))
+                    object.agmTitleStrategy = message.agmTitleStrategy;
+                if (message.agmSubtitleStrategy != null && message.hasOwnProperty("agmSubtitleStrategy"))
+                    object.agmSubtitleStrategy = message.agmSubtitleStrategy;
+                if (message.agmHeaderInteractionStrategy != null && message.hasOwnProperty("agmHeaderInteractionStrategy"))
+                    object.agmHeaderInteractionStrategy = message.agmHeaderInteractionStrategy;
                 return object;
             };
 
@@ -16923,6 +17548,7 @@ $root.E2E = (function() {
          * @property {E2E.Message.IConditionalRevealMessage|null} [conditionalRevealMessage] Message conditionalRevealMessage
          * @property {E2E.Message.IPollAddOptionMessage|null} [pollAddOptionMessage] Message pollAddOptionMessage
          * @property {E2E.Message.IEventInviteMessage|null} [eventInviteMessage] Message eventInviteMessage
+         * @property {E2E.IGroupRootKeyShare|null} [groupRootKeyShare] Message groupRootKeyShare
          */
 
         /**
@@ -17757,6 +18383,14 @@ $root.E2E = (function() {
         Message.prototype.eventInviteMessage = null;
 
         /**
+         * Message groupRootKeyShare.
+         * @member {E2E.IGroupRootKeyShare|null|undefined} groupRootKeyShare
+         * @memberof E2E.Message
+         * @instance
+         */
+        Message.prototype.groupRootKeyShare = null;
+
+        /**
          * Creates a new Message instance using the specified properties.
          * @function create
          * @memberof E2E.Message
@@ -17984,6 +18618,8 @@ $root.E2E = (function() {
                 $root.E2E.Message.PollAddOptionMessage.encode(message.pollAddOptionMessage, writer.uint32(/* id 121, wireType 2 =*/970).fork()).ldelim();
             if (message.eventInviteMessage != null && Object.hasOwnProperty.call(message, "eventInviteMessage"))
                 $root.E2E.Message.EventInviteMessage.encode(message.eventInviteMessage, writer.uint32(/* id 122, wireType 2 =*/978).fork()).ldelim();
+            if (message.groupRootKeyShare != null && Object.hasOwnProperty.call(message, "groupRootKeyShare"))
+                $root.E2E.GroupRootKeyShare.encode(message.groupRootKeyShare, writer.uint32(/* id 123, wireType 2 =*/986).fork()).ldelim();
             return writer;
         };
 
@@ -18426,6 +19062,10 @@ $root.E2E = (function() {
                     }
                 case 122: {
                         message.eventInviteMessage = $root.E2E.Message.EventInviteMessage.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 123: {
+                        message.groupRootKeyShare = $root.E2E.GroupRootKeyShare.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -18971,6 +19611,11 @@ $root.E2E = (function() {
                 if (error)
                     return "eventInviteMessage." + error;
             }
+            if (message.groupRootKeyShare != null && message.hasOwnProperty("groupRootKeyShare")) {
+                var error = $root.E2E.GroupRootKeyShare.verify(message.groupRootKeyShare);
+                if (error)
+                    return "groupRootKeyShare." + error;
+            }
             return null;
         };
 
@@ -19493,6 +20138,11 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.Message.eventInviteMessage: object expected");
                 message.eventInviteMessage = $root.E2E.Message.EventInviteMessage.fromObject(object.eventInviteMessage);
             }
+            if (object.groupRootKeyShare != null) {
+                if (typeof object.groupRootKeyShare !== "object")
+                    throw TypeError(".E2E.Message.groupRootKeyShare: object expected");
+                message.groupRootKeyShare = $root.E2E.GroupRootKeyShare.fromObject(object.groupRootKeyShare);
+            }
             return message;
         };
 
@@ -19612,6 +20262,7 @@ $root.E2E = (function() {
                 object.conditionalRevealMessage = null;
                 object.pollAddOptionMessage = null;
                 object.eventInviteMessage = null;
+                object.groupRootKeyShare = null;
             }
             if (message.conversation != null && message.hasOwnProperty("conversation"))
                 object.conversation = message.conversation;
@@ -19817,6 +20468,8 @@ $root.E2E = (function() {
                 object.pollAddOptionMessage = $root.E2E.Message.PollAddOptionMessage.toObject(message.pollAddOptionMessage, options);
             if (message.eventInviteMessage != null && message.hasOwnProperty("eventInviteMessage"))
                 object.eventInviteMessage = $root.E2E.Message.EventInviteMessage.toObject(message.eventInviteMessage, options);
+            if (message.groupRootKeyShare != null && message.hasOwnProperty("groupRootKeyShare"))
+                object.groupRootKeyShare = $root.E2E.GroupRootKeyShare.toObject(message.groupRootKeyShare, options);
             return object;
         };
 
@@ -26297,6 +26950,7 @@ $root.E2E = (function() {
                     case 0:
                     case 1:
                     case 2:
+                    case 3:
                         break;
                     }
                 if (message.senderNotificationTimestampMs != null && message.hasOwnProperty("senderNotificationTimestampMs"))
@@ -26349,6 +27003,10 @@ $root.E2E = (function() {
                 case "CONTROL_TAKEN":
                 case 2:
                     message.status = 2;
+                    break;
+                case "INFO":
+                case 3:
+                    message.status = 3;
                     break;
                 }
                 if (object.senderNotificationTimestampMs != null)
@@ -26450,12 +27108,14 @@ $root.E2E = (function() {
              * @property {number} UNKNOWN=0 UNKNOWN value
              * @property {number} CONTROL_PASSED=1 CONTROL_PASSED value
              * @property {number} CONTROL_TAKEN=2 CONTROL_TAKEN value
+             * @property {number} INFO=3 INFO value
              */
             CloudAPIThreadControlNotification.CloudAPIThreadControl = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
                 values[valuesById[0] = "UNKNOWN"] = 0;
                 values[valuesById[1] = "CONTROL_PASSED"] = 1;
                 values[valuesById[2] = "CONTROL_TAKEN"] = 2;
+                values[valuesById[3] = "INFO"] = 3;
                 return values;
             })();
 
@@ -56269,6 +56929,7 @@ $root.E2E = (function() {
                             case 4:
                             case 5:
                             case 6:
+                            case 7:
                                 break;
                             }
                         return null;
@@ -56325,6 +56986,10 @@ $root.E2E = (function() {
                         case "ERROR_HOSTED_DEVICE_LOGIN_TIME_NOT_SET":
                         case 6:
                             message.responseCode = 6;
+                            break;
+                        case "ERROR_MULTI_PROVIDER_NOT_CONFIGURED":
+                        case 7:
+                            message.responseCode = 7;
                             break;
                         }
                         return message;
@@ -56394,6 +57059,7 @@ $root.E2E = (function() {
                  * @property {number} ERROR_REQUEST_ON_NON_SMB_PRIMARY=4 ERROR_REQUEST_ON_NON_SMB_PRIMARY value
                  * @property {number} ERROR_HOSTED_DEVICE_NOT_CONNECTED=5 ERROR_HOSTED_DEVICE_NOT_CONNECTED value
                  * @property {number} ERROR_HOSTED_DEVICE_LOGIN_TIME_NOT_SET=6 ERROR_HOSTED_DEVICE_LOGIN_TIME_NOT_SET value
+                 * @property {number} ERROR_MULTI_PROVIDER_NOT_CONFIGURED=7 ERROR_MULTI_PROVIDER_NOT_CONFIGURED value
                  */
                 PeerDataOperationResult.FullHistorySyncOnDemandResponseCode = (function() {
                     var valuesById = {}, values = Object.create(valuesById);
@@ -56404,6 +57070,7 @@ $root.E2E = (function() {
                     values[valuesById[4] = "ERROR_REQUEST_ON_NON_SMB_PRIMARY"] = 4;
                     values[valuesById[5] = "ERROR_HOSTED_DEVICE_NOT_CONNECTED"] = 5;
                     values[valuesById[6] = "ERROR_HOSTED_DEVICE_LOGIN_TIME_NOT_SET"] = 6;
+                    values[valuesById[7] = "ERROR_MULTI_PROVIDER_NOT_CONFIGURED"] = 7;
                     return values;
                 })();
 
@@ -63316,7 +63983,6 @@ $root.E2E = (function() {
                     case 30:
                     case 31:
                     case 32:
-                    case 33:
                         break;
                     }
                 if (message.ephemeralExpiration != null && message.hasOwnProperty("ephemeralExpiration"))
@@ -63565,10 +64231,6 @@ $root.E2E = (function() {
                 case "MESSAGE_UNSCHEDULE":
                 case 32:
                     message.type = 32;
-                    break;
-                case "BOT_UNLINK_MESSAGE":
-                case 33:
-                    message.type = 33;
                     break;
                 }
                 if (object.ephemeralExpiration != null)
@@ -63867,7 +64529,6 @@ $root.E2E = (function() {
              * @property {number} GROUP_MEMBER_LABEL_CHANGE=30 GROUP_MEMBER_LABEL_CHANGE value
              * @property {number} AI_MEDIA_COLLECTION_MESSAGE=31 AI_MEDIA_COLLECTION_MESSAGE value
              * @property {number} MESSAGE_UNSCHEDULE=32 MESSAGE_UNSCHEDULE value
-             * @property {number} BOT_UNLINK_MESSAGE=33 BOT_UNLINK_MESSAGE value
              */
             ProtocolMessage.Type = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -63899,7 +64560,6 @@ $root.E2E = (function() {
                 values[valuesById[30] = "GROUP_MEMBER_LABEL_CHANGE"] = 30;
                 values[valuesById[31] = "AI_MEDIA_COLLECTION_MESSAGE"] = 31;
                 values[valuesById[32] = "MESSAGE_UNSCHEDULE"] = 32;
-                values[valuesById[33] = "BOT_UNLINK_MESSAGE"] = 33;
                 return values;
             })();
 
@@ -68012,6 +68672,7 @@ $root.E2E = (function() {
              * @property {boolean|null} [isLottie] StickerMessage isLottie
              * @property {string|null} [accessibilityLabel] StickerMessage accessibilityLabel
              * @property {number|null} [premium] StickerMessage premium
+             * @property {string|null} [emojis] StickerMessage emojis
              */
 
             /**
@@ -68198,6 +68859,14 @@ $root.E2E = (function() {
             StickerMessage.prototype.premium = 0;
 
             /**
+             * StickerMessage emojis.
+             * @member {string} emojis
+             * @memberof E2E.Message.StickerMessage
+             * @instance
+             */
+            StickerMessage.prototype.emojis = "";
+
+            /**
              * Creates a new StickerMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.StickerMessage
@@ -68263,6 +68932,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 22, wireType 2 =*/178).string(message.accessibilityLabel);
                 if (message.premium != null && Object.hasOwnProperty.call(message, "premium"))
                     writer.uint32(/* id 24, wireType 0 =*/192).int32(message.premium);
+                if (message.emojis != null && Object.hasOwnProperty.call(message, "emojis"))
+                    writer.uint32(/* id 25, wireType 2 =*/202).string(message.emojis);
                 return writer;
             };
 
@@ -68383,6 +69054,10 @@ $root.E2E = (function() {
                             message.premium = reader.int32();
                             break;
                         }
+                    case 25: {
+                            message.emojis = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -68483,6 +69158,9 @@ $root.E2E = (function() {
                 if (message.premium != null && message.hasOwnProperty("premium"))
                     if (!$util.isInteger(message.premium))
                         return "premium: integer expected";
+                if (message.emojis != null && message.hasOwnProperty("emojis"))
+                    if (!$util.isString(message.emojis))
+                        return "emojis: string expected";
                 return null;
             };
 
@@ -68579,6 +69257,8 @@ $root.E2E = (function() {
                     message.accessibilityLabel = String(object.accessibilityLabel);
                 if (object.premium != null)
                     message.premium = object.premium | 0;
+                if (object.emojis != null)
+                    message.emojis = String(object.emojis);
                 return message;
             };
 
@@ -68659,6 +69339,7 @@ $root.E2E = (function() {
                     object.isLottie = false;
                     object.accessibilityLabel = "";
                     object.premium = 0;
+                    object.emojis = "";
                 }
                 if (message.url != null && message.hasOwnProperty("url"))
                     object.url = message.url;
@@ -68711,6 +69392,8 @@ $root.E2E = (function() {
                     object.accessibilityLabel = message.accessibilityLabel;
                 if (message.premium != null && message.hasOwnProperty("premium"))
                     object.premium = message.premium;
+                if (message.emojis != null && message.hasOwnProperty("emojis"))
+                    object.emojis = message.emojis;
                 return object;
             };
 
@@ -84140,6 +84823,7 @@ $root.AICommon = (function() {
                 case 47:
                 case 54:
                 case 55:
+                case 56:
                     break;
                 }
             if (message.forwardScore != null && message.hasOwnProperty("forwardScore"))
@@ -84354,6 +85038,10 @@ $root.AICommon = (function() {
             case "CHATLIST_SEARCH":
             case 55:
                 message.botEntryPointOrigin = 55;
+                break;
+            case "NEW_CHAT_LIST":
+            case 56:
+                message.botEntryPointOrigin = 56;
                 break;
             }
             if (object.forwardScore != null)
@@ -88060,6 +88748,7 @@ $root.AICommon = (function() {
          * @property {AICommon.IBotRenderingConfigMetadata|null} [botRenderingConfigMetadata] BotMetadata botRenderingConfigMetadata
          * @property {AICommon.IBotInfrastructureDiagnostics|null} [botInfrastructureDiagnostics] BotMetadata botInfrastructureDiagnostics
          * @property {AICommon.IAIMediaCollectionMetadata|null} [aiMediaCollectionMetadata] BotMetadata aiMediaCollectionMetadata
+         * @property {AICommon.IBotCommandMetadata|null} [commandMetadata] BotMetadata commandMetadata
          * @property {Uint8Array|null} [internalMetadata] BotMetadata internalMetadata
          */
 
@@ -88375,6 +89064,14 @@ $root.AICommon = (function() {
         BotMetadata.prototype.aiMediaCollectionMetadata = null;
 
         /**
+         * BotMetadata commandMetadata.
+         * @member {AICommon.IBotCommandMetadata|null|undefined} commandMetadata
+         * @memberof AICommon.BotMetadata
+         * @instance
+         */
+        BotMetadata.prototype.commandMetadata = null;
+
+        /**
          * BotMetadata internalMetadata.
          * @member {Uint8Array} internalMetadata
          * @memberof AICommon.BotMetadata
@@ -88480,6 +89177,8 @@ $root.AICommon = (function() {
                 $root.AICommon.BotInfrastructureDiagnostics.encode(message.botInfrastructureDiagnostics, writer.uint32(/* id 37, wireType 2 =*/298).fork()).ldelim();
             if (message.aiMediaCollectionMetadata != null && Object.hasOwnProperty.call(message, "aiMediaCollectionMetadata"))
                 $root.AICommon.AIMediaCollectionMetadata.encode(message.aiMediaCollectionMetadata, writer.uint32(/* id 38, wireType 2 =*/306).fork()).ldelim();
+            if (message.commandMetadata != null && Object.hasOwnProperty.call(message, "commandMetadata"))
+                $root.AICommon.BotCommandMetadata.encode(message.commandMetadata, writer.uint32(/* id 39, wireType 2 =*/314).fork()).ldelim();
             if (message.internalMetadata != null && Object.hasOwnProperty.call(message, "internalMetadata"))
                 writer.uint32(/* id 999, wireType 2 =*/7994).bytes(message.internalMetadata);
             return writer;
@@ -88664,6 +89363,10 @@ $root.AICommon = (function() {
                     }
                 case 38: {
                         message.aiMediaCollectionMetadata = $root.AICommon.AIMediaCollectionMetadata.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 39: {
+                        message.commandMetadata = $root.AICommon.BotCommandMetadata.decode(reader, reader.uint32());
                         break;
                     }
                 case 999: {
@@ -88876,6 +89579,11 @@ $root.AICommon = (function() {
                 if (error)
                     return "aiMediaCollectionMetadata." + error;
             }
+            if (message.commandMetadata != null && message.hasOwnProperty("commandMetadata")) {
+                var error = $root.AICommon.BotCommandMetadata.verify(message.commandMetadata);
+                if (error)
+                    return "commandMetadata." + error;
+            }
             if (message.internalMetadata != null && message.hasOwnProperty("internalMetadata"))
                 if (!(message.internalMetadata && typeof message.internalMetadata.length === "number" || $util.isString(message.internalMetadata)))
                     return "internalMetadata: buffer expected";
@@ -89061,6 +89769,11 @@ $root.AICommon = (function() {
                     throw TypeError(".AICommon.BotMetadata.aiMediaCollectionMetadata: object expected");
                 message.aiMediaCollectionMetadata = $root.AICommon.AIMediaCollectionMetadata.fromObject(object.aiMediaCollectionMetadata);
             }
+            if (object.commandMetadata != null) {
+                if (typeof object.commandMetadata !== "object")
+                    throw TypeError(".AICommon.BotMetadata.commandMetadata: object expected");
+                message.commandMetadata = $root.AICommon.BotCommandMetadata.fromObject(object.commandMetadata);
+            }
             if (object.internalMetadata != null)
                 if (typeof object.internalMetadata === "string")
                     $util.base64.decode(object.internalMetadata, message.internalMetadata = $util.newBuffer($util.base64.length(object.internalMetadata)), 0);
@@ -89126,6 +89839,7 @@ $root.AICommon = (function() {
                 object.botRenderingConfigMetadata = null;
                 object.botInfrastructureDiagnostics = null;
                 object.aiMediaCollectionMetadata = null;
+                object.commandMetadata = null;
                 if (options.bytes === String)
                     object.internalMetadata = "";
                 else {
@@ -89208,6 +89922,8 @@ $root.AICommon = (function() {
                 object.botInfrastructureDiagnostics = $root.AICommon.BotInfrastructureDiagnostics.toObject(message.botInfrastructureDiagnostics, options);
             if (message.aiMediaCollectionMetadata != null && message.hasOwnProperty("aiMediaCollectionMetadata"))
                 object.aiMediaCollectionMetadata = $root.AICommon.AIMediaCollectionMetadata.toObject(message.aiMediaCollectionMetadata, options);
+            if (message.commandMetadata != null && message.hasOwnProperty("commandMetadata"))
+                object.commandMetadata = $root.AICommon.BotCommandMetadata.toObject(message.commandMetadata, options);
             if (message.internalMetadata != null && message.hasOwnProperty("internalMetadata"))
                 object.internalMetadata = options.bytes === String ? $util.base64.encode(message.internalMetadata, 0, message.internalMetadata.length) : options.bytes === Array ? Array.prototype.slice.call(message.internalMetadata) : message.internalMetadata;
             return object;
@@ -89240,6 +89956,258 @@ $root.AICommon = (function() {
         };
 
         return BotMetadata;
+    })();
+
+    AICommon.BotCommandMetadata = (function() {
+
+        /**
+         * Properties of a BotCommandMetadata.
+         * @memberof AICommon
+         * @interface IBotCommandMetadata
+         * @property {string|null} [commandName] BotCommandMetadata commandName
+         * @property {string|null} [commandDescription] BotCommandMetadata commandDescription
+         * @property {string|null} [commandPrompt] BotCommandMetadata commandPrompt
+         */
+
+        /**
+         * Constructs a new BotCommandMetadata.
+         * @memberof AICommon
+         * @classdesc Represents a BotCommandMetadata.
+         * @implements IBotCommandMetadata
+         * @constructor
+         * @param {AICommon.IBotCommandMetadata=} [properties] Properties to set
+         */
+        function BotCommandMetadata(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BotCommandMetadata commandName.
+         * @member {string} commandName
+         * @memberof AICommon.BotCommandMetadata
+         * @instance
+         */
+        BotCommandMetadata.prototype.commandName = "";
+
+        /**
+         * BotCommandMetadata commandDescription.
+         * @member {string} commandDescription
+         * @memberof AICommon.BotCommandMetadata
+         * @instance
+         */
+        BotCommandMetadata.prototype.commandDescription = "";
+
+        /**
+         * BotCommandMetadata commandPrompt.
+         * @member {string} commandPrompt
+         * @memberof AICommon.BotCommandMetadata
+         * @instance
+         */
+        BotCommandMetadata.prototype.commandPrompt = "";
+
+        /**
+         * Creates a new BotCommandMetadata instance using the specified properties.
+         * @function create
+         * @memberof AICommon.BotCommandMetadata
+         * @static
+         * @param {AICommon.IBotCommandMetadata=} [properties] Properties to set
+         * @returns {AICommon.BotCommandMetadata} BotCommandMetadata instance
+         */
+        BotCommandMetadata.create = function create(properties) {
+            return new BotCommandMetadata(properties);
+        };
+
+        /**
+         * Encodes the specified BotCommandMetadata message. Does not implicitly {@link AICommon.BotCommandMetadata.verify|verify} messages.
+         * @function encode
+         * @memberof AICommon.BotCommandMetadata
+         * @static
+         * @param {AICommon.IBotCommandMetadata} message BotCommandMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotCommandMetadata.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.commandName != null && Object.hasOwnProperty.call(message, "commandName"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.commandName);
+            if (message.commandDescription != null && Object.hasOwnProperty.call(message, "commandDescription"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.commandDescription);
+            if (message.commandPrompt != null && Object.hasOwnProperty.call(message, "commandPrompt"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.commandPrompt);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BotCommandMetadata message, length delimited. Does not implicitly {@link AICommon.BotCommandMetadata.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof AICommon.BotCommandMetadata
+         * @static
+         * @param {AICommon.IBotCommandMetadata} message BotCommandMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotCommandMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BotCommandMetadata message from the specified reader or buffer.
+         * @function decode
+         * @memberof AICommon.BotCommandMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {AICommon.BotCommandMetadata} BotCommandMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotCommandMetadata.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotCommandMetadata();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.commandName = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.commandDescription = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.commandPrompt = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BotCommandMetadata message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof AICommon.BotCommandMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {AICommon.BotCommandMetadata} BotCommandMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotCommandMetadata.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BotCommandMetadata message.
+         * @function verify
+         * @memberof AICommon.BotCommandMetadata
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BotCommandMetadata.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.commandName != null && message.hasOwnProperty("commandName"))
+                if (!$util.isString(message.commandName))
+                    return "commandName: string expected";
+            if (message.commandDescription != null && message.hasOwnProperty("commandDescription"))
+                if (!$util.isString(message.commandDescription))
+                    return "commandDescription: string expected";
+            if (message.commandPrompt != null && message.hasOwnProperty("commandPrompt"))
+                if (!$util.isString(message.commandPrompt))
+                    return "commandPrompt: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a BotCommandMetadata message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof AICommon.BotCommandMetadata
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {AICommon.BotCommandMetadata} BotCommandMetadata
+         */
+        BotCommandMetadata.fromObject = function fromObject(object) {
+            if (object instanceof $root.AICommon.BotCommandMetadata)
+                return object;
+            var message = new $root.AICommon.BotCommandMetadata();
+            if (object.commandName != null)
+                message.commandName = String(object.commandName);
+            if (object.commandDescription != null)
+                message.commandDescription = String(object.commandDescription);
+            if (object.commandPrompt != null)
+                message.commandPrompt = String(object.commandPrompt);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BotCommandMetadata message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof AICommon.BotCommandMetadata
+         * @static
+         * @param {AICommon.BotCommandMetadata} message BotCommandMetadata
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BotCommandMetadata.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.commandName = "";
+                object.commandDescription = "";
+                object.commandPrompt = "";
+            }
+            if (message.commandName != null && message.hasOwnProperty("commandName"))
+                object.commandName = message.commandName;
+            if (message.commandDescription != null && message.hasOwnProperty("commandDescription"))
+                object.commandDescription = message.commandDescription;
+            if (message.commandPrompt != null && message.hasOwnProperty("commandPrompt"))
+                object.commandPrompt = message.commandPrompt;
+            return object;
+        };
+
+        /**
+         * Converts this BotCommandMetadata to JSON.
+         * @function toJSON
+         * @memberof AICommon.BotCommandMetadata
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BotCommandMetadata.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotCommandMetadata
+         * @function getTypeUrl
+         * @memberof AICommon.BotCommandMetadata
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotCommandMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/AICommon.BotCommandMetadata";
+        };
+
+        return BotCommandMetadata;
     })();
 
     AICommon.AIMediaCollectionMessage = (function() {
@@ -99229,6 +100197,7 @@ $root.AICommon = (function() {
                 case 47:
                 case 54:
                 case 55:
+                case 56:
                     break;
                 }
             if (message.threadOrigin != null && message.hasOwnProperty("threadOrigin"))
@@ -99453,6 +100422,10 @@ $root.AICommon = (function() {
             case "CHATLIST_SEARCH":
             case 55:
                 message.destinationEntryPoint = 55;
+                break;
+            case "NEW_CHAT_LIST":
+            case 56:
+                message.destinationEntryPoint = 56;
                 break;
             }
             switch (object.threadOrigin) {
@@ -103352,6 +104325,7 @@ $root.AICommon = (function() {
      * @property {number} WEB_NAVIGATION_BAR=47 WEB_NAVIGATION_BAR value
      * @property {number} GROUP_MEMBER=54 GROUP_MEMBER value
      * @property {number} CHATLIST_SEARCH=55 CHATLIST_SEARCH value
+     * @property {number} NEW_CHAT_LIST=56 NEW_CHAT_LIST value
      */
     AICommon.BotMetricsEntryPoint = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -103402,6 +104376,7 @@ $root.AICommon = (function() {
         values[valuesById[47] = "WEB_NAVIGATION_BAR"] = 47;
         values[valuesById[54] = "GROUP_MEMBER"] = 54;
         values[valuesById[55] = "CHATLIST_SEARCH"] = 55;
+        values[valuesById[56] = "NEW_CHAT_LIST"] = 56;
         return values;
     })();
 
@@ -107725,6 +108700,8 @@ $root.CompanionReg = (function() {
              * @property {number|null} [initialSyncMaxMessagesPerChat] HistorySyncConfig initialSyncMaxMessagesPerChat
              * @property {boolean|null} [supportManusHistory] HistorySyncConfig supportManusHistory
              * @property {boolean|null} [supportHatchHistory] HistorySyncConfig supportHatchHistory
+             * @property {Array.<string>|null} [supportedBotChannelFbids] HistorySyncConfig supportedBotChannelFbids
+             * @property {boolean|null} [supportInlineContacts] HistorySyncConfig supportInlineContacts
              */
 
             /**
@@ -107736,6 +108713,7 @@ $root.CompanionReg = (function() {
              * @param {CompanionReg.DeviceProps.IHistorySyncConfig=} [properties] Properties to set
              */
             function HistorySyncConfig(properties) {
+                this.supportedBotChannelFbids = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -107919,6 +108897,22 @@ $root.CompanionReg = (function() {
             HistorySyncConfig.prototype.supportHatchHistory = false;
 
             /**
+             * HistorySyncConfig supportedBotChannelFbids.
+             * @member {Array.<string>} supportedBotChannelFbids
+             * @memberof CompanionReg.DeviceProps.HistorySyncConfig
+             * @instance
+             */
+            HistorySyncConfig.prototype.supportedBotChannelFbids = $util.emptyArray;
+
+            /**
+             * HistorySyncConfig supportInlineContacts.
+             * @member {boolean} supportInlineContacts
+             * @memberof CompanionReg.DeviceProps.HistorySyncConfig
+             * @instance
+             */
+            HistorySyncConfig.prototype.supportInlineContacts = false;
+
+            /**
              * Creates a new HistorySyncConfig instance using the specified properties.
              * @function create
              * @memberof CompanionReg.DeviceProps.HistorySyncConfig
@@ -107986,6 +108980,11 @@ $root.CompanionReg = (function() {
                     writer.uint32(/* id 21, wireType 0 =*/168).bool(message.supportManusHistory);
                 if (message.supportHatchHistory != null && Object.hasOwnProperty.call(message, "supportHatchHistory"))
                     writer.uint32(/* id 22, wireType 0 =*/176).bool(message.supportHatchHistory);
+                if (message.supportedBotChannelFbids != null && message.supportedBotChannelFbids.length)
+                    for (var i = 0; i < message.supportedBotChannelFbids.length; ++i)
+                        writer.uint32(/* id 23, wireType 2 =*/186).string(message.supportedBotChannelFbids[i]);
+                if (message.supportInlineContacts != null && Object.hasOwnProperty.call(message, "supportInlineContacts"))
+                    writer.uint32(/* id 24, wireType 0 =*/192).bool(message.supportInlineContacts);
                 return writer;
             };
 
@@ -108110,6 +109109,16 @@ $root.CompanionReg = (function() {
                             message.supportHatchHistory = reader.bool();
                             break;
                         }
+                    case 23: {
+                            if (!(message.supportedBotChannelFbids && message.supportedBotChannelFbids.length))
+                                message.supportedBotChannelFbids = [];
+                            message.supportedBotChannelFbids.push(reader.string());
+                            break;
+                        }
+                    case 24: {
+                            message.supportInlineContacts = reader.bool();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -108211,6 +109220,16 @@ $root.CompanionReg = (function() {
                 if (message.supportHatchHistory != null && message.hasOwnProperty("supportHatchHistory"))
                     if (typeof message.supportHatchHistory !== "boolean")
                         return "supportHatchHistory: boolean expected";
+                if (message.supportedBotChannelFbids != null && message.hasOwnProperty("supportedBotChannelFbids")) {
+                    if (!Array.isArray(message.supportedBotChannelFbids))
+                        return "supportedBotChannelFbids: array expected";
+                    for (var i = 0; i < message.supportedBotChannelFbids.length; ++i)
+                        if (!$util.isString(message.supportedBotChannelFbids[i]))
+                            return "supportedBotChannelFbids: string[] expected";
+                }
+                if (message.supportInlineContacts != null && message.hasOwnProperty("supportInlineContacts"))
+                    if (typeof message.supportInlineContacts !== "boolean")
+                        return "supportInlineContacts: boolean expected";
                 return null;
             };
 
@@ -108270,6 +109289,15 @@ $root.CompanionReg = (function() {
                     message.supportManusHistory = Boolean(object.supportManusHistory);
                 if (object.supportHatchHistory != null)
                     message.supportHatchHistory = Boolean(object.supportHatchHistory);
+                if (object.supportedBotChannelFbids) {
+                    if (!Array.isArray(object.supportedBotChannelFbids))
+                        throw TypeError(".CompanionReg.DeviceProps.HistorySyncConfig.supportedBotChannelFbids: array expected");
+                    message.supportedBotChannelFbids = [];
+                    for (var i = 0; i < object.supportedBotChannelFbids.length; ++i)
+                        message.supportedBotChannelFbids[i] = String(object.supportedBotChannelFbids[i]);
+                }
+                if (object.supportInlineContacts != null)
+                    message.supportInlineContacts = Boolean(object.supportInlineContacts);
                 return message;
             };
 
@@ -108286,6 +109314,8 @@ $root.CompanionReg = (function() {
                 if (!options)
                     options = {};
                 var object = {};
+                if (options.arrays || options.defaults)
+                    object.supportedBotChannelFbids = [];
                 if (options.defaults) {
                     object.fullSyncDaysLimit = 0;
                     object.fullSyncSizeMbLimit = 0;
@@ -108309,6 +109339,7 @@ $root.CompanionReg = (function() {
                     object.initialSyncMaxMessagesPerChat = 0;
                     object.supportManusHistory = false;
                     object.supportHatchHistory = false;
+                    object.supportInlineContacts = false;
                 }
                 if (message.fullSyncDaysLimit != null && message.hasOwnProperty("fullSyncDaysLimit"))
                     object.fullSyncDaysLimit = message.fullSyncDaysLimit;
@@ -108354,6 +109385,13 @@ $root.CompanionReg = (function() {
                     object.supportManusHistory = message.supportManusHistory;
                 if (message.supportHatchHistory != null && message.hasOwnProperty("supportHatchHistory"))
                     object.supportHatchHistory = message.supportHatchHistory;
+                if (message.supportedBotChannelFbids && message.supportedBotChannelFbids.length) {
+                    object.supportedBotChannelFbids = [];
+                    for (var j = 0; j < message.supportedBotChannelFbids.length; ++j)
+                        object.supportedBotChannelFbids[j] = message.supportedBotChannelFbids[j];
+                }
+                if (message.supportInlineContacts != null && message.hasOwnProperty("supportInlineContacts"))
+                    object.supportInlineContacts = message.supportInlineContacts;
                 return object;
             };
 
