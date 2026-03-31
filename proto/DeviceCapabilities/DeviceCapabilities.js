@@ -659,6 +659,7 @@ $root.DeviceCapabilities = (function() {
              * @property {boolean|null} [companionSupportEnabled] BusinessBroadcast companionSupportEnabled
              * @property {boolean|null} [campaignSyncEnabled] BusinessBroadcast campaignSyncEnabled
              * @property {boolean|null} [insightsSyncEnabled] BusinessBroadcast insightsSyncEnabled
+             * @property {number|null} [recipientLimit] BusinessBroadcast recipientLimit
              */
 
             /**
@@ -709,6 +710,14 @@ $root.DeviceCapabilities = (function() {
             BusinessBroadcast.prototype.insightsSyncEnabled = false;
 
             /**
+             * BusinessBroadcast recipientLimit.
+             * @member {number} recipientLimit
+             * @memberof DeviceCapabilities.DeviceCapabilities.BusinessBroadcast
+             * @instance
+             */
+            BusinessBroadcast.prototype.recipientLimit = 0;
+
+            /**
              * Creates a new BusinessBroadcast instance using the specified properties.
              * @function create
              * @memberof DeviceCapabilities.DeviceCapabilities.BusinessBroadcast
@@ -740,6 +749,8 @@ $root.DeviceCapabilities = (function() {
                     writer.uint32(/* id 3, wireType 0 =*/24).bool(message.campaignSyncEnabled);
                 if (message.insightsSyncEnabled != null && Object.hasOwnProperty.call(message, "insightsSyncEnabled"))
                     writer.uint32(/* id 4, wireType 0 =*/32).bool(message.insightsSyncEnabled);
+                if (message.recipientLimit != null && Object.hasOwnProperty.call(message, "recipientLimit"))
+                    writer.uint32(/* id 5, wireType 0 =*/40).int32(message.recipientLimit);
                 return writer;
             };
 
@@ -792,6 +803,10 @@ $root.DeviceCapabilities = (function() {
                             message.insightsSyncEnabled = reader.bool();
                             break;
                         }
+                    case 5: {
+                            message.recipientLimit = reader.int32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -839,6 +854,9 @@ $root.DeviceCapabilities = (function() {
                 if (message.insightsSyncEnabled != null && message.hasOwnProperty("insightsSyncEnabled"))
                     if (typeof message.insightsSyncEnabled !== "boolean")
                         return "insightsSyncEnabled: boolean expected";
+                if (message.recipientLimit != null && message.hasOwnProperty("recipientLimit"))
+                    if (!$util.isInteger(message.recipientLimit))
+                        return "recipientLimit: integer expected";
                 return null;
             };
 
@@ -862,6 +880,8 @@ $root.DeviceCapabilities = (function() {
                     message.campaignSyncEnabled = Boolean(object.campaignSyncEnabled);
                 if (object.insightsSyncEnabled != null)
                     message.insightsSyncEnabled = Boolean(object.insightsSyncEnabled);
+                if (object.recipientLimit != null)
+                    message.recipientLimit = object.recipientLimit | 0;
                 return message;
             };
 
@@ -883,6 +903,7 @@ $root.DeviceCapabilities = (function() {
                     object.companionSupportEnabled = false;
                     object.campaignSyncEnabled = false;
                     object.insightsSyncEnabled = false;
+                    object.recipientLimit = 0;
                 }
                 if (message.importListEnabled != null && message.hasOwnProperty("importListEnabled"))
                     object.importListEnabled = message.importListEnabled;
@@ -892,6 +913,8 @@ $root.DeviceCapabilities = (function() {
                     object.campaignSyncEnabled = message.campaignSyncEnabled;
                 if (message.insightsSyncEnabled != null && message.hasOwnProperty("insightsSyncEnabled"))
                     object.insightsSyncEnabled = message.insightsSyncEnabled;
+                if (message.recipientLimit != null && message.hasOwnProperty("recipientLimit"))
+                    object.recipientLimit = message.recipientLimit;
                 return object;
             };
 

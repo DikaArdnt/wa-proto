@@ -4230,7 +4230,8 @@ export namespace Web {
             GROUP_MEMBER_SHARE_GROUP_HISTORY_MODE = 221,
             GROUP_OPEN_BOT_ADDED = 222,
             GROUP_TEE_BOT_ADDED = 223,
-            CONTACT_INFO = 224
+            CONTACT_INFO = 224,
+            SCHEDULED_MESSAGE_CREATED = 225
         }
     }
 }
