@@ -56205,6 +56205,7 @@ $root.E2E = (function() {
                  * @property {number|null} [onDemandMsgCount] HistorySyncOnDemandRequest onDemandMsgCount
                  * @property {number|Long|null} [oldestMsgTimestampMs] HistorySyncOnDemandRequest oldestMsgTimestampMs
                  * @property {string|null} [accountLid] HistorySyncOnDemandRequest accountLid
+                 * @property {boolean|null} [supportInlineResponse] HistorySyncOnDemandRequest supportInlineResponse
                  */
 
                 /**
@@ -56271,6 +56272,14 @@ $root.E2E = (function() {
                 HistorySyncOnDemandRequest.prototype.accountLid = "";
 
                 /**
+                 * HistorySyncOnDemandRequest supportInlineResponse.
+                 * @member {boolean} supportInlineResponse
+                 * @memberof E2E.Message.PeerDataOperationRequestMessage.HistorySyncOnDemandRequest
+                 * @instance
+                 */
+                HistorySyncOnDemandRequest.prototype.supportInlineResponse = false;
+
+                /**
                  * Creates a new HistorySyncOnDemandRequest instance using the specified properties.
                  * @function create
                  * @memberof E2E.Message.PeerDataOperationRequestMessage.HistorySyncOnDemandRequest
@@ -56306,6 +56315,8 @@ $root.E2E = (function() {
                         writer.uint32(/* id 5, wireType 0 =*/40).int64(message.oldestMsgTimestampMs);
                     if (message.accountLid != null && Object.hasOwnProperty.call(message, "accountLid"))
                         writer.uint32(/* id 6, wireType 2 =*/50).string(message.accountLid);
+                    if (message.supportInlineResponse != null && Object.hasOwnProperty.call(message, "supportInlineResponse"))
+                        writer.uint32(/* id 7, wireType 0 =*/56).bool(message.supportInlineResponse);
                     return writer;
                 };
 
@@ -56366,6 +56377,10 @@ $root.E2E = (function() {
                                 message.accountLid = reader.string();
                                 break;
                             }
+                        case 7: {
+                                message.supportInlineResponse = reader.bool();
+                                break;
+                            }
                         default:
                             reader.skipType(tag & 7);
                             break;
@@ -56419,6 +56434,9 @@ $root.E2E = (function() {
                     if (message.accountLid != null && message.hasOwnProperty("accountLid"))
                         if (!$util.isString(message.accountLid))
                             return "accountLid: string expected";
+                    if (message.supportInlineResponse != null && message.hasOwnProperty("supportInlineResponse"))
+                        if (typeof message.supportInlineResponse !== "boolean")
+                            return "supportInlineResponse: boolean expected";
                     return null;
                 };
 
@@ -56453,6 +56471,8 @@ $root.E2E = (function() {
                             message.oldestMsgTimestampMs = new $util.LongBits(object.oldestMsgTimestampMs.low >>> 0, object.oldestMsgTimestampMs.high >>> 0).toNumber();
                     if (object.accountLid != null)
                         message.accountLid = String(object.accountLid);
+                    if (object.supportInlineResponse != null)
+                        message.supportInlineResponse = Boolean(object.supportInlineResponse);
                     return message;
                 };
 
@@ -56480,6 +56500,7 @@ $root.E2E = (function() {
                         } else
                             object.oldestMsgTimestampMs = options.longs === String ? "0" : 0;
                         object.accountLid = "";
+                        object.supportInlineResponse = false;
                     }
                     if (message.chatJid != null && message.hasOwnProperty("chatJid"))
                         object.chatJid = message.chatJid;
@@ -56496,6 +56517,8 @@ $root.E2E = (function() {
                             object.oldestMsgTimestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.oldestMsgTimestampMs) : options.longs === Number ? new $util.LongBits(message.oldestMsgTimestampMs.low >>> 0, message.oldestMsgTimestampMs.high >>> 0).toNumber() : message.oldestMsgTimestampMs;
                     if (message.accountLid != null && message.hasOwnProperty("accountLid"))
                         object.accountLid = message.accountLid;
+                    if (message.supportInlineResponse != null && message.hasOwnProperty("supportInlineResponse"))
+                        object.supportInlineResponse = message.supportInlineResponse;
                     return object;
                 };
 

@@ -22003,6 +22003,9 @@ export namespace E2E {
 
                 /** HistorySyncOnDemandRequest accountLid */
                 accountLid?: (string|null);
+
+                /** HistorySyncOnDemandRequest supportInlineResponse */
+                supportInlineResponse?: (boolean|null);
             }
 
             /** Represents a HistorySyncOnDemandRequest. */
@@ -22031,6 +22034,9 @@ export namespace E2E {
 
                 /** HistorySyncOnDemandRequest accountLid. */
                 public accountLid: string;
+
+                /** HistorySyncOnDemandRequest supportInlineResponse. */
+                public supportInlineResponse: boolean;
 
                 /**
                  * Creates a new HistorySyncOnDemandRequest instance using the specified properties.

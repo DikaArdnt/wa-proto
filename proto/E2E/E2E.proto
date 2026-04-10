@@ -1530,6 +1530,7 @@ message Message {
             optional int32 onDemandMsgCount = 4;
             optional int64 oldestMsgTimestampMs = 5;
             optional string accountLid = 6;
+            optional bool supportInlineResponse = 7;
         }
         message PlaceholderMessageResendRequest {
             optional Protocol.MessageKey messageKey = 1;
