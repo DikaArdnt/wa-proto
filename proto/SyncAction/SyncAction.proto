@@ -117,6 +117,8 @@ message SyncActionValue {
     optional CustomerDataAction customerDataAction = 83;
     optional SubscriptionsSyncV2Action subscriptionsSyncV2Action = 84;
     optional ThreadPinAction threadPinAction = 85;
+    optional AutoOrganizeBusinessChatSetting autoOrganizeBusinessChatSetting = 86;
+    optional BizAISettingsNudgeAction bizAiSettingsNudgeAction = 87;
     message AgentAction {
         optional string name = 1;
         optional int32 deviceID = 2;
@@ -132,6 +134,9 @@ message SyncActionValue {
         optional bool archived = 1;
         optional SyncActionValue.SyncActionMessageRange messageRange = 2;
     }
+    message AutoOrganizeBusinessChatSetting {
+        optional bool autoOrganize = 1;
+    }
     message AvatarUpdatedAction {
         optional AvatarEventType eventType = 1;
         repeated SyncActionValue.StickerAction recentAvatarStickers = 2;
@@ -139,6 +144,19 @@ message SyncActionValue {
             UPDATED = 0;
             CREATED = 1;
             DELETED = 2;
+        }
+    }
+    message BizAISettingsNudgeAction {
+        optional BizAISettingsCategory category = 1;
+        optional int64 version = 2;
+        optional int64 updatedAtMs = 3;
+        enum BizAISettingsCategory {
+            UNKNOWN = 0;
+            INSTRUCTIONS = 1;
+            RESPONSE_SETTINGS = 2;
+            EXAMPLE_RESPONSES = 3;
+            KNOWLEDGE = 4;
+            LEAD_GEN = 5;
         }
     }
     message BotWelcomeRequestAction {
@@ -543,6 +561,7 @@ message SyncActionValue {
         optional bool shareToFB = 3;
         optional bool shareToIG = 4;
         repeated CustomList customLists = 5;
+        repeated StatusDistributionMode modes = 6;
         message CustomList {
             optional string listId = 1;
             optional string name = 2;
@@ -773,6 +792,8 @@ enum MutationProps {
     CUSTOMER_DATA_ACTION = 83;
     SUBSCRIPTIONS_SYNC_V2_ACTION = 84;
     THREAD_PIN_ACTION = 85;
+    AUTO_ORGANIZE_BUSINESS_CHAT_SETTING = 86;
+    BIZ_AI_SETTINGS_NUDGE_ACTION = 87;
     SHARE_OWN_PN = 10001;
     BUSINESS_BROADCAST_ACTION = 10002;
     AI_THREAD_DELETE_ACTION = 10003;

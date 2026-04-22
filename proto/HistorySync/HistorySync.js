@@ -134118,6 +134118,8 @@ $root.SyncAction = (function() {
          * @property {SyncAction.SyncActionValue.ICustomerDataAction|null} [customerDataAction] SyncActionValue customerDataAction
          * @property {SyncAction.SyncActionValue.ISubscriptionsSyncV2Action|null} [subscriptionsSyncV2Action] SyncActionValue subscriptionsSyncV2Action
          * @property {SyncAction.SyncActionValue.IThreadPinAction|null} [threadPinAction] SyncActionValue threadPinAction
+         * @property {SyncAction.SyncActionValue.IAutoOrganizeBusinessChatSetting|null} [autoOrganizeBusinessChatSetting] SyncActionValue autoOrganizeBusinessChatSetting
+         * @property {SyncAction.SyncActionValue.IBizAISettingsNudgeAction|null} [bizAiSettingsNudgeAction] SyncActionValue bizAiSettingsNudgeAction
          */
 
         /**
@@ -134744,6 +134746,22 @@ $root.SyncAction = (function() {
         SyncActionValue.prototype.threadPinAction = null;
 
         /**
+         * SyncActionValue autoOrganizeBusinessChatSetting.
+         * @member {SyncAction.SyncActionValue.IAutoOrganizeBusinessChatSetting|null|undefined} autoOrganizeBusinessChatSetting
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.autoOrganizeBusinessChatSetting = null;
+
+        /**
+         * SyncActionValue bizAiSettingsNudgeAction.
+         * @member {SyncAction.SyncActionValue.IBizAISettingsNudgeAction|null|undefined} bizAiSettingsNudgeAction
+         * @memberof SyncAction.SyncActionValue
+         * @instance
+         */
+        SyncActionValue.prototype.bizAiSettingsNudgeAction = null;
+
+        /**
          * Creates a new SyncActionValue instance using the specified properties.
          * @function create
          * @memberof SyncAction.SyncActionValue
@@ -134919,6 +134937,10 @@ $root.SyncAction = (function() {
                 $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.encode(message.subscriptionsSyncV2Action, writer.uint32(/* id 84, wireType 2 =*/674).fork()).ldelim();
             if (message.threadPinAction != null && Object.hasOwnProperty.call(message, "threadPinAction"))
                 $root.SyncAction.SyncActionValue.ThreadPinAction.encode(message.threadPinAction, writer.uint32(/* id 85, wireType 2 =*/682).fork()).ldelim();
+            if (message.autoOrganizeBusinessChatSetting != null && Object.hasOwnProperty.call(message, "autoOrganizeBusinessChatSetting"))
+                $root.SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting.encode(message.autoOrganizeBusinessChatSetting, writer.uint32(/* id 86, wireType 2 =*/690).fork()).ldelim();
+            if (message.bizAiSettingsNudgeAction != null && Object.hasOwnProperty.call(message, "bizAiSettingsNudgeAction"))
+                $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction.encode(message.bizAiSettingsNudgeAction, writer.uint32(/* id 87, wireType 2 =*/698).fork()).ldelim();
             return writer;
         };
 
@@ -135257,6 +135279,14 @@ $root.SyncAction = (function() {
                     }
                 case 85: {
                         message.threadPinAction = $root.SyncAction.SyncActionValue.ThreadPinAction.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 86: {
+                        message.autoOrganizeBusinessChatSetting = $root.SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 87: {
+                        message.bizAiSettingsNudgeAction = $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -135672,6 +135702,16 @@ $root.SyncAction = (function() {
                 if (error)
                     return "threadPinAction." + error;
             }
+            if (message.autoOrganizeBusinessChatSetting != null && message.hasOwnProperty("autoOrganizeBusinessChatSetting")) {
+                var error = $root.SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting.verify(message.autoOrganizeBusinessChatSetting);
+                if (error)
+                    return "autoOrganizeBusinessChatSetting." + error;
+            }
+            if (message.bizAiSettingsNudgeAction != null && message.hasOwnProperty("bizAiSettingsNudgeAction")) {
+                var error = $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction.verify(message.bizAiSettingsNudgeAction);
+                if (error)
+                    return "bizAiSettingsNudgeAction." + error;
+            }
             return null;
         };
 
@@ -136071,6 +136111,16 @@ $root.SyncAction = (function() {
                     throw TypeError(".SyncAction.SyncActionValue.threadPinAction: object expected");
                 message.threadPinAction = $root.SyncAction.SyncActionValue.ThreadPinAction.fromObject(object.threadPinAction);
             }
+            if (object.autoOrganizeBusinessChatSetting != null) {
+                if (typeof object.autoOrganizeBusinessChatSetting !== "object")
+                    throw TypeError(".SyncAction.SyncActionValue.autoOrganizeBusinessChatSetting: object expected");
+                message.autoOrganizeBusinessChatSetting = $root.SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting.fromObject(object.autoOrganizeBusinessChatSetting);
+            }
+            if (object.bizAiSettingsNudgeAction != null) {
+                if (typeof object.bizAiSettingsNudgeAction !== "object")
+                    throw TypeError(".SyncAction.SyncActionValue.bizAiSettingsNudgeAction: object expected");
+                message.bizAiSettingsNudgeAction = $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction.fromObject(object.bizAiSettingsNudgeAction);
+            }
             return message;
         };
 
@@ -136168,6 +136218,8 @@ $root.SyncAction = (function() {
                 object.customerDataAction = null;
                 object.subscriptionsSyncV2Action = null;
                 object.threadPinAction = null;
+                object.autoOrganizeBusinessChatSetting = null;
+                object.bizAiSettingsNudgeAction = null;
             }
             if (message.timestamp != null && message.hasOwnProperty("timestamp"))
                 if (typeof message.timestamp === "number")
@@ -136324,6 +136376,10 @@ $root.SyncAction = (function() {
                 object.subscriptionsSyncV2Action = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.toObject(message.subscriptionsSyncV2Action, options);
             if (message.threadPinAction != null && message.hasOwnProperty("threadPinAction"))
                 object.threadPinAction = $root.SyncAction.SyncActionValue.ThreadPinAction.toObject(message.threadPinAction, options);
+            if (message.autoOrganizeBusinessChatSetting != null && message.hasOwnProperty("autoOrganizeBusinessChatSetting"))
+                object.autoOrganizeBusinessChatSetting = $root.SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting.toObject(message.autoOrganizeBusinessChatSetting, options);
+            if (message.bizAiSettingsNudgeAction != null && message.hasOwnProperty("bizAiSettingsNudgeAction"))
+                object.bizAiSettingsNudgeAction = $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction.toObject(message.bizAiSettingsNudgeAction, options);
             return object;
         };
 
@@ -137249,6 +137305,211 @@ $root.SyncAction = (function() {
             return ArchiveChatAction;
         })();
 
+        SyncActionValue.AutoOrganizeBusinessChatSetting = (function() {
+
+            /**
+             * Properties of an AutoOrganizeBusinessChatSetting.
+             * @memberof SyncAction.SyncActionValue
+             * @interface IAutoOrganizeBusinessChatSetting
+             * @property {boolean|null} [autoOrganize] AutoOrganizeBusinessChatSetting autoOrganize
+             */
+
+            /**
+             * Constructs a new AutoOrganizeBusinessChatSetting.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents an AutoOrganizeBusinessChatSetting.
+             * @implements IAutoOrganizeBusinessChatSetting
+             * @constructor
+             * @param {SyncAction.SyncActionValue.IAutoOrganizeBusinessChatSetting=} [properties] Properties to set
+             */
+            function AutoOrganizeBusinessChatSetting(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * AutoOrganizeBusinessChatSetting autoOrganize.
+             * @member {boolean} autoOrganize
+             * @memberof SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting
+             * @instance
+             */
+            AutoOrganizeBusinessChatSetting.prototype.autoOrganize = false;
+
+            /**
+             * Creates a new AutoOrganizeBusinessChatSetting instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting
+             * @static
+             * @param {SyncAction.SyncActionValue.IAutoOrganizeBusinessChatSetting=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting} AutoOrganizeBusinessChatSetting instance
+             */
+            AutoOrganizeBusinessChatSetting.create = function create(properties) {
+                return new AutoOrganizeBusinessChatSetting(properties);
+            };
+
+            /**
+             * Encodes the specified AutoOrganizeBusinessChatSetting message. Does not implicitly {@link SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting
+             * @static
+             * @param {SyncAction.SyncActionValue.IAutoOrganizeBusinessChatSetting} message AutoOrganizeBusinessChatSetting message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            AutoOrganizeBusinessChatSetting.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.autoOrganize != null && Object.hasOwnProperty.call(message, "autoOrganize"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).bool(message.autoOrganize);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified AutoOrganizeBusinessChatSetting message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting
+             * @static
+             * @param {SyncAction.SyncActionValue.IAutoOrganizeBusinessChatSetting} message AutoOrganizeBusinessChatSetting message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            AutoOrganizeBusinessChatSetting.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes an AutoOrganizeBusinessChatSetting message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting} AutoOrganizeBusinessChatSetting
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            AutoOrganizeBusinessChatSetting.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.autoOrganize = reader.bool();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes an AutoOrganizeBusinessChatSetting message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting} AutoOrganizeBusinessChatSetting
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            AutoOrganizeBusinessChatSetting.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies an AutoOrganizeBusinessChatSetting message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            AutoOrganizeBusinessChatSetting.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.autoOrganize != null && message.hasOwnProperty("autoOrganize"))
+                    if (typeof message.autoOrganize !== "boolean")
+                        return "autoOrganize: boolean expected";
+                return null;
+            };
+
+            /**
+             * Creates an AutoOrganizeBusinessChatSetting message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting} AutoOrganizeBusinessChatSetting
+             */
+            AutoOrganizeBusinessChatSetting.fromObject = function fromObject(object) {
+                if (object instanceof $root.SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting)
+                    return object;
+                var message = new $root.SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting();
+                if (object.autoOrganize != null)
+                    message.autoOrganize = Boolean(object.autoOrganize);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from an AutoOrganizeBusinessChatSetting message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting
+             * @static
+             * @param {SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting} message AutoOrganizeBusinessChatSetting
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            AutoOrganizeBusinessChatSetting.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.autoOrganize = false;
+                if (message.autoOrganize != null && message.hasOwnProperty("autoOrganize"))
+                    object.autoOrganize = message.autoOrganize;
+                return object;
+            };
+
+            /**
+             * Converts this AutoOrganizeBusinessChatSetting to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            AutoOrganizeBusinessChatSetting.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for AutoOrganizeBusinessChatSetting
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            AutoOrganizeBusinessChatSetting.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting";
+            };
+
+            return AutoOrganizeBusinessChatSetting;
+        })();
+
         SyncActionValue.AvatarUpdatedAction = (function() {
 
             /**
@@ -137537,6 +137798,347 @@ $root.SyncAction = (function() {
             })();
 
             return AvatarUpdatedAction;
+        })();
+
+        SyncActionValue.BizAISettingsNudgeAction = (function() {
+
+            /**
+             * Properties of a BizAISettingsNudgeAction.
+             * @memberof SyncAction.SyncActionValue
+             * @interface IBizAISettingsNudgeAction
+             * @property {SyncAction.SyncActionValue.BizAISettingsNudgeAction.BizAISettingsCategory|null} [category] BizAISettingsNudgeAction category
+             * @property {number|Long|null} [version] BizAISettingsNudgeAction version
+             * @property {number|Long|null} [updatedAtMs] BizAISettingsNudgeAction updatedAtMs
+             */
+
+            /**
+             * Constructs a new BizAISettingsNudgeAction.
+             * @memberof SyncAction.SyncActionValue
+             * @classdesc Represents a BizAISettingsNudgeAction.
+             * @implements IBizAISettingsNudgeAction
+             * @constructor
+             * @param {SyncAction.SyncActionValue.IBizAISettingsNudgeAction=} [properties] Properties to set
+             */
+            function BizAISettingsNudgeAction(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * BizAISettingsNudgeAction category.
+             * @member {SyncAction.SyncActionValue.BizAISettingsNudgeAction.BizAISettingsCategory} category
+             * @memberof SyncAction.SyncActionValue.BizAISettingsNudgeAction
+             * @instance
+             */
+            BizAISettingsNudgeAction.prototype.category = 0;
+
+            /**
+             * BizAISettingsNudgeAction version.
+             * @member {number|Long} version
+             * @memberof SyncAction.SyncActionValue.BizAISettingsNudgeAction
+             * @instance
+             */
+            BizAISettingsNudgeAction.prototype.version = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+            /**
+             * BizAISettingsNudgeAction updatedAtMs.
+             * @member {number|Long} updatedAtMs
+             * @memberof SyncAction.SyncActionValue.BizAISettingsNudgeAction
+             * @instance
+             */
+            BizAISettingsNudgeAction.prototype.updatedAtMs = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+            /**
+             * Creates a new BizAISettingsNudgeAction instance using the specified properties.
+             * @function create
+             * @memberof SyncAction.SyncActionValue.BizAISettingsNudgeAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IBizAISettingsNudgeAction=} [properties] Properties to set
+             * @returns {SyncAction.SyncActionValue.BizAISettingsNudgeAction} BizAISettingsNudgeAction instance
+             */
+            BizAISettingsNudgeAction.create = function create(properties) {
+                return new BizAISettingsNudgeAction(properties);
+            };
+
+            /**
+             * Encodes the specified BizAISettingsNudgeAction message. Does not implicitly {@link SyncAction.SyncActionValue.BizAISettingsNudgeAction.verify|verify} messages.
+             * @function encode
+             * @memberof SyncAction.SyncActionValue.BizAISettingsNudgeAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IBizAISettingsNudgeAction} message BizAISettingsNudgeAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            BizAISettingsNudgeAction.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.category != null && Object.hasOwnProperty.call(message, "category"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.category);
+                if (message.version != null && Object.hasOwnProperty.call(message, "version"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).int64(message.version);
+                if (message.updatedAtMs != null && Object.hasOwnProperty.call(message, "updatedAtMs"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).int64(message.updatedAtMs);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified BizAISettingsNudgeAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.BizAISettingsNudgeAction.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof SyncAction.SyncActionValue.BizAISettingsNudgeAction
+             * @static
+             * @param {SyncAction.SyncActionValue.IBizAISettingsNudgeAction} message BizAISettingsNudgeAction message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            BizAISettingsNudgeAction.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a BizAISettingsNudgeAction message from the specified reader or buffer.
+             * @function decode
+             * @memberof SyncAction.SyncActionValue.BizAISettingsNudgeAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {SyncAction.SyncActionValue.BizAISettingsNudgeAction} BizAISettingsNudgeAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            BizAISettingsNudgeAction.decode = function decode(reader, length, error) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.category = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.version = reader.int64();
+                            break;
+                        }
+                    case 3: {
+                            message.updatedAtMs = reader.int64();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a BizAISettingsNudgeAction message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof SyncAction.SyncActionValue.BizAISettingsNudgeAction
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {SyncAction.SyncActionValue.BizAISettingsNudgeAction} BizAISettingsNudgeAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            BizAISettingsNudgeAction.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a BizAISettingsNudgeAction message.
+             * @function verify
+             * @memberof SyncAction.SyncActionValue.BizAISettingsNudgeAction
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            BizAISettingsNudgeAction.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.category != null && message.hasOwnProperty("category"))
+                    switch (message.category) {
+                    default:
+                        return "category: enum value expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                        break;
+                    }
+                if (message.version != null && message.hasOwnProperty("version"))
+                    if (!$util.isInteger(message.version) && !(message.version && $util.isInteger(message.version.low) && $util.isInteger(message.version.high)))
+                        return "version: integer|Long expected";
+                if (message.updatedAtMs != null && message.hasOwnProperty("updatedAtMs"))
+                    if (!$util.isInteger(message.updatedAtMs) && !(message.updatedAtMs && $util.isInteger(message.updatedAtMs.low) && $util.isInteger(message.updatedAtMs.high)))
+                        return "updatedAtMs: integer|Long expected";
+                return null;
+            };
+
+            /**
+             * Creates a BizAISettingsNudgeAction message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof SyncAction.SyncActionValue.BizAISettingsNudgeAction
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {SyncAction.SyncActionValue.BizAISettingsNudgeAction} BizAISettingsNudgeAction
+             */
+            BizAISettingsNudgeAction.fromObject = function fromObject(object) {
+                if (object instanceof $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction)
+                    return object;
+                var message = new $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction();
+                switch (object.category) {
+                default:
+                    if (typeof object.category === "number") {
+                        message.category = object.category;
+                        break;
+                    }
+                    break;
+                case "UNKNOWN":
+                case 0:
+                    message.category = 0;
+                    break;
+                case "INSTRUCTIONS":
+                case 1:
+                    message.category = 1;
+                    break;
+                case "RESPONSE_SETTINGS":
+                case 2:
+                    message.category = 2;
+                    break;
+                case "EXAMPLE_RESPONSES":
+                case 3:
+                    message.category = 3;
+                    break;
+                case "KNOWLEDGE":
+                case 4:
+                    message.category = 4;
+                    break;
+                case "LEAD_GEN":
+                case 5:
+                    message.category = 5;
+                    break;
+                }
+                if (object.version != null)
+                    if ($util.Long)
+                        (message.version = $util.Long.fromValue(object.version)).unsigned = false;
+                    else if (typeof object.version === "string")
+                        message.version = parseInt(object.version, 10);
+                    else if (typeof object.version === "number")
+                        message.version = object.version;
+                    else if (typeof object.version === "object")
+                        message.version = new $util.LongBits(object.version.low >>> 0, object.version.high >>> 0).toNumber();
+                if (object.updatedAtMs != null)
+                    if ($util.Long)
+                        (message.updatedAtMs = $util.Long.fromValue(object.updatedAtMs)).unsigned = false;
+                    else if (typeof object.updatedAtMs === "string")
+                        message.updatedAtMs = parseInt(object.updatedAtMs, 10);
+                    else if (typeof object.updatedAtMs === "number")
+                        message.updatedAtMs = object.updatedAtMs;
+                    else if (typeof object.updatedAtMs === "object")
+                        message.updatedAtMs = new $util.LongBits(object.updatedAtMs.low >>> 0, object.updatedAtMs.high >>> 0).toNumber();
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a BizAISettingsNudgeAction message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof SyncAction.SyncActionValue.BizAISettingsNudgeAction
+             * @static
+             * @param {SyncAction.SyncActionValue.BizAISettingsNudgeAction} message BizAISettingsNudgeAction
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            BizAISettingsNudgeAction.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.category = options.enums === String ? "UNKNOWN" : 0;
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.version = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    } else
+                        object.version = options.longs === String ? "0" : 0;
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.updatedAtMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    } else
+                        object.updatedAtMs = options.longs === String ? "0" : 0;
+                }
+                if (message.category != null && message.hasOwnProperty("category"))
+                    object.category = options.enums === String ? $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction.BizAISettingsCategory[message.category] === undefined ? message.category : $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction.BizAISettingsCategory[message.category] : message.category;
+                if (message.version != null && message.hasOwnProperty("version"))
+                    if (typeof message.version === "number")
+                        object.version = options.longs === String ? String(message.version) : message.version;
+                    else
+                        object.version = options.longs === String ? $util.Long.prototype.toString.call(message.version) : options.longs === Number ? new $util.LongBits(message.version.low >>> 0, message.version.high >>> 0).toNumber() : message.version;
+                if (message.updatedAtMs != null && message.hasOwnProperty("updatedAtMs"))
+                    if (typeof message.updatedAtMs === "number")
+                        object.updatedAtMs = options.longs === String ? String(message.updatedAtMs) : message.updatedAtMs;
+                    else
+                        object.updatedAtMs = options.longs === String ? $util.Long.prototype.toString.call(message.updatedAtMs) : options.longs === Number ? new $util.LongBits(message.updatedAtMs.low >>> 0, message.updatedAtMs.high >>> 0).toNumber() : message.updatedAtMs;
+                return object;
+            };
+
+            /**
+             * Converts this BizAISettingsNudgeAction to JSON.
+             * @function toJSON
+             * @memberof SyncAction.SyncActionValue.BizAISettingsNudgeAction
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            BizAISettingsNudgeAction.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for BizAISettingsNudgeAction
+             * @function getTypeUrl
+             * @memberof SyncAction.SyncActionValue.BizAISettingsNudgeAction
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            BizAISettingsNudgeAction.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/SyncAction.SyncActionValue.BizAISettingsNudgeAction";
+            };
+
+            /**
+             * BizAISettingsCategory enum.
+             * @name SyncAction.SyncActionValue.BizAISettingsNudgeAction.BizAISettingsCategory
+             * @enum {number}
+             * @property {number} UNKNOWN=0 UNKNOWN value
+             * @property {number} INSTRUCTIONS=1 INSTRUCTIONS value
+             * @property {number} RESPONSE_SETTINGS=2 RESPONSE_SETTINGS value
+             * @property {number} EXAMPLE_RESPONSES=3 EXAMPLE_RESPONSES value
+             * @property {number} KNOWLEDGE=4 KNOWLEDGE value
+             * @property {number} LEAD_GEN=5 LEAD_GEN value
+             */
+            BizAISettingsNudgeAction.BizAISettingsCategory = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "UNKNOWN"] = 0;
+                values[valuesById[1] = "INSTRUCTIONS"] = 1;
+                values[valuesById[2] = "RESPONSE_SETTINGS"] = 2;
+                values[valuesById[3] = "EXAMPLE_RESPONSES"] = 3;
+                values[valuesById[4] = "KNOWLEDGE"] = 4;
+                values[valuesById[5] = "LEAD_GEN"] = 5;
+                return values;
+            })();
+
+            return BizAISettingsNudgeAction;
         })();
 
         SyncActionValue.BotWelcomeRequestAction = (function() {
@@ -153573,6 +154175,7 @@ $root.SyncAction = (function() {
              * @property {boolean|null} [shareToFB] StatusPrivacyAction shareToFB
              * @property {boolean|null} [shareToIG] StatusPrivacyAction shareToIG
              * @property {Array.<SyncAction.SyncActionValue.StatusPrivacyAction.ICustomList>|null} [customLists] StatusPrivacyAction customLists
+             * @property {Array.<SyncAction.SyncActionValue.StatusPrivacyAction.StatusDistributionMode>|null} [modes] StatusPrivacyAction modes
              */
 
             /**
@@ -153586,6 +154189,7 @@ $root.SyncAction = (function() {
             function StatusPrivacyAction(properties) {
                 this.userJid = [];
                 this.customLists = [];
+                this.modes = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -153633,6 +154237,14 @@ $root.SyncAction = (function() {
             StatusPrivacyAction.prototype.customLists = $util.emptyArray;
 
             /**
+             * StatusPrivacyAction modes.
+             * @member {Array.<SyncAction.SyncActionValue.StatusPrivacyAction.StatusDistributionMode>} modes
+             * @memberof SyncAction.SyncActionValue.StatusPrivacyAction
+             * @instance
+             */
+            StatusPrivacyAction.prototype.modes = $util.emptyArray;
+
+            /**
              * Creates a new StatusPrivacyAction instance using the specified properties.
              * @function create
              * @memberof SyncAction.SyncActionValue.StatusPrivacyAction
@@ -153668,6 +154280,9 @@ $root.SyncAction = (function() {
                 if (message.customLists != null && message.customLists.length)
                     for (var i = 0; i < message.customLists.length; ++i)
                         $root.SyncAction.SyncActionValue.StatusPrivacyAction.CustomList.encode(message.customLists[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                if (message.modes != null && message.modes.length)
+                    for (var i = 0; i < message.modes.length; ++i)
+                        writer.uint32(/* id 6, wireType 0 =*/48).int32(message.modes[i]);
                 return writer;
             };
 
@@ -153726,6 +154341,17 @@ $root.SyncAction = (function() {
                             if (!(message.customLists && message.customLists.length))
                                 message.customLists = [];
                             message.customLists.push($root.SyncAction.SyncActionValue.StatusPrivacyAction.CustomList.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 6: {
+                            if (!(message.modes && message.modes.length))
+                                message.modes = [];
+                            if ((tag & 7) === 2) {
+                                var end2 = reader.uint32() + reader.pos;
+                                while (reader.pos < end2)
+                                    message.modes.push(reader.int32());
+                            } else
+                                message.modes.push(reader.int32());
                             break;
                         }
                     default:
@@ -153796,6 +154422,21 @@ $root.SyncAction = (function() {
                             return "customLists." + error;
                     }
                 }
+                if (message.modes != null && message.hasOwnProperty("modes")) {
+                    if (!Array.isArray(message.modes))
+                        return "modes: array expected";
+                    for (var i = 0; i < message.modes.length; ++i)
+                        switch (message.modes[i]) {
+                        default:
+                            return "modes: enum value[] expected";
+                        case 0:
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 4:
+                            break;
+                        }
+                }
                 return null;
             };
 
@@ -153860,6 +154501,39 @@ $root.SyncAction = (function() {
                         message.customLists[i] = $root.SyncAction.SyncActionValue.StatusPrivacyAction.CustomList.fromObject(object.customLists[i]);
                     }
                 }
+                if (object.modes) {
+                    if (!Array.isArray(object.modes))
+                        throw TypeError(".SyncAction.SyncActionValue.StatusPrivacyAction.modes: array expected");
+                    message.modes = [];
+                    for (var i = 0; i < object.modes.length; ++i)
+                        switch (object.modes[i]) {
+                        default:
+                            if (typeof object.modes[i] === "number") {
+                                message.modes[i] = object.modes[i];
+                                break;
+                            }
+                        case "ALLOW_LIST":
+                        case 0:
+                            message.modes[i] = 0;
+                            break;
+                        case "DENY_LIST":
+                        case 1:
+                            message.modes[i] = 1;
+                            break;
+                        case "CONTACTS":
+                        case 2:
+                            message.modes[i] = 2;
+                            break;
+                        case "CLOSE_FRIENDS":
+                        case 3:
+                            message.modes[i] = 3;
+                            break;
+                        case "CUSTOM_LIST":
+                        case 4:
+                            message.modes[i] = 4;
+                            break;
+                        }
+                }
                 return message;
             };
 
@@ -153879,6 +154553,7 @@ $root.SyncAction = (function() {
                 if (options.arrays || options.defaults) {
                     object.userJid = [];
                     object.customLists = [];
+                    object.modes = [];
                 }
                 if (options.defaults) {
                     object.mode = options.enums === String ? "ALLOW_LIST" : 0;
@@ -153900,6 +154575,11 @@ $root.SyncAction = (function() {
                     object.customLists = [];
                     for (var j = 0; j < message.customLists.length; ++j)
                         object.customLists[j] = $root.SyncAction.SyncActionValue.StatusPrivacyAction.CustomList.toObject(message.customLists[j], options);
+                }
+                if (message.modes && message.modes.length) {
+                    object.modes = [];
+                    for (var j = 0; j < message.modes.length; ++j)
+                        object.modes[j] = options.enums === String ? $root.SyncAction.SyncActionValue.StatusPrivacyAction.StatusDistributionMode[message.modes[j]] === undefined ? message.modes[j] : $root.SyncAction.SyncActionValue.StatusPrivacyAction.StatusDistributionMode[message.modes[j]] : message.modes[j];
                 }
                 return object;
             };
@@ -159658,6 +160338,8 @@ $root.SyncAction = (function() {
      * @property {number} CUSTOMER_DATA_ACTION=83 CUSTOMER_DATA_ACTION value
      * @property {number} SUBSCRIPTIONS_SYNC_V2_ACTION=84 SUBSCRIPTIONS_SYNC_V2_ACTION value
      * @property {number} THREAD_PIN_ACTION=85 THREAD_PIN_ACTION value
+     * @property {number} AUTO_ORGANIZE_BUSINESS_CHAT_SETTING=86 AUTO_ORGANIZE_BUSINESS_CHAT_SETTING value
+     * @property {number} BIZ_AI_SETTINGS_NUDGE_ACTION=87 BIZ_AI_SETTINGS_NUDGE_ACTION value
      * @property {number} SHARE_OWN_PN=10001 SHARE_OWN_PN value
      * @property {number} BUSINESS_BROADCAST_ACTION=10002 BUSINESS_BROADCAST_ACTION value
      * @property {number} AI_THREAD_DELETE_ACTION=10003 AI_THREAD_DELETE_ACTION value
@@ -159743,6 +160425,8 @@ $root.SyncAction = (function() {
         values[valuesById[83] = "CUSTOMER_DATA_ACTION"] = 83;
         values[valuesById[84] = "SUBSCRIPTIONS_SYNC_V2_ACTION"] = 84;
         values[valuesById[85] = "THREAD_PIN_ACTION"] = 85;
+        values[valuesById[86] = "AUTO_ORGANIZE_BUSINESS_CHAT_SETTING"] = 86;
+        values[valuesById[87] = "BIZ_AI_SETTINGS_NUDGE_ACTION"] = 87;
         values[valuesById[10001] = "SHARE_OWN_PN"] = 10001;
         values[valuesById[10002] = "BUSINESS_BROADCAST_ACTION"] = 10002;
         values[valuesById[10003] = "AI_THREAD_DELETE_ACTION"] = 10003;

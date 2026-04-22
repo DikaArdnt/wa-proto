@@ -524,6 +524,12 @@ export namespace SyncAction {
 
         /** SyncActionValue threadPinAction */
         threadPinAction?: (SyncAction.SyncActionValue.IThreadPinAction|null);
+
+        /** SyncActionValue autoOrganizeBusinessChatSetting */
+        autoOrganizeBusinessChatSetting?: (SyncAction.SyncActionValue.IAutoOrganizeBusinessChatSetting|null);
+
+        /** SyncActionValue bizAiSettingsNudgeAction */
+        bizAiSettingsNudgeAction?: (SyncAction.SyncActionValue.IBizAISettingsNudgeAction|null);
     }
 
     /** Represents a SyncActionValue. */
@@ -762,6 +768,12 @@ export namespace SyncAction {
 
         /** SyncActionValue threadPinAction. */
         public threadPinAction?: (SyncAction.SyncActionValue.IThreadPinAction|null);
+
+        /** SyncActionValue autoOrganizeBusinessChatSetting. */
+        public autoOrganizeBusinessChatSetting?: (SyncAction.SyncActionValue.IAutoOrganizeBusinessChatSetting|null);
+
+        /** SyncActionValue bizAiSettingsNudgeAction. */
+        public bizAiSettingsNudgeAction?: (SyncAction.SyncActionValue.IBizAISettingsNudgeAction|null);
 
         /**
          * Creates a new SyncActionValue instance using the specified properties.
@@ -1249,6 +1261,103 @@ export namespace SyncAction {
             public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
+        /** Properties of an AutoOrganizeBusinessChatSetting. */
+        interface IAutoOrganizeBusinessChatSetting {
+
+            /** AutoOrganizeBusinessChatSetting autoOrganize */
+            autoOrganize?: (boolean|null);
+        }
+
+        /** Represents an AutoOrganizeBusinessChatSetting. */
+        class AutoOrganizeBusinessChatSetting implements IAutoOrganizeBusinessChatSetting {
+
+            /**
+             * Constructs a new AutoOrganizeBusinessChatSetting.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SyncAction.SyncActionValue.IAutoOrganizeBusinessChatSetting);
+
+            /** AutoOrganizeBusinessChatSetting autoOrganize. */
+            public autoOrganize: boolean;
+
+            /**
+             * Creates a new AutoOrganizeBusinessChatSetting instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns AutoOrganizeBusinessChatSetting instance
+             */
+            public static create(properties?: SyncAction.SyncActionValue.IAutoOrganizeBusinessChatSetting): SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting;
+
+            /**
+             * Encodes the specified AutoOrganizeBusinessChatSetting message. Does not implicitly {@link SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting.verify|verify} messages.
+             * @param message AutoOrganizeBusinessChatSetting message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SyncAction.SyncActionValue.IAutoOrganizeBusinessChatSetting, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified AutoOrganizeBusinessChatSetting message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting.verify|verify} messages.
+             * @param message AutoOrganizeBusinessChatSetting message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SyncAction.SyncActionValue.IAutoOrganizeBusinessChatSetting, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes an AutoOrganizeBusinessChatSetting message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns AutoOrganizeBusinessChatSetting
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting;
+
+            /**
+             * Decodes an AutoOrganizeBusinessChatSetting message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns AutoOrganizeBusinessChatSetting
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting;
+
+            /**
+             * Verifies an AutoOrganizeBusinessChatSetting message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates an AutoOrganizeBusinessChatSetting message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns AutoOrganizeBusinessChatSetting
+             */
+            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting;
+
+            /**
+             * Creates a plain object from an AutoOrganizeBusinessChatSetting message. Also converts values to other types if specified.
+             * @param message AutoOrganizeBusinessChatSetting
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this AutoOrganizeBusinessChatSetting to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for AutoOrganizeBusinessChatSetting
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
         /** Properties of an AvatarUpdatedAction. */
         interface IAvatarUpdatedAction {
 
@@ -1359,6 +1468,128 @@ export namespace SyncAction {
                 UPDATED = 0,
                 CREATED = 1,
                 DELETED = 2
+            }
+        }
+
+        /** Properties of a BizAISettingsNudgeAction. */
+        interface IBizAISettingsNudgeAction {
+
+            /** BizAISettingsNudgeAction category */
+            category?: (SyncAction.SyncActionValue.BizAISettingsNudgeAction.BizAISettingsCategory|null);
+
+            /** BizAISettingsNudgeAction version */
+            version?: (number|Long|null);
+
+            /** BizAISettingsNudgeAction updatedAtMs */
+            updatedAtMs?: (number|Long|null);
+        }
+
+        /** Represents a BizAISettingsNudgeAction. */
+        class BizAISettingsNudgeAction implements IBizAISettingsNudgeAction {
+
+            /**
+             * Constructs a new BizAISettingsNudgeAction.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: SyncAction.SyncActionValue.IBizAISettingsNudgeAction);
+
+            /** BizAISettingsNudgeAction category. */
+            public category: SyncAction.SyncActionValue.BizAISettingsNudgeAction.BizAISettingsCategory;
+
+            /** BizAISettingsNudgeAction version. */
+            public version: (number|Long);
+
+            /** BizAISettingsNudgeAction updatedAtMs. */
+            public updatedAtMs: (number|Long);
+
+            /**
+             * Creates a new BizAISettingsNudgeAction instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns BizAISettingsNudgeAction instance
+             */
+            public static create(properties?: SyncAction.SyncActionValue.IBizAISettingsNudgeAction): SyncAction.SyncActionValue.BizAISettingsNudgeAction;
+
+            /**
+             * Encodes the specified BizAISettingsNudgeAction message. Does not implicitly {@link SyncAction.SyncActionValue.BizAISettingsNudgeAction.verify|verify} messages.
+             * @param message BizAISettingsNudgeAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: SyncAction.SyncActionValue.IBizAISettingsNudgeAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified BizAISettingsNudgeAction message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.BizAISettingsNudgeAction.verify|verify} messages.
+             * @param message BizAISettingsNudgeAction message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: SyncAction.SyncActionValue.IBizAISettingsNudgeAction, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a BizAISettingsNudgeAction message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns BizAISettingsNudgeAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.BizAISettingsNudgeAction;
+
+            /**
+             * Decodes a BizAISettingsNudgeAction message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns BizAISettingsNudgeAction
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.BizAISettingsNudgeAction;
+
+            /**
+             * Verifies a BizAISettingsNudgeAction message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a BizAISettingsNudgeAction message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns BizAISettingsNudgeAction
+             */
+            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.BizAISettingsNudgeAction;
+
+            /**
+             * Creates a plain object from a BizAISettingsNudgeAction message. Also converts values to other types if specified.
+             * @param message BizAISettingsNudgeAction
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: SyncAction.SyncActionValue.BizAISettingsNudgeAction, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this BizAISettingsNudgeAction to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for BizAISettingsNudgeAction
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace BizAISettingsNudgeAction {
+
+            /** BizAISettingsCategory enum. */
+            enum BizAISettingsCategory {
+                UNKNOWN = 0,
+                INSTRUCTIONS = 1,
+                RESPONSE_SETTINGS = 2,
+                EXAMPLE_RESPONSES = 3,
+                KNOWLEDGE = 4,
+                LEAD_GEN = 5
             }
         }
 
@@ -8095,6 +8326,9 @@ export namespace SyncAction {
 
             /** StatusPrivacyAction customLists */
             customLists?: (SyncAction.SyncActionValue.StatusPrivacyAction.ICustomList[]|null);
+
+            /** StatusPrivacyAction modes */
+            modes?: (SyncAction.SyncActionValue.StatusPrivacyAction.StatusDistributionMode[]|null);
         }
 
         /** Represents a StatusPrivacyAction. */
@@ -8120,6 +8354,9 @@ export namespace SyncAction {
 
             /** StatusPrivacyAction customLists. */
             public customLists: SyncAction.SyncActionValue.StatusPrivacyAction.ICustomList[];
+
+            /** StatusPrivacyAction modes. */
+            public modes: SyncAction.SyncActionValue.StatusPrivacyAction.StatusDistributionMode[];
 
             /**
              * Creates a new StatusPrivacyAction instance using the specified properties.
@@ -10479,6 +10716,8 @@ export namespace SyncAction {
         CUSTOMER_DATA_ACTION = 83,
         SUBSCRIPTIONS_SYNC_V2_ACTION = 84,
         THREAD_PIN_ACTION = 85,
+        AUTO_ORGANIZE_BUSINESS_CHAT_SETTING = 86,
+        BIZ_AI_SETTINGS_NUDGE_ACTION = 87,
         SHARE_OWN_PN = 10001,
         BUSINESS_BROADCAST_ACTION = 10002,
         AI_THREAD_DELETE_ACTION = 10003
