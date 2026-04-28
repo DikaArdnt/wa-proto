@@ -38,7 +38,7 @@ $root.MdStorageChatRowOpaqueData = (function() {
         function ChatRowOpaqueData(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -103,9 +103,13 @@ $root.MdStorageChatRowOpaqueData = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ChatRowOpaqueData.decode = function decode(reader, length, error) {
+        ChatRowOpaqueData.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -113,11 +117,11 @@ $root.MdStorageChatRowOpaqueData = (function() {
                     break;
                 switch (tag >>> 3) {
                 case 1: {
-                        message.draftMessage = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.decode(reader, reader.uint32());
+                        message.draftMessage = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -148,11 +152,15 @@ $root.MdStorageChatRowOpaqueData = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        ChatRowOpaqueData.verify = function verify(message) {
+        ChatRowOpaqueData.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.draftMessage != null && message.hasOwnProperty("draftMessage")) {
-                var error = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.verify(message.draftMessage);
+                var error = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.verify(message.draftMessage, long + 1);
                 if (error)
                     return "draftMessage." + error;
             }
@@ -167,14 +175,18 @@ $root.MdStorageChatRowOpaqueData = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {MdStorageChatRowOpaqueData.ChatRowOpaqueData} ChatRowOpaqueData
          */
-        ChatRowOpaqueData.fromObject = function fromObject(object) {
+        ChatRowOpaqueData.fromObject = function fromObject(object, long) {
             if (object instanceof $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData();
             if (object.draftMessage != null) {
                 if (typeof object.draftMessage !== "object")
                     throw TypeError(".MdStorageChatRowOpaqueData.ChatRowOpaqueData.draftMessage: object expected");
-                message.draftMessage = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.fromObject(object.draftMessage);
+                message.draftMessage = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.fromObject(object.draftMessage, long + 1);
             }
             return message;
         };
@@ -249,7 +261,7 @@ $root.MdStorageChatRowOpaqueData = (function() {
             function DraftMessage(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -354,9 +366,13 @@ $root.MdStorageChatRowOpaqueData = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            DraftMessage.decode = function decode(reader, length, error) {
+            DraftMessage.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -372,11 +388,11 @@ $root.MdStorageChatRowOpaqueData = (function() {
                             break;
                         }
                     case 3: {
-                            message.ctwaContextLinkData = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextLinkData.decode(reader, reader.uint32());
+                            message.ctwaContextLinkData = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextLinkData.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     case 4: {
-                            message.ctwaContext = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextData.decode(reader, reader.uint32());
+                            message.ctwaContext = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextData.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     case 5: {
@@ -384,7 +400,7 @@ $root.MdStorageChatRowOpaqueData = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -415,9 +431,13 @@ $root.MdStorageChatRowOpaqueData = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            DraftMessage.verify = function verify(message) {
+            DraftMessage.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.text != null && message.hasOwnProperty("text"))
                     if (!$util.isString(message.text))
                         return "text: string expected";
@@ -425,12 +445,12 @@ $root.MdStorageChatRowOpaqueData = (function() {
                     if (!$util.isString(message.omittedUrl))
                         return "omittedUrl: string expected";
                 if (message.ctwaContextLinkData != null && message.hasOwnProperty("ctwaContextLinkData")) {
-                    var error = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextLinkData.verify(message.ctwaContextLinkData);
+                    var error = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextLinkData.verify(message.ctwaContextLinkData, long + 1);
                     if (error)
                         return "ctwaContextLinkData." + error;
                 }
                 if (message.ctwaContext != null && message.hasOwnProperty("ctwaContext")) {
-                    var error = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextData.verify(message.ctwaContext);
+                    var error = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextData.verify(message.ctwaContext, long + 1);
                     if (error)
                         return "ctwaContext." + error;
                 }
@@ -448,9 +468,13 @@ $root.MdStorageChatRowOpaqueData = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage} DraftMessage
              */
-            DraftMessage.fromObject = function fromObject(object) {
+            DraftMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage();
                 if (object.text != null)
                     message.text = String(object.text);
@@ -459,12 +483,12 @@ $root.MdStorageChatRowOpaqueData = (function() {
                 if (object.ctwaContextLinkData != null) {
                     if (typeof object.ctwaContextLinkData !== "object")
                         throw TypeError(".MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.ctwaContextLinkData: object expected");
-                    message.ctwaContextLinkData = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextLinkData.fromObject(object.ctwaContextLinkData);
+                    message.ctwaContextLinkData = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextLinkData.fromObject(object.ctwaContextLinkData, long + 1);
                 }
                 if (object.ctwaContext != null) {
                     if (typeof object.ctwaContext !== "object")
                         throw TypeError(".MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.ctwaContext: object expected");
-                    message.ctwaContext = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextData.fromObject(object.ctwaContext);
+                    message.ctwaContext = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextData.fromObject(object.ctwaContext, long + 1);
                 }
                 if (object.timestamp != null)
                     if ($util.Long)
@@ -575,7 +599,7 @@ $root.MdStorageChatRowOpaqueData = (function() {
                 function CtwaContextData(properties) {
                     if (properties)
                         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
+                            if (properties[keys[i]] != null && keys[i] !== "__proto__")
                                 this[keys[i]] = properties[keys[i]];
                 }
 
@@ -750,9 +774,13 @@ $root.MdStorageChatRowOpaqueData = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CtwaContextData.decode = function decode(reader, length, error) {
+                CtwaContextData.decode = function decode(reader, length, error, long) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $Reader.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextData();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
@@ -808,7 +836,7 @@ $root.MdStorageChatRowOpaqueData = (function() {
                                 break;
                             }
                         default:
-                            reader.skipType(tag & 7);
+                            reader.skipType(tag & 7, long);
                             break;
                         }
                     }
@@ -839,9 +867,13 @@ $root.MdStorageChatRowOpaqueData = (function() {
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
                  */
-                CtwaContextData.verify = function verify(message) {
+                CtwaContextData.verify = function verify(message, long) {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        return "maximum nesting depth exceeded";
                     if (message.conversionSource != null && message.hasOwnProperty("conversionSource"))
                         if (!$util.isString(message.conversionSource))
                             return "conversionSource: string expected";
@@ -895,9 +927,13 @@ $root.MdStorageChatRowOpaqueData = (function() {
                  * @param {Object.<string,*>} object Plain object
                  * @returns {MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextData} CtwaContextData
                  */
-                CtwaContextData.fromObject = function fromObject(object) {
+                CtwaContextData.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextData)
                         return object;
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var message = new $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextData();
                     if (object.conversionSource != null)
                         message.conversionSource = String(object.conversionSource);
@@ -1075,7 +1111,7 @@ $root.MdStorageChatRowOpaqueData = (function() {
                 function CtwaContextLinkData(properties) {
                     if (properties)
                         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
+                            if (properties[keys[i]] != null && keys[i] !== "__proto__")
                                 this[keys[i]] = properties[keys[i]];
                 }
 
@@ -1170,9 +1206,13 @@ $root.MdStorageChatRowOpaqueData = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CtwaContextLinkData.decode = function decode(reader, length, error) {
+                CtwaContextLinkData.decode = function decode(reader, length, error, long) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $Reader.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextLinkData();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
@@ -1196,7 +1236,7 @@ $root.MdStorageChatRowOpaqueData = (function() {
                                 break;
                             }
                         default:
-                            reader.skipType(tag & 7);
+                            reader.skipType(tag & 7, long);
                             break;
                         }
                     }
@@ -1227,9 +1267,13 @@ $root.MdStorageChatRowOpaqueData = (function() {
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
                  */
-                CtwaContextLinkData.verify = function verify(message) {
+                CtwaContextLinkData.verify = function verify(message, long) {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        return "maximum nesting depth exceeded";
                     if (message.context != null && message.hasOwnProperty("context"))
                         if (!$util.isString(message.context))
                             return "context: string expected";
@@ -1253,9 +1297,13 @@ $root.MdStorageChatRowOpaqueData = (function() {
                  * @param {Object.<string,*>} object Plain object
                  * @returns {MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextLinkData} CtwaContextLinkData
                  */
-                CtwaContextLinkData.fromObject = function fromObject(object) {
+                CtwaContextLinkData.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextLinkData)
                         return object;
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var message = new $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextLinkData();
                     if (object.context != null)
                         message.context = String(object.context);

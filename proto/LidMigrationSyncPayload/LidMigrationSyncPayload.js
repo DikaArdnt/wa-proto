@@ -40,7 +40,7 @@ $root.LidMigrationSyncPayload = (function() {
             this.pnToLidMappings = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -116,9 +116,13 @@ $root.LidMigrationSyncPayload = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        LIDMigrationMappingSyncPayload.decode = function decode(reader, length, error) {
+        LIDMigrationMappingSyncPayload.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.LidMigrationSyncPayload.LIDMigrationMappingSyncPayload();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -128,7 +132,7 @@ $root.LidMigrationSyncPayload = (function() {
                 case 1: {
                         if (!(message.pnToLidMappings && message.pnToLidMappings.length))
                             message.pnToLidMappings = [];
-                        message.pnToLidMappings.push($root.LidMigrationSyncPayload.LIDMigrationMapping.decode(reader, reader.uint32()));
+                        message.pnToLidMappings.push($root.LidMigrationSyncPayload.LIDMigrationMapping.decode(reader, reader.uint32(), undefined, long + 1));
                         break;
                     }
                 case 2: {
@@ -136,7 +140,7 @@ $root.LidMigrationSyncPayload = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -167,14 +171,18 @@ $root.LidMigrationSyncPayload = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        LIDMigrationMappingSyncPayload.verify = function verify(message) {
+        LIDMigrationMappingSyncPayload.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.pnToLidMappings != null && message.hasOwnProperty("pnToLidMappings")) {
                 if (!Array.isArray(message.pnToLidMappings))
                     return "pnToLidMappings: array expected";
                 for (var i = 0; i < message.pnToLidMappings.length; ++i) {
-                    var error = $root.LidMigrationSyncPayload.LIDMigrationMapping.verify(message.pnToLidMappings[i]);
+                    var error = $root.LidMigrationSyncPayload.LIDMigrationMapping.verify(message.pnToLidMappings[i], long + 1);
                     if (error)
                         return "pnToLidMappings." + error;
                 }
@@ -193,9 +201,13 @@ $root.LidMigrationSyncPayload = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {LidMigrationSyncPayload.LIDMigrationMappingSyncPayload} LIDMigrationMappingSyncPayload
          */
-        LIDMigrationMappingSyncPayload.fromObject = function fromObject(object) {
+        LIDMigrationMappingSyncPayload.fromObject = function fromObject(object, long) {
             if (object instanceof $root.LidMigrationSyncPayload.LIDMigrationMappingSyncPayload)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.LidMigrationSyncPayload.LIDMigrationMappingSyncPayload();
             if (object.pnToLidMappings) {
                 if (!Array.isArray(object.pnToLidMappings))
@@ -204,7 +216,7 @@ $root.LidMigrationSyncPayload = (function() {
                 for (var i = 0; i < object.pnToLidMappings.length; ++i) {
                     if (typeof object.pnToLidMappings[i] !== "object")
                         throw TypeError(".LidMigrationSyncPayload.LIDMigrationMappingSyncPayload.pnToLidMappings: object expected");
-                    message.pnToLidMappings[i] = $root.LidMigrationSyncPayload.LIDMigrationMapping.fromObject(object.pnToLidMappings[i]);
+                    message.pnToLidMappings[i] = $root.LidMigrationSyncPayload.LIDMigrationMapping.fromObject(object.pnToLidMappings[i], long + 1);
                 }
             }
             if (object.chatDbMigrationTimestamp != null)
@@ -304,7 +316,7 @@ $root.LidMigrationSyncPayload = (function() {
         function LIDMigrationMapping(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -387,9 +399,13 @@ $root.LidMigrationSyncPayload = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        LIDMigrationMapping.decode = function decode(reader, length, error) {
+        LIDMigrationMapping.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.LidMigrationSyncPayload.LIDMigrationMapping();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -409,7 +425,7 @@ $root.LidMigrationSyncPayload = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -444,9 +460,13 @@ $root.LidMigrationSyncPayload = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        LIDMigrationMapping.verify = function verify(message) {
+        LIDMigrationMapping.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (!$util.isInteger(message.pn) && !(message.pn && $util.isInteger(message.pn.low) && $util.isInteger(message.pn.high)))
                 return "pn: integer|Long expected";
             if (!$util.isInteger(message.assignedLid) && !(message.assignedLid && $util.isInteger(message.assignedLid.low) && $util.isInteger(message.assignedLid.high)))
@@ -465,9 +485,13 @@ $root.LidMigrationSyncPayload = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {LidMigrationSyncPayload.LIDMigrationMapping} LIDMigrationMapping
          */
-        LIDMigrationMapping.fromObject = function fromObject(object) {
+        LIDMigrationMapping.fromObject = function fromObject(object, long) {
             if (object instanceof $root.LidMigrationSyncPayload.LIDMigrationMapping)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.LidMigrationSyncPayload.LIDMigrationMapping();
             if (object.pn != null)
                 if ($util.Long)

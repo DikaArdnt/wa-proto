@@ -39,7 +39,7 @@ $root.Cert = (function() {
         function CertChain(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -114,9 +114,13 @@ $root.Cert = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        CertChain.decode = function decode(reader, length, error) {
+        CertChain.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Cert.CertChain();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -124,15 +128,15 @@ $root.Cert = (function() {
                     break;
                 switch (tag >>> 3) {
                 case 1: {
-                        message.leaf = $root.Cert.CertChain.NoiseCertificate.decode(reader, reader.uint32());
+                        message.leaf = $root.Cert.CertChain.NoiseCertificate.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 2: {
-                        message.intermediate = $root.Cert.CertChain.NoiseCertificate.decode(reader, reader.uint32());
+                        message.intermediate = $root.Cert.CertChain.NoiseCertificate.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -163,16 +167,20 @@ $root.Cert = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        CertChain.verify = function verify(message) {
+        CertChain.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.leaf != null && message.hasOwnProperty("leaf")) {
-                var error = $root.Cert.CertChain.NoiseCertificate.verify(message.leaf);
+                var error = $root.Cert.CertChain.NoiseCertificate.verify(message.leaf, long + 1);
                 if (error)
                     return "leaf." + error;
             }
             if (message.intermediate != null && message.hasOwnProperty("intermediate")) {
-                var error = $root.Cert.CertChain.NoiseCertificate.verify(message.intermediate);
+                var error = $root.Cert.CertChain.NoiseCertificate.verify(message.intermediate, long + 1);
                 if (error)
                     return "intermediate." + error;
             }
@@ -187,19 +195,23 @@ $root.Cert = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {Cert.CertChain} CertChain
          */
-        CertChain.fromObject = function fromObject(object) {
+        CertChain.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Cert.CertChain)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.Cert.CertChain();
             if (object.leaf != null) {
                 if (typeof object.leaf !== "object")
                     throw TypeError(".Cert.CertChain.leaf: object expected");
-                message.leaf = $root.Cert.CertChain.NoiseCertificate.fromObject(object.leaf);
+                message.leaf = $root.Cert.CertChain.NoiseCertificate.fromObject(object.leaf, long + 1);
             }
             if (object.intermediate != null) {
                 if (typeof object.intermediate !== "object")
                     throw TypeError(".Cert.CertChain.intermediate: object expected");
-                message.intermediate = $root.Cert.CertChain.NoiseCertificate.fromObject(object.intermediate);
+                message.intermediate = $root.Cert.CertChain.NoiseCertificate.fromObject(object.intermediate, long + 1);
             }
             return message;
         };
@@ -275,7 +287,7 @@ $root.Cert = (function() {
             function NoiseCertificate(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -350,9 +362,13 @@ $root.Cert = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            NoiseCertificate.decode = function decode(reader, length, error) {
+            NoiseCertificate.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Cert.CertChain.NoiseCertificate();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -368,7 +384,7 @@ $root.Cert = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -399,9 +415,13 @@ $root.Cert = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            NoiseCertificate.verify = function verify(message) {
+            NoiseCertificate.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.details != null && message.hasOwnProperty("details"))
                     if (!(message.details && typeof message.details.length === "number" || $util.isString(message.details)))
                         return "details: buffer expected";
@@ -419,9 +439,13 @@ $root.Cert = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {Cert.CertChain.NoiseCertificate} NoiseCertificate
              */
-            NoiseCertificate.fromObject = function fromObject(object) {
+            NoiseCertificate.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.Cert.CertChain.NoiseCertificate)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.Cert.CertChain.NoiseCertificate();
                 if (object.details != null)
                     if (typeof object.details === "string")
@@ -522,7 +546,7 @@ $root.Cert = (function() {
                 function Details(properties) {
                     if (properties)
                         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
+                            if (properties[keys[i]] != null && keys[i] !== "__proto__")
                                 this[keys[i]] = properties[keys[i]];
                 }
 
@@ -627,9 +651,13 @@ $root.Cert = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Details.decode = function decode(reader, length, error) {
+                Details.decode = function decode(reader, length, error, long) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $Reader.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Cert.CertChain.NoiseCertificate.Details();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
@@ -657,7 +685,7 @@ $root.Cert = (function() {
                                 break;
                             }
                         default:
-                            reader.skipType(tag & 7);
+                            reader.skipType(tag & 7, long);
                             break;
                         }
                     }
@@ -688,9 +716,13 @@ $root.Cert = (function() {
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
                  */
-                Details.verify = function verify(message) {
+                Details.verify = function verify(message, long) {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        return "maximum nesting depth exceeded";
                     if (message.serial != null && message.hasOwnProperty("serial"))
                         if (!$util.isInteger(message.serial))
                             return "serial: integer expected";
@@ -717,9 +749,13 @@ $root.Cert = (function() {
                  * @param {Object.<string,*>} object Plain object
                  * @returns {Cert.CertChain.NoiseCertificate.Details} Details
                  */
-                Details.fromObject = function fromObject(object) {
+                Details.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.Cert.CertChain.NoiseCertificate.Details)
                         return object;
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var message = new $root.Cert.CertChain.NoiseCertificate.Details();
                     if (object.serial != null)
                         message.serial = object.serial >>> 0;
@@ -860,7 +896,7 @@ $root.Cert = (function() {
         function NoiseCertificate(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -935,9 +971,13 @@ $root.Cert = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        NoiseCertificate.decode = function decode(reader, length, error) {
+        NoiseCertificate.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Cert.NoiseCertificate();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -953,7 +993,7 @@ $root.Cert = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -984,9 +1024,13 @@ $root.Cert = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        NoiseCertificate.verify = function verify(message) {
+        NoiseCertificate.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.details != null && message.hasOwnProperty("details"))
                 if (!(message.details && typeof message.details.length === "number" || $util.isString(message.details)))
                     return "details: buffer expected";
@@ -1004,9 +1048,13 @@ $root.Cert = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {Cert.NoiseCertificate} NoiseCertificate
          */
-        NoiseCertificate.fromObject = function fromObject(object) {
+        NoiseCertificate.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Cert.NoiseCertificate)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.Cert.NoiseCertificate();
             if (object.details != null)
                 if (typeof object.details === "string")
@@ -1107,7 +1155,7 @@ $root.Cert = (function() {
             function Details(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -1212,9 +1260,13 @@ $root.Cert = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            Details.decode = function decode(reader, length, error) {
+            Details.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Cert.NoiseCertificate.Details();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -1242,7 +1294,7 @@ $root.Cert = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -1273,9 +1325,13 @@ $root.Cert = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            Details.verify = function verify(message) {
+            Details.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.serial != null && message.hasOwnProperty("serial"))
                     if (!$util.isInteger(message.serial))
                         return "serial: integer expected";
@@ -1302,9 +1358,13 @@ $root.Cert = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {Cert.NoiseCertificate.Details} Details
              */
-            Details.fromObject = function fromObject(object) {
+            Details.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.Cert.NoiseCertificate.Details)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.Cert.NoiseCertificate.Details();
                 if (object.serial != null)
                     message.serial = object.serial >>> 0;

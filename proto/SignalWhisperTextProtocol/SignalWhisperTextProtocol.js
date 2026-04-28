@@ -39,7 +39,7 @@ $root.SignalWhisperTextProtocol = (function() {
         function DeviceConsistencyCodeMessage(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -114,9 +114,13 @@ $root.SignalWhisperTextProtocol = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        DeviceConsistencyCodeMessage.decode = function decode(reader, length, error) {
+        DeviceConsistencyCodeMessage.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalWhisperTextProtocol.DeviceConsistencyCodeMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -132,7 +136,7 @@ $root.SignalWhisperTextProtocol = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -163,9 +167,13 @@ $root.SignalWhisperTextProtocol = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        DeviceConsistencyCodeMessage.verify = function verify(message) {
+        DeviceConsistencyCodeMessage.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.generation != null && message.hasOwnProperty("generation"))
                 if (!$util.isInteger(message.generation))
                     return "generation: integer expected";
@@ -183,9 +191,13 @@ $root.SignalWhisperTextProtocol = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {SignalWhisperTextProtocol.DeviceConsistencyCodeMessage} DeviceConsistencyCodeMessage
          */
-        DeviceConsistencyCodeMessage.fromObject = function fromObject(object) {
+        DeviceConsistencyCodeMessage.fromObject = function fromObject(object, long) {
             if (object instanceof $root.SignalWhisperTextProtocol.DeviceConsistencyCodeMessage)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.SignalWhisperTextProtocol.DeviceConsistencyCodeMessage();
             if (object.generation != null)
                 message.generation = object.generation >>> 0;
@@ -279,7 +291,7 @@ $root.SignalWhisperTextProtocol = (function() {
         function SenderKeyDistributionMessage(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -374,9 +386,13 @@ $root.SignalWhisperTextProtocol = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        SenderKeyDistributionMessage.decode = function decode(reader, length, error) {
+        SenderKeyDistributionMessage.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalWhisperTextProtocol.SenderKeyDistributionMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -400,7 +416,7 @@ $root.SignalWhisperTextProtocol = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -431,9 +447,13 @@ $root.SignalWhisperTextProtocol = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        SenderKeyDistributionMessage.verify = function verify(message) {
+        SenderKeyDistributionMessage.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.id != null && message.hasOwnProperty("id"))
                 if (!$util.isInteger(message.id))
                     return "id: integer expected";
@@ -457,9 +477,13 @@ $root.SignalWhisperTextProtocol = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {SignalWhisperTextProtocol.SenderKeyDistributionMessage} SenderKeyDistributionMessage
          */
-        SenderKeyDistributionMessage.fromObject = function fromObject(object) {
+        SenderKeyDistributionMessage.fromObject = function fromObject(object, long) {
             if (object instanceof $root.SignalWhisperTextProtocol.SenderKeyDistributionMessage)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.SignalWhisperTextProtocol.SenderKeyDistributionMessage();
             if (object.id != null)
                 message.id = object.id >>> 0;
@@ -571,7 +595,7 @@ $root.SignalWhisperTextProtocol = (function() {
         function SenderKeyMessage(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -656,9 +680,13 @@ $root.SignalWhisperTextProtocol = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        SenderKeyMessage.decode = function decode(reader, length, error) {
+        SenderKeyMessage.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalWhisperTextProtocol.SenderKeyMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -678,7 +706,7 @@ $root.SignalWhisperTextProtocol = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -709,9 +737,13 @@ $root.SignalWhisperTextProtocol = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        SenderKeyMessage.verify = function verify(message) {
+        SenderKeyMessage.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.id != null && message.hasOwnProperty("id"))
                 if (!$util.isInteger(message.id))
                     return "id: integer expected";
@@ -732,9 +764,13 @@ $root.SignalWhisperTextProtocol = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {SignalWhisperTextProtocol.SenderKeyMessage} SenderKeyMessage
          */
-        SenderKeyMessage.fromObject = function fromObject(object) {
+        SenderKeyMessage.fromObject = function fromObject(object, long) {
             if (object instanceof $root.SignalWhisperTextProtocol.SenderKeyMessage)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.SignalWhisperTextProtocol.SenderKeyMessage();
             if (object.id != null)
                 message.id = object.id >>> 0;
@@ -834,7 +870,7 @@ $root.SignalWhisperTextProtocol = (function() {
         function KeyExchangeMessage(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -939,9 +975,13 @@ $root.SignalWhisperTextProtocol = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        KeyExchangeMessage.decode = function decode(reader, length, error) {
+        KeyExchangeMessage.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalWhisperTextProtocol.KeyExchangeMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -969,7 +1009,7 @@ $root.SignalWhisperTextProtocol = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -1000,9 +1040,13 @@ $root.SignalWhisperTextProtocol = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        KeyExchangeMessage.verify = function verify(message) {
+        KeyExchangeMessage.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.id != null && message.hasOwnProperty("id"))
                 if (!$util.isInteger(message.id))
                     return "id: integer expected";
@@ -1029,9 +1073,13 @@ $root.SignalWhisperTextProtocol = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {SignalWhisperTextProtocol.KeyExchangeMessage} KeyExchangeMessage
          */
-        KeyExchangeMessage.fromObject = function fromObject(object) {
+        KeyExchangeMessage.fromObject = function fromObject(object, long) {
             if (object instanceof $root.SignalWhisperTextProtocol.KeyExchangeMessage)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.SignalWhisperTextProtocol.KeyExchangeMessage();
             if (object.id != null)
                 message.id = object.id >>> 0;
@@ -1169,7 +1217,7 @@ $root.SignalWhisperTextProtocol = (function() {
         function PreKeySignalMessage(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -1284,9 +1332,13 @@ $root.SignalWhisperTextProtocol = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PreKeySignalMessage.decode = function decode(reader, length, error) {
+        PreKeySignalMessage.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalWhisperTextProtocol.PreKeySignalMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -1318,7 +1370,7 @@ $root.SignalWhisperTextProtocol = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -1349,9 +1401,13 @@ $root.SignalWhisperTextProtocol = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        PreKeySignalMessage.verify = function verify(message) {
+        PreKeySignalMessage.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.registrationId != null && message.hasOwnProperty("registrationId"))
                 if (!$util.isInteger(message.registrationId))
                     return "registrationId: integer expected";
@@ -1381,9 +1437,13 @@ $root.SignalWhisperTextProtocol = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {SignalWhisperTextProtocol.PreKeySignalMessage} PreKeySignalMessage
          */
-        PreKeySignalMessage.fromObject = function fromObject(object) {
+        PreKeySignalMessage.fromObject = function fromObject(object, long) {
             if (object instanceof $root.SignalWhisperTextProtocol.PreKeySignalMessage)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.SignalWhisperTextProtocol.PreKeySignalMessage();
             if (object.registrationId != null)
                 message.registrationId = object.registrationId >>> 0;
@@ -1515,7 +1575,7 @@ $root.SignalWhisperTextProtocol = (function() {
         function SignalMessage(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -1610,9 +1670,13 @@ $root.SignalWhisperTextProtocol = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        SignalMessage.decode = function decode(reader, length, error) {
+        SignalMessage.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SignalWhisperTextProtocol.SignalMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -1636,7 +1700,7 @@ $root.SignalWhisperTextProtocol = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -1667,9 +1731,13 @@ $root.SignalWhisperTextProtocol = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        SignalMessage.verify = function verify(message) {
+        SignalMessage.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.ratchetKey != null && message.hasOwnProperty("ratchetKey"))
                 if (!(message.ratchetKey && typeof message.ratchetKey.length === "number" || $util.isString(message.ratchetKey)))
                     return "ratchetKey: buffer expected";
@@ -1693,9 +1761,13 @@ $root.SignalWhisperTextProtocol = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {SignalWhisperTextProtocol.SignalMessage} SignalMessage
          */
-        SignalMessage.fromObject = function fromObject(object) {
+        SignalMessage.fromObject = function fromObject(object, long) {
             if (object instanceof $root.SignalWhisperTextProtocol.SignalMessage)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.SignalWhisperTextProtocol.SignalMessage();
             if (object.ratchetKey != null)
                 if (typeof object.ratchetKey === "string")

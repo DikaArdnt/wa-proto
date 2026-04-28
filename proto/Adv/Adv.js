@@ -40,7 +40,7 @@ $root.Adv = (function() {
         function ADVSignedDeviceIdentityHMAC(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -125,9 +125,13 @@ $root.Adv = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ADVSignedDeviceIdentityHMAC.decode = function decode(reader, length, error) {
+        ADVSignedDeviceIdentityHMAC.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Adv.ADVSignedDeviceIdentityHMAC();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -147,7 +151,7 @@ $root.Adv = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -178,9 +182,13 @@ $root.Adv = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        ADVSignedDeviceIdentityHMAC.verify = function verify(message) {
+        ADVSignedDeviceIdentityHMAC.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.details != null && message.hasOwnProperty("details"))
                 if (!(message.details && typeof message.details.length === "number" || $util.isString(message.details)))
                     return "details: buffer expected";
@@ -206,9 +214,13 @@ $root.Adv = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {Adv.ADVSignedDeviceIdentityHMAC} ADVSignedDeviceIdentityHMAC
          */
-        ADVSignedDeviceIdentityHMAC.fromObject = function fromObject(object) {
+        ADVSignedDeviceIdentityHMAC.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Adv.ADVSignedDeviceIdentityHMAC)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.Adv.ADVSignedDeviceIdentityHMAC();
             if (object.details != null)
                 if (typeof object.details === "string")
@@ -330,7 +342,7 @@ $root.Adv = (function() {
         function ADVSignedDeviceIdentity(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -425,9 +437,13 @@ $root.Adv = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ADVSignedDeviceIdentity.decode = function decode(reader, length, error) {
+        ADVSignedDeviceIdentity.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Adv.ADVSignedDeviceIdentity();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -451,7 +467,7 @@ $root.Adv = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -482,9 +498,13 @@ $root.Adv = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        ADVSignedDeviceIdentity.verify = function verify(message) {
+        ADVSignedDeviceIdentity.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.details != null && message.hasOwnProperty("details"))
                 if (!(message.details && typeof message.details.length === "number" || $util.isString(message.details)))
                     return "details: buffer expected";
@@ -508,9 +528,13 @@ $root.Adv = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {Adv.ADVSignedDeviceIdentity} ADVSignedDeviceIdentity
          */
-        ADVSignedDeviceIdentity.fromObject = function fromObject(object) {
+        ADVSignedDeviceIdentity.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Adv.ADVSignedDeviceIdentity)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.Adv.ADVSignedDeviceIdentity();
             if (object.details != null)
                 if (typeof object.details === "string")
@@ -642,7 +666,7 @@ $root.Adv = (function() {
         function ADVDeviceIdentity(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -747,9 +771,13 @@ $root.Adv = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ADVDeviceIdentity.decode = function decode(reader, length, error) {
+        ADVDeviceIdentity.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Adv.ADVDeviceIdentity();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -777,7 +805,7 @@ $root.Adv = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -808,9 +836,13 @@ $root.Adv = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        ADVDeviceIdentity.verify = function verify(message) {
+        ADVDeviceIdentity.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.rawId != null && message.hasOwnProperty("rawId"))
                 if (!$util.isInteger(message.rawId))
                     return "rawId: integer expected";
@@ -847,9 +879,13 @@ $root.Adv = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {Adv.ADVDeviceIdentity} ADVDeviceIdentity
          */
-        ADVDeviceIdentity.fromObject = function fromObject(object) {
+        ADVDeviceIdentity.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Adv.ADVDeviceIdentity)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.Adv.ADVDeviceIdentity();
             if (object.rawId != null)
                 message.rawId = object.rawId >>> 0;
@@ -990,7 +1026,7 @@ $root.Adv = (function() {
         function ADVSignedKeyIndexList(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -1075,9 +1111,13 @@ $root.Adv = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ADVSignedKeyIndexList.decode = function decode(reader, length, error) {
+        ADVSignedKeyIndexList.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Adv.ADVSignedKeyIndexList();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -1097,7 +1137,7 @@ $root.Adv = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -1128,9 +1168,13 @@ $root.Adv = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        ADVSignedKeyIndexList.verify = function verify(message) {
+        ADVSignedKeyIndexList.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.details != null && message.hasOwnProperty("details"))
                 if (!(message.details && typeof message.details.length === "number" || $util.isString(message.details)))
                     return "details: buffer expected";
@@ -1151,9 +1195,13 @@ $root.Adv = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {Adv.ADVSignedKeyIndexList} ADVSignedKeyIndexList
          */
-        ADVSignedKeyIndexList.fromObject = function fromObject(object) {
+        ADVSignedKeyIndexList.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Adv.ADVSignedKeyIndexList)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.Adv.ADVSignedKeyIndexList();
             if (object.details != null)
                 if (typeof object.details === "string")
@@ -1272,7 +1320,7 @@ $root.Adv = (function() {
             this.validIndexes = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -1381,9 +1429,13 @@ $root.Adv = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ADVKeyIndexList.decode = function decode(reader, length, error) {
+        ADVKeyIndexList.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Adv.ADVKeyIndexList();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -1418,7 +1470,7 @@ $root.Adv = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -1449,9 +1501,13 @@ $root.Adv = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        ADVKeyIndexList.verify = function verify(message) {
+        ADVKeyIndexList.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.rawId != null && message.hasOwnProperty("rawId"))
                 if (!$util.isInteger(message.rawId))
                     return "rawId: integer expected";
@@ -1487,9 +1543,13 @@ $root.Adv = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {Adv.ADVKeyIndexList} ADVKeyIndexList
          */
-        ADVKeyIndexList.fromObject = function fromObject(object) {
+        ADVKeyIndexList.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Adv.ADVKeyIndexList)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.Adv.ADVKeyIndexList();
             if (object.rawId != null)
                 message.rawId = object.rawId >>> 0;

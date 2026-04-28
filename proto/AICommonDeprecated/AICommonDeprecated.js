@@ -47,7 +47,7 @@ $root.AICommonDeprecated = (function() {
         function AIRichResponseSubMessage(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -202,9 +202,13 @@ $root.AICommonDeprecated = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AIRichResponseSubMessage.decode = function decode(reader, length, error) {
+        AIRichResponseSubMessage.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseSubMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -216,7 +220,7 @@ $root.AICommonDeprecated = (function() {
                         break;
                     }
                 case 2: {
-                        message.gridImageMetadata = $root.AICommonDeprecated.AIRichResponseGridImageMetadata.decode(reader, reader.uint32());
+                        message.gridImageMetadata = $root.AICommonDeprecated.AIRichResponseGridImageMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 3: {
@@ -224,35 +228,35 @@ $root.AICommonDeprecated = (function() {
                         break;
                     }
                 case 4: {
-                        message.imageMetadata = $root.AICommonDeprecated.AIRichResponseInlineImageMetadata.decode(reader, reader.uint32());
+                        message.imageMetadata = $root.AICommonDeprecated.AIRichResponseInlineImageMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 5: {
-                        message.codeMetadata = $root.AICommonDeprecated.AIRichResponseCodeMetadata.decode(reader, reader.uint32());
+                        message.codeMetadata = $root.AICommonDeprecated.AIRichResponseCodeMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 6: {
-                        message.tableMetadata = $root.AICommonDeprecated.AIRichResponseTableMetadata.decode(reader, reader.uint32());
+                        message.tableMetadata = $root.AICommonDeprecated.AIRichResponseTableMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 7: {
-                        message.dynamicMetadata = $root.AICommonDeprecated.AIRichResponseDynamicMetadata.decode(reader, reader.uint32());
+                        message.dynamicMetadata = $root.AICommonDeprecated.AIRichResponseDynamicMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 8: {
-                        message.latexMetadata = $root.AICommonDeprecated.AIRichResponseLatexMetadata.decode(reader, reader.uint32());
+                        message.latexMetadata = $root.AICommonDeprecated.AIRichResponseLatexMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 9: {
-                        message.mapMetadata = $root.AICommonDeprecated.AIRichResponseMapMetadata.decode(reader, reader.uint32());
+                        message.mapMetadata = $root.AICommonDeprecated.AIRichResponseMapMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 10: {
-                        message.contentItemsMetadata = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.decode(reader, reader.uint32());
+                        message.contentItemsMetadata = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -283,9 +287,13 @@ $root.AICommonDeprecated = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        AIRichResponseSubMessage.verify = function verify(message) {
+        AIRichResponseSubMessage.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.messageType != null && message.hasOwnProperty("messageType"))
                 switch (message.messageType) {
                 default:
@@ -303,7 +311,7 @@ $root.AICommonDeprecated = (function() {
                     break;
                 }
             if (message.gridImageMetadata != null && message.hasOwnProperty("gridImageMetadata")) {
-                var error = $root.AICommonDeprecated.AIRichResponseGridImageMetadata.verify(message.gridImageMetadata);
+                var error = $root.AICommonDeprecated.AIRichResponseGridImageMetadata.verify(message.gridImageMetadata, long + 1);
                 if (error)
                     return "gridImageMetadata." + error;
             }
@@ -311,37 +319,37 @@ $root.AICommonDeprecated = (function() {
                 if (!$util.isString(message.messageText))
                     return "messageText: string expected";
             if (message.imageMetadata != null && message.hasOwnProperty("imageMetadata")) {
-                var error = $root.AICommonDeprecated.AIRichResponseInlineImageMetadata.verify(message.imageMetadata);
+                var error = $root.AICommonDeprecated.AIRichResponseInlineImageMetadata.verify(message.imageMetadata, long + 1);
                 if (error)
                     return "imageMetadata." + error;
             }
             if (message.codeMetadata != null && message.hasOwnProperty("codeMetadata")) {
-                var error = $root.AICommonDeprecated.AIRichResponseCodeMetadata.verify(message.codeMetadata);
+                var error = $root.AICommonDeprecated.AIRichResponseCodeMetadata.verify(message.codeMetadata, long + 1);
                 if (error)
                     return "codeMetadata." + error;
             }
             if (message.tableMetadata != null && message.hasOwnProperty("tableMetadata")) {
-                var error = $root.AICommonDeprecated.AIRichResponseTableMetadata.verify(message.tableMetadata);
+                var error = $root.AICommonDeprecated.AIRichResponseTableMetadata.verify(message.tableMetadata, long + 1);
                 if (error)
                     return "tableMetadata." + error;
             }
             if (message.dynamicMetadata != null && message.hasOwnProperty("dynamicMetadata")) {
-                var error = $root.AICommonDeprecated.AIRichResponseDynamicMetadata.verify(message.dynamicMetadata);
+                var error = $root.AICommonDeprecated.AIRichResponseDynamicMetadata.verify(message.dynamicMetadata, long + 1);
                 if (error)
                     return "dynamicMetadata." + error;
             }
             if (message.latexMetadata != null && message.hasOwnProperty("latexMetadata")) {
-                var error = $root.AICommonDeprecated.AIRichResponseLatexMetadata.verify(message.latexMetadata);
+                var error = $root.AICommonDeprecated.AIRichResponseLatexMetadata.verify(message.latexMetadata, long + 1);
                 if (error)
                     return "latexMetadata." + error;
             }
             if (message.mapMetadata != null && message.hasOwnProperty("mapMetadata")) {
-                var error = $root.AICommonDeprecated.AIRichResponseMapMetadata.verify(message.mapMetadata);
+                var error = $root.AICommonDeprecated.AIRichResponseMapMetadata.verify(message.mapMetadata, long + 1);
                 if (error)
                     return "mapMetadata." + error;
             }
             if (message.contentItemsMetadata != null && message.hasOwnProperty("contentItemsMetadata")) {
-                var error = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.verify(message.contentItemsMetadata);
+                var error = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.verify(message.contentItemsMetadata, long + 1);
                 if (error)
                     return "contentItemsMetadata." + error;
             }
@@ -356,9 +364,13 @@ $root.AICommonDeprecated = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {AICommonDeprecated.AIRichResponseSubMessage} AIRichResponseSubMessage
          */
-        AIRichResponseSubMessage.fromObject = function fromObject(object) {
+        AIRichResponseSubMessage.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseSubMessage)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.AICommonDeprecated.AIRichResponseSubMessage();
             switch (object.messageType) {
             default:
@@ -411,44 +423,44 @@ $root.AICommonDeprecated = (function() {
             if (object.gridImageMetadata != null) {
                 if (typeof object.gridImageMetadata !== "object")
                     throw TypeError(".AICommonDeprecated.AIRichResponseSubMessage.gridImageMetadata: object expected");
-                message.gridImageMetadata = $root.AICommonDeprecated.AIRichResponseGridImageMetadata.fromObject(object.gridImageMetadata);
+                message.gridImageMetadata = $root.AICommonDeprecated.AIRichResponseGridImageMetadata.fromObject(object.gridImageMetadata, long + 1);
             }
             if (object.messageText != null)
                 message.messageText = String(object.messageText);
             if (object.imageMetadata != null) {
                 if (typeof object.imageMetadata !== "object")
                     throw TypeError(".AICommonDeprecated.AIRichResponseSubMessage.imageMetadata: object expected");
-                message.imageMetadata = $root.AICommonDeprecated.AIRichResponseInlineImageMetadata.fromObject(object.imageMetadata);
+                message.imageMetadata = $root.AICommonDeprecated.AIRichResponseInlineImageMetadata.fromObject(object.imageMetadata, long + 1);
             }
             if (object.codeMetadata != null) {
                 if (typeof object.codeMetadata !== "object")
                     throw TypeError(".AICommonDeprecated.AIRichResponseSubMessage.codeMetadata: object expected");
-                message.codeMetadata = $root.AICommonDeprecated.AIRichResponseCodeMetadata.fromObject(object.codeMetadata);
+                message.codeMetadata = $root.AICommonDeprecated.AIRichResponseCodeMetadata.fromObject(object.codeMetadata, long + 1);
             }
             if (object.tableMetadata != null) {
                 if (typeof object.tableMetadata !== "object")
                     throw TypeError(".AICommonDeprecated.AIRichResponseSubMessage.tableMetadata: object expected");
-                message.tableMetadata = $root.AICommonDeprecated.AIRichResponseTableMetadata.fromObject(object.tableMetadata);
+                message.tableMetadata = $root.AICommonDeprecated.AIRichResponseTableMetadata.fromObject(object.tableMetadata, long + 1);
             }
             if (object.dynamicMetadata != null) {
                 if (typeof object.dynamicMetadata !== "object")
                     throw TypeError(".AICommonDeprecated.AIRichResponseSubMessage.dynamicMetadata: object expected");
-                message.dynamicMetadata = $root.AICommonDeprecated.AIRichResponseDynamicMetadata.fromObject(object.dynamicMetadata);
+                message.dynamicMetadata = $root.AICommonDeprecated.AIRichResponseDynamicMetadata.fromObject(object.dynamicMetadata, long + 1);
             }
             if (object.latexMetadata != null) {
                 if (typeof object.latexMetadata !== "object")
                     throw TypeError(".AICommonDeprecated.AIRichResponseSubMessage.latexMetadata: object expected");
-                message.latexMetadata = $root.AICommonDeprecated.AIRichResponseLatexMetadata.fromObject(object.latexMetadata);
+                message.latexMetadata = $root.AICommonDeprecated.AIRichResponseLatexMetadata.fromObject(object.latexMetadata, long + 1);
             }
             if (object.mapMetadata != null) {
                 if (typeof object.mapMetadata !== "object")
                     throw TypeError(".AICommonDeprecated.AIRichResponseSubMessage.mapMetadata: object expected");
-                message.mapMetadata = $root.AICommonDeprecated.AIRichResponseMapMetadata.fromObject(object.mapMetadata);
+                message.mapMetadata = $root.AICommonDeprecated.AIRichResponseMapMetadata.fromObject(object.mapMetadata, long + 1);
             }
             if (object.contentItemsMetadata != null) {
                 if (typeof object.contentItemsMetadata !== "object")
                     throw TypeError(".AICommonDeprecated.AIRichResponseSubMessage.contentItemsMetadata: object expected");
-                message.contentItemsMetadata = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.fromObject(object.contentItemsMetadata);
+                message.contentItemsMetadata = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.fromObject(object.contentItemsMetadata, long + 1);
             }
             return message;
         };
@@ -552,7 +564,7 @@ $root.AICommonDeprecated = (function() {
             this.itemsMetadata = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -628,9 +640,13 @@ $root.AICommonDeprecated = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AIRichResponseContentItemsMetadata.decode = function decode(reader, length, error) {
+        AIRichResponseContentItemsMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseContentItemsMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -640,7 +656,7 @@ $root.AICommonDeprecated = (function() {
                 case 1: {
                         if (!(message.itemsMetadata && message.itemsMetadata.length))
                             message.itemsMetadata = [];
-                        message.itemsMetadata.push($root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.decode(reader, reader.uint32()));
+                        message.itemsMetadata.push($root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.decode(reader, reader.uint32(), undefined, long + 1));
                         break;
                     }
                 case 2: {
@@ -648,7 +664,7 @@ $root.AICommonDeprecated = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -679,14 +695,18 @@ $root.AICommonDeprecated = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        AIRichResponseContentItemsMetadata.verify = function verify(message) {
+        AIRichResponseContentItemsMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.itemsMetadata != null && message.hasOwnProperty("itemsMetadata")) {
                 if (!Array.isArray(message.itemsMetadata))
                     return "itemsMetadata: array expected";
                 for (var i = 0; i < message.itemsMetadata.length; ++i) {
-                    var error = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.verify(message.itemsMetadata[i]);
+                    var error = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.verify(message.itemsMetadata[i], long + 1);
                     if (error)
                         return "itemsMetadata." + error;
                 }
@@ -710,9 +730,13 @@ $root.AICommonDeprecated = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {AICommonDeprecated.AIRichResponseContentItemsMetadata} AIRichResponseContentItemsMetadata
          */
-        AIRichResponseContentItemsMetadata.fromObject = function fromObject(object) {
+        AIRichResponseContentItemsMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseContentItemsMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.AICommonDeprecated.AIRichResponseContentItemsMetadata();
             if (object.itemsMetadata) {
                 if (!Array.isArray(object.itemsMetadata))
@@ -721,7 +745,7 @@ $root.AICommonDeprecated = (function() {
                 for (var i = 0; i < object.itemsMetadata.length; ++i) {
                     if (typeof object.itemsMetadata[i] !== "object")
                         throw TypeError(".AICommonDeprecated.AIRichResponseContentItemsMetadata.itemsMetadata: object expected");
-                    message.itemsMetadata[i] = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.fromObject(object.itemsMetadata[i]);
+                    message.itemsMetadata[i] = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.fromObject(object.itemsMetadata[i], long + 1);
                 }
             }
             switch (object.contentType) {
@@ -816,7 +840,7 @@ $root.AICommonDeprecated = (function() {
             function AIRichResponseContentItemMetadata(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -895,9 +919,13 @@ $root.AICommonDeprecated = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseContentItemMetadata.decode = function decode(reader, length, error) {
+            AIRichResponseContentItemMetadata.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -905,11 +933,11 @@ $root.AICommonDeprecated = (function() {
                         break;
                     switch (tag >>> 3) {
                     case 1: {
-                            message.reelItem = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseReelItem.decode(reader, reader.uint32());
+                            message.reelItem = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseReelItem.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -940,14 +968,18 @@ $root.AICommonDeprecated = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            AIRichResponseContentItemMetadata.verify = function verify(message) {
+            AIRichResponseContentItemMetadata.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 var properties = {};
                 if (message.reelItem != null && message.hasOwnProperty("reelItem")) {
                     properties.aIRichResponseContentItem = 1;
                     {
-                        var error = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseReelItem.verify(message.reelItem);
+                        var error = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseReelItem.verify(message.reelItem, long + 1);
                         if (error)
                             return "reelItem." + error;
                     }
@@ -963,14 +995,18 @@ $root.AICommonDeprecated = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata} AIRichResponseContentItemMetadata
              */
-            AIRichResponseContentItemMetadata.fromObject = function fromObject(object) {
+            AIRichResponseContentItemMetadata.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata();
                 if (object.reelItem != null) {
                     if (typeof object.reelItem !== "object")
                         throw TypeError(".AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.reelItem: object expected");
-                    message.reelItem = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseReelItem.fromObject(object.reelItem);
+                    message.reelItem = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseReelItem.fromObject(object.reelItem, long + 1);
                 }
                 return message;
             };
@@ -1048,7 +1084,7 @@ $root.AICommonDeprecated = (function() {
             function AIRichResponseReelItem(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -1143,9 +1179,13 @@ $root.AICommonDeprecated = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseReelItem.decode = function decode(reader, length, error) {
+            AIRichResponseReelItem.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseReelItem();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -1169,7 +1209,7 @@ $root.AICommonDeprecated = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -1200,9 +1240,13 @@ $root.AICommonDeprecated = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            AIRichResponseReelItem.verify = function verify(message) {
+            AIRichResponseReelItem.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.title != null && message.hasOwnProperty("title"))
                     if (!$util.isString(message.title))
                         return "title: string expected";
@@ -1226,9 +1270,13 @@ $root.AICommonDeprecated = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseReelItem} AIRichResponseReelItem
              */
-            AIRichResponseReelItem.fromObject = function fromObject(object) {
+            AIRichResponseReelItem.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseReelItem)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseReelItem();
                 if (object.title != null)
                     message.title = String(object.title);
@@ -1343,7 +1391,7 @@ $root.AICommonDeprecated = (function() {
             this.annotations = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -1459,9 +1507,13 @@ $root.AICommonDeprecated = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AIRichResponseMapMetadata.decode = function decode(reader, length, error) {
+        AIRichResponseMapMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseMapMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -1487,7 +1539,7 @@ $root.AICommonDeprecated = (function() {
                 case 5: {
                         if (!(message.annotations && message.annotations.length))
                             message.annotations = [];
-                        message.annotations.push($root.AICommonDeprecated.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.decode(reader, reader.uint32()));
+                        message.annotations.push($root.AICommonDeprecated.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.decode(reader, reader.uint32(), undefined, long + 1));
                         break;
                     }
                 case 6: {
@@ -1495,7 +1547,7 @@ $root.AICommonDeprecated = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -1526,9 +1578,13 @@ $root.AICommonDeprecated = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        AIRichResponseMapMetadata.verify = function verify(message) {
+        AIRichResponseMapMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.centerLatitude != null && message.hasOwnProperty("centerLatitude"))
                 if (typeof message.centerLatitude !== "number")
                     return "centerLatitude: number expected";
@@ -1545,7 +1601,7 @@ $root.AICommonDeprecated = (function() {
                 if (!Array.isArray(message.annotations))
                     return "annotations: array expected";
                 for (var i = 0; i < message.annotations.length; ++i) {
-                    var error = $root.AICommonDeprecated.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.verify(message.annotations[i]);
+                    var error = $root.AICommonDeprecated.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.verify(message.annotations[i], long + 1);
                     if (error)
                         return "annotations." + error;
                 }
@@ -1564,9 +1620,13 @@ $root.AICommonDeprecated = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {AICommonDeprecated.AIRichResponseMapMetadata} AIRichResponseMapMetadata
          */
-        AIRichResponseMapMetadata.fromObject = function fromObject(object) {
+        AIRichResponseMapMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseMapMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.AICommonDeprecated.AIRichResponseMapMetadata();
             if (object.centerLatitude != null)
                 message.centerLatitude = Number(object.centerLatitude);
@@ -1583,7 +1643,7 @@ $root.AICommonDeprecated = (function() {
                 for (var i = 0; i < object.annotations.length; ++i) {
                     if (typeof object.annotations[i] !== "object")
                         throw TypeError(".AICommonDeprecated.AIRichResponseMapMetadata.annotations: object expected");
-                    message.annotations[i] = $root.AICommonDeprecated.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.fromObject(object.annotations[i]);
+                    message.annotations[i] = $root.AICommonDeprecated.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.fromObject(object.annotations[i], long + 1);
                 }
             }
             if (object.showInfoList != null)
@@ -1681,7 +1741,7 @@ $root.AICommonDeprecated = (function() {
             function AIRichResponseMapAnnotation(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -1786,9 +1846,13 @@ $root.AICommonDeprecated = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseMapAnnotation.decode = function decode(reader, length, error) {
+            AIRichResponseMapAnnotation.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseMapMetadata.AIRichResponseMapAnnotation();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -1816,7 +1880,7 @@ $root.AICommonDeprecated = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -1847,9 +1911,13 @@ $root.AICommonDeprecated = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            AIRichResponseMapAnnotation.verify = function verify(message) {
+            AIRichResponseMapAnnotation.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.annotationNumber != null && message.hasOwnProperty("annotationNumber"))
                     if (!$util.isInteger(message.annotationNumber))
                         return "annotationNumber: integer expected";
@@ -1876,9 +1944,13 @@ $root.AICommonDeprecated = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {AICommonDeprecated.AIRichResponseMapMetadata.AIRichResponseMapAnnotation} AIRichResponseMapAnnotation
              */
-            AIRichResponseMapAnnotation.fromObject = function fromObject(object) {
+            AIRichResponseMapAnnotation.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommonDeprecated.AIRichResponseMapMetadata.AIRichResponseMapAnnotation)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.AICommonDeprecated.AIRichResponseMapMetadata.AIRichResponseMapAnnotation();
                 if (object.annotationNumber != null)
                     message.annotationNumber = object.annotationNumber >>> 0;
@@ -1980,7 +2052,7 @@ $root.AICommonDeprecated = (function() {
             this.expressions = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -2056,9 +2128,13 @@ $root.AICommonDeprecated = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AIRichResponseLatexMetadata.decode = function decode(reader, length, error) {
+        AIRichResponseLatexMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseLatexMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -2072,11 +2148,11 @@ $root.AICommonDeprecated = (function() {
                 case 2: {
                         if (!(message.expressions && message.expressions.length))
                             message.expressions = [];
-                        message.expressions.push($root.AICommonDeprecated.AIRichResponseLatexMetadata.AIRichResponseLatexExpression.decode(reader, reader.uint32()));
+                        message.expressions.push($root.AICommonDeprecated.AIRichResponseLatexMetadata.AIRichResponseLatexExpression.decode(reader, reader.uint32(), undefined, long + 1));
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -2107,9 +2183,13 @@ $root.AICommonDeprecated = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        AIRichResponseLatexMetadata.verify = function verify(message) {
+        AIRichResponseLatexMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.text != null && message.hasOwnProperty("text"))
                 if (!$util.isString(message.text))
                     return "text: string expected";
@@ -2117,7 +2197,7 @@ $root.AICommonDeprecated = (function() {
                 if (!Array.isArray(message.expressions))
                     return "expressions: array expected";
                 for (var i = 0; i < message.expressions.length; ++i) {
-                    var error = $root.AICommonDeprecated.AIRichResponseLatexMetadata.AIRichResponseLatexExpression.verify(message.expressions[i]);
+                    var error = $root.AICommonDeprecated.AIRichResponseLatexMetadata.AIRichResponseLatexExpression.verify(message.expressions[i], long + 1);
                     if (error)
                         return "expressions." + error;
                 }
@@ -2133,9 +2213,13 @@ $root.AICommonDeprecated = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {AICommonDeprecated.AIRichResponseLatexMetadata} AIRichResponseLatexMetadata
          */
-        AIRichResponseLatexMetadata.fromObject = function fromObject(object) {
+        AIRichResponseLatexMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseLatexMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.AICommonDeprecated.AIRichResponseLatexMetadata();
             if (object.text != null)
                 message.text = String(object.text);
@@ -2146,7 +2230,7 @@ $root.AICommonDeprecated = (function() {
                 for (var i = 0; i < object.expressions.length; ++i) {
                     if (typeof object.expressions[i] !== "object")
                         throw TypeError(".AICommonDeprecated.AIRichResponseLatexMetadata.expressions: object expected");
-                    message.expressions[i] = $root.AICommonDeprecated.AIRichResponseLatexMetadata.AIRichResponseLatexExpression.fromObject(object.expressions[i]);
+                    message.expressions[i] = $root.AICommonDeprecated.AIRichResponseLatexMetadata.AIRichResponseLatexExpression.fromObject(object.expressions[i], long + 1);
                 }
             }
             return message;
@@ -2233,7 +2317,7 @@ $root.AICommonDeprecated = (function() {
             function AIRichResponseLatexExpression(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -2378,9 +2462,13 @@ $root.AICommonDeprecated = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseLatexExpression.decode = function decode(reader, length, error) {
+            AIRichResponseLatexExpression.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseLatexMetadata.AIRichResponseLatexExpression();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -2424,7 +2512,7 @@ $root.AICommonDeprecated = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -2455,9 +2543,13 @@ $root.AICommonDeprecated = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            AIRichResponseLatexExpression.verify = function verify(message) {
+            AIRichResponseLatexExpression.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.latexExpression != null && message.hasOwnProperty("latexExpression"))
                     if (!$util.isString(message.latexExpression))
                         return "latexExpression: string expected";
@@ -2496,9 +2588,13 @@ $root.AICommonDeprecated = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {AICommonDeprecated.AIRichResponseLatexMetadata.AIRichResponseLatexExpression} AIRichResponseLatexExpression
              */
-            AIRichResponseLatexExpression.fromObject = function fromObject(object) {
+            AIRichResponseLatexExpression.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommonDeprecated.AIRichResponseLatexMetadata.AIRichResponseLatexExpression)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.AICommonDeprecated.AIRichResponseLatexMetadata.AIRichResponseLatexExpression();
                 if (object.latexExpression != null)
                     message.latexExpression = String(object.latexExpression);
@@ -2621,7 +2717,7 @@ $root.AICommonDeprecated = (function() {
         function AIRichResponseDynamicMetadata(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -2716,9 +2812,13 @@ $root.AICommonDeprecated = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AIRichResponseDynamicMetadata.decode = function decode(reader, length, error) {
+        AIRichResponseDynamicMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseDynamicMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -2742,7 +2842,7 @@ $root.AICommonDeprecated = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -2773,9 +2873,13 @@ $root.AICommonDeprecated = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        AIRichResponseDynamicMetadata.verify = function verify(message) {
+        AIRichResponseDynamicMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.type != null && message.hasOwnProperty("type"))
                 switch (message.type) {
                 default:
@@ -2805,9 +2909,13 @@ $root.AICommonDeprecated = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {AICommonDeprecated.AIRichResponseDynamicMetadata} AIRichResponseDynamicMetadata
          */
-        AIRichResponseDynamicMetadata.fromObject = function fromObject(object) {
+        AIRichResponseDynamicMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseDynamicMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.AICommonDeprecated.AIRichResponseDynamicMetadata();
             switch (object.type) {
             default:
@@ -2949,7 +3057,7 @@ $root.AICommonDeprecated = (function() {
             this.rows = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -3025,9 +3133,13 @@ $root.AICommonDeprecated = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AIRichResponseTableMetadata.decode = function decode(reader, length, error) {
+        AIRichResponseTableMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseTableMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -3037,7 +3149,7 @@ $root.AICommonDeprecated = (function() {
                 case 1: {
                         if (!(message.rows && message.rows.length))
                             message.rows = [];
-                        message.rows.push($root.AICommonDeprecated.AIRichResponseTableMetadata.AIRichResponseTableRow.decode(reader, reader.uint32()));
+                        message.rows.push($root.AICommonDeprecated.AIRichResponseTableMetadata.AIRichResponseTableRow.decode(reader, reader.uint32(), undefined, long + 1));
                         break;
                     }
                 case 2: {
@@ -3045,7 +3157,7 @@ $root.AICommonDeprecated = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -3076,14 +3188,18 @@ $root.AICommonDeprecated = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        AIRichResponseTableMetadata.verify = function verify(message) {
+        AIRichResponseTableMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.rows != null && message.hasOwnProperty("rows")) {
                 if (!Array.isArray(message.rows))
                     return "rows: array expected";
                 for (var i = 0; i < message.rows.length; ++i) {
-                    var error = $root.AICommonDeprecated.AIRichResponseTableMetadata.AIRichResponseTableRow.verify(message.rows[i]);
+                    var error = $root.AICommonDeprecated.AIRichResponseTableMetadata.AIRichResponseTableRow.verify(message.rows[i], long + 1);
                     if (error)
                         return "rows." + error;
                 }
@@ -3102,9 +3218,13 @@ $root.AICommonDeprecated = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {AICommonDeprecated.AIRichResponseTableMetadata} AIRichResponseTableMetadata
          */
-        AIRichResponseTableMetadata.fromObject = function fromObject(object) {
+        AIRichResponseTableMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseTableMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.AICommonDeprecated.AIRichResponseTableMetadata();
             if (object.rows) {
                 if (!Array.isArray(object.rows))
@@ -3113,7 +3233,7 @@ $root.AICommonDeprecated = (function() {
                 for (var i = 0; i < object.rows.length; ++i) {
                     if (typeof object.rows[i] !== "object")
                         throw TypeError(".AICommonDeprecated.AIRichResponseTableMetadata.rows: object expected");
-                    message.rows[i] = $root.AICommonDeprecated.AIRichResponseTableMetadata.AIRichResponseTableRow.fromObject(object.rows[i]);
+                    message.rows[i] = $root.AICommonDeprecated.AIRichResponseTableMetadata.AIRichResponseTableRow.fromObject(object.rows[i], long + 1);
                 }
             }
             if (object.title != null)
@@ -3196,7 +3316,7 @@ $root.AICommonDeprecated = (function() {
                 this.items = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -3272,9 +3392,13 @@ $root.AICommonDeprecated = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseTableRow.decode = function decode(reader, length, error) {
+            AIRichResponseTableRow.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseTableMetadata.AIRichResponseTableRow();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -3292,7 +3416,7 @@ $root.AICommonDeprecated = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -3323,9 +3447,13 @@ $root.AICommonDeprecated = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            AIRichResponseTableRow.verify = function verify(message) {
+            AIRichResponseTableRow.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.items != null && message.hasOwnProperty("items")) {
                     if (!Array.isArray(message.items))
                         return "items: array expected";
@@ -3347,9 +3475,13 @@ $root.AICommonDeprecated = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {AICommonDeprecated.AIRichResponseTableMetadata.AIRichResponseTableRow} AIRichResponseTableRow
              */
-            AIRichResponseTableRow.fromObject = function fromObject(object) {
+            AIRichResponseTableRow.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommonDeprecated.AIRichResponseTableMetadata.AIRichResponseTableRow)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.AICommonDeprecated.AIRichResponseTableMetadata.AIRichResponseTableRow();
                 if (object.items) {
                     if (!Array.isArray(object.items))
@@ -3444,7 +3576,7 @@ $root.AICommonDeprecated = (function() {
             this.codeBlocks = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -3520,9 +3652,13 @@ $root.AICommonDeprecated = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AIRichResponseCodeMetadata.decode = function decode(reader, length, error) {
+        AIRichResponseCodeMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseCodeMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -3536,11 +3672,11 @@ $root.AICommonDeprecated = (function() {
                 case 2: {
                         if (!(message.codeBlocks && message.codeBlocks.length))
                             message.codeBlocks = [];
-                        message.codeBlocks.push($root.AICommonDeprecated.AIRichResponseCodeMetadata.AIRichResponseCodeBlock.decode(reader, reader.uint32()));
+                        message.codeBlocks.push($root.AICommonDeprecated.AIRichResponseCodeMetadata.AIRichResponseCodeBlock.decode(reader, reader.uint32(), undefined, long + 1));
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -3571,9 +3707,13 @@ $root.AICommonDeprecated = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        AIRichResponseCodeMetadata.verify = function verify(message) {
+        AIRichResponseCodeMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.codeLanguage != null && message.hasOwnProperty("codeLanguage"))
                 if (!$util.isString(message.codeLanguage))
                     return "codeLanguage: string expected";
@@ -3581,7 +3721,7 @@ $root.AICommonDeprecated = (function() {
                 if (!Array.isArray(message.codeBlocks))
                     return "codeBlocks: array expected";
                 for (var i = 0; i < message.codeBlocks.length; ++i) {
-                    var error = $root.AICommonDeprecated.AIRichResponseCodeMetadata.AIRichResponseCodeBlock.verify(message.codeBlocks[i]);
+                    var error = $root.AICommonDeprecated.AIRichResponseCodeMetadata.AIRichResponseCodeBlock.verify(message.codeBlocks[i], long + 1);
                     if (error)
                         return "codeBlocks." + error;
                 }
@@ -3597,9 +3737,13 @@ $root.AICommonDeprecated = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {AICommonDeprecated.AIRichResponseCodeMetadata} AIRichResponseCodeMetadata
          */
-        AIRichResponseCodeMetadata.fromObject = function fromObject(object) {
+        AIRichResponseCodeMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseCodeMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.AICommonDeprecated.AIRichResponseCodeMetadata();
             if (object.codeLanguage != null)
                 message.codeLanguage = String(object.codeLanguage);
@@ -3610,7 +3754,7 @@ $root.AICommonDeprecated = (function() {
                 for (var i = 0; i < object.codeBlocks.length; ++i) {
                     if (typeof object.codeBlocks[i] !== "object")
                         throw TypeError(".AICommonDeprecated.AIRichResponseCodeMetadata.codeBlocks: object expected");
-                    message.codeBlocks[i] = $root.AICommonDeprecated.AIRichResponseCodeMetadata.AIRichResponseCodeBlock.fromObject(object.codeBlocks[i]);
+                    message.codeBlocks[i] = $root.AICommonDeprecated.AIRichResponseCodeMetadata.AIRichResponseCodeBlock.fromObject(object.codeBlocks[i], long + 1);
                 }
             }
             return message;
@@ -3690,7 +3834,7 @@ $root.AICommonDeprecated = (function() {
             function AIRichResponseCodeBlock(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -3765,9 +3909,13 @@ $root.AICommonDeprecated = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIRichResponseCodeBlock.decode = function decode(reader, length, error) {
+            AIRichResponseCodeBlock.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseCodeMetadata.AIRichResponseCodeBlock();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -3783,7 +3931,7 @@ $root.AICommonDeprecated = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -3814,9 +3962,13 @@ $root.AICommonDeprecated = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            AIRichResponseCodeBlock.verify = function verify(message) {
+            AIRichResponseCodeBlock.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.highlightType != null && message.hasOwnProperty("highlightType"))
                     switch (message.highlightType) {
                     default:
@@ -3843,9 +3995,13 @@ $root.AICommonDeprecated = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {AICommonDeprecated.AIRichResponseCodeMetadata.AIRichResponseCodeBlock} AIRichResponseCodeBlock
              */
-            AIRichResponseCodeBlock.fromObject = function fromObject(object) {
+            AIRichResponseCodeBlock.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommonDeprecated.AIRichResponseCodeMetadata.AIRichResponseCodeBlock)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.AICommonDeprecated.AIRichResponseCodeMetadata.AIRichResponseCodeBlock();
                 switch (object.highlightType) {
                 default:
@@ -3985,7 +4141,7 @@ $root.AICommonDeprecated = (function() {
         function AIRichResponseInlineImageMetadata(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -4080,9 +4236,13 @@ $root.AICommonDeprecated = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AIRichResponseInlineImageMetadata.decode = function decode(reader, length, error) {
+        AIRichResponseInlineImageMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseInlineImageMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -4090,7 +4250,7 @@ $root.AICommonDeprecated = (function() {
                     break;
                 switch (tag >>> 3) {
                 case 1: {
-                        message.imageUrl = $root.AICommonDeprecated.AIRichResponseImageURL.decode(reader, reader.uint32());
+                        message.imageUrl = $root.AICommonDeprecated.AIRichResponseImageURL.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 2: {
@@ -4106,7 +4266,7 @@ $root.AICommonDeprecated = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -4137,11 +4297,15 @@ $root.AICommonDeprecated = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        AIRichResponseInlineImageMetadata.verify = function verify(message) {
+        AIRichResponseInlineImageMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.imageUrl != null && message.hasOwnProperty("imageUrl")) {
-                var error = $root.AICommonDeprecated.AIRichResponseImageURL.verify(message.imageUrl);
+                var error = $root.AICommonDeprecated.AIRichResponseImageURL.verify(message.imageUrl, long + 1);
                 if (error)
                     return "imageUrl." + error;
             }
@@ -4171,14 +4335,18 @@ $root.AICommonDeprecated = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {AICommonDeprecated.AIRichResponseInlineImageMetadata} AIRichResponseInlineImageMetadata
          */
-        AIRichResponseInlineImageMetadata.fromObject = function fromObject(object) {
+        AIRichResponseInlineImageMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseInlineImageMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.AICommonDeprecated.AIRichResponseInlineImageMetadata();
             if (object.imageUrl != null) {
                 if (typeof object.imageUrl !== "object")
                     throw TypeError(".AICommonDeprecated.AIRichResponseInlineImageMetadata.imageUrl: object expected");
-                message.imageUrl = $root.AICommonDeprecated.AIRichResponseImageURL.fromObject(object.imageUrl);
+                message.imageUrl = $root.AICommonDeprecated.AIRichResponseImageURL.fromObject(object.imageUrl, long + 1);
             }
             if (object.imageText != null)
                 message.imageText = String(object.imageText);
@@ -4304,7 +4472,7 @@ $root.AICommonDeprecated = (function() {
             this.imageUrls = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -4380,9 +4548,13 @@ $root.AICommonDeprecated = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AIRichResponseGridImageMetadata.decode = function decode(reader, length, error) {
+        AIRichResponseGridImageMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseGridImageMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -4390,17 +4562,17 @@ $root.AICommonDeprecated = (function() {
                     break;
                 switch (tag >>> 3) {
                 case 1: {
-                        message.gridImageUrl = $root.AICommonDeprecated.AIRichResponseImageURL.decode(reader, reader.uint32());
+                        message.gridImageUrl = $root.AICommonDeprecated.AIRichResponseImageURL.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 2: {
                         if (!(message.imageUrls && message.imageUrls.length))
                             message.imageUrls = [];
-                        message.imageUrls.push($root.AICommonDeprecated.AIRichResponseImageURL.decode(reader, reader.uint32()));
+                        message.imageUrls.push($root.AICommonDeprecated.AIRichResponseImageURL.decode(reader, reader.uint32(), undefined, long + 1));
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -4431,11 +4603,15 @@ $root.AICommonDeprecated = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        AIRichResponseGridImageMetadata.verify = function verify(message) {
+        AIRichResponseGridImageMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.gridImageUrl != null && message.hasOwnProperty("gridImageUrl")) {
-                var error = $root.AICommonDeprecated.AIRichResponseImageURL.verify(message.gridImageUrl);
+                var error = $root.AICommonDeprecated.AIRichResponseImageURL.verify(message.gridImageUrl, long + 1);
                 if (error)
                     return "gridImageUrl." + error;
             }
@@ -4443,7 +4619,7 @@ $root.AICommonDeprecated = (function() {
                 if (!Array.isArray(message.imageUrls))
                     return "imageUrls: array expected";
                 for (var i = 0; i < message.imageUrls.length; ++i) {
-                    var error = $root.AICommonDeprecated.AIRichResponseImageURL.verify(message.imageUrls[i]);
+                    var error = $root.AICommonDeprecated.AIRichResponseImageURL.verify(message.imageUrls[i], long + 1);
                     if (error)
                         return "imageUrls." + error;
                 }
@@ -4459,14 +4635,18 @@ $root.AICommonDeprecated = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {AICommonDeprecated.AIRichResponseGridImageMetadata} AIRichResponseGridImageMetadata
          */
-        AIRichResponseGridImageMetadata.fromObject = function fromObject(object) {
+        AIRichResponseGridImageMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseGridImageMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.AICommonDeprecated.AIRichResponseGridImageMetadata();
             if (object.gridImageUrl != null) {
                 if (typeof object.gridImageUrl !== "object")
                     throw TypeError(".AICommonDeprecated.AIRichResponseGridImageMetadata.gridImageUrl: object expected");
-                message.gridImageUrl = $root.AICommonDeprecated.AIRichResponseImageURL.fromObject(object.gridImageUrl);
+                message.gridImageUrl = $root.AICommonDeprecated.AIRichResponseImageURL.fromObject(object.gridImageUrl, long + 1);
             }
             if (object.imageUrls) {
                 if (!Array.isArray(object.imageUrls))
@@ -4475,7 +4655,7 @@ $root.AICommonDeprecated = (function() {
                 for (var i = 0; i < object.imageUrls.length; ++i) {
                     if (typeof object.imageUrls[i] !== "object")
                         throw TypeError(".AICommonDeprecated.AIRichResponseGridImageMetadata.imageUrls: object expected");
-                    message.imageUrls[i] = $root.AICommonDeprecated.AIRichResponseImageURL.fromObject(object.imageUrls[i]);
+                    message.imageUrls[i] = $root.AICommonDeprecated.AIRichResponseImageURL.fromObject(object.imageUrls[i], long + 1);
                 }
             }
             return message;
@@ -4559,7 +4739,7 @@ $root.AICommonDeprecated = (function() {
         function AIRichResponseImageURL(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -4644,9 +4824,13 @@ $root.AICommonDeprecated = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AIRichResponseImageURL.decode = function decode(reader, length, error) {
+        AIRichResponseImageURL.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommonDeprecated.AIRichResponseImageURL();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -4666,7 +4850,7 @@ $root.AICommonDeprecated = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -4697,9 +4881,13 @@ $root.AICommonDeprecated = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        AIRichResponseImageURL.verify = function verify(message) {
+        AIRichResponseImageURL.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.imagePreviewUrl != null && message.hasOwnProperty("imagePreviewUrl"))
                 if (!$util.isString(message.imagePreviewUrl))
                     return "imagePreviewUrl: string expected";
@@ -4720,9 +4908,13 @@ $root.AICommonDeprecated = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {AICommonDeprecated.AIRichResponseImageURL} AIRichResponseImageURL
          */
-        AIRichResponseImageURL.fromObject = function fromObject(object) {
+        AIRichResponseImageURL.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseImageURL)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.AICommonDeprecated.AIRichResponseImageURL();
             if (object.imagePreviewUrl != null)
                 message.imagePreviewUrl = String(object.imagePreviewUrl);
@@ -4872,7 +5064,7 @@ $root.StatusAttributions = (function() {
         function StatusAttribution(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -5021,9 +5213,13 @@ $root.StatusAttributions = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        StatusAttribution.decode = function decode(reader, length, error) {
+        StatusAttribution.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.StatusAttributions.StatusAttribution();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -5039,31 +5235,31 @@ $root.StatusAttributions = (function() {
                         break;
                     }
                 case 3: {
-                        message.statusReshare = $root.StatusAttributions.StatusAttribution.StatusReshare.decode(reader, reader.uint32());
+                        message.statusReshare = $root.StatusAttributions.StatusAttribution.StatusReshare.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 4: {
-                        message.externalShare = $root.StatusAttributions.StatusAttribution.ExternalShare.decode(reader, reader.uint32());
+                        message.externalShare = $root.StatusAttributions.StatusAttribution.ExternalShare.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 5: {
-                        message.music = $root.StatusAttributions.StatusAttribution.Music.decode(reader, reader.uint32());
+                        message.music = $root.StatusAttributions.StatusAttribution.Music.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 6: {
-                        message.groupStatus = $root.StatusAttributions.StatusAttribution.GroupStatus.decode(reader, reader.uint32());
+                        message.groupStatus = $root.StatusAttributions.StatusAttribution.GroupStatus.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 7: {
-                        message.rlAttribution = $root.StatusAttributions.StatusAttribution.RLAttribution.decode(reader, reader.uint32());
+                        message.rlAttribution = $root.StatusAttributions.StatusAttribution.RLAttribution.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 8: {
-                        message.aiCreatedAttribution = $root.StatusAttributions.StatusAttribution.AiCreatedAttribution.decode(reader, reader.uint32());
+                        message.aiCreatedAttribution = $root.StatusAttributions.StatusAttribution.AiCreatedAttribution.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -5094,9 +5290,13 @@ $root.StatusAttributions = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        StatusAttribution.verify = function verify(message) {
+        StatusAttribution.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             var properties = {};
             if (message.type != null && message.hasOwnProperty("type"))
                 switch (message.type) {
@@ -5121,7 +5321,7 @@ $root.StatusAttributions = (function() {
             if (message.statusReshare != null && message.hasOwnProperty("statusReshare")) {
                 properties.attributionData = 1;
                 {
-                    var error = $root.StatusAttributions.StatusAttribution.StatusReshare.verify(message.statusReshare);
+                    var error = $root.StatusAttributions.StatusAttribution.StatusReshare.verify(message.statusReshare, long + 1);
                     if (error)
                         return "statusReshare." + error;
                 }
@@ -5131,7 +5331,7 @@ $root.StatusAttributions = (function() {
                     return "attributionData: multiple values";
                 properties.attributionData = 1;
                 {
-                    var error = $root.StatusAttributions.StatusAttribution.ExternalShare.verify(message.externalShare);
+                    var error = $root.StatusAttributions.StatusAttribution.ExternalShare.verify(message.externalShare, long + 1);
                     if (error)
                         return "externalShare." + error;
                 }
@@ -5141,7 +5341,7 @@ $root.StatusAttributions = (function() {
                     return "attributionData: multiple values";
                 properties.attributionData = 1;
                 {
-                    var error = $root.StatusAttributions.StatusAttribution.Music.verify(message.music);
+                    var error = $root.StatusAttributions.StatusAttribution.Music.verify(message.music, long + 1);
                     if (error)
                         return "music." + error;
                 }
@@ -5151,7 +5351,7 @@ $root.StatusAttributions = (function() {
                     return "attributionData: multiple values";
                 properties.attributionData = 1;
                 {
-                    var error = $root.StatusAttributions.StatusAttribution.GroupStatus.verify(message.groupStatus);
+                    var error = $root.StatusAttributions.StatusAttribution.GroupStatus.verify(message.groupStatus, long + 1);
                     if (error)
                         return "groupStatus." + error;
                 }
@@ -5161,7 +5361,7 @@ $root.StatusAttributions = (function() {
                     return "attributionData: multiple values";
                 properties.attributionData = 1;
                 {
-                    var error = $root.StatusAttributions.StatusAttribution.RLAttribution.verify(message.rlAttribution);
+                    var error = $root.StatusAttributions.StatusAttribution.RLAttribution.verify(message.rlAttribution, long + 1);
                     if (error)
                         return "rlAttribution." + error;
                 }
@@ -5171,7 +5371,7 @@ $root.StatusAttributions = (function() {
                     return "attributionData: multiple values";
                 properties.attributionData = 1;
                 {
-                    var error = $root.StatusAttributions.StatusAttribution.AiCreatedAttribution.verify(message.aiCreatedAttribution);
+                    var error = $root.StatusAttributions.StatusAttribution.AiCreatedAttribution.verify(message.aiCreatedAttribution, long + 1);
                     if (error)
                         return "aiCreatedAttribution." + error;
                 }
@@ -5187,9 +5387,13 @@ $root.StatusAttributions = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {StatusAttributions.StatusAttribution} StatusAttribution
          */
-        StatusAttribution.fromObject = function fromObject(object) {
+        StatusAttribution.fromObject = function fromObject(object, long) {
             if (object instanceof $root.StatusAttributions.StatusAttribution)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.StatusAttributions.StatusAttribution();
             switch (object.type) {
             default:
@@ -5248,32 +5452,32 @@ $root.StatusAttributions = (function() {
             if (object.statusReshare != null) {
                 if (typeof object.statusReshare !== "object")
                     throw TypeError(".StatusAttributions.StatusAttribution.statusReshare: object expected");
-                message.statusReshare = $root.StatusAttributions.StatusAttribution.StatusReshare.fromObject(object.statusReshare);
+                message.statusReshare = $root.StatusAttributions.StatusAttribution.StatusReshare.fromObject(object.statusReshare, long + 1);
             }
             if (object.externalShare != null) {
                 if (typeof object.externalShare !== "object")
                     throw TypeError(".StatusAttributions.StatusAttribution.externalShare: object expected");
-                message.externalShare = $root.StatusAttributions.StatusAttribution.ExternalShare.fromObject(object.externalShare);
+                message.externalShare = $root.StatusAttributions.StatusAttribution.ExternalShare.fromObject(object.externalShare, long + 1);
             }
             if (object.music != null) {
                 if (typeof object.music !== "object")
                     throw TypeError(".StatusAttributions.StatusAttribution.music: object expected");
-                message.music = $root.StatusAttributions.StatusAttribution.Music.fromObject(object.music);
+                message.music = $root.StatusAttributions.StatusAttribution.Music.fromObject(object.music, long + 1);
             }
             if (object.groupStatus != null) {
                 if (typeof object.groupStatus !== "object")
                     throw TypeError(".StatusAttributions.StatusAttribution.groupStatus: object expected");
-                message.groupStatus = $root.StatusAttributions.StatusAttribution.GroupStatus.fromObject(object.groupStatus);
+                message.groupStatus = $root.StatusAttributions.StatusAttribution.GroupStatus.fromObject(object.groupStatus, long + 1);
             }
             if (object.rlAttribution != null) {
                 if (typeof object.rlAttribution !== "object")
                     throw TypeError(".StatusAttributions.StatusAttribution.rlAttribution: object expected");
-                message.rlAttribution = $root.StatusAttributions.StatusAttribution.RLAttribution.fromObject(object.rlAttribution);
+                message.rlAttribution = $root.StatusAttributions.StatusAttribution.RLAttribution.fromObject(object.rlAttribution, long + 1);
             }
             if (object.aiCreatedAttribution != null) {
                 if (typeof object.aiCreatedAttribution !== "object")
                     throw TypeError(".StatusAttributions.StatusAttribution.aiCreatedAttribution: object expected");
-                message.aiCreatedAttribution = $root.StatusAttributions.StatusAttribution.AiCreatedAttribution.fromObject(object.aiCreatedAttribution);
+                message.aiCreatedAttribution = $root.StatusAttributions.StatusAttribution.AiCreatedAttribution.fromObject(object.aiCreatedAttribution, long + 1);
             }
             return message;
         };
@@ -5378,7 +5582,7 @@ $root.StatusAttributions = (function() {
             function AiCreatedAttribution(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -5443,9 +5647,13 @@ $root.StatusAttributions = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AiCreatedAttribution.decode = function decode(reader, length, error) {
+            AiCreatedAttribution.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.StatusAttributions.StatusAttribution.AiCreatedAttribution();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -5457,7 +5665,7 @@ $root.StatusAttributions = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -5488,9 +5696,13 @@ $root.StatusAttributions = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            AiCreatedAttribution.verify = function verify(message) {
+            AiCreatedAttribution.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.source != null && message.hasOwnProperty("source"))
                     switch (message.source) {
                     default:
@@ -5510,9 +5722,13 @@ $root.StatusAttributions = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {StatusAttributions.StatusAttribution.AiCreatedAttribution} AiCreatedAttribution
              */
-            AiCreatedAttribution.fromObject = function fromObject(object) {
+            AiCreatedAttribution.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.AiCreatedAttribution)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.StatusAttributions.StatusAttribution.AiCreatedAttribution();
                 switch (object.source) {
                 default:
@@ -5619,7 +5835,7 @@ $root.StatusAttributions = (function() {
             function ExternalShare(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -5714,9 +5930,13 @@ $root.StatusAttributions = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ExternalShare.decode = function decode(reader, length, error) {
+            ExternalShare.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.StatusAttributions.StatusAttribution.ExternalShare();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -5740,7 +5960,7 @@ $root.StatusAttributions = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -5771,9 +5991,13 @@ $root.StatusAttributions = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            ExternalShare.verify = function verify(message) {
+            ExternalShare.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.actionUrl != null && message.hasOwnProperty("actionUrl"))
                     if (!$util.isString(message.actionUrl))
                         return "actionUrl: string expected";
@@ -5812,9 +6036,13 @@ $root.StatusAttributions = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {StatusAttributions.StatusAttribution.ExternalShare} ExternalShare
              */
-            ExternalShare.fromObject = function fromObject(object) {
+            ExternalShare.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.ExternalShare)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.StatusAttributions.StatusAttribution.ExternalShare();
                 if (object.actionUrl != null)
                     message.actionUrl = String(object.actionUrl);
@@ -5994,7 +6222,7 @@ $root.StatusAttributions = (function() {
             function GroupStatus(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -6059,9 +6287,13 @@ $root.StatusAttributions = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            GroupStatus.decode = function decode(reader, length, error) {
+            GroupStatus.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.StatusAttributions.StatusAttribution.GroupStatus();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -6073,7 +6305,7 @@ $root.StatusAttributions = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -6104,9 +6336,13 @@ $root.StatusAttributions = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            GroupStatus.verify = function verify(message) {
+            GroupStatus.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.authorJid != null && message.hasOwnProperty("authorJid"))
                     if (!$util.isString(message.authorJid))
                         return "authorJid: string expected";
@@ -6121,9 +6357,13 @@ $root.StatusAttributions = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {StatusAttributions.StatusAttribution.GroupStatus} GroupStatus
              */
-            GroupStatus.fromObject = function fromObject(object) {
+            GroupStatus.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.GroupStatus)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.StatusAttributions.StatusAttribution.GroupStatus();
                 if (object.authorJid != null)
                     message.authorJid = String(object.authorJid);
@@ -6204,7 +6444,7 @@ $root.StatusAttributions = (function() {
             function Music(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -6319,9 +6559,13 @@ $root.StatusAttributions = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            Music.decode = function decode(reader, length, error) {
+            Music.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.StatusAttributions.StatusAttribution.Music();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -6353,7 +6597,7 @@ $root.StatusAttributions = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -6384,9 +6628,13 @@ $root.StatusAttributions = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            Music.verify = function verify(message) {
+            Music.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.authorName != null && message.hasOwnProperty("authorName"))
                     if (!$util.isString(message.authorName))
                         return "authorName: string expected";
@@ -6416,9 +6664,13 @@ $root.StatusAttributions = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {StatusAttributions.StatusAttribution.Music} Music
              */
-            Music.fromObject = function fromObject(object) {
+            Music.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.Music)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.StatusAttributions.StatusAttribution.Music();
                 if (object.authorName != null)
                     message.authorName = String(object.authorName);
@@ -6520,7 +6772,7 @@ $root.StatusAttributions = (function() {
             function RLAttribution(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -6585,9 +6837,13 @@ $root.StatusAttributions = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            RLAttribution.decode = function decode(reader, length, error) {
+            RLAttribution.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.StatusAttributions.StatusAttribution.RLAttribution();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -6599,7 +6855,7 @@ $root.StatusAttributions = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -6630,9 +6886,13 @@ $root.StatusAttributions = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            RLAttribution.verify = function verify(message) {
+            RLAttribution.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.source != null && message.hasOwnProperty("source"))
                     switch (message.source) {
                     default:
@@ -6654,9 +6914,13 @@ $root.StatusAttributions = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {StatusAttributions.StatusAttribution.RLAttribution} RLAttribution
              */
-            RLAttribution.fromObject = function fromObject(object) {
+            RLAttribution.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.RLAttribution)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.StatusAttributions.StatusAttribution.RLAttribution();
                 switch (object.source) {
                 default:
@@ -6773,7 +7037,7 @@ $root.StatusAttributions = (function() {
             function StatusReshare(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -6848,9 +7112,13 @@ $root.StatusAttributions = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            StatusReshare.decode = function decode(reader, length, error) {
+            StatusReshare.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.StatusAttributions.StatusAttribution.StatusReshare();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -6862,11 +7130,11 @@ $root.StatusAttributions = (function() {
                             break;
                         }
                     case 2: {
-                            message.metadata = $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata.decode(reader, reader.uint32());
+                            message.metadata = $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -6897,9 +7165,13 @@ $root.StatusAttributions = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            StatusReshare.verify = function verify(message) {
+            StatusReshare.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.source != null && message.hasOwnProperty("source"))
                     switch (message.source) {
                     default:
@@ -6912,7 +7184,7 @@ $root.StatusAttributions = (function() {
                         break;
                     }
                 if (message.metadata != null && message.hasOwnProperty("metadata")) {
-                    var error = $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata.verify(message.metadata);
+                    var error = $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata.verify(message.metadata, long + 1);
                     if (error)
                         return "metadata." + error;
                 }
@@ -6927,9 +7199,13 @@ $root.StatusAttributions = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {StatusAttributions.StatusAttribution.StatusReshare} StatusReshare
              */
-            StatusReshare.fromObject = function fromObject(object) {
+            StatusReshare.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.StatusReshare)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.StatusAttributions.StatusAttribution.StatusReshare();
                 switch (object.source) {
                 default:
@@ -6962,7 +7238,7 @@ $root.StatusAttributions = (function() {
                 if (object.metadata != null) {
                     if (typeof object.metadata !== "object")
                         throw TypeError(".StatusAttributions.StatusAttribution.StatusReshare.metadata: object expected");
-                    message.metadata = $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata.fromObject(object.metadata);
+                    message.metadata = $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata.fromObject(object.metadata, long + 1);
                 }
                 return message;
             };
@@ -7040,7 +7316,7 @@ $root.StatusAttributions = (function() {
                 function Metadata(properties) {
                     if (properties)
                         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
+                            if (properties[keys[i]] != null && keys[i] !== "__proto__")
                                 this[keys[i]] = properties[keys[i]];
                 }
 
@@ -7135,9 +7411,13 @@ $root.StatusAttributions = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Metadata.decode = function decode(reader, length, error) {
+                Metadata.decode = function decode(reader, length, error, long) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $Reader.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
@@ -7161,7 +7441,7 @@ $root.StatusAttributions = (function() {
                                 break;
                             }
                         default:
-                            reader.skipType(tag & 7);
+                            reader.skipType(tag & 7, long);
                             break;
                         }
                     }
@@ -7192,9 +7472,13 @@ $root.StatusAttributions = (function() {
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
                  */
-                Metadata.verify = function verify(message) {
+                Metadata.verify = function verify(message, long) {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        return "maximum nesting depth exceeded";
                     if (message.duration != null && message.hasOwnProperty("duration"))
                         if (!$util.isInteger(message.duration))
                             return "duration: integer expected";
@@ -7218,9 +7502,13 @@ $root.StatusAttributions = (function() {
                  * @param {Object.<string,*>} object Plain object
                  * @returns {StatusAttributions.StatusAttribution.StatusReshare.Metadata} Metadata
                  */
-                Metadata.fromObject = function fromObject(object) {
+                Metadata.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata)
                         return object;
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var message = new $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata();
                     if (object.duration != null)
                         message.duration = object.duration | 0;

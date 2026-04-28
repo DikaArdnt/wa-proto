@@ -45,7 +45,7 @@ $root.VnameCert = (function() {
         function BizIdentityInfo(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -180,9 +180,13 @@ $root.VnameCert = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BizIdentityInfo.decode = function decode(reader, length, error) {
+        BizIdentityInfo.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.VnameCert.BizIdentityInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -194,7 +198,7 @@ $root.VnameCert = (function() {
                         break;
                     }
                 case 2: {
-                        message.vnameCert = $root.VnameCert.VerifiedNameCertificate.decode(reader, reader.uint32());
+                        message.vnameCert = $root.VnameCert.VerifiedNameCertificate.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 3: {
@@ -222,7 +226,7 @@ $root.VnameCert = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -253,9 +257,13 @@ $root.VnameCert = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BizIdentityInfo.verify = function verify(message) {
+        BizIdentityInfo.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.vlevel != null && message.hasOwnProperty("vlevel"))
                 switch (message.vlevel) {
                 default:
@@ -266,7 +274,7 @@ $root.VnameCert = (function() {
                     break;
                 }
             if (message.vnameCert != null && message.hasOwnProperty("vnameCert")) {
-                var error = $root.VnameCert.VerifiedNameCertificate.verify(message.vnameCert);
+                var error = $root.VnameCert.VerifiedNameCertificate.verify(message.vnameCert, long + 1);
                 if (error)
                     return "vnameCert." + error;
             }
@@ -309,9 +317,13 @@ $root.VnameCert = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {VnameCert.BizIdentityInfo} BizIdentityInfo
          */
-        BizIdentityInfo.fromObject = function fromObject(object) {
+        BizIdentityInfo.fromObject = function fromObject(object, long) {
             if (object instanceof $root.VnameCert.BizIdentityInfo)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.VnameCert.BizIdentityInfo();
             switch (object.vlevel) {
             default:
@@ -336,7 +348,7 @@ $root.VnameCert = (function() {
             if (object.vnameCert != null) {
                 if (typeof object.vnameCert !== "object")
                     throw TypeError(".VnameCert.BizIdentityInfo.vnameCert: object expected");
-                message.vnameCert = $root.VnameCert.VerifiedNameCertificate.fromObject(object.vnameCert);
+                message.vnameCert = $root.VnameCert.VerifiedNameCertificate.fromObject(object.vnameCert, long + 1);
             }
             if (object.signed != null)
                 message.signed = Boolean(object.signed);
@@ -548,7 +560,7 @@ $root.VnameCert = (function() {
         function BizAccountLinkInfo(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -653,9 +665,13 @@ $root.VnameCert = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BizAccountLinkInfo.decode = function decode(reader, length, error) {
+        BizAccountLinkInfo.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.VnameCert.BizAccountLinkInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -683,7 +699,7 @@ $root.VnameCert = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -714,9 +730,13 @@ $root.VnameCert = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BizAccountLinkInfo.verify = function verify(message) {
+        BizAccountLinkInfo.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.whatsappBizAcctFbid != null && message.hasOwnProperty("whatsappBizAcctFbid"))
                 if (!$util.isInteger(message.whatsappBizAcctFbid) && !(message.whatsappBizAcctFbid && $util.isInteger(message.whatsappBizAcctFbid.low) && $util.isInteger(message.whatsappBizAcctFbid.high)))
                     return "whatsappBizAcctFbid: integer|Long expected";
@@ -752,9 +772,13 @@ $root.VnameCert = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {VnameCert.BizAccountLinkInfo} BizAccountLinkInfo
          */
-        BizAccountLinkInfo.fromObject = function fromObject(object) {
+        BizAccountLinkInfo.fromObject = function fromObject(object, long) {
             if (object instanceof $root.VnameCert.BizAccountLinkInfo)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.VnameCert.BizAccountLinkInfo();
             if (object.whatsappBizAcctFbid != null)
                 if ($util.Long)
@@ -930,7 +954,7 @@ $root.VnameCert = (function() {
         function BizAccountPayload(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -1005,9 +1029,13 @@ $root.VnameCert = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BizAccountPayload.decode = function decode(reader, length, error) {
+        BizAccountPayload.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.VnameCert.BizAccountPayload();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -1015,7 +1043,7 @@ $root.VnameCert = (function() {
                     break;
                 switch (tag >>> 3) {
                 case 1: {
-                        message.vnameCert = $root.VnameCert.VerifiedNameCertificate.decode(reader, reader.uint32());
+                        message.vnameCert = $root.VnameCert.VerifiedNameCertificate.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 2: {
@@ -1023,7 +1051,7 @@ $root.VnameCert = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -1054,11 +1082,15 @@ $root.VnameCert = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BizAccountPayload.verify = function verify(message) {
+        BizAccountPayload.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.vnameCert != null && message.hasOwnProperty("vnameCert")) {
-                var error = $root.VnameCert.VerifiedNameCertificate.verify(message.vnameCert);
+                var error = $root.VnameCert.VerifiedNameCertificate.verify(message.vnameCert, long + 1);
                 if (error)
                     return "vnameCert." + error;
             }
@@ -1076,14 +1108,18 @@ $root.VnameCert = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {VnameCert.BizAccountPayload} BizAccountPayload
          */
-        BizAccountPayload.fromObject = function fromObject(object) {
+        BizAccountPayload.fromObject = function fromObject(object, long) {
             if (object instanceof $root.VnameCert.BizAccountPayload)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.VnameCert.BizAccountPayload();
             if (object.vnameCert != null) {
                 if (typeof object.vnameCert !== "object")
                     throw TypeError(".VnameCert.BizAccountPayload.vnameCert: object expected");
-                message.vnameCert = $root.VnameCert.VerifiedNameCertificate.fromObject(object.vnameCert);
+                message.vnameCert = $root.VnameCert.VerifiedNameCertificate.fromObject(object.vnameCert, long + 1);
             }
             if (object.bizAcctLinkInfo != null)
                 if (typeof object.bizAcctLinkInfo === "string")
@@ -1174,7 +1210,7 @@ $root.VnameCert = (function() {
         function VerifiedNameCertificate(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -1259,9 +1295,13 @@ $root.VnameCert = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        VerifiedNameCertificate.decode = function decode(reader, length, error) {
+        VerifiedNameCertificate.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.VnameCert.VerifiedNameCertificate();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -1281,7 +1321,7 @@ $root.VnameCert = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -1312,9 +1352,13 @@ $root.VnameCert = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        VerifiedNameCertificate.verify = function verify(message) {
+        VerifiedNameCertificate.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.details != null && message.hasOwnProperty("details"))
                 if (!(message.details && typeof message.details.length === "number" || $util.isString(message.details)))
                     return "details: buffer expected";
@@ -1335,9 +1379,13 @@ $root.VnameCert = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {VnameCert.VerifiedNameCertificate} VerifiedNameCertificate
          */
-        VerifiedNameCertificate.fromObject = function fromObject(object) {
+        VerifiedNameCertificate.fromObject = function fromObject(object, long) {
             if (object instanceof $root.VnameCert.VerifiedNameCertificate)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.VnameCert.VerifiedNameCertificate();
             if (object.details != null)
                 if (typeof object.details === "string")
@@ -1453,7 +1501,7 @@ $root.VnameCert = (function() {
                 this.localizedNames = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -1559,9 +1607,13 @@ $root.VnameCert = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            Details.decode = function decode(reader, length, error) {
+            Details.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.VnameCert.VerifiedNameCertificate.Details();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -1583,7 +1635,7 @@ $root.VnameCert = (function() {
                     case 8: {
                             if (!(message.localizedNames && message.localizedNames.length))
                                 message.localizedNames = [];
-                            message.localizedNames.push($root.VnameCert.LocalizedName.decode(reader, reader.uint32()));
+                            message.localizedNames.push($root.VnameCert.LocalizedName.decode(reader, reader.uint32(), undefined, long + 1));
                             break;
                         }
                     case 10: {
@@ -1591,7 +1643,7 @@ $root.VnameCert = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -1622,9 +1674,13 @@ $root.VnameCert = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            Details.verify = function verify(message) {
+            Details.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.serial != null && message.hasOwnProperty("serial"))
                     if (!$util.isInteger(message.serial) && !(message.serial && $util.isInteger(message.serial.low) && $util.isInteger(message.serial.high)))
                         return "serial: integer|Long expected";
@@ -1638,7 +1694,7 @@ $root.VnameCert = (function() {
                     if (!Array.isArray(message.localizedNames))
                         return "localizedNames: array expected";
                     for (var i = 0; i < message.localizedNames.length; ++i) {
-                        var error = $root.VnameCert.LocalizedName.verify(message.localizedNames[i]);
+                        var error = $root.VnameCert.LocalizedName.verify(message.localizedNames[i], long + 1);
                         if (error)
                             return "localizedNames." + error;
                     }
@@ -1657,9 +1713,13 @@ $root.VnameCert = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {VnameCert.VerifiedNameCertificate.Details} Details
              */
-            Details.fromObject = function fromObject(object) {
+            Details.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.VnameCert.VerifiedNameCertificate.Details)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.VnameCert.VerifiedNameCertificate.Details();
                 if (object.serial != null)
                     if ($util.Long)
@@ -1681,7 +1741,7 @@ $root.VnameCert = (function() {
                     for (var i = 0; i < object.localizedNames.length; ++i) {
                         if (typeof object.localizedNames[i] !== "object")
                             throw TypeError(".VnameCert.VerifiedNameCertificate.Details.localizedNames: object expected");
-                        message.localizedNames[i] = $root.VnameCert.LocalizedName.fromObject(object.localizedNames[i]);
+                        message.localizedNames[i] = $root.VnameCert.LocalizedName.fromObject(object.localizedNames[i], long + 1);
                     }
                 }
                 if (object.issueTime != null)
@@ -1801,7 +1861,7 @@ $root.VnameCert = (function() {
         function LocalizedName(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -1886,9 +1946,13 @@ $root.VnameCert = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        LocalizedName.decode = function decode(reader, length, error) {
+        LocalizedName.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.VnameCert.LocalizedName();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -1908,7 +1972,7 @@ $root.VnameCert = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -1939,9 +2003,13 @@ $root.VnameCert = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        LocalizedName.verify = function verify(message) {
+        LocalizedName.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.lg != null && message.hasOwnProperty("lg"))
                 if (!$util.isString(message.lg))
                     return "lg: string expected";
@@ -1962,9 +2030,13 @@ $root.VnameCert = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {VnameCert.LocalizedName} LocalizedName
          */
-        LocalizedName.fromObject = function fromObject(object) {
+        LocalizedName.fromObject = function fromObject(object, long) {
             if (object instanceof $root.VnameCert.LocalizedName)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.VnameCert.LocalizedName();
             if (object.lg != null)
                 message.lg = String(object.lg);

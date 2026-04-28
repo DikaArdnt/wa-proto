@@ -41,7 +41,7 @@ $root.Protocol = (function() {
         function LimitSharing(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -136,9 +136,13 @@ $root.Protocol = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        LimitSharing.decode = function decode(reader, length, error) {
+        LimitSharing.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.LimitSharing();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -162,7 +166,7 @@ $root.Protocol = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -193,9 +197,13 @@ $root.Protocol = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        LimitSharing.verify = function verify(message) {
+        LimitSharing.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
                 if (typeof message.sharingLimited !== "boolean")
                     return "sharingLimited: boolean expected";
@@ -226,9 +234,13 @@ $root.Protocol = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {Protocol.LimitSharing} LimitSharing
          */
-        LimitSharing.fromObject = function fromObject(object) {
+        LimitSharing.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Protocol.LimitSharing)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.Protocol.LimitSharing();
             if (object.sharingLimited != null)
                 message.sharingLimited = Boolean(object.sharingLimited);
@@ -377,7 +389,7 @@ $root.Protocol = (function() {
         function MessageKey(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -472,9 +484,13 @@ $root.Protocol = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        MessageKey.decode = function decode(reader, length, error) {
+        MessageKey.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.MessageKey();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -498,7 +514,7 @@ $root.Protocol = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -529,9 +545,13 @@ $root.Protocol = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        MessageKey.verify = function verify(message) {
+        MessageKey.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.remoteJid != null && message.hasOwnProperty("remoteJid"))
                 if (!$util.isString(message.remoteJid))
                     return "remoteJid: string expected";
@@ -555,9 +575,13 @@ $root.Protocol = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {Protocol.MessageKey} MessageKey
          */
-        MessageKey.fromObject = function fromObject(object) {
+        MessageKey.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Protocol.MessageKey)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.Protocol.MessageKey();
             if (object.remoteJid != null)
                 message.remoteJid = String(object.remoteJid);

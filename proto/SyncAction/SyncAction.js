@@ -48,7 +48,7 @@ $root.SyncAction = (function() {
         function PatchDebugData(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -213,9 +213,13 @@ $root.SyncAction = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        PatchDebugData.decode = function decode(reader, length, error) {
+        PatchDebugData.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.PatchDebugData();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -267,7 +271,7 @@ $root.SyncAction = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -298,9 +302,13 @@ $root.SyncAction = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        PatchDebugData.verify = function verify(message) {
+        PatchDebugData.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.currentLthash != null && message.hasOwnProperty("currentLthash"))
                 if (!(message.currentLthash && typeof message.currentLthash.length === "number" || $util.isString(message.currentLthash)))
                     return "currentLthash: buffer expected";
@@ -360,9 +368,13 @@ $root.SyncAction = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {SyncAction.PatchDebugData} PatchDebugData
          */
-        PatchDebugData.fromObject = function fromObject(object) {
+        PatchDebugData.fromObject = function fromObject(object, long) {
             if (object instanceof $root.SyncAction.PatchDebugData)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.SyncAction.PatchDebugData();
             if (object.currentLthash != null)
                 if (typeof object.currentLthash === "string")
@@ -634,7 +646,7 @@ $root.SyncAction = (function() {
         function SyncActionData(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -729,9 +741,13 @@ $root.SyncAction = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        SyncActionData.decode = function decode(reader, length, error) {
+        SyncActionData.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionData();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -743,7 +759,7 @@ $root.SyncAction = (function() {
                         break;
                     }
                 case 2: {
-                        message.value = $root.SyncAction.SyncActionValue.decode(reader, reader.uint32());
+                        message.value = $root.SyncAction.SyncActionValue.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 3: {
@@ -755,7 +771,7 @@ $root.SyncAction = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -786,14 +802,18 @@ $root.SyncAction = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        SyncActionData.verify = function verify(message) {
+        SyncActionData.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.index != null && message.hasOwnProperty("index"))
                 if (!(message.index && typeof message.index.length === "number" || $util.isString(message.index)))
                     return "index: buffer expected";
             if (message.value != null && message.hasOwnProperty("value")) {
-                var error = $root.SyncAction.SyncActionValue.verify(message.value);
+                var error = $root.SyncAction.SyncActionValue.verify(message.value, long + 1);
                 if (error)
                     return "value." + error;
             }
@@ -814,9 +834,13 @@ $root.SyncAction = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {SyncAction.SyncActionData} SyncActionData
          */
-        SyncActionData.fromObject = function fromObject(object) {
+        SyncActionData.fromObject = function fromObject(object, long) {
             if (object instanceof $root.SyncAction.SyncActionData)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.SyncAction.SyncActionData();
             if (object.index != null)
                 if (typeof object.index === "string")
@@ -826,7 +850,7 @@ $root.SyncAction = (function() {
             if (object.value != null) {
                 if (typeof object.value !== "object")
                     throw TypeError(".SyncAction.SyncActionData.value: object expected");
-                message.value = $root.SyncAction.SyncActionValue.fromObject(object.value);
+                message.value = $root.SyncAction.SyncActionValue.fromObject(object.value, long + 1);
             }
             if (object.padding != null)
                 if (typeof object.padding === "string")
@@ -1006,7 +1030,7 @@ $root.SyncAction = (function() {
         function SyncActionValue(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -1841,9 +1865,13 @@ $root.SyncAction = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        SyncActionValue.decode = function decode(reader, length, error) {
+        SyncActionValue.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -1855,315 +1883,315 @@ $root.SyncAction = (function() {
                         break;
                     }
                 case 2: {
-                        message.starAction = $root.SyncAction.SyncActionValue.StarAction.decode(reader, reader.uint32());
+                        message.starAction = $root.SyncAction.SyncActionValue.StarAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 3: {
-                        message.contactAction = $root.SyncAction.SyncActionValue.ContactAction.decode(reader, reader.uint32());
+                        message.contactAction = $root.SyncAction.SyncActionValue.ContactAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 4: {
-                        message.muteAction = $root.SyncAction.SyncActionValue.MuteAction.decode(reader, reader.uint32());
+                        message.muteAction = $root.SyncAction.SyncActionValue.MuteAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 5: {
-                        message.pinAction = $root.SyncAction.SyncActionValue.PinAction.decode(reader, reader.uint32());
+                        message.pinAction = $root.SyncAction.SyncActionValue.PinAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 7: {
-                        message.pushNameSetting = $root.SyncAction.SyncActionValue.PushNameSetting.decode(reader, reader.uint32());
+                        message.pushNameSetting = $root.SyncAction.SyncActionValue.PushNameSetting.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 8: {
-                        message.quickReplyAction = $root.SyncAction.SyncActionValue.QuickReplyAction.decode(reader, reader.uint32());
+                        message.quickReplyAction = $root.SyncAction.SyncActionValue.QuickReplyAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 11: {
-                        message.recentEmojiWeightsAction = $root.SyncAction.SyncActionValue.RecentEmojiWeightsAction.decode(reader, reader.uint32());
+                        message.recentEmojiWeightsAction = $root.SyncAction.SyncActionValue.RecentEmojiWeightsAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 14: {
-                        message.labelEditAction = $root.SyncAction.SyncActionValue.LabelEditAction.decode(reader, reader.uint32());
+                        message.labelEditAction = $root.SyncAction.SyncActionValue.LabelEditAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 15: {
-                        message.labelAssociationAction = $root.SyncAction.SyncActionValue.LabelAssociationAction.decode(reader, reader.uint32());
+                        message.labelAssociationAction = $root.SyncAction.SyncActionValue.LabelAssociationAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 16: {
-                        message.localeSetting = $root.SyncAction.SyncActionValue.LocaleSetting.decode(reader, reader.uint32());
+                        message.localeSetting = $root.SyncAction.SyncActionValue.LocaleSetting.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 17: {
-                        message.archiveChatAction = $root.SyncAction.SyncActionValue.ArchiveChatAction.decode(reader, reader.uint32());
+                        message.archiveChatAction = $root.SyncAction.SyncActionValue.ArchiveChatAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 18: {
-                        message.deleteMessageForMeAction = $root.SyncAction.SyncActionValue.DeleteMessageForMeAction.decode(reader, reader.uint32());
+                        message.deleteMessageForMeAction = $root.SyncAction.SyncActionValue.DeleteMessageForMeAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 19: {
-                        message.keyExpiration = $root.SyncAction.SyncActionValue.KeyExpiration.decode(reader, reader.uint32());
+                        message.keyExpiration = $root.SyncAction.SyncActionValue.KeyExpiration.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 20: {
-                        message.markChatAsReadAction = $root.SyncAction.SyncActionValue.MarkChatAsReadAction.decode(reader, reader.uint32());
+                        message.markChatAsReadAction = $root.SyncAction.SyncActionValue.MarkChatAsReadAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 21: {
-                        message.clearChatAction = $root.SyncAction.SyncActionValue.ClearChatAction.decode(reader, reader.uint32());
+                        message.clearChatAction = $root.SyncAction.SyncActionValue.ClearChatAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 22: {
-                        message.deleteChatAction = $root.SyncAction.SyncActionValue.DeleteChatAction.decode(reader, reader.uint32());
+                        message.deleteChatAction = $root.SyncAction.SyncActionValue.DeleteChatAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 23: {
-                        message.unarchiveChatsSetting = $root.SyncAction.SyncActionValue.UnarchiveChatsSetting.decode(reader, reader.uint32());
+                        message.unarchiveChatsSetting = $root.SyncAction.SyncActionValue.UnarchiveChatsSetting.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 24: {
-                        message.primaryFeature = $root.SyncAction.SyncActionValue.PrimaryFeature.decode(reader, reader.uint32());
+                        message.primaryFeature = $root.SyncAction.SyncActionValue.PrimaryFeature.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 26: {
-                        message.androidUnsupportedActions = $root.SyncAction.SyncActionValue.AndroidUnsupportedActions.decode(reader, reader.uint32());
+                        message.androidUnsupportedActions = $root.SyncAction.SyncActionValue.AndroidUnsupportedActions.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 27: {
-                        message.agentAction = $root.SyncAction.SyncActionValue.AgentAction.decode(reader, reader.uint32());
+                        message.agentAction = $root.SyncAction.SyncActionValue.AgentAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 28: {
-                        message.subscriptionAction = $root.SyncAction.SyncActionValue.SubscriptionAction.decode(reader, reader.uint32());
+                        message.subscriptionAction = $root.SyncAction.SyncActionValue.SubscriptionAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 29: {
-                        message.userStatusMuteAction = $root.SyncAction.SyncActionValue.UserStatusMuteAction.decode(reader, reader.uint32());
+                        message.userStatusMuteAction = $root.SyncAction.SyncActionValue.UserStatusMuteAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 30: {
-                        message.timeFormatAction = $root.SyncAction.SyncActionValue.TimeFormatAction.decode(reader, reader.uint32());
+                        message.timeFormatAction = $root.SyncAction.SyncActionValue.TimeFormatAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 31: {
-                        message.nuxAction = $root.SyncAction.SyncActionValue.NuxAction.decode(reader, reader.uint32());
+                        message.nuxAction = $root.SyncAction.SyncActionValue.NuxAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 32: {
-                        message.primaryVersionAction = $root.SyncAction.SyncActionValue.PrimaryVersionAction.decode(reader, reader.uint32());
+                        message.primaryVersionAction = $root.SyncAction.SyncActionValue.PrimaryVersionAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 33: {
-                        message.stickerAction = $root.SyncAction.SyncActionValue.StickerAction.decode(reader, reader.uint32());
+                        message.stickerAction = $root.SyncAction.SyncActionValue.StickerAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 34: {
-                        message.removeRecentStickerAction = $root.SyncAction.SyncActionValue.RemoveRecentStickerAction.decode(reader, reader.uint32());
+                        message.removeRecentStickerAction = $root.SyncAction.SyncActionValue.RemoveRecentStickerAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 35: {
-                        message.chatAssignment = $root.SyncAction.SyncActionValue.ChatAssignmentAction.decode(reader, reader.uint32());
+                        message.chatAssignment = $root.SyncAction.SyncActionValue.ChatAssignmentAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 36: {
-                        message.chatAssignmentOpenedStatus = $root.SyncAction.SyncActionValue.ChatAssignmentOpenedStatusAction.decode(reader, reader.uint32());
+                        message.chatAssignmentOpenedStatus = $root.SyncAction.SyncActionValue.ChatAssignmentOpenedStatusAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 37: {
-                        message.pnForLidChatAction = $root.SyncAction.SyncActionValue.PnForLidChatAction.decode(reader, reader.uint32());
+                        message.pnForLidChatAction = $root.SyncAction.SyncActionValue.PnForLidChatAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 38: {
-                        message.marketingMessageAction = $root.SyncAction.SyncActionValue.MarketingMessageAction.decode(reader, reader.uint32());
+                        message.marketingMessageAction = $root.SyncAction.SyncActionValue.MarketingMessageAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 39: {
-                        message.marketingMessageBroadcastAction = $root.SyncAction.SyncActionValue.MarketingMessageBroadcastAction.decode(reader, reader.uint32());
+                        message.marketingMessageBroadcastAction = $root.SyncAction.SyncActionValue.MarketingMessageBroadcastAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 40: {
-                        message.externalWebBetaAction = $root.SyncAction.SyncActionValue.ExternalWebBetaAction.decode(reader, reader.uint32());
+                        message.externalWebBetaAction = $root.SyncAction.SyncActionValue.ExternalWebBetaAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 41: {
-                        message.privacySettingRelayAllCalls = $root.SyncAction.SyncActionValue.PrivacySettingRelayAllCalls.decode(reader, reader.uint32());
+                        message.privacySettingRelayAllCalls = $root.SyncAction.SyncActionValue.PrivacySettingRelayAllCalls.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 42: {
-                        message.callLogAction = $root.SyncAction.SyncActionValue.CallLogAction.decode(reader, reader.uint32());
+                        message.callLogAction = $root.SyncAction.SyncActionValue.CallLogAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 43: {
-                        message.ugcBot = $root.SyncAction.SyncActionValue.UGCBot.decode(reader, reader.uint32());
+                        message.ugcBot = $root.SyncAction.SyncActionValue.UGCBot.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 44: {
-                        message.statusPrivacy = $root.SyncAction.SyncActionValue.StatusPrivacyAction.decode(reader, reader.uint32());
+                        message.statusPrivacy = $root.SyncAction.SyncActionValue.StatusPrivacyAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 45: {
-                        message.botWelcomeRequestAction = $root.SyncAction.SyncActionValue.BotWelcomeRequestAction.decode(reader, reader.uint32());
+                        message.botWelcomeRequestAction = $root.SyncAction.SyncActionValue.BotWelcomeRequestAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 46: {
-                        message.deleteIndividualCallLog = $root.SyncAction.SyncActionValue.DeleteIndividualCallLogAction.decode(reader, reader.uint32());
+                        message.deleteIndividualCallLog = $root.SyncAction.SyncActionValue.DeleteIndividualCallLogAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 47: {
-                        message.labelReorderingAction = $root.SyncAction.SyncActionValue.LabelReorderingAction.decode(reader, reader.uint32());
+                        message.labelReorderingAction = $root.SyncAction.SyncActionValue.LabelReorderingAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 48: {
-                        message.paymentInfoAction = $root.SyncAction.SyncActionValue.PaymentInfoAction.decode(reader, reader.uint32());
+                        message.paymentInfoAction = $root.SyncAction.SyncActionValue.PaymentInfoAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 49: {
-                        message.customPaymentMethodsAction = $root.SyncAction.SyncActionValue.CustomPaymentMethodsAction.decode(reader, reader.uint32());
+                        message.customPaymentMethodsAction = $root.SyncAction.SyncActionValue.CustomPaymentMethodsAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 50: {
-                        message.lockChatAction = $root.SyncAction.SyncActionValue.LockChatAction.decode(reader, reader.uint32());
+                        message.lockChatAction = $root.SyncAction.SyncActionValue.LockChatAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 51: {
-                        message.chatLockSettings = $root.ChatLockSettings.ChatLockSettings.decode(reader, reader.uint32());
+                        message.chatLockSettings = $root.ChatLockSettings.ChatLockSettings.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 52: {
-                        message.wamoUserIdentifierAction = $root.SyncAction.SyncActionValue.WamoUserIdentifierAction.decode(reader, reader.uint32());
+                        message.wamoUserIdentifierAction = $root.SyncAction.SyncActionValue.WamoUserIdentifierAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 53: {
-                        message.privacySettingDisableLinkPreviewsAction = $root.SyncAction.SyncActionValue.PrivacySettingDisableLinkPreviewsAction.decode(reader, reader.uint32());
+                        message.privacySettingDisableLinkPreviewsAction = $root.SyncAction.SyncActionValue.PrivacySettingDisableLinkPreviewsAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 54: {
-                        message.deviceCapabilities = $root.DeviceCapabilities.DeviceCapabilities.decode(reader, reader.uint32());
+                        message.deviceCapabilities = $root.DeviceCapabilities.DeviceCapabilities.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 55: {
-                        message.noteEditAction = $root.SyncAction.SyncActionValue.NoteEditAction.decode(reader, reader.uint32());
+                        message.noteEditAction = $root.SyncAction.SyncActionValue.NoteEditAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 56: {
-                        message.favoritesAction = $root.SyncAction.SyncActionValue.FavoritesAction.decode(reader, reader.uint32());
+                        message.favoritesAction = $root.SyncAction.SyncActionValue.FavoritesAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 57: {
-                        message.merchantPaymentPartnerAction = $root.SyncAction.SyncActionValue.MerchantPaymentPartnerAction.decode(reader, reader.uint32());
+                        message.merchantPaymentPartnerAction = $root.SyncAction.SyncActionValue.MerchantPaymentPartnerAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 58: {
-                        message.waffleAccountLinkStateAction = $root.SyncAction.SyncActionValue.WaffleAccountLinkStateAction.decode(reader, reader.uint32());
+                        message.waffleAccountLinkStateAction = $root.SyncAction.SyncActionValue.WaffleAccountLinkStateAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 59: {
-                        message.usernameChatStartMode = $root.SyncAction.SyncActionValue.UsernameChatStartModeAction.decode(reader, reader.uint32());
+                        message.usernameChatStartMode = $root.SyncAction.SyncActionValue.UsernameChatStartModeAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 60: {
-                        message.notificationActivitySettingAction = $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.decode(reader, reader.uint32());
+                        message.notificationActivitySettingAction = $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 61: {
-                        message.lidContactAction = $root.SyncAction.SyncActionValue.LidContactAction.decode(reader, reader.uint32());
+                        message.lidContactAction = $root.SyncAction.SyncActionValue.LidContactAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 62: {
-                        message.ctwaPerCustomerDataSharingAction = $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.decode(reader, reader.uint32());
+                        message.ctwaPerCustomerDataSharingAction = $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 63: {
-                        message.paymentTosAction = $root.SyncAction.SyncActionValue.PaymentTosAction.decode(reader, reader.uint32());
+                        message.paymentTosAction = $root.SyncAction.SyncActionValue.PaymentTosAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 64: {
-                        message.privacySettingChannelsPersonalisedRecommendationAction = $root.SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction.decode(reader, reader.uint32());
+                        message.privacySettingChannelsPersonalisedRecommendationAction = $root.SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 66: {
-                        message.detectedOutcomesStatusAction = $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction.decode(reader, reader.uint32());
+                        message.detectedOutcomesStatusAction = $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 68: {
-                        message.maibaAiFeaturesControlAction = $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.decode(reader, reader.uint32());
+                        message.maibaAiFeaturesControlAction = $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 69: {
-                        message.businessBroadcastListAction = $root.SyncAction.SyncActionValue.BusinessBroadcastListAction.decode(reader, reader.uint32());
+                        message.businessBroadcastListAction = $root.SyncAction.SyncActionValue.BusinessBroadcastListAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 70: {
-                        message.musicUserIdAction = $root.SyncAction.SyncActionValue.MusicUserIdAction.decode(reader, reader.uint32());
+                        message.musicUserIdAction = $root.SyncAction.SyncActionValue.MusicUserIdAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 71: {
-                        message.statusPostOptInNotificationPreferencesAction = $root.SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction.decode(reader, reader.uint32());
+                        message.statusPostOptInNotificationPreferencesAction = $root.SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 72: {
-                        message.avatarUpdatedAction = $root.SyncAction.SyncActionValue.AvatarUpdatedAction.decode(reader, reader.uint32());
+                        message.avatarUpdatedAction = $root.SyncAction.SyncActionValue.AvatarUpdatedAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 74: {
-                        message.privateProcessingSettingAction = $root.SyncAction.SyncActionValue.PrivateProcessingSettingAction.decode(reader, reader.uint32());
+                        message.privateProcessingSettingAction = $root.SyncAction.SyncActionValue.PrivateProcessingSettingAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 75: {
-                        message.newsletterSavedInterestsAction = $root.SyncAction.SyncActionValue.NewsletterSavedInterestsAction.decode(reader, reader.uint32());
+                        message.newsletterSavedInterestsAction = $root.SyncAction.SyncActionValue.NewsletterSavedInterestsAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 76: {
-                        message.aiThreadRenameAction = $root.SyncAction.SyncActionValue.AiThreadRenameAction.decode(reader, reader.uint32());
+                        message.aiThreadRenameAction = $root.SyncAction.SyncActionValue.AiThreadRenameAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 77: {
-                        message.interactiveMessageAction = $root.SyncAction.SyncActionValue.InteractiveMessageAction.decode(reader, reader.uint32());
+                        message.interactiveMessageAction = $root.SyncAction.SyncActionValue.InteractiveMessageAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 78: {
-                        message.settingsSyncAction = $root.SyncAction.SyncActionValue.SettingsSyncAction.decode(reader, reader.uint32());
+                        message.settingsSyncAction = $root.SyncAction.SyncActionValue.SettingsSyncAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 79: {
-                        message.outContactAction = $root.SyncAction.SyncActionValue.OutContactAction.decode(reader, reader.uint32());
+                        message.outContactAction = $root.SyncAction.SyncActionValue.OutContactAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 80: {
-                        message.nctSaltSyncAction = $root.SyncAction.SyncActionValue.NctSaltSyncAction.decode(reader, reader.uint32());
+                        message.nctSaltSyncAction = $root.SyncAction.SyncActionValue.NctSaltSyncAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 81: {
-                        message.businessBroadcastCampaignAction = $root.SyncAction.SyncActionValue.BusinessBroadcastCampaignAction.decode(reader, reader.uint32());
+                        message.businessBroadcastCampaignAction = $root.SyncAction.SyncActionValue.BusinessBroadcastCampaignAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 82: {
-                        message.businessBroadcastInsightsAction = $root.SyncAction.SyncActionValue.BusinessBroadcastInsightsAction.decode(reader, reader.uint32());
+                        message.businessBroadcastInsightsAction = $root.SyncAction.SyncActionValue.BusinessBroadcastInsightsAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 83: {
-                        message.customerDataAction = $root.SyncAction.SyncActionValue.CustomerDataAction.decode(reader, reader.uint32());
+                        message.customerDataAction = $root.SyncAction.SyncActionValue.CustomerDataAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 84: {
-                        message.subscriptionsSyncV2Action = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.decode(reader, reader.uint32());
+                        message.subscriptionsSyncV2Action = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 85: {
-                        message.threadPinAction = $root.SyncAction.SyncActionValue.ThreadPinAction.decode(reader, reader.uint32());
+                        message.threadPinAction = $root.SyncAction.SyncActionValue.ThreadPinAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 86: {
-                        message.autoOrganizeBusinessChatSetting = $root.SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting.decode(reader, reader.uint32());
+                        message.autoOrganizeBusinessChatSetting = $root.SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 87: {
-                        message.bizAiSettingsNudgeAction = $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction.decode(reader, reader.uint32());
+                        message.bizAiSettingsNudgeAction = $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -2194,394 +2222,398 @@ $root.SyncAction = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        SyncActionValue.verify = function verify(message) {
+        SyncActionValue.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.timestamp != null && message.hasOwnProperty("timestamp"))
                 if (!$util.isInteger(message.timestamp) && !(message.timestamp && $util.isInteger(message.timestamp.low) && $util.isInteger(message.timestamp.high)))
                     return "timestamp: integer|Long expected";
             if (message.starAction != null && message.hasOwnProperty("starAction")) {
-                var error = $root.SyncAction.SyncActionValue.StarAction.verify(message.starAction);
+                var error = $root.SyncAction.SyncActionValue.StarAction.verify(message.starAction, long + 1);
                 if (error)
                     return "starAction." + error;
             }
             if (message.contactAction != null && message.hasOwnProperty("contactAction")) {
-                var error = $root.SyncAction.SyncActionValue.ContactAction.verify(message.contactAction);
+                var error = $root.SyncAction.SyncActionValue.ContactAction.verify(message.contactAction, long + 1);
                 if (error)
                     return "contactAction." + error;
             }
             if (message.muteAction != null && message.hasOwnProperty("muteAction")) {
-                var error = $root.SyncAction.SyncActionValue.MuteAction.verify(message.muteAction);
+                var error = $root.SyncAction.SyncActionValue.MuteAction.verify(message.muteAction, long + 1);
                 if (error)
                     return "muteAction." + error;
             }
             if (message.pinAction != null && message.hasOwnProperty("pinAction")) {
-                var error = $root.SyncAction.SyncActionValue.PinAction.verify(message.pinAction);
+                var error = $root.SyncAction.SyncActionValue.PinAction.verify(message.pinAction, long + 1);
                 if (error)
                     return "pinAction." + error;
             }
             if (message.pushNameSetting != null && message.hasOwnProperty("pushNameSetting")) {
-                var error = $root.SyncAction.SyncActionValue.PushNameSetting.verify(message.pushNameSetting);
+                var error = $root.SyncAction.SyncActionValue.PushNameSetting.verify(message.pushNameSetting, long + 1);
                 if (error)
                     return "pushNameSetting." + error;
             }
             if (message.quickReplyAction != null && message.hasOwnProperty("quickReplyAction")) {
-                var error = $root.SyncAction.SyncActionValue.QuickReplyAction.verify(message.quickReplyAction);
+                var error = $root.SyncAction.SyncActionValue.QuickReplyAction.verify(message.quickReplyAction, long + 1);
                 if (error)
                     return "quickReplyAction." + error;
             }
             if (message.recentEmojiWeightsAction != null && message.hasOwnProperty("recentEmojiWeightsAction")) {
-                var error = $root.SyncAction.SyncActionValue.RecentEmojiWeightsAction.verify(message.recentEmojiWeightsAction);
+                var error = $root.SyncAction.SyncActionValue.RecentEmojiWeightsAction.verify(message.recentEmojiWeightsAction, long + 1);
                 if (error)
                     return "recentEmojiWeightsAction." + error;
             }
             if (message.labelEditAction != null && message.hasOwnProperty("labelEditAction")) {
-                var error = $root.SyncAction.SyncActionValue.LabelEditAction.verify(message.labelEditAction);
+                var error = $root.SyncAction.SyncActionValue.LabelEditAction.verify(message.labelEditAction, long + 1);
                 if (error)
                     return "labelEditAction." + error;
             }
             if (message.labelAssociationAction != null && message.hasOwnProperty("labelAssociationAction")) {
-                var error = $root.SyncAction.SyncActionValue.LabelAssociationAction.verify(message.labelAssociationAction);
+                var error = $root.SyncAction.SyncActionValue.LabelAssociationAction.verify(message.labelAssociationAction, long + 1);
                 if (error)
                     return "labelAssociationAction." + error;
             }
             if (message.localeSetting != null && message.hasOwnProperty("localeSetting")) {
-                var error = $root.SyncAction.SyncActionValue.LocaleSetting.verify(message.localeSetting);
+                var error = $root.SyncAction.SyncActionValue.LocaleSetting.verify(message.localeSetting, long + 1);
                 if (error)
                     return "localeSetting." + error;
             }
             if (message.archiveChatAction != null && message.hasOwnProperty("archiveChatAction")) {
-                var error = $root.SyncAction.SyncActionValue.ArchiveChatAction.verify(message.archiveChatAction);
+                var error = $root.SyncAction.SyncActionValue.ArchiveChatAction.verify(message.archiveChatAction, long + 1);
                 if (error)
                     return "archiveChatAction." + error;
             }
             if (message.deleteMessageForMeAction != null && message.hasOwnProperty("deleteMessageForMeAction")) {
-                var error = $root.SyncAction.SyncActionValue.DeleteMessageForMeAction.verify(message.deleteMessageForMeAction);
+                var error = $root.SyncAction.SyncActionValue.DeleteMessageForMeAction.verify(message.deleteMessageForMeAction, long + 1);
                 if (error)
                     return "deleteMessageForMeAction." + error;
             }
             if (message.keyExpiration != null && message.hasOwnProperty("keyExpiration")) {
-                var error = $root.SyncAction.SyncActionValue.KeyExpiration.verify(message.keyExpiration);
+                var error = $root.SyncAction.SyncActionValue.KeyExpiration.verify(message.keyExpiration, long + 1);
                 if (error)
                     return "keyExpiration." + error;
             }
             if (message.markChatAsReadAction != null && message.hasOwnProperty("markChatAsReadAction")) {
-                var error = $root.SyncAction.SyncActionValue.MarkChatAsReadAction.verify(message.markChatAsReadAction);
+                var error = $root.SyncAction.SyncActionValue.MarkChatAsReadAction.verify(message.markChatAsReadAction, long + 1);
                 if (error)
                     return "markChatAsReadAction." + error;
             }
             if (message.clearChatAction != null && message.hasOwnProperty("clearChatAction")) {
-                var error = $root.SyncAction.SyncActionValue.ClearChatAction.verify(message.clearChatAction);
+                var error = $root.SyncAction.SyncActionValue.ClearChatAction.verify(message.clearChatAction, long + 1);
                 if (error)
                     return "clearChatAction." + error;
             }
             if (message.deleteChatAction != null && message.hasOwnProperty("deleteChatAction")) {
-                var error = $root.SyncAction.SyncActionValue.DeleteChatAction.verify(message.deleteChatAction);
+                var error = $root.SyncAction.SyncActionValue.DeleteChatAction.verify(message.deleteChatAction, long + 1);
                 if (error)
                     return "deleteChatAction." + error;
             }
             if (message.unarchiveChatsSetting != null && message.hasOwnProperty("unarchiveChatsSetting")) {
-                var error = $root.SyncAction.SyncActionValue.UnarchiveChatsSetting.verify(message.unarchiveChatsSetting);
+                var error = $root.SyncAction.SyncActionValue.UnarchiveChatsSetting.verify(message.unarchiveChatsSetting, long + 1);
                 if (error)
                     return "unarchiveChatsSetting." + error;
             }
             if (message.primaryFeature != null && message.hasOwnProperty("primaryFeature")) {
-                var error = $root.SyncAction.SyncActionValue.PrimaryFeature.verify(message.primaryFeature);
+                var error = $root.SyncAction.SyncActionValue.PrimaryFeature.verify(message.primaryFeature, long + 1);
                 if (error)
                     return "primaryFeature." + error;
             }
             if (message.androidUnsupportedActions != null && message.hasOwnProperty("androidUnsupportedActions")) {
-                var error = $root.SyncAction.SyncActionValue.AndroidUnsupportedActions.verify(message.androidUnsupportedActions);
+                var error = $root.SyncAction.SyncActionValue.AndroidUnsupportedActions.verify(message.androidUnsupportedActions, long + 1);
                 if (error)
                     return "androidUnsupportedActions." + error;
             }
             if (message.agentAction != null && message.hasOwnProperty("agentAction")) {
-                var error = $root.SyncAction.SyncActionValue.AgentAction.verify(message.agentAction);
+                var error = $root.SyncAction.SyncActionValue.AgentAction.verify(message.agentAction, long + 1);
                 if (error)
                     return "agentAction." + error;
             }
             if (message.subscriptionAction != null && message.hasOwnProperty("subscriptionAction")) {
-                var error = $root.SyncAction.SyncActionValue.SubscriptionAction.verify(message.subscriptionAction);
+                var error = $root.SyncAction.SyncActionValue.SubscriptionAction.verify(message.subscriptionAction, long + 1);
                 if (error)
                     return "subscriptionAction." + error;
             }
             if (message.userStatusMuteAction != null && message.hasOwnProperty("userStatusMuteAction")) {
-                var error = $root.SyncAction.SyncActionValue.UserStatusMuteAction.verify(message.userStatusMuteAction);
+                var error = $root.SyncAction.SyncActionValue.UserStatusMuteAction.verify(message.userStatusMuteAction, long + 1);
                 if (error)
                     return "userStatusMuteAction." + error;
             }
             if (message.timeFormatAction != null && message.hasOwnProperty("timeFormatAction")) {
-                var error = $root.SyncAction.SyncActionValue.TimeFormatAction.verify(message.timeFormatAction);
+                var error = $root.SyncAction.SyncActionValue.TimeFormatAction.verify(message.timeFormatAction, long + 1);
                 if (error)
                     return "timeFormatAction." + error;
             }
             if (message.nuxAction != null && message.hasOwnProperty("nuxAction")) {
-                var error = $root.SyncAction.SyncActionValue.NuxAction.verify(message.nuxAction);
+                var error = $root.SyncAction.SyncActionValue.NuxAction.verify(message.nuxAction, long + 1);
                 if (error)
                     return "nuxAction." + error;
             }
             if (message.primaryVersionAction != null && message.hasOwnProperty("primaryVersionAction")) {
-                var error = $root.SyncAction.SyncActionValue.PrimaryVersionAction.verify(message.primaryVersionAction);
+                var error = $root.SyncAction.SyncActionValue.PrimaryVersionAction.verify(message.primaryVersionAction, long + 1);
                 if (error)
                     return "primaryVersionAction." + error;
             }
             if (message.stickerAction != null && message.hasOwnProperty("stickerAction")) {
-                var error = $root.SyncAction.SyncActionValue.StickerAction.verify(message.stickerAction);
+                var error = $root.SyncAction.SyncActionValue.StickerAction.verify(message.stickerAction, long + 1);
                 if (error)
                     return "stickerAction." + error;
             }
             if (message.removeRecentStickerAction != null && message.hasOwnProperty("removeRecentStickerAction")) {
-                var error = $root.SyncAction.SyncActionValue.RemoveRecentStickerAction.verify(message.removeRecentStickerAction);
+                var error = $root.SyncAction.SyncActionValue.RemoveRecentStickerAction.verify(message.removeRecentStickerAction, long + 1);
                 if (error)
                     return "removeRecentStickerAction." + error;
             }
             if (message.chatAssignment != null && message.hasOwnProperty("chatAssignment")) {
-                var error = $root.SyncAction.SyncActionValue.ChatAssignmentAction.verify(message.chatAssignment);
+                var error = $root.SyncAction.SyncActionValue.ChatAssignmentAction.verify(message.chatAssignment, long + 1);
                 if (error)
                     return "chatAssignment." + error;
             }
             if (message.chatAssignmentOpenedStatus != null && message.hasOwnProperty("chatAssignmentOpenedStatus")) {
-                var error = $root.SyncAction.SyncActionValue.ChatAssignmentOpenedStatusAction.verify(message.chatAssignmentOpenedStatus);
+                var error = $root.SyncAction.SyncActionValue.ChatAssignmentOpenedStatusAction.verify(message.chatAssignmentOpenedStatus, long + 1);
                 if (error)
                     return "chatAssignmentOpenedStatus." + error;
             }
             if (message.pnForLidChatAction != null && message.hasOwnProperty("pnForLidChatAction")) {
-                var error = $root.SyncAction.SyncActionValue.PnForLidChatAction.verify(message.pnForLidChatAction);
+                var error = $root.SyncAction.SyncActionValue.PnForLidChatAction.verify(message.pnForLidChatAction, long + 1);
                 if (error)
                     return "pnForLidChatAction." + error;
             }
             if (message.marketingMessageAction != null && message.hasOwnProperty("marketingMessageAction")) {
-                var error = $root.SyncAction.SyncActionValue.MarketingMessageAction.verify(message.marketingMessageAction);
+                var error = $root.SyncAction.SyncActionValue.MarketingMessageAction.verify(message.marketingMessageAction, long + 1);
                 if (error)
                     return "marketingMessageAction." + error;
             }
             if (message.marketingMessageBroadcastAction != null && message.hasOwnProperty("marketingMessageBroadcastAction")) {
-                var error = $root.SyncAction.SyncActionValue.MarketingMessageBroadcastAction.verify(message.marketingMessageBroadcastAction);
+                var error = $root.SyncAction.SyncActionValue.MarketingMessageBroadcastAction.verify(message.marketingMessageBroadcastAction, long + 1);
                 if (error)
                     return "marketingMessageBroadcastAction." + error;
             }
             if (message.externalWebBetaAction != null && message.hasOwnProperty("externalWebBetaAction")) {
-                var error = $root.SyncAction.SyncActionValue.ExternalWebBetaAction.verify(message.externalWebBetaAction);
+                var error = $root.SyncAction.SyncActionValue.ExternalWebBetaAction.verify(message.externalWebBetaAction, long + 1);
                 if (error)
                     return "externalWebBetaAction." + error;
             }
             if (message.privacySettingRelayAllCalls != null && message.hasOwnProperty("privacySettingRelayAllCalls")) {
-                var error = $root.SyncAction.SyncActionValue.PrivacySettingRelayAllCalls.verify(message.privacySettingRelayAllCalls);
+                var error = $root.SyncAction.SyncActionValue.PrivacySettingRelayAllCalls.verify(message.privacySettingRelayAllCalls, long + 1);
                 if (error)
                     return "privacySettingRelayAllCalls." + error;
             }
             if (message.callLogAction != null && message.hasOwnProperty("callLogAction")) {
-                var error = $root.SyncAction.SyncActionValue.CallLogAction.verify(message.callLogAction);
+                var error = $root.SyncAction.SyncActionValue.CallLogAction.verify(message.callLogAction, long + 1);
                 if (error)
                     return "callLogAction." + error;
             }
             if (message.ugcBot != null && message.hasOwnProperty("ugcBot")) {
-                var error = $root.SyncAction.SyncActionValue.UGCBot.verify(message.ugcBot);
+                var error = $root.SyncAction.SyncActionValue.UGCBot.verify(message.ugcBot, long + 1);
                 if (error)
                     return "ugcBot." + error;
             }
             if (message.statusPrivacy != null && message.hasOwnProperty("statusPrivacy")) {
-                var error = $root.SyncAction.SyncActionValue.StatusPrivacyAction.verify(message.statusPrivacy);
+                var error = $root.SyncAction.SyncActionValue.StatusPrivacyAction.verify(message.statusPrivacy, long + 1);
                 if (error)
                     return "statusPrivacy." + error;
             }
             if (message.botWelcomeRequestAction != null && message.hasOwnProperty("botWelcomeRequestAction")) {
-                var error = $root.SyncAction.SyncActionValue.BotWelcomeRequestAction.verify(message.botWelcomeRequestAction);
+                var error = $root.SyncAction.SyncActionValue.BotWelcomeRequestAction.verify(message.botWelcomeRequestAction, long + 1);
                 if (error)
                     return "botWelcomeRequestAction." + error;
             }
             if (message.deleteIndividualCallLog != null && message.hasOwnProperty("deleteIndividualCallLog")) {
-                var error = $root.SyncAction.SyncActionValue.DeleteIndividualCallLogAction.verify(message.deleteIndividualCallLog);
+                var error = $root.SyncAction.SyncActionValue.DeleteIndividualCallLogAction.verify(message.deleteIndividualCallLog, long + 1);
                 if (error)
                     return "deleteIndividualCallLog." + error;
             }
             if (message.labelReorderingAction != null && message.hasOwnProperty("labelReorderingAction")) {
-                var error = $root.SyncAction.SyncActionValue.LabelReorderingAction.verify(message.labelReorderingAction);
+                var error = $root.SyncAction.SyncActionValue.LabelReorderingAction.verify(message.labelReorderingAction, long + 1);
                 if (error)
                     return "labelReorderingAction." + error;
             }
             if (message.paymentInfoAction != null && message.hasOwnProperty("paymentInfoAction")) {
-                var error = $root.SyncAction.SyncActionValue.PaymentInfoAction.verify(message.paymentInfoAction);
+                var error = $root.SyncAction.SyncActionValue.PaymentInfoAction.verify(message.paymentInfoAction, long + 1);
                 if (error)
                     return "paymentInfoAction." + error;
             }
             if (message.customPaymentMethodsAction != null && message.hasOwnProperty("customPaymentMethodsAction")) {
-                var error = $root.SyncAction.SyncActionValue.CustomPaymentMethodsAction.verify(message.customPaymentMethodsAction);
+                var error = $root.SyncAction.SyncActionValue.CustomPaymentMethodsAction.verify(message.customPaymentMethodsAction, long + 1);
                 if (error)
                     return "customPaymentMethodsAction." + error;
             }
             if (message.lockChatAction != null && message.hasOwnProperty("lockChatAction")) {
-                var error = $root.SyncAction.SyncActionValue.LockChatAction.verify(message.lockChatAction);
+                var error = $root.SyncAction.SyncActionValue.LockChatAction.verify(message.lockChatAction, long + 1);
                 if (error)
                     return "lockChatAction." + error;
             }
             if (message.chatLockSettings != null && message.hasOwnProperty("chatLockSettings")) {
-                var error = $root.ChatLockSettings.ChatLockSettings.verify(message.chatLockSettings);
+                var error = $root.ChatLockSettings.ChatLockSettings.verify(message.chatLockSettings, long + 1);
                 if (error)
                     return "chatLockSettings." + error;
             }
             if (message.wamoUserIdentifierAction != null && message.hasOwnProperty("wamoUserIdentifierAction")) {
-                var error = $root.SyncAction.SyncActionValue.WamoUserIdentifierAction.verify(message.wamoUserIdentifierAction);
+                var error = $root.SyncAction.SyncActionValue.WamoUserIdentifierAction.verify(message.wamoUserIdentifierAction, long + 1);
                 if (error)
                     return "wamoUserIdentifierAction." + error;
             }
             if (message.privacySettingDisableLinkPreviewsAction != null && message.hasOwnProperty("privacySettingDisableLinkPreviewsAction")) {
-                var error = $root.SyncAction.SyncActionValue.PrivacySettingDisableLinkPreviewsAction.verify(message.privacySettingDisableLinkPreviewsAction);
+                var error = $root.SyncAction.SyncActionValue.PrivacySettingDisableLinkPreviewsAction.verify(message.privacySettingDisableLinkPreviewsAction, long + 1);
                 if (error)
                     return "privacySettingDisableLinkPreviewsAction." + error;
             }
             if (message.deviceCapabilities != null && message.hasOwnProperty("deviceCapabilities")) {
-                var error = $root.DeviceCapabilities.DeviceCapabilities.verify(message.deviceCapabilities);
+                var error = $root.DeviceCapabilities.DeviceCapabilities.verify(message.deviceCapabilities, long + 1);
                 if (error)
                     return "deviceCapabilities." + error;
             }
             if (message.noteEditAction != null && message.hasOwnProperty("noteEditAction")) {
-                var error = $root.SyncAction.SyncActionValue.NoteEditAction.verify(message.noteEditAction);
+                var error = $root.SyncAction.SyncActionValue.NoteEditAction.verify(message.noteEditAction, long + 1);
                 if (error)
                     return "noteEditAction." + error;
             }
             if (message.favoritesAction != null && message.hasOwnProperty("favoritesAction")) {
-                var error = $root.SyncAction.SyncActionValue.FavoritesAction.verify(message.favoritesAction);
+                var error = $root.SyncAction.SyncActionValue.FavoritesAction.verify(message.favoritesAction, long + 1);
                 if (error)
                     return "favoritesAction." + error;
             }
             if (message.merchantPaymentPartnerAction != null && message.hasOwnProperty("merchantPaymentPartnerAction")) {
-                var error = $root.SyncAction.SyncActionValue.MerchantPaymentPartnerAction.verify(message.merchantPaymentPartnerAction);
+                var error = $root.SyncAction.SyncActionValue.MerchantPaymentPartnerAction.verify(message.merchantPaymentPartnerAction, long + 1);
                 if (error)
                     return "merchantPaymentPartnerAction." + error;
             }
             if (message.waffleAccountLinkStateAction != null && message.hasOwnProperty("waffleAccountLinkStateAction")) {
-                var error = $root.SyncAction.SyncActionValue.WaffleAccountLinkStateAction.verify(message.waffleAccountLinkStateAction);
+                var error = $root.SyncAction.SyncActionValue.WaffleAccountLinkStateAction.verify(message.waffleAccountLinkStateAction, long + 1);
                 if (error)
                     return "waffleAccountLinkStateAction." + error;
             }
             if (message.usernameChatStartMode != null && message.hasOwnProperty("usernameChatStartMode")) {
-                var error = $root.SyncAction.SyncActionValue.UsernameChatStartModeAction.verify(message.usernameChatStartMode);
+                var error = $root.SyncAction.SyncActionValue.UsernameChatStartModeAction.verify(message.usernameChatStartMode, long + 1);
                 if (error)
                     return "usernameChatStartMode." + error;
             }
             if (message.notificationActivitySettingAction != null && message.hasOwnProperty("notificationActivitySettingAction")) {
-                var error = $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.verify(message.notificationActivitySettingAction);
+                var error = $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.verify(message.notificationActivitySettingAction, long + 1);
                 if (error)
                     return "notificationActivitySettingAction." + error;
             }
             if (message.lidContactAction != null && message.hasOwnProperty("lidContactAction")) {
-                var error = $root.SyncAction.SyncActionValue.LidContactAction.verify(message.lidContactAction);
+                var error = $root.SyncAction.SyncActionValue.LidContactAction.verify(message.lidContactAction, long + 1);
                 if (error)
                     return "lidContactAction." + error;
             }
             if (message.ctwaPerCustomerDataSharingAction != null && message.hasOwnProperty("ctwaPerCustomerDataSharingAction")) {
-                var error = $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.verify(message.ctwaPerCustomerDataSharingAction);
+                var error = $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.verify(message.ctwaPerCustomerDataSharingAction, long + 1);
                 if (error)
                     return "ctwaPerCustomerDataSharingAction." + error;
             }
             if (message.paymentTosAction != null && message.hasOwnProperty("paymentTosAction")) {
-                var error = $root.SyncAction.SyncActionValue.PaymentTosAction.verify(message.paymentTosAction);
+                var error = $root.SyncAction.SyncActionValue.PaymentTosAction.verify(message.paymentTosAction, long + 1);
                 if (error)
                     return "paymentTosAction." + error;
             }
             if (message.privacySettingChannelsPersonalisedRecommendationAction != null && message.hasOwnProperty("privacySettingChannelsPersonalisedRecommendationAction")) {
-                var error = $root.SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction.verify(message.privacySettingChannelsPersonalisedRecommendationAction);
+                var error = $root.SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction.verify(message.privacySettingChannelsPersonalisedRecommendationAction, long + 1);
                 if (error)
                     return "privacySettingChannelsPersonalisedRecommendationAction." + error;
             }
             if (message.detectedOutcomesStatusAction != null && message.hasOwnProperty("detectedOutcomesStatusAction")) {
-                var error = $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction.verify(message.detectedOutcomesStatusAction);
+                var error = $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction.verify(message.detectedOutcomesStatusAction, long + 1);
                 if (error)
                     return "detectedOutcomesStatusAction." + error;
             }
             if (message.maibaAiFeaturesControlAction != null && message.hasOwnProperty("maibaAiFeaturesControlAction")) {
-                var error = $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.verify(message.maibaAiFeaturesControlAction);
+                var error = $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.verify(message.maibaAiFeaturesControlAction, long + 1);
                 if (error)
                     return "maibaAiFeaturesControlAction." + error;
             }
             if (message.businessBroadcastListAction != null && message.hasOwnProperty("businessBroadcastListAction")) {
-                var error = $root.SyncAction.SyncActionValue.BusinessBroadcastListAction.verify(message.businessBroadcastListAction);
+                var error = $root.SyncAction.SyncActionValue.BusinessBroadcastListAction.verify(message.businessBroadcastListAction, long + 1);
                 if (error)
                     return "businessBroadcastListAction." + error;
             }
             if (message.musicUserIdAction != null && message.hasOwnProperty("musicUserIdAction")) {
-                var error = $root.SyncAction.SyncActionValue.MusicUserIdAction.verify(message.musicUserIdAction);
+                var error = $root.SyncAction.SyncActionValue.MusicUserIdAction.verify(message.musicUserIdAction, long + 1);
                 if (error)
                     return "musicUserIdAction." + error;
             }
             if (message.statusPostOptInNotificationPreferencesAction != null && message.hasOwnProperty("statusPostOptInNotificationPreferencesAction")) {
-                var error = $root.SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction.verify(message.statusPostOptInNotificationPreferencesAction);
+                var error = $root.SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction.verify(message.statusPostOptInNotificationPreferencesAction, long + 1);
                 if (error)
                     return "statusPostOptInNotificationPreferencesAction." + error;
             }
             if (message.avatarUpdatedAction != null && message.hasOwnProperty("avatarUpdatedAction")) {
-                var error = $root.SyncAction.SyncActionValue.AvatarUpdatedAction.verify(message.avatarUpdatedAction);
+                var error = $root.SyncAction.SyncActionValue.AvatarUpdatedAction.verify(message.avatarUpdatedAction, long + 1);
                 if (error)
                     return "avatarUpdatedAction." + error;
             }
             if (message.privateProcessingSettingAction != null && message.hasOwnProperty("privateProcessingSettingAction")) {
-                var error = $root.SyncAction.SyncActionValue.PrivateProcessingSettingAction.verify(message.privateProcessingSettingAction);
+                var error = $root.SyncAction.SyncActionValue.PrivateProcessingSettingAction.verify(message.privateProcessingSettingAction, long + 1);
                 if (error)
                     return "privateProcessingSettingAction." + error;
             }
             if (message.newsletterSavedInterestsAction != null && message.hasOwnProperty("newsletterSavedInterestsAction")) {
-                var error = $root.SyncAction.SyncActionValue.NewsletterSavedInterestsAction.verify(message.newsletterSavedInterestsAction);
+                var error = $root.SyncAction.SyncActionValue.NewsletterSavedInterestsAction.verify(message.newsletterSavedInterestsAction, long + 1);
                 if (error)
                     return "newsletterSavedInterestsAction." + error;
             }
             if (message.aiThreadRenameAction != null && message.hasOwnProperty("aiThreadRenameAction")) {
-                var error = $root.SyncAction.SyncActionValue.AiThreadRenameAction.verify(message.aiThreadRenameAction);
+                var error = $root.SyncAction.SyncActionValue.AiThreadRenameAction.verify(message.aiThreadRenameAction, long + 1);
                 if (error)
                     return "aiThreadRenameAction." + error;
             }
             if (message.interactiveMessageAction != null && message.hasOwnProperty("interactiveMessageAction")) {
-                var error = $root.SyncAction.SyncActionValue.InteractiveMessageAction.verify(message.interactiveMessageAction);
+                var error = $root.SyncAction.SyncActionValue.InteractiveMessageAction.verify(message.interactiveMessageAction, long + 1);
                 if (error)
                     return "interactiveMessageAction." + error;
             }
             if (message.settingsSyncAction != null && message.hasOwnProperty("settingsSyncAction")) {
-                var error = $root.SyncAction.SyncActionValue.SettingsSyncAction.verify(message.settingsSyncAction);
+                var error = $root.SyncAction.SyncActionValue.SettingsSyncAction.verify(message.settingsSyncAction, long + 1);
                 if (error)
                     return "settingsSyncAction." + error;
             }
             if (message.outContactAction != null && message.hasOwnProperty("outContactAction")) {
-                var error = $root.SyncAction.SyncActionValue.OutContactAction.verify(message.outContactAction);
+                var error = $root.SyncAction.SyncActionValue.OutContactAction.verify(message.outContactAction, long + 1);
                 if (error)
                     return "outContactAction." + error;
             }
             if (message.nctSaltSyncAction != null && message.hasOwnProperty("nctSaltSyncAction")) {
-                var error = $root.SyncAction.SyncActionValue.NctSaltSyncAction.verify(message.nctSaltSyncAction);
+                var error = $root.SyncAction.SyncActionValue.NctSaltSyncAction.verify(message.nctSaltSyncAction, long + 1);
                 if (error)
                     return "nctSaltSyncAction." + error;
             }
             if (message.businessBroadcastCampaignAction != null && message.hasOwnProperty("businessBroadcastCampaignAction")) {
-                var error = $root.SyncAction.SyncActionValue.BusinessBroadcastCampaignAction.verify(message.businessBroadcastCampaignAction);
+                var error = $root.SyncAction.SyncActionValue.BusinessBroadcastCampaignAction.verify(message.businessBroadcastCampaignAction, long + 1);
                 if (error)
                     return "businessBroadcastCampaignAction." + error;
             }
             if (message.businessBroadcastInsightsAction != null && message.hasOwnProperty("businessBroadcastInsightsAction")) {
-                var error = $root.SyncAction.SyncActionValue.BusinessBroadcastInsightsAction.verify(message.businessBroadcastInsightsAction);
+                var error = $root.SyncAction.SyncActionValue.BusinessBroadcastInsightsAction.verify(message.businessBroadcastInsightsAction, long + 1);
                 if (error)
                     return "businessBroadcastInsightsAction." + error;
             }
             if (message.customerDataAction != null && message.hasOwnProperty("customerDataAction")) {
-                var error = $root.SyncAction.SyncActionValue.CustomerDataAction.verify(message.customerDataAction);
+                var error = $root.SyncAction.SyncActionValue.CustomerDataAction.verify(message.customerDataAction, long + 1);
                 if (error)
                     return "customerDataAction." + error;
             }
             if (message.subscriptionsSyncV2Action != null && message.hasOwnProperty("subscriptionsSyncV2Action")) {
-                var error = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.verify(message.subscriptionsSyncV2Action);
+                var error = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.verify(message.subscriptionsSyncV2Action, long + 1);
                 if (error)
                     return "subscriptionsSyncV2Action." + error;
             }
             if (message.threadPinAction != null && message.hasOwnProperty("threadPinAction")) {
-                var error = $root.SyncAction.SyncActionValue.ThreadPinAction.verify(message.threadPinAction);
+                var error = $root.SyncAction.SyncActionValue.ThreadPinAction.verify(message.threadPinAction, long + 1);
                 if (error)
                     return "threadPinAction." + error;
             }
             if (message.autoOrganizeBusinessChatSetting != null && message.hasOwnProperty("autoOrganizeBusinessChatSetting")) {
-                var error = $root.SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting.verify(message.autoOrganizeBusinessChatSetting);
+                var error = $root.SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting.verify(message.autoOrganizeBusinessChatSetting, long + 1);
                 if (error)
                     return "autoOrganizeBusinessChatSetting." + error;
             }
             if (message.bizAiSettingsNudgeAction != null && message.hasOwnProperty("bizAiSettingsNudgeAction")) {
-                var error = $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction.verify(message.bizAiSettingsNudgeAction);
+                var error = $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction.verify(message.bizAiSettingsNudgeAction, long + 1);
                 if (error)
                     return "bizAiSettingsNudgeAction." + error;
             }
@@ -2596,9 +2628,13 @@ $root.SyncAction = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {SyncAction.SyncActionValue} SyncActionValue
          */
-        SyncActionValue.fromObject = function fromObject(object) {
+        SyncActionValue.fromObject = function fromObject(object, long) {
             if (object instanceof $root.SyncAction.SyncActionValue)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.SyncAction.SyncActionValue();
             if (object.timestamp != null)
                 if ($util.Long)
@@ -2612,387 +2648,387 @@ $root.SyncAction = (function() {
             if (object.starAction != null) {
                 if (typeof object.starAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.starAction: object expected");
-                message.starAction = $root.SyncAction.SyncActionValue.StarAction.fromObject(object.starAction);
+                message.starAction = $root.SyncAction.SyncActionValue.StarAction.fromObject(object.starAction, long + 1);
             }
             if (object.contactAction != null) {
                 if (typeof object.contactAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.contactAction: object expected");
-                message.contactAction = $root.SyncAction.SyncActionValue.ContactAction.fromObject(object.contactAction);
+                message.contactAction = $root.SyncAction.SyncActionValue.ContactAction.fromObject(object.contactAction, long + 1);
             }
             if (object.muteAction != null) {
                 if (typeof object.muteAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.muteAction: object expected");
-                message.muteAction = $root.SyncAction.SyncActionValue.MuteAction.fromObject(object.muteAction);
+                message.muteAction = $root.SyncAction.SyncActionValue.MuteAction.fromObject(object.muteAction, long + 1);
             }
             if (object.pinAction != null) {
                 if (typeof object.pinAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.pinAction: object expected");
-                message.pinAction = $root.SyncAction.SyncActionValue.PinAction.fromObject(object.pinAction);
+                message.pinAction = $root.SyncAction.SyncActionValue.PinAction.fromObject(object.pinAction, long + 1);
             }
             if (object.pushNameSetting != null) {
                 if (typeof object.pushNameSetting !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.pushNameSetting: object expected");
-                message.pushNameSetting = $root.SyncAction.SyncActionValue.PushNameSetting.fromObject(object.pushNameSetting);
+                message.pushNameSetting = $root.SyncAction.SyncActionValue.PushNameSetting.fromObject(object.pushNameSetting, long + 1);
             }
             if (object.quickReplyAction != null) {
                 if (typeof object.quickReplyAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.quickReplyAction: object expected");
-                message.quickReplyAction = $root.SyncAction.SyncActionValue.QuickReplyAction.fromObject(object.quickReplyAction);
+                message.quickReplyAction = $root.SyncAction.SyncActionValue.QuickReplyAction.fromObject(object.quickReplyAction, long + 1);
             }
             if (object.recentEmojiWeightsAction != null) {
                 if (typeof object.recentEmojiWeightsAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.recentEmojiWeightsAction: object expected");
-                message.recentEmojiWeightsAction = $root.SyncAction.SyncActionValue.RecentEmojiWeightsAction.fromObject(object.recentEmojiWeightsAction);
+                message.recentEmojiWeightsAction = $root.SyncAction.SyncActionValue.RecentEmojiWeightsAction.fromObject(object.recentEmojiWeightsAction, long + 1);
             }
             if (object.labelEditAction != null) {
                 if (typeof object.labelEditAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.labelEditAction: object expected");
-                message.labelEditAction = $root.SyncAction.SyncActionValue.LabelEditAction.fromObject(object.labelEditAction);
+                message.labelEditAction = $root.SyncAction.SyncActionValue.LabelEditAction.fromObject(object.labelEditAction, long + 1);
             }
             if (object.labelAssociationAction != null) {
                 if (typeof object.labelAssociationAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.labelAssociationAction: object expected");
-                message.labelAssociationAction = $root.SyncAction.SyncActionValue.LabelAssociationAction.fromObject(object.labelAssociationAction);
+                message.labelAssociationAction = $root.SyncAction.SyncActionValue.LabelAssociationAction.fromObject(object.labelAssociationAction, long + 1);
             }
             if (object.localeSetting != null) {
                 if (typeof object.localeSetting !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.localeSetting: object expected");
-                message.localeSetting = $root.SyncAction.SyncActionValue.LocaleSetting.fromObject(object.localeSetting);
+                message.localeSetting = $root.SyncAction.SyncActionValue.LocaleSetting.fromObject(object.localeSetting, long + 1);
             }
             if (object.archiveChatAction != null) {
                 if (typeof object.archiveChatAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.archiveChatAction: object expected");
-                message.archiveChatAction = $root.SyncAction.SyncActionValue.ArchiveChatAction.fromObject(object.archiveChatAction);
+                message.archiveChatAction = $root.SyncAction.SyncActionValue.ArchiveChatAction.fromObject(object.archiveChatAction, long + 1);
             }
             if (object.deleteMessageForMeAction != null) {
                 if (typeof object.deleteMessageForMeAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.deleteMessageForMeAction: object expected");
-                message.deleteMessageForMeAction = $root.SyncAction.SyncActionValue.DeleteMessageForMeAction.fromObject(object.deleteMessageForMeAction);
+                message.deleteMessageForMeAction = $root.SyncAction.SyncActionValue.DeleteMessageForMeAction.fromObject(object.deleteMessageForMeAction, long + 1);
             }
             if (object.keyExpiration != null) {
                 if (typeof object.keyExpiration !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.keyExpiration: object expected");
-                message.keyExpiration = $root.SyncAction.SyncActionValue.KeyExpiration.fromObject(object.keyExpiration);
+                message.keyExpiration = $root.SyncAction.SyncActionValue.KeyExpiration.fromObject(object.keyExpiration, long + 1);
             }
             if (object.markChatAsReadAction != null) {
                 if (typeof object.markChatAsReadAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.markChatAsReadAction: object expected");
-                message.markChatAsReadAction = $root.SyncAction.SyncActionValue.MarkChatAsReadAction.fromObject(object.markChatAsReadAction);
+                message.markChatAsReadAction = $root.SyncAction.SyncActionValue.MarkChatAsReadAction.fromObject(object.markChatAsReadAction, long + 1);
             }
             if (object.clearChatAction != null) {
                 if (typeof object.clearChatAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.clearChatAction: object expected");
-                message.clearChatAction = $root.SyncAction.SyncActionValue.ClearChatAction.fromObject(object.clearChatAction);
+                message.clearChatAction = $root.SyncAction.SyncActionValue.ClearChatAction.fromObject(object.clearChatAction, long + 1);
             }
             if (object.deleteChatAction != null) {
                 if (typeof object.deleteChatAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.deleteChatAction: object expected");
-                message.deleteChatAction = $root.SyncAction.SyncActionValue.DeleteChatAction.fromObject(object.deleteChatAction);
+                message.deleteChatAction = $root.SyncAction.SyncActionValue.DeleteChatAction.fromObject(object.deleteChatAction, long + 1);
             }
             if (object.unarchiveChatsSetting != null) {
                 if (typeof object.unarchiveChatsSetting !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.unarchiveChatsSetting: object expected");
-                message.unarchiveChatsSetting = $root.SyncAction.SyncActionValue.UnarchiveChatsSetting.fromObject(object.unarchiveChatsSetting);
+                message.unarchiveChatsSetting = $root.SyncAction.SyncActionValue.UnarchiveChatsSetting.fromObject(object.unarchiveChatsSetting, long + 1);
             }
             if (object.primaryFeature != null) {
                 if (typeof object.primaryFeature !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.primaryFeature: object expected");
-                message.primaryFeature = $root.SyncAction.SyncActionValue.PrimaryFeature.fromObject(object.primaryFeature);
+                message.primaryFeature = $root.SyncAction.SyncActionValue.PrimaryFeature.fromObject(object.primaryFeature, long + 1);
             }
             if (object.androidUnsupportedActions != null) {
                 if (typeof object.androidUnsupportedActions !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.androidUnsupportedActions: object expected");
-                message.androidUnsupportedActions = $root.SyncAction.SyncActionValue.AndroidUnsupportedActions.fromObject(object.androidUnsupportedActions);
+                message.androidUnsupportedActions = $root.SyncAction.SyncActionValue.AndroidUnsupportedActions.fromObject(object.androidUnsupportedActions, long + 1);
             }
             if (object.agentAction != null) {
                 if (typeof object.agentAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.agentAction: object expected");
-                message.agentAction = $root.SyncAction.SyncActionValue.AgentAction.fromObject(object.agentAction);
+                message.agentAction = $root.SyncAction.SyncActionValue.AgentAction.fromObject(object.agentAction, long + 1);
             }
             if (object.subscriptionAction != null) {
                 if (typeof object.subscriptionAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.subscriptionAction: object expected");
-                message.subscriptionAction = $root.SyncAction.SyncActionValue.SubscriptionAction.fromObject(object.subscriptionAction);
+                message.subscriptionAction = $root.SyncAction.SyncActionValue.SubscriptionAction.fromObject(object.subscriptionAction, long + 1);
             }
             if (object.userStatusMuteAction != null) {
                 if (typeof object.userStatusMuteAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.userStatusMuteAction: object expected");
-                message.userStatusMuteAction = $root.SyncAction.SyncActionValue.UserStatusMuteAction.fromObject(object.userStatusMuteAction);
+                message.userStatusMuteAction = $root.SyncAction.SyncActionValue.UserStatusMuteAction.fromObject(object.userStatusMuteAction, long + 1);
             }
             if (object.timeFormatAction != null) {
                 if (typeof object.timeFormatAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.timeFormatAction: object expected");
-                message.timeFormatAction = $root.SyncAction.SyncActionValue.TimeFormatAction.fromObject(object.timeFormatAction);
+                message.timeFormatAction = $root.SyncAction.SyncActionValue.TimeFormatAction.fromObject(object.timeFormatAction, long + 1);
             }
             if (object.nuxAction != null) {
                 if (typeof object.nuxAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.nuxAction: object expected");
-                message.nuxAction = $root.SyncAction.SyncActionValue.NuxAction.fromObject(object.nuxAction);
+                message.nuxAction = $root.SyncAction.SyncActionValue.NuxAction.fromObject(object.nuxAction, long + 1);
             }
             if (object.primaryVersionAction != null) {
                 if (typeof object.primaryVersionAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.primaryVersionAction: object expected");
-                message.primaryVersionAction = $root.SyncAction.SyncActionValue.PrimaryVersionAction.fromObject(object.primaryVersionAction);
+                message.primaryVersionAction = $root.SyncAction.SyncActionValue.PrimaryVersionAction.fromObject(object.primaryVersionAction, long + 1);
             }
             if (object.stickerAction != null) {
                 if (typeof object.stickerAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.stickerAction: object expected");
-                message.stickerAction = $root.SyncAction.SyncActionValue.StickerAction.fromObject(object.stickerAction);
+                message.stickerAction = $root.SyncAction.SyncActionValue.StickerAction.fromObject(object.stickerAction, long + 1);
             }
             if (object.removeRecentStickerAction != null) {
                 if (typeof object.removeRecentStickerAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.removeRecentStickerAction: object expected");
-                message.removeRecentStickerAction = $root.SyncAction.SyncActionValue.RemoveRecentStickerAction.fromObject(object.removeRecentStickerAction);
+                message.removeRecentStickerAction = $root.SyncAction.SyncActionValue.RemoveRecentStickerAction.fromObject(object.removeRecentStickerAction, long + 1);
             }
             if (object.chatAssignment != null) {
                 if (typeof object.chatAssignment !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.chatAssignment: object expected");
-                message.chatAssignment = $root.SyncAction.SyncActionValue.ChatAssignmentAction.fromObject(object.chatAssignment);
+                message.chatAssignment = $root.SyncAction.SyncActionValue.ChatAssignmentAction.fromObject(object.chatAssignment, long + 1);
             }
             if (object.chatAssignmentOpenedStatus != null) {
                 if (typeof object.chatAssignmentOpenedStatus !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.chatAssignmentOpenedStatus: object expected");
-                message.chatAssignmentOpenedStatus = $root.SyncAction.SyncActionValue.ChatAssignmentOpenedStatusAction.fromObject(object.chatAssignmentOpenedStatus);
+                message.chatAssignmentOpenedStatus = $root.SyncAction.SyncActionValue.ChatAssignmentOpenedStatusAction.fromObject(object.chatAssignmentOpenedStatus, long + 1);
             }
             if (object.pnForLidChatAction != null) {
                 if (typeof object.pnForLidChatAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.pnForLidChatAction: object expected");
-                message.pnForLidChatAction = $root.SyncAction.SyncActionValue.PnForLidChatAction.fromObject(object.pnForLidChatAction);
+                message.pnForLidChatAction = $root.SyncAction.SyncActionValue.PnForLidChatAction.fromObject(object.pnForLidChatAction, long + 1);
             }
             if (object.marketingMessageAction != null) {
                 if (typeof object.marketingMessageAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.marketingMessageAction: object expected");
-                message.marketingMessageAction = $root.SyncAction.SyncActionValue.MarketingMessageAction.fromObject(object.marketingMessageAction);
+                message.marketingMessageAction = $root.SyncAction.SyncActionValue.MarketingMessageAction.fromObject(object.marketingMessageAction, long + 1);
             }
             if (object.marketingMessageBroadcastAction != null) {
                 if (typeof object.marketingMessageBroadcastAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.marketingMessageBroadcastAction: object expected");
-                message.marketingMessageBroadcastAction = $root.SyncAction.SyncActionValue.MarketingMessageBroadcastAction.fromObject(object.marketingMessageBroadcastAction);
+                message.marketingMessageBroadcastAction = $root.SyncAction.SyncActionValue.MarketingMessageBroadcastAction.fromObject(object.marketingMessageBroadcastAction, long + 1);
             }
             if (object.externalWebBetaAction != null) {
                 if (typeof object.externalWebBetaAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.externalWebBetaAction: object expected");
-                message.externalWebBetaAction = $root.SyncAction.SyncActionValue.ExternalWebBetaAction.fromObject(object.externalWebBetaAction);
+                message.externalWebBetaAction = $root.SyncAction.SyncActionValue.ExternalWebBetaAction.fromObject(object.externalWebBetaAction, long + 1);
             }
             if (object.privacySettingRelayAllCalls != null) {
                 if (typeof object.privacySettingRelayAllCalls !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.privacySettingRelayAllCalls: object expected");
-                message.privacySettingRelayAllCalls = $root.SyncAction.SyncActionValue.PrivacySettingRelayAllCalls.fromObject(object.privacySettingRelayAllCalls);
+                message.privacySettingRelayAllCalls = $root.SyncAction.SyncActionValue.PrivacySettingRelayAllCalls.fromObject(object.privacySettingRelayAllCalls, long + 1);
             }
             if (object.callLogAction != null) {
                 if (typeof object.callLogAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.callLogAction: object expected");
-                message.callLogAction = $root.SyncAction.SyncActionValue.CallLogAction.fromObject(object.callLogAction);
+                message.callLogAction = $root.SyncAction.SyncActionValue.CallLogAction.fromObject(object.callLogAction, long + 1);
             }
             if (object.ugcBot != null) {
                 if (typeof object.ugcBot !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.ugcBot: object expected");
-                message.ugcBot = $root.SyncAction.SyncActionValue.UGCBot.fromObject(object.ugcBot);
+                message.ugcBot = $root.SyncAction.SyncActionValue.UGCBot.fromObject(object.ugcBot, long + 1);
             }
             if (object.statusPrivacy != null) {
                 if (typeof object.statusPrivacy !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.statusPrivacy: object expected");
-                message.statusPrivacy = $root.SyncAction.SyncActionValue.StatusPrivacyAction.fromObject(object.statusPrivacy);
+                message.statusPrivacy = $root.SyncAction.SyncActionValue.StatusPrivacyAction.fromObject(object.statusPrivacy, long + 1);
             }
             if (object.botWelcomeRequestAction != null) {
                 if (typeof object.botWelcomeRequestAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.botWelcomeRequestAction: object expected");
-                message.botWelcomeRequestAction = $root.SyncAction.SyncActionValue.BotWelcomeRequestAction.fromObject(object.botWelcomeRequestAction);
+                message.botWelcomeRequestAction = $root.SyncAction.SyncActionValue.BotWelcomeRequestAction.fromObject(object.botWelcomeRequestAction, long + 1);
             }
             if (object.deleteIndividualCallLog != null) {
                 if (typeof object.deleteIndividualCallLog !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.deleteIndividualCallLog: object expected");
-                message.deleteIndividualCallLog = $root.SyncAction.SyncActionValue.DeleteIndividualCallLogAction.fromObject(object.deleteIndividualCallLog);
+                message.deleteIndividualCallLog = $root.SyncAction.SyncActionValue.DeleteIndividualCallLogAction.fromObject(object.deleteIndividualCallLog, long + 1);
             }
             if (object.labelReorderingAction != null) {
                 if (typeof object.labelReorderingAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.labelReorderingAction: object expected");
-                message.labelReorderingAction = $root.SyncAction.SyncActionValue.LabelReorderingAction.fromObject(object.labelReorderingAction);
+                message.labelReorderingAction = $root.SyncAction.SyncActionValue.LabelReorderingAction.fromObject(object.labelReorderingAction, long + 1);
             }
             if (object.paymentInfoAction != null) {
                 if (typeof object.paymentInfoAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.paymentInfoAction: object expected");
-                message.paymentInfoAction = $root.SyncAction.SyncActionValue.PaymentInfoAction.fromObject(object.paymentInfoAction);
+                message.paymentInfoAction = $root.SyncAction.SyncActionValue.PaymentInfoAction.fromObject(object.paymentInfoAction, long + 1);
             }
             if (object.customPaymentMethodsAction != null) {
                 if (typeof object.customPaymentMethodsAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.customPaymentMethodsAction: object expected");
-                message.customPaymentMethodsAction = $root.SyncAction.SyncActionValue.CustomPaymentMethodsAction.fromObject(object.customPaymentMethodsAction);
+                message.customPaymentMethodsAction = $root.SyncAction.SyncActionValue.CustomPaymentMethodsAction.fromObject(object.customPaymentMethodsAction, long + 1);
             }
             if (object.lockChatAction != null) {
                 if (typeof object.lockChatAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.lockChatAction: object expected");
-                message.lockChatAction = $root.SyncAction.SyncActionValue.LockChatAction.fromObject(object.lockChatAction);
+                message.lockChatAction = $root.SyncAction.SyncActionValue.LockChatAction.fromObject(object.lockChatAction, long + 1);
             }
             if (object.chatLockSettings != null) {
                 if (typeof object.chatLockSettings !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.chatLockSettings: object expected");
-                message.chatLockSettings = $root.ChatLockSettings.ChatLockSettings.fromObject(object.chatLockSettings);
+                message.chatLockSettings = $root.ChatLockSettings.ChatLockSettings.fromObject(object.chatLockSettings, long + 1);
             }
             if (object.wamoUserIdentifierAction != null) {
                 if (typeof object.wamoUserIdentifierAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.wamoUserIdentifierAction: object expected");
-                message.wamoUserIdentifierAction = $root.SyncAction.SyncActionValue.WamoUserIdentifierAction.fromObject(object.wamoUserIdentifierAction);
+                message.wamoUserIdentifierAction = $root.SyncAction.SyncActionValue.WamoUserIdentifierAction.fromObject(object.wamoUserIdentifierAction, long + 1);
             }
             if (object.privacySettingDisableLinkPreviewsAction != null) {
                 if (typeof object.privacySettingDisableLinkPreviewsAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.privacySettingDisableLinkPreviewsAction: object expected");
-                message.privacySettingDisableLinkPreviewsAction = $root.SyncAction.SyncActionValue.PrivacySettingDisableLinkPreviewsAction.fromObject(object.privacySettingDisableLinkPreviewsAction);
+                message.privacySettingDisableLinkPreviewsAction = $root.SyncAction.SyncActionValue.PrivacySettingDisableLinkPreviewsAction.fromObject(object.privacySettingDisableLinkPreviewsAction, long + 1);
             }
             if (object.deviceCapabilities != null) {
                 if (typeof object.deviceCapabilities !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.deviceCapabilities: object expected");
-                message.deviceCapabilities = $root.DeviceCapabilities.DeviceCapabilities.fromObject(object.deviceCapabilities);
+                message.deviceCapabilities = $root.DeviceCapabilities.DeviceCapabilities.fromObject(object.deviceCapabilities, long + 1);
             }
             if (object.noteEditAction != null) {
                 if (typeof object.noteEditAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.noteEditAction: object expected");
-                message.noteEditAction = $root.SyncAction.SyncActionValue.NoteEditAction.fromObject(object.noteEditAction);
+                message.noteEditAction = $root.SyncAction.SyncActionValue.NoteEditAction.fromObject(object.noteEditAction, long + 1);
             }
             if (object.favoritesAction != null) {
                 if (typeof object.favoritesAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.favoritesAction: object expected");
-                message.favoritesAction = $root.SyncAction.SyncActionValue.FavoritesAction.fromObject(object.favoritesAction);
+                message.favoritesAction = $root.SyncAction.SyncActionValue.FavoritesAction.fromObject(object.favoritesAction, long + 1);
             }
             if (object.merchantPaymentPartnerAction != null) {
                 if (typeof object.merchantPaymentPartnerAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.merchantPaymentPartnerAction: object expected");
-                message.merchantPaymentPartnerAction = $root.SyncAction.SyncActionValue.MerchantPaymentPartnerAction.fromObject(object.merchantPaymentPartnerAction);
+                message.merchantPaymentPartnerAction = $root.SyncAction.SyncActionValue.MerchantPaymentPartnerAction.fromObject(object.merchantPaymentPartnerAction, long + 1);
             }
             if (object.waffleAccountLinkStateAction != null) {
                 if (typeof object.waffleAccountLinkStateAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.waffleAccountLinkStateAction: object expected");
-                message.waffleAccountLinkStateAction = $root.SyncAction.SyncActionValue.WaffleAccountLinkStateAction.fromObject(object.waffleAccountLinkStateAction);
+                message.waffleAccountLinkStateAction = $root.SyncAction.SyncActionValue.WaffleAccountLinkStateAction.fromObject(object.waffleAccountLinkStateAction, long + 1);
             }
             if (object.usernameChatStartMode != null) {
                 if (typeof object.usernameChatStartMode !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.usernameChatStartMode: object expected");
-                message.usernameChatStartMode = $root.SyncAction.SyncActionValue.UsernameChatStartModeAction.fromObject(object.usernameChatStartMode);
+                message.usernameChatStartMode = $root.SyncAction.SyncActionValue.UsernameChatStartModeAction.fromObject(object.usernameChatStartMode, long + 1);
             }
             if (object.notificationActivitySettingAction != null) {
                 if (typeof object.notificationActivitySettingAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.notificationActivitySettingAction: object expected");
-                message.notificationActivitySettingAction = $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.fromObject(object.notificationActivitySettingAction);
+                message.notificationActivitySettingAction = $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.fromObject(object.notificationActivitySettingAction, long + 1);
             }
             if (object.lidContactAction != null) {
                 if (typeof object.lidContactAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.lidContactAction: object expected");
-                message.lidContactAction = $root.SyncAction.SyncActionValue.LidContactAction.fromObject(object.lidContactAction);
+                message.lidContactAction = $root.SyncAction.SyncActionValue.LidContactAction.fromObject(object.lidContactAction, long + 1);
             }
             if (object.ctwaPerCustomerDataSharingAction != null) {
                 if (typeof object.ctwaPerCustomerDataSharingAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.ctwaPerCustomerDataSharingAction: object expected");
-                message.ctwaPerCustomerDataSharingAction = $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.fromObject(object.ctwaPerCustomerDataSharingAction);
+                message.ctwaPerCustomerDataSharingAction = $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.fromObject(object.ctwaPerCustomerDataSharingAction, long + 1);
             }
             if (object.paymentTosAction != null) {
                 if (typeof object.paymentTosAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.paymentTosAction: object expected");
-                message.paymentTosAction = $root.SyncAction.SyncActionValue.PaymentTosAction.fromObject(object.paymentTosAction);
+                message.paymentTosAction = $root.SyncAction.SyncActionValue.PaymentTosAction.fromObject(object.paymentTosAction, long + 1);
             }
             if (object.privacySettingChannelsPersonalisedRecommendationAction != null) {
                 if (typeof object.privacySettingChannelsPersonalisedRecommendationAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.privacySettingChannelsPersonalisedRecommendationAction: object expected");
-                message.privacySettingChannelsPersonalisedRecommendationAction = $root.SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction.fromObject(object.privacySettingChannelsPersonalisedRecommendationAction);
+                message.privacySettingChannelsPersonalisedRecommendationAction = $root.SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction.fromObject(object.privacySettingChannelsPersonalisedRecommendationAction, long + 1);
             }
             if (object.detectedOutcomesStatusAction != null) {
                 if (typeof object.detectedOutcomesStatusAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.detectedOutcomesStatusAction: object expected");
-                message.detectedOutcomesStatusAction = $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction.fromObject(object.detectedOutcomesStatusAction);
+                message.detectedOutcomesStatusAction = $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction.fromObject(object.detectedOutcomesStatusAction, long + 1);
             }
             if (object.maibaAiFeaturesControlAction != null) {
                 if (typeof object.maibaAiFeaturesControlAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.maibaAiFeaturesControlAction: object expected");
-                message.maibaAiFeaturesControlAction = $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.fromObject(object.maibaAiFeaturesControlAction);
+                message.maibaAiFeaturesControlAction = $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.fromObject(object.maibaAiFeaturesControlAction, long + 1);
             }
             if (object.businessBroadcastListAction != null) {
                 if (typeof object.businessBroadcastListAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.businessBroadcastListAction: object expected");
-                message.businessBroadcastListAction = $root.SyncAction.SyncActionValue.BusinessBroadcastListAction.fromObject(object.businessBroadcastListAction);
+                message.businessBroadcastListAction = $root.SyncAction.SyncActionValue.BusinessBroadcastListAction.fromObject(object.businessBroadcastListAction, long + 1);
             }
             if (object.musicUserIdAction != null) {
                 if (typeof object.musicUserIdAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.musicUserIdAction: object expected");
-                message.musicUserIdAction = $root.SyncAction.SyncActionValue.MusicUserIdAction.fromObject(object.musicUserIdAction);
+                message.musicUserIdAction = $root.SyncAction.SyncActionValue.MusicUserIdAction.fromObject(object.musicUserIdAction, long + 1);
             }
             if (object.statusPostOptInNotificationPreferencesAction != null) {
                 if (typeof object.statusPostOptInNotificationPreferencesAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.statusPostOptInNotificationPreferencesAction: object expected");
-                message.statusPostOptInNotificationPreferencesAction = $root.SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction.fromObject(object.statusPostOptInNotificationPreferencesAction);
+                message.statusPostOptInNotificationPreferencesAction = $root.SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction.fromObject(object.statusPostOptInNotificationPreferencesAction, long + 1);
             }
             if (object.avatarUpdatedAction != null) {
                 if (typeof object.avatarUpdatedAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.avatarUpdatedAction: object expected");
-                message.avatarUpdatedAction = $root.SyncAction.SyncActionValue.AvatarUpdatedAction.fromObject(object.avatarUpdatedAction);
+                message.avatarUpdatedAction = $root.SyncAction.SyncActionValue.AvatarUpdatedAction.fromObject(object.avatarUpdatedAction, long + 1);
             }
             if (object.privateProcessingSettingAction != null) {
                 if (typeof object.privateProcessingSettingAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.privateProcessingSettingAction: object expected");
-                message.privateProcessingSettingAction = $root.SyncAction.SyncActionValue.PrivateProcessingSettingAction.fromObject(object.privateProcessingSettingAction);
+                message.privateProcessingSettingAction = $root.SyncAction.SyncActionValue.PrivateProcessingSettingAction.fromObject(object.privateProcessingSettingAction, long + 1);
             }
             if (object.newsletterSavedInterestsAction != null) {
                 if (typeof object.newsletterSavedInterestsAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.newsletterSavedInterestsAction: object expected");
-                message.newsletterSavedInterestsAction = $root.SyncAction.SyncActionValue.NewsletterSavedInterestsAction.fromObject(object.newsletterSavedInterestsAction);
+                message.newsletterSavedInterestsAction = $root.SyncAction.SyncActionValue.NewsletterSavedInterestsAction.fromObject(object.newsletterSavedInterestsAction, long + 1);
             }
             if (object.aiThreadRenameAction != null) {
                 if (typeof object.aiThreadRenameAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.aiThreadRenameAction: object expected");
-                message.aiThreadRenameAction = $root.SyncAction.SyncActionValue.AiThreadRenameAction.fromObject(object.aiThreadRenameAction);
+                message.aiThreadRenameAction = $root.SyncAction.SyncActionValue.AiThreadRenameAction.fromObject(object.aiThreadRenameAction, long + 1);
             }
             if (object.interactiveMessageAction != null) {
                 if (typeof object.interactiveMessageAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.interactiveMessageAction: object expected");
-                message.interactiveMessageAction = $root.SyncAction.SyncActionValue.InteractiveMessageAction.fromObject(object.interactiveMessageAction);
+                message.interactiveMessageAction = $root.SyncAction.SyncActionValue.InteractiveMessageAction.fromObject(object.interactiveMessageAction, long + 1);
             }
             if (object.settingsSyncAction != null) {
                 if (typeof object.settingsSyncAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.settingsSyncAction: object expected");
-                message.settingsSyncAction = $root.SyncAction.SyncActionValue.SettingsSyncAction.fromObject(object.settingsSyncAction);
+                message.settingsSyncAction = $root.SyncAction.SyncActionValue.SettingsSyncAction.fromObject(object.settingsSyncAction, long + 1);
             }
             if (object.outContactAction != null) {
                 if (typeof object.outContactAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.outContactAction: object expected");
-                message.outContactAction = $root.SyncAction.SyncActionValue.OutContactAction.fromObject(object.outContactAction);
+                message.outContactAction = $root.SyncAction.SyncActionValue.OutContactAction.fromObject(object.outContactAction, long + 1);
             }
             if (object.nctSaltSyncAction != null) {
                 if (typeof object.nctSaltSyncAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.nctSaltSyncAction: object expected");
-                message.nctSaltSyncAction = $root.SyncAction.SyncActionValue.NctSaltSyncAction.fromObject(object.nctSaltSyncAction);
+                message.nctSaltSyncAction = $root.SyncAction.SyncActionValue.NctSaltSyncAction.fromObject(object.nctSaltSyncAction, long + 1);
             }
             if (object.businessBroadcastCampaignAction != null) {
                 if (typeof object.businessBroadcastCampaignAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.businessBroadcastCampaignAction: object expected");
-                message.businessBroadcastCampaignAction = $root.SyncAction.SyncActionValue.BusinessBroadcastCampaignAction.fromObject(object.businessBroadcastCampaignAction);
+                message.businessBroadcastCampaignAction = $root.SyncAction.SyncActionValue.BusinessBroadcastCampaignAction.fromObject(object.businessBroadcastCampaignAction, long + 1);
             }
             if (object.businessBroadcastInsightsAction != null) {
                 if (typeof object.businessBroadcastInsightsAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.businessBroadcastInsightsAction: object expected");
-                message.businessBroadcastInsightsAction = $root.SyncAction.SyncActionValue.BusinessBroadcastInsightsAction.fromObject(object.businessBroadcastInsightsAction);
+                message.businessBroadcastInsightsAction = $root.SyncAction.SyncActionValue.BusinessBroadcastInsightsAction.fromObject(object.businessBroadcastInsightsAction, long + 1);
             }
             if (object.customerDataAction != null) {
                 if (typeof object.customerDataAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.customerDataAction: object expected");
-                message.customerDataAction = $root.SyncAction.SyncActionValue.CustomerDataAction.fromObject(object.customerDataAction);
+                message.customerDataAction = $root.SyncAction.SyncActionValue.CustomerDataAction.fromObject(object.customerDataAction, long + 1);
             }
             if (object.subscriptionsSyncV2Action != null) {
                 if (typeof object.subscriptionsSyncV2Action !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.subscriptionsSyncV2Action: object expected");
-                message.subscriptionsSyncV2Action = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.fromObject(object.subscriptionsSyncV2Action);
+                message.subscriptionsSyncV2Action = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.fromObject(object.subscriptionsSyncV2Action, long + 1);
             }
             if (object.threadPinAction != null) {
                 if (typeof object.threadPinAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.threadPinAction: object expected");
-                message.threadPinAction = $root.SyncAction.SyncActionValue.ThreadPinAction.fromObject(object.threadPinAction);
+                message.threadPinAction = $root.SyncAction.SyncActionValue.ThreadPinAction.fromObject(object.threadPinAction, long + 1);
             }
             if (object.autoOrganizeBusinessChatSetting != null) {
                 if (typeof object.autoOrganizeBusinessChatSetting !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.autoOrganizeBusinessChatSetting: object expected");
-                message.autoOrganizeBusinessChatSetting = $root.SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting.fromObject(object.autoOrganizeBusinessChatSetting);
+                message.autoOrganizeBusinessChatSetting = $root.SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting.fromObject(object.autoOrganizeBusinessChatSetting, long + 1);
             }
             if (object.bizAiSettingsNudgeAction != null) {
                 if (typeof object.bizAiSettingsNudgeAction !== "object")
                     throw TypeError(".SyncAction.SyncActionValue.bizAiSettingsNudgeAction: object expected");
-                message.bizAiSettingsNudgeAction = $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction.fromObject(object.bizAiSettingsNudgeAction);
+                message.bizAiSettingsNudgeAction = $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction.fromObject(object.bizAiSettingsNudgeAction, long + 1);
             }
             return message;
         };
@@ -3304,7 +3340,7 @@ $root.SyncAction = (function() {
             function AgentAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -3389,9 +3425,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AgentAction.decode = function decode(reader, length, error) {
+            AgentAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.AgentAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -3411,7 +3451,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -3442,9 +3482,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            AgentAction.verify = function verify(message) {
+            AgentAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.name != null && message.hasOwnProperty("name"))
                     if (!$util.isString(message.name))
                         return "name: string expected";
@@ -3465,9 +3509,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.AgentAction} AgentAction
              */
-            AgentAction.fromObject = function fromObject(object) {
+            AgentAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.AgentAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.AgentAction();
                 if (object.name != null)
                     message.name = String(object.name);
@@ -3554,7 +3602,7 @@ $root.SyncAction = (function() {
             function AiThreadRenameAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -3619,9 +3667,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AiThreadRenameAction.decode = function decode(reader, length, error) {
+            AiThreadRenameAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.AiThreadRenameAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -3633,7 +3685,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -3664,9 +3716,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            AiThreadRenameAction.verify = function verify(message) {
+            AiThreadRenameAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.newTitle != null && message.hasOwnProperty("newTitle"))
                     if (!$util.isString(message.newTitle))
                         return "newTitle: string expected";
@@ -3681,9 +3737,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.AiThreadRenameAction} AiThreadRenameAction
              */
-            AiThreadRenameAction.fromObject = function fromObject(object) {
+            AiThreadRenameAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.AiThreadRenameAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.AiThreadRenameAction();
                 if (object.newTitle != null)
                     message.newTitle = String(object.newTitle);
@@ -3759,7 +3819,7 @@ $root.SyncAction = (function() {
             function AndroidUnsupportedActions(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -3824,9 +3884,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AndroidUnsupportedActions.decode = function decode(reader, length, error) {
+            AndroidUnsupportedActions.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.AndroidUnsupportedActions();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -3838,7 +3902,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -3869,9 +3933,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            AndroidUnsupportedActions.verify = function verify(message) {
+            AndroidUnsupportedActions.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.allowed != null && message.hasOwnProperty("allowed"))
                     if (typeof message.allowed !== "boolean")
                         return "allowed: boolean expected";
@@ -3886,9 +3954,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.AndroidUnsupportedActions} AndroidUnsupportedActions
              */
-            AndroidUnsupportedActions.fromObject = function fromObject(object) {
+            AndroidUnsupportedActions.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.AndroidUnsupportedActions)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.AndroidUnsupportedActions();
                 if (object.allowed != null)
                     message.allowed = Boolean(object.allowed);
@@ -3965,7 +4037,7 @@ $root.SyncAction = (function() {
             function ArchiveChatAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -4040,9 +4112,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ArchiveChatAction.decode = function decode(reader, length, error) {
+            ArchiveChatAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.ArchiveChatAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -4054,11 +4130,11 @@ $root.SyncAction = (function() {
                             break;
                         }
                     case 2: {
-                            message.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.decode(reader, reader.uint32());
+                            message.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -4089,14 +4165,18 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            ArchiveChatAction.verify = function verify(message) {
+            ArchiveChatAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.archived != null && message.hasOwnProperty("archived"))
                     if (typeof message.archived !== "boolean")
                         return "archived: boolean expected";
                 if (message.messageRange != null && message.hasOwnProperty("messageRange")) {
-                    var error = $root.SyncAction.SyncActionValue.SyncActionMessageRange.verify(message.messageRange);
+                    var error = $root.SyncAction.SyncActionValue.SyncActionMessageRange.verify(message.messageRange, long + 1);
                     if (error)
                         return "messageRange." + error;
                 }
@@ -4111,16 +4191,20 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.ArchiveChatAction} ArchiveChatAction
              */
-            ArchiveChatAction.fromObject = function fromObject(object) {
+            ArchiveChatAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.ArchiveChatAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.ArchiveChatAction();
                 if (object.archived != null)
                     message.archived = Boolean(object.archived);
                 if (object.messageRange != null) {
                     if (typeof object.messageRange !== "object")
                         throw TypeError(".SyncAction.SyncActionValue.ArchiveChatAction.messageRange: object expected");
-                    message.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.fromObject(object.messageRange);
+                    message.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.fromObject(object.messageRange, long + 1);
                 }
                 return message;
             };
@@ -4198,7 +4282,7 @@ $root.SyncAction = (function() {
             function AutoOrganizeBusinessChatSetting(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -4263,9 +4347,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AutoOrganizeBusinessChatSetting.decode = function decode(reader, length, error) {
+            AutoOrganizeBusinessChatSetting.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -4277,7 +4365,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -4308,9 +4396,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            AutoOrganizeBusinessChatSetting.verify = function verify(message) {
+            AutoOrganizeBusinessChatSetting.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.autoOrganize != null && message.hasOwnProperty("autoOrganize"))
                     if (typeof message.autoOrganize !== "boolean")
                         return "autoOrganize: boolean expected";
@@ -4325,9 +4417,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting} AutoOrganizeBusinessChatSetting
              */
-            AutoOrganizeBusinessChatSetting.fromObject = function fromObject(object) {
+            AutoOrganizeBusinessChatSetting.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting();
                 if (object.autoOrganize != null)
                     message.autoOrganize = Boolean(object.autoOrganize);
@@ -4405,7 +4501,7 @@ $root.SyncAction = (function() {
                 this.recentAvatarStickers = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -4481,9 +4577,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AvatarUpdatedAction.decode = function decode(reader, length, error) {
+            AvatarUpdatedAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.AvatarUpdatedAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -4497,11 +4597,11 @@ $root.SyncAction = (function() {
                     case 2: {
                             if (!(message.recentAvatarStickers && message.recentAvatarStickers.length))
                                 message.recentAvatarStickers = [];
-                            message.recentAvatarStickers.push($root.SyncAction.SyncActionValue.StickerAction.decode(reader, reader.uint32()));
+                            message.recentAvatarStickers.push($root.SyncAction.SyncActionValue.StickerAction.decode(reader, reader.uint32(), undefined, long + 1));
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -4532,9 +4632,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            AvatarUpdatedAction.verify = function verify(message) {
+            AvatarUpdatedAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.eventType != null && message.hasOwnProperty("eventType"))
                     switch (message.eventType) {
                     default:
@@ -4548,7 +4652,7 @@ $root.SyncAction = (function() {
                     if (!Array.isArray(message.recentAvatarStickers))
                         return "recentAvatarStickers: array expected";
                     for (var i = 0; i < message.recentAvatarStickers.length; ++i) {
-                        var error = $root.SyncAction.SyncActionValue.StickerAction.verify(message.recentAvatarStickers[i]);
+                        var error = $root.SyncAction.SyncActionValue.StickerAction.verify(message.recentAvatarStickers[i], long + 1);
                         if (error)
                             return "recentAvatarStickers." + error;
                     }
@@ -4564,9 +4668,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.AvatarUpdatedAction} AvatarUpdatedAction
              */
-            AvatarUpdatedAction.fromObject = function fromObject(object) {
+            AvatarUpdatedAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.AvatarUpdatedAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.AvatarUpdatedAction();
                 switch (object.eventType) {
                 default:
@@ -4595,7 +4703,7 @@ $root.SyncAction = (function() {
                     for (var i = 0; i < object.recentAvatarStickers.length; ++i) {
                         if (typeof object.recentAvatarStickers[i] !== "object")
                             throw TypeError(".SyncAction.SyncActionValue.AvatarUpdatedAction.recentAvatarStickers: object expected");
-                        message.recentAvatarStickers[i] = $root.SyncAction.SyncActionValue.StickerAction.fromObject(object.recentAvatarStickers[i]);
+                        message.recentAvatarStickers[i] = $root.SyncAction.SyncActionValue.StickerAction.fromObject(object.recentAvatarStickers[i], long + 1);
                     }
                 }
                 return message;
@@ -4695,7 +4803,7 @@ $root.SyncAction = (function() {
             function BizAISettingsNudgeAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -4780,9 +4888,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            BizAISettingsNudgeAction.decode = function decode(reader, length, error) {
+            BizAISettingsNudgeAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -4802,7 +4914,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -4833,9 +4945,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            BizAISettingsNudgeAction.verify = function verify(message) {
+            BizAISettingsNudgeAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.category != null && message.hasOwnProperty("category"))
                     switch (message.category) {
                     default:
@@ -4865,9 +4981,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.BizAISettingsNudgeAction} BizAISettingsNudgeAction
              */
-            BizAISettingsNudgeAction.fromObject = function fromObject(object) {
+            BizAISettingsNudgeAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction();
                 switch (object.category) {
                 default:
@@ -5034,7 +5154,7 @@ $root.SyncAction = (function() {
             function BotWelcomeRequestAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -5099,9 +5219,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            BotWelcomeRequestAction.decode = function decode(reader, length, error) {
+            BotWelcomeRequestAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.BotWelcomeRequestAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -5113,7 +5237,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -5144,9 +5268,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            BotWelcomeRequestAction.verify = function verify(message) {
+            BotWelcomeRequestAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.isSent != null && message.hasOwnProperty("isSent"))
                     if (typeof message.isSent !== "boolean")
                         return "isSent: boolean expected";
@@ -5161,9 +5289,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.BotWelcomeRequestAction} BotWelcomeRequestAction
              */
-            BotWelcomeRequestAction.fromObject = function fromObject(object) {
+            BotWelcomeRequestAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.BotWelcomeRequestAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.BotWelcomeRequestAction();
                 if (object.isSent != null)
                     message.isSent = Boolean(object.isSent);
@@ -5240,7 +5372,7 @@ $root.SyncAction = (function() {
             function BroadcastListParticipant(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -5314,9 +5446,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            BroadcastListParticipant.decode = function decode(reader, length, error) {
+            BroadcastListParticipant.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.BroadcastListParticipant();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -5332,7 +5468,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -5365,9 +5501,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            BroadcastListParticipant.verify = function verify(message) {
+            BroadcastListParticipant.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (!$util.isString(message.lidJid))
                     return "lidJid: string expected";
                 if (message.pnJid != null && message.hasOwnProperty("pnJid"))
@@ -5384,9 +5524,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.BroadcastListParticipant} BroadcastListParticipant
              */
-            BroadcastListParticipant.fromObject = function fromObject(object) {
+            BroadcastListParticipant.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.BroadcastListParticipant)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.BroadcastListParticipant();
                 if (object.lidJid != null)
                     message.lidJid = String(object.lidJid);
@@ -5468,7 +5612,7 @@ $root.SyncAction = (function() {
             function BusinessBroadcastAssociationAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -5533,9 +5677,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            BusinessBroadcastAssociationAction.decode = function decode(reader, length, error) {
+            BusinessBroadcastAssociationAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.BusinessBroadcastAssociationAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -5547,7 +5695,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -5578,9 +5726,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            BusinessBroadcastAssociationAction.verify = function verify(message) {
+            BusinessBroadcastAssociationAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.deleted != null && message.hasOwnProperty("deleted"))
                     if (typeof message.deleted !== "boolean")
                         return "deleted: boolean expected";
@@ -5595,9 +5747,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.BusinessBroadcastAssociationAction} BusinessBroadcastAssociationAction
              */
-            BusinessBroadcastAssociationAction.fromObject = function fromObject(object) {
+            BusinessBroadcastAssociationAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.BusinessBroadcastAssociationAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.BusinessBroadcastAssociationAction();
                 if (object.deleted != null)
                     message.deleted = Boolean(object.deleted);
@@ -5681,7 +5837,7 @@ $root.SyncAction = (function() {
             function BusinessBroadcastCampaignAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -5826,9 +5982,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            BusinessBroadcastCampaignAction.decode = function decode(reader, length, error) {
+            BusinessBroadcastCampaignAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.BusinessBroadcastCampaignAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -5872,7 +6032,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -5903,9 +6063,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            BusinessBroadcastCampaignAction.verify = function verify(message) {
+            BusinessBroadcastCampaignAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.deviceId != null && message.hasOwnProperty("deviceId"))
                     if (!$util.isInteger(message.deviceId))
                         return "deviceId: integer expected";
@@ -5952,9 +6116,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.BusinessBroadcastCampaignAction} BusinessBroadcastCampaignAction
              */
-            BusinessBroadcastCampaignAction.fromObject = function fromObject(object) {
+            BusinessBroadcastCampaignAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.BusinessBroadcastCampaignAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.BusinessBroadcastCampaignAction();
                 if (object.deviceId != null)
                     message.deviceId = object.deviceId | 0;
@@ -6149,7 +6317,7 @@ $root.SyncAction = (function() {
             function BusinessBroadcastInsightsAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -6254,9 +6422,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            BusinessBroadcastInsightsAction.decode = function decode(reader, length, error) {
+            BusinessBroadcastInsightsAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.BusinessBroadcastInsightsAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -6284,7 +6456,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -6315,9 +6487,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            BusinessBroadcastInsightsAction.verify = function verify(message) {
+            BusinessBroadcastInsightsAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.recipientCount != null && message.hasOwnProperty("recipientCount"))
                     if (!$util.isInteger(message.recipientCount))
                         return "recipientCount: integer expected";
@@ -6344,9 +6520,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.BusinessBroadcastInsightsAction} BusinessBroadcastInsightsAction
              */
-            BusinessBroadcastInsightsAction.fromObject = function fromObject(object) {
+            BusinessBroadcastInsightsAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.BusinessBroadcastInsightsAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.BusinessBroadcastInsightsAction();
                 if (object.recipientCount != null)
                     message.recipientCount = object.recipientCount | 0;
@@ -6449,7 +6629,7 @@ $root.SyncAction = (function() {
                 this.labelIds = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -6556,9 +6736,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            BusinessBroadcastListAction.decode = function decode(reader, length, error) {
+            BusinessBroadcastListAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.BusinessBroadcastListAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -6572,7 +6756,7 @@ $root.SyncAction = (function() {
                     case 2: {
                             if (!(message.participants && message.participants.length))
                                 message.participants = [];
-                            message.participants.push($root.SyncAction.SyncActionValue.BroadcastListParticipant.decode(reader, reader.uint32()));
+                            message.participants.push($root.SyncAction.SyncActionValue.BroadcastListParticipant.decode(reader, reader.uint32(), undefined, long + 1));
                             break;
                         }
                     case 3: {
@@ -6590,7 +6774,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -6621,9 +6805,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            BusinessBroadcastListAction.verify = function verify(message) {
+            BusinessBroadcastListAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.deleted != null && message.hasOwnProperty("deleted"))
                     if (typeof message.deleted !== "boolean")
                         return "deleted: boolean expected";
@@ -6631,7 +6819,7 @@ $root.SyncAction = (function() {
                     if (!Array.isArray(message.participants))
                         return "participants: array expected";
                     for (var i = 0; i < message.participants.length; ++i) {
-                        var error = $root.SyncAction.SyncActionValue.BroadcastListParticipant.verify(message.participants[i]);
+                        var error = $root.SyncAction.SyncActionValue.BroadcastListParticipant.verify(message.participants[i], long + 1);
                         if (error)
                             return "participants." + error;
                     }
@@ -6660,9 +6848,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.BusinessBroadcastListAction} BusinessBroadcastListAction
              */
-            BusinessBroadcastListAction.fromObject = function fromObject(object) {
+            BusinessBroadcastListAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.BusinessBroadcastListAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.BusinessBroadcastListAction();
                 if (object.deleted != null)
                     message.deleted = Boolean(object.deleted);
@@ -6673,7 +6865,7 @@ $root.SyncAction = (function() {
                     for (var i = 0; i < object.participants.length; ++i) {
                         if (typeof object.participants[i] !== "object")
                             throw TypeError(".SyncAction.SyncActionValue.BusinessBroadcastListAction.participants: object expected");
-                        message.participants[i] = $root.SyncAction.SyncActionValue.BroadcastListParticipant.fromObject(object.participants[i]);
+                        message.participants[i] = $root.SyncAction.SyncActionValue.BroadcastListParticipant.fromObject(object.participants[i], long + 1);
                     }
                 }
                 if (object.listName != null)
@@ -6780,7 +6972,7 @@ $root.SyncAction = (function() {
             function CallLogAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -6845,9 +7037,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            CallLogAction.decode = function decode(reader, length, error) {
+            CallLogAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.CallLogAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -6855,11 +7051,11 @@ $root.SyncAction = (function() {
                         break;
                     switch (tag >>> 3) {
                     case 1: {
-                            message.callLogRecord = $root.SyncAction.CallLogRecord.decode(reader, reader.uint32());
+                            message.callLogRecord = $root.SyncAction.CallLogRecord.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -6890,11 +7086,15 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            CallLogAction.verify = function verify(message) {
+            CallLogAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.callLogRecord != null && message.hasOwnProperty("callLogRecord")) {
-                    var error = $root.SyncAction.CallLogRecord.verify(message.callLogRecord);
+                    var error = $root.SyncAction.CallLogRecord.verify(message.callLogRecord, long + 1);
                     if (error)
                         return "callLogRecord." + error;
                 }
@@ -6909,14 +7109,18 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.CallLogAction} CallLogAction
              */
-            CallLogAction.fromObject = function fromObject(object) {
+            CallLogAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.CallLogAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.CallLogAction();
                 if (object.callLogRecord != null) {
                     if (typeof object.callLogRecord !== "object")
                         throw TypeError(".SyncAction.SyncActionValue.CallLogAction.callLogRecord: object expected");
-                    message.callLogRecord = $root.SyncAction.CallLogRecord.fromObject(object.callLogRecord);
+                    message.callLogRecord = $root.SyncAction.CallLogRecord.fromObject(object.callLogRecord, long + 1);
                 }
                 return message;
             };
@@ -6990,7 +7194,7 @@ $root.SyncAction = (function() {
             function ChatAssignmentAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -7055,9 +7259,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ChatAssignmentAction.decode = function decode(reader, length, error) {
+            ChatAssignmentAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.ChatAssignmentAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -7069,7 +7277,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -7100,9 +7308,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            ChatAssignmentAction.verify = function verify(message) {
+            ChatAssignmentAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.deviceAgentID != null && message.hasOwnProperty("deviceAgentID"))
                     if (!$util.isString(message.deviceAgentID))
                         return "deviceAgentID: string expected";
@@ -7117,9 +7329,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.ChatAssignmentAction} ChatAssignmentAction
              */
-            ChatAssignmentAction.fromObject = function fromObject(object) {
+            ChatAssignmentAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.ChatAssignmentAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.ChatAssignmentAction();
                 if (object.deviceAgentID != null)
                     message.deviceAgentID = String(object.deviceAgentID);
@@ -7195,7 +7411,7 @@ $root.SyncAction = (function() {
             function ChatAssignmentOpenedStatusAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -7260,9 +7476,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ChatAssignmentOpenedStatusAction.decode = function decode(reader, length, error) {
+            ChatAssignmentOpenedStatusAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.ChatAssignmentOpenedStatusAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -7274,7 +7494,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -7305,9 +7525,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            ChatAssignmentOpenedStatusAction.verify = function verify(message) {
+            ChatAssignmentOpenedStatusAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.chatOpened != null && message.hasOwnProperty("chatOpened"))
                     if (typeof message.chatOpened !== "boolean")
                         return "chatOpened: boolean expected";
@@ -7322,9 +7546,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.ChatAssignmentOpenedStatusAction} ChatAssignmentOpenedStatusAction
              */
-            ChatAssignmentOpenedStatusAction.fromObject = function fromObject(object) {
+            ChatAssignmentOpenedStatusAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.ChatAssignmentOpenedStatusAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.ChatAssignmentOpenedStatusAction();
                 if (object.chatOpened != null)
                     message.chatOpened = Boolean(object.chatOpened);
@@ -7400,7 +7628,7 @@ $root.SyncAction = (function() {
             function ClearChatAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -7465,9 +7693,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ClearChatAction.decode = function decode(reader, length, error) {
+            ClearChatAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.ClearChatAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -7475,11 +7707,11 @@ $root.SyncAction = (function() {
                         break;
                     switch (tag >>> 3) {
                     case 1: {
-                            message.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.decode(reader, reader.uint32());
+                            message.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -7510,11 +7742,15 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            ClearChatAction.verify = function verify(message) {
+            ClearChatAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.messageRange != null && message.hasOwnProperty("messageRange")) {
-                    var error = $root.SyncAction.SyncActionValue.SyncActionMessageRange.verify(message.messageRange);
+                    var error = $root.SyncAction.SyncActionValue.SyncActionMessageRange.verify(message.messageRange, long + 1);
                     if (error)
                         return "messageRange." + error;
                 }
@@ -7529,14 +7765,18 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.ClearChatAction} ClearChatAction
              */
-            ClearChatAction.fromObject = function fromObject(object) {
+            ClearChatAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.ClearChatAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.ClearChatAction();
                 if (object.messageRange != null) {
                     if (typeof object.messageRange !== "object")
                         throw TypeError(".SyncAction.SyncActionValue.ClearChatAction.messageRange: object expected");
-                    message.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.fromObject(object.messageRange);
+                    message.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.fromObject(object.messageRange, long + 1);
                 }
                 return message;
             };
@@ -7615,7 +7855,7 @@ $root.SyncAction = (function() {
             function ContactAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -7730,9 +7970,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ContactAction.decode = function decode(reader, length, error) {
+            ContactAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.ContactAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -7764,7 +8008,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -7795,9 +8039,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            ContactAction.verify = function verify(message) {
+            ContactAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.fullName != null && message.hasOwnProperty("fullName"))
                     if (!$util.isString(message.fullName))
                         return "fullName: string expected";
@@ -7827,9 +8075,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.ContactAction} ContactAction
              */
-            ContactAction.fromObject = function fromObject(object) {
+            ContactAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.ContactAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.ContactAction();
                 if (object.fullName != null)
                     message.fullName = String(object.fullName);
@@ -7931,7 +8183,7 @@ $root.SyncAction = (function() {
             function CtwaPerCustomerDataSharingAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -7996,9 +8248,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            CtwaPerCustomerDataSharingAction.decode = function decode(reader, length, error) {
+            CtwaPerCustomerDataSharingAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -8010,7 +8266,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -8041,9 +8297,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            CtwaPerCustomerDataSharingAction.verify = function verify(message) {
+            CtwaPerCustomerDataSharingAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.isCtwaPerCustomerDataSharingEnabled != null && message.hasOwnProperty("isCtwaPerCustomerDataSharingEnabled"))
                     if (typeof message.isCtwaPerCustomerDataSharingEnabled !== "boolean")
                         return "isCtwaPerCustomerDataSharingEnabled: boolean expected";
@@ -8058,9 +8318,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction} CtwaPerCustomerDataSharingAction
              */
-            CtwaPerCustomerDataSharingAction.fromObject = function fromObject(object) {
+            CtwaPerCustomerDataSharingAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction();
                 if (object.isCtwaPerCustomerDataSharingEnabled != null)
                     message.isCtwaPerCustomerDataSharingEnabled = Boolean(object.isCtwaPerCustomerDataSharingEnabled);
@@ -8140,7 +8404,7 @@ $root.SyncAction = (function() {
                 this.metadata = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -8233,9 +8497,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            CustomPaymentMethod.decode = function decode(reader, length, error) {
+            CustomPaymentMethod.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.CustomPaymentMethod();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -8257,11 +8525,11 @@ $root.SyncAction = (function() {
                     case 4: {
                             if (!(message.metadata && message.metadata.length))
                                 message.metadata = [];
-                            message.metadata.push($root.SyncAction.SyncActionValue.CustomPaymentMethodMetadata.decode(reader, reader.uint32()));
+                            message.metadata.push($root.SyncAction.SyncActionValue.CustomPaymentMethodMetadata.decode(reader, reader.uint32(), undefined, long + 1));
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -8298,9 +8566,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            CustomPaymentMethod.verify = function verify(message) {
+            CustomPaymentMethod.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (!$util.isString(message.credentialId))
                     return "credentialId: string expected";
                 if (!$util.isString(message.country))
@@ -8311,7 +8583,7 @@ $root.SyncAction = (function() {
                     if (!Array.isArray(message.metadata))
                         return "metadata: array expected";
                     for (var i = 0; i < message.metadata.length; ++i) {
-                        var error = $root.SyncAction.SyncActionValue.CustomPaymentMethodMetadata.verify(message.metadata[i]);
+                        var error = $root.SyncAction.SyncActionValue.CustomPaymentMethodMetadata.verify(message.metadata[i], long + 1);
                         if (error)
                             return "metadata." + error;
                     }
@@ -8327,9 +8599,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.CustomPaymentMethod} CustomPaymentMethod
              */
-            CustomPaymentMethod.fromObject = function fromObject(object) {
+            CustomPaymentMethod.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.CustomPaymentMethod)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.CustomPaymentMethod();
                 if (object.credentialId != null)
                     message.credentialId = String(object.credentialId);
@@ -8344,7 +8620,7 @@ $root.SyncAction = (function() {
                     for (var i = 0; i < object.metadata.length; ++i) {
                         if (typeof object.metadata[i] !== "object")
                             throw TypeError(".SyncAction.SyncActionValue.CustomPaymentMethod.metadata: object expected");
-                        message.metadata[i] = $root.SyncAction.SyncActionValue.CustomPaymentMethodMetadata.fromObject(object.metadata[i]);
+                        message.metadata[i] = $root.SyncAction.SyncActionValue.CustomPaymentMethodMetadata.fromObject(object.metadata[i], long + 1);
                     }
                 }
                 return message;
@@ -8434,7 +8710,7 @@ $root.SyncAction = (function() {
             function CustomPaymentMethodMetadata(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -8507,9 +8783,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            CustomPaymentMethodMetadata.decode = function decode(reader, length, error) {
+            CustomPaymentMethodMetadata.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.CustomPaymentMethodMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -8525,7 +8805,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -8560,9 +8840,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            CustomPaymentMethodMetadata.verify = function verify(message) {
+            CustomPaymentMethodMetadata.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (!$util.isString(message.key))
                     return "key: string expected";
                 if (!$util.isString(message.value))
@@ -8578,9 +8862,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.CustomPaymentMethodMetadata} CustomPaymentMethodMetadata
              */
-            CustomPaymentMethodMetadata.fromObject = function fromObject(object) {
+            CustomPaymentMethodMetadata.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.CustomPaymentMethodMetadata)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.CustomPaymentMethodMetadata();
                 if (object.key != null)
                     message.key = String(object.key);
@@ -8663,7 +8951,7 @@ $root.SyncAction = (function() {
                 this.customPaymentMethods = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -8729,9 +9017,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            CustomPaymentMethodsAction.decode = function decode(reader, length, error) {
+            CustomPaymentMethodsAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.CustomPaymentMethodsAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -8741,11 +9033,11 @@ $root.SyncAction = (function() {
                     case 1: {
                             if (!(message.customPaymentMethods && message.customPaymentMethods.length))
                                 message.customPaymentMethods = [];
-                            message.customPaymentMethods.push($root.SyncAction.SyncActionValue.CustomPaymentMethod.decode(reader, reader.uint32()));
+                            message.customPaymentMethods.push($root.SyncAction.SyncActionValue.CustomPaymentMethod.decode(reader, reader.uint32(), undefined, long + 1));
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -8776,14 +9068,18 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            CustomPaymentMethodsAction.verify = function verify(message) {
+            CustomPaymentMethodsAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.customPaymentMethods != null && message.hasOwnProperty("customPaymentMethods")) {
                     if (!Array.isArray(message.customPaymentMethods))
                         return "customPaymentMethods: array expected";
                     for (var i = 0; i < message.customPaymentMethods.length; ++i) {
-                        var error = $root.SyncAction.SyncActionValue.CustomPaymentMethod.verify(message.customPaymentMethods[i]);
+                        var error = $root.SyncAction.SyncActionValue.CustomPaymentMethod.verify(message.customPaymentMethods[i], long + 1);
                         if (error)
                             return "customPaymentMethods." + error;
                     }
@@ -8799,9 +9095,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.CustomPaymentMethodsAction} CustomPaymentMethodsAction
              */
-            CustomPaymentMethodsAction.fromObject = function fromObject(object) {
+            CustomPaymentMethodsAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.CustomPaymentMethodsAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.CustomPaymentMethodsAction();
                 if (object.customPaymentMethods) {
                     if (!Array.isArray(object.customPaymentMethods))
@@ -8810,7 +9110,7 @@ $root.SyncAction = (function() {
                     for (var i = 0; i < object.customPaymentMethods.length; ++i) {
                         if (typeof object.customPaymentMethods[i] !== "object")
                             throw TypeError(".SyncAction.SyncActionValue.CustomPaymentMethodsAction.customPaymentMethods: object expected");
-                        message.customPaymentMethods[i] = $root.SyncAction.SyncActionValue.CustomPaymentMethod.fromObject(object.customPaymentMethods[i]);
+                        message.customPaymentMethods[i] = $root.SyncAction.SyncActionValue.CustomPaymentMethod.fromObject(object.customPaymentMethods[i], long + 1);
                     }
                 }
                 return message;
@@ -8898,7 +9198,7 @@ $root.SyncAction = (function() {
             function CustomerDataAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -9063,9 +9363,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            CustomerDataAction.decode = function decode(reader, length, error) {
+            CustomerDataAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.CustomerDataAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -9117,7 +9421,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -9148,9 +9452,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            CustomerDataAction.verify = function verify(message) {
+            CustomerDataAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.chatJid != null && message.hasOwnProperty("chatJid"))
                     if (!$util.isString(message.chatJid))
                         return "chatJid: string expected";
@@ -9195,9 +9503,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.CustomerDataAction} CustomerDataAction
              */
-            CustomerDataAction.fromObject = function fromObject(object) {
+            CustomerDataAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.CustomerDataAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.CustomerDataAction();
                 if (object.chatJid != null)
                     message.chatJid = String(object.chatJid);
@@ -9380,7 +9692,7 @@ $root.SyncAction = (function() {
             function DeleteChatAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -9445,9 +9757,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            DeleteChatAction.decode = function decode(reader, length, error) {
+            DeleteChatAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.DeleteChatAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -9455,11 +9771,11 @@ $root.SyncAction = (function() {
                         break;
                     switch (tag >>> 3) {
                     case 1: {
-                            message.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.decode(reader, reader.uint32());
+                            message.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -9490,11 +9806,15 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            DeleteChatAction.verify = function verify(message) {
+            DeleteChatAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.messageRange != null && message.hasOwnProperty("messageRange")) {
-                    var error = $root.SyncAction.SyncActionValue.SyncActionMessageRange.verify(message.messageRange);
+                    var error = $root.SyncAction.SyncActionValue.SyncActionMessageRange.verify(message.messageRange, long + 1);
                     if (error)
                         return "messageRange." + error;
                 }
@@ -9509,14 +9829,18 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.DeleteChatAction} DeleteChatAction
              */
-            DeleteChatAction.fromObject = function fromObject(object) {
+            DeleteChatAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.DeleteChatAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.DeleteChatAction();
                 if (object.messageRange != null) {
                     if (typeof object.messageRange !== "object")
                         throw TypeError(".SyncAction.SyncActionValue.DeleteChatAction.messageRange: object expected");
-                    message.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.fromObject(object.messageRange);
+                    message.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.fromObject(object.messageRange, long + 1);
                 }
                 return message;
             };
@@ -9591,7 +9915,7 @@ $root.SyncAction = (function() {
             function DeleteIndividualCallLogAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -9666,9 +9990,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            DeleteIndividualCallLogAction.decode = function decode(reader, length, error) {
+            DeleteIndividualCallLogAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.DeleteIndividualCallLogAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -9684,7 +10012,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -9715,9 +10043,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            DeleteIndividualCallLogAction.verify = function verify(message) {
+            DeleteIndividualCallLogAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.peerJid != null && message.hasOwnProperty("peerJid"))
                     if (!$util.isString(message.peerJid))
                         return "peerJid: string expected";
@@ -9735,9 +10067,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.DeleteIndividualCallLogAction} DeleteIndividualCallLogAction
              */
-            DeleteIndividualCallLogAction.fromObject = function fromObject(object) {
+            DeleteIndividualCallLogAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.DeleteIndividualCallLogAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.DeleteIndividualCallLogAction();
                 if (object.peerJid != null)
                     message.peerJid = String(object.peerJid);
@@ -9820,7 +10156,7 @@ $root.SyncAction = (function() {
             function DeleteMessageForMeAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -9895,9 +10231,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            DeleteMessageForMeAction.decode = function decode(reader, length, error) {
+            DeleteMessageForMeAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.DeleteMessageForMeAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -9913,7 +10253,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -9944,9 +10284,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            DeleteMessageForMeAction.verify = function verify(message) {
+            DeleteMessageForMeAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.deleteMedia != null && message.hasOwnProperty("deleteMedia"))
                     if (typeof message.deleteMedia !== "boolean")
                         return "deleteMedia: boolean expected";
@@ -9964,9 +10308,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.DeleteMessageForMeAction} DeleteMessageForMeAction
              */
-            DeleteMessageForMeAction.fromObject = function fromObject(object) {
+            DeleteMessageForMeAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.DeleteMessageForMeAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.DeleteMessageForMeAction();
                 if (object.deleteMedia != null)
                     message.deleteMedia = Boolean(object.deleteMedia);
@@ -10062,7 +10410,7 @@ $root.SyncAction = (function() {
             function DetectedOutcomesStatusAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -10127,9 +10475,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            DetectedOutcomesStatusAction.decode = function decode(reader, length, error) {
+            DetectedOutcomesStatusAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -10141,7 +10493,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -10172,9 +10524,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            DetectedOutcomesStatusAction.verify = function verify(message) {
+            DetectedOutcomesStatusAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.isEnabled != null && message.hasOwnProperty("isEnabled"))
                     if (typeof message.isEnabled !== "boolean")
                         return "isEnabled: boolean expected";
@@ -10189,9 +10545,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.DetectedOutcomesStatusAction} DetectedOutcomesStatusAction
              */
-            DetectedOutcomesStatusAction.fromObject = function fromObject(object) {
+            DetectedOutcomesStatusAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction();
                 if (object.isEnabled != null)
                     message.isEnabled = Boolean(object.isEnabled);
@@ -10267,7 +10627,7 @@ $root.SyncAction = (function() {
             function ExternalWebBetaAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -10332,9 +10692,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ExternalWebBetaAction.decode = function decode(reader, length, error) {
+            ExternalWebBetaAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.ExternalWebBetaAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -10346,7 +10710,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -10377,9 +10741,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            ExternalWebBetaAction.verify = function verify(message) {
+            ExternalWebBetaAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.isOptIn != null && message.hasOwnProperty("isOptIn"))
                     if (typeof message.isOptIn !== "boolean")
                         return "isOptIn: boolean expected";
@@ -10394,9 +10762,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.ExternalWebBetaAction} ExternalWebBetaAction
              */
-            ExternalWebBetaAction.fromObject = function fromObject(object) {
+            ExternalWebBetaAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.ExternalWebBetaAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.ExternalWebBetaAction();
                 if (object.isOptIn != null)
                     message.isOptIn = Boolean(object.isOptIn);
@@ -10473,7 +10845,7 @@ $root.SyncAction = (function() {
                 this.favorites = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -10539,9 +10911,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            FavoritesAction.decode = function decode(reader, length, error) {
+            FavoritesAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.FavoritesAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -10551,11 +10927,11 @@ $root.SyncAction = (function() {
                     case 1: {
                             if (!(message.favorites && message.favorites.length))
                                 message.favorites = [];
-                            message.favorites.push($root.SyncAction.SyncActionValue.FavoritesAction.Favorite.decode(reader, reader.uint32()));
+                            message.favorites.push($root.SyncAction.SyncActionValue.FavoritesAction.Favorite.decode(reader, reader.uint32(), undefined, long + 1));
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -10586,14 +10962,18 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            FavoritesAction.verify = function verify(message) {
+            FavoritesAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.favorites != null && message.hasOwnProperty("favorites")) {
                     if (!Array.isArray(message.favorites))
                         return "favorites: array expected";
                     for (var i = 0; i < message.favorites.length; ++i) {
-                        var error = $root.SyncAction.SyncActionValue.FavoritesAction.Favorite.verify(message.favorites[i]);
+                        var error = $root.SyncAction.SyncActionValue.FavoritesAction.Favorite.verify(message.favorites[i], long + 1);
                         if (error)
                             return "favorites." + error;
                     }
@@ -10609,9 +10989,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.FavoritesAction} FavoritesAction
              */
-            FavoritesAction.fromObject = function fromObject(object) {
+            FavoritesAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.FavoritesAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.FavoritesAction();
                 if (object.favorites) {
                     if (!Array.isArray(object.favorites))
@@ -10620,7 +11004,7 @@ $root.SyncAction = (function() {
                     for (var i = 0; i < object.favorites.length; ++i) {
                         if (typeof object.favorites[i] !== "object")
                             throw TypeError(".SyncAction.SyncActionValue.FavoritesAction.favorites: object expected");
-                        message.favorites[i] = $root.SyncAction.SyncActionValue.FavoritesAction.Favorite.fromObject(object.favorites[i]);
+                        message.favorites[i] = $root.SyncAction.SyncActionValue.FavoritesAction.Favorite.fromObject(object.favorites[i], long + 1);
                     }
                 }
                 return message;
@@ -10695,7 +11079,7 @@ $root.SyncAction = (function() {
                 function Favorite(properties) {
                     if (properties)
                         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
+                            if (properties[keys[i]] != null && keys[i] !== "__proto__")
                                 this[keys[i]] = properties[keys[i]];
                 }
 
@@ -10760,9 +11144,13 @@ $root.SyncAction = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Favorite.decode = function decode(reader, length, error) {
+                Favorite.decode = function decode(reader, length, error, long) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $Reader.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.FavoritesAction.Favorite();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
@@ -10774,7 +11162,7 @@ $root.SyncAction = (function() {
                                 break;
                             }
                         default:
-                            reader.skipType(tag & 7);
+                            reader.skipType(tag & 7, long);
                             break;
                         }
                     }
@@ -10805,9 +11193,13 @@ $root.SyncAction = (function() {
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
                  */
-                Favorite.verify = function verify(message) {
+                Favorite.verify = function verify(message, long) {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        return "maximum nesting depth exceeded";
                     if (message.id != null && message.hasOwnProperty("id"))
                         if (!$util.isString(message.id))
                             return "id: string expected";
@@ -10822,9 +11214,13 @@ $root.SyncAction = (function() {
                  * @param {Object.<string,*>} object Plain object
                  * @returns {SyncAction.SyncActionValue.FavoritesAction.Favorite} Favorite
                  */
-                Favorite.fromObject = function fromObject(object) {
+                Favorite.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.SyncAction.SyncActionValue.FavoritesAction.Favorite)
                         return object;
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var message = new $root.SyncAction.SyncActionValue.FavoritesAction.Favorite();
                     if (object.id != null)
                         message.id = String(object.id);
@@ -10904,7 +11300,7 @@ $root.SyncAction = (function() {
             function InteractiveMessageAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -10978,9 +11374,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            InteractiveMessageAction.decode = function decode(reader, length, error) {
+            InteractiveMessageAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.InteractiveMessageAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -10996,7 +11396,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -11029,9 +11429,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            InteractiveMessageAction.verify = function verify(message) {
+            InteractiveMessageAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 switch (message.type) {
                 default:
                     return "type: enum value expected";
@@ -11052,9 +11456,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.InteractiveMessageAction} InteractiveMessageAction
              */
-            InteractiveMessageAction.fromObject = function fromObject(object) {
+            InteractiveMessageAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.InteractiveMessageAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.InteractiveMessageAction();
                 switch (object.type) {
                 default:
@@ -11158,7 +11566,7 @@ $root.SyncAction = (function() {
             function KeyExpiration(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -11223,9 +11631,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            KeyExpiration.decode = function decode(reader, length, error) {
+            KeyExpiration.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.KeyExpiration();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -11237,7 +11649,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -11268,9 +11680,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            KeyExpiration.verify = function verify(message) {
+            KeyExpiration.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.expiredKeyEpoch != null && message.hasOwnProperty("expiredKeyEpoch"))
                     if (!$util.isInteger(message.expiredKeyEpoch))
                         return "expiredKeyEpoch: integer expected";
@@ -11285,9 +11701,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.KeyExpiration} KeyExpiration
              */
-            KeyExpiration.fromObject = function fromObject(object) {
+            KeyExpiration.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.KeyExpiration)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.KeyExpiration();
                 if (object.expiredKeyEpoch != null)
                     message.expiredKeyEpoch = object.expiredKeyEpoch | 0;
@@ -11363,7 +11783,7 @@ $root.SyncAction = (function() {
             function LabelAssociationAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -11428,9 +11848,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            LabelAssociationAction.decode = function decode(reader, length, error) {
+            LabelAssociationAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.LabelAssociationAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -11442,7 +11866,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -11473,9 +11897,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            LabelAssociationAction.verify = function verify(message) {
+            LabelAssociationAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.labeled != null && message.hasOwnProperty("labeled"))
                     if (typeof message.labeled !== "boolean")
                         return "labeled: boolean expected";
@@ -11490,9 +11918,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.LabelAssociationAction} LabelAssociationAction
              */
-            LabelAssociationAction.fromObject = function fromObject(object) {
+            LabelAssociationAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.LabelAssociationAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.LabelAssociationAction();
                 if (object.labeled != null)
                     message.labeled = Boolean(object.labeled);
@@ -11576,7 +12008,7 @@ $root.SyncAction = (function() {
             function LabelEditAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -11721,9 +12153,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            LabelEditAction.decode = function decode(reader, length, error) {
+            LabelEditAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.LabelEditAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -11767,7 +12203,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -11798,9 +12234,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            LabelEditAction.verify = function verify(message) {
+            LabelEditAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.name != null && message.hasOwnProperty("name"))
                     if (!$util.isString(message.name))
                         return "name: string expected";
@@ -11854,9 +12294,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.LabelEditAction} LabelEditAction
              */
-            LabelEditAction.fromObject = function fromObject(object) {
+            LabelEditAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.LabelEditAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.LabelEditAction();
                 if (object.name != null)
                     message.name = String(object.name);
@@ -12076,7 +12520,7 @@ $root.SyncAction = (function() {
                 this.sortedLabelIds = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -12142,9 +12586,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            LabelReorderingAction.decode = function decode(reader, length, error) {
+            LabelReorderingAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.LabelReorderingAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -12163,7 +12611,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -12194,9 +12642,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            LabelReorderingAction.verify = function verify(message) {
+            LabelReorderingAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.sortedLabelIds != null && message.hasOwnProperty("sortedLabelIds")) {
                     if (!Array.isArray(message.sortedLabelIds))
                         return "sortedLabelIds: array expected";
@@ -12215,9 +12667,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.LabelReorderingAction} LabelReorderingAction
              */
-            LabelReorderingAction.fromObject = function fromObject(object) {
+            LabelReorderingAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.LabelReorderingAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.LabelReorderingAction();
                 if (object.sortedLabelIds) {
                     if (!Array.isArray(object.sortedLabelIds))
@@ -12303,7 +12759,7 @@ $root.SyncAction = (function() {
             function LidContactAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -12388,9 +12844,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            LidContactAction.decode = function decode(reader, length, error) {
+            LidContactAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.LidContactAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -12410,7 +12870,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -12441,9 +12901,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            LidContactAction.verify = function verify(message) {
+            LidContactAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.fullName != null && message.hasOwnProperty("fullName"))
                     if (!$util.isString(message.fullName))
                         return "fullName: string expected";
@@ -12464,9 +12928,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.LidContactAction} LidContactAction
              */
-            LidContactAction.fromObject = function fromObject(object) {
+            LidContactAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.LidContactAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.LidContactAction();
                 if (object.fullName != null)
                     message.fullName = String(object.fullName);
@@ -12553,7 +13021,7 @@ $root.SyncAction = (function() {
             function LocaleSetting(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -12618,9 +13086,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            LocaleSetting.decode = function decode(reader, length, error) {
+            LocaleSetting.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.LocaleSetting();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -12632,7 +13104,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -12663,9 +13135,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            LocaleSetting.verify = function verify(message) {
+            LocaleSetting.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.locale != null && message.hasOwnProperty("locale"))
                     if (!$util.isString(message.locale))
                         return "locale: string expected";
@@ -12680,9 +13156,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.LocaleSetting} LocaleSetting
              */
-            LocaleSetting.fromObject = function fromObject(object) {
+            LocaleSetting.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.LocaleSetting)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.LocaleSetting();
                 if (object.locale != null)
                     message.locale = String(object.locale);
@@ -12758,7 +13238,7 @@ $root.SyncAction = (function() {
             function LockChatAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -12823,9 +13303,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            LockChatAction.decode = function decode(reader, length, error) {
+            LockChatAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.LockChatAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -12837,7 +13321,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -12868,9 +13352,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            LockChatAction.verify = function verify(message) {
+            LockChatAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.locked != null && message.hasOwnProperty("locked"))
                     if (typeof message.locked !== "boolean")
                         return "locked: boolean expected";
@@ -12885,9 +13373,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.LockChatAction} LockChatAction
              */
-            LockChatAction.fromObject = function fromObject(object) {
+            LockChatAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.LockChatAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.LockChatAction();
                 if (object.locked != null)
                     message.locked = Boolean(object.locked);
@@ -12963,7 +13455,7 @@ $root.SyncAction = (function() {
             function MaibaAIFeaturesControlAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -13028,9 +13520,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            MaibaAIFeaturesControlAction.decode = function decode(reader, length, error) {
+            MaibaAIFeaturesControlAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -13042,7 +13538,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -13073,9 +13569,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            MaibaAIFeaturesControlAction.verify = function verify(message) {
+            MaibaAIFeaturesControlAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.aiFeatureStatus != null && message.hasOwnProperty("aiFeatureStatus"))
                     switch (message.aiFeatureStatus) {
                     default:
@@ -13096,9 +13596,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.MaibaAIFeaturesControlAction} MaibaAIFeaturesControlAction
              */
-            MaibaAIFeaturesControlAction.fromObject = function fromObject(object) {
+            MaibaAIFeaturesControlAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction();
                 switch (object.aiFeatureStatus) {
                 default:
@@ -13209,7 +13713,7 @@ $root.SyncAction = (function() {
             function MarkChatAsReadAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -13284,9 +13788,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            MarkChatAsReadAction.decode = function decode(reader, length, error) {
+            MarkChatAsReadAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.MarkChatAsReadAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -13298,11 +13806,11 @@ $root.SyncAction = (function() {
                             break;
                         }
                     case 2: {
-                            message.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.decode(reader, reader.uint32());
+                            message.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -13333,14 +13841,18 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            MarkChatAsReadAction.verify = function verify(message) {
+            MarkChatAsReadAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.read != null && message.hasOwnProperty("read"))
                     if (typeof message.read !== "boolean")
                         return "read: boolean expected";
                 if (message.messageRange != null && message.hasOwnProperty("messageRange")) {
-                    var error = $root.SyncAction.SyncActionValue.SyncActionMessageRange.verify(message.messageRange);
+                    var error = $root.SyncAction.SyncActionValue.SyncActionMessageRange.verify(message.messageRange, long + 1);
                     if (error)
                         return "messageRange." + error;
                 }
@@ -13355,16 +13867,20 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.MarkChatAsReadAction} MarkChatAsReadAction
              */
-            MarkChatAsReadAction.fromObject = function fromObject(object) {
+            MarkChatAsReadAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.MarkChatAsReadAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.MarkChatAsReadAction();
                 if (object.read != null)
                     message.read = Boolean(object.read);
                 if (object.messageRange != null) {
                     if (typeof object.messageRange !== "object")
                         throw TypeError(".SyncAction.SyncActionValue.MarkChatAsReadAction.messageRange: object expected");
-                    message.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.fromObject(object.messageRange);
+                    message.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.fromObject(object.messageRange, long + 1);
                 }
                 return message;
             };
@@ -13448,7 +13964,7 @@ $root.SyncAction = (function() {
             function MarketingMessageAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -13573,9 +14089,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            MarketingMessageAction.decode = function decode(reader, length, error) {
+            MarketingMessageAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.MarketingMessageAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -13611,7 +14131,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -13642,9 +14162,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            MarketingMessageAction.verify = function verify(message) {
+            MarketingMessageAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.name != null && message.hasOwnProperty("name"))
                     if (!$util.isString(message.name))
                         return "name: string expected";
@@ -13681,9 +14205,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.MarketingMessageAction} MarketingMessageAction
              */
-            MarketingMessageAction.fromObject = function fromObject(object) {
+            MarketingMessageAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.MarketingMessageAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.MarketingMessageAction();
                 if (object.name != null)
                     message.name = String(object.name);
@@ -13840,7 +14368,7 @@ $root.SyncAction = (function() {
             function MarketingMessageBroadcastAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -13905,9 +14433,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            MarketingMessageBroadcastAction.decode = function decode(reader, length, error) {
+            MarketingMessageBroadcastAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.MarketingMessageBroadcastAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -13919,7 +14451,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -13950,9 +14482,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            MarketingMessageBroadcastAction.verify = function verify(message) {
+            MarketingMessageBroadcastAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.repliedCount != null && message.hasOwnProperty("repliedCount"))
                     if (!$util.isInteger(message.repliedCount))
                         return "repliedCount: integer expected";
@@ -13967,9 +14503,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.MarketingMessageBroadcastAction} MarketingMessageBroadcastAction
              */
-            MarketingMessageBroadcastAction.fromObject = function fromObject(object) {
+            MarketingMessageBroadcastAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.MarketingMessageBroadcastAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.MarketingMessageBroadcastAction();
                 if (object.repliedCount != null)
                     message.repliedCount = object.repliedCount | 0;
@@ -14048,7 +14588,7 @@ $root.SyncAction = (function() {
             function MerchantPaymentPartnerAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -14141,9 +14681,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            MerchantPaymentPartnerAction.decode = function decode(reader, length, error) {
+            MerchantPaymentPartnerAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.MerchantPaymentPartnerAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -14167,7 +14711,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -14202,9 +14746,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            MerchantPaymentPartnerAction.verify = function verify(message) {
+            MerchantPaymentPartnerAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 switch (message.status) {
                 default:
                     return "status: enum value expected";
@@ -14231,9 +14779,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.MerchantPaymentPartnerAction} MerchantPaymentPartnerAction
              */
-            MerchantPaymentPartnerAction.fromObject = function fromObject(object) {
+            MerchantPaymentPartnerAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.MerchantPaymentPartnerAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.MerchantPaymentPartnerAction();
                 switch (object.status) {
                 default:
@@ -14355,7 +14907,7 @@ $root.SyncAction = (function() {
                 this.musicUserIdMap = {};
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -14431,9 +14983,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            MusicUserIdAction.decode = function decode(reader, length, error) {
+            MusicUserIdAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.MusicUserIdAction(), key, value;
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -14460,15 +15016,17 @@ $root.SyncAction = (function() {
                                     value = reader.string();
                                     break;
                                 default:
-                                    reader.skipType(tag2 & 7);
+                                    reader.skipType(tag2 & 7, long);
                                     break;
                                 }
                             }
+                            if (key === "__proto__")
+                                $util.makeProp(message.musicUserIdMap, key);
                             message.musicUserIdMap[key] = value;
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -14499,9 +15057,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            MusicUserIdAction.verify = function verify(message) {
+            MusicUserIdAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.musicUserId != null && message.hasOwnProperty("musicUserId"))
                     if (!$util.isString(message.musicUserId))
                         return "musicUserId: string expected";
@@ -14524,9 +15086,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.MusicUserIdAction} MusicUserIdAction
              */
-            MusicUserIdAction.fromObject = function fromObject(object) {
+            MusicUserIdAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.MusicUserIdAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.MusicUserIdAction();
                 if (object.musicUserId != null)
                     message.musicUserId = String(object.musicUserId);
@@ -14534,8 +15100,11 @@ $root.SyncAction = (function() {
                     if (typeof object.musicUserIdMap !== "object")
                         throw TypeError(".SyncAction.SyncActionValue.MusicUserIdAction.musicUserIdMap: object expected");
                     message.musicUserIdMap = {};
-                    for (var keys = Object.keys(object.musicUserIdMap), i = 0; i < keys.length; ++i)
+                    for (var keys = Object.keys(object.musicUserIdMap), i = 0; i < keys.length; ++i) {
+                        if (keys[i] === "__proto__")
+                            $util.makeProp(message.musicUserIdMap, keys[i]);
                         message.musicUserIdMap[keys[i]] = String(object.musicUserIdMap[keys[i]]);
+                    }
                 }
                 return message;
             };
@@ -14562,8 +15131,11 @@ $root.SyncAction = (function() {
                 var keys2;
                 if (message.musicUserIdMap && (keys2 = Object.keys(message.musicUserIdMap)).length) {
                     object.musicUserIdMap = {};
-                    for (var j = 0; j < keys2.length; ++j)
+                    for (var j = 0; j < keys2.length; ++j) {
+                        if (keys2[j] === "__proto__")
+                            $util.makeProp(object.musicUserIdMap, keys2[j]);
                         object.musicUserIdMap[keys2[j]] = message.musicUserIdMap[keys2[j]];
+                    }
                 }
                 return object;
             };
@@ -14620,7 +15192,7 @@ $root.SyncAction = (function() {
             function MuteAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -14715,9 +15287,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            MuteAction.decode = function decode(reader, length, error) {
+            MuteAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.MuteAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -14741,7 +15317,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -14772,9 +15348,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            MuteAction.verify = function verify(message) {
+            MuteAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.muted != null && message.hasOwnProperty("muted"))
                     if (typeof message.muted !== "boolean")
                         return "muted: boolean expected";
@@ -14798,9 +15378,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.MuteAction} MuteAction
              */
-            MuteAction.fromObject = function fromObject(object) {
+            MuteAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.MuteAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.MuteAction();
                 if (object.muted != null)
                     message.muted = Boolean(object.muted);
@@ -14920,7 +15504,7 @@ $root.SyncAction = (function() {
             function NctSaltSyncAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -14985,9 +15569,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            NctSaltSyncAction.decode = function decode(reader, length, error) {
+            NctSaltSyncAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.NctSaltSyncAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -14999,7 +15587,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -15030,9 +15618,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            NctSaltSyncAction.verify = function verify(message) {
+            NctSaltSyncAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.salt != null && message.hasOwnProperty("salt"))
                     if (!(message.salt && typeof message.salt.length === "number" || $util.isString(message.salt)))
                         return "salt: buffer expected";
@@ -15047,9 +15639,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.NctSaltSyncAction} NctSaltSyncAction
              */
-            NctSaltSyncAction.fromObject = function fromObject(object) {
+            NctSaltSyncAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.NctSaltSyncAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.NctSaltSyncAction();
                 if (object.salt != null)
                     if (typeof object.salt === "string")
@@ -15134,7 +15730,7 @@ $root.SyncAction = (function() {
             function NewsletterSavedInterestsAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -15199,9 +15795,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            NewsletterSavedInterestsAction.decode = function decode(reader, length, error) {
+            NewsletterSavedInterestsAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.NewsletterSavedInterestsAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -15213,7 +15813,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -15244,9 +15844,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            NewsletterSavedInterestsAction.verify = function verify(message) {
+            NewsletterSavedInterestsAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.newsletterSavedInterests != null && message.hasOwnProperty("newsletterSavedInterests"))
                     if (!$util.isString(message.newsletterSavedInterests))
                         return "newsletterSavedInterests: string expected";
@@ -15261,9 +15865,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.NewsletterSavedInterestsAction} NewsletterSavedInterestsAction
              */
-            NewsletterSavedInterestsAction.fromObject = function fromObject(object) {
+            NewsletterSavedInterestsAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.NewsletterSavedInterestsAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.NewsletterSavedInterestsAction();
                 if (object.newsletterSavedInterests != null)
                     message.newsletterSavedInterests = String(object.newsletterSavedInterests);
@@ -15343,7 +15951,7 @@ $root.SyncAction = (function() {
             function NoteEditAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -15448,9 +16056,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            NoteEditAction.decode = function decode(reader, length, error) {
+            NoteEditAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.NoteEditAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -15478,7 +16090,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -15509,9 +16121,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            NoteEditAction.verify = function verify(message) {
+            NoteEditAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.type != null && message.hasOwnProperty("type"))
                     switch (message.type) {
                     default:
@@ -15543,9 +16159,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.NoteEditAction} NoteEditAction
              */
-            NoteEditAction.fromObject = function fromObject(object) {
+            NoteEditAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.NoteEditAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.NoteEditAction();
                 switch (object.type) {
                 default:
@@ -15684,7 +16304,7 @@ $root.SyncAction = (function() {
             function NotificationActivitySettingAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -15749,9 +16369,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            NotificationActivitySettingAction.decode = function decode(reader, length, error) {
+            NotificationActivitySettingAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.NotificationActivitySettingAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -15763,7 +16387,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -15794,9 +16418,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            NotificationActivitySettingAction.verify = function verify(message) {
+            NotificationActivitySettingAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.notificationActivitySetting != null && message.hasOwnProperty("notificationActivitySetting"))
                     switch (message.notificationActivitySetting) {
                     default:
@@ -15818,9 +16446,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.NotificationActivitySettingAction} NotificationActivitySettingAction
              */
-            NotificationActivitySettingAction.fromObject = function fromObject(object) {
+            NotificationActivitySettingAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.NotificationActivitySettingAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.NotificationActivitySettingAction();
                 switch (object.notificationActivitySetting) {
                 default:
@@ -15936,7 +16568,7 @@ $root.SyncAction = (function() {
             function NuxAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -16001,9 +16633,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            NuxAction.decode = function decode(reader, length, error) {
+            NuxAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.NuxAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -16015,7 +16651,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -16046,9 +16682,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            NuxAction.verify = function verify(message) {
+            NuxAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.acknowledged != null && message.hasOwnProperty("acknowledged"))
                     if (typeof message.acknowledged !== "boolean")
                         return "acknowledged: boolean expected";
@@ -16063,9 +16703,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.NuxAction} NuxAction
              */
-            NuxAction.fromObject = function fromObject(object) {
+            NuxAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.NuxAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.NuxAction();
                 if (object.acknowledged != null)
                     message.acknowledged = Boolean(object.acknowledged);
@@ -16142,7 +16786,7 @@ $root.SyncAction = (function() {
             function OutContactAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -16217,9 +16861,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            OutContactAction.decode = function decode(reader, length, error) {
+            OutContactAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.OutContactAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -16235,7 +16883,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -16266,9 +16914,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            OutContactAction.verify = function verify(message) {
+            OutContactAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.fullName != null && message.hasOwnProperty("fullName"))
                     if (!$util.isString(message.fullName))
                         return "fullName: string expected";
@@ -16286,9 +16938,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.OutContactAction} OutContactAction
              */
-            OutContactAction.fromObject = function fromObject(object) {
+            OutContactAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.OutContactAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.OutContactAction();
                 if (object.fullName != null)
                     message.fullName = String(object.fullName);
@@ -16370,7 +17026,7 @@ $root.SyncAction = (function() {
             function PaymentInfoAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -16435,9 +17091,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PaymentInfoAction.decode = function decode(reader, length, error) {
+            PaymentInfoAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.PaymentInfoAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -16449,7 +17109,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -16480,9 +17140,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            PaymentInfoAction.verify = function verify(message) {
+            PaymentInfoAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.cpi != null && message.hasOwnProperty("cpi"))
                     if (!$util.isString(message.cpi))
                         return "cpi: string expected";
@@ -16497,9 +17161,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.PaymentInfoAction} PaymentInfoAction
              */
-            PaymentInfoAction.fromObject = function fromObject(object) {
+            PaymentInfoAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.PaymentInfoAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.PaymentInfoAction();
                 if (object.cpi != null)
                     message.cpi = String(object.cpi);
@@ -16576,7 +17244,7 @@ $root.SyncAction = (function() {
             function PaymentTosAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -16649,9 +17317,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PaymentTosAction.decode = function decode(reader, length, error) {
+            PaymentTosAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.PaymentTosAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -16667,7 +17339,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -16702,9 +17374,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            PaymentTosAction.verify = function verify(message) {
+            PaymentTosAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 switch (message.paymentNotice) {
                 default:
                     return "paymentNotice: enum value expected";
@@ -16724,9 +17400,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.PaymentTosAction} PaymentTosAction
              */
-            PaymentTosAction.fromObject = function fromObject(object) {
+            PaymentTosAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.PaymentTosAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.PaymentTosAction();
                 switch (object.paymentNotice) {
                 default:
@@ -16830,7 +17510,7 @@ $root.SyncAction = (function() {
             function PinAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -16895,9 +17575,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PinAction.decode = function decode(reader, length, error) {
+            PinAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.PinAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -16909,7 +17593,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -16940,9 +17624,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            PinAction.verify = function verify(message) {
+            PinAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.pinned != null && message.hasOwnProperty("pinned"))
                     if (typeof message.pinned !== "boolean")
                         return "pinned: boolean expected";
@@ -16957,9 +17645,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.PinAction} PinAction
              */
-            PinAction.fromObject = function fromObject(object) {
+            PinAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.PinAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.PinAction();
                 if (object.pinned != null)
                     message.pinned = Boolean(object.pinned);
@@ -17035,7 +17727,7 @@ $root.SyncAction = (function() {
             function PnForLidChatAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -17100,9 +17792,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PnForLidChatAction.decode = function decode(reader, length, error) {
+            PnForLidChatAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.PnForLidChatAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -17114,7 +17810,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -17145,9 +17841,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            PnForLidChatAction.verify = function verify(message) {
+            PnForLidChatAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.pnJid != null && message.hasOwnProperty("pnJid"))
                     if (!$util.isString(message.pnJid))
                         return "pnJid: string expected";
@@ -17162,9 +17862,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.PnForLidChatAction} PnForLidChatAction
              */
-            PnForLidChatAction.fromObject = function fromObject(object) {
+            PnForLidChatAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.PnForLidChatAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.PnForLidChatAction();
                 if (object.pnJid != null)
                     message.pnJid = String(object.pnJid);
@@ -17241,7 +17945,7 @@ $root.SyncAction = (function() {
                 this.flags = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -17307,9 +18011,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PrimaryFeature.decode = function decode(reader, length, error) {
+            PrimaryFeature.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.PrimaryFeature();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -17323,7 +18031,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -17354,9 +18062,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            PrimaryFeature.verify = function verify(message) {
+            PrimaryFeature.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.flags != null && message.hasOwnProperty("flags")) {
                     if (!Array.isArray(message.flags))
                         return "flags: array expected";
@@ -17375,9 +18087,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.PrimaryFeature} PrimaryFeature
              */
-            PrimaryFeature.fromObject = function fromObject(object) {
+            PrimaryFeature.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.PrimaryFeature)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.PrimaryFeature();
                 if (object.flags) {
                     if (!Array.isArray(object.flags))
@@ -17461,7 +18177,7 @@ $root.SyncAction = (function() {
             function PrimaryVersionAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -17526,9 +18242,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PrimaryVersionAction.decode = function decode(reader, length, error) {
+            PrimaryVersionAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.PrimaryVersionAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -17540,7 +18260,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -17571,9 +18291,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            PrimaryVersionAction.verify = function verify(message) {
+            PrimaryVersionAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.version != null && message.hasOwnProperty("version"))
                     if (!$util.isString(message.version))
                         return "version: string expected";
@@ -17588,9 +18312,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.PrimaryVersionAction} PrimaryVersionAction
              */
-            PrimaryVersionAction.fromObject = function fromObject(object) {
+            PrimaryVersionAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.PrimaryVersionAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.PrimaryVersionAction();
                 if (object.version != null)
                     message.version = String(object.version);
@@ -17666,7 +18394,7 @@ $root.SyncAction = (function() {
             function PrivacySettingChannelsPersonalisedRecommendationAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -17731,9 +18459,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PrivacySettingChannelsPersonalisedRecommendationAction.decode = function decode(reader, length, error) {
+            PrivacySettingChannelsPersonalisedRecommendationAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -17745,7 +18477,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -17776,9 +18508,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            PrivacySettingChannelsPersonalisedRecommendationAction.verify = function verify(message) {
+            PrivacySettingChannelsPersonalisedRecommendationAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.isUserOptedOut != null && message.hasOwnProperty("isUserOptedOut"))
                     if (typeof message.isUserOptedOut !== "boolean")
                         return "isUserOptedOut: boolean expected";
@@ -17793,9 +18529,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction} PrivacySettingChannelsPersonalisedRecommendationAction
              */
-            PrivacySettingChannelsPersonalisedRecommendationAction.fromObject = function fromObject(object) {
+            PrivacySettingChannelsPersonalisedRecommendationAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction();
                 if (object.isUserOptedOut != null)
                     message.isUserOptedOut = Boolean(object.isUserOptedOut);
@@ -17871,7 +18611,7 @@ $root.SyncAction = (function() {
             function PrivacySettingDisableLinkPreviewsAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -17936,9 +18676,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PrivacySettingDisableLinkPreviewsAction.decode = function decode(reader, length, error) {
+            PrivacySettingDisableLinkPreviewsAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.PrivacySettingDisableLinkPreviewsAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -17950,7 +18694,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -17981,9 +18725,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            PrivacySettingDisableLinkPreviewsAction.verify = function verify(message) {
+            PrivacySettingDisableLinkPreviewsAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.isPreviewsDisabled != null && message.hasOwnProperty("isPreviewsDisabled"))
                     if (typeof message.isPreviewsDisabled !== "boolean")
                         return "isPreviewsDisabled: boolean expected";
@@ -17998,9 +18746,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.PrivacySettingDisableLinkPreviewsAction} PrivacySettingDisableLinkPreviewsAction
              */
-            PrivacySettingDisableLinkPreviewsAction.fromObject = function fromObject(object) {
+            PrivacySettingDisableLinkPreviewsAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.PrivacySettingDisableLinkPreviewsAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.PrivacySettingDisableLinkPreviewsAction();
                 if (object.isPreviewsDisabled != null)
                     message.isPreviewsDisabled = Boolean(object.isPreviewsDisabled);
@@ -18076,7 +18828,7 @@ $root.SyncAction = (function() {
             function PrivacySettingRelayAllCalls(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -18141,9 +18893,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PrivacySettingRelayAllCalls.decode = function decode(reader, length, error) {
+            PrivacySettingRelayAllCalls.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.PrivacySettingRelayAllCalls();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -18155,7 +18911,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -18186,9 +18942,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            PrivacySettingRelayAllCalls.verify = function verify(message) {
+            PrivacySettingRelayAllCalls.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.isEnabled != null && message.hasOwnProperty("isEnabled"))
                     if (typeof message.isEnabled !== "boolean")
                         return "isEnabled: boolean expected";
@@ -18203,9 +18963,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.PrivacySettingRelayAllCalls} PrivacySettingRelayAllCalls
              */
-            PrivacySettingRelayAllCalls.fromObject = function fromObject(object) {
+            PrivacySettingRelayAllCalls.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.PrivacySettingRelayAllCalls)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.PrivacySettingRelayAllCalls();
                 if (object.isEnabled != null)
                     message.isEnabled = Boolean(object.isEnabled);
@@ -18281,7 +19045,7 @@ $root.SyncAction = (function() {
             function PrivateProcessingSettingAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -18346,9 +19110,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PrivateProcessingSettingAction.decode = function decode(reader, length, error) {
+            PrivateProcessingSettingAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.PrivateProcessingSettingAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -18360,7 +19128,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -18391,9 +19159,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            PrivateProcessingSettingAction.verify = function verify(message) {
+            PrivateProcessingSettingAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.privateProcessingStatus != null && message.hasOwnProperty("privateProcessingStatus"))
                     switch (message.privateProcessingStatus) {
                     default:
@@ -18414,9 +19186,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.PrivateProcessingSettingAction} PrivateProcessingSettingAction
              */
-            PrivateProcessingSettingAction.fromObject = function fromObject(object) {
+            PrivateProcessingSettingAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.PrivateProcessingSettingAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.PrivateProcessingSettingAction();
                 switch (object.privateProcessingStatus) {
                 default:
@@ -18526,7 +19302,7 @@ $root.SyncAction = (function() {
             function PushNameSetting(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -18591,9 +19367,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            PushNameSetting.decode = function decode(reader, length, error) {
+            PushNameSetting.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.PushNameSetting();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -18605,7 +19385,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -18636,9 +19416,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            PushNameSetting.verify = function verify(message) {
+            PushNameSetting.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.name != null && message.hasOwnProperty("name"))
                     if (!$util.isString(message.name))
                         return "name: string expected";
@@ -18653,9 +19437,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.PushNameSetting} PushNameSetting
              */
-            PushNameSetting.fromObject = function fromObject(object) {
+            PushNameSetting.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.PushNameSetting)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.PushNameSetting();
                 if (object.name != null)
                     message.name = String(object.name);
@@ -18736,7 +19524,7 @@ $root.SyncAction = (function() {
                 this.keywords = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -18842,9 +19630,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            QuickReplyAction.decode = function decode(reader, length, error) {
+            QuickReplyAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.QuickReplyAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -18874,7 +19666,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -18905,9 +19697,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            QuickReplyAction.verify = function verify(message) {
+            QuickReplyAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.shortcut != null && message.hasOwnProperty("shortcut"))
                     if (!$util.isString(message.shortcut))
                         return "shortcut: string expected";
@@ -18938,9 +19734,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.QuickReplyAction} QuickReplyAction
              */
-            QuickReplyAction.fromObject = function fromObject(object) {
+            QuickReplyAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.QuickReplyAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.QuickReplyAction();
                 if (object.shortcut != null)
                     message.shortcut = String(object.shortcut);
@@ -19047,7 +19847,7 @@ $root.SyncAction = (function() {
                 this.weights = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -19113,9 +19913,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            RecentEmojiWeightsAction.decode = function decode(reader, length, error) {
+            RecentEmojiWeightsAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.RecentEmojiWeightsAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -19125,11 +19929,11 @@ $root.SyncAction = (function() {
                     case 1: {
                             if (!(message.weights && message.weights.length))
                                 message.weights = [];
-                            message.weights.push($root.SyncAction.RecentEmojiWeight.decode(reader, reader.uint32()));
+                            message.weights.push($root.SyncAction.RecentEmojiWeight.decode(reader, reader.uint32(), undefined, long + 1));
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -19160,14 +19964,18 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            RecentEmojiWeightsAction.verify = function verify(message) {
+            RecentEmojiWeightsAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.weights != null && message.hasOwnProperty("weights")) {
                     if (!Array.isArray(message.weights))
                         return "weights: array expected";
                     for (var i = 0; i < message.weights.length; ++i) {
-                        var error = $root.SyncAction.RecentEmojiWeight.verify(message.weights[i]);
+                        var error = $root.SyncAction.RecentEmojiWeight.verify(message.weights[i], long + 1);
                         if (error)
                             return "weights." + error;
                     }
@@ -19183,9 +19991,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.RecentEmojiWeightsAction} RecentEmojiWeightsAction
              */
-            RecentEmojiWeightsAction.fromObject = function fromObject(object) {
+            RecentEmojiWeightsAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.RecentEmojiWeightsAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.RecentEmojiWeightsAction();
                 if (object.weights) {
                     if (!Array.isArray(object.weights))
@@ -19194,7 +20006,7 @@ $root.SyncAction = (function() {
                     for (var i = 0; i < object.weights.length; ++i) {
                         if (typeof object.weights[i] !== "object")
                             throw TypeError(".SyncAction.SyncActionValue.RecentEmojiWeightsAction.weights: object expected");
-                        message.weights[i] = $root.SyncAction.RecentEmojiWeight.fromObject(object.weights[i]);
+                        message.weights[i] = $root.SyncAction.RecentEmojiWeight.fromObject(object.weights[i], long + 1);
                     }
                 }
                 return message;
@@ -19272,7 +20084,7 @@ $root.SyncAction = (function() {
             function RemoveRecentStickerAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -19337,9 +20149,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            RemoveRecentStickerAction.decode = function decode(reader, length, error) {
+            RemoveRecentStickerAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.RemoveRecentStickerAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -19351,7 +20167,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -19382,9 +20198,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            RemoveRecentStickerAction.verify = function verify(message) {
+            RemoveRecentStickerAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.lastStickerSentTs != null && message.hasOwnProperty("lastStickerSentTs"))
                     if (!$util.isInteger(message.lastStickerSentTs) && !(message.lastStickerSentTs && $util.isInteger(message.lastStickerSentTs.low) && $util.isInteger(message.lastStickerSentTs.high)))
                         return "lastStickerSentTs: integer|Long expected";
@@ -19399,9 +20219,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.RemoveRecentStickerAction} RemoveRecentStickerAction
              */
-            RemoveRecentStickerAction.fromObject = function fromObject(object) {
+            RemoveRecentStickerAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.RemoveRecentStickerAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.RemoveRecentStickerAction();
                 if (object.lastStickerSentTs != null)
                     if ($util.Long)
@@ -19523,7 +20347,7 @@ $root.SyncAction = (function() {
             function SettingsSyncAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -19908,9 +20732,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            SettingsSyncAction.decode = function decode(reader, length, error) {
+            SettingsSyncAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.SettingsSyncAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -20050,7 +20878,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -20081,9 +20909,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            SettingsSyncAction.verify = function verify(message) {
+            SettingsSyncAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.startAtLogin != null && message.hasOwnProperty("startAtLogin"))
                     if (typeof message.startAtLogin !== "boolean")
                         return "startAtLogin: boolean expected";
@@ -20214,9 +21046,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.SettingsSyncAction} SettingsSyncAction
              */
-            SettingsSyncAction.fromObject = function fromObject(object) {
+            SettingsSyncAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.SettingsSyncAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.SettingsSyncAction();
                 if (object.startAtLogin != null)
                     message.startAtLogin = Boolean(object.startAtLogin);
@@ -20647,7 +21483,7 @@ $root.SyncAction = (function() {
             function StarAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -20712,9 +21548,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            StarAction.decode = function decode(reader, length, error) {
+            StarAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.StarAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -20726,7 +21566,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -20757,9 +21597,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            StarAction.verify = function verify(message) {
+            StarAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.starred != null && message.hasOwnProperty("starred"))
                     if (typeof message.starred !== "boolean")
                         return "starred: boolean expected";
@@ -20774,9 +21618,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.StarAction} StarAction
              */
-            StarAction.fromObject = function fromObject(object) {
+            StarAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.StarAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.StarAction();
                 if (object.starred != null)
                     message.starred = Boolean(object.starred);
@@ -20852,7 +21700,7 @@ $root.SyncAction = (function() {
             function StatusPostOptInNotificationPreferencesAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -20917,9 +21765,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            StatusPostOptInNotificationPreferencesAction.decode = function decode(reader, length, error) {
+            StatusPostOptInNotificationPreferencesAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -20931,7 +21783,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -20962,9 +21814,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            StatusPostOptInNotificationPreferencesAction.verify = function verify(message) {
+            StatusPostOptInNotificationPreferencesAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.enabled != null && message.hasOwnProperty("enabled"))
                     if (typeof message.enabled !== "boolean")
                         return "enabled: boolean expected";
@@ -20979,9 +21835,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction} StatusPostOptInNotificationPreferencesAction
              */
-            StatusPostOptInNotificationPreferencesAction.fromObject = function fromObject(object) {
+            StatusPostOptInNotificationPreferencesAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction();
                 if (object.enabled != null)
                     message.enabled = Boolean(object.enabled);
@@ -21065,7 +21925,7 @@ $root.SyncAction = (function() {
                 this.modes = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -21183,9 +22043,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            StatusPrivacyAction.decode = function decode(reader, length, error) {
+            StatusPrivacyAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.StatusPrivacyAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -21213,7 +22077,7 @@ $root.SyncAction = (function() {
                     case 5: {
                             if (!(message.customLists && message.customLists.length))
                                 message.customLists = [];
-                            message.customLists.push($root.SyncAction.SyncActionValue.StatusPrivacyAction.CustomList.decode(reader, reader.uint32()));
+                            message.customLists.push($root.SyncAction.SyncActionValue.StatusPrivacyAction.CustomList.decode(reader, reader.uint32(), undefined, long + 1));
                             break;
                         }
                     case 6: {
@@ -21228,7 +22092,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -21259,9 +22123,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            StatusPrivacyAction.verify = function verify(message) {
+            StatusPrivacyAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.mode != null && message.hasOwnProperty("mode"))
                     switch (message.mode) {
                     default:
@@ -21290,7 +22158,7 @@ $root.SyncAction = (function() {
                     if (!Array.isArray(message.customLists))
                         return "customLists: array expected";
                     for (var i = 0; i < message.customLists.length; ++i) {
-                        var error = $root.SyncAction.SyncActionValue.StatusPrivacyAction.CustomList.verify(message.customLists[i]);
+                        var error = $root.SyncAction.SyncActionValue.StatusPrivacyAction.CustomList.verify(message.customLists[i], long + 1);
                         if (error)
                             return "customLists." + error;
                     }
@@ -21321,9 +22189,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.StatusPrivacyAction} StatusPrivacyAction
              */
-            StatusPrivacyAction.fromObject = function fromObject(object) {
+            StatusPrivacyAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.StatusPrivacyAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.StatusPrivacyAction();
                 switch (object.mode) {
                 default:
@@ -21371,7 +22243,7 @@ $root.SyncAction = (function() {
                     for (var i = 0; i < object.customLists.length; ++i) {
                         if (typeof object.customLists[i] !== "object")
                             throw TypeError(".SyncAction.SyncActionValue.StatusPrivacyAction.customLists: object expected");
-                        message.customLists[i] = $root.SyncAction.SyncActionValue.StatusPrivacyAction.CustomList.fromObject(object.customLists[i]);
+                        message.customLists[i] = $root.SyncAction.SyncActionValue.StatusPrivacyAction.CustomList.fromObject(object.customLists[i], long + 1);
                     }
                 }
                 if (object.modes) {
@@ -21508,7 +22380,7 @@ $root.SyncAction = (function() {
                     this.userJid = [];
                     if (properties)
                         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
+                            if (properties[keys[i]] != null && keys[i] !== "__proto__")
                                 this[keys[i]] = properties[keys[i]];
                 }
 
@@ -21614,9 +22486,13 @@ $root.SyncAction = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                CustomList.decode = function decode(reader, length, error) {
+                CustomList.decode = function decode(reader, length, error, long) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $Reader.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.StatusPrivacyAction.CustomList();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
@@ -21646,7 +22522,7 @@ $root.SyncAction = (function() {
                                 break;
                             }
                         default:
-                            reader.skipType(tag & 7);
+                            reader.skipType(tag & 7, long);
                             break;
                         }
                     }
@@ -21677,9 +22553,13 @@ $root.SyncAction = (function() {
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
                  */
-                CustomList.verify = function verify(message) {
+                CustomList.verify = function verify(message, long) {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        return "maximum nesting depth exceeded";
                     if (message.listId != null && message.hasOwnProperty("listId"))
                         if (!$util.isString(message.listId))
                             return "listId: string expected";
@@ -21710,9 +22590,13 @@ $root.SyncAction = (function() {
                  * @param {Object.<string,*>} object Plain object
                  * @returns {SyncAction.SyncActionValue.StatusPrivacyAction.CustomList} CustomList
                  */
-                CustomList.fromObject = function fromObject(object) {
+                CustomList.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.SyncAction.SyncActionValue.StatusPrivacyAction.CustomList)
                         return object;
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var message = new $root.SyncAction.SyncActionValue.StatusPrivacyAction.CustomList();
                     if (object.listId != null)
                         message.listId = String(object.listId);
@@ -21853,7 +22737,7 @@ $root.SyncAction = (function() {
             function StickerAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -22038,9 +22922,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            StickerAction.decode = function decode(reader, length, error) {
+            StickerAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.StickerAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -22100,7 +22988,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -22131,9 +23019,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            StickerAction.verify = function verify(message) {
+            StickerAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.url != null && message.hasOwnProperty("url"))
                     if (!$util.isString(message.url))
                         return "url: string expected";
@@ -22184,9 +23076,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.StickerAction} StickerAction
              */
-            StickerAction.fromObject = function fromObject(object) {
+            StickerAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.StickerAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.StickerAction();
                 if (object.url != null)
                     message.url = String(object.url);
@@ -22357,7 +23253,7 @@ $root.SyncAction = (function() {
             function SubscriptionAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -22442,9 +23338,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            SubscriptionAction.decode = function decode(reader, length, error) {
+            SubscriptionAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.SubscriptionAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -22464,7 +23364,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -22495,9 +23395,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            SubscriptionAction.verify = function verify(message) {
+            SubscriptionAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.isDeactivated != null && message.hasOwnProperty("isDeactivated"))
                     if (typeof message.isDeactivated !== "boolean")
                         return "isDeactivated: boolean expected";
@@ -22518,9 +23422,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.SubscriptionAction} SubscriptionAction
              */
-            SubscriptionAction.fromObject = function fromObject(object) {
+            SubscriptionAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.SubscriptionAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.SubscriptionAction();
                 if (object.isDeactivated != null)
                     message.isDeactivated = Boolean(object.isDeactivated);
@@ -22624,7 +23532,7 @@ $root.SyncAction = (function() {
                 this.paidFeature = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -22701,9 +23609,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            SubscriptionsSyncV2Action.decode = function decode(reader, length, error) {
+            SubscriptionsSyncV2Action.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -22713,17 +23625,17 @@ $root.SyncAction = (function() {
                     case 1: {
                             if (!(message.subscriptions && message.subscriptions.length))
                                 message.subscriptions = [];
-                            message.subscriptions.push($root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.SubscriptionInfo.decode(reader, reader.uint32()));
+                            message.subscriptions.push($root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.SubscriptionInfo.decode(reader, reader.uint32(), undefined, long + 1));
                             break;
                         }
                     case 2: {
                             if (!(message.paidFeature && message.paidFeature.length))
                                 message.paidFeature = [];
-                            message.paidFeature.push($root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.PaidFeature.decode(reader, reader.uint32()));
+                            message.paidFeature.push($root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.PaidFeature.decode(reader, reader.uint32(), undefined, long + 1));
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -22754,14 +23666,18 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            SubscriptionsSyncV2Action.verify = function verify(message) {
+            SubscriptionsSyncV2Action.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.subscriptions != null && message.hasOwnProperty("subscriptions")) {
                     if (!Array.isArray(message.subscriptions))
                         return "subscriptions: array expected";
                     for (var i = 0; i < message.subscriptions.length; ++i) {
-                        var error = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.SubscriptionInfo.verify(message.subscriptions[i]);
+                        var error = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.SubscriptionInfo.verify(message.subscriptions[i], long + 1);
                         if (error)
                             return "subscriptions." + error;
                     }
@@ -22770,7 +23686,7 @@ $root.SyncAction = (function() {
                     if (!Array.isArray(message.paidFeature))
                         return "paidFeature: array expected";
                     for (var i = 0; i < message.paidFeature.length; ++i) {
-                        var error = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.PaidFeature.verify(message.paidFeature[i]);
+                        var error = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.PaidFeature.verify(message.paidFeature[i], long + 1);
                         if (error)
                             return "paidFeature." + error;
                     }
@@ -22786,9 +23702,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.SubscriptionsSyncV2Action} SubscriptionsSyncV2Action
              */
-            SubscriptionsSyncV2Action.fromObject = function fromObject(object) {
+            SubscriptionsSyncV2Action.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action();
                 if (object.subscriptions) {
                     if (!Array.isArray(object.subscriptions))
@@ -22797,7 +23717,7 @@ $root.SyncAction = (function() {
                     for (var i = 0; i < object.subscriptions.length; ++i) {
                         if (typeof object.subscriptions[i] !== "object")
                             throw TypeError(".SyncAction.SyncActionValue.SubscriptionsSyncV2Action.subscriptions: object expected");
-                        message.subscriptions[i] = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.SubscriptionInfo.fromObject(object.subscriptions[i]);
+                        message.subscriptions[i] = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.SubscriptionInfo.fromObject(object.subscriptions[i], long + 1);
                     }
                 }
                 if (object.paidFeature) {
@@ -22807,7 +23727,7 @@ $root.SyncAction = (function() {
                     for (var i = 0; i < object.paidFeature.length; ++i) {
                         if (typeof object.paidFeature[i] !== "object")
                             throw TypeError(".SyncAction.SyncActionValue.SubscriptionsSyncV2Action.paidFeature: object expected");
-                        message.paidFeature[i] = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.PaidFeature.fromObject(object.paidFeature[i]);
+                        message.paidFeature[i] = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.PaidFeature.fromObject(object.paidFeature[i], long + 1);
                     }
                 }
                 return message;
@@ -22892,7 +23812,7 @@ $root.SyncAction = (function() {
                 function PaidFeature(properties) {
                     if (properties)
                         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
+                            if (properties[keys[i]] != null && keys[i] !== "__proto__")
                                 this[keys[i]] = properties[keys[i]];
                 }
 
@@ -22987,9 +23907,13 @@ $root.SyncAction = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                PaidFeature.decode = function decode(reader, length, error) {
+                PaidFeature.decode = function decode(reader, length, error, long) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $Reader.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.PaidFeature();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
@@ -23013,7 +23937,7 @@ $root.SyncAction = (function() {
                                 break;
                             }
                         default:
-                            reader.skipType(tag & 7);
+                            reader.skipType(tag & 7, long);
                             break;
                         }
                     }
@@ -23044,9 +23968,13 @@ $root.SyncAction = (function() {
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
                  */
-                PaidFeature.verify = function verify(message) {
+                PaidFeature.verify = function verify(message, long) {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        return "maximum nesting depth exceeded";
                     if (message.name != null && message.hasOwnProperty("name"))
                         if (!$util.isString(message.name))
                             return "name: string expected";
@@ -23070,9 +23998,13 @@ $root.SyncAction = (function() {
                  * @param {Object.<string,*>} object Plain object
                  * @returns {SyncAction.SyncActionValue.SubscriptionsSyncV2Action.PaidFeature} PaidFeature
                  */
-                PaidFeature.fromObject = function fromObject(object) {
+                PaidFeature.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.PaidFeature)
                         return object;
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var message = new $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.PaidFeature();
                     if (object.name != null)
                         message.name = String(object.name);
@@ -23185,7 +24117,7 @@ $root.SyncAction = (function() {
                 function SubscriptionInfo(properties) {
                     if (properties)
                         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
+                            if (properties[keys[i]] != null && keys[i] !== "__proto__")
                                 this[keys[i]] = properties[keys[i]];
                 }
 
@@ -23320,9 +24252,13 @@ $root.SyncAction = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                SubscriptionInfo.decode = function decode(reader, length, error) {
+                SubscriptionInfo.decode = function decode(reader, length, error, long) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $Reader.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.SubscriptionInfo();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
@@ -23362,7 +24298,7 @@ $root.SyncAction = (function() {
                                 break;
                             }
                         default:
-                            reader.skipType(tag & 7);
+                            reader.skipType(tag & 7, long);
                             break;
                         }
                     }
@@ -23393,9 +24329,13 @@ $root.SyncAction = (function() {
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
                  */
-                SubscriptionInfo.verify = function verify(message) {
+                SubscriptionInfo.verify = function verify(message, long) {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        return "maximum nesting depth exceeded";
                     if (message.id != null && message.hasOwnProperty("id"))
                         if (!$util.isString(message.id))
                             return "id: string expected";
@@ -23431,9 +24371,13 @@ $root.SyncAction = (function() {
                  * @param {Object.<string,*>} object Plain object
                  * @returns {SyncAction.SyncActionValue.SubscriptionsSyncV2Action.SubscriptionInfo} SubscriptionInfo
                  */
-                SubscriptionInfo.fromObject = function fromObject(object) {
+                SubscriptionInfo.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.SubscriptionInfo)
                         return object;
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var message = new $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.SubscriptionInfo();
                     if (object.id != null)
                         message.id = String(object.id);
@@ -23591,7 +24535,7 @@ $root.SyncAction = (function() {
             function SyncActionMessage(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -23666,9 +24610,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            SyncActionMessage.decode = function decode(reader, length, error) {
+            SyncActionMessage.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.SyncActionMessage();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -23676,7 +24624,7 @@ $root.SyncAction = (function() {
                         break;
                     switch (tag >>> 3) {
                     case 1: {
-                            message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32());
+                            message.key = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     case 2: {
@@ -23684,7 +24632,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -23715,11 +24663,15 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            SyncActionMessage.verify = function verify(message) {
+            SyncActionMessage.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.key != null && message.hasOwnProperty("key")) {
-                    var error = $root.Protocol.MessageKey.verify(message.key);
+                    var error = $root.Protocol.MessageKey.verify(message.key, long + 1);
                     if (error)
                         return "key." + error;
                 }
@@ -23737,14 +24689,18 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.SyncActionMessage} SyncActionMessage
              */
-            SyncActionMessage.fromObject = function fromObject(object) {
+            SyncActionMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.SyncActionMessage)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.SyncActionMessage();
                 if (object.key != null) {
                     if (typeof object.key !== "object")
                         throw TypeError(".SyncAction.SyncActionValue.SyncActionMessage.key: object expected");
-                    message.key = $root.Protocol.MessageKey.fromObject(object.key);
+                    message.key = $root.Protocol.MessageKey.fromObject(object.key, long + 1);
                 }
                 if (object.timestamp != null)
                     if ($util.Long)
@@ -23841,7 +24797,7 @@ $root.SyncAction = (function() {
                 this.messages = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -23927,9 +24883,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            SyncActionMessageRange.decode = function decode(reader, length, error) {
+            SyncActionMessageRange.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.SyncActionMessageRange();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -23947,11 +24907,11 @@ $root.SyncAction = (function() {
                     case 3: {
                             if (!(message.messages && message.messages.length))
                                 message.messages = [];
-                            message.messages.push($root.SyncAction.SyncActionValue.SyncActionMessage.decode(reader, reader.uint32()));
+                            message.messages.push($root.SyncAction.SyncActionValue.SyncActionMessage.decode(reader, reader.uint32(), undefined, long + 1));
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -23982,9 +24942,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            SyncActionMessageRange.verify = function verify(message) {
+            SyncActionMessageRange.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.lastMessageTimestamp != null && message.hasOwnProperty("lastMessageTimestamp"))
                     if (!$util.isInteger(message.lastMessageTimestamp) && !(message.lastMessageTimestamp && $util.isInteger(message.lastMessageTimestamp.low) && $util.isInteger(message.lastMessageTimestamp.high)))
                         return "lastMessageTimestamp: integer|Long expected";
@@ -23995,7 +24959,7 @@ $root.SyncAction = (function() {
                     if (!Array.isArray(message.messages))
                         return "messages: array expected";
                     for (var i = 0; i < message.messages.length; ++i) {
-                        var error = $root.SyncAction.SyncActionValue.SyncActionMessage.verify(message.messages[i]);
+                        var error = $root.SyncAction.SyncActionValue.SyncActionMessage.verify(message.messages[i], long + 1);
                         if (error)
                             return "messages." + error;
                     }
@@ -24011,9 +24975,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.SyncActionMessageRange} SyncActionMessageRange
              */
-            SyncActionMessageRange.fromObject = function fromObject(object) {
+            SyncActionMessageRange.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.SyncActionMessageRange)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.SyncActionMessageRange();
                 if (object.lastMessageTimestamp != null)
                     if ($util.Long)
@@ -24040,7 +25008,7 @@ $root.SyncAction = (function() {
                     for (var i = 0; i < object.messages.length; ++i) {
                         if (typeof object.messages[i] !== "object")
                             throw TypeError(".SyncAction.SyncActionValue.SyncActionMessageRange.messages: object expected");
-                        message.messages[i] = $root.SyncAction.SyncActionValue.SyncActionMessage.fromObject(object.messages[i]);
+                        message.messages[i] = $root.SyncAction.SyncActionValue.SyncActionMessage.fromObject(object.messages[i], long + 1);
                     }
                 }
                 return message;
@@ -24140,7 +25108,7 @@ $root.SyncAction = (function() {
             function ThreadPinAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -24205,9 +25173,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ThreadPinAction.decode = function decode(reader, length, error) {
+            ThreadPinAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.ThreadPinAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -24219,7 +25191,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -24250,9 +25222,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            ThreadPinAction.verify = function verify(message) {
+            ThreadPinAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.pinned != null && message.hasOwnProperty("pinned"))
                     if (typeof message.pinned !== "boolean")
                         return "pinned: boolean expected";
@@ -24267,9 +25243,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.ThreadPinAction} ThreadPinAction
              */
-            ThreadPinAction.fromObject = function fromObject(object) {
+            ThreadPinAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.ThreadPinAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.ThreadPinAction();
                 if (object.pinned != null)
                     message.pinned = Boolean(object.pinned);
@@ -24345,7 +25325,7 @@ $root.SyncAction = (function() {
             function TimeFormatAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -24410,9 +25390,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            TimeFormatAction.decode = function decode(reader, length, error) {
+            TimeFormatAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.TimeFormatAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -24424,7 +25408,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -24455,9 +25439,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            TimeFormatAction.verify = function verify(message) {
+            TimeFormatAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.isTwentyFourHourFormatEnabled != null && message.hasOwnProperty("isTwentyFourHourFormatEnabled"))
                     if (typeof message.isTwentyFourHourFormatEnabled !== "boolean")
                         return "isTwentyFourHourFormatEnabled: boolean expected";
@@ -24472,9 +25460,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.TimeFormatAction} TimeFormatAction
              */
-            TimeFormatAction.fromObject = function fromObject(object) {
+            TimeFormatAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.TimeFormatAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.TimeFormatAction();
                 if (object.isTwentyFourHourFormatEnabled != null)
                     message.isTwentyFourHourFormatEnabled = Boolean(object.isTwentyFourHourFormatEnabled);
@@ -24550,7 +25542,7 @@ $root.SyncAction = (function() {
             function UGCBot(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -24615,9 +25607,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            UGCBot.decode = function decode(reader, length, error) {
+            UGCBot.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.UGCBot();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -24629,7 +25625,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -24660,9 +25656,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            UGCBot.verify = function verify(message) {
+            UGCBot.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.definition != null && message.hasOwnProperty("definition"))
                     if (!(message.definition && typeof message.definition.length === "number" || $util.isString(message.definition)))
                         return "definition: buffer expected";
@@ -24677,9 +25677,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.UGCBot} UGCBot
              */
-            UGCBot.fromObject = function fromObject(object) {
+            UGCBot.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.UGCBot)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.UGCBot();
                 if (object.definition != null)
                     if (typeof object.definition === "string")
@@ -24764,7 +25768,7 @@ $root.SyncAction = (function() {
             function UnarchiveChatsSetting(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -24829,9 +25833,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            UnarchiveChatsSetting.decode = function decode(reader, length, error) {
+            UnarchiveChatsSetting.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.UnarchiveChatsSetting();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -24843,7 +25851,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -24874,9 +25882,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            UnarchiveChatsSetting.verify = function verify(message) {
+            UnarchiveChatsSetting.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.unarchiveChats != null && message.hasOwnProperty("unarchiveChats"))
                     if (typeof message.unarchiveChats !== "boolean")
                         return "unarchiveChats: boolean expected";
@@ -24891,9 +25903,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.UnarchiveChatsSetting} UnarchiveChatsSetting
              */
-            UnarchiveChatsSetting.fromObject = function fromObject(object) {
+            UnarchiveChatsSetting.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.UnarchiveChatsSetting)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.UnarchiveChatsSetting();
                 if (object.unarchiveChats != null)
                     message.unarchiveChats = Boolean(object.unarchiveChats);
@@ -24969,7 +25985,7 @@ $root.SyncAction = (function() {
             function UserStatusMuteAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -25034,9 +26050,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            UserStatusMuteAction.decode = function decode(reader, length, error) {
+            UserStatusMuteAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.UserStatusMuteAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -25048,7 +26068,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -25079,9 +26099,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            UserStatusMuteAction.verify = function verify(message) {
+            UserStatusMuteAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.muted != null && message.hasOwnProperty("muted"))
                     if (typeof message.muted !== "boolean")
                         return "muted: boolean expected";
@@ -25096,9 +26120,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.UserStatusMuteAction} UserStatusMuteAction
              */
-            UserStatusMuteAction.fromObject = function fromObject(object) {
+            UserStatusMuteAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.UserStatusMuteAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.UserStatusMuteAction();
                 if (object.muted != null)
                     message.muted = Boolean(object.muted);
@@ -25174,7 +26202,7 @@ $root.SyncAction = (function() {
             function UsernameChatStartModeAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -25239,9 +26267,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            UsernameChatStartModeAction.decode = function decode(reader, length, error) {
+            UsernameChatStartModeAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.UsernameChatStartModeAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -25253,7 +26285,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -25284,9 +26316,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            UsernameChatStartModeAction.verify = function verify(message) {
+            UsernameChatStartModeAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.chatStartMode != null && message.hasOwnProperty("chatStartMode"))
                     switch (message.chatStartMode) {
                     default:
@@ -25306,9 +26342,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.UsernameChatStartModeAction} UsernameChatStartModeAction
              */
-            UsernameChatStartModeAction.fromObject = function fromObject(object) {
+            UsernameChatStartModeAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.UsernameChatStartModeAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.UsernameChatStartModeAction();
                 switch (object.chatStartMode) {
                 default:
@@ -25412,7 +26452,7 @@ $root.SyncAction = (function() {
             function WaffleAccountLinkStateAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -25477,9 +26517,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            WaffleAccountLinkStateAction.decode = function decode(reader, length, error) {
+            WaffleAccountLinkStateAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.WaffleAccountLinkStateAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -25491,7 +26535,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -25522,9 +26566,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            WaffleAccountLinkStateAction.verify = function verify(message) {
+            WaffleAccountLinkStateAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.linkState != null && message.hasOwnProperty("linkState"))
                     switch (message.linkState) {
                     default:
@@ -25545,9 +26593,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.WaffleAccountLinkStateAction} WaffleAccountLinkStateAction
              */
-            WaffleAccountLinkStateAction.fromObject = function fromObject(object) {
+            WaffleAccountLinkStateAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.WaffleAccountLinkStateAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.WaffleAccountLinkStateAction();
                 switch (object.linkState) {
                 default:
@@ -25657,7 +26709,7 @@ $root.SyncAction = (function() {
             function WamoUserIdentifierAction(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -25722,9 +26774,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            WamoUserIdentifierAction.decode = function decode(reader, length, error) {
+            WamoUserIdentifierAction.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.SyncActionValue.WamoUserIdentifierAction();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -25736,7 +26792,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -25767,9 +26823,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            WamoUserIdentifierAction.verify = function verify(message) {
+            WamoUserIdentifierAction.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.identifier != null && message.hasOwnProperty("identifier"))
                     if (!$util.isString(message.identifier))
                         return "identifier: string expected";
@@ -25784,9 +26844,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.SyncActionValue.WamoUserIdentifierAction} WamoUserIdentifierAction
              */
-            WamoUserIdentifierAction.fromObject = function fromObject(object) {
+            WamoUserIdentifierAction.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.SyncActionValue.WamoUserIdentifierAction)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.SyncActionValue.WamoUserIdentifierAction();
                 if (object.identifier != null)
                     message.identifier = String(object.identifier);
@@ -25880,7 +26944,7 @@ $root.SyncAction = (function() {
             this.participants = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -26086,9 +27150,13 @@ $root.SyncAction = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        CallLogRecord.decode = function decode(reader, length, error) {
+        CallLogRecord.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.CallLogRecord();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -26150,7 +27218,7 @@ $root.SyncAction = (function() {
                 case 14: {
                         if (!(message.participants && message.participants.length))
                             message.participants = [];
-                        message.participants.push($root.SyncAction.CallLogRecord.ParticipantInfo.decode(reader, reader.uint32()));
+                        message.participants.push($root.SyncAction.CallLogRecord.ParticipantInfo.decode(reader, reader.uint32(), undefined, long + 1));
                         break;
                     }
                 case 15: {
@@ -26158,7 +27226,7 @@ $root.SyncAction = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -26189,9 +27257,13 @@ $root.SyncAction = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        CallLogRecord.verify = function verify(message) {
+        CallLogRecord.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.callResult != null && message.hasOwnProperty("callResult"))
                 switch (message.callResult) {
                 default:
@@ -26256,7 +27328,7 @@ $root.SyncAction = (function() {
                 if (!Array.isArray(message.participants))
                     return "participants: array expected";
                 for (var i = 0; i < message.participants.length; ++i) {
-                    var error = $root.SyncAction.CallLogRecord.ParticipantInfo.verify(message.participants[i]);
+                    var error = $root.SyncAction.CallLogRecord.ParticipantInfo.verify(message.participants[i], long + 1);
                     if (error)
                         return "participants." + error;
                 }
@@ -26281,9 +27353,13 @@ $root.SyncAction = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {SyncAction.CallLogRecord} CallLogRecord
          */
-        CallLogRecord.fromObject = function fromObject(object) {
+        CallLogRecord.fromObject = function fromObject(object, long) {
             if (object instanceof $root.SyncAction.CallLogRecord)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.SyncAction.CallLogRecord();
             switch (object.callResult) {
             default:
@@ -26404,7 +27480,7 @@ $root.SyncAction = (function() {
                 for (var i = 0; i < object.participants.length; ++i) {
                     if (typeof object.participants[i] !== "object")
                         throw TypeError(".SyncAction.CallLogRecord.participants: object expected");
-                    message.participants[i] = $root.SyncAction.CallLogRecord.ParticipantInfo.fromObject(object.participants[i]);
+                    message.participants[i] = $root.SyncAction.CallLogRecord.ParticipantInfo.fromObject(object.participants[i], long + 1);
                 }
             }
             switch (object.callType) {
@@ -26606,7 +27682,7 @@ $root.SyncAction = (function() {
             function ParticipantInfo(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -26681,9 +27757,13 @@ $root.SyncAction = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ParticipantInfo.decode = function decode(reader, length, error) {
+            ParticipantInfo.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.CallLogRecord.ParticipantInfo();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -26699,7 +27779,7 @@ $root.SyncAction = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -26730,9 +27810,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            ParticipantInfo.verify = function verify(message) {
+            ParticipantInfo.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.userJid != null && message.hasOwnProperty("userJid"))
                     if (!$util.isString(message.userJid))
                         return "userJid: string expected";
@@ -26764,9 +27848,13 @@ $root.SyncAction = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {SyncAction.CallLogRecord.ParticipantInfo} ParticipantInfo
              */
-            ParticipantInfo.fromObject = function fromObject(object) {
+            ParticipantInfo.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SyncAction.CallLogRecord.ParticipantInfo)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.SyncAction.CallLogRecord.ParticipantInfo();
                 if (object.userJid != null)
                     message.userJid = String(object.userJid);
@@ -26920,7 +28008,7 @@ $root.SyncAction = (function() {
         function RecentEmojiWeight(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -26995,9 +28083,13 @@ $root.SyncAction = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        RecentEmojiWeight.decode = function decode(reader, length, error) {
+        RecentEmojiWeight.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.SyncAction.RecentEmojiWeight();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -27013,7 +28105,7 @@ $root.SyncAction = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -27044,9 +28136,13 @@ $root.SyncAction = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        RecentEmojiWeight.verify = function verify(message) {
+        RecentEmojiWeight.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.emoji != null && message.hasOwnProperty("emoji"))
                 if (!$util.isString(message.emoji))
                     return "emoji: string expected";
@@ -27064,9 +28160,13 @@ $root.SyncAction = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {SyncAction.RecentEmojiWeight} RecentEmojiWeight
          */
-        RecentEmojiWeight.fromObject = function fromObject(object) {
+        RecentEmojiWeight.fromObject = function fromObject(object, long) {
             if (object instanceof $root.SyncAction.RecentEmojiWeight)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.SyncAction.RecentEmojiWeight();
             if (object.emoji != null)
                 message.emoji = String(object.emoji);
@@ -27361,7 +28461,7 @@ $root.ChatLockSettings = (function() {
         function ChatLockSettings(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -27436,9 +28536,13 @@ $root.ChatLockSettings = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ChatLockSettings.decode = function decode(reader, length, error) {
+        ChatLockSettings.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.ChatLockSettings.ChatLockSettings();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -27450,11 +28554,11 @@ $root.ChatLockSettings = (function() {
                         break;
                     }
                 case 2: {
-                        message.secretCode = $root.UserPassword.UserPassword.decode(reader, reader.uint32());
+                        message.secretCode = $root.UserPassword.UserPassword.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -27485,14 +28589,18 @@ $root.ChatLockSettings = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        ChatLockSettings.verify = function verify(message) {
+        ChatLockSettings.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.hideLockedChats != null && message.hasOwnProperty("hideLockedChats"))
                 if (typeof message.hideLockedChats !== "boolean")
                     return "hideLockedChats: boolean expected";
             if (message.secretCode != null && message.hasOwnProperty("secretCode")) {
-                var error = $root.UserPassword.UserPassword.verify(message.secretCode);
+                var error = $root.UserPassword.UserPassword.verify(message.secretCode, long + 1);
                 if (error)
                     return "secretCode." + error;
             }
@@ -27507,16 +28615,20 @@ $root.ChatLockSettings = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {ChatLockSettings.ChatLockSettings} ChatLockSettings
          */
-        ChatLockSettings.fromObject = function fromObject(object) {
+        ChatLockSettings.fromObject = function fromObject(object, long) {
             if (object instanceof $root.ChatLockSettings.ChatLockSettings)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.ChatLockSettings.ChatLockSettings();
             if (object.hideLockedChats != null)
                 message.hideLockedChats = Boolean(object.hideLockedChats);
             if (object.secretCode != null) {
                 if (typeof object.secretCode !== "object")
                     throw TypeError(".ChatLockSettings.ChatLockSettings.secretCode: object expected");
-                message.secretCode = $root.UserPassword.UserPassword.fromObject(object.secretCode);
+                message.secretCode = $root.UserPassword.UserPassword.fromObject(object.secretCode, long + 1);
             }
             return message;
         };
@@ -27610,7 +28722,7 @@ $root.UserPassword = (function() {
             this.transformerArg = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -27706,9 +28818,13 @@ $root.UserPassword = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        UserPassword.decode = function decode(reader, length, error) {
+        UserPassword.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.UserPassword.UserPassword();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -27726,7 +28842,7 @@ $root.UserPassword = (function() {
                 case 3: {
                         if (!(message.transformerArg && message.transformerArg.length))
                             message.transformerArg = [];
-                        message.transformerArg.push($root.UserPassword.UserPassword.TransformerArg.decode(reader, reader.uint32()));
+                        message.transformerArg.push($root.UserPassword.UserPassword.TransformerArg.decode(reader, reader.uint32(), undefined, long + 1));
                         break;
                     }
                 case 4: {
@@ -27734,7 +28850,7 @@ $root.UserPassword = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -27765,9 +28881,13 @@ $root.UserPassword = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        UserPassword.verify = function verify(message) {
+        UserPassword.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.encoding != null && message.hasOwnProperty("encoding"))
                 switch (message.encoding) {
                 default:
@@ -27789,7 +28909,7 @@ $root.UserPassword = (function() {
                 if (!Array.isArray(message.transformerArg))
                     return "transformerArg: array expected";
                 for (var i = 0; i < message.transformerArg.length; ++i) {
-                    var error = $root.UserPassword.UserPassword.TransformerArg.verify(message.transformerArg[i]);
+                    var error = $root.UserPassword.UserPassword.TransformerArg.verify(message.transformerArg[i], long + 1);
                     if (error)
                         return "transformerArg." + error;
                 }
@@ -27808,9 +28928,13 @@ $root.UserPassword = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {UserPassword.UserPassword} UserPassword
          */
-        UserPassword.fromObject = function fromObject(object) {
+        UserPassword.fromObject = function fromObject(object, long) {
             if (object instanceof $root.UserPassword.UserPassword)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.UserPassword.UserPassword();
             switch (object.encoding) {
             default:
@@ -27855,7 +28979,7 @@ $root.UserPassword = (function() {
                 for (var i = 0; i < object.transformerArg.length; ++i) {
                     if (typeof object.transformerArg[i] !== "object")
                         throw TypeError(".UserPassword.UserPassword.transformerArg: object expected");
-                    message.transformerArg[i] = $root.UserPassword.UserPassword.TransformerArg.fromObject(object.transformerArg[i]);
+                    message.transformerArg[i] = $root.UserPassword.UserPassword.TransformerArg.fromObject(object.transformerArg[i], long + 1);
                 }
             }
             if (object.transformedData != null)
@@ -27983,7 +29107,7 @@ $root.UserPassword = (function() {
             function TransformerArg(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -28058,9 +29182,13 @@ $root.UserPassword = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            TransformerArg.decode = function decode(reader, length, error) {
+            TransformerArg.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.UserPassword.UserPassword.TransformerArg();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -28072,11 +29200,11 @@ $root.UserPassword = (function() {
                             break;
                         }
                     case 2: {
-                            message.value = $root.UserPassword.UserPassword.TransformerArg.Value.decode(reader, reader.uint32());
+                            message.value = $root.UserPassword.UserPassword.TransformerArg.Value.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -28107,14 +29235,18 @@ $root.UserPassword = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            TransformerArg.verify = function verify(message) {
+            TransformerArg.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.key != null && message.hasOwnProperty("key"))
                     if (!$util.isString(message.key))
                         return "key: string expected";
                 if (message.value != null && message.hasOwnProperty("value")) {
-                    var error = $root.UserPassword.UserPassword.TransformerArg.Value.verify(message.value);
+                    var error = $root.UserPassword.UserPassword.TransformerArg.Value.verify(message.value, long + 1);
                     if (error)
                         return "value." + error;
                 }
@@ -28129,16 +29261,20 @@ $root.UserPassword = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {UserPassword.UserPassword.TransformerArg} TransformerArg
              */
-            TransformerArg.fromObject = function fromObject(object) {
+            TransformerArg.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.UserPassword.UserPassword.TransformerArg)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.UserPassword.UserPassword.TransformerArg();
                 if (object.key != null)
                     message.key = String(object.key);
                 if (object.value != null) {
                     if (typeof object.value !== "object")
                         throw TypeError(".UserPassword.UserPassword.TransformerArg.value: object expected");
-                    message.value = $root.UserPassword.UserPassword.TransformerArg.Value.fromObject(object.value);
+                    message.value = $root.UserPassword.UserPassword.TransformerArg.Value.fromObject(object.value, long + 1);
                 }
                 return message;
             };
@@ -28214,7 +29350,7 @@ $root.UserPassword = (function() {
                 function Value(properties) {
                     if (properties)
                         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
+                            if (properties[keys[i]] != null && keys[i] !== "__proto__")
                                 this[keys[i]] = properties[keys[i]];
                 }
 
@@ -28303,9 +29439,13 @@ $root.UserPassword = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Value.decode = function decode(reader, length, error) {
+                Value.decode = function decode(reader, length, error, long) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $Reader.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.UserPassword.UserPassword.TransformerArg.Value();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
@@ -28321,7 +29461,7 @@ $root.UserPassword = (function() {
                                 break;
                             }
                         default:
-                            reader.skipType(tag & 7);
+                            reader.skipType(tag & 7, long);
                             break;
                         }
                     }
@@ -28352,9 +29492,13 @@ $root.UserPassword = (function() {
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
                  */
-                Value.verify = function verify(message) {
+                Value.verify = function verify(message, long) {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        return "maximum nesting depth exceeded";
                     var properties = {};
                     if (message.asBlob != null && message.hasOwnProperty("asBlob")) {
                         properties.value = 1;
@@ -28379,9 +29523,13 @@ $root.UserPassword = (function() {
                  * @param {Object.<string,*>} object Plain object
                  * @returns {UserPassword.UserPassword.TransformerArg.Value} Value
                  */
-                Value.fromObject = function fromObject(object) {
+                Value.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.UserPassword.UserPassword.TransformerArg.Value)
                         return object;
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var message = new $root.UserPassword.UserPassword.TransformerArg.Value();
                     if (object.asBlob != null)
                         if (typeof object.asBlob === "string")
@@ -28491,7 +29639,7 @@ $root.DeviceCapabilities = (function() {
         function DeviceCapabilities(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -28606,9 +29754,13 @@ $root.DeviceCapabilities = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        DeviceCapabilities.decode = function decode(reader, length, error) {
+        DeviceCapabilities.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.DeviceCapabilities.DeviceCapabilities();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -28620,15 +29772,15 @@ $root.DeviceCapabilities = (function() {
                         break;
                     }
                 case 2: {
-                        message.lidMigration = $root.DeviceCapabilities.DeviceCapabilities.LIDMigration.decode(reader, reader.uint32());
+                        message.lidMigration = $root.DeviceCapabilities.DeviceCapabilities.LIDMigration.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 3: {
-                        message.businessBroadcast = $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast.decode(reader, reader.uint32());
+                        message.businessBroadcast = $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 4: {
-                        message.userHasAvatar = $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar.decode(reader, reader.uint32());
+                        message.userHasAvatar = $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 5: {
@@ -28636,11 +29788,11 @@ $root.DeviceCapabilities = (function() {
                         break;
                     }
                 case 6: {
-                        message.aiThread = $root.DeviceCapabilities.DeviceCapabilities.AiThread.decode(reader, reader.uint32());
+                        message.aiThread = $root.DeviceCapabilities.DeviceCapabilities.AiThread.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -28671,9 +29823,13 @@ $root.DeviceCapabilities = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        DeviceCapabilities.verify = function verify(message) {
+        DeviceCapabilities.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.chatLockSupportLevel != null && message.hasOwnProperty("chatLockSupportLevel"))
                 switch (message.chatLockSupportLevel) {
                 default:
@@ -28684,17 +29840,17 @@ $root.DeviceCapabilities = (function() {
                     break;
                 }
             if (message.lidMigration != null && message.hasOwnProperty("lidMigration")) {
-                var error = $root.DeviceCapabilities.DeviceCapabilities.LIDMigration.verify(message.lidMigration);
+                var error = $root.DeviceCapabilities.DeviceCapabilities.LIDMigration.verify(message.lidMigration, long + 1);
                 if (error)
                     return "lidMigration." + error;
             }
             if (message.businessBroadcast != null && message.hasOwnProperty("businessBroadcast")) {
-                var error = $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast.verify(message.businessBroadcast);
+                var error = $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast.verify(message.businessBroadcast, long + 1);
                 if (error)
                     return "businessBroadcast." + error;
             }
             if (message.userHasAvatar != null && message.hasOwnProperty("userHasAvatar")) {
-                var error = $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar.verify(message.userHasAvatar);
+                var error = $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar.verify(message.userHasAvatar, long + 1);
                 if (error)
                     return "userHasAvatar." + error;
             }
@@ -28708,7 +29864,7 @@ $root.DeviceCapabilities = (function() {
                     break;
                 }
             if (message.aiThread != null && message.hasOwnProperty("aiThread")) {
-                var error = $root.DeviceCapabilities.DeviceCapabilities.AiThread.verify(message.aiThread);
+                var error = $root.DeviceCapabilities.DeviceCapabilities.AiThread.verify(message.aiThread, long + 1);
                 if (error)
                     return "aiThread." + error;
             }
@@ -28723,9 +29879,13 @@ $root.DeviceCapabilities = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {DeviceCapabilities.DeviceCapabilities} DeviceCapabilities
          */
-        DeviceCapabilities.fromObject = function fromObject(object) {
+        DeviceCapabilities.fromObject = function fromObject(object, long) {
             if (object instanceof $root.DeviceCapabilities.DeviceCapabilities)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.DeviceCapabilities.DeviceCapabilities();
             switch (object.chatLockSupportLevel) {
             default:
@@ -28750,17 +29910,17 @@ $root.DeviceCapabilities = (function() {
             if (object.lidMigration != null) {
                 if (typeof object.lidMigration !== "object")
                     throw TypeError(".DeviceCapabilities.DeviceCapabilities.lidMigration: object expected");
-                message.lidMigration = $root.DeviceCapabilities.DeviceCapabilities.LIDMigration.fromObject(object.lidMigration);
+                message.lidMigration = $root.DeviceCapabilities.DeviceCapabilities.LIDMigration.fromObject(object.lidMigration, long + 1);
             }
             if (object.businessBroadcast != null) {
                 if (typeof object.businessBroadcast !== "object")
                     throw TypeError(".DeviceCapabilities.DeviceCapabilities.businessBroadcast: object expected");
-                message.businessBroadcast = $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast.fromObject(object.businessBroadcast);
+                message.businessBroadcast = $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast.fromObject(object.businessBroadcast, long + 1);
             }
             if (object.userHasAvatar != null) {
                 if (typeof object.userHasAvatar !== "object")
                     throw TypeError(".DeviceCapabilities.DeviceCapabilities.userHasAvatar: object expected");
-                message.userHasAvatar = $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar.fromObject(object.userHasAvatar);
+                message.userHasAvatar = $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar.fromObject(object.userHasAvatar, long + 1);
             }
             switch (object.memberNameTagPrimarySupport) {
             default:
@@ -28785,7 +29945,7 @@ $root.DeviceCapabilities = (function() {
             if (object.aiThread != null) {
                 if (typeof object.aiThread !== "object")
                     throw TypeError(".DeviceCapabilities.DeviceCapabilities.aiThread: object expected");
-                message.aiThread = $root.DeviceCapabilities.DeviceCapabilities.AiThread.fromObject(object.aiThread);
+                message.aiThread = $root.DeviceCapabilities.DeviceCapabilities.AiThread.fromObject(object.aiThread, long + 1);
             }
             return message;
         };
@@ -28872,7 +30032,7 @@ $root.DeviceCapabilities = (function() {
             function AiThread(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -28937,9 +30097,13 @@ $root.DeviceCapabilities = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AiThread.decode = function decode(reader, length, error) {
+            AiThread.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.DeviceCapabilities.DeviceCapabilities.AiThread();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -28951,7 +30115,7 @@ $root.DeviceCapabilities = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -28982,9 +30146,13 @@ $root.DeviceCapabilities = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            AiThread.verify = function verify(message) {
+            AiThread.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.supportLevel != null && message.hasOwnProperty("supportLevel"))
                     switch (message.supportLevel) {
                     default:
@@ -29005,9 +30173,13 @@ $root.DeviceCapabilities = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {DeviceCapabilities.DeviceCapabilities.AiThread} AiThread
              */
-            AiThread.fromObject = function fromObject(object) {
+            AiThread.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.DeviceCapabilities.DeviceCapabilities.AiThread)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.DeviceCapabilities.DeviceCapabilities.AiThread();
                 switch (object.supportLevel) {
                 default:
@@ -29121,7 +30293,7 @@ $root.DeviceCapabilities = (function() {
             function BusinessBroadcast(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -29226,9 +30398,13 @@ $root.DeviceCapabilities = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            BusinessBroadcast.decode = function decode(reader, length, error) {
+            BusinessBroadcast.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -29256,7 +30432,7 @@ $root.DeviceCapabilities = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -29287,9 +30463,13 @@ $root.DeviceCapabilities = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            BusinessBroadcast.verify = function verify(message) {
+            BusinessBroadcast.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.importListEnabled != null && message.hasOwnProperty("importListEnabled"))
                     if (typeof message.importListEnabled !== "boolean")
                         return "importListEnabled: boolean expected";
@@ -29316,9 +30496,13 @@ $root.DeviceCapabilities = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {DeviceCapabilities.DeviceCapabilities.BusinessBroadcast} BusinessBroadcast
              */
-            BusinessBroadcast.fromObject = function fromObject(object) {
+            BusinessBroadcast.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast();
                 if (object.importListEnabled != null)
                     message.importListEnabled = Boolean(object.importListEnabled);
@@ -29431,7 +30615,7 @@ $root.DeviceCapabilities = (function() {
             function LIDMigration(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -29496,9 +30680,13 @@ $root.DeviceCapabilities = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            LIDMigration.decode = function decode(reader, length, error) {
+            LIDMigration.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.DeviceCapabilities.DeviceCapabilities.LIDMigration();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -29510,7 +30698,7 @@ $root.DeviceCapabilities = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -29541,9 +30729,13 @@ $root.DeviceCapabilities = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            LIDMigration.verify = function verify(message) {
+            LIDMigration.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.chatDbMigrationTimestamp != null && message.hasOwnProperty("chatDbMigrationTimestamp"))
                     if (!$util.isInteger(message.chatDbMigrationTimestamp) && !(message.chatDbMigrationTimestamp && $util.isInteger(message.chatDbMigrationTimestamp.low) && $util.isInteger(message.chatDbMigrationTimestamp.high)))
                         return "chatDbMigrationTimestamp: integer|Long expected";
@@ -29558,9 +30750,13 @@ $root.DeviceCapabilities = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {DeviceCapabilities.DeviceCapabilities.LIDMigration} LIDMigration
              */
-            LIDMigration.fromObject = function fromObject(object) {
+            LIDMigration.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.DeviceCapabilities.DeviceCapabilities.LIDMigration)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.DeviceCapabilities.DeviceCapabilities.LIDMigration();
                 if (object.chatDbMigrationTimestamp != null)
                     if ($util.Long)
@@ -29666,7 +30862,7 @@ $root.DeviceCapabilities = (function() {
             function UserHasAvatar(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -29731,9 +30927,13 @@ $root.DeviceCapabilities = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            UserHasAvatar.decode = function decode(reader, length, error) {
+            UserHasAvatar.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -29745,7 +30945,7 @@ $root.DeviceCapabilities = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -29776,9 +30976,13 @@ $root.DeviceCapabilities = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            UserHasAvatar.verify = function verify(message) {
+            UserHasAvatar.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.userHasAvatar != null && message.hasOwnProperty("userHasAvatar"))
                     if (typeof message.userHasAvatar !== "boolean")
                         return "userHasAvatar: boolean expected";
@@ -29793,9 +30997,13 @@ $root.DeviceCapabilities = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {DeviceCapabilities.DeviceCapabilities.UserHasAvatar} UserHasAvatar
              */
-            UserHasAvatar.fromObject = function fromObject(object) {
+            UserHasAvatar.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar();
                 if (object.userHasAvatar != null)
                     message.userHasAvatar = Boolean(object.userHasAvatar);
@@ -29889,7 +31097,7 @@ $root.Protocol = (function() {
         function LimitSharing(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -29984,9 +31192,13 @@ $root.Protocol = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        LimitSharing.decode = function decode(reader, length, error) {
+        LimitSharing.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.LimitSharing();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -30010,7 +31222,7 @@ $root.Protocol = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -30041,9 +31253,13 @@ $root.Protocol = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        LimitSharing.verify = function verify(message) {
+        LimitSharing.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
                 if (typeof message.sharingLimited !== "boolean")
                     return "sharingLimited: boolean expected";
@@ -30074,9 +31290,13 @@ $root.Protocol = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {Protocol.LimitSharing} LimitSharing
          */
-        LimitSharing.fromObject = function fromObject(object) {
+        LimitSharing.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Protocol.LimitSharing)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.Protocol.LimitSharing();
             if (object.sharingLimited != null)
                 message.sharingLimited = Boolean(object.sharingLimited);
@@ -30225,7 +31445,7 @@ $root.Protocol = (function() {
         function MessageKey(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -30320,9 +31540,13 @@ $root.Protocol = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        MessageKey.decode = function decode(reader, length, error) {
+        MessageKey.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.MessageKey();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -30346,7 +31570,7 @@ $root.Protocol = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -30377,9 +31601,13 @@ $root.Protocol = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        MessageKey.verify = function verify(message) {
+        MessageKey.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.remoteJid != null && message.hasOwnProperty("remoteJid"))
                 if (!$util.isString(message.remoteJid))
                     return "remoteJid: string expected";
@@ -30403,9 +31631,13 @@ $root.Protocol = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {Protocol.MessageKey} MessageKey
          */
-        MessageKey.fromObject = function fromObject(object) {
+        MessageKey.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Protocol.MessageKey)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.Protocol.MessageKey();
             if (object.remoteJid != null)
                 message.remoteJid = String(object.remoteJid);

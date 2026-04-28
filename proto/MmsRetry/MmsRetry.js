@@ -38,7 +38,7 @@ $root.MmsRetry = (function() {
         function ServerErrorReceipt(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -103,9 +103,13 @@ $root.MmsRetry = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ServerErrorReceipt.decode = function decode(reader, length, error) {
+        ServerErrorReceipt.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.MmsRetry.ServerErrorReceipt();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -117,7 +121,7 @@ $root.MmsRetry = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -148,9 +152,13 @@ $root.MmsRetry = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        ServerErrorReceipt.verify = function verify(message) {
+        ServerErrorReceipt.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.stanzaId != null && message.hasOwnProperty("stanzaId"))
                 if (!$util.isString(message.stanzaId))
                     return "stanzaId: string expected";
@@ -165,9 +173,13 @@ $root.MmsRetry = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {MmsRetry.ServerErrorReceipt} ServerErrorReceipt
          */
-        ServerErrorReceipt.fromObject = function fromObject(object) {
+        ServerErrorReceipt.fromObject = function fromObject(object, long) {
             if (object instanceof $root.MmsRetry.ServerErrorReceipt)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.MmsRetry.ServerErrorReceipt();
             if (object.stanzaId != null)
                 message.stanzaId = String(object.stanzaId);
@@ -246,7 +258,7 @@ $root.MmsRetry = (function() {
         function MediaRetryNotification(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -341,9 +353,13 @@ $root.MmsRetry = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        MediaRetryNotification.decode = function decode(reader, length, error) {
+        MediaRetryNotification.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.MmsRetry.MediaRetryNotification();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -367,7 +383,7 @@ $root.MmsRetry = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -398,9 +414,13 @@ $root.MmsRetry = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        MediaRetryNotification.verify = function verify(message) {
+        MediaRetryNotification.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.stanzaId != null && message.hasOwnProperty("stanzaId"))
                 if (!$util.isString(message.stanzaId))
                     return "stanzaId: string expected";
@@ -431,9 +451,13 @@ $root.MmsRetry = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {MmsRetry.MediaRetryNotification} MediaRetryNotification
          */
-        MediaRetryNotification.fromObject = function fromObject(object) {
+        MediaRetryNotification.fromObject = function fromObject(object, long) {
             if (object instanceof $root.MmsRetry.MediaRetryNotification)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.MmsRetry.MediaRetryNotification();
             if (object.stanzaId != null)
                 message.stanzaId = String(object.stanzaId);

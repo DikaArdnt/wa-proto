@@ -74,7 +74,7 @@ $root.Wa6 = (function() {
             this.pairedPeripherals = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -481,9 +481,13 @@ $root.Wa6 = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ClientPayload.decode = function decode(reader, length, error) {
+        ClientPayload.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Wa6.ClientPayload();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -499,11 +503,11 @@ $root.Wa6 = (function() {
                         break;
                     }
                 case 5: {
-                        message.userAgent = $root.Wa6.ClientPayload.UserAgent.decode(reader, reader.uint32());
+                        message.userAgent = $root.Wa6.ClientPayload.UserAgent.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 6: {
-                        message.webInfo = $root.Wa6.ClientPayload.WebInfo.decode(reader, reader.uint32());
+                        message.webInfo = $root.Wa6.ClientPayload.WebInfo.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 7: {
@@ -538,7 +542,7 @@ $root.Wa6 = (function() {
                         break;
                     }
                 case 15: {
-                        message.dnsSource = $root.Wa6.ClientPayload.DNSSource.decode(reader, reader.uint32());
+                        message.dnsSource = $root.Wa6.ClientPayload.DNSSource.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 16: {
@@ -550,7 +554,7 @@ $root.Wa6 = (function() {
                         break;
                     }
                 case 19: {
-                        message.devicePairingData = $root.Wa6.ClientPayload.DevicePairingRegistrationData.decode(reader, reader.uint32());
+                        message.devicePairingData = $root.Wa6.ClientPayload.DevicePairingRegistrationData.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 20: {
@@ -602,7 +606,7 @@ $root.Wa6 = (function() {
                         break;
                     }
                 case 38: {
-                        message.interopData = $root.Wa6.ClientPayload.InteropData.decode(reader, reader.uint32());
+                        message.interopData = $root.Wa6.ClientPayload.InteropData.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 40: {
@@ -640,7 +644,7 @@ $root.Wa6 = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -671,9 +675,13 @@ $root.Wa6 = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        ClientPayload.verify = function verify(message) {
+        ClientPayload.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.username != null && message.hasOwnProperty("username"))
                 if (!$util.isInteger(message.username) && !(message.username && $util.isInteger(message.username.low) && $util.isInteger(message.username.high)))
                     return "username: integer|Long expected";
@@ -681,12 +689,12 @@ $root.Wa6 = (function() {
                 if (typeof message.passive !== "boolean")
                     return "passive: boolean expected";
             if (message.userAgent != null && message.hasOwnProperty("userAgent")) {
-                var error = $root.Wa6.ClientPayload.UserAgent.verify(message.userAgent);
+                var error = $root.Wa6.ClientPayload.UserAgent.verify(message.userAgent, long + 1);
                 if (error)
                     return "userAgent." + error;
             }
             if (message.webInfo != null && message.hasOwnProperty("webInfo")) {
-                var error = $root.Wa6.ClientPayload.WebInfo.verify(message.webInfo);
+                var error = $root.Wa6.ClientPayload.WebInfo.verify(message.webInfo, long + 1);
                 if (error)
                     return "webInfo." + error;
             }
@@ -741,7 +749,7 @@ $root.Wa6 = (function() {
                         return "shards: integer[] expected";
             }
             if (message.dnsSource != null && message.hasOwnProperty("dnsSource")) {
-                var error = $root.Wa6.ClientPayload.DNSSource.verify(message.dnsSource);
+                var error = $root.Wa6.ClientPayload.DNSSource.verify(message.dnsSource, long + 1);
                 if (error)
                     return "dnsSource." + error;
             }
@@ -752,7 +760,7 @@ $root.Wa6 = (function() {
                 if (!$util.isInteger(message.device))
                     return "device: integer expected";
             if (message.devicePairingData != null && message.hasOwnProperty("devicePairingData")) {
-                var error = $root.Wa6.ClientPayload.DevicePairingRegistrationData.verify(message.devicePairingData);
+                var error = $root.Wa6.ClientPayload.DevicePairingRegistrationData.verify(message.devicePairingData, long + 1);
                 if (error)
                     return "devicePairingData." + error;
             }
@@ -807,7 +815,7 @@ $root.Wa6 = (function() {
                 if (!$util.isInteger(message.memClass))
                     return "memClass: integer expected";
             if (message.interopData != null && message.hasOwnProperty("interopData")) {
-                var error = $root.Wa6.ClientPayload.InteropData.verify(message.interopData);
+                var error = $root.Wa6.ClientPayload.InteropData.verify(message.interopData, long + 1);
                 if (error)
                     return "interopData." + error;
             }
@@ -860,9 +868,13 @@ $root.Wa6 = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {Wa6.ClientPayload} ClientPayload
          */
-        ClientPayload.fromObject = function fromObject(object) {
+        ClientPayload.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Wa6.ClientPayload)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.Wa6.ClientPayload();
             if (object.username != null)
                 if ($util.Long)
@@ -878,12 +890,12 @@ $root.Wa6 = (function() {
             if (object.userAgent != null) {
                 if (typeof object.userAgent !== "object")
                     throw TypeError(".Wa6.ClientPayload.userAgent: object expected");
-                message.userAgent = $root.Wa6.ClientPayload.UserAgent.fromObject(object.userAgent);
+                message.userAgent = $root.Wa6.ClientPayload.UserAgent.fromObject(object.userAgent, long + 1);
             }
             if (object.webInfo != null) {
                 if (typeof object.webInfo !== "object")
                     throw TypeError(".Wa6.ClientPayload.webInfo: object expected");
-                message.webInfo = $root.Wa6.ClientPayload.WebInfo.fromObject(object.webInfo);
+                message.webInfo = $root.Wa6.ClientPayload.WebInfo.fromObject(object.webInfo, long + 1);
             }
             if (object.pushName != null)
                 message.pushName = String(object.pushName);
@@ -1005,7 +1017,7 @@ $root.Wa6 = (function() {
             if (object.dnsSource != null) {
                 if (typeof object.dnsSource !== "object")
                     throw TypeError(".Wa6.ClientPayload.dnsSource: object expected");
-                message.dnsSource = $root.Wa6.ClientPayload.DNSSource.fromObject(object.dnsSource);
+                message.dnsSource = $root.Wa6.ClientPayload.DNSSource.fromObject(object.dnsSource, long + 1);
             }
             if (object.connectAttemptCount != null)
                 message.connectAttemptCount = object.connectAttemptCount >>> 0;
@@ -1014,7 +1026,7 @@ $root.Wa6 = (function() {
             if (object.devicePairingData != null) {
                 if (typeof object.devicePairingData !== "object")
                     throw TypeError(".Wa6.ClientPayload.devicePairingData: object expected");
-                message.devicePairingData = $root.Wa6.ClientPayload.DevicePairingRegistrationData.fromObject(object.devicePairingData);
+                message.devicePairingData = $root.Wa6.ClientPayload.DevicePairingRegistrationData.fromObject(object.devicePairingData, long + 1);
             }
             switch (object.product) {
             default:
@@ -1106,7 +1118,7 @@ $root.Wa6 = (function() {
             if (object.interopData != null) {
                 if (typeof object.interopData !== "object")
                     throw TypeError(".Wa6.ClientPayload.interopData: object expected");
-                message.interopData = $root.Wa6.ClientPayload.InteropData.fromObject(object.interopData);
+                message.interopData = $root.Wa6.ClientPayload.InteropData.fromObject(object.interopData, long + 1);
             }
             switch (object.trafficAnonymization) {
             default:
@@ -1454,7 +1466,7 @@ $root.Wa6 = (function() {
             function DNSSource(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -1529,9 +1541,13 @@ $root.Wa6 = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            DNSSource.decode = function decode(reader, length, error) {
+            DNSSource.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Wa6.ClientPayload.DNSSource();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -1547,7 +1563,7 @@ $root.Wa6 = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -1578,9 +1594,13 @@ $root.Wa6 = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            DNSSource.verify = function verify(message) {
+            DNSSource.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.dnsMethod != null && message.hasOwnProperty("dnsMethod"))
                     switch (message.dnsMethod) {
                     default:
@@ -1609,9 +1629,13 @@ $root.Wa6 = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {Wa6.ClientPayload.DNSSource} DNSSource
              */
-            DNSSource.fromObject = function fromObject(object) {
+            DNSSource.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.Wa6.ClientPayload.DNSSource)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.Wa6.ClientPayload.DNSSource();
                 switch (object.dnsMethod) {
                 default:
@@ -1764,7 +1788,7 @@ $root.Wa6 = (function() {
             function DevicePairingRegistrationData(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -1899,9 +1923,13 @@ $root.Wa6 = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            DevicePairingRegistrationData.decode = function decode(reader, length, error) {
+            DevicePairingRegistrationData.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Wa6.ClientPayload.DevicePairingRegistrationData();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -1941,7 +1969,7 @@ $root.Wa6 = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -1972,9 +2000,13 @@ $root.Wa6 = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            DevicePairingRegistrationData.verify = function verify(message) {
+            DevicePairingRegistrationData.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.eRegid != null && message.hasOwnProperty("eRegid"))
                     if (!(message.eRegid && typeof message.eRegid.length === "number" || $util.isString(message.eRegid)))
                         return "eRegid: buffer expected";
@@ -2010,9 +2042,13 @@ $root.Wa6 = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {Wa6.ClientPayload.DevicePairingRegistrationData} DevicePairingRegistrationData
              */
-            DevicePairingRegistrationData.fromObject = function fromObject(object) {
+            DevicePairingRegistrationData.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.Wa6.ClientPayload.DevicePairingRegistrationData)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.Wa6.ClientPayload.DevicePairingRegistrationData();
                 if (object.eRegid != null)
                     if (typeof object.eRegid === "string")
@@ -2214,7 +2250,7 @@ $root.Wa6 = (function() {
             function InteropData(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -2299,9 +2335,13 @@ $root.Wa6 = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            InteropData.decode = function decode(reader, length, error) {
+            InteropData.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Wa6.ClientPayload.InteropData();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -2321,7 +2361,7 @@ $root.Wa6 = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -2352,9 +2392,13 @@ $root.Wa6 = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            InteropData.verify = function verify(message) {
+            InteropData.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.accountId != null && message.hasOwnProperty("accountId"))
                     if (!$util.isInteger(message.accountId) && !(message.accountId && $util.isInteger(message.accountId.low) && $util.isInteger(message.accountId.high)))
                         return "accountId: integer|Long expected";
@@ -2375,9 +2419,13 @@ $root.Wa6 = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {Wa6.ClientPayload.InteropData} InteropData
              */
-            InteropData.fromObject = function fromObject(object) {
+            InteropData.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.Wa6.ClientPayload.InteropData)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.Wa6.ClientPayload.InteropData();
                 if (object.accountId != null)
                     if ($util.Long)
@@ -2536,7 +2584,7 @@ $root.Wa6 = (function() {
             function UserAgent(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -2751,9 +2799,13 @@ $root.Wa6 = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            UserAgent.decode = function decode(reader, length, error) {
+            UserAgent.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Wa6.ClientPayload.UserAgent();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -2765,7 +2817,7 @@ $root.Wa6 = (function() {
                             break;
                         }
                     case 2: {
-                            message.appVersion = $root.Wa6.ClientPayload.UserAgent.AppVersion.decode(reader, reader.uint32());
+                            message.appVersion = $root.Wa6.ClientPayload.UserAgent.AppVersion.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     case 3: {
@@ -2825,7 +2877,7 @@ $root.Wa6 = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -2856,9 +2908,13 @@ $root.Wa6 = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            UserAgent.verify = function verify(message) {
+            UserAgent.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.platform != null && message.hasOwnProperty("platform"))
                     switch (message.platform) {
                     default:
@@ -2904,7 +2960,7 @@ $root.Wa6 = (function() {
                         break;
                     }
                 if (message.appVersion != null && message.hasOwnProperty("appVersion")) {
-                    var error = $root.Wa6.ClientPayload.UserAgent.AppVersion.verify(message.appVersion);
+                    var error = $root.Wa6.ClientPayload.UserAgent.AppVersion.verify(message.appVersion, long + 1);
                     if (error)
                         return "appVersion." + error;
                 }
@@ -2976,9 +3032,13 @@ $root.Wa6 = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {Wa6.ClientPayload.UserAgent} UserAgent
              */
-            UserAgent.fromObject = function fromObject(object) {
+            UserAgent.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.Wa6.ClientPayload.UserAgent)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.Wa6.ClientPayload.UserAgent();
                 switch (object.platform) {
                 default:
@@ -3143,7 +3203,7 @@ $root.Wa6 = (function() {
                 if (object.appVersion != null) {
                     if (typeof object.appVersion !== "object")
                         throw TypeError(".Wa6.ClientPayload.UserAgent.appVersion: object expected");
-                    message.appVersion = $root.Wa6.ClientPayload.UserAgent.AppVersion.fromObject(object.appVersion);
+                    message.appVersion = $root.Wa6.ClientPayload.UserAgent.AppVersion.fromObject(object.appVersion, long + 1);
                 }
                 if (object.mcc != null)
                     message.mcc = String(object.mcc);
@@ -3340,7 +3400,7 @@ $root.Wa6 = (function() {
                 function AppVersion(properties) {
                     if (properties)
                         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
+                            if (properties[keys[i]] != null && keys[i] !== "__proto__")
                                 this[keys[i]] = properties[keys[i]];
                 }
 
@@ -3445,9 +3505,13 @@ $root.Wa6 = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                AppVersion.decode = function decode(reader, length, error) {
+                AppVersion.decode = function decode(reader, length, error, long) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $Reader.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Wa6.ClientPayload.UserAgent.AppVersion();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
@@ -3475,7 +3539,7 @@ $root.Wa6 = (function() {
                                 break;
                             }
                         default:
-                            reader.skipType(tag & 7);
+                            reader.skipType(tag & 7, long);
                             break;
                         }
                     }
@@ -3506,9 +3570,13 @@ $root.Wa6 = (function() {
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
                  */
-                AppVersion.verify = function verify(message) {
+                AppVersion.verify = function verify(message, long) {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        return "maximum nesting depth exceeded";
                     if (message.primary != null && message.hasOwnProperty("primary"))
                         if (!$util.isInteger(message.primary))
                             return "primary: integer expected";
@@ -3535,9 +3603,13 @@ $root.Wa6 = (function() {
                  * @param {Object.<string,*>} object Plain object
                  * @returns {Wa6.ClientPayload.UserAgent.AppVersion} AppVersion
                  */
-                AppVersion.fromObject = function fromObject(object) {
+                AppVersion.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.Wa6.ClientPayload.UserAgent.AppVersion)
                         return object;
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var message = new $root.Wa6.ClientPayload.UserAgent.AppVersion();
                     if (object.primary != null)
                         message.primary = object.primary >>> 0;
@@ -3766,7 +3838,7 @@ $root.Wa6 = (function() {
             function WebInfo(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -3881,9 +3953,13 @@ $root.Wa6 = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            WebInfo.decode = function decode(reader, length, error) {
+            WebInfo.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Wa6.ClientPayload.WebInfo();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -3899,7 +3975,7 @@ $root.Wa6 = (function() {
                             break;
                         }
                     case 3: {
-                            message.webdPayload = $root.Wa6.ClientPayload.WebInfo.WebdPayload.decode(reader, reader.uint32());
+                            message.webdPayload = $root.Wa6.ClientPayload.WebInfo.WebdPayload.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     case 4: {
@@ -3915,7 +3991,7 @@ $root.Wa6 = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -3946,9 +4022,13 @@ $root.Wa6 = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            WebInfo.verify = function verify(message) {
+            WebInfo.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.refToken != null && message.hasOwnProperty("refToken"))
                     if (!$util.isString(message.refToken))
                         return "refToken: string expected";
@@ -3956,7 +4036,7 @@ $root.Wa6 = (function() {
                     if (!$util.isString(message.version))
                         return "version: string expected";
                 if (message.webdPayload != null && message.hasOwnProperty("webdPayload")) {
-                    var error = $root.Wa6.ClientPayload.WebInfo.WebdPayload.verify(message.webdPayload);
+                    var error = $root.Wa6.ClientPayload.WebInfo.WebdPayload.verify(message.webdPayload, long + 1);
                     if (error)
                         return "webdPayload." + error;
                 }
@@ -3989,9 +4069,13 @@ $root.Wa6 = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {Wa6.ClientPayload.WebInfo} WebInfo
              */
-            WebInfo.fromObject = function fromObject(object) {
+            WebInfo.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.Wa6.ClientPayload.WebInfo)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.Wa6.ClientPayload.WebInfo();
                 if (object.refToken != null)
                     message.refToken = String(object.refToken);
@@ -4000,7 +4084,7 @@ $root.Wa6 = (function() {
                 if (object.webdPayload != null) {
                     if (typeof object.webdPayload !== "object")
                         throw TypeError(".Wa6.ClientPayload.WebInfo.webdPayload: object expected");
-                    message.webdPayload = $root.Wa6.ClientPayload.WebInfo.WebdPayload.fromObject(object.webdPayload);
+                    message.webdPayload = $root.Wa6.ClientPayload.WebInfo.WebdPayload.fromObject(object.webdPayload, long + 1);
                 }
                 switch (object.webSubPlatform) {
                 default:
@@ -4155,7 +4239,7 @@ $root.Wa6 = (function() {
                 function WebdPayload(properties) {
                     if (properties)
                         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
+                            if (properties[keys[i]] != null && keys[i] !== "__proto__")
                                 this[keys[i]] = properties[keys[i]];
                 }
 
@@ -4320,9 +4404,13 @@ $root.Wa6 = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                WebdPayload.decode = function decode(reader, length, error) {
+                WebdPayload.decode = function decode(reader, length, error, long) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $Reader.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Wa6.ClientPayload.WebInfo.WebdPayload();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
@@ -4374,7 +4462,7 @@ $root.Wa6 = (function() {
                                 break;
                             }
                         default:
-                            reader.skipType(tag & 7);
+                            reader.skipType(tag & 7, long);
                             break;
                         }
                     }
@@ -4405,9 +4493,13 @@ $root.Wa6 = (function() {
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
                  */
-                WebdPayload.verify = function verify(message) {
+                WebdPayload.verify = function verify(message, long) {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        return "maximum nesting depth exceeded";
                     if (message.usesParticipantInKey != null && message.hasOwnProperty("usesParticipantInKey"))
                         if (typeof message.usesParticipantInKey !== "boolean")
                             return "usesParticipantInKey: boolean expected";
@@ -4452,9 +4544,13 @@ $root.Wa6 = (function() {
                  * @param {Object.<string,*>} object Plain object
                  * @returns {Wa6.ClientPayload.WebInfo.WebdPayload} WebdPayload
                  */
-                WebdPayload.fromObject = function fromObject(object) {
+                WebdPayload.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.Wa6.ClientPayload.WebInfo.WebdPayload)
                         return object;
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var message = new $root.Wa6.ClientPayload.WebInfo.WebdPayload();
                     if (object.usesParticipantInKey != null)
                         message.usesParticipantInKey = Boolean(object.usesParticipantInKey);
@@ -4598,7 +4694,7 @@ $root.Wa6 = (function() {
         function HandshakeMessage(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -4683,9 +4779,13 @@ $root.Wa6 = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        HandshakeMessage.decode = function decode(reader, length, error) {
+        HandshakeMessage.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Wa6.HandshakeMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -4693,19 +4793,19 @@ $root.Wa6 = (function() {
                     break;
                 switch (tag >>> 3) {
                 case 2: {
-                        message.clientHello = $root.Wa6.HandshakeMessage.ClientHello.decode(reader, reader.uint32());
+                        message.clientHello = $root.Wa6.HandshakeMessage.ClientHello.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 3: {
-                        message.serverHello = $root.Wa6.HandshakeMessage.ServerHello.decode(reader, reader.uint32());
+                        message.serverHello = $root.Wa6.HandshakeMessage.ServerHello.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 4: {
-                        message.clientFinish = $root.Wa6.HandshakeMessage.ClientFinish.decode(reader, reader.uint32());
+                        message.clientFinish = $root.Wa6.HandshakeMessage.ClientFinish.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -4736,21 +4836,25 @@ $root.Wa6 = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        HandshakeMessage.verify = function verify(message) {
+        HandshakeMessage.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.clientHello != null && message.hasOwnProperty("clientHello")) {
-                var error = $root.Wa6.HandshakeMessage.ClientHello.verify(message.clientHello);
+                var error = $root.Wa6.HandshakeMessage.ClientHello.verify(message.clientHello, long + 1);
                 if (error)
                     return "clientHello." + error;
             }
             if (message.serverHello != null && message.hasOwnProperty("serverHello")) {
-                var error = $root.Wa6.HandshakeMessage.ServerHello.verify(message.serverHello);
+                var error = $root.Wa6.HandshakeMessage.ServerHello.verify(message.serverHello, long + 1);
                 if (error)
                     return "serverHello." + error;
             }
             if (message.clientFinish != null && message.hasOwnProperty("clientFinish")) {
-                var error = $root.Wa6.HandshakeMessage.ClientFinish.verify(message.clientFinish);
+                var error = $root.Wa6.HandshakeMessage.ClientFinish.verify(message.clientFinish, long + 1);
                 if (error)
                     return "clientFinish." + error;
             }
@@ -4765,24 +4869,28 @@ $root.Wa6 = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {Wa6.HandshakeMessage} HandshakeMessage
          */
-        HandshakeMessage.fromObject = function fromObject(object) {
+        HandshakeMessage.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Wa6.HandshakeMessage)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.Wa6.HandshakeMessage();
             if (object.clientHello != null) {
                 if (typeof object.clientHello !== "object")
                     throw TypeError(".Wa6.HandshakeMessage.clientHello: object expected");
-                message.clientHello = $root.Wa6.HandshakeMessage.ClientHello.fromObject(object.clientHello);
+                message.clientHello = $root.Wa6.HandshakeMessage.ClientHello.fromObject(object.clientHello, long + 1);
             }
             if (object.serverHello != null) {
                 if (typeof object.serverHello !== "object")
                     throw TypeError(".Wa6.HandshakeMessage.serverHello: object expected");
-                message.serverHello = $root.Wa6.HandshakeMessage.ServerHello.fromObject(object.serverHello);
+                message.serverHello = $root.Wa6.HandshakeMessage.ServerHello.fromObject(object.serverHello, long + 1);
             }
             if (object.clientFinish != null) {
                 if (typeof object.clientFinish !== "object")
                     throw TypeError(".Wa6.HandshakeMessage.clientFinish: object expected");
-                message.clientFinish = $root.Wa6.HandshakeMessage.ClientFinish.fromObject(object.clientFinish);
+                message.clientFinish = $root.Wa6.HandshakeMessage.ClientFinish.fromObject(object.clientFinish, long + 1);
             }
             return message;
         };
@@ -4864,7 +4972,7 @@ $root.Wa6 = (function() {
             function ClientFinish(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -4969,9 +5077,13 @@ $root.Wa6 = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ClientFinish.decode = function decode(reader, length, error) {
+            ClientFinish.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Wa6.HandshakeMessage.ClientFinish();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -4999,7 +5111,7 @@ $root.Wa6 = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -5030,9 +5142,13 @@ $root.Wa6 = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            ClientFinish.verify = function verify(message) {
+            ClientFinish.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message["static"] != null && message.hasOwnProperty("static"))
                     if (!(message["static"] && typeof message["static"].length === "number" || $util.isString(message["static"])))
                         return "static: buffer expected";
@@ -5059,9 +5175,13 @@ $root.Wa6 = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {Wa6.HandshakeMessage.ClientFinish} ClientFinish
              */
-            ClientFinish.fromObject = function fromObject(object) {
+            ClientFinish.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.Wa6.HandshakeMessage.ClientFinish)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.Wa6.HandshakeMessage.ClientFinish();
                 if (object["static"] != null)
                     if (typeof object["static"] === "string")
@@ -5203,7 +5323,7 @@ $root.Wa6 = (function() {
             function ClientHello(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -5358,9 +5478,13 @@ $root.Wa6 = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ClientHello.decode = function decode(reader, length, error) {
+            ClientHello.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Wa6.HandshakeMessage.ClientHello();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -5408,7 +5532,7 @@ $root.Wa6 = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -5439,9 +5563,13 @@ $root.Wa6 = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            ClientHello.verify = function verify(message) {
+            ClientHello.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.ephemeral != null && message.hasOwnProperty("ephemeral"))
                     if (!(message.ephemeral && typeof message.ephemeral.length === "number" || $util.isString(message.ephemeral)))
                         return "ephemeral: buffer expected";
@@ -5495,9 +5623,13 @@ $root.Wa6 = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {Wa6.HandshakeMessage.ClientHello} ClientHello
              */
-            ClientHello.fromObject = function fromObject(object) {
+            ClientHello.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.Wa6.HandshakeMessage.ClientHello)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.Wa6.HandshakeMessage.ClientHello();
                 if (object.ephemeral != null)
                     if (typeof object.ephemeral === "string")
@@ -5748,7 +5880,7 @@ $root.Wa6 = (function() {
             function ServerHello(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -5863,9 +5995,13 @@ $root.Wa6 = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ServerHello.decode = function decode(reader, length, error) {
+            ServerHello.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Wa6.HandshakeMessage.ServerHello();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -5897,7 +6033,7 @@ $root.Wa6 = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -5928,9 +6064,13 @@ $root.Wa6 = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            ServerHello.verify = function verify(message) {
+            ServerHello.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.ephemeral != null && message.hasOwnProperty("ephemeral"))
                     if (!(message.ephemeral && typeof message.ephemeral.length === "number" || $util.isString(message.ephemeral)))
                         return "ephemeral: buffer expected";
@@ -5960,9 +6100,13 @@ $root.Wa6 = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {Wa6.HandshakeMessage.ServerHello} ServerHello
              */
-            ServerHello.fromObject = function fromObject(object) {
+            ServerHello.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.Wa6.HandshakeMessage.ServerHello)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.Wa6.HandshakeMessage.ServerHello();
                 if (object.ephemeral != null)
                     if (typeof object.ephemeral === "string")

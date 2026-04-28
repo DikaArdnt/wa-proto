@@ -45,7 +45,7 @@ $root.StatusAttributions = (function() {
         function StatusAttribution(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -194,9 +194,13 @@ $root.StatusAttributions = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        StatusAttribution.decode = function decode(reader, length, error) {
+        StatusAttribution.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.StatusAttributions.StatusAttribution();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -212,31 +216,31 @@ $root.StatusAttributions = (function() {
                         break;
                     }
                 case 3: {
-                        message.statusReshare = $root.StatusAttributions.StatusAttribution.StatusReshare.decode(reader, reader.uint32());
+                        message.statusReshare = $root.StatusAttributions.StatusAttribution.StatusReshare.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 4: {
-                        message.externalShare = $root.StatusAttributions.StatusAttribution.ExternalShare.decode(reader, reader.uint32());
+                        message.externalShare = $root.StatusAttributions.StatusAttribution.ExternalShare.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 5: {
-                        message.music = $root.StatusAttributions.StatusAttribution.Music.decode(reader, reader.uint32());
+                        message.music = $root.StatusAttributions.StatusAttribution.Music.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 6: {
-                        message.groupStatus = $root.StatusAttributions.StatusAttribution.GroupStatus.decode(reader, reader.uint32());
+                        message.groupStatus = $root.StatusAttributions.StatusAttribution.GroupStatus.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 7: {
-                        message.rlAttribution = $root.StatusAttributions.StatusAttribution.RLAttribution.decode(reader, reader.uint32());
+                        message.rlAttribution = $root.StatusAttributions.StatusAttribution.RLAttribution.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 8: {
-                        message.aiCreatedAttribution = $root.StatusAttributions.StatusAttribution.AiCreatedAttribution.decode(reader, reader.uint32());
+                        message.aiCreatedAttribution = $root.StatusAttributions.StatusAttribution.AiCreatedAttribution.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -267,9 +271,13 @@ $root.StatusAttributions = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        StatusAttribution.verify = function verify(message) {
+        StatusAttribution.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             var properties = {};
             if (message.type != null && message.hasOwnProperty("type"))
                 switch (message.type) {
@@ -294,7 +302,7 @@ $root.StatusAttributions = (function() {
             if (message.statusReshare != null && message.hasOwnProperty("statusReshare")) {
                 properties.attributionData = 1;
                 {
-                    var error = $root.StatusAttributions.StatusAttribution.StatusReshare.verify(message.statusReshare);
+                    var error = $root.StatusAttributions.StatusAttribution.StatusReshare.verify(message.statusReshare, long + 1);
                     if (error)
                         return "statusReshare." + error;
                 }
@@ -304,7 +312,7 @@ $root.StatusAttributions = (function() {
                     return "attributionData: multiple values";
                 properties.attributionData = 1;
                 {
-                    var error = $root.StatusAttributions.StatusAttribution.ExternalShare.verify(message.externalShare);
+                    var error = $root.StatusAttributions.StatusAttribution.ExternalShare.verify(message.externalShare, long + 1);
                     if (error)
                         return "externalShare." + error;
                 }
@@ -314,7 +322,7 @@ $root.StatusAttributions = (function() {
                     return "attributionData: multiple values";
                 properties.attributionData = 1;
                 {
-                    var error = $root.StatusAttributions.StatusAttribution.Music.verify(message.music);
+                    var error = $root.StatusAttributions.StatusAttribution.Music.verify(message.music, long + 1);
                     if (error)
                         return "music." + error;
                 }
@@ -324,7 +332,7 @@ $root.StatusAttributions = (function() {
                     return "attributionData: multiple values";
                 properties.attributionData = 1;
                 {
-                    var error = $root.StatusAttributions.StatusAttribution.GroupStatus.verify(message.groupStatus);
+                    var error = $root.StatusAttributions.StatusAttribution.GroupStatus.verify(message.groupStatus, long + 1);
                     if (error)
                         return "groupStatus." + error;
                 }
@@ -334,7 +342,7 @@ $root.StatusAttributions = (function() {
                     return "attributionData: multiple values";
                 properties.attributionData = 1;
                 {
-                    var error = $root.StatusAttributions.StatusAttribution.RLAttribution.verify(message.rlAttribution);
+                    var error = $root.StatusAttributions.StatusAttribution.RLAttribution.verify(message.rlAttribution, long + 1);
                     if (error)
                         return "rlAttribution." + error;
                 }
@@ -344,7 +352,7 @@ $root.StatusAttributions = (function() {
                     return "attributionData: multiple values";
                 properties.attributionData = 1;
                 {
-                    var error = $root.StatusAttributions.StatusAttribution.AiCreatedAttribution.verify(message.aiCreatedAttribution);
+                    var error = $root.StatusAttributions.StatusAttribution.AiCreatedAttribution.verify(message.aiCreatedAttribution, long + 1);
                     if (error)
                         return "aiCreatedAttribution." + error;
                 }
@@ -360,9 +368,13 @@ $root.StatusAttributions = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {StatusAttributions.StatusAttribution} StatusAttribution
          */
-        StatusAttribution.fromObject = function fromObject(object) {
+        StatusAttribution.fromObject = function fromObject(object, long) {
             if (object instanceof $root.StatusAttributions.StatusAttribution)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.StatusAttributions.StatusAttribution();
             switch (object.type) {
             default:
@@ -421,32 +433,32 @@ $root.StatusAttributions = (function() {
             if (object.statusReshare != null) {
                 if (typeof object.statusReshare !== "object")
                     throw TypeError(".StatusAttributions.StatusAttribution.statusReshare: object expected");
-                message.statusReshare = $root.StatusAttributions.StatusAttribution.StatusReshare.fromObject(object.statusReshare);
+                message.statusReshare = $root.StatusAttributions.StatusAttribution.StatusReshare.fromObject(object.statusReshare, long + 1);
             }
             if (object.externalShare != null) {
                 if (typeof object.externalShare !== "object")
                     throw TypeError(".StatusAttributions.StatusAttribution.externalShare: object expected");
-                message.externalShare = $root.StatusAttributions.StatusAttribution.ExternalShare.fromObject(object.externalShare);
+                message.externalShare = $root.StatusAttributions.StatusAttribution.ExternalShare.fromObject(object.externalShare, long + 1);
             }
             if (object.music != null) {
                 if (typeof object.music !== "object")
                     throw TypeError(".StatusAttributions.StatusAttribution.music: object expected");
-                message.music = $root.StatusAttributions.StatusAttribution.Music.fromObject(object.music);
+                message.music = $root.StatusAttributions.StatusAttribution.Music.fromObject(object.music, long + 1);
             }
             if (object.groupStatus != null) {
                 if (typeof object.groupStatus !== "object")
                     throw TypeError(".StatusAttributions.StatusAttribution.groupStatus: object expected");
-                message.groupStatus = $root.StatusAttributions.StatusAttribution.GroupStatus.fromObject(object.groupStatus);
+                message.groupStatus = $root.StatusAttributions.StatusAttribution.GroupStatus.fromObject(object.groupStatus, long + 1);
             }
             if (object.rlAttribution != null) {
                 if (typeof object.rlAttribution !== "object")
                     throw TypeError(".StatusAttributions.StatusAttribution.rlAttribution: object expected");
-                message.rlAttribution = $root.StatusAttributions.StatusAttribution.RLAttribution.fromObject(object.rlAttribution);
+                message.rlAttribution = $root.StatusAttributions.StatusAttribution.RLAttribution.fromObject(object.rlAttribution, long + 1);
             }
             if (object.aiCreatedAttribution != null) {
                 if (typeof object.aiCreatedAttribution !== "object")
                     throw TypeError(".StatusAttributions.StatusAttribution.aiCreatedAttribution: object expected");
-                message.aiCreatedAttribution = $root.StatusAttributions.StatusAttribution.AiCreatedAttribution.fromObject(object.aiCreatedAttribution);
+                message.aiCreatedAttribution = $root.StatusAttributions.StatusAttribution.AiCreatedAttribution.fromObject(object.aiCreatedAttribution, long + 1);
             }
             return message;
         };
@@ -551,7 +563,7 @@ $root.StatusAttributions = (function() {
             function AiCreatedAttribution(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -616,9 +628,13 @@ $root.StatusAttributions = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AiCreatedAttribution.decode = function decode(reader, length, error) {
+            AiCreatedAttribution.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.StatusAttributions.StatusAttribution.AiCreatedAttribution();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -630,7 +646,7 @@ $root.StatusAttributions = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -661,9 +677,13 @@ $root.StatusAttributions = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            AiCreatedAttribution.verify = function verify(message) {
+            AiCreatedAttribution.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.source != null && message.hasOwnProperty("source"))
                     switch (message.source) {
                     default:
@@ -683,9 +703,13 @@ $root.StatusAttributions = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {StatusAttributions.StatusAttribution.AiCreatedAttribution} AiCreatedAttribution
              */
-            AiCreatedAttribution.fromObject = function fromObject(object) {
+            AiCreatedAttribution.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.AiCreatedAttribution)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.StatusAttributions.StatusAttribution.AiCreatedAttribution();
                 switch (object.source) {
                 default:
@@ -792,7 +816,7 @@ $root.StatusAttributions = (function() {
             function ExternalShare(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -887,9 +911,13 @@ $root.StatusAttributions = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            ExternalShare.decode = function decode(reader, length, error) {
+            ExternalShare.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.StatusAttributions.StatusAttribution.ExternalShare();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -913,7 +941,7 @@ $root.StatusAttributions = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -944,9 +972,13 @@ $root.StatusAttributions = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            ExternalShare.verify = function verify(message) {
+            ExternalShare.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.actionUrl != null && message.hasOwnProperty("actionUrl"))
                     if (!$util.isString(message.actionUrl))
                         return "actionUrl: string expected";
@@ -985,9 +1017,13 @@ $root.StatusAttributions = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {StatusAttributions.StatusAttribution.ExternalShare} ExternalShare
              */
-            ExternalShare.fromObject = function fromObject(object) {
+            ExternalShare.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.ExternalShare)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.StatusAttributions.StatusAttribution.ExternalShare();
                 if (object.actionUrl != null)
                     message.actionUrl = String(object.actionUrl);
@@ -1167,7 +1203,7 @@ $root.StatusAttributions = (function() {
             function GroupStatus(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -1232,9 +1268,13 @@ $root.StatusAttributions = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            GroupStatus.decode = function decode(reader, length, error) {
+            GroupStatus.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.StatusAttributions.StatusAttribution.GroupStatus();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -1246,7 +1286,7 @@ $root.StatusAttributions = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -1277,9 +1317,13 @@ $root.StatusAttributions = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            GroupStatus.verify = function verify(message) {
+            GroupStatus.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.authorJid != null && message.hasOwnProperty("authorJid"))
                     if (!$util.isString(message.authorJid))
                         return "authorJid: string expected";
@@ -1294,9 +1338,13 @@ $root.StatusAttributions = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {StatusAttributions.StatusAttribution.GroupStatus} GroupStatus
              */
-            GroupStatus.fromObject = function fromObject(object) {
+            GroupStatus.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.GroupStatus)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.StatusAttributions.StatusAttribution.GroupStatus();
                 if (object.authorJid != null)
                     message.authorJid = String(object.authorJid);
@@ -1377,7 +1425,7 @@ $root.StatusAttributions = (function() {
             function Music(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -1492,9 +1540,13 @@ $root.StatusAttributions = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            Music.decode = function decode(reader, length, error) {
+            Music.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.StatusAttributions.StatusAttribution.Music();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -1526,7 +1578,7 @@ $root.StatusAttributions = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -1557,9 +1609,13 @@ $root.StatusAttributions = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            Music.verify = function verify(message) {
+            Music.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.authorName != null && message.hasOwnProperty("authorName"))
                     if (!$util.isString(message.authorName))
                         return "authorName: string expected";
@@ -1589,9 +1645,13 @@ $root.StatusAttributions = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {StatusAttributions.StatusAttribution.Music} Music
              */
-            Music.fromObject = function fromObject(object) {
+            Music.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.Music)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.StatusAttributions.StatusAttribution.Music();
                 if (object.authorName != null)
                     message.authorName = String(object.authorName);
@@ -1693,7 +1753,7 @@ $root.StatusAttributions = (function() {
             function RLAttribution(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -1758,9 +1818,13 @@ $root.StatusAttributions = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            RLAttribution.decode = function decode(reader, length, error) {
+            RLAttribution.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.StatusAttributions.StatusAttribution.RLAttribution();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -1772,7 +1836,7 @@ $root.StatusAttributions = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -1803,9 +1867,13 @@ $root.StatusAttributions = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            RLAttribution.verify = function verify(message) {
+            RLAttribution.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.source != null && message.hasOwnProperty("source"))
                     switch (message.source) {
                     default:
@@ -1827,9 +1895,13 @@ $root.StatusAttributions = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {StatusAttributions.StatusAttribution.RLAttribution} RLAttribution
              */
-            RLAttribution.fromObject = function fromObject(object) {
+            RLAttribution.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.RLAttribution)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.StatusAttributions.StatusAttribution.RLAttribution();
                 switch (object.source) {
                 default:
@@ -1946,7 +2018,7 @@ $root.StatusAttributions = (function() {
             function StatusReshare(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -2021,9 +2093,13 @@ $root.StatusAttributions = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            StatusReshare.decode = function decode(reader, length, error) {
+            StatusReshare.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.StatusAttributions.StatusAttribution.StatusReshare();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -2035,11 +2111,11 @@ $root.StatusAttributions = (function() {
                             break;
                         }
                     case 2: {
-                            message.metadata = $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata.decode(reader, reader.uint32());
+                            message.metadata = $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -2070,9 +2146,13 @@ $root.StatusAttributions = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            StatusReshare.verify = function verify(message) {
+            StatusReshare.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.source != null && message.hasOwnProperty("source"))
                     switch (message.source) {
                     default:
@@ -2085,7 +2165,7 @@ $root.StatusAttributions = (function() {
                         break;
                     }
                 if (message.metadata != null && message.hasOwnProperty("metadata")) {
-                    var error = $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata.verify(message.metadata);
+                    var error = $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata.verify(message.metadata, long + 1);
                     if (error)
                         return "metadata." + error;
                 }
@@ -2100,9 +2180,13 @@ $root.StatusAttributions = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {StatusAttributions.StatusAttribution.StatusReshare} StatusReshare
              */
-            StatusReshare.fromObject = function fromObject(object) {
+            StatusReshare.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.StatusReshare)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.StatusAttributions.StatusAttribution.StatusReshare();
                 switch (object.source) {
                 default:
@@ -2135,7 +2219,7 @@ $root.StatusAttributions = (function() {
                 if (object.metadata != null) {
                     if (typeof object.metadata !== "object")
                         throw TypeError(".StatusAttributions.StatusAttribution.StatusReshare.metadata: object expected");
-                    message.metadata = $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata.fromObject(object.metadata);
+                    message.metadata = $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata.fromObject(object.metadata, long + 1);
                 }
                 return message;
             };
@@ -2213,7 +2297,7 @@ $root.StatusAttributions = (function() {
                 function Metadata(properties) {
                     if (properties)
                         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
+                            if (properties[keys[i]] != null && keys[i] !== "__proto__")
                                 this[keys[i]] = properties[keys[i]];
                 }
 
@@ -2308,9 +2392,13 @@ $root.StatusAttributions = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                Metadata.decode = function decode(reader, length, error) {
+                Metadata.decode = function decode(reader, length, error, long) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $Reader.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
@@ -2334,7 +2422,7 @@ $root.StatusAttributions = (function() {
                                 break;
                             }
                         default:
-                            reader.skipType(tag & 7);
+                            reader.skipType(tag & 7, long);
                             break;
                         }
                     }
@@ -2365,9 +2453,13 @@ $root.StatusAttributions = (function() {
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
                  */
-                Metadata.verify = function verify(message) {
+                Metadata.verify = function verify(message, long) {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        return "maximum nesting depth exceeded";
                     if (message.duration != null && message.hasOwnProperty("duration"))
                         if (!$util.isInteger(message.duration))
                             return "duration: integer expected";
@@ -2391,9 +2483,13 @@ $root.StatusAttributions = (function() {
                  * @param {Object.<string,*>} object Plain object
                  * @returns {StatusAttributions.StatusAttribution.StatusReshare.Metadata} Metadata
                  */
-                Metadata.fromObject = function fromObject(object) {
+                Metadata.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata)
                         return object;
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var message = new $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata();
                     if (object.duration != null)
                         message.duration = object.duration | 0;

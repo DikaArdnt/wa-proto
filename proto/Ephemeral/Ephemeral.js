@@ -39,7 +39,7 @@ $root.Ephemeral = (function() {
         function EphemeralSetting(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -114,9 +114,13 @@ $root.Ephemeral = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        EphemeralSetting.decode = function decode(reader, length, error) {
+        EphemeralSetting.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Ephemeral.EphemeralSetting();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -132,7 +136,7 @@ $root.Ephemeral = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -163,9 +167,13 @@ $root.Ephemeral = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        EphemeralSetting.verify = function verify(message) {
+        EphemeralSetting.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.duration != null && message.hasOwnProperty("duration"))
                 if (!$util.isInteger(message.duration))
                     return "duration: integer expected";
@@ -183,9 +191,13 @@ $root.Ephemeral = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {Ephemeral.EphemeralSetting} EphemeralSetting
          */
-        EphemeralSetting.fromObject = function fromObject(object) {
+        EphemeralSetting.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Ephemeral.EphemeralSetting)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.Ephemeral.EphemeralSetting();
             if (object.duration != null)
                 message.duration = object.duration | 0;

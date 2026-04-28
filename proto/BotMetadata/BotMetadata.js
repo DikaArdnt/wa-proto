@@ -68,7 +68,7 @@ $root.BotMetadata = (function() {
         function BotMetadata(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -433,9 +433,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotMetadata.decode = function decode(reader, length, error) {
+        BotMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -443,7 +447,7 @@ $root.BotMetadata = (function() {
                     break;
                 switch (tag >>> 3) {
                 case 1: {
-                        message.avatarMetadata = $root.BotMetadata.BotAvatarMetadata.decode(reader, reader.uint32());
+                        message.avatarMetadata = $root.BotMetadata.BotAvatarMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 2: {
@@ -451,11 +455,11 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 case 3: {
-                        message.pluginMetadata = $root.BotMetadata.BotPluginMetadata.decode(reader, reader.uint32());
+                        message.pluginMetadata = $root.BotMetadata.BotPluginMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 4: {
-                        message.suggestedPromptMetadata = $root.BotMetadata.BotSuggestedPromptMetadata.decode(reader, reader.uint32());
+                        message.suggestedPromptMetadata = $root.BotMetadata.BotSuggestedPromptMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 5: {
@@ -463,11 +467,11 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 case 6: {
-                        message.sessionMetadata = $root.BotMetadata.BotSessionMetadata.decode(reader, reader.uint32());
+                        message.sessionMetadata = $root.BotMetadata.BotSessionMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 7: {
-                        message.memuMetadata = $root.BotMetadata.BotMemuMetadata.decode(reader, reader.uint32());
+                        message.memuMetadata = $root.BotMetadata.BotMemuMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 8: {
@@ -475,11 +479,11 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 case 9: {
-                        message.reminderMetadata = $root.BotMetadata.BotReminderMetadata.decode(reader, reader.uint32());
+                        message.reminderMetadata = $root.BotMetadata.BotReminderMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 10: {
-                        message.modelMetadata = $root.BotMetadata.BotModelMetadata.decode(reader, reader.uint32());
+                        message.modelMetadata = $root.BotMetadata.BotModelMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 11: {
@@ -487,35 +491,35 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 case 12: {
-                        message.progressIndicatorMetadata = $root.BotMetadata.BotProgressIndicatorMetadata.decode(reader, reader.uint32());
+                        message.progressIndicatorMetadata = $root.BotMetadata.BotProgressIndicatorMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 13: {
-                        message.capabilityMetadata = $root.BotMetadata.BotCapabilityMetadata.decode(reader, reader.uint32());
+                        message.capabilityMetadata = $root.BotMetadata.BotCapabilityMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 14: {
-                        message.imagineMetadata = $root.BotMetadata.BotImagineMetadata.decode(reader, reader.uint32());
+                        message.imagineMetadata = $root.BotMetadata.BotImagineMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 15: {
-                        message.memoryMetadata = $root.BotMetadata.BotMemoryMetadata.decode(reader, reader.uint32());
+                        message.memoryMetadata = $root.BotMetadata.BotMemoryMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 16: {
-                        message.renderingMetadata = $root.BotMetadata.BotRenderingMetadata.decode(reader, reader.uint32());
+                        message.renderingMetadata = $root.BotMetadata.BotRenderingMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 17: {
-                        message.botMetricsMetadata = $root.BotMetadata.BotMetricsMetadata.decode(reader, reader.uint32());
+                        message.botMetricsMetadata = $root.BotMetadata.BotMetricsMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 18: {
-                        message.botLinkedAccountsMetadata = $root.BotMetadata.BotLinkedAccountsMetadata.decode(reader, reader.uint32());
+                        message.botLinkedAccountsMetadata = $root.BotMetadata.BotLinkedAccountsMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 19: {
-                        message.richResponseSourcesMetadata = $root.BotMetadata.BotSourcesMetadata.decode(reader, reader.uint32());
+                        message.richResponseSourcesMetadata = $root.BotMetadata.BotSourcesMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 20: {
@@ -523,19 +527,19 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 case 21: {
-                        message.botPromotionMessageMetadata = $root.BotMetadata.BotPromotionMessageMetadata.decode(reader, reader.uint32());
+                        message.botPromotionMessageMetadata = $root.BotMetadata.BotPromotionMessageMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 22: {
-                        message.botModeSelectionMetadata = $root.BotMetadata.BotModeSelectionMetadata.decode(reader, reader.uint32());
+                        message.botModeSelectionMetadata = $root.BotMetadata.BotModeSelectionMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 23: {
-                        message.botQuotaMetadata = $root.BotMetadata.BotQuotaMetadata.decode(reader, reader.uint32());
+                        message.botQuotaMetadata = $root.BotMetadata.BotQuotaMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 24: {
-                        message.botAgeCollectionMetadata = $root.BotMetadata.BotAgeCollectionMetadata.decode(reader, reader.uint32());
+                        message.botAgeCollectionMetadata = $root.BotMetadata.BotAgeCollectionMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 25: {
@@ -547,27 +551,27 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 case 27: {
-                        message.verificationMetadata = $root.BotMetadata.BotSignatureVerificationMetadata.decode(reader, reader.uint32());
+                        message.verificationMetadata = $root.BotMetadata.BotSignatureVerificationMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 28: {
-                        message.unifiedResponseMutation = $root.BotMetadata.BotUnifiedResponseMutation.decode(reader, reader.uint32());
+                        message.unifiedResponseMutation = $root.BotMetadata.BotUnifiedResponseMutation.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 29: {
-                        message.botMessageOriginMetadata = $root.BotMetadata.BotMessageOriginMetadata.decode(reader, reader.uint32());
+                        message.botMessageOriginMetadata = $root.BotMetadata.BotMessageOriginMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 30: {
-                        message.inThreadSurveyMetadata = $root.BotMetadata.InThreadSurveyMetadata.decode(reader, reader.uint32());
+                        message.inThreadSurveyMetadata = $root.BotMetadata.InThreadSurveyMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 31: {
-                        message.botThreadInfo = $root.BotMetadata.AIThreadInfo.decode(reader, reader.uint32());
+                        message.botThreadInfo = $root.BotMetadata.AIThreadInfo.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -598,11 +602,15 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotMetadata.verify = function verify(message) {
+        BotMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.avatarMetadata != null && message.hasOwnProperty("avatarMetadata")) {
-                var error = $root.BotMetadata.BotAvatarMetadata.verify(message.avatarMetadata);
+                var error = $root.BotMetadata.BotAvatarMetadata.verify(message.avatarMetadata, long + 1);
                 if (error)
                     return "avatarMetadata." + error;
             }
@@ -610,12 +618,12 @@ $root.BotMetadata = (function() {
                 if (!$util.isString(message.personaId))
                     return "personaId: string expected";
             if (message.pluginMetadata != null && message.hasOwnProperty("pluginMetadata")) {
-                var error = $root.BotMetadata.BotPluginMetadata.verify(message.pluginMetadata);
+                var error = $root.BotMetadata.BotPluginMetadata.verify(message.pluginMetadata, long + 1);
                 if (error)
                     return "pluginMetadata." + error;
             }
             if (message.suggestedPromptMetadata != null && message.hasOwnProperty("suggestedPromptMetadata")) {
-                var error = $root.BotMetadata.BotSuggestedPromptMetadata.verify(message.suggestedPromptMetadata);
+                var error = $root.BotMetadata.BotSuggestedPromptMetadata.verify(message.suggestedPromptMetadata, long + 1);
                 if (error)
                     return "suggestedPromptMetadata." + error;
             }
@@ -623,12 +631,12 @@ $root.BotMetadata = (function() {
                 if (!$util.isString(message.invokerJid))
                     return "invokerJid: string expected";
             if (message.sessionMetadata != null && message.hasOwnProperty("sessionMetadata")) {
-                var error = $root.BotMetadata.BotSessionMetadata.verify(message.sessionMetadata);
+                var error = $root.BotMetadata.BotSessionMetadata.verify(message.sessionMetadata, long + 1);
                 if (error)
                     return "sessionMetadata." + error;
             }
             if (message.memuMetadata != null && message.hasOwnProperty("memuMetadata")) {
-                var error = $root.BotMetadata.BotMemuMetadata.verify(message.memuMetadata);
+                var error = $root.BotMetadata.BotMemuMetadata.verify(message.memuMetadata, long + 1);
                 if (error)
                     return "memuMetadata." + error;
             }
@@ -636,12 +644,12 @@ $root.BotMetadata = (function() {
                 if (!$util.isString(message.timezone))
                     return "timezone: string expected";
             if (message.reminderMetadata != null && message.hasOwnProperty("reminderMetadata")) {
-                var error = $root.BotMetadata.BotReminderMetadata.verify(message.reminderMetadata);
+                var error = $root.BotMetadata.BotReminderMetadata.verify(message.reminderMetadata, long + 1);
                 if (error)
                     return "reminderMetadata." + error;
             }
             if (message.modelMetadata != null && message.hasOwnProperty("modelMetadata")) {
-                var error = $root.BotMetadata.BotModelMetadata.verify(message.modelMetadata);
+                var error = $root.BotMetadata.BotModelMetadata.verify(message.modelMetadata, long + 1);
                 if (error)
                     return "modelMetadata." + error;
             }
@@ -649,42 +657,42 @@ $root.BotMetadata = (function() {
                 if (!$util.isString(message.messageDisclaimerText))
                     return "messageDisclaimerText: string expected";
             if (message.progressIndicatorMetadata != null && message.hasOwnProperty("progressIndicatorMetadata")) {
-                var error = $root.BotMetadata.BotProgressIndicatorMetadata.verify(message.progressIndicatorMetadata);
+                var error = $root.BotMetadata.BotProgressIndicatorMetadata.verify(message.progressIndicatorMetadata, long + 1);
                 if (error)
                     return "progressIndicatorMetadata." + error;
             }
             if (message.capabilityMetadata != null && message.hasOwnProperty("capabilityMetadata")) {
-                var error = $root.BotMetadata.BotCapabilityMetadata.verify(message.capabilityMetadata);
+                var error = $root.BotMetadata.BotCapabilityMetadata.verify(message.capabilityMetadata, long + 1);
                 if (error)
                     return "capabilityMetadata." + error;
             }
             if (message.imagineMetadata != null && message.hasOwnProperty("imagineMetadata")) {
-                var error = $root.BotMetadata.BotImagineMetadata.verify(message.imagineMetadata);
+                var error = $root.BotMetadata.BotImagineMetadata.verify(message.imagineMetadata, long + 1);
                 if (error)
                     return "imagineMetadata." + error;
             }
             if (message.memoryMetadata != null && message.hasOwnProperty("memoryMetadata")) {
-                var error = $root.BotMetadata.BotMemoryMetadata.verify(message.memoryMetadata);
+                var error = $root.BotMetadata.BotMemoryMetadata.verify(message.memoryMetadata, long + 1);
                 if (error)
                     return "memoryMetadata." + error;
             }
             if (message.renderingMetadata != null && message.hasOwnProperty("renderingMetadata")) {
-                var error = $root.BotMetadata.BotRenderingMetadata.verify(message.renderingMetadata);
+                var error = $root.BotMetadata.BotRenderingMetadata.verify(message.renderingMetadata, long + 1);
                 if (error)
                     return "renderingMetadata." + error;
             }
             if (message.botMetricsMetadata != null && message.hasOwnProperty("botMetricsMetadata")) {
-                var error = $root.BotMetadata.BotMetricsMetadata.verify(message.botMetricsMetadata);
+                var error = $root.BotMetadata.BotMetricsMetadata.verify(message.botMetricsMetadata, long + 1);
                 if (error)
                     return "botMetricsMetadata." + error;
             }
             if (message.botLinkedAccountsMetadata != null && message.hasOwnProperty("botLinkedAccountsMetadata")) {
-                var error = $root.BotMetadata.BotLinkedAccountsMetadata.verify(message.botLinkedAccountsMetadata);
+                var error = $root.BotMetadata.BotLinkedAccountsMetadata.verify(message.botLinkedAccountsMetadata, long + 1);
                 if (error)
                     return "botLinkedAccountsMetadata." + error;
             }
             if (message.richResponseSourcesMetadata != null && message.hasOwnProperty("richResponseSourcesMetadata")) {
-                var error = $root.BotMetadata.BotSourcesMetadata.verify(message.richResponseSourcesMetadata);
+                var error = $root.BotMetadata.BotSourcesMetadata.verify(message.richResponseSourcesMetadata, long + 1);
                 if (error)
                     return "richResponseSourcesMetadata." + error;
             }
@@ -692,22 +700,22 @@ $root.BotMetadata = (function() {
                 if (!(message.aiConversationContext && typeof message.aiConversationContext.length === "number" || $util.isString(message.aiConversationContext)))
                     return "aiConversationContext: buffer expected";
             if (message.botPromotionMessageMetadata != null && message.hasOwnProperty("botPromotionMessageMetadata")) {
-                var error = $root.BotMetadata.BotPromotionMessageMetadata.verify(message.botPromotionMessageMetadata);
+                var error = $root.BotMetadata.BotPromotionMessageMetadata.verify(message.botPromotionMessageMetadata, long + 1);
                 if (error)
                     return "botPromotionMessageMetadata." + error;
             }
             if (message.botModeSelectionMetadata != null && message.hasOwnProperty("botModeSelectionMetadata")) {
-                var error = $root.BotMetadata.BotModeSelectionMetadata.verify(message.botModeSelectionMetadata);
+                var error = $root.BotMetadata.BotModeSelectionMetadata.verify(message.botModeSelectionMetadata, long + 1);
                 if (error)
                     return "botModeSelectionMetadata." + error;
             }
             if (message.botQuotaMetadata != null && message.hasOwnProperty("botQuotaMetadata")) {
-                var error = $root.BotMetadata.BotQuotaMetadata.verify(message.botQuotaMetadata);
+                var error = $root.BotMetadata.BotQuotaMetadata.verify(message.botQuotaMetadata, long + 1);
                 if (error)
                     return "botQuotaMetadata." + error;
             }
             if (message.botAgeCollectionMetadata != null && message.hasOwnProperty("botAgeCollectionMetadata")) {
-                var error = $root.BotMetadata.BotAgeCollectionMetadata.verify(message.botAgeCollectionMetadata);
+                var error = $root.BotMetadata.BotAgeCollectionMetadata.verify(message.botAgeCollectionMetadata, long + 1);
                 if (error)
                     return "botAgeCollectionMetadata." + error;
             }
@@ -718,27 +726,27 @@ $root.BotMetadata = (function() {
                 if (!$util.isString(message.botResponseId))
                     return "botResponseId: string expected";
             if (message.verificationMetadata != null && message.hasOwnProperty("verificationMetadata")) {
-                var error = $root.BotMetadata.BotSignatureVerificationMetadata.verify(message.verificationMetadata);
+                var error = $root.BotMetadata.BotSignatureVerificationMetadata.verify(message.verificationMetadata, long + 1);
                 if (error)
                     return "verificationMetadata." + error;
             }
             if (message.unifiedResponseMutation != null && message.hasOwnProperty("unifiedResponseMutation")) {
-                var error = $root.BotMetadata.BotUnifiedResponseMutation.verify(message.unifiedResponseMutation);
+                var error = $root.BotMetadata.BotUnifiedResponseMutation.verify(message.unifiedResponseMutation, long + 1);
                 if (error)
                     return "unifiedResponseMutation." + error;
             }
             if (message.botMessageOriginMetadata != null && message.hasOwnProperty("botMessageOriginMetadata")) {
-                var error = $root.BotMetadata.BotMessageOriginMetadata.verify(message.botMessageOriginMetadata);
+                var error = $root.BotMetadata.BotMessageOriginMetadata.verify(message.botMessageOriginMetadata, long + 1);
                 if (error)
                     return "botMessageOriginMetadata." + error;
             }
             if (message.inThreadSurveyMetadata != null && message.hasOwnProperty("inThreadSurveyMetadata")) {
-                var error = $root.BotMetadata.InThreadSurveyMetadata.verify(message.inThreadSurveyMetadata);
+                var error = $root.BotMetadata.InThreadSurveyMetadata.verify(message.inThreadSurveyMetadata, long + 1);
                 if (error)
                     return "inThreadSurveyMetadata." + error;
             }
             if (message.botThreadInfo != null && message.hasOwnProperty("botThreadInfo")) {
-                var error = $root.BotMetadata.AIThreadInfo.verify(message.botThreadInfo);
+                var error = $root.BotMetadata.AIThreadInfo.verify(message.botThreadInfo, long + 1);
                 if (error)
                     return "botThreadInfo." + error;
             }
@@ -753,92 +761,96 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotMetadata} BotMetadata
          */
-        BotMetadata.fromObject = function fromObject(object) {
+        BotMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotMetadata();
             if (object.avatarMetadata != null) {
                 if (typeof object.avatarMetadata !== "object")
                     throw TypeError(".BotMetadata.BotMetadata.avatarMetadata: object expected");
-                message.avatarMetadata = $root.BotMetadata.BotAvatarMetadata.fromObject(object.avatarMetadata);
+                message.avatarMetadata = $root.BotMetadata.BotAvatarMetadata.fromObject(object.avatarMetadata, long + 1);
             }
             if (object.personaId != null)
                 message.personaId = String(object.personaId);
             if (object.pluginMetadata != null) {
                 if (typeof object.pluginMetadata !== "object")
                     throw TypeError(".BotMetadata.BotMetadata.pluginMetadata: object expected");
-                message.pluginMetadata = $root.BotMetadata.BotPluginMetadata.fromObject(object.pluginMetadata);
+                message.pluginMetadata = $root.BotMetadata.BotPluginMetadata.fromObject(object.pluginMetadata, long + 1);
             }
             if (object.suggestedPromptMetadata != null) {
                 if (typeof object.suggestedPromptMetadata !== "object")
                     throw TypeError(".BotMetadata.BotMetadata.suggestedPromptMetadata: object expected");
-                message.suggestedPromptMetadata = $root.BotMetadata.BotSuggestedPromptMetadata.fromObject(object.suggestedPromptMetadata);
+                message.suggestedPromptMetadata = $root.BotMetadata.BotSuggestedPromptMetadata.fromObject(object.suggestedPromptMetadata, long + 1);
             }
             if (object.invokerJid != null)
                 message.invokerJid = String(object.invokerJid);
             if (object.sessionMetadata != null) {
                 if (typeof object.sessionMetadata !== "object")
                     throw TypeError(".BotMetadata.BotMetadata.sessionMetadata: object expected");
-                message.sessionMetadata = $root.BotMetadata.BotSessionMetadata.fromObject(object.sessionMetadata);
+                message.sessionMetadata = $root.BotMetadata.BotSessionMetadata.fromObject(object.sessionMetadata, long + 1);
             }
             if (object.memuMetadata != null) {
                 if (typeof object.memuMetadata !== "object")
                     throw TypeError(".BotMetadata.BotMetadata.memuMetadata: object expected");
-                message.memuMetadata = $root.BotMetadata.BotMemuMetadata.fromObject(object.memuMetadata);
+                message.memuMetadata = $root.BotMetadata.BotMemuMetadata.fromObject(object.memuMetadata, long + 1);
             }
             if (object.timezone != null)
                 message.timezone = String(object.timezone);
             if (object.reminderMetadata != null) {
                 if (typeof object.reminderMetadata !== "object")
                     throw TypeError(".BotMetadata.BotMetadata.reminderMetadata: object expected");
-                message.reminderMetadata = $root.BotMetadata.BotReminderMetadata.fromObject(object.reminderMetadata);
+                message.reminderMetadata = $root.BotMetadata.BotReminderMetadata.fromObject(object.reminderMetadata, long + 1);
             }
             if (object.modelMetadata != null) {
                 if (typeof object.modelMetadata !== "object")
                     throw TypeError(".BotMetadata.BotMetadata.modelMetadata: object expected");
-                message.modelMetadata = $root.BotMetadata.BotModelMetadata.fromObject(object.modelMetadata);
+                message.modelMetadata = $root.BotMetadata.BotModelMetadata.fromObject(object.modelMetadata, long + 1);
             }
             if (object.messageDisclaimerText != null)
                 message.messageDisclaimerText = String(object.messageDisclaimerText);
             if (object.progressIndicatorMetadata != null) {
                 if (typeof object.progressIndicatorMetadata !== "object")
                     throw TypeError(".BotMetadata.BotMetadata.progressIndicatorMetadata: object expected");
-                message.progressIndicatorMetadata = $root.BotMetadata.BotProgressIndicatorMetadata.fromObject(object.progressIndicatorMetadata);
+                message.progressIndicatorMetadata = $root.BotMetadata.BotProgressIndicatorMetadata.fromObject(object.progressIndicatorMetadata, long + 1);
             }
             if (object.capabilityMetadata != null) {
                 if (typeof object.capabilityMetadata !== "object")
                     throw TypeError(".BotMetadata.BotMetadata.capabilityMetadata: object expected");
-                message.capabilityMetadata = $root.BotMetadata.BotCapabilityMetadata.fromObject(object.capabilityMetadata);
+                message.capabilityMetadata = $root.BotMetadata.BotCapabilityMetadata.fromObject(object.capabilityMetadata, long + 1);
             }
             if (object.imagineMetadata != null) {
                 if (typeof object.imagineMetadata !== "object")
                     throw TypeError(".BotMetadata.BotMetadata.imagineMetadata: object expected");
-                message.imagineMetadata = $root.BotMetadata.BotImagineMetadata.fromObject(object.imagineMetadata);
+                message.imagineMetadata = $root.BotMetadata.BotImagineMetadata.fromObject(object.imagineMetadata, long + 1);
             }
             if (object.memoryMetadata != null) {
                 if (typeof object.memoryMetadata !== "object")
                     throw TypeError(".BotMetadata.BotMetadata.memoryMetadata: object expected");
-                message.memoryMetadata = $root.BotMetadata.BotMemoryMetadata.fromObject(object.memoryMetadata);
+                message.memoryMetadata = $root.BotMetadata.BotMemoryMetadata.fromObject(object.memoryMetadata, long + 1);
             }
             if (object.renderingMetadata != null) {
                 if (typeof object.renderingMetadata !== "object")
                     throw TypeError(".BotMetadata.BotMetadata.renderingMetadata: object expected");
-                message.renderingMetadata = $root.BotMetadata.BotRenderingMetadata.fromObject(object.renderingMetadata);
+                message.renderingMetadata = $root.BotMetadata.BotRenderingMetadata.fromObject(object.renderingMetadata, long + 1);
             }
             if (object.botMetricsMetadata != null) {
                 if (typeof object.botMetricsMetadata !== "object")
                     throw TypeError(".BotMetadata.BotMetadata.botMetricsMetadata: object expected");
-                message.botMetricsMetadata = $root.BotMetadata.BotMetricsMetadata.fromObject(object.botMetricsMetadata);
+                message.botMetricsMetadata = $root.BotMetadata.BotMetricsMetadata.fromObject(object.botMetricsMetadata, long + 1);
             }
             if (object.botLinkedAccountsMetadata != null) {
                 if (typeof object.botLinkedAccountsMetadata !== "object")
                     throw TypeError(".BotMetadata.BotMetadata.botLinkedAccountsMetadata: object expected");
-                message.botLinkedAccountsMetadata = $root.BotMetadata.BotLinkedAccountsMetadata.fromObject(object.botLinkedAccountsMetadata);
+                message.botLinkedAccountsMetadata = $root.BotMetadata.BotLinkedAccountsMetadata.fromObject(object.botLinkedAccountsMetadata, long + 1);
             }
             if (object.richResponseSourcesMetadata != null) {
                 if (typeof object.richResponseSourcesMetadata !== "object")
                     throw TypeError(".BotMetadata.BotMetadata.richResponseSourcesMetadata: object expected");
-                message.richResponseSourcesMetadata = $root.BotMetadata.BotSourcesMetadata.fromObject(object.richResponseSourcesMetadata);
+                message.richResponseSourcesMetadata = $root.BotMetadata.BotSourcesMetadata.fromObject(object.richResponseSourcesMetadata, long + 1);
             }
             if (object.aiConversationContext != null)
                 if (typeof object.aiConversationContext === "string")
@@ -848,22 +860,22 @@ $root.BotMetadata = (function() {
             if (object.botPromotionMessageMetadata != null) {
                 if (typeof object.botPromotionMessageMetadata !== "object")
                     throw TypeError(".BotMetadata.BotMetadata.botPromotionMessageMetadata: object expected");
-                message.botPromotionMessageMetadata = $root.BotMetadata.BotPromotionMessageMetadata.fromObject(object.botPromotionMessageMetadata);
+                message.botPromotionMessageMetadata = $root.BotMetadata.BotPromotionMessageMetadata.fromObject(object.botPromotionMessageMetadata, long + 1);
             }
             if (object.botModeSelectionMetadata != null) {
                 if (typeof object.botModeSelectionMetadata !== "object")
                     throw TypeError(".BotMetadata.BotMetadata.botModeSelectionMetadata: object expected");
-                message.botModeSelectionMetadata = $root.BotMetadata.BotModeSelectionMetadata.fromObject(object.botModeSelectionMetadata);
+                message.botModeSelectionMetadata = $root.BotMetadata.BotModeSelectionMetadata.fromObject(object.botModeSelectionMetadata, long + 1);
             }
             if (object.botQuotaMetadata != null) {
                 if (typeof object.botQuotaMetadata !== "object")
                     throw TypeError(".BotMetadata.BotMetadata.botQuotaMetadata: object expected");
-                message.botQuotaMetadata = $root.BotMetadata.BotQuotaMetadata.fromObject(object.botQuotaMetadata);
+                message.botQuotaMetadata = $root.BotMetadata.BotQuotaMetadata.fromObject(object.botQuotaMetadata, long + 1);
             }
             if (object.botAgeCollectionMetadata != null) {
                 if (typeof object.botAgeCollectionMetadata !== "object")
                     throw TypeError(".BotMetadata.BotMetadata.botAgeCollectionMetadata: object expected");
-                message.botAgeCollectionMetadata = $root.BotMetadata.BotAgeCollectionMetadata.fromObject(object.botAgeCollectionMetadata);
+                message.botAgeCollectionMetadata = $root.BotMetadata.BotAgeCollectionMetadata.fromObject(object.botAgeCollectionMetadata, long + 1);
             }
             if (object.conversationStarterPromptId != null)
                 message.conversationStarterPromptId = String(object.conversationStarterPromptId);
@@ -872,27 +884,27 @@ $root.BotMetadata = (function() {
             if (object.verificationMetadata != null) {
                 if (typeof object.verificationMetadata !== "object")
                     throw TypeError(".BotMetadata.BotMetadata.verificationMetadata: object expected");
-                message.verificationMetadata = $root.BotMetadata.BotSignatureVerificationMetadata.fromObject(object.verificationMetadata);
+                message.verificationMetadata = $root.BotMetadata.BotSignatureVerificationMetadata.fromObject(object.verificationMetadata, long + 1);
             }
             if (object.unifiedResponseMutation != null) {
                 if (typeof object.unifiedResponseMutation !== "object")
                     throw TypeError(".BotMetadata.BotMetadata.unifiedResponseMutation: object expected");
-                message.unifiedResponseMutation = $root.BotMetadata.BotUnifiedResponseMutation.fromObject(object.unifiedResponseMutation);
+                message.unifiedResponseMutation = $root.BotMetadata.BotUnifiedResponseMutation.fromObject(object.unifiedResponseMutation, long + 1);
             }
             if (object.botMessageOriginMetadata != null) {
                 if (typeof object.botMessageOriginMetadata !== "object")
                     throw TypeError(".BotMetadata.BotMetadata.botMessageOriginMetadata: object expected");
-                message.botMessageOriginMetadata = $root.BotMetadata.BotMessageOriginMetadata.fromObject(object.botMessageOriginMetadata);
+                message.botMessageOriginMetadata = $root.BotMetadata.BotMessageOriginMetadata.fromObject(object.botMessageOriginMetadata, long + 1);
             }
             if (object.inThreadSurveyMetadata != null) {
                 if (typeof object.inThreadSurveyMetadata !== "object")
                     throw TypeError(".BotMetadata.BotMetadata.inThreadSurveyMetadata: object expected");
-                message.inThreadSurveyMetadata = $root.BotMetadata.InThreadSurveyMetadata.fromObject(object.inThreadSurveyMetadata);
+                message.inThreadSurveyMetadata = $root.BotMetadata.InThreadSurveyMetadata.fromObject(object.inThreadSurveyMetadata, long + 1);
             }
             if (object.botThreadInfo != null) {
                 if (typeof object.botThreadInfo !== "object")
                     throw TypeError(".BotMetadata.BotMetadata.botThreadInfo: object expected");
-                message.botThreadInfo = $root.BotMetadata.AIThreadInfo.fromObject(object.botThreadInfo);
+                message.botThreadInfo = $root.BotMetadata.AIThreadInfo.fromObject(object.botThreadInfo, long + 1);
             }
             return message;
         };
@@ -1064,7 +1076,7 @@ $root.BotMetadata = (function() {
         function AIThreadInfo(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -1139,9 +1151,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AIThreadInfo.decode = function decode(reader, length, error) {
+        AIThreadInfo.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.AIThreadInfo();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -1149,15 +1165,15 @@ $root.BotMetadata = (function() {
                     break;
                 switch (tag >>> 3) {
                 case 1: {
-                        message.serverInfo = $root.BotMetadata.AIThreadInfo.AIThreadServerInfo.decode(reader, reader.uint32());
+                        message.serverInfo = $root.BotMetadata.AIThreadInfo.AIThreadServerInfo.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 2: {
-                        message.clientInfo = $root.BotMetadata.AIThreadInfo.AIThreadClientInfo.decode(reader, reader.uint32());
+                        message.clientInfo = $root.BotMetadata.AIThreadInfo.AIThreadClientInfo.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -1188,16 +1204,20 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        AIThreadInfo.verify = function verify(message) {
+        AIThreadInfo.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.serverInfo != null && message.hasOwnProperty("serverInfo")) {
-                var error = $root.BotMetadata.AIThreadInfo.AIThreadServerInfo.verify(message.serverInfo);
+                var error = $root.BotMetadata.AIThreadInfo.AIThreadServerInfo.verify(message.serverInfo, long + 1);
                 if (error)
                     return "serverInfo." + error;
             }
             if (message.clientInfo != null && message.hasOwnProperty("clientInfo")) {
-                var error = $root.BotMetadata.AIThreadInfo.AIThreadClientInfo.verify(message.clientInfo);
+                var error = $root.BotMetadata.AIThreadInfo.AIThreadClientInfo.verify(message.clientInfo, long + 1);
                 if (error)
                     return "clientInfo." + error;
             }
@@ -1212,19 +1232,23 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.AIThreadInfo} AIThreadInfo
          */
-        AIThreadInfo.fromObject = function fromObject(object) {
+        AIThreadInfo.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.AIThreadInfo)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.AIThreadInfo();
             if (object.serverInfo != null) {
                 if (typeof object.serverInfo !== "object")
                     throw TypeError(".BotMetadata.AIThreadInfo.serverInfo: object expected");
-                message.serverInfo = $root.BotMetadata.AIThreadInfo.AIThreadServerInfo.fromObject(object.serverInfo);
+                message.serverInfo = $root.BotMetadata.AIThreadInfo.AIThreadServerInfo.fromObject(object.serverInfo, long + 1);
             }
             if (object.clientInfo != null) {
                 if (typeof object.clientInfo !== "object")
                     throw TypeError(".BotMetadata.AIThreadInfo.clientInfo: object expected");
-                message.clientInfo = $root.BotMetadata.AIThreadInfo.AIThreadClientInfo.fromObject(object.clientInfo);
+                message.clientInfo = $root.BotMetadata.AIThreadInfo.AIThreadClientInfo.fromObject(object.clientInfo, long + 1);
             }
             return message;
         };
@@ -1299,7 +1323,7 @@ $root.BotMetadata = (function() {
             function AIThreadClientInfo(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -1364,9 +1388,13 @@ $root.BotMetadata = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIThreadClientInfo.decode = function decode(reader, length, error) {
+            AIThreadClientInfo.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.AIThreadInfo.AIThreadClientInfo();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -1378,7 +1406,7 @@ $root.BotMetadata = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -1409,9 +1437,13 @@ $root.BotMetadata = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            AIThreadClientInfo.verify = function verify(message) {
+            AIThreadClientInfo.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.type != null && message.hasOwnProperty("type"))
                     switch (message.type) {
                     default:
@@ -1432,9 +1464,13 @@ $root.BotMetadata = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {BotMetadata.AIThreadInfo.AIThreadClientInfo} AIThreadClientInfo
              */
-            AIThreadClientInfo.fromObject = function fromObject(object) {
+            AIThreadClientInfo.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.BotMetadata.AIThreadInfo.AIThreadClientInfo)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.BotMetadata.AIThreadInfo.AIThreadClientInfo();
                 switch (object.type) {
                 default:
@@ -1544,7 +1580,7 @@ $root.BotMetadata = (function() {
             function AIThreadServerInfo(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -1609,9 +1645,13 @@ $root.BotMetadata = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            AIThreadServerInfo.decode = function decode(reader, length, error) {
+            AIThreadServerInfo.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.AIThreadInfo.AIThreadServerInfo();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -1623,7 +1663,7 @@ $root.BotMetadata = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -1654,9 +1694,13 @@ $root.BotMetadata = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            AIThreadServerInfo.verify = function verify(message) {
+            AIThreadServerInfo.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.title != null && message.hasOwnProperty("title"))
                     if (!$util.isString(message.title))
                         return "title: string expected";
@@ -1671,9 +1715,13 @@ $root.BotMetadata = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {BotMetadata.AIThreadInfo.AIThreadServerInfo} AIThreadServerInfo
              */
-            AIThreadServerInfo.fromObject = function fromObject(object) {
+            AIThreadServerInfo.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.BotMetadata.AIThreadInfo.AIThreadServerInfo)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.BotMetadata.AIThreadInfo.AIThreadServerInfo();
                 if (object.title != null)
                     message.title = String(object.title);
@@ -1752,7 +1800,7 @@ $root.BotMetadata = (function() {
         function BotUnifiedResponseMutation(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -1817,9 +1865,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotUnifiedResponseMutation.decode = function decode(reader, length, error) {
+        BotUnifiedResponseMutation.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotUnifiedResponseMutation();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -1827,11 +1879,11 @@ $root.BotMetadata = (function() {
                     break;
                 switch (tag >>> 3) {
                 case 1: {
-                        message.sbsMetadata = $root.BotMetadata.BotUnifiedResponseMutation.SideBySideMetadata.decode(reader, reader.uint32());
+                        message.sbsMetadata = $root.BotMetadata.BotUnifiedResponseMutation.SideBySideMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -1862,11 +1914,15 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotUnifiedResponseMutation.verify = function verify(message) {
+        BotUnifiedResponseMutation.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.sbsMetadata != null && message.hasOwnProperty("sbsMetadata")) {
-                var error = $root.BotMetadata.BotUnifiedResponseMutation.SideBySideMetadata.verify(message.sbsMetadata);
+                var error = $root.BotMetadata.BotUnifiedResponseMutation.SideBySideMetadata.verify(message.sbsMetadata, long + 1);
                 if (error)
                     return "sbsMetadata." + error;
             }
@@ -1881,14 +1937,18 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotUnifiedResponseMutation} BotUnifiedResponseMutation
          */
-        BotUnifiedResponseMutation.fromObject = function fromObject(object) {
+        BotUnifiedResponseMutation.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotUnifiedResponseMutation)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotUnifiedResponseMutation();
             if (object.sbsMetadata != null) {
                 if (typeof object.sbsMetadata !== "object")
                     throw TypeError(".BotMetadata.BotUnifiedResponseMutation.sbsMetadata: object expected");
-                message.sbsMetadata = $root.BotMetadata.BotUnifiedResponseMutation.SideBySideMetadata.fromObject(object.sbsMetadata);
+                message.sbsMetadata = $root.BotMetadata.BotUnifiedResponseMutation.SideBySideMetadata.fromObject(object.sbsMetadata, long + 1);
             }
             return message;
         };
@@ -1959,7 +2019,7 @@ $root.BotMetadata = (function() {
             function SideBySideMetadata(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -2024,9 +2084,13 @@ $root.BotMetadata = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            SideBySideMetadata.decode = function decode(reader, length, error) {
+            SideBySideMetadata.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotUnifiedResponseMutation.SideBySideMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -2038,7 +2102,7 @@ $root.BotMetadata = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -2069,9 +2133,13 @@ $root.BotMetadata = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            SideBySideMetadata.verify = function verify(message) {
+            SideBySideMetadata.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.primaryResponseId != null && message.hasOwnProperty("primaryResponseId"))
                     if (!$util.isString(message.primaryResponseId))
                         return "primaryResponseId: string expected";
@@ -2086,9 +2154,13 @@ $root.BotMetadata = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {BotMetadata.BotUnifiedResponseMutation.SideBySideMetadata} SideBySideMetadata
              */
-            SideBySideMetadata.fromObject = function fromObject(object) {
+            SideBySideMetadata.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.BotMetadata.BotUnifiedResponseMutation.SideBySideMetadata)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.BotMetadata.BotUnifiedResponseMutation.SideBySideMetadata();
                 if (object.primaryResponseId != null)
                     message.primaryResponseId = String(object.primaryResponseId);
@@ -2167,7 +2239,7 @@ $root.BotMetadata = (function() {
         function BotMessageOrigin(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -2232,9 +2304,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotMessageOrigin.decode = function decode(reader, length, error) {
+        BotMessageOrigin.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotMessageOrigin();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -2246,7 +2322,7 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -2277,9 +2353,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotMessageOrigin.verify = function verify(message) {
+        BotMessageOrigin.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.type != null && message.hasOwnProperty("type"))
                 switch (message.type) {
                 default:
@@ -2298,9 +2378,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotMessageOrigin} BotMessageOrigin
          */
-        BotMessageOrigin.fromObject = function fromObject(object) {
+        BotMessageOrigin.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotMessageOrigin)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotMessageOrigin();
             switch (object.type) {
             default:
@@ -2399,7 +2483,7 @@ $root.BotMetadata = (function() {
             this.origins = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -2465,9 +2549,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotMessageOriginMetadata.decode = function decode(reader, length, error) {
+        BotMessageOriginMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotMessageOriginMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -2477,11 +2565,11 @@ $root.BotMetadata = (function() {
                 case 1: {
                         if (!(message.origins && message.origins.length))
                             message.origins = [];
-                        message.origins.push($root.BotMetadata.BotMessageOrigin.decode(reader, reader.uint32()));
+                        message.origins.push($root.BotMetadata.BotMessageOrigin.decode(reader, reader.uint32(), undefined, long + 1));
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -2512,14 +2600,18 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotMessageOriginMetadata.verify = function verify(message) {
+        BotMessageOriginMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.origins != null && message.hasOwnProperty("origins")) {
                 if (!Array.isArray(message.origins))
                     return "origins: array expected";
                 for (var i = 0; i < message.origins.length; ++i) {
-                    var error = $root.BotMetadata.BotMessageOrigin.verify(message.origins[i]);
+                    var error = $root.BotMetadata.BotMessageOrigin.verify(message.origins[i], long + 1);
                     if (error)
                         return "origins." + error;
                 }
@@ -2535,9 +2627,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotMessageOriginMetadata} BotMessageOriginMetadata
          */
-        BotMessageOriginMetadata.fromObject = function fromObject(object) {
+        BotMessageOriginMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotMessageOriginMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotMessageOriginMetadata();
             if (object.origins) {
                 if (!Array.isArray(object.origins))
@@ -2546,7 +2642,7 @@ $root.BotMetadata = (function() {
                 for (var i = 0; i < object.origins.length; ++i) {
                     if (typeof object.origins[i] !== "object")
                         throw TypeError(".BotMetadata.BotMessageOriginMetadata.origins: object expected");
-                    message.origins[i] = $root.BotMetadata.BotMessageOrigin.fromObject(object.origins[i]);
+                    message.origins[i] = $root.BotMetadata.BotMessageOrigin.fromObject(object.origins[i], long + 1);
                 }
             }
             return message;
@@ -2642,7 +2738,7 @@ $root.BotMetadata = (function() {
             this.privacyStatementParts = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -2869,9 +2965,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        InThreadSurveyMetadata.decode = function decode(reader, length, error) {
+        InThreadSurveyMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.InThreadSurveyMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -2925,7 +3025,7 @@ $root.BotMetadata = (function() {
                 case 12: {
                         if (!(message.questions && message.questions.length))
                             message.questions = [];
-                        message.questions.push($root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion.decode(reader, reader.uint32()));
+                        message.questions.push($root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion.decode(reader, reader.uint32(), undefined, long + 1));
                         break;
                     }
                 case 13: {
@@ -2943,7 +3043,7 @@ $root.BotMetadata = (function() {
                 case 16: {
                         if (!(message.privacyStatementParts && message.privacyStatementParts.length))
                             message.privacyStatementParts = [];
-                        message.privacyStatementParts.push($root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart.decode(reader, reader.uint32()));
+                        message.privacyStatementParts.push($root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart.decode(reader, reader.uint32(), undefined, long + 1));
                         break;
                     }
                 case 17: {
@@ -2951,7 +3051,7 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -2982,9 +3082,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        InThreadSurveyMetadata.verify = function verify(message) {
+        InThreadSurveyMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.tessaSessionId != null && message.hasOwnProperty("tessaSessionId"))
                 if (!$util.isString(message.tessaSessionId))
                     return "tessaSessionId: string expected";
@@ -3022,7 +3126,7 @@ $root.BotMetadata = (function() {
                 if (!Array.isArray(message.questions))
                     return "questions: array expected";
                 for (var i = 0; i < message.questions.length; ++i) {
-                    var error = $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion.verify(message.questions[i]);
+                    var error = $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion.verify(message.questions[i], long + 1);
                     if (error)
                         return "questions." + error;
                 }
@@ -3040,7 +3144,7 @@ $root.BotMetadata = (function() {
                 if (!Array.isArray(message.privacyStatementParts))
                     return "privacyStatementParts: array expected";
                 for (var i = 0; i < message.privacyStatementParts.length; ++i) {
-                    var error = $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart.verify(message.privacyStatementParts[i]);
+                    var error = $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart.verify(message.privacyStatementParts[i], long + 1);
                     if (error)
                         return "privacyStatementParts." + error;
                 }
@@ -3059,9 +3163,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.InThreadSurveyMetadata} InThreadSurveyMetadata
          */
-        InThreadSurveyMetadata.fromObject = function fromObject(object) {
+        InThreadSurveyMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.InThreadSurveyMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.InThreadSurveyMetadata();
             if (object.tessaSessionId != null)
                 message.tessaSessionId = String(object.tessaSessionId);
@@ -3092,7 +3200,7 @@ $root.BotMetadata = (function() {
                 for (var i = 0; i < object.questions.length; ++i) {
                     if (typeof object.questions[i] !== "object")
                         throw TypeError(".BotMetadata.InThreadSurveyMetadata.questions: object expected");
-                    message.questions[i] = $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion.fromObject(object.questions[i]);
+                    message.questions[i] = $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion.fromObject(object.questions[i], long + 1);
                 }
             }
             if (object.surveyContinueButtonText != null)
@@ -3108,7 +3216,7 @@ $root.BotMetadata = (function() {
                 for (var i = 0; i < object.privacyStatementParts.length; ++i) {
                     if (typeof object.privacyStatementParts[i] !== "object")
                         throw TypeError(".BotMetadata.InThreadSurveyMetadata.privacyStatementParts: object expected");
-                    message.privacyStatementParts[i] = $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart.fromObject(object.privacyStatementParts[i]);
+                    message.privacyStatementParts[i] = $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart.fromObject(object.privacyStatementParts[i], long + 1);
                 }
             }
             if (object.feedbackToastText != null)
@@ -3241,7 +3349,7 @@ $root.BotMetadata = (function() {
             function InThreadSurveyOption(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -3326,9 +3434,13 @@ $root.BotMetadata = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            InThreadSurveyOption.decode = function decode(reader, length, error) {
+            InThreadSurveyOption.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -3348,7 +3460,7 @@ $root.BotMetadata = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -3379,9 +3491,13 @@ $root.BotMetadata = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            InThreadSurveyOption.verify = function verify(message) {
+            InThreadSurveyOption.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.stringValue != null && message.hasOwnProperty("stringValue"))
                     if (!$util.isString(message.stringValue))
                         return "stringValue: string expected";
@@ -3402,9 +3518,13 @@ $root.BotMetadata = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption} InThreadSurveyOption
              */
-            InThreadSurveyOption.fromObject = function fromObject(object) {
+            InThreadSurveyOption.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption();
                 if (object.stringValue != null)
                     message.stringValue = String(object.stringValue);
@@ -3492,7 +3612,7 @@ $root.BotMetadata = (function() {
             function InThreadSurveyPrivacyStatementPart(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -3567,9 +3687,13 @@ $root.BotMetadata = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            InThreadSurveyPrivacyStatementPart.decode = function decode(reader, length, error) {
+            InThreadSurveyPrivacyStatementPart.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -3585,7 +3709,7 @@ $root.BotMetadata = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -3616,9 +3740,13 @@ $root.BotMetadata = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            InThreadSurveyPrivacyStatementPart.verify = function verify(message) {
+            InThreadSurveyPrivacyStatementPart.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.text != null && message.hasOwnProperty("text"))
                     if (!$util.isString(message.text))
                         return "text: string expected";
@@ -3636,9 +3764,13 @@ $root.BotMetadata = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart} InThreadSurveyPrivacyStatementPart
              */
-            InThreadSurveyPrivacyStatementPart.fromObject = function fromObject(object) {
+            InThreadSurveyPrivacyStatementPart.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart();
                 if (object.text != null)
                     message.text = String(object.text);
@@ -3723,7 +3855,7 @@ $root.BotMetadata = (function() {
                 this.questionOptions = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -3809,9 +3941,13 @@ $root.BotMetadata = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            InThreadSurveyQuestion.decode = function decode(reader, length, error) {
+            InThreadSurveyQuestion.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -3829,11 +3965,11 @@ $root.BotMetadata = (function() {
                     case 3: {
                             if (!(message.questionOptions && message.questionOptions.length))
                                 message.questionOptions = [];
-                            message.questionOptions.push($root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption.decode(reader, reader.uint32()));
+                            message.questionOptions.push($root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption.decode(reader, reader.uint32(), undefined, long + 1));
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -3864,9 +4000,13 @@ $root.BotMetadata = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            InThreadSurveyQuestion.verify = function verify(message) {
+            InThreadSurveyQuestion.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.questionText != null && message.hasOwnProperty("questionText"))
                     if (!$util.isString(message.questionText))
                         return "questionText: string expected";
@@ -3877,7 +4017,7 @@ $root.BotMetadata = (function() {
                     if (!Array.isArray(message.questionOptions))
                         return "questionOptions: array expected";
                     for (var i = 0; i < message.questionOptions.length; ++i) {
-                        var error = $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption.verify(message.questionOptions[i]);
+                        var error = $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption.verify(message.questionOptions[i], long + 1);
                         if (error)
                             return "questionOptions." + error;
                     }
@@ -3893,9 +4033,13 @@ $root.BotMetadata = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion} InThreadSurveyQuestion
              */
-            InThreadSurveyQuestion.fromObject = function fromObject(object) {
+            InThreadSurveyQuestion.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion();
                 if (object.questionText != null)
                     message.questionText = String(object.questionText);
@@ -3908,7 +4052,7 @@ $root.BotMetadata = (function() {
                     for (var i = 0; i < object.questionOptions.length; ++i) {
                         if (typeof object.questionOptions[i] !== "object")
                             throw TypeError(".BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion.questionOptions: object expected");
-                        message.questionOptions[i] = $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption.fromObject(object.questionOptions[i]);
+                        message.questionOptions[i] = $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption.fromObject(object.questionOptions[i], long + 1);
                     }
                 }
                 return message;
@@ -3998,7 +4142,7 @@ $root.BotMetadata = (function() {
             this.sources = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -4064,9 +4208,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotSourcesMetadata.decode = function decode(reader, length, error) {
+        BotSourcesMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotSourcesMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -4076,11 +4224,11 @@ $root.BotMetadata = (function() {
                 case 1: {
                         if (!(message.sources && message.sources.length))
                             message.sources = [];
-                        message.sources.push($root.BotMetadata.BotSourcesMetadata.BotSourceItem.decode(reader, reader.uint32()));
+                        message.sources.push($root.BotMetadata.BotSourcesMetadata.BotSourceItem.decode(reader, reader.uint32(), undefined, long + 1));
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -4111,14 +4259,18 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotSourcesMetadata.verify = function verify(message) {
+        BotSourcesMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.sources != null && message.hasOwnProperty("sources")) {
                 if (!Array.isArray(message.sources))
                     return "sources: array expected";
                 for (var i = 0; i < message.sources.length; ++i) {
-                    var error = $root.BotMetadata.BotSourcesMetadata.BotSourceItem.verify(message.sources[i]);
+                    var error = $root.BotMetadata.BotSourcesMetadata.BotSourceItem.verify(message.sources[i], long + 1);
                     if (error)
                         return "sources." + error;
                 }
@@ -4134,9 +4286,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotSourcesMetadata} BotSourcesMetadata
          */
-        BotSourcesMetadata.fromObject = function fromObject(object) {
+        BotSourcesMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotSourcesMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotSourcesMetadata();
             if (object.sources) {
                 if (!Array.isArray(object.sources))
@@ -4145,7 +4301,7 @@ $root.BotMetadata = (function() {
                 for (var i = 0; i < object.sources.length; ++i) {
                     if (typeof object.sources[i] !== "object")
                         throw TypeError(".BotMetadata.BotSourcesMetadata.sources: object expected");
-                    message.sources[i] = $root.BotMetadata.BotSourcesMetadata.BotSourceItem.fromObject(object.sources[i]);
+                    message.sources[i] = $root.BotMetadata.BotSourcesMetadata.BotSourceItem.fromObject(object.sources[i], long + 1);
                 }
             }
             return message;
@@ -4226,7 +4382,7 @@ $root.BotMetadata = (function() {
             function BotSourceItem(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -4351,9 +4507,13 @@ $root.BotMetadata = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            BotSourceItem.decode = function decode(reader, length, error) {
+            BotSourceItem.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotSourcesMetadata.BotSourceItem();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -4389,7 +4549,7 @@ $root.BotMetadata = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -4420,9 +4580,13 @@ $root.BotMetadata = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            BotSourceItem.verify = function verify(message) {
+            BotSourceItem.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.provider != null && message.hasOwnProperty("provider"))
                     switch (message.provider) {
                     default:
@@ -4463,9 +4627,13 @@ $root.BotMetadata = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {BotMetadata.BotSourcesMetadata.BotSourceItem} BotSourceItem
              */
-            BotSourceItem.fromObject = function fromObject(object) {
+            BotSourceItem.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.BotMetadata.BotSourcesMetadata.BotSourceItem)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.BotMetadata.BotSourcesMetadata.BotSourceItem();
                 switch (object.provider) {
                 default:
@@ -4622,7 +4790,7 @@ $root.BotMetadata = (function() {
         function BotAgeCollectionMetadata(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -4697,9 +4865,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotAgeCollectionMetadata.decode = function decode(reader, length, error) {
+        BotAgeCollectionMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotAgeCollectionMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -4715,7 +4887,7 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -4746,9 +4918,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotAgeCollectionMetadata.verify = function verify(message) {
+        BotAgeCollectionMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.ageCollectionEligible != null && message.hasOwnProperty("ageCollectionEligible"))
                 if (typeof message.ageCollectionEligible !== "boolean")
                     return "ageCollectionEligible: boolean expected";
@@ -4766,9 +4942,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotAgeCollectionMetadata} BotAgeCollectionMetadata
          */
-        BotAgeCollectionMetadata.fromObject = function fromObject(object) {
+        BotAgeCollectionMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotAgeCollectionMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotAgeCollectionMetadata();
             if (object.ageCollectionEligible != null)
                 message.ageCollectionEligible = Boolean(object.ageCollectionEligible);
@@ -4850,7 +5030,7 @@ $root.BotMetadata = (function() {
         function BotImagineMetadata(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -4915,9 +5095,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotImagineMetadata.decode = function decode(reader, length, error) {
+        BotImagineMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotImagineMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -4929,7 +5113,7 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -4960,9 +5144,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotImagineMetadata.verify = function verify(message) {
+        BotImagineMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.imagineType != null && message.hasOwnProperty("imagineType"))
                 switch (message.imagineType) {
                 default:
@@ -4985,9 +5173,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotImagineMetadata} BotImagineMetadata
          */
-        BotImagineMetadata.fromObject = function fromObject(object) {
+        BotImagineMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotImagineMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotImagineMetadata();
             switch (object.imagineType) {
             default:
@@ -5110,7 +5302,7 @@ $root.BotMetadata = (function() {
             this.botFeatureQuotaMetadata = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -5176,9 +5368,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotQuotaMetadata.decode = function decode(reader, length, error) {
+        BotQuotaMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotQuotaMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -5188,11 +5384,11 @@ $root.BotMetadata = (function() {
                 case 1: {
                         if (!(message.botFeatureQuotaMetadata && message.botFeatureQuotaMetadata.length))
                             message.botFeatureQuotaMetadata = [];
-                        message.botFeatureQuotaMetadata.push($root.BotMetadata.BotQuotaMetadata.BotFeatureQuotaMetadata.decode(reader, reader.uint32()));
+                        message.botFeatureQuotaMetadata.push($root.BotMetadata.BotQuotaMetadata.BotFeatureQuotaMetadata.decode(reader, reader.uint32(), undefined, long + 1));
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -5223,14 +5419,18 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotQuotaMetadata.verify = function verify(message) {
+        BotQuotaMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.botFeatureQuotaMetadata != null && message.hasOwnProperty("botFeatureQuotaMetadata")) {
                 if (!Array.isArray(message.botFeatureQuotaMetadata))
                     return "botFeatureQuotaMetadata: array expected";
                 for (var i = 0; i < message.botFeatureQuotaMetadata.length; ++i) {
-                    var error = $root.BotMetadata.BotQuotaMetadata.BotFeatureQuotaMetadata.verify(message.botFeatureQuotaMetadata[i]);
+                    var error = $root.BotMetadata.BotQuotaMetadata.BotFeatureQuotaMetadata.verify(message.botFeatureQuotaMetadata[i], long + 1);
                     if (error)
                         return "botFeatureQuotaMetadata." + error;
                 }
@@ -5246,9 +5446,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotQuotaMetadata} BotQuotaMetadata
          */
-        BotQuotaMetadata.fromObject = function fromObject(object) {
+        BotQuotaMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotQuotaMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotQuotaMetadata();
             if (object.botFeatureQuotaMetadata) {
                 if (!Array.isArray(object.botFeatureQuotaMetadata))
@@ -5257,7 +5461,7 @@ $root.BotMetadata = (function() {
                 for (var i = 0; i < object.botFeatureQuotaMetadata.length; ++i) {
                     if (typeof object.botFeatureQuotaMetadata[i] !== "object")
                         throw TypeError(".BotMetadata.BotQuotaMetadata.botFeatureQuotaMetadata: object expected");
-                    message.botFeatureQuotaMetadata[i] = $root.BotMetadata.BotQuotaMetadata.BotFeatureQuotaMetadata.fromObject(object.botFeatureQuotaMetadata[i]);
+                    message.botFeatureQuotaMetadata[i] = $root.BotMetadata.BotQuotaMetadata.BotFeatureQuotaMetadata.fromObject(object.botFeatureQuotaMetadata[i], long + 1);
                 }
             }
             return message;
@@ -5334,7 +5538,7 @@ $root.BotMetadata = (function() {
             function BotFeatureQuotaMetadata(properties) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -5419,9 +5623,13 @@ $root.BotMetadata = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            BotFeatureQuotaMetadata.decode = function decode(reader, length, error) {
+            BotFeatureQuotaMetadata.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotQuotaMetadata.BotFeatureQuotaMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -5441,7 +5649,7 @@ $root.BotMetadata = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -5472,9 +5680,13 @@ $root.BotMetadata = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            BotFeatureQuotaMetadata.verify = function verify(message) {
+            BotFeatureQuotaMetadata.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.featureType != null && message.hasOwnProperty("featureType"))
                     switch (message.featureType) {
                     default:
@@ -5500,9 +5712,13 @@ $root.BotMetadata = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {BotMetadata.BotQuotaMetadata.BotFeatureQuotaMetadata} BotFeatureQuotaMetadata
              */
-            BotFeatureQuotaMetadata.fromObject = function fromObject(object) {
+            BotFeatureQuotaMetadata.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.BotMetadata.BotQuotaMetadata.BotFeatureQuotaMetadata)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.BotMetadata.BotQuotaMetadata.BotFeatureQuotaMetadata();
                 switch (object.featureType) {
                 default:
@@ -5635,7 +5851,7 @@ $root.BotMetadata = (function() {
             this.mode = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -5701,9 +5917,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotModeSelectionMetadata.decode = function decode(reader, length, error) {
+        BotModeSelectionMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotModeSelectionMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -5722,7 +5942,7 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -5753,9 +5973,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotModeSelectionMetadata.verify = function verify(message) {
+        BotModeSelectionMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.mode != null && message.hasOwnProperty("mode")) {
                 if (!Array.isArray(message.mode))
                     return "mode: array expected";
@@ -5779,9 +6003,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotModeSelectionMetadata} BotModeSelectionMetadata
          */
-        BotModeSelectionMetadata.fromObject = function fromObject(object) {
+        BotModeSelectionMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotModeSelectionMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotModeSelectionMetadata();
             if (object.mode) {
                 if (!Array.isArray(object.mode))
@@ -5894,7 +6122,7 @@ $root.BotMetadata = (function() {
             this.capabilities = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -5960,9 +6188,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotCapabilityMetadata.decode = function decode(reader, length, error) {
+        BotCapabilityMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotCapabilityMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -5981,7 +6213,7 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -6012,9 +6244,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotCapabilityMetadata.verify = function verify(message) {
+        BotCapabilityMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.capabilities != null && message.hasOwnProperty("capabilities")) {
                 if (!Array.isArray(message.capabilities))
                     return "capabilities: array expected";
@@ -6079,9 +6315,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotCapabilityMetadata} BotCapabilityMetadata
          */
-        BotCapabilityMetadata.fromObject = function fromObject(object) {
+        BotCapabilityMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotCapabilityMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotCapabilityMetadata();
             if (object.capabilities) {
                 if (!Array.isArray(object.capabilities))
@@ -6441,7 +6681,7 @@ $root.BotMetadata = (function() {
             this.stepsMetadata = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -6517,9 +6757,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotProgressIndicatorMetadata.decode = function decode(reader, length, error) {
+        BotProgressIndicatorMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotProgressIndicatorMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -6533,11 +6777,11 @@ $root.BotMetadata = (function() {
                 case 2: {
                         if (!(message.stepsMetadata && message.stepsMetadata.length))
                             message.stepsMetadata = [];
-                        message.stepsMetadata.push($root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.decode(reader, reader.uint32()));
+                        message.stepsMetadata.push($root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.decode(reader, reader.uint32(), undefined, long + 1));
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -6568,9 +6812,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotProgressIndicatorMetadata.verify = function verify(message) {
+        BotProgressIndicatorMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.progressDescription != null && message.hasOwnProperty("progressDescription"))
                 if (!$util.isString(message.progressDescription))
                     return "progressDescription: string expected";
@@ -6578,7 +6826,7 @@ $root.BotMetadata = (function() {
                 if (!Array.isArray(message.stepsMetadata))
                     return "stepsMetadata: array expected";
                 for (var i = 0; i < message.stepsMetadata.length; ++i) {
-                    var error = $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.verify(message.stepsMetadata[i]);
+                    var error = $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.verify(message.stepsMetadata[i], long + 1);
                     if (error)
                         return "stepsMetadata." + error;
                 }
@@ -6594,9 +6842,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotProgressIndicatorMetadata} BotProgressIndicatorMetadata
          */
-        BotProgressIndicatorMetadata.fromObject = function fromObject(object) {
+        BotProgressIndicatorMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotProgressIndicatorMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotProgressIndicatorMetadata();
             if (object.progressDescription != null)
                 message.progressDescription = String(object.progressDescription);
@@ -6607,7 +6859,7 @@ $root.BotMetadata = (function() {
                 for (var i = 0; i < object.stepsMetadata.length; ++i) {
                     if (typeof object.stepsMetadata[i] !== "object")
                         throw TypeError(".BotMetadata.BotProgressIndicatorMetadata.stepsMetadata: object expected");
-                    message.stepsMetadata[i] = $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.fromObject(object.stepsMetadata[i]);
+                    message.stepsMetadata[i] = $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.fromObject(object.stepsMetadata[i], long + 1);
                 }
             }
             return message;
@@ -6694,7 +6946,7 @@ $root.BotMetadata = (function() {
                 this.sections = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -6821,9 +7073,13 @@ $root.BotMetadata = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            BotPlanningStepMetadata.decode = function decode(reader, length, error) {
+            BotPlanningStepMetadata.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -6841,7 +7097,7 @@ $root.BotMetadata = (function() {
                     case 3: {
                             if (!(message.sourcesMetadata && message.sourcesMetadata.length))
                                 message.sourcesMetadata = [];
-                            message.sourcesMetadata.push($root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.decode(reader, reader.uint32()));
+                            message.sourcesMetadata.push($root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.decode(reader, reader.uint32(), undefined, long + 1));
                             break;
                         }
                     case 4: {
@@ -6859,11 +7115,11 @@ $root.BotMetadata = (function() {
                     case 7: {
                             if (!(message.sections && message.sections.length))
                                 message.sections = [];
-                            message.sections.push($root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata.decode(reader, reader.uint32()));
+                            message.sections.push($root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata.decode(reader, reader.uint32(), undefined, long + 1));
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -6894,9 +7150,13 @@ $root.BotMetadata = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            BotPlanningStepMetadata.verify = function verify(message) {
+            BotPlanningStepMetadata.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.statusTitle != null && message.hasOwnProperty("statusTitle"))
                     if (!$util.isString(message.statusTitle))
                         return "statusTitle: string expected";
@@ -6907,7 +7167,7 @@ $root.BotMetadata = (function() {
                     if (!Array.isArray(message.sourcesMetadata))
                         return "sourcesMetadata: array expected";
                     for (var i = 0; i < message.sourcesMetadata.length; ++i) {
-                        var error = $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.verify(message.sourcesMetadata[i]);
+                        var error = $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.verify(message.sourcesMetadata[i], long + 1);
                         if (error)
                             return "sourcesMetadata." + error;
                     }
@@ -6932,7 +7192,7 @@ $root.BotMetadata = (function() {
                     if (!Array.isArray(message.sections))
                         return "sections: array expected";
                     for (var i = 0; i < message.sections.length; ++i) {
-                        var error = $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata.verify(message.sections[i]);
+                        var error = $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata.verify(message.sections[i], long + 1);
                         if (error)
                             return "sections." + error;
                     }
@@ -6948,9 +7208,13 @@ $root.BotMetadata = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata} BotPlanningStepMetadata
              */
-            BotPlanningStepMetadata.fromObject = function fromObject(object) {
+            BotPlanningStepMetadata.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata();
                 if (object.statusTitle != null)
                     message.statusTitle = String(object.statusTitle);
@@ -6963,7 +7227,7 @@ $root.BotMetadata = (function() {
                     for (var i = 0; i < object.sourcesMetadata.length; ++i) {
                         if (typeof object.sourcesMetadata[i] !== "object")
                             throw TypeError(".BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.sourcesMetadata: object expected");
-                        message.sourcesMetadata[i] = $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.fromObject(object.sourcesMetadata[i]);
+                        message.sourcesMetadata[i] = $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.fromObject(object.sourcesMetadata[i], long + 1);
                     }
                 }
                 switch (object.status) {
@@ -7001,7 +7265,7 @@ $root.BotMetadata = (function() {
                     for (var i = 0; i < object.sections.length; ++i) {
                         if (typeof object.sections[i] !== "object")
                             throw TypeError(".BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.sections: object expected");
-                        message.sections[i] = $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata.fromObject(object.sections[i]);
+                        message.sections[i] = $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata.fromObject(object.sections[i], long + 1);
                     }
                 }
                 return message;
@@ -7103,7 +7367,7 @@ $root.BotMetadata = (function() {
                 function BotPlanningSearchSourceMetadata(properties) {
                     if (properties)
                         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
+                            if (properties[keys[i]] != null && keys[i] !== "__proto__")
                                 this[keys[i]] = properties[keys[i]];
                 }
 
@@ -7198,9 +7462,13 @@ $root.BotMetadata = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BotPlanningSearchSourceMetadata.decode = function decode(reader, length, error) {
+                BotPlanningSearchSourceMetadata.decode = function decode(reader, length, error, long) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $Reader.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
@@ -7224,7 +7492,7 @@ $root.BotMetadata = (function() {
                                 break;
                             }
                         default:
-                            reader.skipType(tag & 7);
+                            reader.skipType(tag & 7, long);
                             break;
                         }
                     }
@@ -7255,9 +7523,13 @@ $root.BotMetadata = (function() {
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
                  */
-                BotPlanningSearchSourceMetadata.verify = function verify(message) {
+                BotPlanningSearchSourceMetadata.verify = function verify(message, long) {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        return "maximum nesting depth exceeded";
                     if (message.title != null && message.hasOwnProperty("title"))
                         if (!$util.isString(message.title))
                             return "title: string expected";
@@ -7288,9 +7560,13 @@ $root.BotMetadata = (function() {
                  * @param {Object.<string,*>} object Plain object
                  * @returns {BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata} BotPlanningSearchSourceMetadata
                  */
-                BotPlanningSearchSourceMetadata.fromObject = function fromObject(object) {
+                BotPlanningSearchSourceMetadata.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata)
                         return object;
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var message = new $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata();
                     if (object.title != null)
                         message.title = String(object.title);
@@ -7406,7 +7682,7 @@ $root.BotMetadata = (function() {
                 function BotPlanningSearchSourcesMetadata(properties) {
                     if (properties)
                         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
+                            if (properties[keys[i]] != null && keys[i] !== "__proto__")
                                 this[keys[i]] = properties[keys[i]];
                 }
 
@@ -7491,9 +7767,13 @@ $root.BotMetadata = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BotPlanningSearchSourcesMetadata.decode = function decode(reader, length, error) {
+                BotPlanningSearchSourcesMetadata.decode = function decode(reader, length, error, long) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $Reader.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
@@ -7513,7 +7793,7 @@ $root.BotMetadata = (function() {
                                 break;
                             }
                         default:
-                            reader.skipType(tag & 7);
+                            reader.skipType(tag & 7, long);
                             break;
                         }
                     }
@@ -7544,9 +7824,13 @@ $root.BotMetadata = (function() {
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
                  */
-                BotPlanningSearchSourcesMetadata.verify = function verify(message) {
+                BotPlanningSearchSourcesMetadata.verify = function verify(message, long) {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        return "maximum nesting depth exceeded";
                     if (message.sourceTitle != null && message.hasOwnProperty("sourceTitle"))
                         if (!$util.isString(message.sourceTitle))
                             return "sourceTitle: string expected";
@@ -7574,9 +7858,13 @@ $root.BotMetadata = (function() {
                  * @param {Object.<string,*>} object Plain object
                  * @returns {BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata} BotPlanningSearchSourcesMetadata
                  */
-                BotPlanningSearchSourcesMetadata.fromObject = function fromObject(object) {
+                BotPlanningSearchSourcesMetadata.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata)
                         return object;
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var message = new $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata();
                     if (object.sourceTitle != null)
                         message.sourceTitle = String(object.sourceTitle);
@@ -7706,7 +7994,7 @@ $root.BotMetadata = (function() {
                     this.sourcesMetadata = [];
                     if (properties)
                         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
+                            if (properties[keys[i]] != null && keys[i] !== "__proto__")
                                 this[keys[i]] = properties[keys[i]];
                 }
 
@@ -7792,9 +8080,13 @@ $root.BotMetadata = (function() {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                BotPlanningStepSectionMetadata.decode = function decode(reader, length, error) {
+                BotPlanningStepSectionMetadata.decode = function decode(reader, length, error, long) {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $Reader.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata();
                     while (reader.pos < end) {
                         var tag = reader.uint32();
@@ -7812,11 +8104,11 @@ $root.BotMetadata = (function() {
                         case 3: {
                                 if (!(message.sourcesMetadata && message.sourcesMetadata.length))
                                     message.sourcesMetadata = [];
-                                message.sourcesMetadata.push($root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata.decode(reader, reader.uint32()));
+                                message.sourcesMetadata.push($root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata.decode(reader, reader.uint32(), undefined, long + 1));
                                 break;
                             }
                         default:
-                            reader.skipType(tag & 7);
+                            reader.skipType(tag & 7, long);
                             break;
                         }
                     }
@@ -7847,9 +8139,13 @@ $root.BotMetadata = (function() {
                  * @param {Object.<string,*>} message Plain object to verify
                  * @returns {string|null} `null` if valid, otherwise the reason why it is not
                  */
-                BotPlanningStepSectionMetadata.verify = function verify(message) {
+                BotPlanningStepSectionMetadata.verify = function verify(message, long) {
                     if (typeof message !== "object" || message === null)
                         return "object expected";
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        return "maximum nesting depth exceeded";
                     if (message.sectionTitle != null && message.hasOwnProperty("sectionTitle"))
                         if (!$util.isString(message.sectionTitle))
                             return "sectionTitle: string expected";
@@ -7860,7 +8156,7 @@ $root.BotMetadata = (function() {
                         if (!Array.isArray(message.sourcesMetadata))
                             return "sourcesMetadata: array expected";
                         for (var i = 0; i < message.sourcesMetadata.length; ++i) {
-                            var error = $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata.verify(message.sourcesMetadata[i]);
+                            var error = $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata.verify(message.sourcesMetadata[i], long + 1);
                             if (error)
                                 return "sourcesMetadata." + error;
                         }
@@ -7876,9 +8172,13 @@ $root.BotMetadata = (function() {
                  * @param {Object.<string,*>} object Plain object
                  * @returns {BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata} BotPlanningStepSectionMetadata
                  */
-                BotPlanningStepSectionMetadata.fromObject = function fromObject(object) {
+                BotPlanningStepSectionMetadata.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata)
                         return object;
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
                     var message = new $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata();
                     if (object.sectionTitle != null)
                         message.sectionTitle = String(object.sectionTitle);
@@ -7891,7 +8191,7 @@ $root.BotMetadata = (function() {
                         for (var i = 0; i < object.sourcesMetadata.length; ++i) {
                             if (typeof object.sourcesMetadata[i] !== "object")
                                 throw TypeError(".BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata.sourcesMetadata: object expected");
-                            message.sourcesMetadata[i] = $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata.fromObject(object.sourcesMetadata[i]);
+                            message.sourcesMetadata[i] = $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata.fromObject(object.sourcesMetadata[i], long + 1);
                         }
                     }
                     return message;
@@ -8020,7 +8320,7 @@ $root.BotMetadata = (function() {
         function BotModelMetadata(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -8095,9 +8395,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotModelMetadata.decode = function decode(reader, length, error) {
+        BotModelMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotModelMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -8113,7 +8417,7 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -8144,9 +8448,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotModelMetadata.verify = function verify(message) {
+        BotModelMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.modelType != null && message.hasOwnProperty("modelType"))
                 switch (message.modelType) {
                 default:
@@ -8176,9 +8484,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotModelMetadata} BotModelMetadata
          */
-        BotModelMetadata.fromObject = function fromObject(object) {
+        BotModelMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotModelMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotModelMetadata();
             switch (object.modelType) {
             default:
@@ -8332,7 +8644,7 @@ $root.BotMetadata = (function() {
         function BotReminderMetadata(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -8437,9 +8749,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotReminderMetadata.decode = function decode(reader, length, error) {
+        BotReminderMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotReminderMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -8447,7 +8763,7 @@ $root.BotMetadata = (function() {
                     break;
                 switch (tag >>> 3) {
                 case 1: {
-                        message.requestMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
+                        message.requestMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 2: {
@@ -8467,7 +8783,7 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -8498,11 +8814,15 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotReminderMetadata.verify = function verify(message) {
+        BotReminderMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.requestMessageKey != null && message.hasOwnProperty("requestMessageKey")) {
-                var error = $root.Protocol.MessageKey.verify(message.requestMessageKey);
+                var error = $root.Protocol.MessageKey.verify(message.requestMessageKey, long + 1);
                 if (error)
                     return "requestMessageKey." + error;
             }
@@ -8544,14 +8864,18 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotReminderMetadata} BotReminderMetadata
          */
-        BotReminderMetadata.fromObject = function fromObject(object) {
+        BotReminderMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotReminderMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotReminderMetadata();
             if (object.requestMessageKey != null) {
                 if (typeof object.requestMessageKey !== "object")
                     throw TypeError(".BotMetadata.BotReminderMetadata.requestMessageKey: object expected");
-                message.requestMessageKey = $root.Protocol.MessageKey.fromObject(object.requestMessageKey);
+                message.requestMessageKey = $root.Protocol.MessageKey.fromObject(object.requestMessageKey, long + 1);
             }
             switch (object.action) {
             default:
@@ -8747,7 +9071,7 @@ $root.BotMetadata = (function() {
             this.faceImages = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -8813,9 +9137,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotMemuMetadata.decode = function decode(reader, length, error) {
+        BotMemuMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotMemuMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -8825,11 +9153,11 @@ $root.BotMetadata = (function() {
                 case 1: {
                         if (!(message.faceImages && message.faceImages.length))
                             message.faceImages = [];
-                        message.faceImages.push($root.BotMetadata.BotMediaMetadata.decode(reader, reader.uint32()));
+                        message.faceImages.push($root.BotMetadata.BotMediaMetadata.decode(reader, reader.uint32(), undefined, long + 1));
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -8860,14 +9188,18 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotMemuMetadata.verify = function verify(message) {
+        BotMemuMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.faceImages != null && message.hasOwnProperty("faceImages")) {
                 if (!Array.isArray(message.faceImages))
                     return "faceImages: array expected";
                 for (var i = 0; i < message.faceImages.length; ++i) {
-                    var error = $root.BotMetadata.BotMediaMetadata.verify(message.faceImages[i]);
+                    var error = $root.BotMetadata.BotMediaMetadata.verify(message.faceImages[i], long + 1);
                     if (error)
                         return "faceImages." + error;
                 }
@@ -8883,9 +9215,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotMemuMetadata} BotMemuMetadata
          */
-        BotMemuMetadata.fromObject = function fromObject(object) {
+        BotMemuMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotMemuMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotMemuMetadata();
             if (object.faceImages) {
                 if (!Array.isArray(object.faceImages))
@@ -8894,7 +9230,7 @@ $root.BotMetadata = (function() {
                 for (var i = 0; i < object.faceImages.length; ++i) {
                     if (typeof object.faceImages[i] !== "object")
                         throw TypeError(".BotMetadata.BotMemuMetadata.faceImages: object expected");
-                    message.faceImages[i] = $root.BotMetadata.BotMediaMetadata.fromObject(object.faceImages[i]);
+                    message.faceImages[i] = $root.BotMetadata.BotMediaMetadata.fromObject(object.faceImages[i], long + 1);
                 }
             }
             return message;
@@ -8978,7 +9314,7 @@ $root.BotMetadata = (function() {
         function BotMediaMetadata(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -9103,9 +9439,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotMediaMetadata.decode = function decode(reader, length, error) {
+        BotMediaMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotMediaMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -9141,7 +9481,7 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -9172,9 +9512,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotMediaMetadata.verify = function verify(message) {
+        BotMediaMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.fileSha256 != null && message.hasOwnProperty("fileSha256"))
                 if (!$util.isString(message.fileSha256))
                     return "fileSha256: string expected";
@@ -9213,9 +9557,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotMediaMetadata} BotMediaMetadata
          */
-        BotMediaMetadata.fromObject = function fromObject(object) {
+        BotMediaMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotMediaMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotMediaMetadata();
             if (object.fileSha256 != null)
                 message.fileSha256 = String(object.fileSha256);
@@ -9371,7 +9719,7 @@ $root.BotMetadata = (function() {
         function BotSessionMetadata(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -9446,9 +9794,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotSessionMetadata.decode = function decode(reader, length, error) {
+        BotSessionMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotSessionMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -9464,7 +9816,7 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -9495,9 +9847,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotSessionMetadata.verify = function verify(message) {
+        BotSessionMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.sessionId != null && message.hasOwnProperty("sessionId"))
                 if (!$util.isString(message.sessionId))
                     return "sessionId: string expected";
@@ -9525,9 +9881,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotSessionMetadata} BotSessionMetadata
          */
-        BotSessionMetadata.fromObject = function fromObject(object) {
+        BotSessionMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotSessionMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotSessionMetadata();
             if (object.sessionId != null)
                 message.sessionId = String(object.sessionId);
@@ -9645,7 +10005,7 @@ $root.BotMetadata = (function() {
         function BotMetricsMetadata(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -9730,9 +10090,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotMetricsMetadata.decode = function decode(reader, length, error) {
+        BotMetricsMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotMetricsMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -9752,7 +10116,7 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -9783,9 +10147,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotMetricsMetadata.verify = function verify(message) {
+        BotMetricsMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.destinationId != null && message.hasOwnProperty("destinationId"))
                 if (!$util.isString(message.destinationId))
                     return "destinationId: string expected";
@@ -9848,9 +10216,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotMetricsMetadata} BotMetricsMetadata
          */
-        BotMetricsMetadata.fromObject = function fromObject(object) {
+        BotMetricsMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotMetricsMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotMetricsMetadata();
             if (object.destinationId != null)
                 message.destinationId = String(object.destinationId);
@@ -10094,7 +10466,7 @@ $root.BotMetadata = (function() {
             this.keywords = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -10160,9 +10532,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotRenderingMetadata.decode = function decode(reader, length, error) {
+        BotRenderingMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotRenderingMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -10172,11 +10548,11 @@ $root.BotMetadata = (function() {
                 case 1: {
                         if (!(message.keywords && message.keywords.length))
                             message.keywords = [];
-                        message.keywords.push($root.BotMetadata.BotRenderingMetadata.Keyword.decode(reader, reader.uint32()));
+                        message.keywords.push($root.BotMetadata.BotRenderingMetadata.Keyword.decode(reader, reader.uint32(), undefined, long + 1));
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -10207,14 +10583,18 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotRenderingMetadata.verify = function verify(message) {
+        BotRenderingMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.keywords != null && message.hasOwnProperty("keywords")) {
                 if (!Array.isArray(message.keywords))
                     return "keywords: array expected";
                 for (var i = 0; i < message.keywords.length; ++i) {
-                    var error = $root.BotMetadata.BotRenderingMetadata.Keyword.verify(message.keywords[i]);
+                    var error = $root.BotMetadata.BotRenderingMetadata.Keyword.verify(message.keywords[i], long + 1);
                     if (error)
                         return "keywords." + error;
                 }
@@ -10230,9 +10610,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotRenderingMetadata} BotRenderingMetadata
          */
-        BotRenderingMetadata.fromObject = function fromObject(object) {
+        BotRenderingMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotRenderingMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotRenderingMetadata();
             if (object.keywords) {
                 if (!Array.isArray(object.keywords))
@@ -10241,7 +10625,7 @@ $root.BotMetadata = (function() {
                 for (var i = 0; i < object.keywords.length; ++i) {
                     if (typeof object.keywords[i] !== "object")
                         throw TypeError(".BotMetadata.BotRenderingMetadata.keywords: object expected");
-                    message.keywords[i] = $root.BotMetadata.BotRenderingMetadata.Keyword.fromObject(object.keywords[i]);
+                    message.keywords[i] = $root.BotMetadata.BotRenderingMetadata.Keyword.fromObject(object.keywords[i], long + 1);
                 }
             }
             return message;
@@ -10318,7 +10702,7 @@ $root.BotMetadata = (function() {
                 this.associatedPrompts = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
 
@@ -10394,9 +10778,13 @@ $root.BotMetadata = (function() {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            Keyword.decode = function decode(reader, length, error) {
+            Keyword.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotRenderingMetadata.Keyword();
                 while (reader.pos < end) {
                     var tag = reader.uint32();
@@ -10414,7 +10802,7 @@ $root.BotMetadata = (function() {
                             break;
                         }
                     default:
-                        reader.skipType(tag & 7);
+                        reader.skipType(tag & 7, long);
                         break;
                     }
                 }
@@ -10445,9 +10833,13 @@ $root.BotMetadata = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            Keyword.verify = function verify(message) {
+            Keyword.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
                 if (message.value != null && message.hasOwnProperty("value"))
                     if (!$util.isString(message.value))
                         return "value: string expected";
@@ -10469,9 +10861,13 @@ $root.BotMetadata = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {BotMetadata.BotRenderingMetadata.Keyword} Keyword
              */
-            Keyword.fromObject = function fromObject(object) {
+            Keyword.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.BotMetadata.BotRenderingMetadata.Keyword)
                     return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.BotMetadata.BotRenderingMetadata.Keyword();
                 if (object.value != null)
                     message.value = String(object.value);
@@ -10565,7 +10961,7 @@ $root.BotMetadata = (function() {
         function BotPromotionMessageMetadata(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -10640,9 +11036,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotPromotionMessageMetadata.decode = function decode(reader, length, error) {
+        BotPromotionMessageMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotPromotionMessageMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -10658,7 +11058,7 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -10689,9 +11089,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotPromotionMessageMetadata.verify = function verify(message) {
+        BotPromotionMessageMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.promotionType != null && message.hasOwnProperty("promotionType"))
                 switch (message.promotionType) {
                 default:
@@ -10715,9 +11119,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotPromotionMessageMetadata} BotPromotionMessageMetadata
          */
-        BotPromotionMessageMetadata.fromObject = function fromObject(object) {
+        BotPromotionMessageMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotPromotionMessageMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotPromotionMessageMetadata();
             switch (object.promotionType) {
             default:
@@ -10836,7 +11244,7 @@ $root.BotMetadata = (function() {
         function BotSignatureVerificationUseCaseProof(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -10931,9 +11339,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotSignatureVerificationUseCaseProof.decode = function decode(reader, length, error) {
+        BotSignatureVerificationUseCaseProof.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotSignatureVerificationUseCaseProof();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -10957,7 +11369,7 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -10988,9 +11400,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotSignatureVerificationUseCaseProof.verify = function verify(message) {
+        BotSignatureVerificationUseCaseProof.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.version != null && message.hasOwnProperty("version"))
                 if (!$util.isInteger(message.version))
                     return "version: integer expected";
@@ -11018,9 +11434,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotSignatureVerificationUseCaseProof} BotSignatureVerificationUseCaseProof
          */
-        BotSignatureVerificationUseCaseProof.fromObject = function fromObject(object) {
+        BotSignatureVerificationUseCaseProof.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotSignatureVerificationUseCaseProof)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotSignatureVerificationUseCaseProof();
             if (object.version != null)
                 message.version = object.version | 0;
@@ -11153,7 +11573,7 @@ $root.BotMetadata = (function() {
             this.proofs = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -11219,9 +11639,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotSignatureVerificationMetadata.decode = function decode(reader, length, error) {
+        BotSignatureVerificationMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotSignatureVerificationMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -11231,11 +11655,11 @@ $root.BotMetadata = (function() {
                 case 1: {
                         if (!(message.proofs && message.proofs.length))
                             message.proofs = [];
-                        message.proofs.push($root.BotMetadata.BotSignatureVerificationUseCaseProof.decode(reader, reader.uint32()));
+                        message.proofs.push($root.BotMetadata.BotSignatureVerificationUseCaseProof.decode(reader, reader.uint32(), undefined, long + 1));
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -11266,14 +11690,18 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotSignatureVerificationMetadata.verify = function verify(message) {
+        BotSignatureVerificationMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.proofs != null && message.hasOwnProperty("proofs")) {
                 if (!Array.isArray(message.proofs))
                     return "proofs: array expected";
                 for (var i = 0; i < message.proofs.length; ++i) {
-                    var error = $root.BotMetadata.BotSignatureVerificationUseCaseProof.verify(message.proofs[i]);
+                    var error = $root.BotMetadata.BotSignatureVerificationUseCaseProof.verify(message.proofs[i], long + 1);
                     if (error)
                         return "proofs." + error;
                 }
@@ -11289,9 +11717,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotSignatureVerificationMetadata} BotSignatureVerificationMetadata
          */
-        BotSignatureVerificationMetadata.fromObject = function fromObject(object) {
+        BotSignatureVerificationMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotSignatureVerificationMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotSignatureVerificationMetadata();
             if (object.proofs) {
                 if (!Array.isArray(object.proofs))
@@ -11300,7 +11732,7 @@ $root.BotMetadata = (function() {
                 for (var i = 0; i < object.proofs.length; ++i) {
                     if (typeof object.proofs[i] !== "object")
                         throw TypeError(".BotMetadata.BotSignatureVerificationMetadata.proofs: object expected");
-                    message.proofs[i] = $root.BotMetadata.BotSignatureVerificationUseCaseProof.fromObject(object.proofs[i]);
+                    message.proofs[i] = $root.BotMetadata.BotSignatureVerificationUseCaseProof.fromObject(object.proofs[i], long + 1);
                 }
             }
             return message;
@@ -11379,7 +11811,7 @@ $root.BotMetadata = (function() {
         function BotMemoryFact(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -11454,9 +11886,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotMemoryFact.decode = function decode(reader, length, error) {
+        BotMemoryFact.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotMemoryFact();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -11472,7 +11908,7 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -11503,9 +11939,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotMemoryFact.verify = function verify(message) {
+        BotMemoryFact.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.fact != null && message.hasOwnProperty("fact"))
                 if (!$util.isString(message.fact))
                     return "fact: string expected";
@@ -11523,9 +11963,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotMemoryFact} BotMemoryFact
          */
-        BotMemoryFact.fromObject = function fromObject(object) {
+        BotMemoryFact.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotMemoryFact)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotMemoryFact();
             if (object.fact != null)
                 message.fact = String(object.fact);
@@ -11611,7 +12055,7 @@ $root.BotMetadata = (function() {
             this.removedFacts = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -11698,9 +12142,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotMemoryMetadata.decode = function decode(reader, length, error) {
+        BotMemoryMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotMemoryMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -11710,13 +12158,13 @@ $root.BotMetadata = (function() {
                 case 1: {
                         if (!(message.addedFacts && message.addedFacts.length))
                             message.addedFacts = [];
-                        message.addedFacts.push($root.BotMetadata.BotMemoryFact.decode(reader, reader.uint32()));
+                        message.addedFacts.push($root.BotMetadata.BotMemoryFact.decode(reader, reader.uint32(), undefined, long + 1));
                         break;
                     }
                 case 2: {
                         if (!(message.removedFacts && message.removedFacts.length))
                             message.removedFacts = [];
-                        message.removedFacts.push($root.BotMetadata.BotMemoryFact.decode(reader, reader.uint32()));
+                        message.removedFacts.push($root.BotMetadata.BotMemoryFact.decode(reader, reader.uint32(), undefined, long + 1));
                         break;
                     }
                 case 3: {
@@ -11724,7 +12172,7 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -11755,14 +12203,18 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotMemoryMetadata.verify = function verify(message) {
+        BotMemoryMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.addedFacts != null && message.hasOwnProperty("addedFacts")) {
                 if (!Array.isArray(message.addedFacts))
                     return "addedFacts: array expected";
                 for (var i = 0; i < message.addedFacts.length; ++i) {
-                    var error = $root.BotMetadata.BotMemoryFact.verify(message.addedFacts[i]);
+                    var error = $root.BotMetadata.BotMemoryFact.verify(message.addedFacts[i], long + 1);
                     if (error)
                         return "addedFacts." + error;
                 }
@@ -11771,7 +12223,7 @@ $root.BotMetadata = (function() {
                 if (!Array.isArray(message.removedFacts))
                     return "removedFacts: array expected";
                 for (var i = 0; i < message.removedFacts.length; ++i) {
-                    var error = $root.BotMetadata.BotMemoryFact.verify(message.removedFacts[i]);
+                    var error = $root.BotMetadata.BotMemoryFact.verify(message.removedFacts[i], long + 1);
                     if (error)
                         return "removedFacts." + error;
                 }
@@ -11790,9 +12242,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotMemoryMetadata} BotMemoryMetadata
          */
-        BotMemoryMetadata.fromObject = function fromObject(object) {
+        BotMemoryMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotMemoryMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotMemoryMetadata();
             if (object.addedFacts) {
                 if (!Array.isArray(object.addedFacts))
@@ -11801,7 +12257,7 @@ $root.BotMetadata = (function() {
                 for (var i = 0; i < object.addedFacts.length; ++i) {
                     if (typeof object.addedFacts[i] !== "object")
                         throw TypeError(".BotMetadata.BotMemoryMetadata.addedFacts: object expected");
-                    message.addedFacts[i] = $root.BotMetadata.BotMemoryFact.fromObject(object.addedFacts[i]);
+                    message.addedFacts[i] = $root.BotMetadata.BotMemoryFact.fromObject(object.addedFacts[i], long + 1);
                 }
             }
             if (object.removedFacts) {
@@ -11811,7 +12267,7 @@ $root.BotMetadata = (function() {
                 for (var i = 0; i < object.removedFacts.length; ++i) {
                     if (typeof object.removedFacts[i] !== "object")
                         throw TypeError(".BotMetadata.BotMemoryMetadata.removedFacts: object expected");
-                    message.removedFacts[i] = $root.BotMetadata.BotMemoryFact.fromObject(object.removedFacts[i]);
+                    message.removedFacts[i] = $root.BotMetadata.BotMemoryFact.fromObject(object.removedFacts[i], long + 1);
                 }
             }
             if (object.disclaimer != null)
@@ -11902,7 +12358,7 @@ $root.BotMetadata = (function() {
         function BotLinkedAccount(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -11967,9 +12423,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotLinkedAccount.decode = function decode(reader, length, error) {
+        BotLinkedAccount.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotLinkedAccount();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -11981,7 +12441,7 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -12012,9 +12472,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotLinkedAccount.verify = function verify(message) {
+        BotLinkedAccount.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.type != null && message.hasOwnProperty("type"))
                 switch (message.type) {
                 default:
@@ -12033,9 +12497,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotLinkedAccount} BotLinkedAccount
          */
-        BotLinkedAccount.fromObject = function fromObject(object) {
+        BotLinkedAccount.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotLinkedAccount)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotLinkedAccount();
             switch (object.type) {
             default:
@@ -12136,7 +12604,7 @@ $root.BotMetadata = (function() {
             this.accounts = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -12222,9 +12690,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotLinkedAccountsMetadata.decode = function decode(reader, length, error) {
+        BotLinkedAccountsMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotLinkedAccountsMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -12234,7 +12706,7 @@ $root.BotMetadata = (function() {
                 case 1: {
                         if (!(message.accounts && message.accounts.length))
                             message.accounts = [];
-                        message.accounts.push($root.BotMetadata.BotLinkedAccount.decode(reader, reader.uint32()));
+                        message.accounts.push($root.BotMetadata.BotLinkedAccount.decode(reader, reader.uint32(), undefined, long + 1));
                         break;
                     }
                 case 2: {
@@ -12246,7 +12718,7 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -12277,14 +12749,18 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotLinkedAccountsMetadata.verify = function verify(message) {
+        BotLinkedAccountsMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.accounts != null && message.hasOwnProperty("accounts")) {
                 if (!Array.isArray(message.accounts))
                     return "accounts: array expected";
                 for (var i = 0; i < message.accounts.length; ++i) {
-                    var error = $root.BotMetadata.BotLinkedAccount.verify(message.accounts[i]);
+                    var error = $root.BotMetadata.BotLinkedAccount.verify(message.accounts[i], long + 1);
                     if (error)
                         return "accounts." + error;
                 }
@@ -12306,9 +12782,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotLinkedAccountsMetadata} BotLinkedAccountsMetadata
          */
-        BotLinkedAccountsMetadata.fromObject = function fromObject(object) {
+        BotLinkedAccountsMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotLinkedAccountsMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotLinkedAccountsMetadata();
             if (object.accounts) {
                 if (!Array.isArray(object.accounts))
@@ -12317,7 +12797,7 @@ $root.BotMetadata = (function() {
                 for (var i = 0; i < object.accounts.length; ++i) {
                     if (typeof object.accounts[i] !== "object")
                         throw TypeError(".BotMetadata.BotLinkedAccountsMetadata.accounts: object expected");
-                    message.accounts[i] = $root.BotMetadata.BotLinkedAccount.fromObject(object.accounts[i]);
+                    message.accounts[i] = $root.BotMetadata.BotLinkedAccount.fromObject(object.accounts[i], long + 1);
                 }
             }
             if (object.acAuthTokens != null)
@@ -12417,7 +12897,7 @@ $root.BotMetadata = (function() {
         function BotPromptSuggestion(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -12492,9 +12972,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotPromptSuggestion.decode = function decode(reader, length, error) {
+        BotPromptSuggestion.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotPromptSuggestion();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -12510,7 +12994,7 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -12541,9 +13025,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotPromptSuggestion.verify = function verify(message) {
+        BotPromptSuggestion.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.prompt != null && message.hasOwnProperty("prompt"))
                 if (!$util.isString(message.prompt))
                     return "prompt: string expected";
@@ -12561,9 +13049,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotPromptSuggestion} BotPromptSuggestion
          */
-        BotPromptSuggestion.fromObject = function fromObject(object) {
+        BotPromptSuggestion.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotPromptSuggestion)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotPromptSuggestion();
             if (object.prompt != null)
                 message.prompt = String(object.prompt);
@@ -12646,7 +13138,7 @@ $root.BotMetadata = (function() {
             this.suggestions = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -12712,9 +13204,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotPromptSuggestions.decode = function decode(reader, length, error) {
+        BotPromptSuggestions.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotPromptSuggestions();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -12724,11 +13220,11 @@ $root.BotMetadata = (function() {
                 case 1: {
                         if (!(message.suggestions && message.suggestions.length))
                             message.suggestions = [];
-                        message.suggestions.push($root.BotMetadata.BotPromptSuggestion.decode(reader, reader.uint32()));
+                        message.suggestions.push($root.BotMetadata.BotPromptSuggestion.decode(reader, reader.uint32(), undefined, long + 1));
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -12759,14 +13255,18 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotPromptSuggestions.verify = function verify(message) {
+        BotPromptSuggestions.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.suggestions != null && message.hasOwnProperty("suggestions")) {
                 if (!Array.isArray(message.suggestions))
                     return "suggestions: array expected";
                 for (var i = 0; i < message.suggestions.length; ++i) {
-                    var error = $root.BotMetadata.BotPromptSuggestion.verify(message.suggestions[i]);
+                    var error = $root.BotMetadata.BotPromptSuggestion.verify(message.suggestions[i], long + 1);
                     if (error)
                         return "suggestions." + error;
                 }
@@ -12782,9 +13282,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotPromptSuggestions} BotPromptSuggestions
          */
-        BotPromptSuggestions.fromObject = function fromObject(object) {
+        BotPromptSuggestions.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotPromptSuggestions)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotPromptSuggestions();
             if (object.suggestions) {
                 if (!Array.isArray(object.suggestions))
@@ -12793,7 +13297,7 @@ $root.BotMetadata = (function() {
                 for (var i = 0; i < object.suggestions.length; ++i) {
                     if (typeof object.suggestions[i] !== "object")
                         throw TypeError(".BotMetadata.BotPromptSuggestions.suggestions: object expected");
-                    message.suggestions[i] = $root.BotMetadata.BotPromptSuggestion.fromObject(object.suggestions[i]);
+                    message.suggestions[i] = $root.BotMetadata.BotPromptSuggestion.fromObject(object.suggestions[i], long + 1);
                 }
             }
             return message;
@@ -12875,7 +13379,7 @@ $root.BotMetadata = (function() {
             this.suggestedPrompts = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -12971,9 +13475,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotSuggestedPromptMetadata.decode = function decode(reader, length, error) {
+        BotSuggestedPromptMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotSuggestedPromptMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -12991,7 +13499,7 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 case 3: {
-                        message.promptSuggestions = $root.BotMetadata.BotPromptSuggestions.decode(reader, reader.uint32());
+                        message.promptSuggestions = $root.BotMetadata.BotPromptSuggestions.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 4: {
@@ -12999,7 +13507,7 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -13030,9 +13538,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotSuggestedPromptMetadata.verify = function verify(message) {
+        BotSuggestedPromptMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.suggestedPrompts != null && message.hasOwnProperty("suggestedPrompts")) {
                 if (!Array.isArray(message.suggestedPrompts))
                     return "suggestedPrompts: array expected";
@@ -13044,7 +13556,7 @@ $root.BotMetadata = (function() {
                 if (!$util.isInteger(message.selectedPromptIndex))
                     return "selectedPromptIndex: integer expected";
             if (message.promptSuggestions != null && message.hasOwnProperty("promptSuggestions")) {
-                var error = $root.BotMetadata.BotPromptSuggestions.verify(message.promptSuggestions);
+                var error = $root.BotMetadata.BotPromptSuggestions.verify(message.promptSuggestions, long + 1);
                 if (error)
                     return "promptSuggestions." + error;
             }
@@ -13062,9 +13574,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotSuggestedPromptMetadata} BotSuggestedPromptMetadata
          */
-        BotSuggestedPromptMetadata.fromObject = function fromObject(object) {
+        BotSuggestedPromptMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotSuggestedPromptMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotSuggestedPromptMetadata();
             if (object.suggestedPrompts) {
                 if (!Array.isArray(object.suggestedPrompts))
@@ -13078,7 +13594,7 @@ $root.BotMetadata = (function() {
             if (object.promptSuggestions != null) {
                 if (typeof object.promptSuggestions !== "object")
                     throw TypeError(".BotMetadata.BotSuggestedPromptMetadata.promptSuggestions: object expected");
-                message.promptSuggestions = $root.BotMetadata.BotPromptSuggestions.fromObject(object.promptSuggestions);
+                message.promptSuggestions = $root.BotMetadata.BotPromptSuggestions.fromObject(object.promptSuggestions, long + 1);
             }
             if (object.selectedPromptId != null)
                 message.selectedPromptId = String(object.selectedPromptId);
@@ -13179,7 +13695,7 @@ $root.BotMetadata = (function() {
         function BotPluginMetadata(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -13354,9 +13870,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotPluginMetadata.decode = function decode(reader, length, error) {
+        BotPluginMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotPluginMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -13396,7 +13916,7 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 case 10: {
-                        message.parentPluginMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32());
+                        message.parentPluginMessageKey = $root.Protocol.MessageKey.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 11: {
@@ -13412,7 +13932,7 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -13443,9 +13963,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotPluginMetadata.verify = function verify(message) {
+        BotPluginMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.provider != null && message.hasOwnProperty("provider"))
                 switch (message.provider) {
                 default:
@@ -13484,7 +14008,7 @@ $root.BotMetadata = (function() {
                 if (!$util.isString(message.searchQuery))
                     return "searchQuery: string expected";
             if (message.parentPluginMessageKey != null && message.hasOwnProperty("parentPluginMessageKey")) {
-                var error = $root.Protocol.MessageKey.verify(message.parentPluginMessageKey);
+                var error = $root.Protocol.MessageKey.verify(message.parentPluginMessageKey, long + 1);
                 if (error)
                     return "parentPluginMessageKey." + error;
             }
@@ -13520,9 +14044,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotPluginMetadata} BotPluginMetadata
          */
-        BotPluginMetadata.fromObject = function fromObject(object) {
+        BotPluginMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotPluginMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotPluginMetadata();
             switch (object.provider) {
             default:
@@ -13583,7 +14111,7 @@ $root.BotMetadata = (function() {
             if (object.parentPluginMessageKey != null) {
                 if (typeof object.parentPluginMessageKey !== "object")
                     throw TypeError(".BotMetadata.BotPluginMetadata.parentPluginMessageKey: object expected");
-                message.parentPluginMessageKey = $root.Protocol.MessageKey.fromObject(object.parentPluginMessageKey);
+                message.parentPluginMessageKey = $root.Protocol.MessageKey.fromObject(object.parentPluginMessageKey, long + 1);
             }
             switch (object.deprecatedField) {
             default:
@@ -13771,7 +14299,7 @@ $root.BotMetadata = (function() {
         function BotAvatarMetadata(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -13876,9 +14404,13 @@ $root.BotMetadata = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        BotAvatarMetadata.decode = function decode(reader, length, error) {
+        BotAvatarMetadata.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.BotMetadata.BotAvatarMetadata();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -13906,7 +14438,7 @@ $root.BotMetadata = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -13937,9 +14469,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        BotAvatarMetadata.verify = function verify(message) {
+        BotAvatarMetadata.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.sentiment != null && message.hasOwnProperty("sentiment"))
                 if (!$util.isInteger(message.sentiment))
                     return "sentiment: integer expected";
@@ -13966,9 +14502,13 @@ $root.BotMetadata = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {BotMetadata.BotAvatarMetadata} BotAvatarMetadata
          */
-        BotAvatarMetadata.fromObject = function fromObject(object) {
+        BotAvatarMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotAvatarMetadata)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotAvatarMetadata();
             if (object.sentiment != null)
                 message.sentiment = object.sentiment >>> 0;
@@ -14196,7 +14736,7 @@ $root.Protocol = (function() {
         function LimitSharing(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -14291,9 +14831,13 @@ $root.Protocol = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        LimitSharing.decode = function decode(reader, length, error) {
+        LimitSharing.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.LimitSharing();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -14317,7 +14861,7 @@ $root.Protocol = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -14348,9 +14892,13 @@ $root.Protocol = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        LimitSharing.verify = function verify(message) {
+        LimitSharing.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
                 if (typeof message.sharingLimited !== "boolean")
                     return "sharingLimited: boolean expected";
@@ -14381,9 +14929,13 @@ $root.Protocol = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {Protocol.LimitSharing} LimitSharing
          */
-        LimitSharing.fromObject = function fromObject(object) {
+        LimitSharing.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Protocol.LimitSharing)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.Protocol.LimitSharing();
             if (object.sharingLimited != null)
                 message.sharingLimited = Boolean(object.sharingLimited);
@@ -14532,7 +15084,7 @@ $root.Protocol = (function() {
         function MessageKey(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
                         this[keys[i]] = properties[keys[i]];
         }
 
@@ -14627,9 +15179,13 @@ $root.Protocol = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        MessageKey.decode = function decode(reader, length, error) {
+        MessageKey.decode = function decode(reader, length, error, long) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
+            if (long === undefined)
+                long = 0;
+            if (long > $Reader.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.MessageKey();
             while (reader.pos < end) {
                 var tag = reader.uint32();
@@ -14653,7 +15209,7 @@ $root.Protocol = (function() {
                         break;
                     }
                 default:
-                    reader.skipType(tag & 7);
+                    reader.skipType(tag & 7, long);
                     break;
                 }
             }
@@ -14684,9 +15240,13 @@ $root.Protocol = (function() {
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        MessageKey.verify = function verify(message) {
+        MessageKey.verify = function verify(message, long) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                return "maximum nesting depth exceeded";
             if (message.remoteJid != null && message.hasOwnProperty("remoteJid"))
                 if (!$util.isString(message.remoteJid))
                     return "remoteJid: string expected";
@@ -14710,9 +15270,13 @@ $root.Protocol = (function() {
          * @param {Object.<string,*>} object Plain object
          * @returns {Protocol.MessageKey} MessageKey
          */
-        MessageKey.fromObject = function fromObject(object) {
+        MessageKey.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Protocol.MessageKey)
                 return object;
+            if (long === undefined)
+                long = 0;
+            if (long > $util.recursionLimit)
+                throw Error("maximum nesting depth exceeded");
             var message = new $root.Protocol.MessageKey();
             if (object.remoteJid != null)
                 message.remoteJid = String(object.remoteJid);
