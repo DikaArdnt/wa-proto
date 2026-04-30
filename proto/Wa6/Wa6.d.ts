@@ -110,6 +110,9 @@ export namespace Wa6 {
 
         /** ClientPayload pairedPeripherals */
         pairedPeripherals?: (string[]|null);
+
+        /** ClientPayload testIsolationId */
+        testIsolationId?: (Uint8Array|null);
     }
 
     /** Represents a ClientPayload. */
@@ -225,6 +228,9 @@ export namespace Wa6 {
 
         /** ClientPayload pairedPeripherals. */
         public pairedPeripherals: string[];
+
+        /** ClientPayload testIsolationId. */
+        public testIsolationId: Uint8Array;
 
         /**
          * Creates a new ClientPayload instance using the specified properties.
@@ -780,6 +786,9 @@ export namespace Wa6 {
 
             /** UserAgent deviceModelType */
             deviceModelType?: (string|null);
+
+            /** UserAgent distributionChannel */
+            distributionChannel?: (Wa6.ClientPayload.UserAgent.DistributionChannel|null);
         }
 
         /** Represents a UserAgent. */
@@ -838,6 +847,9 @@ export namespace Wa6 {
 
             /** UserAgent deviceModelType. */
             public deviceModelType: string;
+
+            /** UserAgent distributionChannel. */
+            public distributionChannel: Wa6.ClientPayload.UserAgent.DistributionChannel;
 
             /**
              * Creates a new UserAgent instance using the specified properties.
@@ -1047,6 +1059,14 @@ export namespace Wa6 {
                 DESKTOP = 2,
                 WEARABLE = 3,
                 VR = 4
+            }
+
+            /** DistributionChannel enum. */
+            enum DistributionChannel {
+                APPSTORE = 0,
+                WEBSITE = 1,
+                TESTFLIGHT = 2,
+                INTERNAL = 3
             }
 
             /** Platform enum. */

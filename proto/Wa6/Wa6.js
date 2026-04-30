@@ -59,6 +59,7 @@ $root.Wa6 = (function() {
          * @property {number|null} [preacksCount] ClientPayload preacksCount
          * @property {number|null} [processingQueueSize] ClientPayload processingQueueSize
          * @property {Array.<string>|null} [pairedPeripherals] ClientPayload pairedPeripherals
+         * @property {Uint8Array|null} [testIsolationId] ClientPayload testIsolationId
          */
 
         /**
@@ -359,6 +360,14 @@ $root.Wa6 = (function() {
         ClientPayload.prototype.pairedPeripherals = $util.emptyArray;
 
         /**
+         * ClientPayload testIsolationId.
+         * @member {Uint8Array} testIsolationId
+         * @memberof Wa6.ClientPayload
+         * @instance
+         */
+        ClientPayload.prototype.testIsolationId = $util.newBuffer([]);
+
+        /**
          * Creates a new ClientPayload instance using the specified properties.
          * @function create
          * @memberof Wa6.ClientPayload
@@ -454,6 +463,8 @@ $root.Wa6 = (function() {
             if (message.pairedPeripherals != null && message.pairedPeripherals.length)
                 for (var i = 0; i < message.pairedPeripherals.length; ++i)
                     writer.uint32(/* id 47, wireType 2 =*/378).string(message.pairedPeripherals[i]);
+            if (message.testIsolationId != null && Object.hasOwnProperty.call(message, "testIsolationId"))
+                writer.uint32(/* id 48, wireType 2 =*/386).bytes(message.testIsolationId);
             return writer;
         };
 
@@ -641,6 +652,10 @@ $root.Wa6 = (function() {
                         if (!(message.pairedPeripherals && message.pairedPeripherals.length))
                             message.pairedPeripherals = [];
                         message.pairedPeripherals.push(reader.string());
+                        break;
+                    }
+                case 48: {
+                        message.testIsolationId = reader.bytes();
                         break;
                     }
                 default:
@@ -857,6 +872,9 @@ $root.Wa6 = (function() {
                     if (!$util.isString(message.pairedPeripherals[i]))
                         return "pairedPeripherals: string[] expected";
             }
+            if (message.testIsolationId != null && message.hasOwnProperty("testIsolationId"))
+                if (!(message.testIsolationId && typeof message.testIsolationId.length === "number" || $util.isString(message.testIsolationId)))
+                    return "testIsolationId: buffer expected";
             return null;
         };
 
@@ -1169,6 +1187,11 @@ $root.Wa6 = (function() {
                 for (var i = 0; i < object.pairedPeripherals.length; ++i)
                     message.pairedPeripherals[i] = String(object.pairedPeripherals[i]);
             }
+            if (object.testIsolationId != null)
+                if (typeof object.testIsolationId === "string")
+                    $util.base64.decode(object.testIsolationId, message.testIsolationId = $util.newBuffer($util.base64.length(object.testIsolationId)), 0);
+                else if (object.testIsolationId.length >= 0)
+                    message.testIsolationId = object.testIsolationId;
             return message;
         };
 
@@ -1255,6 +1278,13 @@ $root.Wa6 = (function() {
                 object.paaLink = false;
                 object.preacksCount = 0;
                 object.processingQueueSize = 0;
+                if (options.bytes === String)
+                    object.testIsolationId = "";
+                else {
+                    object.testIsolationId = [];
+                    if (options.bytes !== Array)
+                        object.testIsolationId = $util.newBuffer(object.testIsolationId);
+                }
             }
             if (message.username != null && message.hasOwnProperty("username"))
                 if (typeof message.username === "number")
@@ -1338,6 +1368,8 @@ $root.Wa6 = (function() {
                 for (var j = 0; j < message.pairedPeripherals.length; ++j)
                     object.pairedPeripherals[j] = message.pairedPeripherals[j];
             }
+            if (message.testIsolationId != null && message.hasOwnProperty("testIsolationId"))
+                object.testIsolationId = options.bytes === String ? $util.base64.encode(message.testIsolationId, 0, message.testIsolationId.length) : options.bytes === Array ? Array.prototype.slice.call(message.testIsolationId) : message.testIsolationId;
             return object;
         };
 
@@ -2571,6 +2603,7 @@ $root.Wa6 = (function() {
              * @property {string|null} [deviceExpId] UserAgent deviceExpId
              * @property {Wa6.ClientPayload.UserAgent.DeviceType|null} [deviceType] UserAgent deviceType
              * @property {string|null} [deviceModelType] UserAgent deviceModelType
+             * @property {Wa6.ClientPayload.UserAgent.DistributionChannel|null} [distributionChannel] UserAgent distributionChannel
              */
 
             /**
@@ -2717,6 +2750,14 @@ $root.Wa6 = (function() {
             UserAgent.prototype.deviceModelType = "";
 
             /**
+             * UserAgent distributionChannel.
+             * @member {Wa6.ClientPayload.UserAgent.DistributionChannel} distributionChannel
+             * @memberof Wa6.ClientPayload.UserAgent
+             * @instance
+             */
+            UserAgent.prototype.distributionChannel = 0;
+
+            /**
              * Creates a new UserAgent instance using the specified properties.
              * @function create
              * @memberof Wa6.ClientPayload.UserAgent
@@ -2772,6 +2813,8 @@ $root.Wa6 = (function() {
                     writer.uint32(/* id 15, wireType 0 =*/120).int32(message.deviceType);
                 if (message.deviceModelType != null && Object.hasOwnProperty.call(message, "deviceModelType"))
                     writer.uint32(/* id 16, wireType 2 =*/130).string(message.deviceModelType);
+                if (message.distributionChannel != null && Object.hasOwnProperty.call(message, "distributionChannel"))
+                    writer.uint32(/* id 17, wireType 0 =*/136).int32(message.distributionChannel);
                 return writer;
             };
 
@@ -2874,6 +2917,10 @@ $root.Wa6 = (function() {
                         }
                     case 16: {
                             message.deviceModelType = reader.string();
+                            break;
+                        }
+                    case 17: {
+                            message.distributionChannel = reader.int32();
                             break;
                         }
                     default:
@@ -3021,6 +3068,16 @@ $root.Wa6 = (function() {
                 if (message.deviceModelType != null && message.hasOwnProperty("deviceModelType"))
                     if (!$util.isString(message.deviceModelType))
                         return "deviceModelType: string expected";
+                if (message.distributionChannel != null && message.hasOwnProperty("distributionChannel"))
+                    switch (message.distributionChannel) {
+                    default:
+                        return "distributionChannel: enum value expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                        break;
+                    }
                 return null;
             };
 
@@ -3281,6 +3338,30 @@ $root.Wa6 = (function() {
                 }
                 if (object.deviceModelType != null)
                     message.deviceModelType = String(object.deviceModelType);
+                switch (object.distributionChannel) {
+                default:
+                    if (typeof object.distributionChannel === "number") {
+                        message.distributionChannel = object.distributionChannel;
+                        break;
+                    }
+                    break;
+                case "APPSTORE":
+                case 0:
+                    message.distributionChannel = 0;
+                    break;
+                case "WEBSITE":
+                case 1:
+                    message.distributionChannel = 1;
+                    break;
+                case "TESTFLIGHT":
+                case 2:
+                    message.distributionChannel = 2;
+                    break;
+                case "INTERNAL":
+                case 3:
+                    message.distributionChannel = 3;
+                    break;
+                }
                 return message;
             };
 
@@ -3314,6 +3395,7 @@ $root.Wa6 = (function() {
                     object.deviceExpId = "";
                     object.deviceType = options.enums === String ? "PHONE" : 0;
                     object.deviceModelType = "";
+                    object.distributionChannel = options.enums === String ? "APPSTORE" : 0;
                 }
                 if (message.platform != null && message.hasOwnProperty("platform"))
                     object.platform = options.enums === String ? $root.Wa6.ClientPayload.UserAgent.Platform[message.platform] === undefined ? message.platform : $root.Wa6.ClientPayload.UserAgent.Platform[message.platform] : message.platform;
@@ -3347,6 +3429,8 @@ $root.Wa6 = (function() {
                     object.deviceType = options.enums === String ? $root.Wa6.ClientPayload.UserAgent.DeviceType[message.deviceType] === undefined ? message.deviceType : $root.Wa6.ClientPayload.UserAgent.DeviceType[message.deviceType] : message.deviceType;
                 if (message.deviceModelType != null && message.hasOwnProperty("deviceModelType"))
                     object.deviceModelType = message.deviceModelType;
+                if (message.distributionChannel != null && message.hasOwnProperty("distributionChannel"))
+                    object.distributionChannel = options.enums === String ? $root.Wa6.ClientPayload.UserAgent.DistributionChannel[message.distributionChannel] === undefined ? message.distributionChannel : $root.Wa6.ClientPayload.UserAgent.DistributionChannel[message.distributionChannel] : message.distributionChannel;
                 return object;
             };
 
@@ -3703,6 +3787,24 @@ $root.Wa6 = (function() {
                 values[valuesById[2] = "DESKTOP"] = 2;
                 values[valuesById[3] = "WEARABLE"] = 3;
                 values[valuesById[4] = "VR"] = 4;
+                return values;
+            })();
+
+            /**
+             * DistributionChannel enum.
+             * @name Wa6.ClientPayload.UserAgent.DistributionChannel
+             * @enum {number}
+             * @property {number} APPSTORE=0 APPSTORE value
+             * @property {number} WEBSITE=1 WEBSITE value
+             * @property {number} TESTFLIGHT=2 TESTFLIGHT value
+             * @property {number} INTERNAL=3 INTERNAL value
+             */
+            UserAgent.DistributionChannel = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "APPSTORE"] = 0;
+                values[valuesById[1] = "WEBSITE"] = 1;
+                values[valuesById[2] = "TESTFLIGHT"] = 2;
+                values[valuesById[3] = "INTERNAL"] = 3;
                 return values;
             })();
 

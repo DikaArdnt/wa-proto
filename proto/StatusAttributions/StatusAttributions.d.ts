@@ -383,7 +383,8 @@ export namespace StatusAttributions {
                 APPLE_MUSIC = 8,
                 SHARECHAT = 9,
                 GOOGLE_PHOTOS = 10,
-                SOUNDCLOUD = 11
+                SOUNDCLOUD = 11,
+                SHAZAM = 12
             }
         }
 
@@ -961,7 +962,8 @@ export namespace StatusAttributions {
             AI_CREATED = 7,
             LAYOUTS = 8,
             NEWSLETTER_STATUS = 9,
-            STATUS_CLOSE_SHARING = 10
+            STATUS_CLOSE_SHARING = 10,
+            PAID_PARTNERSHIP = 11
         }
     }
 }

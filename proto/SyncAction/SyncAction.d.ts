@@ -7463,6 +7463,9 @@ export namespace SyncAction {
 
             /** QuickReplyAction deleted */
             deleted?: (boolean|null);
+
+            /** QuickReplyAction associatedLabelIds */
+            associatedLabelIds?: (string[]|null);
         }
 
         /** Represents a QuickReplyAction. */
@@ -7488,6 +7491,9 @@ export namespace SyncAction {
 
             /** QuickReplyAction deleted. */
             public deleted: boolean;
+
+            /** QuickReplyAction associatedLabelIds. */
+            public associatedLabelIds: string[];
 
             /**
              * Creates a new QuickReplyAction instance using the specified properties.

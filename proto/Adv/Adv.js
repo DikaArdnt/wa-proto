@@ -201,6 +201,7 @@ $root.Adv = (function() {
                     return "accountType: enum value expected";
                 case 0:
                 case 1:
+                case 2:
                     break;
                 }
             return null;
@@ -246,6 +247,10 @@ $root.Adv = (function() {
             case "HOSTED":
             case 1:
                 message.accountType = 1;
+                break;
+            case "NON_E2EE":
+            case 2:
+                message.accountType = 2;
                 break;
             }
             return message;
@@ -858,6 +863,7 @@ $root.Adv = (function() {
                     return "accountType: enum value expected";
                 case 0:
                 case 1:
+                case 2:
                     break;
                 }
             if (message.deviceType != null && message.hasOwnProperty("deviceType"))
@@ -866,6 +872,7 @@ $root.Adv = (function() {
                     return "deviceType: enum value expected";
                 case 0:
                 case 1:
+                case 2:
                     break;
                 }
             return null;
@@ -915,6 +922,10 @@ $root.Adv = (function() {
             case 1:
                 message.accountType = 1;
                 break;
+            case "NON_E2EE":
+            case 2:
+                message.accountType = 2;
+                break;
             }
             switch (object.deviceType) {
             default:
@@ -930,6 +941,10 @@ $root.Adv = (function() {
             case "HOSTED":
             case 1:
                 message.deviceType = 1;
+                break;
+            case "NON_E2EE":
+            case 2:
+                message.deviceType = 2;
                 break;
             }
             return message;
@@ -1530,6 +1545,7 @@ $root.Adv = (function() {
                     return "accountType: enum value expected";
                 case 0:
                 case 1:
+                case 2:
                     break;
                 }
             return null;
@@ -1585,6 +1601,10 @@ $root.Adv = (function() {
             case "HOSTED":
             case 1:
                 message.accountType = 1;
+                break;
+            case "NON_E2EE":
+            case 2:
+                message.accountType = 2;
                 break;
             }
             return message;
@@ -1669,11 +1689,13 @@ $root.Adv = (function() {
      * @enum {number}
      * @property {number} E2EE=0 E2EE value
      * @property {number} HOSTED=1 HOSTED value
+     * @property {number} NON_E2EE=2 NON_E2EE value
      */
     Adv.ADVEncryptionType = (function() {
         var valuesById = {}, values = Object.create(valuesById);
         values[valuesById[0] = "E2EE"] = 0;
         values[valuesById[1] = "HOSTED"] = 1;
+        values[valuesById[2] = "NON_E2EE"] = 2;
         return values;
     })();
 

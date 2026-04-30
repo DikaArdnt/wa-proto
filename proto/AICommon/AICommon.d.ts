@@ -573,7 +573,8 @@ export namespace AICommon {
                 CREATE_IMAGE = 1,
                 ANIMATE_PHOTO = 2,
                 ANALYZE_FILE = 3,
-                COLLABORATE = 4
+                COLLABORATE = 4,
+                OPEN_GREETING_CARD = 5
             }
         }
     }
@@ -2577,6 +2578,103 @@ export namespace AICommon {
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
+    /** Properties of a AISubscriptionUpsellMetadata. */
+    interface IAISubscriptionUpsellMetadata {
+
+        /** AISubscriptionUpsellMetadata requestType */
+        requestType?: (AICommon.AISubscriptionRequestType|null);
+    }
+
+    /** Represents a AISubscriptionUpsellMetadata. */
+    class AISubscriptionUpsellMetadata implements IAISubscriptionUpsellMetadata {
+
+        /**
+         * Constructs a new AISubscriptionUpsellMetadata.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: AICommon.IAISubscriptionUpsellMetadata);
+
+        /** AISubscriptionUpsellMetadata requestType. */
+        public requestType: AICommon.AISubscriptionRequestType;
+
+        /**
+         * Creates a new AISubscriptionUpsellMetadata instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns AISubscriptionUpsellMetadata instance
+         */
+        public static create(properties?: AICommon.IAISubscriptionUpsellMetadata): AICommon.AISubscriptionUpsellMetadata;
+
+        /**
+         * Encodes the specified AISubscriptionUpsellMetadata message. Does not implicitly {@link AICommon.AISubscriptionUpsellMetadata.verify|verify} messages.
+         * @param message AISubscriptionUpsellMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: AICommon.IAISubscriptionUpsellMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified AISubscriptionUpsellMetadata message, length delimited. Does not implicitly {@link AICommon.AISubscriptionUpsellMetadata.verify|verify} messages.
+         * @param message AISubscriptionUpsellMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: AICommon.IAISubscriptionUpsellMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a AISubscriptionUpsellMetadata message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns AISubscriptionUpsellMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AICommon.AISubscriptionUpsellMetadata;
+
+        /**
+         * Decodes a AISubscriptionUpsellMetadata message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns AISubscriptionUpsellMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AICommon.AISubscriptionUpsellMetadata;
+
+        /**
+         * Verifies a AISubscriptionUpsellMetadata message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a AISubscriptionUpsellMetadata message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns AISubscriptionUpsellMetadata
+         */
+        public static fromObject(object: { [k: string]: any }): AICommon.AISubscriptionUpsellMetadata;
+
+        /**
+         * Creates a plain object from a AISubscriptionUpsellMetadata message. Also converts values to other types if specified.
+         * @param message AISubscriptionUpsellMetadata
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: AICommon.AISubscriptionUpsellMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this AISubscriptionUpsellMetadata to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for AISubscriptionUpsellMetadata
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
     /** Properties of a BotMetadata. */
     interface IBotMetadata {
 
@@ -2693,6 +2791,12 @@ export namespace AICommon {
 
         /** BotMetadata commandMetadata */
         commandMetadata?: (AICommon.IBotCommandMetadata|null);
+
+        /** BotMetadata resolvedToolCallMetadata */
+        resolvedToolCallMetadata?: (AICommon.IBotResolvedToolCallMetadata|null);
+
+        /** BotMetadata subscriptionUpsellMetadata */
+        subscriptionUpsellMetadata?: (AICommon.IAISubscriptionUpsellMetadata|null);
 
         /** BotMetadata internalMetadata */
         internalMetadata?: (Uint8Array|null);
@@ -2821,6 +2925,12 @@ export namespace AICommon {
         /** BotMetadata commandMetadata. */
         public commandMetadata?: (AICommon.IBotCommandMetadata|null);
 
+        /** BotMetadata resolvedToolCallMetadata. */
+        public resolvedToolCallMetadata?: (AICommon.IBotResolvedToolCallMetadata|null);
+
+        /** BotMetadata subscriptionUpsellMetadata. */
+        public subscriptionUpsellMetadata?: (AICommon.IAISubscriptionUpsellMetadata|null);
+
         /** BotMetadata internalMetadata. */
         public internalMetadata: Uint8Array;
 
@@ -2896,6 +3006,109 @@ export namespace AICommon {
 
         /**
          * Gets the default type url for BotMetadata
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a BotResolvedToolCallMetadata. */
+    interface IBotResolvedToolCallMetadata {
+
+        /** BotResolvedToolCallMetadata toolCallId */
+        toolCallId?: (string|null);
+
+        /** BotResolvedToolCallMetadata resolutionDataSerialized */
+        resolutionDataSerialized?: (string|null);
+    }
+
+    /** Represents a BotResolvedToolCallMetadata. */
+    class BotResolvedToolCallMetadata implements IBotResolvedToolCallMetadata {
+
+        /**
+         * Constructs a new BotResolvedToolCallMetadata.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: AICommon.IBotResolvedToolCallMetadata);
+
+        /** BotResolvedToolCallMetadata toolCallId. */
+        public toolCallId: string;
+
+        /** BotResolvedToolCallMetadata resolutionDataSerialized. */
+        public resolutionDataSerialized: string;
+
+        /**
+         * Creates a new BotResolvedToolCallMetadata instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BotResolvedToolCallMetadata instance
+         */
+        public static create(properties?: AICommon.IBotResolvedToolCallMetadata): AICommon.BotResolvedToolCallMetadata;
+
+        /**
+         * Encodes the specified BotResolvedToolCallMetadata message. Does not implicitly {@link AICommon.BotResolvedToolCallMetadata.verify|verify} messages.
+         * @param message BotResolvedToolCallMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: AICommon.IBotResolvedToolCallMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BotResolvedToolCallMetadata message, length delimited. Does not implicitly {@link AICommon.BotResolvedToolCallMetadata.verify|verify} messages.
+         * @param message BotResolvedToolCallMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: AICommon.IBotResolvedToolCallMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BotResolvedToolCallMetadata message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BotResolvedToolCallMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AICommon.BotResolvedToolCallMetadata;
+
+        /**
+         * Decodes a BotResolvedToolCallMetadata message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BotResolvedToolCallMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AICommon.BotResolvedToolCallMetadata;
+
+        /**
+         * Verifies a BotResolvedToolCallMetadata message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BotResolvedToolCallMetadata message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BotResolvedToolCallMetadata
+         */
+        public static fromObject(object: { [k: string]: any }): AICommon.BotResolvedToolCallMetadata;
+
+        /**
+         * Creates a plain object from a BotResolvedToolCallMetadata message. Also converts values to other types if specified.
+         * @param message BotResolvedToolCallMetadata
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: AICommon.BotResolvedToolCallMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BotResolvedToolCallMetadata to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for BotResolvedToolCallMetadata
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
@@ -8348,6 +8561,14 @@ export namespace AICommon {
     enum SessionTransparencyType {
         UNKNOWN_TYPE = 0,
         NY_AI_SAFETY_DISCLAIMER = 1
+    }
+
+    /** AISubscriptionRequestType enum. */
+    enum AISubscriptionRequestType {
+        UNSPECIFIED = 0,
+        THINK_HARD = 1,
+        IMAGE_GEN = 2,
+        VIDEO_GEN = 3
     }
 
     /** BotSessionSource enum. */

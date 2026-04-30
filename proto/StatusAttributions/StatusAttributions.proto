@@ -37,6 +37,7 @@ message StatusAttribution {
             SHARECHAT = 9;
             GOOGLE_PHOTOS = 10;
             SOUNDCLOUD = 11;
+            SHAZAM = 12;
         }
     }
     message GroupStatus {
@@ -88,5 +89,6 @@ message StatusAttribution {
         LAYOUTS = 8;
         NEWSLETTER_STATUS = 9;
         STATUS_CLOSE_SHARING = 10;
+        PAID_PARTNERSHIP = 11;
     }
 }

@@ -389,6 +389,9 @@ message ContextInfo {
     optional MediaDomainInfo mediaDomainInfo = 74;
     optional PartiallySelectedContent partiallySelectedContent = 75;
     optional uint32 afterReadDuration = 76;
+    optional CrossAppSource crossAppSource = 77;
+    optional BusinessInteractionPills businessInteractionPills = 78;
+    optional string posterStatusId = 79;
     message AdReplyInfo {
         optional string advertiserName = 1;
         optional MediaType mediaType = 2;
@@ -400,8 +403,43 @@ message ContextInfo {
             VIDEO = 2;
         }
     }
+    message BusinessInteractionPills {
+        optional string businessJid = 1;
+        repeated Pill pills = 2;
+        optional EntryPoint entryPoint = 3;
+        enum EntryPoint {
+            ENTRY_POINT_UNKNOWN = 0;
+            P2P_LINK_SHARE = 1;
+            CONTACT_CARD_SHARING = 2;
+            PHONE_NUMBER = 3;
+            STATUS = 4;
+            IN_THREAD_CONTEXT_CARD = 5;
+        }
+        message Pill {
+            optional ContextInfo.BusinessInteractionPills.PillType pillType = 1;
+            optional string actionUrl = 2;
+        }
+        enum PillType {
+            UNKNOWN = 0;
+            VIEW_BUSINESS = 1;
+            CHAT = 2;
+            CALL = 3;
+            CATALOG = 4;
+            CHANNEL = 5;
+            BOOK_APPOINTMENT = 6;
+            OFFERS = 7;
+            BESTSELLERS = 8;
+            MENU = 9;
+            ABOUT = 10;
+        }
+    }
     message BusinessMessageForwardInfo {
         optional string businessOwnerJid = 1;
+    }
+    enum CrossAppSource {
+        CROSS_APP_SOURCE_UNKNOWN = 0;
+        CROSS_APP_SOURCE_INSTAGRAM = 1;
+        CROSS_APP_SOURCE_FACEBOOK = 2;
     }
     message DataSharingContext {
         optional bool showMmDisclosure = 1;
@@ -653,6 +691,8 @@ message Message {
     optional PollAddOptionMessage pollAddOptionMessage = 121;
     optional EventInviteMessage eventInviteMessage = 122;
     optional GroupRootKeyShare groupRootKeyShare = 123;
+    optional P2PPaymentReminderNotification p2PPaymentReminderNotification = 124;
+    optional SplitPaymentMessage splitPaymentMessage = 125;
     message AlbumMessage {
         optional uint32 expectedImageCount = 2;
         optional uint32 expectedVideoCount = 3;
@@ -813,6 +853,36 @@ message Message {
         optional string displayName = 1;
         optional string id = 2;
     }
+    message ChatCustomImageWallpaper {
+        optional string directPath = 1;
+        optional bytes mediaKey = 2;
+        optional bytes fileEncSha256 = 3;
+        optional bytes fileSha256 = 4;
+        optional float dimLevel = 5;
+    }
+    message ChatDefaultWallpaper {
+        optional bool isDoodleEnabled = 1;
+    }
+    message ChatSolidColorWallpaper {
+        optional string colorLight = 1;
+        optional string colorDark = 2;
+        optional bool isDoodleEnabled = 3;
+    }
+    message ChatStockImageWallpaper {
+        optional string stockImageId = 1;
+        optional float dimLevel = 2;
+    }
+    message ChatThemeSetting {
+        optional int64 settingTimestampMs = 1;
+        optional bool clearTheme = 2;
+        optional string colorSchemeId = 3;
+        oneof wallpaper {
+            Message.ChatDefaultWallpaper defaultWallpaper = 10;
+            Message.ChatSolidColorWallpaper solidColor = 11;
+            Message.ChatStockImageWallpaper stockImage = 12;
+            Message.ChatCustomImageWallpaper customImage = 13;
+        }
+    }
     message CloudAPIThreadControlNotification {
         optional CloudAPIThreadControl status = 1;
         optional int64 senderNotificationTimestampMs = 2;
@@ -910,6 +980,7 @@ message Message {
         optional int64 startTime = 5;
         optional string caption = 6;
         optional bool isCanceled = 7;
+        optional int64 endTime = 8;
     }
     message EventMessage {
         optional ContextInfo contextInfo = 1;
@@ -1440,6 +1511,34 @@ message Message {
             CATALOG = 1;
         }
     }
+    message P2PPaymentReminderNotification {
+        optional string reminderId = 1;
+        optional Money amount = 2;
+        optional ReminderFrequency frequency = 3;
+        optional int64 nextReminderTimestamp = 4;
+        optional int64 expiryTimestamp = 5;
+        optional ReminderState state = 6;
+        optional string description = 7;
+        optional string creatorJid = 8;
+        optional string receiverJid = 9;
+        optional string upiId = 10;
+        optional int64 createdTimestamp = 11;
+        enum ReminderFrequency {
+            UNKNOWN_FREQUENCY = 0;
+            WEEKLY = 1;
+            BIWEEKLY = 2;
+            MONTHLY = 3;
+            CUSTOM = 4;
+        }
+        enum ReminderState {
+            UNKNOWN_STATE = 0;
+            ACTIVE = 1;
+            PAUSED = 2;
+            STOPPED = 3;
+            EXPIRED = 4;
+            CANCELLED = 5;
+        }
+    }
     message PaymentExtendedMetadata {
         optional uint32 type = 1;
         optional string platform = 2;
@@ -1802,6 +1901,7 @@ message Message {
         optional MemberLabel memberLabel = 27;
         optional AICommon.AIMediaCollectionMessage aiMediaCollectionMessage = 28;
         optional uint32 afterReadDuration = 29;
+        optional Message.ChatThemeSetting chatThemeSetting = 30;
         enum Type {
             REVOKE = 0;
             EPHEMERAL_SETTING = 3;
@@ -1831,6 +1931,7 @@ message Message {
             GROUP_MEMBER_LABEL_CHANGE = 30;
             AI_MEDIA_COLLECTION_MESSAGE = 31;
             MESSAGE_UNSCHEDULE = 32;
+            CHAT_THEME_SETTING = 34;
         }
     }
     message QuestionResponseMessage {
@@ -1910,6 +2011,24 @@ message Message {
     message SenderKeyDistributionMessage {
         optional string groupId = 1;
         optional bytes axolotlSenderKeyDistributionMessage = 2;
+    }
+    message SplitPaymentMessage {
+        optional string splitId = 1;
+        optional Money totalAmount = 2;
+        optional string description = 3;
+        optional string requesterJid = 4;
+        repeated Message.SplitPaymentParticipant participants = 5;
+        optional int64 createdAtMs = 6;
+        optional ContextInfo contextInfo = 17;
+    }
+    message SplitPaymentParticipant {
+        optional string jid = 1;
+        optional Money amount = 2;
+        optional SplitPaymentStatus status = 3;
+        enum SplitPaymentStatus {
+            PENDING = 0;
+            PAID = 1;
+        }
     }
     message StatusNotificationMessage {
         optional Protocol.MessageKey responseMessageKey = 1;

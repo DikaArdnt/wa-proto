@@ -188,6 +188,7 @@ message Conversation {
     optional bool isMarketingMessageThread = 55;
     optional bool isSenderNewAccount = 56;
     optional uint32 afterReadDuration = 57;
+    optional bool isSenderSuspicious = 58;
     enum EndOfHistoryTransferType {
         COMPLETE_BUT_MORE_MESSAGES_REMAIN_ON_PRIMARY = 0;
         COMPLETE_AND_NO_MORE_MESSAGE_REMAIN_ON_PRIMARY = 1;

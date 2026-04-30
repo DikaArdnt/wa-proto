@@ -581,6 +581,7 @@ export namespace Adv {
     /** ADVEncryptionType enum. */
     enum ADVEncryptionType {
         E2EE = 0,
-        HOSTED = 1
+        HOSTED = 1,
+        NON_E2EE = 2
     }
 }

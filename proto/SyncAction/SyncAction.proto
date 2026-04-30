@@ -453,6 +453,7 @@ message SyncActionValue {
         repeated string keywords = 3;
         optional int32 count = 4;
         optional bool deleted = 5;
+        repeated string associatedLabelIds = 6;
     }
     message RecentEmojiWeightsAction {
         repeated RecentEmojiWeight weights = 1;

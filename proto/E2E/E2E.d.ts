@@ -4463,6 +4463,15 @@ export namespace E2E {
 
         /** ContextInfo afterReadDuration */
         afterReadDuration?: (number|null);
+
+        /** ContextInfo crossAppSource */
+        crossAppSource?: (E2E.ContextInfo.CrossAppSource|null);
+
+        /** ContextInfo businessInteractionPills */
+        businessInteractionPills?: (E2E.ContextInfo.IBusinessInteractionPills|null);
+
+        /** ContextInfo posterStatusId */
+        posterStatusId?: (string|null);
     }
 
     /** Represents a ContextInfo. */
@@ -4650,6 +4659,15 @@ export namespace E2E {
 
         /** ContextInfo afterReadDuration. */
         public afterReadDuration: number;
+
+        /** ContextInfo crossAppSource. */
+        public crossAppSource: E2E.ContextInfo.CrossAppSource;
+
+        /** ContextInfo businessInteractionPills. */
+        public businessInteractionPills?: (E2E.ContextInfo.IBusinessInteractionPills|null);
+
+        /** ContextInfo posterStatusId. */
+        public posterStatusId: string;
 
         /**
          * Creates a new ContextInfo instance using the specified properties.
@@ -4856,6 +4874,246 @@ export namespace E2E {
             }
         }
 
+        /** Properties of a BusinessInteractionPills. */
+        interface IBusinessInteractionPills {
+
+            /** BusinessInteractionPills businessJid */
+            businessJid?: (string|null);
+
+            /** BusinessInteractionPills pills */
+            pills?: (E2E.ContextInfo.BusinessInteractionPills.IPill[]|null);
+
+            /** BusinessInteractionPills entryPoint */
+            entryPoint?: (E2E.ContextInfo.BusinessInteractionPills.EntryPoint|null);
+        }
+
+        /** Represents a BusinessInteractionPills. */
+        class BusinessInteractionPills implements IBusinessInteractionPills {
+
+            /**
+             * Constructs a new BusinessInteractionPills.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.ContextInfo.IBusinessInteractionPills);
+
+            /** BusinessInteractionPills businessJid. */
+            public businessJid: string;
+
+            /** BusinessInteractionPills pills. */
+            public pills: E2E.ContextInfo.BusinessInteractionPills.IPill[];
+
+            /** BusinessInteractionPills entryPoint. */
+            public entryPoint: E2E.ContextInfo.BusinessInteractionPills.EntryPoint;
+
+            /**
+             * Creates a new BusinessInteractionPills instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns BusinessInteractionPills instance
+             */
+            public static create(properties?: E2E.ContextInfo.IBusinessInteractionPills): E2E.ContextInfo.BusinessInteractionPills;
+
+            /**
+             * Encodes the specified BusinessInteractionPills message. Does not implicitly {@link E2E.ContextInfo.BusinessInteractionPills.verify|verify} messages.
+             * @param message BusinessInteractionPills message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.ContextInfo.IBusinessInteractionPills, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified BusinessInteractionPills message, length delimited. Does not implicitly {@link E2E.ContextInfo.BusinessInteractionPills.verify|verify} messages.
+             * @param message BusinessInteractionPills message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.ContextInfo.IBusinessInteractionPills, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a BusinessInteractionPills message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns BusinessInteractionPills
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.ContextInfo.BusinessInteractionPills;
+
+            /**
+             * Decodes a BusinessInteractionPills message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns BusinessInteractionPills
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.ContextInfo.BusinessInteractionPills;
+
+            /**
+             * Verifies a BusinessInteractionPills message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a BusinessInteractionPills message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns BusinessInteractionPills
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.ContextInfo.BusinessInteractionPills;
+
+            /**
+             * Creates a plain object from a BusinessInteractionPills message. Also converts values to other types if specified.
+             * @param message BusinessInteractionPills
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.ContextInfo.BusinessInteractionPills, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this BusinessInteractionPills to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for BusinessInteractionPills
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace BusinessInteractionPills {
+
+            /** EntryPoint enum. */
+            enum EntryPoint {
+                ENTRY_POINT_UNKNOWN = 0,
+                P2P_LINK_SHARE = 1,
+                CONTACT_CARD_SHARING = 2,
+                PHONE_NUMBER = 3,
+                STATUS = 4,
+                IN_THREAD_CONTEXT_CARD = 5
+            }
+
+            /** Properties of a Pill. */
+            interface IPill {
+
+                /** Pill pillType */
+                pillType?: (E2E.ContextInfo.BusinessInteractionPills.PillType|null);
+
+                /** Pill actionUrl */
+                actionUrl?: (string|null);
+            }
+
+            /** Represents a Pill. */
+            class Pill implements IPill {
+
+                /**
+                 * Constructs a new Pill.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: E2E.ContextInfo.BusinessInteractionPills.IPill);
+
+                /** Pill pillType. */
+                public pillType: E2E.ContextInfo.BusinessInteractionPills.PillType;
+
+                /** Pill actionUrl. */
+                public actionUrl: string;
+
+                /**
+                 * Creates a new Pill instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns Pill instance
+                 */
+                public static create(properties?: E2E.ContextInfo.BusinessInteractionPills.IPill): E2E.ContextInfo.BusinessInteractionPills.Pill;
+
+                /**
+                 * Encodes the specified Pill message. Does not implicitly {@link E2E.ContextInfo.BusinessInteractionPills.Pill.verify|verify} messages.
+                 * @param message Pill message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: E2E.ContextInfo.BusinessInteractionPills.IPill, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified Pill message, length delimited. Does not implicitly {@link E2E.ContextInfo.BusinessInteractionPills.Pill.verify|verify} messages.
+                 * @param message Pill message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: E2E.ContextInfo.BusinessInteractionPills.IPill, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a Pill message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns Pill
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.ContextInfo.BusinessInteractionPills.Pill;
+
+                /**
+                 * Decodes a Pill message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns Pill
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.ContextInfo.BusinessInteractionPills.Pill;
+
+                /**
+                 * Verifies a Pill message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a Pill message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns Pill
+                 */
+                public static fromObject(object: { [k: string]: any }): E2E.ContextInfo.BusinessInteractionPills.Pill;
+
+                /**
+                 * Creates a plain object from a Pill message. Also converts values to other types if specified.
+                 * @param message Pill
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: E2E.ContextInfo.BusinessInteractionPills.Pill, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this Pill to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for Pill
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            /** PillType enum. */
+            enum PillType {
+                UNKNOWN = 0,
+                VIEW_BUSINESS = 1,
+                CHAT = 2,
+                CALL = 3,
+                CATALOG = 4,
+                CHANNEL = 5,
+                BOOK_APPOINTMENT = 6,
+                OFFERS = 7,
+                BESTSELLERS = 8,
+                MENU = 9,
+                ABOUT = 10
+            }
+        }
+
         /** Properties of a BusinessMessageForwardInfo. */
         interface IBusinessMessageForwardInfo {
 
@@ -4951,6 +5209,13 @@ export namespace E2E {
              * @returns The default type url
              */
             public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** CrossAppSource enum. */
+        enum CrossAppSource {
+            CROSS_APP_SOURCE_UNKNOWN = 0,
+            CROSS_APP_SOURCE_INSTAGRAM = 1,
+            CROSS_APP_SOURCE_FACEBOOK = 2
         }
 
         /** Properties of a DataSharingContext. */
@@ -6645,6 +6910,12 @@ export namespace E2E {
 
         /** Message groupRootKeyShare */
         groupRootKeyShare?: (E2E.IGroupRootKeyShare|null);
+
+        /** Message p2PPaymentReminderNotification */
+        p2PPaymentReminderNotification?: (E2E.Message.IP2PPaymentReminderNotification|null);
+
+        /** Message splitPaymentMessage */
+        splitPaymentMessage?: (E2E.Message.ISplitPaymentMessage|null);
     }
 
     /** Represents a Message. */
@@ -6964,6 +7235,12 @@ export namespace E2E {
 
         /** Message groupRootKeyShare. */
         public groupRootKeyShare?: (E2E.IGroupRootKeyShare|null);
+
+        /** Message p2PPaymentReminderNotification. */
+        public p2PPaymentReminderNotification?: (E2E.Message.IP2PPaymentReminderNotification|null);
+
+        /** Message splitPaymentMessage. */
+        public splitPaymentMessage?: (E2E.Message.ISplitPaymentMessage|null);
 
         /**
          * Creates a new Message instance using the specified properties.
@@ -9404,6 +9681,572 @@ export namespace E2E {
             public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
+        /** Properties of a ChatCustomImageWallpaper. */
+        interface IChatCustomImageWallpaper {
+
+            /** ChatCustomImageWallpaper directPath */
+            directPath?: (string|null);
+
+            /** ChatCustomImageWallpaper mediaKey */
+            mediaKey?: (Uint8Array|null);
+
+            /** ChatCustomImageWallpaper fileEncSha256 */
+            fileEncSha256?: (Uint8Array|null);
+
+            /** ChatCustomImageWallpaper fileSha256 */
+            fileSha256?: (Uint8Array|null);
+
+            /** ChatCustomImageWallpaper dimLevel */
+            dimLevel?: (number|null);
+        }
+
+        /** Represents a ChatCustomImageWallpaper. */
+        class ChatCustomImageWallpaper implements IChatCustomImageWallpaper {
+
+            /**
+             * Constructs a new ChatCustomImageWallpaper.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IChatCustomImageWallpaper);
+
+            /** ChatCustomImageWallpaper directPath. */
+            public directPath: string;
+
+            /** ChatCustomImageWallpaper mediaKey. */
+            public mediaKey: Uint8Array;
+
+            /** ChatCustomImageWallpaper fileEncSha256. */
+            public fileEncSha256: Uint8Array;
+
+            /** ChatCustomImageWallpaper fileSha256. */
+            public fileSha256: Uint8Array;
+
+            /** ChatCustomImageWallpaper dimLevel. */
+            public dimLevel: number;
+
+            /**
+             * Creates a new ChatCustomImageWallpaper instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns ChatCustomImageWallpaper instance
+             */
+            public static create(properties?: E2E.Message.IChatCustomImageWallpaper): E2E.Message.ChatCustomImageWallpaper;
+
+            /**
+             * Encodes the specified ChatCustomImageWallpaper message. Does not implicitly {@link E2E.Message.ChatCustomImageWallpaper.verify|verify} messages.
+             * @param message ChatCustomImageWallpaper message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IChatCustomImageWallpaper, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified ChatCustomImageWallpaper message, length delimited. Does not implicitly {@link E2E.Message.ChatCustomImageWallpaper.verify|verify} messages.
+             * @param message ChatCustomImageWallpaper message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IChatCustomImageWallpaper, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a ChatCustomImageWallpaper message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns ChatCustomImageWallpaper
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.ChatCustomImageWallpaper;
+
+            /**
+             * Decodes a ChatCustomImageWallpaper message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns ChatCustomImageWallpaper
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.ChatCustomImageWallpaper;
+
+            /**
+             * Verifies a ChatCustomImageWallpaper message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a ChatCustomImageWallpaper message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns ChatCustomImageWallpaper
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.ChatCustomImageWallpaper;
+
+            /**
+             * Creates a plain object from a ChatCustomImageWallpaper message. Also converts values to other types if specified.
+             * @param message ChatCustomImageWallpaper
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.ChatCustomImageWallpaper, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this ChatCustomImageWallpaper to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for ChatCustomImageWallpaper
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a ChatDefaultWallpaper. */
+        interface IChatDefaultWallpaper {
+
+            /** ChatDefaultWallpaper isDoodleEnabled */
+            isDoodleEnabled?: (boolean|null);
+        }
+
+        /** Represents a ChatDefaultWallpaper. */
+        class ChatDefaultWallpaper implements IChatDefaultWallpaper {
+
+            /**
+             * Constructs a new ChatDefaultWallpaper.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IChatDefaultWallpaper);
+
+            /** ChatDefaultWallpaper isDoodleEnabled. */
+            public isDoodleEnabled: boolean;
+
+            /**
+             * Creates a new ChatDefaultWallpaper instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns ChatDefaultWallpaper instance
+             */
+            public static create(properties?: E2E.Message.IChatDefaultWallpaper): E2E.Message.ChatDefaultWallpaper;
+
+            /**
+             * Encodes the specified ChatDefaultWallpaper message. Does not implicitly {@link E2E.Message.ChatDefaultWallpaper.verify|verify} messages.
+             * @param message ChatDefaultWallpaper message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IChatDefaultWallpaper, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified ChatDefaultWallpaper message, length delimited. Does not implicitly {@link E2E.Message.ChatDefaultWallpaper.verify|verify} messages.
+             * @param message ChatDefaultWallpaper message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IChatDefaultWallpaper, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a ChatDefaultWallpaper message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns ChatDefaultWallpaper
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.ChatDefaultWallpaper;
+
+            /**
+             * Decodes a ChatDefaultWallpaper message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns ChatDefaultWallpaper
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.ChatDefaultWallpaper;
+
+            /**
+             * Verifies a ChatDefaultWallpaper message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a ChatDefaultWallpaper message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns ChatDefaultWallpaper
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.ChatDefaultWallpaper;
+
+            /**
+             * Creates a plain object from a ChatDefaultWallpaper message. Also converts values to other types if specified.
+             * @param message ChatDefaultWallpaper
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.ChatDefaultWallpaper, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this ChatDefaultWallpaper to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for ChatDefaultWallpaper
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a ChatSolidColorWallpaper. */
+        interface IChatSolidColorWallpaper {
+
+            /** ChatSolidColorWallpaper colorLight */
+            colorLight?: (string|null);
+
+            /** ChatSolidColorWallpaper colorDark */
+            colorDark?: (string|null);
+
+            /** ChatSolidColorWallpaper isDoodleEnabled */
+            isDoodleEnabled?: (boolean|null);
+        }
+
+        /** Represents a ChatSolidColorWallpaper. */
+        class ChatSolidColorWallpaper implements IChatSolidColorWallpaper {
+
+            /**
+             * Constructs a new ChatSolidColorWallpaper.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IChatSolidColorWallpaper);
+
+            /** ChatSolidColorWallpaper colorLight. */
+            public colorLight: string;
+
+            /** ChatSolidColorWallpaper colorDark. */
+            public colorDark: string;
+
+            /** ChatSolidColorWallpaper isDoodleEnabled. */
+            public isDoodleEnabled: boolean;
+
+            /**
+             * Creates a new ChatSolidColorWallpaper instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns ChatSolidColorWallpaper instance
+             */
+            public static create(properties?: E2E.Message.IChatSolidColorWallpaper): E2E.Message.ChatSolidColorWallpaper;
+
+            /**
+             * Encodes the specified ChatSolidColorWallpaper message. Does not implicitly {@link E2E.Message.ChatSolidColorWallpaper.verify|verify} messages.
+             * @param message ChatSolidColorWallpaper message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IChatSolidColorWallpaper, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified ChatSolidColorWallpaper message, length delimited. Does not implicitly {@link E2E.Message.ChatSolidColorWallpaper.verify|verify} messages.
+             * @param message ChatSolidColorWallpaper message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IChatSolidColorWallpaper, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a ChatSolidColorWallpaper message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns ChatSolidColorWallpaper
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.ChatSolidColorWallpaper;
+
+            /**
+             * Decodes a ChatSolidColorWallpaper message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns ChatSolidColorWallpaper
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.ChatSolidColorWallpaper;
+
+            /**
+             * Verifies a ChatSolidColorWallpaper message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a ChatSolidColorWallpaper message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns ChatSolidColorWallpaper
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.ChatSolidColorWallpaper;
+
+            /**
+             * Creates a plain object from a ChatSolidColorWallpaper message. Also converts values to other types if specified.
+             * @param message ChatSolidColorWallpaper
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.ChatSolidColorWallpaper, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this ChatSolidColorWallpaper to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for ChatSolidColorWallpaper
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a ChatStockImageWallpaper. */
+        interface IChatStockImageWallpaper {
+
+            /** ChatStockImageWallpaper stockImageId */
+            stockImageId?: (string|null);
+
+            /** ChatStockImageWallpaper dimLevel */
+            dimLevel?: (number|null);
+        }
+
+        /** Represents a ChatStockImageWallpaper. */
+        class ChatStockImageWallpaper implements IChatStockImageWallpaper {
+
+            /**
+             * Constructs a new ChatStockImageWallpaper.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IChatStockImageWallpaper);
+
+            /** ChatStockImageWallpaper stockImageId. */
+            public stockImageId: string;
+
+            /** ChatStockImageWallpaper dimLevel. */
+            public dimLevel: number;
+
+            /**
+             * Creates a new ChatStockImageWallpaper instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns ChatStockImageWallpaper instance
+             */
+            public static create(properties?: E2E.Message.IChatStockImageWallpaper): E2E.Message.ChatStockImageWallpaper;
+
+            /**
+             * Encodes the specified ChatStockImageWallpaper message. Does not implicitly {@link E2E.Message.ChatStockImageWallpaper.verify|verify} messages.
+             * @param message ChatStockImageWallpaper message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IChatStockImageWallpaper, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified ChatStockImageWallpaper message, length delimited. Does not implicitly {@link E2E.Message.ChatStockImageWallpaper.verify|verify} messages.
+             * @param message ChatStockImageWallpaper message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IChatStockImageWallpaper, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a ChatStockImageWallpaper message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns ChatStockImageWallpaper
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.ChatStockImageWallpaper;
+
+            /**
+             * Decodes a ChatStockImageWallpaper message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns ChatStockImageWallpaper
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.ChatStockImageWallpaper;
+
+            /**
+             * Verifies a ChatStockImageWallpaper message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a ChatStockImageWallpaper message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns ChatStockImageWallpaper
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.ChatStockImageWallpaper;
+
+            /**
+             * Creates a plain object from a ChatStockImageWallpaper message. Also converts values to other types if specified.
+             * @param message ChatStockImageWallpaper
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.ChatStockImageWallpaper, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this ChatStockImageWallpaper to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for ChatStockImageWallpaper
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a ChatThemeSetting. */
+        interface IChatThemeSetting {
+
+            /** ChatThemeSetting settingTimestampMs */
+            settingTimestampMs?: (number|Long|null);
+
+            /** ChatThemeSetting clearTheme */
+            clearTheme?: (boolean|null);
+
+            /** ChatThemeSetting colorSchemeId */
+            colorSchemeId?: (string|null);
+
+            /** ChatThemeSetting defaultWallpaper */
+            defaultWallpaper?: (E2E.Message.IChatDefaultWallpaper|null);
+
+            /** ChatThemeSetting solidColor */
+            solidColor?: (E2E.Message.IChatSolidColorWallpaper|null);
+
+            /** ChatThemeSetting stockImage */
+            stockImage?: (E2E.Message.IChatStockImageWallpaper|null);
+
+            /** ChatThemeSetting customImage */
+            customImage?: (E2E.Message.IChatCustomImageWallpaper|null);
+        }
+
+        /** Represents a ChatThemeSetting. */
+        class ChatThemeSetting implements IChatThemeSetting {
+
+            /**
+             * Constructs a new ChatThemeSetting.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IChatThemeSetting);
+
+            /** ChatThemeSetting settingTimestampMs. */
+            public settingTimestampMs: (number|Long);
+
+            /** ChatThemeSetting clearTheme. */
+            public clearTheme: boolean;
+
+            /** ChatThemeSetting colorSchemeId. */
+            public colorSchemeId: string;
+
+            /** ChatThemeSetting defaultWallpaper. */
+            public defaultWallpaper?: (E2E.Message.IChatDefaultWallpaper|null);
+
+            /** ChatThemeSetting solidColor. */
+            public solidColor?: (E2E.Message.IChatSolidColorWallpaper|null);
+
+            /** ChatThemeSetting stockImage. */
+            public stockImage?: (E2E.Message.IChatStockImageWallpaper|null);
+
+            /** ChatThemeSetting customImage. */
+            public customImage?: (E2E.Message.IChatCustomImageWallpaper|null);
+
+            /** ChatThemeSetting wallpaper. */
+            public wallpaper?: ("defaultWallpaper"|"solidColor"|"stockImage"|"customImage");
+
+            /**
+             * Creates a new ChatThemeSetting instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns ChatThemeSetting instance
+             */
+            public static create(properties?: E2E.Message.IChatThemeSetting): E2E.Message.ChatThemeSetting;
+
+            /**
+             * Encodes the specified ChatThemeSetting message. Does not implicitly {@link E2E.Message.ChatThemeSetting.verify|verify} messages.
+             * @param message ChatThemeSetting message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IChatThemeSetting, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified ChatThemeSetting message, length delimited. Does not implicitly {@link E2E.Message.ChatThemeSetting.verify|verify} messages.
+             * @param message ChatThemeSetting message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IChatThemeSetting, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a ChatThemeSetting message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns ChatThemeSetting
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.ChatThemeSetting;
+
+            /**
+             * Decodes a ChatThemeSetting message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns ChatThemeSetting
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.ChatThemeSetting;
+
+            /**
+             * Verifies a ChatThemeSetting message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a ChatThemeSetting message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns ChatThemeSetting
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.ChatThemeSetting;
+
+            /**
+             * Creates a plain object from a ChatThemeSetting message. Also converts values to other types if specified.
+             * @param message ChatThemeSetting
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.ChatThemeSetting, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this ChatThemeSetting to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for ChatThemeSetting
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
         /** Properties of a CloudAPIThreadControlNotification. */
         interface ICloudAPIThreadControlNotification {
 
@@ -10869,6 +11712,9 @@ export namespace E2E {
 
             /** EventInviteMessage isCanceled */
             isCanceled?: (boolean|null);
+
+            /** EventInviteMessage endTime */
+            endTime?: (number|Long|null);
         }
 
         /** Represents an EventInviteMessage. */
@@ -10900,6 +11746,9 @@ export namespace E2E {
 
             /** EventInviteMessage isCanceled. */
             public isCanceled: boolean;
+
+            /** EventInviteMessage endTime. */
+            public endTime: (number|Long);
 
             /**
              * Creates a new EventInviteMessage instance using the specified properties.
@@ -17648,6 +18497,185 @@ export namespace E2E {
             }
         }
 
+        /** Properties of a P2PPaymentReminderNotification. */
+        interface IP2PPaymentReminderNotification {
+
+            /** P2PPaymentReminderNotification reminderId */
+            reminderId?: (string|null);
+
+            /** P2PPaymentReminderNotification amount */
+            amount?: (E2E.IMoney|null);
+
+            /** P2PPaymentReminderNotification frequency */
+            frequency?: (E2E.Message.P2PPaymentReminderNotification.ReminderFrequency|null);
+
+            /** P2PPaymentReminderNotification nextReminderTimestamp */
+            nextReminderTimestamp?: (number|Long|null);
+
+            /** P2PPaymentReminderNotification expiryTimestamp */
+            expiryTimestamp?: (number|Long|null);
+
+            /** P2PPaymentReminderNotification state */
+            state?: (E2E.Message.P2PPaymentReminderNotification.ReminderState|null);
+
+            /** P2PPaymentReminderNotification description */
+            description?: (string|null);
+
+            /** P2PPaymentReminderNotification creatorJid */
+            creatorJid?: (string|null);
+
+            /** P2PPaymentReminderNotification receiverJid */
+            receiverJid?: (string|null);
+
+            /** P2PPaymentReminderNotification upiId */
+            upiId?: (string|null);
+
+            /** P2PPaymentReminderNotification createdTimestamp */
+            createdTimestamp?: (number|Long|null);
+        }
+
+        /** Represents a P2PPaymentReminderNotification. */
+        class P2PPaymentReminderNotification implements IP2PPaymentReminderNotification {
+
+            /**
+             * Constructs a new P2PPaymentReminderNotification.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IP2PPaymentReminderNotification);
+
+            /** P2PPaymentReminderNotification reminderId. */
+            public reminderId: string;
+
+            /** P2PPaymentReminderNotification amount. */
+            public amount?: (E2E.IMoney|null);
+
+            /** P2PPaymentReminderNotification frequency. */
+            public frequency: E2E.Message.P2PPaymentReminderNotification.ReminderFrequency;
+
+            /** P2PPaymentReminderNotification nextReminderTimestamp. */
+            public nextReminderTimestamp: (number|Long);
+
+            /** P2PPaymentReminderNotification expiryTimestamp. */
+            public expiryTimestamp: (number|Long);
+
+            /** P2PPaymentReminderNotification state. */
+            public state: E2E.Message.P2PPaymentReminderNotification.ReminderState;
+
+            /** P2PPaymentReminderNotification description. */
+            public description: string;
+
+            /** P2PPaymentReminderNotification creatorJid. */
+            public creatorJid: string;
+
+            /** P2PPaymentReminderNotification receiverJid. */
+            public receiverJid: string;
+
+            /** P2PPaymentReminderNotification upiId. */
+            public upiId: string;
+
+            /** P2PPaymentReminderNotification createdTimestamp. */
+            public createdTimestamp: (number|Long);
+
+            /**
+             * Creates a new P2PPaymentReminderNotification instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns P2PPaymentReminderNotification instance
+             */
+            public static create(properties?: E2E.Message.IP2PPaymentReminderNotification): E2E.Message.P2PPaymentReminderNotification;
+
+            /**
+             * Encodes the specified P2PPaymentReminderNotification message. Does not implicitly {@link E2E.Message.P2PPaymentReminderNotification.verify|verify} messages.
+             * @param message P2PPaymentReminderNotification message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IP2PPaymentReminderNotification, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified P2PPaymentReminderNotification message, length delimited. Does not implicitly {@link E2E.Message.P2PPaymentReminderNotification.verify|verify} messages.
+             * @param message P2PPaymentReminderNotification message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IP2PPaymentReminderNotification, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a P2PPaymentReminderNotification message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns P2PPaymentReminderNotification
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.P2PPaymentReminderNotification;
+
+            /**
+             * Decodes a P2PPaymentReminderNotification message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns P2PPaymentReminderNotification
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.P2PPaymentReminderNotification;
+
+            /**
+             * Verifies a P2PPaymentReminderNotification message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a P2PPaymentReminderNotification message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns P2PPaymentReminderNotification
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.P2PPaymentReminderNotification;
+
+            /**
+             * Creates a plain object from a P2PPaymentReminderNotification message. Also converts values to other types if specified.
+             * @param message P2PPaymentReminderNotification
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.P2PPaymentReminderNotification, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this P2PPaymentReminderNotification to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for P2PPaymentReminderNotification
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace P2PPaymentReminderNotification {
+
+            /** ReminderFrequency enum. */
+            enum ReminderFrequency {
+                UNKNOWN_FREQUENCY = 0,
+                WEEKLY = 1,
+                BIWEEKLY = 2,
+                MONTHLY = 3,
+                CUSTOM = 4
+            }
+
+            /** ReminderState enum. */
+            enum ReminderState {
+                UNKNOWN_STATE = 0,
+                ACTIVE = 1,
+                PAUSED = 2,
+                STOPPED = 3,
+                EXPIRED = 4,
+                CANCELLED = 5
+            }
+        }
+
         /** Properties of a PaymentExtendedMetadata. */
         interface IPaymentExtendedMetadata {
 
@@ -23167,6 +24195,9 @@ export namespace E2E {
 
             /** ProtocolMessage afterReadDuration */
             afterReadDuration?: (number|null);
+
+            /** ProtocolMessage chatThemeSetting */
+            chatThemeSetting?: (E2E.Message.IChatThemeSetting|null);
         }
 
         /** Represents a ProtocolMessage. */
@@ -23255,6 +24286,9 @@ export namespace E2E {
 
             /** ProtocolMessage afterReadDuration. */
             public afterReadDuration: number;
+
+            /** ProtocolMessage chatThemeSetting. */
+            public chatThemeSetting?: (E2E.Message.IChatThemeSetting|null);
 
             /**
              * Creates a new ProtocolMessage instance using the specified properties.
@@ -23365,7 +24399,8 @@ export namespace E2E {
                 AI_QUERY_FANOUT = 29,
                 GROUP_MEMBER_LABEL_CHANGE = 30,
                 AI_MEDIA_COLLECTION_MESSAGE = 31,
-                MESSAGE_UNSCHEDULE = 32
+                MESSAGE_UNSCHEDULE = 32,
+                CHAT_THEME_SETTING = 34
             }
         }
 
@@ -24522,6 +25557,257 @@ export namespace E2E {
              * @returns The default type url
              */
             public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a SplitPaymentMessage. */
+        interface ISplitPaymentMessage {
+
+            /** SplitPaymentMessage splitId */
+            splitId?: (string|null);
+
+            /** SplitPaymentMessage totalAmount */
+            totalAmount?: (E2E.IMoney|null);
+
+            /** SplitPaymentMessage description */
+            description?: (string|null);
+
+            /** SplitPaymentMessage requesterJid */
+            requesterJid?: (string|null);
+
+            /** SplitPaymentMessage participants */
+            participants?: (E2E.Message.ISplitPaymentParticipant[]|null);
+
+            /** SplitPaymentMessage createdAtMs */
+            createdAtMs?: (number|Long|null);
+
+            /** SplitPaymentMessage contextInfo */
+            contextInfo?: (E2E.IContextInfo|null);
+        }
+
+        /** Represents a SplitPaymentMessage. */
+        class SplitPaymentMessage implements ISplitPaymentMessage {
+
+            /**
+             * Constructs a new SplitPaymentMessage.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.ISplitPaymentMessage);
+
+            /** SplitPaymentMessage splitId. */
+            public splitId: string;
+
+            /** SplitPaymentMessage totalAmount. */
+            public totalAmount?: (E2E.IMoney|null);
+
+            /** SplitPaymentMessage description. */
+            public description: string;
+
+            /** SplitPaymentMessage requesterJid. */
+            public requesterJid: string;
+
+            /** SplitPaymentMessage participants. */
+            public participants: E2E.Message.ISplitPaymentParticipant[];
+
+            /** SplitPaymentMessage createdAtMs. */
+            public createdAtMs: (number|Long);
+
+            /** SplitPaymentMessage contextInfo. */
+            public contextInfo?: (E2E.IContextInfo|null);
+
+            /**
+             * Creates a new SplitPaymentMessage instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns SplitPaymentMessage instance
+             */
+            public static create(properties?: E2E.Message.ISplitPaymentMessage): E2E.Message.SplitPaymentMessage;
+
+            /**
+             * Encodes the specified SplitPaymentMessage message. Does not implicitly {@link E2E.Message.SplitPaymentMessage.verify|verify} messages.
+             * @param message SplitPaymentMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.ISplitPaymentMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified SplitPaymentMessage message, length delimited. Does not implicitly {@link E2E.Message.SplitPaymentMessage.verify|verify} messages.
+             * @param message SplitPaymentMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.ISplitPaymentMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a SplitPaymentMessage message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns SplitPaymentMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.SplitPaymentMessage;
+
+            /**
+             * Decodes a SplitPaymentMessage message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns SplitPaymentMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.SplitPaymentMessage;
+
+            /**
+             * Verifies a SplitPaymentMessage message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a SplitPaymentMessage message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns SplitPaymentMessage
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.SplitPaymentMessage;
+
+            /**
+             * Creates a plain object from a SplitPaymentMessage message. Also converts values to other types if specified.
+             * @param message SplitPaymentMessage
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.SplitPaymentMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this SplitPaymentMessage to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for SplitPaymentMessage
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        /** Properties of a SplitPaymentParticipant. */
+        interface ISplitPaymentParticipant {
+
+            /** SplitPaymentParticipant jid */
+            jid?: (string|null);
+
+            /** SplitPaymentParticipant amount */
+            amount?: (E2E.IMoney|null);
+
+            /** SplitPaymentParticipant status */
+            status?: (E2E.Message.SplitPaymentParticipant.SplitPaymentStatus|null);
+        }
+
+        /** Represents a SplitPaymentParticipant. */
+        class SplitPaymentParticipant implements ISplitPaymentParticipant {
+
+            /**
+             * Constructs a new SplitPaymentParticipant.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.ISplitPaymentParticipant);
+
+            /** SplitPaymentParticipant jid. */
+            public jid: string;
+
+            /** SplitPaymentParticipant amount. */
+            public amount?: (E2E.IMoney|null);
+
+            /** SplitPaymentParticipant status. */
+            public status: E2E.Message.SplitPaymentParticipant.SplitPaymentStatus;
+
+            /**
+             * Creates a new SplitPaymentParticipant instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns SplitPaymentParticipant instance
+             */
+            public static create(properties?: E2E.Message.ISplitPaymentParticipant): E2E.Message.SplitPaymentParticipant;
+
+            /**
+             * Encodes the specified SplitPaymentParticipant message. Does not implicitly {@link E2E.Message.SplitPaymentParticipant.verify|verify} messages.
+             * @param message SplitPaymentParticipant message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.ISplitPaymentParticipant, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified SplitPaymentParticipant message, length delimited. Does not implicitly {@link E2E.Message.SplitPaymentParticipant.verify|verify} messages.
+             * @param message SplitPaymentParticipant message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.ISplitPaymentParticipant, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a SplitPaymentParticipant message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns SplitPaymentParticipant
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.SplitPaymentParticipant;
+
+            /**
+             * Decodes a SplitPaymentParticipant message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns SplitPaymentParticipant
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.SplitPaymentParticipant;
+
+            /**
+             * Verifies a SplitPaymentParticipant message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a SplitPaymentParticipant message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns SplitPaymentParticipant
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.SplitPaymentParticipant;
+
+            /**
+             * Creates a plain object from a SplitPaymentParticipant message. Also converts values to other types if specified.
+             * @param message SplitPaymentParticipant
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.SplitPaymentParticipant, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this SplitPaymentParticipant to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for SplitPaymentParticipant
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace SplitPaymentParticipant {
+
+            /** SplitPaymentStatus enum. */
+            enum SplitPaymentStatus {
+                PENDING = 0,
+                PAID = 1
+            }
         }
 
         /** Properties of a StatusNotificationMessage. */
@@ -29280,7 +30566,8 @@ export namespace StatusAttributions {
                 APPLE_MUSIC = 8,
                 SHARECHAT = 9,
                 GOOGLE_PHOTOS = 10,
-                SOUNDCLOUD = 11
+                SOUNDCLOUD = 11,
+                SHAZAM = 12
             }
         }
 
@@ -29858,7 +31145,8 @@ export namespace StatusAttributions {
             AI_CREATED = 7,
             LAYOUTS = 8,
             NEWSLETTER_STATUS = 9,
-            STATUS_CLOSE_SHARING = 10
+            STATUS_CLOSE_SHARING = 10,
+            PAID_PARTNERSHIP = 11
         }
     }
 }
@@ -30436,7 +31724,8 @@ export namespace AICommon {
                 CREATE_IMAGE = 1,
                 ANIMATE_PHOTO = 2,
                 ANALYZE_FILE = 3,
-                COLLABORATE = 4
+                COLLABORATE = 4,
+                OPEN_GREETING_CARD = 5
             }
         }
     }
@@ -32440,6 +33729,103 @@ export namespace AICommon {
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
+    /** Properties of a AISubscriptionUpsellMetadata. */
+    interface IAISubscriptionUpsellMetadata {
+
+        /** AISubscriptionUpsellMetadata requestType */
+        requestType?: (AICommon.AISubscriptionRequestType|null);
+    }
+
+    /** Represents a AISubscriptionUpsellMetadata. */
+    class AISubscriptionUpsellMetadata implements IAISubscriptionUpsellMetadata {
+
+        /**
+         * Constructs a new AISubscriptionUpsellMetadata.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: AICommon.IAISubscriptionUpsellMetadata);
+
+        /** AISubscriptionUpsellMetadata requestType. */
+        public requestType: AICommon.AISubscriptionRequestType;
+
+        /**
+         * Creates a new AISubscriptionUpsellMetadata instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns AISubscriptionUpsellMetadata instance
+         */
+        public static create(properties?: AICommon.IAISubscriptionUpsellMetadata): AICommon.AISubscriptionUpsellMetadata;
+
+        /**
+         * Encodes the specified AISubscriptionUpsellMetadata message. Does not implicitly {@link AICommon.AISubscriptionUpsellMetadata.verify|verify} messages.
+         * @param message AISubscriptionUpsellMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: AICommon.IAISubscriptionUpsellMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified AISubscriptionUpsellMetadata message, length delimited. Does not implicitly {@link AICommon.AISubscriptionUpsellMetadata.verify|verify} messages.
+         * @param message AISubscriptionUpsellMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: AICommon.IAISubscriptionUpsellMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a AISubscriptionUpsellMetadata message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns AISubscriptionUpsellMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AICommon.AISubscriptionUpsellMetadata;
+
+        /**
+         * Decodes a AISubscriptionUpsellMetadata message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns AISubscriptionUpsellMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AICommon.AISubscriptionUpsellMetadata;
+
+        /**
+         * Verifies a AISubscriptionUpsellMetadata message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a AISubscriptionUpsellMetadata message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns AISubscriptionUpsellMetadata
+         */
+        public static fromObject(object: { [k: string]: any }): AICommon.AISubscriptionUpsellMetadata;
+
+        /**
+         * Creates a plain object from a AISubscriptionUpsellMetadata message. Also converts values to other types if specified.
+         * @param message AISubscriptionUpsellMetadata
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: AICommon.AISubscriptionUpsellMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this AISubscriptionUpsellMetadata to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for AISubscriptionUpsellMetadata
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
     /** Properties of a BotMetadata. */
     interface IBotMetadata {
 
@@ -32556,6 +33942,12 @@ export namespace AICommon {
 
         /** BotMetadata commandMetadata */
         commandMetadata?: (AICommon.IBotCommandMetadata|null);
+
+        /** BotMetadata resolvedToolCallMetadata */
+        resolvedToolCallMetadata?: (AICommon.IBotResolvedToolCallMetadata|null);
+
+        /** BotMetadata subscriptionUpsellMetadata */
+        subscriptionUpsellMetadata?: (AICommon.IAISubscriptionUpsellMetadata|null);
 
         /** BotMetadata internalMetadata */
         internalMetadata?: (Uint8Array|null);
@@ -32684,6 +34076,12 @@ export namespace AICommon {
         /** BotMetadata commandMetadata. */
         public commandMetadata?: (AICommon.IBotCommandMetadata|null);
 
+        /** BotMetadata resolvedToolCallMetadata. */
+        public resolvedToolCallMetadata?: (AICommon.IBotResolvedToolCallMetadata|null);
+
+        /** BotMetadata subscriptionUpsellMetadata. */
+        public subscriptionUpsellMetadata?: (AICommon.IAISubscriptionUpsellMetadata|null);
+
         /** BotMetadata internalMetadata. */
         public internalMetadata: Uint8Array;
 
@@ -32759,6 +34157,109 @@ export namespace AICommon {
 
         /**
          * Gets the default type url for BotMetadata
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a BotResolvedToolCallMetadata. */
+    interface IBotResolvedToolCallMetadata {
+
+        /** BotResolvedToolCallMetadata toolCallId */
+        toolCallId?: (string|null);
+
+        /** BotResolvedToolCallMetadata resolutionDataSerialized */
+        resolutionDataSerialized?: (string|null);
+    }
+
+    /** Represents a BotResolvedToolCallMetadata. */
+    class BotResolvedToolCallMetadata implements IBotResolvedToolCallMetadata {
+
+        /**
+         * Constructs a new BotResolvedToolCallMetadata.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: AICommon.IBotResolvedToolCallMetadata);
+
+        /** BotResolvedToolCallMetadata toolCallId. */
+        public toolCallId: string;
+
+        /** BotResolvedToolCallMetadata resolutionDataSerialized. */
+        public resolutionDataSerialized: string;
+
+        /**
+         * Creates a new BotResolvedToolCallMetadata instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BotResolvedToolCallMetadata instance
+         */
+        public static create(properties?: AICommon.IBotResolvedToolCallMetadata): AICommon.BotResolvedToolCallMetadata;
+
+        /**
+         * Encodes the specified BotResolvedToolCallMetadata message. Does not implicitly {@link AICommon.BotResolvedToolCallMetadata.verify|verify} messages.
+         * @param message BotResolvedToolCallMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: AICommon.IBotResolvedToolCallMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BotResolvedToolCallMetadata message, length delimited. Does not implicitly {@link AICommon.BotResolvedToolCallMetadata.verify|verify} messages.
+         * @param message BotResolvedToolCallMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: AICommon.IBotResolvedToolCallMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BotResolvedToolCallMetadata message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BotResolvedToolCallMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AICommon.BotResolvedToolCallMetadata;
+
+        /**
+         * Decodes a BotResolvedToolCallMetadata message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BotResolvedToolCallMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AICommon.BotResolvedToolCallMetadata;
+
+        /**
+         * Verifies a BotResolvedToolCallMetadata message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BotResolvedToolCallMetadata message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BotResolvedToolCallMetadata
+         */
+        public static fromObject(object: { [k: string]: any }): AICommon.BotResolvedToolCallMetadata;
+
+        /**
+         * Creates a plain object from a BotResolvedToolCallMetadata message. Also converts values to other types if specified.
+         * @param message BotResolvedToolCallMetadata
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: AICommon.BotResolvedToolCallMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BotResolvedToolCallMetadata to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for BotResolvedToolCallMetadata
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
@@ -38213,6 +39714,14 @@ export namespace AICommon {
         NY_AI_SAFETY_DISCLAIMER = 1
     }
 
+    /** AISubscriptionRequestType enum. */
+    enum AISubscriptionRequestType {
+        UNSPECIFIED = 0,
+        THINK_HARD = 1,
+        IMAGE_GEN = 2,
+        VIDEO_GEN = 3
+    }
+
     /** BotSessionSource enum. */
     enum BotSessionSource {
         NONE = 0,
@@ -38868,7 +40377,8 @@ export namespace Adv {
     /** ADVEncryptionType enum. */
     enum ADVEncryptionType {
         E2EE = 0,
-        HOSTED = 1
+        HOSTED = 1,
+        NON_E2EE = 2
     }
 }
 

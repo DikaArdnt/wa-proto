@@ -40,6 +40,7 @@ message AIHomeState {
             ANIMATE_PHOTO = 2;
             ANALYZE_FILE = 3;
             COLLABORATE = 4;
+            OPEN_GREETING_CARD = 5;
         }
     }
 }
@@ -179,6 +180,10 @@ message BotGroupMetadata {
     repeated BotGroupParticipantMetadata participantsMetadata = 1;
 }
 
+message AISubscriptionUpsellMetadata {
+    optional AISubscriptionRequestType requestType = 1;
+}
+
 message BotMetadata {
     optional string personaId = 2;
     optional BotPluginMetadata pluginMetadata = 3;
@@ -218,7 +223,14 @@ message BotMetadata {
     optional BotInfrastructureDiagnostics botInfrastructureDiagnostics = 37;
     optional AIMediaCollectionMetadata aiMediaCollectionMetadata = 38;
     optional BotCommandMetadata commandMetadata = 39;
+    optional BotResolvedToolCallMetadata resolvedToolCallMetadata = 40;
+    optional AISubscriptionUpsellMetadata subscriptionUpsellMetadata = 41;
     optional bytes internalMetadata = 999;
+}
+
+message BotResolvedToolCallMetadata {
+    optional string toolCallId = 1;
+    optional string resolutionDataSerialized = 2;
 }
 
 message BotCommandMetadata {
@@ -667,6 +679,13 @@ message BotPluginMetadata {
 enum SessionTransparencyType {
     UNKNOWN_TYPE = 0;
     NY_AI_SAFETY_DISCLAIMER = 1;
+}
+
+enum AISubscriptionRequestType {
+    UNSPECIFIED = 0;
+    THINK_HARD = 1;
+    IMAGE_GEN = 2;
+    VIDEO_GEN = 3;
 }
 
 enum BotSessionSource {

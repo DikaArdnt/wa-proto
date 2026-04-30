@@ -19510,6 +19510,7 @@ $root.SyncAction = (function() {
              * @property {Array.<string>|null} [keywords] QuickReplyAction keywords
              * @property {number|null} [count] QuickReplyAction count
              * @property {boolean|null} [deleted] QuickReplyAction deleted
+             * @property {Array.<string>|null} [associatedLabelIds] QuickReplyAction associatedLabelIds
              */
 
             /**
@@ -19522,6 +19523,7 @@ $root.SyncAction = (function() {
              */
             function QuickReplyAction(properties) {
                 this.keywords = [];
+                this.associatedLabelIds = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null && keys[i] !== "__proto__")
@@ -19569,6 +19571,14 @@ $root.SyncAction = (function() {
             QuickReplyAction.prototype.deleted = false;
 
             /**
+             * QuickReplyAction associatedLabelIds.
+             * @member {Array.<string>} associatedLabelIds
+             * @memberof SyncAction.SyncActionValue.QuickReplyAction
+             * @instance
+             */
+            QuickReplyAction.prototype.associatedLabelIds = $util.emptyArray;
+
+            /**
              * Creates a new QuickReplyAction instance using the specified properties.
              * @function create
              * @memberof SyncAction.SyncActionValue.QuickReplyAction
@@ -19603,6 +19613,9 @@ $root.SyncAction = (function() {
                     writer.uint32(/* id 4, wireType 0 =*/32).int32(message.count);
                 if (message.deleted != null && Object.hasOwnProperty.call(message, "deleted"))
                     writer.uint32(/* id 5, wireType 0 =*/40).bool(message.deleted);
+                if (message.associatedLabelIds != null && message.associatedLabelIds.length)
+                    for (var i = 0; i < message.associatedLabelIds.length; ++i)
+                        writer.uint32(/* id 6, wireType 2 =*/50).string(message.associatedLabelIds[i]);
                 return writer;
             };
 
@@ -19665,6 +19678,12 @@ $root.SyncAction = (function() {
                             message.deleted = reader.bool();
                             break;
                         }
+                    case 6: {
+                            if (!(message.associatedLabelIds && message.associatedLabelIds.length))
+                                message.associatedLabelIds = [];
+                            message.associatedLabelIds.push(reader.string());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7, long);
                         break;
@@ -19723,6 +19742,13 @@ $root.SyncAction = (function() {
                 if (message.deleted != null && message.hasOwnProperty("deleted"))
                     if (typeof message.deleted !== "boolean")
                         return "deleted: boolean expected";
+                if (message.associatedLabelIds != null && message.hasOwnProperty("associatedLabelIds")) {
+                    if (!Array.isArray(message.associatedLabelIds))
+                        return "associatedLabelIds: array expected";
+                    for (var i = 0; i < message.associatedLabelIds.length; ++i)
+                        if (!$util.isString(message.associatedLabelIds[i]))
+                            return "associatedLabelIds: string[] expected";
+                }
                 return null;
             };
 
@@ -19757,6 +19783,13 @@ $root.SyncAction = (function() {
                     message.count = object.count | 0;
                 if (object.deleted != null)
                     message.deleted = Boolean(object.deleted);
+                if (object.associatedLabelIds) {
+                    if (!Array.isArray(object.associatedLabelIds))
+                        throw TypeError(".SyncAction.SyncActionValue.QuickReplyAction.associatedLabelIds: array expected");
+                    message.associatedLabelIds = [];
+                    for (var i = 0; i < object.associatedLabelIds.length; ++i)
+                        message.associatedLabelIds[i] = String(object.associatedLabelIds[i]);
+                }
                 return message;
             };
 
@@ -19773,8 +19806,10 @@ $root.SyncAction = (function() {
                 if (!options)
                     options = {};
                 var object = {};
-                if (options.arrays || options.defaults)
+                if (options.arrays || options.defaults) {
                     object.keywords = [];
+                    object.associatedLabelIds = [];
+                }
                 if (options.defaults) {
                     object.shortcut = "";
                     object.message = "";
@@ -19794,6 +19829,11 @@ $root.SyncAction = (function() {
                     object.count = message.count;
                 if (message.deleted != null && message.hasOwnProperty("deleted"))
                     object.deleted = message.deleted;
+                if (message.associatedLabelIds && message.associatedLabelIds.length) {
+                    object.associatedLabelIds = [];
+                    for (var j = 0; j < message.associatedLabelIds.length; ++j)
+                        object.associatedLabelIds[j] = message.associatedLabelIds[j];
+                }
                 return object;
             };
 
