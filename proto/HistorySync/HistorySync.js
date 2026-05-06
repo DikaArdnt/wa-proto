@@ -4752,6 +4752,10 @@ $root.HistorySync = (function() {
          * @property {boolean|null} [isSenderNewAccount] Conversation isSenderNewAccount
          * @property {number|null} [afterReadDuration] Conversation afterReadDuration
          * @property {boolean|null} [isSenderSuspicious] Conversation isSenderSuspicious
+         * @property {HistorySync.Conversation.GroupAppealStatus|null} [appealStatus] Conversation appealStatus
+         * @property {number|Long|null} [appealUpdateTime] Conversation appealUpdateTime
+         * @property {string|null} [authAgentParentCompanyName] Conversation authAgentParentCompanyName
+         * @property {string|null} [authAgentObaPhoneNumber] Conversation authAgentObaPhoneNumber
          */
 
         /**
@@ -5236,6 +5240,38 @@ $root.HistorySync = (function() {
         Conversation.prototype.isSenderSuspicious = false;
 
         /**
+         * Conversation appealStatus.
+         * @member {HistorySync.Conversation.GroupAppealStatus} appealStatus
+         * @memberof HistorySync.Conversation
+         * @instance
+         */
+        Conversation.prototype.appealStatus = 0;
+
+        /**
+         * Conversation appealUpdateTime.
+         * @member {number|Long} appealUpdateTime
+         * @memberof HistorySync.Conversation
+         * @instance
+         */
+        Conversation.prototype.appealUpdateTime = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+        /**
+         * Conversation authAgentParentCompanyName.
+         * @member {string} authAgentParentCompanyName
+         * @memberof HistorySync.Conversation
+         * @instance
+         */
+        Conversation.prototype.authAgentParentCompanyName = "";
+
+        /**
+         * Conversation authAgentObaPhoneNumber.
+         * @member {string} authAgentObaPhoneNumber
+         * @memberof HistorySync.Conversation
+         * @instance
+         */
+        Conversation.prototype.authAgentObaPhoneNumber = "";
+
+        /**
          * Creates a new Conversation instance using the specified properties.
          * @function create
          * @memberof HistorySync.Conversation
@@ -5376,6 +5412,14 @@ $root.HistorySync = (function() {
                 writer.uint32(/* id 57, wireType 0 =*/456).uint32(message.afterReadDuration);
             if (message.isSenderSuspicious != null && Object.hasOwnProperty.call(message, "isSenderSuspicious"))
                 writer.uint32(/* id 58, wireType 0 =*/464).bool(message.isSenderSuspicious);
+            if (message.appealStatus != null && Object.hasOwnProperty.call(message, "appealStatus"))
+                writer.uint32(/* id 59, wireType 0 =*/472).int32(message.appealStatus);
+            if (message.appealUpdateTime != null && Object.hasOwnProperty.call(message, "appealUpdateTime"))
+                writer.uint32(/* id 60, wireType 0 =*/480).uint64(message.appealUpdateTime);
+            if (message.authAgentParentCompanyName != null && Object.hasOwnProperty.call(message, "authAgentParentCompanyName"))
+                writer.uint32(/* id 61, wireType 2 =*/490).string(message.authAgentParentCompanyName);
+            if (message.authAgentObaPhoneNumber != null && Object.hasOwnProperty.call(message, "authAgentObaPhoneNumber"))
+                writer.uint32(/* id 62, wireType 2 =*/498).string(message.authAgentObaPhoneNumber);
             return writer;
         };
 
@@ -5652,6 +5696,22 @@ $root.HistorySync = (function() {
                         message.isSenderSuspicious = reader.bool();
                         break;
                     }
+                case 59: {
+                        message.appealStatus = reader.int32();
+                        break;
+                    }
+                case 60: {
+                        message.appealUpdateTime = reader.uint64();
+                        break;
+                    }
+                case 61: {
+                        message.authAgentParentCompanyName = reader.string();
+                        break;
+                    }
+                case 62: {
+                        message.authAgentObaPhoneNumber = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7, long);
                     break;
@@ -5908,6 +5968,25 @@ $root.HistorySync = (function() {
             if (message.isSenderSuspicious != null && message.hasOwnProperty("isSenderSuspicious"))
                 if (typeof message.isSenderSuspicious !== "boolean")
                     return "isSenderSuspicious: boolean expected";
+            if (message.appealStatus != null && message.hasOwnProperty("appealStatus"))
+                switch (message.appealStatus) {
+                default:
+                    return "appealStatus: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                    break;
+                }
+            if (message.appealUpdateTime != null && message.hasOwnProperty("appealUpdateTime"))
+                if (!$util.isInteger(message.appealUpdateTime) && !(message.appealUpdateTime && $util.isInteger(message.appealUpdateTime.low) && $util.isInteger(message.appealUpdateTime.high)))
+                    return "appealUpdateTime: integer|Long expected";
+            if (message.authAgentParentCompanyName != null && message.hasOwnProperty("authAgentParentCompanyName"))
+                if (!$util.isString(message.authAgentParentCompanyName))
+                    return "authAgentParentCompanyName: string expected";
+            if (message.authAgentObaPhoneNumber != null && message.hasOwnProperty("authAgentObaPhoneNumber"))
+                if (!$util.isString(message.authAgentObaPhoneNumber))
+                    return "authAgentObaPhoneNumber: string expected";
             return null;
         };
 
@@ -6207,6 +6286,43 @@ $root.HistorySync = (function() {
                 message.afterReadDuration = object.afterReadDuration >>> 0;
             if (object.isSenderSuspicious != null)
                 message.isSenderSuspicious = Boolean(object.isSenderSuspicious);
+            switch (object.appealStatus) {
+            default:
+                if (typeof object.appealStatus === "number") {
+                    message.appealStatus = object.appealStatus;
+                    break;
+                }
+                break;
+            case "NO_APPEAL":
+            case 0:
+                message.appealStatus = 0;
+                break;
+            case "APPEAL_IN_REVIEW":
+            case 1:
+                message.appealStatus = 1;
+                break;
+            case "APPEAL_APPROVED":
+            case 2:
+                message.appealStatus = 2;
+                break;
+            case "APPEAL_REJECTED":
+            case 3:
+                message.appealStatus = 3;
+                break;
+            }
+            if (object.appealUpdateTime != null)
+                if ($util.Long)
+                    (message.appealUpdateTime = $util.Long.fromValue(object.appealUpdateTime)).unsigned = true;
+                else if (typeof object.appealUpdateTime === "string")
+                    message.appealUpdateTime = parseInt(object.appealUpdateTime, 10);
+                else if (typeof object.appealUpdateTime === "number")
+                    message.appealUpdateTime = object.appealUpdateTime;
+                else if (typeof object.appealUpdateTime === "object")
+                    message.appealUpdateTime = new $util.LongBits(object.appealUpdateTime.low >>> 0, object.appealUpdateTime.high >>> 0).toNumber(true);
+            if (object.authAgentParentCompanyName != null)
+                message.authAgentParentCompanyName = String(object.authAgentParentCompanyName);
+            if (object.authAgentObaPhoneNumber != null)
+                message.authAgentObaPhoneNumber = String(object.authAgentObaPhoneNumber);
             return message;
         };
 
@@ -6328,6 +6444,14 @@ $root.HistorySync = (function() {
                 object.isSenderNewAccount = false;
                 object.afterReadDuration = 0;
                 object.isSenderSuspicious = false;
+                object.appealStatus = options.enums === String ? "NO_APPEAL" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.appealUpdateTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.appealUpdateTime = options.longs === String ? "0" : 0;
+                object.authAgentParentCompanyName = "";
+                object.authAgentObaPhoneNumber = "";
             }
             if (message.id != null && message.hasOwnProperty("id"))
                 object.id = message.id;
@@ -6475,6 +6599,17 @@ $root.HistorySync = (function() {
                 object.afterReadDuration = message.afterReadDuration;
             if (message.isSenderSuspicious != null && message.hasOwnProperty("isSenderSuspicious"))
                 object.isSenderSuspicious = message.isSenderSuspicious;
+            if (message.appealStatus != null && message.hasOwnProperty("appealStatus"))
+                object.appealStatus = options.enums === String ? $root.HistorySync.Conversation.GroupAppealStatus[message.appealStatus] === undefined ? message.appealStatus : $root.HistorySync.Conversation.GroupAppealStatus[message.appealStatus] : message.appealStatus;
+            if (message.appealUpdateTime != null && message.hasOwnProperty("appealUpdateTime"))
+                if (typeof message.appealUpdateTime === "number")
+                    object.appealUpdateTime = options.longs === String ? String(message.appealUpdateTime) : message.appealUpdateTime;
+                else
+                    object.appealUpdateTime = options.longs === String ? $util.Long.prototype.toString.call(message.appealUpdateTime) : options.longs === Number ? new $util.LongBits(message.appealUpdateTime.low >>> 0, message.appealUpdateTime.high >>> 0).toNumber(true) : message.appealUpdateTime;
+            if (message.authAgentParentCompanyName != null && message.hasOwnProperty("authAgentParentCompanyName"))
+                object.authAgentParentCompanyName = message.authAgentParentCompanyName;
+            if (message.authAgentObaPhoneNumber != null && message.hasOwnProperty("authAgentObaPhoneNumber"))
+                object.authAgentObaPhoneNumber = message.authAgentObaPhoneNumber;
             return object;
         };
 
@@ -6519,6 +6654,24 @@ $root.HistorySync = (function() {
             values[valuesById[1] = "COMPLETE_AND_NO_MORE_MESSAGE_REMAIN_ON_PRIMARY"] = 1;
             values[valuesById[2] = "COMPLETE_ON_DEMAND_SYNC_BUT_MORE_MSG_REMAIN_ON_PRIMARY"] = 2;
             values[valuesById[3] = "COMPLETE_ON_DEMAND_SYNC_WITH_MORE_MSG_ON_PRIMARY_BUT_NO_ACCESS"] = 3;
+            return values;
+        })();
+
+        /**
+         * GroupAppealStatus enum.
+         * @name HistorySync.Conversation.GroupAppealStatus
+         * @enum {number}
+         * @property {number} NO_APPEAL=0 NO_APPEAL value
+         * @property {number} APPEAL_IN_REVIEW=1 APPEAL_IN_REVIEW value
+         * @property {number} APPEAL_APPROVED=2 APPEAL_APPROVED value
+         * @property {number} APPEAL_REJECTED=3 APPEAL_REJECTED value
+         */
+        Conversation.GroupAppealStatus = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "NO_APPEAL"] = 0;
+            values[valuesById[1] = "APPEAL_IN_REVIEW"] = 1;
+            values[valuesById[2] = "APPEAL_APPROVED"] = 2;
+            values[valuesById[3] = "APPEAL_REJECTED"] = 3;
             return values;
         })();
 
