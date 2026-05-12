@@ -285,6 +285,7 @@ message SyncActionValue {
     }
     message LabelAssociationAction {
         optional bool labeled = 1;
+        repeated SyncActionValue.ModelMetadata modelMetaData = 2;
     }
     message LabelEditAction {
         optional string name = 1;
@@ -361,6 +362,11 @@ message SyncActionValue {
             ACTIVE = 0;
             INACTIVE = 1;
         }
+    }
+    message ModelMetadata {
+        optional string modelName = 1;
+        optional bool isLatestModel = 2;
+        optional bool isDetected = 3;
     }
     message MusicUserIdAction {
         optional string musicUserId = 1;
