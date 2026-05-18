@@ -1643,9 +1643,9 @@ $root.ServerSync = (function() {
                 object.handle = "";
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.fileSizeBytes = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.fileSizeBytes = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.fileSizeBytes = options.longs === String ? "0" : 0;
+                    object.fileSizeBytes = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 if (options.bytes === String)
                     object.fileSha256 = "";
                 else {
@@ -1668,7 +1668,9 @@ $root.ServerSync = (function() {
             if (message.handle != null && message.hasOwnProperty("handle"))
                 object.handle = message.handle;
             if (message.fileSizeBytes != null && message.hasOwnProperty("fileSizeBytes"))
-                if (typeof message.fileSizeBytes === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.fileSizeBytes = typeof message.fileSizeBytes === "number" ? BigInt(message.fileSizeBytes) : $util.Long.fromBits(message.fileSizeBytes.low >>> 0, message.fileSizeBytes.high >>> 0, true).toBigInt();
+                else if (typeof message.fileSizeBytes === "number")
                     object.fileSizeBytes = options.longs === String ? String(message.fileSizeBytes) : message.fileSizeBytes;
                 else
                     object.fileSizeBytes = options.longs === String ? $util.Long.prototype.toString.call(message.fileSizeBytes) : options.longs === Number ? new $util.LongBits(message.fileSizeBytes.low >>> 0, message.fileSizeBytes.high >>> 0).toNumber(true) : message.fileSizeBytes;
@@ -2876,13 +2878,15 @@ $root.ServerSync = (function() {
             if (options.defaults) {
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.code = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.code = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.code = options.longs === String ? "0" : 0;
+                    object.code = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.text = "";
             }
             if (message.code != null && message.hasOwnProperty("code"))
-                if (typeof message.code === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.code = typeof message.code === "number" ? BigInt(message.code) : $util.Long.fromBits(message.code.low >>> 0, message.code.high >>> 0, true).toBigInt();
+                else if (typeof message.code === "number")
                     object.code = options.longs === String ? String(message.code) : message.code;
                 else
                     object.code = options.longs === String ? $util.Long.prototype.toString.call(message.code) : options.longs === Number ? new $util.LongBits(message.code.low >>> 0, message.code.high >>> 0).toNumber(true) : message.code;
@@ -3111,11 +3115,13 @@ $root.ServerSync = (function() {
             if (options.defaults)
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.version = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.version = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.version = options.longs === String ? "0" : 0;
+                    object.version = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
             if (message.version != null && message.hasOwnProperty("version"))
-                if (typeof message.version === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.version = typeof message.version === "number" ? BigInt(message.version) : $util.Long.fromBits(message.version.low >>> 0, message.version.high >>> 0, true).toBigInt();
+                else if (typeof message.version === "number")
                     object.version = options.longs === String ? String(message.version) : message.version;
                 else
                     object.version = options.longs === String ? $util.Long.prototype.toString.call(message.version) : options.longs === Number ? new $util.LongBits(message.version.low >>> 0, message.version.high >>> 0).toNumber(true) : message.version;

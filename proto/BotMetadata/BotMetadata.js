@@ -5768,16 +5768,18 @@ $root.BotMetadata = (function() {
                     object.remainingQuota = 0;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, true);
-                        object.expirationTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.expirationTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.expirationTimestamp = options.longs === String ? "0" : 0;
+                        object.expirationTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
                 if (message.featureType != null && message.hasOwnProperty("featureType"))
                     object.featureType = options.enums === String ? $root.BotMetadata.BotQuotaMetadata.BotFeatureQuotaMetadata.BotFeatureType[message.featureType] === undefined ? message.featureType : $root.BotMetadata.BotQuotaMetadata.BotFeatureQuotaMetadata.BotFeatureType[message.featureType] : message.featureType;
                 if (message.remainingQuota != null && message.hasOwnProperty("remainingQuota"))
                     object.remainingQuota = message.remainingQuota;
                 if (message.expirationTimestamp != null && message.hasOwnProperty("expirationTimestamp"))
-                    if (typeof message.expirationTimestamp === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.expirationTimestamp = typeof message.expirationTimestamp === "number" ? BigInt(message.expirationTimestamp) : $util.Long.fromBits(message.expirationTimestamp.low >>> 0, message.expirationTimestamp.high >>> 0, true).toBigInt();
+                    else if (typeof message.expirationTimestamp === "number")
                         object.expirationTimestamp = options.longs === String ? String(message.expirationTimestamp) : message.expirationTimestamp;
                     else
                         object.expirationTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.expirationTimestamp) : options.longs === Number ? new $util.LongBits(message.expirationTimestamp.low >>> 0, message.expirationTimestamp.high >>> 0).toNumber(true) : message.expirationTimestamp;
@@ -8962,9 +8964,9 @@ $root.BotMetadata = (function() {
                 object.name = "";
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.nextTriggerTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.nextTriggerTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.nextTriggerTimestamp = options.longs === String ? "0" : 0;
+                    object.nextTriggerTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.frequency = options.enums === String ? "ONCE" : 1;
             }
             if (message.requestMessageKey != null && message.hasOwnProperty("requestMessageKey"))
@@ -8974,7 +8976,9 @@ $root.BotMetadata = (function() {
             if (message.name != null && message.hasOwnProperty("name"))
                 object.name = message.name;
             if (message.nextTriggerTimestamp != null && message.hasOwnProperty("nextTriggerTimestamp"))
-                if (typeof message.nextTriggerTimestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.nextTriggerTimestamp = typeof message.nextTriggerTimestamp === "number" ? BigInt(message.nextTriggerTimestamp) : $util.Long.fromBits(message.nextTriggerTimestamp.low >>> 0, message.nextTriggerTimestamp.high >>> 0, true).toBigInt();
+                else if (typeof message.nextTriggerTimestamp === "number")
                     object.nextTriggerTimestamp = options.longs === String ? String(message.nextTriggerTimestamp) : message.nextTriggerTimestamp;
                 else
                     object.nextTriggerTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.nextTriggerTimestamp) : options.longs === Number ? new $util.LongBits(message.nextTriggerTimestamp.low >>> 0, message.nextTriggerTimestamp.high >>> 0).toNumber(true) : message.nextTriggerTimestamp;
@@ -9627,9 +9631,9 @@ $root.BotMetadata = (function() {
                 object.directPath = "";
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.mediaKeyTimestamp = options.longs === String ? "0" : 0;
+                    object.mediaKeyTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.mimetype = "";
                 object.orientationType = options.enums === String ? "CENTER" : 1;
             }
@@ -9642,7 +9646,9 @@ $root.BotMetadata = (function() {
             if (message.directPath != null && message.hasOwnProperty("directPath"))
                 object.directPath = message.directPath;
             if (message.mediaKeyTimestamp != null && message.hasOwnProperty("mediaKeyTimestamp"))
-                if (typeof message.mediaKeyTimestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.mediaKeyTimestamp = typeof message.mediaKeyTimestamp === "number" ? BigInt(message.mediaKeyTimestamp) : $util.Long.fromBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0, false).toBigInt();
+                else if (typeof message.mediaKeyTimestamp === "number")
                     object.mediaKeyTimestamp = options.longs === String ? String(message.mediaKeyTimestamp) : message.mediaKeyTimestamp;
                 else
                     object.mediaKeyTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.mediaKeyTimestamp) : options.longs === Number ? new $util.LongBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0).toNumber() : message.mediaKeyTimestamp;
@@ -14995,9 +15001,9 @@ $root.Protocol = (function() {
                 object.trigger = options.enums === String ? "UNKNOWN" : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.limitSharingSettingTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.limitSharingSettingTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.limitSharingSettingTimestamp = options.longs === String ? "0" : 0;
+                    object.limitSharingSettingTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.initiatedByMe = false;
             }
             if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
@@ -15005,7 +15011,9 @@ $root.Protocol = (function() {
             if (message.trigger != null && message.hasOwnProperty("trigger"))
                 object.trigger = options.enums === String ? $root.Protocol.LimitSharing.TriggerType[message.trigger] === undefined ? message.trigger : $root.Protocol.LimitSharing.TriggerType[message.trigger] : message.trigger;
             if (message.limitSharingSettingTimestamp != null && message.hasOwnProperty("limitSharingSettingTimestamp"))
-                if (typeof message.limitSharingSettingTimestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.limitSharingSettingTimestamp = typeof message.limitSharingSettingTimestamp === "number" ? BigInt(message.limitSharingSettingTimestamp) : $util.Long.fromBits(message.limitSharingSettingTimestamp.low >>> 0, message.limitSharingSettingTimestamp.high >>> 0, false).toBigInt();
+                else if (typeof message.limitSharingSettingTimestamp === "number")
                     object.limitSharingSettingTimestamp = options.longs === String ? String(message.limitSharingSettingTimestamp) : message.limitSharingSettingTimestamp;
                 else
                     object.limitSharingSettingTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.limitSharingSettingTimestamp) : options.longs === Number ? new $util.LongBits(message.limitSharingSettingTimestamp.low >>> 0, message.limitSharingSettingTimestamp.high >>> 0).toNumber() : message.limitSharingSettingTimestamp;

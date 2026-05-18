@@ -2970,16 +2970,18 @@ $root.AICommonDeprecated = (function() {
                 object.type = options.enums === String ? "AI_RICH_RESPONSE_DYNAMIC_METADATA_TYPE_UNKNOWN" : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.version = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.version = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.version = options.longs === String ? "0" : 0;
+                    object.version = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.url = "";
                 object.loopCount = 0;
             }
             if (message.type != null && message.hasOwnProperty("type"))
                 object.type = options.enums === String ? $root.AICommonDeprecated.AIRichResponseDynamicMetadata.AIRichResponseDynamicMetadataType[message.type] === undefined ? message.type : $root.AICommonDeprecated.AIRichResponseDynamicMetadata.AIRichResponseDynamicMetadataType[message.type] : message.type;
             if (message.version != null && message.hasOwnProperty("version"))
-                if (typeof message.version === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.version = typeof message.version === "number" ? BigInt(message.version) : $util.Long.fromBits(message.version.low >>> 0, message.version.high >>> 0, true).toBigInt();
+                else if (typeof message.version === "number")
                     object.version = options.longs === String ? String(message.version) : message.version;
                 else
                     object.version = options.longs === String ? $util.Long.prototype.toString.call(message.version) : options.longs === Number ? new $util.LongBits(message.version.low >>> 0, message.version.high >>> 0).toNumber(true) : message.version;

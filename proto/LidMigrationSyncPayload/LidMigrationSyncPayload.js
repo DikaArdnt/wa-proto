@@ -249,16 +249,18 @@ $root.LidMigrationSyncPayload = (function() {
             if (options.defaults)
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.chatDbMigrationTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.chatDbMigrationTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.chatDbMigrationTimestamp = options.longs === String ? "0" : 0;
+                    object.chatDbMigrationTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
             if (message.pnToLidMappings && message.pnToLidMappings.length) {
                 object.pnToLidMappings = [];
                 for (var j = 0; j < message.pnToLidMappings.length; ++j)
                     object.pnToLidMappings[j] = $root.LidMigrationSyncPayload.LIDMigrationMapping.toObject(message.pnToLidMappings[j], options);
             }
             if (message.chatDbMigrationTimestamp != null && message.hasOwnProperty("chatDbMigrationTimestamp"))
-                if (typeof message.chatDbMigrationTimestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.chatDbMigrationTimestamp = typeof message.chatDbMigrationTimestamp === "number" ? BigInt(message.chatDbMigrationTimestamp) : $util.Long.fromBits(message.chatDbMigrationTimestamp.low >>> 0, message.chatDbMigrationTimestamp.high >>> 0, true).toBigInt();
+                else if (typeof message.chatDbMigrationTimestamp === "number")
                     object.chatDbMigrationTimestamp = options.longs === String ? String(message.chatDbMigrationTimestamp) : message.chatDbMigrationTimestamp;
                 else
                     object.chatDbMigrationTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.chatDbMigrationTimestamp) : options.longs === Number ? new $util.LongBits(message.chatDbMigrationTimestamp.low >>> 0, message.chatDbMigrationTimestamp.high >>> 0).toNumber(true) : message.chatDbMigrationTimestamp;
@@ -539,32 +541,38 @@ $root.LidMigrationSyncPayload = (function() {
             if (options.defaults) {
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.pn = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.pn = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.pn = options.longs === String ? "0" : 0;
+                    object.pn = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.assignedLid = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.assignedLid = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.assignedLid = options.longs === String ? "0" : 0;
+                    object.assignedLid = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.latestLid = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.latestLid = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.latestLid = options.longs === String ? "0" : 0;
+                    object.latestLid = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
             }
             if (message.pn != null && message.hasOwnProperty("pn"))
-                if (typeof message.pn === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.pn = typeof message.pn === "number" ? BigInt(message.pn) : $util.Long.fromBits(message.pn.low >>> 0, message.pn.high >>> 0, true).toBigInt();
+                else if (typeof message.pn === "number")
                     object.pn = options.longs === String ? String(message.pn) : message.pn;
                 else
                     object.pn = options.longs === String ? $util.Long.prototype.toString.call(message.pn) : options.longs === Number ? new $util.LongBits(message.pn.low >>> 0, message.pn.high >>> 0).toNumber(true) : message.pn;
             if (message.assignedLid != null && message.hasOwnProperty("assignedLid"))
-                if (typeof message.assignedLid === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.assignedLid = typeof message.assignedLid === "number" ? BigInt(message.assignedLid) : $util.Long.fromBits(message.assignedLid.low >>> 0, message.assignedLid.high >>> 0, true).toBigInt();
+                else if (typeof message.assignedLid === "number")
                     object.assignedLid = options.longs === String ? String(message.assignedLid) : message.assignedLid;
                 else
                     object.assignedLid = options.longs === String ? $util.Long.prototype.toString.call(message.assignedLid) : options.longs === Number ? new $util.LongBits(message.assignedLid.low >>> 0, message.assignedLid.high >>> 0).toNumber(true) : message.assignedLid;
             if (message.latestLid != null && message.hasOwnProperty("latestLid"))
-                if (typeof message.latestLid === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.latestLid = typeof message.latestLid === "number" ? BigInt(message.latestLid) : $util.Long.fromBits(message.latestLid.low >>> 0, message.latestLid.high >>> 0, true).toBigInt();
+                else if (typeof message.latestLid === "number")
                     object.latestLid = options.longs === String ? String(message.latestLid) : message.latestLid;
                 else
                     object.latestLid = options.longs === String ? $util.Long.prototype.toString.call(message.latestLid) : options.longs === Number ? new $util.LongBits(message.latestLid.low >>> 0, message.latestLid.high >>> 0).toNumber(true) : message.latestLid;

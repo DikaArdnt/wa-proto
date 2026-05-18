@@ -260,16 +260,18 @@ $root.Web = (function() {
                 }
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.scheduledTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.scheduledTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.scheduledTime = options.longs === String ? "0" : 0;
+                    object.scheduledTime = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
             }
             if (message.revealKeyId != null && message.hasOwnProperty("revealKeyId"))
                 object.revealKeyId = message.revealKeyId;
             if (message.revealKey != null && message.hasOwnProperty("revealKey"))
                 object.revealKey = options.bytes === String ? $util.base64.encode(message.revealKey, 0, message.revealKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.revealKey) : message.revealKey;
             if (message.scheduledTime != null && message.hasOwnProperty("scheduledTime"))
-                if (typeof message.scheduledTime === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.scheduledTime = typeof message.scheduledTime === "number" ? BigInt(message.scheduledTime) : $util.Long.fromBits(message.scheduledTime.low >>> 0, message.scheduledTime.high >>> 0, true).toBigInt();
+                else if (typeof message.scheduledTime === "number")
                     object.scheduledTime = options.longs === String ? String(message.scheduledTime) : message.scheduledTime;
                 else
                     object.scheduledTime = options.longs === String ? $util.Long.prototype.toString.call(message.scheduledTime) : options.longs === Number ? new $util.LongBits(message.scheduledTime.low >>> 0, message.scheduledTime.high >>> 0).toNumber(true) : message.scheduledTime;
@@ -2043,14 +2045,14 @@ $root.Web = (function() {
                 object.messageAddOn = null;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.senderTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.senderTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.senderTimestampMs = options.longs === String ? "0" : 0;
+                    object.senderTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.serverTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.serverTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.serverTimestampMs = options.longs === String ? "0" : 0;
+                    object.serverTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.status = options.enums === String ? "ERROR" : 0;
                 object.addOnContextInfo = null;
                 object.messageAddOnKey = null;
@@ -2061,12 +2063,16 @@ $root.Web = (function() {
             if (message.messageAddOn != null && message.hasOwnProperty("messageAddOn"))
                 object.messageAddOn = $root.E2E.Message.toObject(message.messageAddOn, options);
             if (message.senderTimestampMs != null && message.hasOwnProperty("senderTimestampMs"))
-                if (typeof message.senderTimestampMs === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.senderTimestampMs = typeof message.senderTimestampMs === "number" ? BigInt(message.senderTimestampMs) : $util.Long.fromBits(message.senderTimestampMs.low >>> 0, message.senderTimestampMs.high >>> 0, false).toBigInt();
+                else if (typeof message.senderTimestampMs === "number")
                     object.senderTimestampMs = options.longs === String ? String(message.senderTimestampMs) : message.senderTimestampMs;
                 else
                     object.senderTimestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.senderTimestampMs) : options.longs === Number ? new $util.LongBits(message.senderTimestampMs.low >>> 0, message.senderTimestampMs.high >>> 0).toNumber() : message.senderTimestampMs;
             if (message.serverTimestampMs != null && message.hasOwnProperty("serverTimestampMs"))
-                if (typeof message.serverTimestampMs === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.serverTimestampMs = typeof message.serverTimestampMs === "number" ? BigInt(message.serverTimestampMs) : $util.Long.fromBits(message.serverTimestampMs.low >>> 0, message.serverTimestampMs.high >>> 0, false).toBigInt();
+                else if (typeof message.serverTimestampMs === "number")
                     object.serverTimestampMs = options.longs === String ? String(message.serverTimestampMs) : message.serverTimestampMs;
                 else
                     object.serverTimestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.serverTimestampMs) : options.longs === Number ? new $util.LongBits(message.serverTimestampMs.low >>> 0, message.serverTimestampMs.high >>> 0).toNumber() : message.serverTimestampMs;
@@ -2643,16 +2649,18 @@ $root.Web = (function() {
                 object.eventResponseMessageKey = null;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.timestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.timestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.timestampMs = options.longs === String ? "0" : 0;
+                    object.timestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.eventResponseMessage = null;
                 object.unread = false;
             }
             if (message.eventResponseMessageKey != null && message.hasOwnProperty("eventResponseMessageKey"))
                 object.eventResponseMessageKey = $root.Protocol.MessageKey.toObject(message.eventResponseMessageKey, options);
             if (message.timestampMs != null && message.hasOwnProperty("timestampMs"))
-                if (typeof message.timestampMs === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.timestampMs = typeof message.timestampMs === "number" ? BigInt(message.timestampMs) : $util.Long.fromBits(message.timestampMs.low >>> 0, message.timestampMs.high >>> 0, false).toBigInt();
+                else if (typeof message.timestampMs === "number")
                     object.timestampMs = options.longs === String ? String(message.timestampMs) : message.timestampMs;
                 else
                     object.timestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.timestampMs) : options.longs === Number ? new $util.LongBits(message.timestampMs.low >>> 0, message.timestampMs.high >>> 0).toNumber() : message.timestampMs;
@@ -3483,14 +3491,14 @@ $root.Web = (function() {
                 object.key = null;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.senderTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.senderTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.senderTimestampMs = options.longs === String ? "0" : 0;
+                    object.senderTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.serverTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.serverTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.serverTimestampMs = options.longs === String ? "0" : 0;
+                    object.serverTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.messageAddOnContextInfo = null;
             }
             if (message.type != null && message.hasOwnProperty("type"))
@@ -3498,12 +3506,16 @@ $root.Web = (function() {
             if (message.key != null && message.hasOwnProperty("key"))
                 object.key = $root.Protocol.MessageKey.toObject(message.key, options);
             if (message.senderTimestampMs != null && message.hasOwnProperty("senderTimestampMs"))
-                if (typeof message.senderTimestampMs === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.senderTimestampMs = typeof message.senderTimestampMs === "number" ? BigInt(message.senderTimestampMs) : $util.Long.fromBits(message.senderTimestampMs.low >>> 0, message.senderTimestampMs.high >>> 0, false).toBigInt();
+                else if (typeof message.senderTimestampMs === "number")
                     object.senderTimestampMs = options.longs === String ? String(message.senderTimestampMs) : message.senderTimestampMs;
                 else
                     object.senderTimestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.senderTimestampMs) : options.longs === Number ? new $util.LongBits(message.senderTimestampMs.low >>> 0, message.senderTimestampMs.high >>> 0).toNumber() : message.senderTimestampMs;
             if (message.serverTimestampMs != null && message.hasOwnProperty("serverTimestampMs"))
-                if (typeof message.serverTimestampMs === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.serverTimestampMs = typeof message.serverTimestampMs === "number" ? BigInt(message.serverTimestampMs) : $util.Long.fromBits(message.serverTimestampMs.low >>> 0, message.serverTimestampMs.high >>> 0, false).toBigInt();
+                else if (typeof message.serverTimestampMs === "number")
                     object.serverTimestampMs = options.longs === String ? String(message.serverTimestampMs) : message.serverTimestampMs;
                 else
                     object.serverTimestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.serverTimestampMs) : options.longs === Number ? new $util.LongBits(message.serverTimestampMs.low >>> 0, message.serverTimestampMs.high >>> 0).toNumber() : message.serverTimestampMs;
@@ -3892,26 +3904,28 @@ $root.Web = (function() {
                 object.keepType = options.enums === String ? "UNKNOWN" : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.serverTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.serverTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.serverTimestamp = options.longs === String ? "0" : 0;
+                    object.serverTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.key = null;
                 object.deviceJid = "";
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.clientTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.clientTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.clientTimestampMs = options.longs === String ? "0" : 0;
+                    object.clientTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.serverTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.serverTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.serverTimestampMs = options.longs === String ? "0" : 0;
+                    object.serverTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
             }
             if (message.keepType != null && message.hasOwnProperty("keepType"))
                 object.keepType = options.enums === String ? $root.E2E.KeepType[message.keepType] === undefined ? message.keepType : $root.E2E.KeepType[message.keepType] : message.keepType;
             if (message.serverTimestamp != null && message.hasOwnProperty("serverTimestamp"))
-                if (typeof message.serverTimestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.serverTimestamp = typeof message.serverTimestamp === "number" ? BigInt(message.serverTimestamp) : $util.Long.fromBits(message.serverTimestamp.low >>> 0, message.serverTimestamp.high >>> 0, false).toBigInt();
+                else if (typeof message.serverTimestamp === "number")
                     object.serverTimestamp = options.longs === String ? String(message.serverTimestamp) : message.serverTimestamp;
                 else
                     object.serverTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.serverTimestamp) : options.longs === Number ? new $util.LongBits(message.serverTimestamp.low >>> 0, message.serverTimestamp.high >>> 0).toNumber() : message.serverTimestamp;
@@ -3920,12 +3934,16 @@ $root.Web = (function() {
             if (message.deviceJid != null && message.hasOwnProperty("deviceJid"))
                 object.deviceJid = message.deviceJid;
             if (message.clientTimestampMs != null && message.hasOwnProperty("clientTimestampMs"))
-                if (typeof message.clientTimestampMs === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.clientTimestampMs = typeof message.clientTimestampMs === "number" ? BigInt(message.clientTimestampMs) : $util.Long.fromBits(message.clientTimestampMs.low >>> 0, message.clientTimestampMs.high >>> 0, false).toBigInt();
+                else if (typeof message.clientTimestampMs === "number")
                     object.clientTimestampMs = options.longs === String ? String(message.clientTimestampMs) : message.clientTimestampMs;
                 else
                     object.clientTimestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.clientTimestampMs) : options.longs === Number ? new $util.LongBits(message.clientTimestampMs.low >>> 0, message.clientTimestampMs.high >>> 0).toNumber() : message.clientTimestampMs;
             if (message.serverTimestampMs != null && message.hasOwnProperty("serverTimestampMs"))
-                if (typeof message.serverTimestampMs === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.serverTimestampMs = typeof message.serverTimestampMs === "number" ? BigInt(message.serverTimestampMs) : $util.Long.fromBits(message.serverTimestampMs.low >>> 0, message.serverTimestampMs.high >>> 0, false).toBigInt();
+                else if (typeof message.serverTimestampMs === "number")
                     object.serverTimestampMs = options.longs === String ? String(message.serverTimestampMs) : message.serverTimestampMs;
                 else
                     object.serverTimestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.serverTimestampMs) : options.longs === Number ? new $util.LongBits(message.serverTimestampMs.low >>> 0, message.serverTimestampMs.high >>> 0).toNumber() : message.serverTimestampMs;
@@ -4902,14 +4920,14 @@ $root.Web = (function() {
                 object.vote = null;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.senderTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.senderTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.senderTimestampMs = options.longs === String ? "0" : 0;
+                    object.senderTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.serverTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.serverTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.serverTimestampMs = options.longs === String ? "0" : 0;
+                    object.serverTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.unread = false;
             }
             if (message.pollUpdateMessageKey != null && message.hasOwnProperty("pollUpdateMessageKey"))
@@ -4917,12 +4935,16 @@ $root.Web = (function() {
             if (message.vote != null && message.hasOwnProperty("vote"))
                 object.vote = $root.E2E.Message.PollVoteMessage.toObject(message.vote, options);
             if (message.senderTimestampMs != null && message.hasOwnProperty("senderTimestampMs"))
-                if (typeof message.senderTimestampMs === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.senderTimestampMs = typeof message.senderTimestampMs === "number" ? BigInt(message.senderTimestampMs) : $util.Long.fromBits(message.senderTimestampMs.low >>> 0, message.senderTimestampMs.high >>> 0, false).toBigInt();
+                else if (typeof message.senderTimestampMs === "number")
                     object.senderTimestampMs = options.longs === String ? String(message.senderTimestampMs) : message.senderTimestampMs;
                 else
                     object.senderTimestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.senderTimestampMs) : options.longs === Number ? new $util.LongBits(message.senderTimestampMs.low >>> 0, message.senderTimestampMs.high >>> 0).toNumber() : message.senderTimestampMs;
             if (message.serverTimestampMs != null && message.hasOwnProperty("serverTimestampMs"))
-                if (typeof message.serverTimestampMs === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.serverTimestampMs = typeof message.serverTimestampMs === "number" ? BigInt(message.serverTimestampMs) : $util.Long.fromBits(message.serverTimestampMs.low >>> 0, message.serverTimestampMs.high >>> 0, false).toBigInt();
+                else if (typeof message.serverTimestampMs === "number")
                     object.serverTimestampMs = options.longs === String ? String(message.serverTimestampMs) : message.serverTimestampMs;
                 else
                     object.serverTimestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.serverTimestampMs) : options.longs === Number ? new $util.LongBits(message.serverTimestampMs.low >>> 0, message.serverTimestampMs.high >>> 0).toNumber() : message.serverTimestampMs;
@@ -5239,9 +5261,9 @@ $root.Web = (function() {
                 object.groupingKey = "";
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.senderTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.senderTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.senderTimestampMs = options.longs === String ? "0" : 0;
+                    object.senderTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.unread = false;
             }
             if (message.key != null && message.hasOwnProperty("key"))
@@ -5251,7 +5273,9 @@ $root.Web = (function() {
             if (message.groupingKey != null && message.hasOwnProperty("groupingKey"))
                 object.groupingKey = message.groupingKey;
             if (message.senderTimestampMs != null && message.hasOwnProperty("senderTimestampMs"))
-                if (typeof message.senderTimestampMs === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.senderTimestampMs = typeof message.senderTimestampMs === "number" ? BigInt(message.senderTimestampMs) : $util.Long.fromBits(message.senderTimestampMs.low >>> 0, message.senderTimestampMs.high >>> 0, false).toBigInt();
+                else if (typeof message.senderTimestampMs === "number")
                     object.senderTimestampMs = options.longs === String ? String(message.senderTimestampMs) : message.senderTimestampMs;
                 else
                     object.senderTimestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.senderTimestampMs) : options.longs === Number ? new $util.LongBits(message.senderTimestampMs.low >>> 0, message.senderTimestampMs.high >>> 0).toNumber() : message.senderTimestampMs;
@@ -5625,34 +5649,40 @@ $root.Web = (function() {
                 object.userJid = "";
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.receiptTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.receiptTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.receiptTimestamp = options.longs === String ? "0" : 0;
+                    object.receiptTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.readTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.readTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.readTimestamp = options.longs === String ? "0" : 0;
+                    object.readTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.playedTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.playedTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.playedTimestamp = options.longs === String ? "0" : 0;
+                    object.playedTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
             }
             if (message.userJid != null && message.hasOwnProperty("userJid"))
                 object.userJid = message.userJid;
             if (message.receiptTimestamp != null && message.hasOwnProperty("receiptTimestamp"))
-                if (typeof message.receiptTimestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.receiptTimestamp = typeof message.receiptTimestamp === "number" ? BigInt(message.receiptTimestamp) : $util.Long.fromBits(message.receiptTimestamp.low >>> 0, message.receiptTimestamp.high >>> 0, false).toBigInt();
+                else if (typeof message.receiptTimestamp === "number")
                     object.receiptTimestamp = options.longs === String ? String(message.receiptTimestamp) : message.receiptTimestamp;
                 else
                     object.receiptTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.receiptTimestamp) : options.longs === Number ? new $util.LongBits(message.receiptTimestamp.low >>> 0, message.receiptTimestamp.high >>> 0).toNumber() : message.receiptTimestamp;
             if (message.readTimestamp != null && message.hasOwnProperty("readTimestamp"))
-                if (typeof message.readTimestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.readTimestamp = typeof message.readTimestamp === "number" ? BigInt(message.readTimestamp) : $util.Long.fromBits(message.readTimestamp.low >>> 0, message.readTimestamp.high >>> 0, false).toBigInt();
+                else if (typeof message.readTimestamp === "number")
                     object.readTimestamp = options.longs === String ? String(message.readTimestamp) : message.readTimestamp;
                 else
                     object.readTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.readTimestamp) : options.longs === Number ? new $util.LongBits(message.readTimestamp.low >>> 0, message.readTimestamp.high >>> 0).toNumber() : message.readTimestamp;
             if (message.playedTimestamp != null && message.hasOwnProperty("playedTimestamp"))
-                if (typeof message.playedTimestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.playedTimestamp = typeof message.playedTimestamp === "number" ? BigInt(message.playedTimestamp) : $util.Long.fromBits(message.playedTimestamp.low >>> 0, message.playedTimestamp.high >>> 0, false).toBigInt();
+                else if (typeof message.playedTimestamp === "number")
                     object.playedTimestamp = options.longs === String ? String(message.playedTimestamp) : message.playedTimestamp;
                 else
                     object.playedTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.playedTimestamp) : options.longs === Number ? new $util.LongBits(message.playedTimestamp.low >>> 0, message.playedTimestamp.high >>> 0).toNumber() : message.playedTimestamp;
@@ -5916,22 +5946,26 @@ $root.Web = (function() {
             if (options.defaults) {
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.campaignId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.campaignId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.campaignId = options.longs === String ? "0" : 0;
+                    object.campaignId = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.campaignExpirationTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.campaignExpirationTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.campaignExpirationTimestamp = options.longs === String ? "0" : 0;
+                    object.campaignExpirationTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
             }
             if (message.campaignId != null && message.hasOwnProperty("campaignId"))
-                if (typeof message.campaignId === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.campaignId = typeof message.campaignId === "number" ? BigInt(message.campaignId) : $util.Long.fromBits(message.campaignId.low >>> 0, message.campaignId.high >>> 0, true).toBigInt();
+                else if (typeof message.campaignId === "number")
                     object.campaignId = options.longs === String ? String(message.campaignId) : message.campaignId;
                 else
                     object.campaignId = options.longs === String ? $util.Long.prototype.toString.call(message.campaignId) : options.longs === Number ? new $util.LongBits(message.campaignId.low >>> 0, message.campaignId.high >>> 0).toNumber(true) : message.campaignId;
             if (message.campaignExpirationTimestamp != null && message.hasOwnProperty("campaignExpirationTimestamp"))
-                if (typeof message.campaignExpirationTimestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.campaignExpirationTimestamp = typeof message.campaignExpirationTimestamp === "number" ? BigInt(message.campaignExpirationTimestamp) : $util.Long.fromBits(message.campaignExpirationTimestamp.low >>> 0, message.campaignExpirationTimestamp.high >>> 0, true).toBigInt();
+                else if (typeof message.campaignExpirationTimestamp === "number")
                     object.campaignExpirationTimestamp = options.longs === String ? String(message.campaignExpirationTimestamp) : message.campaignExpirationTimestamp;
                 else
                     object.campaignExpirationTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.campaignExpirationTimestamp) : options.longs === Number ? new $util.LongBits(message.campaignExpirationTimestamp.low >>> 0, message.campaignExpirationTimestamp.high >>> 0).toNumber(true) : message.campaignExpirationTimestamp;
@@ -9508,9 +9542,9 @@ $root.Web = (function() {
                 object.message = null;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.messageTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.messageTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.messageTimestamp = options.longs === String ? "0" : 0;
+                    object.messageTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.participant = "";
             }
             if (message.key != null && message.hasOwnProperty("key"))
@@ -9518,7 +9552,9 @@ $root.Web = (function() {
             if (message.message != null && message.hasOwnProperty("message"))
                 object.message = $root.E2E.Message.toObject(message.message, options);
             if (message.messageTimestamp != null && message.hasOwnProperty("messageTimestamp"))
-                if (typeof message.messageTimestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.messageTimestamp = typeof message.messageTimestamp === "number" ? BigInt(message.messageTimestamp) : $util.Long.fromBits(message.messageTimestamp.low >>> 0, message.messageTimestamp.high >>> 0, true).toBigInt();
+                else if (typeof message.messageTimestamp === "number")
                     object.messageTimestamp = options.longs === String ? String(message.messageTimestamp) : message.messageTimestamp;
                 else
                     object.messageTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.messageTimestamp) : options.longs === Number ? new $util.LongBits(message.messageTimestamp.low >>> 0, message.messageTimestamp.high >>> 0).toNumber(true) : message.messageTimestamp;
@@ -9827,14 +9863,16 @@ $root.Web = (function() {
             if (options.defaults) {
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.timestamp = options.longs === String ? "0" : 0;
+                    object.timestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.unreadChats = 0;
                 object.notifyMessageCount = 0;
             }
             if (message.timestamp != null && message.hasOwnProperty("timestamp"))
-                if (typeof message.timestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.timestamp = typeof message.timestamp === "number" ? BigInt(message.timestamp) : $util.Long.fromBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0, true).toBigInt();
+                else if (typeof message.timestamp === "number")
                     object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
                 else
                     object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber(true) : message.timestamp;
@@ -10597,22 +10635,22 @@ $root.Web = (function() {
                 object.currencyDeprecated = options.enums === String ? "UNKNOWN_CURRENCY" : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.amount1000 = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.amount1000 = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.amount1000 = options.longs === String ? "0" : 0;
+                    object.amount1000 = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.receiverJid = "";
                 object.status = options.enums === String ? "UNKNOWN_STATUS" : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.transactionTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.transactionTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.transactionTimestamp = options.longs === String ? "0" : 0;
+                    object.transactionTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.requestMessageKey = null;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.expiryTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.expiryTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.expiryTimestamp = options.longs === String ? "0" : 0;
+                    object.expiryTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.futureproofed = false;
                 object.currency = "";
                 object.txnStatus = options.enums === String ? "UNKNOWN" : 0;
@@ -10623,7 +10661,9 @@ $root.Web = (function() {
             if (message.currencyDeprecated != null && message.hasOwnProperty("currencyDeprecated"))
                 object.currencyDeprecated = options.enums === String ? $root.Web.PaymentInfo.Currency[message.currencyDeprecated] === undefined ? message.currencyDeprecated : $root.Web.PaymentInfo.Currency[message.currencyDeprecated] : message.currencyDeprecated;
             if (message.amount1000 != null && message.hasOwnProperty("amount1000"))
-                if (typeof message.amount1000 === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.amount1000 = typeof message.amount1000 === "number" ? BigInt(message.amount1000) : $util.Long.fromBits(message.amount1000.low >>> 0, message.amount1000.high >>> 0, true).toBigInt();
+                else if (typeof message.amount1000 === "number")
                     object.amount1000 = options.longs === String ? String(message.amount1000) : message.amount1000;
                 else
                     object.amount1000 = options.longs === String ? $util.Long.prototype.toString.call(message.amount1000) : options.longs === Number ? new $util.LongBits(message.amount1000.low >>> 0, message.amount1000.high >>> 0).toNumber(true) : message.amount1000;
@@ -10632,14 +10672,18 @@ $root.Web = (function() {
             if (message.status != null && message.hasOwnProperty("status"))
                 object.status = options.enums === String ? $root.Web.PaymentInfo.Status[message.status] === undefined ? message.status : $root.Web.PaymentInfo.Status[message.status] : message.status;
             if (message.transactionTimestamp != null && message.hasOwnProperty("transactionTimestamp"))
-                if (typeof message.transactionTimestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.transactionTimestamp = typeof message.transactionTimestamp === "number" ? BigInt(message.transactionTimestamp) : $util.Long.fromBits(message.transactionTimestamp.low >>> 0, message.transactionTimestamp.high >>> 0, true).toBigInt();
+                else if (typeof message.transactionTimestamp === "number")
                     object.transactionTimestamp = options.longs === String ? String(message.transactionTimestamp) : message.transactionTimestamp;
                 else
                     object.transactionTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.transactionTimestamp) : options.longs === Number ? new $util.LongBits(message.transactionTimestamp.low >>> 0, message.transactionTimestamp.high >>> 0).toNumber(true) : message.transactionTimestamp;
             if (message.requestMessageKey != null && message.hasOwnProperty("requestMessageKey"))
                 object.requestMessageKey = $root.Protocol.MessageKey.toObject(message.requestMessageKey, options);
             if (message.expiryTimestamp != null && message.hasOwnProperty("expiryTimestamp"))
-                if (typeof message.expiryTimestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.expiryTimestamp = typeof message.expiryTimestamp === "number" ? BigInt(message.expiryTimestamp) : $util.Long.fromBits(message.expiryTimestamp.low >>> 0, message.expiryTimestamp.high >>> 0, true).toBigInt();
+                else if (typeof message.expiryTimestamp === "number")
                     object.expiryTimestamp = options.longs === String ? String(message.expiryTimestamp) : message.expiryTimestamp;
                 else
                     object.expiryTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.expiryTimestamp) : options.longs === Number ? new $util.LongBits(message.expiryTimestamp.low >>> 0, message.expiryTimestamp.high >>> 0).toNumber(true) : message.expiryTimestamp;
@@ -14221,16 +14265,16 @@ $root.Web = (function() {
                 object.message = null;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.messageTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.messageTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.messageTimestamp = options.longs === String ? "0" : 0;
+                    object.messageTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.status = options.enums === String ? "ERROR" : 0;
                 object.participant = "";
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.messageC2STimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.messageC2STimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.messageC2STimestamp = options.longs === String ? "0" : 0;
+                    object.messageC2STimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.ignore = false;
                 object.starred = false;
                 object.broadcast = false;
@@ -14253,9 +14297,9 @@ $root.Web = (function() {
                 object.quotedPaymentInfo = null;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.ephemeralStartTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.ephemeralStartTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.ephemeralStartTimestamp = options.longs === String ? "0" : 0;
+                    object.ephemeralStartTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.ephemeralDuration = 0;
                 object.ephemeralOffToOn = false;
                 object.ephemeralOutOfSync = false;
@@ -14286,9 +14330,9 @@ $root.Web = (function() {
                 object.originalSelfAuthorUserJidString = "";
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.revokeMessageTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.revokeMessageTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.revokeMessageTimestamp = options.longs === String ? "0" : 0;
+                    object.revokeMessageTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.pinInChat = null;
                 object.premiumMessageInfo = null;
                 object.is1PBizBotMessage = false;
@@ -14298,9 +14342,9 @@ $root.Web = (function() {
                 object.reportingTokenInfo = null;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.newsletterServerId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.newsletterServerId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.newsletterServerId = options.longs === String ? "0" : 0;
+                    object.newsletterServerId = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.eventAdditionalMetadata = null;
                 object.isMentionedInStatus = false;
                 object.targetMessageId = null;
@@ -14315,9 +14359,9 @@ $root.Web = (function() {
                 object.hsmTag = "";
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.ephemeralExpirationTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.ephemeralExpirationTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.ephemeralExpirationTimestamp = options.longs === String ? "0" : 0;
+                    object.ephemeralExpirationTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.scheduledMessageMetadata = null;
                 object.decisionId = "";
             }
@@ -14326,7 +14370,9 @@ $root.Web = (function() {
             if (message.message != null && message.hasOwnProperty("message"))
                 object.message = $root.E2E.Message.toObject(message.message, options);
             if (message.messageTimestamp != null && message.hasOwnProperty("messageTimestamp"))
-                if (typeof message.messageTimestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.messageTimestamp = typeof message.messageTimestamp === "number" ? BigInt(message.messageTimestamp) : $util.Long.fromBits(message.messageTimestamp.low >>> 0, message.messageTimestamp.high >>> 0, true).toBigInt();
+                else if (typeof message.messageTimestamp === "number")
                     object.messageTimestamp = options.longs === String ? String(message.messageTimestamp) : message.messageTimestamp;
                 else
                     object.messageTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.messageTimestamp) : options.longs === Number ? new $util.LongBits(message.messageTimestamp.low >>> 0, message.messageTimestamp.high >>> 0).toNumber(true) : message.messageTimestamp;
@@ -14335,7 +14381,9 @@ $root.Web = (function() {
             if (message.participant != null && message.hasOwnProperty("participant"))
                 object.participant = message.participant;
             if (message.messageC2STimestamp != null && message.hasOwnProperty("messageC2STimestamp"))
-                if (typeof message.messageC2STimestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.messageC2STimestamp = typeof message.messageC2STimestamp === "number" ? BigInt(message.messageC2STimestamp) : $util.Long.fromBits(message.messageC2STimestamp.low >>> 0, message.messageC2STimestamp.high >>> 0, true).toBigInt();
+                else if (typeof message.messageC2STimestamp === "number")
                     object.messageC2STimestamp = options.longs === String ? String(message.messageC2STimestamp) : message.messageC2STimestamp;
                 else
                     object.messageC2STimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.messageC2STimestamp) : options.longs === Number ? new $util.LongBits(message.messageC2STimestamp.low >>> 0, message.messageC2STimestamp.high >>> 0).toNumber(true) : message.messageC2STimestamp;
@@ -14378,7 +14426,9 @@ $root.Web = (function() {
             if (message.quotedPaymentInfo != null && message.hasOwnProperty("quotedPaymentInfo"))
                 object.quotedPaymentInfo = $root.Web.PaymentInfo.toObject(message.quotedPaymentInfo, options);
             if (message.ephemeralStartTimestamp != null && message.hasOwnProperty("ephemeralStartTimestamp"))
-                if (typeof message.ephemeralStartTimestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.ephemeralStartTimestamp = typeof message.ephemeralStartTimestamp === "number" ? BigInt(message.ephemeralStartTimestamp) : $util.Long.fromBits(message.ephemeralStartTimestamp.low >>> 0, message.ephemeralStartTimestamp.high >>> 0, true).toBigInt();
+                else if (typeof message.ephemeralStartTimestamp === "number")
                     object.ephemeralStartTimestamp = options.longs === String ? String(message.ephemeralStartTimestamp) : message.ephemeralStartTimestamp;
                 else
                     object.ephemeralStartTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.ephemeralStartTimestamp) : options.longs === Number ? new $util.LongBits(message.ephemeralStartTimestamp.low >>> 0, message.ephemeralStartTimestamp.high >>> 0).toNumber(true) : message.ephemeralStartTimestamp;
@@ -14430,7 +14480,9 @@ $root.Web = (function() {
             if (message.originalSelfAuthorUserJidString != null && message.hasOwnProperty("originalSelfAuthorUserJidString"))
                 object.originalSelfAuthorUserJidString = message.originalSelfAuthorUserJidString;
             if (message.revokeMessageTimestamp != null && message.hasOwnProperty("revokeMessageTimestamp"))
-                if (typeof message.revokeMessageTimestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.revokeMessageTimestamp = typeof message.revokeMessageTimestamp === "number" ? BigInt(message.revokeMessageTimestamp) : $util.Long.fromBits(message.revokeMessageTimestamp.low >>> 0, message.revokeMessageTimestamp.high >>> 0, true).toBigInt();
+                else if (typeof message.revokeMessageTimestamp === "number")
                     object.revokeMessageTimestamp = options.longs === String ? String(message.revokeMessageTimestamp) : message.revokeMessageTimestamp;
                 else
                     object.revokeMessageTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.revokeMessageTimestamp) : options.longs === Number ? new $util.LongBits(message.revokeMessageTimestamp.low >>> 0, message.revokeMessageTimestamp.high >>> 0).toNumber(true) : message.revokeMessageTimestamp;
@@ -14454,7 +14506,9 @@ $root.Web = (function() {
             if (message.reportingTokenInfo != null && message.hasOwnProperty("reportingTokenInfo"))
                 object.reportingTokenInfo = $root.Web.ReportingTokenInfo.toObject(message.reportingTokenInfo, options);
             if (message.newsletterServerId != null && message.hasOwnProperty("newsletterServerId"))
-                if (typeof message.newsletterServerId === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.newsletterServerId = typeof message.newsletterServerId === "number" ? BigInt(message.newsletterServerId) : $util.Long.fromBits(message.newsletterServerId.low >>> 0, message.newsletterServerId.high >>> 0, true).toBigInt();
+                else if (typeof message.newsletterServerId === "number")
                     object.newsletterServerId = options.longs === String ? String(message.newsletterServerId) : message.newsletterServerId;
                 else
                     object.newsletterServerId = options.longs === String ? $util.Long.prototype.toString.call(message.newsletterServerId) : options.longs === Number ? new $util.LongBits(message.newsletterServerId.low >>> 0, message.newsletterServerId.high >>> 0).toNumber(true) : message.newsletterServerId;
@@ -14503,7 +14557,9 @@ $root.Web = (function() {
             if (message.hsmTag != null && message.hasOwnProperty("hsmTag"))
                 object.hsmTag = message.hsmTag;
             if (message.ephemeralExpirationTimestamp != null && message.hasOwnProperty("ephemeralExpirationTimestamp"))
-                if (typeof message.ephemeralExpirationTimestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.ephemeralExpirationTimestamp = typeof message.ephemeralExpirationTimestamp === "number" ? BigInt(message.ephemeralExpirationTimestamp) : $util.Long.fromBits(message.ephemeralExpirationTimestamp.low >>> 0, message.ephemeralExpirationTimestamp.high >>> 0, true).toBigInt();
+                else if (typeof message.ephemeralExpirationTimestamp === "number")
                     object.ephemeralExpirationTimestamp = options.longs === String ? String(message.ephemeralExpirationTimestamp) : message.ephemeralExpirationTimestamp;
                 else
                     object.ephemeralExpirationTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.ephemeralExpirationTimestamp) : options.longs === Number ? new $util.LongBits(message.ephemeralExpirationTimestamp.low >>> 0, message.ephemeralExpirationTimestamp.high >>> 0).toNumber(true) : message.ephemeralExpirationTimestamp;
@@ -15304,16 +15360,18 @@ $root.E2E = (function() {
                 object.keyId = "";
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.expiryTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.expiryTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.expiryTimestampMs = options.longs === String ? "0" : 0;
+                    object.expiryTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
             }
             if (message.groupRootKey != null && message.hasOwnProperty("groupRootKey"))
                 object.groupRootKey = options.bytes === String ? $util.base64.encode(message.groupRootKey, 0, message.groupRootKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.groupRootKey) : message.groupRootKey;
             if (message.keyId != null && message.hasOwnProperty("keyId"))
                 object.keyId = message.keyId;
             if (message.expiryTimestampMs != null && message.hasOwnProperty("expiryTimestampMs"))
-                if (typeof message.expiryTimestampMs === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.expiryTimestampMs = typeof message.expiryTimestampMs === "number" ? BigInt(message.expiryTimestampMs) : $util.Long.fromBits(message.expiryTimestampMs.low >>> 0, message.expiryTimestampMs.high >>> 0, false).toBigInt();
+                else if (typeof message.expiryTimestampMs === "number")
                     object.expiryTimestampMs = options.longs === String ? String(message.expiryTimestampMs) : message.expiryTimestampMs;
                 else
                     object.expiryTimestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.expiryTimestampMs) : options.longs === Number ? new $util.LongBits(message.expiryTimestampMs.low >>> 0, message.expiryTimestampMs.high >>> 0).toNumber() : message.expiryTimestampMs;
@@ -15830,16 +15888,18 @@ $root.E2E = (function() {
                 object.message = null;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.timestamp = options.longs === String ? "0" : 0;
+                    object.timestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
             }
             if (message.messageKey != null && message.hasOwnProperty("messageKey"))
                 object.messageKey = $root.Protocol.MessageKey.toObject(message.messageKey, options);
             if (message.message != null && message.hasOwnProperty("message"))
                 object.message = $root.E2E.Message.toObject(message.message, options);
             if (message.timestamp != null && message.hasOwnProperty("timestamp"))
-                if (typeof message.timestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.timestamp = typeof message.timestamp === "number" ? BigInt(message.timestamp) : $util.Long.fromBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0, false).toBigInt();
+                else if (typeof message.timestamp === "number")
                     object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
                 else
                     object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber() : message.timestamp;
@@ -16425,14 +16485,16 @@ $root.E2E = (function() {
                 object.label = "";
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.labelTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.labelTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.labelTimestamp = options.longs === String ? "0" : 0;
+                    object.labelTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
             }
             if (message.label != null && message.hasOwnProperty("label"))
                 object.label = message.label;
             if (message.labelTimestamp != null && message.hasOwnProperty("labelTimestamp"))
-                if (typeof message.labelTimestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.labelTimestamp = typeof message.labelTimestamp === "number" ? BigInt(message.labelTimestamp) : $util.Long.fromBits(message.labelTimestamp.low >>> 0, message.labelTimestamp.high >>> 0, false).toBigInt();
+                else if (typeof message.labelTimestamp === "number")
                     object.labelTimestamp = options.longs === String ? String(message.labelTimestamp) : message.labelTimestamp;
                 else
                     object.labelTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.labelTimestamp) : options.longs === Number ? new $util.LongBits(message.labelTimestamp.low >>> 0, message.labelTimestamp.high >>> 0).toNumber() : message.labelTimestamp;
@@ -17381,9 +17443,9 @@ $root.E2E = (function() {
                 object.width = 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.fileLength = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.fileLength = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.fileLength = options.longs === String ? "0" : 0;
+                    object.fileLength = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.bitrate = 0;
                 object.quality = options.enums === String ? "UNDEFINED" : 0;
             }
@@ -17396,7 +17458,9 @@ $root.E2E = (function() {
             if (message.width != null && message.hasOwnProperty("width"))
                 object.width = message.width;
             if (message.fileLength != null && message.hasOwnProperty("fileLength"))
-                if (typeof message.fileLength === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.fileLength = typeof message.fileLength === "number" ? BigInt(message.fileLength) : $util.Long.fromBits(message.fileLength.low >>> 0, message.fileLength.high >>> 0, true).toBigInt();
+                else if (typeof message.fileLength === "number")
                     object.fileLength = options.longs === String ? String(message.fileLength) : message.fileLength;
                 else
                     object.fileLength = options.longs === String ? $util.Long.prototype.toString.call(message.fileLength) : options.longs === Number ? new $util.LongBits(message.fileLength.low >>> 0, message.fileLength.high >>> 0).toNumber(true) : message.fileLength;
@@ -17927,16 +17991,18 @@ $root.E2E = (function() {
                 }
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.fileLength = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.fileLength = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.fileLength = options.longs === String ? "0" : 0;
+                    object.fileLength = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
             }
             if (message.expressPathUrl != null && message.hasOwnProperty("expressPathUrl"))
                 object.expressPathUrl = message.expressPathUrl;
             if (message.fileEncSha256 != null && message.hasOwnProperty("fileEncSha256"))
                 object.fileEncSha256 = options.bytes === String ? $util.base64.encode(message.fileEncSha256, 0, message.fileEncSha256.length) : options.bytes === Array ? Array.prototype.slice.call(message.fileEncSha256) : message.fileEncSha256;
             if (message.fileLength != null && message.hasOwnProperty("fileLength"))
-                if (typeof message.fileLength === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.fileLength = typeof message.fileLength === "number" ? BigInt(message.fileLength) : $util.Long.fromBits(message.fileLength.low >>> 0, message.fileLength.high >>> 0, true).toBigInt();
+                else if (typeof message.fileLength === "number")
                     object.fileLength = options.longs === String ? String(message.fileLength) : message.fileLength;
                 else
                     object.fileLength = options.longs === String ? $util.Long.prototype.toString.call(message.fileLength) : options.longs === Number ? new $util.LongBits(message.fileLength.low >>> 0, message.fileLength.high >>> 0).toNumber(true) : message.fileLength;
@@ -19527,9 +19593,9 @@ $root.E2E = (function() {
                 object.id = "";
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.fileLength = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.fileLength = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.fileLength = options.longs === String ? "0" : 0;
+                    object.fileLength = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.width = 0;
                 object.height = 0;
                 object.mimetype = "";
@@ -19542,7 +19608,9 @@ $root.E2E = (function() {
             if (message.id != null && message.hasOwnProperty("id"))
                 object.id = message.id;
             if (message.fileLength != null && message.hasOwnProperty("fileLength"))
-                if (typeof message.fileLength === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.fileLength = typeof message.fileLength === "number" ? BigInt(message.fileLength) : $util.Long.fromBits(message.fileLength.low >>> 0, message.fileLength.high >>> 0, true).toBigInt();
+                else if (typeof message.fileLength === "number")
                     object.fileLength = options.longs === String ? String(message.fileLength) : message.fileLength;
                 else
                     object.fileLength = options.longs === String ? $util.Long.prototype.toString.call(message.fileLength) : options.longs === Number ? new $util.LongBits(message.fileLength.low >>> 0, message.fileLength.high >>> 0).toNumber(true) : message.fileLength;
@@ -19878,9 +19946,9 @@ $root.E2E = (function() {
                     }
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.mediaKeyTimestamp = options.longs === String ? "0" : 0;
+                        object.mediaKeyTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     if (options.bytes === String)
                         object.fileSha256 = "";
                     else {
@@ -19900,7 +19968,9 @@ $root.E2E = (function() {
                 if (message.mediaKey != null && message.hasOwnProperty("mediaKey"))
                     object.mediaKey = options.bytes === String ? $util.base64.encode(message.mediaKey, 0, message.mediaKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.mediaKey) : message.mediaKey;
                 if (message.mediaKeyTimestamp != null && message.hasOwnProperty("mediaKeyTimestamp"))
-                    if (typeof message.mediaKeyTimestamp === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.mediaKeyTimestamp = typeof message.mediaKeyTimestamp === "number" ? BigInt(message.mediaKeyTimestamp) : $util.Long.fromBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0, false).toBigInt();
+                    else if (typeof message.mediaKeyTimestamp === "number")
                         object.mediaKeyTimestamp = options.longs === String ? String(message.mediaKeyTimestamp) : message.mediaKeyTimestamp;
                     else
                         object.mediaKeyTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.mediaKeyTimestamp) : options.longs === Number ? new $util.LongBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0).toNumber() : message.mediaKeyTimestamp;
@@ -20190,14 +20260,16 @@ $root.E2E = (function() {
             if (options.defaults) {
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.value = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.value = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.value = options.longs === String ? "0" : 0;
+                    object.value = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.offset = 0;
                 object.currencyCode = "";
             }
             if (message.value != null && message.hasOwnProperty("value"))
-                if (typeof message.value === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.value = typeof message.value === "number" ? BigInt(message.value) : $util.Long.fromBits(message.value.low >>> 0, message.value.high >>> 0, false).toBigInt();
+                else if (typeof message.value === "number")
                     object.value = options.longs === String ? String(message.value) : message.value;
                 else
                     object.value = options.longs === String ? $util.Long.prototype.toString.call(message.value) : options.longs === Number ? new $util.LongBits(message.value.low >>> 0, message.value.high >>> 0).toNumber() : message.value;
@@ -24545,19 +24617,19 @@ $root.E2E = (function() {
                 }
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.musicSongStartTimeInMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.musicSongStartTimeInMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.musicSongStartTimeInMs = options.longs === String ? "0" : 0;
+                    object.musicSongStartTimeInMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.derivedContentStartTimeInMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.derivedContentStartTimeInMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.derivedContentStartTimeInMs = options.longs === String ? "0" : 0;
+                    object.derivedContentStartTimeInMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.overlapDurationInMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.overlapDurationInMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.overlapDurationInMs = options.longs === String ? "0" : 0;
+                    object.overlapDurationInMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
             }
             if (message.musicContentMediaId != null && message.hasOwnProperty("musicContentMediaId"))
                 object.musicContentMediaId = message.musicContentMediaId;
@@ -24582,17 +24654,23 @@ $root.E2E = (function() {
             if (message.artworkMediaKey != null && message.hasOwnProperty("artworkMediaKey"))
                 object.artworkMediaKey = options.bytes === String ? $util.base64.encode(message.artworkMediaKey, 0, message.artworkMediaKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.artworkMediaKey) : message.artworkMediaKey;
             if (message.musicSongStartTimeInMs != null && message.hasOwnProperty("musicSongStartTimeInMs"))
-                if (typeof message.musicSongStartTimeInMs === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.musicSongStartTimeInMs = typeof message.musicSongStartTimeInMs === "number" ? BigInt(message.musicSongStartTimeInMs) : $util.Long.fromBits(message.musicSongStartTimeInMs.low >>> 0, message.musicSongStartTimeInMs.high >>> 0, false).toBigInt();
+                else if (typeof message.musicSongStartTimeInMs === "number")
                     object.musicSongStartTimeInMs = options.longs === String ? String(message.musicSongStartTimeInMs) : message.musicSongStartTimeInMs;
                 else
                     object.musicSongStartTimeInMs = options.longs === String ? $util.Long.prototype.toString.call(message.musicSongStartTimeInMs) : options.longs === Number ? new $util.LongBits(message.musicSongStartTimeInMs.low >>> 0, message.musicSongStartTimeInMs.high >>> 0).toNumber() : message.musicSongStartTimeInMs;
             if (message.derivedContentStartTimeInMs != null && message.hasOwnProperty("derivedContentStartTimeInMs"))
-                if (typeof message.derivedContentStartTimeInMs === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.derivedContentStartTimeInMs = typeof message.derivedContentStartTimeInMs === "number" ? BigInt(message.derivedContentStartTimeInMs) : $util.Long.fromBits(message.derivedContentStartTimeInMs.low >>> 0, message.derivedContentStartTimeInMs.high >>> 0, false).toBigInt();
+                else if (typeof message.derivedContentStartTimeInMs === "number")
                     object.derivedContentStartTimeInMs = options.longs === String ? String(message.derivedContentStartTimeInMs) : message.derivedContentStartTimeInMs;
                 else
                     object.derivedContentStartTimeInMs = options.longs === String ? $util.Long.prototype.toString.call(message.derivedContentStartTimeInMs) : options.longs === Number ? new $util.LongBits(message.derivedContentStartTimeInMs.low >>> 0, message.derivedContentStartTimeInMs.high >>> 0).toNumber() : message.derivedContentStartTimeInMs;
             if (message.overlapDurationInMs != null && message.hasOwnProperty("overlapDurationInMs"))
-                if (typeof message.overlapDurationInMs === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.overlapDurationInMs = typeof message.overlapDurationInMs === "number" ? BigInt(message.overlapDurationInMs) : $util.Long.fromBits(message.overlapDurationInMs.low >>> 0, message.overlapDurationInMs.high >>> 0, false).toBigInt();
+                else if (typeof message.overlapDurationInMs === "number")
                     object.overlapDurationInMs = options.longs === String ? String(message.overlapDurationInMs) : message.overlapDurationInMs;
                 else
                     object.overlapDurationInMs = options.longs === String ? $util.Long.prototype.toString.call(message.overlapDurationInMs) : options.longs === Number ? new $util.LongBits(message.overlapDurationInMs.low >>> 0, message.overlapDurationInMs.high >>> 0).toNumber() : message.overlapDurationInMs;
@@ -25319,9 +25397,9 @@ $root.E2E = (function() {
                 }
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.senderTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.senderTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.senderTimestamp = options.longs === String ? "0" : 0;
+                    object.senderTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.senderAccountType = options.enums === String ? "E2EE" : 0;
                 object.receiverAccountType = options.enums === String ? "E2EE" : 0;
                 if (options.bytes === String)
@@ -25333,14 +25411,16 @@ $root.E2E = (function() {
                 }
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.recipientTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.recipientTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.recipientTimestamp = options.longs === String ? "0" : 0;
+                    object.recipientTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
             }
             if (message.senderKeyHash != null && message.hasOwnProperty("senderKeyHash"))
                 object.senderKeyHash = options.bytes === String ? $util.base64.encode(message.senderKeyHash, 0, message.senderKeyHash.length) : options.bytes === Array ? Array.prototype.slice.call(message.senderKeyHash) : message.senderKeyHash;
             if (message.senderTimestamp != null && message.hasOwnProperty("senderTimestamp"))
-                if (typeof message.senderTimestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.senderTimestamp = typeof message.senderTimestamp === "number" ? BigInt(message.senderTimestamp) : $util.Long.fromBits(message.senderTimestamp.low >>> 0, message.senderTimestamp.high >>> 0, true).toBigInt();
+                else if (typeof message.senderTimestamp === "number")
                     object.senderTimestamp = options.longs === String ? String(message.senderTimestamp) : message.senderTimestamp;
                 else
                     object.senderTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.senderTimestamp) : options.longs === Number ? new $util.LongBits(message.senderTimestamp.low >>> 0, message.senderTimestamp.high >>> 0).toNumber(true) : message.senderTimestamp;
@@ -25356,7 +25436,9 @@ $root.E2E = (function() {
             if (message.recipientKeyHash != null && message.hasOwnProperty("recipientKeyHash"))
                 object.recipientKeyHash = options.bytes === String ? $util.base64.encode(message.recipientKeyHash, 0, message.recipientKeyHash.length) : options.bytes === Array ? Array.prototype.slice.call(message.recipientKeyHash) : message.recipientKeyHash;
             if (message.recipientTimestamp != null && message.hasOwnProperty("recipientTimestamp"))
-                if (typeof message.recipientTimestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.recipientTimestamp = typeof message.recipientTimestamp === "number" ? BigInt(message.recipientTimestamp) : $util.Long.fromBits(message.recipientTimestamp.low >>> 0, message.recipientTimestamp.high >>> 0, true).toBigInt();
+                else if (typeof message.recipientTimestamp === "number")
                     object.recipientTimestamp = options.longs === String ? String(message.recipientTimestamp) : message.recipientTimestamp;
                 else
                     object.recipientTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.recipientTimestamp) : options.longs === Number ? new $util.LongBits(message.recipientTimestamp.low >>> 0, message.recipientTimestamp.high >>> 0).toNumber(true) : message.recipientTimestamp;
@@ -28640,9 +28722,9 @@ $root.E2E = (function() {
                 object.expiration = 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.ephemeralSettingTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.ephemeralSettingTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.ephemeralSettingTimestamp = options.longs === String ? "0" : 0;
+                    object.ephemeralSettingTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 if (options.bytes === String)
                     object.ephemeralSharedSecret = "";
                 else {
@@ -28732,7 +28814,9 @@ $root.E2E = (function() {
             if (message.expiration != null && message.hasOwnProperty("expiration"))
                 object.expiration = message.expiration;
             if (message.ephemeralSettingTimestamp != null && message.hasOwnProperty("ephemeralSettingTimestamp"))
-                if (typeof message.ephemeralSettingTimestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.ephemeralSettingTimestamp = typeof message.ephemeralSettingTimestamp === "number" ? BigInt(message.ephemeralSettingTimestamp) : $util.Long.fromBits(message.ephemeralSettingTimestamp.low >>> 0, message.ephemeralSettingTimestamp.high >>> 0, false).toBigInt();
+                else if (typeof message.ephemeralSettingTimestamp === "number")
                     object.ephemeralSettingTimestamp = options.longs === String ? String(message.ephemeralSettingTimestamp) : message.ephemeralSettingTimestamp;
                 else
                     object.ephemeralSettingTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.ephemeralSettingTimestamp) : options.longs === Number ? new $util.LongBits(message.ephemeralSettingTimestamp.low >>> 0, message.ephemeralSettingTimestamp.high >>> 0).toNumber() : message.ephemeralSettingTimestamp;
@@ -30718,9 +30802,9 @@ $root.E2E = (function() {
                         object.stringData = "";
                         if ($util.Long) {
                             var long = new $util.Long(0, 0, false);
-                            object.intData = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                            object.intData = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                         } else
-                            object.intData = options.longs === String ? "0" : 0;
+                            object.intData = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                         object.floatData = 0;
                         object.contents = null;
                     }
@@ -30729,7 +30813,9 @@ $root.E2E = (function() {
                     if (message.stringData != null && message.hasOwnProperty("stringData"))
                         object.stringData = message.stringData;
                     if (message.intData != null && message.hasOwnProperty("intData"))
-                        if (typeof message.intData === "number")
+                        if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                            object.intData = typeof message.intData === "number" ? BigInt(message.intData) : $util.Long.fromBits(message.intData.low >>> 0, message.intData.high >>> 0, false).toBigInt();
+                        else if (typeof message.intData === "number")
                             object.intData = options.longs === String ? String(message.intData) : message.intData;
                         else
                             object.intData = options.longs === String ? $util.Long.prototype.toString.call(message.intData) : options.longs === Number ? new $util.LongBits(message.intData.low >>> 0, message.intData.high >>> 0).toNumber() : message.intData;
@@ -37502,16 +37588,18 @@ $root.E2E = (function() {
                 if (options.defaults)
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.timestamp = options.longs === String ? "0" : 0;
+                        object.timestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 if (message.collectionNames && message.collectionNames.length) {
                     object.collectionNames = [];
                     for (var j = 0; j < message.collectionNames.length; ++j)
                         object.collectionNames[j] = message.collectionNames[j];
                 }
                 if (message.timestamp != null && message.hasOwnProperty("timestamp"))
-                    if (typeof message.timestamp === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.timestamp = typeof message.timestamp === "number" ? BigInt(message.timestamp) : $util.Long.fromBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0, false).toBigInt();
+                    else if (typeof message.timestamp === "number")
                         object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
                     else
                         object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber() : message.timestamp;
@@ -38045,16 +38133,18 @@ $root.E2E = (function() {
                     object.fingerprint = null;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.timestamp = options.longs === String ? "0" : 0;
+                        object.timestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
                 if (message.keyData != null && message.hasOwnProperty("keyData"))
                     object.keyData = options.bytes === String ? $util.base64.encode(message.keyData, 0, message.keyData.length) : options.bytes === Array ? Array.prototype.slice.call(message.keyData) : message.keyData;
                 if (message.fingerprint != null && message.hasOwnProperty("fingerprint"))
                     object.fingerprint = $root.E2E.Message.AppStateSyncKeyFingerprint.toObject(message.fingerprint, options);
                 if (message.timestamp != null && message.hasOwnProperty("timestamp"))
-                    if (typeof message.timestamp === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.timestamp = typeof message.timestamp === "number" ? BigInt(message.timestamp) : $util.Long.fromBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0, false).toBigInt();
+                    else if (typeof message.timestamp === "number")
                         object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
                     else
                         object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber() : message.timestamp;
@@ -39608,9 +39698,9 @@ $root.E2E = (function() {
                     }
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, true);
-                        object.fileLength = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.fileLength = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.fileLength = options.longs === String ? "0" : 0;
+                        object.fileLength = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.seconds = 0;
                     object.ptt = false;
                     if (options.bytes === String)
@@ -39630,9 +39720,9 @@ $root.E2E = (function() {
                     object.directPath = "";
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.mediaKeyTimestamp = options.longs === String ? "0" : 0;
+                        object.mediaKeyTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.contextInfo = null;
                     if (options.bytes === String)
                         object.streamingSidecar = "";
@@ -39659,7 +39749,9 @@ $root.E2E = (function() {
                 if (message.fileSha256 != null && message.hasOwnProperty("fileSha256"))
                     object.fileSha256 = options.bytes === String ? $util.base64.encode(message.fileSha256, 0, message.fileSha256.length) : options.bytes === Array ? Array.prototype.slice.call(message.fileSha256) : message.fileSha256;
                 if (message.fileLength != null && message.hasOwnProperty("fileLength"))
-                    if (typeof message.fileLength === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.fileLength = typeof message.fileLength === "number" ? BigInt(message.fileLength) : $util.Long.fromBits(message.fileLength.low >>> 0, message.fileLength.high >>> 0, true).toBigInt();
+                    else if (typeof message.fileLength === "number")
                         object.fileLength = options.longs === String ? String(message.fileLength) : message.fileLength;
                     else
                         object.fileLength = options.longs === String ? $util.Long.prototype.toString.call(message.fileLength) : options.longs === Number ? new $util.LongBits(message.fileLength.low >>> 0, message.fileLength.high >>> 0).toNumber(true) : message.fileLength;
@@ -39674,7 +39766,9 @@ $root.E2E = (function() {
                 if (message.directPath != null && message.hasOwnProperty("directPath"))
                     object.directPath = message.directPath;
                 if (message.mediaKeyTimestamp != null && message.hasOwnProperty("mediaKeyTimestamp"))
-                    if (typeof message.mediaKeyTimestamp === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.mediaKeyTimestamp = typeof message.mediaKeyTimestamp === "number" ? BigInt(message.mediaKeyTimestamp) : $util.Long.fromBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0, false).toBigInt();
+                    else if (typeof message.mediaKeyTimestamp === "number")
                         object.mediaKeyTimestamp = options.longs === String ? String(message.mediaKeyTimestamp) : message.mediaKeyTimestamp;
                     else
                         object.mediaKeyTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.mediaKeyTimestamp) : options.longs === Number ? new $util.LongBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0).toNumber() : message.mediaKeyTimestamp;
@@ -42635,9 +42729,9 @@ $root.E2E = (function() {
                     object.callOutcome = options.enums === String ? "CONNECTED" : 0;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.durationSecs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.durationSecs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.durationSecs = options.longs === String ? "0" : 0;
+                        object.durationSecs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.callType = options.enums === String ? "REGULAR" : 0;
                 }
                 if (message.isVideo != null && message.hasOwnProperty("isVideo"))
@@ -42645,7 +42739,9 @@ $root.E2E = (function() {
                 if (message.callOutcome != null && message.hasOwnProperty("callOutcome"))
                     object.callOutcome = options.enums === String ? $root.E2E.Message.CallLogMessage.CallOutcome[message.callOutcome] === undefined ? message.callOutcome : $root.E2E.Message.CallLogMessage.CallOutcome[message.callOutcome] : message.callOutcome;
                 if (message.durationSecs != null && message.hasOwnProperty("durationSecs"))
-                    if (typeof message.durationSecs === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.durationSecs = typeof message.durationSecs === "number" ? BigInt(message.durationSecs) : $util.Long.fromBits(message.durationSecs.low >>> 0, message.durationSecs.high >>> 0, false).toBigInt();
+                    else if (typeof message.durationSecs === "number")
                         object.durationSecs = options.longs === String ? String(message.durationSecs) : message.durationSecs;
                     else
                         object.durationSecs = options.longs === String ? $util.Long.prototype.toString.call(message.durationSecs) : options.longs === Number ? new $util.LongBits(message.durationSecs.low >>> 0, message.durationSecs.high >>> 0).toNumber() : message.durationSecs;
@@ -44906,14 +45002,16 @@ $root.E2E = (function() {
                 if (options.defaults) {
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.settingTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.settingTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.settingTimestampMs = options.longs === String ? "0" : 0;
+                        object.settingTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.clearTheme = false;
                     object.colorSchemeId = "";
                 }
                 if (message.settingTimestampMs != null && message.hasOwnProperty("settingTimestampMs"))
-                    if (typeof message.settingTimestampMs === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.settingTimestampMs = typeof message.settingTimestampMs === "number" ? BigInt(message.settingTimestampMs) : $util.Long.fromBits(message.settingTimestampMs.low >>> 0, message.settingTimestampMs.high >>> 0, false).toBigInt();
+                    else if (typeof message.settingTimestampMs === "number")
                         object.settingTimestampMs = options.longs === String ? String(message.settingTimestampMs) : message.settingTimestampMs;
                     else
                         object.settingTimestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.settingTimestampMs) : options.longs === Number ? new $util.LongBits(message.settingTimestampMs.low >>> 0, message.settingTimestampMs.high >>> 0).toNumber() : message.settingTimestampMs;
@@ -45299,9 +45397,9 @@ $root.E2E = (function() {
                     object.status = options.enums === String ? "UNKNOWN" : 0;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.senderNotificationTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.senderNotificationTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.senderNotificationTimestampMs = options.longs === String ? "0" : 0;
+                        object.senderNotificationTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.consumerLid = "";
                     object.consumerPhoneNumber = "";
                     object.notificationContent = null;
@@ -45310,7 +45408,9 @@ $root.E2E = (function() {
                 if (message.status != null && message.hasOwnProperty("status"))
                     object.status = options.enums === String ? $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControl[message.status] === undefined ? message.status : $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControl[message.status] : message.status;
                 if (message.senderNotificationTimestampMs != null && message.hasOwnProperty("senderNotificationTimestampMs"))
-                    if (typeof message.senderNotificationTimestampMs === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.senderNotificationTimestampMs = typeof message.senderNotificationTimestampMs === "number" ? BigInt(message.senderNotificationTimestampMs) : $util.Long.fromBits(message.senderNotificationTimestampMs.low >>> 0, message.senderNotificationTimestampMs.high >>> 0, false).toBigInt();
+                    else if (typeof message.senderNotificationTimestampMs === "number")
                         object.senderNotificationTimestampMs = options.longs === String ? String(message.senderNotificationTimestampMs) : message.senderNotificationTimestampMs;
                     else
                         object.senderNotificationTimestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.senderNotificationTimestampMs) : options.longs === Number ? new $util.LongBits(message.senderNotificationTimestampMs.low >>> 0, message.senderNotificationTimestampMs.high >>> 0).toNumber() : message.senderNotificationTimestampMs;
@@ -47907,9 +48007,9 @@ $root.E2E = (function() {
                     }
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, true);
-                        object.fileLength = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.fileLength = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.fileLength = options.longs === String ? "0" : 0;
+                        object.fileLength = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.pageCount = 0;
                     if (options.bytes === String)
                         object.mediaKey = "";
@@ -47929,9 +48029,9 @@ $root.E2E = (function() {
                     object.directPath = "";
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.mediaKeyTimestamp = options.longs === String ? "0" : 0;
+                        object.mediaKeyTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.contactVcard = false;
                     object.thumbnailDirectPath = "";
                     if (options.bytes === String)
@@ -47970,7 +48070,9 @@ $root.E2E = (function() {
                 if (message.fileSha256 != null && message.hasOwnProperty("fileSha256"))
                     object.fileSha256 = options.bytes === String ? $util.base64.encode(message.fileSha256, 0, message.fileSha256.length) : options.bytes === Array ? Array.prototype.slice.call(message.fileSha256) : message.fileSha256;
                 if (message.fileLength != null && message.hasOwnProperty("fileLength"))
-                    if (typeof message.fileLength === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.fileLength = typeof message.fileLength === "number" ? BigInt(message.fileLength) : $util.Long.fromBits(message.fileLength.low >>> 0, message.fileLength.high >>> 0, true).toBigInt();
+                    else if (typeof message.fileLength === "number")
                         object.fileLength = options.longs === String ? String(message.fileLength) : message.fileLength;
                     else
                         object.fileLength = options.longs === String ? $util.Long.prototype.toString.call(message.fileLength) : options.longs === Number ? new $util.LongBits(message.fileLength.low >>> 0, message.fileLength.high >>> 0).toNumber(true) : message.fileLength;
@@ -47985,7 +48087,9 @@ $root.E2E = (function() {
                 if (message.directPath != null && message.hasOwnProperty("directPath"))
                     object.directPath = message.directPath;
                 if (message.mediaKeyTimestamp != null && message.hasOwnProperty("mediaKeyTimestamp"))
-                    if (typeof message.mediaKeyTimestamp === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.mediaKeyTimestamp = typeof message.mediaKeyTimestamp === "number" ? BigInt(message.mediaKeyTimestamp) : $util.Long.fromBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0, false).toBigInt();
+                    else if (typeof message.mediaKeyTimestamp === "number")
                         object.mediaKeyTimestamp = options.longs === String ? String(message.mediaKeyTimestamp) : message.mediaKeyTimestamp;
                     else
                         object.mediaKeyTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.mediaKeyTimestamp) : options.longs === Number ? new $util.LongBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0).toNumber() : message.mediaKeyTimestamp;
@@ -49258,16 +49362,16 @@ $root.E2E = (function() {
                     }
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.startTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.startTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.startTime = options.longs === String ? "0" : 0;
+                        object.startTime = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.caption = "";
                     object.isCanceled = false;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.endTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.endTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.endTime = options.longs === String ? "0" : 0;
+                        object.endTime = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
                 if (message.contextInfo != null && message.hasOwnProperty("contextInfo"))
                     object.contextInfo = $root.E2E.ContextInfo.toObject(message.contextInfo, options);
@@ -49278,7 +49382,9 @@ $root.E2E = (function() {
                 if (message.jpegThumbnail != null && message.hasOwnProperty("jpegThumbnail"))
                     object.jpegThumbnail = options.bytes === String ? $util.base64.encode(message.jpegThumbnail, 0, message.jpegThumbnail.length) : options.bytes === Array ? Array.prototype.slice.call(message.jpegThumbnail) : message.jpegThumbnail;
                 if (message.startTime != null && message.hasOwnProperty("startTime"))
-                    if (typeof message.startTime === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.startTime = typeof message.startTime === "number" ? BigInt(message.startTime) : $util.Long.fromBits(message.startTime.low >>> 0, message.startTime.high >>> 0, false).toBigInt();
+                    else if (typeof message.startTime === "number")
                         object.startTime = options.longs === String ? String(message.startTime) : message.startTime;
                     else
                         object.startTime = options.longs === String ? $util.Long.prototype.toString.call(message.startTime) : options.longs === Number ? new $util.LongBits(message.startTime.low >>> 0, message.startTime.high >>> 0).toNumber() : message.startTime;
@@ -49287,7 +49393,9 @@ $root.E2E = (function() {
                 if (message.isCanceled != null && message.hasOwnProperty("isCanceled"))
                     object.isCanceled = message.isCanceled;
                 if (message.endTime != null && message.hasOwnProperty("endTime"))
-                    if (typeof message.endTime === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.endTime = typeof message.endTime === "number" ? BigInt(message.endTime) : $util.Long.fromBits(message.endTime.low >>> 0, message.endTime.high >>> 0, false).toBigInt();
+                    else if (typeof message.endTime === "number")
                         object.endTime = options.longs === String ? String(message.endTime) : message.endTime;
                     else
                         object.endTime = options.longs === String ? $util.Long.prototype.toString.call(message.endTime) : options.longs === Number ? new $util.LongBits(message.endTime.low >>> 0, message.endTime.high >>> 0).toNumber() : message.endTime;
@@ -49764,22 +49872,22 @@ $root.E2E = (function() {
                     object.joinLink = "";
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.startTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.startTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.startTime = options.longs === String ? "0" : 0;
+                        object.startTime = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.endTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.endTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.endTime = options.longs === String ? "0" : 0;
+                        object.endTime = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.extraGuestsAllowed = false;
                     object.isScheduleCall = false;
                     object.hasReminder = false;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.reminderOffsetSec = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.reminderOffsetSec = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.reminderOffsetSec = options.longs === String ? "0" : 0;
+                        object.reminderOffsetSec = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
                 if (message.contextInfo != null && message.hasOwnProperty("contextInfo"))
                     object.contextInfo = $root.E2E.ContextInfo.toObject(message.contextInfo, options);
@@ -49794,12 +49902,16 @@ $root.E2E = (function() {
                 if (message.joinLink != null && message.hasOwnProperty("joinLink"))
                     object.joinLink = message.joinLink;
                 if (message.startTime != null && message.hasOwnProperty("startTime"))
-                    if (typeof message.startTime === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.startTime = typeof message.startTime === "number" ? BigInt(message.startTime) : $util.Long.fromBits(message.startTime.low >>> 0, message.startTime.high >>> 0, false).toBigInt();
+                    else if (typeof message.startTime === "number")
                         object.startTime = options.longs === String ? String(message.startTime) : message.startTime;
                     else
                         object.startTime = options.longs === String ? $util.Long.prototype.toString.call(message.startTime) : options.longs === Number ? new $util.LongBits(message.startTime.low >>> 0, message.startTime.high >>> 0).toNumber() : message.startTime;
                 if (message.endTime != null && message.hasOwnProperty("endTime"))
-                    if (typeof message.endTime === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.endTime = typeof message.endTime === "number" ? BigInt(message.endTime) : $util.Long.fromBits(message.endTime.low >>> 0, message.endTime.high >>> 0, false).toBigInt();
+                    else if (typeof message.endTime === "number")
                         object.endTime = options.longs === String ? String(message.endTime) : message.endTime;
                     else
                         object.endTime = options.longs === String ? $util.Long.prototype.toString.call(message.endTime) : options.longs === Number ? new $util.LongBits(message.endTime.low >>> 0, message.endTime.high >>> 0).toNumber() : message.endTime;
@@ -49810,7 +49922,9 @@ $root.E2E = (function() {
                 if (message.hasReminder != null && message.hasOwnProperty("hasReminder"))
                     object.hasReminder = message.hasReminder;
                 if (message.reminderOffsetSec != null && message.hasOwnProperty("reminderOffsetSec"))
-                    if (typeof message.reminderOffsetSec === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.reminderOffsetSec = typeof message.reminderOffsetSec === "number" ? BigInt(message.reminderOffsetSec) : $util.Long.fromBits(message.reminderOffsetSec.low >>> 0, message.reminderOffsetSec.high >>> 0, false).toBigInt();
+                    else if (typeof message.reminderOffsetSec === "number")
                         object.reminderOffsetSec = options.longs === String ? String(message.reminderOffsetSec) : message.reminderOffsetSec;
                     else
                         object.reminderOffsetSec = options.longs === String ? $util.Long.prototype.toString.call(message.reminderOffsetSec) : options.longs === Number ? new $util.LongBits(message.reminderOffsetSec.low >>> 0, message.reminderOffsetSec.high >>> 0).toNumber() : message.reminderOffsetSec;
@@ -50107,15 +50221,17 @@ $root.E2E = (function() {
                     object.response = options.enums === String ? "UNKNOWN" : 0;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.timestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.timestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.timestampMs = options.longs === String ? "0" : 0;
+                        object.timestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.extraGuestCount = 0;
                 }
                 if (message.response != null && message.hasOwnProperty("response"))
                     object.response = options.enums === String ? $root.E2E.Message.EventResponseMessage.EventResponseType[message.response] === undefined ? message.response : $root.E2E.Message.EventResponseMessage.EventResponseType[message.response] : message.response;
                 if (message.timestampMs != null && message.hasOwnProperty("timestampMs"))
-                    if (typeof message.timestampMs === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.timestampMs = typeof message.timestampMs === "number" ? BigInt(message.timestampMs) : $util.Long.fromBits(message.timestampMs.low >>> 0, message.timestampMs.high >>> 0, false).toBigInt();
+                    else if (typeof message.timestampMs === "number")
                         object.timestampMs = options.longs === String ? String(message.timestampMs) : message.timestampMs;
                     else
                         object.timestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.timestampMs) : options.longs === Number ? new $util.LongBits(message.timestampMs.low >>> 0, message.timestampMs.high >>> 0).toNumber() : message.timestampMs;
@@ -51232,9 +51348,9 @@ $root.E2E = (function() {
                     }
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.mediaKeyTimestamp = options.longs === String ? "0" : 0;
+                        object.mediaKeyTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.thumbnailHeight = 0;
                     object.thumbnailWidth = 0;
                     object.inviteLinkGroupType = options.enums === String ? "DEFAULT" : 0;
@@ -51288,7 +51404,9 @@ $root.E2E = (function() {
                 if (message.mediaKey != null && message.hasOwnProperty("mediaKey"))
                     object.mediaKey = options.bytes === String ? $util.base64.encode(message.mediaKey, 0, message.mediaKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.mediaKey) : message.mediaKey;
                 if (message.mediaKeyTimestamp != null && message.hasOwnProperty("mediaKeyTimestamp"))
-                    if (typeof message.mediaKeyTimestamp === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.mediaKeyTimestamp = typeof message.mediaKeyTimestamp === "number" ? BigInt(message.mediaKeyTimestamp) : $util.Long.fromBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0, false).toBigInt();
+                    else if (typeof message.mediaKeyTimestamp === "number")
                         object.mediaKeyTimestamp = options.longs === String ? String(message.mediaKeyTimestamp) : message.mediaKeyTimestamp;
                     else
                         object.mediaKeyTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.mediaKeyTimestamp) : options.longs === Number ? new $util.LongBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0).toNumber() : message.mediaKeyTimestamp;
@@ -51636,13 +51754,15 @@ $root.E2E = (function() {
                 if (options.defaults) {
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, true);
-                        object.historyFromTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.historyFromTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.historyFromTimestamp = options.longs === String ? "0" : 0;
+                        object.historyFromTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.historyDurationDays = 0;
                 }
                 if (message.historyFromTimestamp != null && message.hasOwnProperty("historyFromTimestamp"))
-                    if (typeof message.historyFromTimestamp === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.historyFromTimestamp = typeof message.historyFromTimestamp === "number" ? BigInt(message.historyFromTimestamp) : $util.Long.fromBits(message.historyFromTimestamp.low >>> 0, message.historyFromTimestamp.high >>> 0, true).toBigInt();
+                    else if (typeof message.historyFromTimestamp === "number")
                         object.historyFromTimestamp = options.longs === String ? String(message.historyFromTimestamp) : message.historyFromTimestamp;
                     else
                         object.historyFromTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.historyFromTimestamp) : options.longs === Number ? new $util.LongBits(message.historyFromTimestamp.low >>> 0, message.historyFromTimestamp.high >>> 0).toNumber(true) : message.historyFromTimestamp;
@@ -52535,9 +52655,9 @@ $root.E2E = (function() {
                     object.inviteCode = "";
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.inviteExpiration = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.inviteExpiration = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.inviteExpiration = options.longs === String ? "0" : 0;
+                        object.inviteExpiration = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.groupName = "";
                     if (options.bytes === String)
                         object.jpegThumbnail = "";
@@ -52555,7 +52675,9 @@ $root.E2E = (function() {
                 if (message.inviteCode != null && message.hasOwnProperty("inviteCode"))
                     object.inviteCode = message.inviteCode;
                 if (message.inviteExpiration != null && message.hasOwnProperty("inviteExpiration"))
-                    if (typeof message.inviteExpiration === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.inviteExpiration = typeof message.inviteExpiration === "number" ? BigInt(message.inviteExpiration) : $util.Long.fromBits(message.inviteExpiration.low >>> 0, message.inviteExpiration.high >>> 0, false).toBigInt();
+                    else if (typeof message.inviteExpiration === "number")
                         object.inviteExpiration = options.longs === String ? String(message.inviteExpiration) : message.inviteExpiration;
                     else
                         object.inviteExpiration = options.longs === String ? $util.Long.prototype.toString.call(message.inviteExpiration) : options.longs === Number ? new $util.LongBits(message.inviteExpiration.low >>> 0, message.inviteExpiration.high >>> 0).toNumber() : message.inviteExpiration;
@@ -53567,14 +53689,16 @@ $root.E2E = (function() {
                             object.currencyCode = "";
                             if ($util.Long) {
                                 var long = new $util.Long(0, 0, false);
-                                object.amount1000 = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                object.amount1000 = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                             } else
-                                object.amount1000 = options.longs === String ? "0" : 0;
+                                object.amount1000 = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                         }
                         if (message.currencyCode != null && message.hasOwnProperty("currencyCode"))
                             object.currencyCode = message.currencyCode;
                         if (message.amount1000 != null && message.hasOwnProperty("amount1000"))
-                            if (typeof message.amount1000 === "number")
+                            if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                                object.amount1000 = typeof message.amount1000 === "number" ? BigInt(message.amount1000) : $util.Long.fromBits(message.amount1000.low >>> 0, message.amount1000.high >>> 0, false).toBigInt();
+                            else if (typeof message.amount1000 === "number")
                                 object.amount1000 = options.longs === String ? String(message.amount1000) : message.amount1000;
                             else
                                 object.amount1000 = options.longs === String ? $util.Long.prototype.toString.call(message.amount1000) : options.longs === Number ? new $util.LongBits(message.amount1000.low >>> 0, message.amount1000.high >>> 0).toNumber() : message.amount1000;
@@ -54531,11 +54655,13 @@ $root.E2E = (function() {
                             if (options.defaults)
                                 if ($util.Long) {
                                     var long = new $util.Long(0, 0, false);
-                                    object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                    object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                                 } else
-                                    object.timestamp = options.longs === String ? "0" : 0;
+                                    object.timestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                             if (message.timestamp != null && message.hasOwnProperty("timestamp"))
-                                if (typeof message.timestamp === "number")
+                                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                                    object.timestamp = typeof message.timestamp === "number" ? BigInt(message.timestamp) : $util.Long.fromBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0, false).toBigInt();
+                                else if (typeof message.timestamp === "number")
                                     object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
                                 else
                                     object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber() : message.timestamp;
@@ -55358,9 +55484,9 @@ $root.E2E = (function() {
                     }
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, true);
-                        object.fileLength = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.fileLength = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.fileLength = options.longs === String ? "0" : 0;
+                        object.fileLength = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     if (options.bytes === String)
                         object.mediaKey = "";
                     else {
@@ -55382,9 +55508,9 @@ $root.E2E = (function() {
                     object.progress = 0;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.oldestMsgInChunkTimestampSec = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.oldestMsgInChunkTimestampSec = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.oldestMsgInChunkTimestampSec = options.longs === String ? "0" : 0;
+                        object.oldestMsgInChunkTimestampSec = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     if (options.bytes === String)
                         object.initialHistBootstrapInlinePayload = "";
                     else {
@@ -55400,7 +55526,9 @@ $root.E2E = (function() {
                 if (message.fileSha256 != null && message.hasOwnProperty("fileSha256"))
                     object.fileSha256 = options.bytes === String ? $util.base64.encode(message.fileSha256, 0, message.fileSha256.length) : options.bytes === Array ? Array.prototype.slice.call(message.fileSha256) : message.fileSha256;
                 if (message.fileLength != null && message.hasOwnProperty("fileLength"))
-                    if (typeof message.fileLength === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.fileLength = typeof message.fileLength === "number" ? BigInt(message.fileLength) : $util.Long.fromBits(message.fileLength.low >>> 0, message.fileLength.high >>> 0, true).toBigInt();
+                    else if (typeof message.fileLength === "number")
                         object.fileLength = options.longs === String ? String(message.fileLength) : message.fileLength;
                     else
                         object.fileLength = options.longs === String ? $util.Long.prototype.toString.call(message.fileLength) : options.longs === Number ? new $util.LongBits(message.fileLength.low >>> 0, message.fileLength.high >>> 0).toNumber(true) : message.fileLength;
@@ -55419,7 +55547,9 @@ $root.E2E = (function() {
                 if (message.progress != null && message.hasOwnProperty("progress"))
                     object.progress = message.progress;
                 if (message.oldestMsgInChunkTimestampSec != null && message.hasOwnProperty("oldestMsgInChunkTimestampSec"))
-                    if (typeof message.oldestMsgInChunkTimestampSec === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.oldestMsgInChunkTimestampSec = typeof message.oldestMsgInChunkTimestampSec === "number" ? BigInt(message.oldestMsgInChunkTimestampSec) : $util.Long.fromBits(message.oldestMsgInChunkTimestampSec.low >>> 0, message.oldestMsgInChunkTimestampSec.high >>> 0, false).toBigInt();
+                    else if (typeof message.oldestMsgInChunkTimestampSec === "number")
                         object.oldestMsgInChunkTimestampSec = options.longs === String ? String(message.oldestMsgInChunkTimestampSec) : message.oldestMsgInChunkTimestampSec;
                     else
                         object.oldestMsgInChunkTimestampSec = options.longs === String ? $util.Long.prototype.toString.call(message.oldestMsgInChunkTimestampSec) : options.longs === Number ? new $util.LongBits(message.oldestMsgInChunkTimestampSec.low >>> 0, message.oldestMsgInChunkTimestampSec.high >>> 0).toNumber() : message.oldestMsgInChunkTimestampSec;
@@ -56404,9 +56534,9 @@ $root.E2E = (function() {
                     }
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, true);
-                        object.fileLength = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.fileLength = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.fileLength = options.longs === String ? "0" : 0;
+                        object.fileLength = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.height = 0;
                     object.width = 0;
                     if (options.bytes === String)
@@ -56426,9 +56556,9 @@ $root.E2E = (function() {
                     object.directPath = "";
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.mediaKeyTimestamp = options.longs === String ? "0" : 0;
+                        object.mediaKeyTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     if (options.bytes === String)
                         object.jpegThumbnail = "";
                     else {
@@ -56497,7 +56627,9 @@ $root.E2E = (function() {
                 if (message.fileSha256 != null && message.hasOwnProperty("fileSha256"))
                     object.fileSha256 = options.bytes === String ? $util.base64.encode(message.fileSha256, 0, message.fileSha256.length) : options.bytes === Array ? Array.prototype.slice.call(message.fileSha256) : message.fileSha256;
                 if (message.fileLength != null && message.hasOwnProperty("fileLength"))
-                    if (typeof message.fileLength === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.fileLength = typeof message.fileLength === "number" ? BigInt(message.fileLength) : $util.Long.fromBits(message.fileLength.low >>> 0, message.fileLength.high >>> 0, true).toBigInt();
+                    else if (typeof message.fileLength === "number")
                         object.fileLength = options.longs === String ? String(message.fileLength) : message.fileLength;
                     else
                         object.fileLength = options.longs === String ? $util.Long.prototype.toString.call(message.fileLength) : options.longs === Number ? new $util.LongBits(message.fileLength.low >>> 0, message.fileLength.high >>> 0).toNumber(true) : message.fileLength;
@@ -56517,7 +56649,9 @@ $root.E2E = (function() {
                 if (message.directPath != null && message.hasOwnProperty("directPath"))
                     object.directPath = message.directPath;
                 if (message.mediaKeyTimestamp != null && message.hasOwnProperty("mediaKeyTimestamp"))
-                    if (typeof message.mediaKeyTimestamp === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.mediaKeyTimestamp = typeof message.mediaKeyTimestamp === "number" ? BigInt(message.mediaKeyTimestamp) : $util.Long.fromBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0, false).toBigInt();
+                    else if (typeof message.mediaKeyTimestamp === "number")
                         object.mediaKeyTimestamp = options.longs === String ? String(message.mediaKeyTimestamp) : message.mediaKeyTimestamp;
                     else
                         object.mediaKeyTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.mediaKeyTimestamp) : options.longs === Number ? new $util.LongBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0).toNumber() : message.mediaKeyTimestamp;
@@ -61326,9 +61460,9 @@ $root.E2E = (function() {
                     }
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.attachmentMediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.attachmentMediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.attachmentMediaKeyTimestamp = options.longs === String ? "0" : 0;
+                        object.attachmentMediaKeyTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     if (options.bytes === String)
                         object.attachmentFileSha256 = "";
                     else {
@@ -61363,7 +61497,9 @@ $root.E2E = (function() {
                 if (message.attachmentMediaKey != null && message.hasOwnProperty("attachmentMediaKey"))
                     object.attachmentMediaKey = options.bytes === String ? $util.base64.encode(message.attachmentMediaKey, 0, message.attachmentMediaKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.attachmentMediaKey) : message.attachmentMediaKey;
                 if (message.attachmentMediaKeyTimestamp != null && message.hasOwnProperty("attachmentMediaKeyTimestamp"))
-                    if (typeof message.attachmentMediaKeyTimestamp === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.attachmentMediaKeyTimestamp = typeof message.attachmentMediaKeyTimestamp === "number" ? BigInt(message.attachmentMediaKeyTimestamp) : $util.Long.fromBits(message.attachmentMediaKeyTimestamp.low >>> 0, message.attachmentMediaKeyTimestamp.high >>> 0, false).toBigInt();
+                    else if (typeof message.attachmentMediaKeyTimestamp === "number")
                         object.attachmentMediaKeyTimestamp = options.longs === String ? String(message.attachmentMediaKeyTimestamp) : message.attachmentMediaKeyTimestamp;
                     else
                         object.attachmentMediaKeyTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.attachmentMediaKeyTimestamp) : options.longs === Number ? new $util.LongBits(message.attachmentMediaKeyTimestamp.low >>> 0, message.attachmentMediaKeyTimestamp.high >>> 0).toNumber() : message.attachmentMediaKeyTimestamp;
@@ -61683,16 +61819,18 @@ $root.E2E = (function() {
                     object.keepType = options.enums === String ? "UNKNOWN" : 0;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.timestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.timestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.timestampMs = options.longs === String ? "0" : 0;
+                        object.timestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
                 if (message.key != null && message.hasOwnProperty("key"))
                     object.key = $root.Protocol.MessageKey.toObject(message.key, options);
                 if (message.keepType != null && message.hasOwnProperty("keepType"))
                     object.keepType = options.enums === String ? $root.E2E.KeepType[message.keepType] === undefined ? message.keepType : $root.E2E.KeepType[message.keepType] : message.keepType;
                 if (message.timestampMs != null && message.hasOwnProperty("timestampMs"))
-                    if (typeof message.timestampMs === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.timestampMs = typeof message.timestampMs === "number" ? BigInt(message.timestampMs) : $util.Long.fromBits(message.timestampMs.low >>> 0, message.timestampMs.high >>> 0, false).toBigInt();
+                    else if (typeof message.timestampMs === "number")
                         object.timestampMs = options.longs === String ? String(message.timestampMs) : message.timestampMs;
                     else
                         object.timestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.timestampMs) : options.longs === Number ? new $util.LongBits(message.timestampMs.low >>> 0, message.timestampMs.high >>> 0).toNumber() : message.timestampMs;
@@ -65158,9 +65296,9 @@ $root.E2E = (function() {
                     object.caption = "";
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.sequenceNumber = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.sequenceNumber = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.sequenceNumber = options.longs === String ? "0" : 0;
+                        object.sequenceNumber = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.timeOffset = 0;
                     if (options.bytes === String)
                         object.jpegThumbnail = "";
@@ -65184,7 +65322,9 @@ $root.E2E = (function() {
                 if (message.caption != null && message.hasOwnProperty("caption"))
                     object.caption = message.caption;
                 if (message.sequenceNumber != null && message.hasOwnProperty("sequenceNumber"))
-                    if (typeof message.sequenceNumber === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.sequenceNumber = typeof message.sequenceNumber === "number" ? BigInt(message.sequenceNumber) : $util.Long.fromBits(message.sequenceNumber.low >>> 0, message.sequenceNumber.high >>> 0, false).toBigInt();
+                    else if (typeof message.sequenceNumber === "number")
                         object.sequenceNumber = options.longs === String ? String(message.sequenceNumber) : message.sequenceNumber;
                     else
                         object.sequenceNumber = options.longs === String ? $util.Long.prototype.toString.call(message.sequenceNumber) : options.longs === Number ? new $util.LongBits(message.sequenceNumber.low >>> 0, message.sequenceNumber.high >>> 0).toNumber() : message.sequenceNumber;
@@ -66053,9 +66193,9 @@ $root.E2E = (function() {
                     }
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.mediaKeyTimestamp = options.longs === String ? "0" : 0;
+                        object.mediaKeyTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.thumbnailHeight = 0;
                     object.thumbnailWidth = 0;
                 }
@@ -66068,7 +66208,9 @@ $root.E2E = (function() {
                 if (message.mediaKey != null && message.hasOwnProperty("mediaKey"))
                     object.mediaKey = options.bytes === String ? $util.base64.encode(message.mediaKey, 0, message.mediaKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.mediaKey) : message.mediaKey;
                 if (message.mediaKeyTimestamp != null && message.hasOwnProperty("mediaKeyTimestamp"))
-                    if (typeof message.mediaKeyTimestamp === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.mediaKeyTimestamp = typeof message.mediaKeyTimestamp === "number" ? BigInt(message.mediaKeyTimestamp) : $util.Long.fromBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0, false).toBigInt();
+                    else if (typeof message.mediaKeyTimestamp === "number")
                         object.mediaKeyTimestamp = options.longs === String ? String(message.mediaKeyTimestamp) : message.mediaKeyTimestamp;
                     else
                         object.mediaKeyTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.mediaKeyTimestamp) : options.longs === Number ? new $util.LongBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0).toNumber() : message.mediaKeyTimestamp;
@@ -66481,9 +66623,9 @@ $root.E2E = (function() {
                     object.directPath = "";
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.mediaKeyTimestamp = options.longs === String ? "0" : 0;
+                        object.mediaKeyTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.contextInfo = null;
                     object.messageHistoryMetadata = null;
                 }
@@ -66498,7 +66640,9 @@ $root.E2E = (function() {
                 if (message.directPath != null && message.hasOwnProperty("directPath"))
                     object.directPath = message.directPath;
                 if (message.mediaKeyTimestamp != null && message.hasOwnProperty("mediaKeyTimestamp"))
-                    if (typeof message.mediaKeyTimestamp === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.mediaKeyTimestamp = typeof message.mediaKeyTimestamp === "number" ? BigInt(message.mediaKeyTimestamp) : $util.Long.fromBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0, false).toBigInt();
+                    else if (typeof message.mediaKeyTimestamp === "number")
                         object.mediaKeyTimestamp = options.longs === String ? String(message.mediaKeyTimestamp) : message.mediaKeyTimestamp;
                     else
                         object.mediaKeyTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.mediaKeyTimestamp) : options.longs === Number ? new $util.LongBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0).toNumber() : message.mediaKeyTimestamp;
@@ -66853,19 +66997,19 @@ $root.E2E = (function() {
                 if (options.defaults) {
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.oldestMessageTimestampInWindow = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.oldestMessageTimestampInWindow = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.oldestMessageTimestampInWindow = options.longs === String ? "0" : 0;
+                        object.oldestMessageTimestampInWindow = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.messageCount = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.messageCount = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.messageCount = options.longs === String ? "0" : 0;
+                        object.messageCount = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.oldestMessageTimestampInBundle = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.oldestMessageTimestampInBundle = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.oldestMessageTimestampInBundle = options.longs === String ? "0" : 0;
+                        object.oldestMessageTimestampInBundle = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
                 if (message.historyReceivers && message.historyReceivers.length) {
                     object.historyReceivers = [];
@@ -66873,12 +67017,16 @@ $root.E2E = (function() {
                         object.historyReceivers[j] = message.historyReceivers[j];
                 }
                 if (message.oldestMessageTimestampInWindow != null && message.hasOwnProperty("oldestMessageTimestampInWindow"))
-                    if (typeof message.oldestMessageTimestampInWindow === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.oldestMessageTimestampInWindow = typeof message.oldestMessageTimestampInWindow === "number" ? BigInt(message.oldestMessageTimestampInWindow) : $util.Long.fromBits(message.oldestMessageTimestampInWindow.low >>> 0, message.oldestMessageTimestampInWindow.high >>> 0, false).toBigInt();
+                    else if (typeof message.oldestMessageTimestampInWindow === "number")
                         object.oldestMessageTimestampInWindow = options.longs === String ? String(message.oldestMessageTimestampInWindow) : message.oldestMessageTimestampInWindow;
                     else
                         object.oldestMessageTimestampInWindow = options.longs === String ? $util.Long.prototype.toString.call(message.oldestMessageTimestampInWindow) : options.longs === Number ? new $util.LongBits(message.oldestMessageTimestampInWindow.low >>> 0, message.oldestMessageTimestampInWindow.high >>> 0).toNumber() : message.oldestMessageTimestampInWindow;
                 if (message.messageCount != null && message.hasOwnProperty("messageCount"))
-                    if (typeof message.messageCount === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.messageCount = typeof message.messageCount === "number" ? BigInt(message.messageCount) : $util.Long.fromBits(message.messageCount.low >>> 0, message.messageCount.high >>> 0, false).toBigInt();
+                    else if (typeof message.messageCount === "number")
                         object.messageCount = options.longs === String ? String(message.messageCount) : message.messageCount;
                     else
                         object.messageCount = options.longs === String ? $util.Long.prototype.toString.call(message.messageCount) : options.longs === Number ? new $util.LongBits(message.messageCount.low >>> 0, message.messageCount.high >>> 0).toNumber() : message.messageCount;
@@ -66888,7 +67036,9 @@ $root.E2E = (function() {
                         object.nonHistoryReceivers[j] = message.nonHistoryReceivers[j];
                 }
                 if (message.oldestMessageTimestampInBundle != null && message.hasOwnProperty("oldestMessageTimestampInBundle"))
-                    if (typeof message.oldestMessageTimestampInBundle === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.oldestMessageTimestampInBundle = typeof message.oldestMessageTimestampInBundle === "number" ? BigInt(message.oldestMessageTimestampInBundle) : $util.Long.fromBits(message.oldestMessageTimestampInBundle.low >>> 0, message.oldestMessageTimestampInBundle.high >>> 0, false).toBigInt();
+                    else if (typeof message.oldestMessageTimestampInBundle === "number")
                         object.oldestMessageTimestampInBundle = options.longs === String ? String(message.oldestMessageTimestampInBundle) : message.oldestMessageTimestampInBundle;
                     else
                         object.oldestMessageTimestampInBundle = options.longs === String ? $util.Long.prototype.toString.call(message.oldestMessageTimestampInBundle) : options.longs === Number ? new $util.LongBits(message.oldestMessageTimestampInBundle.low >>> 0, message.oldestMessageTimestampInBundle.high >>> 0).toNumber() : message.oldestMessageTimestampInBundle;
@@ -67484,9 +67634,9 @@ $root.E2E = (function() {
                     object.caption = "";
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.inviteExpiration = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.inviteExpiration = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.inviteExpiration = options.longs === String ? "0" : 0;
+                        object.inviteExpiration = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.contextInfo = null;
                 }
                 if (message.newsletterJid != null && message.hasOwnProperty("newsletterJid"))
@@ -67498,7 +67648,9 @@ $root.E2E = (function() {
                 if (message.caption != null && message.hasOwnProperty("caption"))
                     object.caption = message.caption;
                 if (message.inviteExpiration != null && message.hasOwnProperty("inviteExpiration"))
-                    if (typeof message.inviteExpiration === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.inviteExpiration = typeof message.inviteExpiration === "number" ? BigInt(message.inviteExpiration) : $util.Long.fromBits(message.inviteExpiration.low >>> 0, message.inviteExpiration.high >>> 0, false).toBigInt();
+                    else if (typeof message.inviteExpiration === "number")
                         object.inviteExpiration = options.longs === String ? String(message.inviteExpiration) : message.inviteExpiration;
                     else
                         object.inviteExpiration = options.longs === String ? $util.Long.prototype.toString.call(message.inviteExpiration) : options.longs === Number ? new $util.LongBits(message.inviteExpiration.low >>> 0, message.inviteExpiration.high >>> 0).toNumber() : message.inviteExpiration;
@@ -68397,9 +68549,9 @@ $root.E2E = (function() {
                     object.token = "";
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.totalAmount1000 = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.totalAmount1000 = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.totalAmount1000 = options.longs === String ? "0" : 0;
+                        object.totalAmount1000 = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.totalCurrencyCode = "";
                     object.messageVersion = 0;
                     object.orderRequestMessageId = null;
@@ -68425,7 +68577,9 @@ $root.E2E = (function() {
                 if (message.token != null && message.hasOwnProperty("token"))
                     object.token = message.token;
                 if (message.totalAmount1000 != null && message.hasOwnProperty("totalAmount1000"))
-                    if (typeof message.totalAmount1000 === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.totalAmount1000 = typeof message.totalAmount1000 === "number" ? BigInt(message.totalAmount1000) : $util.Long.fromBits(message.totalAmount1000.low >>> 0, message.totalAmount1000.high >>> 0, false).toBigInt();
+                    else if (typeof message.totalAmount1000 === "number")
                         object.totalAmount1000 = options.longs === String ? String(message.totalAmount1000) : message.totalAmount1000;
                     else
                         object.totalAmount1000 = options.longs === String ? $util.Long.prototype.toString.call(message.totalAmount1000) : options.longs === Number ? new $util.LongBits(message.totalAmount1000.low >>> 0, message.totalAmount1000.high >>> 0).toNumber() : message.totalAmount1000;
@@ -68985,14 +69139,14 @@ $root.E2E = (function() {
                     object.frequency = options.enums === String ? "UNKNOWN_FREQUENCY" : 0;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.nextReminderTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.nextReminderTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.nextReminderTimestamp = options.longs === String ? "0" : 0;
+                        object.nextReminderTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.expiryTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.expiryTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.expiryTimestamp = options.longs === String ? "0" : 0;
+                        object.expiryTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.state = options.enums === String ? "UNKNOWN_STATE" : 0;
                     object.description = "";
                     object.creatorJid = "";
@@ -69000,9 +69154,9 @@ $root.E2E = (function() {
                     object.upiId = "";
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.createdTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.createdTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.createdTimestamp = options.longs === String ? "0" : 0;
+                        object.createdTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
                 if (message.reminderId != null && message.hasOwnProperty("reminderId"))
                     object.reminderId = message.reminderId;
@@ -69011,12 +69165,16 @@ $root.E2E = (function() {
                 if (message.frequency != null && message.hasOwnProperty("frequency"))
                     object.frequency = options.enums === String ? $root.E2E.Message.P2PPaymentReminderNotification.ReminderFrequency[message.frequency] === undefined ? message.frequency : $root.E2E.Message.P2PPaymentReminderNotification.ReminderFrequency[message.frequency] : message.frequency;
                 if (message.nextReminderTimestamp != null && message.hasOwnProperty("nextReminderTimestamp"))
-                    if (typeof message.nextReminderTimestamp === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.nextReminderTimestamp = typeof message.nextReminderTimestamp === "number" ? BigInt(message.nextReminderTimestamp) : $util.Long.fromBits(message.nextReminderTimestamp.low >>> 0, message.nextReminderTimestamp.high >>> 0, false).toBigInt();
+                    else if (typeof message.nextReminderTimestamp === "number")
                         object.nextReminderTimestamp = options.longs === String ? String(message.nextReminderTimestamp) : message.nextReminderTimestamp;
                     else
                         object.nextReminderTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.nextReminderTimestamp) : options.longs === Number ? new $util.LongBits(message.nextReminderTimestamp.low >>> 0, message.nextReminderTimestamp.high >>> 0).toNumber() : message.nextReminderTimestamp;
                 if (message.expiryTimestamp != null && message.hasOwnProperty("expiryTimestamp"))
-                    if (typeof message.expiryTimestamp === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.expiryTimestamp = typeof message.expiryTimestamp === "number" ? BigInt(message.expiryTimestamp) : $util.Long.fromBits(message.expiryTimestamp.low >>> 0, message.expiryTimestamp.high >>> 0, false).toBigInt();
+                    else if (typeof message.expiryTimestamp === "number")
                         object.expiryTimestamp = options.longs === String ? String(message.expiryTimestamp) : message.expiryTimestamp;
                     else
                         object.expiryTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.expiryTimestamp) : options.longs === Number ? new $util.LongBits(message.expiryTimestamp.low >>> 0, message.expiryTimestamp.high >>> 0).toNumber() : message.expiryTimestamp;
@@ -69031,7 +69189,9 @@ $root.E2E = (function() {
                 if (message.upiId != null && message.hasOwnProperty("upiId"))
                     object.upiId = message.upiId;
                 if (message.createdTimestamp != null && message.hasOwnProperty("createdTimestamp"))
-                    if (typeof message.createdTimestamp === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.createdTimestamp = typeof message.createdTimestamp === "number" ? BigInt(message.createdTimestamp) : $util.Long.fromBits(message.createdTimestamp.low >>> 0, message.createdTimestamp.high >>> 0, false).toBigInt();
+                    else if (typeof message.createdTimestamp === "number")
                         object.createdTimestamp = options.longs === String ? String(message.createdTimestamp) : message.createdTimestamp;
                     else
                         object.createdTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.createdTimestamp) : options.longs === Number ? new $util.LongBits(message.createdTimestamp.low >>> 0, message.createdTimestamp.high >>> 0).toNumber() : message.createdTimestamp;
@@ -69670,9 +69830,9 @@ $root.E2E = (function() {
                     object.serviceType = options.enums === String ? "UNKNOWN" : 0;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.expiryTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.expiryTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.expiryTimestamp = options.longs === String ? "0" : 0;
+                        object.expiryTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.incentiveEligible = false;
                     object.referralId = "";
                     object.inviteType = options.enums === String ? "DEFAULT" : 0;
@@ -69680,7 +69840,9 @@ $root.E2E = (function() {
                 if (message.serviceType != null && message.hasOwnProperty("serviceType"))
                     object.serviceType = options.enums === String ? $root.E2E.Message.PaymentInviteMessage.ServiceType[message.serviceType] === undefined ? message.serviceType : $root.E2E.Message.PaymentInviteMessage.ServiceType[message.serviceType] : message.serviceType;
                 if (message.expiryTimestamp != null && message.hasOwnProperty("expiryTimestamp"))
-                    if (typeof message.expiryTimestamp === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.expiryTimestamp = typeof message.expiryTimestamp === "number" ? BigInt(message.expiryTimestamp) : $util.Long.fromBits(message.expiryTimestamp.low >>> 0, message.expiryTimestamp.high >>> 0, false).toBigInt();
+                    else if (typeof message.expiryTimestamp === "number")
                         object.expiryTimestamp = options.longs === String ? String(message.expiryTimestamp) : message.expiryTimestamp;
                     else
                         object.expiryTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.expiryTimestamp) : options.longs === Number ? new $util.LongBits(message.expiryTimestamp.low >>> 0, message.expiryTimestamp.high >>> 0).toNumber() : message.expiryTimestamp;
@@ -73298,9 +73460,9 @@ $root.E2E = (function() {
                         object.onDemandMsgCount = 0;
                         if ($util.Long) {
                             var long = new $util.Long(0, 0, false);
-                            object.oldestMsgTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                            object.oldestMsgTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                         } else
-                            object.oldestMsgTimestampMs = options.longs === String ? "0" : 0;
+                            object.oldestMsgTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                         object.accountLid = "";
                         object.supportInlineResponse = false;
                     }
@@ -73313,7 +73475,9 @@ $root.E2E = (function() {
                     if (message.onDemandMsgCount != null && message.hasOwnProperty("onDemandMsgCount"))
                         object.onDemandMsgCount = message.onDemandMsgCount;
                     if (message.oldestMsgTimestampMs != null && message.hasOwnProperty("oldestMsgTimestampMs"))
-                        if (typeof message.oldestMsgTimestampMs === "number")
+                        if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                            object.oldestMsgTimestampMs = typeof message.oldestMsgTimestampMs === "number" ? BigInt(message.oldestMsgTimestampMs) : $util.Long.fromBits(message.oldestMsgTimestampMs.low >>> 0, message.oldestMsgTimestampMs.high >>> 0, false).toBigInt();
+                        else if (typeof message.oldestMsgTimestampMs === "number")
                             object.oldestMsgTimestampMs = options.longs === String ? String(message.oldestMsgTimestampMs) : message.oldestMsgTimestampMs;
                         else
                             object.oldestMsgTimestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.oldestMsgTimestampMs) : options.longs === Number ? new $util.LongBits(message.oldestMsgTimestampMs.low >>> 0, message.oldestMsgTimestampMs.high >>> 0).toNumber() : message.oldestMsgTimestampMs;
@@ -74245,14 +74409,16 @@ $root.E2E = (function() {
                         object.collectionName = "";
                         if ($util.Long) {
                             var long = new $util.Long(0, 0, false);
-                            object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                            object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                         } else
-                            object.timestamp = options.longs === String ? "0" : 0;
+                            object.timestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     }
                     if (message.collectionName != null && message.hasOwnProperty("collectionName"))
                         object.collectionName = message.collectionName;
                     if (message.timestamp != null && message.hasOwnProperty("timestamp"))
-                        if (typeof message.timestamp === "number")
+                        if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                            object.timestamp = typeof message.timestamp === "number" ? BigInt(message.timestamp) : $util.Long.fromBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0, false).toBigInt();
+                        else if (typeof message.timestamp === "number")
                             object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
                         else
                             object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber() : message.timestamp;
@@ -75457,14 +75623,16 @@ $root.E2E = (function() {
                             object.campaignId = "";
                             if ($util.Long) {
                                 var long = new $util.Long(0, 0, false);
-                                object.timestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                object.timestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                             } else
-                                object.timestampMs = options.longs === String ? "0" : 0;
+                                object.timestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                         }
                         if (message.campaignId != null && message.hasOwnProperty("campaignId"))
                             object.campaignId = message.campaignId;
                         if (message.timestampMs != null && message.hasOwnProperty("timestampMs"))
-                            if (typeof message.timestampMs === "number")
+                            if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                                object.timestampMs = typeof message.timestampMs === "number" ? BigInt(message.timestampMs) : $util.Long.fromBits(message.timestampMs.low >>> 0, message.timestampMs.high >>> 0, false).toBigInt();
+                            else if (typeof message.timestampMs === "number")
                                 object.timestampMs = options.longs === String ? String(message.timestampMs) : message.timestampMs;
                             else
                                 object.timestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.timestampMs) : options.longs === Number ? new $util.LongBits(message.timestampMs.low >>> 0, message.timestampMs.high >>> 0).toNumber() : message.timestampMs;
@@ -76674,14 +76842,14 @@ $root.E2E = (function() {
                             object.directPath = "";
                             if ($util.Long) {
                                 var long = new $util.Long(0, 0, false);
-                                object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                             } else
-                                object.mediaKeyTimestamp = options.longs === String ? "0" : 0;
+                                object.mediaKeyTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                             if ($util.Long) {
                                 var long = new $util.Long(0, 0, true);
-                                object.fileLength = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                object.fileLength = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                             } else
-                                object.fileLength = options.longs === String ? "0" : 0;
+                                object.fileLength = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                         }
                         if (message.flowId != null && message.hasOwnProperty("flowId"))
                             object.flowId = message.flowId;
@@ -76700,12 +76868,16 @@ $root.E2E = (function() {
                         if (message.directPath != null && message.hasOwnProperty("directPath"))
                             object.directPath = message.directPath;
                         if (message.mediaKeyTimestamp != null && message.hasOwnProperty("mediaKeyTimestamp"))
-                            if (typeof message.mediaKeyTimestamp === "number")
+                            if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                                object.mediaKeyTimestamp = typeof message.mediaKeyTimestamp === "number" ? BigInt(message.mediaKeyTimestamp) : $util.Long.fromBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0, false).toBigInt();
+                            else if (typeof message.mediaKeyTimestamp === "number")
                                 object.mediaKeyTimestamp = options.longs === String ? String(message.mediaKeyTimestamp) : message.mediaKeyTimestamp;
                             else
                                 object.mediaKeyTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.mediaKeyTimestamp) : options.longs === Number ? new $util.LongBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0).toNumber() : message.mediaKeyTimestamp;
                         if (message.fileLength != null && message.hasOwnProperty("fileLength"))
-                            if (typeof message.fileLength === "number")
+                            if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                                object.fileLength = typeof message.fileLength === "number" ? BigInt(message.fileLength) : $util.Long.fromBits(message.fileLength.low >>> 0, message.fileLength.high >>> 0, true).toBigInt();
+                            else if (typeof message.fileLength === "number")
                                 object.fileLength = options.longs === String ? String(message.fileLength) : message.fileLength;
                             else
                                 object.fileLength = options.longs === String ? $util.Long.prototype.toString.call(message.fileLength) : options.longs === Number ? new $util.LongBits(message.fileLength.low >>> 0, message.fileLength.high >>> 0).toNumber(true) : message.fileLength;
@@ -78206,9 +78378,9 @@ $root.E2E = (function() {
                                 }
                                 if ($util.Long) {
                                     var long = new $util.Long(0, 0, false);
-                                    object.mediaKeyTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                                    object.mediaKeyTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                                 } else
-                                    object.mediaKeyTimestampMs = options.longs === String ? "0" : 0;
+                                    object.mediaKeyTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                                 object.thumbWidth = 0;
                                 object.thumbHeight = 0;
                             }
@@ -78221,7 +78393,9 @@ $root.E2E = (function() {
                             if (message.mediaKey != null && message.hasOwnProperty("mediaKey"))
                                 object.mediaKey = options.bytes === String ? $util.base64.encode(message.mediaKey, 0, message.mediaKey.length) : options.bytes === Array ? Array.prototype.slice.call(message.mediaKey) : message.mediaKey;
                             if (message.mediaKeyTimestampMs != null && message.hasOwnProperty("mediaKeyTimestampMs"))
-                                if (typeof message.mediaKeyTimestampMs === "number")
+                                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                                    object.mediaKeyTimestampMs = typeof message.mediaKeyTimestampMs === "number" ? BigInt(message.mediaKeyTimestampMs) : $util.Long.fromBits(message.mediaKeyTimestampMs.low >>> 0, message.mediaKeyTimestampMs.high >>> 0, false).toBigInt();
+                                else if (typeof message.mediaKeyTimestampMs === "number")
                                     object.mediaKeyTimestampMs = options.longs === String ? String(message.mediaKeyTimestampMs) : message.mediaKeyTimestampMs;
                                 else
                                     object.mediaKeyTimestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.mediaKeyTimestampMs) : options.longs === Number ? new $util.LongBits(message.mediaKeyTimestampMs.low >>> 0, message.mediaKeyTimestampMs.high >>> 0).toNumber() : message.mediaKeyTimestampMs;
@@ -79597,16 +79771,18 @@ $root.E2E = (function() {
                     object.type = options.enums === String ? "UNKNOWN_TYPE" : 0;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.senderTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.senderTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.senderTimestampMs = options.longs === String ? "0" : 0;
+                        object.senderTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
                 if (message.key != null && message.hasOwnProperty("key"))
                     object.key = $root.Protocol.MessageKey.toObject(message.key, options);
                 if (message.type != null && message.hasOwnProperty("type"))
                     object.type = options.enums === String ? $root.E2E.Message.PinInChatMessage.Type[message.type] === undefined ? message.type : $root.E2E.Message.PinInChatMessage.Type[message.type] : message.type;
                 if (message.senderTimestampMs != null && message.hasOwnProperty("senderTimestampMs"))
-                    if (typeof message.senderTimestampMs === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.senderTimestampMs = typeof message.senderTimestampMs === "number" ? BigInt(message.senderTimestampMs) : $util.Long.fromBits(message.senderTimestampMs.low >>> 0, message.senderTimestampMs.high >>> 0, false).toBigInt();
+                    else if (typeof message.senderTimestampMs === "number")
                         object.senderTimestampMs = options.longs === String ? String(message.senderTimestampMs) : message.senderTimestampMs;
                     else
                         object.senderTimestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.senderTimestampMs) : options.longs === Number ? new $util.LongBits(message.senderTimestampMs.low >>> 0, message.senderTimestampMs.high >>> 0).toNumber() : message.senderTimestampMs;
@@ -80648,9 +80824,9 @@ $root.E2E = (function() {
                     object.correctAnswer = null;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.endTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.endTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.endTime = options.longs === String ? "0" : 0;
+                        object.endTime = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.hideParticipantName = false;
                     object.allowAddOption = false;
                 }
@@ -80674,7 +80850,9 @@ $root.E2E = (function() {
                 if (message.correctAnswer != null && message.hasOwnProperty("correctAnswer"))
                     object.correctAnswer = $root.E2E.Message.PollCreationMessage.Option.toObject(message.correctAnswer, options);
                 if (message.endTime != null && message.hasOwnProperty("endTime"))
-                    if (typeof message.endTime === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.endTime = typeof message.endTime === "number" ? BigInt(message.endTime) : $util.Long.fromBits(message.endTime.low >>> 0, message.endTime.high >>> 0, false).toBigInt();
+                    else if (typeof message.endTime === "number")
                         object.endTime = options.longs === String ? String(message.endTime) : message.endTime;
                     else
                         object.endTime = options.longs === String ? $util.Long.prototype.toString.call(message.endTime) : options.longs === Number ? new $util.LongBits(message.endTime.low >>> 0, message.endTime.high >>> 0).toNumber() : message.endTime;
@@ -81756,14 +81934,16 @@ $root.E2E = (function() {
                         object.optionName = "";
                         if ($util.Long) {
                             var long = new $util.Long(0, 0, false);
-                            object.optionVoteCount = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                            object.optionVoteCount = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                         } else
-                            object.optionVoteCount = options.longs === String ? "0" : 0;
+                            object.optionVoteCount = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     }
                     if (message.optionName != null && message.hasOwnProperty("optionName"))
                         object.optionName = message.optionName;
                     if (message.optionVoteCount != null && message.hasOwnProperty("optionVoteCount"))
-                        if (typeof message.optionVoteCount === "number")
+                        if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                            object.optionVoteCount = typeof message.optionVoteCount === "number" ? BigInt(message.optionVoteCount) : $util.Long.fromBits(message.optionVoteCount.low >>> 0, message.optionVoteCount.high >>> 0, false).toBigInt();
+                        else if (typeof message.optionVoteCount === "number")
                             object.optionVoteCount = options.longs === String ? String(message.optionVoteCount) : message.optionVoteCount;
                         else
                             object.optionVoteCount = options.longs === String ? $util.Long.prototype.toString.call(message.optionVoteCount) : options.longs === Number ? new $util.LongBits(message.optionVoteCount.low >>> 0, message.optionVoteCount.high >>> 0).toNumber() : message.optionVoteCount;
@@ -82085,9 +82265,9 @@ $root.E2E = (function() {
                     object.metadata = null;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.senderTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.senderTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.senderTimestampMs = options.longs === String ? "0" : 0;
+                        object.senderTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
                 if (message.pollCreationMessageKey != null && message.hasOwnProperty("pollCreationMessageKey"))
                     object.pollCreationMessageKey = $root.Protocol.MessageKey.toObject(message.pollCreationMessageKey, options);
@@ -82096,7 +82276,9 @@ $root.E2E = (function() {
                 if (message.metadata != null && message.hasOwnProperty("metadata"))
                     object.metadata = $root.E2E.Message.PollUpdateMessageMetadata.toObject(message.metadata, options);
                 if (message.senderTimestampMs != null && message.hasOwnProperty("senderTimestampMs"))
-                    if (typeof message.senderTimestampMs === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.senderTimestampMs = typeof message.senderTimestampMs === "number" ? BigInt(message.senderTimestampMs) : $util.Long.fromBits(message.senderTimestampMs.low >>> 0, message.senderTimestampMs.high >>> 0, false).toBigInt();
+                    else if (typeof message.senderTimestampMs === "number")
                         object.senderTimestampMs = options.longs === String ? String(message.senderTimestampMs) : message.senderTimestampMs;
                     else
                         object.senderTimestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.senderTimestampMs) : options.longs === Number ? new $util.LongBits(message.senderTimestampMs.low >>> 0, message.senderTimestampMs.high >>> 0).toNumber() : message.senderTimestampMs;
@@ -83599,18 +83781,18 @@ $root.E2E = (function() {
                         object.currencyCode = "";
                         if ($util.Long) {
                             var long = new $util.Long(0, 0, false);
-                            object.priceAmount1000 = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                            object.priceAmount1000 = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                         } else
-                            object.priceAmount1000 = options.longs === String ? "0" : 0;
+                            object.priceAmount1000 = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                         object.retailerId = "";
                         object.url = "";
                         object.productImageCount = 0;
                         object.firstImageId = "";
                         if ($util.Long) {
                             var long = new $util.Long(0, 0, false);
-                            object.salePriceAmount1000 = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                            object.salePriceAmount1000 = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                         } else
-                            object.salePriceAmount1000 = options.longs === String ? "0" : 0;
+                            object.salePriceAmount1000 = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                         object.signedUrl = "";
                     }
                     if (message.productImage != null && message.hasOwnProperty("productImage"))
@@ -83624,7 +83806,9 @@ $root.E2E = (function() {
                     if (message.currencyCode != null && message.hasOwnProperty("currencyCode"))
                         object.currencyCode = message.currencyCode;
                     if (message.priceAmount1000 != null && message.hasOwnProperty("priceAmount1000"))
-                        if (typeof message.priceAmount1000 === "number")
+                        if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                            object.priceAmount1000 = typeof message.priceAmount1000 === "number" ? BigInt(message.priceAmount1000) : $util.Long.fromBits(message.priceAmount1000.low >>> 0, message.priceAmount1000.high >>> 0, false).toBigInt();
+                        else if (typeof message.priceAmount1000 === "number")
                             object.priceAmount1000 = options.longs === String ? String(message.priceAmount1000) : message.priceAmount1000;
                         else
                             object.priceAmount1000 = options.longs === String ? $util.Long.prototype.toString.call(message.priceAmount1000) : options.longs === Number ? new $util.LongBits(message.priceAmount1000.low >>> 0, message.priceAmount1000.high >>> 0).toNumber() : message.priceAmount1000;
@@ -83637,7 +83821,9 @@ $root.E2E = (function() {
                     if (message.firstImageId != null && message.hasOwnProperty("firstImageId"))
                         object.firstImageId = message.firstImageId;
                     if (message.salePriceAmount1000 != null && message.hasOwnProperty("salePriceAmount1000"))
-                        if (typeof message.salePriceAmount1000 === "number")
+                        if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                            object.salePriceAmount1000 = typeof message.salePriceAmount1000 === "number" ? BigInt(message.salePriceAmount1000) : $util.Long.fromBits(message.salePriceAmount1000.low >>> 0, message.salePriceAmount1000.high >>> 0, false).toBigInt();
+                        else if (typeof message.salePriceAmount1000 === "number")
                             object.salePriceAmount1000 = options.longs === String ? String(message.salePriceAmount1000) : message.salePriceAmount1000;
                         else
                             object.salePriceAmount1000 = options.longs === String ? $util.Long.prototype.toString.call(message.salePriceAmount1000) : options.longs === Number ? new $util.LongBits(message.salePriceAmount1000.low >>> 0, message.salePriceAmount1000.high >>> 0).toNumber() : message.salePriceAmount1000;
@@ -84656,9 +84842,9 @@ $root.E2E = (function() {
                     object.ephemeralExpiration = 0;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.ephemeralSettingTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.ephemeralSettingTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.ephemeralSettingTimestamp = options.longs === String ? "0" : 0;
+                        object.ephemeralSettingTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.historySyncNotification = null;
                     object.appStateSyncKeyShare = null;
                     object.appStateSyncKeyRequest = null;
@@ -84668,9 +84854,9 @@ $root.E2E = (function() {
                     object.editedMessage = null;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.timestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.timestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.timestampMs = options.longs === String ? "0" : 0;
+                        object.timestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.peerDataOperationRequestMessage = null;
                     object.peerDataOperationRequestResponseMessage = null;
                     object.botFeedbackMessage = null;
@@ -84700,7 +84886,9 @@ $root.E2E = (function() {
                 if (message.ephemeralExpiration != null && message.hasOwnProperty("ephemeralExpiration"))
                     object.ephemeralExpiration = message.ephemeralExpiration;
                 if (message.ephemeralSettingTimestamp != null && message.hasOwnProperty("ephemeralSettingTimestamp"))
-                    if (typeof message.ephemeralSettingTimestamp === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.ephemeralSettingTimestamp = typeof message.ephemeralSettingTimestamp === "number" ? BigInt(message.ephemeralSettingTimestamp) : $util.Long.fromBits(message.ephemeralSettingTimestamp.low >>> 0, message.ephemeralSettingTimestamp.high >>> 0, false).toBigInt();
+                    else if (typeof message.ephemeralSettingTimestamp === "number")
                         object.ephemeralSettingTimestamp = options.longs === String ? String(message.ephemeralSettingTimestamp) : message.ephemeralSettingTimestamp;
                     else
                         object.ephemeralSettingTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.ephemeralSettingTimestamp) : options.longs === Number ? new $util.LongBits(message.ephemeralSettingTimestamp.low >>> 0, message.ephemeralSettingTimestamp.high >>> 0).toNumber() : message.ephemeralSettingTimestamp;
@@ -84719,7 +84907,9 @@ $root.E2E = (function() {
                 if (message.editedMessage != null && message.hasOwnProperty("editedMessage"))
                     object.editedMessage = $root.E2E.Message.toObject(message.editedMessage, options);
                 if (message.timestampMs != null && message.hasOwnProperty("timestampMs"))
-                    if (typeof message.timestampMs === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.timestampMs = typeof message.timestampMs === "number" ? BigInt(message.timestampMs) : $util.Long.fromBits(message.timestampMs.low >>> 0, message.timestampMs.high >>> 0, false).toBigInt();
+                    else if (typeof message.timestampMs === "number")
                         object.timestampMs = options.longs === String ? String(message.timestampMs) : message.timestampMs;
                     else
                         object.timestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.timestampMs) : options.longs === Number ? new $util.LongBits(message.timestampMs.low >>> 0, message.timestampMs.high >>> 0).toNumber() : message.timestampMs;
@@ -85358,9 +85548,9 @@ $root.E2E = (function() {
                     object.groupingKey = "";
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.senderTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.senderTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.senderTimestampMs = options.longs === String ? "0" : 0;
+                        object.senderTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
                 if (message.key != null && message.hasOwnProperty("key"))
                     object.key = $root.Protocol.MessageKey.toObject(message.key, options);
@@ -85369,7 +85559,9 @@ $root.E2E = (function() {
                 if (message.groupingKey != null && message.hasOwnProperty("groupingKey"))
                     object.groupingKey = message.groupingKey;
                 if (message.senderTimestampMs != null && message.hasOwnProperty("senderTimestampMs"))
-                    if (typeof message.senderTimestampMs === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.senderTimestampMs = typeof message.senderTimestampMs === "number" ? BigInt(message.senderTimestampMs) : $util.Long.fromBits(message.senderTimestampMs.low >>> 0, message.senderTimestampMs.high >>> 0, false).toBigInt();
+                    else if (typeof message.senderTimestampMs === "number")
                         object.senderTimestampMs = options.longs === String ? String(message.senderTimestampMs) : message.senderTimestampMs;
                     else
                         object.senderTimestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.senderTimestampMs) : options.longs === Number ? new $util.LongBits(message.senderTimestampMs.low >>> 0, message.senderTimestampMs.high >>> 0).toNumber() : message.senderTimestampMs;
@@ -85739,23 +85931,25 @@ $root.E2E = (function() {
                     object.currencyCodeIso4217 = "";
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, true);
-                        object.amount1000 = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.amount1000 = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.amount1000 = options.longs === String ? "0" : 0;
+                        object.amount1000 = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.requestFrom = "";
                     object.noteMessage = null;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.expiryTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.expiryTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.expiryTimestamp = options.longs === String ? "0" : 0;
+                        object.expiryTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.amount = null;
                     object.background = null;
                 }
                 if (message.currencyCodeIso4217 != null && message.hasOwnProperty("currencyCodeIso4217"))
                     object.currencyCodeIso4217 = message.currencyCodeIso4217;
                 if (message.amount1000 != null && message.hasOwnProperty("amount1000"))
-                    if (typeof message.amount1000 === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.amount1000 = typeof message.amount1000 === "number" ? BigInt(message.amount1000) : $util.Long.fromBits(message.amount1000.low >>> 0, message.amount1000.high >>> 0, true).toBigInt();
+                    else if (typeof message.amount1000 === "number")
                         object.amount1000 = options.longs === String ? String(message.amount1000) : message.amount1000;
                     else
                         object.amount1000 = options.longs === String ? $util.Long.prototype.toString.call(message.amount1000) : options.longs === Number ? new $util.LongBits(message.amount1000.low >>> 0, message.amount1000.high >>> 0).toNumber(true) : message.amount1000;
@@ -85764,7 +85958,9 @@ $root.E2E = (function() {
                 if (message.noteMessage != null && message.hasOwnProperty("noteMessage"))
                     object.noteMessage = $root.E2E.Message.toObject(message.noteMessage, options);
                 if (message.expiryTimestamp != null && message.hasOwnProperty("expiryTimestamp"))
-                    if (typeof message.expiryTimestamp === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.expiryTimestamp = typeof message.expiryTimestamp === "number" ? BigInt(message.expiryTimestamp) : $util.Long.fromBits(message.expiryTimestamp.low >>> 0, message.expiryTimestamp.high >>> 0, false).toBigInt();
+                    else if (typeof message.expiryTimestamp === "number")
                         object.expiryTimestamp = options.longs === String ? String(message.expiryTimestamp) : message.expiryTimestamp;
                     else
                         object.expiryTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.expiryTimestamp) : options.longs === Number ? new $util.LongBits(message.expiryTimestamp.low >>> 0, message.expiryTimestamp.high >>> 0).toNumber() : message.expiryTimestamp;
@@ -86616,14 +86812,16 @@ $root.E2E = (function() {
                 if (options.defaults) {
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.scheduledTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.scheduledTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.scheduledTimestampMs = options.longs === String ? "0" : 0;
+                        object.scheduledTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.callType = options.enums === String ? "UNKNOWN" : 0;
                     object.title = "";
                 }
                 if (message.scheduledTimestampMs != null && message.hasOwnProperty("scheduledTimestampMs"))
-                    if (typeof message.scheduledTimestampMs === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.scheduledTimestampMs = typeof message.scheduledTimestampMs === "number" ? BigInt(message.scheduledTimestampMs) : $util.Long.fromBits(message.scheduledTimestampMs.low >>> 0, message.scheduledTimestampMs.high >>> 0, false).toBigInt();
+                    else if (typeof message.scheduledTimestampMs === "number")
                         object.scheduledTimestampMs = options.longs === String ? String(message.scheduledTimestampMs) : message.scheduledTimestampMs;
                     else
                         object.scheduledTimestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.scheduledTimestampMs) : options.longs === Number ? new $util.LongBits(message.scheduledTimestampMs.low >>> 0, message.scheduledTimestampMs.high >>> 0).toNumber() : message.scheduledTimestampMs;
@@ -88249,9 +88447,9 @@ $root.E2E = (function() {
                     object.requesterJid = "";
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.createdAtMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.createdAtMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.createdAtMs = options.longs === String ? "0" : 0;
+                        object.createdAtMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.contextInfo = null;
                 }
                 if (message.splitId != null && message.hasOwnProperty("splitId"))
@@ -88268,7 +88466,9 @@ $root.E2E = (function() {
                         object.participants[j] = $root.E2E.Message.SplitPaymentParticipant.toObject(message.participants[j], options);
                 }
                 if (message.createdAtMs != null && message.hasOwnProperty("createdAtMs"))
-                    if (typeof message.createdAtMs === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.createdAtMs = typeof message.createdAtMs === "number" ? BigInt(message.createdAtMs) : $util.Long.fromBits(message.createdAtMs.low >>> 0, message.createdAtMs.high >>> 0, false).toBigInt();
+                    else if (typeof message.createdAtMs === "number")
                         object.createdAtMs = options.longs === String ? String(message.createdAtMs) : message.createdAtMs;
                     else
                         object.createdAtMs = options.longs === String ? $util.Long.prototype.toString.call(message.createdAtMs) : options.longs === Number ? new $util.LongBits(message.createdAtMs.low >>> 0, message.createdAtMs.high >>> 0).toNumber() : message.createdAtMs;
@@ -90475,14 +90675,14 @@ $root.E2E = (function() {
                     object.directPath = "";
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, true);
-                        object.fileLength = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.fileLength = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.fileLength = options.longs === String ? "0" : 0;
+                        object.fileLength = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.mediaKeyTimestamp = options.longs === String ? "0" : 0;
+                        object.mediaKeyTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.firstFrameLength = 0;
                     if (options.bytes === String)
                         object.firstFrameSidecar = "";
@@ -90502,9 +90702,9 @@ $root.E2E = (function() {
                     object.contextInfo = null;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.stickerSentTs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.stickerSentTs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.stickerSentTs = options.longs === String ? "0" : 0;
+                        object.stickerSentTs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.isAvatar = false;
                     object.isAiSticker = false;
                     object.isLottie = false;
@@ -90529,12 +90729,16 @@ $root.E2E = (function() {
                 if (message.directPath != null && message.hasOwnProperty("directPath"))
                     object.directPath = message.directPath;
                 if (message.fileLength != null && message.hasOwnProperty("fileLength"))
-                    if (typeof message.fileLength === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.fileLength = typeof message.fileLength === "number" ? BigInt(message.fileLength) : $util.Long.fromBits(message.fileLength.low >>> 0, message.fileLength.high >>> 0, true).toBigInt();
+                    else if (typeof message.fileLength === "number")
                         object.fileLength = options.longs === String ? String(message.fileLength) : message.fileLength;
                     else
                         object.fileLength = options.longs === String ? $util.Long.prototype.toString.call(message.fileLength) : options.longs === Number ? new $util.LongBits(message.fileLength.low >>> 0, message.fileLength.high >>> 0).toNumber(true) : message.fileLength;
                 if (message.mediaKeyTimestamp != null && message.hasOwnProperty("mediaKeyTimestamp"))
-                    if (typeof message.mediaKeyTimestamp === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.mediaKeyTimestamp = typeof message.mediaKeyTimestamp === "number" ? BigInt(message.mediaKeyTimestamp) : $util.Long.fromBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0, false).toBigInt();
+                    else if (typeof message.mediaKeyTimestamp === "number")
                         object.mediaKeyTimestamp = options.longs === String ? String(message.mediaKeyTimestamp) : message.mediaKeyTimestamp;
                     else
                         object.mediaKeyTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.mediaKeyTimestamp) : options.longs === Number ? new $util.LongBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0).toNumber() : message.mediaKeyTimestamp;
@@ -90549,7 +90753,9 @@ $root.E2E = (function() {
                 if (message.contextInfo != null && message.hasOwnProperty("contextInfo"))
                     object.contextInfo = $root.E2E.ContextInfo.toObject(message.contextInfo, options);
                 if (message.stickerSentTs != null && message.hasOwnProperty("stickerSentTs"))
-                    if (typeof message.stickerSentTs === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.stickerSentTs = typeof message.stickerSentTs === "number" ? BigInt(message.stickerSentTs) : $util.Long.fromBits(message.stickerSentTs.low >>> 0, message.stickerSentTs.high >>> 0, false).toBigInt();
+                    else if (typeof message.stickerSentTs === "number")
                         object.stickerSentTs = options.longs === String ? String(message.stickerSentTs) : message.stickerSentTs;
                     else
                         object.stickerSentTs = options.longs === String ? $util.Long.prototype.toString.call(message.stickerSentTs) : options.longs === Number ? new $util.LongBits(message.stickerSentTs.low >>> 0, message.stickerSentTs.high >>> 0).toNumber() : message.stickerSentTs;
@@ -91289,9 +91495,9 @@ $root.E2E = (function() {
                     object.publisher = "";
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, true);
-                        object.fileLength = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.fileLength = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.fileLength = options.longs === String ? "0" : 0;
+                        object.fileLength = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     if (options.bytes === String)
                         object.fileSha256 = "";
                     else {
@@ -91319,9 +91525,9 @@ $root.E2E = (function() {
                     object.packDescription = "";
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.mediaKeyTimestamp = options.longs === String ? "0" : 0;
+                        object.mediaKeyTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.trayIconFileName = "";
                     object.thumbnailDirectPath = "";
                     if (options.bytes === String)
@@ -91343,9 +91549,9 @@ $root.E2E = (function() {
                     object.imageDataHash = "";
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, true);
-                        object.stickerPackSize = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.stickerPackSize = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.stickerPackSize = options.longs === String ? "0" : 0;
+                        object.stickerPackSize = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.stickerPackOrigin = options.enums === String ? "FIRST_PARTY" : 0;
                 }
                 if (message.stickerPackId != null && message.hasOwnProperty("stickerPackId"))
@@ -91360,7 +91566,9 @@ $root.E2E = (function() {
                         object.stickers[j] = $root.E2E.Message.StickerPackMessage.Sticker.toObject(message.stickers[j], options);
                 }
                 if (message.fileLength != null && message.hasOwnProperty("fileLength"))
-                    if (typeof message.fileLength === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.fileLength = typeof message.fileLength === "number" ? BigInt(message.fileLength) : $util.Long.fromBits(message.fileLength.low >>> 0, message.fileLength.high >>> 0, true).toBigInt();
+                    else if (typeof message.fileLength === "number")
                         object.fileLength = options.longs === String ? String(message.fileLength) : message.fileLength;
                     else
                         object.fileLength = options.longs === String ? $util.Long.prototype.toString.call(message.fileLength) : options.longs === Number ? new $util.LongBits(message.fileLength.low >>> 0, message.fileLength.high >>> 0).toNumber(true) : message.fileLength;
@@ -91379,7 +91587,9 @@ $root.E2E = (function() {
                 if (message.packDescription != null && message.hasOwnProperty("packDescription"))
                     object.packDescription = message.packDescription;
                 if (message.mediaKeyTimestamp != null && message.hasOwnProperty("mediaKeyTimestamp"))
-                    if (typeof message.mediaKeyTimestamp === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.mediaKeyTimestamp = typeof message.mediaKeyTimestamp === "number" ? BigInt(message.mediaKeyTimestamp) : $util.Long.fromBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0, false).toBigInt();
+                    else if (typeof message.mediaKeyTimestamp === "number")
                         object.mediaKeyTimestamp = options.longs === String ? String(message.mediaKeyTimestamp) : message.mediaKeyTimestamp;
                     else
                         object.mediaKeyTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.mediaKeyTimestamp) : options.longs === Number ? new $util.LongBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0).toNumber() : message.mediaKeyTimestamp;
@@ -91398,7 +91608,9 @@ $root.E2E = (function() {
                 if (message.imageDataHash != null && message.hasOwnProperty("imageDataHash"))
                     object.imageDataHash = message.imageDataHash;
                 if (message.stickerPackSize != null && message.hasOwnProperty("stickerPackSize"))
-                    if (typeof message.stickerPackSize === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.stickerPackSize = typeof message.stickerPackSize === "number" ? BigInt(message.stickerPackSize) : $util.Long.fromBits(message.stickerPackSize.low >>> 0, message.stickerPackSize.high >>> 0, true).toBigInt();
+                    else if (typeof message.stickerPackSize === "number")
                         object.stickerPackSize = options.longs === String ? String(message.stickerPackSize) : message.stickerPackSize;
                     else
                         object.stickerPackSize = options.longs === String ? $util.Long.prototype.toString.call(message.stickerPackSize) : options.longs === Number ? new $util.LongBits(message.stickerPackSize.low >>> 0, message.stickerPackSize.high >>> 0).toNumber(true) : message.stickerPackSize;
@@ -92072,9 +92284,9 @@ $root.E2E = (function() {
                     object.rmrSource = "";
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.requestTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.requestTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.requestTimestamp = options.longs === String ? "0" : 0;
+                        object.requestTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
                 if (message.filehash && message.filehash.length) {
                     object.filehash = [];
@@ -92084,7 +92296,9 @@ $root.E2E = (function() {
                 if (message.rmrSource != null && message.hasOwnProperty("rmrSource"))
                     object.rmrSource = message.rmrSource;
                 if (message.requestTimestamp != null && message.hasOwnProperty("requestTimestamp"))
-                    if (typeof message.requestTimestamp === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.requestTimestamp = typeof message.requestTimestamp === "number" ? BigInt(message.requestTimestamp) : $util.Long.fromBits(message.requestTimestamp.low >>> 0, message.requestTimestamp.high >>> 0, false).toBigInt();
+                    else if (typeof message.requestTimestamp === "number")
                         object.requestTimestamp = options.longs === String ? String(message.requestTimestamp) : message.requestTimestamp;
                     else
                         object.requestTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.requestTimestamp) : options.longs === Number ? new $util.LongBits(message.requestTimestamp.low >>> 0, message.requestTimestamp.high >>> 0).toNumber() : message.requestTimestamp;
@@ -95256,9 +95470,9 @@ $root.E2E = (function() {
                     }
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, true);
-                        object.fileLength = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.fileLength = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.fileLength = options.longs === String ? "0" : 0;
+                        object.fileLength = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.seconds = 0;
                     if (options.bytes === String)
                         object.mediaKey = "";
@@ -95281,9 +95495,9 @@ $root.E2E = (function() {
                     object.directPath = "";
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.mediaKeyTimestamp = options.longs === String ? "0" : 0;
+                        object.mediaKeyTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     if (options.bytes === String)
                         object.jpegThumbnail = "";
                     else {
@@ -95321,9 +95535,9 @@ $root.E2E = (function() {
                     object.externalShareFullVideoDurationInSeconds = 0;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, true);
-                        object.motionPhotoPresentationOffsetMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.motionPhotoPresentationOffsetMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.motionPhotoPresentationOffsetMs = options.longs === String ? "0" : 0;
+                        object.motionPhotoPresentationOffsetMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.metadataUrl = "";
                     object.videoSourceType = options.enums === String ? "USER_VIDEO" : 0;
                 }
@@ -95334,7 +95548,9 @@ $root.E2E = (function() {
                 if (message.fileSha256 != null && message.hasOwnProperty("fileSha256"))
                     object.fileSha256 = options.bytes === String ? $util.base64.encode(message.fileSha256, 0, message.fileSha256.length) : options.bytes === Array ? Array.prototype.slice.call(message.fileSha256) : message.fileSha256;
                 if (message.fileLength != null && message.hasOwnProperty("fileLength"))
-                    if (typeof message.fileLength === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.fileLength = typeof message.fileLength === "number" ? BigInt(message.fileLength) : $util.Long.fromBits(message.fileLength.low >>> 0, message.fileLength.high >>> 0, true).toBigInt();
+                    else if (typeof message.fileLength === "number")
                         object.fileLength = options.longs === String ? String(message.fileLength) : message.fileLength;
                     else
                         object.fileLength = options.longs === String ? $util.Long.prototype.toString.call(message.fileLength) : options.longs === Number ? new $util.LongBits(message.fileLength.low >>> 0, message.fileLength.high >>> 0).toNumber(true) : message.fileLength;
@@ -95360,7 +95576,9 @@ $root.E2E = (function() {
                 if (message.directPath != null && message.hasOwnProperty("directPath"))
                     object.directPath = message.directPath;
                 if (message.mediaKeyTimestamp != null && message.hasOwnProperty("mediaKeyTimestamp"))
-                    if (typeof message.mediaKeyTimestamp === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.mediaKeyTimestamp = typeof message.mediaKeyTimestamp === "number" ? BigInt(message.mediaKeyTimestamp) : $util.Long.fromBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0, false).toBigInt();
+                    else if (typeof message.mediaKeyTimestamp === "number")
                         object.mediaKeyTimestamp = options.longs === String ? String(message.mediaKeyTimestamp) : message.mediaKeyTimestamp;
                     else
                         object.mediaKeyTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.mediaKeyTimestamp) : options.longs === Number ? new $util.LongBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0).toNumber() : message.mediaKeyTimestamp;
@@ -95397,7 +95615,9 @@ $root.E2E = (function() {
                 if (message.externalShareFullVideoDurationInSeconds != null && message.hasOwnProperty("externalShareFullVideoDurationInSeconds"))
                     object.externalShareFullVideoDurationInSeconds = message.externalShareFullVideoDurationInSeconds;
                 if (message.motionPhotoPresentationOffsetMs != null && message.hasOwnProperty("motionPhotoPresentationOffsetMs"))
-                    if (typeof message.motionPhotoPresentationOffsetMs === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.motionPhotoPresentationOffsetMs = typeof message.motionPhotoPresentationOffsetMs === "number" ? BigInt(message.motionPhotoPresentationOffsetMs) : $util.Long.fromBits(message.motionPhotoPresentationOffsetMs.low >>> 0, message.motionPhotoPresentationOffsetMs.high >>> 0, true).toBigInt();
+                    else if (typeof message.motionPhotoPresentationOffsetMs === "number")
                         object.motionPhotoPresentationOffsetMs = options.longs === String ? String(message.motionPhotoPresentationOffsetMs) : message.motionPhotoPresentationOffsetMs;
                     else
                         object.motionPhotoPresentationOffsetMs = options.longs === String ? $util.Long.prototype.toString.call(message.motionPhotoPresentationOffsetMs) : options.longs === Number ? new $util.LongBits(message.motionPhotoPresentationOffsetMs.low >>> 0, message.motionPhotoPresentationOffsetMs.high >>> 0).toNumber(true) : message.motionPhotoPresentationOffsetMs;
@@ -95812,9 +96032,9 @@ $root.Protocol = (function() {
                 object.trigger = options.enums === String ? "UNKNOWN" : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.limitSharingSettingTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.limitSharingSettingTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.limitSharingSettingTimestamp = options.longs === String ? "0" : 0;
+                    object.limitSharingSettingTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.initiatedByMe = false;
             }
             if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
@@ -95822,7 +96042,9 @@ $root.Protocol = (function() {
             if (message.trigger != null && message.hasOwnProperty("trigger"))
                 object.trigger = options.enums === String ? $root.Protocol.LimitSharing.TriggerType[message.trigger] === undefined ? message.trigger : $root.Protocol.LimitSharing.TriggerType[message.trigger] : message.trigger;
             if (message.limitSharingSettingTimestamp != null && message.hasOwnProperty("limitSharingSettingTimestamp"))
-                if (typeof message.limitSharingSettingTimestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.limitSharingSettingTimestamp = typeof message.limitSharingSettingTimestamp === "number" ? BigInt(message.limitSharingSettingTimestamp) : $util.Long.fromBits(message.limitSharingSettingTimestamp.low >>> 0, message.limitSharingSettingTimestamp.high >>> 0, false).toBigInt();
+                else if (typeof message.limitSharingSettingTimestamp === "number")
                     object.limitSharingSettingTimestamp = options.longs === String ? String(message.limitSharingSettingTimestamp) : message.limitSharingSettingTimestamp;
                 else
                     object.limitSharingSettingTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.limitSharingSettingTimestamp) : options.longs === Number ? new $util.LongBits(message.limitSharingSettingTimestamp.low >>> 0, message.limitSharingSettingTimestamp.high >>> 0).toNumber() : message.limitSharingSettingTimestamp;
@@ -99129,16 +99351,18 @@ $root.AICommonDeprecated = (function() {
                 object.type = options.enums === String ? "AI_RICH_RESPONSE_DYNAMIC_METADATA_TYPE_UNKNOWN" : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.version = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.version = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.version = options.longs === String ? "0" : 0;
+                    object.version = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.url = "";
                 object.loopCount = 0;
             }
             if (message.type != null && message.hasOwnProperty("type"))
                 object.type = options.enums === String ? $root.AICommonDeprecated.AIRichResponseDynamicMetadata.AIRichResponseDynamicMetadataType[message.type] === undefined ? message.type : $root.AICommonDeprecated.AIRichResponseDynamicMetadata.AIRichResponseDynamicMetadataType[message.type] : message.type;
             if (message.version != null && message.hasOwnProperty("version"))
-                if (typeof message.version === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.version = typeof message.version === "number" ? BigInt(message.version) : $util.Long.fromBits(message.version.low >>> 0, message.version.high >>> 0, true).toBigInt();
+                else if (typeof message.version === "number")
                     object.version = options.longs === String ? String(message.version) : message.version;
                 else
                     object.version = options.longs === String ? $util.Long.prototype.toString.call(message.version) : options.longs === Number ? new $util.LongBits(message.version.low >>> 0, message.version.high >>> 0).toNumber(true) : message.version;
@@ -104847,11 +105071,13 @@ $root.AICommon = (function() {
             if (options.defaults)
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.lastFetchTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.lastFetchTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.lastFetchTime = options.longs === String ? "0" : 0;
+                    object.lastFetchTime = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
             if (message.lastFetchTime != null && message.hasOwnProperty("lastFetchTime"))
-                if (typeof message.lastFetchTime === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.lastFetchTime = typeof message.lastFetchTime === "number" ? BigInt(message.lastFetchTime) : $util.Long.fromBits(message.lastFetchTime.low >>> 0, message.lastFetchTime.high >>> 0, false).toBigInt();
+                else if (typeof message.lastFetchTime === "number")
                     object.lastFetchTime = options.longs === String ? String(message.lastFetchTime) : message.lastFetchTime;
                 else
                     object.lastFetchTime = options.longs === String ? $util.Long.prototype.toString.call(message.lastFetchTime) : options.longs === Number ? new $util.LongBits(message.lastFetchTime.low >>> 0, message.lastFetchTime.high >>> 0).toNumber() : message.lastFetchTime;
@@ -106087,14 +106313,16 @@ $root.AICommon = (function() {
                 object.messageKey = null;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.responseTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.responseTimestampMs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.responseTimestampMs = options.longs === String ? "0" : 0;
+                    object.responseTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
             }
             if (message.messageKey != null && message.hasOwnProperty("messageKey"))
                 object.messageKey = $root.Protocol.MessageKey.toObject(message.messageKey, options);
             if (message.responseTimestampMs != null && message.hasOwnProperty("responseTimestampMs"))
-                if (typeof message.responseTimestampMs === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.responseTimestampMs = typeof message.responseTimestampMs === "number" ? BigInt(message.responseTimestampMs) : $util.Long.fromBits(message.responseTimestampMs.low >>> 0, message.responseTimestampMs.high >>> 0, false).toBigInt();
+                else if (typeof message.responseTimestampMs === "number")
                     object.responseTimestampMs = options.longs === String ? String(message.responseTimestampMs) : message.responseTimestampMs;
                 else
                     object.responseTimestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.responseTimestampMs) : options.longs === Number ? new $util.LongBits(message.responseTimestampMs.low >>> 0, message.responseTimestampMs.high >>> 0).toNumber() : message.responseTimestampMs;
@@ -107544,14 +107772,14 @@ $root.AICommon = (function() {
                 object.text = "";
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.kindNegative = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.kindNegative = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.kindNegative = options.longs === String ? "0" : 0;
+                    object.kindNegative = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.kindPositive = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.kindPositive = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.kindPositive = options.longs === String ? "0" : 0;
+                    object.kindPositive = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.kindReport = options.enums === String ? "NONE" : 0;
                 object.sideBySideSurveyMetadata = null;
             }
@@ -107562,12 +107790,16 @@ $root.AICommon = (function() {
             if (message.text != null && message.hasOwnProperty("text"))
                 object.text = message.text;
             if (message.kindNegative != null && message.hasOwnProperty("kindNegative"))
-                if (typeof message.kindNegative === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.kindNegative = typeof message.kindNegative === "number" ? BigInt(message.kindNegative) : $util.Long.fromBits(message.kindNegative.low >>> 0, message.kindNegative.high >>> 0, true).toBigInt();
+                else if (typeof message.kindNegative === "number")
                     object.kindNegative = options.longs === String ? String(message.kindNegative) : message.kindNegative;
                 else
                     object.kindNegative = options.longs === String ? $util.Long.prototype.toString.call(message.kindNegative) : options.longs === Number ? new $util.LongBits(message.kindNegative.low >>> 0, message.kindNegative.high >>> 0).toNumber(true) : message.kindNegative;
             if (message.kindPositive != null && message.hasOwnProperty("kindPositive"))
-                if (typeof message.kindPositive === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.kindPositive = typeof message.kindPositive === "number" ? BigInt(message.kindPositive) : $util.Long.fromBits(message.kindPositive.low >>> 0, message.kindPositive.high >>> 0, true).toBigInt();
+                else if (typeof message.kindPositive === "number")
                     object.kindPositive = options.longs === String ? String(message.kindPositive) : message.kindPositive;
                 else
                     object.kindPositive = options.longs === String ? $util.Long.prototype.toString.call(message.kindPositive) : options.longs === Number ? new $util.LongBits(message.kindPositive.low >>> 0, message.kindPositive.high >>> 0).toNumber(true) : message.kindPositive;
@@ -118372,16 +118604,18 @@ $root.AICommon = (function() {
                     object.remainingQuota = 0;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, true);
-                        object.expirationTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.expirationTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.expirationTimestamp = options.longs === String ? "0" : 0;
+                        object.expirationTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
                 if (message.featureType != null && message.hasOwnProperty("featureType"))
                     object.featureType = options.enums === String ? $root.AICommon.BotQuotaMetadata.BotFeatureQuotaMetadata.BotFeatureType[message.featureType] === undefined ? message.featureType : $root.AICommon.BotQuotaMetadata.BotFeatureQuotaMetadata.BotFeatureType[message.featureType] : message.featureType;
                 if (message.remainingQuota != null && message.hasOwnProperty("remainingQuota"))
                     object.remainingQuota = message.remainingQuota;
                 if (message.expirationTimestamp != null && message.hasOwnProperty("expirationTimestamp"))
-                    if (typeof message.expirationTimestamp === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.expirationTimestamp = typeof message.expirationTimestamp === "number" ? BigInt(message.expirationTimestamp) : $util.Long.fromBits(message.expirationTimestamp.low >>> 0, message.expirationTimestamp.high >>> 0, true).toBigInt();
+                    else if (typeof message.expirationTimestamp === "number")
                         object.expirationTimestamp = options.longs === String ? String(message.expirationTimestamp) : message.expirationTimestamp;
                     else
                         object.expirationTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.expirationTimestamp) : options.longs === Number ? new $util.LongBits(message.expirationTimestamp.low >>> 0, message.expirationTimestamp.high >>> 0).toNumber(true) : message.expirationTimestamp;
@@ -119693,9 +119927,9 @@ $root.AICommon = (function() {
                 object.progressDescription = "";
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.estimatedCompletionTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.estimatedCompletionTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.estimatedCompletionTime = options.longs === String ? "0" : 0;
+                    object.estimatedCompletionTime = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
             }
             if (message.progressDescription != null && message.hasOwnProperty("progressDescription"))
                 object.progressDescription = message.progressDescription;
@@ -119705,7 +119939,9 @@ $root.AICommon = (function() {
                     object.stepsMetadata[j] = $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.toObject(message.stepsMetadata[j], options);
             }
             if (message.estimatedCompletionTime != null && message.hasOwnProperty("estimatedCompletionTime"))
-                if (typeof message.estimatedCompletionTime === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.estimatedCompletionTime = typeof message.estimatedCompletionTime === "number" ? BigInt(message.estimatedCompletionTime) : $util.Long.fromBits(message.estimatedCompletionTime.low >>> 0, message.estimatedCompletionTime.high >>> 0, false).toBigInt();
+                else if (typeof message.estimatedCompletionTime === "number")
                     object.estimatedCompletionTime = options.longs === String ? String(message.estimatedCompletionTime) : message.estimatedCompletionTime;
                 else
                     object.estimatedCompletionTime = options.longs === String ? $util.Long.prototype.toString.call(message.estimatedCompletionTime) : options.longs === Number ? new $util.LongBits(message.estimatedCompletionTime.low >>> 0, message.estimatedCompletionTime.high >>> 0).toNumber() : message.estimatedCompletionTime;
@@ -121805,9 +122041,9 @@ $root.AICommon = (function() {
                 object.name = "";
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.nextTriggerTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.nextTriggerTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.nextTriggerTimestamp = options.longs === String ? "0" : 0;
+                    object.nextTriggerTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.frequency = options.enums === String ? "ONCE" : 1;
             }
             if (message.requestMessageKey != null && message.hasOwnProperty("requestMessageKey"))
@@ -121817,7 +122053,9 @@ $root.AICommon = (function() {
             if (message.name != null && message.hasOwnProperty("name"))
                 object.name = message.name;
             if (message.nextTriggerTimestamp != null && message.hasOwnProperty("nextTriggerTimestamp"))
-                if (typeof message.nextTriggerTimestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.nextTriggerTimestamp = typeof message.nextTriggerTimestamp === "number" ? BigInt(message.nextTriggerTimestamp) : $util.Long.fromBits(message.nextTriggerTimestamp.low >>> 0, message.nextTriggerTimestamp.high >>> 0, true).toBigInt();
+                else if (typeof message.nextTriggerTimestamp === "number")
                     object.nextTriggerTimestamp = options.longs === String ? String(message.nextTriggerTimestamp) : message.nextTriggerTimestamp;
                 else
                     object.nextTriggerTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.nextTriggerTimestamp) : options.longs === Number ? new $util.LongBits(message.nextTriggerTimestamp.low >>> 0, message.nextTriggerTimestamp.high >>> 0).toNumber(true) : message.nextTriggerTimestamp;
@@ -122470,9 +122708,9 @@ $root.AICommon = (function() {
                 object.directPath = "";
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.mediaKeyTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.mediaKeyTimestamp = options.longs === String ? "0" : 0;
+                    object.mediaKeyTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.mimetype = "";
                 object.orientationType = options.enums === String ? "CENTER" : 1;
             }
@@ -122485,7 +122723,9 @@ $root.AICommon = (function() {
             if (message.directPath != null && message.hasOwnProperty("directPath"))
                 object.directPath = message.directPath;
             if (message.mediaKeyTimestamp != null && message.hasOwnProperty("mediaKeyTimestamp"))
-                if (typeof message.mediaKeyTimestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.mediaKeyTimestamp = typeof message.mediaKeyTimestamp === "number" ? BigInt(message.mediaKeyTimestamp) : $util.Long.fromBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0, false).toBigInt();
+                else if (typeof message.mediaKeyTimestamp === "number")
                     object.mediaKeyTimestamp = options.longs === String ? String(message.mediaKeyTimestamp) : message.mediaKeyTimestamp;
                 else
                     object.mediaKeyTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.mediaKeyTimestamp) : options.longs === Number ? new $util.LongBits(message.mediaKeyTimestamp.low >>> 0, message.mediaKeyTimestamp.high >>> 0).toNumber() : message.mediaKeyTimestamp;
@@ -128378,9 +128618,9 @@ $root.Adv = (function() {
                 object.rawId = 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.timestamp = options.longs === String ? "0" : 0;
+                    object.timestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.keyIndex = 0;
                 object.accountType = options.enums === String ? "E2EE" : 0;
                 object.deviceType = options.enums === String ? "E2EE" : 0;
@@ -128388,7 +128628,9 @@ $root.Adv = (function() {
             if (message.rawId != null && message.hasOwnProperty("rawId"))
                 object.rawId = message.rawId;
             if (message.timestamp != null && message.hasOwnProperty("timestamp"))
-                if (typeof message.timestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.timestamp = typeof message.timestamp === "number" ? BigInt(message.timestamp) : $util.Long.fromBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0, true).toBigInt();
+                else if (typeof message.timestamp === "number")
                     object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
                 else
                     object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber(true) : message.timestamp;
@@ -129040,16 +129282,18 @@ $root.Adv = (function() {
                 object.rawId = 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.timestamp = options.longs === String ? "0" : 0;
+                    object.timestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.currentIndex = 0;
                 object.accountType = options.enums === String ? "E2EE" : 0;
             }
             if (message.rawId != null && message.hasOwnProperty("rawId"))
                 object.rawId = message.rawId;
             if (message.timestamp != null && message.hasOwnProperty("timestamp"))
-                if (typeof message.timestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.timestamp = typeof message.timestamp === "number" ? BigInt(message.timestamp) : $util.Long.fromBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0, true).toBigInt();
+                else if (typeof message.timestamp === "number")
                     object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
                 else
                     object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber(true) : message.timestamp;

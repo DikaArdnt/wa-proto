@@ -812,14 +812,14 @@ $root.Cert = (function() {
                         }
                         if ($util.Long) {
                             var long = new $util.Long(0, 0, true);
-                            object.notBefore = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                            object.notBefore = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                         } else
-                            object.notBefore = options.longs === String ? "0" : 0;
+                            object.notBefore = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                         if ($util.Long) {
                             var long = new $util.Long(0, 0, true);
-                            object.notAfter = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                            object.notAfter = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                         } else
-                            object.notAfter = options.longs === String ? "0" : 0;
+                            object.notAfter = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     }
                     if (message.serial != null && message.hasOwnProperty("serial"))
                         object.serial = message.serial;
@@ -828,12 +828,16 @@ $root.Cert = (function() {
                     if (message.key != null && message.hasOwnProperty("key"))
                         object.key = options.bytes === String ? $util.base64.encode(message.key, 0, message.key.length) : options.bytes === Array ? Array.prototype.slice.call(message.key) : message.key;
                     if (message.notBefore != null && message.hasOwnProperty("notBefore"))
-                        if (typeof message.notBefore === "number")
+                        if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                            object.notBefore = typeof message.notBefore === "number" ? BigInt(message.notBefore) : $util.Long.fromBits(message.notBefore.low >>> 0, message.notBefore.high >>> 0, true).toBigInt();
+                        else if (typeof message.notBefore === "number")
                             object.notBefore = options.longs === String ? String(message.notBefore) : message.notBefore;
                         else
                             object.notBefore = options.longs === String ? $util.Long.prototype.toString.call(message.notBefore) : options.longs === Number ? new $util.LongBits(message.notBefore.low >>> 0, message.notBefore.high >>> 0).toNumber(true) : message.notBefore;
                     if (message.notAfter != null && message.hasOwnProperty("notAfter"))
-                        if (typeof message.notAfter === "number")
+                        if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                            object.notAfter = typeof message.notAfter === "number" ? BigInt(message.notAfter) : $util.Long.fromBits(message.notAfter.low >>> 0, message.notAfter.high >>> 0, true).toBigInt();
+                        else if (typeof message.notAfter === "number")
                             object.notAfter = options.longs === String ? String(message.notAfter) : message.notAfter;
                         else
                             object.notAfter = options.longs === String ? $util.Long.prototype.toString.call(message.notAfter) : options.longs === Number ? new $util.LongBits(message.notAfter.low >>> 0, message.notAfter.high >>> 0).toNumber(true) : message.notAfter;
@@ -1407,9 +1411,9 @@ $root.Cert = (function() {
                     object.issuer = "";
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, true);
-                        object.expires = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.expires = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.expires = options.longs === String ? "0" : 0;
+                        object.expires = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.subject = "";
                     if (options.bytes === String)
                         object.key = "";
@@ -1424,7 +1428,9 @@ $root.Cert = (function() {
                 if (message.issuer != null && message.hasOwnProperty("issuer"))
                     object.issuer = message.issuer;
                 if (message.expires != null && message.hasOwnProperty("expires"))
-                    if (typeof message.expires === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.expires = typeof message.expires === "number" ? BigInt(message.expires) : $util.Long.fromBits(message.expires.low >>> 0, message.expires.high >>> 0, true).toBigInt();
+                    else if (typeof message.expires === "number")
                         object.expires = options.longs === String ? String(message.expires) : message.expires;
                     else
                         object.expires = options.longs === String ? $util.Long.prototype.toString.call(message.expires) : options.longs === Number ? new $util.LongBits(message.expires.low >>> 0, message.expires.high >>> 0).toNumber(true) : message.expires;

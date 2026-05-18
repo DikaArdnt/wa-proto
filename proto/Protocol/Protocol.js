@@ -300,9 +300,9 @@ $root.Protocol = (function() {
                 object.trigger = options.enums === String ? "UNKNOWN" : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, false);
-                    object.limitSharingSettingTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.limitSharingSettingTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.limitSharingSettingTimestamp = options.longs === String ? "0" : 0;
+                    object.limitSharingSettingTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.initiatedByMe = false;
             }
             if (message.sharingLimited != null && message.hasOwnProperty("sharingLimited"))
@@ -310,7 +310,9 @@ $root.Protocol = (function() {
             if (message.trigger != null && message.hasOwnProperty("trigger"))
                 object.trigger = options.enums === String ? $root.Protocol.LimitSharing.TriggerType[message.trigger] === undefined ? message.trigger : $root.Protocol.LimitSharing.TriggerType[message.trigger] : message.trigger;
             if (message.limitSharingSettingTimestamp != null && message.hasOwnProperty("limitSharingSettingTimestamp"))
-                if (typeof message.limitSharingSettingTimestamp === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.limitSharingSettingTimestamp = typeof message.limitSharingSettingTimestamp === "number" ? BigInt(message.limitSharingSettingTimestamp) : $util.Long.fromBits(message.limitSharingSettingTimestamp.low >>> 0, message.limitSharingSettingTimestamp.high >>> 0, false).toBigInt();
+                else if (typeof message.limitSharingSettingTimestamp === "number")
                     object.limitSharingSettingTimestamp = options.longs === String ? String(message.limitSharingSettingTimestamp) : message.limitSharingSettingTimestamp;
                 else
                     object.limitSharingSettingTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.limitSharingSettingTimestamp) : options.longs === Number ? new $util.LongBits(message.limitSharingSettingTimestamp.low >>> 0, message.limitSharingSettingTimestamp.high >>> 0).toNumber() : message.limitSharingSettingTimestamp;

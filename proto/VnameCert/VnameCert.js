@@ -429,14 +429,14 @@ $root.VnameCert = (function() {
                 object.actualActors = options.enums === String ? "SELF" : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.privacyModeTs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.privacyModeTs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.privacyModeTs = options.longs === String ? "0" : 0;
+                    object.privacyModeTs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.featureControls = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.featureControls = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.featureControls = options.longs === String ? "0" : 0;
+                    object.featureControls = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
             }
             if (message.vlevel != null && message.hasOwnProperty("vlevel"))
                 object.vlevel = options.enums === String ? $root.VnameCert.BizIdentityInfo.VerifiedLevelValue[message.vlevel] === undefined ? message.vlevel : $root.VnameCert.BizIdentityInfo.VerifiedLevelValue[message.vlevel] : message.vlevel;
@@ -451,12 +451,16 @@ $root.VnameCert = (function() {
             if (message.actualActors != null && message.hasOwnProperty("actualActors"))
                 object.actualActors = options.enums === String ? $root.VnameCert.BizIdentityInfo.ActualActorsType[message.actualActors] === undefined ? message.actualActors : $root.VnameCert.BizIdentityInfo.ActualActorsType[message.actualActors] : message.actualActors;
             if (message.privacyModeTs != null && message.hasOwnProperty("privacyModeTs"))
-                if (typeof message.privacyModeTs === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.privacyModeTs = typeof message.privacyModeTs === "number" ? BigInt(message.privacyModeTs) : $util.Long.fromBits(message.privacyModeTs.low >>> 0, message.privacyModeTs.high >>> 0, true).toBigInt();
+                else if (typeof message.privacyModeTs === "number")
                     object.privacyModeTs = options.longs === String ? String(message.privacyModeTs) : message.privacyModeTs;
                 else
                     object.privacyModeTs = options.longs === String ? $util.Long.prototype.toString.call(message.privacyModeTs) : options.longs === Number ? new $util.LongBits(message.privacyModeTs.low >>> 0, message.privacyModeTs.high >>> 0).toNumber(true) : message.privacyModeTs;
             if (message.featureControls != null && message.hasOwnProperty("featureControls"))
-                if (typeof message.featureControls === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.featureControls = typeof message.featureControls === "number" ? BigInt(message.featureControls) : $util.Long.fromBits(message.featureControls.low >>> 0, message.featureControls.high >>> 0, true).toBigInt();
+                else if (typeof message.featureControls === "number")
                     object.featureControls = options.longs === String ? String(message.featureControls) : message.featureControls;
                 else
                     object.featureControls = options.longs === String ? $util.Long.prototype.toString.call(message.featureControls) : options.longs === Number ? new $util.LongBits(message.featureControls.low >>> 0, message.featureControls.high >>> 0).toNumber(true) : message.featureControls;
@@ -847,27 +851,31 @@ $root.VnameCert = (function() {
             if (options.defaults) {
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.whatsappBizAcctFbid = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.whatsappBizAcctFbid = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.whatsappBizAcctFbid = options.longs === String ? "0" : 0;
+                    object.whatsappBizAcctFbid = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.whatsappAcctNumber = "";
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.issueTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.issueTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.issueTime = options.longs === String ? "0" : 0;
+                    object.issueTime = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.hostStorage = options.enums === String ? "ON_PREMISE" : 0;
                 object.accountType = options.enums === String ? "ENTERPRISE" : 0;
             }
             if (message.whatsappBizAcctFbid != null && message.hasOwnProperty("whatsappBizAcctFbid"))
-                if (typeof message.whatsappBizAcctFbid === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.whatsappBizAcctFbid = typeof message.whatsappBizAcctFbid === "number" ? BigInt(message.whatsappBizAcctFbid) : $util.Long.fromBits(message.whatsappBizAcctFbid.low >>> 0, message.whatsappBizAcctFbid.high >>> 0, true).toBigInt();
+                else if (typeof message.whatsappBizAcctFbid === "number")
                     object.whatsappBizAcctFbid = options.longs === String ? String(message.whatsappBizAcctFbid) : message.whatsappBizAcctFbid;
                 else
                     object.whatsappBizAcctFbid = options.longs === String ? $util.Long.prototype.toString.call(message.whatsappBizAcctFbid) : options.longs === Number ? new $util.LongBits(message.whatsappBizAcctFbid.low >>> 0, message.whatsappBizAcctFbid.high >>> 0).toNumber(true) : message.whatsappBizAcctFbid;
             if (message.whatsappAcctNumber != null && message.hasOwnProperty("whatsappAcctNumber"))
                 object.whatsappAcctNumber = message.whatsappAcctNumber;
             if (message.issueTime != null && message.hasOwnProperty("issueTime"))
-                if (typeof message.issueTime === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.issueTime = typeof message.issueTime === "number" ? BigInt(message.issueTime) : $util.Long.fromBits(message.issueTime.low >>> 0, message.issueTime.high >>> 0, true).toBigInt();
+                else if (typeof message.issueTime === "number")
                     object.issueTime = options.longs === String ? String(message.issueTime) : message.issueTime;
                 else
                     object.issueTime = options.longs === String ? $util.Long.prototype.toString.call(message.issueTime) : options.longs === Number ? new $util.LongBits(message.issueTime.low >>> 0, message.issueTime.high >>> 0).toNumber(true) : message.issueTime;
@@ -1774,19 +1782,21 @@ $root.VnameCert = (function() {
                 if (options.defaults) {
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, true);
-                        object.serial = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.serial = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.serial = options.longs === String ? "0" : 0;
+                        object.serial = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.issuer = "";
                     object.verifiedName = "";
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, true);
-                        object.issueTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.issueTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.issueTime = options.longs === String ? "0" : 0;
+                        object.issueTime = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
                 if (message.serial != null && message.hasOwnProperty("serial"))
-                    if (typeof message.serial === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.serial = typeof message.serial === "number" ? BigInt(message.serial) : $util.Long.fromBits(message.serial.low >>> 0, message.serial.high >>> 0, true).toBigInt();
+                    else if (typeof message.serial === "number")
                         object.serial = options.longs === String ? String(message.serial) : message.serial;
                     else
                         object.serial = options.longs === String ? $util.Long.prototype.toString.call(message.serial) : options.longs === Number ? new $util.LongBits(message.serial.low >>> 0, message.serial.high >>> 0).toNumber(true) : message.serial;
@@ -1800,7 +1810,9 @@ $root.VnameCert = (function() {
                         object.localizedNames[j] = $root.VnameCert.LocalizedName.toObject(message.localizedNames[j], options);
                 }
                 if (message.issueTime != null && message.hasOwnProperty("issueTime"))
-                    if (typeof message.issueTime === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.issueTime = typeof message.issueTime === "number" ? BigInt(message.issueTime) : $util.Long.fromBits(message.issueTime.low >>> 0, message.issueTime.high >>> 0, true).toBigInt();
+                    else if (typeof message.issueTime === "number")
                         object.issueTime = options.longs === String ? String(message.issueTime) : message.issueTime;
                     else
                         object.issueTime = options.longs === String ? $util.Long.prototype.toString.call(message.issueTime) : options.longs === Number ? new $util.LongBits(message.issueTime.low >>> 0, message.issueTime.high >>> 0).toNumber(true) : message.issueTime;

@@ -1215,9 +1215,9 @@ $root.Wa6 = (function() {
             if (options.defaults) {
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.username = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.username = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.username = options.longs === String ? "0" : 0;
+                    object.username = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.passive = false;
                 object.userAgent = null;
                 object.webInfo = null;
@@ -1250,9 +1250,9 @@ $root.Wa6 = (function() {
                 object.iosAppExtension = options.enums === String ? "SHARE_EXTENSION" : 0;
                 if ($util.Long) {
                     var long = new $util.Long(0, 0, true);
-                    object.fbAppId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    object.fbAppId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
-                    object.fbAppId = options.longs === String ? "0" : 0;
+                    object.fbAppId = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 if (options.bytes === String)
                     object.fbDeviceId = "";
                 else {
@@ -1287,7 +1287,9 @@ $root.Wa6 = (function() {
                 }
             }
             if (message.username != null && message.hasOwnProperty("username"))
-                if (typeof message.username === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.username = typeof message.username === "number" ? BigInt(message.username) : $util.Long.fromBits(message.username.low >>> 0, message.username.high >>> 0, true).toBigInt();
+                else if (typeof message.username === "number")
                     object.username = options.longs === String ? String(message.username) : message.username;
                 else
                     object.username = options.longs === String ? $util.Long.prototype.toString.call(message.username) : options.longs === Number ? new $util.LongBits(message.username.low >>> 0, message.username.high >>> 0).toNumber(true) : message.username;
@@ -1333,7 +1335,9 @@ $root.Wa6 = (function() {
             if (message.iosAppExtension != null && message.hasOwnProperty("iosAppExtension"))
                 object.iosAppExtension = options.enums === String ? $root.Wa6.ClientPayload.IOSAppExtension[message.iosAppExtension] === undefined ? message.iosAppExtension : $root.Wa6.ClientPayload.IOSAppExtension[message.iosAppExtension] : message.iosAppExtension;
             if (message.fbAppId != null && message.hasOwnProperty("fbAppId"))
-                if (typeof message.fbAppId === "number")
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.fbAppId = typeof message.fbAppId === "number" ? BigInt(message.fbAppId) : $util.Long.fromBits(message.fbAppId.low >>> 0, message.fbAppId.high >>> 0, true).toBigInt();
+                else if (typeof message.fbAppId === "number")
                     object.fbAppId = options.longs === String ? String(message.fbAppId) : message.fbAppId;
                 else
                     object.fbAppId = options.longs === String ? $util.Long.prototype.toString.call(message.fbAppId) : options.longs === Number ? new $util.LongBits(message.fbAppId.low >>> 0, message.fbAppId.high >>> 0).toNumber(true) : message.fbAppId;
@@ -2494,9 +2498,9 @@ $root.Wa6 = (function() {
                 if (options.defaults) {
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, true);
-                        object.accountId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.accountId = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.accountId = options.longs === String ? "0" : 0;
+                        object.accountId = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     if (options.bytes === String)
                         object.token = "";
                     else {
@@ -2507,7 +2511,9 @@ $root.Wa6 = (function() {
                     object.enableReadReceipts = false;
                 }
                 if (message.accountId != null && message.hasOwnProperty("accountId"))
-                    if (typeof message.accountId === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.accountId = typeof message.accountId === "number" ? BigInt(message.accountId) : $util.Long.fromBits(message.accountId.low >>> 0, message.accountId.high >>> 0, true).toBigInt();
+                    else if (typeof message.accountId === "number")
                         object.accountId = options.longs === String ? String(message.accountId) : message.accountId;
                     else
                         object.accountId = options.longs === String ? $util.Long.prototype.toString.call(message.accountId) : options.longs === Number ? new $util.LongBits(message.accountId.low >>> 0, message.accountId.high >>> 0).toNumber(true) : message.accountId;

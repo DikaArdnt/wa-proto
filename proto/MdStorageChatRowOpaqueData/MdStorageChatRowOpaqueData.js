@@ -522,9 +522,9 @@ $root.MdStorageChatRowOpaqueData = (function() {
                     object.ctwaContext = null;
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.timestamp = options.longs === String ? "0" : 0;
+                        object.timestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
                 if (message.text != null && message.hasOwnProperty("text"))
                     object.text = message.text;
@@ -535,7 +535,9 @@ $root.MdStorageChatRowOpaqueData = (function() {
                 if (message.ctwaContext != null && message.hasOwnProperty("ctwaContext"))
                     object.ctwaContext = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextData.toObject(message.ctwaContext, options);
                 if (message.timestamp != null && message.hasOwnProperty("timestamp"))
-                    if (typeof message.timestamp === "number")
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.timestamp = typeof message.timestamp === "number" ? BigInt(message.timestamp) : $util.Long.fromBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0, false).toBigInt();
+                    else if (typeof message.timestamp === "number")
                         object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
                     else
                         object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber() : message.timestamp;
