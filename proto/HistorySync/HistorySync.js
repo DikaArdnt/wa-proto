@@ -23589,6 +23589,8 @@ $root.E2E = (function() {
                         case 8:
                         case 9:
                         case 10:
+                        case 11:
+                        case 12:
                             break;
                         }
                     if (message.actionUrl != null && message.hasOwnProperty("actionUrl"))
@@ -23664,6 +23666,14 @@ $root.E2E = (function() {
                     case 10:
                         message.pillType = 10;
                         break;
+                    case "SHOP":
+                    case 11:
+                        message.pillType = 11;
+                        break;
+                    case "ORDER":
+                    case 12:
+                        message.pillType = 12;
+                        break;
                     }
                     if (object.actionUrl != null)
                         message.actionUrl = String(object.actionUrl);
@@ -23738,6 +23748,8 @@ $root.E2E = (function() {
              * @property {number} BESTSELLERS=8 BESTSELLERS value
              * @property {number} MENU=9 MENU value
              * @property {number} ABOUT=10 ABOUT value
+             * @property {number} SHOP=11 SHOP value
+             * @property {number} ORDER=12 ORDER value
              */
             BusinessInteractionPills.PillType = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -23752,6 +23764,8 @@ $root.E2E = (function() {
                 values[valuesById[8] = "BESTSELLERS"] = 8;
                 values[valuesById[9] = "MENU"] = 9;
                 values[valuesById[10] = "ABOUT"] = 10;
+                values[valuesById[11] = "SHOP"] = 11;
+                values[valuesById[12] = "ORDER"] = 12;
                 return values;
             })();
 
@@ -27862,8 +27876,9 @@ $root.E2E = (function() {
          * @property {E2E.Message.IPollAddOptionMessage|null} [pollAddOptionMessage] Message pollAddOptionMessage
          * @property {E2E.Message.IEventInviteMessage|null} [eventInviteMessage] Message eventInviteMessage
          * @property {E2E.IGroupRootKeyShare|null} [groupRootKeyShare] Message groupRootKeyShare
-         * @property {E2E.Message.IP2PPaymentReminderNotification|null} [p2PPaymentReminderNotification] Message p2PPaymentReminderNotification
+         * @property {E2E.Message.IPaymentReminderMessage|null} [paymentReminderMessage] Message paymentReminderMessage
          * @property {E2E.Message.ISplitPaymentMessage|null} [splitPaymentMessage] Message splitPaymentMessage
+         * @property {E2E.Message.IFutureProofMessage|null} [newsletterAdminProfileStatusMessage] Message newsletterAdminProfileStatusMessage
          */
 
         /**
@@ -28706,12 +28721,12 @@ $root.E2E = (function() {
         Message.prototype.groupRootKeyShare = null;
 
         /**
-         * Message p2PPaymentReminderNotification.
-         * @member {E2E.Message.IP2PPaymentReminderNotification|null|undefined} p2PPaymentReminderNotification
+         * Message paymentReminderMessage.
+         * @member {E2E.Message.IPaymentReminderMessage|null|undefined} paymentReminderMessage
          * @memberof E2E.Message
          * @instance
          */
-        Message.prototype.p2PPaymentReminderNotification = null;
+        Message.prototype.paymentReminderMessage = null;
 
         /**
          * Message splitPaymentMessage.
@@ -28720,6 +28735,14 @@ $root.E2E = (function() {
          * @instance
          */
         Message.prototype.splitPaymentMessage = null;
+
+        /**
+         * Message newsletterAdminProfileStatusMessage.
+         * @member {E2E.Message.IFutureProofMessage|null|undefined} newsletterAdminProfileStatusMessage
+         * @memberof E2E.Message
+         * @instance
+         */
+        Message.prototype.newsletterAdminProfileStatusMessage = null;
 
         /**
          * Creates a new Message instance using the specified properties.
@@ -28951,10 +28974,12 @@ $root.E2E = (function() {
                 $root.E2E.Message.EventInviteMessage.encode(message.eventInviteMessage, writer.uint32(/* id 122, wireType 2 =*/978).fork()).ldelim();
             if (message.groupRootKeyShare != null && Object.hasOwnProperty.call(message, "groupRootKeyShare"))
                 $root.E2E.GroupRootKeyShare.encode(message.groupRootKeyShare, writer.uint32(/* id 123, wireType 2 =*/986).fork()).ldelim();
-            if (message.p2PPaymentReminderNotification != null && Object.hasOwnProperty.call(message, "p2PPaymentReminderNotification"))
-                $root.E2E.Message.P2PPaymentReminderNotification.encode(message.p2PPaymentReminderNotification, writer.uint32(/* id 124, wireType 2 =*/994).fork()).ldelim();
+            if (message.paymentReminderMessage != null && Object.hasOwnProperty.call(message, "paymentReminderMessage"))
+                $root.E2E.Message.PaymentReminderMessage.encode(message.paymentReminderMessage, writer.uint32(/* id 124, wireType 2 =*/994).fork()).ldelim();
             if (message.splitPaymentMessage != null && Object.hasOwnProperty.call(message, "splitPaymentMessage"))
                 $root.E2E.Message.SplitPaymentMessage.encode(message.splitPaymentMessage, writer.uint32(/* id 125, wireType 2 =*/1002).fork()).ldelim();
+            if (message.newsletterAdminProfileStatusMessage != null && Object.hasOwnProperty.call(message, "newsletterAdminProfileStatusMessage"))
+                $root.E2E.Message.FutureProofMessage.encode(message.newsletterAdminProfileStatusMessage, writer.uint32(/* id 126, wireType 2 =*/1010).fork()).ldelim();
             return writer;
         };
 
@@ -29408,11 +29433,15 @@ $root.E2E = (function() {
                         break;
                     }
                 case 124: {
-                        message.p2PPaymentReminderNotification = $root.E2E.Message.P2PPaymentReminderNotification.decode(reader, reader.uint32(), undefined, long + 1);
+                        message.paymentReminderMessage = $root.E2E.Message.PaymentReminderMessage.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 case 125: {
                         message.splitPaymentMessage = $root.E2E.Message.SplitPaymentMessage.decode(reader, reader.uint32(), undefined, long + 1);
+                        break;
+                    }
+                case 126: {
+                        message.newsletterAdminProfileStatusMessage = $root.E2E.Message.FutureProofMessage.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 default:
@@ -29967,15 +29996,20 @@ $root.E2E = (function() {
                 if (error)
                     return "groupRootKeyShare." + error;
             }
-            if (message.p2PPaymentReminderNotification != null && message.hasOwnProperty("p2PPaymentReminderNotification")) {
-                var error = $root.E2E.Message.P2PPaymentReminderNotification.verify(message.p2PPaymentReminderNotification, long + 1);
+            if (message.paymentReminderMessage != null && message.hasOwnProperty("paymentReminderMessage")) {
+                var error = $root.E2E.Message.PaymentReminderMessage.verify(message.paymentReminderMessage, long + 1);
                 if (error)
-                    return "p2PPaymentReminderNotification." + error;
+                    return "paymentReminderMessage." + error;
             }
             if (message.splitPaymentMessage != null && message.hasOwnProperty("splitPaymentMessage")) {
                 var error = $root.E2E.Message.SplitPaymentMessage.verify(message.splitPaymentMessage, long + 1);
                 if (error)
                     return "splitPaymentMessage." + error;
+            }
+            if (message.newsletterAdminProfileStatusMessage != null && message.hasOwnProperty("newsletterAdminProfileStatusMessage")) {
+                var error = $root.E2E.Message.FutureProofMessage.verify(message.newsletterAdminProfileStatusMessage, long + 1);
+                if (error)
+                    return "newsletterAdminProfileStatusMessage." + error;
             }
             return null;
         };
@@ -30508,15 +30542,20 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.Message.groupRootKeyShare: object expected");
                 message.groupRootKeyShare = $root.E2E.GroupRootKeyShare.fromObject(object.groupRootKeyShare, long + 1);
             }
-            if (object.p2PPaymentReminderNotification != null) {
-                if (typeof object.p2PPaymentReminderNotification !== "object")
-                    throw TypeError(".E2E.Message.p2PPaymentReminderNotification: object expected");
-                message.p2PPaymentReminderNotification = $root.E2E.Message.P2PPaymentReminderNotification.fromObject(object.p2PPaymentReminderNotification, long + 1);
+            if (object.paymentReminderMessage != null) {
+                if (typeof object.paymentReminderMessage !== "object")
+                    throw TypeError(".E2E.Message.paymentReminderMessage: object expected");
+                message.paymentReminderMessage = $root.E2E.Message.PaymentReminderMessage.fromObject(object.paymentReminderMessage, long + 1);
             }
             if (object.splitPaymentMessage != null) {
                 if (typeof object.splitPaymentMessage !== "object")
                     throw TypeError(".E2E.Message.splitPaymentMessage: object expected");
                 message.splitPaymentMessage = $root.E2E.Message.SplitPaymentMessage.fromObject(object.splitPaymentMessage, long + 1);
+            }
+            if (object.newsletterAdminProfileStatusMessage != null) {
+                if (typeof object.newsletterAdminProfileStatusMessage !== "object")
+                    throw TypeError(".E2E.Message.newsletterAdminProfileStatusMessage: object expected");
+                message.newsletterAdminProfileStatusMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.newsletterAdminProfileStatusMessage, long + 1);
             }
             return message;
         };
@@ -30638,8 +30677,9 @@ $root.E2E = (function() {
                 object.pollAddOptionMessage = null;
                 object.eventInviteMessage = null;
                 object.groupRootKeyShare = null;
-                object.p2PPaymentReminderNotification = null;
+                object.paymentReminderMessage = null;
                 object.splitPaymentMessage = null;
+                object.newsletterAdminProfileStatusMessage = null;
             }
             if (message.conversation != null && message.hasOwnProperty("conversation"))
                 object.conversation = message.conversation;
@@ -30847,10 +30887,12 @@ $root.E2E = (function() {
                 object.eventInviteMessage = $root.E2E.Message.EventInviteMessage.toObject(message.eventInviteMessage, options);
             if (message.groupRootKeyShare != null && message.hasOwnProperty("groupRootKeyShare"))
                 object.groupRootKeyShare = $root.E2E.GroupRootKeyShare.toObject(message.groupRootKeyShare, options);
-            if (message.p2PPaymentReminderNotification != null && message.hasOwnProperty("p2PPaymentReminderNotification"))
-                object.p2PPaymentReminderNotification = $root.E2E.Message.P2PPaymentReminderNotification.toObject(message.p2PPaymentReminderNotification, options);
+            if (message.paymentReminderMessage != null && message.hasOwnProperty("paymentReminderMessage"))
+                object.paymentReminderMessage = $root.E2E.Message.PaymentReminderMessage.toObject(message.paymentReminderMessage, options);
             if (message.splitPaymentMessage != null && message.hasOwnProperty("splitPaymentMessage"))
                 object.splitPaymentMessage = $root.E2E.Message.SplitPaymentMessage.toObject(message.splitPaymentMessage, options);
+            if (message.newsletterAdminProfileStatusMessage != null && message.hasOwnProperty("newsletterAdminProfileStatusMessage"))
+                object.newsletterAdminProfileStatusMessage = $root.E2E.Message.FutureProofMessage.toObject(message.newsletterAdminProfileStatusMessage, options);
             return object;
         };
 
@@ -42807,6 +42849,7 @@ $root.E2E = (function() {
              * @property {string|null} [caption] EventInviteMessage caption
              * @property {boolean|null} [isCanceled] EventInviteMessage isCanceled
              * @property {number|Long|null} [endTime] EventInviteMessage endTime
+             * @property {string|null} [callLink] EventInviteMessage callLink
              */
 
             /**
@@ -42889,6 +42932,14 @@ $root.E2E = (function() {
             EventInviteMessage.prototype.endTime = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
 
             /**
+             * EventInviteMessage callLink.
+             * @member {string} callLink
+             * @memberof E2E.Message.EventInviteMessage
+             * @instance
+             */
+            EventInviteMessage.prototype.callLink = "";
+
+            /**
              * Creates a new EventInviteMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.EventInviteMessage
@@ -42928,6 +42979,8 @@ $root.E2E = (function() {
                     writer.uint32(/* id 7, wireType 0 =*/56).bool(message.isCanceled);
                 if (message.endTime != null && Object.hasOwnProperty.call(message, "endTime"))
                     writer.uint32(/* id 8, wireType 0 =*/64).int64(message.endTime);
+                if (message.callLink != null && Object.hasOwnProperty.call(message, "callLink"))
+                    writer.uint32(/* id 9, wireType 2 =*/74).string(message.callLink);
                 return writer;
             };
 
@@ -43000,6 +43053,10 @@ $root.E2E = (function() {
                             message.endTime = reader.int64();
                             break;
                         }
+                    case 9: {
+                            message.callLink = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7, long);
                         break;
@@ -43065,6 +43122,9 @@ $root.E2E = (function() {
                 if (message.endTime != null && message.hasOwnProperty("endTime"))
                     if (!$util.isInteger(message.endTime) && !(message.endTime && $util.isInteger(message.endTime.low) && $util.isInteger(message.endTime.high)))
                         return "endTime: integer|Long expected";
+                if (message.callLink != null && message.hasOwnProperty("callLink"))
+                    if (!$util.isString(message.callLink))
+                        return "callLink: string expected";
                 return null;
             };
 
@@ -43120,6 +43180,8 @@ $root.E2E = (function() {
                         message.endTime = object.endTime;
                     else if (typeof object.endTime === "object")
                         message.endTime = new $util.LongBits(object.endTime.low >>> 0, object.endTime.high >>> 0).toNumber();
+                if (object.callLink != null)
+                    message.callLink = String(object.callLink);
                 return message;
             };
 
@@ -43159,6 +43221,7 @@ $root.E2E = (function() {
                         object.endTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
                         object.endTime = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
+                    object.callLink = "";
                 }
                 if (message.contextInfo != null && message.hasOwnProperty("contextInfo"))
                     object.contextInfo = $root.E2E.ContextInfo.toObject(message.contextInfo, options);
@@ -43186,6 +43249,8 @@ $root.E2E = (function() {
                         object.endTime = options.longs === String ? String(message.endTime) : message.endTime;
                     else
                         object.endTime = options.longs === String ? $util.Long.prototype.toString.call(message.endTime) : options.longs === Number ? new $util.LongBits(message.endTime.low >>> 0, message.endTime.high >>> 0).toNumber() : message.endTime;
+                if (message.callLink != null && message.hasOwnProperty("callLink"))
+                    object.callLink = message.callLink;
                 return object;
             };
 
@@ -62440,622 +62505,6 @@ $root.E2E = (function() {
             return OrderMessage;
         })();
 
-        Message.P2PPaymentReminderNotification = (function() {
-
-            /**
-             * Properties of a P2PPaymentReminderNotification.
-             * @memberof E2E.Message
-             * @interface IP2PPaymentReminderNotification
-             * @property {string|null} [reminderId] P2PPaymentReminderNotification reminderId
-             * @property {E2E.IMoney|null} [amount] P2PPaymentReminderNotification amount
-             * @property {E2E.Message.P2PPaymentReminderNotification.ReminderFrequency|null} [frequency] P2PPaymentReminderNotification frequency
-             * @property {number|Long|null} [nextReminderTimestamp] P2PPaymentReminderNotification nextReminderTimestamp
-             * @property {number|Long|null} [expiryTimestamp] P2PPaymentReminderNotification expiryTimestamp
-             * @property {E2E.Message.P2PPaymentReminderNotification.ReminderState|null} [state] P2PPaymentReminderNotification state
-             * @property {string|null} [description] P2PPaymentReminderNotification description
-             * @property {string|null} [creatorJid] P2PPaymentReminderNotification creatorJid
-             * @property {string|null} [receiverJid] P2PPaymentReminderNotification receiverJid
-             * @property {string|null} [upiId] P2PPaymentReminderNotification upiId
-             * @property {number|Long|null} [createdTimestamp] P2PPaymentReminderNotification createdTimestamp
-             */
-
-            /**
-             * Constructs a new P2PPaymentReminderNotification.
-             * @memberof E2E.Message
-             * @classdesc Represents a P2PPaymentReminderNotification.
-             * @implements IP2PPaymentReminderNotification
-             * @constructor
-             * @param {E2E.Message.IP2PPaymentReminderNotification=} [properties] Properties to set
-             */
-            function P2PPaymentReminderNotification(properties) {
-                if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
-                            this[keys[i]] = properties[keys[i]];
-            }
-
-            /**
-             * P2PPaymentReminderNotification reminderId.
-             * @member {string} reminderId
-             * @memberof E2E.Message.P2PPaymentReminderNotification
-             * @instance
-             */
-            P2PPaymentReminderNotification.prototype.reminderId = "";
-
-            /**
-             * P2PPaymentReminderNotification amount.
-             * @member {E2E.IMoney|null|undefined} amount
-             * @memberof E2E.Message.P2PPaymentReminderNotification
-             * @instance
-             */
-            P2PPaymentReminderNotification.prototype.amount = null;
-
-            /**
-             * P2PPaymentReminderNotification frequency.
-             * @member {E2E.Message.P2PPaymentReminderNotification.ReminderFrequency} frequency
-             * @memberof E2E.Message.P2PPaymentReminderNotification
-             * @instance
-             */
-            P2PPaymentReminderNotification.prototype.frequency = 0;
-
-            /**
-             * P2PPaymentReminderNotification nextReminderTimestamp.
-             * @member {number|Long} nextReminderTimestamp
-             * @memberof E2E.Message.P2PPaymentReminderNotification
-             * @instance
-             */
-            P2PPaymentReminderNotification.prototype.nextReminderTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-
-            /**
-             * P2PPaymentReminderNotification expiryTimestamp.
-             * @member {number|Long} expiryTimestamp
-             * @memberof E2E.Message.P2PPaymentReminderNotification
-             * @instance
-             */
-            P2PPaymentReminderNotification.prototype.expiryTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-
-            /**
-             * P2PPaymentReminderNotification state.
-             * @member {E2E.Message.P2PPaymentReminderNotification.ReminderState} state
-             * @memberof E2E.Message.P2PPaymentReminderNotification
-             * @instance
-             */
-            P2PPaymentReminderNotification.prototype.state = 0;
-
-            /**
-             * P2PPaymentReminderNotification description.
-             * @member {string} description
-             * @memberof E2E.Message.P2PPaymentReminderNotification
-             * @instance
-             */
-            P2PPaymentReminderNotification.prototype.description = "";
-
-            /**
-             * P2PPaymentReminderNotification creatorJid.
-             * @member {string} creatorJid
-             * @memberof E2E.Message.P2PPaymentReminderNotification
-             * @instance
-             */
-            P2PPaymentReminderNotification.prototype.creatorJid = "";
-
-            /**
-             * P2PPaymentReminderNotification receiverJid.
-             * @member {string} receiverJid
-             * @memberof E2E.Message.P2PPaymentReminderNotification
-             * @instance
-             */
-            P2PPaymentReminderNotification.prototype.receiverJid = "";
-
-            /**
-             * P2PPaymentReminderNotification upiId.
-             * @member {string} upiId
-             * @memberof E2E.Message.P2PPaymentReminderNotification
-             * @instance
-             */
-            P2PPaymentReminderNotification.prototype.upiId = "";
-
-            /**
-             * P2PPaymentReminderNotification createdTimestamp.
-             * @member {number|Long} createdTimestamp
-             * @memberof E2E.Message.P2PPaymentReminderNotification
-             * @instance
-             */
-            P2PPaymentReminderNotification.prototype.createdTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-
-            /**
-             * Creates a new P2PPaymentReminderNotification instance using the specified properties.
-             * @function create
-             * @memberof E2E.Message.P2PPaymentReminderNotification
-             * @static
-             * @param {E2E.Message.IP2PPaymentReminderNotification=} [properties] Properties to set
-             * @returns {E2E.Message.P2PPaymentReminderNotification} P2PPaymentReminderNotification instance
-             */
-            P2PPaymentReminderNotification.create = function create(properties) {
-                return new P2PPaymentReminderNotification(properties);
-            };
-
-            /**
-             * Encodes the specified P2PPaymentReminderNotification message. Does not implicitly {@link E2E.Message.P2PPaymentReminderNotification.verify|verify} messages.
-             * @function encode
-             * @memberof E2E.Message.P2PPaymentReminderNotification
-             * @static
-             * @param {E2E.Message.IP2PPaymentReminderNotification} message P2PPaymentReminderNotification message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            P2PPaymentReminderNotification.encode = function encode(message, writer) {
-                if (!writer)
-                    writer = $Writer.create();
-                if (message.reminderId != null && Object.hasOwnProperty.call(message, "reminderId"))
-                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.reminderId);
-                if (message.amount != null && Object.hasOwnProperty.call(message, "amount"))
-                    $root.E2E.Money.encode(message.amount, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                if (message.frequency != null && Object.hasOwnProperty.call(message, "frequency"))
-                    writer.uint32(/* id 3, wireType 0 =*/24).int32(message.frequency);
-                if (message.nextReminderTimestamp != null && Object.hasOwnProperty.call(message, "nextReminderTimestamp"))
-                    writer.uint32(/* id 4, wireType 0 =*/32).int64(message.nextReminderTimestamp);
-                if (message.expiryTimestamp != null && Object.hasOwnProperty.call(message, "expiryTimestamp"))
-                    writer.uint32(/* id 5, wireType 0 =*/40).int64(message.expiryTimestamp);
-                if (message.state != null && Object.hasOwnProperty.call(message, "state"))
-                    writer.uint32(/* id 6, wireType 0 =*/48).int32(message.state);
-                if (message.description != null && Object.hasOwnProperty.call(message, "description"))
-                    writer.uint32(/* id 7, wireType 2 =*/58).string(message.description);
-                if (message.creatorJid != null && Object.hasOwnProperty.call(message, "creatorJid"))
-                    writer.uint32(/* id 8, wireType 2 =*/66).string(message.creatorJid);
-                if (message.receiverJid != null && Object.hasOwnProperty.call(message, "receiverJid"))
-                    writer.uint32(/* id 9, wireType 2 =*/74).string(message.receiverJid);
-                if (message.upiId != null && Object.hasOwnProperty.call(message, "upiId"))
-                    writer.uint32(/* id 10, wireType 2 =*/82).string(message.upiId);
-                if (message.createdTimestamp != null && Object.hasOwnProperty.call(message, "createdTimestamp"))
-                    writer.uint32(/* id 11, wireType 0 =*/88).int64(message.createdTimestamp);
-                return writer;
-            };
-
-            /**
-             * Encodes the specified P2PPaymentReminderNotification message, length delimited. Does not implicitly {@link E2E.Message.P2PPaymentReminderNotification.verify|verify} messages.
-             * @function encodeDelimited
-             * @memberof E2E.Message.P2PPaymentReminderNotification
-             * @static
-             * @param {E2E.Message.IP2PPaymentReminderNotification} message P2PPaymentReminderNotification message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            P2PPaymentReminderNotification.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
-            };
-
-            /**
-             * Decodes a P2PPaymentReminderNotification message from the specified reader or buffer.
-             * @function decode
-             * @memberof E2E.Message.P2PPaymentReminderNotification
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @param {number} [length] Message length if known beforehand
-             * @returns {E2E.Message.P2PPaymentReminderNotification} P2PPaymentReminderNotification
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            P2PPaymentReminderNotification.decode = function decode(reader, length, error, long) {
-                if (!(reader instanceof $Reader))
-                    reader = $Reader.create(reader);
-                if (long === undefined)
-                    long = 0;
-                if (long > $Reader.recursionLimit)
-                    throw Error("maximum nesting depth exceeded");
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.P2PPaymentReminderNotification();
-                while (reader.pos < end) {
-                    var tag = reader.uint32();
-                    if (tag === error)
-                        break;
-                    switch (tag >>> 3) {
-                    case 1: {
-                            message.reminderId = reader.string();
-                            break;
-                        }
-                    case 2: {
-                            message.amount = $root.E2E.Money.decode(reader, reader.uint32(), undefined, long + 1);
-                            break;
-                        }
-                    case 3: {
-                            message.frequency = reader.int32();
-                            break;
-                        }
-                    case 4: {
-                            message.nextReminderTimestamp = reader.int64();
-                            break;
-                        }
-                    case 5: {
-                            message.expiryTimestamp = reader.int64();
-                            break;
-                        }
-                    case 6: {
-                            message.state = reader.int32();
-                            break;
-                        }
-                    case 7: {
-                            message.description = reader.string();
-                            break;
-                        }
-                    case 8: {
-                            message.creatorJid = reader.string();
-                            break;
-                        }
-                    case 9: {
-                            message.receiverJid = reader.string();
-                            break;
-                        }
-                    case 10: {
-                            message.upiId = reader.string();
-                            break;
-                        }
-                    case 11: {
-                            message.createdTimestamp = reader.int64();
-                            break;
-                        }
-                    default:
-                        reader.skipType(tag & 7, long);
-                        break;
-                    }
-                }
-                return message;
-            };
-
-            /**
-             * Decodes a P2PPaymentReminderNotification message from the specified reader or buffer, length delimited.
-             * @function decodeDelimited
-             * @memberof E2E.Message.P2PPaymentReminderNotification
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @returns {E2E.Message.P2PPaymentReminderNotification} P2PPaymentReminderNotification
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            P2PPaymentReminderNotification.decodeDelimited = function decodeDelimited(reader) {
-                if (!(reader instanceof $Reader))
-                    reader = new $Reader(reader);
-                return this.decode(reader, reader.uint32());
-            };
-
-            /**
-             * Verifies a P2PPaymentReminderNotification message.
-             * @function verify
-             * @memberof E2E.Message.P2PPaymentReminderNotification
-             * @static
-             * @param {Object.<string,*>} message Plain object to verify
-             * @returns {string|null} `null` if valid, otherwise the reason why it is not
-             */
-            P2PPaymentReminderNotification.verify = function verify(message, long) {
-                if (typeof message !== "object" || message === null)
-                    return "object expected";
-                if (long === undefined)
-                    long = 0;
-                if (long > $util.recursionLimit)
-                    return "maximum nesting depth exceeded";
-                if (message.reminderId != null && message.hasOwnProperty("reminderId"))
-                    if (!$util.isString(message.reminderId))
-                        return "reminderId: string expected";
-                if (message.amount != null && message.hasOwnProperty("amount")) {
-                    var error = $root.E2E.Money.verify(message.amount, long + 1);
-                    if (error)
-                        return "amount." + error;
-                }
-                if (message.frequency != null && message.hasOwnProperty("frequency"))
-                    switch (message.frequency) {
-                    default:
-                        return "frequency: enum value expected";
-                    case 0:
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 4:
-                        break;
-                    }
-                if (message.nextReminderTimestamp != null && message.hasOwnProperty("nextReminderTimestamp"))
-                    if (!$util.isInteger(message.nextReminderTimestamp) && !(message.nextReminderTimestamp && $util.isInteger(message.nextReminderTimestamp.low) && $util.isInteger(message.nextReminderTimestamp.high)))
-                        return "nextReminderTimestamp: integer|Long expected";
-                if (message.expiryTimestamp != null && message.hasOwnProperty("expiryTimestamp"))
-                    if (!$util.isInteger(message.expiryTimestamp) && !(message.expiryTimestamp && $util.isInteger(message.expiryTimestamp.low) && $util.isInteger(message.expiryTimestamp.high)))
-                        return "expiryTimestamp: integer|Long expected";
-                if (message.state != null && message.hasOwnProperty("state"))
-                    switch (message.state) {
-                    default:
-                        return "state: enum value expected";
-                    case 0:
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 4:
-                    case 5:
-                        break;
-                    }
-                if (message.description != null && message.hasOwnProperty("description"))
-                    if (!$util.isString(message.description))
-                        return "description: string expected";
-                if (message.creatorJid != null && message.hasOwnProperty("creatorJid"))
-                    if (!$util.isString(message.creatorJid))
-                        return "creatorJid: string expected";
-                if (message.receiverJid != null && message.hasOwnProperty("receiverJid"))
-                    if (!$util.isString(message.receiverJid))
-                        return "receiverJid: string expected";
-                if (message.upiId != null && message.hasOwnProperty("upiId"))
-                    if (!$util.isString(message.upiId))
-                        return "upiId: string expected";
-                if (message.createdTimestamp != null && message.hasOwnProperty("createdTimestamp"))
-                    if (!$util.isInteger(message.createdTimestamp) && !(message.createdTimestamp && $util.isInteger(message.createdTimestamp.low) && $util.isInteger(message.createdTimestamp.high)))
-                        return "createdTimestamp: integer|Long expected";
-                return null;
-            };
-
-            /**
-             * Creates a P2PPaymentReminderNotification message from a plain object. Also converts values to their respective internal types.
-             * @function fromObject
-             * @memberof E2E.Message.P2PPaymentReminderNotification
-             * @static
-             * @param {Object.<string,*>} object Plain object
-             * @returns {E2E.Message.P2PPaymentReminderNotification} P2PPaymentReminderNotification
-             */
-            P2PPaymentReminderNotification.fromObject = function fromObject(object, long) {
-                if (object instanceof $root.E2E.Message.P2PPaymentReminderNotification)
-                    return object;
-                if (long === undefined)
-                    long = 0;
-                if (long > $util.recursionLimit)
-                    throw Error("maximum nesting depth exceeded");
-                var message = new $root.E2E.Message.P2PPaymentReminderNotification();
-                if (object.reminderId != null)
-                    message.reminderId = String(object.reminderId);
-                if (object.amount != null) {
-                    if (typeof object.amount !== "object")
-                        throw TypeError(".E2E.Message.P2PPaymentReminderNotification.amount: object expected");
-                    message.amount = $root.E2E.Money.fromObject(object.amount, long + 1);
-                }
-                switch (object.frequency) {
-                default:
-                    if (typeof object.frequency === "number") {
-                        message.frequency = object.frequency;
-                        break;
-                    }
-                    break;
-                case "UNKNOWN_FREQUENCY":
-                case 0:
-                    message.frequency = 0;
-                    break;
-                case "WEEKLY":
-                case 1:
-                    message.frequency = 1;
-                    break;
-                case "BIWEEKLY":
-                case 2:
-                    message.frequency = 2;
-                    break;
-                case "MONTHLY":
-                case 3:
-                    message.frequency = 3;
-                    break;
-                case "CUSTOM":
-                case 4:
-                    message.frequency = 4;
-                    break;
-                }
-                if (object.nextReminderTimestamp != null)
-                    if ($util.Long)
-                        (message.nextReminderTimestamp = $util.Long.fromValue(object.nextReminderTimestamp)).unsigned = false;
-                    else if (typeof object.nextReminderTimestamp === "string")
-                        message.nextReminderTimestamp = parseInt(object.nextReminderTimestamp, 10);
-                    else if (typeof object.nextReminderTimestamp === "number")
-                        message.nextReminderTimestamp = object.nextReminderTimestamp;
-                    else if (typeof object.nextReminderTimestamp === "object")
-                        message.nextReminderTimestamp = new $util.LongBits(object.nextReminderTimestamp.low >>> 0, object.nextReminderTimestamp.high >>> 0).toNumber();
-                if (object.expiryTimestamp != null)
-                    if ($util.Long)
-                        (message.expiryTimestamp = $util.Long.fromValue(object.expiryTimestamp)).unsigned = false;
-                    else if (typeof object.expiryTimestamp === "string")
-                        message.expiryTimestamp = parseInt(object.expiryTimestamp, 10);
-                    else if (typeof object.expiryTimestamp === "number")
-                        message.expiryTimestamp = object.expiryTimestamp;
-                    else if (typeof object.expiryTimestamp === "object")
-                        message.expiryTimestamp = new $util.LongBits(object.expiryTimestamp.low >>> 0, object.expiryTimestamp.high >>> 0).toNumber();
-                switch (object.state) {
-                default:
-                    if (typeof object.state === "number") {
-                        message.state = object.state;
-                        break;
-                    }
-                    break;
-                case "UNKNOWN_STATE":
-                case 0:
-                    message.state = 0;
-                    break;
-                case "ACTIVE":
-                case 1:
-                    message.state = 1;
-                    break;
-                case "PAUSED":
-                case 2:
-                    message.state = 2;
-                    break;
-                case "STOPPED":
-                case 3:
-                    message.state = 3;
-                    break;
-                case "EXPIRED":
-                case 4:
-                    message.state = 4;
-                    break;
-                case "CANCELLED":
-                case 5:
-                    message.state = 5;
-                    break;
-                }
-                if (object.description != null)
-                    message.description = String(object.description);
-                if (object.creatorJid != null)
-                    message.creatorJid = String(object.creatorJid);
-                if (object.receiverJid != null)
-                    message.receiverJid = String(object.receiverJid);
-                if (object.upiId != null)
-                    message.upiId = String(object.upiId);
-                if (object.createdTimestamp != null)
-                    if ($util.Long)
-                        (message.createdTimestamp = $util.Long.fromValue(object.createdTimestamp)).unsigned = false;
-                    else if (typeof object.createdTimestamp === "string")
-                        message.createdTimestamp = parseInt(object.createdTimestamp, 10);
-                    else if (typeof object.createdTimestamp === "number")
-                        message.createdTimestamp = object.createdTimestamp;
-                    else if (typeof object.createdTimestamp === "object")
-                        message.createdTimestamp = new $util.LongBits(object.createdTimestamp.low >>> 0, object.createdTimestamp.high >>> 0).toNumber();
-                return message;
-            };
-
-            /**
-             * Creates a plain object from a P2PPaymentReminderNotification message. Also converts values to other types if specified.
-             * @function toObject
-             * @memberof E2E.Message.P2PPaymentReminderNotification
-             * @static
-             * @param {E2E.Message.P2PPaymentReminderNotification} message P2PPaymentReminderNotification
-             * @param {$protobuf.IConversionOptions} [options] Conversion options
-             * @returns {Object.<string,*>} Plain object
-             */
-            P2PPaymentReminderNotification.toObject = function toObject(message, options) {
-                if (!options)
-                    options = {};
-                var object = {};
-                if (options.defaults) {
-                    object.reminderId = "";
-                    object.amount = null;
-                    object.frequency = options.enums === String ? "UNKNOWN_FREQUENCY" : 0;
-                    if ($util.Long) {
-                        var long = new $util.Long(0, 0, false);
-                        object.nextReminderTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
-                    } else
-                        object.nextReminderTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
-                    if ($util.Long) {
-                        var long = new $util.Long(0, 0, false);
-                        object.expiryTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
-                    } else
-                        object.expiryTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
-                    object.state = options.enums === String ? "UNKNOWN_STATE" : 0;
-                    object.description = "";
-                    object.creatorJid = "";
-                    object.receiverJid = "";
-                    object.upiId = "";
-                    if ($util.Long) {
-                        var long = new $util.Long(0, 0, false);
-                        object.createdTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
-                    } else
-                        object.createdTimestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
-                }
-                if (message.reminderId != null && message.hasOwnProperty("reminderId"))
-                    object.reminderId = message.reminderId;
-                if (message.amount != null && message.hasOwnProperty("amount"))
-                    object.amount = $root.E2E.Money.toObject(message.amount, options);
-                if (message.frequency != null && message.hasOwnProperty("frequency"))
-                    object.frequency = options.enums === String ? $root.E2E.Message.P2PPaymentReminderNotification.ReminderFrequency[message.frequency] === undefined ? message.frequency : $root.E2E.Message.P2PPaymentReminderNotification.ReminderFrequency[message.frequency] : message.frequency;
-                if (message.nextReminderTimestamp != null && message.hasOwnProperty("nextReminderTimestamp"))
-                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
-                        object.nextReminderTimestamp = typeof message.nextReminderTimestamp === "number" ? BigInt(message.nextReminderTimestamp) : $util.Long.fromBits(message.nextReminderTimestamp.low >>> 0, message.nextReminderTimestamp.high >>> 0, false).toBigInt();
-                    else if (typeof message.nextReminderTimestamp === "number")
-                        object.nextReminderTimestamp = options.longs === String ? String(message.nextReminderTimestamp) : message.nextReminderTimestamp;
-                    else
-                        object.nextReminderTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.nextReminderTimestamp) : options.longs === Number ? new $util.LongBits(message.nextReminderTimestamp.low >>> 0, message.nextReminderTimestamp.high >>> 0).toNumber() : message.nextReminderTimestamp;
-                if (message.expiryTimestamp != null && message.hasOwnProperty("expiryTimestamp"))
-                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
-                        object.expiryTimestamp = typeof message.expiryTimestamp === "number" ? BigInt(message.expiryTimestamp) : $util.Long.fromBits(message.expiryTimestamp.low >>> 0, message.expiryTimestamp.high >>> 0, false).toBigInt();
-                    else if (typeof message.expiryTimestamp === "number")
-                        object.expiryTimestamp = options.longs === String ? String(message.expiryTimestamp) : message.expiryTimestamp;
-                    else
-                        object.expiryTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.expiryTimestamp) : options.longs === Number ? new $util.LongBits(message.expiryTimestamp.low >>> 0, message.expiryTimestamp.high >>> 0).toNumber() : message.expiryTimestamp;
-                if (message.state != null && message.hasOwnProperty("state"))
-                    object.state = options.enums === String ? $root.E2E.Message.P2PPaymentReminderNotification.ReminderState[message.state] === undefined ? message.state : $root.E2E.Message.P2PPaymentReminderNotification.ReminderState[message.state] : message.state;
-                if (message.description != null && message.hasOwnProperty("description"))
-                    object.description = message.description;
-                if (message.creatorJid != null && message.hasOwnProperty("creatorJid"))
-                    object.creatorJid = message.creatorJid;
-                if (message.receiverJid != null && message.hasOwnProperty("receiverJid"))
-                    object.receiverJid = message.receiverJid;
-                if (message.upiId != null && message.hasOwnProperty("upiId"))
-                    object.upiId = message.upiId;
-                if (message.createdTimestamp != null && message.hasOwnProperty("createdTimestamp"))
-                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
-                        object.createdTimestamp = typeof message.createdTimestamp === "number" ? BigInt(message.createdTimestamp) : $util.Long.fromBits(message.createdTimestamp.low >>> 0, message.createdTimestamp.high >>> 0, false).toBigInt();
-                    else if (typeof message.createdTimestamp === "number")
-                        object.createdTimestamp = options.longs === String ? String(message.createdTimestamp) : message.createdTimestamp;
-                    else
-                        object.createdTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.createdTimestamp) : options.longs === Number ? new $util.LongBits(message.createdTimestamp.low >>> 0, message.createdTimestamp.high >>> 0).toNumber() : message.createdTimestamp;
-                return object;
-            };
-
-            /**
-             * Converts this P2PPaymentReminderNotification to JSON.
-             * @function toJSON
-             * @memberof E2E.Message.P2PPaymentReminderNotification
-             * @instance
-             * @returns {Object.<string,*>} JSON object
-             */
-            P2PPaymentReminderNotification.prototype.toJSON = function toJSON() {
-                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-            };
-
-            /**
-             * Gets the default type url for P2PPaymentReminderNotification
-             * @function getTypeUrl
-             * @memberof E2E.Message.P2PPaymentReminderNotification
-             * @static
-             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns {string} The default type url
-             */
-            P2PPaymentReminderNotification.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-                if (typeUrlPrefix === undefined) {
-                    typeUrlPrefix = "type.googleapis.com";
-                }
-                return typeUrlPrefix + "/E2E.Message.P2PPaymentReminderNotification";
-            };
-
-            /**
-             * ReminderFrequency enum.
-             * @name E2E.Message.P2PPaymentReminderNotification.ReminderFrequency
-             * @enum {number}
-             * @property {number} UNKNOWN_FREQUENCY=0 UNKNOWN_FREQUENCY value
-             * @property {number} WEEKLY=1 WEEKLY value
-             * @property {number} BIWEEKLY=2 BIWEEKLY value
-             * @property {number} MONTHLY=3 MONTHLY value
-             * @property {number} CUSTOM=4 CUSTOM value
-             */
-            P2PPaymentReminderNotification.ReminderFrequency = (function() {
-                var valuesById = {}, values = Object.create(valuesById);
-                values[valuesById[0] = "UNKNOWN_FREQUENCY"] = 0;
-                values[valuesById[1] = "WEEKLY"] = 1;
-                values[valuesById[2] = "BIWEEKLY"] = 2;
-                values[valuesById[3] = "MONTHLY"] = 3;
-                values[valuesById[4] = "CUSTOM"] = 4;
-                return values;
-            })();
-
-            /**
-             * ReminderState enum.
-             * @name E2E.Message.P2PPaymentReminderNotification.ReminderState
-             * @enum {number}
-             * @property {number} UNKNOWN_STATE=0 UNKNOWN_STATE value
-             * @property {number} ACTIVE=1 ACTIVE value
-             * @property {number} PAUSED=2 PAUSED value
-             * @property {number} STOPPED=3 STOPPED value
-             * @property {number} EXPIRED=4 EXPIRED value
-             * @property {number} CANCELLED=5 CANCELLED value
-             */
-            P2PPaymentReminderNotification.ReminderState = (function() {
-                var valuesById = {}, values = Object.create(valuesById);
-                values[valuesById[0] = "UNKNOWN_STATE"] = 0;
-                values[valuesById[1] = "ACTIVE"] = 1;
-                values[valuesById[2] = "PAUSED"] = 2;
-                values[valuesById[3] = "STOPPED"] = 3;
-                values[valuesById[4] = "EXPIRED"] = 4;
-                values[valuesById[5] = "CANCELLED"] = 5;
-                return values;
-            })();
-
-            return P2PPaymentReminderNotification;
-        })();
-
         Message.PaymentExtendedMetadata = (function() {
 
             /**
@@ -64664,6 +64113,528 @@ $root.E2E = (function() {
             })();
 
             return PaymentLinkMetadata;
+        })();
+
+        Message.PaymentReminderMessage = (function() {
+
+            /**
+             * Properties of a PaymentReminderMessage.
+             * @memberof E2E.Message
+             * @interface IPaymentReminderMessage
+             * @property {string|null} [reminderId] PaymentReminderMessage reminderId
+             * @property {string|null} [instanceId] PaymentReminderMessage instanceId
+             * @property {string|null} [description] PaymentReminderMessage description
+             * @property {E2E.Message.PaymentReminderMessage.ReminderFrequency|null} [frequency] PaymentReminderMessage frequency
+             * @property {E2E.Message.PaymentReminderMessage.ReminderStatus|null} [status] PaymentReminderMessage status
+             * @property {string|null} [payeeVpa] PaymentReminderMessage payeeVpa
+             * @property {string|null} [payeeJid] PaymentReminderMessage payeeJid
+             * @property {string|null} [payerJid] PaymentReminderMessage payerJid
+             * @property {E2E.IMoney|null} [amount] PaymentReminderMessage amount
+             */
+
+            /**
+             * Constructs a new PaymentReminderMessage.
+             * @memberof E2E.Message
+             * @classdesc Represents a PaymentReminderMessage.
+             * @implements IPaymentReminderMessage
+             * @constructor
+             * @param {E2E.Message.IPaymentReminderMessage=} [properties] Properties to set
+             */
+            function PaymentReminderMessage(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * PaymentReminderMessage reminderId.
+             * @member {string} reminderId
+             * @memberof E2E.Message.PaymentReminderMessage
+             * @instance
+             */
+            PaymentReminderMessage.prototype.reminderId = "";
+
+            /**
+             * PaymentReminderMessage instanceId.
+             * @member {string} instanceId
+             * @memberof E2E.Message.PaymentReminderMessage
+             * @instance
+             */
+            PaymentReminderMessage.prototype.instanceId = "";
+
+            /**
+             * PaymentReminderMessage description.
+             * @member {string} description
+             * @memberof E2E.Message.PaymentReminderMessage
+             * @instance
+             */
+            PaymentReminderMessage.prototype.description = "";
+
+            /**
+             * PaymentReminderMessage frequency.
+             * @member {E2E.Message.PaymentReminderMessage.ReminderFrequency} frequency
+             * @memberof E2E.Message.PaymentReminderMessage
+             * @instance
+             */
+            PaymentReminderMessage.prototype.frequency = 0;
+
+            /**
+             * PaymentReminderMessage status.
+             * @member {E2E.Message.PaymentReminderMessage.ReminderStatus} status
+             * @memberof E2E.Message.PaymentReminderMessage
+             * @instance
+             */
+            PaymentReminderMessage.prototype.status = 0;
+
+            /**
+             * PaymentReminderMessage payeeVpa.
+             * @member {string} payeeVpa
+             * @memberof E2E.Message.PaymentReminderMessage
+             * @instance
+             */
+            PaymentReminderMessage.prototype.payeeVpa = "";
+
+            /**
+             * PaymentReminderMessage payeeJid.
+             * @member {string} payeeJid
+             * @memberof E2E.Message.PaymentReminderMessage
+             * @instance
+             */
+            PaymentReminderMessage.prototype.payeeJid = "";
+
+            /**
+             * PaymentReminderMessage payerJid.
+             * @member {string} payerJid
+             * @memberof E2E.Message.PaymentReminderMessage
+             * @instance
+             */
+            PaymentReminderMessage.prototype.payerJid = "";
+
+            /**
+             * PaymentReminderMessage amount.
+             * @member {E2E.IMoney|null|undefined} amount
+             * @memberof E2E.Message.PaymentReminderMessage
+             * @instance
+             */
+            PaymentReminderMessage.prototype.amount = null;
+
+            /**
+             * Creates a new PaymentReminderMessage instance using the specified properties.
+             * @function create
+             * @memberof E2E.Message.PaymentReminderMessage
+             * @static
+             * @param {E2E.Message.IPaymentReminderMessage=} [properties] Properties to set
+             * @returns {E2E.Message.PaymentReminderMessage} PaymentReminderMessage instance
+             */
+            PaymentReminderMessage.create = function create(properties) {
+                return new PaymentReminderMessage(properties);
+            };
+
+            /**
+             * Encodes the specified PaymentReminderMessage message. Does not implicitly {@link E2E.Message.PaymentReminderMessage.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.Message.PaymentReminderMessage
+             * @static
+             * @param {E2E.Message.IPaymentReminderMessage} message PaymentReminderMessage message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PaymentReminderMessage.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.reminderId != null && Object.hasOwnProperty.call(message, "reminderId"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.reminderId);
+                if (message.instanceId != null && Object.hasOwnProperty.call(message, "instanceId"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.instanceId);
+                if (message.description != null && Object.hasOwnProperty.call(message, "description"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.description);
+                if (message.frequency != null && Object.hasOwnProperty.call(message, "frequency"))
+                    writer.uint32(/* id 4, wireType 0 =*/32).int32(message.frequency);
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    writer.uint32(/* id 5, wireType 0 =*/40).int32(message.status);
+                if (message.payeeVpa != null && Object.hasOwnProperty.call(message, "payeeVpa"))
+                    writer.uint32(/* id 6, wireType 2 =*/50).string(message.payeeVpa);
+                if (message.payeeJid != null && Object.hasOwnProperty.call(message, "payeeJid"))
+                    writer.uint32(/* id 7, wireType 2 =*/58).string(message.payeeJid);
+                if (message.payerJid != null && Object.hasOwnProperty.call(message, "payerJid"))
+                    writer.uint32(/* id 8, wireType 2 =*/66).string(message.payerJid);
+                if (message.amount != null && Object.hasOwnProperty.call(message, "amount"))
+                    $root.E2E.Money.encode(message.amount, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
+                return writer;
+            };
+
+            /**
+             * Encodes the specified PaymentReminderMessage message, length delimited. Does not implicitly {@link E2E.Message.PaymentReminderMessage.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.Message.PaymentReminderMessage
+             * @static
+             * @param {E2E.Message.IPaymentReminderMessage} message PaymentReminderMessage message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PaymentReminderMessage.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a PaymentReminderMessage message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.Message.PaymentReminderMessage
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.Message.PaymentReminderMessage} PaymentReminderMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PaymentReminderMessage.decode = function decode(reader, length, error, long) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.PaymentReminderMessage();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.reminderId = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.instanceId = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.description = reader.string();
+                            break;
+                        }
+                    case 4: {
+                            message.frequency = reader.int32();
+                            break;
+                        }
+                    case 5: {
+                            message.status = reader.int32();
+                            break;
+                        }
+                    case 6: {
+                            message.payeeVpa = reader.string();
+                            break;
+                        }
+                    case 7: {
+                            message.payeeJid = reader.string();
+                            break;
+                        }
+                    case 8: {
+                            message.payerJid = reader.string();
+                            break;
+                        }
+                    case 9: {
+                            message.amount = $root.E2E.Money.decode(reader, reader.uint32(), undefined, long + 1);
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7, long);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a PaymentReminderMessage message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.Message.PaymentReminderMessage
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.Message.PaymentReminderMessage} PaymentReminderMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PaymentReminderMessage.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a PaymentReminderMessage message.
+             * @function verify
+             * @memberof E2E.Message.PaymentReminderMessage
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            PaymentReminderMessage.verify = function verify(message, long) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
+                if (message.reminderId != null && message.hasOwnProperty("reminderId"))
+                    if (!$util.isString(message.reminderId))
+                        return "reminderId: string expected";
+                if (message.instanceId != null && message.hasOwnProperty("instanceId"))
+                    if (!$util.isString(message.instanceId))
+                        return "instanceId: string expected";
+                if (message.description != null && message.hasOwnProperty("description"))
+                    if (!$util.isString(message.description))
+                        return "description: string expected";
+                if (message.frequency != null && message.hasOwnProperty("frequency"))
+                    switch (message.frequency) {
+                    default:
+                        return "frequency: enum value expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                        break;
+                    }
+                if (message.status != null && message.hasOwnProperty("status"))
+                    switch (message.status) {
+                    default:
+                        return "status: enum value expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                        break;
+                    }
+                if (message.payeeVpa != null && message.hasOwnProperty("payeeVpa"))
+                    if (!$util.isString(message.payeeVpa))
+                        return "payeeVpa: string expected";
+                if (message.payeeJid != null && message.hasOwnProperty("payeeJid"))
+                    if (!$util.isString(message.payeeJid))
+                        return "payeeJid: string expected";
+                if (message.payerJid != null && message.hasOwnProperty("payerJid"))
+                    if (!$util.isString(message.payerJid))
+                        return "payerJid: string expected";
+                if (message.amount != null && message.hasOwnProperty("amount")) {
+                    var error = $root.E2E.Money.verify(message.amount, long + 1);
+                    if (error)
+                        return "amount." + error;
+                }
+                return null;
+            };
+
+            /**
+             * Creates a PaymentReminderMessage message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.Message.PaymentReminderMessage
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.Message.PaymentReminderMessage} PaymentReminderMessage
+             */
+            PaymentReminderMessage.fromObject = function fromObject(object, long) {
+                if (object instanceof $root.E2E.Message.PaymentReminderMessage)
+                    return object;
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var message = new $root.E2E.Message.PaymentReminderMessage();
+                if (object.reminderId != null)
+                    message.reminderId = String(object.reminderId);
+                if (object.instanceId != null)
+                    message.instanceId = String(object.instanceId);
+                if (object.description != null)
+                    message.description = String(object.description);
+                switch (object.frequency) {
+                default:
+                    if (typeof object.frequency === "number") {
+                        message.frequency = object.frequency;
+                        break;
+                    }
+                    break;
+                case "REMINDER_FREQUENCY_UNKNOWN":
+                case 0:
+                    message.frequency = 0;
+                    break;
+                case "WEEKLY":
+                case 1:
+                    message.frequency = 1;
+                    break;
+                case "BI_WEEKLY":
+                case 2:
+                    message.frequency = 2;
+                    break;
+                case "MONTHLY":
+                case 3:
+                    message.frequency = 3;
+                    break;
+                case "QUARTERLY":
+                case 4:
+                    message.frequency = 4;
+                    break;
+                }
+                switch (object.status) {
+                default:
+                    if (typeof object.status === "number") {
+                        message.status = object.status;
+                        break;
+                    }
+                    break;
+                case "REMINDER_STATUS_UNKNOWN":
+                case 0:
+                    message.status = 0;
+                    break;
+                case "ACTIVE":
+                case 1:
+                    message.status = 1;
+                    break;
+                case "CANCELLED_BY_CREATOR":
+                case 2:
+                    message.status = 2;
+                    break;
+                case "STOPPED_BY_RECEIVER":
+                case 3:
+                    message.status = 3;
+                    break;
+                case "EXPIRED":
+                case 4:
+                    message.status = 4;
+                    break;
+                case "PAID":
+                case 5:
+                    message.status = 5;
+                    break;
+                }
+                if (object.payeeVpa != null)
+                    message.payeeVpa = String(object.payeeVpa);
+                if (object.payeeJid != null)
+                    message.payeeJid = String(object.payeeJid);
+                if (object.payerJid != null)
+                    message.payerJid = String(object.payerJid);
+                if (object.amount != null) {
+                    if (typeof object.amount !== "object")
+                        throw TypeError(".E2E.Message.PaymentReminderMessage.amount: object expected");
+                    message.amount = $root.E2E.Money.fromObject(object.amount, long + 1);
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a PaymentReminderMessage message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.Message.PaymentReminderMessage
+             * @static
+             * @param {E2E.Message.PaymentReminderMessage} message PaymentReminderMessage
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            PaymentReminderMessage.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.reminderId = "";
+                    object.instanceId = "";
+                    object.description = "";
+                    object.frequency = options.enums === String ? "REMINDER_FREQUENCY_UNKNOWN" : 0;
+                    object.status = options.enums === String ? "REMINDER_STATUS_UNKNOWN" : 0;
+                    object.payeeVpa = "";
+                    object.payeeJid = "";
+                    object.payerJid = "";
+                    object.amount = null;
+                }
+                if (message.reminderId != null && message.hasOwnProperty("reminderId"))
+                    object.reminderId = message.reminderId;
+                if (message.instanceId != null && message.hasOwnProperty("instanceId"))
+                    object.instanceId = message.instanceId;
+                if (message.description != null && message.hasOwnProperty("description"))
+                    object.description = message.description;
+                if (message.frequency != null && message.hasOwnProperty("frequency"))
+                    object.frequency = options.enums === String ? $root.E2E.Message.PaymentReminderMessage.ReminderFrequency[message.frequency] === undefined ? message.frequency : $root.E2E.Message.PaymentReminderMessage.ReminderFrequency[message.frequency] : message.frequency;
+                if (message.status != null && message.hasOwnProperty("status"))
+                    object.status = options.enums === String ? $root.E2E.Message.PaymentReminderMessage.ReminderStatus[message.status] === undefined ? message.status : $root.E2E.Message.PaymentReminderMessage.ReminderStatus[message.status] : message.status;
+                if (message.payeeVpa != null && message.hasOwnProperty("payeeVpa"))
+                    object.payeeVpa = message.payeeVpa;
+                if (message.payeeJid != null && message.hasOwnProperty("payeeJid"))
+                    object.payeeJid = message.payeeJid;
+                if (message.payerJid != null && message.hasOwnProperty("payerJid"))
+                    object.payerJid = message.payerJid;
+                if (message.amount != null && message.hasOwnProperty("amount"))
+                    object.amount = $root.E2E.Money.toObject(message.amount, options);
+                return object;
+            };
+
+            /**
+             * Converts this PaymentReminderMessage to JSON.
+             * @function toJSON
+             * @memberof E2E.Message.PaymentReminderMessage
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            PaymentReminderMessage.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for PaymentReminderMessage
+             * @function getTypeUrl
+             * @memberof E2E.Message.PaymentReminderMessage
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            PaymentReminderMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.Message.PaymentReminderMessage";
+            };
+
+            /**
+             * ReminderFrequency enum.
+             * @name E2E.Message.PaymentReminderMessage.ReminderFrequency
+             * @enum {number}
+             * @property {number} REMINDER_FREQUENCY_UNKNOWN=0 REMINDER_FREQUENCY_UNKNOWN value
+             * @property {number} WEEKLY=1 WEEKLY value
+             * @property {number} BI_WEEKLY=2 BI_WEEKLY value
+             * @property {number} MONTHLY=3 MONTHLY value
+             * @property {number} QUARTERLY=4 QUARTERLY value
+             */
+            PaymentReminderMessage.ReminderFrequency = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "REMINDER_FREQUENCY_UNKNOWN"] = 0;
+                values[valuesById[1] = "WEEKLY"] = 1;
+                values[valuesById[2] = "BI_WEEKLY"] = 2;
+                values[valuesById[3] = "MONTHLY"] = 3;
+                values[valuesById[4] = "QUARTERLY"] = 4;
+                return values;
+            })();
+
+            /**
+             * ReminderStatus enum.
+             * @name E2E.Message.PaymentReminderMessage.ReminderStatus
+             * @enum {number}
+             * @property {number} REMINDER_STATUS_UNKNOWN=0 REMINDER_STATUS_UNKNOWN value
+             * @property {number} ACTIVE=1 ACTIVE value
+             * @property {number} CANCELLED_BY_CREATOR=2 CANCELLED_BY_CREATOR value
+             * @property {number} STOPPED_BY_RECEIVER=3 STOPPED_BY_RECEIVER value
+             * @property {number} EXPIRED=4 EXPIRED value
+             * @property {number} PAID=5 PAID value
+             */
+            PaymentReminderMessage.ReminderStatus = (function() {
+                var valuesById = {}, values = Object.create(valuesById);
+                values[valuesById[0] = "REMINDER_STATUS_UNKNOWN"] = 0;
+                values[valuesById[1] = "ACTIVE"] = 1;
+                values[valuesById[2] = "CANCELLED_BY_CREATOR"] = 2;
+                values[valuesById[3] = "STOPPED_BY_RECEIVER"] = 3;
+                values[valuesById[4] = "EXPIRED"] = 4;
+                values[valuesById[5] = "PAID"] = 5;
+                return values;
+            })();
+
+            return PaymentReminderMessage;
         })();
 
         Message.PeerDataOperationRequestMessage = (function() {
@@ -112990,6 +112961,9 @@ $root.AICommon = (function() {
                     case 59:
                     case 60:
                     case 61:
+                    case 62:
+                    case 63:
+                    case 64:
                         break;
                     }
             }
@@ -113271,6 +113245,18 @@ $root.AICommon = (function() {
                     case 61:
                         message.capabilities[i] = 61;
                         break;
+                    case "UNIFIED_RESPONSE_AI_CONTENT_SEARCH_ENABLED":
+                    case 62:
+                        message.capabilities[i] = 62;
+                        break;
+                    case "UNIFIED_RESPONSE_MARKDOWN_LINKS_ENABLED":
+                    case 63:
+                        message.capabilities[i] = 63;
+                        break;
+                    case "AI_RICH_RESPONSE_MAPS_V2_ENABLED":
+                    case 64:
+                        message.capabilities[i] = 64;
+                        break;
                     }
             }
             return message;
@@ -113391,6 +113377,9 @@ $root.AICommon = (function() {
          * @property {number} AI_TAB_FORCE_CLIPPY=59 AI_TAB_FORCE_CLIPPY value
          * @property {number} UNIFIED_RESPONSE_EMBEDDED_SCREENS=60 UNIFIED_RESPONSE_EMBEDDED_SCREENS value
          * @property {number} AI_SUBSCRIPTION_ENABLED=61 AI_SUBSCRIPTION_ENABLED value
+         * @property {number} UNIFIED_RESPONSE_AI_CONTENT_SEARCH_ENABLED=62 UNIFIED_RESPONSE_AI_CONTENT_SEARCH_ENABLED value
+         * @property {number} UNIFIED_RESPONSE_MARKDOWN_LINKS_ENABLED=63 UNIFIED_RESPONSE_MARKDOWN_LINKS_ENABLED value
+         * @property {number} AI_RICH_RESPONSE_MAPS_V2_ENABLED=64 AI_RICH_RESPONSE_MAPS_V2_ENABLED value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -113456,6 +113445,9 @@ $root.AICommon = (function() {
             values[valuesById[59] = "AI_TAB_FORCE_CLIPPY"] = 59;
             values[valuesById[60] = "UNIFIED_RESPONSE_EMBEDDED_SCREENS"] = 60;
             values[valuesById[61] = "AI_SUBSCRIPTION_ENABLED"] = 61;
+            values[valuesById[62] = "UNIFIED_RESPONSE_AI_CONTENT_SEARCH_ENABLED"] = 62;
+            values[valuesById[63] = "UNIFIED_RESPONSE_MARKDOWN_LINKS_ENABLED"] = 63;
+            values[valuesById[64] = "AI_RICH_RESPONSE_MAPS_V2_ENABLED"] = 64;
             return values;
         })();
 
@@ -128050,6 +128042,7 @@ $root.Web = (function() {
                 case 2:
                 case 3:
                 case 4:
+                case 5:
                     break;
                 }
             return null;
@@ -128102,6 +128095,10 @@ $root.Web = (function() {
             case "INJECTION_FAILED_NO_RETRY":
             case 4:
                 message.processState = 4;
+                break;
+            case "DEDUPED":
+            case 5:
+                message.processState = 5;
                 break;
             }
             return message;
@@ -128166,6 +128163,7 @@ $root.Web = (function() {
          * @property {number} INJECTED_PARTIAL=2 INJECTED_PARTIAL value
          * @property {number} INJECTION_FAILED=3 INJECTION_FAILED value
          * @property {number} INJECTION_FAILED_NO_RETRY=4 INJECTION_FAILED_NO_RETRY value
+         * @property {number} DEDUPED=5 DEDUPED value
          */
         GroupHistoryBundleInfo.ProcessState = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -128174,6 +128172,7 @@ $root.Web = (function() {
             values[valuesById[2] = "INJECTED_PARTIAL"] = 2;
             values[valuesById[3] = "INJECTION_FAILED"] = 3;
             values[valuesById[4] = "INJECTION_FAILED_NO_RETRY"] = 4;
+            values[valuesById[5] = "DEDUPED"] = 5;
             return values;
         })();
 

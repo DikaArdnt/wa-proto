@@ -5110,7 +5110,9 @@ export namespace E2E {
                 OFFERS = 7,
                 BESTSELLERS = 8,
                 MENU = 9,
-                ABOUT = 10
+                ABOUT = 10,
+                SHOP = 11,
+                ORDER = 12
             }
         }
 
@@ -6911,11 +6913,14 @@ export namespace E2E {
         /** Message groupRootKeyShare */
         groupRootKeyShare?: (E2E.IGroupRootKeyShare|null);
 
-        /** Message p2PPaymentReminderNotification */
-        p2PPaymentReminderNotification?: (E2E.Message.IP2PPaymentReminderNotification|null);
+        /** Message paymentReminderMessage */
+        paymentReminderMessage?: (E2E.Message.IPaymentReminderMessage|null);
 
         /** Message splitPaymentMessage */
         splitPaymentMessage?: (E2E.Message.ISplitPaymentMessage|null);
+
+        /** Message newsletterAdminProfileStatusMessage */
+        newsletterAdminProfileStatusMessage?: (E2E.Message.IFutureProofMessage|null);
     }
 
     /** Represents a Message. */
@@ -7236,11 +7241,14 @@ export namespace E2E {
         /** Message groupRootKeyShare. */
         public groupRootKeyShare?: (E2E.IGroupRootKeyShare|null);
 
-        /** Message p2PPaymentReminderNotification. */
-        public p2PPaymentReminderNotification?: (E2E.Message.IP2PPaymentReminderNotification|null);
+        /** Message paymentReminderMessage. */
+        public paymentReminderMessage?: (E2E.Message.IPaymentReminderMessage|null);
 
         /** Message splitPaymentMessage. */
         public splitPaymentMessage?: (E2E.Message.ISplitPaymentMessage|null);
+
+        /** Message newsletterAdminProfileStatusMessage. */
+        public newsletterAdminProfileStatusMessage?: (E2E.Message.IFutureProofMessage|null);
 
         /**
          * Creates a new Message instance using the specified properties.
@@ -11715,6 +11723,9 @@ export namespace E2E {
 
             /** EventInviteMessage endTime */
             endTime?: (number|Long|null);
+
+            /** EventInviteMessage callLink */
+            callLink?: (string|null);
         }
 
         /** Represents an EventInviteMessage. */
@@ -11749,6 +11760,9 @@ export namespace E2E {
 
             /** EventInviteMessage endTime. */
             public endTime: (number|Long);
+
+            /** EventInviteMessage callLink. */
+            public callLink: string;
 
             /**
              * Creates a new EventInviteMessage instance using the specified properties.
@@ -18497,185 +18511,6 @@ export namespace E2E {
             }
         }
 
-        /** Properties of a P2PPaymentReminderNotification. */
-        interface IP2PPaymentReminderNotification {
-
-            /** P2PPaymentReminderNotification reminderId */
-            reminderId?: (string|null);
-
-            /** P2PPaymentReminderNotification amount */
-            amount?: (E2E.IMoney|null);
-
-            /** P2PPaymentReminderNotification frequency */
-            frequency?: (E2E.Message.P2PPaymentReminderNotification.ReminderFrequency|null);
-
-            /** P2PPaymentReminderNotification nextReminderTimestamp */
-            nextReminderTimestamp?: (number|Long|null);
-
-            /** P2PPaymentReminderNotification expiryTimestamp */
-            expiryTimestamp?: (number|Long|null);
-
-            /** P2PPaymentReminderNotification state */
-            state?: (E2E.Message.P2PPaymentReminderNotification.ReminderState|null);
-
-            /** P2PPaymentReminderNotification description */
-            description?: (string|null);
-
-            /** P2PPaymentReminderNotification creatorJid */
-            creatorJid?: (string|null);
-
-            /** P2PPaymentReminderNotification receiverJid */
-            receiverJid?: (string|null);
-
-            /** P2PPaymentReminderNotification upiId */
-            upiId?: (string|null);
-
-            /** P2PPaymentReminderNotification createdTimestamp */
-            createdTimestamp?: (number|Long|null);
-        }
-
-        /** Represents a P2PPaymentReminderNotification. */
-        class P2PPaymentReminderNotification implements IP2PPaymentReminderNotification {
-
-            /**
-             * Constructs a new P2PPaymentReminderNotification.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: E2E.Message.IP2PPaymentReminderNotification);
-
-            /** P2PPaymentReminderNotification reminderId. */
-            public reminderId: string;
-
-            /** P2PPaymentReminderNotification amount. */
-            public amount?: (E2E.IMoney|null);
-
-            /** P2PPaymentReminderNotification frequency. */
-            public frequency: E2E.Message.P2PPaymentReminderNotification.ReminderFrequency;
-
-            /** P2PPaymentReminderNotification nextReminderTimestamp. */
-            public nextReminderTimestamp: (number|Long);
-
-            /** P2PPaymentReminderNotification expiryTimestamp. */
-            public expiryTimestamp: (number|Long);
-
-            /** P2PPaymentReminderNotification state. */
-            public state: E2E.Message.P2PPaymentReminderNotification.ReminderState;
-
-            /** P2PPaymentReminderNotification description. */
-            public description: string;
-
-            /** P2PPaymentReminderNotification creatorJid. */
-            public creatorJid: string;
-
-            /** P2PPaymentReminderNotification receiverJid. */
-            public receiverJid: string;
-
-            /** P2PPaymentReminderNotification upiId. */
-            public upiId: string;
-
-            /** P2PPaymentReminderNotification createdTimestamp. */
-            public createdTimestamp: (number|Long);
-
-            /**
-             * Creates a new P2PPaymentReminderNotification instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns P2PPaymentReminderNotification instance
-             */
-            public static create(properties?: E2E.Message.IP2PPaymentReminderNotification): E2E.Message.P2PPaymentReminderNotification;
-
-            /**
-             * Encodes the specified P2PPaymentReminderNotification message. Does not implicitly {@link E2E.Message.P2PPaymentReminderNotification.verify|verify} messages.
-             * @param message P2PPaymentReminderNotification message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: E2E.Message.IP2PPaymentReminderNotification, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified P2PPaymentReminderNotification message, length delimited. Does not implicitly {@link E2E.Message.P2PPaymentReminderNotification.verify|verify} messages.
-             * @param message P2PPaymentReminderNotification message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: E2E.Message.IP2PPaymentReminderNotification, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes a P2PPaymentReminderNotification message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns P2PPaymentReminderNotification
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.P2PPaymentReminderNotification;
-
-            /**
-             * Decodes a P2PPaymentReminderNotification message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns P2PPaymentReminderNotification
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.P2PPaymentReminderNotification;
-
-            /**
-             * Verifies a P2PPaymentReminderNotification message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates a P2PPaymentReminderNotification message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns P2PPaymentReminderNotification
-             */
-            public static fromObject(object: { [k: string]: any }): E2E.Message.P2PPaymentReminderNotification;
-
-            /**
-             * Creates a plain object from a P2PPaymentReminderNotification message. Also converts values to other types if specified.
-             * @param message P2PPaymentReminderNotification
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: E2E.Message.P2PPaymentReminderNotification, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this P2PPaymentReminderNotification to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-
-            /**
-             * Gets the default type url for P2PPaymentReminderNotification
-             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns The default type url
-             */
-            public static getTypeUrl(typeUrlPrefix?: string): string;
-        }
-
-        namespace P2PPaymentReminderNotification {
-
-            /** ReminderFrequency enum. */
-            enum ReminderFrequency {
-                UNKNOWN_FREQUENCY = 0,
-                WEEKLY = 1,
-                BIWEEKLY = 2,
-                MONTHLY = 3,
-                CUSTOM = 4
-            }
-
-            /** ReminderState enum. */
-            enum ReminderState {
-                UNKNOWN_STATE = 0,
-                ACTIVE = 1,
-                PAUSED = 2,
-                STOPPED = 3,
-                EXPIRED = 4,
-                CANCELLED = 5
-            }
-        }
-
         /** Properties of a PaymentExtendedMetadata. */
         interface IPaymentExtendedMetadata {
 
@@ -19326,6 +19161,173 @@ export namespace E2E {
                  * @returns The default type url
                  */
                 public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+        }
+
+        /** Properties of a PaymentReminderMessage. */
+        interface IPaymentReminderMessage {
+
+            /** PaymentReminderMessage reminderId */
+            reminderId?: (string|null);
+
+            /** PaymentReminderMessage instanceId */
+            instanceId?: (string|null);
+
+            /** PaymentReminderMessage description */
+            description?: (string|null);
+
+            /** PaymentReminderMessage frequency */
+            frequency?: (E2E.Message.PaymentReminderMessage.ReminderFrequency|null);
+
+            /** PaymentReminderMessage status */
+            status?: (E2E.Message.PaymentReminderMessage.ReminderStatus|null);
+
+            /** PaymentReminderMessage payeeVpa */
+            payeeVpa?: (string|null);
+
+            /** PaymentReminderMessage payeeJid */
+            payeeJid?: (string|null);
+
+            /** PaymentReminderMessage payerJid */
+            payerJid?: (string|null);
+
+            /** PaymentReminderMessage amount */
+            amount?: (E2E.IMoney|null);
+        }
+
+        /** Represents a PaymentReminderMessage. */
+        class PaymentReminderMessage implements IPaymentReminderMessage {
+
+            /**
+             * Constructs a new PaymentReminderMessage.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IPaymentReminderMessage);
+
+            /** PaymentReminderMessage reminderId. */
+            public reminderId: string;
+
+            /** PaymentReminderMessage instanceId. */
+            public instanceId: string;
+
+            /** PaymentReminderMessage description. */
+            public description: string;
+
+            /** PaymentReminderMessage frequency. */
+            public frequency: E2E.Message.PaymentReminderMessage.ReminderFrequency;
+
+            /** PaymentReminderMessage status. */
+            public status: E2E.Message.PaymentReminderMessage.ReminderStatus;
+
+            /** PaymentReminderMessage payeeVpa. */
+            public payeeVpa: string;
+
+            /** PaymentReminderMessage payeeJid. */
+            public payeeJid: string;
+
+            /** PaymentReminderMessage payerJid. */
+            public payerJid: string;
+
+            /** PaymentReminderMessage amount. */
+            public amount?: (E2E.IMoney|null);
+
+            /**
+             * Creates a new PaymentReminderMessage instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns PaymentReminderMessage instance
+             */
+            public static create(properties?: E2E.Message.IPaymentReminderMessage): E2E.Message.PaymentReminderMessage;
+
+            /**
+             * Encodes the specified PaymentReminderMessage message. Does not implicitly {@link E2E.Message.PaymentReminderMessage.verify|verify} messages.
+             * @param message PaymentReminderMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IPaymentReminderMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified PaymentReminderMessage message, length delimited. Does not implicitly {@link E2E.Message.PaymentReminderMessage.verify|verify} messages.
+             * @param message PaymentReminderMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IPaymentReminderMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a PaymentReminderMessage message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns PaymentReminderMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.PaymentReminderMessage;
+
+            /**
+             * Decodes a PaymentReminderMessage message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns PaymentReminderMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.PaymentReminderMessage;
+
+            /**
+             * Verifies a PaymentReminderMessage message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a PaymentReminderMessage message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns PaymentReminderMessage
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.PaymentReminderMessage;
+
+            /**
+             * Creates a plain object from a PaymentReminderMessage message. Also converts values to other types if specified.
+             * @param message PaymentReminderMessage
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.PaymentReminderMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this PaymentReminderMessage to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for PaymentReminderMessage
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+
+        namespace PaymentReminderMessage {
+
+            /** ReminderFrequency enum. */
+            enum ReminderFrequency {
+                REMINDER_FREQUENCY_UNKNOWN = 0,
+                WEEKLY = 1,
+                BI_WEEKLY = 2,
+                MONTHLY = 3,
+                QUARTERLY = 4
+            }
+
+            /** ReminderStatus enum. */
+            enum ReminderStatus {
+                REMINDER_STATUS_UNKNOWN = 0,
+                ACTIVE = 1,
+                CANCELLED_BY_CREATOR = 2,
+                STOPPED_BY_RECEIVER = 3,
+                EXPIRED = 4,
+                PAID = 5
             }
         }
 
@@ -36917,7 +36919,10 @@ export namespace AICommon {
             JSON_PATCH_STREAMING = 58,
             AI_TAB_FORCE_CLIPPY = 59,
             UNIFIED_RESPONSE_EMBEDDED_SCREENS = 60,
-            AI_SUBSCRIPTION_ENABLED = 61
+            AI_SUBSCRIPTION_ENABLED = 61,
+            UNIFIED_RESPONSE_AI_CONTENT_SEARCH_ENABLED = 62,
+            UNIFIED_RESPONSE_MARKDOWN_LINKS_ENABLED = 63,
+            AI_RICH_RESPONSE_MAPS_V2_ENABLED = 64
         }
     }
 
