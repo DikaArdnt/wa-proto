@@ -80,13 +80,17 @@ $root.Cert = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        CertChain.encode = function encode(message, writer) {
+        CertChain.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.leaf != null && Object.hasOwnProperty.call(message, "leaf"))
-                $root.Cert.CertChain.NoiseCertificate.encode(message.leaf, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                $root.Cert.CertChain.NoiseCertificate.encode(message.leaf, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
             if (message.intermediate != null && Object.hasOwnProperty.call(message, "intermediate"))
-                $root.Cert.CertChain.NoiseCertificate.encode(message.intermediate, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                $root.Cert.CertChain.NoiseCertificate.encode(message.intermediate, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -225,18 +229,22 @@ $root.Cert = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        CertChain.toObject = function toObject(message, options) {
+        CertChain.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 object.leaf = null;
                 object.intermediate = null;
             }
             if (message.leaf != null && message.hasOwnProperty("leaf"))
-                object.leaf = $root.Cert.CertChain.NoiseCertificate.toObject(message.leaf, options);
+                object.leaf = $root.Cert.CertChain.NoiseCertificate.toObject(message.leaf, options, q + 1);
             if (message.intermediate != null && message.hasOwnProperty("intermediate"))
-                object.intermediate = $root.Cert.CertChain.NoiseCertificate.toObject(message.intermediate, options);
+                object.intermediate = $root.Cert.CertChain.NoiseCertificate.toObject(message.intermediate, options, q + 1);
             return object;
         };
 
@@ -328,9 +336,13 @@ $root.Cert = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            NoiseCertificate.encode = function encode(message, writer) {
+            NoiseCertificate.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.details != null && Object.hasOwnProperty.call(message, "details"))
                     writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.details);
                 if (message.signature != null && Object.hasOwnProperty.call(message, "signature"))
@@ -469,9 +481,13 @@ $root.Cert = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            NoiseCertificate.toObject = function toObject(message, options) {
+            NoiseCertificate.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     if (options.bytes === String)
@@ -611,9 +627,13 @@ $root.Cert = (function() {
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
-                Details.encode = function encode(message, writer) {
+                Details.encode = function encode(message, writer, q) {
                     if (!writer)
                         writer = $Writer.create();
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
                     if (message.serial != null && Object.hasOwnProperty.call(message, "serial"))
                         writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.serial);
                     if (message.issuerSerial != null && Object.hasOwnProperty.call(message, "issuerSerial"))
@@ -768,7 +788,7 @@ $root.Cert = (function() {
                             message.key = object.key;
                     if (object.notBefore != null)
                         if ($util.Long)
-                            (message.notBefore = $util.Long.fromValue(object.notBefore)).unsigned = true;
+                            message.notBefore = $util.Long.fromValue(object.notBefore, true);
                         else if (typeof object.notBefore === "string")
                             message.notBefore = parseInt(object.notBefore, 10);
                         else if (typeof object.notBefore === "number")
@@ -777,7 +797,7 @@ $root.Cert = (function() {
                             message.notBefore = new $util.LongBits(object.notBefore.low >>> 0, object.notBefore.high >>> 0).toNumber(true);
                     if (object.notAfter != null)
                         if ($util.Long)
-                            (message.notAfter = $util.Long.fromValue(object.notAfter)).unsigned = true;
+                            message.notAfter = $util.Long.fromValue(object.notAfter, true);
                         else if (typeof object.notAfter === "string")
                             message.notAfter = parseInt(object.notAfter, 10);
                         else if (typeof object.notAfter === "number")
@@ -796,9 +816,13 @@ $root.Cert = (function() {
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
-                Details.toObject = function toObject(message, options) {
+                Details.toObject = function toObject(message, options, q) {
                     if (!options)
                         options = {};
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
                     var object = {};
                     if (options.defaults) {
                         object.serial = 0;
@@ -941,9 +965,13 @@ $root.Cert = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        NoiseCertificate.encode = function encode(message, writer) {
+        NoiseCertificate.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.details != null && Object.hasOwnProperty.call(message, "details"))
                 writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.details);
             if (message.signature != null && Object.hasOwnProperty.call(message, "signature"))
@@ -1082,9 +1110,13 @@ $root.Cert = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        NoiseCertificate.toObject = function toObject(message, options) {
+        NoiseCertificate.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 if (options.bytes === String)
@@ -1224,9 +1256,13 @@ $root.Cert = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            Details.encode = function encode(message, writer) {
+            Details.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.serial != null && Object.hasOwnProperty.call(message, "serial"))
                     writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.serial);
                 if (message.issuer != null && Object.hasOwnProperty.call(message, "issuer"))
@@ -1376,7 +1412,7 @@ $root.Cert = (function() {
                     message.issuer = String(object.issuer);
                 if (object.expires != null)
                     if ($util.Long)
-                        (message.expires = $util.Long.fromValue(object.expires)).unsigned = true;
+                        message.expires = $util.Long.fromValue(object.expires, true);
                     else if (typeof object.expires === "string")
                         message.expires = parseInt(object.expires, 10);
                     else if (typeof object.expires === "number")
@@ -1402,9 +1438,13 @@ $root.Cert = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            Details.toObject = function toObject(message, options) {
+            Details.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.serial = 0;

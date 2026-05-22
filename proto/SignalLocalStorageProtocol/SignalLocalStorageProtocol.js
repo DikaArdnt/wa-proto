@@ -72,12 +72,16 @@ $root.SignalLocalStorageProtocol = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        SenderKeyRecordStructure.encode = function encode(message, writer) {
+        SenderKeyRecordStructure.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.senderKeyStates != null && message.senderKeyStates.length)
                 for (var i = 0; i < message.senderKeyStates.length; ++i)
-                    $root.SignalLocalStorageProtocol.SenderKeyStateStructure.encode(message.senderKeyStates[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                    $root.SignalLocalStorageProtocol.SenderKeyStateStructure.encode(message.senderKeyStates[i], writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -213,16 +217,20 @@ $root.SignalLocalStorageProtocol = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        SenderKeyRecordStructure.toObject = function toObject(message, options) {
+        SenderKeyRecordStructure.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.arrays || options.defaults)
                 object.senderKeyStates = [];
             if (message.senderKeyStates && message.senderKeyStates.length) {
                 object.senderKeyStates = [];
                 for (var j = 0; j < message.senderKeyStates.length; ++j)
-                    object.senderKeyStates[j] = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.toObject(message.senderKeyStates[j], options);
+                    object.senderKeyStates[j] = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.toObject(message.senderKeyStates[j], options, q + 1);
             }
             return object;
         };
@@ -337,18 +345,22 @@ $root.SignalLocalStorageProtocol = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        SenderKeyStateStructure.encode = function encode(message, writer) {
+        SenderKeyStateStructure.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.senderKeyId != null && Object.hasOwnProperty.call(message, "senderKeyId"))
                 writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.senderKeyId);
             if (message.senderChainKey != null && Object.hasOwnProperty.call(message, "senderChainKey"))
-                $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey.encode(message.senderChainKey, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey.encode(message.senderChainKey, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
             if (message.senderSigningKey != null && Object.hasOwnProperty.call(message, "senderSigningKey"))
-                $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey.encode(message.senderSigningKey, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey.encode(message.senderSigningKey, writer.uint32(/* id 3, wireType 2 =*/26).fork(), q + 1).ldelim();
             if (message.senderMessageKeys != null && message.senderMessageKeys.length)
                 for (var i = 0; i < message.senderMessageKeys.length; ++i)
-                    $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey.encode(message.senderMessageKeys[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                    $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey.encode(message.senderMessageKeys[i], writer.uint32(/* id 4, wireType 2 =*/34).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -521,9 +533,13 @@ $root.SignalLocalStorageProtocol = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        SenderKeyStateStructure.toObject = function toObject(message, options) {
+        SenderKeyStateStructure.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.arrays || options.defaults)
                 object.senderMessageKeys = [];
@@ -535,13 +551,13 @@ $root.SignalLocalStorageProtocol = (function() {
             if (message.senderKeyId != null && message.hasOwnProperty("senderKeyId"))
                 object.senderKeyId = message.senderKeyId;
             if (message.senderChainKey != null && message.hasOwnProperty("senderChainKey"))
-                object.senderChainKey = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey.toObject(message.senderChainKey, options);
+                object.senderChainKey = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey.toObject(message.senderChainKey, options, q + 1);
             if (message.senderSigningKey != null && message.hasOwnProperty("senderSigningKey"))
-                object.senderSigningKey = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey.toObject(message.senderSigningKey, options);
+                object.senderSigningKey = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey.toObject(message.senderSigningKey, options, q + 1);
             if (message.senderMessageKeys && message.senderMessageKeys.length) {
                 object.senderMessageKeys = [];
                 for (var j = 0; j < message.senderMessageKeys.length; ++j)
-                    object.senderMessageKeys[j] = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey.toObject(message.senderMessageKeys[j], options);
+                    object.senderMessageKeys[j] = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey.toObject(message.senderMessageKeys[j], options, q + 1);
             }
             return object;
         };
@@ -634,9 +650,13 @@ $root.SignalLocalStorageProtocol = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            SenderChainKey.encode = function encode(message, writer) {
+            SenderChainKey.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.iteration != null && Object.hasOwnProperty.call(message, "iteration"))
                     writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.iteration);
                 if (message.seed != null && Object.hasOwnProperty.call(message, "seed"))
@@ -772,9 +792,13 @@ $root.SignalLocalStorageProtocol = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            SenderChainKey.toObject = function toObject(message, options) {
+            SenderChainKey.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.iteration = 0;
@@ -884,9 +908,13 @@ $root.SignalLocalStorageProtocol = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            SenderMessageKey.encode = function encode(message, writer) {
+            SenderMessageKey.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.iteration != null && Object.hasOwnProperty.call(message, "iteration"))
                     writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.iteration);
                 if (message.seed != null && Object.hasOwnProperty.call(message, "seed"))
@@ -1022,9 +1050,13 @@ $root.SignalLocalStorageProtocol = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            SenderMessageKey.toObject = function toObject(message, options) {
+            SenderMessageKey.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.iteration = 0;
@@ -1134,9 +1166,13 @@ $root.SignalLocalStorageProtocol = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            SenderSigningKey.encode = function encode(message, writer) {
+            SenderSigningKey.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message["public"] != null && Object.hasOwnProperty.call(message, "public"))
                     writer.uint32(/* id 1, wireType 2 =*/10).bytes(message["public"]);
                 if (message["private"] != null && Object.hasOwnProperty.call(message, "private"))
@@ -1275,9 +1311,13 @@ $root.SignalLocalStorageProtocol = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            SenderSigningKey.toObject = function toObject(message, options) {
+            SenderSigningKey.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     if (options.bytes === String)
@@ -1396,9 +1436,13 @@ $root.SignalLocalStorageProtocol = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        IdentityKeyPairStructure.encode = function encode(message, writer) {
+        IdentityKeyPairStructure.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.publicKey != null && Object.hasOwnProperty.call(message, "publicKey"))
                 writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.publicKey);
             if (message.privateKey != null && Object.hasOwnProperty.call(message, "privateKey"))
@@ -1537,9 +1581,13 @@ $root.SignalLocalStorageProtocol = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        IdentityKeyPairStructure.toObject = function toObject(message, options) {
+        IdentityKeyPairStructure.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 if (options.bytes === String)
@@ -1659,7 +1707,7 @@ $root.SignalLocalStorageProtocol = (function() {
          * @memberof SignalLocalStorageProtocol.SignedPreKeyRecordStructure
          * @instance
          */
-        SignedPreKeyRecordStructure.prototype.timestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+        SignedPreKeyRecordStructure.prototype.timestamp = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
 
         /**
          * Creates a new SignedPreKeyRecordStructure instance using the specified properties.
@@ -1682,9 +1730,13 @@ $root.SignalLocalStorageProtocol = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        SignedPreKeyRecordStructure.encode = function encode(message, writer) {
+        SignedPreKeyRecordStructure.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                 writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.id);
             if (message.publicKey != null && Object.hasOwnProperty.call(message, "publicKey"))
@@ -1847,13 +1899,13 @@ $root.SignalLocalStorageProtocol = (function() {
                     message.signature = object.signature;
             if (object.timestamp != null)
                 if ($util.Long)
-                    (message.timestamp = $util.Long.fromValue(object.timestamp)).unsigned = false;
+                    message.timestamp = $util.Long.fromValue(object.timestamp, true);
                 else if (typeof object.timestamp === "string")
                     message.timestamp = parseInt(object.timestamp, 10);
                 else if (typeof object.timestamp === "number")
                     message.timestamp = object.timestamp;
                 else if (typeof object.timestamp === "object")
-                    message.timestamp = new $util.LongBits(object.timestamp.low >>> 0, object.timestamp.high >>> 0).toNumber();
+                    message.timestamp = new $util.LongBits(object.timestamp.low >>> 0, object.timestamp.high >>> 0).toNumber(true);
             return message;
         };
 
@@ -1866,9 +1918,13 @@ $root.SignalLocalStorageProtocol = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        SignedPreKeyRecordStructure.toObject = function toObject(message, options) {
+        SignedPreKeyRecordStructure.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 object.id = 0;
@@ -1894,7 +1950,7 @@ $root.SignalLocalStorageProtocol = (function() {
                         object.signature = $util.newBuffer(object.signature);
                 }
                 if ($util.Long) {
-                    var long = new $util.Long(0, 0, false);
+                    var long = new $util.Long(0, 0, true);
                     object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                 } else
                     object.timestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
@@ -1909,11 +1965,11 @@ $root.SignalLocalStorageProtocol = (function() {
                 object.signature = options.bytes === String ? $util.base64.encode(message.signature, 0, message.signature.length) : options.bytes === Array ? Array.prototype.slice.call(message.signature) : message.signature;
             if (message.timestamp != null && message.hasOwnProperty("timestamp"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
-                    object.timestamp = typeof message.timestamp === "number" ? BigInt(message.timestamp) : $util.Long.fromBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0, false).toBigInt();
+                    object.timestamp = typeof message.timestamp === "number" ? BigInt(message.timestamp) : $util.Long.fromBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0, true).toBigInt();
                 else if (typeof message.timestamp === "number")
                     object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
                 else
-                    object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber() : message.timestamp;
+                    object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber(true) : message.timestamp;
             return object;
         };
 
@@ -2017,9 +2073,13 @@ $root.SignalLocalStorageProtocol = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        PreKeyRecordStructure.encode = function encode(message, writer) {
+        PreKeyRecordStructure.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                 writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.id);
             if (message.publicKey != null && Object.hasOwnProperty.call(message, "publicKey"))
@@ -2169,9 +2229,13 @@ $root.SignalLocalStorageProtocol = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        PreKeyRecordStructure.toObject = function toObject(message, options) {
+        PreKeyRecordStructure.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 object.id = 0;
@@ -2291,14 +2355,18 @@ $root.SignalLocalStorageProtocol = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        RecordStructure.encode = function encode(message, writer) {
+        RecordStructure.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.currentSession != null && Object.hasOwnProperty.call(message, "currentSession"))
-                $root.SignalLocalStorageProtocol.SessionStructure.encode(message.currentSession, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                $root.SignalLocalStorageProtocol.SessionStructure.encode(message.currentSession, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
             if (message.previousSessions != null && message.previousSessions.length)
                 for (var i = 0; i < message.previousSessions.length; ++i)
-                    $root.SignalLocalStorageProtocol.SessionStructure.encode(message.previousSessions[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                    $root.SignalLocalStorageProtocol.SessionStructure.encode(message.previousSessions[i], writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -2448,20 +2516,24 @@ $root.SignalLocalStorageProtocol = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        RecordStructure.toObject = function toObject(message, options) {
+        RecordStructure.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.arrays || options.defaults)
                 object.previousSessions = [];
             if (options.defaults)
                 object.currentSession = null;
             if (message.currentSession != null && message.hasOwnProperty("currentSession"))
-                object.currentSession = $root.SignalLocalStorageProtocol.SessionStructure.toObject(message.currentSession, options);
+                object.currentSession = $root.SignalLocalStorageProtocol.SessionStructure.toObject(message.currentSession, options, q + 1);
             if (message.previousSessions && message.previousSessions.length) {
                 object.previousSessions = [];
                 for (var j = 0; j < message.previousSessions.length; ++j)
-                    object.previousSessions[j] = $root.SignalLocalStorageProtocol.SessionStructure.toObject(message.previousSessions[j], options);
+                    object.previousSessions[j] = $root.SignalLocalStorageProtocol.SessionStructure.toObject(message.previousSessions[j], options, q + 1);
             }
             return object;
         };
@@ -2657,9 +2729,13 @@ $root.SignalLocalStorageProtocol = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        SessionStructure.encode = function encode(message, writer) {
+        SessionStructure.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.sessionVersion != null && Object.hasOwnProperty.call(message, "sessionVersion"))
                 writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.sessionVersion);
             if (message.localIdentityPublic != null && Object.hasOwnProperty.call(message, "localIdentityPublic"))
@@ -2671,14 +2747,14 @@ $root.SignalLocalStorageProtocol = (function() {
             if (message.previousCounter != null && Object.hasOwnProperty.call(message, "previousCounter"))
                 writer.uint32(/* id 5, wireType 0 =*/40).uint32(message.previousCounter);
             if (message.senderChain != null && Object.hasOwnProperty.call(message, "senderChain"))
-                $root.SignalLocalStorageProtocol.SessionStructure.Chain.encode(message.senderChain, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
+                $root.SignalLocalStorageProtocol.SessionStructure.Chain.encode(message.senderChain, writer.uint32(/* id 6, wireType 2 =*/50).fork(), q + 1).ldelim();
             if (message.receiverChains != null && message.receiverChains.length)
                 for (var i = 0; i < message.receiverChains.length; ++i)
-                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.encode(message.receiverChains[i], writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.encode(message.receiverChains[i], writer.uint32(/* id 7, wireType 2 =*/58).fork(), q + 1).ldelim();
             if (message.pendingKeyExchange != null && Object.hasOwnProperty.call(message, "pendingKeyExchange"))
-                $root.SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange.encode(message.pendingKeyExchange, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+                $root.SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange.encode(message.pendingKeyExchange, writer.uint32(/* id 8, wireType 2 =*/66).fork(), q + 1).ldelim();
             if (message.pendingPreKey != null && Object.hasOwnProperty.call(message, "pendingPreKey"))
-                $root.SignalLocalStorageProtocol.SessionStructure.PendingPreKey.encode(message.pendingPreKey, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
+                $root.SignalLocalStorageProtocol.SessionStructure.PendingPreKey.encode(message.pendingPreKey, writer.uint32(/* id 9, wireType 2 =*/74).fork(), q + 1).ldelim();
             if (message.remoteRegistrationId != null && Object.hasOwnProperty.call(message, "remoteRegistrationId"))
                 writer.uint32(/* id 10, wireType 0 =*/80).uint32(message.remoteRegistrationId);
             if (message.localRegistrationId != null && Object.hasOwnProperty.call(message, "localRegistrationId"))
@@ -2957,9 +3033,13 @@ $root.SignalLocalStorageProtocol = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        SessionStructure.toObject = function toObject(message, options) {
+        SessionStructure.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.arrays || options.defaults)
                 object.receiverChains = [];
@@ -3012,16 +3092,16 @@ $root.SignalLocalStorageProtocol = (function() {
             if (message.previousCounter != null && message.hasOwnProperty("previousCounter"))
                 object.previousCounter = message.previousCounter;
             if (message.senderChain != null && message.hasOwnProperty("senderChain"))
-                object.senderChain = $root.SignalLocalStorageProtocol.SessionStructure.Chain.toObject(message.senderChain, options);
+                object.senderChain = $root.SignalLocalStorageProtocol.SessionStructure.Chain.toObject(message.senderChain, options, q + 1);
             if (message.receiverChains && message.receiverChains.length) {
                 object.receiverChains = [];
                 for (var j = 0; j < message.receiverChains.length; ++j)
-                    object.receiverChains[j] = $root.SignalLocalStorageProtocol.SessionStructure.Chain.toObject(message.receiverChains[j], options);
+                    object.receiverChains[j] = $root.SignalLocalStorageProtocol.SessionStructure.Chain.toObject(message.receiverChains[j], options, q + 1);
             }
             if (message.pendingKeyExchange != null && message.hasOwnProperty("pendingKeyExchange"))
-                object.pendingKeyExchange = $root.SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange.toObject(message.pendingKeyExchange, options);
+                object.pendingKeyExchange = $root.SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange.toObject(message.pendingKeyExchange, options, q + 1);
             if (message.pendingPreKey != null && message.hasOwnProperty("pendingPreKey"))
-                object.pendingPreKey = $root.SignalLocalStorageProtocol.SessionStructure.PendingPreKey.toObject(message.pendingPreKey, options);
+                object.pendingPreKey = $root.SignalLocalStorageProtocol.SessionStructure.PendingPreKey.toObject(message.pendingPreKey, options, q + 1);
             if (message.remoteRegistrationId != null && message.hasOwnProperty("remoteRegistrationId"))
                 object.remoteRegistrationId = message.remoteRegistrationId;
             if (message.localRegistrationId != null && message.hasOwnProperty("localRegistrationId"))
@@ -3140,18 +3220,22 @@ $root.SignalLocalStorageProtocol = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            Chain.encode = function encode(message, writer) {
+            Chain.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.senderRatchetKey != null && Object.hasOwnProperty.call(message, "senderRatchetKey"))
                     writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.senderRatchetKey);
                 if (message.senderRatchetKeyPrivate != null && Object.hasOwnProperty.call(message, "senderRatchetKeyPrivate"))
                     writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.senderRatchetKeyPrivate);
                 if (message.chainKey != null && Object.hasOwnProperty.call(message, "chainKey"))
-                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey.encode(message.chainKey, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                    $root.SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey.encode(message.chainKey, writer.uint32(/* id 3, wireType 2 =*/26).fork(), q + 1).ldelim();
                 if (message.messageKeys != null && message.messageKeys.length)
                     for (var i = 0; i < message.messageKeys.length; ++i)
-                        $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.messageKeys[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                        $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.encode(message.messageKeys[i], writer.uint32(/* id 4, wireType 2 =*/34).fork(), q + 1).ldelim();
                 return writer;
             };
 
@@ -3325,9 +3409,13 @@ $root.SignalLocalStorageProtocol = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            Chain.toObject = function toObject(message, options) {
+            Chain.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.arrays || options.defaults)
                     object.messageKeys = [];
@@ -3353,11 +3441,11 @@ $root.SignalLocalStorageProtocol = (function() {
                 if (message.senderRatchetKeyPrivate != null && message.hasOwnProperty("senderRatchetKeyPrivate"))
                     object.senderRatchetKeyPrivate = options.bytes === String ? $util.base64.encode(message.senderRatchetKeyPrivate, 0, message.senderRatchetKeyPrivate.length) : options.bytes === Array ? Array.prototype.slice.call(message.senderRatchetKeyPrivate) : message.senderRatchetKeyPrivate;
                 if (message.chainKey != null && message.hasOwnProperty("chainKey"))
-                    object.chainKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey.toObject(message.chainKey, options);
+                    object.chainKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey.toObject(message.chainKey, options, q + 1);
                 if (message.messageKeys && message.messageKeys.length) {
                     object.messageKeys = [];
                     for (var j = 0; j < message.messageKeys.length; ++j)
-                        object.messageKeys[j] = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.messageKeys[j], options);
+                        object.messageKeys[j] = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.toObject(message.messageKeys[j], options, q + 1);
                 }
                 return object;
             };
@@ -3450,9 +3538,13 @@ $root.SignalLocalStorageProtocol = (function() {
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
-                ChainKey.encode = function encode(message, writer) {
+                ChainKey.encode = function encode(message, writer, q) {
                     if (!writer)
                         writer = $Writer.create();
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
                     if (message.index != null && Object.hasOwnProperty.call(message, "index"))
                         writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.index);
                     if (message.key != null && Object.hasOwnProperty.call(message, "key"))
@@ -3588,9 +3680,13 @@ $root.SignalLocalStorageProtocol = (function() {
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
-                ChainKey.toObject = function toObject(message, options) {
+                ChainKey.toObject = function toObject(message, options, q) {
                     if (!options)
                         options = {};
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
                     var object = {};
                     if (options.defaults) {
                         object.index = 0;
@@ -3718,9 +3814,13 @@ $root.SignalLocalStorageProtocol = (function() {
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
-                MessageKey.encode = function encode(message, writer) {
+                MessageKey.encode = function encode(message, writer, q) {
                     if (!writer)
                         writer = $Writer.create();
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
                     if (message.index != null && Object.hasOwnProperty.call(message, "index"))
                         writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.index);
                     if (message.cipherKey != null && Object.hasOwnProperty.call(message, "cipherKey"))
@@ -3884,9 +3984,13 @@ $root.SignalLocalStorageProtocol = (function() {
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
-                MessageKey.toObject = function toObject(message, options) {
+                MessageKey.toObject = function toObject(message, options, q) {
                     if (!options)
                         options = {};
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
                     var object = {};
                     if (options.defaults) {
                         object.index = 0;
@@ -4062,9 +4166,13 @@ $root.SignalLocalStorageProtocol = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            PendingKeyExchange.encode = function encode(message, writer) {
+            PendingKeyExchange.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.sequence != null && Object.hasOwnProperty.call(message, "sequence"))
                     writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.sequence);
                 if (message.localBaseKey != null && Object.hasOwnProperty.call(message, "localBaseKey"))
@@ -4270,9 +4378,13 @@ $root.SignalLocalStorageProtocol = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            PendingKeyExchange.toObject = function toObject(message, options) {
+            PendingKeyExchange.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.sequence = 0;
@@ -4436,9 +4548,13 @@ $root.SignalLocalStorageProtocol = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            PendingPreKey.encode = function encode(message, writer) {
+            PendingPreKey.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.preKeyId != null && Object.hasOwnProperty.call(message, "preKeyId"))
                     writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.preKeyId);
                 if (message.baseKey != null && Object.hasOwnProperty.call(message, "baseKey"))
@@ -4585,9 +4701,13 @@ $root.SignalLocalStorageProtocol = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            PendingPreKey.toObject = function toObject(message, options) {
+            PendingPreKey.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.preKeyId = 0;

@@ -98,9 +98,13 @@ $root.Protocol = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        LimitSharing.encode = function encode(message, writer) {
+        LimitSharing.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.sharingLimited != null && Object.hasOwnProperty.call(message, "sharingLimited"))
                 writer.uint32(/* id 1, wireType 0 =*/8).bool(message.sharingLimited);
             if (message.trigger != null && Object.hasOwnProperty.call(message, "trigger"))
@@ -270,7 +274,7 @@ $root.Protocol = (function() {
             }
             if (object.limitSharingSettingTimestamp != null)
                 if ($util.Long)
-                    (message.limitSharingSettingTimestamp = $util.Long.fromValue(object.limitSharingSettingTimestamp)).unsigned = false;
+                    message.limitSharingSettingTimestamp = $util.Long.fromValue(object.limitSharingSettingTimestamp, false);
                 else if (typeof object.limitSharingSettingTimestamp === "string")
                     message.limitSharingSettingTimestamp = parseInt(object.limitSharingSettingTimestamp, 10);
                 else if (typeof object.limitSharingSettingTimestamp === "number")
@@ -291,9 +295,13 @@ $root.Protocol = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        LimitSharing.toObject = function toObject(message, options) {
+        LimitSharing.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 object.sharingLimited = false;
@@ -448,9 +456,13 @@ $root.Protocol = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        MessageKey.encode = function encode(message, writer) {
+        MessageKey.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.remoteJid != null && Object.hasOwnProperty.call(message, "remoteJid"))
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.remoteJid);
             if (message.fromMe != null && Object.hasOwnProperty.call(message, "fromMe"))
@@ -605,9 +617,13 @@ $root.Protocol = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        MessageKey.toObject = function toObject(message, options) {
+        MessageKey.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 object.remoteJid = "";

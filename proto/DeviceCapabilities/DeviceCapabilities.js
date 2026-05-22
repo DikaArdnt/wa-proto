@@ -116,21 +116,25 @@ $root.DeviceCapabilities = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        DeviceCapabilities.encode = function encode(message, writer) {
+        DeviceCapabilities.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.chatLockSupportLevel != null && Object.hasOwnProperty.call(message, "chatLockSupportLevel"))
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.chatLockSupportLevel);
             if (message.lidMigration != null && Object.hasOwnProperty.call(message, "lidMigration"))
-                $root.DeviceCapabilities.DeviceCapabilities.LIDMigration.encode(message.lidMigration, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                $root.DeviceCapabilities.DeviceCapabilities.LIDMigration.encode(message.lidMigration, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
             if (message.businessBroadcast != null && Object.hasOwnProperty.call(message, "businessBroadcast"))
-                $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast.encode(message.businessBroadcast, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast.encode(message.businessBroadcast, writer.uint32(/* id 3, wireType 2 =*/26).fork(), q + 1).ldelim();
             if (message.userHasAvatar != null && Object.hasOwnProperty.call(message, "userHasAvatar"))
-                $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar.encode(message.userHasAvatar, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar.encode(message.userHasAvatar, writer.uint32(/* id 4, wireType 2 =*/34).fork(), q + 1).ldelim();
             if (message.memberNameTagPrimarySupport != null && Object.hasOwnProperty.call(message, "memberNameTagPrimarySupport"))
                 writer.uint32(/* id 5, wireType 0 =*/40).int32(message.memberNameTagPrimarySupport);
             if (message.aiThread != null && Object.hasOwnProperty.call(message, "aiThread"))
-                $root.DeviceCapabilities.DeviceCapabilities.AiThread.encode(message.aiThread, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
+                $root.DeviceCapabilities.DeviceCapabilities.AiThread.encode(message.aiThread, writer.uint32(/* id 6, wireType 2 =*/50).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -363,9 +367,13 @@ $root.DeviceCapabilities = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        DeviceCapabilities.toObject = function toObject(message, options) {
+        DeviceCapabilities.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 object.chatLockSupportLevel = options.enums === String ? "NONE" : 0;
@@ -378,15 +386,15 @@ $root.DeviceCapabilities = (function() {
             if (message.chatLockSupportLevel != null && message.hasOwnProperty("chatLockSupportLevel"))
                 object.chatLockSupportLevel = options.enums === String ? $root.DeviceCapabilities.DeviceCapabilities.ChatLockSupportLevel[message.chatLockSupportLevel] === undefined ? message.chatLockSupportLevel : $root.DeviceCapabilities.DeviceCapabilities.ChatLockSupportLevel[message.chatLockSupportLevel] : message.chatLockSupportLevel;
             if (message.lidMigration != null && message.hasOwnProperty("lidMigration"))
-                object.lidMigration = $root.DeviceCapabilities.DeviceCapabilities.LIDMigration.toObject(message.lidMigration, options);
+                object.lidMigration = $root.DeviceCapabilities.DeviceCapabilities.LIDMigration.toObject(message.lidMigration, options, q + 1);
             if (message.businessBroadcast != null && message.hasOwnProperty("businessBroadcast"))
-                object.businessBroadcast = $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast.toObject(message.businessBroadcast, options);
+                object.businessBroadcast = $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast.toObject(message.businessBroadcast, options, q + 1);
             if (message.userHasAvatar != null && message.hasOwnProperty("userHasAvatar"))
-                object.userHasAvatar = $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar.toObject(message.userHasAvatar, options);
+                object.userHasAvatar = $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar.toObject(message.userHasAvatar, options, q + 1);
             if (message.memberNameTagPrimarySupport != null && message.hasOwnProperty("memberNameTagPrimarySupport"))
                 object.memberNameTagPrimarySupport = options.enums === String ? $root.DeviceCapabilities.DeviceCapabilities.MemberNameTagPrimarySupport[message.memberNameTagPrimarySupport] === undefined ? message.memberNameTagPrimarySupport : $root.DeviceCapabilities.DeviceCapabilities.MemberNameTagPrimarySupport[message.memberNameTagPrimarySupport] : message.memberNameTagPrimarySupport;
             if (message.aiThread != null && message.hasOwnProperty("aiThread"))
-                object.aiThread = $root.DeviceCapabilities.DeviceCapabilities.AiThread.toObject(message.aiThread, options);
+                object.aiThread = $root.DeviceCapabilities.DeviceCapabilities.AiThread.toObject(message.aiThread, options, q + 1);
             return object;
         };
 
@@ -469,9 +477,13 @@ $root.DeviceCapabilities = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            AiThread.encode = function encode(message, writer) {
+            AiThread.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.supportLevel != null && Object.hasOwnProperty.call(message, "supportLevel"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.supportLevel);
                 return writer;
@@ -617,9 +629,13 @@ $root.DeviceCapabilities = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            AiThread.toObject = function toObject(message, options) {
+            AiThread.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.supportLevel = options.enums === String ? "NONE" : 0;
@@ -762,9 +778,13 @@ $root.DeviceCapabilities = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            BusinessBroadcast.encode = function encode(message, writer) {
+            BusinessBroadcast.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.importListEnabled != null && Object.hasOwnProperty.call(message, "importListEnabled"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.importListEnabled);
                 if (message.companionSupportEnabled != null && Object.hasOwnProperty.call(message, "companionSupportEnabled"))
@@ -930,9 +950,13 @@ $root.DeviceCapabilities = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            BusinessBroadcast.toObject = function toObject(message, options) {
+            BusinessBroadcast.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.importListEnabled = false;
@@ -1052,9 +1076,13 @@ $root.DeviceCapabilities = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            LIDMigration.encode = function encode(message, writer) {
+            LIDMigration.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.chatDbMigrationTimestamp != null && Object.hasOwnProperty.call(message, "chatDbMigrationTimestamp"))
                     writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.chatDbMigrationTimestamp);
                 return writer;
@@ -1164,7 +1192,7 @@ $root.DeviceCapabilities = (function() {
                 var message = new $root.DeviceCapabilities.DeviceCapabilities.LIDMigration();
                 if (object.chatDbMigrationTimestamp != null)
                     if ($util.Long)
-                        (message.chatDbMigrationTimestamp = $util.Long.fromValue(object.chatDbMigrationTimestamp)).unsigned = true;
+                        message.chatDbMigrationTimestamp = $util.Long.fromValue(object.chatDbMigrationTimestamp, true);
                     else if (typeof object.chatDbMigrationTimestamp === "string")
                         message.chatDbMigrationTimestamp = parseInt(object.chatDbMigrationTimestamp, 10);
                     else if (typeof object.chatDbMigrationTimestamp === "number")
@@ -1183,9 +1211,13 @@ $root.DeviceCapabilities = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            LIDMigration.toObject = function toObject(message, options) {
+            LIDMigration.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     if ($util.Long) {
@@ -1301,9 +1333,13 @@ $root.DeviceCapabilities = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            UserHasAvatar.encode = function encode(message, writer) {
+            UserHasAvatar.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.userHasAvatar != null && Object.hasOwnProperty.call(message, "userHasAvatar"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.userHasAvatar);
                 return writer;
@@ -1425,9 +1461,13 @@ $root.DeviceCapabilities = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            UserHasAvatar.toObject = function toObject(message, options) {
+            UserHasAvatar.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.userHasAvatar = false;

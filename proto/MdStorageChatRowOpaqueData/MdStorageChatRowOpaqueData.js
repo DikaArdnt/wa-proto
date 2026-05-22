@@ -71,11 +71,15 @@ $root.MdStorageChatRowOpaqueData = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        ChatRowOpaqueData.encode = function encode(message, writer) {
+        ChatRowOpaqueData.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.draftMessage != null && Object.hasOwnProperty.call(message, "draftMessage"))
-                $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.encode(message.draftMessage, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.encode(message.draftMessage, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -200,14 +204,18 @@ $root.MdStorageChatRowOpaqueData = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        ChatRowOpaqueData.toObject = function toObject(message, options) {
+        ChatRowOpaqueData.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults)
                 object.draftMessage = null;
             if (message.draftMessage != null && message.hasOwnProperty("draftMessage"))
-                object.draftMessage = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.toObject(message.draftMessage, options);
+                object.draftMessage = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.toObject(message.draftMessage, options, q + 1);
             return object;
         };
 
@@ -326,17 +334,21 @@ $root.MdStorageChatRowOpaqueData = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            DraftMessage.encode = function encode(message, writer) {
+            DraftMessage.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.text);
                 if (message.omittedUrl != null && Object.hasOwnProperty.call(message, "omittedUrl"))
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.omittedUrl);
                 if (message.ctwaContextLinkData != null && Object.hasOwnProperty.call(message, "ctwaContextLinkData"))
-                    $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextLinkData.encode(message.ctwaContextLinkData, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                    $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextLinkData.encode(message.ctwaContextLinkData, writer.uint32(/* id 3, wireType 2 =*/26).fork(), q + 1).ldelim();
                 if (message.ctwaContext != null && Object.hasOwnProperty.call(message, "ctwaContext"))
-                    $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextData.encode(message.ctwaContext, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                    $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextData.encode(message.ctwaContext, writer.uint32(/* id 4, wireType 2 =*/34).fork(), q + 1).ldelim();
                 if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                     writer.uint32(/* id 5, wireType 0 =*/40).int64(message.timestamp);
                 return writer;
@@ -492,7 +504,7 @@ $root.MdStorageChatRowOpaqueData = (function() {
                 }
                 if (object.timestamp != null)
                     if ($util.Long)
-                        (message.timestamp = $util.Long.fromValue(object.timestamp)).unsigned = false;
+                        message.timestamp = $util.Long.fromValue(object.timestamp, false);
                     else if (typeof object.timestamp === "string")
                         message.timestamp = parseInt(object.timestamp, 10);
                     else if (typeof object.timestamp === "number")
@@ -511,9 +523,13 @@ $root.MdStorageChatRowOpaqueData = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            DraftMessage.toObject = function toObject(message, options) {
+            DraftMessage.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.text = "";
@@ -531,9 +547,9 @@ $root.MdStorageChatRowOpaqueData = (function() {
                 if (message.omittedUrl != null && message.hasOwnProperty("omittedUrl"))
                     object.omittedUrl = message.omittedUrl;
                 if (message.ctwaContextLinkData != null && message.hasOwnProperty("ctwaContextLinkData"))
-                    object.ctwaContextLinkData = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextLinkData.toObject(message.ctwaContextLinkData, options);
+                    object.ctwaContextLinkData = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextLinkData.toObject(message.ctwaContextLinkData, options, q + 1);
                 if (message.ctwaContext != null && message.hasOwnProperty("ctwaContext"))
-                    object.ctwaContext = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextData.toObject(message.ctwaContext, options);
+                    object.ctwaContext = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextData.toObject(message.ctwaContext, options, q + 1);
                 if (message.timestamp != null && message.hasOwnProperty("timestamp"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.timestamp = typeof message.timestamp === "number" ? BigInt(message.timestamp) : $util.Long.fromBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0, false).toBigInt();
@@ -722,9 +738,13 @@ $root.MdStorageChatRowOpaqueData = (function() {
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
-                CtwaContextData.encode = function encode(message, writer) {
+                CtwaContextData.encode = function encode(message, writer, q) {
                     if (!writer)
                         writer = $Writer.create();
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
                     if (message.conversionSource != null && Object.hasOwnProperty.call(message, "conversionSource"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.conversionSource);
                     if (message.conversionData != null && Object.hasOwnProperty.call(message, "conversionData"))
@@ -994,9 +1014,13 @@ $root.MdStorageChatRowOpaqueData = (function() {
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
-                CtwaContextData.toObject = function toObject(message, options) {
+                CtwaContextData.toObject = function toObject(message, options, q) {
                     if (!options)
                         options = {};
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
                     var object = {};
                     if (options.defaults) {
                         object.conversionSource = "";
@@ -1170,9 +1194,13 @@ $root.MdStorageChatRowOpaqueData = (function() {
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
-                CtwaContextLinkData.encode = function encode(message, writer) {
+                CtwaContextLinkData.encode = function encode(message, writer, q) {
                     if (!writer)
                         writer = $Writer.create();
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
                     if (message.context != null && Object.hasOwnProperty.call(message, "context"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.context);
                     if (message.sourceUrl != null && Object.hasOwnProperty.call(message, "sourceUrl"))
@@ -1327,9 +1355,13 @@ $root.MdStorageChatRowOpaqueData = (function() {
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
-                CtwaContextLinkData.toObject = function toObject(message, options) {
+                CtwaContextLinkData.toObject = function toObject(message, options, q) {
                     if (!options)
                         options = {};
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
                     var object = {};
                     if (options.defaults) {
                         object.context = "";

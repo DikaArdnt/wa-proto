@@ -148,25 +148,29 @@ $root.StatusAttributions = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        StatusAttribution.encode = function encode(message, writer) {
+        StatusAttribution.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.type);
             if (message.actionUrl != null && Object.hasOwnProperty.call(message, "actionUrl"))
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.actionUrl);
             if (message.statusReshare != null && Object.hasOwnProperty.call(message, "statusReshare"))
-                $root.StatusAttributions.StatusAttribution.StatusReshare.encode(message.statusReshare, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.StatusAttributions.StatusAttribution.StatusReshare.encode(message.statusReshare, writer.uint32(/* id 3, wireType 2 =*/26).fork(), q + 1).ldelim();
             if (message.externalShare != null && Object.hasOwnProperty.call(message, "externalShare"))
-                $root.StatusAttributions.StatusAttribution.ExternalShare.encode(message.externalShare, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                $root.StatusAttributions.StatusAttribution.ExternalShare.encode(message.externalShare, writer.uint32(/* id 4, wireType 2 =*/34).fork(), q + 1).ldelim();
             if (message.music != null && Object.hasOwnProperty.call(message, "music"))
-                $root.StatusAttributions.StatusAttribution.Music.encode(message.music, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                $root.StatusAttributions.StatusAttribution.Music.encode(message.music, writer.uint32(/* id 5, wireType 2 =*/42).fork(), q + 1).ldelim();
             if (message.groupStatus != null && Object.hasOwnProperty.call(message, "groupStatus"))
-                $root.StatusAttributions.StatusAttribution.GroupStatus.encode(message.groupStatus, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
+                $root.StatusAttributions.StatusAttribution.GroupStatus.encode(message.groupStatus, writer.uint32(/* id 6, wireType 2 =*/50).fork(), q + 1).ldelim();
             if (message.rlAttribution != null && Object.hasOwnProperty.call(message, "rlAttribution"))
-                $root.StatusAttributions.StatusAttribution.RLAttribution.encode(message.rlAttribution, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+                $root.StatusAttributions.StatusAttribution.RLAttribution.encode(message.rlAttribution, writer.uint32(/* id 7, wireType 2 =*/58).fork(), q + 1).ldelim();
             if (message.aiCreatedAttribution != null && Object.hasOwnProperty.call(message, "aiCreatedAttribution"))
-                $root.StatusAttributions.StatusAttribution.AiCreatedAttribution.encode(message.aiCreatedAttribution, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+                $root.StatusAttributions.StatusAttribution.AiCreatedAttribution.encode(message.aiCreatedAttribution, writer.uint32(/* id 8, wireType 2 =*/66).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -477,9 +481,13 @@ $root.StatusAttributions = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        StatusAttribution.toObject = function toObject(message, options) {
+        StatusAttribution.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 object.type = options.enums === String ? "UNKNOWN" : 0;
@@ -490,32 +498,32 @@ $root.StatusAttributions = (function() {
             if (message.actionUrl != null && message.hasOwnProperty("actionUrl"))
                 object.actionUrl = message.actionUrl;
             if (message.statusReshare != null && message.hasOwnProperty("statusReshare")) {
-                object.statusReshare = $root.StatusAttributions.StatusAttribution.StatusReshare.toObject(message.statusReshare, options);
+                object.statusReshare = $root.StatusAttributions.StatusAttribution.StatusReshare.toObject(message.statusReshare, options, q + 1);
                 if (options.oneofs)
                     object.attributionData = "statusReshare";
             }
             if (message.externalShare != null && message.hasOwnProperty("externalShare")) {
-                object.externalShare = $root.StatusAttributions.StatusAttribution.ExternalShare.toObject(message.externalShare, options);
+                object.externalShare = $root.StatusAttributions.StatusAttribution.ExternalShare.toObject(message.externalShare, options, q + 1);
                 if (options.oneofs)
                     object.attributionData = "externalShare";
             }
             if (message.music != null && message.hasOwnProperty("music")) {
-                object.music = $root.StatusAttributions.StatusAttribution.Music.toObject(message.music, options);
+                object.music = $root.StatusAttributions.StatusAttribution.Music.toObject(message.music, options, q + 1);
                 if (options.oneofs)
                     object.attributionData = "music";
             }
             if (message.groupStatus != null && message.hasOwnProperty("groupStatus")) {
-                object.groupStatus = $root.StatusAttributions.StatusAttribution.GroupStatus.toObject(message.groupStatus, options);
+                object.groupStatus = $root.StatusAttributions.StatusAttribution.GroupStatus.toObject(message.groupStatus, options, q + 1);
                 if (options.oneofs)
                     object.attributionData = "groupStatus";
             }
             if (message.rlAttribution != null && message.hasOwnProperty("rlAttribution")) {
-                object.rlAttribution = $root.StatusAttributions.StatusAttribution.RLAttribution.toObject(message.rlAttribution, options);
+                object.rlAttribution = $root.StatusAttributions.StatusAttribution.RLAttribution.toObject(message.rlAttribution, options, q + 1);
                 if (options.oneofs)
                     object.attributionData = "rlAttribution";
             }
             if (message.aiCreatedAttribution != null && message.hasOwnProperty("aiCreatedAttribution")) {
-                object.aiCreatedAttribution = $root.StatusAttributions.StatusAttribution.AiCreatedAttribution.toObject(message.aiCreatedAttribution, options);
+                object.aiCreatedAttribution = $root.StatusAttributions.StatusAttribution.AiCreatedAttribution.toObject(message.aiCreatedAttribution, options, q + 1);
                 if (options.oneofs)
                     object.attributionData = "aiCreatedAttribution";
             }
@@ -601,9 +609,13 @@ $root.StatusAttributions = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            AiCreatedAttribution.encode = function encode(message, writer) {
+            AiCreatedAttribution.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.source != null && Object.hasOwnProperty.call(message, "source"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.source);
                 return writer;
@@ -744,9 +756,13 @@ $root.StatusAttributions = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            AiCreatedAttribution.toObject = function toObject(message, options) {
+            AiCreatedAttribution.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.source = options.enums === String ? "UNKNOWN" : 0;
@@ -878,9 +894,13 @@ $root.StatusAttributions = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            ExternalShare.encode = function encode(message, writer) {
+            ExternalShare.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.actionUrl != null && Object.hasOwnProperty.call(message, "actionUrl"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.actionUrl);
                 if (message.source != null && Object.hasOwnProperty.call(message, "source"))
@@ -1109,9 +1129,13 @@ $root.StatusAttributions = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            ExternalShare.toObject = function toObject(message, options) {
+            ExternalShare.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.actionUrl = "";
@@ -1248,9 +1272,13 @@ $root.StatusAttributions = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            GroupStatus.encode = function encode(message, writer) {
+            GroupStatus.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.authorJid != null && Object.hasOwnProperty.call(message, "authorJid"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.authorJid);
                 return writer;
@@ -1372,9 +1400,13 @@ $root.StatusAttributions = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            GroupStatus.toObject = function toObject(message, options) {
+            GroupStatus.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.authorJid = "";
@@ -1510,9 +1542,13 @@ $root.StatusAttributions = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            Music.encode = function encode(message, writer) {
+            Music.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.authorName != null && Object.hasOwnProperty.call(message, "authorName"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.authorName);
                 if (message.songId != null && Object.hasOwnProperty.call(message, "songId"))
@@ -1689,9 +1725,13 @@ $root.StatusAttributions = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            Music.toObject = function toObject(message, options) {
+            Music.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.authorName = "";
@@ -1798,9 +1838,13 @@ $root.StatusAttributions = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            RLAttribution.encode = function encode(message, writer) {
+            RLAttribution.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.source != null && Object.hasOwnProperty.call(message, "source"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.source);
                 return writer;
@@ -1951,9 +1995,13 @@ $root.StatusAttributions = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            RLAttribution.toObject = function toObject(message, options) {
+            RLAttribution.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.source = options.enums === String ? "UNKNOWN" : 0;
@@ -2071,13 +2119,17 @@ $root.StatusAttributions = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            StatusReshare.encode = function encode(message, writer) {
+            StatusReshare.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.source != null && Object.hasOwnProperty.call(message, "source"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.source);
                 if (message.metadata != null && Object.hasOwnProperty.call(message, "metadata"))
-                    $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata.encode(message.metadata, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                    $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata.encode(message.metadata, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
                 return writer;
             };
 
@@ -2245,9 +2297,13 @@ $root.StatusAttributions = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            StatusReshare.toObject = function toObject(message, options) {
+            StatusReshare.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.source = options.enums === String ? "UNKNOWN" : 0;
@@ -2256,7 +2312,7 @@ $root.StatusAttributions = (function() {
                 if (message.source != null && message.hasOwnProperty("source"))
                     object.source = options.enums === String ? $root.StatusAttributions.StatusAttribution.StatusReshare.Source[message.source] === undefined ? message.source : $root.StatusAttributions.StatusAttribution.StatusReshare.Source[message.source] : message.source;
                 if (message.metadata != null && message.hasOwnProperty("metadata"))
-                    object.metadata = $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata.toObject(message.metadata, options);
+                    object.metadata = $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata.toObject(message.metadata, options, q + 1);
                 return object;
             };
 
@@ -2366,9 +2422,13 @@ $root.StatusAttributions = (function() {
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
-                Metadata.encode = function encode(message, writer) {
+                Metadata.encode = function encode(message, writer, q) {
                     if (!writer)
                         writer = $Writer.create();
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
                     if (message.duration != null && Object.hasOwnProperty.call(message, "duration"))
                         writer.uint32(/* id 1, wireType 0 =*/8).int32(message.duration);
                     if (message.channelJid != null && Object.hasOwnProperty.call(message, "channelJid"))
@@ -2523,9 +2583,13 @@ $root.StatusAttributions = (function() {
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
-                Metadata.toObject = function toObject(message, options) {
+                Metadata.toObject = function toObject(message, options, q) {
                     if (!options)
                         options = {};
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
                     var object = {};
                     if (options.defaults) {
                         object.duration = 0;

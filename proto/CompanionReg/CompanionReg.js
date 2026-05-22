@@ -107,9 +107,13 @@ $root.CompanionReg = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        ClientPairingProps.encode = function encode(message, writer) {
+        ClientPairingProps.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.isChatDbLidMigrated != null && Object.hasOwnProperty.call(message, "isChatDbLidMigrated"))
                 writer.uint32(/* id 1, wireType 0 =*/8).bool(message.isChatDbLidMigrated);
             if (message.isSyncdPureLidSession != null && Object.hasOwnProperty.call(message, "isSyncdPureLidSession"))
@@ -278,9 +282,13 @@ $root.CompanionReg = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        ClientPairingProps.toObject = function toObject(message, options) {
+        ClientPairingProps.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 object.isChatDbLidMigrated = false;
@@ -399,9 +407,13 @@ $root.CompanionReg = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        EncryptedPairingRequest.encode = function encode(message, writer) {
+        EncryptedPairingRequest.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.encryptedPayload != null && Object.hasOwnProperty.call(message, "encryptedPayload"))
                 writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.encryptedPayload);
             if (message.iv != null && Object.hasOwnProperty.call(message, "iv"))
@@ -540,9 +552,13 @@ $root.CompanionReg = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        EncryptedPairingRequest.toObject = function toObject(message, options) {
+        EncryptedPairingRequest.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 if (options.bytes === String)
@@ -667,9 +683,13 @@ $root.CompanionReg = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        PairingRequest.encode = function encode(message, writer) {
+        PairingRequest.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.companionPublicKey != null && Object.hasOwnProperty.call(message, "companionPublicKey"))
                 writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.companionPublicKey);
             if (message.companionIdentityKey != null && Object.hasOwnProperty.call(message, "companionIdentityKey"))
@@ -822,9 +842,13 @@ $root.CompanionReg = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        PairingRequest.toObject = function toObject(message, options) {
+        PairingRequest.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 if (options.bytes === String)
@@ -949,9 +973,13 @@ $root.CompanionReg = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        PrimaryEphemeralIdentity.encode = function encode(message, writer) {
+        PrimaryEphemeralIdentity.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.publicKey != null && Object.hasOwnProperty.call(message, "publicKey"))
                 writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.publicKey);
             if (message.nonce != null && Object.hasOwnProperty.call(message, "nonce"))
@@ -1090,9 +1118,13 @@ $root.CompanionReg = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        PrimaryEphemeralIdentity.toObject = function toObject(message, options) {
+        PrimaryEphemeralIdentity.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 if (options.bytes === String)
@@ -1208,13 +1240,17 @@ $root.CompanionReg = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        ProloguePayload.encode = function encode(message, writer) {
+        ProloguePayload.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.companionEphemeralIdentity != null && Object.hasOwnProperty.call(message, "companionEphemeralIdentity"))
                 writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.companionEphemeralIdentity);
             if (message.commitment != null && Object.hasOwnProperty.call(message, "commitment"))
-                $root.CompanionReg.CompanionCommitment.encode(message.commitment, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                $root.CompanionReg.CompanionCommitment.encode(message.commitment, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -1351,9 +1387,13 @@ $root.CompanionReg = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        ProloguePayload.toObject = function toObject(message, options) {
+        ProloguePayload.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 if (options.bytes === String)
@@ -1368,7 +1408,7 @@ $root.CompanionReg = (function() {
             if (message.companionEphemeralIdentity != null && message.hasOwnProperty("companionEphemeralIdentity"))
                 object.companionEphemeralIdentity = options.bytes === String ? $util.base64.encode(message.companionEphemeralIdentity, 0, message.companionEphemeralIdentity.length) : options.bytes === Array ? Array.prototype.slice.call(message.companionEphemeralIdentity) : message.companionEphemeralIdentity;
             if (message.commitment != null && message.hasOwnProperty("commitment"))
-                object.commitment = $root.CompanionReg.CompanionCommitment.toObject(message.commitment, options);
+                object.commitment = $root.CompanionReg.CompanionCommitment.toObject(message.commitment, options, q + 1);
             return object;
         };
 
@@ -1454,9 +1494,13 @@ $root.CompanionReg = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        CompanionCommitment.encode = function encode(message, writer) {
+        CompanionCommitment.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.hash != null && Object.hasOwnProperty.call(message, "hash"))
                 writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.hash);
             return writer;
@@ -1581,9 +1625,13 @@ $root.CompanionReg = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        CompanionCommitment.toObject = function toObject(message, options) {
+        CompanionCommitment.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults)
                 if (options.bytes === String)
@@ -1698,9 +1746,13 @@ $root.CompanionReg = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        CompanionEphemeralIdentity.encode = function encode(message, writer) {
+        CompanionEphemeralIdentity.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.publicKey != null && Object.hasOwnProperty.call(message, "publicKey"))
                 writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.publicKey);
             if (message.deviceType != null && Object.hasOwnProperty.call(message, "deviceType"))
@@ -1981,9 +2033,13 @@ $root.CompanionReg = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        CompanionEphemeralIdentity.toObject = function toObject(message, options) {
+        CompanionEphemeralIdentity.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 if (options.bytes === String)
@@ -2123,19 +2179,23 @@ $root.CompanionReg = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        DeviceProps.encode = function encode(message, writer) {
+        DeviceProps.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.os != null && Object.hasOwnProperty.call(message, "os"))
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.os);
             if (message.version != null && Object.hasOwnProperty.call(message, "version"))
-                $root.CompanionReg.DeviceProps.AppVersion.encode(message.version, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                $root.CompanionReg.DeviceProps.AppVersion.encode(message.version, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
             if (message.platformType != null && Object.hasOwnProperty.call(message, "platformType"))
                 writer.uint32(/* id 3, wireType 0 =*/24).int32(message.platformType);
             if (message.requireFullSync != null && Object.hasOwnProperty.call(message, "requireFullSync"))
                 writer.uint32(/* id 4, wireType 0 =*/32).bool(message.requireFullSync);
             if (message.historySyncConfig != null && Object.hasOwnProperty.call(message, "historySyncConfig"))
-                $root.CompanionReg.DeviceProps.HistorySyncConfig.encode(message.historySyncConfig, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                $root.CompanionReg.DeviceProps.HistorySyncConfig.encode(message.historySyncConfig, writer.uint32(/* id 5, wireType 2 =*/42).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -2435,9 +2495,13 @@ $root.CompanionReg = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        DeviceProps.toObject = function toObject(message, options) {
+        DeviceProps.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 object.os = "";
@@ -2449,13 +2513,13 @@ $root.CompanionReg = (function() {
             if (message.os != null && message.hasOwnProperty("os"))
                 object.os = message.os;
             if (message.version != null && message.hasOwnProperty("version"))
-                object.version = $root.CompanionReg.DeviceProps.AppVersion.toObject(message.version, options);
+                object.version = $root.CompanionReg.DeviceProps.AppVersion.toObject(message.version, options, q + 1);
             if (message.platformType != null && message.hasOwnProperty("platformType"))
                 object.platformType = options.enums === String ? $root.CompanionReg.DeviceProps.PlatformType[message.platformType] === undefined ? message.platformType : $root.CompanionReg.DeviceProps.PlatformType[message.platformType] : message.platformType;
             if (message.requireFullSync != null && message.hasOwnProperty("requireFullSync"))
                 object.requireFullSync = message.requireFullSync;
             if (message.historySyncConfig != null && message.hasOwnProperty("historySyncConfig"))
-                object.historySyncConfig = $root.CompanionReg.DeviceProps.HistorySyncConfig.toObject(message.historySyncConfig, options);
+                object.historySyncConfig = $root.CompanionReg.DeviceProps.HistorySyncConfig.toObject(message.historySyncConfig, options, q + 1);
             return object;
         };
 
@@ -2574,9 +2638,13 @@ $root.CompanionReg = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            AppVersion.encode = function encode(message, writer) {
+            AppVersion.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.primary != null && Object.hasOwnProperty.call(message, "primary"))
                     writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.primary);
                 if (message.secondary != null && Object.hasOwnProperty.call(message, "secondary"))
@@ -2742,9 +2810,13 @@ $root.CompanionReg = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            AppVersion.toObject = function toObject(message, options) {
+            AppVersion.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.primary = 0;
@@ -3056,9 +3128,13 @@ $root.CompanionReg = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            HistorySyncConfig.encode = function encode(message, writer) {
+            HistorySyncConfig.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.fullSyncDaysLimit != null && Object.hasOwnProperty.call(message, "fullSyncDaysLimit"))
                     writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.fullSyncDaysLimit);
                 if (message.fullSyncSizeMbLimit != null && Object.hasOwnProperty.call(message, "fullSyncSizeMbLimit"))
@@ -3445,9 +3521,13 @@ $root.CompanionReg = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            HistorySyncConfig.toObject = function toObject(message, options) {
+            HistorySyncConfig.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.arrays || options.defaults)
                     object.supportedBotChannelFbids = [];

@@ -71,9 +71,13 @@ $root.MmsRetry = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        ServerErrorReceipt.encode = function encode(message, writer) {
+        ServerErrorReceipt.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.stanzaId != null && Object.hasOwnProperty.call(message, "stanzaId"))
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.stanzaId);
             return writer;
@@ -195,9 +199,13 @@ $root.MmsRetry = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        ServerErrorReceipt.toObject = function toObject(message, options) {
+        ServerErrorReceipt.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults)
                 object.stanzaId = "";
@@ -315,9 +323,13 @@ $root.MmsRetry = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        MediaRetryNotification.encode = function encode(message, writer) {
+        MediaRetryNotification.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.stanzaId != null && Object.hasOwnProperty.call(message, "stanzaId"))
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.stanzaId);
             if (message.directPath != null && Object.hasOwnProperty.call(message, "directPath"))
@@ -504,9 +516,13 @@ $root.MmsRetry = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        MediaRetryNotification.toObject = function toObject(message, options) {
+        MediaRetryNotification.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 object.stanzaId = "";

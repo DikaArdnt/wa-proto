@@ -108,9 +108,13 @@ $root.Reporting = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        Field.encode = function encode(message, writer) {
+        Field.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.minVersion != null && Object.hasOwnProperty.call(message, "minVersion"))
                 writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.minVersion);
             if (message.maxVersion != null && Object.hasOwnProperty.call(message, "maxVersion"))
@@ -122,7 +126,7 @@ $root.Reporting = (function() {
             if (message.subfield != null && Object.hasOwnProperty.call(message, "subfield"))
                 for (var keys = Object.keys(message.subfield), i = 0; i < keys.length; ++i) {
                     writer.uint32(/* id 5, wireType 2 =*/42).fork().uint32(/* id 1, wireType 0 =*/8).uint32(keys[i]);
-                    $root.Reporting.Field.encode(message.subfield[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
+                    $root.Reporting.Field.encode(message.subfield[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim().ldelim();
                 }
             return writer;
         };
@@ -319,9 +323,13 @@ $root.Reporting = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        Field.toObject = function toObject(message, options) {
+        Field.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.objects || options.defaults)
                 object.subfield = {};
@@ -345,7 +353,7 @@ $root.Reporting = (function() {
                 for (var j = 0; j < keys2.length; ++j) {
                     if (keys2[j] === "__proto__")
                         $util.makeProp(object.subfield, keys2[j]);
-                    object.subfield[keys2[j]] = $root.Reporting.Field.toObject(message.subfield[keys2[j]], options);
+                    object.subfield[keys2[j]] = $root.Reporting.Field.toObject(message.subfield[keys2[j]], options, q + 1);
                 }
             }
             return object;
@@ -443,13 +451,17 @@ $root.Reporting = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        Config.encode = function encode(message, writer) {
+        Config.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.field != null && Object.hasOwnProperty.call(message, "field"))
                 for (var keys = Object.keys(message.field), i = 0; i < keys.length; ++i) {
                     writer.uint32(/* id 1, wireType 2 =*/10).fork().uint32(/* id 1, wireType 0 =*/8).uint32(keys[i]);
-                    $root.Reporting.Field.encode(message.field[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
+                    $root.Reporting.Field.encode(message.field[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim().ldelim();
                 }
             if (message.version != null && Object.hasOwnProperty.call(message, "version"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.version);
@@ -621,9 +633,13 @@ $root.Reporting = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        Config.toObject = function toObject(message, options) {
+        Config.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.objects || options.defaults)
                 object.field = {};
@@ -635,7 +651,7 @@ $root.Reporting = (function() {
                 for (var j = 0; j < keys2.length; ++j) {
                     if (keys2[j] === "__proto__")
                         $util.makeProp(object.field, keys2[j]);
-                    object.field[keys2[j]] = $root.Reporting.Field.toObject(message.field[keys2[j]], options);
+                    object.field[keys2[j]] = $root.Reporting.Field.toObject(message.field[keys2[j]], options, q + 1);
                 }
             }
             if (message.version != null && message.hasOwnProperty("version"))
@@ -752,9 +768,13 @@ $root.Reporting = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        Reportable.encode = function encode(message, writer) {
+        Reportable.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.minVersion != null && Object.hasOwnProperty.call(message, "minVersion"))
                 writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.minVersion);
             if (message.maxVersion != null && Object.hasOwnProperty.call(message, "maxVersion"))
@@ -909,9 +929,13 @@ $root.Reporting = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        Reportable.toObject = function toObject(message, options) {
+        Reportable.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 object.minVersion = 0;

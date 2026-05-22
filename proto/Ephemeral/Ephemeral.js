@@ -80,9 +80,13 @@ $root.Ephemeral = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        EphemeralSetting.encode = function encode(message, writer) {
+        EphemeralSetting.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.duration != null && Object.hasOwnProperty.call(message, "duration"))
                 writer.uint32(/* id 1, wireType 5 =*/13).sfixed32(message.duration);
             if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
@@ -203,7 +207,7 @@ $root.Ephemeral = (function() {
                 message.duration = object.duration | 0;
             if (object.timestamp != null)
                 if ($util.Long)
-                    (message.timestamp = $util.Long.fromValue(object.timestamp)).unsigned = false;
+                    message.timestamp = $util.Long.fromValue(object.timestamp, false);
                 else if (typeof object.timestamp === "string")
                     message.timestamp = parseInt(object.timestamp, 10);
                 else if (typeof object.timestamp === "number")
@@ -222,9 +226,13 @@ $root.Ephemeral = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        EphemeralSetting.toObject = function toObject(message, options) {
+        EphemeralSetting.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 object.duration = 0;

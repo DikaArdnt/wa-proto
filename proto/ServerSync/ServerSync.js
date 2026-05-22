@@ -144,24 +144,28 @@ $root.ServerSync = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        SyncdPatch.encode = function encode(message, writer) {
+        SyncdPatch.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.version != null && Object.hasOwnProperty.call(message, "version"))
-                $root.ServerSync.SyncdVersion.encode(message.version, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                $root.ServerSync.SyncdVersion.encode(message.version, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
             if (message.mutations != null && message.mutations.length)
                 for (var i = 0; i < message.mutations.length; ++i)
-                    $root.ServerSync.SyncdMutation.encode(message.mutations[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                    $root.ServerSync.SyncdMutation.encode(message.mutations[i], writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
             if (message.externalMutations != null && Object.hasOwnProperty.call(message, "externalMutations"))
-                $root.ServerSync.ExternalBlobReference.encode(message.externalMutations, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.ServerSync.ExternalBlobReference.encode(message.externalMutations, writer.uint32(/* id 3, wireType 2 =*/26).fork(), q + 1).ldelim();
             if (message.snapshotMac != null && Object.hasOwnProperty.call(message, "snapshotMac"))
                 writer.uint32(/* id 4, wireType 2 =*/34).bytes(message.snapshotMac);
             if (message.patchMac != null && Object.hasOwnProperty.call(message, "patchMac"))
                 writer.uint32(/* id 5, wireType 2 =*/42).bytes(message.patchMac);
             if (message.keyId != null && Object.hasOwnProperty.call(message, "keyId"))
-                $root.ServerSync.KeyId.encode(message.keyId, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
+                $root.ServerSync.KeyId.encode(message.keyId, writer.uint32(/* id 6, wireType 2 =*/50).fork(), q + 1).ldelim();
             if (message.exitCode != null && Object.hasOwnProperty.call(message, "exitCode"))
-                $root.ServerSync.ExitCode.encode(message.exitCode, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+                $root.ServerSync.ExitCode.encode(message.exitCode, writer.uint32(/* id 7, wireType 2 =*/58).fork(), q + 1).ldelim();
             if (message.deviceIndex != null && Object.hasOwnProperty.call(message, "deviceIndex"))
                 writer.uint32(/* id 8, wireType 0 =*/64).uint32(message.deviceIndex);
             if (message.clientDebugData != null && Object.hasOwnProperty.call(message, "clientDebugData"))
@@ -402,9 +406,13 @@ $root.ServerSync = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        SyncdPatch.toObject = function toObject(message, options) {
+        SyncdPatch.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.arrays || options.defaults)
                 object.mutations = [];
@@ -437,22 +445,22 @@ $root.ServerSync = (function() {
                 }
             }
             if (message.version != null && message.hasOwnProperty("version"))
-                object.version = $root.ServerSync.SyncdVersion.toObject(message.version, options);
+                object.version = $root.ServerSync.SyncdVersion.toObject(message.version, options, q + 1);
             if (message.mutations && message.mutations.length) {
                 object.mutations = [];
                 for (var j = 0; j < message.mutations.length; ++j)
-                    object.mutations[j] = $root.ServerSync.SyncdMutation.toObject(message.mutations[j], options);
+                    object.mutations[j] = $root.ServerSync.SyncdMutation.toObject(message.mutations[j], options, q + 1);
             }
             if (message.externalMutations != null && message.hasOwnProperty("externalMutations"))
-                object.externalMutations = $root.ServerSync.ExternalBlobReference.toObject(message.externalMutations, options);
+                object.externalMutations = $root.ServerSync.ExternalBlobReference.toObject(message.externalMutations, options, q + 1);
             if (message.snapshotMac != null && message.hasOwnProperty("snapshotMac"))
                 object.snapshotMac = options.bytes === String ? $util.base64.encode(message.snapshotMac, 0, message.snapshotMac.length) : options.bytes === Array ? Array.prototype.slice.call(message.snapshotMac) : message.snapshotMac;
             if (message.patchMac != null && message.hasOwnProperty("patchMac"))
                 object.patchMac = options.bytes === String ? $util.base64.encode(message.patchMac, 0, message.patchMac.length) : options.bytes === Array ? Array.prototype.slice.call(message.patchMac) : message.patchMac;
             if (message.keyId != null && message.hasOwnProperty("keyId"))
-                object.keyId = $root.ServerSync.KeyId.toObject(message.keyId, options);
+                object.keyId = $root.ServerSync.KeyId.toObject(message.keyId, options, q + 1);
             if (message.exitCode != null && message.hasOwnProperty("exitCode"))
-                object.exitCode = $root.ServerSync.ExitCode.toObject(message.exitCode, options);
+                object.exitCode = $root.ServerSync.ExitCode.toObject(message.exitCode, options, q + 1);
             if (message.deviceIndex != null && message.hasOwnProperty("deviceIndex"))
                 object.deviceIndex = message.deviceIndex;
             if (message.clientDebugData != null && message.hasOwnProperty("clientDebugData"))
@@ -551,13 +559,17 @@ $root.ServerSync = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        SyncdMutation.encode = function encode(message, writer) {
+        SyncdMutation.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.operation != null && Object.hasOwnProperty.call(message, "operation"))
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.operation);
             if (message.record != null && Object.hasOwnProperty.call(message, "record"))
-                $root.ServerSync.SyncdRecord.encode(message.record, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                $root.ServerSync.SyncdRecord.encode(message.record, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -710,9 +722,13 @@ $root.ServerSync = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        SyncdMutation.toObject = function toObject(message, options) {
+        SyncdMutation.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 object.operation = options.enums === String ? "SET" : 0;
@@ -721,7 +737,7 @@ $root.ServerSync = (function() {
             if (message.operation != null && message.hasOwnProperty("operation"))
                 object.operation = options.enums === String ? $root.ServerSync.SyncdMutation.SyncdOperation[message.operation] === undefined ? message.operation : $root.ServerSync.SyncdMutation.SyncdOperation[message.operation] : message.operation;
             if (message.record != null && message.hasOwnProperty("record"))
-                object.record = $root.ServerSync.SyncdRecord.toObject(message.record, options);
+                object.record = $root.ServerSync.SyncdRecord.toObject(message.record, options, q + 1);
             return object;
         };
 
@@ -822,12 +838,16 @@ $root.ServerSync = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        SyncdMutations.encode = function encode(message, writer) {
+        SyncdMutations.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.mutations != null && message.mutations.length)
                 for (var i = 0; i < message.mutations.length; ++i)
-                    $root.ServerSync.SyncdMutation.encode(message.mutations[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                    $root.ServerSync.SyncdMutation.encode(message.mutations[i], writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -963,16 +983,20 @@ $root.ServerSync = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        SyncdMutations.toObject = function toObject(message, options) {
+        SyncdMutations.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.arrays || options.defaults)
                 object.mutations = [];
             if (message.mutations && message.mutations.length) {
                 object.mutations = [];
                 for (var j = 0; j < message.mutations.length; ++j)
-                    object.mutations[j] = $root.ServerSync.SyncdMutation.toObject(message.mutations[j], options);
+                    object.mutations[j] = $root.ServerSync.SyncdMutation.toObject(message.mutations[j], options, q + 1);
             }
             return object;
         };
@@ -1087,18 +1111,22 @@ $root.ServerSync = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        SyncdSnapshot.encode = function encode(message, writer) {
+        SyncdSnapshot.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.version != null && Object.hasOwnProperty.call(message, "version"))
-                $root.ServerSync.SyncdVersion.encode(message.version, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                $root.ServerSync.SyncdVersion.encode(message.version, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
             if (message.records != null && message.records.length)
                 for (var i = 0; i < message.records.length; ++i)
-                    $root.ServerSync.SyncdRecord.encode(message.records[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                    $root.ServerSync.SyncdRecord.encode(message.records[i], writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
             if (message.mac != null && Object.hasOwnProperty.call(message, "mac"))
                 writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.mac);
             if (message.keyId != null && Object.hasOwnProperty.call(message, "keyId"))
-                $root.ServerSync.KeyId.encode(message.keyId, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                $root.ServerSync.KeyId.encode(message.keyId, writer.uint32(/* id 4, wireType 2 =*/34).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -1274,9 +1302,13 @@ $root.ServerSync = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        SyncdSnapshot.toObject = function toObject(message, options) {
+        SyncdSnapshot.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.arrays || options.defaults)
                 object.records = [];
@@ -1292,16 +1324,16 @@ $root.ServerSync = (function() {
                 object.keyId = null;
             }
             if (message.version != null && message.hasOwnProperty("version"))
-                object.version = $root.ServerSync.SyncdVersion.toObject(message.version, options);
+                object.version = $root.ServerSync.SyncdVersion.toObject(message.version, options, q + 1);
             if (message.records && message.records.length) {
                 object.records = [];
                 for (var j = 0; j < message.records.length; ++j)
-                    object.records[j] = $root.ServerSync.SyncdRecord.toObject(message.records[j], options);
+                    object.records[j] = $root.ServerSync.SyncdRecord.toObject(message.records[j], options, q + 1);
             }
             if (message.mac != null && message.hasOwnProperty("mac"))
                 object.mac = options.bytes === String ? $util.base64.encode(message.mac, 0, message.mac.length) : options.bytes === Array ? Array.prototype.slice.call(message.mac) : message.mac;
             if (message.keyId != null && message.hasOwnProperty("keyId"))
-                object.keyId = $root.ServerSync.KeyId.toObject(message.keyId, options);
+                object.keyId = $root.ServerSync.KeyId.toObject(message.keyId, options, q + 1);
             return object;
         };
 
@@ -1432,9 +1464,13 @@ $root.ServerSync = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        ExternalBlobReference.encode = function encode(message, writer) {
+        ExternalBlobReference.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.mediaKey != null && Object.hasOwnProperty.call(message, "mediaKey"))
                 writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.mediaKey);
             if (message.directPath != null && Object.hasOwnProperty.call(message, "directPath"))
@@ -1598,7 +1634,7 @@ $root.ServerSync = (function() {
                 message.handle = String(object.handle);
             if (object.fileSizeBytes != null)
                 if ($util.Long)
-                    (message.fileSizeBytes = $util.Long.fromValue(object.fileSizeBytes)).unsigned = true;
+                    message.fileSizeBytes = $util.Long.fromValue(object.fileSizeBytes, true);
                 else if (typeof object.fileSizeBytes === "string")
                     message.fileSizeBytes = parseInt(object.fileSizeBytes, 10);
                 else if (typeof object.fileSizeBytes === "number")
@@ -1627,9 +1663,13 @@ $root.ServerSync = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        ExternalBlobReference.toObject = function toObject(message, options) {
+        ExternalBlobReference.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 if (options.bytes === String)
@@ -1781,15 +1821,19 @@ $root.ServerSync = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        SyncdRecord.encode = function encode(message, writer) {
+        SyncdRecord.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.index != null && Object.hasOwnProperty.call(message, "index"))
-                $root.ServerSync.SyncdIndex.encode(message.index, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                $root.ServerSync.SyncdIndex.encode(message.index, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
             if (message.value != null && Object.hasOwnProperty.call(message, "value"))
-                $root.ServerSync.SyncdValue.encode(message.value, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                $root.ServerSync.SyncdValue.encode(message.value, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
             if (message.keyId != null && Object.hasOwnProperty.call(message, "keyId"))
-                $root.ServerSync.KeyId.encode(message.keyId, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.ServerSync.KeyId.encode(message.keyId, writer.uint32(/* id 3, wireType 2 =*/26).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -1942,9 +1986,13 @@ $root.ServerSync = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        SyncdRecord.toObject = function toObject(message, options) {
+        SyncdRecord.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 object.index = null;
@@ -1952,11 +2000,11 @@ $root.ServerSync = (function() {
                 object.keyId = null;
             }
             if (message.index != null && message.hasOwnProperty("index"))
-                object.index = $root.ServerSync.SyncdIndex.toObject(message.index, options);
+                object.index = $root.ServerSync.SyncdIndex.toObject(message.index, options, q + 1);
             if (message.value != null && message.hasOwnProperty("value"))
-                object.value = $root.ServerSync.SyncdValue.toObject(message.value, options);
+                object.value = $root.ServerSync.SyncdValue.toObject(message.value, options, q + 1);
             if (message.keyId != null && message.hasOwnProperty("keyId"))
-                object.keyId = $root.ServerSync.KeyId.toObject(message.keyId, options);
+                object.keyId = $root.ServerSync.KeyId.toObject(message.keyId, options, q + 1);
             return object;
         };
 
@@ -2042,9 +2090,13 @@ $root.ServerSync = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        KeyId.encode = function encode(message, writer) {
+        KeyId.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                 writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.id);
             return writer;
@@ -2169,9 +2221,13 @@ $root.ServerSync = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        KeyId.toObject = function toObject(message, options) {
+        KeyId.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults)
                 if (options.bytes === String)
@@ -2268,9 +2324,13 @@ $root.ServerSync = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        SyncdValue.encode = function encode(message, writer) {
+        SyncdValue.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.blob != null && Object.hasOwnProperty.call(message, "blob"))
                 writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.blob);
             return writer;
@@ -2395,9 +2455,13 @@ $root.ServerSync = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        SyncdValue.toObject = function toObject(message, options) {
+        SyncdValue.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults)
                 if (options.bytes === String)
@@ -2494,9 +2558,13 @@ $root.ServerSync = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        SyncdIndex.encode = function encode(message, writer) {
+        SyncdIndex.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.blob != null && Object.hasOwnProperty.call(message, "blob"))
                 writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.blob);
             return writer;
@@ -2621,9 +2689,13 @@ $root.ServerSync = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        SyncdIndex.toObject = function toObject(message, options) {
+        SyncdIndex.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults)
                 if (options.bytes === String)
@@ -2729,9 +2801,13 @@ $root.ServerSync = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        ExitCode.encode = function encode(message, writer) {
+        ExitCode.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.code != null && Object.hasOwnProperty.call(message, "code"))
                 writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.code);
             if (message.text != null && Object.hasOwnProperty.call(message, "text"))
@@ -2850,7 +2926,7 @@ $root.ServerSync = (function() {
             var message = new $root.ServerSync.ExitCode();
             if (object.code != null)
                 if ($util.Long)
-                    (message.code = $util.Long.fromValue(object.code)).unsigned = true;
+                    message.code = $util.Long.fromValue(object.code, true);
                 else if (typeof object.code === "string")
                     message.code = parseInt(object.code, 10);
                 else if (typeof object.code === "number")
@@ -2871,9 +2947,13 @@ $root.ServerSync = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        ExitCode.toObject = function toObject(message, options) {
+        ExitCode.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 if ($util.Long) {
@@ -2977,9 +3057,13 @@ $root.ServerSync = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        SyncdVersion.encode = function encode(message, writer) {
+        SyncdVersion.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.version != null && Object.hasOwnProperty.call(message, "version"))
                 writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.version);
             return writer;
@@ -3089,7 +3173,7 @@ $root.ServerSync = (function() {
             var message = new $root.ServerSync.SyncdVersion();
             if (object.version != null)
                 if ($util.Long)
-                    (message.version = $util.Long.fromValue(object.version)).unsigned = true;
+                    message.version = $util.Long.fromValue(object.version, true);
                 else if (typeof object.version === "string")
                     message.version = parseInt(object.version, 10);
                 else if (typeof object.version === "number")
@@ -3108,9 +3192,13 @@ $root.ServerSync = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        SyncdVersion.toObject = function toObject(message, options) {
+        SyncdVersion.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults)
                 if ($util.Long) {

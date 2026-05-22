@@ -161,9 +161,13 @@ $root.SyncAction = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        PatchDebugData.encode = function encode(message, writer) {
+        PatchDebugData.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.currentLthash != null && Object.hasOwnProperty.call(message, "currentLthash"))
                 writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.currentLthash);
             if (message.newLthash != null && Object.hasOwnProperty.call(message, "newLthash"))
@@ -482,9 +486,13 @@ $root.SyncAction = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        PatchDebugData.toObject = function toObject(message, options) {
+        PatchDebugData.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 if (options.bytes === String)
@@ -703,13 +711,17 @@ $root.SyncAction = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        SyncActionData.encode = function encode(message, writer) {
+        SyncActionData.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.index != null && Object.hasOwnProperty.call(message, "index"))
                 writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.index);
             if (message.value != null && Object.hasOwnProperty.call(message, "value"))
-                $root.SyncAction.SyncActionValue.encode(message.value, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.encode(message.value, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
             if (message.padding != null && Object.hasOwnProperty.call(message, "padding"))
                 writer.uint32(/* id 3, wireType 2 =*/26).bytes(message.padding);
             if (message.version != null && Object.hasOwnProperty.call(message, "version"))
@@ -871,9 +883,13 @@ $root.SyncAction = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        SyncActionData.toObject = function toObject(message, options) {
+        SyncActionData.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 if (options.bytes === String)
@@ -896,7 +912,7 @@ $root.SyncAction = (function() {
             if (message.index != null && message.hasOwnProperty("index"))
                 object.index = options.bytes === String ? $util.base64.encode(message.index, 0, message.index.length) : options.bytes === Array ? Array.prototype.slice.call(message.index) : message.index;
             if (message.value != null && message.hasOwnProperty("value"))
-                object.value = $root.SyncAction.SyncActionValue.toObject(message.value, options);
+                object.value = $root.SyncAction.SyncActionValue.toObject(message.value, options, q + 1);
             if (message.padding != null && message.hasOwnProperty("padding"))
                 object.padding = options.bytes === String ? $util.base64.encode(message.padding, 0, message.padding.length) : options.bytes === Array ? Array.prototype.slice.call(message.padding) : message.padding;
             if (message.version != null && message.hasOwnProperty("version"))
@@ -1679,165 +1695,169 @@ $root.SyncAction = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        SyncActionValue.encode = function encode(message, writer) {
+        SyncActionValue.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                 writer.uint32(/* id 1, wireType 0 =*/8).int64(message.timestamp);
             if (message.starAction != null && Object.hasOwnProperty.call(message, "starAction"))
-                $root.SyncAction.SyncActionValue.StarAction.encode(message.starAction, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.StarAction.encode(message.starAction, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
             if (message.contactAction != null && Object.hasOwnProperty.call(message, "contactAction"))
-                $root.SyncAction.SyncActionValue.ContactAction.encode(message.contactAction, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.ContactAction.encode(message.contactAction, writer.uint32(/* id 3, wireType 2 =*/26).fork(), q + 1).ldelim();
             if (message.muteAction != null && Object.hasOwnProperty.call(message, "muteAction"))
-                $root.SyncAction.SyncActionValue.MuteAction.encode(message.muteAction, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.MuteAction.encode(message.muteAction, writer.uint32(/* id 4, wireType 2 =*/34).fork(), q + 1).ldelim();
             if (message.pinAction != null && Object.hasOwnProperty.call(message, "pinAction"))
-                $root.SyncAction.SyncActionValue.PinAction.encode(message.pinAction, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.PinAction.encode(message.pinAction, writer.uint32(/* id 5, wireType 2 =*/42).fork(), q + 1).ldelim();
             if (message.pushNameSetting != null && Object.hasOwnProperty.call(message, "pushNameSetting"))
-                $root.SyncAction.SyncActionValue.PushNameSetting.encode(message.pushNameSetting, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.PushNameSetting.encode(message.pushNameSetting, writer.uint32(/* id 7, wireType 2 =*/58).fork(), q + 1).ldelim();
             if (message.quickReplyAction != null && Object.hasOwnProperty.call(message, "quickReplyAction"))
-                $root.SyncAction.SyncActionValue.QuickReplyAction.encode(message.quickReplyAction, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.QuickReplyAction.encode(message.quickReplyAction, writer.uint32(/* id 8, wireType 2 =*/66).fork(), q + 1).ldelim();
             if (message.recentEmojiWeightsAction != null && Object.hasOwnProperty.call(message, "recentEmojiWeightsAction"))
-                $root.SyncAction.SyncActionValue.RecentEmojiWeightsAction.encode(message.recentEmojiWeightsAction, writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.RecentEmojiWeightsAction.encode(message.recentEmojiWeightsAction, writer.uint32(/* id 11, wireType 2 =*/90).fork(), q + 1).ldelim();
             if (message.labelEditAction != null && Object.hasOwnProperty.call(message, "labelEditAction"))
-                $root.SyncAction.SyncActionValue.LabelEditAction.encode(message.labelEditAction, writer.uint32(/* id 14, wireType 2 =*/114).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.LabelEditAction.encode(message.labelEditAction, writer.uint32(/* id 14, wireType 2 =*/114).fork(), q + 1).ldelim();
             if (message.labelAssociationAction != null && Object.hasOwnProperty.call(message, "labelAssociationAction"))
-                $root.SyncAction.SyncActionValue.LabelAssociationAction.encode(message.labelAssociationAction, writer.uint32(/* id 15, wireType 2 =*/122).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.LabelAssociationAction.encode(message.labelAssociationAction, writer.uint32(/* id 15, wireType 2 =*/122).fork(), q + 1).ldelim();
             if (message.localeSetting != null && Object.hasOwnProperty.call(message, "localeSetting"))
-                $root.SyncAction.SyncActionValue.LocaleSetting.encode(message.localeSetting, writer.uint32(/* id 16, wireType 2 =*/130).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.LocaleSetting.encode(message.localeSetting, writer.uint32(/* id 16, wireType 2 =*/130).fork(), q + 1).ldelim();
             if (message.archiveChatAction != null && Object.hasOwnProperty.call(message, "archiveChatAction"))
-                $root.SyncAction.SyncActionValue.ArchiveChatAction.encode(message.archiveChatAction, writer.uint32(/* id 17, wireType 2 =*/138).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.ArchiveChatAction.encode(message.archiveChatAction, writer.uint32(/* id 17, wireType 2 =*/138).fork(), q + 1).ldelim();
             if (message.deleteMessageForMeAction != null && Object.hasOwnProperty.call(message, "deleteMessageForMeAction"))
-                $root.SyncAction.SyncActionValue.DeleteMessageForMeAction.encode(message.deleteMessageForMeAction, writer.uint32(/* id 18, wireType 2 =*/146).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.DeleteMessageForMeAction.encode(message.deleteMessageForMeAction, writer.uint32(/* id 18, wireType 2 =*/146).fork(), q + 1).ldelim();
             if (message.keyExpiration != null && Object.hasOwnProperty.call(message, "keyExpiration"))
-                $root.SyncAction.SyncActionValue.KeyExpiration.encode(message.keyExpiration, writer.uint32(/* id 19, wireType 2 =*/154).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.KeyExpiration.encode(message.keyExpiration, writer.uint32(/* id 19, wireType 2 =*/154).fork(), q + 1).ldelim();
             if (message.markChatAsReadAction != null && Object.hasOwnProperty.call(message, "markChatAsReadAction"))
-                $root.SyncAction.SyncActionValue.MarkChatAsReadAction.encode(message.markChatAsReadAction, writer.uint32(/* id 20, wireType 2 =*/162).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.MarkChatAsReadAction.encode(message.markChatAsReadAction, writer.uint32(/* id 20, wireType 2 =*/162).fork(), q + 1).ldelim();
             if (message.clearChatAction != null && Object.hasOwnProperty.call(message, "clearChatAction"))
-                $root.SyncAction.SyncActionValue.ClearChatAction.encode(message.clearChatAction, writer.uint32(/* id 21, wireType 2 =*/170).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.ClearChatAction.encode(message.clearChatAction, writer.uint32(/* id 21, wireType 2 =*/170).fork(), q + 1).ldelim();
             if (message.deleteChatAction != null && Object.hasOwnProperty.call(message, "deleteChatAction"))
-                $root.SyncAction.SyncActionValue.DeleteChatAction.encode(message.deleteChatAction, writer.uint32(/* id 22, wireType 2 =*/178).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.DeleteChatAction.encode(message.deleteChatAction, writer.uint32(/* id 22, wireType 2 =*/178).fork(), q + 1).ldelim();
             if (message.unarchiveChatsSetting != null && Object.hasOwnProperty.call(message, "unarchiveChatsSetting"))
-                $root.SyncAction.SyncActionValue.UnarchiveChatsSetting.encode(message.unarchiveChatsSetting, writer.uint32(/* id 23, wireType 2 =*/186).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.UnarchiveChatsSetting.encode(message.unarchiveChatsSetting, writer.uint32(/* id 23, wireType 2 =*/186).fork(), q + 1).ldelim();
             if (message.primaryFeature != null && Object.hasOwnProperty.call(message, "primaryFeature"))
-                $root.SyncAction.SyncActionValue.PrimaryFeature.encode(message.primaryFeature, writer.uint32(/* id 24, wireType 2 =*/194).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.PrimaryFeature.encode(message.primaryFeature, writer.uint32(/* id 24, wireType 2 =*/194).fork(), q + 1).ldelim();
             if (message.androidUnsupportedActions != null && Object.hasOwnProperty.call(message, "androidUnsupportedActions"))
-                $root.SyncAction.SyncActionValue.AndroidUnsupportedActions.encode(message.androidUnsupportedActions, writer.uint32(/* id 26, wireType 2 =*/210).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.AndroidUnsupportedActions.encode(message.androidUnsupportedActions, writer.uint32(/* id 26, wireType 2 =*/210).fork(), q + 1).ldelim();
             if (message.agentAction != null && Object.hasOwnProperty.call(message, "agentAction"))
-                $root.SyncAction.SyncActionValue.AgentAction.encode(message.agentAction, writer.uint32(/* id 27, wireType 2 =*/218).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.AgentAction.encode(message.agentAction, writer.uint32(/* id 27, wireType 2 =*/218).fork(), q + 1).ldelim();
             if (message.subscriptionAction != null && Object.hasOwnProperty.call(message, "subscriptionAction"))
-                $root.SyncAction.SyncActionValue.SubscriptionAction.encode(message.subscriptionAction, writer.uint32(/* id 28, wireType 2 =*/226).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.SubscriptionAction.encode(message.subscriptionAction, writer.uint32(/* id 28, wireType 2 =*/226).fork(), q + 1).ldelim();
             if (message.userStatusMuteAction != null && Object.hasOwnProperty.call(message, "userStatusMuteAction"))
-                $root.SyncAction.SyncActionValue.UserStatusMuteAction.encode(message.userStatusMuteAction, writer.uint32(/* id 29, wireType 2 =*/234).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.UserStatusMuteAction.encode(message.userStatusMuteAction, writer.uint32(/* id 29, wireType 2 =*/234).fork(), q + 1).ldelim();
             if (message.timeFormatAction != null && Object.hasOwnProperty.call(message, "timeFormatAction"))
-                $root.SyncAction.SyncActionValue.TimeFormatAction.encode(message.timeFormatAction, writer.uint32(/* id 30, wireType 2 =*/242).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.TimeFormatAction.encode(message.timeFormatAction, writer.uint32(/* id 30, wireType 2 =*/242).fork(), q + 1).ldelim();
             if (message.nuxAction != null && Object.hasOwnProperty.call(message, "nuxAction"))
-                $root.SyncAction.SyncActionValue.NuxAction.encode(message.nuxAction, writer.uint32(/* id 31, wireType 2 =*/250).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.NuxAction.encode(message.nuxAction, writer.uint32(/* id 31, wireType 2 =*/250).fork(), q + 1).ldelim();
             if (message.primaryVersionAction != null && Object.hasOwnProperty.call(message, "primaryVersionAction"))
-                $root.SyncAction.SyncActionValue.PrimaryVersionAction.encode(message.primaryVersionAction, writer.uint32(/* id 32, wireType 2 =*/258).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.PrimaryVersionAction.encode(message.primaryVersionAction, writer.uint32(/* id 32, wireType 2 =*/258).fork(), q + 1).ldelim();
             if (message.stickerAction != null && Object.hasOwnProperty.call(message, "stickerAction"))
-                $root.SyncAction.SyncActionValue.StickerAction.encode(message.stickerAction, writer.uint32(/* id 33, wireType 2 =*/266).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.StickerAction.encode(message.stickerAction, writer.uint32(/* id 33, wireType 2 =*/266).fork(), q + 1).ldelim();
             if (message.removeRecentStickerAction != null && Object.hasOwnProperty.call(message, "removeRecentStickerAction"))
-                $root.SyncAction.SyncActionValue.RemoveRecentStickerAction.encode(message.removeRecentStickerAction, writer.uint32(/* id 34, wireType 2 =*/274).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.RemoveRecentStickerAction.encode(message.removeRecentStickerAction, writer.uint32(/* id 34, wireType 2 =*/274).fork(), q + 1).ldelim();
             if (message.chatAssignment != null && Object.hasOwnProperty.call(message, "chatAssignment"))
-                $root.SyncAction.SyncActionValue.ChatAssignmentAction.encode(message.chatAssignment, writer.uint32(/* id 35, wireType 2 =*/282).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.ChatAssignmentAction.encode(message.chatAssignment, writer.uint32(/* id 35, wireType 2 =*/282).fork(), q + 1).ldelim();
             if (message.chatAssignmentOpenedStatus != null && Object.hasOwnProperty.call(message, "chatAssignmentOpenedStatus"))
-                $root.SyncAction.SyncActionValue.ChatAssignmentOpenedStatusAction.encode(message.chatAssignmentOpenedStatus, writer.uint32(/* id 36, wireType 2 =*/290).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.ChatAssignmentOpenedStatusAction.encode(message.chatAssignmentOpenedStatus, writer.uint32(/* id 36, wireType 2 =*/290).fork(), q + 1).ldelim();
             if (message.pnForLidChatAction != null && Object.hasOwnProperty.call(message, "pnForLidChatAction"))
-                $root.SyncAction.SyncActionValue.PnForLidChatAction.encode(message.pnForLidChatAction, writer.uint32(/* id 37, wireType 2 =*/298).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.PnForLidChatAction.encode(message.pnForLidChatAction, writer.uint32(/* id 37, wireType 2 =*/298).fork(), q + 1).ldelim();
             if (message.marketingMessageAction != null && Object.hasOwnProperty.call(message, "marketingMessageAction"))
-                $root.SyncAction.SyncActionValue.MarketingMessageAction.encode(message.marketingMessageAction, writer.uint32(/* id 38, wireType 2 =*/306).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.MarketingMessageAction.encode(message.marketingMessageAction, writer.uint32(/* id 38, wireType 2 =*/306).fork(), q + 1).ldelim();
             if (message.marketingMessageBroadcastAction != null && Object.hasOwnProperty.call(message, "marketingMessageBroadcastAction"))
-                $root.SyncAction.SyncActionValue.MarketingMessageBroadcastAction.encode(message.marketingMessageBroadcastAction, writer.uint32(/* id 39, wireType 2 =*/314).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.MarketingMessageBroadcastAction.encode(message.marketingMessageBroadcastAction, writer.uint32(/* id 39, wireType 2 =*/314).fork(), q + 1).ldelim();
             if (message.externalWebBetaAction != null && Object.hasOwnProperty.call(message, "externalWebBetaAction"))
-                $root.SyncAction.SyncActionValue.ExternalWebBetaAction.encode(message.externalWebBetaAction, writer.uint32(/* id 40, wireType 2 =*/322).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.ExternalWebBetaAction.encode(message.externalWebBetaAction, writer.uint32(/* id 40, wireType 2 =*/322).fork(), q + 1).ldelim();
             if (message.privacySettingRelayAllCalls != null && Object.hasOwnProperty.call(message, "privacySettingRelayAllCalls"))
-                $root.SyncAction.SyncActionValue.PrivacySettingRelayAllCalls.encode(message.privacySettingRelayAllCalls, writer.uint32(/* id 41, wireType 2 =*/330).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.PrivacySettingRelayAllCalls.encode(message.privacySettingRelayAllCalls, writer.uint32(/* id 41, wireType 2 =*/330).fork(), q + 1).ldelim();
             if (message.callLogAction != null && Object.hasOwnProperty.call(message, "callLogAction"))
-                $root.SyncAction.SyncActionValue.CallLogAction.encode(message.callLogAction, writer.uint32(/* id 42, wireType 2 =*/338).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.CallLogAction.encode(message.callLogAction, writer.uint32(/* id 42, wireType 2 =*/338).fork(), q + 1).ldelim();
             if (message.ugcBot != null && Object.hasOwnProperty.call(message, "ugcBot"))
-                $root.SyncAction.SyncActionValue.UGCBot.encode(message.ugcBot, writer.uint32(/* id 43, wireType 2 =*/346).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.UGCBot.encode(message.ugcBot, writer.uint32(/* id 43, wireType 2 =*/346).fork(), q + 1).ldelim();
             if (message.statusPrivacy != null && Object.hasOwnProperty.call(message, "statusPrivacy"))
-                $root.SyncAction.SyncActionValue.StatusPrivacyAction.encode(message.statusPrivacy, writer.uint32(/* id 44, wireType 2 =*/354).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.StatusPrivacyAction.encode(message.statusPrivacy, writer.uint32(/* id 44, wireType 2 =*/354).fork(), q + 1).ldelim();
             if (message.botWelcomeRequestAction != null && Object.hasOwnProperty.call(message, "botWelcomeRequestAction"))
-                $root.SyncAction.SyncActionValue.BotWelcomeRequestAction.encode(message.botWelcomeRequestAction, writer.uint32(/* id 45, wireType 2 =*/362).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.BotWelcomeRequestAction.encode(message.botWelcomeRequestAction, writer.uint32(/* id 45, wireType 2 =*/362).fork(), q + 1).ldelim();
             if (message.deleteIndividualCallLog != null && Object.hasOwnProperty.call(message, "deleteIndividualCallLog"))
-                $root.SyncAction.SyncActionValue.DeleteIndividualCallLogAction.encode(message.deleteIndividualCallLog, writer.uint32(/* id 46, wireType 2 =*/370).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.DeleteIndividualCallLogAction.encode(message.deleteIndividualCallLog, writer.uint32(/* id 46, wireType 2 =*/370).fork(), q + 1).ldelim();
             if (message.labelReorderingAction != null && Object.hasOwnProperty.call(message, "labelReorderingAction"))
-                $root.SyncAction.SyncActionValue.LabelReorderingAction.encode(message.labelReorderingAction, writer.uint32(/* id 47, wireType 2 =*/378).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.LabelReorderingAction.encode(message.labelReorderingAction, writer.uint32(/* id 47, wireType 2 =*/378).fork(), q + 1).ldelim();
             if (message.paymentInfoAction != null && Object.hasOwnProperty.call(message, "paymentInfoAction"))
-                $root.SyncAction.SyncActionValue.PaymentInfoAction.encode(message.paymentInfoAction, writer.uint32(/* id 48, wireType 2 =*/386).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.PaymentInfoAction.encode(message.paymentInfoAction, writer.uint32(/* id 48, wireType 2 =*/386).fork(), q + 1).ldelim();
             if (message.customPaymentMethodsAction != null && Object.hasOwnProperty.call(message, "customPaymentMethodsAction"))
-                $root.SyncAction.SyncActionValue.CustomPaymentMethodsAction.encode(message.customPaymentMethodsAction, writer.uint32(/* id 49, wireType 2 =*/394).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.CustomPaymentMethodsAction.encode(message.customPaymentMethodsAction, writer.uint32(/* id 49, wireType 2 =*/394).fork(), q + 1).ldelim();
             if (message.lockChatAction != null && Object.hasOwnProperty.call(message, "lockChatAction"))
-                $root.SyncAction.SyncActionValue.LockChatAction.encode(message.lockChatAction, writer.uint32(/* id 50, wireType 2 =*/402).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.LockChatAction.encode(message.lockChatAction, writer.uint32(/* id 50, wireType 2 =*/402).fork(), q + 1).ldelim();
             if (message.chatLockSettings != null && Object.hasOwnProperty.call(message, "chatLockSettings"))
-                $root.ChatLockSettings.ChatLockSettings.encode(message.chatLockSettings, writer.uint32(/* id 51, wireType 2 =*/410).fork()).ldelim();
+                $root.ChatLockSettings.ChatLockSettings.encode(message.chatLockSettings, writer.uint32(/* id 51, wireType 2 =*/410).fork(), q + 1).ldelim();
             if (message.wamoUserIdentifierAction != null && Object.hasOwnProperty.call(message, "wamoUserIdentifierAction"))
-                $root.SyncAction.SyncActionValue.WamoUserIdentifierAction.encode(message.wamoUserIdentifierAction, writer.uint32(/* id 52, wireType 2 =*/418).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.WamoUserIdentifierAction.encode(message.wamoUserIdentifierAction, writer.uint32(/* id 52, wireType 2 =*/418).fork(), q + 1).ldelim();
             if (message.privacySettingDisableLinkPreviewsAction != null && Object.hasOwnProperty.call(message, "privacySettingDisableLinkPreviewsAction"))
-                $root.SyncAction.SyncActionValue.PrivacySettingDisableLinkPreviewsAction.encode(message.privacySettingDisableLinkPreviewsAction, writer.uint32(/* id 53, wireType 2 =*/426).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.PrivacySettingDisableLinkPreviewsAction.encode(message.privacySettingDisableLinkPreviewsAction, writer.uint32(/* id 53, wireType 2 =*/426).fork(), q + 1).ldelim();
             if (message.deviceCapabilities != null && Object.hasOwnProperty.call(message, "deviceCapabilities"))
-                $root.DeviceCapabilities.DeviceCapabilities.encode(message.deviceCapabilities, writer.uint32(/* id 54, wireType 2 =*/434).fork()).ldelim();
+                $root.DeviceCapabilities.DeviceCapabilities.encode(message.deviceCapabilities, writer.uint32(/* id 54, wireType 2 =*/434).fork(), q + 1).ldelim();
             if (message.noteEditAction != null && Object.hasOwnProperty.call(message, "noteEditAction"))
-                $root.SyncAction.SyncActionValue.NoteEditAction.encode(message.noteEditAction, writer.uint32(/* id 55, wireType 2 =*/442).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.NoteEditAction.encode(message.noteEditAction, writer.uint32(/* id 55, wireType 2 =*/442).fork(), q + 1).ldelim();
             if (message.favoritesAction != null && Object.hasOwnProperty.call(message, "favoritesAction"))
-                $root.SyncAction.SyncActionValue.FavoritesAction.encode(message.favoritesAction, writer.uint32(/* id 56, wireType 2 =*/450).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.FavoritesAction.encode(message.favoritesAction, writer.uint32(/* id 56, wireType 2 =*/450).fork(), q + 1).ldelim();
             if (message.merchantPaymentPartnerAction != null && Object.hasOwnProperty.call(message, "merchantPaymentPartnerAction"))
-                $root.SyncAction.SyncActionValue.MerchantPaymentPartnerAction.encode(message.merchantPaymentPartnerAction, writer.uint32(/* id 57, wireType 2 =*/458).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.MerchantPaymentPartnerAction.encode(message.merchantPaymentPartnerAction, writer.uint32(/* id 57, wireType 2 =*/458).fork(), q + 1).ldelim();
             if (message.waffleAccountLinkStateAction != null && Object.hasOwnProperty.call(message, "waffleAccountLinkStateAction"))
-                $root.SyncAction.SyncActionValue.WaffleAccountLinkStateAction.encode(message.waffleAccountLinkStateAction, writer.uint32(/* id 58, wireType 2 =*/466).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.WaffleAccountLinkStateAction.encode(message.waffleAccountLinkStateAction, writer.uint32(/* id 58, wireType 2 =*/466).fork(), q + 1).ldelim();
             if (message.usernameChatStartMode != null && Object.hasOwnProperty.call(message, "usernameChatStartMode"))
-                $root.SyncAction.SyncActionValue.UsernameChatStartModeAction.encode(message.usernameChatStartMode, writer.uint32(/* id 59, wireType 2 =*/474).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.UsernameChatStartModeAction.encode(message.usernameChatStartMode, writer.uint32(/* id 59, wireType 2 =*/474).fork(), q + 1).ldelim();
             if (message.notificationActivitySettingAction != null && Object.hasOwnProperty.call(message, "notificationActivitySettingAction"))
-                $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.encode(message.notificationActivitySettingAction, writer.uint32(/* id 60, wireType 2 =*/482).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.encode(message.notificationActivitySettingAction, writer.uint32(/* id 60, wireType 2 =*/482).fork(), q + 1).ldelim();
             if (message.lidContactAction != null && Object.hasOwnProperty.call(message, "lidContactAction"))
-                $root.SyncAction.SyncActionValue.LidContactAction.encode(message.lidContactAction, writer.uint32(/* id 61, wireType 2 =*/490).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.LidContactAction.encode(message.lidContactAction, writer.uint32(/* id 61, wireType 2 =*/490).fork(), q + 1).ldelim();
             if (message.ctwaPerCustomerDataSharingAction != null && Object.hasOwnProperty.call(message, "ctwaPerCustomerDataSharingAction"))
-                $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.encode(message.ctwaPerCustomerDataSharingAction, writer.uint32(/* id 62, wireType 2 =*/498).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.encode(message.ctwaPerCustomerDataSharingAction, writer.uint32(/* id 62, wireType 2 =*/498).fork(), q + 1).ldelim();
             if (message.paymentTosAction != null && Object.hasOwnProperty.call(message, "paymentTosAction"))
-                $root.SyncAction.SyncActionValue.PaymentTosAction.encode(message.paymentTosAction, writer.uint32(/* id 63, wireType 2 =*/506).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.PaymentTosAction.encode(message.paymentTosAction, writer.uint32(/* id 63, wireType 2 =*/506).fork(), q + 1).ldelim();
             if (message.privacySettingChannelsPersonalisedRecommendationAction != null && Object.hasOwnProperty.call(message, "privacySettingChannelsPersonalisedRecommendationAction"))
-                $root.SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction.encode(message.privacySettingChannelsPersonalisedRecommendationAction, writer.uint32(/* id 64, wireType 2 =*/514).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction.encode(message.privacySettingChannelsPersonalisedRecommendationAction, writer.uint32(/* id 64, wireType 2 =*/514).fork(), q + 1).ldelim();
             if (message.detectedOutcomesStatusAction != null && Object.hasOwnProperty.call(message, "detectedOutcomesStatusAction"))
-                $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction.encode(message.detectedOutcomesStatusAction, writer.uint32(/* id 66, wireType 2 =*/530).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction.encode(message.detectedOutcomesStatusAction, writer.uint32(/* id 66, wireType 2 =*/530).fork(), q + 1).ldelim();
             if (message.maibaAiFeaturesControlAction != null && Object.hasOwnProperty.call(message, "maibaAiFeaturesControlAction"))
-                $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.encode(message.maibaAiFeaturesControlAction, writer.uint32(/* id 68, wireType 2 =*/546).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.encode(message.maibaAiFeaturesControlAction, writer.uint32(/* id 68, wireType 2 =*/546).fork(), q + 1).ldelim();
             if (message.businessBroadcastListAction != null && Object.hasOwnProperty.call(message, "businessBroadcastListAction"))
-                $root.SyncAction.SyncActionValue.BusinessBroadcastListAction.encode(message.businessBroadcastListAction, writer.uint32(/* id 69, wireType 2 =*/554).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.BusinessBroadcastListAction.encode(message.businessBroadcastListAction, writer.uint32(/* id 69, wireType 2 =*/554).fork(), q + 1).ldelim();
             if (message.musicUserIdAction != null && Object.hasOwnProperty.call(message, "musicUserIdAction"))
-                $root.SyncAction.SyncActionValue.MusicUserIdAction.encode(message.musicUserIdAction, writer.uint32(/* id 70, wireType 2 =*/562).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.MusicUserIdAction.encode(message.musicUserIdAction, writer.uint32(/* id 70, wireType 2 =*/562).fork(), q + 1).ldelim();
             if (message.statusPostOptInNotificationPreferencesAction != null && Object.hasOwnProperty.call(message, "statusPostOptInNotificationPreferencesAction"))
-                $root.SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction.encode(message.statusPostOptInNotificationPreferencesAction, writer.uint32(/* id 71, wireType 2 =*/570).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction.encode(message.statusPostOptInNotificationPreferencesAction, writer.uint32(/* id 71, wireType 2 =*/570).fork(), q + 1).ldelim();
             if (message.avatarUpdatedAction != null && Object.hasOwnProperty.call(message, "avatarUpdatedAction"))
-                $root.SyncAction.SyncActionValue.AvatarUpdatedAction.encode(message.avatarUpdatedAction, writer.uint32(/* id 72, wireType 2 =*/578).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.AvatarUpdatedAction.encode(message.avatarUpdatedAction, writer.uint32(/* id 72, wireType 2 =*/578).fork(), q + 1).ldelim();
             if (message.privateProcessingSettingAction != null && Object.hasOwnProperty.call(message, "privateProcessingSettingAction"))
-                $root.SyncAction.SyncActionValue.PrivateProcessingSettingAction.encode(message.privateProcessingSettingAction, writer.uint32(/* id 74, wireType 2 =*/594).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.PrivateProcessingSettingAction.encode(message.privateProcessingSettingAction, writer.uint32(/* id 74, wireType 2 =*/594).fork(), q + 1).ldelim();
             if (message.newsletterSavedInterestsAction != null && Object.hasOwnProperty.call(message, "newsletterSavedInterestsAction"))
-                $root.SyncAction.SyncActionValue.NewsletterSavedInterestsAction.encode(message.newsletterSavedInterestsAction, writer.uint32(/* id 75, wireType 2 =*/602).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.NewsletterSavedInterestsAction.encode(message.newsletterSavedInterestsAction, writer.uint32(/* id 75, wireType 2 =*/602).fork(), q + 1).ldelim();
             if (message.aiThreadRenameAction != null && Object.hasOwnProperty.call(message, "aiThreadRenameAction"))
-                $root.SyncAction.SyncActionValue.AiThreadRenameAction.encode(message.aiThreadRenameAction, writer.uint32(/* id 76, wireType 2 =*/610).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.AiThreadRenameAction.encode(message.aiThreadRenameAction, writer.uint32(/* id 76, wireType 2 =*/610).fork(), q + 1).ldelim();
             if (message.interactiveMessageAction != null && Object.hasOwnProperty.call(message, "interactiveMessageAction"))
-                $root.SyncAction.SyncActionValue.InteractiveMessageAction.encode(message.interactiveMessageAction, writer.uint32(/* id 77, wireType 2 =*/618).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.InteractiveMessageAction.encode(message.interactiveMessageAction, writer.uint32(/* id 77, wireType 2 =*/618).fork(), q + 1).ldelim();
             if (message.settingsSyncAction != null && Object.hasOwnProperty.call(message, "settingsSyncAction"))
-                $root.SyncAction.SyncActionValue.SettingsSyncAction.encode(message.settingsSyncAction, writer.uint32(/* id 78, wireType 2 =*/626).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.SettingsSyncAction.encode(message.settingsSyncAction, writer.uint32(/* id 78, wireType 2 =*/626).fork(), q + 1).ldelim();
             if (message.outContactAction != null && Object.hasOwnProperty.call(message, "outContactAction"))
-                $root.SyncAction.SyncActionValue.OutContactAction.encode(message.outContactAction, writer.uint32(/* id 79, wireType 2 =*/634).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.OutContactAction.encode(message.outContactAction, writer.uint32(/* id 79, wireType 2 =*/634).fork(), q + 1).ldelim();
             if (message.nctSaltSyncAction != null && Object.hasOwnProperty.call(message, "nctSaltSyncAction"))
-                $root.SyncAction.SyncActionValue.NctSaltSyncAction.encode(message.nctSaltSyncAction, writer.uint32(/* id 80, wireType 2 =*/642).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.NctSaltSyncAction.encode(message.nctSaltSyncAction, writer.uint32(/* id 80, wireType 2 =*/642).fork(), q + 1).ldelim();
             if (message.businessBroadcastCampaignAction != null && Object.hasOwnProperty.call(message, "businessBroadcastCampaignAction"))
-                $root.SyncAction.SyncActionValue.BusinessBroadcastCampaignAction.encode(message.businessBroadcastCampaignAction, writer.uint32(/* id 81, wireType 2 =*/650).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.BusinessBroadcastCampaignAction.encode(message.businessBroadcastCampaignAction, writer.uint32(/* id 81, wireType 2 =*/650).fork(), q + 1).ldelim();
             if (message.businessBroadcastInsightsAction != null && Object.hasOwnProperty.call(message, "businessBroadcastInsightsAction"))
-                $root.SyncAction.SyncActionValue.BusinessBroadcastInsightsAction.encode(message.businessBroadcastInsightsAction, writer.uint32(/* id 82, wireType 2 =*/658).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.BusinessBroadcastInsightsAction.encode(message.businessBroadcastInsightsAction, writer.uint32(/* id 82, wireType 2 =*/658).fork(), q + 1).ldelim();
             if (message.customerDataAction != null && Object.hasOwnProperty.call(message, "customerDataAction"))
-                $root.SyncAction.SyncActionValue.CustomerDataAction.encode(message.customerDataAction, writer.uint32(/* id 83, wireType 2 =*/666).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.CustomerDataAction.encode(message.customerDataAction, writer.uint32(/* id 83, wireType 2 =*/666).fork(), q + 1).ldelim();
             if (message.subscriptionsSyncV2Action != null && Object.hasOwnProperty.call(message, "subscriptionsSyncV2Action"))
-                $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.encode(message.subscriptionsSyncV2Action, writer.uint32(/* id 84, wireType 2 =*/674).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.encode(message.subscriptionsSyncV2Action, writer.uint32(/* id 84, wireType 2 =*/674).fork(), q + 1).ldelim();
             if (message.threadPinAction != null && Object.hasOwnProperty.call(message, "threadPinAction"))
-                $root.SyncAction.SyncActionValue.ThreadPinAction.encode(message.threadPinAction, writer.uint32(/* id 85, wireType 2 =*/682).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.ThreadPinAction.encode(message.threadPinAction, writer.uint32(/* id 85, wireType 2 =*/682).fork(), q + 1).ldelim();
             if (message.autoOrganizeBusinessChatSetting != null && Object.hasOwnProperty.call(message, "autoOrganizeBusinessChatSetting"))
-                $root.SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting.encode(message.autoOrganizeBusinessChatSetting, writer.uint32(/* id 86, wireType 2 =*/690).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting.encode(message.autoOrganizeBusinessChatSetting, writer.uint32(/* id 86, wireType 2 =*/690).fork(), q + 1).ldelim();
             if (message.bizAiSettingsNudgeAction != null && Object.hasOwnProperty.call(message, "bizAiSettingsNudgeAction"))
-                $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction.encode(message.bizAiSettingsNudgeAction, writer.uint32(/* id 87, wireType 2 =*/698).fork()).ldelim();
+                $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction.encode(message.bizAiSettingsNudgeAction, writer.uint32(/* id 87, wireType 2 =*/698).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -2638,7 +2658,7 @@ $root.SyncAction = (function() {
             var message = new $root.SyncAction.SyncActionValue();
             if (object.timestamp != null)
                 if ($util.Long)
-                    (message.timestamp = $util.Long.fromValue(object.timestamp)).unsigned = false;
+                    message.timestamp = $util.Long.fromValue(object.timestamp, false);
                 else if (typeof object.timestamp === "string")
                     message.timestamp = parseInt(object.timestamp, 10);
                 else if (typeof object.timestamp === "number")
@@ -3042,9 +3062,13 @@ $root.SyncAction = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        SyncActionValue.toObject = function toObject(message, options) {
+        SyncActionValue.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 if ($util.Long) {
@@ -3138,159 +3162,159 @@ $root.SyncAction = (function() {
                 else
                     object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber() : message.timestamp;
             if (message.starAction != null && message.hasOwnProperty("starAction"))
-                object.starAction = $root.SyncAction.SyncActionValue.StarAction.toObject(message.starAction, options);
+                object.starAction = $root.SyncAction.SyncActionValue.StarAction.toObject(message.starAction, options, q + 1);
             if (message.contactAction != null && message.hasOwnProperty("contactAction"))
-                object.contactAction = $root.SyncAction.SyncActionValue.ContactAction.toObject(message.contactAction, options);
+                object.contactAction = $root.SyncAction.SyncActionValue.ContactAction.toObject(message.contactAction, options, q + 1);
             if (message.muteAction != null && message.hasOwnProperty("muteAction"))
-                object.muteAction = $root.SyncAction.SyncActionValue.MuteAction.toObject(message.muteAction, options);
+                object.muteAction = $root.SyncAction.SyncActionValue.MuteAction.toObject(message.muteAction, options, q + 1);
             if (message.pinAction != null && message.hasOwnProperty("pinAction"))
-                object.pinAction = $root.SyncAction.SyncActionValue.PinAction.toObject(message.pinAction, options);
+                object.pinAction = $root.SyncAction.SyncActionValue.PinAction.toObject(message.pinAction, options, q + 1);
             if (message.pushNameSetting != null && message.hasOwnProperty("pushNameSetting"))
-                object.pushNameSetting = $root.SyncAction.SyncActionValue.PushNameSetting.toObject(message.pushNameSetting, options);
+                object.pushNameSetting = $root.SyncAction.SyncActionValue.PushNameSetting.toObject(message.pushNameSetting, options, q + 1);
             if (message.quickReplyAction != null && message.hasOwnProperty("quickReplyAction"))
-                object.quickReplyAction = $root.SyncAction.SyncActionValue.QuickReplyAction.toObject(message.quickReplyAction, options);
+                object.quickReplyAction = $root.SyncAction.SyncActionValue.QuickReplyAction.toObject(message.quickReplyAction, options, q + 1);
             if (message.recentEmojiWeightsAction != null && message.hasOwnProperty("recentEmojiWeightsAction"))
-                object.recentEmojiWeightsAction = $root.SyncAction.SyncActionValue.RecentEmojiWeightsAction.toObject(message.recentEmojiWeightsAction, options);
+                object.recentEmojiWeightsAction = $root.SyncAction.SyncActionValue.RecentEmojiWeightsAction.toObject(message.recentEmojiWeightsAction, options, q + 1);
             if (message.labelEditAction != null && message.hasOwnProperty("labelEditAction"))
-                object.labelEditAction = $root.SyncAction.SyncActionValue.LabelEditAction.toObject(message.labelEditAction, options);
+                object.labelEditAction = $root.SyncAction.SyncActionValue.LabelEditAction.toObject(message.labelEditAction, options, q + 1);
             if (message.labelAssociationAction != null && message.hasOwnProperty("labelAssociationAction"))
-                object.labelAssociationAction = $root.SyncAction.SyncActionValue.LabelAssociationAction.toObject(message.labelAssociationAction, options);
+                object.labelAssociationAction = $root.SyncAction.SyncActionValue.LabelAssociationAction.toObject(message.labelAssociationAction, options, q + 1);
             if (message.localeSetting != null && message.hasOwnProperty("localeSetting"))
-                object.localeSetting = $root.SyncAction.SyncActionValue.LocaleSetting.toObject(message.localeSetting, options);
+                object.localeSetting = $root.SyncAction.SyncActionValue.LocaleSetting.toObject(message.localeSetting, options, q + 1);
             if (message.archiveChatAction != null && message.hasOwnProperty("archiveChatAction"))
-                object.archiveChatAction = $root.SyncAction.SyncActionValue.ArchiveChatAction.toObject(message.archiveChatAction, options);
+                object.archiveChatAction = $root.SyncAction.SyncActionValue.ArchiveChatAction.toObject(message.archiveChatAction, options, q + 1);
             if (message.deleteMessageForMeAction != null && message.hasOwnProperty("deleteMessageForMeAction"))
-                object.deleteMessageForMeAction = $root.SyncAction.SyncActionValue.DeleteMessageForMeAction.toObject(message.deleteMessageForMeAction, options);
+                object.deleteMessageForMeAction = $root.SyncAction.SyncActionValue.DeleteMessageForMeAction.toObject(message.deleteMessageForMeAction, options, q + 1);
             if (message.keyExpiration != null && message.hasOwnProperty("keyExpiration"))
-                object.keyExpiration = $root.SyncAction.SyncActionValue.KeyExpiration.toObject(message.keyExpiration, options);
+                object.keyExpiration = $root.SyncAction.SyncActionValue.KeyExpiration.toObject(message.keyExpiration, options, q + 1);
             if (message.markChatAsReadAction != null && message.hasOwnProperty("markChatAsReadAction"))
-                object.markChatAsReadAction = $root.SyncAction.SyncActionValue.MarkChatAsReadAction.toObject(message.markChatAsReadAction, options);
+                object.markChatAsReadAction = $root.SyncAction.SyncActionValue.MarkChatAsReadAction.toObject(message.markChatAsReadAction, options, q + 1);
             if (message.clearChatAction != null && message.hasOwnProperty("clearChatAction"))
-                object.clearChatAction = $root.SyncAction.SyncActionValue.ClearChatAction.toObject(message.clearChatAction, options);
+                object.clearChatAction = $root.SyncAction.SyncActionValue.ClearChatAction.toObject(message.clearChatAction, options, q + 1);
             if (message.deleteChatAction != null && message.hasOwnProperty("deleteChatAction"))
-                object.deleteChatAction = $root.SyncAction.SyncActionValue.DeleteChatAction.toObject(message.deleteChatAction, options);
+                object.deleteChatAction = $root.SyncAction.SyncActionValue.DeleteChatAction.toObject(message.deleteChatAction, options, q + 1);
             if (message.unarchiveChatsSetting != null && message.hasOwnProperty("unarchiveChatsSetting"))
-                object.unarchiveChatsSetting = $root.SyncAction.SyncActionValue.UnarchiveChatsSetting.toObject(message.unarchiveChatsSetting, options);
+                object.unarchiveChatsSetting = $root.SyncAction.SyncActionValue.UnarchiveChatsSetting.toObject(message.unarchiveChatsSetting, options, q + 1);
             if (message.primaryFeature != null && message.hasOwnProperty("primaryFeature"))
-                object.primaryFeature = $root.SyncAction.SyncActionValue.PrimaryFeature.toObject(message.primaryFeature, options);
+                object.primaryFeature = $root.SyncAction.SyncActionValue.PrimaryFeature.toObject(message.primaryFeature, options, q + 1);
             if (message.androidUnsupportedActions != null && message.hasOwnProperty("androidUnsupportedActions"))
-                object.androidUnsupportedActions = $root.SyncAction.SyncActionValue.AndroidUnsupportedActions.toObject(message.androidUnsupportedActions, options);
+                object.androidUnsupportedActions = $root.SyncAction.SyncActionValue.AndroidUnsupportedActions.toObject(message.androidUnsupportedActions, options, q + 1);
             if (message.agentAction != null && message.hasOwnProperty("agentAction"))
-                object.agentAction = $root.SyncAction.SyncActionValue.AgentAction.toObject(message.agentAction, options);
+                object.agentAction = $root.SyncAction.SyncActionValue.AgentAction.toObject(message.agentAction, options, q + 1);
             if (message.subscriptionAction != null && message.hasOwnProperty("subscriptionAction"))
-                object.subscriptionAction = $root.SyncAction.SyncActionValue.SubscriptionAction.toObject(message.subscriptionAction, options);
+                object.subscriptionAction = $root.SyncAction.SyncActionValue.SubscriptionAction.toObject(message.subscriptionAction, options, q + 1);
             if (message.userStatusMuteAction != null && message.hasOwnProperty("userStatusMuteAction"))
-                object.userStatusMuteAction = $root.SyncAction.SyncActionValue.UserStatusMuteAction.toObject(message.userStatusMuteAction, options);
+                object.userStatusMuteAction = $root.SyncAction.SyncActionValue.UserStatusMuteAction.toObject(message.userStatusMuteAction, options, q + 1);
             if (message.timeFormatAction != null && message.hasOwnProperty("timeFormatAction"))
-                object.timeFormatAction = $root.SyncAction.SyncActionValue.TimeFormatAction.toObject(message.timeFormatAction, options);
+                object.timeFormatAction = $root.SyncAction.SyncActionValue.TimeFormatAction.toObject(message.timeFormatAction, options, q + 1);
             if (message.nuxAction != null && message.hasOwnProperty("nuxAction"))
-                object.nuxAction = $root.SyncAction.SyncActionValue.NuxAction.toObject(message.nuxAction, options);
+                object.nuxAction = $root.SyncAction.SyncActionValue.NuxAction.toObject(message.nuxAction, options, q + 1);
             if (message.primaryVersionAction != null && message.hasOwnProperty("primaryVersionAction"))
-                object.primaryVersionAction = $root.SyncAction.SyncActionValue.PrimaryVersionAction.toObject(message.primaryVersionAction, options);
+                object.primaryVersionAction = $root.SyncAction.SyncActionValue.PrimaryVersionAction.toObject(message.primaryVersionAction, options, q + 1);
             if (message.stickerAction != null && message.hasOwnProperty("stickerAction"))
-                object.stickerAction = $root.SyncAction.SyncActionValue.StickerAction.toObject(message.stickerAction, options);
+                object.stickerAction = $root.SyncAction.SyncActionValue.StickerAction.toObject(message.stickerAction, options, q + 1);
             if (message.removeRecentStickerAction != null && message.hasOwnProperty("removeRecentStickerAction"))
-                object.removeRecentStickerAction = $root.SyncAction.SyncActionValue.RemoveRecentStickerAction.toObject(message.removeRecentStickerAction, options);
+                object.removeRecentStickerAction = $root.SyncAction.SyncActionValue.RemoveRecentStickerAction.toObject(message.removeRecentStickerAction, options, q + 1);
             if (message.chatAssignment != null && message.hasOwnProperty("chatAssignment"))
-                object.chatAssignment = $root.SyncAction.SyncActionValue.ChatAssignmentAction.toObject(message.chatAssignment, options);
+                object.chatAssignment = $root.SyncAction.SyncActionValue.ChatAssignmentAction.toObject(message.chatAssignment, options, q + 1);
             if (message.chatAssignmentOpenedStatus != null && message.hasOwnProperty("chatAssignmentOpenedStatus"))
-                object.chatAssignmentOpenedStatus = $root.SyncAction.SyncActionValue.ChatAssignmentOpenedStatusAction.toObject(message.chatAssignmentOpenedStatus, options);
+                object.chatAssignmentOpenedStatus = $root.SyncAction.SyncActionValue.ChatAssignmentOpenedStatusAction.toObject(message.chatAssignmentOpenedStatus, options, q + 1);
             if (message.pnForLidChatAction != null && message.hasOwnProperty("pnForLidChatAction"))
-                object.pnForLidChatAction = $root.SyncAction.SyncActionValue.PnForLidChatAction.toObject(message.pnForLidChatAction, options);
+                object.pnForLidChatAction = $root.SyncAction.SyncActionValue.PnForLidChatAction.toObject(message.pnForLidChatAction, options, q + 1);
             if (message.marketingMessageAction != null && message.hasOwnProperty("marketingMessageAction"))
-                object.marketingMessageAction = $root.SyncAction.SyncActionValue.MarketingMessageAction.toObject(message.marketingMessageAction, options);
+                object.marketingMessageAction = $root.SyncAction.SyncActionValue.MarketingMessageAction.toObject(message.marketingMessageAction, options, q + 1);
             if (message.marketingMessageBroadcastAction != null && message.hasOwnProperty("marketingMessageBroadcastAction"))
-                object.marketingMessageBroadcastAction = $root.SyncAction.SyncActionValue.MarketingMessageBroadcastAction.toObject(message.marketingMessageBroadcastAction, options);
+                object.marketingMessageBroadcastAction = $root.SyncAction.SyncActionValue.MarketingMessageBroadcastAction.toObject(message.marketingMessageBroadcastAction, options, q + 1);
             if (message.externalWebBetaAction != null && message.hasOwnProperty("externalWebBetaAction"))
-                object.externalWebBetaAction = $root.SyncAction.SyncActionValue.ExternalWebBetaAction.toObject(message.externalWebBetaAction, options);
+                object.externalWebBetaAction = $root.SyncAction.SyncActionValue.ExternalWebBetaAction.toObject(message.externalWebBetaAction, options, q + 1);
             if (message.privacySettingRelayAllCalls != null && message.hasOwnProperty("privacySettingRelayAllCalls"))
-                object.privacySettingRelayAllCalls = $root.SyncAction.SyncActionValue.PrivacySettingRelayAllCalls.toObject(message.privacySettingRelayAllCalls, options);
+                object.privacySettingRelayAllCalls = $root.SyncAction.SyncActionValue.PrivacySettingRelayAllCalls.toObject(message.privacySettingRelayAllCalls, options, q + 1);
             if (message.callLogAction != null && message.hasOwnProperty("callLogAction"))
-                object.callLogAction = $root.SyncAction.SyncActionValue.CallLogAction.toObject(message.callLogAction, options);
+                object.callLogAction = $root.SyncAction.SyncActionValue.CallLogAction.toObject(message.callLogAction, options, q + 1);
             if (message.ugcBot != null && message.hasOwnProperty("ugcBot"))
-                object.ugcBot = $root.SyncAction.SyncActionValue.UGCBot.toObject(message.ugcBot, options);
+                object.ugcBot = $root.SyncAction.SyncActionValue.UGCBot.toObject(message.ugcBot, options, q + 1);
             if (message.statusPrivacy != null && message.hasOwnProperty("statusPrivacy"))
-                object.statusPrivacy = $root.SyncAction.SyncActionValue.StatusPrivacyAction.toObject(message.statusPrivacy, options);
+                object.statusPrivacy = $root.SyncAction.SyncActionValue.StatusPrivacyAction.toObject(message.statusPrivacy, options, q + 1);
             if (message.botWelcomeRequestAction != null && message.hasOwnProperty("botWelcomeRequestAction"))
-                object.botWelcomeRequestAction = $root.SyncAction.SyncActionValue.BotWelcomeRequestAction.toObject(message.botWelcomeRequestAction, options);
+                object.botWelcomeRequestAction = $root.SyncAction.SyncActionValue.BotWelcomeRequestAction.toObject(message.botWelcomeRequestAction, options, q + 1);
             if (message.deleteIndividualCallLog != null && message.hasOwnProperty("deleteIndividualCallLog"))
-                object.deleteIndividualCallLog = $root.SyncAction.SyncActionValue.DeleteIndividualCallLogAction.toObject(message.deleteIndividualCallLog, options);
+                object.deleteIndividualCallLog = $root.SyncAction.SyncActionValue.DeleteIndividualCallLogAction.toObject(message.deleteIndividualCallLog, options, q + 1);
             if (message.labelReorderingAction != null && message.hasOwnProperty("labelReorderingAction"))
-                object.labelReorderingAction = $root.SyncAction.SyncActionValue.LabelReorderingAction.toObject(message.labelReorderingAction, options);
+                object.labelReorderingAction = $root.SyncAction.SyncActionValue.LabelReorderingAction.toObject(message.labelReorderingAction, options, q + 1);
             if (message.paymentInfoAction != null && message.hasOwnProperty("paymentInfoAction"))
-                object.paymentInfoAction = $root.SyncAction.SyncActionValue.PaymentInfoAction.toObject(message.paymentInfoAction, options);
+                object.paymentInfoAction = $root.SyncAction.SyncActionValue.PaymentInfoAction.toObject(message.paymentInfoAction, options, q + 1);
             if (message.customPaymentMethodsAction != null && message.hasOwnProperty("customPaymentMethodsAction"))
-                object.customPaymentMethodsAction = $root.SyncAction.SyncActionValue.CustomPaymentMethodsAction.toObject(message.customPaymentMethodsAction, options);
+                object.customPaymentMethodsAction = $root.SyncAction.SyncActionValue.CustomPaymentMethodsAction.toObject(message.customPaymentMethodsAction, options, q + 1);
             if (message.lockChatAction != null && message.hasOwnProperty("lockChatAction"))
-                object.lockChatAction = $root.SyncAction.SyncActionValue.LockChatAction.toObject(message.lockChatAction, options);
+                object.lockChatAction = $root.SyncAction.SyncActionValue.LockChatAction.toObject(message.lockChatAction, options, q + 1);
             if (message.chatLockSettings != null && message.hasOwnProperty("chatLockSettings"))
-                object.chatLockSettings = $root.ChatLockSettings.ChatLockSettings.toObject(message.chatLockSettings, options);
+                object.chatLockSettings = $root.ChatLockSettings.ChatLockSettings.toObject(message.chatLockSettings, options, q + 1);
             if (message.wamoUserIdentifierAction != null && message.hasOwnProperty("wamoUserIdentifierAction"))
-                object.wamoUserIdentifierAction = $root.SyncAction.SyncActionValue.WamoUserIdentifierAction.toObject(message.wamoUserIdentifierAction, options);
+                object.wamoUserIdentifierAction = $root.SyncAction.SyncActionValue.WamoUserIdentifierAction.toObject(message.wamoUserIdentifierAction, options, q + 1);
             if (message.privacySettingDisableLinkPreviewsAction != null && message.hasOwnProperty("privacySettingDisableLinkPreviewsAction"))
-                object.privacySettingDisableLinkPreviewsAction = $root.SyncAction.SyncActionValue.PrivacySettingDisableLinkPreviewsAction.toObject(message.privacySettingDisableLinkPreviewsAction, options);
+                object.privacySettingDisableLinkPreviewsAction = $root.SyncAction.SyncActionValue.PrivacySettingDisableLinkPreviewsAction.toObject(message.privacySettingDisableLinkPreviewsAction, options, q + 1);
             if (message.deviceCapabilities != null && message.hasOwnProperty("deviceCapabilities"))
-                object.deviceCapabilities = $root.DeviceCapabilities.DeviceCapabilities.toObject(message.deviceCapabilities, options);
+                object.deviceCapabilities = $root.DeviceCapabilities.DeviceCapabilities.toObject(message.deviceCapabilities, options, q + 1);
             if (message.noteEditAction != null && message.hasOwnProperty("noteEditAction"))
-                object.noteEditAction = $root.SyncAction.SyncActionValue.NoteEditAction.toObject(message.noteEditAction, options);
+                object.noteEditAction = $root.SyncAction.SyncActionValue.NoteEditAction.toObject(message.noteEditAction, options, q + 1);
             if (message.favoritesAction != null && message.hasOwnProperty("favoritesAction"))
-                object.favoritesAction = $root.SyncAction.SyncActionValue.FavoritesAction.toObject(message.favoritesAction, options);
+                object.favoritesAction = $root.SyncAction.SyncActionValue.FavoritesAction.toObject(message.favoritesAction, options, q + 1);
             if (message.merchantPaymentPartnerAction != null && message.hasOwnProperty("merchantPaymentPartnerAction"))
-                object.merchantPaymentPartnerAction = $root.SyncAction.SyncActionValue.MerchantPaymentPartnerAction.toObject(message.merchantPaymentPartnerAction, options);
+                object.merchantPaymentPartnerAction = $root.SyncAction.SyncActionValue.MerchantPaymentPartnerAction.toObject(message.merchantPaymentPartnerAction, options, q + 1);
             if (message.waffleAccountLinkStateAction != null && message.hasOwnProperty("waffleAccountLinkStateAction"))
-                object.waffleAccountLinkStateAction = $root.SyncAction.SyncActionValue.WaffleAccountLinkStateAction.toObject(message.waffleAccountLinkStateAction, options);
+                object.waffleAccountLinkStateAction = $root.SyncAction.SyncActionValue.WaffleAccountLinkStateAction.toObject(message.waffleAccountLinkStateAction, options, q + 1);
             if (message.usernameChatStartMode != null && message.hasOwnProperty("usernameChatStartMode"))
-                object.usernameChatStartMode = $root.SyncAction.SyncActionValue.UsernameChatStartModeAction.toObject(message.usernameChatStartMode, options);
+                object.usernameChatStartMode = $root.SyncAction.SyncActionValue.UsernameChatStartModeAction.toObject(message.usernameChatStartMode, options, q + 1);
             if (message.notificationActivitySettingAction != null && message.hasOwnProperty("notificationActivitySettingAction"))
-                object.notificationActivitySettingAction = $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.toObject(message.notificationActivitySettingAction, options);
+                object.notificationActivitySettingAction = $root.SyncAction.SyncActionValue.NotificationActivitySettingAction.toObject(message.notificationActivitySettingAction, options, q + 1);
             if (message.lidContactAction != null && message.hasOwnProperty("lidContactAction"))
-                object.lidContactAction = $root.SyncAction.SyncActionValue.LidContactAction.toObject(message.lidContactAction, options);
+                object.lidContactAction = $root.SyncAction.SyncActionValue.LidContactAction.toObject(message.lidContactAction, options, q + 1);
             if (message.ctwaPerCustomerDataSharingAction != null && message.hasOwnProperty("ctwaPerCustomerDataSharingAction"))
-                object.ctwaPerCustomerDataSharingAction = $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.toObject(message.ctwaPerCustomerDataSharingAction, options);
+                object.ctwaPerCustomerDataSharingAction = $root.SyncAction.SyncActionValue.CtwaPerCustomerDataSharingAction.toObject(message.ctwaPerCustomerDataSharingAction, options, q + 1);
             if (message.paymentTosAction != null && message.hasOwnProperty("paymentTosAction"))
-                object.paymentTosAction = $root.SyncAction.SyncActionValue.PaymentTosAction.toObject(message.paymentTosAction, options);
+                object.paymentTosAction = $root.SyncAction.SyncActionValue.PaymentTosAction.toObject(message.paymentTosAction, options, q + 1);
             if (message.privacySettingChannelsPersonalisedRecommendationAction != null && message.hasOwnProperty("privacySettingChannelsPersonalisedRecommendationAction"))
-                object.privacySettingChannelsPersonalisedRecommendationAction = $root.SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction.toObject(message.privacySettingChannelsPersonalisedRecommendationAction, options);
+                object.privacySettingChannelsPersonalisedRecommendationAction = $root.SyncAction.SyncActionValue.PrivacySettingChannelsPersonalisedRecommendationAction.toObject(message.privacySettingChannelsPersonalisedRecommendationAction, options, q + 1);
             if (message.detectedOutcomesStatusAction != null && message.hasOwnProperty("detectedOutcomesStatusAction"))
-                object.detectedOutcomesStatusAction = $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction.toObject(message.detectedOutcomesStatusAction, options);
+                object.detectedOutcomesStatusAction = $root.SyncAction.SyncActionValue.DetectedOutcomesStatusAction.toObject(message.detectedOutcomesStatusAction, options, q + 1);
             if (message.maibaAiFeaturesControlAction != null && message.hasOwnProperty("maibaAiFeaturesControlAction"))
-                object.maibaAiFeaturesControlAction = $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.toObject(message.maibaAiFeaturesControlAction, options);
+                object.maibaAiFeaturesControlAction = $root.SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.toObject(message.maibaAiFeaturesControlAction, options, q + 1);
             if (message.businessBroadcastListAction != null && message.hasOwnProperty("businessBroadcastListAction"))
-                object.businessBroadcastListAction = $root.SyncAction.SyncActionValue.BusinessBroadcastListAction.toObject(message.businessBroadcastListAction, options);
+                object.businessBroadcastListAction = $root.SyncAction.SyncActionValue.BusinessBroadcastListAction.toObject(message.businessBroadcastListAction, options, q + 1);
             if (message.musicUserIdAction != null && message.hasOwnProperty("musicUserIdAction"))
-                object.musicUserIdAction = $root.SyncAction.SyncActionValue.MusicUserIdAction.toObject(message.musicUserIdAction, options);
+                object.musicUserIdAction = $root.SyncAction.SyncActionValue.MusicUserIdAction.toObject(message.musicUserIdAction, options, q + 1);
             if (message.statusPostOptInNotificationPreferencesAction != null && message.hasOwnProperty("statusPostOptInNotificationPreferencesAction"))
-                object.statusPostOptInNotificationPreferencesAction = $root.SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction.toObject(message.statusPostOptInNotificationPreferencesAction, options);
+                object.statusPostOptInNotificationPreferencesAction = $root.SyncAction.SyncActionValue.StatusPostOptInNotificationPreferencesAction.toObject(message.statusPostOptInNotificationPreferencesAction, options, q + 1);
             if (message.avatarUpdatedAction != null && message.hasOwnProperty("avatarUpdatedAction"))
-                object.avatarUpdatedAction = $root.SyncAction.SyncActionValue.AvatarUpdatedAction.toObject(message.avatarUpdatedAction, options);
+                object.avatarUpdatedAction = $root.SyncAction.SyncActionValue.AvatarUpdatedAction.toObject(message.avatarUpdatedAction, options, q + 1);
             if (message.privateProcessingSettingAction != null && message.hasOwnProperty("privateProcessingSettingAction"))
-                object.privateProcessingSettingAction = $root.SyncAction.SyncActionValue.PrivateProcessingSettingAction.toObject(message.privateProcessingSettingAction, options);
+                object.privateProcessingSettingAction = $root.SyncAction.SyncActionValue.PrivateProcessingSettingAction.toObject(message.privateProcessingSettingAction, options, q + 1);
             if (message.newsletterSavedInterestsAction != null && message.hasOwnProperty("newsletterSavedInterestsAction"))
-                object.newsletterSavedInterestsAction = $root.SyncAction.SyncActionValue.NewsletterSavedInterestsAction.toObject(message.newsletterSavedInterestsAction, options);
+                object.newsletterSavedInterestsAction = $root.SyncAction.SyncActionValue.NewsletterSavedInterestsAction.toObject(message.newsletterSavedInterestsAction, options, q + 1);
             if (message.aiThreadRenameAction != null && message.hasOwnProperty("aiThreadRenameAction"))
-                object.aiThreadRenameAction = $root.SyncAction.SyncActionValue.AiThreadRenameAction.toObject(message.aiThreadRenameAction, options);
+                object.aiThreadRenameAction = $root.SyncAction.SyncActionValue.AiThreadRenameAction.toObject(message.aiThreadRenameAction, options, q + 1);
             if (message.interactiveMessageAction != null && message.hasOwnProperty("interactiveMessageAction"))
-                object.interactiveMessageAction = $root.SyncAction.SyncActionValue.InteractiveMessageAction.toObject(message.interactiveMessageAction, options);
+                object.interactiveMessageAction = $root.SyncAction.SyncActionValue.InteractiveMessageAction.toObject(message.interactiveMessageAction, options, q + 1);
             if (message.settingsSyncAction != null && message.hasOwnProperty("settingsSyncAction"))
-                object.settingsSyncAction = $root.SyncAction.SyncActionValue.SettingsSyncAction.toObject(message.settingsSyncAction, options);
+                object.settingsSyncAction = $root.SyncAction.SyncActionValue.SettingsSyncAction.toObject(message.settingsSyncAction, options, q + 1);
             if (message.outContactAction != null && message.hasOwnProperty("outContactAction"))
-                object.outContactAction = $root.SyncAction.SyncActionValue.OutContactAction.toObject(message.outContactAction, options);
+                object.outContactAction = $root.SyncAction.SyncActionValue.OutContactAction.toObject(message.outContactAction, options, q + 1);
             if (message.nctSaltSyncAction != null && message.hasOwnProperty("nctSaltSyncAction"))
-                object.nctSaltSyncAction = $root.SyncAction.SyncActionValue.NctSaltSyncAction.toObject(message.nctSaltSyncAction, options);
+                object.nctSaltSyncAction = $root.SyncAction.SyncActionValue.NctSaltSyncAction.toObject(message.nctSaltSyncAction, options, q + 1);
             if (message.businessBroadcastCampaignAction != null && message.hasOwnProperty("businessBroadcastCampaignAction"))
-                object.businessBroadcastCampaignAction = $root.SyncAction.SyncActionValue.BusinessBroadcastCampaignAction.toObject(message.businessBroadcastCampaignAction, options);
+                object.businessBroadcastCampaignAction = $root.SyncAction.SyncActionValue.BusinessBroadcastCampaignAction.toObject(message.businessBroadcastCampaignAction, options, q + 1);
             if (message.businessBroadcastInsightsAction != null && message.hasOwnProperty("businessBroadcastInsightsAction"))
-                object.businessBroadcastInsightsAction = $root.SyncAction.SyncActionValue.BusinessBroadcastInsightsAction.toObject(message.businessBroadcastInsightsAction, options);
+                object.businessBroadcastInsightsAction = $root.SyncAction.SyncActionValue.BusinessBroadcastInsightsAction.toObject(message.businessBroadcastInsightsAction, options, q + 1);
             if (message.customerDataAction != null && message.hasOwnProperty("customerDataAction"))
-                object.customerDataAction = $root.SyncAction.SyncActionValue.CustomerDataAction.toObject(message.customerDataAction, options);
+                object.customerDataAction = $root.SyncAction.SyncActionValue.CustomerDataAction.toObject(message.customerDataAction, options, q + 1);
             if (message.subscriptionsSyncV2Action != null && message.hasOwnProperty("subscriptionsSyncV2Action"))
-                object.subscriptionsSyncV2Action = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.toObject(message.subscriptionsSyncV2Action, options);
+                object.subscriptionsSyncV2Action = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.toObject(message.subscriptionsSyncV2Action, options, q + 1);
             if (message.threadPinAction != null && message.hasOwnProperty("threadPinAction"))
-                object.threadPinAction = $root.SyncAction.SyncActionValue.ThreadPinAction.toObject(message.threadPinAction, options);
+                object.threadPinAction = $root.SyncAction.SyncActionValue.ThreadPinAction.toObject(message.threadPinAction, options, q + 1);
             if (message.autoOrganizeBusinessChatSetting != null && message.hasOwnProperty("autoOrganizeBusinessChatSetting"))
-                object.autoOrganizeBusinessChatSetting = $root.SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting.toObject(message.autoOrganizeBusinessChatSetting, options);
+                object.autoOrganizeBusinessChatSetting = $root.SyncAction.SyncActionValue.AutoOrganizeBusinessChatSetting.toObject(message.autoOrganizeBusinessChatSetting, options, q + 1);
             if (message.bizAiSettingsNudgeAction != null && message.hasOwnProperty("bizAiSettingsNudgeAction"))
-                object.bizAiSettingsNudgeAction = $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction.toObject(message.bizAiSettingsNudgeAction, options);
+                object.bizAiSettingsNudgeAction = $root.SyncAction.SyncActionValue.BizAISettingsNudgeAction.toObject(message.bizAiSettingsNudgeAction, options, q + 1);
             return object;
         };
 
@@ -3391,9 +3415,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            AgentAction.encode = function encode(message, writer) {
+            AgentAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
                 if (message.deviceID != null && Object.hasOwnProperty.call(message, "deviceID"))
@@ -3537,9 +3565,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            AgentAction.toObject = function toObject(message, options) {
+            AgentAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.name = "";
@@ -3637,9 +3669,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            AiThreadRenameAction.encode = function encode(message, writer) {
+            AiThreadRenameAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.newTitle != null && Object.hasOwnProperty.call(message, "newTitle"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.newTitle);
                 return writer;
@@ -3761,9 +3797,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            AiThreadRenameAction.toObject = function toObject(message, options) {
+            AiThreadRenameAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.newTitle = "";
@@ -3854,9 +3894,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            AndroidUnsupportedActions.encode = function encode(message, writer) {
+            AndroidUnsupportedActions.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.allowed != null && Object.hasOwnProperty.call(message, "allowed"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.allowed);
                 return writer;
@@ -3978,9 +4022,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            AndroidUnsupportedActions.toObject = function toObject(message, options) {
+            AndroidUnsupportedActions.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.allowed = false;
@@ -4080,13 +4128,17 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            ArchiveChatAction.encode = function encode(message, writer) {
+            ArchiveChatAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.archived != null && Object.hasOwnProperty.call(message, "archived"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.archived);
                 if (message.messageRange != null && Object.hasOwnProperty.call(message, "messageRange"))
-                    $root.SyncAction.SyncActionValue.SyncActionMessageRange.encode(message.messageRange, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                    $root.SyncAction.SyncActionValue.SyncActionMessageRange.encode(message.messageRange, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
                 return writer;
             };
 
@@ -4220,9 +4272,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            ArchiveChatAction.toObject = function toObject(message, options) {
+            ArchiveChatAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.archived = false;
@@ -4231,7 +4287,7 @@ $root.SyncAction = (function() {
                 if (message.archived != null && message.hasOwnProperty("archived"))
                     object.archived = message.archived;
                 if (message.messageRange != null && message.hasOwnProperty("messageRange"))
-                    object.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.toObject(message.messageRange, options);
+                    object.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.toObject(message.messageRange, options, q + 1);
                 return object;
             };
 
@@ -4317,9 +4373,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            AutoOrganizeBusinessChatSetting.encode = function encode(message, writer) {
+            AutoOrganizeBusinessChatSetting.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.autoOrganize != null && Object.hasOwnProperty.call(message, "autoOrganize"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.autoOrganize);
                 return writer;
@@ -4441,9 +4501,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            AutoOrganizeBusinessChatSetting.toObject = function toObject(message, options) {
+            AutoOrganizeBusinessChatSetting.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.autoOrganize = false;
@@ -4544,14 +4608,18 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            AvatarUpdatedAction.encode = function encode(message, writer) {
+            AvatarUpdatedAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.eventType != null && Object.hasOwnProperty.call(message, "eventType"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.eventType);
                 if (message.recentAvatarStickers != null && message.recentAvatarStickers.length)
                     for (var i = 0; i < message.recentAvatarStickers.length; ++i)
-                        $root.SyncAction.SyncActionValue.StickerAction.encode(message.recentAvatarStickers[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                        $root.SyncAction.SyncActionValue.StickerAction.encode(message.recentAvatarStickers[i], writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
                 return writer;
             };
 
@@ -4720,9 +4788,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            AvatarUpdatedAction.toObject = function toObject(message, options) {
+            AvatarUpdatedAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.arrays || options.defaults)
                     object.recentAvatarStickers = [];
@@ -4733,7 +4805,7 @@ $root.SyncAction = (function() {
                 if (message.recentAvatarStickers && message.recentAvatarStickers.length) {
                     object.recentAvatarStickers = [];
                     for (var j = 0; j < message.recentAvatarStickers.length; ++j)
-                        object.recentAvatarStickers[j] = $root.SyncAction.SyncActionValue.StickerAction.toObject(message.recentAvatarStickers[j], options);
+                        object.recentAvatarStickers[j] = $root.SyncAction.SyncActionValue.StickerAction.toObject(message.recentAvatarStickers[j], options, q + 1);
                 }
                 return object;
             };
@@ -4854,9 +4926,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            BizAISettingsNudgeAction.encode = function encode(message, writer) {
+            BizAISettingsNudgeAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.category != null && Object.hasOwnProperty.call(message, "category"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.category);
                 if (message.version != null && Object.hasOwnProperty.call(message, "version"))
@@ -5025,7 +5101,7 @@ $root.SyncAction = (function() {
                 }
                 if (object.version != null)
                     if ($util.Long)
-                        (message.version = $util.Long.fromValue(object.version)).unsigned = false;
+                        message.version = $util.Long.fromValue(object.version, false);
                     else if (typeof object.version === "string")
                         message.version = parseInt(object.version, 10);
                     else if (typeof object.version === "number")
@@ -5034,7 +5110,7 @@ $root.SyncAction = (function() {
                         message.version = new $util.LongBits(object.version.low >>> 0, object.version.high >>> 0).toNumber();
                 if (object.updatedAtMs != null)
                     if ($util.Long)
-                        (message.updatedAtMs = $util.Long.fromValue(object.updatedAtMs)).unsigned = false;
+                        message.updatedAtMs = $util.Long.fromValue(object.updatedAtMs, false);
                     else if (typeof object.updatedAtMs === "string")
                         message.updatedAtMs = parseInt(object.updatedAtMs, 10);
                     else if (typeof object.updatedAtMs === "number")
@@ -5053,9 +5129,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            BizAISettingsNudgeAction.toObject = function toObject(message, options) {
+            BizAISettingsNudgeAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.category = options.enums === String ? "UNKNOWN" : 0;
@@ -5193,9 +5273,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            BotWelcomeRequestAction.encode = function encode(message, writer) {
+            BotWelcomeRequestAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.isSent != null && Object.hasOwnProperty.call(message, "isSent"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.isSent);
                 return writer;
@@ -5317,9 +5401,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            BotWelcomeRequestAction.toObject = function toObject(message, options) {
+            BotWelcomeRequestAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.isSent = false;
@@ -5419,9 +5507,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            BroadcastListParticipant.encode = function encode(message, writer) {
+            BroadcastListParticipant.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.lidJid);
                 if (message.pnJid != null && Object.hasOwnProperty.call(message, "pnJid"))
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.pnJid);
@@ -5554,9 +5646,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            BroadcastListParticipant.toObject = function toObject(message, options) {
+            BroadcastListParticipant.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.lidJid = "";
@@ -5651,9 +5747,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            BusinessBroadcastAssociationAction.encode = function encode(message, writer) {
+            BusinessBroadcastAssociationAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.deleted != null && Object.hasOwnProperty.call(message, "deleted"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.deleted);
                 return writer;
@@ -5775,9 +5875,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            BusinessBroadcastAssociationAction.toObject = function toObject(message, options) {
+            BusinessBroadcastAssociationAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.deleted = false;
@@ -5940,9 +6044,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            BusinessBroadcastCampaignAction.encode = function encode(message, writer) {
+            BusinessBroadcastCampaignAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.deviceId != null && Object.hasOwnProperty.call(message, "deviceId"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.deviceId);
                 if (message.adId != null && Object.hasOwnProperty.call(message, "adId"))
@@ -6144,7 +6252,7 @@ $root.SyncAction = (function() {
                     message.reservedQuota = object.reservedQuota | 0;
                 if (object.scheduledTimestamp != null)
                     if ($util.Long)
-                        (message.scheduledTimestamp = $util.Long.fromValue(object.scheduledTimestamp)).unsigned = false;
+                        message.scheduledTimestamp = $util.Long.fromValue(object.scheduledTimestamp, false);
                     else if (typeof object.scheduledTimestamp === "string")
                         message.scheduledTimestamp = parseInt(object.scheduledTimestamp, 10);
                     else if (typeof object.scheduledTimestamp === "number")
@@ -6153,7 +6261,7 @@ $root.SyncAction = (function() {
                         message.scheduledTimestamp = new $util.LongBits(object.scheduledTimestamp.low >>> 0, object.scheduledTimestamp.high >>> 0).toNumber();
                 if (object.createTimestamp != null)
                     if ($util.Long)
-                        (message.createTimestamp = $util.Long.fromValue(object.createTimestamp)).unsigned = false;
+                        message.createTimestamp = $util.Long.fromValue(object.createTimestamp, false);
                     else if (typeof object.createTimestamp === "string")
                         message.createTimestamp = parseInt(object.createTimestamp, 10);
                     else if (typeof object.createTimestamp === "number")
@@ -6200,9 +6308,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            BusinessBroadcastCampaignAction.toObject = function toObject(message, options) {
+            BusinessBroadcastCampaignAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.deviceId = 0;
@@ -6392,9 +6504,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            BusinessBroadcastInsightsAction.encode = function encode(message, writer) {
+            BusinessBroadcastInsightsAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.recipientCount != null && Object.hasOwnProperty.call(message, "recipientCount"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.recipientCount);
                 if (message.deliveredCount != null && Object.hasOwnProperty.call(message, "deliveredCount"))
@@ -6560,9 +6676,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            BusinessBroadcastInsightsAction.toObject = function toObject(message, options) {
+            BusinessBroadcastInsightsAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.recipientCount = 0;
@@ -6704,14 +6824,18 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            BusinessBroadcastListAction.encode = function encode(message, writer) {
+            BusinessBroadcastListAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.deleted != null && Object.hasOwnProperty.call(message, "deleted"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.deleted);
                 if (message.participants != null && message.participants.length)
                     for (var i = 0; i < message.participants.length; ++i)
-                        $root.SyncAction.SyncActionValue.BroadcastListParticipant.encode(message.participants[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                        $root.SyncAction.SyncActionValue.BroadcastListParticipant.encode(message.participants[i], writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
                 if (message.listName != null && Object.hasOwnProperty.call(message, "listName"))
                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.listName);
                 if (message.labelIds != null && message.labelIds.length)
@@ -6901,9 +7025,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            BusinessBroadcastListAction.toObject = function toObject(message, options) {
+            BusinessBroadcastListAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.arrays || options.defaults) {
                     object.participants = [];
@@ -6919,7 +7047,7 @@ $root.SyncAction = (function() {
                 if (message.participants && message.participants.length) {
                     object.participants = [];
                     for (var j = 0; j < message.participants.length; ++j)
-                        object.participants[j] = $root.SyncAction.SyncActionValue.BroadcastListParticipant.toObject(message.participants[j], options);
+                        object.participants[j] = $root.SyncAction.SyncActionValue.BroadcastListParticipant.toObject(message.participants[j], options, q + 1);
                 }
                 if (message.listName != null && message.hasOwnProperty("listName"))
                     object.listName = message.listName;
@@ -7015,11 +7143,15 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            CallLogAction.encode = function encode(message, writer) {
+            CallLogAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.callLogRecord != null && Object.hasOwnProperty.call(message, "callLogRecord"))
-                    $root.SyncAction.CallLogRecord.encode(message.callLogRecord, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                    $root.SyncAction.CallLogRecord.encode(message.callLogRecord, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 return writer;
             };
 
@@ -7144,14 +7276,18 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            CallLogAction.toObject = function toObject(message, options) {
+            CallLogAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.callLogRecord = null;
                 if (message.callLogRecord != null && message.hasOwnProperty("callLogRecord"))
-                    object.callLogRecord = $root.SyncAction.CallLogRecord.toObject(message.callLogRecord, options);
+                    object.callLogRecord = $root.SyncAction.CallLogRecord.toObject(message.callLogRecord, options, q + 1);
                 return object;
             };
 
@@ -7237,9 +7373,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            ChatAssignmentAction.encode = function encode(message, writer) {
+            ChatAssignmentAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.deviceAgentID != null && Object.hasOwnProperty.call(message, "deviceAgentID"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.deviceAgentID);
                 return writer;
@@ -7361,9 +7501,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            ChatAssignmentAction.toObject = function toObject(message, options) {
+            ChatAssignmentAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.deviceAgentID = "";
@@ -7454,9 +7598,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            ChatAssignmentOpenedStatusAction.encode = function encode(message, writer) {
+            ChatAssignmentOpenedStatusAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.chatOpened != null && Object.hasOwnProperty.call(message, "chatOpened"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.chatOpened);
                 return writer;
@@ -7578,9 +7726,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            ChatAssignmentOpenedStatusAction.toObject = function toObject(message, options) {
+            ChatAssignmentOpenedStatusAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.chatOpened = false;
@@ -7671,11 +7823,15 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            ClearChatAction.encode = function encode(message, writer) {
+            ClearChatAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.messageRange != null && Object.hasOwnProperty.call(message, "messageRange"))
-                    $root.SyncAction.SyncActionValue.SyncActionMessageRange.encode(message.messageRange, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                    $root.SyncAction.SyncActionValue.SyncActionMessageRange.encode(message.messageRange, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 return writer;
             };
 
@@ -7800,14 +7956,18 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            ClearChatAction.toObject = function toObject(message, options) {
+            ClearChatAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.messageRange = null;
                 if (message.messageRange != null && message.hasOwnProperty("messageRange"))
-                    object.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.toObject(message.messageRange, options);
+                    object.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.toObject(message.messageRange, options, q + 1);
                 return object;
             };
 
@@ -7938,9 +8098,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            ContactAction.encode = function encode(message, writer) {
+            ContactAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.fullName != null && Object.hasOwnProperty.call(message, "fullName"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.fullName);
                 if (message.firstName != null && Object.hasOwnProperty.call(message, "firstName"))
@@ -8117,9 +8281,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            ContactAction.toObject = function toObject(message, options) {
+            ContactAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.fullName = "";
@@ -8226,9 +8394,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            CtwaPerCustomerDataSharingAction.encode = function encode(message, writer) {
+            CtwaPerCustomerDataSharingAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.isCtwaPerCustomerDataSharingEnabled != null && Object.hasOwnProperty.call(message, "isCtwaPerCustomerDataSharingEnabled"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.isCtwaPerCustomerDataSharingEnabled);
                 return writer;
@@ -8350,9 +8522,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            CtwaPerCustomerDataSharingAction.toObject = function toObject(message, options) {
+            CtwaPerCustomerDataSharingAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.isCtwaPerCustomerDataSharingEnabled = false;
@@ -8471,15 +8647,19 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            CustomPaymentMethod.encode = function encode(message, writer) {
+            CustomPaymentMethod.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.credentialId);
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.country);
                 writer.uint32(/* id 3, wireType 2 =*/26).string(message.type);
                 if (message.metadata != null && message.metadata.length)
                     for (var i = 0; i < message.metadata.length; ++i)
-                        $root.SyncAction.SyncActionValue.CustomPaymentMethodMetadata.encode(message.metadata[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                        $root.SyncAction.SyncActionValue.CustomPaymentMethodMetadata.encode(message.metadata[i], writer.uint32(/* id 4, wireType 2 =*/34).fork(), q + 1).ldelim();
                 return writer;
             };
 
@@ -8645,9 +8825,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            CustomPaymentMethod.toObject = function toObject(message, options) {
+            CustomPaymentMethod.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.arrays || options.defaults)
                     object.metadata = [];
@@ -8665,7 +8849,7 @@ $root.SyncAction = (function() {
                 if (message.metadata && message.metadata.length) {
                     object.metadata = [];
                     for (var j = 0; j < message.metadata.length; ++j)
-                        object.metadata[j] = $root.SyncAction.SyncActionValue.CustomPaymentMethodMetadata.toObject(message.metadata[j], options);
+                        object.metadata[j] = $root.SyncAction.SyncActionValue.CustomPaymentMethodMetadata.toObject(message.metadata[j], options, q + 1);
                 }
                 return object;
             };
@@ -8761,9 +8945,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            CustomPaymentMethodMetadata.encode = function encode(message, writer) {
+            CustomPaymentMethodMetadata.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.key);
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.value);
                 return writer;
@@ -8896,9 +9084,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            CustomPaymentMethodMetadata.toObject = function toObject(message, options) {
+            CustomPaymentMethodMetadata.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.key = "";
@@ -8994,12 +9186,16 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            CustomPaymentMethodsAction.encode = function encode(message, writer) {
+            CustomPaymentMethodsAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.customPaymentMethods != null && message.customPaymentMethods.length)
                     for (var i = 0; i < message.customPaymentMethods.length; ++i)
-                        $root.SyncAction.SyncActionValue.CustomPaymentMethod.encode(message.customPaymentMethods[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                        $root.SyncAction.SyncActionValue.CustomPaymentMethod.encode(message.customPaymentMethods[i], writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 return writer;
             };
 
@@ -9135,16 +9331,20 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            CustomPaymentMethodsAction.toObject = function toObject(message, options) {
+            CustomPaymentMethodsAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.arrays || options.defaults)
                     object.customPaymentMethods = [];
                 if (message.customPaymentMethods && message.customPaymentMethods.length) {
                     object.customPaymentMethods = [];
                     for (var j = 0; j < message.customPaymentMethods.length; ++j)
-                        object.customPaymentMethods[j] = $root.SyncAction.SyncActionValue.CustomPaymentMethod.toObject(message.customPaymentMethods[j], options);
+                        object.customPaymentMethods[j] = $root.SyncAction.SyncActionValue.CustomPaymentMethod.toObject(message.customPaymentMethods[j], options, q + 1);
                 }
                 return object;
             };
@@ -9321,9 +9521,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            CustomerDataAction.encode = function encode(message, writer) {
+            CustomerDataAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.chatJid != null && Object.hasOwnProperty.call(message, "chatJid"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.chatJid);
                 if (message.contactType != null && Object.hasOwnProperty.call(message, "contactType"))
@@ -9531,7 +9735,7 @@ $root.SyncAction = (function() {
                     message.altPhoneNumbers = String(object.altPhoneNumbers);
                 if (object.birthday != null)
                     if ($util.Long)
-                        (message.birthday = $util.Long.fromValue(object.birthday)).unsigned = false;
+                        message.birthday = $util.Long.fromValue(object.birthday, false);
                     else if (typeof object.birthday === "string")
                         message.birthday = parseInt(object.birthday, 10);
                     else if (typeof object.birthday === "number")
@@ -9546,7 +9750,7 @@ $root.SyncAction = (function() {
                     message.leadStage = object.leadStage | 0;
                 if (object.lastOrder != null)
                     if ($util.Long)
-                        (message.lastOrder = $util.Long.fromValue(object.lastOrder)).unsigned = false;
+                        message.lastOrder = $util.Long.fromValue(object.lastOrder, false);
                     else if (typeof object.lastOrder === "string")
                         message.lastOrder = parseInt(object.lastOrder, 10);
                     else if (typeof object.lastOrder === "number")
@@ -9555,7 +9759,7 @@ $root.SyncAction = (function() {
                         message.lastOrder = new $util.LongBits(object.lastOrder.low >>> 0, object.lastOrder.high >>> 0).toNumber();
                 if (object.createdAt != null)
                     if ($util.Long)
-                        (message.createdAt = $util.Long.fromValue(object.createdAt)).unsigned = false;
+                        message.createdAt = $util.Long.fromValue(object.createdAt, false);
                     else if (typeof object.createdAt === "string")
                         message.createdAt = parseInt(object.createdAt, 10);
                     else if (typeof object.createdAt === "number")
@@ -9564,7 +9768,7 @@ $root.SyncAction = (function() {
                         message.createdAt = new $util.LongBits(object.createdAt.low >>> 0, object.createdAt.high >>> 0).toNumber();
                 if (object.modifiedAt != null)
                     if ($util.Long)
-                        (message.modifiedAt = $util.Long.fromValue(object.modifiedAt)).unsigned = false;
+                        message.modifiedAt = $util.Long.fromValue(object.modifiedAt, false);
                     else if (typeof object.modifiedAt === "string")
                         message.modifiedAt = parseInt(object.modifiedAt, 10);
                     else if (typeof object.modifiedAt === "number")
@@ -9583,9 +9787,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            CustomerDataAction.toObject = function toObject(message, options) {
+            CustomerDataAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.chatJid = "";
@@ -9743,11 +9951,15 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            DeleteChatAction.encode = function encode(message, writer) {
+            DeleteChatAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.messageRange != null && Object.hasOwnProperty.call(message, "messageRange"))
-                    $root.SyncAction.SyncActionValue.SyncActionMessageRange.encode(message.messageRange, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                    $root.SyncAction.SyncActionValue.SyncActionMessageRange.encode(message.messageRange, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 return writer;
             };
 
@@ -9872,14 +10084,18 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            DeleteChatAction.toObject = function toObject(message, options) {
+            DeleteChatAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.messageRange = null;
                 if (message.messageRange != null && message.hasOwnProperty("messageRange"))
-                    object.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.toObject(message.messageRange, options);
+                    object.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.toObject(message.messageRange, options, q + 1);
                 return object;
             };
 
@@ -9974,9 +10190,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            DeleteIndividualCallLogAction.encode = function encode(message, writer) {
+            DeleteIndividualCallLogAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.peerJid != null && Object.hasOwnProperty.call(message, "peerJid"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.peerJid);
                 if (message.isIncoming != null && Object.hasOwnProperty.call(message, "isIncoming"))
@@ -10109,9 +10329,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            DeleteIndividualCallLogAction.toObject = function toObject(message, options) {
+            DeleteIndividualCallLogAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.peerJid = "";
@@ -10215,9 +10439,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            DeleteMessageForMeAction.encode = function encode(message, writer) {
+            DeleteMessageForMeAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.deleteMedia != null && Object.hasOwnProperty.call(message, "deleteMedia"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.deleteMedia);
                 if (message.messageTimestamp != null && Object.hasOwnProperty.call(message, "messageTimestamp"))
@@ -10338,7 +10566,7 @@ $root.SyncAction = (function() {
                     message.deleteMedia = Boolean(object.deleteMedia);
                 if (object.messageTimestamp != null)
                     if ($util.Long)
-                        (message.messageTimestamp = $util.Long.fromValue(object.messageTimestamp)).unsigned = false;
+                        message.messageTimestamp = $util.Long.fromValue(object.messageTimestamp, false);
                     else if (typeof object.messageTimestamp === "string")
                         message.messageTimestamp = parseInt(object.messageTimestamp, 10);
                     else if (typeof object.messageTimestamp === "number")
@@ -10357,9 +10585,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            DeleteMessageForMeAction.toObject = function toObject(message, options) {
+            DeleteMessageForMeAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.deleteMedia = false;
@@ -10463,9 +10695,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            DetectedOutcomesStatusAction.encode = function encode(message, writer) {
+            DetectedOutcomesStatusAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.isEnabled != null && Object.hasOwnProperty.call(message, "isEnabled"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.isEnabled);
                 return writer;
@@ -10587,9 +10823,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            DetectedOutcomesStatusAction.toObject = function toObject(message, options) {
+            DetectedOutcomesStatusAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.isEnabled = false;
@@ -10680,9 +10920,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            ExternalWebBetaAction.encode = function encode(message, writer) {
+            ExternalWebBetaAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.isOptIn != null && Object.hasOwnProperty.call(message, "isOptIn"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.isOptIn);
                 return writer;
@@ -10804,9 +11048,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            ExternalWebBetaAction.toObject = function toObject(message, options) {
+            ExternalWebBetaAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.isOptIn = false;
@@ -10898,12 +11146,16 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            FavoritesAction.encode = function encode(message, writer) {
+            FavoritesAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.favorites != null && message.favorites.length)
                     for (var i = 0; i < message.favorites.length; ++i)
-                        $root.SyncAction.SyncActionValue.FavoritesAction.Favorite.encode(message.favorites[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                        $root.SyncAction.SyncActionValue.FavoritesAction.Favorite.encode(message.favorites[i], writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 return writer;
             };
 
@@ -11039,16 +11291,20 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            FavoritesAction.toObject = function toObject(message, options) {
+            FavoritesAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.arrays || options.defaults)
                     object.favorites = [];
                 if (message.favorites && message.favorites.length) {
                     object.favorites = [];
                     for (var j = 0; j < message.favorites.length; ++j)
-                        object.favorites[j] = $root.SyncAction.SyncActionValue.FavoritesAction.Favorite.toObject(message.favorites[j], options);
+                        object.favorites[j] = $root.SyncAction.SyncActionValue.FavoritesAction.Favorite.toObject(message.favorites[j], options, q + 1);
                 }
                 return object;
             };
@@ -11132,9 +11388,13 @@ $root.SyncAction = (function() {
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
-                Favorite.encode = function encode(message, writer) {
+                Favorite.encode = function encode(message, writer, q) {
                     if (!writer)
                         writer = $Writer.create();
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
                     if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
                     return writer;
@@ -11256,9 +11516,13 @@ $root.SyncAction = (function() {
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
-                Favorite.toObject = function toObject(message, options) {
+                Favorite.toObject = function toObject(message, options, q) {
                     if (!options)
                         options = {};
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
                     var object = {};
                     if (options.defaults)
                         object.id = "";
@@ -11361,9 +11625,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            InteractiveMessageAction.encode = function encode(message, writer) {
+            InteractiveMessageAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.type);
                 if (message.agmId != null && Object.hasOwnProperty.call(message, "agmId"))
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.agmId);
@@ -11510,9 +11778,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            InteractiveMessageAction.toObject = function toObject(message, options) {
+            InteractiveMessageAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.type = options.enums === String ? "DISABLE_CTA" : 1;
@@ -11619,9 +11891,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            KeyExpiration.encode = function encode(message, writer) {
+            KeyExpiration.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.expiredKeyEpoch != null && Object.hasOwnProperty.call(message, "expiredKeyEpoch"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.expiredKeyEpoch);
                 return writer;
@@ -11743,9 +12019,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            KeyExpiration.toObject = function toObject(message, options) {
+            KeyExpiration.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.expiredKeyEpoch = 0;
@@ -11846,14 +12126,18 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            LabelAssociationAction.encode = function encode(message, writer) {
+            LabelAssociationAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.labeled != null && Object.hasOwnProperty.call(message, "labeled"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.labeled);
                 if (message.modelMetaData != null && message.modelMetaData.length)
                     for (var i = 0; i < message.modelMetaData.length; ++i)
-                        $root.SyncAction.SyncActionValue.ModelMetadata.encode(message.modelMetaData[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                        $root.SyncAction.SyncActionValue.ModelMetadata.encode(message.modelMetaData[i], writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
                 return writer;
             };
 
@@ -11998,9 +12282,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            LabelAssociationAction.toObject = function toObject(message, options) {
+            LabelAssociationAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.arrays || options.defaults)
                     object.modelMetaData = [];
@@ -12011,7 +12299,7 @@ $root.SyncAction = (function() {
                 if (message.modelMetaData && message.modelMetaData.length) {
                     object.modelMetaData = [];
                     for (var j = 0; j < message.modelMetaData.length; ++j)
-                        object.modelMetaData[j] = $root.SyncAction.SyncActionValue.ModelMetadata.toObject(message.modelMetaData[j], options);
+                        object.modelMetaData[j] = $root.SyncAction.SyncActionValue.ModelMetadata.toObject(message.modelMetaData[j], options, q + 1);
                 }
                 return object;
             };
@@ -12170,9 +12458,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            LabelEditAction.encode = function encode(message, writer) {
+            LabelEditAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
                 if (message.color != null && Object.hasOwnProperty.call(message, "color"))
@@ -12439,7 +12731,7 @@ $root.SyncAction = (function() {
                     message.isImmutable = Boolean(object.isImmutable);
                 if (object.muteEndTimeMs != null)
                     if ($util.Long)
-                        (message.muteEndTimeMs = $util.Long.fromValue(object.muteEndTimeMs)).unsigned = false;
+                        message.muteEndTimeMs = $util.Long.fromValue(object.muteEndTimeMs, false);
                     else if (typeof object.muteEndTimeMs === "string")
                         message.muteEndTimeMs = parseInt(object.muteEndTimeMs, 10);
                     else if (typeof object.muteEndTimeMs === "number")
@@ -12458,9 +12750,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            LabelEditAction.toObject = function toObject(message, options) {
+            LabelEditAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.name = "";
@@ -12620,9 +12916,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            LabelReorderingAction.encode = function encode(message, writer) {
+            LabelReorderingAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.sortedLabelIds != null && message.sortedLabelIds.length)
                     for (var i = 0; i < message.sortedLabelIds.length; ++i)
                         writer.uint32(/* id 1, wireType 0 =*/8).int32(message.sortedLabelIds[i]);
@@ -12761,9 +13061,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            LabelReorderingAction.toObject = function toObject(message, options) {
+            LabelReorderingAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.arrays || options.defaults)
                     object.sortedLabelIds = [];
@@ -12875,9 +13179,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            LidContactAction.encode = function encode(message, writer) {
+            LidContactAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.fullName != null && Object.hasOwnProperty.call(message, "fullName"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.fullName);
                 if (message.firstName != null && Object.hasOwnProperty.call(message, "firstName"))
@@ -13021,9 +13329,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            LidContactAction.toObject = function toObject(message, options) {
+            LidContactAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.fullName = "";
@@ -13121,9 +13433,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            LocaleSetting.encode = function encode(message, writer) {
+            LocaleSetting.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.locale != null && Object.hasOwnProperty.call(message, "locale"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.locale);
                 return writer;
@@ -13245,9 +13561,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            LocaleSetting.toObject = function toObject(message, options) {
+            LocaleSetting.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.locale = "";
@@ -13338,9 +13658,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            LockChatAction.encode = function encode(message, writer) {
+            LockChatAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.locked != null && Object.hasOwnProperty.call(message, "locked"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.locked);
                 return writer;
@@ -13462,9 +13786,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            LockChatAction.toObject = function toObject(message, options) {
+            LockChatAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.locked = false;
@@ -13555,9 +13883,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            MaibaAIFeaturesControlAction.encode = function encode(message, writer) {
+            MaibaAIFeaturesControlAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.aiFeatureStatus != null && Object.hasOwnProperty.call(message, "aiFeatureStatus"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.aiFeatureStatus);
                 return writer;
@@ -13703,9 +14035,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            MaibaAIFeaturesControlAction.toObject = function toObject(message, options) {
+            MaibaAIFeaturesControlAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.aiFeatureStatus = options.enums === String ? "ENABLED" : 0;
@@ -13821,13 +14157,17 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            MarkChatAsReadAction.encode = function encode(message, writer) {
+            MarkChatAsReadAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.read != null && Object.hasOwnProperty.call(message, "read"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.read);
                 if (message.messageRange != null && Object.hasOwnProperty.call(message, "messageRange"))
-                    $root.SyncAction.SyncActionValue.SyncActionMessageRange.encode(message.messageRange, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                    $root.SyncAction.SyncActionValue.SyncActionMessageRange.encode(message.messageRange, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
                 return writer;
             };
 
@@ -13961,9 +14301,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            MarkChatAsReadAction.toObject = function toObject(message, options) {
+            MarkChatAsReadAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.read = false;
@@ -13972,7 +14316,7 @@ $root.SyncAction = (function() {
                 if (message.read != null && message.hasOwnProperty("read"))
                     object.read = message.read;
                 if (message.messageRange != null && message.hasOwnProperty("messageRange"))
-                    object.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.toObject(message.messageRange, options);
+                    object.messageRange = $root.SyncAction.SyncActionValue.SyncActionMessageRange.toObject(message.messageRange, options, q + 1);
                 return object;
             };
 
@@ -14112,9 +14456,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            MarketingMessageAction.encode = function encode(message, writer) {
+            MarketingMessageAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
                 if (message.message != null && Object.hasOwnProperty.call(message, "message"))
@@ -14298,7 +14646,7 @@ $root.SyncAction = (function() {
                 }
                 if (object.createdAt != null)
                     if ($util.Long)
-                        (message.createdAt = $util.Long.fromValue(object.createdAt)).unsigned = false;
+                        message.createdAt = $util.Long.fromValue(object.createdAt, false);
                     else if (typeof object.createdAt === "string")
                         message.createdAt = parseInt(object.createdAt, 10);
                     else if (typeof object.createdAt === "number")
@@ -14307,7 +14655,7 @@ $root.SyncAction = (function() {
                         message.createdAt = new $util.LongBits(object.createdAt.low >>> 0, object.createdAt.high >>> 0).toNumber();
                 if (object.lastSentAt != null)
                     if ($util.Long)
-                        (message.lastSentAt = $util.Long.fromValue(object.lastSentAt)).unsigned = false;
+                        message.lastSentAt = $util.Long.fromValue(object.lastSentAt, false);
                     else if (typeof object.lastSentAt === "string")
                         message.lastSentAt = parseInt(object.lastSentAt, 10);
                     else if (typeof object.lastSentAt === "number")
@@ -14330,9 +14678,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            MarketingMessageAction.toObject = function toObject(message, options) {
+            MarketingMessageAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.name = "";
@@ -14472,9 +14824,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            MarketingMessageBroadcastAction.encode = function encode(message, writer) {
+            MarketingMessageBroadcastAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.repliedCount != null && Object.hasOwnProperty.call(message, "repliedCount"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.repliedCount);
                 return writer;
@@ -14596,9 +14952,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            MarketingMessageBroadcastAction.toObject = function toObject(message, options) {
+            MarketingMessageBroadcastAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.repliedCount = 0;
@@ -14716,9 +15076,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            MerchantPaymentPartnerAction.encode = function encode(message, writer) {
+            MerchantPaymentPartnerAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.country);
                 if (message.gatewayName != null && Object.hasOwnProperty.call(message, "gatewayName"))
@@ -14892,9 +15256,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            MerchantPaymentPartnerAction.toObject = function toObject(message, options) {
+            MerchantPaymentPartnerAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.status = options.enums === String ? "ACTIVE" : 0;
@@ -15027,9 +15395,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            ModelMetadata.encode = function encode(message, writer) {
+            ModelMetadata.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.modelName != null && Object.hasOwnProperty.call(message, "modelName"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.modelName);
                 if (message.isLatestModel != null && Object.hasOwnProperty.call(message, "isLatestModel"))
@@ -15173,9 +15545,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            ModelMetadata.toObject = function toObject(message, options) {
+            ModelMetadata.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.modelName = "";
@@ -15283,9 +15659,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            MusicUserIdAction.encode = function encode(message, writer) {
+            MusicUserIdAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.musicUserId != null && Object.hasOwnProperty.call(message, "musicUserId"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.musicUserId);
                 if (message.musicUserIdMap != null && Object.hasOwnProperty.call(message, "musicUserIdMap"))
@@ -15453,9 +15833,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            MusicUserIdAction.toObject = function toObject(message, options) {
+            MusicUserIdAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.objects || options.defaults)
                     object.musicUserIdMap = {};
@@ -15584,9 +15968,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            MuteAction.encode = function encode(message, writer) {
+            MuteAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.muted != null && Object.hasOwnProperty.call(message, "muted"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.muted);
                 if (message.muteEndTimestamp != null && Object.hasOwnProperty.call(message, "muteEndTimestamp"))
@@ -15725,7 +16113,7 @@ $root.SyncAction = (function() {
                     message.muted = Boolean(object.muted);
                 if (object.muteEndTimestamp != null)
                     if ($util.Long)
-                        (message.muteEndTimestamp = $util.Long.fromValue(object.muteEndTimestamp)).unsigned = false;
+                        message.muteEndTimestamp = $util.Long.fromValue(object.muteEndTimestamp, false);
                     else if (typeof object.muteEndTimestamp === "string")
                         message.muteEndTimestamp = parseInt(object.muteEndTimestamp, 10);
                     else if (typeof object.muteEndTimestamp === "number")
@@ -15736,7 +16124,7 @@ $root.SyncAction = (function() {
                     message.autoMuted = Boolean(object.autoMuted);
                 if (object.muteEveryoneMentionEndTimestamp != null)
                     if ($util.Long)
-                        (message.muteEveryoneMentionEndTimestamp = $util.Long.fromValue(object.muteEveryoneMentionEndTimestamp)).unsigned = false;
+                        message.muteEveryoneMentionEndTimestamp = $util.Long.fromValue(object.muteEveryoneMentionEndTimestamp, false);
                     else if (typeof object.muteEveryoneMentionEndTimestamp === "string")
                         message.muteEveryoneMentionEndTimestamp = parseInt(object.muteEveryoneMentionEndTimestamp, 10);
                     else if (typeof object.muteEveryoneMentionEndTimestamp === "number")
@@ -15755,9 +16143,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            MuteAction.toObject = function toObject(message, options) {
+            MuteAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.muted = false;
@@ -15876,9 +16268,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            NctSaltSyncAction.encode = function encode(message, writer) {
+            NctSaltSyncAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.salt != null && Object.hasOwnProperty.call(message, "salt"))
                     writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.salt);
                 return writer;
@@ -16003,9 +16399,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            NctSaltSyncAction.toObject = function toObject(message, options) {
+            NctSaltSyncAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     if (options.bytes === String)
@@ -16102,9 +16502,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            NewsletterSavedInterestsAction.encode = function encode(message, writer) {
+            NewsletterSavedInterestsAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.newsletterSavedInterests != null && Object.hasOwnProperty.call(message, "newsletterSavedInterests"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.newsletterSavedInterests);
                 return writer;
@@ -16226,9 +16630,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            NewsletterSavedInterestsAction.toObject = function toObject(message, options) {
+            NewsletterSavedInterestsAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.newsletterSavedInterests = "";
@@ -16355,9 +16763,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            NoteEditAction.encode = function encode(message, writer) {
+            NoteEditAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.type);
                 if (message.chatJid != null && Object.hasOwnProperty.call(message, "chatJid"))
@@ -16526,7 +16938,7 @@ $root.SyncAction = (function() {
                     message.chatJid = String(object.chatJid);
                 if (object.createdAt != null)
                     if ($util.Long)
-                        (message.createdAt = $util.Long.fromValue(object.createdAt)).unsigned = false;
+                        message.createdAt = $util.Long.fromValue(object.createdAt, false);
                     else if (typeof object.createdAt === "string")
                         message.createdAt = parseInt(object.createdAt, 10);
                     else if (typeof object.createdAt === "number")
@@ -16549,9 +16961,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            NoteEditAction.toObject = function toObject(message, options) {
+            NoteEditAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.type = options.enums === String ? "UNSTRUCTURED" : 1;
@@ -16678,9 +17094,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            NotificationActivitySettingAction.encode = function encode(message, writer) {
+            NotificationActivitySettingAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.notificationActivitySetting != null && Object.hasOwnProperty.call(message, "notificationActivitySetting"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.notificationActivitySetting);
                 return writer;
@@ -16831,9 +17251,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            NotificationActivitySettingAction.toObject = function toObject(message, options) {
+            NotificationActivitySettingAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.notificationActivitySetting = options.enums === String ? "DEFAULT_ALL_MESSAGES" : 0;
@@ -16942,9 +17366,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            NuxAction.encode = function encode(message, writer) {
+            NuxAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.acknowledged != null && Object.hasOwnProperty.call(message, "acknowledged"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.acknowledged);
                 return writer;
@@ -17066,9 +17494,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            NuxAction.toObject = function toObject(message, options) {
+            NuxAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.acknowledged = false;
@@ -17168,9 +17600,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            OutContactAction.encode = function encode(message, writer) {
+            OutContactAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.fullName != null && Object.hasOwnProperty.call(message, "fullName"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.fullName);
                 if (message.firstName != null && Object.hasOwnProperty.call(message, "firstName"))
@@ -17303,9 +17739,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            OutContactAction.toObject = function toObject(message, options) {
+            OutContactAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.fullName = "";
@@ -17400,9 +17840,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            PaymentInfoAction.encode = function encode(message, writer) {
+            PaymentInfoAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.cpi != null && Object.hasOwnProperty.call(message, "cpi"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.cpi);
                 return writer;
@@ -17524,9 +17968,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            PaymentInfoAction.toObject = function toObject(message, options) {
+            PaymentInfoAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.cpi = "";
@@ -17626,9 +18074,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            PaymentTosAction.encode = function encode(message, writer) {
+            PaymentTosAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.paymentNotice);
                 writer.uint32(/* id 2, wireType 0 =*/16).bool(message.accepted);
                 return writer;
@@ -17775,9 +18227,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            PaymentTosAction.toObject = function toObject(message, options) {
+            PaymentTosAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.paymentNotice = options.enums === String ? "BR_PAY_PRIVACY_POLICY" : 0;
@@ -17884,9 +18340,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            PinAction.encode = function encode(message, writer) {
+            PinAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.pinned != null && Object.hasOwnProperty.call(message, "pinned"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.pinned);
                 return writer;
@@ -18008,9 +18468,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            PinAction.toObject = function toObject(message, options) {
+            PinAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.pinned = false;
@@ -18101,9 +18565,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            PnForLidChatAction.encode = function encode(message, writer) {
+            PnForLidChatAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.pnJid != null && Object.hasOwnProperty.call(message, "pnJid"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.pnJid);
                 return writer;
@@ -18225,9 +18693,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            PnForLidChatAction.toObject = function toObject(message, options) {
+            PnForLidChatAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.pnJid = "";
@@ -18319,9 +18791,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            PrimaryFeature.encode = function encode(message, writer) {
+            PrimaryFeature.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.flags != null && message.flags.length)
                     for (var i = 0; i < message.flags.length; ++i)
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.flags[i]);
@@ -18455,9 +18931,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            PrimaryFeature.toObject = function toObject(message, options) {
+            PrimaryFeature.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.arrays || options.defaults)
                     object.flags = [];
@@ -18551,9 +19031,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            PrimaryVersionAction.encode = function encode(message, writer) {
+            PrimaryVersionAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.version != null && Object.hasOwnProperty.call(message, "version"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.version);
                 return writer;
@@ -18675,9 +19159,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            PrimaryVersionAction.toObject = function toObject(message, options) {
+            PrimaryVersionAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.version = "";
@@ -18768,9 +19256,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            PrivacySettingChannelsPersonalisedRecommendationAction.encode = function encode(message, writer) {
+            PrivacySettingChannelsPersonalisedRecommendationAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.isUserOptedOut != null && Object.hasOwnProperty.call(message, "isUserOptedOut"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.isUserOptedOut);
                 return writer;
@@ -18892,9 +19384,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            PrivacySettingChannelsPersonalisedRecommendationAction.toObject = function toObject(message, options) {
+            PrivacySettingChannelsPersonalisedRecommendationAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.isUserOptedOut = false;
@@ -18985,9 +19481,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            PrivacySettingDisableLinkPreviewsAction.encode = function encode(message, writer) {
+            PrivacySettingDisableLinkPreviewsAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.isPreviewsDisabled != null && Object.hasOwnProperty.call(message, "isPreviewsDisabled"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.isPreviewsDisabled);
                 return writer;
@@ -19109,9 +19609,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            PrivacySettingDisableLinkPreviewsAction.toObject = function toObject(message, options) {
+            PrivacySettingDisableLinkPreviewsAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.isPreviewsDisabled = false;
@@ -19202,9 +19706,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            PrivacySettingRelayAllCalls.encode = function encode(message, writer) {
+            PrivacySettingRelayAllCalls.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.isEnabled != null && Object.hasOwnProperty.call(message, "isEnabled"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.isEnabled);
                 return writer;
@@ -19326,9 +19834,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            PrivacySettingRelayAllCalls.toObject = function toObject(message, options) {
+            PrivacySettingRelayAllCalls.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.isEnabled = false;
@@ -19419,9 +19931,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            PrivateProcessingSettingAction.encode = function encode(message, writer) {
+            PrivateProcessingSettingAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.privateProcessingStatus != null && Object.hasOwnProperty.call(message, "privateProcessingStatus"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.privateProcessingStatus);
                 return writer;
@@ -19567,9 +20083,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            PrivateProcessingSettingAction.toObject = function toObject(message, options) {
+            PrivateProcessingSettingAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.privateProcessingStatus = options.enums === String ? "UNDEFINED" : 0;
@@ -19676,9 +20196,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            PushNameSetting.encode = function encode(message, writer) {
+            PushNameSetting.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
                 return writer;
@@ -19800,9 +20324,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            PushNameSetting.toObject = function toObject(message, options) {
+            PushNameSetting.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.name = "";
@@ -19940,9 +20468,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            QuickReplyAction.encode = function encode(message, writer) {
+            QuickReplyAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.shortcut != null && Object.hasOwnProperty.call(message, "shortcut"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.shortcut);
                 if (message.message != null && Object.hasOwnProperty.call(message, "message"))
@@ -20143,9 +20675,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            QuickReplyAction.toObject = function toObject(message, options) {
+            QuickReplyAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.arrays || options.defaults) {
                     object.keywords = [];
@@ -20261,12 +20797,16 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            RecentEmojiWeightsAction.encode = function encode(message, writer) {
+            RecentEmojiWeightsAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.weights != null && message.weights.length)
                     for (var i = 0; i < message.weights.length; ++i)
-                        $root.SyncAction.RecentEmojiWeight.encode(message.weights[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                        $root.SyncAction.RecentEmojiWeight.encode(message.weights[i], writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 return writer;
             };
 
@@ -20402,16 +20942,20 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            RecentEmojiWeightsAction.toObject = function toObject(message, options) {
+            RecentEmojiWeightsAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.arrays || options.defaults)
                     object.weights = [];
                 if (message.weights && message.weights.length) {
                     object.weights = [];
                     for (var j = 0; j < message.weights.length; ++j)
-                        object.weights[j] = $root.SyncAction.RecentEmojiWeight.toObject(message.weights[j], options);
+                        object.weights[j] = $root.SyncAction.RecentEmojiWeight.toObject(message.weights[j], options, q + 1);
                 }
                 return object;
             };
@@ -20498,9 +21042,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            RemoveRecentStickerAction.encode = function encode(message, writer) {
+            RemoveRecentStickerAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.lastStickerSentTs != null && Object.hasOwnProperty.call(message, "lastStickerSentTs"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int64(message.lastStickerSentTs);
                 return writer;
@@ -20610,7 +21158,7 @@ $root.SyncAction = (function() {
                 var message = new $root.SyncAction.SyncActionValue.RemoveRecentStickerAction();
                 if (object.lastStickerSentTs != null)
                     if ($util.Long)
-                        (message.lastStickerSentTs = $util.Long.fromValue(object.lastStickerSentTs)).unsigned = false;
+                        message.lastStickerSentTs = $util.Long.fromValue(object.lastStickerSentTs, false);
                     else if (typeof object.lastStickerSentTs === "string")
                         message.lastStickerSentTs = parseInt(object.lastStickerSentTs, 10);
                     else if (typeof object.lastStickerSentTs === "number")
@@ -20629,9 +21177,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            RemoveRecentStickerAction.toObject = function toObject(message, options) {
+            RemoveRecentStickerAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     if ($util.Long) {
@@ -21019,9 +21571,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            SettingsSyncAction.encode = function encode(message, writer) {
+            SettingsSyncAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.startAtLogin != null && Object.hasOwnProperty.call(message, "startAtLogin"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.startAtLogin);
                 if (message.minimizeToTray != null && Object.hasOwnProperty.call(message, "minimizeToTray"))
@@ -21577,9 +22133,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            SettingsSyncAction.toObject = function toObject(message, options) {
+            SettingsSyncAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.startAtLogin = false;
@@ -21899,9 +22459,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            StarAction.encode = function encode(message, writer) {
+            StarAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.starred != null && Object.hasOwnProperty.call(message, "starred"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.starred);
                 return writer;
@@ -22023,9 +22587,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            StarAction.toObject = function toObject(message, options) {
+            StarAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.starred = false;
@@ -22116,9 +22684,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            StatusPostOptInNotificationPreferencesAction.encode = function encode(message, writer) {
+            StatusPostOptInNotificationPreferencesAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.enabled != null && Object.hasOwnProperty.call(message, "enabled"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.enabled);
                 return writer;
@@ -22240,9 +22812,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            StatusPostOptInNotificationPreferencesAction.toObject = function toObject(message, options) {
+            StatusPostOptInNotificationPreferencesAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.enabled = false;
@@ -22381,9 +22957,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            StatusPrivacyAction.encode = function encode(message, writer) {
+            StatusPrivacyAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.mode != null && Object.hasOwnProperty.call(message, "mode"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.mode);
                 if (message.userJid != null && message.userJid.length)
@@ -22395,7 +22975,7 @@ $root.SyncAction = (function() {
                     writer.uint32(/* id 4, wireType 0 =*/32).bool(message.shareToIG);
                 if (message.customLists != null && message.customLists.length)
                     for (var i = 0; i < message.customLists.length; ++i)
-                        $root.SyncAction.SyncActionValue.StatusPrivacyAction.CustomList.encode(message.customLists[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                        $root.SyncAction.SyncActionValue.StatusPrivacyAction.CustomList.encode(message.customLists[i], writer.uint32(/* id 5, wireType 2 =*/42).fork(), q + 1).ldelim();
                 if (message.modes != null && message.modes.length)
                     for (var i = 0; i < message.modes.length; ++i)
                         writer.uint32(/* id 6, wireType 0 =*/48).int32(message.modes[i]);
@@ -22674,9 +23254,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            StatusPrivacyAction.toObject = function toObject(message, options) {
+            StatusPrivacyAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.arrays || options.defaults) {
                     object.userJid = [];
@@ -22702,7 +23286,7 @@ $root.SyncAction = (function() {
                 if (message.customLists && message.customLists.length) {
                     object.customLists = [];
                     for (var j = 0; j < message.customLists.length; ++j)
-                        object.customLists[j] = $root.SyncAction.SyncActionValue.StatusPrivacyAction.CustomList.toObject(message.customLists[j], options);
+                        object.customLists[j] = $root.SyncAction.SyncActionValue.StatusPrivacyAction.CustomList.toObject(message.customLists[j], options, q + 1);
                 }
                 if (message.modes && message.modes.length) {
                     object.modes = [];
@@ -22828,9 +23412,13 @@ $root.SyncAction = (function() {
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
-                CustomList.encode = function encode(message, writer) {
+                CustomList.encode = function encode(message, writer, q) {
                     if (!writer)
                         writer = $Writer.create();
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
                     if (message.listId != null && Object.hasOwnProperty.call(message, "listId"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.listId);
                     if (message.name != null && Object.hasOwnProperty.call(message, "name"))
@@ -23008,9 +23596,13 @@ $root.SyncAction = (function() {
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
-                CustomList.toObject = function toObject(message, options) {
+                CustomList.toObject = function toObject(message, options, q) {
                     if (!options)
                         options = {};
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
                     var object = {};
                     if (options.arrays || options.defaults)
                         object.userJid = [];
@@ -23249,9 +23841,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            StickerAction.encode = function encode(message, writer) {
+            StickerAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.url != null && Object.hasOwnProperty.call(message, "url"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.url);
                 if (message.fileEncSha256 != null && Object.hasOwnProperty.call(message, "fileEncSha256"))
@@ -23489,7 +24085,7 @@ $root.SyncAction = (function() {
                     message.directPath = String(object.directPath);
                 if (object.fileLength != null)
                     if ($util.Long)
-                        (message.fileLength = $util.Long.fromValue(object.fileLength)).unsigned = true;
+                        message.fileLength = $util.Long.fromValue(object.fileLength, true);
                     else if (typeof object.fileLength === "string")
                         message.fileLength = parseInt(object.fileLength, 10);
                     else if (typeof object.fileLength === "number")
@@ -23518,9 +24114,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            StickerAction.toObject = function toObject(message, options) {
+            StickerAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.url = "";
@@ -23687,9 +24287,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            SubscriptionAction.encode = function encode(message, writer) {
+            SubscriptionAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.isDeactivated != null && Object.hasOwnProperty.call(message, "isDeactivated"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.isDeactivated);
                 if (message.isAutoRenewing != null && Object.hasOwnProperty.call(message, "isAutoRenewing"))
@@ -23821,7 +24425,7 @@ $root.SyncAction = (function() {
                     message.isAutoRenewing = Boolean(object.isAutoRenewing);
                 if (object.expirationDate != null)
                     if ($util.Long)
-                        (message.expirationDate = $util.Long.fromValue(object.expirationDate)).unsigned = false;
+                        message.expirationDate = $util.Long.fromValue(object.expirationDate, false);
                     else if (typeof object.expirationDate === "string")
                         message.expirationDate = parseInt(object.expirationDate, 10);
                     else if (typeof object.expirationDate === "number")
@@ -23840,9 +24444,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            SubscriptionAction.toObject = function toObject(message, options) {
+            SubscriptionAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.isDeactivated = false;
@@ -23960,15 +24568,19 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            SubscriptionsSyncV2Action.encode = function encode(message, writer) {
+            SubscriptionsSyncV2Action.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.subscriptions != null && message.subscriptions.length)
                     for (var i = 0; i < message.subscriptions.length; ++i)
-                        $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.SubscriptionInfo.encode(message.subscriptions[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                        $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.SubscriptionInfo.encode(message.subscriptions[i], writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 if (message.paidFeature != null && message.paidFeature.length)
                     for (var i = 0; i < message.paidFeature.length; ++i)
-                        $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.PaidFeature.encode(message.paidFeature[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                        $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.PaidFeature.encode(message.paidFeature[i], writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
                 return writer;
             };
 
@@ -24129,9 +24741,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            SubscriptionsSyncV2Action.toObject = function toObject(message, options) {
+            SubscriptionsSyncV2Action.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.arrays || options.defaults) {
                     object.subscriptions = [];
@@ -24140,12 +24756,12 @@ $root.SyncAction = (function() {
                 if (message.subscriptions && message.subscriptions.length) {
                     object.subscriptions = [];
                     for (var j = 0; j < message.subscriptions.length; ++j)
-                        object.subscriptions[j] = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.SubscriptionInfo.toObject(message.subscriptions[j], options);
+                        object.subscriptions[j] = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.SubscriptionInfo.toObject(message.subscriptions[j], options, q + 1);
                 }
                 if (message.paidFeature && message.paidFeature.length) {
                     object.paidFeature = [];
                     for (var j = 0; j < message.paidFeature.length; ++j)
-                        object.paidFeature[j] = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.PaidFeature.toObject(message.paidFeature[j], options);
+                        object.paidFeature[j] = $root.SyncAction.SyncActionValue.SubscriptionsSyncV2Action.PaidFeature.toObject(message.paidFeature[j], options, q + 1);
                 }
                 return object;
             };
@@ -24256,9 +24872,13 @@ $root.SyncAction = (function() {
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
-                PaidFeature.encode = function encode(message, writer) {
+                PaidFeature.encode = function encode(message, writer, q) {
                     if (!writer)
                         writer = $Writer.create();
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
                     if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
                     if (message.enabled != null && Object.hasOwnProperty.call(message, "enabled"))
@@ -24401,7 +25021,7 @@ $root.SyncAction = (function() {
                         message.limit = object.limit | 0;
                     if (object.expirationTime != null)
                         if ($util.Long)
-                            (message.expirationTime = $util.Long.fromValue(object.expirationTime)).unsigned = false;
+                            message.expirationTime = $util.Long.fromValue(object.expirationTime, false);
                         else if (typeof object.expirationTime === "string")
                             message.expirationTime = parseInt(object.expirationTime, 10);
                         else if (typeof object.expirationTime === "number")
@@ -24420,9 +25040,13 @@ $root.SyncAction = (function() {
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
-                PaidFeature.toObject = function toObject(message, options) {
+                PaidFeature.toObject = function toObject(message, options, q) {
                     if (!options)
                         options = {};
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
                     var object = {};
                     if (options.defaults) {
                         object.name = "";
@@ -24595,9 +25219,13 @@ $root.SyncAction = (function() {
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
-                SubscriptionInfo.encode = function encode(message, writer) {
+                SubscriptionInfo.encode = function encode(message, writer, q) {
                     if (!writer)
                         writer = $Writer.create();
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
                     if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
                     if (message.tier != null && Object.hasOwnProperty.call(message, "tier"))
@@ -24776,7 +25404,7 @@ $root.SyncAction = (function() {
                         message.status = String(object.status);
                     if (object.startTime != null)
                         if ($util.Long)
-                            (message.startTime = $util.Long.fromValue(object.startTime)).unsigned = false;
+                            message.startTime = $util.Long.fromValue(object.startTime, false);
                         else if (typeof object.startTime === "string")
                             message.startTime = parseInt(object.startTime, 10);
                         else if (typeof object.startTime === "number")
@@ -24785,7 +25413,7 @@ $root.SyncAction = (function() {
                             message.startTime = new $util.LongBits(object.startTime.low >>> 0, object.startTime.high >>> 0).toNumber();
                     if (object.endTime != null)
                         if ($util.Long)
-                            (message.endTime = $util.Long.fromValue(object.endTime)).unsigned = false;
+                            message.endTime = $util.Long.fromValue(object.endTime, false);
                         else if (typeof object.endTime === "string")
                             message.endTime = parseInt(object.endTime, 10);
                         else if (typeof object.endTime === "number")
@@ -24798,7 +25426,7 @@ $root.SyncAction = (function() {
                         message.source = String(object.source);
                     if (object.creationTime != null)
                         if ($util.Long)
-                            (message.creationTime = $util.Long.fromValue(object.creationTime)).unsigned = false;
+                            message.creationTime = $util.Long.fromValue(object.creationTime, false);
                         else if (typeof object.creationTime === "string")
                             message.creationTime = parseInt(object.creationTime, 10);
                         else if (typeof object.creationTime === "number")
@@ -24817,9 +25445,13 @@ $root.SyncAction = (function() {
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
-                SubscriptionInfo.toObject = function toObject(message, options) {
+                SubscriptionInfo.toObject = function toObject(message, options, q) {
                     if (!options)
                         options = {};
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
                     var object = {};
                     if (options.defaults) {
                         object.id = "";
@@ -24971,11 +25603,15 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            SyncActionMessage.encode = function encode(message, writer) {
+            SyncActionMessage.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.key != null && Object.hasOwnProperty.call(message, "key"))
-                    $root.Protocol.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                    $root.Protocol.MessageKey.encode(message.key, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                     writer.uint32(/* id 2, wireType 0 =*/16).int64(message.timestamp);
                 return writer;
@@ -25099,7 +25735,7 @@ $root.SyncAction = (function() {
                 }
                 if (object.timestamp != null)
                     if ($util.Long)
-                        (message.timestamp = $util.Long.fromValue(object.timestamp)).unsigned = false;
+                        message.timestamp = $util.Long.fromValue(object.timestamp, false);
                     else if (typeof object.timestamp === "string")
                         message.timestamp = parseInt(object.timestamp, 10);
                     else if (typeof object.timestamp === "number")
@@ -25118,9 +25754,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            SyncActionMessage.toObject = function toObject(message, options) {
+            SyncActionMessage.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.key = null;
@@ -25131,7 +25771,7 @@ $root.SyncAction = (function() {
                         object.timestamp = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 }
                 if (message.key != null && message.hasOwnProperty("key"))
-                    object.key = $root.Protocol.MessageKey.toObject(message.key, options);
+                    object.key = $root.Protocol.MessageKey.toObject(message.key, options, q + 1);
                 if (message.timestamp != null && message.hasOwnProperty("timestamp"))
                     if (typeof BigInt !== "undefined" && options.longs === BigInt)
                         object.timestamp = typeof message.timestamp === "number" ? BigInt(message.timestamp) : $util.Long.fromBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0, false).toBigInt();
@@ -25243,16 +25883,20 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            SyncActionMessageRange.encode = function encode(message, writer) {
+            SyncActionMessageRange.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.lastMessageTimestamp != null && Object.hasOwnProperty.call(message, "lastMessageTimestamp"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int64(message.lastMessageTimestamp);
                 if (message.lastSystemMessageTimestamp != null && Object.hasOwnProperty.call(message, "lastSystemMessageTimestamp"))
                     writer.uint32(/* id 2, wireType 0 =*/16).int64(message.lastSystemMessageTimestamp);
                 if (message.messages != null && message.messages.length)
                     for (var i = 0; i < message.messages.length; ++i)
-                        $root.SyncAction.SyncActionValue.SyncActionMessage.encode(message.messages[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                        $root.SyncAction.SyncActionValue.SyncActionMessage.encode(message.messages[i], writer.uint32(/* id 3, wireType 2 =*/26).fork(), q + 1).ldelim();
                 return writer;
             };
 
@@ -25382,7 +26026,7 @@ $root.SyncAction = (function() {
                 var message = new $root.SyncAction.SyncActionValue.SyncActionMessageRange();
                 if (object.lastMessageTimestamp != null)
                     if ($util.Long)
-                        (message.lastMessageTimestamp = $util.Long.fromValue(object.lastMessageTimestamp)).unsigned = false;
+                        message.lastMessageTimestamp = $util.Long.fromValue(object.lastMessageTimestamp, false);
                     else if (typeof object.lastMessageTimestamp === "string")
                         message.lastMessageTimestamp = parseInt(object.lastMessageTimestamp, 10);
                     else if (typeof object.lastMessageTimestamp === "number")
@@ -25391,7 +26035,7 @@ $root.SyncAction = (function() {
                         message.lastMessageTimestamp = new $util.LongBits(object.lastMessageTimestamp.low >>> 0, object.lastMessageTimestamp.high >>> 0).toNumber();
                 if (object.lastSystemMessageTimestamp != null)
                     if ($util.Long)
-                        (message.lastSystemMessageTimestamp = $util.Long.fromValue(object.lastSystemMessageTimestamp)).unsigned = false;
+                        message.lastSystemMessageTimestamp = $util.Long.fromValue(object.lastSystemMessageTimestamp, false);
                     else if (typeof object.lastSystemMessageTimestamp === "string")
                         message.lastSystemMessageTimestamp = parseInt(object.lastSystemMessageTimestamp, 10);
                     else if (typeof object.lastSystemMessageTimestamp === "number")
@@ -25420,9 +26064,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            SyncActionMessageRange.toObject = function toObject(message, options) {
+            SyncActionMessageRange.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.arrays || options.defaults)
                     object.messages = [];
@@ -25455,7 +26103,7 @@ $root.SyncAction = (function() {
                 if (message.messages && message.messages.length) {
                     object.messages = [];
                     for (var j = 0; j < message.messages.length; ++j)
-                        object.messages[j] = $root.SyncAction.SyncActionValue.SyncActionMessage.toObject(message.messages[j], options);
+                        object.messages[j] = $root.SyncAction.SyncActionValue.SyncActionMessage.toObject(message.messages[j], options, q + 1);
                 }
                 return object;
             };
@@ -25542,9 +26190,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            ThreadPinAction.encode = function encode(message, writer) {
+            ThreadPinAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.pinned != null && Object.hasOwnProperty.call(message, "pinned"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.pinned);
                 return writer;
@@ -25666,9 +26318,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            ThreadPinAction.toObject = function toObject(message, options) {
+            ThreadPinAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.pinned = false;
@@ -25759,9 +26415,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            TimeFormatAction.encode = function encode(message, writer) {
+            TimeFormatAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.isTwentyFourHourFormatEnabled != null && Object.hasOwnProperty.call(message, "isTwentyFourHourFormatEnabled"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.isTwentyFourHourFormatEnabled);
                 return writer;
@@ -25883,9 +26543,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            TimeFormatAction.toObject = function toObject(message, options) {
+            TimeFormatAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.isTwentyFourHourFormatEnabled = false;
@@ -25976,9 +26640,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            UGCBot.encode = function encode(message, writer) {
+            UGCBot.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.definition != null && Object.hasOwnProperty.call(message, "definition"))
                     writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.definition);
                 return writer;
@@ -26103,9 +26771,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            UGCBot.toObject = function toObject(message, options) {
+            UGCBot.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     if (options.bytes === String)
@@ -26202,9 +26874,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            UnarchiveChatsSetting.encode = function encode(message, writer) {
+            UnarchiveChatsSetting.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.unarchiveChats != null && Object.hasOwnProperty.call(message, "unarchiveChats"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.unarchiveChats);
                 return writer;
@@ -26326,9 +27002,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            UnarchiveChatsSetting.toObject = function toObject(message, options) {
+            UnarchiveChatsSetting.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.unarchiveChats = false;
@@ -26419,9 +27099,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            UserStatusMuteAction.encode = function encode(message, writer) {
+            UserStatusMuteAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.muted != null && Object.hasOwnProperty.call(message, "muted"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.muted);
                 return writer;
@@ -26543,9 +27227,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            UserStatusMuteAction.toObject = function toObject(message, options) {
+            UserStatusMuteAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.muted = false;
@@ -26636,9 +27324,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            UsernameChatStartModeAction.encode = function encode(message, writer) {
+            UsernameChatStartModeAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.chatStartMode != null && Object.hasOwnProperty.call(message, "chatStartMode"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.chatStartMode);
                 return writer;
@@ -26779,9 +27471,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            UsernameChatStartModeAction.toObject = function toObject(message, options) {
+            UsernameChatStartModeAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.chatStartMode = options.enums === String ? "LID" : 1;
@@ -26886,9 +27582,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            WaffleAccountLinkStateAction.encode = function encode(message, writer) {
+            WaffleAccountLinkStateAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.linkState != null && Object.hasOwnProperty.call(message, "linkState"))
                     writer.uint32(/* id 2, wireType 0 =*/16).int32(message.linkState);
                 return writer;
@@ -27034,9 +27734,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            WaffleAccountLinkStateAction.toObject = function toObject(message, options) {
+            WaffleAccountLinkStateAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.linkState = options.enums === String ? "ACTIVE" : 0;
@@ -27143,9 +27847,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            WamoUserIdentifierAction.encode = function encode(message, writer) {
+            WamoUserIdentifierAction.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.identifier != null && Object.hasOwnProperty.call(message, "identifier"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.identifier);
                 return writer;
@@ -27267,9 +27975,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            WamoUserIdentifierAction.toObject = function toObject(message, options) {
+            WamoUserIdentifierAction.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.identifier = "";
@@ -27490,9 +28202,13 @@ $root.SyncAction = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        CallLogRecord.encode = function encode(message, writer) {
+        CallLogRecord.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.callResult != null && Object.hasOwnProperty.call(message, "callResult"))
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.callResult);
             if (message.isDndMode != null && Object.hasOwnProperty.call(message, "isDndMode"))
@@ -27521,7 +28237,7 @@ $root.SyncAction = (function() {
                 writer.uint32(/* id 13, wireType 2 =*/106).string(message.groupJid);
             if (message.participants != null && message.participants.length)
                 for (var i = 0; i < message.participants.length; ++i)
-                    $root.SyncAction.CallLogRecord.ParticipantInfo.encode(message.participants[i], writer.uint32(/* id 14, wireType 2 =*/114).fork()).ldelim();
+                    $root.SyncAction.CallLogRecord.ParticipantInfo.encode(message.participants[i], writer.uint32(/* id 14, wireType 2 =*/114).fork(), q + 1).ldelim();
             if (message.callType != null && Object.hasOwnProperty.call(message, "callType"))
                 writer.uint32(/* id 15, wireType 0 =*/120).int32(message.callType);
             return writer;
@@ -27842,7 +28558,7 @@ $root.SyncAction = (function() {
             }
             if (object.duration != null)
                 if ($util.Long)
-                    (message.duration = $util.Long.fromValue(object.duration)).unsigned = false;
+                    message.duration = $util.Long.fromValue(object.duration, false);
                 else if (typeof object.duration === "string")
                     message.duration = parseInt(object.duration, 10);
                 else if (typeof object.duration === "number")
@@ -27851,7 +28567,7 @@ $root.SyncAction = (function() {
                     message.duration = new $util.LongBits(object.duration.low >>> 0, object.duration.high >>> 0).toNumber();
             if (object.startTime != null)
                 if ($util.Long)
-                    (message.startTime = $util.Long.fromValue(object.startTime)).unsigned = false;
+                    message.startTime = $util.Long.fromValue(object.startTime, false);
                 else if (typeof object.startTime === "string")
                     message.startTime = parseInt(object.startTime, 10);
                 else if (typeof object.startTime === "number")
@@ -27916,9 +28632,13 @@ $root.SyncAction = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        CallLogRecord.toObject = function toObject(message, options) {
+        CallLogRecord.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.arrays || options.defaults)
                 object.participants = [];
@@ -27985,7 +28705,7 @@ $root.SyncAction = (function() {
             if (message.participants && message.participants.length) {
                 object.participants = [];
                 for (var j = 0; j < message.participants.length; ++j)
-                    object.participants[j] = $root.SyncAction.CallLogRecord.ParticipantInfo.toObject(message.participants[j], options);
+                    object.participants[j] = $root.SyncAction.CallLogRecord.ParticipantInfo.toObject(message.participants[j], options, q + 1);
             }
             if (message.callType != null && message.hasOwnProperty("callType"))
                 object.callType = options.enums === String ? $root.SyncAction.CallLogRecord.CallType[message.callType] === undefined ? message.callType : $root.SyncAction.CallLogRecord.CallType[message.callType] : message.callType;
@@ -28128,9 +28848,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            ParticipantInfo.encode = function encode(message, writer) {
+            ParticipantInfo.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.userJid != null && Object.hasOwnProperty.call(message, "userJid"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.userJid);
                 if (message.callResult != null && Object.hasOwnProperty.call(message, "callResult"))
@@ -28327,9 +29051,13 @@ $root.SyncAction = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            ParticipantInfo.toObject = function toObject(message, options) {
+            ParticipantInfo.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.userJid = "";
@@ -28454,9 +29182,13 @@ $root.SyncAction = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        RecentEmojiWeight.encode = function encode(message, writer) {
+        RecentEmojiWeight.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.emoji != null && Object.hasOwnProperty.call(message, "emoji"))
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.emoji);
             if (message.weight != null && Object.hasOwnProperty.call(message, "weight"))
@@ -28589,9 +29321,13 @@ $root.SyncAction = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        RecentEmojiWeight.toObject = function toObject(message, options) {
+        RecentEmojiWeight.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 object.emoji = "";
@@ -28907,13 +29643,17 @@ $root.ChatLockSettings = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        ChatLockSettings.encode = function encode(message, writer) {
+        ChatLockSettings.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.hideLockedChats != null && Object.hasOwnProperty.call(message, "hideLockedChats"))
                 writer.uint32(/* id 1, wireType 0 =*/8).bool(message.hideLockedChats);
             if (message.secretCode != null && Object.hasOwnProperty.call(message, "secretCode"))
-                $root.UserPassword.UserPassword.encode(message.secretCode, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                $root.UserPassword.UserPassword.encode(message.secretCode, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -29047,9 +29787,13 @@ $root.ChatLockSettings = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        ChatLockSettings.toObject = function toObject(message, options) {
+        ChatLockSettings.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 object.hideLockedChats = false;
@@ -29058,7 +29802,7 @@ $root.ChatLockSettings = (function() {
             if (message.hideLockedChats != null && message.hasOwnProperty("hideLockedChats"))
                 object.hideLockedChats = message.hideLockedChats;
             if (message.secretCode != null && message.hasOwnProperty("secretCode"))
-                object.secretCode = $root.UserPassword.UserPassword.toObject(message.secretCode, options);
+                object.secretCode = $root.UserPassword.UserPassword.toObject(message.secretCode, options, q + 1);
             return object;
         };
 
@@ -29184,16 +29928,20 @@ $root.UserPassword = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        UserPassword.encode = function encode(message, writer) {
+        UserPassword.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.encoding != null && Object.hasOwnProperty.call(message, "encoding"))
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.encoding);
             if (message.transformer != null && Object.hasOwnProperty.call(message, "transformer"))
                 writer.uint32(/* id 2, wireType 0 =*/16).int32(message.transformer);
             if (message.transformerArg != null && message.transformerArg.length)
                 for (var i = 0; i < message.transformerArg.length; ++i)
-                    $root.UserPassword.UserPassword.TransformerArg.encode(message.transformerArg[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                    $root.UserPassword.UserPassword.TransformerArg.encode(message.transformerArg[i], writer.uint32(/* id 3, wireType 2 =*/26).fork(), q + 1).ldelim();
             if (message.transformedData != null && Object.hasOwnProperty.call(message, "transformedData"))
                 writer.uint32(/* id 4, wireType 2 =*/34).bytes(message.transformedData);
             return writer;
@@ -29404,9 +30152,13 @@ $root.UserPassword = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        UserPassword.toObject = function toObject(message, options) {
+        UserPassword.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.arrays || options.defaults)
                 object.transformerArg = [];
@@ -29428,7 +30180,7 @@ $root.UserPassword = (function() {
             if (message.transformerArg && message.transformerArg.length) {
                 object.transformerArg = [];
                 for (var j = 0; j < message.transformerArg.length; ++j)
-                    object.transformerArg[j] = $root.UserPassword.UserPassword.TransformerArg.toObject(message.transformerArg[j], options);
+                    object.transformerArg[j] = $root.UserPassword.UserPassword.TransformerArg.toObject(message.transformerArg[j], options, q + 1);
             }
             if (message.transformedData != null && message.hasOwnProperty("transformedData"))
                 object.transformedData = options.bytes === String ? $util.base64.encode(message.transformedData, 0, message.transformedData.length) : options.bytes === Array ? Array.prototype.slice.call(message.transformedData) : message.transformedData;
@@ -29553,13 +30305,17 @@ $root.UserPassword = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            TransformerArg.encode = function encode(message, writer) {
+            TransformerArg.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.key != null && Object.hasOwnProperty.call(message, "key"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.key);
                 if (message.value != null && Object.hasOwnProperty.call(message, "value"))
-                    $root.UserPassword.UserPassword.TransformerArg.Value.encode(message.value, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                    $root.UserPassword.UserPassword.TransformerArg.Value.encode(message.value, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
                 return writer;
             };
 
@@ -29693,9 +30449,13 @@ $root.UserPassword = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            TransformerArg.toObject = function toObject(message, options) {
+            TransformerArg.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.key = "";
@@ -29704,7 +30464,7 @@ $root.UserPassword = (function() {
                 if (message.key != null && message.hasOwnProperty("key"))
                     object.key = message.key;
                 if (message.value != null && message.hasOwnProperty("value"))
-                    object.value = $root.UserPassword.UserPassword.TransformerArg.Value.toObject(message.value, options);
+                    object.value = $root.UserPassword.UserPassword.TransformerArg.Value.toObject(message.value, options, q + 1);
                 return object;
             };
 
@@ -29810,9 +30570,13 @@ $root.UserPassword = (function() {
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
-                Value.encode = function encode(message, writer) {
+                Value.encode = function encode(message, writer, q) {
                     if (!writer)
                         writer = $Writer.create();
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
                     if (message.asBlob != null && Object.hasOwnProperty.call(message, "asBlob"))
                         writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.asBlob);
                     if (message.asUnsignedInteger != null && Object.hasOwnProperty.call(message, "asUnsignedInteger"))
@@ -29955,9 +30719,13 @@ $root.UserPassword = (function() {
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
-                Value.toObject = function toObject(message, options) {
+                Value.toObject = function toObject(message, options, q) {
                     if (!options)
                         options = {};
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
                     var object = {};
                     if (message.asBlob != null && message.hasOwnProperty("asBlob")) {
                         object.asBlob = options.bytes === String ? $util.base64.encode(message.asBlob, 0, message.asBlob.length) : options.bytes === Array ? Array.prototype.slice.call(message.asBlob) : message.asBlob;
@@ -30117,21 +30885,25 @@ $root.DeviceCapabilities = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        DeviceCapabilities.encode = function encode(message, writer) {
+        DeviceCapabilities.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.chatLockSupportLevel != null && Object.hasOwnProperty.call(message, "chatLockSupportLevel"))
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.chatLockSupportLevel);
             if (message.lidMigration != null && Object.hasOwnProperty.call(message, "lidMigration"))
-                $root.DeviceCapabilities.DeviceCapabilities.LIDMigration.encode(message.lidMigration, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                $root.DeviceCapabilities.DeviceCapabilities.LIDMigration.encode(message.lidMigration, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
             if (message.businessBroadcast != null && Object.hasOwnProperty.call(message, "businessBroadcast"))
-                $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast.encode(message.businessBroadcast, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast.encode(message.businessBroadcast, writer.uint32(/* id 3, wireType 2 =*/26).fork(), q + 1).ldelim();
             if (message.userHasAvatar != null && Object.hasOwnProperty.call(message, "userHasAvatar"))
-                $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar.encode(message.userHasAvatar, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar.encode(message.userHasAvatar, writer.uint32(/* id 4, wireType 2 =*/34).fork(), q + 1).ldelim();
             if (message.memberNameTagPrimarySupport != null && Object.hasOwnProperty.call(message, "memberNameTagPrimarySupport"))
                 writer.uint32(/* id 5, wireType 0 =*/40).int32(message.memberNameTagPrimarySupport);
             if (message.aiThread != null && Object.hasOwnProperty.call(message, "aiThread"))
-                $root.DeviceCapabilities.DeviceCapabilities.AiThread.encode(message.aiThread, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
+                $root.DeviceCapabilities.DeviceCapabilities.AiThread.encode(message.aiThread, writer.uint32(/* id 6, wireType 2 =*/50).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -30364,9 +31136,13 @@ $root.DeviceCapabilities = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        DeviceCapabilities.toObject = function toObject(message, options) {
+        DeviceCapabilities.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 object.chatLockSupportLevel = options.enums === String ? "NONE" : 0;
@@ -30379,15 +31155,15 @@ $root.DeviceCapabilities = (function() {
             if (message.chatLockSupportLevel != null && message.hasOwnProperty("chatLockSupportLevel"))
                 object.chatLockSupportLevel = options.enums === String ? $root.DeviceCapabilities.DeviceCapabilities.ChatLockSupportLevel[message.chatLockSupportLevel] === undefined ? message.chatLockSupportLevel : $root.DeviceCapabilities.DeviceCapabilities.ChatLockSupportLevel[message.chatLockSupportLevel] : message.chatLockSupportLevel;
             if (message.lidMigration != null && message.hasOwnProperty("lidMigration"))
-                object.lidMigration = $root.DeviceCapabilities.DeviceCapabilities.LIDMigration.toObject(message.lidMigration, options);
+                object.lidMigration = $root.DeviceCapabilities.DeviceCapabilities.LIDMigration.toObject(message.lidMigration, options, q + 1);
             if (message.businessBroadcast != null && message.hasOwnProperty("businessBroadcast"))
-                object.businessBroadcast = $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast.toObject(message.businessBroadcast, options);
+                object.businessBroadcast = $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast.toObject(message.businessBroadcast, options, q + 1);
             if (message.userHasAvatar != null && message.hasOwnProperty("userHasAvatar"))
-                object.userHasAvatar = $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar.toObject(message.userHasAvatar, options);
+                object.userHasAvatar = $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar.toObject(message.userHasAvatar, options, q + 1);
             if (message.memberNameTagPrimarySupport != null && message.hasOwnProperty("memberNameTagPrimarySupport"))
                 object.memberNameTagPrimarySupport = options.enums === String ? $root.DeviceCapabilities.DeviceCapabilities.MemberNameTagPrimarySupport[message.memberNameTagPrimarySupport] === undefined ? message.memberNameTagPrimarySupport : $root.DeviceCapabilities.DeviceCapabilities.MemberNameTagPrimarySupport[message.memberNameTagPrimarySupport] : message.memberNameTagPrimarySupport;
             if (message.aiThread != null && message.hasOwnProperty("aiThread"))
-                object.aiThread = $root.DeviceCapabilities.DeviceCapabilities.AiThread.toObject(message.aiThread, options);
+                object.aiThread = $root.DeviceCapabilities.DeviceCapabilities.AiThread.toObject(message.aiThread, options, q + 1);
             return object;
         };
 
@@ -30470,9 +31246,13 @@ $root.DeviceCapabilities = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            AiThread.encode = function encode(message, writer) {
+            AiThread.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.supportLevel != null && Object.hasOwnProperty.call(message, "supportLevel"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.supportLevel);
                 return writer;
@@ -30618,9 +31398,13 @@ $root.DeviceCapabilities = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            AiThread.toObject = function toObject(message, options) {
+            AiThread.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.supportLevel = options.enums === String ? "NONE" : 0;
@@ -30763,9 +31547,13 @@ $root.DeviceCapabilities = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            BusinessBroadcast.encode = function encode(message, writer) {
+            BusinessBroadcast.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.importListEnabled != null && Object.hasOwnProperty.call(message, "importListEnabled"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.importListEnabled);
                 if (message.companionSupportEnabled != null && Object.hasOwnProperty.call(message, "companionSupportEnabled"))
@@ -30931,9 +31719,13 @@ $root.DeviceCapabilities = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            BusinessBroadcast.toObject = function toObject(message, options) {
+            BusinessBroadcast.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.importListEnabled = false;
@@ -31053,9 +31845,13 @@ $root.DeviceCapabilities = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            LIDMigration.encode = function encode(message, writer) {
+            LIDMigration.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.chatDbMigrationTimestamp != null && Object.hasOwnProperty.call(message, "chatDbMigrationTimestamp"))
                     writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.chatDbMigrationTimestamp);
                 return writer;
@@ -31165,7 +31961,7 @@ $root.DeviceCapabilities = (function() {
                 var message = new $root.DeviceCapabilities.DeviceCapabilities.LIDMigration();
                 if (object.chatDbMigrationTimestamp != null)
                     if ($util.Long)
-                        (message.chatDbMigrationTimestamp = $util.Long.fromValue(object.chatDbMigrationTimestamp)).unsigned = true;
+                        message.chatDbMigrationTimestamp = $util.Long.fromValue(object.chatDbMigrationTimestamp, true);
                     else if (typeof object.chatDbMigrationTimestamp === "string")
                         message.chatDbMigrationTimestamp = parseInt(object.chatDbMigrationTimestamp, 10);
                     else if (typeof object.chatDbMigrationTimestamp === "number")
@@ -31184,9 +31980,13 @@ $root.DeviceCapabilities = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            LIDMigration.toObject = function toObject(message, options) {
+            LIDMigration.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     if ($util.Long) {
@@ -31302,9 +32102,13 @@ $root.DeviceCapabilities = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            UserHasAvatar.encode = function encode(message, writer) {
+            UserHasAvatar.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.userHasAvatar != null && Object.hasOwnProperty.call(message, "userHasAvatar"))
                     writer.uint32(/* id 1, wireType 0 =*/8).bool(message.userHasAvatar);
                 return writer;
@@ -31426,9 +32230,13 @@ $root.DeviceCapabilities = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            UserHasAvatar.toObject = function toObject(message, options) {
+            UserHasAvatar.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults)
                     object.userHasAvatar = false;
@@ -31561,9 +32369,13 @@ $root.Protocol = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        LimitSharing.encode = function encode(message, writer) {
+        LimitSharing.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.sharingLimited != null && Object.hasOwnProperty.call(message, "sharingLimited"))
                 writer.uint32(/* id 1, wireType 0 =*/8).bool(message.sharingLimited);
             if (message.trigger != null && Object.hasOwnProperty.call(message, "trigger"))
@@ -31733,7 +32545,7 @@ $root.Protocol = (function() {
             }
             if (object.limitSharingSettingTimestamp != null)
                 if ($util.Long)
-                    (message.limitSharingSettingTimestamp = $util.Long.fromValue(object.limitSharingSettingTimestamp)).unsigned = false;
+                    message.limitSharingSettingTimestamp = $util.Long.fromValue(object.limitSharingSettingTimestamp, false);
                 else if (typeof object.limitSharingSettingTimestamp === "string")
                     message.limitSharingSettingTimestamp = parseInt(object.limitSharingSettingTimestamp, 10);
                 else if (typeof object.limitSharingSettingTimestamp === "number")
@@ -31754,9 +32566,13 @@ $root.Protocol = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        LimitSharing.toObject = function toObject(message, options) {
+        LimitSharing.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 object.sharingLimited = false;
@@ -31911,9 +32727,13 @@ $root.Protocol = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        MessageKey.encode = function encode(message, writer) {
+        MessageKey.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.remoteJid != null && Object.hasOwnProperty.call(message, "remoteJid"))
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.remoteJid);
             if (message.fromMe != null && Object.hasOwnProperty.call(message, "fromMe"))
@@ -32068,9 +32888,13 @@ $root.Protocol = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        MessageKey.toObject = function toObject(message, options) {
+        MessageKey.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 object.remoteJid = "";

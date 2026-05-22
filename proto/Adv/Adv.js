@@ -89,9 +89,13 @@ $root.Adv = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        ADVSignedDeviceIdentityHMAC.encode = function encode(message, writer) {
+        ADVSignedDeviceIdentityHMAC.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.details != null && Object.hasOwnProperty.call(message, "details"))
                 writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.details);
             if (message.hmac != null && Object.hasOwnProperty.call(message, "hmac"))
@@ -265,9 +269,13 @@ $root.Adv = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        ADVSignedDeviceIdentityHMAC.toObject = function toObject(message, options) {
+        ADVSignedDeviceIdentityHMAC.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 if (options.bytes === String)
@@ -404,9 +412,13 @@ $root.Adv = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        ADVSignedDeviceIdentity.encode = function encode(message, writer) {
+        ADVSignedDeviceIdentity.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.details != null && Object.hasOwnProperty.call(message, "details"))
                 writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.details);
             if (message.accountSignatureKey != null && Object.hasOwnProperty.call(message, "accountSignatureKey"))
@@ -573,9 +585,13 @@ $root.Adv = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        ADVSignedDeviceIdentity.toObject = function toObject(message, options) {
+        ADVSignedDeviceIdentity.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 if (options.bytes === String)
@@ -736,9 +752,13 @@ $root.Adv = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        ADVDeviceIdentity.encode = function encode(message, writer) {
+        ADVDeviceIdentity.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.rawId != null && Object.hasOwnProperty.call(message, "rawId"))
                 writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.rawId);
             if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
@@ -898,7 +918,7 @@ $root.Adv = (function() {
                 message.rawId = object.rawId >>> 0;
             if (object.timestamp != null)
                 if ($util.Long)
-                    (message.timestamp = $util.Long.fromValue(object.timestamp)).unsigned = true;
+                    message.timestamp = $util.Long.fromValue(object.timestamp, true);
                 else if (typeof object.timestamp === "string")
                     message.timestamp = parseInt(object.timestamp, 10);
                 else if (typeof object.timestamp === "number")
@@ -959,9 +979,13 @@ $root.Adv = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        ADVDeviceIdentity.toObject = function toObject(message, options) {
+        ADVDeviceIdentity.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 object.rawId = 0;
@@ -1092,9 +1116,13 @@ $root.Adv = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        ADVSignedKeyIndexList.encode = function encode(message, writer) {
+        ADVSignedKeyIndexList.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.details != null && Object.hasOwnProperty.call(message, "details"))
                 writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.details);
             if (message.accountSignature != null && Object.hasOwnProperty.call(message, "accountSignature"))
@@ -1247,9 +1275,13 @@ $root.Adv = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        ADVSignedKeyIndexList.toObject = function toObject(message, options) {
+        ADVSignedKeyIndexList.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 if (options.bytes === String)
@@ -1402,9 +1434,13 @@ $root.Adv = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        ADVKeyIndexList.encode = function encode(message, writer) {
+        ADVKeyIndexList.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.rawId != null && Object.hasOwnProperty.call(message, "rawId"))
                 writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.rawId);
             if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
@@ -1573,7 +1609,7 @@ $root.Adv = (function() {
                 message.rawId = object.rawId >>> 0;
             if (object.timestamp != null)
                 if ($util.Long)
-                    (message.timestamp = $util.Long.fromValue(object.timestamp)).unsigned = true;
+                    message.timestamp = $util.Long.fromValue(object.timestamp, true);
                 else if (typeof object.timestamp === "string")
                     message.timestamp = parseInt(object.timestamp, 10);
                 else if (typeof object.timestamp === "number")
@@ -1621,9 +1657,13 @@ $root.Adv = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        ADVKeyIndexList.toObject = function toObject(message, options) {
+        ADVKeyIndexList.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.arrays || options.defaults)
                 object.validIndexes = [];

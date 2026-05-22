@@ -81,12 +81,16 @@ $root.LidMigrationSyncPayload = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        LIDMigrationMappingSyncPayload.encode = function encode(message, writer) {
+        LIDMigrationMappingSyncPayload.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.pnToLidMappings != null && message.pnToLidMappings.length)
                 for (var i = 0; i < message.pnToLidMappings.length; ++i)
-                    $root.LidMigrationSyncPayload.LIDMigrationMapping.encode(message.pnToLidMappings[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                    $root.LidMigrationSyncPayload.LIDMigrationMapping.encode(message.pnToLidMappings[i], writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
             if (message.chatDbMigrationTimestamp != null && Object.hasOwnProperty.call(message, "chatDbMigrationTimestamp"))
                 writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.chatDbMigrationTimestamp);
             return writer;
@@ -221,7 +225,7 @@ $root.LidMigrationSyncPayload = (function() {
             }
             if (object.chatDbMigrationTimestamp != null)
                 if ($util.Long)
-                    (message.chatDbMigrationTimestamp = $util.Long.fromValue(object.chatDbMigrationTimestamp)).unsigned = true;
+                    message.chatDbMigrationTimestamp = $util.Long.fromValue(object.chatDbMigrationTimestamp, true);
                 else if (typeof object.chatDbMigrationTimestamp === "string")
                     message.chatDbMigrationTimestamp = parseInt(object.chatDbMigrationTimestamp, 10);
                 else if (typeof object.chatDbMigrationTimestamp === "number")
@@ -240,9 +244,13 @@ $root.LidMigrationSyncPayload = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        LIDMigrationMappingSyncPayload.toObject = function toObject(message, options) {
+        LIDMigrationMappingSyncPayload.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.arrays || options.defaults)
                 object.pnToLidMappings = [];
@@ -255,7 +263,7 @@ $root.LidMigrationSyncPayload = (function() {
             if (message.pnToLidMappings && message.pnToLidMappings.length) {
                 object.pnToLidMappings = [];
                 for (var j = 0; j < message.pnToLidMappings.length; ++j)
-                    object.pnToLidMappings[j] = $root.LidMigrationSyncPayload.LIDMigrationMapping.toObject(message.pnToLidMappings[j], options);
+                    object.pnToLidMappings[j] = $root.LidMigrationSyncPayload.LIDMigrationMapping.toObject(message.pnToLidMappings[j], options, q + 1);
             }
             if (message.chatDbMigrationTimestamp != null && message.hasOwnProperty("chatDbMigrationTimestamp"))
                 if (typeof BigInt !== "undefined" && options.longs === BigInt)
@@ -367,9 +375,13 @@ $root.LidMigrationSyncPayload = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        LIDMigrationMapping.encode = function encode(message, writer) {
+        LIDMigrationMapping.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.pn);
             writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.assignedLid);
             if (message.latestLid != null && Object.hasOwnProperty.call(message, "latestLid"))
@@ -497,7 +509,7 @@ $root.LidMigrationSyncPayload = (function() {
             var message = new $root.LidMigrationSyncPayload.LIDMigrationMapping();
             if (object.pn != null)
                 if ($util.Long)
-                    (message.pn = $util.Long.fromValue(object.pn)).unsigned = true;
+                    message.pn = $util.Long.fromValue(object.pn, true);
                 else if (typeof object.pn === "string")
                     message.pn = parseInt(object.pn, 10);
                 else if (typeof object.pn === "number")
@@ -506,7 +518,7 @@ $root.LidMigrationSyncPayload = (function() {
                     message.pn = new $util.LongBits(object.pn.low >>> 0, object.pn.high >>> 0).toNumber(true);
             if (object.assignedLid != null)
                 if ($util.Long)
-                    (message.assignedLid = $util.Long.fromValue(object.assignedLid)).unsigned = true;
+                    message.assignedLid = $util.Long.fromValue(object.assignedLid, true);
                 else if (typeof object.assignedLid === "string")
                     message.assignedLid = parseInt(object.assignedLid, 10);
                 else if (typeof object.assignedLid === "number")
@@ -515,7 +527,7 @@ $root.LidMigrationSyncPayload = (function() {
                     message.assignedLid = new $util.LongBits(object.assignedLid.low >>> 0, object.assignedLid.high >>> 0).toNumber(true);
             if (object.latestLid != null)
                 if ($util.Long)
-                    (message.latestLid = $util.Long.fromValue(object.latestLid)).unsigned = true;
+                    message.latestLid = $util.Long.fromValue(object.latestLid, true);
                 else if (typeof object.latestLid === "string")
                     message.latestLid = parseInt(object.latestLid, 10);
                 else if (typeof object.latestLid === "number")
@@ -534,9 +546,13 @@ $root.LidMigrationSyncPayload = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        LIDMigrationMapping.toObject = function toObject(message, options) {
+        LIDMigrationMapping.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 if ($util.Long) {

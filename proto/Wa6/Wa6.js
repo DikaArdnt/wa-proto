@@ -388,17 +388,21 @@ $root.Wa6 = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        ClientPayload.encode = function encode(message, writer) {
+        ClientPayload.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.username != null && Object.hasOwnProperty.call(message, "username"))
                 writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.username);
             if (message.passive != null && Object.hasOwnProperty.call(message, "passive"))
                 writer.uint32(/* id 3, wireType 0 =*/24).bool(message.passive);
             if (message.userAgent != null && Object.hasOwnProperty.call(message, "userAgent"))
-                $root.Wa6.ClientPayload.UserAgent.encode(message.userAgent, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                $root.Wa6.ClientPayload.UserAgent.encode(message.userAgent, writer.uint32(/* id 5, wireType 2 =*/42).fork(), q + 1).ldelim();
             if (message.webInfo != null && Object.hasOwnProperty.call(message, "webInfo"))
-                $root.Wa6.ClientPayload.WebInfo.encode(message.webInfo, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
+                $root.Wa6.ClientPayload.WebInfo.encode(message.webInfo, writer.uint32(/* id 6, wireType 2 =*/50).fork(), q + 1).ldelim();
             if (message.pushName != null && Object.hasOwnProperty.call(message, "pushName"))
                 writer.uint32(/* id 7, wireType 2 =*/58).string(message.pushName);
             if (message.sessionId != null && Object.hasOwnProperty.call(message, "sessionId"))
@@ -413,13 +417,13 @@ $root.Wa6 = (function() {
                 for (var i = 0; i < message.shards.length; ++i)
                     writer.uint32(/* id 14, wireType 0 =*/112).int32(message.shards[i]);
             if (message.dnsSource != null && Object.hasOwnProperty.call(message, "dnsSource"))
-                $root.Wa6.ClientPayload.DNSSource.encode(message.dnsSource, writer.uint32(/* id 15, wireType 2 =*/122).fork()).ldelim();
+                $root.Wa6.ClientPayload.DNSSource.encode(message.dnsSource, writer.uint32(/* id 15, wireType 2 =*/122).fork(), q + 1).ldelim();
             if (message.connectAttemptCount != null && Object.hasOwnProperty.call(message, "connectAttemptCount"))
                 writer.uint32(/* id 16, wireType 0 =*/128).uint32(message.connectAttemptCount);
             if (message.device != null && Object.hasOwnProperty.call(message, "device"))
                 writer.uint32(/* id 18, wireType 0 =*/144).uint32(message.device);
             if (message.devicePairingData != null && Object.hasOwnProperty.call(message, "devicePairingData"))
-                $root.Wa6.ClientPayload.DevicePairingRegistrationData.encode(message.devicePairingData, writer.uint32(/* id 19, wireType 2 =*/154).fork()).ldelim();
+                $root.Wa6.ClientPayload.DevicePairingRegistrationData.encode(message.devicePairingData, writer.uint32(/* id 19, wireType 2 =*/154).fork(), q + 1).ldelim();
             if (message.product != null && Object.hasOwnProperty.call(message, "product"))
                 writer.uint32(/* id 20, wireType 0 =*/160).int32(message.product);
             if (message.fbCat != null && Object.hasOwnProperty.call(message, "fbCat"))
@@ -445,7 +449,7 @@ $root.Wa6 = (function() {
             if (message.memClass != null && Object.hasOwnProperty.call(message, "memClass"))
                 writer.uint32(/* id 37, wireType 0 =*/296).int32(message.memClass);
             if (message.interopData != null && Object.hasOwnProperty.call(message, "interopData"))
-                $root.Wa6.ClientPayload.InteropData.encode(message.interopData, writer.uint32(/* id 38, wireType 2 =*/306).fork()).ldelim();
+                $root.Wa6.ClientPayload.InteropData.encode(message.interopData, writer.uint32(/* id 38, wireType 2 =*/306).fork(), q + 1).ldelim();
             if (message.trafficAnonymization != null && Object.hasOwnProperty.call(message, "trafficAnonymization"))
                 writer.uint32(/* id 40, wireType 0 =*/320).int32(message.trafficAnonymization);
             if (message.lidDbMigrated != null && Object.hasOwnProperty.call(message, "lidDbMigrated"))
@@ -896,7 +900,7 @@ $root.Wa6 = (function() {
             var message = new $root.Wa6.ClientPayload();
             if (object.username != null)
                 if ($util.Long)
-                    (message.username = $util.Long.fromValue(object.username)).unsigned = true;
+                    message.username = $util.Long.fromValue(object.username, true);
                 else if (typeof object.username === "string")
                     message.username = parseInt(object.username, 10);
                 else if (typeof object.username === "number")
@@ -1110,7 +1114,7 @@ $root.Wa6 = (function() {
             }
             if (object.fbAppId != null)
                 if ($util.Long)
-                    (message.fbAppId = $util.Long.fromValue(object.fbAppId)).unsigned = true;
+                    message.fbAppId = $util.Long.fromValue(object.fbAppId, true);
                 else if (typeof object.fbAppId === "string")
                     message.fbAppId = parseInt(object.fbAppId, 10);
                 else if (typeof object.fbAppId === "number")
@@ -1204,9 +1208,13 @@ $root.Wa6 = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        ClientPayload.toObject = function toObject(message, options) {
+        ClientPayload.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.arrays || options.defaults) {
                 object.shards = [];
@@ -1296,9 +1304,9 @@ $root.Wa6 = (function() {
             if (message.passive != null && message.hasOwnProperty("passive"))
                 object.passive = message.passive;
             if (message.userAgent != null && message.hasOwnProperty("userAgent"))
-                object.userAgent = $root.Wa6.ClientPayload.UserAgent.toObject(message.userAgent, options);
+                object.userAgent = $root.Wa6.ClientPayload.UserAgent.toObject(message.userAgent, options, q + 1);
             if (message.webInfo != null && message.hasOwnProperty("webInfo"))
-                object.webInfo = $root.Wa6.ClientPayload.WebInfo.toObject(message.webInfo, options);
+                object.webInfo = $root.Wa6.ClientPayload.WebInfo.toObject(message.webInfo, options, q + 1);
             if (message.pushName != null && message.hasOwnProperty("pushName"))
                 object.pushName = message.pushName;
             if (message.sessionId != null && message.hasOwnProperty("sessionId"))
@@ -1315,13 +1323,13 @@ $root.Wa6 = (function() {
                     object.shards[j] = message.shards[j];
             }
             if (message.dnsSource != null && message.hasOwnProperty("dnsSource"))
-                object.dnsSource = $root.Wa6.ClientPayload.DNSSource.toObject(message.dnsSource, options);
+                object.dnsSource = $root.Wa6.ClientPayload.DNSSource.toObject(message.dnsSource, options, q + 1);
             if (message.connectAttemptCount != null && message.hasOwnProperty("connectAttemptCount"))
                 object.connectAttemptCount = message.connectAttemptCount;
             if (message.device != null && message.hasOwnProperty("device"))
                 object.device = message.device;
             if (message.devicePairingData != null && message.hasOwnProperty("devicePairingData"))
-                object.devicePairingData = $root.Wa6.ClientPayload.DevicePairingRegistrationData.toObject(message.devicePairingData, options);
+                object.devicePairingData = $root.Wa6.ClientPayload.DevicePairingRegistrationData.toObject(message.devicePairingData, options, q + 1);
             if (message.product != null && message.hasOwnProperty("product"))
                 object.product = options.enums === String ? $root.Wa6.ClientPayload.Product[message.product] === undefined ? message.product : $root.Wa6.ClientPayload.Product[message.product] : message.product;
             if (message.fbCat != null && message.hasOwnProperty("fbCat"))
@@ -1352,7 +1360,7 @@ $root.Wa6 = (function() {
             if (message.memClass != null && message.hasOwnProperty("memClass"))
                 object.memClass = message.memClass;
             if (message.interopData != null && message.hasOwnProperty("interopData"))
-                object.interopData = $root.Wa6.ClientPayload.InteropData.toObject(message.interopData, options);
+                object.interopData = $root.Wa6.ClientPayload.InteropData.toObject(message.interopData, options, q + 1);
             if (message.trafficAnonymization != null && message.hasOwnProperty("trafficAnonymization"))
                 object.trafficAnonymization = options.enums === String ? $root.Wa6.ClientPayload.TrafficAnonymization[message.trafficAnonymization] === undefined ? message.trafficAnonymization : $root.Wa6.ClientPayload.TrafficAnonymization[message.trafficAnonymization] : message.trafficAnonymization;
             if (message.lidDbMigrated != null && message.hasOwnProperty("lidDbMigrated"))
@@ -1543,9 +1551,13 @@ $root.Wa6 = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            DNSSource.encode = function encode(message, writer) {
+            DNSSource.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.dnsMethod != null && Object.hasOwnProperty.call(message, "dnsMethod"))
                     writer.uint32(/* id 15, wireType 0 =*/120).int32(message.dnsMethod);
                 if (message.appCached != null && Object.hasOwnProperty.call(message, "appCached"))
@@ -1727,9 +1739,13 @@ $root.Wa6 = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            DNSSource.toObject = function toObject(message, options) {
+            DNSSource.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.dnsMethod = options.enums === String ? "SYSTEM" : 0;
@@ -1913,9 +1929,13 @@ $root.Wa6 = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            DevicePairingRegistrationData.encode = function encode(message, writer) {
+            DevicePairingRegistrationData.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.eRegid != null && Object.hasOwnProperty.call(message, "eRegid"))
                     writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.eRegid);
                 if (message.eKeytype != null && Object.hasOwnProperty.call(message, "eKeytype"))
@@ -2138,9 +2158,13 @@ $root.Wa6 = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            DevicePairingRegistrationData.toObject = function toObject(message, options) {
+            DevicePairingRegistrationData.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     if (options.bytes === String)
@@ -2335,9 +2359,13 @@ $root.Wa6 = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            InteropData.encode = function encode(message, writer) {
+            InteropData.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.accountId != null && Object.hasOwnProperty.call(message, "accountId"))
                     writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.accountId);
                 if (message.token != null && Object.hasOwnProperty.call(message, "token"))
@@ -2465,7 +2493,7 @@ $root.Wa6 = (function() {
                 var message = new $root.Wa6.ClientPayload.InteropData();
                 if (object.accountId != null)
                     if ($util.Long)
-                        (message.accountId = $util.Long.fromValue(object.accountId)).unsigned = true;
+                        message.accountId = $util.Long.fromValue(object.accountId, true);
                     else if (typeof object.accountId === "string")
                         message.accountId = parseInt(object.accountId, 10);
                     else if (typeof object.accountId === "number")
@@ -2491,9 +2519,13 @@ $root.Wa6 = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            InteropData.toObject = function toObject(message, options) {
+            InteropData.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     if ($util.Long) {
@@ -2784,13 +2816,17 @@ $root.Wa6 = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            UserAgent.encode = function encode(message, writer) {
+            UserAgent.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.platform != null && Object.hasOwnProperty.call(message, "platform"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.platform);
                 if (message.appVersion != null && Object.hasOwnProperty.call(message, "appVersion"))
-                    $root.Wa6.ClientPayload.UserAgent.AppVersion.encode(message.appVersion, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                    $root.Wa6.ClientPayload.UserAgent.AppVersion.encode(message.appVersion, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
                 if (message.mcc != null && Object.hasOwnProperty.call(message, "mcc"))
                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.mcc);
                 if (message.mnc != null && Object.hasOwnProperty.call(message, "mnc"))
@@ -3380,9 +3416,13 @@ $root.Wa6 = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            UserAgent.toObject = function toObject(message, options) {
+            UserAgent.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.platform = options.enums === String ? "ANDROID" : 0;
@@ -3406,7 +3446,7 @@ $root.Wa6 = (function() {
                 if (message.platform != null && message.hasOwnProperty("platform"))
                     object.platform = options.enums === String ? $root.Wa6.ClientPayload.UserAgent.Platform[message.platform] === undefined ? message.platform : $root.Wa6.ClientPayload.UserAgent.Platform[message.platform] : message.platform;
                 if (message.appVersion != null && message.hasOwnProperty("appVersion"))
-                    object.appVersion = $root.Wa6.ClientPayload.UserAgent.AppVersion.toObject(message.appVersion, options);
+                    object.appVersion = $root.Wa6.ClientPayload.UserAgent.AppVersion.toObject(message.appVersion, options, q + 1);
                 if (message.mcc != null && message.hasOwnProperty("mcc"))
                     object.mcc = message.mcc;
                 if (message.mnc != null && message.hasOwnProperty("mnc"))
@@ -3555,9 +3595,13 @@ $root.Wa6 = (function() {
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
-                AppVersion.encode = function encode(message, writer) {
+                AppVersion.encode = function encode(message, writer, q) {
                     if (!writer)
                         writer = $Writer.create();
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
                     if (message.primary != null && Object.hasOwnProperty.call(message, "primary"))
                         writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.primary);
                     if (message.secondary != null && Object.hasOwnProperty.call(message, "secondary"))
@@ -3723,9 +3767,13 @@ $root.Wa6 = (function() {
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
-                AppVersion.toObject = function toObject(message, options) {
+                AppVersion.toObject = function toObject(message, options, q) {
                     if (!options)
                         options = {};
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
                     var object = {};
                     if (options.defaults) {
                         object.primary = 0;
@@ -4019,15 +4067,19 @@ $root.Wa6 = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            WebInfo.encode = function encode(message, writer) {
+            WebInfo.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.refToken != null && Object.hasOwnProperty.call(message, "refToken"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.refToken);
                 if (message.version != null && Object.hasOwnProperty.call(message, "version"))
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.version);
                 if (message.webdPayload != null && Object.hasOwnProperty.call(message, "webdPayload"))
-                    $root.Wa6.ClientPayload.WebInfo.WebdPayload.encode(message.webdPayload, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                    $root.Wa6.ClientPayload.WebInfo.WebdPayload.encode(message.webdPayload, writer.uint32(/* id 3, wireType 2 =*/26).fork(), q + 1).ldelim();
                 if (message.webSubPlatform != null && Object.hasOwnProperty.call(message, "webSubPlatform"))
                     writer.uint32(/* id 4, wireType 0 =*/32).int32(message.webSubPlatform);
                 if (message.browser != null && Object.hasOwnProperty.call(message, "browser"))
@@ -4242,9 +4294,13 @@ $root.Wa6 = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            WebInfo.toObject = function toObject(message, options) {
+            WebInfo.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     object.refToken = "";
@@ -4259,7 +4315,7 @@ $root.Wa6 = (function() {
                 if (message.version != null && message.hasOwnProperty("version"))
                     object.version = message.version;
                 if (message.webdPayload != null && message.hasOwnProperty("webdPayload"))
-                    object.webdPayload = $root.Wa6.ClientPayload.WebInfo.WebdPayload.toObject(message.webdPayload, options);
+                    object.webdPayload = $root.Wa6.ClientPayload.WebInfo.WebdPayload.toObject(message.webdPayload, options, q + 1);
                 if (message.webSubPlatform != null && message.hasOwnProperty("webSubPlatform"))
                     object.webSubPlatform = options.enums === String ? $root.Wa6.ClientPayload.WebInfo.WebSubPlatform[message.webSubPlatform] === undefined ? message.webSubPlatform : $root.Wa6.ClientPayload.WebInfo.WebSubPlatform[message.webSubPlatform] : message.webSubPlatform;
                 if (message.browser != null && message.hasOwnProperty("browser"))
@@ -4460,9 +4516,13 @@ $root.Wa6 = (function() {
                  * @param {$protobuf.Writer} [writer] Writer to encode to
                  * @returns {$protobuf.Writer} Writer
                  */
-                WebdPayload.encode = function encode(message, writer) {
+                WebdPayload.encode = function encode(message, writer, q) {
                     if (!writer)
                         writer = $Writer.create();
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
                     if (message.usesParticipantInKey != null && Object.hasOwnProperty.call(message, "usesParticipantInKey"))
                         writer.uint32(/* id 1, wireType 0 =*/8).bool(message.usesParticipantInKey);
                     if (message.supportsStarredMessages != null && Object.hasOwnProperty.call(message, "supportsStarredMessages"))
@@ -4697,9 +4757,13 @@ $root.Wa6 = (function() {
                  * @param {$protobuf.IConversionOptions} [options] Conversion options
                  * @returns {Object.<string,*>} Plain object
                  */
-                WebdPayload.toObject = function toObject(message, options) {
+                WebdPayload.toObject = function toObject(message, options, q) {
                     if (!options)
                         options = {};
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
                     var object = {};
                     if (options.defaults) {
                         object.usesParticipantInKey = false;
@@ -4851,15 +4915,19 @@ $root.Wa6 = (function() {
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        HandshakeMessage.encode = function encode(message, writer) {
+        HandshakeMessage.encode = function encode(message, writer, q) {
             if (!writer)
                 writer = $Writer.create();
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             if (message.clientHello != null && Object.hasOwnProperty.call(message, "clientHello"))
-                $root.Wa6.HandshakeMessage.ClientHello.encode(message.clientHello, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                $root.Wa6.HandshakeMessage.ClientHello.encode(message.clientHello, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
             if (message.serverHello != null && Object.hasOwnProperty.call(message, "serverHello"))
-                $root.Wa6.HandshakeMessage.ServerHello.encode(message.serverHello, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                $root.Wa6.HandshakeMessage.ServerHello.encode(message.serverHello, writer.uint32(/* id 3, wireType 2 =*/26).fork(), q + 1).ldelim();
             if (message.clientFinish != null && Object.hasOwnProperty.call(message, "clientFinish"))
-                $root.Wa6.HandshakeMessage.ClientFinish.encode(message.clientFinish, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                $root.Wa6.HandshakeMessage.ClientFinish.encode(message.clientFinish, writer.uint32(/* id 4, wireType 2 =*/34).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -5012,9 +5080,13 @@ $root.Wa6 = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        HandshakeMessage.toObject = function toObject(message, options) {
+        HandshakeMessage.toObject = function toObject(message, options, q) {
             if (!options)
                 options = {};
+            if (q === undefined)
+                q = 0;
+            if (q > $util.recursionLimit)
+                throw Error("max depth exceeded");
             var object = {};
             if (options.defaults) {
                 object.clientHello = null;
@@ -5022,11 +5094,11 @@ $root.Wa6 = (function() {
                 object.clientFinish = null;
             }
             if (message.clientHello != null && message.hasOwnProperty("clientHello"))
-                object.clientHello = $root.Wa6.HandshakeMessage.ClientHello.toObject(message.clientHello, options);
+                object.clientHello = $root.Wa6.HandshakeMessage.ClientHello.toObject(message.clientHello, options, q + 1);
             if (message.serverHello != null && message.hasOwnProperty("serverHello"))
-                object.serverHello = $root.Wa6.HandshakeMessage.ServerHello.toObject(message.serverHello, options);
+                object.serverHello = $root.Wa6.HandshakeMessage.ServerHello.toObject(message.serverHello, options, q + 1);
             if (message.clientFinish != null && message.hasOwnProperty("clientFinish"))
-                object.clientFinish = $root.Wa6.HandshakeMessage.ClientFinish.toObject(message.clientFinish, options);
+                object.clientFinish = $root.Wa6.HandshakeMessage.ClientFinish.toObject(message.clientFinish, options, q + 1);
             return object;
         };
 
@@ -5145,9 +5217,13 @@ $root.Wa6 = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            ClientFinish.encode = function encode(message, writer) {
+            ClientFinish.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message["static"] != null && Object.hasOwnProperty.call(message, "static"))
                     writer.uint32(/* id 1, wireType 2 =*/10).bytes(message["static"]);
                 if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
@@ -5325,9 +5401,13 @@ $root.Wa6 = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            ClientFinish.toObject = function toObject(message, options) {
+            ClientFinish.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     if (options.bytes === String)
@@ -5536,9 +5616,13 @@ $root.Wa6 = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            ClientHello.encode = function encode(message, writer) {
+            ClientHello.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.ephemeral != null && Object.hasOwnProperty.call(message, "ephemeral"))
                     writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.ephemeral);
                 if (message["static"] != null && Object.hasOwnProperty.call(message, "static"))
@@ -5831,9 +5915,13 @@ $root.Wa6 = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            ClientHello.toObject = function toObject(message, options) {
+            ClientHello.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     if (options.bytes === String)
@@ -6061,9 +6149,13 @@ $root.Wa6 = (function() {
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            ServerHello.encode = function encode(message, writer) {
+            ServerHello.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 if (message.ephemeral != null && Object.hasOwnProperty.call(message, "ephemeral"))
                     writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.ephemeral);
                 if (message["static"] != null && Object.hasOwnProperty.call(message, "static"))
@@ -6258,9 +6350,13 @@ $root.Wa6 = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            ServerHello.toObject = function toObject(message, options) {
+            ServerHello.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     if (options.bytes === String)
