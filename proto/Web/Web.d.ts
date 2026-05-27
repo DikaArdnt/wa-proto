@@ -4263,6 +4263,9 @@ export namespace E2E {
 
         /** GroupRootKeyShareEntry expiryTimestampMs */
         expiryTimestampMs?: (number|Long|null);
+
+        /** GroupRootKeyShareEntry createdTimestampMs */
+        createdTimestampMs?: (number|Long|null);
     }
 
     /** Represents a GroupRootKeyShareEntry. */
@@ -4282,6 +4285,9 @@ export namespace E2E {
 
         /** GroupRootKeyShareEntry expiryTimestampMs. */
         public expiryTimestampMs: (number|Long);
+
+        /** GroupRootKeyShareEntry createdTimestampMs. */
+        public createdTimestampMs: (number|Long);
 
         /**
          * Creates a new GroupRootKeyShareEntry instance using the specified properties.
@@ -18718,6 +18724,9 @@ export namespace E2E {
 
                 /** BloksWidget type */
                 type?: (string|null);
+
+                /** BloksWidget fallback */
+                fallback?: (string|null);
             }
 
             /** Represents a BloksWidget. */
@@ -18737,6 +18746,9 @@ export namespace E2E {
 
                 /** BloksWidget type. */
                 public type: string;
+
+                /** BloksWidget fallback. */
+                public fallback: string;
 
                 /**
                  * Creates a new BloksWidget instance using the specified properties.
@@ -28449,6 +28461,9 @@ export namespace E2E {
 
             /** ProtocolMessage chatThemeSetting */
             chatThemeSetting?: (E2E.Message.IChatThemeSetting|null);
+
+            /** ProtocolMessage aiMetadataOperation */
+            aiMetadataOperation?: (AICommon.IAIMetadataOperation|null);
         }
 
         /** Represents a ProtocolMessage. */
@@ -28540,6 +28555,9 @@ export namespace E2E {
 
             /** ProtocolMessage chatThemeSetting. */
             public chatThemeSetting?: (E2E.Message.IChatThemeSetting|null);
+
+            /** ProtocolMessage aiMetadataOperation. */
+            public aiMetadataOperation?: (AICommon.IAIMetadataOperation|null);
 
             /**
              * Creates a new ProtocolMessage instance using the specified properties.
@@ -28651,7 +28669,8 @@ export namespace E2E {
                 GROUP_MEMBER_LABEL_CHANGE = 30,
                 AI_MEDIA_COLLECTION_MESSAGE = 31,
                 MESSAGE_UNSCHEDULE = 32,
-                CHAT_THEME_SETTING = 34
+                CHAT_THEME_SETTING = 34,
+                AI_METADATA_OPERATION = 35
             }
         }
 
@@ -38200,6 +38219,9 @@ export namespace AICommon {
         /** BotMetadata subscriptionUpsellMetadata */
         subscriptionUpsellMetadata?: (AICommon.IAISubscriptionUpsellMetadata|null);
 
+        /** BotMetadata pttPromptMetadata */
+        pttPromptMetadata?: (AICommon.IBotPttPromptMetadata|null);
+
         /** BotMetadata internalMetadata */
         internalMetadata?: (Uint8Array|null);
     }
@@ -38333,6 +38355,9 @@ export namespace AICommon {
         /** BotMetadata subscriptionUpsellMetadata. */
         public subscriptionUpsellMetadata?: (AICommon.IAISubscriptionUpsellMetadata|null);
 
+        /** BotMetadata pttPromptMetadata. */
+        public pttPromptMetadata?: (AICommon.IBotPttPromptMetadata|null);
+
         /** BotMetadata internalMetadata. */
         public internalMetadata: Uint8Array;
 
@@ -38408,6 +38433,103 @@ export namespace AICommon {
 
         /**
          * Gets the default type url for BotMetadata
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a BotPttPromptMetadata. */
+    interface IBotPttPromptMetadata {
+
+        /** BotPttPromptMetadata transcript */
+        transcript?: (string|null);
+    }
+
+    /** Represents a BotPttPromptMetadata. */
+    class BotPttPromptMetadata implements IBotPttPromptMetadata {
+
+        /**
+         * Constructs a new BotPttPromptMetadata.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: AICommon.IBotPttPromptMetadata);
+
+        /** BotPttPromptMetadata transcript. */
+        public transcript: string;
+
+        /**
+         * Creates a new BotPttPromptMetadata instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BotPttPromptMetadata instance
+         */
+        public static create(properties?: AICommon.IBotPttPromptMetadata): AICommon.BotPttPromptMetadata;
+
+        /**
+         * Encodes the specified BotPttPromptMetadata message. Does not implicitly {@link AICommon.BotPttPromptMetadata.verify|verify} messages.
+         * @param message BotPttPromptMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: AICommon.IBotPttPromptMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BotPttPromptMetadata message, length delimited. Does not implicitly {@link AICommon.BotPttPromptMetadata.verify|verify} messages.
+         * @param message BotPttPromptMetadata message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: AICommon.IBotPttPromptMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BotPttPromptMetadata message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BotPttPromptMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AICommon.BotPttPromptMetadata;
+
+        /**
+         * Decodes a BotPttPromptMetadata message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BotPttPromptMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AICommon.BotPttPromptMetadata;
+
+        /**
+         * Verifies a BotPttPromptMetadata message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BotPttPromptMetadata message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BotPttPromptMetadata
+         */
+        public static fromObject(object: { [k: string]: any }): AICommon.BotPttPromptMetadata;
+
+        /**
+         * Creates a plain object from a BotPttPromptMetadata message. Also converts values to other types if specified.
+         * @param message BotPttPromptMetadata
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: AICommon.BotPttPromptMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BotPttPromptMetadata to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for BotPttPromptMetadata
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
@@ -38620,6 +38742,212 @@ export namespace AICommon {
 
         /**
          * Gets the default type url for BotCommandMetadata
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a AIMetadataOperation. */
+    interface IAIMetadataOperation {
+
+        /** AIMetadataOperation hatchMetadataSync */
+        hatchMetadataSync?: (AICommon.IHatchMetadataSync|null);
+    }
+
+    /** Represents a AIMetadataOperation. */
+    class AIMetadataOperation implements IAIMetadataOperation {
+
+        /**
+         * Constructs a new AIMetadataOperation.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: AICommon.IAIMetadataOperation);
+
+        /** AIMetadataOperation hatchMetadataSync. */
+        public hatchMetadataSync?: (AICommon.IHatchMetadataSync|null);
+
+        /**
+         * Creates a new AIMetadataOperation instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns AIMetadataOperation instance
+         */
+        public static create(properties?: AICommon.IAIMetadataOperation): AICommon.AIMetadataOperation;
+
+        /**
+         * Encodes the specified AIMetadataOperation message. Does not implicitly {@link AICommon.AIMetadataOperation.verify|verify} messages.
+         * @param message AIMetadataOperation message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: AICommon.IAIMetadataOperation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified AIMetadataOperation message, length delimited. Does not implicitly {@link AICommon.AIMetadataOperation.verify|verify} messages.
+         * @param message AIMetadataOperation message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: AICommon.IAIMetadataOperation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a AIMetadataOperation message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns AIMetadataOperation
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AICommon.AIMetadataOperation;
+
+        /**
+         * Decodes a AIMetadataOperation message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns AIMetadataOperation
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AICommon.AIMetadataOperation;
+
+        /**
+         * Verifies a AIMetadataOperation message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a AIMetadataOperation message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns AIMetadataOperation
+         */
+        public static fromObject(object: { [k: string]: any }): AICommon.AIMetadataOperation;
+
+        /**
+         * Creates a plain object from a AIMetadataOperation message. Also converts values to other types if specified.
+         * @param message AIMetadataOperation
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: AICommon.AIMetadataOperation, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this AIMetadataOperation to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for AIMetadataOperation
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a HatchMetadataSync. */
+    interface IHatchMetadataSync {
+
+        /** HatchMetadataSync data */
+        data?: (Uint8Array|null);
+
+        /** HatchMetadataSync timestampMs */
+        timestampMs?: (number|Long|null);
+
+        /** HatchMetadataSync requestId */
+        requestId?: (string|null);
+    }
+
+    /** Represents a HatchMetadataSync. */
+    class HatchMetadataSync implements IHatchMetadataSync {
+
+        /**
+         * Constructs a new HatchMetadataSync.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: AICommon.IHatchMetadataSync);
+
+        /** HatchMetadataSync data. */
+        public data: Uint8Array;
+
+        /** HatchMetadataSync timestampMs. */
+        public timestampMs: (number|Long);
+
+        /** HatchMetadataSync requestId. */
+        public requestId: string;
+
+        /**
+         * Creates a new HatchMetadataSync instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns HatchMetadataSync instance
+         */
+        public static create(properties?: AICommon.IHatchMetadataSync): AICommon.HatchMetadataSync;
+
+        /**
+         * Encodes the specified HatchMetadataSync message. Does not implicitly {@link AICommon.HatchMetadataSync.verify|verify} messages.
+         * @param message HatchMetadataSync message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: AICommon.IHatchMetadataSync, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified HatchMetadataSync message, length delimited. Does not implicitly {@link AICommon.HatchMetadataSync.verify|verify} messages.
+         * @param message HatchMetadataSync message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: AICommon.IHatchMetadataSync, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a HatchMetadataSync message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns HatchMetadataSync
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): AICommon.HatchMetadataSync;
+
+        /**
+         * Decodes a HatchMetadataSync message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns HatchMetadataSync
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): AICommon.HatchMetadataSync;
+
+        /**
+         * Verifies a HatchMetadataSync message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a HatchMetadataSync message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns HatchMetadataSync
+         */
+        public static fromObject(object: { [k: string]: any }): AICommon.HatchMetadataSync;
+
+        /**
+         * Creates a plain object from a HatchMetadataSync message. Also converts values to other types if specified.
+         * @param message HatchMetadataSync
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: AICommon.HatchMetadataSync, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this HatchMetadataSync to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for HatchMetadataSync
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
@@ -41171,7 +41499,8 @@ export namespace AICommon {
             AI_SUBSCRIPTION_ENABLED = 61,
             UNIFIED_RESPONSE_AI_CONTENT_SEARCH_ENABLED = 62,
             UNIFIED_RESPONSE_MARKDOWN_LINKS_ENABLED = 63,
-            AI_RICH_RESPONSE_MAPS_V2_ENABLED = 64
+            AI_RICH_RESPONSE_MAPS_V2_ENABLED = 64,
+            AI_SUBSCRIPTION_METERING_ENABLED = 65
         }
     }
 

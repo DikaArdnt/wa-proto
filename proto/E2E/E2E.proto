@@ -13,6 +13,7 @@ message GroupRootKeyShareEntry {
     optional bytes groupRootKey = 1;
     optional string keyId = 2;
     optional int64 expiryTimestampMs = 3;
+    optional int64 createdTimestampMs = 4;
 }
 
 message GroupRootKeyShare {
@@ -1244,6 +1245,7 @@ message Message {
             optional string uuid = 1;
             optional string data = 2;
             optional string type = 3;
+            optional string fallback = 4;
         }
         message Body {
             optional string text = 1;
@@ -1904,6 +1906,7 @@ message Message {
         optional AICommon.AIMediaCollectionMessage aiMediaCollectionMessage = 28;
         optional uint32 afterReadDuration = 29;
         optional Message.ChatThemeSetting chatThemeSetting = 30;
+        optional AICommon.AIMetadataOperation aiMetadataOperation = 31;
         enum Type {
             REVOKE = 0;
             EPHEMERAL_SETTING = 3;
@@ -1934,6 +1937,7 @@ message Message {
             AI_MEDIA_COLLECTION_MESSAGE = 31;
             MESSAGE_UNSCHEDULE = 32;
             CHAT_THEME_SETTING = 34;
+            AI_METADATA_OPERATION = 35;
         }
     }
     message QuestionResponseMessage {

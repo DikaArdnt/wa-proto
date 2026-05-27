@@ -12632,6 +12632,10 @@ $root.SyncAction = (function() {
                     case 9:
                     case 10:
                     case 11:
+                    case 12:
+                    case 13:
+                    case 14:
+                    case 15:
                         break;
                     }
                 if (message.isImmutable != null && message.hasOwnProperty("isImmutable"))
@@ -12725,6 +12729,22 @@ $root.SyncAction = (function() {
                 case "AI_RESPONDING":
                 case 11:
                     message.type = 11;
+                    break;
+                case "ARCHIVED":
+                case 12:
+                    message.type = 12;
+                    break;
+                case "LOCKED":
+                case 13:
+                    message.type = 13;
+                    break;
+                case "INVITES":
+                case 14:
+                    message.type = 14;
+                    break;
+                case "THIRD_PARTY":
+                case 15:
+                    message.type = 15;
                     break;
                 }
                 if (object.isImmutable != null)
@@ -12841,6 +12861,10 @@ $root.SyncAction = (function() {
              * @property {number} AI_HANDOFF=9 AI_HANDOFF value
              * @property {number} CHANNELS=10 CHANNELS value
              * @property {number} AI_RESPONDING=11 AI_RESPONDING value
+             * @property {number} ARCHIVED=12 ARCHIVED value
+             * @property {number} LOCKED=13 LOCKED value
+             * @property {number} INVITES=14 INVITES value
+             * @property {number} THIRD_PARTY=15 THIRD_PARTY value
              */
             LabelEditAction.ListType = (function() {
                 var valuesById = {}, values = Object.create(valuesById);
@@ -12856,6 +12880,10 @@ $root.SyncAction = (function() {
                 values[valuesById[9] = "AI_HANDOFF"] = 9;
                 values[valuesById[10] = "CHANNELS"] = 10;
                 values[valuesById[11] = "AI_RESPONDING"] = 11;
+                values[valuesById[12] = "ARCHIVED"] = 12;
+                values[valuesById[13] = "LOCKED"] = 13;
+                values[valuesById[14] = "INVITES"] = 14;
+                values[valuesById[15] = "THIRD_PARTY"] = 15;
                 return values;
             })();
 

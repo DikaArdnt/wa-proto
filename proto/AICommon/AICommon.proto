@@ -225,7 +225,12 @@ message BotMetadata {
     optional BotCommandMetadata commandMetadata = 39;
     optional BotResolvedToolCallMetadata resolvedToolCallMetadata = 40;
     optional AISubscriptionUpsellMetadata subscriptionUpsellMetadata = 41;
+    optional BotPttPromptMetadata pttPromptMetadata = 42;
     optional bytes internalMetadata = 999;
+}
+
+message BotPttPromptMetadata {
+    optional string transcript = 1;
 }
 
 message BotResolvedToolCallMetadata {
@@ -237,6 +242,16 @@ message BotCommandMetadata {
     optional string commandName = 1;
     optional string commandDescription = 2;
     optional string commandPrompt = 3;
+}
+
+message AIMetadataOperation {
+    optional HatchMetadataSync hatchMetadataSync = 1;
+}
+
+message HatchMetadataSync {
+    optional bytes data = 1;
+    optional int64 timestampMs = 2;
+    optional string requestId = 3;
 }
 
 message AIMediaCollectionMessage {
@@ -460,6 +475,7 @@ message BotCapabilityMetadata {
         UNIFIED_RESPONSE_AI_CONTENT_SEARCH_ENABLED = 62;
         UNIFIED_RESPONSE_MARKDOWN_LINKS_ENABLED = 63;
         AI_RICH_RESPONSE_MAPS_V2_ENABLED = 64;
+        AI_SUBSCRIPTION_METERING_ENABLED = 65;
     }
 }
 
