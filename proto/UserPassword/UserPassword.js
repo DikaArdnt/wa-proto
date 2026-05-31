@@ -128,7 +128,7 @@ $root.UserPassword = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         UserPassword.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -255,6 +255,8 @@ $root.UserPassword = (function() {
         UserPassword.fromObject = function fromObject(object, long) {
             if (object instanceof $root.UserPassword.UserPassword)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".UserPassword.UserPassword: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -301,7 +303,7 @@ $root.UserPassword = (function() {
                     throw TypeError(".UserPassword.UserPassword.transformerArg: array expected");
                 message.transformerArg = [];
                 for (var i = 0; i < object.transformerArg.length; ++i) {
-                    if (typeof object.transformerArg[i] !== "object")
+                    if (!$util.isObject(object.transformerArg[i]))
                         throw TypeError(".UserPassword.UserPassword.transformerArg: object expected");
                     message.transformerArg[i] = $root.UserPassword.UserPassword.TransformerArg.fromObject(object.transformerArg[i], long + 1);
                 }
@@ -500,7 +502,7 @@ $root.UserPassword = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             TransformerArg.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -596,6 +598,8 @@ $root.UserPassword = (function() {
             TransformerArg.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.UserPassword.UserPassword.TransformerArg)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".UserPassword.UserPassword.TransformerArg: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -604,7 +608,7 @@ $root.UserPassword = (function() {
                 if (object.key != null)
                     message.key = String(object.key);
                 if (object.value != null) {
-                    if (typeof object.value !== "object")
+                    if (!$util.isObject(object.value))
                         throw TypeError(".UserPassword.UserPassword.TransformerArg.value: object expected");
                     message.value = $root.UserPassword.UserPassword.TransformerArg.Value.fromObject(object.value, long + 1);
                 }
@@ -765,7 +769,7 @@ $root.UserPassword = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 Value.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -866,6 +870,8 @@ $root.UserPassword = (function() {
                 Value.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.UserPassword.UserPassword.TransformerArg.Value)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".UserPassword.UserPassword.TransformerArg.Value: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)

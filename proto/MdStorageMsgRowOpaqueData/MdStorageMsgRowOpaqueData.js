@@ -601,7 +601,7 @@ $root.MdStorageMsgRowOpaqueData = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         MsgOpaqueData.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -1035,6 +1035,8 @@ $root.MdStorageMsgRowOpaqueData = (function() {
         MsgOpaqueData.fromObject = function fromObject(object, long) {
             if (object instanceof $root.MdStorageMsgRowOpaqueData.MsgOpaqueData)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".MdStorageMsgRowOpaqueData.MsgOpaqueData: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -1076,7 +1078,7 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                     throw TypeError(".MdStorageMsgRowOpaqueData.MsgOpaqueData.pollOptions: array expected");
                 message.pollOptions = [];
                 for (var i = 0; i < object.pollOptions.length; ++i) {
-                    if (typeof object.pollOptions[i] !== "object")
+                    if (!$util.isObject(object.pollOptions[i]))
                         throw TypeError(".MdStorageMsgRowOpaqueData.MsgOpaqueData.pollOptions: object expected");
                     message.pollOptions[i] = $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.PollOption.fromObject(object.pollOptions[i], long + 1);
                 }
@@ -1102,7 +1104,7 @@ $root.MdStorageMsgRowOpaqueData = (function() {
             if (object.pollUpdateParentKey != null)
                 message.pollUpdateParentKey = String(object.pollUpdateParentKey);
             if (object.encPollVote != null) {
-                if (typeof object.encPollVote !== "object")
+                if (!$util.isObject(object.encPollVote))
                     throw TypeError(".MdStorageMsgRowOpaqueData.MsgOpaqueData.encPollVote: object expected");
                 message.encPollVote = $root.E2E.Message.PollEncValue.fromObject(object.encPollVote, long + 1);
             }
@@ -1147,7 +1149,7 @@ $root.MdStorageMsgRowOpaqueData = (function() {
             if (object.correctOptionIndex != null)
                 message.correctOptionIndex = object.correctOptionIndex | 0;
             if (object.pollVotesSnapshot != null) {
-                if (typeof object.pollVotesSnapshot !== "object")
+                if (!$util.isObject(object.pollVotesSnapshot))
                     throw TypeError(".MdStorageMsgRowOpaqueData.MsgOpaqueData.pollVotesSnapshot: object expected");
                 message.pollVotesSnapshot = $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.PollVotesSnapshot.fromObject(object.pollVotesSnapshot, long + 1);
             }
@@ -1198,7 +1200,7 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 else if (typeof object.eventStartTime === "object")
                     message.eventStartTime = new $util.LongBits(object.eventStartTime.low >>> 0, object.eventStartTime.high >>> 0).toNumber();
             if (object.eventLocation != null) {
-                if (typeof object.eventLocation !== "object")
+                if (!$util.isObject(object.eventLocation))
                     throw TypeError(".MdStorageMsgRowOpaqueData.MsgOpaqueData.eventLocation: object expected");
                 message.eventLocation = $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.EventLocation.fromObject(object.eventLocation, long + 1);
             }
@@ -1645,7 +1647,7 @@ $root.MdStorageMsgRowOpaqueData = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             EventLocation.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -1767,6 +1769,8 @@ $root.MdStorageMsgRowOpaqueData = (function() {
             EventLocation.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.EventLocation)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".MdStorageMsgRowOpaqueData.MsgOpaqueData.EventLocation: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -1967,7 +1971,7 @@ $root.MdStorageMsgRowOpaqueData = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             PollOption.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -2061,6 +2065,8 @@ $root.MdStorageMsgRowOpaqueData = (function() {
             PollOption.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.PollOption)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".MdStorageMsgRowOpaqueData.MsgOpaqueData.PollOption: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -2230,7 +2236,7 @@ $root.MdStorageMsgRowOpaqueData = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             PollVoteSnapshot.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -2326,13 +2332,15 @@ $root.MdStorageMsgRowOpaqueData = (function() {
             PollVoteSnapshot.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.PollVoteSnapshot)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".MdStorageMsgRowOpaqueData.MsgOpaqueData.PollVoteSnapshot: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.PollVoteSnapshot();
                 if (object.option != null) {
-                    if (typeof object.option !== "object")
+                    if (!$util.isObject(object.option))
                         throw TypeError(".MdStorageMsgRowOpaqueData.MsgOpaqueData.PollVoteSnapshot.option: object expected");
                     message.option = $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.PollOption.fromObject(object.option, long + 1);
                 }
@@ -2475,7 +2483,7 @@ $root.MdStorageMsgRowOpaqueData = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             PollVotesSnapshot.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -2570,6 +2578,8 @@ $root.MdStorageMsgRowOpaqueData = (function() {
             PollVotesSnapshot.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.PollVotesSnapshot)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".MdStorageMsgRowOpaqueData.MsgOpaqueData.PollVotesSnapshot: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -2580,7 +2590,7 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                         throw TypeError(".MdStorageMsgRowOpaqueData.MsgOpaqueData.PollVotesSnapshot.pollVotes: array expected");
                     message.pollVotes = [];
                     for (var i = 0; i < object.pollVotes.length; ++i) {
-                        if (typeof object.pollVotes[i] !== "object")
+                        if (!$util.isObject(object.pollVotes[i]))
                             throw TypeError(".MdStorageMsgRowOpaqueData.MsgOpaqueData.PollVotesSnapshot.pollVotes: object expected");
                         message.pollVotes[i] = $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.PollVoteSnapshot.fromObject(object.pollVotes[i], long + 1);
                     }
@@ -2733,7 +2743,7 @@ $root.MdStorageMsgRowOpaqueData = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         PollEncValue.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -2827,6 +2837,8 @@ $root.MdStorageMsgRowOpaqueData = (function() {
         PollEncValue.fromObject = function fromObject(object, long) {
             if (object instanceof $root.MdStorageMsgRowOpaqueData.PollEncValue)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".MdStorageMsgRowOpaqueData.PollEncValue: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -3000,7 +3012,7 @@ $root.MdStorageMsgRowOpaqueData = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         MsgRowOpaqueData.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -3098,18 +3110,20 @@ $root.MdStorageMsgRowOpaqueData = (function() {
         MsgRowOpaqueData.fromObject = function fromObject(object, long) {
             if (object instanceof $root.MdStorageMsgRowOpaqueData.MsgRowOpaqueData)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".MdStorageMsgRowOpaqueData.MsgRowOpaqueData: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
             var message = new $root.MdStorageMsgRowOpaqueData.MsgRowOpaqueData();
             if (object.currentMsg != null) {
-                if (typeof object.currentMsg !== "object")
+                if (!$util.isObject(object.currentMsg))
                     throw TypeError(".MdStorageMsgRowOpaqueData.MsgRowOpaqueData.currentMsg: object expected");
                 message.currentMsg = $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.fromObject(object.currentMsg, long + 1);
             }
             if (object.quotedMsg != null) {
-                if (typeof object.quotedMsg !== "object")
+                if (!$util.isObject(object.quotedMsg))
                     throw TypeError(".MdStorageMsgRowOpaqueData.MsgRowOpaqueData.quotedMsg: object expected");
                 message.quotedMsg = $root.MdStorageMsgRowOpaqueData.MsgOpaqueData.fromObject(object.quotedMsg, long + 1);
             }
@@ -3293,7 +3307,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         GroupRootKeyShareEntry.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -3401,6 +3415,8 @@ $root.E2E = (function() {
         GroupRootKeyShareEntry.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.GroupRootKeyShareEntry)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.GroupRootKeyShareEntry: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -3598,7 +3614,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         GroupRootKeyShare.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -3693,6 +3709,8 @@ $root.E2E = (function() {
         GroupRootKeyShare.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.GroupRootKeyShare)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.GroupRootKeyShare: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -3703,7 +3721,7 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.GroupRootKeyShare.keys: array expected");
                 message.keys = [];
                 for (var i = 0; i < object.keys.length; ++i) {
-                    if (typeof object.keys[i] !== "object")
+                    if (!$util.isObject(object.keys[i]))
                         throw TypeError(".E2E.GroupRootKeyShare.keys: object expected");
                     message.keys[i] = $root.E2E.GroupRootKeyShareEntry.fromObject(object.keys[i], long + 1);
                 }
@@ -3864,7 +3882,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIQueryFanout.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -3969,18 +3987,20 @@ $root.E2E = (function() {
         AIQueryFanout.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.AIQueryFanout)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.AIQueryFanout: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
             var message = new $root.E2E.AIQueryFanout();
             if (object.messageKey != null) {
-                if (typeof object.messageKey !== "object")
+                if (!$util.isObject(object.messageKey))
                     throw TypeError(".E2E.AIQueryFanout.messageKey: object expected");
                 message.messageKey = $root.Protocol.MessageKey.fromObject(object.messageKey, long + 1);
             }
             if (object.message != null) {
-                if (typeof object.message !== "object")
+                if (!$util.isObject(object.message))
                     throw TypeError(".E2E.AIQueryFanout.message: object expected");
                 message.message = $root.E2E.Message.fromObject(object.message, long + 1);
             }
@@ -4175,7 +4195,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIRichResponseMessage.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -4300,6 +4320,8 @@ $root.E2E = (function() {
         AIRichResponseMessage.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.AIRichResponseMessage)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.AIRichResponseMessage: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -4326,18 +4348,18 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.AIRichResponseMessage.submessages: array expected");
                 message.submessages = [];
                 for (var i = 0; i < object.submessages.length; ++i) {
-                    if (typeof object.submessages[i] !== "object")
+                    if (!$util.isObject(object.submessages[i]))
                         throw TypeError(".E2E.AIRichResponseMessage.submessages: object expected");
                     message.submessages[i] = $root.AICommonDeprecated.AIRichResponseSubMessage.fromObject(object.submessages[i], long + 1);
                 }
             }
             if (object.unifiedResponse != null) {
-                if (typeof object.unifiedResponse !== "object")
+                if (!$util.isObject(object.unifiedResponse))
                     throw TypeError(".E2E.AIRichResponseMessage.unifiedResponse: object expected");
                 message.unifiedResponse = $root.AICommon.AIRichResponseUnifiedResponse.fromObject(object.unifiedResponse, long + 1);
             }
             if (object.contextInfo != null) {
-                if (typeof object.contextInfo !== "object")
+                if (!$util.isObject(object.contextInfo))
                     throw TypeError(".E2E.AIRichResponseMessage.contextInfo: object expected");
                 message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
             }
@@ -4497,7 +4519,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         MemberLabel.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -4591,6 +4613,8 @@ $root.E2E = (function() {
         MemberLabel.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.MemberLabel)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.MemberLabel: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -4753,7 +4777,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         UrlTrackingMap.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -4848,6 +4872,8 @@ $root.E2E = (function() {
         UrlTrackingMap.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.UrlTrackingMap)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.UrlTrackingMap: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -4858,7 +4884,7 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.UrlTrackingMap.urlTrackingMapElements: array expected");
                 message.urlTrackingMapElements = [];
                 for (var i = 0; i < object.urlTrackingMapElements.length; ++i) {
-                    if (typeof object.urlTrackingMapElements[i] !== "object")
+                    if (!$util.isObject(object.urlTrackingMapElements[i]))
                         throw TypeError(".E2E.UrlTrackingMap.urlTrackingMapElements: object expected");
                     message.urlTrackingMapElements[i] = $root.E2E.UrlTrackingMap.UrlTrackingMapElement.fromObject(object.urlTrackingMapElements[i], long + 1);
                 }
@@ -5027,7 +5053,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             UrlTrackingMapElement.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -5135,6 +5161,8 @@ $root.E2E = (function() {
             UrlTrackingMapElement.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.UrlTrackingMap.UrlTrackingMapElement)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.UrlTrackingMap.UrlTrackingMapElement: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -5371,7 +5399,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         ProcessedVideo.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -5520,6 +5548,8 @@ $root.E2E = (function() {
         ProcessedVideo.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.ProcessedVideo)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.ProcessedVideo: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -5768,7 +5798,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         LIDMigrationMappingSyncMessage.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -5855,6 +5885,8 @@ $root.E2E = (function() {
         LIDMigrationMappingSyncMessage.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.LIDMigrationMappingSyncMessage)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.LIDMigrationMappingSyncMessage: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -6024,7 +6056,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         MediaNotifyMessage.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -6125,6 +6157,8 @@ $root.E2E = (function() {
         MediaNotifyMessage.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.MediaNotifyMessage)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.MediaNotifyMessage: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -6321,7 +6355,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         MessageSecretMessage.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -6422,6 +6456,8 @@ $root.E2E = (function() {
         MessageSecretMessage.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.MessageSecretMessage)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.MessageSecretMessage: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -6600,7 +6636,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         GroupMention.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -6694,6 +6730,8 @@ $root.E2E = (function() {
         GroupMention.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.GroupMention)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.GroupMention: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -6849,7 +6887,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         ActionLink.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -6943,6 +6981,8 @@ $root.E2E = (function() {
         ActionLink.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.ActionLink)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.ActionLink: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -7120,7 +7160,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         DisappearingMode.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -7244,6 +7284,8 @@ $root.E2E = (function() {
         DisappearingMode.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.DisappearingMode)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.DisappearingMode: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -7589,7 +7631,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         PaymentBackground.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -7746,6 +7788,8 @@ $root.E2E = (function() {
         PaymentBackground.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.PaymentBackground)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.PaymentBackground: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -7775,7 +7819,7 @@ $root.E2E = (function() {
             if (object.subtextArgb != null)
                 message.subtextArgb = object.subtextArgb >>> 0;
             if (object.mediaData != null) {
-                if (typeof object.mediaData !== "object")
+                if (!$util.isObject(object.mediaData))
                     throw TypeError(".E2E.PaymentBackground.mediaData: object expected");
                 message.mediaData = $root.E2E.PaymentBackground.MediaData.fromObject(object.mediaData, long + 1);
             }
@@ -8004,7 +8048,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             MediaData.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -8119,6 +8163,8 @@ $root.E2E = (function() {
             MediaData.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.PaymentBackground.MediaData)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.PaymentBackground.MediaData: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -8360,7 +8406,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         Money.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -8461,6 +8507,8 @@ $root.E2E = (function() {
         Money.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.Money)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.Money: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -8673,7 +8721,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         HydratedTemplateButton.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -8801,6 +8849,8 @@ $root.E2E = (function() {
         HydratedTemplateButton.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.HydratedTemplateButton)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.HydratedTemplateButton: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -8809,17 +8859,17 @@ $root.E2E = (function() {
             if (object.index != null)
                 message.index = object.index >>> 0;
             if (object.quickReplyButton != null) {
-                if (typeof object.quickReplyButton !== "object")
+                if (!$util.isObject(object.quickReplyButton))
                     throw TypeError(".E2E.HydratedTemplateButton.quickReplyButton: object expected");
                 message.quickReplyButton = $root.E2E.HydratedTemplateButton.HydratedQuickReplyButton.fromObject(object.quickReplyButton, long + 1);
             }
             if (object.urlButton != null) {
-                if (typeof object.urlButton !== "object")
+                if (!$util.isObject(object.urlButton))
                     throw TypeError(".E2E.HydratedTemplateButton.urlButton: object expected");
                 message.urlButton = $root.E2E.HydratedTemplateButton.HydratedURLButton.fromObject(object.urlButton, long + 1);
             }
             if (object.callButton != null) {
-                if (typeof object.callButton !== "object")
+                if (!$util.isObject(object.callButton))
                     throw TypeError(".E2E.HydratedTemplateButton.callButton: object expected");
                 message.callButton = $root.E2E.HydratedTemplateButton.HydratedCallButton.fromObject(object.callButton, long + 1);
             }
@@ -8977,7 +9027,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             HydratedCallButton.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -9071,6 +9121,8 @@ $root.E2E = (function() {
             HydratedCallButton.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.HydratedTemplateButton.HydratedCallButton)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.HydratedTemplateButton.HydratedCallButton: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -9226,7 +9278,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             HydratedQuickReplyButton.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -9320,6 +9372,8 @@ $root.E2E = (function() {
             HydratedQuickReplyButton.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.HydratedTemplateButton.HydratedQuickReplyButton)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.HydratedTemplateButton.HydratedQuickReplyButton: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -9497,7 +9551,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             HydratedURLButton.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -9611,6 +9665,8 @@ $root.E2E = (function() {
             HydratedURLButton.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.HydratedTemplateButton.HydratedURLButton)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.HydratedTemplateButton.HydratedURLButton: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -9849,7 +9905,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         TemplateButton.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -9977,6 +10033,8 @@ $root.E2E = (function() {
         TemplateButton.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.TemplateButton)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.TemplateButton: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -9985,17 +10043,17 @@ $root.E2E = (function() {
             if (object.index != null)
                 message.index = object.index >>> 0;
             if (object.quickReplyButton != null) {
-                if (typeof object.quickReplyButton !== "object")
+                if (!$util.isObject(object.quickReplyButton))
                     throw TypeError(".E2E.TemplateButton.quickReplyButton: object expected");
                 message.quickReplyButton = $root.E2E.TemplateButton.QuickReplyButton.fromObject(object.quickReplyButton, long + 1);
             }
             if (object.urlButton != null) {
-                if (typeof object.urlButton !== "object")
+                if (!$util.isObject(object.urlButton))
                     throw TypeError(".E2E.TemplateButton.urlButton: object expected");
                 message.urlButton = $root.E2E.TemplateButton.URLButton.fromObject(object.urlButton, long + 1);
             }
             if (object.callButton != null) {
-                if (typeof object.callButton !== "object")
+                if (!$util.isObject(object.callButton))
                     throw TypeError(".E2E.TemplateButton.callButton: object expected");
                 message.callButton = $root.E2E.TemplateButton.CallButton.fromObject(object.callButton, long + 1);
             }
@@ -10153,7 +10211,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             CallButton.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -10251,18 +10309,20 @@ $root.E2E = (function() {
             CallButton.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.TemplateButton.CallButton)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.TemplateButton.CallButton: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.TemplateButton.CallButton();
                 if (object.displayText != null) {
-                    if (typeof object.displayText !== "object")
+                    if (!$util.isObject(object.displayText))
                         throw TypeError(".E2E.TemplateButton.CallButton.displayText: object expected");
                     message.displayText = $root.E2E.Message.HighlyStructuredMessage.fromObject(object.displayText, long + 1);
                 }
                 if (object.phoneNumber != null) {
-                    if (typeof object.phoneNumber !== "object")
+                    if (!$util.isObject(object.phoneNumber))
                         throw TypeError(".E2E.TemplateButton.CallButton.phoneNumber: object expected");
                     message.phoneNumber = $root.E2E.Message.HighlyStructuredMessage.fromObject(object.phoneNumber, long + 1);
                 }
@@ -10412,7 +10472,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             QuickReplyButton.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -10508,13 +10568,15 @@ $root.E2E = (function() {
             QuickReplyButton.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.TemplateButton.QuickReplyButton)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.TemplateButton.QuickReplyButton: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.TemplateButton.QuickReplyButton();
                 if (object.displayText != null) {
-                    if (typeof object.displayText !== "object")
+                    if (!$util.isObject(object.displayText))
                         throw TypeError(".E2E.TemplateButton.QuickReplyButton.displayText: object expected");
                     message.displayText = $root.E2E.Message.HighlyStructuredMessage.fromObject(object.displayText, long + 1);
                 }
@@ -10666,7 +10728,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             URLButton.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -10764,18 +10826,20 @@ $root.E2E = (function() {
             URLButton.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.TemplateButton.URLButton)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.TemplateButton.URLButton: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.TemplateButton.URLButton();
                 if (object.displayText != null) {
-                    if (typeof object.displayText !== "object")
+                    if (!$util.isObject(object.displayText))
                         throw TypeError(".E2E.TemplateButton.URLButton.displayText: object expected");
                     message.displayText = $root.E2E.Message.HighlyStructuredMessage.fromObject(object.displayText, long + 1);
                 }
                 if (object.url != null) {
-                    if (typeof object.url !== "object")
+                    if (!$util.isObject(object.url))
                         throw TypeError(".E2E.TemplateButton.URLButton.url: object expected");
                     message.url = $root.E2E.Message.HighlyStructuredMessage.fromObject(object.url, long + 1);
                 }
@@ -10939,7 +11003,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         Location.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -11040,6 +11104,8 @@ $root.E2E = (function() {
         Location.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.Location)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.Location: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -11222,7 +11288,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         Point.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -11330,6 +11396,8 @@ $root.E2E = (function() {
         Point.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.Point)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.Point: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -11577,7 +11645,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         InteractiveAnnotation.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -11753,6 +11821,8 @@ $root.E2E = (function() {
         InteractiveAnnotation.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.InteractiveAnnotation)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.InteractiveAnnotation: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -11763,7 +11833,7 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.InteractiveAnnotation.polygonVertices: array expected");
                 message.polygonVertices = [];
                 for (var i = 0; i < object.polygonVertices.length; ++i) {
-                    if (typeof object.polygonVertices[i] !== "object")
+                    if (!$util.isObject(object.polygonVertices[i]))
                         throw TypeError(".E2E.InteractiveAnnotation.polygonVertices: object expected");
                     message.polygonVertices[i] = $root.E2E.Point.fromObject(object.polygonVertices[i], long + 1);
                 }
@@ -11771,7 +11841,7 @@ $root.E2E = (function() {
             if (object.shouldSkipConfirmation != null)
                 message.shouldSkipConfirmation = Boolean(object.shouldSkipConfirmation);
             if (object.embeddedContent != null) {
-                if (typeof object.embeddedContent !== "object")
+                if (!$util.isObject(object.embeddedContent))
                     throw TypeError(".E2E.InteractiveAnnotation.embeddedContent: object expected");
                 message.embeddedContent = $root.E2E.EmbeddedContent.fromObject(object.embeddedContent, long + 1);
             }
@@ -11796,19 +11866,19 @@ $root.E2E = (function() {
                 break;
             }
             if (object.location != null) {
-                if (typeof object.location !== "object")
+                if (!$util.isObject(object.location))
                     throw TypeError(".E2E.InteractiveAnnotation.location: object expected");
                 message.location = $root.E2E.Location.fromObject(object.location, long + 1);
             }
             if (object.newsletter != null) {
-                if (typeof object.newsletter !== "object")
+                if (!$util.isObject(object.newsletter))
                     throw TypeError(".E2E.InteractiveAnnotation.newsletter: object expected");
                 message.newsletter = $root.E2E.ContextInfo.ForwardedNewsletterMessageInfo.fromObject(object.newsletter, long + 1);
             }
             if (object.embeddedAction != null)
                 message.embeddedAction = Boolean(object.embeddedAction);
             if (object.tapAction != null) {
-                if (typeof object.tapAction !== "object")
+                if (!$util.isObject(object.tapAction))
                     throw TypeError(".E2E.InteractiveAnnotation.tapAction: object expected");
                 message.tapAction = $root.E2E.TapLinkAction.fromObject(object.tapAction, long + 1);
             }
@@ -12004,7 +12074,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         TapLinkAction.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -12098,6 +12168,8 @@ $root.E2E = (function() {
         TapLinkAction.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.TapLinkAction)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.TapLinkAction: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -12267,7 +12339,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         EmbeddedContent.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -12374,18 +12446,20 @@ $root.E2E = (function() {
         EmbeddedContent.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.EmbeddedContent)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.EmbeddedContent: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
             var message = new $root.E2E.EmbeddedContent();
             if (object.embeddedMessage != null) {
-                if (typeof object.embeddedMessage !== "object")
+                if (!$util.isObject(object.embeddedMessage))
                     throw TypeError(".E2E.EmbeddedContent.embeddedMessage: object expected");
                 message.embeddedMessage = $root.E2E.EmbeddedMessage.fromObject(object.embeddedMessage, long + 1);
             }
             if (object.embeddedMusic != null) {
-                if (typeof object.embeddedMusic !== "object")
+                if (!$util.isObject(object.embeddedMusic))
                     throw TypeError(".E2E.EmbeddedContent.embeddedMusic: object expected");
                 message.embeddedMusic = $root.E2E.EmbeddedMusic.fromObject(object.embeddedMusic, long + 1);
             }
@@ -12669,7 +12743,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         EmbeddedMusic.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -12847,6 +12921,8 @@ $root.E2E = (function() {
         EmbeddedMusic.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.EmbeddedMusic)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.EmbeddedMusic: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -13146,7 +13222,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         EmbeddedMessage.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -13242,6 +13318,8 @@ $root.E2E = (function() {
         EmbeddedMessage.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.EmbeddedMessage)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.EmbeddedMessage: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -13250,7 +13328,7 @@ $root.E2E = (function() {
             if (object.stanzaId != null)
                 message.stanzaId = String(object.stanzaId);
             if (object.message != null) {
-                if (typeof object.message !== "object")
+                if (!$util.isObject(object.message))
                     throw TypeError(".E2E.EmbeddedMessage.message: object expected");
                 message.message = $root.E2E.Message.fromObject(object.message, long + 1);
             }
@@ -13476,7 +13554,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         DeviceListMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -13646,6 +13724,8 @@ $root.E2E = (function() {
         DeviceListMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.DeviceListMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.DeviceListMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -14102,7 +14182,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         MessageContextInfo.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -14329,13 +14409,15 @@ $root.E2E = (function() {
         MessageContextInfo.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.MessageContextInfo)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.MessageContextInfo: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
             var message = new $root.E2E.MessageContextInfo();
             if (object.deviceListMetadata != null) {
-                if (typeof object.deviceListMetadata !== "object")
+                if (!$util.isObject(object.deviceListMetadata))
                     throw TypeError(".E2E.MessageContextInfo.deviceListMetadata: object expected");
                 message.deviceListMetadata = $root.E2E.DeviceListMetadata.fromObject(object.deviceListMetadata, long + 1);
             }
@@ -14359,7 +14441,7 @@ $root.E2E = (function() {
                 else if (object.botMessageSecret.length >= 0)
                     message.botMessageSecret = object.botMessageSecret;
             if (object.botMetadata != null) {
-                if (typeof object.botMetadata !== "object")
+                if (!$util.isObject(object.botMetadata))
                     throw TypeError(".E2E.MessageContextInfo.botMetadata: object expected");
                 message.botMetadata = $root.AICommon.BotMetadata.fromObject(object.botMetadata, long + 1);
             }
@@ -14382,7 +14464,7 @@ $root.E2E = (function() {
                 break;
             }
             if (object.messageAssociation != null) {
-                if (typeof object.messageAssociation !== "object")
+                if (!$util.isObject(object.messageAssociation))
                     throw TypeError(".E2E.MessageContextInfo.messageAssociation: object expected");
                 message.messageAssociation = $root.E2E.MessageAssociation.fromObject(object.messageAssociation, long + 1);
             }
@@ -14391,12 +14473,12 @@ $root.E2E = (function() {
             if (object.supportPayload != null)
                 message.supportPayload = String(object.supportPayload);
             if (object.limitSharing != null) {
-                if (typeof object.limitSharing !== "object")
+                if (!$util.isObject(object.limitSharing))
                     throw TypeError(".E2E.MessageContextInfo.limitSharing: object expected");
                 message.limitSharing = $root.Protocol.LimitSharing.fromObject(object.limitSharing, long + 1);
             }
             if (object.limitSharingV2 != null) {
-                if (typeof object.limitSharingV2 !== "object")
+                if (!$util.isObject(object.limitSharingV2))
                     throw TypeError(".E2E.MessageContextInfo.limitSharingV2: object expected");
                 message.limitSharingV2 = $root.Protocol.LimitSharing.fromObject(object.limitSharingV2, long + 1);
             }
@@ -14405,7 +14487,7 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.MessageContextInfo.threadId: array expected");
                 message.threadId = [];
                 for (var i = 0; i < object.threadId.length; ++i) {
-                    if (typeof object.threadId[i] !== "object")
+                    if (!$util.isObject(object.threadId[i]))
                         throw TypeError(".E2E.MessageContextInfo.threadId: object expected");
                     message.threadId[i] = $root.E2E.ThreadID.fromObject(object.threadId[i], long + 1);
                 }
@@ -14664,7 +14746,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         ThreadID.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -14766,6 +14848,8 @@ $root.E2E = (function() {
         ThreadID.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.ThreadID)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.ThreadID: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -14792,7 +14876,7 @@ $root.E2E = (function() {
                 break;
             }
             if (object.threadKey != null) {
-                if (typeof object.threadKey !== "object")
+                if (!$util.isObject(object.threadKey))
                     throw TypeError(".E2E.ThreadID.threadKey: object expected");
                 message.threadKey = $root.Protocol.MessageKey.fromObject(object.threadKey, long + 1);
             }
@@ -14969,7 +15053,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         MessageAssociation.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -15096,6 +15180,8 @@ $root.E2E = (function() {
         MessageAssociation.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.MessageAssociation)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.MessageAssociation: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -15194,7 +15280,7 @@ $root.E2E = (function() {
                 break;
             }
             if (object.parentMessageKey != null) {
-                if (typeof object.parentMessageKey !== "object")
+                if (!$util.isObject(object.parentMessageKey))
                     throw TypeError(".E2E.MessageAssociation.parentMessageKey: object expected");
                 message.parentMessageKey = $root.Protocol.MessageKey.fromObject(object.parentMessageKey, long + 1);
             }
@@ -16067,7 +16153,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         ContextInfo.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -16692,6 +16778,8 @@ $root.E2E = (function() {
         ContextInfo.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.ContextInfo)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.ContextInfo: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -16702,7 +16790,7 @@ $root.E2E = (function() {
             if (object.participant != null)
                 message.participant = String(object.participant);
             if (object.quotedMessage != null) {
-                if (typeof object.quotedMessage !== "object")
+                if (!$util.isObject(object.quotedMessage))
                     throw TypeError(".E2E.ContextInfo.quotedMessage: object expected");
                 message.quotedMessage = $root.E2E.Message.fromObject(object.quotedMessage, long + 1);
             }
@@ -16729,12 +16817,12 @@ $root.E2E = (function() {
             if (object.isForwarded != null)
                 message.isForwarded = Boolean(object.isForwarded);
             if (object.quotedAd != null) {
-                if (typeof object.quotedAd !== "object")
+                if (!$util.isObject(object.quotedAd))
                     throw TypeError(".E2E.ContextInfo.quotedAd: object expected");
                 message.quotedAd = $root.E2E.ContextInfo.AdReplyInfo.fromObject(object.quotedAd, long + 1);
             }
             if (object.placeholderKey != null) {
-                if (typeof object.placeholderKey !== "object")
+                if (!$util.isObject(object.placeholderKey))
                     throw TypeError(".E2E.ContextInfo.placeholderKey: object expected");
                 message.placeholderKey = $root.Protocol.MessageKey.fromObject(object.placeholderKey, long + 1);
             }
@@ -16755,7 +16843,7 @@ $root.E2E = (function() {
                 else if (object.ephemeralSharedSecret.length >= 0)
                     message.ephemeralSharedSecret = object.ephemeralSharedSecret;
             if (object.externalAdReply != null) {
-                if (typeof object.externalAdReply !== "object")
+                if (!$util.isObject(object.externalAdReply))
                     throw TypeError(".E2E.ContextInfo.externalAdReply: object expected");
                 message.externalAdReply = $root.E2E.ContextInfo.ExternalAdReplyInfo.fromObject(object.externalAdReply, long + 1);
             }
@@ -16766,12 +16854,12 @@ $root.E2E = (function() {
             if (object.entryPointConversionDelaySeconds != null)
                 message.entryPointConversionDelaySeconds = object.entryPointConversionDelaySeconds >>> 0;
             if (object.disappearingMode != null) {
-                if (typeof object.disappearingMode !== "object")
+                if (!$util.isObject(object.disappearingMode))
                     throw TypeError(".E2E.ContextInfo.disappearingMode: object expected");
                 message.disappearingMode = $root.E2E.DisappearingMode.fromObject(object.disappearingMode, long + 1);
             }
             if (object.actionLink != null) {
-                if (typeof object.actionLink !== "object")
+                if (!$util.isObject(object.actionLink))
                     throw TypeError(".E2E.ContextInfo.actionLink: object expected");
                 message.actionLink = $root.E2E.ActionLink.fromObject(object.actionLink, long + 1);
             }
@@ -16790,23 +16878,23 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.ContextInfo.groupMentions: array expected");
                 message.groupMentions = [];
                 for (var i = 0; i < object.groupMentions.length; ++i) {
-                    if (typeof object.groupMentions[i] !== "object")
+                    if (!$util.isObject(object.groupMentions[i]))
                         throw TypeError(".E2E.ContextInfo.groupMentions: object expected");
                     message.groupMentions[i] = $root.E2E.GroupMention.fromObject(object.groupMentions[i], long + 1);
                 }
             }
             if (object.utm != null) {
-                if (typeof object.utm !== "object")
+                if (!$util.isObject(object.utm))
                     throw TypeError(".E2E.ContextInfo.utm: object expected");
                 message.utm = $root.E2E.ContextInfo.UTMInfo.fromObject(object.utm, long + 1);
             }
             if (object.forwardedNewsletterMessageInfo != null) {
-                if (typeof object.forwardedNewsletterMessageInfo !== "object")
+                if (!$util.isObject(object.forwardedNewsletterMessageInfo))
                     throw TypeError(".E2E.ContextInfo.forwardedNewsletterMessageInfo: object expected");
                 message.forwardedNewsletterMessageInfo = $root.E2E.ContextInfo.ForwardedNewsletterMessageInfo.fromObject(object.forwardedNewsletterMessageInfo, long + 1);
             }
             if (object.businessMessageForwardInfo != null) {
-                if (typeof object.businessMessageForwardInfo !== "object")
+                if (!$util.isObject(object.businessMessageForwardInfo))
                     throw TypeError(".E2E.ContextInfo.businessMessageForwardInfo: object expected");
                 message.businessMessageForwardInfo = $root.E2E.ContextInfo.BusinessMessageForwardInfo.fromObject(object.businessMessageForwardInfo, long + 1);
             }
@@ -16815,14 +16903,14 @@ $root.E2E = (function() {
             if (object.smbServerCampaignId != null)
                 message.smbServerCampaignId = String(object.smbServerCampaignId);
             if (object.dataSharingContext != null) {
-                if (typeof object.dataSharingContext !== "object")
+                if (!$util.isObject(object.dataSharingContext))
                     throw TypeError(".E2E.ContextInfo.dataSharingContext: object expected");
                 message.dataSharingContext = $root.E2E.ContextInfo.DataSharingContext.fromObject(object.dataSharingContext, long + 1);
             }
             if (object.alwaysShowAdAttribution != null)
                 message.alwaysShowAdAttribution = Boolean(object.alwaysShowAdAttribution);
             if (object.featureEligibilities != null) {
-                if (typeof object.featureEligibilities !== "object")
+                if (!$util.isObject(object.featureEligibilities))
                     throw TypeError(".E2E.ContextInfo.featureEligibilities: object expected");
                 message.featureEligibilities = $root.E2E.ContextInfo.FeatureEligibilities.fromObject(object.featureEligibilities, long + 1);
             }
@@ -16838,7 +16926,7 @@ $root.E2E = (function() {
                 else if (object.ctwaPayload.length >= 0)
                     message.ctwaPayload = object.ctwaPayload;
             if (object.forwardedAiBotMessageInfo != null) {
-                if (typeof object.forwardedAiBotMessageInfo !== "object")
+                if (!$util.isObject(object.forwardedAiBotMessageInfo))
                     throw TypeError(".E2E.ContextInfo.forwardedAiBotMessageInfo: object expected");
                 message.forwardedAiBotMessageInfo = $root.AICommon.ForwardedAIBotMessageInfo.fromObject(object.forwardedAiBotMessageInfo, long + 1);
             }
@@ -16871,7 +16959,7 @@ $root.E2E = (function() {
                 break;
             }
             if (object.urlTrackingMap != null) {
-                if (typeof object.urlTrackingMap !== "object")
+                if (!$util.isObject(object.urlTrackingMap))
                     throw TypeError(".E2E.ContextInfo.urlTrackingMap: object expected");
                 message.urlTrackingMap = $root.E2E.UrlTrackingMap.fromObject(object.urlTrackingMap, long + 1);
             }
@@ -16922,7 +17010,7 @@ $root.E2E = (function() {
             if (object.rankingVersion != null)
                 message.rankingVersion = object.rankingVersion >>> 0;
             if (object.memberLabel != null) {
-                if (typeof object.memberLabel !== "object")
+                if (!$util.isObject(object.memberLabel))
                     throw TypeError(".E2E.ContextInfo.memberLabel: object expected");
                 message.memberLabel = $root.E2E.MemberLabel.fromObject(object.memberLabel, long + 1);
             }
@@ -16965,7 +17053,7 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.ContextInfo.statusAttributions: array expected");
                 message.statusAttributions = [];
                 for (var i = 0; i < object.statusAttributions.length; ++i) {
-                    if (typeof object.statusAttributions[i] !== "object")
+                    if (!$util.isObject(object.statusAttributions[i]))
                         throw TypeError(".E2E.ContextInfo.statusAttributions: object expected");
                     message.statusAttributions[i] = $root.StatusAttributions.StatusAttribution.fromObject(object.statusAttributions[i], long + 1);
                 }
@@ -17005,12 +17093,12 @@ $root.E2E = (function() {
                 break;
             }
             if (object.questionReplyQuotedMessage != null) {
-                if (typeof object.questionReplyQuotedMessage !== "object")
+                if (!$util.isObject(object.questionReplyQuotedMessage))
                     throw TypeError(".E2E.ContextInfo.questionReplyQuotedMessage: object expected");
                 message.questionReplyQuotedMessage = $root.E2E.ContextInfo.QuestionReplyQuotedMessage.fromObject(object.questionReplyQuotedMessage, long + 1);
             }
             if (object.statusAudienceMetadata != null) {
-                if (typeof object.statusAudienceMetadata !== "object")
+                if (!$util.isObject(object.statusAudienceMetadata))
                     throw TypeError(".E2E.ContextInfo.statusAudienceMetadata: object expected");
                 message.statusAudienceMetadata = $root.E2E.ContextInfo.StatusAudienceMetadata.fromObject(object.statusAudienceMetadata, long + 1);
             }
@@ -17033,19 +17121,19 @@ $root.E2E = (function() {
                 break;
             }
             if (object.botMessageSharingInfo != null) {
-                if (typeof object.botMessageSharingInfo !== "object")
+                if (!$util.isObject(object.botMessageSharingInfo))
                     throw TypeError(".E2E.ContextInfo.botMessageSharingInfo: object expected");
                 message.botMessageSharingInfo = $root.AICommon.BotMessageSharingInfo.fromObject(object.botMessageSharingInfo, long + 1);
             }
             if (object.isSpoiler != null)
                 message.isSpoiler = Boolean(object.isSpoiler);
             if (object.mediaDomainInfo != null) {
-                if (typeof object.mediaDomainInfo !== "object")
+                if (!$util.isObject(object.mediaDomainInfo))
                     throw TypeError(".E2E.ContextInfo.mediaDomainInfo: object expected");
                 message.mediaDomainInfo = $root.E2E.MediaDomainInfo.fromObject(object.mediaDomainInfo, long + 1);
             }
             if (object.partiallySelectedContent != null) {
-                if (typeof object.partiallySelectedContent !== "object")
+                if (!$util.isObject(object.partiallySelectedContent))
                     throw TypeError(".E2E.ContextInfo.partiallySelectedContent: object expected");
                 message.partiallySelectedContent = $root.E2E.ContextInfo.PartiallySelectedContent.fromObject(object.partiallySelectedContent, long + 1);
             }
@@ -17072,7 +17160,7 @@ $root.E2E = (function() {
                 break;
             }
             if (object.businessInteractionPills != null) {
-                if (typeof object.businessInteractionPills !== "object")
+                if (!$util.isObject(object.businessInteractionPills))
                     throw TypeError(".E2E.ContextInfo.businessInteractionPills: object expected");
                 message.businessInteractionPills = $root.E2E.ContextInfo.BusinessInteractionPills.fromObject(object.businessInteractionPills, long + 1);
             }
@@ -17461,7 +17549,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AdReplyInfo.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -17575,6 +17663,8 @@ $root.E2E = (function() {
             AdReplyInfo.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.ContextInfo.AdReplyInfo)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.ContextInfo.AdReplyInfo: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -17796,7 +17886,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             BusinessInteractionPills.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -17914,6 +18004,8 @@ $root.E2E = (function() {
             BusinessInteractionPills.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.ContextInfo.BusinessInteractionPills)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.ContextInfo.BusinessInteractionPills: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -17926,7 +18018,7 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.ContextInfo.BusinessInteractionPills.pills: array expected");
                     message.pills = [];
                     for (var i = 0; i < object.pills.length; ++i) {
-                        if (typeof object.pills[i] !== "object")
+                        if (!$util.isObject(object.pills[i]))
                             throw TypeError(".E2E.ContextInfo.BusinessInteractionPills.pills: object expected");
                         message.pills[i] = $root.E2E.ContextInfo.BusinessInteractionPills.Pill.fromObject(object.pills[i], long + 1);
                     }
@@ -18135,7 +18227,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 Pill.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -18245,6 +18337,8 @@ $root.E2E = (function() {
                 Pill.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.ContextInfo.BusinessInteractionPills.Pill)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.ContextInfo.BusinessInteractionPills.Pill: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -18486,7 +18580,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             BusinessMessageForwardInfo.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -18573,6 +18667,8 @@ $root.E2E = (function() {
             BusinessMessageForwardInfo.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.ContextInfo.BusinessMessageForwardInfo)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.ContextInfo.BusinessMessageForwardInfo: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -18762,7 +18858,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             DataSharingContext.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -18878,6 +18974,8 @@ $root.E2E = (function() {
             DataSharingContext.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.ContextInfo.DataSharingContext)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.ContextInfo.DataSharingContext: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -18892,7 +18990,7 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.ContextInfo.DataSharingContext.parameters: array expected");
                     message.parameters = [];
                     for (var i = 0; i < object.parameters.length; ++i) {
-                        if (typeof object.parameters[i] !== "object")
+                        if (!$util.isObject(object.parameters[i]))
                             throw TypeError(".E2E.ContextInfo.DataSharingContext.parameters: object expected");
                         message.parameters[i] = $root.E2E.ContextInfo.DataSharingContext.Parameters.fromObject(object.parameters[i], long + 1);
                     }
@@ -19099,7 +19197,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 Parameters.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -19216,6 +19314,8 @@ $root.E2E = (function() {
                 Parameters.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.ContextInfo.DataSharingContext.Parameters)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.ContextInfo.DataSharingContext.Parameters: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -19237,7 +19337,7 @@ $root.E2E = (function() {
                     if (object.floatData != null)
                         message.floatData = Number(object.floatData);
                     if (object.contents != null) {
-                        if (typeof object.contents !== "object")
+                        if (!$util.isObject(object.contents))
                             throw TypeError(".E2E.ContextInfo.DataSharingContext.Parameters.contents: object expected");
                         message.contents = $root.E2E.ContextInfo.DataSharingContext.Parameters.fromObject(object.contents, long + 1);
                     }
@@ -19738,7 +19838,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ExternalAdReplyInfo.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -20053,6 +20153,8 @@ $root.E2E = (function() {
             ExternalAdReplyInfo.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.ContextInfo.ExternalAdReplyInfo)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.ContextInfo.ExternalAdReplyInfo: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -20462,7 +20564,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             FeatureEligibilities.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -20577,6 +20679,8 @@ $root.E2E = (function() {
             FeatureEligibilities.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.ContextInfo.FeatureEligibilities)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.ContextInfo.FeatureEligibilities: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -20813,7 +20917,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ForwardedNewsletterMessageInfo.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -20941,6 +21045,8 @@ $root.E2E = (function() {
             ForwardedNewsletterMessageInfo.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.ContextInfo.ForwardedNewsletterMessageInfo)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.ContextInfo.ForwardedNewsletterMessageInfo: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -21167,7 +21273,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             PartiallySelectedContent.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -21254,6 +21360,8 @@ $root.E2E = (function() {
             PartiallySelectedContent.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.ContextInfo.PartiallySelectedContent)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.ContextInfo.PartiallySelectedContent: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -21414,7 +21522,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             QuestionReplyQuotedMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -21519,6 +21627,8 @@ $root.E2E = (function() {
             QuestionReplyQuotedMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.ContextInfo.QuestionReplyQuotedMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.ContextInfo.QuestionReplyQuotedMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -21527,12 +21637,12 @@ $root.E2E = (function() {
                 if (object.serverQuestionId != null)
                     message.serverQuestionId = object.serverQuestionId | 0;
                 if (object.quotedQuestion != null) {
-                    if (typeof object.quotedQuestion !== "object")
+                    if (!$util.isObject(object.quotedQuestion))
                         throw TypeError(".E2E.ContextInfo.QuestionReplyQuotedMessage.quotedQuestion: object expected");
                     message.quotedQuestion = $root.E2E.Message.fromObject(object.quotedQuestion, long + 1);
                 }
                 if (object.quotedResponse != null) {
-                    if (typeof object.quotedResponse !== "object")
+                    if (!$util.isObject(object.quotedResponse))
                         throw TypeError(".E2E.ContextInfo.QuestionReplyQuotedMessage.quotedResponse: object expected");
                     message.quotedResponse = $root.E2E.Message.fromObject(object.quotedResponse, long + 1);
                 }
@@ -21730,7 +21840,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             StatusAudienceMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -21836,6 +21946,8 @@ $root.E2E = (function() {
             StatusAudienceMetadata.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.ContextInfo.StatusAudienceMetadata)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.ContextInfo.StatusAudienceMetadata: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -22046,7 +22158,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             UTMInfo.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -22140,6 +22252,8 @@ $root.E2E = (function() {
             UTMInfo.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.ContextInfo.UTMInfo)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.ContextInfo.UTMInfo: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -22298,7 +22412,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         MediaDomainInfo.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -22398,6 +22512,8 @@ $root.E2E = (function() {
         MediaDomainInfo.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.MediaDomainInfo)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.MediaDomainInfo: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -23724,7 +23840,7 @@ $root.E2E = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         Message.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -24756,6 +24872,8 @@ $root.E2E = (function() {
         Message.fromObject = function fromObject(object, long) {
             if (object instanceof $root.E2E.Message)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".E2E.Message: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -24764,527 +24882,527 @@ $root.E2E = (function() {
             if (object.conversation != null)
                 message.conversation = String(object.conversation);
             if (object.senderKeyDistributionMessage != null) {
-                if (typeof object.senderKeyDistributionMessage !== "object")
+                if (!$util.isObject(object.senderKeyDistributionMessage))
                     throw TypeError(".E2E.Message.senderKeyDistributionMessage: object expected");
                 message.senderKeyDistributionMessage = $root.E2E.Message.SenderKeyDistributionMessage.fromObject(object.senderKeyDistributionMessage, long + 1);
             }
             if (object.imageMessage != null) {
-                if (typeof object.imageMessage !== "object")
+                if (!$util.isObject(object.imageMessage))
                     throw TypeError(".E2E.Message.imageMessage: object expected");
                 message.imageMessage = $root.E2E.Message.ImageMessage.fromObject(object.imageMessage, long + 1);
             }
             if (object.contactMessage != null) {
-                if (typeof object.contactMessage !== "object")
+                if (!$util.isObject(object.contactMessage))
                     throw TypeError(".E2E.Message.contactMessage: object expected");
                 message.contactMessage = $root.E2E.Message.ContactMessage.fromObject(object.contactMessage, long + 1);
             }
             if (object.locationMessage != null) {
-                if (typeof object.locationMessage !== "object")
+                if (!$util.isObject(object.locationMessage))
                     throw TypeError(".E2E.Message.locationMessage: object expected");
                 message.locationMessage = $root.E2E.Message.LocationMessage.fromObject(object.locationMessage, long + 1);
             }
             if (object.extendedTextMessage != null) {
-                if (typeof object.extendedTextMessage !== "object")
+                if (!$util.isObject(object.extendedTextMessage))
                     throw TypeError(".E2E.Message.extendedTextMessage: object expected");
                 message.extendedTextMessage = $root.E2E.Message.ExtendedTextMessage.fromObject(object.extendedTextMessage, long + 1);
             }
             if (object.documentMessage != null) {
-                if (typeof object.documentMessage !== "object")
+                if (!$util.isObject(object.documentMessage))
                     throw TypeError(".E2E.Message.documentMessage: object expected");
                 message.documentMessage = $root.E2E.Message.DocumentMessage.fromObject(object.documentMessage, long + 1);
             }
             if (object.audioMessage != null) {
-                if (typeof object.audioMessage !== "object")
+                if (!$util.isObject(object.audioMessage))
                     throw TypeError(".E2E.Message.audioMessage: object expected");
                 message.audioMessage = $root.E2E.Message.AudioMessage.fromObject(object.audioMessage, long + 1);
             }
             if (object.videoMessage != null) {
-                if (typeof object.videoMessage !== "object")
+                if (!$util.isObject(object.videoMessage))
                     throw TypeError(".E2E.Message.videoMessage: object expected");
                 message.videoMessage = $root.E2E.Message.VideoMessage.fromObject(object.videoMessage, long + 1);
             }
             if (object.call != null) {
-                if (typeof object.call !== "object")
+                if (!$util.isObject(object.call))
                     throw TypeError(".E2E.Message.call: object expected");
                 message.call = $root.E2E.Message.Call.fromObject(object.call, long + 1);
             }
             if (object.chat != null) {
-                if (typeof object.chat !== "object")
+                if (!$util.isObject(object.chat))
                     throw TypeError(".E2E.Message.chat: object expected");
                 message.chat = $root.E2E.Message.Chat.fromObject(object.chat, long + 1);
             }
             if (object.protocolMessage != null) {
-                if (typeof object.protocolMessage !== "object")
+                if (!$util.isObject(object.protocolMessage))
                     throw TypeError(".E2E.Message.protocolMessage: object expected");
                 message.protocolMessage = $root.E2E.Message.ProtocolMessage.fromObject(object.protocolMessage, long + 1);
             }
             if (object.contactsArrayMessage != null) {
-                if (typeof object.contactsArrayMessage !== "object")
+                if (!$util.isObject(object.contactsArrayMessage))
                     throw TypeError(".E2E.Message.contactsArrayMessage: object expected");
                 message.contactsArrayMessage = $root.E2E.Message.ContactsArrayMessage.fromObject(object.contactsArrayMessage, long + 1);
             }
             if (object.highlyStructuredMessage != null) {
-                if (typeof object.highlyStructuredMessage !== "object")
+                if (!$util.isObject(object.highlyStructuredMessage))
                     throw TypeError(".E2E.Message.highlyStructuredMessage: object expected");
                 message.highlyStructuredMessage = $root.E2E.Message.HighlyStructuredMessage.fromObject(object.highlyStructuredMessage, long + 1);
             }
             if (object.fastRatchetKeySenderKeyDistributionMessage != null) {
-                if (typeof object.fastRatchetKeySenderKeyDistributionMessage !== "object")
+                if (!$util.isObject(object.fastRatchetKeySenderKeyDistributionMessage))
                     throw TypeError(".E2E.Message.fastRatchetKeySenderKeyDistributionMessage: object expected");
                 message.fastRatchetKeySenderKeyDistributionMessage = $root.E2E.Message.SenderKeyDistributionMessage.fromObject(object.fastRatchetKeySenderKeyDistributionMessage, long + 1);
             }
             if (object.sendPaymentMessage != null) {
-                if (typeof object.sendPaymentMessage !== "object")
+                if (!$util.isObject(object.sendPaymentMessage))
                     throw TypeError(".E2E.Message.sendPaymentMessage: object expected");
                 message.sendPaymentMessage = $root.E2E.Message.SendPaymentMessage.fromObject(object.sendPaymentMessage, long + 1);
             }
             if (object.liveLocationMessage != null) {
-                if (typeof object.liveLocationMessage !== "object")
+                if (!$util.isObject(object.liveLocationMessage))
                     throw TypeError(".E2E.Message.liveLocationMessage: object expected");
                 message.liveLocationMessage = $root.E2E.Message.LiveLocationMessage.fromObject(object.liveLocationMessage, long + 1);
             }
             if (object.requestPaymentMessage != null) {
-                if (typeof object.requestPaymentMessage !== "object")
+                if (!$util.isObject(object.requestPaymentMessage))
                     throw TypeError(".E2E.Message.requestPaymentMessage: object expected");
                 message.requestPaymentMessage = $root.E2E.Message.RequestPaymentMessage.fromObject(object.requestPaymentMessage, long + 1);
             }
             if (object.declinePaymentRequestMessage != null) {
-                if (typeof object.declinePaymentRequestMessage !== "object")
+                if (!$util.isObject(object.declinePaymentRequestMessage))
                     throw TypeError(".E2E.Message.declinePaymentRequestMessage: object expected");
                 message.declinePaymentRequestMessage = $root.E2E.Message.DeclinePaymentRequestMessage.fromObject(object.declinePaymentRequestMessage, long + 1);
             }
             if (object.cancelPaymentRequestMessage != null) {
-                if (typeof object.cancelPaymentRequestMessage !== "object")
+                if (!$util.isObject(object.cancelPaymentRequestMessage))
                     throw TypeError(".E2E.Message.cancelPaymentRequestMessage: object expected");
                 message.cancelPaymentRequestMessage = $root.E2E.Message.CancelPaymentRequestMessage.fromObject(object.cancelPaymentRequestMessage, long + 1);
             }
             if (object.templateMessage != null) {
-                if (typeof object.templateMessage !== "object")
+                if (!$util.isObject(object.templateMessage))
                     throw TypeError(".E2E.Message.templateMessage: object expected");
                 message.templateMessage = $root.E2E.Message.TemplateMessage.fromObject(object.templateMessage, long + 1);
             }
             if (object.stickerMessage != null) {
-                if (typeof object.stickerMessage !== "object")
+                if (!$util.isObject(object.stickerMessage))
                     throw TypeError(".E2E.Message.stickerMessage: object expected");
                 message.stickerMessage = $root.E2E.Message.StickerMessage.fromObject(object.stickerMessage, long + 1);
             }
             if (object.groupInviteMessage != null) {
-                if (typeof object.groupInviteMessage !== "object")
+                if (!$util.isObject(object.groupInviteMessage))
                     throw TypeError(".E2E.Message.groupInviteMessage: object expected");
                 message.groupInviteMessage = $root.E2E.Message.GroupInviteMessage.fromObject(object.groupInviteMessage, long + 1);
             }
             if (object.templateButtonReplyMessage != null) {
-                if (typeof object.templateButtonReplyMessage !== "object")
+                if (!$util.isObject(object.templateButtonReplyMessage))
                     throw TypeError(".E2E.Message.templateButtonReplyMessage: object expected");
                 message.templateButtonReplyMessage = $root.E2E.Message.TemplateButtonReplyMessage.fromObject(object.templateButtonReplyMessage, long + 1);
             }
             if (object.productMessage != null) {
-                if (typeof object.productMessage !== "object")
+                if (!$util.isObject(object.productMessage))
                     throw TypeError(".E2E.Message.productMessage: object expected");
                 message.productMessage = $root.E2E.Message.ProductMessage.fromObject(object.productMessage, long + 1);
             }
             if (object.deviceSentMessage != null) {
-                if (typeof object.deviceSentMessage !== "object")
+                if (!$util.isObject(object.deviceSentMessage))
                     throw TypeError(".E2E.Message.deviceSentMessage: object expected");
                 message.deviceSentMessage = $root.E2E.Message.DeviceSentMessage.fromObject(object.deviceSentMessage, long + 1);
             }
             if (object.messageContextInfo != null) {
-                if (typeof object.messageContextInfo !== "object")
+                if (!$util.isObject(object.messageContextInfo))
                     throw TypeError(".E2E.Message.messageContextInfo: object expected");
                 message.messageContextInfo = $root.E2E.MessageContextInfo.fromObject(object.messageContextInfo, long + 1);
             }
             if (object.listMessage != null) {
-                if (typeof object.listMessage !== "object")
+                if (!$util.isObject(object.listMessage))
                     throw TypeError(".E2E.Message.listMessage: object expected");
                 message.listMessage = $root.E2E.Message.ListMessage.fromObject(object.listMessage, long + 1);
             }
             if (object.viewOnceMessage != null) {
-                if (typeof object.viewOnceMessage !== "object")
+                if (!$util.isObject(object.viewOnceMessage))
                     throw TypeError(".E2E.Message.viewOnceMessage: object expected");
                 message.viewOnceMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.viewOnceMessage, long + 1);
             }
             if (object.orderMessage != null) {
-                if (typeof object.orderMessage !== "object")
+                if (!$util.isObject(object.orderMessage))
                     throw TypeError(".E2E.Message.orderMessage: object expected");
                 message.orderMessage = $root.E2E.Message.OrderMessage.fromObject(object.orderMessage, long + 1);
             }
             if (object.listResponseMessage != null) {
-                if (typeof object.listResponseMessage !== "object")
+                if (!$util.isObject(object.listResponseMessage))
                     throw TypeError(".E2E.Message.listResponseMessage: object expected");
                 message.listResponseMessage = $root.E2E.Message.ListResponseMessage.fromObject(object.listResponseMessage, long + 1);
             }
             if (object.ephemeralMessage != null) {
-                if (typeof object.ephemeralMessage !== "object")
+                if (!$util.isObject(object.ephemeralMessage))
                     throw TypeError(".E2E.Message.ephemeralMessage: object expected");
                 message.ephemeralMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.ephemeralMessage, long + 1);
             }
             if (object.invoiceMessage != null) {
-                if (typeof object.invoiceMessage !== "object")
+                if (!$util.isObject(object.invoiceMessage))
                     throw TypeError(".E2E.Message.invoiceMessage: object expected");
                 message.invoiceMessage = $root.E2E.Message.InvoiceMessage.fromObject(object.invoiceMessage, long + 1);
             }
             if (object.buttonsMessage != null) {
-                if (typeof object.buttonsMessage !== "object")
+                if (!$util.isObject(object.buttonsMessage))
                     throw TypeError(".E2E.Message.buttonsMessage: object expected");
                 message.buttonsMessage = $root.E2E.Message.ButtonsMessage.fromObject(object.buttonsMessage, long + 1);
             }
             if (object.buttonsResponseMessage != null) {
-                if (typeof object.buttonsResponseMessage !== "object")
+                if (!$util.isObject(object.buttonsResponseMessage))
                     throw TypeError(".E2E.Message.buttonsResponseMessage: object expected");
                 message.buttonsResponseMessage = $root.E2E.Message.ButtonsResponseMessage.fromObject(object.buttonsResponseMessage, long + 1);
             }
             if (object.paymentInviteMessage != null) {
-                if (typeof object.paymentInviteMessage !== "object")
+                if (!$util.isObject(object.paymentInviteMessage))
                     throw TypeError(".E2E.Message.paymentInviteMessage: object expected");
                 message.paymentInviteMessage = $root.E2E.Message.PaymentInviteMessage.fromObject(object.paymentInviteMessage, long + 1);
             }
             if (object.interactiveMessage != null) {
-                if (typeof object.interactiveMessage !== "object")
+                if (!$util.isObject(object.interactiveMessage))
                     throw TypeError(".E2E.Message.interactiveMessage: object expected");
                 message.interactiveMessage = $root.E2E.Message.InteractiveMessage.fromObject(object.interactiveMessage, long + 1);
             }
             if (object.reactionMessage != null) {
-                if (typeof object.reactionMessage !== "object")
+                if (!$util.isObject(object.reactionMessage))
                     throw TypeError(".E2E.Message.reactionMessage: object expected");
                 message.reactionMessage = $root.E2E.Message.ReactionMessage.fromObject(object.reactionMessage, long + 1);
             }
             if (object.stickerSyncRmrMessage != null) {
-                if (typeof object.stickerSyncRmrMessage !== "object")
+                if (!$util.isObject(object.stickerSyncRmrMessage))
                     throw TypeError(".E2E.Message.stickerSyncRmrMessage: object expected");
                 message.stickerSyncRmrMessage = $root.E2E.Message.StickerSyncRMRMessage.fromObject(object.stickerSyncRmrMessage, long + 1);
             }
             if (object.interactiveResponseMessage != null) {
-                if (typeof object.interactiveResponseMessage !== "object")
+                if (!$util.isObject(object.interactiveResponseMessage))
                     throw TypeError(".E2E.Message.interactiveResponseMessage: object expected");
                 message.interactiveResponseMessage = $root.E2E.Message.InteractiveResponseMessage.fromObject(object.interactiveResponseMessage, long + 1);
             }
             if (object.pollCreationMessage != null) {
-                if (typeof object.pollCreationMessage !== "object")
+                if (!$util.isObject(object.pollCreationMessage))
                     throw TypeError(".E2E.Message.pollCreationMessage: object expected");
                 message.pollCreationMessage = $root.E2E.Message.PollCreationMessage.fromObject(object.pollCreationMessage, long + 1);
             }
             if (object.pollUpdateMessage != null) {
-                if (typeof object.pollUpdateMessage !== "object")
+                if (!$util.isObject(object.pollUpdateMessage))
                     throw TypeError(".E2E.Message.pollUpdateMessage: object expected");
                 message.pollUpdateMessage = $root.E2E.Message.PollUpdateMessage.fromObject(object.pollUpdateMessage, long + 1);
             }
             if (object.keepInChatMessage != null) {
-                if (typeof object.keepInChatMessage !== "object")
+                if (!$util.isObject(object.keepInChatMessage))
                     throw TypeError(".E2E.Message.keepInChatMessage: object expected");
                 message.keepInChatMessage = $root.E2E.Message.KeepInChatMessage.fromObject(object.keepInChatMessage, long + 1);
             }
             if (object.documentWithCaptionMessage != null) {
-                if (typeof object.documentWithCaptionMessage !== "object")
+                if (!$util.isObject(object.documentWithCaptionMessage))
                     throw TypeError(".E2E.Message.documentWithCaptionMessage: object expected");
                 message.documentWithCaptionMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.documentWithCaptionMessage, long + 1);
             }
             if (object.requestPhoneNumberMessage != null) {
-                if (typeof object.requestPhoneNumberMessage !== "object")
+                if (!$util.isObject(object.requestPhoneNumberMessage))
                     throw TypeError(".E2E.Message.requestPhoneNumberMessage: object expected");
                 message.requestPhoneNumberMessage = $root.E2E.Message.RequestPhoneNumberMessage.fromObject(object.requestPhoneNumberMessage, long + 1);
             }
             if (object.viewOnceMessageV2 != null) {
-                if (typeof object.viewOnceMessageV2 !== "object")
+                if (!$util.isObject(object.viewOnceMessageV2))
                     throw TypeError(".E2E.Message.viewOnceMessageV2: object expected");
                 message.viewOnceMessageV2 = $root.E2E.Message.FutureProofMessage.fromObject(object.viewOnceMessageV2, long + 1);
             }
             if (object.encReactionMessage != null) {
-                if (typeof object.encReactionMessage !== "object")
+                if (!$util.isObject(object.encReactionMessage))
                     throw TypeError(".E2E.Message.encReactionMessage: object expected");
                 message.encReactionMessage = $root.E2E.Message.EncReactionMessage.fromObject(object.encReactionMessage, long + 1);
             }
             if (object.editedMessage != null) {
-                if (typeof object.editedMessage !== "object")
+                if (!$util.isObject(object.editedMessage))
                     throw TypeError(".E2E.Message.editedMessage: object expected");
                 message.editedMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.editedMessage, long + 1);
             }
             if (object.viewOnceMessageV2Extension != null) {
-                if (typeof object.viewOnceMessageV2Extension !== "object")
+                if (!$util.isObject(object.viewOnceMessageV2Extension))
                     throw TypeError(".E2E.Message.viewOnceMessageV2Extension: object expected");
                 message.viewOnceMessageV2Extension = $root.E2E.Message.FutureProofMessage.fromObject(object.viewOnceMessageV2Extension, long + 1);
             }
             if (object.pollCreationMessageV2 != null) {
-                if (typeof object.pollCreationMessageV2 !== "object")
+                if (!$util.isObject(object.pollCreationMessageV2))
                     throw TypeError(".E2E.Message.pollCreationMessageV2: object expected");
                 message.pollCreationMessageV2 = $root.E2E.Message.PollCreationMessage.fromObject(object.pollCreationMessageV2, long + 1);
             }
             if (object.scheduledCallCreationMessage != null) {
-                if (typeof object.scheduledCallCreationMessage !== "object")
+                if (!$util.isObject(object.scheduledCallCreationMessage))
                     throw TypeError(".E2E.Message.scheduledCallCreationMessage: object expected");
                 message.scheduledCallCreationMessage = $root.E2E.Message.ScheduledCallCreationMessage.fromObject(object.scheduledCallCreationMessage, long + 1);
             }
             if (object.groupMentionedMessage != null) {
-                if (typeof object.groupMentionedMessage !== "object")
+                if (!$util.isObject(object.groupMentionedMessage))
                     throw TypeError(".E2E.Message.groupMentionedMessage: object expected");
                 message.groupMentionedMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.groupMentionedMessage, long + 1);
             }
             if (object.pinInChatMessage != null) {
-                if (typeof object.pinInChatMessage !== "object")
+                if (!$util.isObject(object.pinInChatMessage))
                     throw TypeError(".E2E.Message.pinInChatMessage: object expected");
                 message.pinInChatMessage = $root.E2E.Message.PinInChatMessage.fromObject(object.pinInChatMessage, long + 1);
             }
             if (object.pollCreationMessageV3 != null) {
-                if (typeof object.pollCreationMessageV3 !== "object")
+                if (!$util.isObject(object.pollCreationMessageV3))
                     throw TypeError(".E2E.Message.pollCreationMessageV3: object expected");
                 message.pollCreationMessageV3 = $root.E2E.Message.PollCreationMessage.fromObject(object.pollCreationMessageV3, long + 1);
             }
             if (object.scheduledCallEditMessage != null) {
-                if (typeof object.scheduledCallEditMessage !== "object")
+                if (!$util.isObject(object.scheduledCallEditMessage))
                     throw TypeError(".E2E.Message.scheduledCallEditMessage: object expected");
                 message.scheduledCallEditMessage = $root.E2E.Message.ScheduledCallEditMessage.fromObject(object.scheduledCallEditMessage, long + 1);
             }
             if (object.ptvMessage != null) {
-                if (typeof object.ptvMessage !== "object")
+                if (!$util.isObject(object.ptvMessage))
                     throw TypeError(".E2E.Message.ptvMessage: object expected");
                 message.ptvMessage = $root.E2E.Message.VideoMessage.fromObject(object.ptvMessage, long + 1);
             }
             if (object.botInvokeMessage != null) {
-                if (typeof object.botInvokeMessage !== "object")
+                if (!$util.isObject(object.botInvokeMessage))
                     throw TypeError(".E2E.Message.botInvokeMessage: object expected");
                 message.botInvokeMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.botInvokeMessage, long + 1);
             }
             if (object.callLogMesssage != null) {
-                if (typeof object.callLogMesssage !== "object")
+                if (!$util.isObject(object.callLogMesssage))
                     throw TypeError(".E2E.Message.callLogMesssage: object expected");
                 message.callLogMesssage = $root.E2E.Message.CallLogMessage.fromObject(object.callLogMesssage, long + 1);
             }
             if (object.messageHistoryBundle != null) {
-                if (typeof object.messageHistoryBundle !== "object")
+                if (!$util.isObject(object.messageHistoryBundle))
                     throw TypeError(".E2E.Message.messageHistoryBundle: object expected");
                 message.messageHistoryBundle = $root.E2E.Message.MessageHistoryBundle.fromObject(object.messageHistoryBundle, long + 1);
             }
             if (object.encCommentMessage != null) {
-                if (typeof object.encCommentMessage !== "object")
+                if (!$util.isObject(object.encCommentMessage))
                     throw TypeError(".E2E.Message.encCommentMessage: object expected");
                 message.encCommentMessage = $root.E2E.Message.EncCommentMessage.fromObject(object.encCommentMessage, long + 1);
             }
             if (object.bcallMessage != null) {
-                if (typeof object.bcallMessage !== "object")
+                if (!$util.isObject(object.bcallMessage))
                     throw TypeError(".E2E.Message.bcallMessage: object expected");
                 message.bcallMessage = $root.E2E.Message.BCallMessage.fromObject(object.bcallMessage, long + 1);
             }
             if (object.lottieStickerMessage != null) {
-                if (typeof object.lottieStickerMessage !== "object")
+                if (!$util.isObject(object.lottieStickerMessage))
                     throw TypeError(".E2E.Message.lottieStickerMessage: object expected");
                 message.lottieStickerMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.lottieStickerMessage, long + 1);
             }
             if (object.eventMessage != null) {
-                if (typeof object.eventMessage !== "object")
+                if (!$util.isObject(object.eventMessage))
                     throw TypeError(".E2E.Message.eventMessage: object expected");
                 message.eventMessage = $root.E2E.Message.EventMessage.fromObject(object.eventMessage, long + 1);
             }
             if (object.encEventResponseMessage != null) {
-                if (typeof object.encEventResponseMessage !== "object")
+                if (!$util.isObject(object.encEventResponseMessage))
                     throw TypeError(".E2E.Message.encEventResponseMessage: object expected");
                 message.encEventResponseMessage = $root.E2E.Message.EncEventResponseMessage.fromObject(object.encEventResponseMessage, long + 1);
             }
             if (object.commentMessage != null) {
-                if (typeof object.commentMessage !== "object")
+                if (!$util.isObject(object.commentMessage))
                     throw TypeError(".E2E.Message.commentMessage: object expected");
                 message.commentMessage = $root.E2E.Message.CommentMessage.fromObject(object.commentMessage, long + 1);
             }
             if (object.newsletterAdminInviteMessage != null) {
-                if (typeof object.newsletterAdminInviteMessage !== "object")
+                if (!$util.isObject(object.newsletterAdminInviteMessage))
                     throw TypeError(".E2E.Message.newsletterAdminInviteMessage: object expected");
                 message.newsletterAdminInviteMessage = $root.E2E.Message.NewsletterAdminInviteMessage.fromObject(object.newsletterAdminInviteMessage, long + 1);
             }
             if (object.placeholderMessage != null) {
-                if (typeof object.placeholderMessage !== "object")
+                if (!$util.isObject(object.placeholderMessage))
                     throw TypeError(".E2E.Message.placeholderMessage: object expected");
                 message.placeholderMessage = $root.E2E.Message.PlaceholderMessage.fromObject(object.placeholderMessage, long + 1);
             }
             if (object.secretEncryptedMessage != null) {
-                if (typeof object.secretEncryptedMessage !== "object")
+                if (!$util.isObject(object.secretEncryptedMessage))
                     throw TypeError(".E2E.Message.secretEncryptedMessage: object expected");
                 message.secretEncryptedMessage = $root.E2E.Message.SecretEncryptedMessage.fromObject(object.secretEncryptedMessage, long + 1);
             }
             if (object.albumMessage != null) {
-                if (typeof object.albumMessage !== "object")
+                if (!$util.isObject(object.albumMessage))
                     throw TypeError(".E2E.Message.albumMessage: object expected");
                 message.albumMessage = $root.E2E.Message.AlbumMessage.fromObject(object.albumMessage, long + 1);
             }
             if (object.eventCoverImage != null) {
-                if (typeof object.eventCoverImage !== "object")
+                if (!$util.isObject(object.eventCoverImage))
                     throw TypeError(".E2E.Message.eventCoverImage: object expected");
                 message.eventCoverImage = $root.E2E.Message.FutureProofMessage.fromObject(object.eventCoverImage, long + 1);
             }
             if (object.stickerPackMessage != null) {
-                if (typeof object.stickerPackMessage !== "object")
+                if (!$util.isObject(object.stickerPackMessage))
                     throw TypeError(".E2E.Message.stickerPackMessage: object expected");
                 message.stickerPackMessage = $root.E2E.Message.StickerPackMessage.fromObject(object.stickerPackMessage, long + 1);
             }
             if (object.statusMentionMessage != null) {
-                if (typeof object.statusMentionMessage !== "object")
+                if (!$util.isObject(object.statusMentionMessage))
                     throw TypeError(".E2E.Message.statusMentionMessage: object expected");
                 message.statusMentionMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.statusMentionMessage, long + 1);
             }
             if (object.pollResultSnapshotMessage != null) {
-                if (typeof object.pollResultSnapshotMessage !== "object")
+                if (!$util.isObject(object.pollResultSnapshotMessage))
                     throw TypeError(".E2E.Message.pollResultSnapshotMessage: object expected");
                 message.pollResultSnapshotMessage = $root.E2E.Message.PollResultSnapshotMessage.fromObject(object.pollResultSnapshotMessage, long + 1);
             }
             if (object.pollCreationOptionImageMessage != null) {
-                if (typeof object.pollCreationOptionImageMessage !== "object")
+                if (!$util.isObject(object.pollCreationOptionImageMessage))
                     throw TypeError(".E2E.Message.pollCreationOptionImageMessage: object expected");
                 message.pollCreationOptionImageMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.pollCreationOptionImageMessage, long + 1);
             }
             if (object.associatedChildMessage != null) {
-                if (typeof object.associatedChildMessage !== "object")
+                if (!$util.isObject(object.associatedChildMessage))
                     throw TypeError(".E2E.Message.associatedChildMessage: object expected");
                 message.associatedChildMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.associatedChildMessage, long + 1);
             }
             if (object.groupStatusMentionMessage != null) {
-                if (typeof object.groupStatusMentionMessage !== "object")
+                if (!$util.isObject(object.groupStatusMentionMessage))
                     throw TypeError(".E2E.Message.groupStatusMentionMessage: object expected");
                 message.groupStatusMentionMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.groupStatusMentionMessage, long + 1);
             }
             if (object.pollCreationMessageV4 != null) {
-                if (typeof object.pollCreationMessageV4 !== "object")
+                if (!$util.isObject(object.pollCreationMessageV4))
                     throw TypeError(".E2E.Message.pollCreationMessageV4: object expected");
                 message.pollCreationMessageV4 = $root.E2E.Message.FutureProofMessage.fromObject(object.pollCreationMessageV4, long + 1);
             }
             if (object.statusAddYours != null) {
-                if (typeof object.statusAddYours !== "object")
+                if (!$util.isObject(object.statusAddYours))
                     throw TypeError(".E2E.Message.statusAddYours: object expected");
                 message.statusAddYours = $root.E2E.Message.FutureProofMessage.fromObject(object.statusAddYours, long + 1);
             }
             if (object.groupStatusMessage != null) {
-                if (typeof object.groupStatusMessage !== "object")
+                if (!$util.isObject(object.groupStatusMessage))
                     throw TypeError(".E2E.Message.groupStatusMessage: object expected");
                 message.groupStatusMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.groupStatusMessage, long + 1);
             }
             if (object.richResponseMessage != null) {
-                if (typeof object.richResponseMessage !== "object")
+                if (!$util.isObject(object.richResponseMessage))
                     throw TypeError(".E2E.Message.richResponseMessage: object expected");
                 message.richResponseMessage = $root.E2E.AIRichResponseMessage.fromObject(object.richResponseMessage, long + 1);
             }
             if (object.statusNotificationMessage != null) {
-                if (typeof object.statusNotificationMessage !== "object")
+                if (!$util.isObject(object.statusNotificationMessage))
                     throw TypeError(".E2E.Message.statusNotificationMessage: object expected");
                 message.statusNotificationMessage = $root.E2E.Message.StatusNotificationMessage.fromObject(object.statusNotificationMessage, long + 1);
             }
             if (object.limitSharingMessage != null) {
-                if (typeof object.limitSharingMessage !== "object")
+                if (!$util.isObject(object.limitSharingMessage))
                     throw TypeError(".E2E.Message.limitSharingMessage: object expected");
                 message.limitSharingMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.limitSharingMessage, long + 1);
             }
             if (object.botTaskMessage != null) {
-                if (typeof object.botTaskMessage !== "object")
+                if (!$util.isObject(object.botTaskMessage))
                     throw TypeError(".E2E.Message.botTaskMessage: object expected");
                 message.botTaskMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.botTaskMessage, long + 1);
             }
             if (object.questionMessage != null) {
-                if (typeof object.questionMessage !== "object")
+                if (!$util.isObject(object.questionMessage))
                     throw TypeError(".E2E.Message.questionMessage: object expected");
                 message.questionMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.questionMessage, long + 1);
             }
             if (object.messageHistoryNotice != null) {
-                if (typeof object.messageHistoryNotice !== "object")
+                if (!$util.isObject(object.messageHistoryNotice))
                     throw TypeError(".E2E.Message.messageHistoryNotice: object expected");
                 message.messageHistoryNotice = $root.E2E.Message.MessageHistoryNotice.fromObject(object.messageHistoryNotice, long + 1);
             }
             if (object.groupStatusMessageV2 != null) {
-                if (typeof object.groupStatusMessageV2 !== "object")
+                if (!$util.isObject(object.groupStatusMessageV2))
                     throw TypeError(".E2E.Message.groupStatusMessageV2: object expected");
                 message.groupStatusMessageV2 = $root.E2E.Message.FutureProofMessage.fromObject(object.groupStatusMessageV2, long + 1);
             }
             if (object.botForwardedMessage != null) {
-                if (typeof object.botForwardedMessage !== "object")
+                if (!$util.isObject(object.botForwardedMessage))
                     throw TypeError(".E2E.Message.botForwardedMessage: object expected");
                 message.botForwardedMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.botForwardedMessage, long + 1);
             }
             if (object.statusQuestionAnswerMessage != null) {
-                if (typeof object.statusQuestionAnswerMessage !== "object")
+                if (!$util.isObject(object.statusQuestionAnswerMessage))
                     throw TypeError(".E2E.Message.statusQuestionAnswerMessage: object expected");
                 message.statusQuestionAnswerMessage = $root.E2E.Message.StatusQuestionAnswerMessage.fromObject(object.statusQuestionAnswerMessage, long + 1);
             }
             if (object.questionReplyMessage != null) {
-                if (typeof object.questionReplyMessage !== "object")
+                if (!$util.isObject(object.questionReplyMessage))
                     throw TypeError(".E2E.Message.questionReplyMessage: object expected");
                 message.questionReplyMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.questionReplyMessage, long + 1);
             }
             if (object.questionResponseMessage != null) {
-                if (typeof object.questionResponseMessage !== "object")
+                if (!$util.isObject(object.questionResponseMessage))
                     throw TypeError(".E2E.Message.questionResponseMessage: object expected");
                 message.questionResponseMessage = $root.E2E.Message.QuestionResponseMessage.fromObject(object.questionResponseMessage, long + 1);
             }
             if (object.statusQuotedMessage != null) {
-                if (typeof object.statusQuotedMessage !== "object")
+                if (!$util.isObject(object.statusQuotedMessage))
                     throw TypeError(".E2E.Message.statusQuotedMessage: object expected");
                 message.statusQuotedMessage = $root.E2E.Message.StatusQuotedMessage.fromObject(object.statusQuotedMessage, long + 1);
             }
             if (object.statusStickerInteractionMessage != null) {
-                if (typeof object.statusStickerInteractionMessage !== "object")
+                if (!$util.isObject(object.statusStickerInteractionMessage))
                     throw TypeError(".E2E.Message.statusStickerInteractionMessage: object expected");
                 message.statusStickerInteractionMessage = $root.E2E.Message.StatusStickerInteractionMessage.fromObject(object.statusStickerInteractionMessage, long + 1);
             }
             if (object.pollCreationMessageV5 != null) {
-                if (typeof object.pollCreationMessageV5 !== "object")
+                if (!$util.isObject(object.pollCreationMessageV5))
                     throw TypeError(".E2E.Message.pollCreationMessageV5: object expected");
                 message.pollCreationMessageV5 = $root.E2E.Message.PollCreationMessage.fromObject(object.pollCreationMessageV5, long + 1);
             }
             if (object.newsletterFollowerInviteMessageV2 != null) {
-                if (typeof object.newsletterFollowerInviteMessageV2 !== "object")
+                if (!$util.isObject(object.newsletterFollowerInviteMessageV2))
                     throw TypeError(".E2E.Message.newsletterFollowerInviteMessageV2: object expected");
                 message.newsletterFollowerInviteMessageV2 = $root.E2E.Message.NewsletterFollowerInviteMessage.fromObject(object.newsletterFollowerInviteMessageV2, long + 1);
             }
             if (object.pollResultSnapshotMessageV3 != null) {
-                if (typeof object.pollResultSnapshotMessageV3 !== "object")
+                if (!$util.isObject(object.pollResultSnapshotMessageV3))
                     throw TypeError(".E2E.Message.pollResultSnapshotMessageV3: object expected");
                 message.pollResultSnapshotMessageV3 = $root.E2E.Message.PollResultSnapshotMessage.fromObject(object.pollResultSnapshotMessageV3, long + 1);
             }
             if (object.newsletterAdminProfileMessage != null) {
-                if (typeof object.newsletterAdminProfileMessage !== "object")
+                if (!$util.isObject(object.newsletterAdminProfileMessage))
                     throw TypeError(".E2E.Message.newsletterAdminProfileMessage: object expected");
                 message.newsletterAdminProfileMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.newsletterAdminProfileMessage, long + 1);
             }
             if (object.newsletterAdminProfileMessageV2 != null) {
-                if (typeof object.newsletterAdminProfileMessageV2 !== "object")
+                if (!$util.isObject(object.newsletterAdminProfileMessageV2))
                     throw TypeError(".E2E.Message.newsletterAdminProfileMessageV2: object expected");
                 message.newsletterAdminProfileMessageV2 = $root.E2E.Message.FutureProofMessage.fromObject(object.newsletterAdminProfileMessageV2, long + 1);
             }
             if (object.spoilerMessage != null) {
-                if (typeof object.spoilerMessage !== "object")
+                if (!$util.isObject(object.spoilerMessage))
                     throw TypeError(".E2E.Message.spoilerMessage: object expected");
                 message.spoilerMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.spoilerMessage, long + 1);
             }
             if (object.pollCreationMessageV6 != null) {
-                if (typeof object.pollCreationMessageV6 !== "object")
+                if (!$util.isObject(object.pollCreationMessageV6))
                     throw TypeError(".E2E.Message.pollCreationMessageV6: object expected");
                 message.pollCreationMessageV6 = $root.E2E.Message.PollCreationMessage.fromObject(object.pollCreationMessageV6, long + 1);
             }
             if (object.conditionalRevealMessage != null) {
-                if (typeof object.conditionalRevealMessage !== "object")
+                if (!$util.isObject(object.conditionalRevealMessage))
                     throw TypeError(".E2E.Message.conditionalRevealMessage: object expected");
                 message.conditionalRevealMessage = $root.E2E.Message.ConditionalRevealMessage.fromObject(object.conditionalRevealMessage, long + 1);
             }
             if (object.pollAddOptionMessage != null) {
-                if (typeof object.pollAddOptionMessage !== "object")
+                if (!$util.isObject(object.pollAddOptionMessage))
                     throw TypeError(".E2E.Message.pollAddOptionMessage: object expected");
                 message.pollAddOptionMessage = $root.E2E.Message.PollAddOptionMessage.fromObject(object.pollAddOptionMessage, long + 1);
             }
             if (object.eventInviteMessage != null) {
-                if (typeof object.eventInviteMessage !== "object")
+                if (!$util.isObject(object.eventInviteMessage))
                     throw TypeError(".E2E.Message.eventInviteMessage: object expected");
                 message.eventInviteMessage = $root.E2E.Message.EventInviteMessage.fromObject(object.eventInviteMessage, long + 1);
             }
             if (object.groupRootKeyShare != null) {
-                if (typeof object.groupRootKeyShare !== "object")
+                if (!$util.isObject(object.groupRootKeyShare))
                     throw TypeError(".E2E.Message.groupRootKeyShare: object expected");
                 message.groupRootKeyShare = $root.E2E.GroupRootKeyShare.fromObject(object.groupRootKeyShare, long + 1);
             }
             if (object.paymentReminderMessage != null) {
-                if (typeof object.paymentReminderMessage !== "object")
+                if (!$util.isObject(object.paymentReminderMessage))
                     throw TypeError(".E2E.Message.paymentReminderMessage: object expected");
                 message.paymentReminderMessage = $root.E2E.Message.PaymentReminderMessage.fromObject(object.paymentReminderMessage, long + 1);
             }
             if (object.splitPaymentMessage != null) {
-                if (typeof object.splitPaymentMessage !== "object")
+                if (!$util.isObject(object.splitPaymentMessage))
                     throw TypeError(".E2E.Message.splitPaymentMessage: object expected");
                 message.splitPaymentMessage = $root.E2E.Message.SplitPaymentMessage.fromObject(object.splitPaymentMessage, long + 1);
             }
             if (object.newsletterAdminProfileStatusMessage != null) {
-                if (typeof object.newsletterAdminProfileStatusMessage !== "object")
+                if (!$util.isObject(object.newsletterAdminProfileStatusMessage))
                     throw TypeError(".E2E.Message.newsletterAdminProfileStatusMessage: object expected");
                 message.newsletterAdminProfileStatusMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.newsletterAdminProfileStatusMessage, long + 1);
             }
@@ -25754,7 +25872,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AlbumMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -25857,6 +25975,8 @@ $root.E2E = (function() {
             AlbumMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.AlbumMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.AlbumMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -25867,7 +25987,7 @@ $root.E2E = (function() {
                 if (object.expectedVideoCount != null)
                     message.expectedVideoCount = object.expectedVideoCount >>> 0;
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.AlbumMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -26022,7 +26142,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AppStateFatalExceptionNotification.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -26122,6 +26242,8 @@ $root.E2E = (function() {
             AppStateFatalExceptionNotification.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.AppStateFatalExceptionNotification)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.AppStateFatalExceptionNotification: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -26301,7 +26423,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AppStateSyncKey.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -26399,18 +26521,20 @@ $root.E2E = (function() {
             AppStateSyncKey.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.AppStateSyncKey)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.AppStateSyncKey: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.AppStateSyncKey();
                 if (object.keyId != null) {
-                    if (typeof object.keyId !== "object")
+                    if (!$util.isObject(object.keyId))
                         throw TypeError(".E2E.Message.AppStateSyncKey.keyId: object expected");
                     message.keyId = $root.E2E.Message.AppStateSyncKeyId.fromObject(object.keyId, long + 1);
                 }
                 if (object.keyData != null) {
-                    if (typeof object.keyData !== "object")
+                    if (!$util.isObject(object.keyData))
                         throw TypeError(".E2E.Message.AppStateSyncKey.keyData: object expected");
                     message.keyData = $root.E2E.Message.AppStateSyncKeyData.fromObject(object.keyData, long + 1);
                 }
@@ -26571,7 +26695,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AppStateSyncKeyData.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -26674,6 +26798,8 @@ $root.E2E = (function() {
             AppStateSyncKeyData.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.AppStateSyncKeyData)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.AppStateSyncKeyData: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -26685,7 +26811,7 @@ $root.E2E = (function() {
                     else if (object.keyData.length >= 0)
                         message.keyData = object.keyData;
                 if (object.fingerprint != null) {
-                    if (typeof object.fingerprint !== "object")
+                    if (!$util.isObject(object.fingerprint))
                         throw TypeError(".E2E.Message.AppStateSyncKeyData.fingerprint: object expected");
                     message.fingerprint = $root.E2E.Message.AppStateSyncKeyFingerprint.fromObject(object.fingerprint, long + 1);
                 }
@@ -26878,7 +27004,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AppStateSyncKeyFingerprint.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -26990,6 +27116,8 @@ $root.E2E = (function() {
             AppStateSyncKeyFingerprint.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.AppStateSyncKeyFingerprint)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.AppStateSyncKeyFingerprint: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -27148,7 +27276,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AppStateSyncKeyId.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -27235,6 +27363,8 @@ $root.E2E = (function() {
             AppStateSyncKeyId.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.AppStateSyncKeyId)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.AppStateSyncKeyId: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -27384,7 +27514,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AppStateSyncKeyRequest.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -27479,6 +27609,8 @@ $root.E2E = (function() {
             AppStateSyncKeyRequest.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.AppStateSyncKeyRequest)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.AppStateSyncKeyRequest: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -27489,7 +27621,7 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.AppStateSyncKeyRequest.keyIds: array expected");
                     message.keyIds = [];
                     for (var i = 0; i < object.keyIds.length; ++i) {
-                        if (typeof object.keyIds[i] !== "object")
+                        if (!$util.isObject(object.keyIds[i]))
                             throw TypeError(".E2E.Message.AppStateSyncKeyRequest.keyIds: object expected");
                         message.keyIds[i] = $root.E2E.Message.AppStateSyncKeyId.fromObject(object.keyIds[i], long + 1);
                     }
@@ -27630,7 +27762,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AppStateSyncKeyShare.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -27725,6 +27857,8 @@ $root.E2E = (function() {
             AppStateSyncKeyShare.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.AppStateSyncKeyShare)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.AppStateSyncKeyShare: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -27735,7 +27869,7 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.AppStateSyncKeyShare.keys: array expected");
                     message.keys = [];
                     for (var i = 0; i < object.keys.length; ++i) {
-                        if (typeof object.keys[i] !== "object")
+                        if (!$util.isObject(object.keys[i]))
                             throw TypeError(".E2E.Message.AppStateSyncKeyShare.keys: object expected");
                         message.keys[i] = $root.E2E.Message.AppStateSyncKey.fromObject(object.keys[i], long + 1);
                     }
@@ -28039,7 +28173,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AudioMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -28233,6 +28367,8 @@ $root.E2E = (function() {
             AudioMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.AudioMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.AudioMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -28282,7 +28418,7 @@ $root.E2E = (function() {
                     else if (typeof object.mediaKeyTimestamp === "object")
                         message.mediaKeyTimestamp = new $util.LongBits(object.mediaKeyTimestamp.low >>> 0, object.mediaKeyTimestamp.high >>> 0).toNumber();
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.AudioMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -28560,7 +28696,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             BCallMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -28674,6 +28810,8 @@ $root.E2E = (function() {
             BCallMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.BCallMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.BCallMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -28986,7 +29124,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ButtonsMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -29187,6 +29325,8 @@ $root.E2E = (function() {
             ButtonsMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.ButtonsMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.ButtonsMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -29197,7 +29337,7 @@ $root.E2E = (function() {
                 if (object.footerText != null)
                     message.footerText = String(object.footerText);
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.ButtonsMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -29206,7 +29346,7 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.ButtonsMessage.buttons: array expected");
                     message.buttons = [];
                     for (var i = 0; i < object.buttons.length; ++i) {
-                        if (typeof object.buttons[i] !== "object")
+                        if (!$util.isObject(object.buttons[i]))
                             throw TypeError(".E2E.Message.ButtonsMessage.buttons: object expected");
                         message.buttons[i] = $root.E2E.Message.ButtonsMessage.Button.fromObject(object.buttons[i], long + 1);
                     }
@@ -29250,22 +29390,22 @@ $root.E2E = (function() {
                 if (object.text != null)
                     message.text = String(object.text);
                 if (object.documentMessage != null) {
-                    if (typeof object.documentMessage !== "object")
+                    if (!$util.isObject(object.documentMessage))
                         throw TypeError(".E2E.Message.ButtonsMessage.documentMessage: object expected");
                     message.documentMessage = $root.E2E.Message.DocumentMessage.fromObject(object.documentMessage, long + 1);
                 }
                 if (object.imageMessage != null) {
-                    if (typeof object.imageMessage !== "object")
+                    if (!$util.isObject(object.imageMessage))
                         throw TypeError(".E2E.Message.ButtonsMessage.imageMessage: object expected");
                     message.imageMessage = $root.E2E.Message.ImageMessage.fromObject(object.imageMessage, long + 1);
                 }
                 if (object.videoMessage != null) {
-                    if (typeof object.videoMessage !== "object")
+                    if (!$util.isObject(object.videoMessage))
                         throw TypeError(".E2E.Message.ButtonsMessage.videoMessage: object expected");
                     message.videoMessage = $root.E2E.Message.VideoMessage.fromObject(object.videoMessage, long + 1);
                 }
                 if (object.locationMessage != null) {
-                    if (typeof object.locationMessage !== "object")
+                    if (!$util.isObject(object.locationMessage))
                         throw TypeError(".E2E.Message.ButtonsMessage.locationMessage: object expected");
                     message.locationMessage = $root.E2E.Message.LocationMessage.fromObject(object.locationMessage, long + 1);
                 }
@@ -29472,7 +29612,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 Button.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -29590,6 +29730,8 @@ $root.E2E = (function() {
                 Button.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.ButtonsMessage.Button)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.ButtonsMessage.Button: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -29598,7 +29740,7 @@ $root.E2E = (function() {
                     if (object.buttonId != null)
                         message.buttonId = String(object.buttonId);
                     if (object.buttonText != null) {
-                        if (typeof object.buttonText !== "object")
+                        if (!$util.isObject(object.buttonText))
                             throw TypeError(".E2E.Message.ButtonsMessage.Button.buttonText: object expected");
                         message.buttonText = $root.E2E.Message.ButtonsMessage.Button.ButtonText.fromObject(object.buttonText, long + 1);
                     }
@@ -29623,7 +29765,7 @@ $root.E2E = (function() {
                         break;
                     }
                     if (object.nativeFlowInfo != null) {
-                        if (typeof object.nativeFlowInfo !== "object")
+                        if (!$util.isObject(object.nativeFlowInfo))
                             throw TypeError(".E2E.Message.ButtonsMessage.Button.nativeFlowInfo: object expected");
                         message.nativeFlowInfo = $root.E2E.Message.ButtonsMessage.Button.NativeFlowInfo.fromObject(object.nativeFlowInfo, long + 1);
                     }
@@ -29765,7 +29907,7 @@ $root.E2E = (function() {
                      * @returns {$protobuf.Writer} Writer
                      */
                     ButtonText.encodeDelimited = function encodeDelimited(message, writer) {
-                        return this.encode(message, writer).ldelim();
+                        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                     };
 
                     /**
@@ -29852,6 +29994,8 @@ $root.E2E = (function() {
                     ButtonText.fromObject = function fromObject(object, long) {
                         if (object instanceof $root.E2E.Message.ButtonsMessage.Button.ButtonText)
                             return object;
+                        if (!$util.isObject(object))
+                            throw TypeError(".E2E.Message.ButtonsMessage.Button.ButtonText: object expected");
                         if (long === undefined)
                             long = 0;
                         if (long > $util.recursionLimit)
@@ -30001,7 +30145,7 @@ $root.E2E = (function() {
                      * @returns {$protobuf.Writer} Writer
                      */
                     NativeFlowInfo.encodeDelimited = function encodeDelimited(message, writer) {
-                        return this.encode(message, writer).ldelim();
+                        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                     };
 
                     /**
@@ -30095,6 +30239,8 @@ $root.E2E = (function() {
                     NativeFlowInfo.fromObject = function fromObject(object, long) {
                         if (object instanceof $root.E2E.Message.ButtonsMessage.Button.NativeFlowInfo)
                             return object;
+                        if (!$util.isObject(object))
+                            throw TypeError(".E2E.Message.ButtonsMessage.Button.NativeFlowInfo: object expected");
                         if (long === undefined)
                             long = 0;
                         if (long > $util.recursionLimit)
@@ -30332,7 +30478,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ButtonsResponseMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -30450,6 +30596,8 @@ $root.E2E = (function() {
             ButtonsResponseMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.ButtonsResponseMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.ButtonsResponseMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -30458,7 +30606,7 @@ $root.E2E = (function() {
                 if (object.selectedButtonId != null)
                     message.selectedButtonId = String(object.selectedButtonId);
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.ButtonsResponseMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -30747,7 +30895,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             Call.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -30908,6 +31056,8 @@ $root.E2E = (function() {
             Call.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.Call)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.Call: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -30935,7 +31085,7 @@ $root.E2E = (function() {
                     else if (object.ctwaPayload.length >= 0)
                         message.ctwaPayload = object.ctwaPayload;
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.Call.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -30944,7 +31094,7 @@ $root.E2E = (function() {
                 if (object.deeplinkPayload != null)
                     message.deeplinkPayload = String(object.deeplinkPayload);
                 if (object.messageContextInfo != null) {
-                    if (typeof object.messageContextInfo !== "object")
+                    if (!$util.isObject(object.messageContextInfo))
                         throw TypeError(".E2E.Message.Call.messageContextInfo: object expected");
                     message.messageContextInfo = $root.E2E.MessageContextInfo.fromObject(object.messageContextInfo, long + 1);
                 }
@@ -31176,7 +31326,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             CallLogMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -31316,6 +31466,8 @@ $root.E2E = (function() {
             CallLogMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.CallLogMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.CallLogMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -31397,7 +31549,7 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.CallLogMessage.participants: array expected");
                     message.participants = [];
                     for (var i = 0; i < object.participants.length; ++i) {
-                        if (typeof object.participants[i] !== "object")
+                        if (!$util.isObject(object.participants[i]))
                             throw TypeError(".E2E.Message.CallLogMessage.participants: object expected");
                         message.participants[i] = $root.E2E.Message.CallLogMessage.CallParticipant.fromObject(object.participants[i], long + 1);
                     }
@@ -31593,7 +31745,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 CallParticipant.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -31698,6 +31850,8 @@ $root.E2E = (function() {
                 CallParticipant.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.CallLogMessage.CallParticipant)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.CallLogMessage.CallParticipant: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -31899,7 +32053,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             CancelPaymentRequestMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -31988,13 +32142,15 @@ $root.E2E = (function() {
             CancelPaymentRequestMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.CancelPaymentRequestMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.CancelPaymentRequestMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.CancelPaymentRequestMessage();
                 if (object.key != null) {
-                    if (typeof object.key !== "object")
+                    if (!$util.isObject(object.key))
                         throw TypeError(".E2E.Message.CancelPaymentRequestMessage.key: object expected");
                     message.key = $root.Protocol.MessageKey.fromObject(object.key, long + 1);
                 }
@@ -32140,7 +32296,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             Chat.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -32234,6 +32390,8 @@ $root.E2E = (function() {
             Chat.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.Chat)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.Chat: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -32422,7 +32580,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ChatCustomImageWallpaper.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -32537,6 +32695,8 @@ $root.E2E = (function() {
             ChatCustomImageWallpaper.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.ChatCustomImageWallpaper)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.ChatCustomImageWallpaper: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -32723,7 +32883,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ChatDefaultWallpaper.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -32810,6 +32970,8 @@ $root.E2E = (function() {
             ChatDefaultWallpaper.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.ChatDefaultWallpaper)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.ChatDefaultWallpaper: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -32970,7 +33132,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ChatSolidColorWallpaper.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -33071,6 +33233,8 @@ $root.E2E = (function() {
             ChatSolidColorWallpaper.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.ChatSolidColorWallpaper)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.ChatSolidColorWallpaper: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -33231,7 +33395,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ChatStockImageWallpaper.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -33325,6 +33489,8 @@ $root.E2E = (function() {
             ChatStockImageWallpaper.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.ChatStockImageWallpaper)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.ChatStockImageWallpaper: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -33549,7 +33715,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ChatThemeSetting.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -33705,6 +33871,8 @@ $root.E2E = (function() {
             ChatThemeSetting.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.ChatThemeSetting)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.ChatThemeSetting: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -33724,22 +33892,22 @@ $root.E2E = (function() {
                 if (object.colorSchemeId != null)
                     message.colorSchemeId = String(object.colorSchemeId);
                 if (object.defaultWallpaper != null) {
-                    if (typeof object.defaultWallpaper !== "object")
+                    if (!$util.isObject(object.defaultWallpaper))
                         throw TypeError(".E2E.Message.ChatThemeSetting.defaultWallpaper: object expected");
                     message.defaultWallpaper = $root.E2E.Message.ChatDefaultWallpaper.fromObject(object.defaultWallpaper, long + 1);
                 }
                 if (object.solidColor != null) {
-                    if (typeof object.solidColor !== "object")
+                    if (!$util.isObject(object.solidColor))
                         throw TypeError(".E2E.Message.ChatThemeSetting.solidColor: object expected");
                     message.solidColor = $root.E2E.Message.ChatSolidColorWallpaper.fromObject(object.solidColor, long + 1);
                 }
                 if (object.stockImage != null) {
-                    if (typeof object.stockImage !== "object")
+                    if (!$util.isObject(object.stockImage))
                         throw TypeError(".E2E.Message.ChatThemeSetting.stockImage: object expected");
                     message.stockImage = $root.E2E.Message.ChatStockImageWallpaper.fromObject(object.stockImage, long + 1);
                 }
                 if (object.customImage != null) {
-                    if (typeof object.customImage !== "object")
+                    if (!$util.isObject(object.customImage))
                         throw TypeError(".E2E.Message.ChatThemeSetting.customImage: object expected");
                     message.customImage = $root.E2E.Message.ChatCustomImageWallpaper.fromObject(object.customImage, long + 1);
                 }
@@ -33965,7 +34133,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             CloudAPIThreadControlNotification.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -34096,6 +34264,8 @@ $root.E2E = (function() {
             CloudAPIThreadControlNotification.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.CloudAPIThreadControlNotification)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.CloudAPIThreadControlNotification: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -34139,7 +34309,7 @@ $root.E2E = (function() {
                 if (object.consumerPhoneNumber != null)
                     message.consumerPhoneNumber = String(object.consumerPhoneNumber);
                 if (object.notificationContent != null) {
-                    if (typeof object.notificationContent !== "object")
+                    if (!$util.isObject(object.notificationContent))
                         throw TypeError(".E2E.Message.CloudAPIThreadControlNotification.notificationContent: object expected");
                     message.notificationContent = $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent.fromObject(object.notificationContent, long + 1);
                 }
@@ -34327,7 +34497,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 CloudAPIThreadControlNotificationContent.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -34421,6 +34591,8 @@ $root.E2E = (function() {
                 CloudAPIThreadControlNotificationContent.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.CloudAPIThreadControlNotification.CloudAPIThreadControlNotificationContent: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -34579,7 +34751,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             CommentMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -34677,18 +34849,20 @@ $root.E2E = (function() {
             CommentMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.CommentMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.CommentMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.CommentMessage();
                 if (object.message != null) {
-                    if (typeof object.message !== "object")
+                    if (!$util.isObject(object.message))
                         throw TypeError(".E2E.Message.CommentMessage.message: object expected");
                     message.message = $root.E2E.Message.fromObject(object.message, long + 1);
                 }
                 if (object.targetMessageKey != null) {
-                    if (typeof object.targetMessageKey !== "object")
+                    if (!$util.isObject(object.targetMessageKey))
                         throw TypeError(".E2E.Message.CommentMessage.targetMessageKey: object expected");
                     message.targetMessageKey = $root.Protocol.MessageKey.fromObject(object.targetMessageKey, long + 1);
                 }
@@ -34860,7 +35034,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ConditionalRevealMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -34973,6 +35147,8 @@ $root.E2E = (function() {
             ConditionalRevealMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.ConditionalRevealMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.ConditionalRevealMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -35206,7 +35382,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ContactMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -35316,6 +35492,8 @@ $root.E2E = (function() {
             ContactMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.ContactMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.ContactMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -35326,7 +35504,7 @@ $root.E2E = (function() {
                 if (object.vcard != null)
                     message.vcard = String(object.vcard);
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.ContactMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -35497,7 +35675,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ContactsArrayMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -35608,6 +35786,8 @@ $root.E2E = (function() {
             ContactsArrayMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.ContactsArrayMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.ContactsArrayMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -35620,13 +35800,13 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.ContactsArrayMessage.contacts: array expected");
                     message.contacts = [];
                     for (var i = 0; i < object.contacts.length; ++i) {
-                        if (typeof object.contacts[i] !== "object")
+                        if (!$util.isObject(object.contacts[i]))
                             throw TypeError(".E2E.Message.ContactsArrayMessage.contacts: object expected");
                         message.contacts[i] = $root.E2E.Message.ContactMessage.fromObject(object.contacts[i], long + 1);
                     }
                 }
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.ContactsArrayMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -35772,7 +35952,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             DeclinePaymentRequestMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -35861,13 +36041,15 @@ $root.E2E = (function() {
             DeclinePaymentRequestMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.DeclinePaymentRequestMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.DeclinePaymentRequestMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.DeclinePaymentRequestMessage();
                 if (object.key != null) {
-                    if (typeof object.key !== "object")
+                    if (!$util.isObject(object.key))
                         throw TypeError(".E2E.Message.DeclinePaymentRequestMessage.key: object expected");
                     message.key = $root.Protocol.MessageKey.fromObject(object.key, long + 1);
                 }
@@ -36024,7 +36206,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             DeviceSentMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -36127,6 +36309,8 @@ $root.E2E = (function() {
             DeviceSentMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.DeviceSentMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.DeviceSentMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -36135,7 +36319,7 @@ $root.E2E = (function() {
                 if (object.destinationJid != null)
                     message.destinationJid = String(object.destinationJid);
                 if (object.message != null) {
-                    if (typeof object.message !== "object")
+                    if (!$util.isObject(object.message))
                         throw TypeError(".E2E.Message.DeviceSentMessage.message: object expected");
                     message.message = $root.E2E.Message.fromObject(object.message, long + 1);
                 }
@@ -36499,7 +36683,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             DocumentMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -36728,6 +36912,8 @@ $root.E2E = (function() {
             DocumentMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.DocumentMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.DocumentMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -36798,7 +36984,7 @@ $root.E2E = (function() {
                     else if (object.jpegThumbnail.length >= 0)
                         message.jpegThumbnail = object.jpegThumbnail;
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.DocumentMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -37078,7 +37264,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             EncCommentMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -37181,13 +37367,15 @@ $root.E2E = (function() {
             EncCommentMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.EncCommentMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.EncCommentMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.EncCommentMessage();
                 if (object.targetMessageKey != null) {
-                    if (typeof object.targetMessageKey !== "object")
+                    if (!$util.isObject(object.targetMessageKey))
                         throw TypeError(".E2E.Message.EncCommentMessage.targetMessageKey: object expected");
                     message.targetMessageKey = $root.Protocol.MessageKey.fromObject(object.targetMessageKey, long + 1);
                 }
@@ -37373,7 +37561,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             EncEventResponseMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -37476,13 +37664,15 @@ $root.E2E = (function() {
             EncEventResponseMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.EncEventResponseMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.EncEventResponseMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.EncEventResponseMessage();
                 if (object.eventCreationMessageKey != null) {
-                    if (typeof object.eventCreationMessageKey !== "object")
+                    if (!$util.isObject(object.eventCreationMessageKey))
                         throw TypeError(".E2E.Message.EncEventResponseMessage.eventCreationMessageKey: object expected");
                     message.eventCreationMessageKey = $root.Protocol.MessageKey.fromObject(object.eventCreationMessageKey, long + 1);
                 }
@@ -37668,7 +37858,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             EncReactionMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -37771,13 +37961,15 @@ $root.E2E = (function() {
             EncReactionMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.EncReactionMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.EncReactionMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.EncReactionMessage();
                 if (object.targetMessageKey != null) {
-                    if (typeof object.targetMessageKey !== "object")
+                    if (!$util.isObject(object.targetMessageKey))
                         throw TypeError(".E2E.Message.EncReactionMessage.targetMessageKey: object expected");
                     message.targetMessageKey = $root.Protocol.MessageKey.fromObject(object.targetMessageKey, long + 1);
                 }
@@ -38029,7 +38221,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             EventInviteMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -38174,13 +38366,15 @@ $root.E2E = (function() {
             EventInviteMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.EventInviteMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.EventInviteMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.EventInviteMessage();
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.EventInviteMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -38518,7 +38712,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             EventMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -38686,13 +38880,15 @@ $root.E2E = (function() {
             EventMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.EventMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.EventMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.EventMessage();
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.EventMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -38703,7 +38899,7 @@ $root.E2E = (function() {
                 if (object.description != null)
                     message.description = String(object.description);
                 if (object.location != null) {
-                    if (typeof object.location !== "object")
+                    if (!$util.isObject(object.location))
                         throw TypeError(".E2E.Message.EventMessage.location: object expected");
                     message.location = $root.E2E.Message.LocationMessage.fromObject(object.location, long + 1);
                 }
@@ -38956,7 +39152,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             EventResponseMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -39064,6 +39260,8 @@ $root.E2E = (function() {
             EventResponseMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.EventResponseMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.EventResponseMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -39612,7 +39810,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ExtendedTextMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -39970,6 +40168,8 @@ $root.E2E = (function() {
             ExtendedTextMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.ExtendedTextMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.ExtendedTextMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -40065,7 +40265,7 @@ $root.E2E = (function() {
                     else if (object.jpegThumbnail.length >= 0)
                         message.jpegThumbnail = object.jpegThumbnail;
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.ExtendedTextMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -40163,17 +40363,17 @@ $root.E2E = (function() {
                 if (object.videoWidth != null)
                     message.videoWidth = object.videoWidth >>> 0;
                 if (object.faviconMMSMetadata != null) {
-                    if (typeof object.faviconMMSMetadata !== "object")
+                    if (!$util.isObject(object.faviconMMSMetadata))
                         throw TypeError(".E2E.Message.ExtendedTextMessage.faviconMMSMetadata: object expected");
                     message.faviconMMSMetadata = $root.E2E.Message.MMSThumbnailMetadata.fromObject(object.faviconMMSMetadata, long + 1);
                 }
                 if (object.linkPreviewMetadata != null) {
-                    if (typeof object.linkPreviewMetadata !== "object")
+                    if (!$util.isObject(object.linkPreviewMetadata))
                         throw TypeError(".E2E.Message.ExtendedTextMessage.linkPreviewMetadata: object expected");
                     message.linkPreviewMetadata = $root.E2E.Message.LinkPreviewMetadata.fromObject(object.linkPreviewMetadata, long + 1);
                 }
                 if (object.paymentLinkMetadata != null) {
-                    if (typeof object.paymentLinkMetadata !== "object")
+                    if (!$util.isObject(object.paymentLinkMetadata))
                         throw TypeError(".E2E.Message.ExtendedTextMessage.paymentLinkMetadata: object expected");
                     message.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.fromObject(object.paymentLinkMetadata, long + 1);
                 }
@@ -40182,7 +40382,7 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.ExtendedTextMessage.endCardTiles: array expected");
                     message.endCardTiles = [];
                     for (var i = 0; i < object.endCardTiles.length; ++i) {
-                        if (typeof object.endCardTiles[i] !== "object")
+                        if (!$util.isObject(object.endCardTiles[i]))
                             throw TypeError(".E2E.Message.ExtendedTextMessage.endCardTiles: object expected");
                         message.endCardTiles[i] = $root.E2E.Message.VideoEndCard.fromObject(object.endCardTiles[i], long + 1);
                     }
@@ -40190,12 +40390,12 @@ $root.E2E = (function() {
                 if (object.videoContentUrl != null)
                     message.videoContentUrl = String(object.videoContentUrl);
                 if (object.musicMetadata != null) {
-                    if (typeof object.musicMetadata !== "object")
+                    if (!$util.isObject(object.musicMetadata))
                         throw TypeError(".E2E.Message.ExtendedTextMessage.musicMetadata: object expected");
                     message.musicMetadata = $root.E2E.EmbeddedMusic.fromObject(object.musicMetadata, long + 1);
                 }
                 if (object.paymentExtendedMetadata != null) {
-                    if (typeof object.paymentExtendedMetadata !== "object")
+                    if (!$util.isObject(object.paymentExtendedMetadata))
                         throw TypeError(".E2E.Message.ExtendedTextMessage.paymentExtendedMetadata: object expected");
                     message.paymentExtendedMetadata = $root.E2E.Message.PaymentExtendedMetadata.fromObject(object.paymentExtendedMetadata, long + 1);
                 }
@@ -40544,7 +40744,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             FullHistorySyncOnDemandConfig.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -40638,6 +40838,8 @@ $root.E2E = (function() {
             FullHistorySyncOnDemandConfig.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.FullHistorySyncOnDemandConfig)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.FullHistorySyncOnDemandConfig: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -40820,7 +41022,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             FullHistorySyncOnDemandRequestMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -40921,6 +41123,8 @@ $root.E2E = (function() {
             FullHistorySyncOnDemandRequestMetadata.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.FullHistorySyncOnDemandRequestMetadata)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.FullHistorySyncOnDemandRequestMetadata: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -41079,7 +41283,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             FutureProofMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -41168,13 +41372,15 @@ $root.E2E = (function() {
             FutureProofMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.FutureProofMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.FutureProofMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.FutureProofMessage();
                 if (object.message != null) {
-                    if (typeof object.message !== "object")
+                    if (!$util.isObject(object.message))
                         throw TypeError(".E2E.Message.FutureProofMessage.message: object expected");
                     message.message = $root.E2E.Message.fromObject(object.message, long + 1);
                 }
@@ -41386,7 +41592,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             GroupInviteMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -41529,6 +41735,8 @@ $root.E2E = (function() {
             GroupInviteMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.GroupInviteMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.GroupInviteMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -41557,7 +41765,7 @@ $root.E2E = (function() {
                 if (object.caption != null)
                     message.caption = String(object.caption);
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.GroupInviteMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -41851,7 +42059,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             HighlyStructuredMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -42010,6 +42218,8 @@ $root.E2E = (function() {
             HighlyStructuredMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.HighlyStructuredMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.HighlyStructuredMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -42035,7 +42245,7 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.HighlyStructuredMessage.localizableParams: array expected");
                     message.localizableParams = [];
                     for (var i = 0; i < object.localizableParams.length; ++i) {
-                        if (typeof object.localizableParams[i] !== "object")
+                        if (!$util.isObject(object.localizableParams[i]))
                             throw TypeError(".E2E.Message.HighlyStructuredMessage.localizableParams: object expected");
                         message.localizableParams[i] = $root.E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.fromObject(object.localizableParams[i], long + 1);
                     }
@@ -42045,7 +42255,7 @@ $root.E2E = (function() {
                 if (object.deterministicLc != null)
                     message.deterministicLc = String(object.deterministicLc);
                 if (object.hydratedHsm != null) {
-                    if (typeof object.hydratedHsm !== "object")
+                    if (!$util.isObject(object.hydratedHsm))
                         throw TypeError(".E2E.Message.HighlyStructuredMessage.hydratedHsm: object expected");
                     message.hydratedHsm = $root.E2E.Message.TemplateMessage.fromObject(object.hydratedHsm, long + 1);
                 }
@@ -42246,7 +42456,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 HSMLocalizableParameter.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -42360,6 +42570,8 @@ $root.E2E = (function() {
                 HSMLocalizableParameter.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -42368,12 +42580,12 @@ $root.E2E = (function() {
                     if (object["default"] != null)
                         message["default"] = String(object["default"]);
                     if (object.currency != null) {
-                        if (typeof object.currency !== "object")
+                        if (!$util.isObject(object.currency))
                             throw TypeError(".E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.currency: object expected");
                         message.currency = $root.E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.HSMCurrency.fromObject(object.currency, long + 1);
                     }
                     if (object.dateTime != null) {
-                        if (typeof object.dateTime !== "object")
+                        if (!$util.isObject(object.dateTime))
                             throw TypeError(".E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.dateTime: object expected");
                         message.dateTime = $root.E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.HSMDateTime.fromObject(object.dateTime, long + 1);
                     }
@@ -42526,7 +42738,7 @@ $root.E2E = (function() {
                      * @returns {$protobuf.Writer} Writer
                      */
                     HSMCurrency.encodeDelimited = function encodeDelimited(message, writer) {
-                        return this.encode(message, writer).ldelim();
+                        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                     };
 
                     /**
@@ -42620,6 +42832,8 @@ $root.E2E = (function() {
                     HSMCurrency.fromObject = function fromObject(object, long) {
                         if (object instanceof $root.E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.HSMCurrency)
                             return object;
+                        if (!$util.isObject(object))
+                            throw TypeError(".E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.HSMCurrency: object expected");
                         if (long === undefined)
                             long = 0;
                         if (long > $util.recursionLimit)
@@ -42805,7 +43019,7 @@ $root.E2E = (function() {
                      * @returns {$protobuf.Writer} Writer
                      */
                     HSMDateTime.encodeDelimited = function encodeDelimited(message, writer) {
-                        return this.encode(message, writer).ldelim();
+                        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                     };
 
                     /**
@@ -42912,18 +43126,20 @@ $root.E2E = (function() {
                     HSMDateTime.fromObject = function fromObject(object, long) {
                         if (object instanceof $root.E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.HSMDateTime)
                             return object;
+                        if (!$util.isObject(object))
+                            throw TypeError(".E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.HSMDateTime: object expected");
                         if (long === undefined)
                             long = 0;
                         if (long > $util.recursionLimit)
                             throw Error("maximum nesting depth exceeded");
                         var message = new $root.E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.HSMDateTime();
                         if (object.component != null) {
-                            if (typeof object.component !== "object")
+                            if (!$util.isObject(object.component))
                                 throw TypeError(".E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.HSMDateTime.component: object expected");
                             message.component = $root.E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.HSMDateTime.HSMDateTimeComponent.fromObject(object.component, long + 1);
                         }
                         if (object.unixEpoch != null) {
-                            if (typeof object.unixEpoch !== "object")
+                            if (!$util.isObject(object.unixEpoch))
                                 throw TypeError(".E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.HSMDateTime.unixEpoch: object expected");
                             message.unixEpoch = $root.E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.HSMDateTime.HSMDateTimeUnixEpoch.fromObject(object.unixEpoch, long + 1);
                         }
@@ -43127,7 +43343,7 @@ $root.E2E = (function() {
                          * @returns {$protobuf.Writer} Writer
                          */
                         HSMDateTimeComponent.encodeDelimited = function encodeDelimited(message, writer) {
-                            return this.encode(message, writer).ldelim();
+                            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                         };
 
                         /**
@@ -43271,6 +43487,8 @@ $root.E2E = (function() {
                         HSMDateTimeComponent.fromObject = function fromObject(object, long) {
                             if (object instanceof $root.E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.HSMDateTime.HSMDateTimeComponent)
                                 return object;
+                            if (!$util.isObject(object))
+                                throw TypeError(".E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.HSMDateTime.HSMDateTimeComponent: object expected");
                             if (long === undefined)
                                 long = 0;
                             if (long > $util.recursionLimit)
@@ -43526,7 +43744,7 @@ $root.E2E = (function() {
                          * @returns {$protobuf.Writer} Writer
                          */
                         HSMDateTimeUnixEpoch.encodeDelimited = function encodeDelimited(message, writer) {
-                            return this.encode(message, writer).ldelim();
+                            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                         };
 
                         /**
@@ -43613,6 +43831,8 @@ $root.E2E = (function() {
                         HSMDateTimeUnixEpoch.fromObject = function fromObject(object, long) {
                             if (object instanceof $root.E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.HSMDateTime.HSMDateTimeUnixEpoch)
                                 return object;
+                            if (!$util.isObject(object))
+                                throw TypeError(".E2E.Message.HighlyStructuredMessage.HSMLocalizableParameter.HSMDateTime.HSMDateTimeUnixEpoch: object expected");
                             if (long === undefined)
                                 long = 0;
                             if (long > $util.recursionLimit)
@@ -43776,7 +43996,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             HistorySyncMessageAccessStatus.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -43863,6 +44083,8 @@ $root.E2E = (function() {
             HistorySyncMessageAccessStatus.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.HistorySyncMessageAccessStatus)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.HistorySyncMessageAccessStatus: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -44155,7 +44377,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             HistorySyncNotification.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -44356,6 +44578,8 @@ $root.E2E = (function() {
             HistorySyncNotification.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.HistorySyncNotification)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.HistorySyncNotification: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -44454,14 +44678,14 @@ $root.E2E = (function() {
                 if (object.peerDataRequestSessionId != null)
                     message.peerDataRequestSessionId = String(object.peerDataRequestSessionId);
                 if (object.fullHistorySyncOnDemandRequestMetadata != null) {
-                    if (typeof object.fullHistorySyncOnDemandRequestMetadata !== "object")
+                    if (!$util.isObject(object.fullHistorySyncOnDemandRequestMetadata))
                         throw TypeError(".E2E.Message.HistorySyncNotification.fullHistorySyncOnDemandRequestMetadata: object expected");
                     message.fullHistorySyncOnDemandRequestMetadata = $root.E2E.Message.FullHistorySyncOnDemandRequestMetadata.fromObject(object.fullHistorySyncOnDemandRequestMetadata, long + 1);
                 }
                 if (object.encHandle != null)
                     message.encHandle = String(object.encHandle);
                 if (object.messageAccessStatus != null) {
-                    if (typeof object.messageAccessStatus !== "object")
+                    if (!$util.isObject(object.messageAccessStatus))
                         throw TypeError(".E2E.Message.HistorySyncNotification.messageAccessStatus: object expected");
                     message.messageAccessStatus = $root.E2E.Message.HistorySyncMessageAccessStatus.fromObject(object.messageAccessStatus, long + 1);
                 }
@@ -45034,7 +45258,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ImageMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -45360,6 +45584,8 @@ $root.E2E = (function() {
             ImageMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.ImageMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.ImageMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -45404,7 +45630,7 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.ImageMessage.interactiveAnnotations: array expected");
                     message.interactiveAnnotations = [];
                     for (var i = 0; i < object.interactiveAnnotations.length; ++i) {
-                        if (typeof object.interactiveAnnotations[i] !== "object")
+                        if (!$util.isObject(object.interactiveAnnotations[i]))
                             throw TypeError(".E2E.Message.ImageMessage.interactiveAnnotations: object expected");
                         message.interactiveAnnotations[i] = $root.E2E.InteractiveAnnotation.fromObject(object.interactiveAnnotations[i], long + 1);
                     }
@@ -45426,7 +45652,7 @@ $root.E2E = (function() {
                     else if (object.jpegThumbnail.length >= 0)
                         message.jpegThumbnail = object.jpegThumbnail;
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.ImageMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -45482,7 +45708,7 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.ImageMessage.annotations: array expected");
                     message.annotations = [];
                     for (var i = 0; i < object.annotations.length; ++i) {
-                        if (typeof object.annotations[i] !== "object")
+                        if (!$util.isObject(object.annotations[i]))
                             throw TypeError(".E2E.Message.ImageMessage.annotations: object expected");
                         message.annotations[i] = $root.E2E.InteractiveAnnotation.fromObject(object.annotations[i], long + 1);
                     }
@@ -45841,7 +46067,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             InitialSecurityNotificationSettingSync.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -45928,6 +46154,8 @@ $root.E2E = (function() {
             InitialSecurityNotificationSettingSync.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.InitialSecurityNotificationSettingSync)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.InitialSecurityNotificationSettingSync: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -46199,7 +46427,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             InteractiveMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -46388,58 +46616,60 @@ $root.E2E = (function() {
             InteractiveMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.InteractiveMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.InteractiveMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.InteractiveMessage();
                 if (object.header != null) {
-                    if (typeof object.header !== "object")
+                    if (!$util.isObject(object.header))
                         throw TypeError(".E2E.Message.InteractiveMessage.header: object expected");
                     message.header = $root.E2E.Message.InteractiveMessage.Header.fromObject(object.header, long + 1);
                 }
                 if (object.body != null) {
-                    if (typeof object.body !== "object")
+                    if (!$util.isObject(object.body))
                         throw TypeError(".E2E.Message.InteractiveMessage.body: object expected");
                     message.body = $root.E2E.Message.InteractiveMessage.Body.fromObject(object.body, long + 1);
                 }
                 if (object.footer != null) {
-                    if (typeof object.footer !== "object")
+                    if (!$util.isObject(object.footer))
                         throw TypeError(".E2E.Message.InteractiveMessage.footer: object expected");
                     message.footer = $root.E2E.Message.InteractiveMessage.Footer.fromObject(object.footer, long + 1);
                 }
                 if (object.bloksWidget != null) {
-                    if (typeof object.bloksWidget !== "object")
+                    if (!$util.isObject(object.bloksWidget))
                         throw TypeError(".E2E.Message.InteractiveMessage.bloksWidget: object expected");
                     message.bloksWidget = $root.E2E.Message.InteractiveMessage.BloksWidget.fromObject(object.bloksWidget, long + 1);
                 }
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.InteractiveMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
                 if (object.urlTrackingMap != null) {
-                    if (typeof object.urlTrackingMap !== "object")
+                    if (!$util.isObject(object.urlTrackingMap))
                         throw TypeError(".E2E.Message.InteractiveMessage.urlTrackingMap: object expected");
                     message.urlTrackingMap = $root.E2E.UrlTrackingMap.fromObject(object.urlTrackingMap, long + 1);
                 }
                 if (object.shopStorefrontMessage != null) {
-                    if (typeof object.shopStorefrontMessage !== "object")
+                    if (!$util.isObject(object.shopStorefrontMessage))
                         throw TypeError(".E2E.Message.InteractiveMessage.shopStorefrontMessage: object expected");
                     message.shopStorefrontMessage = $root.E2E.Message.InteractiveMessage.ShopMessage.fromObject(object.shopStorefrontMessage, long + 1);
                 }
                 if (object.collectionMessage != null) {
-                    if (typeof object.collectionMessage !== "object")
+                    if (!$util.isObject(object.collectionMessage))
                         throw TypeError(".E2E.Message.InteractiveMessage.collectionMessage: object expected");
                     message.collectionMessage = $root.E2E.Message.InteractiveMessage.CollectionMessage.fromObject(object.collectionMessage, long + 1);
                 }
                 if (object.nativeFlowMessage != null) {
-                    if (typeof object.nativeFlowMessage !== "object")
+                    if (!$util.isObject(object.nativeFlowMessage))
                         throw TypeError(".E2E.Message.InteractiveMessage.nativeFlowMessage: object expected");
                     message.nativeFlowMessage = $root.E2E.Message.InteractiveMessage.NativeFlowMessage.fromObject(object.nativeFlowMessage, long + 1);
                 }
                 if (object.carouselMessage != null) {
-                    if (typeof object.carouselMessage !== "object")
+                    if (!$util.isObject(object.carouselMessage))
                         throw TypeError(".E2E.Message.InteractiveMessage.carouselMessage: object expected");
                     message.carouselMessage = $root.E2E.Message.InteractiveMessage.CarouselMessage.fromObject(object.carouselMessage, long + 1);
                 }
@@ -46640,7 +46870,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 BloksWidget.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -46748,6 +46978,8 @@ $root.E2E = (function() {
                 BloksWidget.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.InteractiveMessage.BloksWidget)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.InteractiveMessage.BloksWidget: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -46902,7 +47134,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 Body.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -46989,6 +47221,8 @@ $root.E2E = (function() {
                 Body.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.InteractiveMessage.Body)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.InteractiveMessage.Body: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -47151,7 +47385,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 CarouselMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -47266,6 +47500,8 @@ $root.E2E = (function() {
                 CarouselMessage.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.InteractiveMessage.CarouselMessage)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.InteractiveMessage.CarouselMessage: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -47276,7 +47512,7 @@ $root.E2E = (function() {
                             throw TypeError(".E2E.Message.InteractiveMessage.CarouselMessage.cards: array expected");
                         message.cards = [];
                         for (var i = 0; i < object.cards.length; ++i) {
-                            if (typeof object.cards[i] !== "object")
+                            if (!$util.isObject(object.cards[i]))
                                 throw TypeError(".E2E.Message.InteractiveMessage.CarouselMessage.cards: object expected");
                             message.cards[i] = $root.E2E.Message.InteractiveMessage.fromObject(object.cards[i], long + 1);
                         }
@@ -47483,7 +47719,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 CollectionMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -47584,6 +47820,8 @@ $root.E2E = (function() {
                 CollectionMessage.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.InteractiveMessage.CollectionMessage)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.InteractiveMessage.CollectionMessage: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -47769,7 +48007,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 Footer.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -47876,6 +48114,8 @@ $root.E2E = (function() {
                 Footer.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.InteractiveMessage.Footer)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.InteractiveMessage.Footer: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -47886,7 +48126,7 @@ $root.E2E = (function() {
                     if (object.hasMediaAttachment != null)
                         message.hasMediaAttachment = Boolean(object.hasMediaAttachment);
                     if (object.audioMessage != null) {
-                        if (typeof object.audioMessage !== "object")
+                        if (!$util.isObject(object.audioMessage))
                             throw TypeError(".E2E.Message.InteractiveMessage.Footer.audioMessage: object expected");
                         message.audioMessage = $root.E2E.Message.AudioMessage.fromObject(object.audioMessage, long + 1);
                     }
@@ -48143,7 +48383,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 Header.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -48333,6 +48573,8 @@ $root.E2E = (function() {
                 Header.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.InteractiveMessage.Header)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.InteractiveMessage.Header: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -48345,17 +48587,17 @@ $root.E2E = (function() {
                     if (object.hasMediaAttachment != null)
                         message.hasMediaAttachment = Boolean(object.hasMediaAttachment);
                     if (object.bloksWidget != null) {
-                        if (typeof object.bloksWidget !== "object")
+                        if (!$util.isObject(object.bloksWidget))
                             throw TypeError(".E2E.Message.InteractiveMessage.Header.bloksWidget: object expected");
                         message.bloksWidget = $root.E2E.Message.InteractiveMessage.BloksWidget.fromObject(object.bloksWidget, long + 1);
                     }
                     if (object.documentMessage != null) {
-                        if (typeof object.documentMessage !== "object")
+                        if (!$util.isObject(object.documentMessage))
                             throw TypeError(".E2E.Message.InteractiveMessage.Header.documentMessage: object expected");
                         message.documentMessage = $root.E2E.Message.DocumentMessage.fromObject(object.documentMessage, long + 1);
                     }
                     if (object.imageMessage != null) {
-                        if (typeof object.imageMessage !== "object")
+                        if (!$util.isObject(object.imageMessage))
                             throw TypeError(".E2E.Message.InteractiveMessage.Header.imageMessage: object expected");
                         message.imageMessage = $root.E2E.Message.ImageMessage.fromObject(object.imageMessage, long + 1);
                     }
@@ -48365,17 +48607,17 @@ $root.E2E = (function() {
                         else if (object.jpegThumbnail.length >= 0)
                             message.jpegThumbnail = object.jpegThumbnail;
                     if (object.videoMessage != null) {
-                        if (typeof object.videoMessage !== "object")
+                        if (!$util.isObject(object.videoMessage))
                             throw TypeError(".E2E.Message.InteractiveMessage.Header.videoMessage: object expected");
                         message.videoMessage = $root.E2E.Message.VideoMessage.fromObject(object.videoMessage, long + 1);
                     }
                     if (object.locationMessage != null) {
-                        if (typeof object.locationMessage !== "object")
+                        if (!$util.isObject(object.locationMessage))
                             throw TypeError(".E2E.Message.InteractiveMessage.Header.locationMessage: object expected");
                         message.locationMessage = $root.E2E.Message.LocationMessage.fromObject(object.locationMessage, long + 1);
                     }
                     if (object.productMessage != null) {
-                        if (typeof object.productMessage !== "object")
+                        if (!$util.isObject(object.productMessage))
                             throw TypeError(".E2E.Message.InteractiveMessage.Header.productMessage: object expected");
                         message.productMessage = $root.E2E.Message.ProductMessage.fromObject(object.productMessage, long + 1);
                     }
@@ -48574,7 +48816,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 NativeFlowMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -48683,6 +48925,8 @@ $root.E2E = (function() {
                 NativeFlowMessage.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.InteractiveMessage.NativeFlowMessage)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.InteractiveMessage.NativeFlowMessage: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -48693,7 +48937,7 @@ $root.E2E = (function() {
                             throw TypeError(".E2E.Message.InteractiveMessage.NativeFlowMessage.buttons: array expected");
                         message.buttons = [];
                         for (var i = 0; i < object.buttons.length; ++i) {
-                            if (typeof object.buttons[i] !== "object")
+                            if (!$util.isObject(object.buttons[i]))
                                 throw TypeError(".E2E.Message.InteractiveMessage.NativeFlowMessage.buttons: object expected");
                             message.buttons[i] = $root.E2E.Message.InteractiveMessage.NativeFlowMessage.NativeFlowButton.fromObject(object.buttons[i], long + 1);
                         }
@@ -48852,7 +49096,7 @@ $root.E2E = (function() {
                      * @returns {$protobuf.Writer} Writer
                      */
                     NativeFlowButton.encodeDelimited = function encodeDelimited(message, writer) {
-                        return this.encode(message, writer).ldelim();
+                        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                     };
 
                     /**
@@ -48946,6 +49190,8 @@ $root.E2E = (function() {
                     NativeFlowButton.fromObject = function fromObject(object, long) {
                         if (object instanceof $root.E2E.Message.InteractiveMessage.NativeFlowMessage.NativeFlowButton)
                             return object;
+                        if (!$util.isObject(object))
+                            throw TypeError(".E2E.Message.InteractiveMessage.NativeFlowMessage.NativeFlowButton: object expected");
                         if (long === undefined)
                             long = 0;
                         if (long > $util.recursionLimit)
@@ -49115,7 +49361,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 ShopMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -49223,6 +49469,8 @@ $root.E2E = (function() {
                 ShopMessage.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.InteractiveMessage.ShopMessage)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.InteractiveMessage.ShopMessage: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -49451,7 +49699,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             InteractiveResponseMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -49562,23 +49810,25 @@ $root.E2E = (function() {
             InteractiveResponseMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.InteractiveResponseMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.InteractiveResponseMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.InteractiveResponseMessage();
                 if (object.body != null) {
-                    if (typeof object.body !== "object")
+                    if (!$util.isObject(object.body))
                         throw TypeError(".E2E.Message.InteractiveResponseMessage.body: object expected");
                     message.body = $root.E2E.Message.InteractiveResponseMessage.Body.fromObject(object.body, long + 1);
                 }
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.InteractiveResponseMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
                 if (object.nativeFlowResponseMessage != null) {
-                    if (typeof object.nativeFlowResponseMessage !== "object")
+                    if (!$util.isObject(object.nativeFlowResponseMessage))
                         throw TypeError(".E2E.Message.InteractiveResponseMessage.nativeFlowResponseMessage: object expected");
                     message.nativeFlowResponseMessage = $root.E2E.Message.InteractiveResponseMessage.NativeFlowResponseMessage.fromObject(object.nativeFlowResponseMessage, long + 1);
                 }
@@ -49730,7 +49980,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 Body.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -49829,6 +50079,8 @@ $root.E2E = (function() {
                 Body.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.InteractiveResponseMessage.Body)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.InteractiveResponseMessage.Body: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -50023,7 +50275,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 NativeFlowResponseMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -50124,6 +50376,8 @@ $root.E2E = (function() {
                 NativeFlowResponseMessage.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.InteractiveResponseMessage.NativeFlowResponseMessage)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.InteractiveResponseMessage.NativeFlowResponseMessage: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -50375,7 +50629,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             InvoiceMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -50530,6 +50784,8 @@ $root.E2E = (function() {
             InvoiceMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.InvoiceMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.InvoiceMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -50816,7 +51072,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             KeepInChatMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -50925,13 +51181,15 @@ $root.E2E = (function() {
             KeepInChatMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.KeepInChatMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.KeepInChatMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.KeepInChatMessage();
                 if (object.key != null) {
-                    if (typeof object.key !== "object")
+                    if (!$util.isObject(object.key))
                         throw TypeError(".E2E.Message.KeepInChatMessage.key: object expected");
                     message.key = $root.Protocol.MessageKey.fromObject(object.key, long + 1);
                 }
@@ -51199,7 +51457,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             LinkPreviewMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -51357,18 +51615,20 @@ $root.E2E = (function() {
             LinkPreviewMetadata.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.LinkPreviewMetadata)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.LinkPreviewMetadata: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.LinkPreviewMetadata();
                 if (object.paymentLinkMetadata != null) {
-                    if (typeof object.paymentLinkMetadata !== "object")
+                    if (!$util.isObject(object.paymentLinkMetadata))
                         throw TypeError(".E2E.Message.LinkPreviewMetadata.paymentLinkMetadata: object expected");
                     message.paymentLinkMetadata = $root.E2E.Message.PaymentLinkMetadata.fromObject(object.paymentLinkMetadata, long + 1);
                 }
                 if (object.urlMetadata != null) {
-                    if (typeof object.urlMetadata !== "object")
+                    if (!$util.isObject(object.urlMetadata))
                         throw TypeError(".E2E.Message.LinkPreviewMetadata.urlMetadata: object expected");
                     message.urlMetadata = $root.E2E.Message.URLMetadata.fromObject(object.urlMetadata, long + 1);
                 }
@@ -51413,7 +51673,7 @@ $root.E2E = (function() {
                 if (object.videoContentUrl != null)
                     message.videoContentUrl = String(object.videoContentUrl);
                 if (object.musicMetadata != null) {
-                    if (typeof object.musicMetadata !== "object")
+                    if (!$util.isObject(object.musicMetadata))
                         throw TypeError(".E2E.Message.LinkPreviewMetadata.musicMetadata: object expected");
                     message.musicMetadata = $root.E2E.EmbeddedMusic.fromObject(object.musicMetadata, long + 1);
                 }
@@ -51676,7 +51936,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ListMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -51830,6 +52090,8 @@ $root.E2E = (function() {
             ListMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.ListMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.ListMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -51866,20 +52128,20 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.ListMessage.sections: array expected");
                     message.sections = [];
                     for (var i = 0; i < object.sections.length; ++i) {
-                        if (typeof object.sections[i] !== "object")
+                        if (!$util.isObject(object.sections[i]))
                             throw TypeError(".E2E.Message.ListMessage.sections: object expected");
                         message.sections[i] = $root.E2E.Message.ListMessage.Section.fromObject(object.sections[i], long + 1);
                     }
                 }
                 if (object.productListInfo != null) {
-                    if (typeof object.productListInfo !== "object")
+                    if (!$util.isObject(object.productListInfo))
                         throw TypeError(".E2E.Message.ListMessage.productListInfo: object expected");
                     message.productListInfo = $root.E2E.Message.ListMessage.ProductListInfo.fromObject(object.productListInfo, long + 1);
                 }
                 if (object.footerText != null)
                     message.footerText = String(object.footerText);
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.ListMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -52053,7 +52315,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 Product.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -52140,6 +52402,8 @@ $root.E2E = (function() {
                 Product.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.ListMessage.Product)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.ListMessage.Product: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -52289,7 +52553,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 ProductListHeaderImage.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -52383,6 +52647,8 @@ $root.E2E = (function() {
                 ProductListHeaderImage.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.ListMessage.ProductListHeaderImage)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.ListMessage.ProductListHeaderImage: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -52560,7 +52826,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 ProductListInfo.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -52671,6 +52937,8 @@ $root.E2E = (function() {
                 ProductListInfo.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.ListMessage.ProductListInfo)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.ListMessage.ProductListInfo: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -52681,13 +52949,13 @@ $root.E2E = (function() {
                             throw TypeError(".E2E.Message.ListMessage.ProductListInfo.productSections: array expected");
                         message.productSections = [];
                         for (var i = 0; i < object.productSections.length; ++i) {
-                            if (typeof object.productSections[i] !== "object")
+                            if (!$util.isObject(object.productSections[i]))
                                 throw TypeError(".E2E.Message.ListMessage.ProductListInfo.productSections: object expected");
                             message.productSections[i] = $root.E2E.Message.ListMessage.ProductSection.fromObject(object.productSections[i], long + 1);
                         }
                     }
                     if (object.headerImage != null) {
-                        if (typeof object.headerImage !== "object")
+                        if (!$util.isObject(object.headerImage))
                             throw TypeError(".E2E.Message.ListMessage.ProductListInfo.headerImage: object expected");
                         message.headerImage = $root.E2E.Message.ListMessage.ProductListHeaderImage.fromObject(object.headerImage, long + 1);
                     }
@@ -52848,7 +53116,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 ProductSection.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -52950,6 +53218,8 @@ $root.E2E = (function() {
                 ProductSection.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.ListMessage.ProductSection)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.ListMessage.ProductSection: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -52962,7 +53232,7 @@ $root.E2E = (function() {
                             throw TypeError(".E2E.Message.ListMessage.ProductSection.products: array expected");
                         message.products = [];
                         for (var i = 0; i < object.products.length; ++i) {
-                            if (typeof object.products[i] !== "object")
+                            if (!$util.isObject(object.products[i]))
                                 throw TypeError(".E2E.Message.ListMessage.ProductSection.products: object expected");
                             message.products[i] = $root.E2E.Message.ListMessage.Product.fromObject(object.products[i], long + 1);
                         }
@@ -53127,7 +53397,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 Row.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -53228,6 +53498,8 @@ $root.E2E = (function() {
                 Row.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.ListMessage.Row)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.ListMessage.Row: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -53390,7 +53662,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 Section.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -53492,6 +53764,8 @@ $root.E2E = (function() {
                 Section.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.ListMessage.Section)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.ListMessage.Section: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -53504,7 +53778,7 @@ $root.E2E = (function() {
                             throw TypeError(".E2E.Message.ListMessage.Section.rows: array expected");
                         message.rows = [];
                         for (var i = 0; i < object.rows.length; ++i) {
-                            if (typeof object.rows[i] !== "object")
+                            if (!$util.isObject(object.rows[i]))
                                 throw TypeError(".E2E.Message.ListMessage.Section.rows: object expected");
                             message.rows[i] = $root.E2E.Message.ListMessage.Row.fromObject(object.rows[i], long + 1);
                         }
@@ -53694,7 +53968,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ListResponseMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -53818,6 +54092,8 @@ $root.E2E = (function() {
             ListResponseMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.ListResponseMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.ListResponseMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -53842,12 +54118,12 @@ $root.E2E = (function() {
                     break;
                 }
                 if (object.singleSelectReply != null) {
-                    if (typeof object.singleSelectReply !== "object")
+                    if (!$util.isObject(object.singleSelectReply))
                         throw TypeError(".E2E.Message.ListResponseMessage.singleSelectReply: object expected");
                     message.singleSelectReply = $root.E2E.Message.ListResponseMessage.SingleSelectReply.fromObject(object.singleSelectReply, long + 1);
                 }
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.ListResponseMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -54008,7 +54284,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 SingleSelectReply.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -54095,6 +54371,8 @@ $root.E2E = (function() {
                 SingleSelectReply.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.ListResponseMessage.SingleSelectReply)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.ListResponseMessage.SingleSelectReply: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -54335,7 +54613,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             LiveLocationMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -54487,6 +54765,8 @@ $root.E2E = (function() {
             LiveLocationMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.LiveLocationMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.LiveLocationMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -54521,7 +54801,7 @@ $root.E2E = (function() {
                     else if (object.jpegThumbnail.length >= 0)
                         message.jpegThumbnail = object.jpegThumbnail;
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.LiveLocationMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -54820,7 +55100,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             LocationMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -54986,6 +55266,8 @@ $root.E2E = (function() {
             LocationMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.LocationMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.LocationMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -55017,7 +55299,7 @@ $root.E2E = (function() {
                     else if (object.jpegThumbnail.length >= 0)
                         message.jpegThumbnail = object.jpegThumbnail;
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.LocationMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -55258,7 +55540,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             MMSThumbnailMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -55387,6 +55669,8 @@ $root.E2E = (function() {
             MMSThumbnailMetadata.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.MMSThumbnailMetadata)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.MMSThumbnailMetadata: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -55676,7 +55960,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             MessageHistoryBundle.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -55816,6 +56100,8 @@ $root.E2E = (function() {
             MessageHistoryBundle.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.MessageHistoryBundle)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.MessageHistoryBundle: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -55850,12 +56136,12 @@ $root.E2E = (function() {
                     else if (typeof object.mediaKeyTimestamp === "object")
                         message.mediaKeyTimestamp = new $util.LongBits(object.mediaKeyTimestamp.low >>> 0, object.mediaKeyTimestamp.high >>> 0).toNumber();
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.MessageHistoryBundle.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
                 if (object.messageHistoryMetadata != null) {
-                    if (typeof object.messageHistoryMetadata !== "object")
+                    if (!$util.isObject(object.messageHistoryMetadata))
                         throw TypeError(".E2E.Message.MessageHistoryBundle.messageHistoryMetadata: object expected");
                     message.messageHistoryMetadata = $root.E2E.Message.MessageHistoryMetadata.fromObject(object.messageHistoryMetadata, long + 1);
                 }
@@ -56087,7 +56373,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             MessageHistoryMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -56214,6 +56500,8 @@ $root.E2E = (function() {
             MessageHistoryMetadata.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.MessageHistoryMetadata)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.MessageHistoryMetadata: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -56450,7 +56738,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             MessageHistoryNotice.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -56548,18 +56836,20 @@ $root.E2E = (function() {
             MessageHistoryNotice.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.MessageHistoryNotice)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.MessageHistoryNotice: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.MessageHistoryNotice();
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.MessageHistoryNotice.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
                 if (object.messageHistoryMetadata != null) {
-                    if (typeof object.messageHistoryMetadata !== "object")
+                    if (!$util.isObject(object.messageHistoryMetadata))
                         throw TypeError(".E2E.Message.MessageHistoryNotice.messageHistoryMetadata: object expected");
                     message.messageHistoryMetadata = $root.E2E.Message.MessageHistoryMetadata.fromObject(object.messageHistoryMetadata, long + 1);
                 }
@@ -56753,7 +57043,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             NewsletterAdminInviteMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -56877,6 +57167,8 @@ $root.E2E = (function() {
             NewsletterAdminInviteMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.NewsletterAdminInviteMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.NewsletterAdminInviteMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -56903,7 +57195,7 @@ $root.E2E = (function() {
                     else if (typeof object.inviteExpiration === "object")
                         message.inviteExpiration = new $util.LongBits(object.inviteExpiration.low >>> 0, object.inviteExpiration.high >>> 0).toNumber();
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.NewsletterAdminInviteMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -57113,7 +57405,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             NewsletterFollowerInviteMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -57230,6 +57522,8 @@ $root.E2E = (function() {
             NewsletterFollowerInviteMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.NewsletterFollowerInviteMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.NewsletterFollowerInviteMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -57247,7 +57541,7 @@ $root.E2E = (function() {
                 if (object.caption != null)
                     message.caption = String(object.caption);
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.NewsletterFollowerInviteMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -57555,7 +57849,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             OrderMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -57754,6 +58048,8 @@ $root.E2E = (function() {
             OrderMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.OrderMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.OrderMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -57820,14 +58116,14 @@ $root.E2E = (function() {
                 if (object.totalCurrencyCode != null)
                     message.totalCurrencyCode = String(object.totalCurrencyCode);
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.OrderMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
                 if (object.messageVersion != null)
                     message.messageVersion = object.messageVersion | 0;
                 if (object.orderRequestMessageId != null) {
-                    if (typeof object.orderRequestMessageId !== "object")
+                    if (!$util.isObject(object.orderRequestMessageId))
                         throw TypeError(".E2E.Message.OrderMessage.orderRequestMessageId: object expected");
                     message.orderRequestMessageId = $root.Protocol.MessageKey.fromObject(object.orderRequestMessageId, long + 1);
                 }
@@ -58061,7 +58357,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             PaymentExtendedMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -58155,6 +58451,8 @@ $root.E2E = (function() {
             PaymentExtendedMetadata.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.PaymentExtendedMetadata)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.PaymentExtendedMetadata: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -58343,7 +58641,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             PaymentInviteMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -58470,6 +58768,8 @@ $root.E2E = (function() {
             PaymentInviteMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.PaymentInviteMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.PaymentInviteMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -58735,7 +59035,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             PaymentLinkMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -58842,23 +59142,25 @@ $root.E2E = (function() {
             PaymentLinkMetadata.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.PaymentLinkMetadata)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.PaymentLinkMetadata: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.PaymentLinkMetadata();
                 if (object.button != null) {
-                    if (typeof object.button !== "object")
+                    if (!$util.isObject(object.button))
                         throw TypeError(".E2E.Message.PaymentLinkMetadata.button: object expected");
                     message.button = $root.E2E.Message.PaymentLinkMetadata.PaymentLinkButton.fromObject(object.button, long + 1);
                 }
                 if (object.header != null) {
-                    if (typeof object.header !== "object")
+                    if (!$util.isObject(object.header))
                         throw TypeError(".E2E.Message.PaymentLinkMetadata.header: object expected");
                     message.header = $root.E2E.Message.PaymentLinkMetadata.PaymentLinkHeader.fromObject(object.header, long + 1);
                 }
                 if (object.provider != null) {
-                    if (typeof object.provider !== "object")
+                    if (!$util.isObject(object.provider))
                         throw TypeError(".E2E.Message.PaymentLinkMetadata.provider: object expected");
                     message.provider = $root.E2E.Message.PaymentLinkMetadata.PaymentLinkProvider.fromObject(object.provider, long + 1);
                 }
@@ -58997,7 +59299,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 PaymentLinkButton.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -59084,6 +59386,8 @@ $root.E2E = (function() {
                 PaymentLinkButton.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.PaymentLinkMetadata.PaymentLinkButton)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.PaymentLinkMetadata.PaymentLinkButton: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -59222,7 +59526,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 PaymentLinkHeader.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -59314,6 +59618,8 @@ $root.E2E = (function() {
                 PaymentLinkHeader.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.PaymentLinkMetadata.PaymentLinkHeader)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.PaymentLinkMetadata.PaymentLinkHeader: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -59480,7 +59786,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 PaymentLinkProvider.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -59567,6 +59873,8 @@ $root.E2E = (function() {
                 PaymentLinkProvider.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.PaymentLinkMetadata.PaymentLinkProvider)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.PaymentLinkMetadata.PaymentLinkProvider: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -59796,7 +60104,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             PaymentReminderMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -59958,6 +60266,8 @@ $root.E2E = (function() {
             PaymentReminderMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.PaymentReminderMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.PaymentReminderMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -60036,7 +60346,7 @@ $root.E2E = (function() {
                 if (object.payerJid != null)
                     message.payerJid = String(object.payerJid);
                 if (object.amount != null) {
-                    if (typeof object.amount !== "object")
+                    if (!$util.isObject(object.amount))
                         throw TypeError(".E2E.Message.PaymentReminderMessage.amount: object expected");
                     message.amount = $root.E2E.Money.fromObject(object.amount, long + 1);
                 }
@@ -60365,7 +60675,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             PeerDataOperationRequestMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -60586,6 +60896,8 @@ $root.E2E = (function() {
             PeerDataOperationRequestMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.PeerDataOperationRequestMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.PeerDataOperationRequestMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -60660,7 +60972,7 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.requestStickerReupload: array expected");
                     message.requestStickerReupload = [];
                     for (var i = 0; i < object.requestStickerReupload.length; ++i) {
-                        if (typeof object.requestStickerReupload[i] !== "object")
+                        if (!$util.isObject(object.requestStickerReupload[i]))
                             throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.requestStickerReupload: object expected");
                         message.requestStickerReupload[i] = $root.E2E.Message.PeerDataOperationRequestMessage.RequestStickerReupload.fromObject(object.requestStickerReupload[i], long + 1);
                     }
@@ -60670,13 +60982,13 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.requestUrlPreview: array expected");
                     message.requestUrlPreview = [];
                     for (var i = 0; i < object.requestUrlPreview.length; ++i) {
-                        if (typeof object.requestUrlPreview[i] !== "object")
+                        if (!$util.isObject(object.requestUrlPreview[i]))
                             throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.requestUrlPreview: object expected");
                         message.requestUrlPreview[i] = $root.E2E.Message.PeerDataOperationRequestMessage.RequestUrlPreview.fromObject(object.requestUrlPreview[i], long + 1);
                     }
                 }
                 if (object.historySyncOnDemandRequest != null) {
-                    if (typeof object.historySyncOnDemandRequest !== "object")
+                    if (!$util.isObject(object.historySyncOnDemandRequest))
                         throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.historySyncOnDemandRequest: object expected");
                     message.historySyncOnDemandRequest = $root.E2E.Message.PeerDataOperationRequestMessage.HistorySyncOnDemandRequest.fromObject(object.historySyncOnDemandRequest, long + 1);
                 }
@@ -60685,43 +60997,43 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.placeholderMessageResendRequest: array expected");
                     message.placeholderMessageResendRequest = [];
                     for (var i = 0; i < object.placeholderMessageResendRequest.length; ++i) {
-                        if (typeof object.placeholderMessageResendRequest[i] !== "object")
+                        if (!$util.isObject(object.placeholderMessageResendRequest[i]))
                             throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.placeholderMessageResendRequest: object expected");
                         message.placeholderMessageResendRequest[i] = $root.E2E.Message.PeerDataOperationRequestMessage.PlaceholderMessageResendRequest.fromObject(object.placeholderMessageResendRequest[i], long + 1);
                     }
                 }
                 if (object.fullHistorySyncOnDemandRequest != null) {
-                    if (typeof object.fullHistorySyncOnDemandRequest !== "object")
+                    if (!$util.isObject(object.fullHistorySyncOnDemandRequest))
                         throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.fullHistorySyncOnDemandRequest: object expected");
                     message.fullHistorySyncOnDemandRequest = $root.E2E.Message.PeerDataOperationRequestMessage.FullHistorySyncOnDemandRequest.fromObject(object.fullHistorySyncOnDemandRequest, long + 1);
                 }
                 if (object.syncdCollectionFatalRecoveryRequest != null) {
-                    if (typeof object.syncdCollectionFatalRecoveryRequest !== "object")
+                    if (!$util.isObject(object.syncdCollectionFatalRecoveryRequest))
                         throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.syncdCollectionFatalRecoveryRequest: object expected");
                     message.syncdCollectionFatalRecoveryRequest = $root.E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest.fromObject(object.syncdCollectionFatalRecoveryRequest, long + 1);
                 }
                 if (object.historySyncChunkRetryRequest != null) {
-                    if (typeof object.historySyncChunkRetryRequest !== "object")
+                    if (!$util.isObject(object.historySyncChunkRetryRequest))
                         throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.historySyncChunkRetryRequest: object expected");
                     message.historySyncChunkRetryRequest = $root.E2E.Message.PeerDataOperationRequestMessage.HistorySyncChunkRetryRequest.fromObject(object.historySyncChunkRetryRequest, long + 1);
                 }
                 if (object.galaxyFlowAction != null) {
-                    if (typeof object.galaxyFlowAction !== "object")
+                    if (!$util.isObject(object.galaxyFlowAction))
                         throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.galaxyFlowAction: object expected");
                     message.galaxyFlowAction = $root.E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction.fromObject(object.galaxyFlowAction, long + 1);
                 }
                 if (object.companionCanonicalUserNonceFetchRequest != null) {
-                    if (typeof object.companionCanonicalUserNonceFetchRequest !== "object")
+                    if (!$util.isObject(object.companionCanonicalUserNonceFetchRequest))
                         throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.companionCanonicalUserNonceFetchRequest: object expected");
                     message.companionCanonicalUserNonceFetchRequest = $root.E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest.fromObject(object.companionCanonicalUserNonceFetchRequest, long + 1);
                 }
                 if (object.bizBroadcastInsightsContactListRequest != null) {
-                    if (typeof object.bizBroadcastInsightsContactListRequest !== "object")
+                    if (!$util.isObject(object.bizBroadcastInsightsContactListRequest))
                         throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.bizBroadcastInsightsContactListRequest: object expected");
                     message.bizBroadcastInsightsContactListRequest = $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest.fromObject(object.bizBroadcastInsightsContactListRequest, long + 1);
                 }
                 if (object.bizBroadcastInsightsRefreshRequest != null) {
-                    if (typeof object.bizBroadcastInsightsRefreshRequest !== "object")
+                    if (!$util.isObject(object.bizBroadcastInsightsRefreshRequest))
                         throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.bizBroadcastInsightsRefreshRequest: object expected");
                     message.bizBroadcastInsightsRefreshRequest = $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest.fromObject(object.bizBroadcastInsightsRefreshRequest, long + 1);
                 }
@@ -60898,7 +61210,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 BizBroadcastInsightsContactListRequest.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -60985,6 +61297,8 @@ $root.E2E = (function() {
                 BizBroadcastInsightsContactListRequest.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsContactListRequest: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -61123,7 +61437,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 BizBroadcastInsightsRefreshRequest.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -61210,6 +61524,8 @@ $root.E2E = (function() {
                 BizBroadcastInsightsRefreshRequest.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.BizBroadcastInsightsRefreshRequest: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -61348,7 +61664,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 CompanionCanonicalUserNonceFetchRequest.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -61435,6 +61751,8 @@ $root.E2E = (function() {
                 CompanionCanonicalUserNonceFetchRequest.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.CompanionCanonicalUserNonceFetchRequest: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -61595,7 +61913,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 FullHistorySyncOnDemandRequest.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -61702,23 +62020,25 @@ $root.E2E = (function() {
                 FullHistorySyncOnDemandRequest.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.PeerDataOperationRequestMessage.FullHistorySyncOnDemandRequest)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.FullHistorySyncOnDemandRequest: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
                         throw Error("maximum nesting depth exceeded");
                     var message = new $root.E2E.Message.PeerDataOperationRequestMessage.FullHistorySyncOnDemandRequest();
                     if (object.requestMetadata != null) {
-                        if (typeof object.requestMetadata !== "object")
+                        if (!$util.isObject(object.requestMetadata))
                             throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.FullHistorySyncOnDemandRequest.requestMetadata: object expected");
                         message.requestMetadata = $root.E2E.Message.FullHistorySyncOnDemandRequestMetadata.fromObject(object.requestMetadata, long + 1);
                     }
                     if (object.historySyncConfig != null) {
-                        if (typeof object.historySyncConfig !== "object")
+                        if (!$util.isObject(object.historySyncConfig))
                             throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.FullHistorySyncOnDemandRequest.historySyncConfig: object expected");
                         message.historySyncConfig = $root.CompanionReg.DeviceProps.HistorySyncConfig.fromObject(object.historySyncConfig, long + 1);
                     }
                     if (object.fullHistorySyncOnDemandConfig != null) {
-                        if (typeof object.fullHistorySyncOnDemandConfig !== "object")
+                        if (!$util.isObject(object.fullHistorySyncOnDemandConfig))
                             throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.FullHistorySyncOnDemandRequest.fullHistorySyncOnDemandConfig: object expected");
                         message.fullHistorySyncOnDemandConfig = $root.E2E.Message.FullHistorySyncOnDemandConfig.fromObject(object.fullHistorySyncOnDemandConfig, long + 1);
                     }
@@ -61904,7 +62224,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 GalaxyFlowAction.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -62024,6 +62344,8 @@ $root.E2E = (function() {
                 GalaxyFlowAction.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.GalaxyFlowAction: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -62244,7 +62566,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 HistorySyncChunkRetryRequest.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -62364,6 +62686,8 @@ $root.E2E = (function() {
                 HistorySyncChunkRetryRequest.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.PeerDataOperationRequestMessage.HistorySyncChunkRetryRequest)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.HistorySyncChunkRetryRequest: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -62626,7 +62950,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 HistorySyncOnDemandRequest.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -62755,6 +63079,8 @@ $root.E2E = (function() {
                 HistorySyncOnDemandRequest.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.PeerDataOperationRequestMessage.HistorySyncOnDemandRequest)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.HistorySyncOnDemandRequest: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -62940,7 +63266,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 PlaceholderMessageResendRequest.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -63029,13 +63355,15 @@ $root.E2E = (function() {
                 PlaceholderMessageResendRequest.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.PeerDataOperationRequestMessage.PlaceholderMessageResendRequest)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.PlaceholderMessageResendRequest: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
                         throw Error("maximum nesting depth exceeded");
                     var message = new $root.E2E.Message.PeerDataOperationRequestMessage.PlaceholderMessageResendRequest();
                     if (object.messageKey != null) {
-                        if (typeof object.messageKey !== "object")
+                        if (!$util.isObject(object.messageKey))
                             throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.PlaceholderMessageResendRequest.messageKey: object expected");
                         message.messageKey = $root.Protocol.MessageKey.fromObject(object.messageKey, long + 1);
                     }
@@ -63170,7 +63498,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 RequestStickerReupload.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -63257,6 +63585,8 @@ $root.E2E = (function() {
                 RequestStickerReupload.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.PeerDataOperationRequestMessage.RequestStickerReupload)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.RequestStickerReupload: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -63406,7 +63736,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 RequestUrlPreview.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -63500,6 +63830,8 @@ $root.E2E = (function() {
                 RequestUrlPreview.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.PeerDataOperationRequestMessage.RequestUrlPreview)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.RequestUrlPreview: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -63655,7 +63987,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 SyncDCollectionFatalRecoveryRequest.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -63749,6 +64081,8 @@ $root.E2E = (function() {
                 SyncDCollectionFatalRecoveryRequest.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.PeerDataOperationRequestMessage.SyncDCollectionFatalRecoveryRequest: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -63936,7 +64270,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             PeerDataOperationRequestResponseMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -64062,6 +64396,8 @@ $root.E2E = (function() {
             PeerDataOperationRequestResponseMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.PeerDataOperationRequestResponseMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -64138,7 +64474,7 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.peerDataOperationResult: array expected");
                     message.peerDataOperationResult = [];
                     for (var i = 0; i < object.peerDataOperationResult.length; ++i) {
-                        if (typeof object.peerDataOperationResult[i] !== "object")
+                        if (!$util.isObject(object.peerDataOperationResult[i]))
                             throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.peerDataOperationResult: object expected");
                         message.peerDataOperationResult[i] = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.fromObject(object.peerDataOperationResult[i], long + 1);
                     }
@@ -64403,7 +64739,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 PeerDataOperationResult.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -64596,6 +64932,8 @@ $root.E2E = (function() {
                 PeerDataOperationResult.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -64626,57 +64964,57 @@ $root.E2E = (function() {
                         break;
                     }
                     if (object.stickerMessage != null) {
-                        if (typeof object.stickerMessage !== "object")
+                        if (!$util.isObject(object.stickerMessage))
                             throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.stickerMessage: object expected");
                         message.stickerMessage = $root.E2E.Message.StickerMessage.fromObject(object.stickerMessage, long + 1);
                     }
                     if (object.linkPreviewResponse != null) {
-                        if (typeof object.linkPreviewResponse !== "object")
+                        if (!$util.isObject(object.linkPreviewResponse))
                             throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.linkPreviewResponse: object expected");
                         message.linkPreviewResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.fromObject(object.linkPreviewResponse, long + 1);
                     }
                     if (object.placeholderMessageResendResponse != null) {
-                        if (typeof object.placeholderMessageResendResponse !== "object")
+                        if (!$util.isObject(object.placeholderMessageResendResponse))
                             throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.placeholderMessageResendResponse: object expected");
                         message.placeholderMessageResendResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.PlaceholderMessageResendResponse.fromObject(object.placeholderMessageResendResponse, long + 1);
                     }
                     if (object.waffleNonceFetchRequestResponse != null) {
-                        if (typeof object.waffleNonceFetchRequestResponse !== "object")
+                        if (!$util.isObject(object.waffleNonceFetchRequestResponse))
                             throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.waffleNonceFetchRequestResponse: object expected");
                         message.waffleNonceFetchRequestResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.WaffleNonceFetchResponse.fromObject(object.waffleNonceFetchRequestResponse, long + 1);
                     }
                     if (object.fullHistorySyncOnDemandRequestResponse != null) {
-                        if (typeof object.fullHistorySyncOnDemandRequestResponse !== "object")
+                        if (!$util.isObject(object.fullHistorySyncOnDemandRequestResponse))
                             throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.fullHistorySyncOnDemandRequestResponse: object expected");
                         message.fullHistorySyncOnDemandRequestResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FullHistorySyncOnDemandRequestResponse.fromObject(object.fullHistorySyncOnDemandRequestResponse, long + 1);
                     }
                     if (object.companionMetaNonceFetchRequestResponse != null) {
-                        if (typeof object.companionMetaNonceFetchRequestResponse !== "object")
+                        if (!$util.isObject(object.companionMetaNonceFetchRequestResponse))
                             throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.companionMetaNonceFetchRequestResponse: object expected");
                         message.companionMetaNonceFetchRequestResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionMetaNonceFetchResponse.fromObject(object.companionMetaNonceFetchRequestResponse, long + 1);
                     }
                     if (object.syncdSnapshotFatalRecoveryResponse != null) {
-                        if (typeof object.syncdSnapshotFatalRecoveryResponse !== "object")
+                        if (!$util.isObject(object.syncdSnapshotFatalRecoveryResponse))
                             throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.syncdSnapshotFatalRecoveryResponse: object expected");
                         message.syncdSnapshotFatalRecoveryResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse.fromObject(object.syncdSnapshotFatalRecoveryResponse, long + 1);
                     }
                     if (object.companionCanonicalUserNonceFetchRequestResponse != null) {
-                        if (typeof object.companionCanonicalUserNonceFetchRequestResponse !== "object")
+                        if (!$util.isObject(object.companionCanonicalUserNonceFetchRequestResponse))
                             throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.companionCanonicalUserNonceFetchRequestResponse: object expected");
                         message.companionCanonicalUserNonceFetchRequestResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse.fromObject(object.companionCanonicalUserNonceFetchRequestResponse, long + 1);
                     }
                     if (object.historySyncChunkRetryResponse != null) {
-                        if (typeof object.historySyncChunkRetryResponse !== "object")
+                        if (!$util.isObject(object.historySyncChunkRetryResponse))
                             throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.historySyncChunkRetryResponse: object expected");
                         message.historySyncChunkRetryResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.HistorySyncChunkRetryResponse.fromObject(object.historySyncChunkRetryResponse, long + 1);
                     }
                     if (object.flowResponsesCsvBundle != null) {
-                        if (typeof object.flowResponsesCsvBundle !== "object")
+                        if (!$util.isObject(object.flowResponsesCsvBundle))
                             throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.flowResponsesCsvBundle: object expected");
                         message.flowResponsesCsvBundle = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle.fromObject(object.flowResponsesCsvBundle, long + 1);
                     }
                     if (object.bizBroadcastInsightsContactListResponse != null) {
-                        if (typeof object.bizBroadcastInsightsContactListResponse !== "object")
+                        if (!$util.isObject(object.bizBroadcastInsightsContactListResponse))
                             throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.bizBroadcastInsightsContactListResponse: object expected");
                         message.bizBroadcastInsightsContactListResponse = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse.fromObject(object.bizBroadcastInsightsContactListResponse, long + 1);
                     }
@@ -64866,7 +65204,7 @@ $root.E2E = (function() {
                      * @returns {$protobuf.Writer} Writer
                      */
                     BizBroadcastInsightsContactListResponse.encodeDelimited = function encodeDelimited(message, writer) {
-                        return this.encode(message, writer).ldelim();
+                        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                     };
 
                     /**
@@ -64975,6 +65313,8 @@ $root.E2E = (function() {
                     BizBroadcastInsightsContactListResponse.fromObject = function fromObject(object, long) {
                         if (object instanceof $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse)
                             return object;
+                        if (!$util.isObject(object))
+                            throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse: object expected");
                         if (long === undefined)
                             long = 0;
                         if (long > $util.recursionLimit)
@@ -64996,7 +65336,7 @@ $root.E2E = (function() {
                                 throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse.contacts: array expected");
                             message.contacts = [];
                             for (var i = 0; i < object.contacts.length; ++i) {
-                                if (typeof object.contacts[i] !== "object")
+                                if (!$util.isObject(object.contacts[i]))
                                     throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactListResponse.contacts: object expected");
                                 message.contacts[i] = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState.fromObject(object.contacts[i], long + 1);
                             }
@@ -65163,7 +65503,7 @@ $root.E2E = (function() {
                      * @returns {$protobuf.Writer} Writer
                      */
                     BizBroadcastInsightsContactState.encodeDelimited = function encodeDelimited(message, writer) {
-                        return this.encode(message, writer).ldelim();
+                        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                     };
 
                     /**
@@ -65265,6 +65605,8 @@ $root.E2E = (function() {
                     BizBroadcastInsightsContactState.fromObject = function fromObject(object, long) {
                         if (object instanceof $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState)
                             return object;
+                        if (!$util.isObject(object))
+                            throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.BizBroadcastInsightsContactState: object expected");
                         if (long === undefined)
                             long = 0;
                         if (long > $util.recursionLimit)
@@ -65457,7 +65799,7 @@ $root.E2E = (function() {
                      * @returns {$protobuf.Writer} Writer
                      */
                     CompanionCanonicalUserNonceFetchResponse.encodeDelimited = function encodeDelimited(message, writer) {
-                        return this.encode(message, writer).ldelim();
+                        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                     };
 
                     /**
@@ -65558,6 +65900,8 @@ $root.E2E = (function() {
                     CompanionCanonicalUserNonceFetchResponse.fromObject = function fromObject(object, long) {
                         if (object instanceof $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse)
                             return object;
+                        if (!$util.isObject(object))
+                            throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionCanonicalUserNonceFetchResponse: object expected");
                         if (long === undefined)
                             long = 0;
                         if (long > $util.recursionLimit)
@@ -65707,7 +66051,7 @@ $root.E2E = (function() {
                      * @returns {$protobuf.Writer} Writer
                      */
                     CompanionMetaNonceFetchResponse.encodeDelimited = function encodeDelimited(message, writer) {
-                        return this.encode(message, writer).ldelim();
+                        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                     };
 
                     /**
@@ -65794,6 +66138,8 @@ $root.E2E = (function() {
                     CompanionMetaNonceFetchResponse.fromObject = function fromObject(object, long) {
                         if (object instanceof $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionMetaNonceFetchResponse)
                             return object;
+                        if (!$util.isObject(object))
+                            throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.CompanionMetaNonceFetchResponse: object expected");
                         if (long === undefined)
                             long = 0;
                         if (long > $util.recursionLimit)
@@ -66031,7 +66377,7 @@ $root.E2E = (function() {
                      * @returns {$protobuf.Writer} Writer
                      */
                     FlowResponsesCsvBundle.encodeDelimited = function encodeDelimited(message, writer) {
-                        return this.encode(message, writer).ldelim();
+                        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                     };
 
                     /**
@@ -66181,6 +66527,8 @@ $root.E2E = (function() {
                     FlowResponsesCsvBundle.fromObject = function fromObject(object, long) {
                         if (object instanceof $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle)
                             return object;
+                        if (!$util.isObject(object))
+                            throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FlowResponsesCsvBundle: object expected");
                         if (long === undefined)
                             long = 0;
                         if (long > $util.recursionLimit)
@@ -66435,7 +66783,7 @@ $root.E2E = (function() {
                      * @returns {$protobuf.Writer} Writer
                      */
                     FullHistorySyncOnDemandRequestResponse.encodeDelimited = function encodeDelimited(message, writer) {
-                        return this.encode(message, writer).ldelim();
+                        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                     };
 
                     /**
@@ -66542,13 +66890,15 @@ $root.E2E = (function() {
                     FullHistorySyncOnDemandRequestResponse.fromObject = function fromObject(object, long) {
                         if (object instanceof $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FullHistorySyncOnDemandRequestResponse)
                             return object;
+                        if (!$util.isObject(object))
+                            throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FullHistorySyncOnDemandRequestResponse: object expected");
                         if (long === undefined)
                             long = 0;
                         if (long > $util.recursionLimit)
                             throw Error("maximum nesting depth exceeded");
                         var message = new $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FullHistorySyncOnDemandRequestResponse();
                         if (object.requestMetadata != null) {
-                            if (typeof object.requestMetadata !== "object")
+                            if (!$util.isObject(object.requestMetadata))
                                 throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.FullHistorySyncOnDemandRequestResponse.requestMetadata: object expected");
                             message.requestMetadata = $root.E2E.Message.FullHistorySyncOnDemandRequestMetadata.fromObject(object.requestMetadata, long + 1);
                         }
@@ -66797,7 +67147,7 @@ $root.E2E = (function() {
                      * @returns {$protobuf.Writer} Writer
                      */
                     HistorySyncChunkRetryResponse.encodeDelimited = function encodeDelimited(message, writer) {
-                        return this.encode(message, writer).ldelim();
+                        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                     };
 
                     /**
@@ -66933,6 +67283,8 @@ $root.E2E = (function() {
                     HistorySyncChunkRetryResponse.fromObject = function fromObject(object, long) {
                         if (object instanceof $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.HistorySyncChunkRetryResponse)
                             return object;
+                        if (!$util.isObject(object))
+                            throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.HistorySyncChunkRetryResponse: object expected");
                         if (long === undefined)
                             long = 0;
                         if (long > $util.recursionLimit)
@@ -67263,7 +67615,7 @@ $root.E2E = (function() {
                      * @returns {$protobuf.Writer} Writer
                      */
                     LinkPreviewResponse.encodeDelimited = function encodeDelimited(message, writer) {
-                        return this.encode(message, writer).ldelim();
+                        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                     };
 
                     /**
@@ -67403,6 +67755,8 @@ $root.E2E = (function() {
                     LinkPreviewResponse.fromObject = function fromObject(object, long) {
                         if (object instanceof $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse)
                             return object;
+                        if (!$util.isObject(object))
+                            throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse: object expected");
                         if (long === undefined)
                             long = 0;
                         if (long > $util.recursionLimit)
@@ -67424,12 +67778,12 @@ $root.E2E = (function() {
                         if (object.previewType != null)
                             message.previewType = String(object.previewType);
                         if (object.hqThumbnail != null) {
-                            if (typeof object.hqThumbnail !== "object")
+                            if (!$util.isObject(object.hqThumbnail))
                                 throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.hqThumbnail: object expected");
                             message.hqThumbnail = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.LinkPreviewHighQualityThumbnail.fromObject(object.hqThumbnail, long + 1);
                         }
                         if (object.previewMetadata != null) {
-                            if (typeof object.previewMetadata !== "object")
+                            if (!$util.isObject(object.previewMetadata))
                                 throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.previewMetadata: object expected");
                             message.previewMetadata = $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata.fromObject(object.previewMetadata, long + 1);
                         }
@@ -67655,7 +68009,7 @@ $root.E2E = (function() {
                          * @returns {$protobuf.Writer} Writer
                          */
                         LinkPreviewHighQualityThumbnail.encodeDelimited = function encodeDelimited(message, writer) {
-                            return this.encode(message, writer).ldelim();
+                            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                         };
 
                         /**
@@ -67784,6 +68138,8 @@ $root.E2E = (function() {
                         LinkPreviewHighQualityThumbnail.fromObject = function fromObject(object, long) {
                             if (object instanceof $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.LinkPreviewHighQualityThumbnail)
                                 return object;
+                            if (!$util.isObject(object))
+                                throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.LinkPreviewHighQualityThumbnail: object expected");
                             if (long === undefined)
                                 long = 0;
                             if (long > $util.recursionLimit)
@@ -68022,7 +68378,7 @@ $root.E2E = (function() {
                          * @returns {$protobuf.Writer} Writer
                          */
                         PaymentLinkPreviewMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                            return this.encode(message, writer).ldelim();
+                            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                         };
 
                         /**
@@ -68137,6 +68493,8 @@ $root.E2E = (function() {
                         PaymentLinkPreviewMetadata.fromObject = function fromObject(object, long) {
                             if (object instanceof $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata)
                                 return object;
+                            if (!$util.isObject(object))
+                                throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.LinkPreviewResponse.PaymentLinkPreviewMetadata: object expected");
                             if (long === undefined)
                                 long = 0;
                             if (long > $util.recursionLimit)
@@ -68299,7 +68657,7 @@ $root.E2E = (function() {
                      * @returns {$protobuf.Writer} Writer
                      */
                     PlaceholderMessageResendResponse.encodeDelimited = function encodeDelimited(message, writer) {
-                        return this.encode(message, writer).ldelim();
+                        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                     };
 
                     /**
@@ -68386,6 +68744,8 @@ $root.E2E = (function() {
                     PlaceholderMessageResendResponse.fromObject = function fromObject(object, long) {
                         if (object instanceof $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.PlaceholderMessageResendResponse)
                             return object;
+                        if (!$util.isObject(object))
+                            throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.PlaceholderMessageResendResponse: object expected");
                         if (long === undefined)
                             long = 0;
                         if (long > $util.recursionLimit)
@@ -68544,7 +68904,7 @@ $root.E2E = (function() {
                      * @returns {$protobuf.Writer} Writer
                      */
                     SyncDSnapshotFatalRecoveryResponse.encodeDelimited = function encodeDelimited(message, writer) {
-                        return this.encode(message, writer).ldelim();
+                        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                     };
 
                     /**
@@ -68638,6 +68998,8 @@ $root.E2E = (function() {
                     SyncDSnapshotFatalRecoveryResponse.fromObject = function fromObject(object, long) {
                         if (object instanceof $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse)
                             return object;
+                        if (!$util.isObject(object))
+                            throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.SyncDSnapshotFatalRecoveryResponse: object expected");
                         if (long === undefined)
                             long = 0;
                         if (long > $util.recursionLimit)
@@ -68802,7 +69164,7 @@ $root.E2E = (function() {
                      * @returns {$protobuf.Writer} Writer
                      */
                     WaffleNonceFetchResponse.encodeDelimited = function encodeDelimited(message, writer) {
-                        return this.encode(message, writer).ldelim();
+                        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                     };
 
                     /**
@@ -68896,6 +69258,8 @@ $root.E2E = (function() {
                     WaffleNonceFetchResponse.fromObject = function fromObject(object, long) {
                         if (object instanceof $root.E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.WaffleNonceFetchResponse)
                             return object;
+                        if (!$util.isObject(object))
+                            throw TypeError(".E2E.Message.PeerDataOperationRequestResponseMessage.PeerDataOperationResult.WaffleNonceFetchResponse: object expected");
                         if (long === undefined)
                             long = 0;
                         if (long > $util.recursionLimit)
@@ -69106,7 +69470,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             PinInChatMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -69215,13 +69579,15 @@ $root.E2E = (function() {
             PinInChatMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.PinInChatMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.PinInChatMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.PinInChatMessage();
                 if (object.key != null) {
-                    if (typeof object.key !== "object")
+                    if (!$util.isObject(object.key))
                         throw TypeError(".E2E.Message.PinInChatMessage.key: object expected");
                     message.key = $root.Protocol.MessageKey.fromObject(object.key, long + 1);
                 }
@@ -69417,7 +69783,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             PlaceholderMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -69508,6 +69874,8 @@ $root.E2E = (function() {
             PlaceholderMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.PlaceholderMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.PlaceholderMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -69679,7 +70047,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             PollAddOptionMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -69777,18 +70145,20 @@ $root.E2E = (function() {
             PollAddOptionMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.PollAddOptionMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.PollAddOptionMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.PollAddOptionMessage();
                 if (object.pollCreationMessageKey != null) {
-                    if (typeof object.pollCreationMessageKey !== "object")
+                    if (!$util.isObject(object.pollCreationMessageKey))
                         throw TypeError(".E2E.Message.PollAddOptionMessage.pollCreationMessageKey: object expected");
                     message.pollCreationMessageKey = $root.Protocol.MessageKey.fromObject(object.pollCreationMessageKey, long + 1);
                 }
                 if (object.addOption != null) {
-                    if (typeof object.addOption !== "object")
+                    if (!$util.isObject(object.addOption))
                         throw TypeError(".E2E.Message.PollAddOptionMessage.addOption: object expected");
                     message.addOption = $root.E2E.Message.PollCreationMessage.Option.fromObject(object.addOption, long + 1);
                 }
@@ -70055,7 +70425,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             PollCreationMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -70235,6 +70605,8 @@ $root.E2E = (function() {
             PollCreationMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.PollCreationMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.PollCreationMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -70252,7 +70624,7 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.PollCreationMessage.options: array expected");
                     message.options = [];
                     for (var i = 0; i < object.options.length; ++i) {
-                        if (typeof object.options[i] !== "object")
+                        if (!$util.isObject(object.options[i]))
                             throw TypeError(".E2E.Message.PollCreationMessage.options: object expected");
                         message.options[i] = $root.E2E.Message.PollCreationMessage.Option.fromObject(object.options[i], long + 1);
                     }
@@ -70260,7 +70632,7 @@ $root.E2E = (function() {
                 if (object.selectableOptionsCount != null)
                     message.selectableOptionsCount = object.selectableOptionsCount >>> 0;
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.PollCreationMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -70301,7 +70673,7 @@ $root.E2E = (function() {
                     break;
                 }
                 if (object.correctAnswer != null) {
-                    if (typeof object.correctAnswer !== "object")
+                    if (!$util.isObject(object.correctAnswer))
                         throw TypeError(".E2E.Message.PollCreationMessage.correctAnswer: object expected");
                     message.correctAnswer = $root.E2E.Message.PollCreationMessage.Option.fromObject(object.correctAnswer, long + 1);
                 }
@@ -70507,7 +70879,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 Option.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -70601,6 +70973,8 @@ $root.E2E = (function() {
                 Option.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.PollCreationMessage.Option)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.PollCreationMessage.Option: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -70759,7 +71133,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             PollEncValue.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -70853,6 +71227,8 @@ $root.E2E = (function() {
             PollEncValue.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.PollEncValue)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.PollEncValue: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -71050,7 +71426,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             PollResultSnapshotMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -71173,6 +71549,8 @@ $root.E2E = (function() {
             PollResultSnapshotMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.PollResultSnapshotMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.PollResultSnapshotMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -71185,13 +71563,13 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.PollResultSnapshotMessage.pollVotes: array expected");
                     message.pollVotes = [];
                     for (var i = 0; i < object.pollVotes.length; ++i) {
-                        if (typeof object.pollVotes[i] !== "object")
+                        if (!$util.isObject(object.pollVotes[i]))
                             throw TypeError(".E2E.Message.PollResultSnapshotMessage.pollVotes: object expected");
                         message.pollVotes[i] = $root.E2E.Message.PollResultSnapshotMessage.PollVote.fromObject(object.pollVotes[i], long + 1);
                     }
                 }
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.PollResultSnapshotMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -71364,7 +71742,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 PollVote.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -71458,6 +71836,8 @@ $root.E2E = (function() {
                 PollVote.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.PollResultSnapshotMessage.PollVote)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.PollResultSnapshotMessage.PollVote: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -71668,7 +72048,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             PollUpdateMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -71782,23 +72162,25 @@ $root.E2E = (function() {
             PollUpdateMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.PollUpdateMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.PollUpdateMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.PollUpdateMessage();
                 if (object.pollCreationMessageKey != null) {
-                    if (typeof object.pollCreationMessageKey !== "object")
+                    if (!$util.isObject(object.pollCreationMessageKey))
                         throw TypeError(".E2E.Message.PollUpdateMessage.pollCreationMessageKey: object expected");
                     message.pollCreationMessageKey = $root.Protocol.MessageKey.fromObject(object.pollCreationMessageKey, long + 1);
                 }
                 if (object.vote != null) {
-                    if (typeof object.vote !== "object")
+                    if (!$util.isObject(object.vote))
                         throw TypeError(".E2E.Message.PollUpdateMessage.vote: object expected");
                     message.vote = $root.E2E.Message.PollEncValue.fromObject(object.vote, long + 1);
                 }
                 if (object.metadata != null) {
-                    if (typeof object.metadata !== "object")
+                    if (!$util.isObject(object.metadata))
                         throw TypeError(".E2E.Message.PollUpdateMessage.metadata: object expected");
                     message.metadata = $root.E2E.Message.PollUpdateMessageMetadata.fromObject(object.metadata, long + 1);
                 }
@@ -71950,7 +72332,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             PollUpdateMessageMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -72030,6 +72412,8 @@ $root.E2E = (function() {
             PollUpdateMessageMetadata.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.PollUpdateMessageMetadata)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.PollUpdateMessageMetadata: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -72156,7 +72540,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             PollVoteMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -72249,6 +72633,8 @@ $root.E2E = (function() {
             PollVoteMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.PollVoteMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.PollVoteMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -72453,7 +72839,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ProductMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -72581,20 +72967,22 @@ $root.E2E = (function() {
             ProductMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.ProductMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.ProductMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.ProductMessage();
                 if (object.product != null) {
-                    if (typeof object.product !== "object")
+                    if (!$util.isObject(object.product))
                         throw TypeError(".E2E.Message.ProductMessage.product: object expected");
                     message.product = $root.E2E.Message.ProductMessage.ProductSnapshot.fromObject(object.product, long + 1);
                 }
                 if (object.businessOwnerJid != null)
                     message.businessOwnerJid = String(object.businessOwnerJid);
                 if (object.catalog != null) {
-                    if (typeof object.catalog !== "object")
+                    if (!$util.isObject(object.catalog))
                         throw TypeError(".E2E.Message.ProductMessage.catalog: object expected");
                     message.catalog = $root.E2E.Message.ProductMessage.CatalogSnapshot.fromObject(object.catalog, long + 1);
                 }
@@ -72603,7 +72991,7 @@ $root.E2E = (function() {
                 if (object.footer != null)
                     message.footer = String(object.footer);
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.ProductMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -72773,7 +73161,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 CatalogSnapshot.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -72876,13 +73264,15 @@ $root.E2E = (function() {
                 CatalogSnapshot.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.ProductMessage.CatalogSnapshot)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.ProductMessage.CatalogSnapshot: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
                         throw Error("maximum nesting depth exceeded");
                     var message = new $root.E2E.Message.ProductMessage.CatalogSnapshot();
                     if (object.catalogImage != null) {
-                        if (typeof object.catalogImage !== "object")
+                        if (!$util.isObject(object.catalogImage))
                             throw TypeError(".E2E.Message.ProductMessage.CatalogSnapshot.catalogImage: object expected");
                         message.catalogImage = $root.E2E.Message.ImageMessage.fromObject(object.catalogImage, long + 1);
                     }
@@ -73149,7 +73539,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 ProductSnapshot.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -73315,13 +73705,15 @@ $root.E2E = (function() {
                 ProductSnapshot.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.ProductMessage.ProductSnapshot)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.ProductMessage.ProductSnapshot: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
                         throw Error("maximum nesting depth exceeded");
                     var message = new $root.E2E.Message.ProductMessage.ProductSnapshot();
                     if (object.productImage != null) {
-                        if (typeof object.productImage !== "object")
+                        if (!$util.isObject(object.productImage))
                             throw TypeError(".E2E.Message.ProductMessage.ProductSnapshot.productImage: object expected");
                         message.productImage = $root.E2E.Message.ImageMessage.fromObject(object.productImage, long + 1);
                     }
@@ -73844,7 +74236,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ProtocolMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -74195,13 +74587,15 @@ $root.E2E = (function() {
             ProtocolMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.ProtocolMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.ProtocolMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.ProtocolMessage();
                 if (object.key != null) {
-                    if (typeof object.key !== "object")
+                    if (!$util.isObject(object.key))
                         throw TypeError(".E2E.Message.ProtocolMessage.key: object expected");
                     message.key = $root.Protocol.MessageKey.fromObject(object.key, long + 1);
                 }
@@ -74345,37 +74739,37 @@ $root.E2E = (function() {
                     else if (typeof object.ephemeralSettingTimestamp === "object")
                         message.ephemeralSettingTimestamp = new $util.LongBits(object.ephemeralSettingTimestamp.low >>> 0, object.ephemeralSettingTimestamp.high >>> 0).toNumber();
                 if (object.historySyncNotification != null) {
-                    if (typeof object.historySyncNotification !== "object")
+                    if (!$util.isObject(object.historySyncNotification))
                         throw TypeError(".E2E.Message.ProtocolMessage.historySyncNotification: object expected");
                     message.historySyncNotification = $root.E2E.Message.HistorySyncNotification.fromObject(object.historySyncNotification, long + 1);
                 }
                 if (object.appStateSyncKeyShare != null) {
-                    if (typeof object.appStateSyncKeyShare !== "object")
+                    if (!$util.isObject(object.appStateSyncKeyShare))
                         throw TypeError(".E2E.Message.ProtocolMessage.appStateSyncKeyShare: object expected");
                     message.appStateSyncKeyShare = $root.E2E.Message.AppStateSyncKeyShare.fromObject(object.appStateSyncKeyShare, long + 1);
                 }
                 if (object.appStateSyncKeyRequest != null) {
-                    if (typeof object.appStateSyncKeyRequest !== "object")
+                    if (!$util.isObject(object.appStateSyncKeyRequest))
                         throw TypeError(".E2E.Message.ProtocolMessage.appStateSyncKeyRequest: object expected");
                     message.appStateSyncKeyRequest = $root.E2E.Message.AppStateSyncKeyRequest.fromObject(object.appStateSyncKeyRequest, long + 1);
                 }
                 if (object.initialSecurityNotificationSettingSync != null) {
-                    if (typeof object.initialSecurityNotificationSettingSync !== "object")
+                    if (!$util.isObject(object.initialSecurityNotificationSettingSync))
                         throw TypeError(".E2E.Message.ProtocolMessage.initialSecurityNotificationSettingSync: object expected");
                     message.initialSecurityNotificationSettingSync = $root.E2E.Message.InitialSecurityNotificationSettingSync.fromObject(object.initialSecurityNotificationSettingSync, long + 1);
                 }
                 if (object.appStateFatalExceptionNotification != null) {
-                    if (typeof object.appStateFatalExceptionNotification !== "object")
+                    if (!$util.isObject(object.appStateFatalExceptionNotification))
                         throw TypeError(".E2E.Message.ProtocolMessage.appStateFatalExceptionNotification: object expected");
                     message.appStateFatalExceptionNotification = $root.E2E.Message.AppStateFatalExceptionNotification.fromObject(object.appStateFatalExceptionNotification, long + 1);
                 }
                 if (object.disappearingMode != null) {
-                    if (typeof object.disappearingMode !== "object")
+                    if (!$util.isObject(object.disappearingMode))
                         throw TypeError(".E2E.Message.ProtocolMessage.disappearingMode: object expected");
                     message.disappearingMode = $root.E2E.DisappearingMode.fromObject(object.disappearingMode, long + 1);
                 }
                 if (object.editedMessage != null) {
-                    if (typeof object.editedMessage !== "object")
+                    if (!$util.isObject(object.editedMessage))
                         throw TypeError(".E2E.Message.ProtocolMessage.editedMessage: object expected");
                     message.editedMessage = $root.E2E.Message.fromObject(object.editedMessage, long + 1);
                 }
@@ -74389,44 +74783,44 @@ $root.E2E = (function() {
                     else if (typeof object.timestampMs === "object")
                         message.timestampMs = new $util.LongBits(object.timestampMs.low >>> 0, object.timestampMs.high >>> 0).toNumber();
                 if (object.peerDataOperationRequestMessage != null) {
-                    if (typeof object.peerDataOperationRequestMessage !== "object")
+                    if (!$util.isObject(object.peerDataOperationRequestMessage))
                         throw TypeError(".E2E.Message.ProtocolMessage.peerDataOperationRequestMessage: object expected");
                     message.peerDataOperationRequestMessage = $root.E2E.Message.PeerDataOperationRequestMessage.fromObject(object.peerDataOperationRequestMessage, long + 1);
                 }
                 if (object.peerDataOperationRequestResponseMessage != null) {
-                    if (typeof object.peerDataOperationRequestResponseMessage !== "object")
+                    if (!$util.isObject(object.peerDataOperationRequestResponseMessage))
                         throw TypeError(".E2E.Message.ProtocolMessage.peerDataOperationRequestResponseMessage: object expected");
                     message.peerDataOperationRequestResponseMessage = $root.E2E.Message.PeerDataOperationRequestResponseMessage.fromObject(object.peerDataOperationRequestResponseMessage, long + 1);
                 }
                 if (object.botFeedbackMessage != null) {
-                    if (typeof object.botFeedbackMessage !== "object")
+                    if (!$util.isObject(object.botFeedbackMessage))
                         throw TypeError(".E2E.Message.ProtocolMessage.botFeedbackMessage: object expected");
                     message.botFeedbackMessage = $root.AICommon.BotFeedbackMessage.fromObject(object.botFeedbackMessage, long + 1);
                 }
                 if (object.invokerJid != null)
                     message.invokerJid = String(object.invokerJid);
                 if (object.requestWelcomeMessageMetadata != null) {
-                    if (typeof object.requestWelcomeMessageMetadata !== "object")
+                    if (!$util.isObject(object.requestWelcomeMessageMetadata))
                         throw TypeError(".E2E.Message.ProtocolMessage.requestWelcomeMessageMetadata: object expected");
                     message.requestWelcomeMessageMetadata = $root.E2E.Message.RequestWelcomeMessageMetadata.fromObject(object.requestWelcomeMessageMetadata, long + 1);
                 }
                 if (object.mediaNotifyMessage != null) {
-                    if (typeof object.mediaNotifyMessage !== "object")
+                    if (!$util.isObject(object.mediaNotifyMessage))
                         throw TypeError(".E2E.Message.ProtocolMessage.mediaNotifyMessage: object expected");
                     message.mediaNotifyMessage = $root.E2E.MediaNotifyMessage.fromObject(object.mediaNotifyMessage, long + 1);
                 }
                 if (object.cloudApiThreadControlNotification != null) {
-                    if (typeof object.cloudApiThreadControlNotification !== "object")
+                    if (!$util.isObject(object.cloudApiThreadControlNotification))
                         throw TypeError(".E2E.Message.ProtocolMessage.cloudApiThreadControlNotification: object expected");
                     message.cloudApiThreadControlNotification = $root.E2E.Message.CloudAPIThreadControlNotification.fromObject(object.cloudApiThreadControlNotification, long + 1);
                 }
                 if (object.lidMigrationMappingSyncMessage != null) {
-                    if (typeof object.lidMigrationMappingSyncMessage !== "object")
+                    if (!$util.isObject(object.lidMigrationMappingSyncMessage))
                         throw TypeError(".E2E.Message.ProtocolMessage.lidMigrationMappingSyncMessage: object expected");
                     message.lidMigrationMappingSyncMessage = $root.E2E.LIDMigrationMappingSyncMessage.fromObject(object.lidMigrationMappingSyncMessage, long + 1);
                 }
                 if (object.limitSharing != null) {
-                    if (typeof object.limitSharing !== "object")
+                    if (!$util.isObject(object.limitSharing))
                         throw TypeError(".E2E.Message.ProtocolMessage.limitSharing: object expected");
                     message.limitSharing = $root.Protocol.LimitSharing.fromObject(object.limitSharing, long + 1);
                 }
@@ -74436,29 +74830,29 @@ $root.E2E = (function() {
                     else if (object.aiPsiMetadata.length >= 0)
                         message.aiPsiMetadata = object.aiPsiMetadata;
                 if (object.aiQueryFanout != null) {
-                    if (typeof object.aiQueryFanout !== "object")
+                    if (!$util.isObject(object.aiQueryFanout))
                         throw TypeError(".E2E.Message.ProtocolMessage.aiQueryFanout: object expected");
                     message.aiQueryFanout = $root.E2E.AIQueryFanout.fromObject(object.aiQueryFanout, long + 1);
                 }
                 if (object.memberLabel != null) {
-                    if (typeof object.memberLabel !== "object")
+                    if (!$util.isObject(object.memberLabel))
                         throw TypeError(".E2E.Message.ProtocolMessage.memberLabel: object expected");
                     message.memberLabel = $root.E2E.MemberLabel.fromObject(object.memberLabel, long + 1);
                 }
                 if (object.aiMediaCollectionMessage != null) {
-                    if (typeof object.aiMediaCollectionMessage !== "object")
+                    if (!$util.isObject(object.aiMediaCollectionMessage))
                         throw TypeError(".E2E.Message.ProtocolMessage.aiMediaCollectionMessage: object expected");
                     message.aiMediaCollectionMessage = $root.AICommon.AIMediaCollectionMessage.fromObject(object.aiMediaCollectionMessage, long + 1);
                 }
                 if (object.afterReadDuration != null)
                     message.afterReadDuration = object.afterReadDuration >>> 0;
                 if (object.chatThemeSetting != null) {
-                    if (typeof object.chatThemeSetting !== "object")
+                    if (!$util.isObject(object.chatThemeSetting))
                         throw TypeError(".E2E.Message.ProtocolMessage.chatThemeSetting: object expected");
                     message.chatThemeSetting = $root.E2E.Message.ChatThemeSetting.fromObject(object.chatThemeSetting, long + 1);
                 }
                 if (object.aiMetadataOperation != null) {
-                    if (typeof object.aiMetadataOperation !== "object")
+                    if (!$util.isObject(object.aiMetadataOperation))
                         throw TypeError(".E2E.Message.ProtocolMessage.aiMetadataOperation: object expected");
                     message.aiMetadataOperation = $root.AICommon.AIMetadataOperation.fromObject(object.aiMetadataOperation, long + 1);
                 }
@@ -74780,7 +75174,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             QuestionResponseMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -74876,13 +75270,15 @@ $root.E2E = (function() {
             QuestionResponseMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.QuestionResponseMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.QuestionResponseMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.QuestionResponseMessage();
                 if (object.key != null) {
-                    if (typeof object.key !== "object")
+                    if (!$util.isObject(object.key))
                         throw TypeError(".E2E.Message.QuestionResponseMessage.key: object expected");
                     message.key = $root.Protocol.MessageKey.fromObject(object.key, long + 1);
                 }
@@ -75056,7 +75452,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ReactionMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -75166,13 +75562,15 @@ $root.E2E = (function() {
             ReactionMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.ReactionMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.ReactionMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.ReactionMessage();
                 if (object.key != null) {
-                    if (typeof object.key !== "object")
+                    if (!$util.isObject(object.key))
                         throw TypeError(".E2E.Message.ReactionMessage.key: object expected");
                     message.key = $root.Protocol.MessageKey.fromObject(object.key, long + 1);
                 }
@@ -75405,7 +75803,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             RequestPaymentMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -75540,13 +75938,15 @@ $root.E2E = (function() {
             RequestPaymentMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.RequestPaymentMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.RequestPaymentMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.RequestPaymentMessage();
                 if (object.noteMessage != null) {
-                    if (typeof object.noteMessage !== "object")
+                    if (!$util.isObject(object.noteMessage))
                         throw TypeError(".E2E.Message.RequestPaymentMessage.noteMessage: object expected");
                     message.noteMessage = $root.E2E.Message.fromObject(object.noteMessage, long + 1);
                 }
@@ -75573,12 +75973,12 @@ $root.E2E = (function() {
                     else if (typeof object.expiryTimestamp === "object")
                         message.expiryTimestamp = new $util.LongBits(object.expiryTimestamp.low >>> 0, object.expiryTimestamp.high >>> 0).toNumber();
                 if (object.amount != null) {
-                    if (typeof object.amount !== "object")
+                    if (!$util.isObject(object.amount))
                         throw TypeError(".E2E.Message.RequestPaymentMessage.amount: object expected");
                     message.amount = $root.E2E.Money.fromObject(object.amount, long + 1);
                 }
                 if (object.background != null) {
-                    if (typeof object.background !== "object")
+                    if (!$util.isObject(object.background))
                         throw TypeError(".E2E.Message.RequestPaymentMessage.background: object expected");
                     message.background = $root.E2E.PaymentBackground.fromObject(object.background, long + 1);
                 }
@@ -75750,7 +76150,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             RequestPhoneNumberMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -75839,13 +76239,15 @@ $root.E2E = (function() {
             RequestPhoneNumberMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.RequestPhoneNumberMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.RequestPhoneNumberMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.RequestPhoneNumberMessage();
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.RequestPhoneNumberMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -76002,7 +76404,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             RequestWelcomeMessageMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -76115,6 +76517,8 @@ $root.E2E = (function() {
             RequestWelcomeMessageMetadata.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.RequestWelcomeMessageMetadata)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.RequestWelcomeMessageMetadata: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -76153,7 +76557,7 @@ $root.E2E = (function() {
                     break;
                 }
                 if (object.botAgentMetadata != null) {
-                    if (typeof object.botAgentMetadata !== "object")
+                    if (!$util.isObject(object.botAgentMetadata))
                         throw TypeError(".E2E.Message.RequestWelcomeMessageMetadata.botAgentMetadata: object expected");
                     message.botAgentMetadata = $root.AICommon.BotAgentMetadata.fromObject(object.botAgentMetadata, long + 1);
                 }
@@ -76345,7 +76749,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ScheduledCallCreationMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -76452,6 +76856,8 @@ $root.E2E = (function() {
             ScheduledCallCreationMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.ScheduledCallCreationMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.ScheduledCallCreationMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -76662,7 +77068,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ScheduledCallEditMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -76763,13 +77169,15 @@ $root.E2E = (function() {
             ScheduledCallEditMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.ScheduledCallEditMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.ScheduledCallEditMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.ScheduledCallEditMessage();
                 if (object.key != null) {
-                    if (typeof object.key !== "object")
+                    if (!$util.isObject(object.key))
                         throw TypeError(".E2E.Message.ScheduledCallEditMessage.key: object expected");
                     message.key = $root.Protocol.MessageKey.fromObject(object.key, long + 1);
                 }
@@ -76982,7 +77390,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             SecretEncryptedMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -77108,13 +77516,15 @@ $root.E2E = (function() {
             SecretEncryptedMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.SecretEncryptedMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.SecretEncryptedMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.SecretEncryptedMessage();
                 if (object.targetMessageKey != null) {
-                    if (typeof object.targetMessageKey !== "object")
+                    if (!$util.isObject(object.targetMessageKey))
                         throw TypeError(".E2E.Message.SecretEncryptedMessage.targetMessageKey: object expected");
                     message.targetMessageKey = $root.Protocol.MessageKey.fromObject(object.targetMessageKey, long + 1);
                 }
@@ -77373,7 +77783,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             SendPaymentMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -77487,23 +77897,25 @@ $root.E2E = (function() {
             SendPaymentMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.SendPaymentMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.SendPaymentMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.SendPaymentMessage();
                 if (object.noteMessage != null) {
-                    if (typeof object.noteMessage !== "object")
+                    if (!$util.isObject(object.noteMessage))
                         throw TypeError(".E2E.Message.SendPaymentMessage.noteMessage: object expected");
                     message.noteMessage = $root.E2E.Message.fromObject(object.noteMessage, long + 1);
                 }
                 if (object.requestMessageKey != null) {
-                    if (typeof object.requestMessageKey !== "object")
+                    if (!$util.isObject(object.requestMessageKey))
                         throw TypeError(".E2E.Message.SendPaymentMessage.requestMessageKey: object expected");
                     message.requestMessageKey = $root.Protocol.MessageKey.fromObject(object.requestMessageKey, long + 1);
                 }
                 if (object.background != null) {
-                    if (typeof object.background !== "object")
+                    if (!$util.isObject(object.background))
                         throw TypeError(".E2E.Message.SendPaymentMessage.background: object expected");
                     message.background = $root.E2E.PaymentBackground.fromObject(object.background, long + 1);
                 }
@@ -77661,7 +78073,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             SenderKeyDistributionMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -77755,6 +78167,8 @@ $root.E2E = (function() {
             SenderKeyDistributionMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.SenderKeyDistributionMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.SenderKeyDistributionMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -77976,7 +78390,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             SplitPaymentMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -78117,6 +78531,8 @@ $root.E2E = (function() {
             SplitPaymentMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.SplitPaymentMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.SplitPaymentMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -78125,7 +78541,7 @@ $root.E2E = (function() {
                 if (object.splitId != null)
                     message.splitId = String(object.splitId);
                 if (object.totalAmount != null) {
-                    if (typeof object.totalAmount !== "object")
+                    if (!$util.isObject(object.totalAmount))
                         throw TypeError(".E2E.Message.SplitPaymentMessage.totalAmount: object expected");
                     message.totalAmount = $root.E2E.Money.fromObject(object.totalAmount, long + 1);
                 }
@@ -78138,7 +78554,7 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.SplitPaymentMessage.participants: array expected");
                     message.participants = [];
                     for (var i = 0; i < object.participants.length; ++i) {
-                        if (typeof object.participants[i] !== "object")
+                        if (!$util.isObject(object.participants[i]))
                             throw TypeError(".E2E.Message.SplitPaymentMessage.participants: object expected");
                         message.participants[i] = $root.E2E.Message.SplitPaymentParticipant.fromObject(object.participants[i], long + 1);
                     }
@@ -78153,7 +78569,7 @@ $root.E2E = (function() {
                     else if (typeof object.createdAtMs === "object")
                         message.createdAtMs = new $util.LongBits(object.createdAtMs.low >>> 0, object.createdAtMs.high >>> 0).toNumber();
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.SplitPaymentMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -78342,7 +78758,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             SplitPaymentParticipant.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -78450,6 +78866,8 @@ $root.E2E = (function() {
             SplitPaymentParticipant.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.SplitPaymentParticipant)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.SplitPaymentParticipant: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -78458,7 +78876,7 @@ $root.E2E = (function() {
                 if (object.jid != null)
                     message.jid = String(object.jid);
                 if (object.amount != null) {
-                    if (typeof object.amount !== "object")
+                    if (!$util.isObject(object.amount))
                         throw TypeError(".E2E.Message.SplitPaymentParticipant.amount: object expected");
                     message.amount = $root.E2E.Money.fromObject(object.amount, long + 1);
                 }
@@ -78652,7 +79070,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             StatusNotificationMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -78764,18 +79182,20 @@ $root.E2E = (function() {
             StatusNotificationMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.StatusNotificationMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.StatusNotificationMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.StatusNotificationMessage();
                 if (object.responseMessageKey != null) {
-                    if (typeof object.responseMessageKey !== "object")
+                    if (!$util.isObject(object.responseMessageKey))
                         throw TypeError(".E2E.Message.StatusNotificationMessage.responseMessageKey: object expected");
                     message.responseMessageKey = $root.Protocol.MessageKey.fromObject(object.responseMessageKey, long + 1);
                 }
                 if (object.originalMessageKey != null) {
-                    if (typeof object.originalMessageKey !== "object")
+                    if (!$util.isObject(object.originalMessageKey))
                         throw TypeError(".E2E.Message.StatusNotificationMessage.originalMessageKey: object expected");
                     message.originalMessageKey = $root.Protocol.MessageKey.fromObject(object.originalMessageKey, long + 1);
                 }
@@ -78970,7 +79390,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             StatusQuestionAnswerMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -79066,13 +79486,15 @@ $root.E2E = (function() {
             StatusQuestionAnswerMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.StatusQuestionAnswerMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.StatusQuestionAnswerMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.StatusQuestionAnswerMessage();
                 if (object.key != null) {
-                    if (typeof object.key !== "object")
+                    if (!$util.isObject(object.key))
                         throw TypeError(".E2E.Message.StatusQuestionAnswerMessage.key: object expected");
                     message.key = $root.Protocol.MessageKey.fromObject(object.key, long + 1);
                 }
@@ -79246,7 +79668,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             StatusQuotedMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -79360,6 +79782,8 @@ $root.E2E = (function() {
             StatusQuotedMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.StatusQuotedMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.StatusQuotedMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -79385,7 +79809,7 @@ $root.E2E = (function() {
                     else if (object.thumbnail.length >= 0)
                         message.thumbnail = object.thumbnail;
                 if (object.originalStatusId != null) {
-                    if (typeof object.originalStatusId !== "object")
+                    if (!$util.isObject(object.originalStatusId))
                         throw TypeError(".E2E.Message.StatusQuotedMessage.originalStatusId: object expected");
                     message.originalStatusId = $root.Protocol.MessageKey.fromObject(object.originalStatusId, long + 1);
                 }
@@ -79570,7 +79994,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             StatusStickerInteractionMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -79678,13 +80102,15 @@ $root.E2E = (function() {
             StatusStickerInteractionMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.StatusStickerInteractionMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.StatusStickerInteractionMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.StatusStickerInteractionMessage();
                 if (object.key != null) {
-                    if (typeof object.key !== "object")
+                    if (!$util.isObject(object.key))
                         throw TypeError(".E2E.Message.StatusStickerInteractionMessage.key: object expected");
                     message.key = $root.Protocol.MessageKey.fromObject(object.key, long + 1);
                 }
@@ -80089,7 +80515,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             StickerMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -80325,6 +80751,8 @@ $root.E2E = (function() {
             StickerMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.StickerMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.StickerMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -80388,7 +80816,7 @@ $root.E2E = (function() {
                     else if (object.pngThumbnail.length >= 0)
                         message.pngThumbnail = object.pngThumbnail;
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.StickerMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -80898,7 +81326,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             StickerPackMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -81148,6 +81576,8 @@ $root.E2E = (function() {
             StickerPackMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.StickerPackMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.StickerPackMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -81164,7 +81594,7 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.StickerPackMessage.stickers: array expected");
                     message.stickers = [];
                     for (var i = 0; i < object.stickers.length; ++i) {
-                        if (typeof object.stickers[i] !== "object")
+                        if (!$util.isObject(object.stickers[i]))
                             throw TypeError(".E2E.Message.StickerPackMessage.stickers: object expected");
                         message.stickers[i] = $root.E2E.Message.StickerPackMessage.Sticker.fromObject(object.stickers[i], long + 1);
                     }
@@ -81198,7 +81628,7 @@ $root.E2E = (function() {
                 if (object.caption != null)
                     message.caption = String(object.caption);
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.StickerPackMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -81583,7 +82013,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 Sticker.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -81718,6 +82148,8 @@ $root.E2E = (function() {
                 Sticker.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.StickerPackMessage.Sticker)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.StickerPackMessage.Sticker: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -81939,7 +82371,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             StickerSyncRMRMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -82046,6 +82478,8 @@ $root.E2E = (function() {
             StickerSyncRMRMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.StickerSyncRMRMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.StickerSyncRMRMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -82264,7 +82698,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             TemplateButtonReplyMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -82381,6 +82815,8 @@ $root.E2E = (function() {
             TemplateButtonReplyMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.TemplateButtonReplyMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.TemplateButtonReplyMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -82391,7 +82827,7 @@ $root.E2E = (function() {
                 if (object.selectedDisplayText != null)
                     message.selectedDisplayText = String(object.selectedDisplayText);
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.TemplateButtonReplyMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -82612,7 +83048,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             TemplateMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -82758,35 +83194,37 @@ $root.E2E = (function() {
             TemplateMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.TemplateMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.TemplateMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.E2E.Message.TemplateMessage();
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.TemplateMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
                 if (object.hydratedTemplate != null) {
-                    if (typeof object.hydratedTemplate !== "object")
+                    if (!$util.isObject(object.hydratedTemplate))
                         throw TypeError(".E2E.Message.TemplateMessage.hydratedTemplate: object expected");
                     message.hydratedTemplate = $root.E2E.Message.TemplateMessage.HydratedFourRowTemplate.fromObject(object.hydratedTemplate, long + 1);
                 }
                 if (object.templateId != null)
                     message.templateId = String(object.templateId);
                 if (object.fourRowTemplate != null) {
-                    if (typeof object.fourRowTemplate !== "object")
+                    if (!$util.isObject(object.fourRowTemplate))
                         throw TypeError(".E2E.Message.TemplateMessage.fourRowTemplate: object expected");
                     message.fourRowTemplate = $root.E2E.Message.TemplateMessage.FourRowTemplate.fromObject(object.fourRowTemplate, long + 1);
                 }
                 if (object.hydratedFourRowTemplate != null) {
-                    if (typeof object.hydratedFourRowTemplate !== "object")
+                    if (!$util.isObject(object.hydratedFourRowTemplate))
                         throw TypeError(".E2E.Message.TemplateMessage.hydratedFourRowTemplate: object expected");
                     message.hydratedFourRowTemplate = $root.E2E.Message.TemplateMessage.HydratedFourRowTemplate.fromObject(object.hydratedFourRowTemplate, long + 1);
                 }
                 if (object.interactiveMessageTemplate != null) {
-                    if (typeof object.interactiveMessageTemplate !== "object")
+                    if (!$util.isObject(object.interactiveMessageTemplate))
                         throw TypeError(".E2E.Message.TemplateMessage.interactiveMessageTemplate: object expected");
                     message.interactiveMessageTemplate = $root.E2E.Message.InteractiveMessage.fromObject(object.interactiveMessageTemplate, long + 1);
                 }
@@ -83033,7 +83471,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 FourRowTemplate.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -83215,18 +83653,20 @@ $root.E2E = (function() {
                 FourRowTemplate.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.TemplateMessage.FourRowTemplate)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.TemplateMessage.FourRowTemplate: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
                         throw Error("maximum nesting depth exceeded");
                     var message = new $root.E2E.Message.TemplateMessage.FourRowTemplate();
                     if (object.content != null) {
-                        if (typeof object.content !== "object")
+                        if (!$util.isObject(object.content))
                             throw TypeError(".E2E.Message.TemplateMessage.FourRowTemplate.content: object expected");
                         message.content = $root.E2E.Message.HighlyStructuredMessage.fromObject(object.content, long + 1);
                     }
                     if (object.footer != null) {
-                        if (typeof object.footer !== "object")
+                        if (!$util.isObject(object.footer))
                             throw TypeError(".E2E.Message.TemplateMessage.FourRowTemplate.footer: object expected");
                         message.footer = $root.E2E.Message.HighlyStructuredMessage.fromObject(object.footer, long + 1);
                     }
@@ -83235,33 +83675,33 @@ $root.E2E = (function() {
                             throw TypeError(".E2E.Message.TemplateMessage.FourRowTemplate.buttons: array expected");
                         message.buttons = [];
                         for (var i = 0; i < object.buttons.length; ++i) {
-                            if (typeof object.buttons[i] !== "object")
+                            if (!$util.isObject(object.buttons[i]))
                                 throw TypeError(".E2E.Message.TemplateMessage.FourRowTemplate.buttons: object expected");
                             message.buttons[i] = $root.E2E.TemplateButton.fromObject(object.buttons[i], long + 1);
                         }
                     }
                     if (object.documentMessage != null) {
-                        if (typeof object.documentMessage !== "object")
+                        if (!$util.isObject(object.documentMessage))
                             throw TypeError(".E2E.Message.TemplateMessage.FourRowTemplate.documentMessage: object expected");
                         message.documentMessage = $root.E2E.Message.DocumentMessage.fromObject(object.documentMessage, long + 1);
                     }
                     if (object.highlyStructuredMessage != null) {
-                        if (typeof object.highlyStructuredMessage !== "object")
+                        if (!$util.isObject(object.highlyStructuredMessage))
                             throw TypeError(".E2E.Message.TemplateMessage.FourRowTemplate.highlyStructuredMessage: object expected");
                         message.highlyStructuredMessage = $root.E2E.Message.HighlyStructuredMessage.fromObject(object.highlyStructuredMessage, long + 1);
                     }
                     if (object.imageMessage != null) {
-                        if (typeof object.imageMessage !== "object")
+                        if (!$util.isObject(object.imageMessage))
                             throw TypeError(".E2E.Message.TemplateMessage.FourRowTemplate.imageMessage: object expected");
                         message.imageMessage = $root.E2E.Message.ImageMessage.fromObject(object.imageMessage, long + 1);
                     }
                     if (object.videoMessage != null) {
-                        if (typeof object.videoMessage !== "object")
+                        if (!$util.isObject(object.videoMessage))
                             throw TypeError(".E2E.Message.TemplateMessage.FourRowTemplate.videoMessage: object expected");
                         message.videoMessage = $root.E2E.Message.VideoMessage.fromObject(object.videoMessage, long + 1);
                     }
                     if (object.locationMessage != null) {
-                        if (typeof object.locationMessage !== "object")
+                        if (!$util.isObject(object.locationMessage))
                             throw TypeError(".E2E.Message.TemplateMessage.FourRowTemplate.locationMessage: object expected");
                         message.locationMessage = $root.E2E.Message.LocationMessage.fromObject(object.locationMessage, long + 1);
                     }
@@ -83547,7 +83987,7 @@ $root.E2E = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 HydratedFourRowTemplate.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -83736,6 +84176,8 @@ $root.E2E = (function() {
                 HydratedFourRowTemplate.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.E2E.Message.TemplateMessage.HydratedFourRowTemplate)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.Message.TemplateMessage.HydratedFourRowTemplate: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -83750,7 +84192,7 @@ $root.E2E = (function() {
                             throw TypeError(".E2E.Message.TemplateMessage.HydratedFourRowTemplate.hydratedButtons: array expected");
                         message.hydratedButtons = [];
                         for (var i = 0; i < object.hydratedButtons.length; ++i) {
-                            if (typeof object.hydratedButtons[i] !== "object")
+                            if (!$util.isObject(object.hydratedButtons[i]))
                                 throw TypeError(".E2E.Message.TemplateMessage.HydratedFourRowTemplate.hydratedButtons: object expected");
                             message.hydratedButtons[i] = $root.E2E.HydratedTemplateButton.fromObject(object.hydratedButtons[i], long + 1);
                         }
@@ -83760,24 +84202,24 @@ $root.E2E = (function() {
                     if (object.maskLinkedDevices != null)
                         message.maskLinkedDevices = Boolean(object.maskLinkedDevices);
                     if (object.documentMessage != null) {
-                        if (typeof object.documentMessage !== "object")
+                        if (!$util.isObject(object.documentMessage))
                             throw TypeError(".E2E.Message.TemplateMessage.HydratedFourRowTemplate.documentMessage: object expected");
                         message.documentMessage = $root.E2E.Message.DocumentMessage.fromObject(object.documentMessage, long + 1);
                     }
                     if (object.hydratedTitleText != null)
                         message.hydratedTitleText = String(object.hydratedTitleText);
                     if (object.imageMessage != null) {
-                        if (typeof object.imageMessage !== "object")
+                        if (!$util.isObject(object.imageMessage))
                             throw TypeError(".E2E.Message.TemplateMessage.HydratedFourRowTemplate.imageMessage: object expected");
                         message.imageMessage = $root.E2E.Message.ImageMessage.fromObject(object.imageMessage, long + 1);
                     }
                     if (object.videoMessage != null) {
-                        if (typeof object.videoMessage !== "object")
+                        if (!$util.isObject(object.videoMessage))
                             throw TypeError(".E2E.Message.TemplateMessage.HydratedFourRowTemplate.videoMessage: object expected");
                         message.videoMessage = $root.E2E.Message.VideoMessage.fromObject(object.videoMessage, long + 1);
                     }
                     if (object.locationMessage != null) {
-                        if (typeof object.locationMessage !== "object")
+                        if (!$util.isObject(object.locationMessage))
                             throw TypeError(".E2E.Message.TemplateMessage.HydratedFourRowTemplate.locationMessage: object expected");
                         message.locationMessage = $root.E2E.Message.LocationMessage.fromObject(object.locationMessage, long + 1);
                     }
@@ -83957,7 +84399,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             URLMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -84044,6 +84486,8 @@ $root.E2E = (function() {
             URLMetadata.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.URLMetadata)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.URLMetadata: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -84211,7 +84655,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             VideoEndCard.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -84323,6 +84767,8 @@ $root.E2E = (function() {
             VideoEndCard.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.VideoEndCard)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.VideoEndCard: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -84802,7 +85248,7 @@ $root.E2E = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             VideoMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -85130,6 +85576,8 @@ $root.E2E = (function() {
             VideoMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.E2E.Message.VideoMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.VideoMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -85178,7 +85626,7 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.VideoMessage.interactiveAnnotations: array expected");
                     message.interactiveAnnotations = [];
                     for (var i = 0; i < object.interactiveAnnotations.length; ++i) {
-                        if (typeof object.interactiveAnnotations[i] !== "object")
+                        if (!$util.isObject(object.interactiveAnnotations[i]))
                             throw TypeError(".E2E.Message.VideoMessage.interactiveAnnotations: object expected");
                         message.interactiveAnnotations[i] = $root.E2E.InteractiveAnnotation.fromObject(object.interactiveAnnotations[i], long + 1);
                     }
@@ -85200,7 +85648,7 @@ $root.E2E = (function() {
                     else if (object.jpegThumbnail.length >= 0)
                         message.jpegThumbnail = object.jpegThumbnail;
                 if (object.contextInfo != null) {
-                    if (typeof object.contextInfo !== "object")
+                    if (!$util.isObject(object.contextInfo))
                         throw TypeError(".E2E.Message.VideoMessage.contextInfo: object expected");
                     message.contextInfo = $root.E2E.ContextInfo.fromObject(object.contextInfo, long + 1);
                 }
@@ -85254,7 +85702,7 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.VideoMessage.annotations: array expected");
                     message.annotations = [];
                     for (var i = 0; i < object.annotations.length; ++i) {
-                        if (typeof object.annotations[i] !== "object")
+                        if (!$util.isObject(object.annotations[i]))
                             throw TypeError(".E2E.Message.VideoMessage.annotations: object expected");
                         message.annotations[i] = $root.E2E.InteractiveAnnotation.fromObject(object.annotations[i], long + 1);
                     }
@@ -85266,7 +85714,7 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.VideoMessage.processedVideos: array expected");
                     message.processedVideos = [];
                     for (var i = 0; i < object.processedVideos.length; ++i) {
-                        if (typeof object.processedVideos[i] !== "object")
+                        if (!$util.isObject(object.processedVideos[i]))
                             throw TypeError(".E2E.Message.VideoMessage.processedVideos: object expected");
                         message.processedVideos[i] = $root.E2E.ProcessedVideo.fromObject(object.processedVideos[i], long + 1);
                     }
@@ -85725,7 +86173,7 @@ $root.Protocol = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         LimitSharing.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -85840,6 +86288,8 @@ $root.Protocol = (function() {
         LimitSharing.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Protocol.LimitSharing)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".Protocol.LimitSharing: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -86083,7 +86533,7 @@ $root.Protocol = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         MessageKey.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -86191,6 +86641,8 @@ $root.Protocol = (function() {
         MessageKey.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Protocol.MessageKey)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".Protocol.MessageKey: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -86456,7 +86908,7 @@ $root.AICommonDeprecated = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIRichResponseSubMessage.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -86635,6 +87087,8 @@ $root.AICommonDeprecated = (function() {
         AIRichResponseSubMessage.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseSubMessage)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommonDeprecated.AIRichResponseSubMessage: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -86689,44 +87143,44 @@ $root.AICommonDeprecated = (function() {
                 break;
             }
             if (object.gridImageMetadata != null) {
-                if (typeof object.gridImageMetadata !== "object")
+                if (!$util.isObject(object.gridImageMetadata))
                     throw TypeError(".AICommonDeprecated.AIRichResponseSubMessage.gridImageMetadata: object expected");
                 message.gridImageMetadata = $root.AICommonDeprecated.AIRichResponseGridImageMetadata.fromObject(object.gridImageMetadata, long + 1);
             }
             if (object.messageText != null)
                 message.messageText = String(object.messageText);
             if (object.imageMetadata != null) {
-                if (typeof object.imageMetadata !== "object")
+                if (!$util.isObject(object.imageMetadata))
                     throw TypeError(".AICommonDeprecated.AIRichResponseSubMessage.imageMetadata: object expected");
                 message.imageMetadata = $root.AICommonDeprecated.AIRichResponseInlineImageMetadata.fromObject(object.imageMetadata, long + 1);
             }
             if (object.codeMetadata != null) {
-                if (typeof object.codeMetadata !== "object")
+                if (!$util.isObject(object.codeMetadata))
                     throw TypeError(".AICommonDeprecated.AIRichResponseSubMessage.codeMetadata: object expected");
                 message.codeMetadata = $root.AICommonDeprecated.AIRichResponseCodeMetadata.fromObject(object.codeMetadata, long + 1);
             }
             if (object.tableMetadata != null) {
-                if (typeof object.tableMetadata !== "object")
+                if (!$util.isObject(object.tableMetadata))
                     throw TypeError(".AICommonDeprecated.AIRichResponseSubMessage.tableMetadata: object expected");
                 message.tableMetadata = $root.AICommonDeprecated.AIRichResponseTableMetadata.fromObject(object.tableMetadata, long + 1);
             }
             if (object.dynamicMetadata != null) {
-                if (typeof object.dynamicMetadata !== "object")
+                if (!$util.isObject(object.dynamicMetadata))
                     throw TypeError(".AICommonDeprecated.AIRichResponseSubMessage.dynamicMetadata: object expected");
                 message.dynamicMetadata = $root.AICommonDeprecated.AIRichResponseDynamicMetadata.fromObject(object.dynamicMetadata, long + 1);
             }
             if (object.latexMetadata != null) {
-                if (typeof object.latexMetadata !== "object")
+                if (!$util.isObject(object.latexMetadata))
                     throw TypeError(".AICommonDeprecated.AIRichResponseSubMessage.latexMetadata: object expected");
                 message.latexMetadata = $root.AICommonDeprecated.AIRichResponseLatexMetadata.fromObject(object.latexMetadata, long + 1);
             }
             if (object.mapMetadata != null) {
-                if (typeof object.mapMetadata !== "object")
+                if (!$util.isObject(object.mapMetadata))
                     throw TypeError(".AICommonDeprecated.AIRichResponseSubMessage.mapMetadata: object expected");
                 message.mapMetadata = $root.AICommonDeprecated.AIRichResponseMapMetadata.fromObject(object.mapMetadata, long + 1);
             }
             if (object.contentItemsMetadata != null) {
-                if (typeof object.contentItemsMetadata !== "object")
+                if (!$util.isObject(object.contentItemsMetadata))
                     throw TypeError(".AICommonDeprecated.AIRichResponseSubMessage.contentItemsMetadata: object expected");
                 message.contentItemsMetadata = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.fromObject(object.contentItemsMetadata, long + 1);
             }
@@ -86902,7 +87356,7 @@ $root.AICommonDeprecated = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIRichResponseContentItemsMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -87009,6 +87463,8 @@ $root.AICommonDeprecated = (function() {
         AIRichResponseContentItemsMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseContentItemsMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommonDeprecated.AIRichResponseContentItemsMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -87019,7 +87475,7 @@ $root.AICommonDeprecated = (function() {
                     throw TypeError(".AICommonDeprecated.AIRichResponseContentItemsMetadata.itemsMetadata: array expected");
                 message.itemsMetadata = [];
                 for (var i = 0; i < object.itemsMetadata.length; ++i) {
-                    if (typeof object.itemsMetadata[i] !== "object")
+                    if (!$util.isObject(object.itemsMetadata[i]))
                         throw TypeError(".AICommonDeprecated.AIRichResponseContentItemsMetadata.itemsMetadata: object expected");
                     message.itemsMetadata[i] = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.fromObject(object.itemsMetadata[i], long + 1);
                 }
@@ -87189,7 +87645,7 @@ $root.AICommonDeprecated = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AIRichResponseContentItemMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -87282,13 +87738,15 @@ $root.AICommonDeprecated = (function() {
             AIRichResponseContentItemMetadata.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata();
                 if (object.reelItem != null) {
-                    if (typeof object.reelItem !== "object")
+                    if (!$util.isObject(object.reelItem))
                         throw TypeError(".AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.reelItem: object expected");
                     message.reelItem = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseReelItem.fromObject(object.reelItem, long + 1);
                 }
@@ -87457,7 +87915,7 @@ $root.AICommonDeprecated = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AIRichResponseReelItem.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -87565,6 +88023,8 @@ $root.AICommonDeprecated = (function() {
             AIRichResponseReelItem.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseReelItem)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseReelItem: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -87793,7 +88253,7 @@ $root.AICommonDeprecated = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIRichResponseMapMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -87923,6 +88383,8 @@ $root.AICommonDeprecated = (function() {
         AIRichResponseMapMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseMapMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommonDeprecated.AIRichResponseMapMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -87941,7 +88403,7 @@ $root.AICommonDeprecated = (function() {
                     throw TypeError(".AICommonDeprecated.AIRichResponseMapMetadata.annotations: array expected");
                 message.annotations = [];
                 for (var i = 0; i < object.annotations.length; ++i) {
-                    if (typeof object.annotations[i] !== "object")
+                    if (!$util.isObject(object.annotations[i]))
                         throw TypeError(".AICommonDeprecated.AIRichResponseMapMetadata.annotations: object expected");
                     message.annotations[i] = $root.AICommonDeprecated.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.fromObject(object.annotations[i], long + 1);
                 }
@@ -88140,7 +88602,7 @@ $root.AICommonDeprecated = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AIRichResponseMapAnnotation.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -88255,6 +88717,8 @@ $root.AICommonDeprecated = (function() {
             AIRichResponseMapAnnotation.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommonDeprecated.AIRichResponseMapMetadata.AIRichResponseMapAnnotation)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".AICommonDeprecated.AIRichResponseMapMetadata.AIRichResponseMapAnnotation: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -88430,7 +88894,7 @@ $root.AICommonDeprecated = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIRichResponseLatexMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -88532,6 +88996,8 @@ $root.AICommonDeprecated = (function() {
         AIRichResponseLatexMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseLatexMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommonDeprecated.AIRichResponseLatexMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -88544,7 +89010,7 @@ $root.AICommonDeprecated = (function() {
                     throw TypeError(".AICommonDeprecated.AIRichResponseLatexMetadata.expressions: array expected");
                 message.expressions = [];
                 for (var i = 0; i < object.expressions.length; ++i) {
-                    if (typeof object.expressions[i] !== "object")
+                    if (!$util.isObject(object.expressions[i]))
                         throw TypeError(".AICommonDeprecated.AIRichResponseLatexMetadata.expressions: object expected");
                     message.expressions[i] = $root.AICommonDeprecated.AIRichResponseLatexMetadata.AIRichResponseLatexExpression.fromObject(object.expressions[i], long + 1);
                 }
@@ -88772,7 +89238,7 @@ $root.AICommonDeprecated = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AIRichResponseLatexExpression.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -88915,6 +89381,8 @@ $root.AICommonDeprecated = (function() {
             AIRichResponseLatexExpression.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommonDeprecated.AIRichResponseLatexMetadata.AIRichResponseLatexExpression)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".AICommonDeprecated.AIRichResponseLatexMetadata.AIRichResponseLatexExpression: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -89130,7 +89598,7 @@ $root.AICommonDeprecated = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIRichResponseDynamicMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -89244,6 +89712,8 @@ $root.AICommonDeprecated = (function() {
         AIRichResponseDynamicMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseDynamicMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommonDeprecated.AIRichResponseDynamicMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -89461,7 +89931,7 @@ $root.AICommonDeprecated = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIRichResponseTableMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -89563,6 +90033,8 @@ $root.AICommonDeprecated = (function() {
         AIRichResponseTableMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseTableMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommonDeprecated.AIRichResponseTableMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -89573,7 +90045,7 @@ $root.AICommonDeprecated = (function() {
                     throw TypeError(".AICommonDeprecated.AIRichResponseTableMetadata.rows: array expected");
                 message.rows = [];
                 for (var i = 0; i < object.rows.length; ++i) {
-                    if (typeof object.rows[i] !== "object")
+                    if (!$util.isObject(object.rows[i]))
                         throw TypeError(".AICommonDeprecated.AIRichResponseTableMetadata.rows: object expected");
                     message.rows[i] = $root.AICommonDeprecated.AIRichResponseTableMetadata.AIRichResponseTableRow.fromObject(object.rows[i], long + 1);
                 }
@@ -89728,7 +90200,7 @@ $root.AICommonDeprecated = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AIRichResponseTableRow.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -89828,6 +90300,8 @@ $root.AICommonDeprecated = (function() {
             AIRichResponseTableRow.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommonDeprecated.AIRichResponseTableMetadata.AIRichResponseTableRow)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".AICommonDeprecated.AIRichResponseTableMetadata.AIRichResponseTableRow: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -89996,7 +90470,7 @@ $root.AICommonDeprecated = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIRichResponseCodeMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -90098,6 +90572,8 @@ $root.AICommonDeprecated = (function() {
         AIRichResponseCodeMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseCodeMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommonDeprecated.AIRichResponseCodeMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -90110,7 +90586,7 @@ $root.AICommonDeprecated = (function() {
                     throw TypeError(".AICommonDeprecated.AIRichResponseCodeMetadata.codeBlocks: array expected");
                 message.codeBlocks = [];
                 for (var i = 0; i < object.codeBlocks.length; ++i) {
-                    if (typeof object.codeBlocks[i] !== "object")
+                    if (!$util.isObject(object.codeBlocks[i]))
                         throw TypeError(".AICommonDeprecated.AIRichResponseCodeMetadata.codeBlocks: object expected");
                     message.codeBlocks[i] = $root.AICommonDeprecated.AIRichResponseCodeMetadata.AIRichResponseCodeBlock.fromObject(object.codeBlocks[i], long + 1);
                 }
@@ -90261,7 +90737,7 @@ $root.AICommonDeprecated = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AIRichResponseCodeBlock.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -90364,6 +90840,8 @@ $root.AICommonDeprecated = (function() {
             AIRichResponseCodeBlock.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommonDeprecated.AIRichResponseCodeMetadata.AIRichResponseCodeBlock)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".AICommonDeprecated.AIRichResponseCodeMetadata.AIRichResponseCodeBlock: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -90596,7 +91074,7 @@ $root.AICommonDeprecated = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIRichResponseInlineImageMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -90712,13 +91190,15 @@ $root.AICommonDeprecated = (function() {
         AIRichResponseInlineImageMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseInlineImageMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommonDeprecated.AIRichResponseInlineImageMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
             var message = new $root.AICommonDeprecated.AIRichResponseInlineImageMetadata();
             if (object.imageUrl != null) {
-                if (typeof object.imageUrl !== "object")
+                if (!$util.isObject(object.imageUrl))
                     throw TypeError(".AICommonDeprecated.AIRichResponseInlineImageMetadata.imageUrl: object expected");
                 message.imageUrl = $root.AICommonDeprecated.AIRichResponseImageURL.fromObject(object.imageUrl, long + 1);
             }
@@ -90916,7 +91396,7 @@ $root.AICommonDeprecated = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIRichResponseGridImageMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -91020,13 +91500,15 @@ $root.AICommonDeprecated = (function() {
         AIRichResponseGridImageMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseGridImageMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommonDeprecated.AIRichResponseGridImageMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
             var message = new $root.AICommonDeprecated.AIRichResponseGridImageMetadata();
             if (object.gridImageUrl != null) {
-                if (typeof object.gridImageUrl !== "object")
+                if (!$util.isObject(object.gridImageUrl))
                     throw TypeError(".AICommonDeprecated.AIRichResponseGridImageMetadata.gridImageUrl: object expected");
                 message.gridImageUrl = $root.AICommonDeprecated.AIRichResponseImageURL.fromObject(object.gridImageUrl, long + 1);
             }
@@ -91035,7 +91517,7 @@ $root.AICommonDeprecated = (function() {
                     throw TypeError(".AICommonDeprecated.AIRichResponseGridImageMetadata.imageUrls: array expected");
                 message.imageUrls = [];
                 for (var i = 0; i < object.imageUrls.length; ++i) {
-                    if (typeof object.imageUrls[i] !== "object")
+                    if (!$util.isObject(object.imageUrls[i]))
                         throw TypeError(".AICommonDeprecated.AIRichResponseGridImageMetadata.imageUrls: object expected");
                     message.imageUrls[i] = $root.AICommonDeprecated.AIRichResponseImageURL.fromObject(object.imageUrls[i], long + 1);
                 }
@@ -91200,7 +91682,7 @@ $root.AICommonDeprecated = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIRichResponseImageURL.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -91301,6 +91783,8 @@ $root.AICommonDeprecated = (function() {
         AIRichResponseImageURL.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseImageURL)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommonDeprecated.AIRichResponseImageURL: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -91597,7 +92081,7 @@ $root.StatusAttributions = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         StatusAttribution.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -91789,6 +92273,8 @@ $root.StatusAttributions = (function() {
         StatusAttribution.fromObject = function fromObject(object, long) {
             if (object instanceof $root.StatusAttributions.StatusAttribution)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".StatusAttributions.StatusAttribution: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -91853,32 +92339,32 @@ $root.StatusAttributions = (function() {
             if (object.actionUrl != null)
                 message.actionUrl = String(object.actionUrl);
             if (object.statusReshare != null) {
-                if (typeof object.statusReshare !== "object")
+                if (!$util.isObject(object.statusReshare))
                     throw TypeError(".StatusAttributions.StatusAttribution.statusReshare: object expected");
                 message.statusReshare = $root.StatusAttributions.StatusAttribution.StatusReshare.fromObject(object.statusReshare, long + 1);
             }
             if (object.externalShare != null) {
-                if (typeof object.externalShare !== "object")
+                if (!$util.isObject(object.externalShare))
                     throw TypeError(".StatusAttributions.StatusAttribution.externalShare: object expected");
                 message.externalShare = $root.StatusAttributions.StatusAttribution.ExternalShare.fromObject(object.externalShare, long + 1);
             }
             if (object.music != null) {
-                if (typeof object.music !== "object")
+                if (!$util.isObject(object.music))
                     throw TypeError(".StatusAttributions.StatusAttribution.music: object expected");
                 message.music = $root.StatusAttributions.StatusAttribution.Music.fromObject(object.music, long + 1);
             }
             if (object.groupStatus != null) {
-                if (typeof object.groupStatus !== "object")
+                if (!$util.isObject(object.groupStatus))
                     throw TypeError(".StatusAttributions.StatusAttribution.groupStatus: object expected");
                 message.groupStatus = $root.StatusAttributions.StatusAttribution.GroupStatus.fromObject(object.groupStatus, long + 1);
             }
             if (object.rlAttribution != null) {
-                if (typeof object.rlAttribution !== "object")
+                if (!$util.isObject(object.rlAttribution))
                     throw TypeError(".StatusAttributions.StatusAttribution.rlAttribution: object expected");
                 message.rlAttribution = $root.StatusAttributions.StatusAttribution.RLAttribution.fromObject(object.rlAttribution, long + 1);
             }
             if (object.aiCreatedAttribution != null) {
-                if (typeof object.aiCreatedAttribution !== "object")
+                if (!$util.isObject(object.aiCreatedAttribution))
                     throw TypeError(".StatusAttributions.StatusAttribution.aiCreatedAttribution: object expected");
                 message.aiCreatedAttribution = $root.StatusAttributions.StatusAttribution.AiCreatedAttribution.fromObject(object.aiCreatedAttribution, long + 1);
             }
@@ -92044,7 +92530,7 @@ $root.StatusAttributions = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AiCreatedAttribution.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -92136,6 +92622,8 @@ $root.StatusAttributions = (function() {
             AiCreatedAttribution.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.AiCreatedAttribution)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".StatusAttributions.StatusAttribution.AiCreatedAttribution: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -92335,7 +92823,7 @@ $root.StatusAttributions = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ExternalShare.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -92459,6 +92947,8 @@ $root.StatusAttributions = (function() {
             ExternalShare.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.ExternalShare)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".StatusAttributions.StatusAttribution.ExternalShare: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -92707,7 +93197,7 @@ $root.StatusAttributions = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             GroupStatus.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -92794,6 +93284,8 @@ $root.StatusAttributions = (function() {
             GroupStatus.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.GroupStatus)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".StatusAttributions.StatusAttribution.GroupStatus: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -92987,7 +93479,7 @@ $root.StatusAttributions = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             Music.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -93109,6 +93601,8 @@ $root.StatusAttributions = (function() {
             Music.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.Music)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".StatusAttributions.StatusAttribution.Music: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -93273,7 +93767,7 @@ $root.StatusAttributions = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             RLAttribution.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -93367,6 +93861,8 @@ $root.StatusAttributions = (function() {
             RLAttribution.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.RLAttribution)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".StatusAttributions.StatusAttribution.RLAttribution: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -93556,7 +94052,7 @@ $root.StatusAttributions = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             StatusReshare.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -93660,6 +94156,8 @@ $root.StatusAttributions = (function() {
             StatusReshare.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.StatusReshare)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".StatusAttributions.StatusAttribution.StatusReshare: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -93694,7 +94192,7 @@ $root.StatusAttributions = (function() {
                     break;
                 }
                 if (object.metadata != null) {
-                    if (typeof object.metadata !== "object")
+                    if (!$util.isObject(object.metadata))
                         throw TypeError(".StatusAttributions.StatusAttribution.StatusReshare.metadata: object expected");
                     message.metadata = $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata.fromObject(object.metadata, long + 1);
                 }
@@ -93863,7 +94361,7 @@ $root.StatusAttributions = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 Metadata.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -93971,6 +94469,8 @@ $root.StatusAttributions = (function() {
                 Metadata.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".StatusAttributions.StatusAttribution.StatusReshare.Metadata: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -94197,7 +94697,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotAgentDeepLinkMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -94284,6 +94784,8 @@ $root.AICommon = (function() {
         BotAgentDeepLinkMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotAgentDeepLinkMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotAgentDeepLinkMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -94422,7 +94924,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotAgentMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -94511,13 +95013,15 @@ $root.AICommon = (function() {
         BotAgentMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotAgentMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotAgentMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
             var message = new $root.AICommon.BotAgentMetadata();
             if (object.deepLinkMetadata != null) {
-                if (typeof object.deepLinkMetadata !== "object")
+                if (!$util.isObject(object.deepLinkMetadata))
                     throw TypeError(".AICommon.BotAgentMetadata.deepLinkMetadata: object expected");
                 message.deepLinkMetadata = $root.AICommon.BotAgentDeepLinkMetadata.fromObject(object.deepLinkMetadata, long + 1);
             }
@@ -94676,7 +95180,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotInfrastructureDiagnostics.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -94788,6 +95292,8 @@ $root.AICommon = (function() {
         BotInfrastructureDiagnostics.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotInfrastructureDiagnostics)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotInfrastructureDiagnostics: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -95000,7 +95506,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIHomeState.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -95117,6 +95623,8 @@ $root.AICommon = (function() {
         AIHomeState.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.AIHomeState)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.AIHomeState: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -95136,7 +95644,7 @@ $root.AICommon = (function() {
                     throw TypeError(".AICommon.AIHomeState.capabilityOptions: array expected");
                 message.capabilityOptions = [];
                 for (var i = 0; i < object.capabilityOptions.length; ++i) {
-                    if (typeof object.capabilityOptions[i] !== "object")
+                    if (!$util.isObject(object.capabilityOptions[i]))
                         throw TypeError(".AICommon.AIHomeState.capabilityOptions: object expected");
                     message.capabilityOptions[i] = $root.AICommon.AIHomeState.AIHomeOption.fromObject(object.capabilityOptions[i], long + 1);
                 }
@@ -95146,7 +95654,7 @@ $root.AICommon = (function() {
                     throw TypeError(".AICommon.AIHomeState.conversationOptions: array expected");
                 message.conversationOptions = [];
                 for (var i = 0; i < object.conversationOptions.length; ++i) {
-                    if (typeof object.conversationOptions[i] !== "object")
+                    if (!$util.isObject(object.conversationOptions[i]))
                         throw TypeError(".AICommon.AIHomeState.conversationOptions: object expected");
                     message.conversationOptions[i] = $root.AICommon.AIHomeState.AIHomeOption.fromObject(object.conversationOptions[i], long + 1);
                 }
@@ -95379,7 +95887,7 @@ $root.AICommon = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AIHomeOption.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -95524,6 +96032,8 @@ $root.AICommon = (function() {
             AIHomeOption.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommon.AIHomeState.AIHomeOption)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".AICommon.AIHomeState.AIHomeOption: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -95753,7 +96263,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotDocumentMessageMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -95845,6 +96355,8 @@ $root.AICommon = (function() {
         BotDocumentMessageMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotDocumentMessageMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotDocumentMessageMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -96033,7 +96545,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         SessionTransparencyMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -96139,6 +96651,8 @@ $root.AICommon = (function() {
         SessionTransparencyMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.SessionTransparencyMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.SessionTransparencyMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -96313,7 +96827,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIRegenerateMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -96409,13 +96923,15 @@ $root.AICommon = (function() {
         AIRegenerateMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.AIRegenerateMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.AIRegenerateMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
             var message = new $root.AICommon.AIRegenerateMetadata();
             if (object.messageKey != null) {
-                if (typeof object.messageKey !== "object")
+                if (!$util.isObject(object.messageKey))
                     throw TypeError(".AICommon.AIRegenerateMetadata.messageKey: object expected");
                 message.messageKey = $root.Protocol.MessageKey.fromObject(object.messageKey, long + 1);
             }
@@ -96572,7 +97088,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIRichResponseUnifiedResponse.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -96659,6 +97175,8 @@ $root.AICommon = (function() {
         AIRichResponseUnifiedResponse.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.AIRichResponseUnifiedResponse)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.AIRichResponseUnifiedResponse: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -96817,7 +97335,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotMessageSharingInfo.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -96962,6 +97480,8 @@ $root.AICommon = (function() {
         BotMessageSharingInfo.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotMessageSharingInfo)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotMessageSharingInfo: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -97326,7 +97846,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         ForwardedAIBotMessageInfo.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -97427,6 +97947,8 @@ $root.AICommon = (function() {
         ForwardedAIBotMessageInfo.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.ForwardedAIBotMessageInfo)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.ForwardedAIBotMessageInfo: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -97642,7 +98164,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotFeedbackMessage.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -97798,13 +98320,15 @@ $root.AICommon = (function() {
         BotFeedbackMessage.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotFeedbackMessage)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotFeedbackMessage: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
             var message = new $root.AICommon.BotFeedbackMessage();
             if (object.messageKey != null) {
-                if (typeof object.messageKey !== "object")
+                if (!$util.isObject(object.messageKey))
                     throw TypeError(".AICommon.BotFeedbackMessage.messageKey: object expected");
                 message.messageKey = $root.Protocol.MessageKey.fromObject(object.messageKey, long + 1);
             }
@@ -97913,7 +98437,7 @@ $root.AICommon = (function() {
                 break;
             }
             if (object.sideBySideSurveyMetadata != null) {
-                if (typeof object.sideBySideSurveyMetadata !== "object")
+                if (!$util.isObject(object.sideBySideSurveyMetadata))
                     throw TypeError(".AICommon.BotFeedbackMessage.sideBySideSurveyMetadata: object expected");
                 message.sideBySideSurveyMetadata = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.fromObject(object.sideBySideSurveyMetadata, long + 1);
             }
@@ -98264,7 +98788,7 @@ $root.AICommon = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             SideBySideSurveyMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -98411,6 +98935,8 @@ $root.AICommon = (function() {
             SideBySideSurveyMetadata.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".AICommon.BotFeedbackMessage.SideBySideSurveyMetadata: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -98431,12 +98957,12 @@ $root.AICommon = (function() {
                 if (object.messageIdToEdit != null)
                     message.messageIdToEdit = String(object.messageIdToEdit);
                 if (object.analyticsData != null) {
-                    if (typeof object.analyticsData !== "object")
+                    if (!$util.isObject(object.analyticsData))
                         throw TypeError(".AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.analyticsData: object expected");
                     message.analyticsData = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData.fromObject(object.analyticsData, long + 1);
                 }
                 if (object.metaAiAnalyticsData != null) {
-                    if (typeof object.metaAiAnalyticsData !== "object")
+                    if (!$util.isObject(object.metaAiAnalyticsData))
                         throw TypeError(".AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.metaAiAnalyticsData: object expected");
                     message.metaAiAnalyticsData = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.fromObject(object.metaAiAnalyticsData, long + 1);
                 }
@@ -98615,7 +99141,7 @@ $root.AICommon = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 SideBySideSurveyAnalyticsData.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -98716,6 +99242,8 @@ $root.AICommon = (function() {
                 SideBySideSurveyAnalyticsData.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -98953,7 +99481,7 @@ $root.AICommon = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 SidebySideSurveyMetaAiAnalyticsData.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -99106,6 +99634,8 @@ $root.AICommon = (function() {
                 SidebySideSurveyMetaAiAnalyticsData.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -99120,27 +99650,27 @@ $root.AICommon = (function() {
                     if (object.timestampMsString != null)
                         message.timestampMsString = String(object.timestampMsString);
                     if (object.ctaImpressionEvent != null) {
-                        if (typeof object.ctaImpressionEvent !== "object")
+                        if (!$util.isObject(object.ctaImpressionEvent))
                             throw TypeError(".AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ctaImpressionEvent: object expected");
                         message.ctaImpressionEvent = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData.fromObject(object.ctaImpressionEvent, long + 1);
                     }
                     if (object.ctaClickEvent != null) {
-                        if (typeof object.ctaClickEvent !== "object")
+                        if (!$util.isObject(object.ctaClickEvent))
                             throw TypeError(".AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.ctaClickEvent: object expected");
                         message.ctaClickEvent = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData.fromObject(object.ctaClickEvent, long + 1);
                     }
                     if (object.cardImpressionEvent != null) {
-                        if (typeof object.cardImpressionEvent !== "object")
+                        if (!$util.isObject(object.cardImpressionEvent))
                             throw TypeError(".AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.cardImpressionEvent: object expected");
                         message.cardImpressionEvent = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData.fromObject(object.cardImpressionEvent, long + 1);
                     }
                     if (object.responseEvent != null) {
-                        if (typeof object.responseEvent !== "object")
+                        if (!$util.isObject(object.responseEvent))
                             throw TypeError(".AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.responseEvent: object expected");
                         message.responseEvent = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData.fromObject(object.responseEvent, long + 1);
                     }
                     if (object.abandonEvent != null) {
-                        if (typeof object.abandonEvent !== "object")
+                        if (!$util.isObject(object.abandonEvent))
                             throw TypeError(".AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.abandonEvent: object expected");
                         message.abandonEvent = $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData.fromObject(object.abandonEvent, long + 1);
                     }
@@ -99297,7 +99827,7 @@ $root.AICommon = (function() {
                      * @returns {$protobuf.Writer} Writer
                      */
                     SideBySideSurveyAbandonEventData.encodeDelimited = function encodeDelimited(message, writer) {
-                        return this.encode(message, writer).ldelim();
+                        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                     };
 
                     /**
@@ -99384,6 +99914,8 @@ $root.AICommon = (function() {
                     SideBySideSurveyAbandonEventData.fromObject = function fromObject(object, long) {
                         if (object instanceof $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData)
                             return object;
+                        if (!$util.isObject(object))
+                            throw TypeError(".AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData: object expected");
                         if (long === undefined)
                             long = 0;
                         if (long > $util.recursionLimit)
@@ -99533,7 +100065,7 @@ $root.AICommon = (function() {
                      * @returns {$protobuf.Writer} Writer
                      */
                     SideBySideSurveyCTAClickEventData.encodeDelimited = function encodeDelimited(message, writer) {
-                        return this.encode(message, writer).ldelim();
+                        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                     };
 
                     /**
@@ -99627,6 +100159,8 @@ $root.AICommon = (function() {
                     SideBySideSurveyCTAClickEventData.fromObject = function fromObject(object, long) {
                         if (object instanceof $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData)
                             return object;
+                        if (!$util.isObject(object))
+                            throw TypeError(".AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData: object expected");
                         if (long === undefined)
                             long = 0;
                         if (long > $util.recursionLimit)
@@ -99771,7 +100305,7 @@ $root.AICommon = (function() {
                      * @returns {$protobuf.Writer} Writer
                      */
                     SideBySideSurveyCTAImpressionEventData.encodeDelimited = function encodeDelimited(message, writer) {
-                        return this.encode(message, writer).ldelim();
+                        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                     };
 
                     /**
@@ -99858,6 +100392,8 @@ $root.AICommon = (function() {
                     SideBySideSurveyCTAImpressionEventData.fromObject = function fromObject(object, long) {
                         if (object instanceof $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData)
                             return object;
+                        if (!$util.isObject(object))
+                            throw TypeError(".AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData: object expected");
                         if (long === undefined)
                             long = 0;
                         if (long > $util.recursionLimit)
@@ -99985,7 +100521,7 @@ $root.AICommon = (function() {
                      * @returns {$protobuf.Writer} Writer
                      */
                     SideBySideSurveyCardImpressionEventData.encodeDelimited = function encodeDelimited(message, writer) {
-                        return this.encode(message, writer).ldelim();
+                        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                     };
 
                     /**
@@ -100065,6 +100601,8 @@ $root.AICommon = (function() {
                     SideBySideSurveyCardImpressionEventData.fromObject = function fromObject(object, long) {
                         if (object instanceof $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData)
                             return object;
+                        if (!$util.isObject(object))
+                            throw TypeError(".AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCardImpressionEventData: object expected");
                         if (long === undefined)
                             long = 0;
                         if (long > $util.recursionLimit)
@@ -100200,7 +100738,7 @@ $root.AICommon = (function() {
                      * @returns {$protobuf.Writer} Writer
                      */
                     SideBySideSurveyResponseEventData.encodeDelimited = function encodeDelimited(message, writer) {
-                        return this.encode(message, writer).ldelim();
+                        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                     };
 
                     /**
@@ -100294,6 +100832,8 @@ $root.AICommon = (function() {
                     SideBySideSurveyResponseEventData.fromObject = function fromObject(object, long) {
                         if (object instanceof $root.AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData)
                             return object;
+                        if (!$util.isObject(object))
+                            throw TypeError(".AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData: object expected");
                         if (long === undefined)
                             long = 0;
                         if (long > $util.recursionLimit)
@@ -100447,7 +100987,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotGroupParticipantMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -100534,6 +101074,8 @@ $root.AICommon = (function() {
         BotGroupParticipantMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotGroupParticipantMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotGroupParticipantMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -100683,7 +101225,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotRenderingConfigMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -100777,6 +101319,8 @@ $root.AICommon = (function() {
         BotRenderingConfigMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotRenderingConfigMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotRenderingConfigMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -100923,7 +101467,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotGroupMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -101018,6 +101562,8 @@ $root.AICommon = (function() {
         BotGroupMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotGroupMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotGroupMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -101028,7 +101574,7 @@ $root.AICommon = (function() {
                     throw TypeError(".AICommon.BotGroupMetadata.participantsMetadata: array expected");
                 message.participantsMetadata = [];
                 for (var i = 0; i < object.participantsMetadata.length; ++i) {
-                    if (typeof object.participantsMetadata[i] !== "object")
+                    if (!$util.isObject(object.participantsMetadata[i]))
                         throw TypeError(".AICommon.BotGroupMetadata.participantsMetadata: object expected");
                     message.participantsMetadata[i] = $root.AICommon.BotGroupParticipantMetadata.fromObject(object.participantsMetadata[i], long + 1);
                 }
@@ -101167,7 +101713,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AISubscriptionUpsellMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -101261,6 +101807,8 @@ $root.AICommon = (function() {
         AISubscriptionUpsellMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.AISubscriptionUpsellMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.AISubscriptionUpsellMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -101872,7 +102420,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -102314,6 +102862,8 @@ $root.AICommon = (function() {
         BotMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -102322,78 +102872,78 @@ $root.AICommon = (function() {
             if (object.personaId != null)
                 message.personaId = String(object.personaId);
             if (object.pluginMetadata != null) {
-                if (typeof object.pluginMetadata !== "object")
+                if (!$util.isObject(object.pluginMetadata))
                     throw TypeError(".AICommon.BotMetadata.pluginMetadata: object expected");
                 message.pluginMetadata = $root.AICommon.BotPluginMetadata.fromObject(object.pluginMetadata, long + 1);
             }
             if (object.suggestedPromptMetadata != null) {
-                if (typeof object.suggestedPromptMetadata !== "object")
+                if (!$util.isObject(object.suggestedPromptMetadata))
                     throw TypeError(".AICommon.BotMetadata.suggestedPromptMetadata: object expected");
                 message.suggestedPromptMetadata = $root.AICommon.BotSuggestedPromptMetadata.fromObject(object.suggestedPromptMetadata, long + 1);
             }
             if (object.invokerJid != null)
                 message.invokerJid = String(object.invokerJid);
             if (object.sessionMetadata != null) {
-                if (typeof object.sessionMetadata !== "object")
+                if (!$util.isObject(object.sessionMetadata))
                     throw TypeError(".AICommon.BotMetadata.sessionMetadata: object expected");
                 message.sessionMetadata = $root.AICommon.BotSessionMetadata.fromObject(object.sessionMetadata, long + 1);
             }
             if (object.memuMetadata != null) {
-                if (typeof object.memuMetadata !== "object")
+                if (!$util.isObject(object.memuMetadata))
                     throw TypeError(".AICommon.BotMetadata.memuMetadata: object expected");
                 message.memuMetadata = $root.AICommon.BotMemuMetadata.fromObject(object.memuMetadata, long + 1);
             }
             if (object.timezone != null)
                 message.timezone = String(object.timezone);
             if (object.reminderMetadata != null) {
-                if (typeof object.reminderMetadata !== "object")
+                if (!$util.isObject(object.reminderMetadata))
                     throw TypeError(".AICommon.BotMetadata.reminderMetadata: object expected");
                 message.reminderMetadata = $root.AICommon.BotReminderMetadata.fromObject(object.reminderMetadata, long + 1);
             }
             if (object.modelMetadata != null) {
-                if (typeof object.modelMetadata !== "object")
+                if (!$util.isObject(object.modelMetadata))
                     throw TypeError(".AICommon.BotMetadata.modelMetadata: object expected");
                 message.modelMetadata = $root.AICommon.BotModelMetadata.fromObject(object.modelMetadata, long + 1);
             }
             if (object.messageDisclaimerText != null)
                 message.messageDisclaimerText = String(object.messageDisclaimerText);
             if (object.progressIndicatorMetadata != null) {
-                if (typeof object.progressIndicatorMetadata !== "object")
+                if (!$util.isObject(object.progressIndicatorMetadata))
                     throw TypeError(".AICommon.BotMetadata.progressIndicatorMetadata: object expected");
                 message.progressIndicatorMetadata = $root.AICommon.BotProgressIndicatorMetadata.fromObject(object.progressIndicatorMetadata, long + 1);
             }
             if (object.capabilityMetadata != null) {
-                if (typeof object.capabilityMetadata !== "object")
+                if (!$util.isObject(object.capabilityMetadata))
                     throw TypeError(".AICommon.BotMetadata.capabilityMetadata: object expected");
                 message.capabilityMetadata = $root.AICommon.BotCapabilityMetadata.fromObject(object.capabilityMetadata, long + 1);
             }
             if (object.imagineMetadata != null) {
-                if (typeof object.imagineMetadata !== "object")
+                if (!$util.isObject(object.imagineMetadata))
                     throw TypeError(".AICommon.BotMetadata.imagineMetadata: object expected");
                 message.imagineMetadata = $root.AICommon.BotImagineMetadata.fromObject(object.imagineMetadata, long + 1);
             }
             if (object.memoryMetadata != null) {
-                if (typeof object.memoryMetadata !== "object")
+                if (!$util.isObject(object.memoryMetadata))
                     throw TypeError(".AICommon.BotMetadata.memoryMetadata: object expected");
                 message.memoryMetadata = $root.AICommon.BotMemoryMetadata.fromObject(object.memoryMetadata, long + 1);
             }
             if (object.renderingMetadata != null) {
-                if (typeof object.renderingMetadata !== "object")
+                if (!$util.isObject(object.renderingMetadata))
                     throw TypeError(".AICommon.BotMetadata.renderingMetadata: object expected");
                 message.renderingMetadata = $root.AICommon.BotRenderingMetadata.fromObject(object.renderingMetadata, long + 1);
             }
             if (object.botMetricsMetadata != null) {
-                if (typeof object.botMetricsMetadata !== "object")
+                if (!$util.isObject(object.botMetricsMetadata))
                     throw TypeError(".AICommon.BotMetadata.botMetricsMetadata: object expected");
                 message.botMetricsMetadata = $root.AICommon.BotMetricsMetadata.fromObject(object.botMetricsMetadata, long + 1);
             }
             if (object.botLinkedAccountsMetadata != null) {
-                if (typeof object.botLinkedAccountsMetadata !== "object")
+                if (!$util.isObject(object.botLinkedAccountsMetadata))
                     throw TypeError(".AICommon.BotMetadata.botLinkedAccountsMetadata: object expected");
                 message.botLinkedAccountsMetadata = $root.AICommon.BotLinkedAccountsMetadata.fromObject(object.botLinkedAccountsMetadata, long + 1);
             }
             if (object.richResponseSourcesMetadata != null) {
-                if (typeof object.richResponseSourcesMetadata !== "object")
+                if (!$util.isObject(object.richResponseSourcesMetadata))
                     throw TypeError(".AICommon.BotMetadata.richResponseSourcesMetadata: object expected");
                 message.richResponseSourcesMetadata = $root.AICommon.BotSourcesMetadata.fromObject(object.richResponseSourcesMetadata, long + 1);
             }
@@ -102403,22 +102953,22 @@ $root.AICommon = (function() {
                 else if (object.aiConversationContext.length >= 0)
                     message.aiConversationContext = object.aiConversationContext;
             if (object.botPromotionMessageMetadata != null) {
-                if (typeof object.botPromotionMessageMetadata !== "object")
+                if (!$util.isObject(object.botPromotionMessageMetadata))
                     throw TypeError(".AICommon.BotMetadata.botPromotionMessageMetadata: object expected");
                 message.botPromotionMessageMetadata = $root.AICommon.BotPromotionMessageMetadata.fromObject(object.botPromotionMessageMetadata, long + 1);
             }
             if (object.botModeSelectionMetadata != null) {
-                if (typeof object.botModeSelectionMetadata !== "object")
+                if (!$util.isObject(object.botModeSelectionMetadata))
                     throw TypeError(".AICommon.BotMetadata.botModeSelectionMetadata: object expected");
                 message.botModeSelectionMetadata = $root.AICommon.BotModeSelectionMetadata.fromObject(object.botModeSelectionMetadata, long + 1);
             }
             if (object.botQuotaMetadata != null) {
-                if (typeof object.botQuotaMetadata !== "object")
+                if (!$util.isObject(object.botQuotaMetadata))
                     throw TypeError(".AICommon.BotMetadata.botQuotaMetadata: object expected");
                 message.botQuotaMetadata = $root.AICommon.BotQuotaMetadata.fromObject(object.botQuotaMetadata, long + 1);
             }
             if (object.botAgeCollectionMetadata != null) {
-                if (typeof object.botAgeCollectionMetadata !== "object")
+                if (!$util.isObject(object.botAgeCollectionMetadata))
                     throw TypeError(".AICommon.BotMetadata.botAgeCollectionMetadata: object expected");
                 message.botAgeCollectionMetadata = $root.AICommon.BotAgeCollectionMetadata.fromObject(object.botAgeCollectionMetadata, long + 1);
             }
@@ -102427,82 +102977,82 @@ $root.AICommon = (function() {
             if (object.botResponseId != null)
                 message.botResponseId = String(object.botResponseId);
             if (object.verificationMetadata != null) {
-                if (typeof object.verificationMetadata !== "object")
+                if (!$util.isObject(object.verificationMetadata))
                     throw TypeError(".AICommon.BotMetadata.verificationMetadata: object expected");
                 message.verificationMetadata = $root.AICommon.BotSignatureVerificationMetadata.fromObject(object.verificationMetadata, long + 1);
             }
             if (object.unifiedResponseMutation != null) {
-                if (typeof object.unifiedResponseMutation !== "object")
+                if (!$util.isObject(object.unifiedResponseMutation))
                     throw TypeError(".AICommon.BotMetadata.unifiedResponseMutation: object expected");
                 message.unifiedResponseMutation = $root.AICommon.BotUnifiedResponseMutation.fromObject(object.unifiedResponseMutation, long + 1);
             }
             if (object.botMessageOriginMetadata != null) {
-                if (typeof object.botMessageOriginMetadata !== "object")
+                if (!$util.isObject(object.botMessageOriginMetadata))
                     throw TypeError(".AICommon.BotMetadata.botMessageOriginMetadata: object expected");
                 message.botMessageOriginMetadata = $root.AICommon.BotMessageOriginMetadata.fromObject(object.botMessageOriginMetadata, long + 1);
             }
             if (object.inThreadSurveyMetadata != null) {
-                if (typeof object.inThreadSurveyMetadata !== "object")
+                if (!$util.isObject(object.inThreadSurveyMetadata))
                     throw TypeError(".AICommon.BotMetadata.inThreadSurveyMetadata: object expected");
                 message.inThreadSurveyMetadata = $root.AICommon.InThreadSurveyMetadata.fromObject(object.inThreadSurveyMetadata, long + 1);
             }
             if (object.botThreadInfo != null) {
-                if (typeof object.botThreadInfo !== "object")
+                if (!$util.isObject(object.botThreadInfo))
                     throw TypeError(".AICommon.BotMetadata.botThreadInfo: object expected");
                 message.botThreadInfo = $root.AICommon.AIThreadInfo.fromObject(object.botThreadInfo, long + 1);
             }
             if (object.regenerateMetadata != null) {
-                if (typeof object.regenerateMetadata !== "object")
+                if (!$util.isObject(object.regenerateMetadata))
                     throw TypeError(".AICommon.BotMetadata.regenerateMetadata: object expected");
                 message.regenerateMetadata = $root.AICommon.AIRegenerateMetadata.fromObject(object.regenerateMetadata, long + 1);
             }
             if (object.sessionTransparencyMetadata != null) {
-                if (typeof object.sessionTransparencyMetadata !== "object")
+                if (!$util.isObject(object.sessionTransparencyMetadata))
                     throw TypeError(".AICommon.BotMetadata.sessionTransparencyMetadata: object expected");
                 message.sessionTransparencyMetadata = $root.AICommon.SessionTransparencyMetadata.fromObject(object.sessionTransparencyMetadata, long + 1);
             }
             if (object.botDocumentMessageMetadata != null) {
-                if (typeof object.botDocumentMessageMetadata !== "object")
+                if (!$util.isObject(object.botDocumentMessageMetadata))
                     throw TypeError(".AICommon.BotMetadata.botDocumentMessageMetadata: object expected");
                 message.botDocumentMessageMetadata = $root.AICommon.BotDocumentMessageMetadata.fromObject(object.botDocumentMessageMetadata, long + 1);
             }
             if (object.botGroupMetadata != null) {
-                if (typeof object.botGroupMetadata !== "object")
+                if (!$util.isObject(object.botGroupMetadata))
                     throw TypeError(".AICommon.BotMetadata.botGroupMetadata: object expected");
                 message.botGroupMetadata = $root.AICommon.BotGroupMetadata.fromObject(object.botGroupMetadata, long + 1);
             }
             if (object.botRenderingConfigMetadata != null) {
-                if (typeof object.botRenderingConfigMetadata !== "object")
+                if (!$util.isObject(object.botRenderingConfigMetadata))
                     throw TypeError(".AICommon.BotMetadata.botRenderingConfigMetadata: object expected");
                 message.botRenderingConfigMetadata = $root.AICommon.BotRenderingConfigMetadata.fromObject(object.botRenderingConfigMetadata, long + 1);
             }
             if (object.botInfrastructureDiagnostics != null) {
-                if (typeof object.botInfrastructureDiagnostics !== "object")
+                if (!$util.isObject(object.botInfrastructureDiagnostics))
                     throw TypeError(".AICommon.BotMetadata.botInfrastructureDiagnostics: object expected");
                 message.botInfrastructureDiagnostics = $root.AICommon.BotInfrastructureDiagnostics.fromObject(object.botInfrastructureDiagnostics, long + 1);
             }
             if (object.aiMediaCollectionMetadata != null) {
-                if (typeof object.aiMediaCollectionMetadata !== "object")
+                if (!$util.isObject(object.aiMediaCollectionMetadata))
                     throw TypeError(".AICommon.BotMetadata.aiMediaCollectionMetadata: object expected");
                 message.aiMediaCollectionMetadata = $root.AICommon.AIMediaCollectionMetadata.fromObject(object.aiMediaCollectionMetadata, long + 1);
             }
             if (object.commandMetadata != null) {
-                if (typeof object.commandMetadata !== "object")
+                if (!$util.isObject(object.commandMetadata))
                     throw TypeError(".AICommon.BotMetadata.commandMetadata: object expected");
                 message.commandMetadata = $root.AICommon.BotCommandMetadata.fromObject(object.commandMetadata, long + 1);
             }
             if (object.resolvedToolCallMetadata != null) {
-                if (typeof object.resolvedToolCallMetadata !== "object")
+                if (!$util.isObject(object.resolvedToolCallMetadata))
                     throw TypeError(".AICommon.BotMetadata.resolvedToolCallMetadata: object expected");
                 message.resolvedToolCallMetadata = $root.AICommon.BotResolvedToolCallMetadata.fromObject(object.resolvedToolCallMetadata, long + 1);
             }
             if (object.subscriptionUpsellMetadata != null) {
-                if (typeof object.subscriptionUpsellMetadata !== "object")
+                if (!$util.isObject(object.subscriptionUpsellMetadata))
                     throw TypeError(".AICommon.BotMetadata.subscriptionUpsellMetadata: object expected");
                 message.subscriptionUpsellMetadata = $root.AICommon.AISubscriptionUpsellMetadata.fromObject(object.subscriptionUpsellMetadata, long + 1);
             }
             if (object.pttPromptMetadata != null) {
-                if (typeof object.pttPromptMetadata !== "object")
+                if (!$util.isObject(object.pttPromptMetadata))
                     throw TypeError(".AICommon.BotMetadata.pttPromptMetadata: object expected");
                 message.pttPromptMetadata = $root.AICommon.BotPttPromptMetadata.fromObject(object.pttPromptMetadata, long + 1);
             }
@@ -102778,7 +103328,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotPttPromptMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -102865,6 +103415,8 @@ $root.AICommon = (function() {
         BotPttPromptMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotPttPromptMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotPttPromptMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -103014,7 +103566,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotResolvedToolCallMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -103108,6 +103660,8 @@ $root.AICommon = (function() {
         BotResolvedToolCallMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotResolvedToolCallMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotResolvedToolCallMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -103274,7 +103828,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotCommandMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -103375,6 +103929,8 @@ $root.AICommon = (function() {
         BotCommandMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotCommandMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotCommandMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -103524,7 +104080,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIMetadataOperation.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -103613,13 +104169,15 @@ $root.AICommon = (function() {
         AIMetadataOperation.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.AIMetadataOperation)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.AIMetadataOperation: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
             var message = new $root.AICommon.AIMetadataOperation();
             if (object.hatchMetadataSync != null) {
-                if (typeof object.hatchMetadataSync !== "object")
+                if (!$util.isObject(object.hatchMetadataSync))
                     throw TypeError(".AICommon.AIMetadataOperation.hatchMetadataSync: object expected");
                 message.hatchMetadataSync = $root.AICommon.HatchMetadataSync.fromObject(object.hatchMetadataSync, long + 1);
             }
@@ -103776,7 +104334,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         HatchMetadataSync.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -103877,6 +104435,8 @@ $root.AICommon = (function() {
         HatchMetadataSync.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.HatchMetadataSync)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.HatchMetadataSync: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -104073,7 +104633,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIMediaCollectionMessage.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -104174,6 +104734,8 @@ $root.AICommon = (function() {
         AIMediaCollectionMessage.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.AIMediaCollectionMessage)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.AIMediaCollectionMessage: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -104334,7 +104896,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIMediaCollectionMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -104428,6 +104990,8 @@ $root.AICommon = (function() {
         AIMediaCollectionMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.AIMediaCollectionMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.AIMediaCollectionMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -104583,7 +105147,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIThreadInfo.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -104681,18 +105245,20 @@ $root.AICommon = (function() {
         AIThreadInfo.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.AIThreadInfo)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.AIThreadInfo: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
             var message = new $root.AICommon.AIThreadInfo();
             if (object.serverInfo != null) {
-                if (typeof object.serverInfo !== "object")
+                if (!$util.isObject(object.serverInfo))
                     throw TypeError(".AICommon.AIThreadInfo.serverInfo: object expected");
                 message.serverInfo = $root.AICommon.AIThreadInfo.AIThreadServerInfo.fromObject(object.serverInfo, long + 1);
             }
             if (object.clientInfo != null) {
-                if (typeof object.clientInfo !== "object")
+                if (!$util.isObject(object.clientInfo))
                     throw TypeError(".AICommon.AIThreadInfo.clientInfo: object expected");
                 message.clientInfo = $root.AICommon.AIThreadInfo.AIThreadClientInfo.fromObject(object.clientInfo, long + 1);
             }
@@ -104839,7 +105405,7 @@ $root.AICommon = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AIThreadClientInfo.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -104940,6 +105506,8 @@ $root.AICommon = (function() {
             AIThreadClientInfo.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommon.AIThreadInfo.AIThreadClientInfo)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".AICommon.AIThreadInfo.AIThreadClientInfo: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -105124,7 +105692,7 @@ $root.AICommon = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AIThreadServerInfo.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -105211,6 +105779,8 @@ $root.AICommon = (function() {
             AIThreadServerInfo.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommon.AIThreadInfo.AIThreadServerInfo)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".AICommon.AIThreadInfo.AIThreadServerInfo: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -105365,7 +105935,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotUnifiedResponseMutation.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -105469,13 +106039,15 @@ $root.AICommon = (function() {
         BotUnifiedResponseMutation.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotUnifiedResponseMutation)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotUnifiedResponseMutation: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
             var message = new $root.AICommon.BotUnifiedResponseMutation();
             if (object.sbsMetadata != null) {
-                if (typeof object.sbsMetadata !== "object")
+                if (!$util.isObject(object.sbsMetadata))
                     throw TypeError(".AICommon.BotUnifiedResponseMutation.sbsMetadata: object expected");
                 message.sbsMetadata = $root.AICommon.BotUnifiedResponseMutation.SideBySideMetadata.fromObject(object.sbsMetadata, long + 1);
             }
@@ -105484,7 +106056,7 @@ $root.AICommon = (function() {
                     throw TypeError(".AICommon.BotUnifiedResponseMutation.mediaDetailsMetadataList: array expected");
                 message.mediaDetailsMetadataList = [];
                 for (var i = 0; i < object.mediaDetailsMetadataList.length; ++i) {
-                    if (typeof object.mediaDetailsMetadataList[i] !== "object")
+                    if (!$util.isObject(object.mediaDetailsMetadataList[i]))
                         throw TypeError(".AICommon.BotUnifiedResponseMutation.mediaDetailsMetadataList: object expected");
                     message.mediaDetailsMetadataList[i] = $root.AICommon.BotUnifiedResponseMutation.MediaDetailsMetadata.fromObject(object.mediaDetailsMetadataList[i], long + 1);
                 }
@@ -105646,7 +106218,7 @@ $root.AICommon = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             MediaDetailsMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -105751,6 +106323,8 @@ $root.AICommon = (function() {
             MediaDetailsMetadata.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommon.BotUnifiedResponseMutation.MediaDetailsMetadata)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".AICommon.BotUnifiedResponseMutation.MediaDetailsMetadata: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -105759,12 +106333,12 @@ $root.AICommon = (function() {
                 if (object.id != null)
                     message.id = String(object.id);
                 if (object.highResMedia != null) {
-                    if (typeof object.highResMedia !== "object")
+                    if (!$util.isObject(object.highResMedia))
                         throw TypeError(".AICommon.BotUnifiedResponseMutation.MediaDetailsMetadata.highResMedia: object expected");
                     message.highResMedia = $root.AICommon.BotMediaMetadata.fromObject(object.highResMedia, long + 1);
                 }
                 if (object.previewMedia != null) {
-                    if (typeof object.previewMedia !== "object")
+                    if (!$util.isObject(object.previewMedia))
                         throw TypeError(".AICommon.BotUnifiedResponseMutation.MediaDetailsMetadata.previewMedia: object expected");
                     message.previewMedia = $root.AICommon.BotMediaMetadata.fromObject(object.previewMedia, long + 1);
                 }
@@ -105917,7 +106491,7 @@ $root.AICommon = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             SideBySideMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -106011,6 +106585,8 @@ $root.AICommon = (function() {
             SideBySideMetadata.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommon.BotUnifiedResponseMutation.SideBySideMetadata)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".AICommon.BotUnifiedResponseMutation.SideBySideMetadata: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -106158,7 +106734,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotMessageOrigin.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -106249,6 +106825,8 @@ $root.AICommon = (function() {
         BotMessageOrigin.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotMessageOrigin)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotMessageOrigin: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -106411,7 +106989,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotMessageOriginMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -106506,6 +107084,8 @@ $root.AICommon = (function() {
         BotMessageOriginMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotMessageOriginMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotMessageOriginMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -106516,7 +107096,7 @@ $root.AICommon = (function() {
                     throw TypeError(".AICommon.BotMessageOriginMetadata.origins: array expected");
                 message.origins = [];
                 for (var i = 0; i < object.origins.length; ++i) {
-                    if (typeof object.origins[i] !== "object")
+                    if (!$util.isObject(object.origins[i]))
                         throw TypeError(".AICommon.BotMessageOriginMetadata.origins: object expected");
                     message.origins[i] = $root.AICommon.BotMessageOrigin.fromObject(object.origins[i], long + 1);
                 }
@@ -106846,7 +107426,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         InThreadSurveyMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -107068,6 +107648,8 @@ $root.AICommon = (function() {
         InThreadSurveyMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.InThreadSurveyMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.InThreadSurveyMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -107100,7 +107682,7 @@ $root.AICommon = (function() {
                     throw TypeError(".AICommon.InThreadSurveyMetadata.questions: array expected");
                 message.questions = [];
                 for (var i = 0; i < object.questions.length; ++i) {
-                    if (typeof object.questions[i] !== "object")
+                    if (!$util.isObject(object.questions[i]))
                         throw TypeError(".AICommon.InThreadSurveyMetadata.questions: object expected");
                     message.questions[i] = $root.AICommon.InThreadSurveyMetadata.InThreadSurveyQuestion.fromObject(object.questions[i], long + 1);
                 }
@@ -107116,7 +107698,7 @@ $root.AICommon = (function() {
                     throw TypeError(".AICommon.InThreadSurveyMetadata.privacyStatementParts: array expected");
                 message.privacyStatementParts = [];
                 for (var i = 0; i < object.privacyStatementParts.length; ++i) {
-                    if (typeof object.privacyStatementParts[i] !== "object")
+                    if (!$util.isObject(object.privacyStatementParts[i]))
                         throw TypeError(".AICommon.InThreadSurveyMetadata.privacyStatementParts: object expected");
                     message.privacyStatementParts[i] = $root.AICommon.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart.fromObject(object.privacyStatementParts[i], long + 1);
                 }
@@ -107335,7 +107917,7 @@ $root.AICommon = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             InThreadSurveyOption.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -107436,6 +108018,8 @@ $root.AICommon = (function() {
             InThreadSurveyOption.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommon.InThreadSurveyMetadata.InThreadSurveyOption)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".AICommon.InThreadSurveyMetadata.InThreadSurveyOption: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -107596,7 +108180,7 @@ $root.AICommon = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             InThreadSurveyPrivacyStatementPart.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -107690,6 +108274,8 @@ $root.AICommon = (function() {
             InThreadSurveyPrivacyStatementPart.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommon.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".AICommon.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -107858,7 +108444,7 @@ $root.AICommon = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             InThreadSurveyQuestion.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -107967,6 +108553,8 @@ $root.AICommon = (function() {
             InThreadSurveyQuestion.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommon.InThreadSurveyMetadata.InThreadSurveyQuestion)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".AICommon.InThreadSurveyMetadata.InThreadSurveyQuestion: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -107981,7 +108569,7 @@ $root.AICommon = (function() {
                         throw TypeError(".AICommon.InThreadSurveyMetadata.InThreadSurveyQuestion.questionOptions: array expected");
                     message.questionOptions = [];
                     for (var i = 0; i < object.questionOptions.length; ++i) {
-                        if (typeof object.questionOptions[i] !== "object")
+                        if (!$util.isObject(object.questionOptions[i]))
                             throw TypeError(".AICommon.InThreadSurveyMetadata.InThreadSurveyQuestion.questionOptions: object expected");
                         message.questionOptions[i] = $root.AICommon.InThreadSurveyMetadata.InThreadSurveyOption.fromObject(object.questionOptions[i], long + 1);
                     }
@@ -108133,7 +108721,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotSourcesMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -108228,6 +108816,8 @@ $root.AICommon = (function() {
         BotSourcesMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotSourcesMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotSourcesMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -108238,7 +108828,7 @@ $root.AICommon = (function() {
                     throw TypeError(".AICommon.BotSourcesMetadata.sources: array expected");
                 message.sources = [];
                 for (var i = 0; i < object.sources.length; ++i) {
-                    if (typeof object.sources[i] !== "object")
+                    if (!$util.isObject(object.sources[i]))
                         throw TypeError(".AICommon.BotSourcesMetadata.sources: object expected");
                     message.sources[i] = $root.AICommon.BotSourcesMetadata.BotSourceItem.fromObject(object.sources[i], long + 1);
                 }
@@ -108440,7 +109030,7 @@ $root.AICommon = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             BotSourceItem.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -108577,6 +109167,8 @@ $root.AICommon = (function() {
             BotSourceItem.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommon.BotSourcesMetadata.BotSourceItem)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".AICommon.BotSourcesMetadata.BotSourceItem: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -108817,7 +109409,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotAgeCollectionMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -108923,6 +109515,8 @@ $root.AICommon = (function() {
         BotAgeCollectionMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotAgeCollectionMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotAgeCollectionMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -109111,7 +109705,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotImagineMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -109213,6 +109807,8 @@ $root.AICommon = (function() {
         BotImagineMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotImagineMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotImagineMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -109405,7 +110001,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotQuotaMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -109500,6 +110096,8 @@ $root.AICommon = (function() {
         BotQuotaMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotQuotaMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotQuotaMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -109510,7 +110108,7 @@ $root.AICommon = (function() {
                     throw TypeError(".AICommon.BotQuotaMetadata.botFeatureQuotaMetadata: array expected");
                 message.botFeatureQuotaMetadata = [];
                 for (var i = 0; i < object.botFeatureQuotaMetadata.length; ++i) {
-                    if (typeof object.botFeatureQuotaMetadata[i] !== "object")
+                    if (!$util.isObject(object.botFeatureQuotaMetadata[i]))
                         throw TypeError(".AICommon.BotQuotaMetadata.botFeatureQuotaMetadata: object expected");
                     message.botFeatureQuotaMetadata[i] = $root.AICommon.BotQuotaMetadata.BotFeatureQuotaMetadata.fromObject(object.botFeatureQuotaMetadata[i], long + 1);
                 }
@@ -109668,7 +110266,7 @@ $root.AICommon = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             BotFeatureQuotaMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -109774,6 +110372,8 @@ $root.AICommon = (function() {
             BotFeatureQuotaMetadata.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommon.BotQuotaMetadata.BotFeatureQuotaMetadata)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".AICommon.BotQuotaMetadata.BotFeatureQuotaMetadata: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -109985,7 +110585,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotModeSelectionMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -110106,6 +110706,8 @@ $root.AICommon = (function() {
         BotModeSelectionMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotModeSelectionMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotModeSelectionMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -110296,7 +110898,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotCapabilityMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -110463,6 +111065,8 @@ $root.AICommon = (function() {
         BotCapabilityMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotCapabilityMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotCapabilityMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -111045,7 +111649,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotProgressIndicatorMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -111154,6 +111758,8 @@ $root.AICommon = (function() {
         BotProgressIndicatorMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotProgressIndicatorMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotProgressIndicatorMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -111166,7 +111772,7 @@ $root.AICommon = (function() {
                     throw TypeError(".AICommon.BotProgressIndicatorMetadata.stepsMetadata: array expected");
                 message.stepsMetadata = [];
                 for (var i = 0; i < object.stepsMetadata.length; ++i) {
-                    if (typeof object.stepsMetadata[i] !== "object")
+                    if (!$util.isObject(object.stepsMetadata[i]))
                         throw TypeError(".AICommon.BotProgressIndicatorMetadata.stepsMetadata: object expected");
                     message.stepsMetadata[i] = $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.fromObject(object.stepsMetadata[i], long + 1);
                 }
@@ -111398,7 +112004,7 @@ $root.AICommon = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             BotPlanningStepMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -111550,6 +112156,8 @@ $root.AICommon = (function() {
             BotPlanningStepMetadata.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -111564,7 +112172,7 @@ $root.AICommon = (function() {
                         throw TypeError(".AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.sourcesMetadata: array expected");
                     message.sourcesMetadata = [];
                     for (var i = 0; i < object.sourcesMetadata.length; ++i) {
-                        if (typeof object.sourcesMetadata[i] !== "object")
+                        if (!$util.isObject(object.sourcesMetadata[i]))
                             throw TypeError(".AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.sourcesMetadata: object expected");
                         message.sourcesMetadata[i] = $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.fromObject(object.sourcesMetadata[i], long + 1);
                     }
@@ -111602,7 +112210,7 @@ $root.AICommon = (function() {
                         throw TypeError(".AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.sections: array expected");
                     message.sections = [];
                     for (var i = 0; i < object.sections.length; ++i) {
-                        if (typeof object.sections[i] !== "object")
+                        if (!$util.isObject(object.sections[i]))
                             throw TypeError(".AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.sections: object expected");
                         message.sections[i] = $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata.fromObject(object.sections[i], long + 1);
                     }
@@ -111795,7 +112403,7 @@ $root.AICommon = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 BotPlanningSearchSourceMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -111910,6 +112518,8 @@ $root.AICommon = (function() {
                 BotPlanningSearchSourceMetadata.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -112108,7 +112718,7 @@ $root.AICommon = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 BotPlanningSearchSourcesMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -112216,6 +112826,8 @@ $root.AICommon = (function() {
                 BotPlanningSearchSourcesMetadata.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -112429,7 +113041,7 @@ $root.AICommon = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 BotPlanningStepSectionMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -112538,6 +113150,8 @@ $root.AICommon = (function() {
                 BotPlanningStepSectionMetadata.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -112552,7 +113166,7 @@ $root.AICommon = (function() {
                             throw TypeError(".AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata.sourcesMetadata: array expected");
                         message.sourcesMetadata = [];
                         for (var i = 0; i < object.sourcesMetadata.length; ++i) {
-                            if (typeof object.sourcesMetadata[i] !== "object")
+                            if (!$util.isObject(object.sourcesMetadata[i]))
                                 throw TypeError(".AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata.sourcesMetadata: object expected");
                             message.sourcesMetadata[i] = $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata.fromObject(object.sourcesMetadata[i], long + 1);
                         }
@@ -112763,7 +113377,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotModelMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -112876,6 +113490,8 @@ $root.AICommon = (function() {
         BotModelMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotModelMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotModelMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -113137,7 +113753,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotReminderMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -113269,13 +113885,15 @@ $root.AICommon = (function() {
         BotReminderMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotReminderMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotReminderMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
             var message = new $root.AICommon.BotReminderMetadata();
             if (object.requestMessageKey != null) {
-                if (typeof object.requestMessageKey !== "object")
+                if (!$util.isObject(object.requestMessageKey))
                     throw TypeError(".AICommon.BotReminderMetadata.requestMessageKey: object expected");
                 message.requestMessageKey = $root.Protocol.MessageKey.fromObject(object.requestMessageKey, long + 1);
             }
@@ -113535,7 +114153,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotMemuMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -113630,6 +114248,8 @@ $root.AICommon = (function() {
         BotMemuMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotMemuMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotMemuMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -113640,7 +114260,7 @@ $root.AICommon = (function() {
                     throw TypeError(".AICommon.BotMemuMetadata.faceImages: array expected");
                 message.faceImages = [];
                 for (var i = 0; i < object.faceImages.length; ++i) {
-                    if (typeof object.faceImages[i] !== "object")
+                    if (!$util.isObject(object.faceImages[i]))
                         throw TypeError(".AICommon.BotMemuMetadata.faceImages: object expected");
                     message.faceImages[i] = $root.AICommon.BotMediaMetadata.fromObject(object.faceImages[i], long + 1);
                 }
@@ -113845,7 +114465,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotMediaMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -113980,6 +114600,8 @@ $root.AICommon = (function() {
         BotMediaMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotMediaMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotMediaMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -114210,7 +114832,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotSessionMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -114315,6 +114937,8 @@ $root.AICommon = (function() {
         BotSessionMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotSessionMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotSessionMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -114519,7 +115143,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotMetricsMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -114679,6 +115303,8 @@ $root.AICommon = (function() {
         BotMetricsMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotMetricsMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotMetricsMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -115054,7 +115680,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotRenderingMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -115149,6 +115775,8 @@ $root.AICommon = (function() {
         BotRenderingMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotRenderingMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotRenderingMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -115159,7 +115787,7 @@ $root.AICommon = (function() {
                     throw TypeError(".AICommon.BotRenderingMetadata.keywords: array expected");
                 message.keywords = [];
                 for (var i = 0; i < object.keywords.length; ++i) {
-                    if (typeof object.keywords[i] !== "object")
+                    if (!$util.isObject(object.keywords[i]))
                         throw TypeError(".AICommon.BotRenderingMetadata.keywords: object expected");
                     message.keywords[i] = $root.AICommon.BotRenderingMetadata.Keyword.fromObject(object.keywords[i], long + 1);
                 }
@@ -115308,7 +115936,7 @@ $root.AICommon = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             Keyword.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -115408,6 +116036,8 @@ $root.AICommon = (function() {
             Keyword.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommon.BotRenderingMetadata.Keyword)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".AICommon.BotRenderingMetadata.Keyword: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -115574,7 +116204,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotPromotionMessageMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -115674,6 +116304,8 @@ $root.AICommon = (function() {
         BotPromotionMessageMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotPromotionMessageMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotPromotionMessageMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -115887,7 +116519,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotSignatureVerificationUseCaseProof.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -116007,6 +116639,8 @@ $root.AICommon = (function() {
         BotSignatureVerificationUseCaseProof.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotSignatureVerificationUseCaseProof)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotSignatureVerificationUseCaseProof: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -116218,7 +116852,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotSignatureVerificationMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -116313,6 +116947,8 @@ $root.AICommon = (function() {
         BotSignatureVerificationMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotSignatureVerificationMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotSignatureVerificationMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -116323,7 +116959,7 @@ $root.AICommon = (function() {
                     throw TypeError(".AICommon.BotSignatureVerificationMetadata.proofs: array expected");
                 message.proofs = [];
                 for (var i = 0; i < object.proofs.length; ++i) {
-                    if (typeof object.proofs[i] !== "object")
+                    if (!$util.isObject(object.proofs[i]))
                         throw TypeError(".AICommon.BotSignatureVerificationMetadata.proofs: object expected");
                     message.proofs[i] = $root.AICommon.BotSignatureVerificationUseCaseProof.fromObject(object.proofs[i], long + 1);
                 }
@@ -116473,7 +117109,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotMemoryFact.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -116567,6 +117203,8 @@ $root.AICommon = (function() {
         BotMemoryFact.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotMemoryFact)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotMemoryFact: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -116737,7 +117375,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotMemoryMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -116854,6 +117492,8 @@ $root.AICommon = (function() {
         BotMemoryMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotMemoryMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotMemoryMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -116864,7 +117504,7 @@ $root.AICommon = (function() {
                     throw TypeError(".AICommon.BotMemoryMetadata.addedFacts: array expected");
                 message.addedFacts = [];
                 for (var i = 0; i < object.addedFacts.length; ++i) {
-                    if (typeof object.addedFacts[i] !== "object")
+                    if (!$util.isObject(object.addedFacts[i]))
                         throw TypeError(".AICommon.BotMemoryMetadata.addedFacts: object expected");
                     message.addedFacts[i] = $root.AICommon.BotMemoryFact.fromObject(object.addedFacts[i], long + 1);
                 }
@@ -116874,7 +117514,7 @@ $root.AICommon = (function() {
                     throw TypeError(".AICommon.BotMemoryMetadata.removedFacts: array expected");
                 message.removedFacts = [];
                 for (var i = 0; i < object.removedFacts.length; ++i) {
-                    if (typeof object.removedFacts[i] !== "object")
+                    if (!$util.isObject(object.removedFacts[i]))
                         throw TypeError(".AICommon.BotMemoryMetadata.removedFacts: object expected");
                     message.removedFacts[i] = $root.AICommon.BotMemoryFact.fromObject(object.removedFacts[i], long + 1);
                 }
@@ -117026,7 +117666,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotLinkedAccount.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -117117,6 +117757,8 @@ $root.AICommon = (function() {
         BotLinkedAccount.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotLinkedAccount)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotLinkedAccount: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -117301,7 +117943,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotLinkedAccountsMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -117410,6 +118052,8 @@ $root.AICommon = (function() {
         BotLinkedAccountsMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotLinkedAccountsMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotLinkedAccountsMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -117420,7 +118064,7 @@ $root.AICommon = (function() {
                     throw TypeError(".AICommon.BotLinkedAccountsMetadata.accounts: array expected");
                 message.accounts = [];
                 for (var i = 0; i < object.accounts.length; ++i) {
-                    if (typeof object.accounts[i] !== "object")
+                    if (!$util.isObject(object.accounts[i]))
                         throw TypeError(".AICommon.BotLinkedAccountsMetadata.accounts: object expected");
                     message.accounts[i] = $root.AICommon.BotLinkedAccount.fromObject(object.accounts[i], long + 1);
                 }
@@ -117591,7 +118235,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotPromptSuggestion.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -117685,6 +118329,8 @@ $root.AICommon = (function() {
         BotPromptSuggestion.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotPromptSuggestion)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotPromptSuggestion: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -117831,7 +118477,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotPromptSuggestions.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -117926,6 +118572,8 @@ $root.AICommon = (function() {
         BotPromptSuggestions.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotPromptSuggestions)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotPromptSuggestions: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -117936,7 +118584,7 @@ $root.AICommon = (function() {
                     throw TypeError(".AICommon.BotPromptSuggestions.suggestions: array expected");
                 message.suggestions = [];
                 for (var i = 0; i < object.suggestions.length; ++i) {
-                    if (typeof object.suggestions[i] !== "object")
+                    if (!$util.isObject(object.suggestions[i]))
                         throw TypeError(".AICommon.BotPromptSuggestions.suggestions: object expected");
                     message.suggestions[i] = $root.AICommon.BotPromptSuggestion.fromObject(object.suggestions[i], long + 1);
                 }
@@ -118110,7 +118758,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotSuggestedPromptMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -118226,6 +118874,8 @@ $root.AICommon = (function() {
         BotSuggestedPromptMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotSuggestedPromptMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotSuggestedPromptMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -118241,7 +118891,7 @@ $root.AICommon = (function() {
             if (object.selectedPromptIndex != null)
                 message.selectedPromptIndex = object.selectedPromptIndex >>> 0;
             if (object.promptSuggestions != null) {
-                if (typeof object.promptSuggestions !== "object")
+                if (!$util.isObject(object.promptSuggestions))
                     throw TypeError(".AICommon.BotSuggestedPromptMetadata.promptSuggestions: object expected");
                 message.promptSuggestions = $root.AICommon.BotPromptSuggestions.fromObject(object.promptSuggestions, long + 1);
             }
@@ -118513,7 +119163,7 @@ $root.AICommon = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotPluginMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -118704,6 +119354,8 @@ $root.AICommon = (function() {
         BotPluginMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommon.BotPluginMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommon.BotPluginMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -118766,7 +119418,7 @@ $root.AICommon = (function() {
             if (object.searchQuery != null)
                 message.searchQuery = String(object.searchQuery);
             if (object.parentPluginMessageKey != null) {
-                if (typeof object.parentPluginMessageKey !== "object")
+                if (!$util.isObject(object.parentPluginMessageKey))
                     throw TypeError(".AICommon.BotPluginMetadata.parentPluginMessageKey: object expected");
                 message.parentPluginMessageKey = $root.Protocol.MessageKey.fromObject(object.parentPluginMessageKey, long + 1);
             }
@@ -119229,7 +119881,7 @@ $root.Adv = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         ADVSignedDeviceIdentityHMAC.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -119336,6 +119988,8 @@ $root.Adv = (function() {
         ADVSignedDeviceIdentityHMAC.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Adv.ADVSignedDeviceIdentityHMAC)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".Adv.ADVSignedDeviceIdentityHMAC: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -119554,7 +120208,7 @@ $root.Adv = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         ADVSignedDeviceIdentity.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -119662,6 +120316,8 @@ $root.Adv = (function() {
         ADVSignedDeviceIdentity.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Adv.ADVSignedDeviceIdentity)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".Adv.ADVSignedDeviceIdentity: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -119896,7 +120552,7 @@ $root.Adv = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         ADVDeviceIdentity.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -120023,6 +120679,8 @@ $root.Adv = (function() {
         ADVDeviceIdentity.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Adv.ADVDeviceIdentity)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".Adv.ADVDeviceIdentity: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -120256,7 +120914,7 @@ $root.Adv = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         ADVSignedKeyIndexList.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -120357,6 +121015,8 @@ $root.Adv = (function() {
         ADVSignedKeyIndexList.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Adv.ADVSignedKeyIndexList)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".Adv.ADVSignedKeyIndexList: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -120582,7 +121242,7 @@ $root.Adv = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         ADVKeyIndexList.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -120714,6 +121374,8 @@ $root.Adv = (function() {
         ADVKeyIndexList.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Adv.ADVKeyIndexList)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".Adv.ADVKeyIndexList: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -120988,7 +121650,7 @@ $root.CompanionReg = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         ClientPairingProps.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -121103,6 +121765,8 @@ $root.CompanionReg = (function() {
         ClientPairingProps.fromObject = function fromObject(object, long) {
             if (object instanceof $root.CompanionReg.ClientPairingProps)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".CompanionReg.ClientPairingProps: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -121282,7 +121946,7 @@ $root.CompanionReg = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         EncryptedPairingRequest.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -121376,6 +122040,8 @@ $root.CompanionReg = (function() {
         EncryptedPairingRequest.fromObject = function fromObject(object, long) {
             if (object instanceof $root.CompanionReg.EncryptedPairingRequest)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".CompanionReg.EncryptedPairingRequest: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -121560,7 +122226,7 @@ $root.CompanionReg = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         PairingRequest.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -121661,6 +122327,8 @@ $root.CompanionReg = (function() {
         PairingRequest.fromObject = function fromObject(object, long) {
             if (object instanceof $root.CompanionReg.PairingRequest)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".CompanionReg.PairingRequest: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -121848,7 +122516,7 @@ $root.CompanionReg = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         PrimaryEphemeralIdentity.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -121942,6 +122610,8 @@ $root.CompanionReg = (function() {
         PrimaryEphemeralIdentity.fromObject = function fromObject(object, long) {
             if (object instanceof $root.CompanionReg.PrimaryEphemeralIdentity)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".CompanionReg.PrimaryEphemeralIdentity: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -122115,7 +122785,7 @@ $root.CompanionReg = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         ProloguePayload.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -122211,6 +122881,8 @@ $root.CompanionReg = (function() {
         ProloguePayload.fromObject = function fromObject(object, long) {
             if (object instanceof $root.CompanionReg.ProloguePayload)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".CompanionReg.ProloguePayload: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -122222,7 +122894,7 @@ $root.CompanionReg = (function() {
                 else if (object.companionEphemeralIdentity.length >= 0)
                     message.companionEphemeralIdentity = object.companionEphemeralIdentity;
             if (object.commitment != null) {
-                if (typeof object.commitment !== "object")
+                if (!$util.isObject(object.commitment))
                     throw TypeError(".CompanionReg.ProloguePayload.commitment: object expected");
                 message.commitment = $root.CompanionReg.CompanionCommitment.fromObject(object.commitment, long + 1);
             }
@@ -122367,7 +123039,7 @@ $root.CompanionReg = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         CompanionCommitment.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -122454,6 +123126,8 @@ $root.CompanionReg = (function() {
         CompanionCommitment.fromObject = function fromObject(object, long) {
             if (object instanceof $root.CompanionReg.CompanionCommitment)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".CompanionReg.CompanionCommitment: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -122623,7 +123297,7 @@ $root.CompanionReg = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         CompanionEphemeralIdentity.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -122752,6 +123426,8 @@ $root.CompanionReg = (function() {
         CompanionEphemeralIdentity.fromObject = function fromObject(object, long) {
             if (object instanceof $root.CompanionReg.CompanionEphemeralIdentity)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".CompanionReg.CompanionEphemeralIdentity: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -123060,7 +123736,7 @@ $root.CompanionReg = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         DeviceProps.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -123207,6 +123883,8 @@ $root.CompanionReg = (function() {
         DeviceProps.fromObject = function fromObject(object, long) {
             if (object instanceof $root.CompanionReg.DeviceProps)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".CompanionReg.DeviceProps: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -123215,7 +123893,7 @@ $root.CompanionReg = (function() {
             if (object.os != null)
                 message.os = String(object.os);
             if (object.version != null) {
-                if (typeof object.version !== "object")
+                if (!$util.isObject(object.version))
                     throw TypeError(".CompanionReg.DeviceProps.version: object expected");
                 message.version = $root.CompanionReg.DeviceProps.AppVersion.fromObject(object.version, long + 1);
             }
@@ -123330,7 +124008,7 @@ $root.CompanionReg = (function() {
             if (object.requireFullSync != null)
                 message.requireFullSync = Boolean(object.requireFullSync);
             if (object.historySyncConfig != null) {
-                if (typeof object.historySyncConfig !== "object")
+                if (!$util.isObject(object.historySyncConfig))
                     throw TypeError(".CompanionReg.DeviceProps.historySyncConfig: object expected");
                 message.historySyncConfig = $root.CompanionReg.DeviceProps.HistorySyncConfig.fromObject(object.historySyncConfig, long + 1);
             }
@@ -123519,7 +124197,7 @@ $root.CompanionReg = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AppVersion.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -123634,6 +124312,8 @@ $root.CompanionReg = (function() {
             AppVersion.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.CompanionReg.DeviceProps.AppVersion)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".CompanionReg.DeviceProps.AppVersion: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -124048,7 +124728,7 @@ $root.CompanionReg = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             HistorySyncConfig.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -124302,6 +124982,8 @@ $root.CompanionReg = (function() {
             HistorySyncConfig.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.CompanionReg.DeviceProps.HistorySyncConfig)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".CompanionReg.DeviceProps.HistorySyncConfig: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -124640,7 +125322,7 @@ $root.MmsRetry = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         ServerErrorReceipt.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -124727,6 +125409,8 @@ $root.MmsRetry = (function() {
         ServerErrorReceipt.fromObject = function fromObject(object, long) {
             if (object instanceof $root.MmsRetry.ServerErrorReceipt)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".MmsRetry.ServerErrorReceipt: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -124898,7 +125582,7 @@ $root.MmsRetry = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         MediaRetryNotification.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -125013,6 +125697,8 @@ $root.MmsRetry = (function() {
         MediaRetryNotification.fromObject = function fromObject(object, long) {
             if (object instanceof $root.MmsRetry.MediaRetryNotification)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".MmsRetry.MediaRetryNotification: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)

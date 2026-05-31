@@ -93,7 +93,7 @@ $root.MdStorageChatRowOpaqueData = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         ChatRowOpaqueData.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -182,13 +182,15 @@ $root.MdStorageChatRowOpaqueData = (function() {
         ChatRowOpaqueData.fromObject = function fromObject(object, long) {
             if (object instanceof $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".MdStorageChatRowOpaqueData.ChatRowOpaqueData: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
             var message = new $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData();
             if (object.draftMessage != null) {
-                if (typeof object.draftMessage !== "object")
+                if (!$util.isObject(object.draftMessage))
                     throw TypeError(".MdStorageChatRowOpaqueData.ChatRowOpaqueData.draftMessage: object expected");
                 message.draftMessage = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.fromObject(object.draftMessage, long + 1);
             }
@@ -364,7 +366,7 @@ $root.MdStorageChatRowOpaqueData = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             DraftMessage.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -483,6 +485,8 @@ $root.MdStorageChatRowOpaqueData = (function() {
             DraftMessage.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -493,12 +497,12 @@ $root.MdStorageChatRowOpaqueData = (function() {
                 if (object.omittedUrl != null)
                     message.omittedUrl = String(object.omittedUrl);
                 if (object.ctwaContextLinkData != null) {
-                    if (typeof object.ctwaContextLinkData !== "object")
+                    if (!$util.isObject(object.ctwaContextLinkData))
                         throw TypeError(".MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.ctwaContextLinkData: object expected");
                     message.ctwaContextLinkData = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextLinkData.fromObject(object.ctwaContextLinkData, long + 1);
                 }
                 if (object.ctwaContext != null) {
-                    if (typeof object.ctwaContext !== "object")
+                    if (!$util.isObject(object.ctwaContext))
                         throw TypeError(".MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.ctwaContext: object expected");
                     message.ctwaContext = $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextData.fromObject(object.ctwaContext, long + 1);
                 }
@@ -782,7 +786,7 @@ $root.MdStorageChatRowOpaqueData = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 CtwaContextData.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -952,6 +956,8 @@ $root.MdStorageChatRowOpaqueData = (function() {
                 CtwaContextData.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextData)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextData: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -1222,7 +1228,7 @@ $root.MdStorageChatRowOpaqueData = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 CtwaContextLinkData.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -1330,6 +1336,8 @@ $root.MdStorageChatRowOpaqueData = (function() {
                 CtwaContextLinkData.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextLinkData)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".MdStorageChatRowOpaqueData.ChatRowOpaqueData.DraftMessage.CtwaContextLinkData: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)

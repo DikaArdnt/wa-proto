@@ -104,7 +104,7 @@ $root.Cert = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         CertChain.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -202,18 +202,20 @@ $root.Cert = (function() {
         CertChain.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Cert.CertChain)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".Cert.CertChain: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
             var message = new $root.Cert.CertChain();
             if (object.leaf != null) {
-                if (typeof object.leaf !== "object")
+                if (!$util.isObject(object.leaf))
                     throw TypeError(".Cert.CertChain.leaf: object expected");
                 message.leaf = $root.Cert.CertChain.NoiseCertificate.fromObject(object.leaf, long + 1);
             }
             if (object.intermediate != null) {
-                if (typeof object.intermediate !== "object")
+                if (!$util.isObject(object.intermediate))
                     throw TypeError(".Cert.CertChain.intermediate: object expected");
                 message.intermediate = $root.Cert.CertChain.NoiseCertificate.fromObject(object.intermediate, long + 1);
             }
@@ -360,7 +362,7 @@ $root.Cert = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             NoiseCertificate.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -454,6 +456,8 @@ $root.Cert = (function() {
             NoiseCertificate.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.Cert.CertChain.NoiseCertificate)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".Cert.CertChain.NoiseCertificate: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -657,7 +661,7 @@ $root.Cert = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 Details.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -772,6 +776,8 @@ $root.Cert = (function() {
                 Details.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.Cert.CertChain.NoiseCertificate.Details)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".Cert.CertChain.NoiseCertificate.Details: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -989,7 +995,7 @@ $root.Cert = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         NoiseCertificate.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -1083,6 +1089,8 @@ $root.Cert = (function() {
         NoiseCertificate.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Cert.NoiseCertificate)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".Cert.NoiseCertificate: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -1286,7 +1294,7 @@ $root.Cert = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             Details.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -1401,6 +1409,8 @@ $root.Cert = (function() {
             Details.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.Cert.NoiseCertificate.Details)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".Cert.NoiseCertificate.Details: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)

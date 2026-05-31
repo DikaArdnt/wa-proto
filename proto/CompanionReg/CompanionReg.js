@@ -137,7 +137,7 @@ $root.CompanionReg = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         ClientPairingProps.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -252,6 +252,8 @@ $root.CompanionReg = (function() {
         ClientPairingProps.fromObject = function fromObject(object, long) {
             if (object instanceof $root.CompanionReg.ClientPairingProps)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".CompanionReg.ClientPairingProps: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -431,7 +433,7 @@ $root.CompanionReg = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         EncryptedPairingRequest.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -525,6 +527,8 @@ $root.CompanionReg = (function() {
         EncryptedPairingRequest.fromObject = function fromObject(object, long) {
             if (object instanceof $root.CompanionReg.EncryptedPairingRequest)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".CompanionReg.EncryptedPairingRequest: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -709,7 +713,7 @@ $root.CompanionReg = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         PairingRequest.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -810,6 +814,8 @@ $root.CompanionReg = (function() {
         PairingRequest.fromObject = function fromObject(object, long) {
             if (object instanceof $root.CompanionReg.PairingRequest)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".CompanionReg.PairingRequest: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -997,7 +1003,7 @@ $root.CompanionReg = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         PrimaryEphemeralIdentity.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -1091,6 +1097,8 @@ $root.CompanionReg = (function() {
         PrimaryEphemeralIdentity.fromObject = function fromObject(object, long) {
             if (object instanceof $root.CompanionReg.PrimaryEphemeralIdentity)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".CompanionReg.PrimaryEphemeralIdentity: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -1264,7 +1272,7 @@ $root.CompanionReg = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         ProloguePayload.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -1360,6 +1368,8 @@ $root.CompanionReg = (function() {
         ProloguePayload.fromObject = function fromObject(object, long) {
             if (object instanceof $root.CompanionReg.ProloguePayload)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".CompanionReg.ProloguePayload: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -1371,7 +1381,7 @@ $root.CompanionReg = (function() {
                 else if (object.companionEphemeralIdentity.length >= 0)
                     message.companionEphemeralIdentity = object.companionEphemeralIdentity;
             if (object.commitment != null) {
-                if (typeof object.commitment !== "object")
+                if (!$util.isObject(object.commitment))
                     throw TypeError(".CompanionReg.ProloguePayload.commitment: object expected");
                 message.commitment = $root.CompanionReg.CompanionCommitment.fromObject(object.commitment, long + 1);
             }
@@ -1516,7 +1526,7 @@ $root.CompanionReg = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         CompanionCommitment.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -1603,6 +1613,8 @@ $root.CompanionReg = (function() {
         CompanionCommitment.fromObject = function fromObject(object, long) {
             if (object instanceof $root.CompanionReg.CompanionCommitment)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".CompanionReg.CompanionCommitment: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -1772,7 +1784,7 @@ $root.CompanionReg = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         CompanionEphemeralIdentity.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -1901,6 +1913,8 @@ $root.CompanionReg = (function() {
         CompanionEphemeralIdentity.fromObject = function fromObject(object, long) {
             if (object instanceof $root.CompanionReg.CompanionEphemeralIdentity)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".CompanionReg.CompanionEphemeralIdentity: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -2209,7 +2223,7 @@ $root.CompanionReg = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         DeviceProps.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -2356,6 +2370,8 @@ $root.CompanionReg = (function() {
         DeviceProps.fromObject = function fromObject(object, long) {
             if (object instanceof $root.CompanionReg.DeviceProps)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".CompanionReg.DeviceProps: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -2364,7 +2380,7 @@ $root.CompanionReg = (function() {
             if (object.os != null)
                 message.os = String(object.os);
             if (object.version != null) {
-                if (typeof object.version !== "object")
+                if (!$util.isObject(object.version))
                     throw TypeError(".CompanionReg.DeviceProps.version: object expected");
                 message.version = $root.CompanionReg.DeviceProps.AppVersion.fromObject(object.version, long + 1);
             }
@@ -2479,7 +2495,7 @@ $root.CompanionReg = (function() {
             if (object.requireFullSync != null)
                 message.requireFullSync = Boolean(object.requireFullSync);
             if (object.historySyncConfig != null) {
-                if (typeof object.historySyncConfig !== "object")
+                if (!$util.isObject(object.historySyncConfig))
                     throw TypeError(".CompanionReg.DeviceProps.historySyncConfig: object expected");
                 message.historySyncConfig = $root.CompanionReg.DeviceProps.HistorySyncConfig.fromObject(object.historySyncConfig, long + 1);
             }
@@ -2668,7 +2684,7 @@ $root.CompanionReg = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AppVersion.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -2783,6 +2799,8 @@ $root.CompanionReg = (function() {
             AppVersion.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.CompanionReg.DeviceProps.AppVersion)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".CompanionReg.DeviceProps.AppVersion: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -3197,7 +3215,7 @@ $root.CompanionReg = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             HistorySyncConfig.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -3451,6 +3469,8 @@ $root.CompanionReg = (function() {
             HistorySyncConfig.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.CompanionReg.DeviceProps.HistorySyncConfig)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".CompanionReg.DeviceProps.HistorySyncConfig: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)

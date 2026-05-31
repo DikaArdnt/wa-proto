@@ -93,7 +93,7 @@ $root.MmsRetry = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         ServerErrorReceipt.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -180,6 +180,8 @@ $root.MmsRetry = (function() {
         ServerErrorReceipt.fromObject = function fromObject(object, long) {
             if (object instanceof $root.MmsRetry.ServerErrorReceipt)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".MmsRetry.ServerErrorReceipt: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -351,7 +353,7 @@ $root.MmsRetry = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         MediaRetryNotification.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -466,6 +468,8 @@ $root.MmsRetry = (function() {
         MediaRetryNotification.fromObject = function fromObject(object, long) {
             if (object instanceof $root.MmsRetry.MediaRetryNotification)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".MmsRetry.MediaRetryNotification: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)

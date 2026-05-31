@@ -141,7 +141,7 @@ $root.Reporting = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         Field.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -286,6 +286,8 @@ $root.Reporting = (function() {
         Field.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Reporting.Field)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".Reporting.Field: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -300,13 +302,13 @@ $root.Reporting = (function() {
             if (object.isMessage != null)
                 message.isMessage = Boolean(object.isMessage);
             if (object.subfield) {
-                if (typeof object.subfield !== "object")
+                if (!$util.isObject(object.subfield))
                     throw TypeError(".Reporting.Field.subfield: object expected");
                 message.subfield = {};
                 for (var keys = Object.keys(object.subfield), i = 0; i < keys.length; ++i) {
                     if (keys[i] === "__proto__")
                         $util.makeProp(message.subfield, keys[i]);
-                    if (typeof object.subfield[keys[i]] !== "object")
+                    if (!$util.isObject(object.subfield[keys[i]]))
                         throw TypeError(".Reporting.Field.subfield: object expected");
                     message.subfield[keys[i]] = $root.Reporting.Field.fromObject(object.subfield[keys[i]], long + 1);
                 }
@@ -478,7 +480,7 @@ $root.Reporting = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         Config.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -602,19 +604,21 @@ $root.Reporting = (function() {
         Config.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Reporting.Config)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".Reporting.Config: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
             var message = new $root.Reporting.Config();
             if (object.field) {
-                if (typeof object.field !== "object")
+                if (!$util.isObject(object.field))
                     throw TypeError(".Reporting.Config.field: object expected");
                 message.field = {};
                 for (var keys = Object.keys(object.field), i = 0; i < keys.length; ++i) {
                     if (keys[i] === "__proto__")
                         $util.makeProp(message.field, keys[i]);
-                    if (typeof object.field[keys[i]] !== "object")
+                    if (!$util.isObject(object.field[keys[i]]))
                         throw TypeError(".Reporting.Config.field: object expected");
                     message.field[keys[i]] = $root.Reporting.Field.fromObject(object.field[keys[i]], long + 1);
                 }
@@ -796,7 +800,7 @@ $root.Reporting = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         Reportable.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -904,6 +908,8 @@ $root.Reporting = (function() {
         Reportable.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Reporting.Reportable)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".Reporting.Reportable: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)

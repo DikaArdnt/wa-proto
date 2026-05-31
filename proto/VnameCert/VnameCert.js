@@ -170,7 +170,7 @@ $root.VnameCert = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BizIdentityInfo.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -324,6 +324,8 @@ $root.VnameCert = (function() {
         BizIdentityInfo.fromObject = function fromObject(object, long) {
             if (object instanceof $root.VnameCert.BizIdentityInfo)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".VnameCert.BizIdentityInfo: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -350,7 +352,7 @@ $root.VnameCert = (function() {
                 break;
             }
             if (object.vnameCert != null) {
-                if (typeof object.vnameCert !== "object")
+                if (!$util.isObject(object.vnameCert))
                     throw TypeError(".VnameCert.BizIdentityInfo.vnameCert: object expected");
                 message.vnameCert = $root.VnameCert.VerifiedNameCertificate.fromObject(object.vnameCert, long + 1);
             }
@@ -667,7 +669,7 @@ $root.VnameCert = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BizAccountLinkInfo.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -791,6 +793,8 @@ $root.VnameCert = (function() {
         BizAccountLinkInfo.fromObject = function fromObject(object, long) {
             if (object instanceof $root.VnameCert.BizAccountLinkInfo)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".VnameCert.BizAccountLinkInfo: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -1043,7 +1047,7 @@ $root.VnameCert = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BizAccountPayload.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -1139,13 +1143,15 @@ $root.VnameCert = (function() {
         BizAccountPayload.fromObject = function fromObject(object, long) {
             if (object instanceof $root.VnameCert.BizAccountPayload)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".VnameCert.BizAccountPayload: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
             var message = new $root.VnameCert.BizAccountPayload();
             if (object.vnameCert != null) {
-                if (typeof object.vnameCert !== "object")
+                if (!$util.isObject(object.vnameCert))
                     throw TypeError(".VnameCert.BizAccountPayload.vnameCert: object expected");
                 message.vnameCert = $root.VnameCert.VerifiedNameCertificate.fromObject(object.vnameCert, long + 1);
             }
@@ -1317,7 +1323,7 @@ $root.VnameCert = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         VerifiedNameCertificate.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -1418,6 +1424,8 @@ $root.VnameCert = (function() {
         VerifiedNameCertificate.fromObject = function fromObject(object, long) {
             if (object instanceof $root.VnameCert.VerifiedNameCertificate)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".VnameCert.VerifiedNameCertificate: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -1637,7 +1645,7 @@ $root.VnameCert = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             Details.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -1760,6 +1768,8 @@ $root.VnameCert = (function() {
             Details.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.VnameCert.VerifiedNameCertificate.Details)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".VnameCert.VerifiedNameCertificate.Details: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -1783,7 +1793,7 @@ $root.VnameCert = (function() {
                         throw TypeError(".VnameCert.VerifiedNameCertificate.Details.localizedNames: array expected");
                     message.localizedNames = [];
                     for (var i = 0; i < object.localizedNames.length; ++i) {
-                        if (typeof object.localizedNames[i] !== "object")
+                        if (!$util.isObject(object.localizedNames[i]))
                             throw TypeError(".VnameCert.VerifiedNameCertificate.Details.localizedNames: object expected");
                         message.localizedNames[i] = $root.VnameCert.LocalizedName.fromObject(object.localizedNames[i], long + 1);
                     }
@@ -1988,7 +1998,7 @@ $root.VnameCert = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         LocalizedName.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -2089,6 +2099,8 @@ $root.VnameCert = (function() {
         LocalizedName.fromObject = function fromObject(object, long) {
             if (object instanceof $root.VnameCert.LocalizedName)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".VnameCert.LocalizedName: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)

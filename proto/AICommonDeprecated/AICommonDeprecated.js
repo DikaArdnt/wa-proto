@@ -192,7 +192,7 @@ $root.AICommonDeprecated = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIRichResponseSubMessage.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -371,6 +371,8 @@ $root.AICommonDeprecated = (function() {
         AIRichResponseSubMessage.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseSubMessage)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommonDeprecated.AIRichResponseSubMessage: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -425,44 +427,44 @@ $root.AICommonDeprecated = (function() {
                 break;
             }
             if (object.gridImageMetadata != null) {
-                if (typeof object.gridImageMetadata !== "object")
+                if (!$util.isObject(object.gridImageMetadata))
                     throw TypeError(".AICommonDeprecated.AIRichResponseSubMessage.gridImageMetadata: object expected");
                 message.gridImageMetadata = $root.AICommonDeprecated.AIRichResponseGridImageMetadata.fromObject(object.gridImageMetadata, long + 1);
             }
             if (object.messageText != null)
                 message.messageText = String(object.messageText);
             if (object.imageMetadata != null) {
-                if (typeof object.imageMetadata !== "object")
+                if (!$util.isObject(object.imageMetadata))
                     throw TypeError(".AICommonDeprecated.AIRichResponseSubMessage.imageMetadata: object expected");
                 message.imageMetadata = $root.AICommonDeprecated.AIRichResponseInlineImageMetadata.fromObject(object.imageMetadata, long + 1);
             }
             if (object.codeMetadata != null) {
-                if (typeof object.codeMetadata !== "object")
+                if (!$util.isObject(object.codeMetadata))
                     throw TypeError(".AICommonDeprecated.AIRichResponseSubMessage.codeMetadata: object expected");
                 message.codeMetadata = $root.AICommonDeprecated.AIRichResponseCodeMetadata.fromObject(object.codeMetadata, long + 1);
             }
             if (object.tableMetadata != null) {
-                if (typeof object.tableMetadata !== "object")
+                if (!$util.isObject(object.tableMetadata))
                     throw TypeError(".AICommonDeprecated.AIRichResponseSubMessage.tableMetadata: object expected");
                 message.tableMetadata = $root.AICommonDeprecated.AIRichResponseTableMetadata.fromObject(object.tableMetadata, long + 1);
             }
             if (object.dynamicMetadata != null) {
-                if (typeof object.dynamicMetadata !== "object")
+                if (!$util.isObject(object.dynamicMetadata))
                     throw TypeError(".AICommonDeprecated.AIRichResponseSubMessage.dynamicMetadata: object expected");
                 message.dynamicMetadata = $root.AICommonDeprecated.AIRichResponseDynamicMetadata.fromObject(object.dynamicMetadata, long + 1);
             }
             if (object.latexMetadata != null) {
-                if (typeof object.latexMetadata !== "object")
+                if (!$util.isObject(object.latexMetadata))
                     throw TypeError(".AICommonDeprecated.AIRichResponseSubMessage.latexMetadata: object expected");
                 message.latexMetadata = $root.AICommonDeprecated.AIRichResponseLatexMetadata.fromObject(object.latexMetadata, long + 1);
             }
             if (object.mapMetadata != null) {
-                if (typeof object.mapMetadata !== "object")
+                if (!$util.isObject(object.mapMetadata))
                     throw TypeError(".AICommonDeprecated.AIRichResponseSubMessage.mapMetadata: object expected");
                 message.mapMetadata = $root.AICommonDeprecated.AIRichResponseMapMetadata.fromObject(object.mapMetadata, long + 1);
             }
             if (object.contentItemsMetadata != null) {
-                if (typeof object.contentItemsMetadata !== "object")
+                if (!$util.isObject(object.contentItemsMetadata))
                     throw TypeError(".AICommonDeprecated.AIRichResponseSubMessage.contentItemsMetadata: object expected");
                 message.contentItemsMetadata = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.fromObject(object.contentItemsMetadata, long + 1);
             }
@@ -638,7 +640,7 @@ $root.AICommonDeprecated = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIRichResponseContentItemsMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -745,6 +747,8 @@ $root.AICommonDeprecated = (function() {
         AIRichResponseContentItemsMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseContentItemsMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommonDeprecated.AIRichResponseContentItemsMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -755,7 +759,7 @@ $root.AICommonDeprecated = (function() {
                     throw TypeError(".AICommonDeprecated.AIRichResponseContentItemsMetadata.itemsMetadata: array expected");
                 message.itemsMetadata = [];
                 for (var i = 0; i < object.itemsMetadata.length; ++i) {
-                    if (typeof object.itemsMetadata[i] !== "object")
+                    if (!$util.isObject(object.itemsMetadata[i]))
                         throw TypeError(".AICommonDeprecated.AIRichResponseContentItemsMetadata.itemsMetadata: object expected");
                     message.itemsMetadata[i] = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.fromObject(object.itemsMetadata[i], long + 1);
                 }
@@ -925,7 +929,7 @@ $root.AICommonDeprecated = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AIRichResponseContentItemMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -1018,13 +1022,15 @@ $root.AICommonDeprecated = (function() {
             AIRichResponseContentItemMetadata.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
                 var message = new $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata();
                 if (object.reelItem != null) {
-                    if (typeof object.reelItem !== "object")
+                    if (!$util.isObject(object.reelItem))
                         throw TypeError(".AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseContentItemMetadata.reelItem: object expected");
                     message.reelItem = $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseReelItem.fromObject(object.reelItem, long + 1);
                 }
@@ -1193,7 +1199,7 @@ $root.AICommonDeprecated = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AIRichResponseReelItem.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -1301,6 +1307,8 @@ $root.AICommonDeprecated = (function() {
             AIRichResponseReelItem.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseReelItem)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".AICommonDeprecated.AIRichResponseContentItemsMetadata.AIRichResponseReelItem: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -1529,7 +1537,7 @@ $root.AICommonDeprecated = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIRichResponseMapMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -1659,6 +1667,8 @@ $root.AICommonDeprecated = (function() {
         AIRichResponseMapMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseMapMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommonDeprecated.AIRichResponseMapMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -1677,7 +1687,7 @@ $root.AICommonDeprecated = (function() {
                     throw TypeError(".AICommonDeprecated.AIRichResponseMapMetadata.annotations: array expected");
                 message.annotations = [];
                 for (var i = 0; i < object.annotations.length; ++i) {
-                    if (typeof object.annotations[i] !== "object")
+                    if (!$util.isObject(object.annotations[i]))
                         throw TypeError(".AICommonDeprecated.AIRichResponseMapMetadata.annotations: object expected");
                     message.annotations[i] = $root.AICommonDeprecated.AIRichResponseMapMetadata.AIRichResponseMapAnnotation.fromObject(object.annotations[i], long + 1);
                 }
@@ -1876,7 +1886,7 @@ $root.AICommonDeprecated = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AIRichResponseMapAnnotation.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -1991,6 +2001,8 @@ $root.AICommonDeprecated = (function() {
             AIRichResponseMapAnnotation.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommonDeprecated.AIRichResponseMapMetadata.AIRichResponseMapAnnotation)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".AICommonDeprecated.AIRichResponseMapMetadata.AIRichResponseMapAnnotation: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -2166,7 +2178,7 @@ $root.AICommonDeprecated = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIRichResponseLatexMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -2268,6 +2280,8 @@ $root.AICommonDeprecated = (function() {
         AIRichResponseLatexMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseLatexMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommonDeprecated.AIRichResponseLatexMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -2280,7 +2294,7 @@ $root.AICommonDeprecated = (function() {
                     throw TypeError(".AICommonDeprecated.AIRichResponseLatexMetadata.expressions: array expected");
                 message.expressions = [];
                 for (var i = 0; i < object.expressions.length; ++i) {
-                    if (typeof object.expressions[i] !== "object")
+                    if (!$util.isObject(object.expressions[i]))
                         throw TypeError(".AICommonDeprecated.AIRichResponseLatexMetadata.expressions: object expected");
                     message.expressions[i] = $root.AICommonDeprecated.AIRichResponseLatexMetadata.AIRichResponseLatexExpression.fromObject(object.expressions[i], long + 1);
                 }
@@ -2508,7 +2522,7 @@ $root.AICommonDeprecated = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AIRichResponseLatexExpression.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -2651,6 +2665,8 @@ $root.AICommonDeprecated = (function() {
             AIRichResponseLatexExpression.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommonDeprecated.AIRichResponseLatexMetadata.AIRichResponseLatexExpression)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".AICommonDeprecated.AIRichResponseLatexMetadata.AIRichResponseLatexExpression: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -2866,7 +2882,7 @@ $root.AICommonDeprecated = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIRichResponseDynamicMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -2980,6 +2996,8 @@ $root.AICommonDeprecated = (function() {
         AIRichResponseDynamicMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseDynamicMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommonDeprecated.AIRichResponseDynamicMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -3197,7 +3215,7 @@ $root.AICommonDeprecated = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIRichResponseTableMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -3299,6 +3317,8 @@ $root.AICommonDeprecated = (function() {
         AIRichResponseTableMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseTableMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommonDeprecated.AIRichResponseTableMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -3309,7 +3329,7 @@ $root.AICommonDeprecated = (function() {
                     throw TypeError(".AICommonDeprecated.AIRichResponseTableMetadata.rows: array expected");
                 message.rows = [];
                 for (var i = 0; i < object.rows.length; ++i) {
-                    if (typeof object.rows[i] !== "object")
+                    if (!$util.isObject(object.rows[i]))
                         throw TypeError(".AICommonDeprecated.AIRichResponseTableMetadata.rows: object expected");
                     message.rows[i] = $root.AICommonDeprecated.AIRichResponseTableMetadata.AIRichResponseTableRow.fromObject(object.rows[i], long + 1);
                 }
@@ -3464,7 +3484,7 @@ $root.AICommonDeprecated = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AIRichResponseTableRow.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -3564,6 +3584,8 @@ $root.AICommonDeprecated = (function() {
             AIRichResponseTableRow.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommonDeprecated.AIRichResponseTableMetadata.AIRichResponseTableRow)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".AICommonDeprecated.AIRichResponseTableMetadata.AIRichResponseTableRow: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -3732,7 +3754,7 @@ $root.AICommonDeprecated = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIRichResponseCodeMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -3834,6 +3856,8 @@ $root.AICommonDeprecated = (function() {
         AIRichResponseCodeMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseCodeMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommonDeprecated.AIRichResponseCodeMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -3846,7 +3870,7 @@ $root.AICommonDeprecated = (function() {
                     throw TypeError(".AICommonDeprecated.AIRichResponseCodeMetadata.codeBlocks: array expected");
                 message.codeBlocks = [];
                 for (var i = 0; i < object.codeBlocks.length; ++i) {
-                    if (typeof object.codeBlocks[i] !== "object")
+                    if (!$util.isObject(object.codeBlocks[i]))
                         throw TypeError(".AICommonDeprecated.AIRichResponseCodeMetadata.codeBlocks: object expected");
                     message.codeBlocks[i] = $root.AICommonDeprecated.AIRichResponseCodeMetadata.AIRichResponseCodeBlock.fromObject(object.codeBlocks[i], long + 1);
                 }
@@ -3997,7 +4021,7 @@ $root.AICommonDeprecated = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AIRichResponseCodeBlock.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -4100,6 +4124,8 @@ $root.AICommonDeprecated = (function() {
             AIRichResponseCodeBlock.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.AICommonDeprecated.AIRichResponseCodeMetadata.AIRichResponseCodeBlock)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".AICommonDeprecated.AIRichResponseCodeMetadata.AIRichResponseCodeBlock: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -4332,7 +4358,7 @@ $root.AICommonDeprecated = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIRichResponseInlineImageMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -4448,13 +4474,15 @@ $root.AICommonDeprecated = (function() {
         AIRichResponseInlineImageMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseInlineImageMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommonDeprecated.AIRichResponseInlineImageMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
             var message = new $root.AICommonDeprecated.AIRichResponseInlineImageMetadata();
             if (object.imageUrl != null) {
-                if (typeof object.imageUrl !== "object")
+                if (!$util.isObject(object.imageUrl))
                     throw TypeError(".AICommonDeprecated.AIRichResponseInlineImageMetadata.imageUrl: object expected");
                 message.imageUrl = $root.AICommonDeprecated.AIRichResponseImageURL.fromObject(object.imageUrl, long + 1);
             }
@@ -4652,7 +4680,7 @@ $root.AICommonDeprecated = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIRichResponseGridImageMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -4756,13 +4784,15 @@ $root.AICommonDeprecated = (function() {
         AIRichResponseGridImageMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseGridImageMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommonDeprecated.AIRichResponseGridImageMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
             var message = new $root.AICommonDeprecated.AIRichResponseGridImageMetadata();
             if (object.gridImageUrl != null) {
-                if (typeof object.gridImageUrl !== "object")
+                if (!$util.isObject(object.gridImageUrl))
                     throw TypeError(".AICommonDeprecated.AIRichResponseGridImageMetadata.gridImageUrl: object expected");
                 message.gridImageUrl = $root.AICommonDeprecated.AIRichResponseImageURL.fromObject(object.gridImageUrl, long + 1);
             }
@@ -4771,7 +4801,7 @@ $root.AICommonDeprecated = (function() {
                     throw TypeError(".AICommonDeprecated.AIRichResponseGridImageMetadata.imageUrls: array expected");
                 message.imageUrls = [];
                 for (var i = 0; i < object.imageUrls.length; ++i) {
-                    if (typeof object.imageUrls[i] !== "object")
+                    if (!$util.isObject(object.imageUrls[i]))
                         throw TypeError(".AICommonDeprecated.AIRichResponseGridImageMetadata.imageUrls: object expected");
                     message.imageUrls[i] = $root.AICommonDeprecated.AIRichResponseImageURL.fromObject(object.imageUrls[i], long + 1);
                 }
@@ -4936,7 +4966,7 @@ $root.AICommonDeprecated = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIRichResponseImageURL.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -5037,6 +5067,8 @@ $root.AICommonDeprecated = (function() {
         AIRichResponseImageURL.fromObject = function fromObject(object, long) {
             if (object instanceof $root.AICommonDeprecated.AIRichResponseImageURL)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".AICommonDeprecated.AIRichResponseImageURL: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -5333,7 +5365,7 @@ $root.StatusAttributions = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         StatusAttribution.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -5525,6 +5557,8 @@ $root.StatusAttributions = (function() {
         StatusAttribution.fromObject = function fromObject(object, long) {
             if (object instanceof $root.StatusAttributions.StatusAttribution)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".StatusAttributions.StatusAttribution: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -5589,32 +5623,32 @@ $root.StatusAttributions = (function() {
             if (object.actionUrl != null)
                 message.actionUrl = String(object.actionUrl);
             if (object.statusReshare != null) {
-                if (typeof object.statusReshare !== "object")
+                if (!$util.isObject(object.statusReshare))
                     throw TypeError(".StatusAttributions.StatusAttribution.statusReshare: object expected");
                 message.statusReshare = $root.StatusAttributions.StatusAttribution.StatusReshare.fromObject(object.statusReshare, long + 1);
             }
             if (object.externalShare != null) {
-                if (typeof object.externalShare !== "object")
+                if (!$util.isObject(object.externalShare))
                     throw TypeError(".StatusAttributions.StatusAttribution.externalShare: object expected");
                 message.externalShare = $root.StatusAttributions.StatusAttribution.ExternalShare.fromObject(object.externalShare, long + 1);
             }
             if (object.music != null) {
-                if (typeof object.music !== "object")
+                if (!$util.isObject(object.music))
                     throw TypeError(".StatusAttributions.StatusAttribution.music: object expected");
                 message.music = $root.StatusAttributions.StatusAttribution.Music.fromObject(object.music, long + 1);
             }
             if (object.groupStatus != null) {
-                if (typeof object.groupStatus !== "object")
+                if (!$util.isObject(object.groupStatus))
                     throw TypeError(".StatusAttributions.StatusAttribution.groupStatus: object expected");
                 message.groupStatus = $root.StatusAttributions.StatusAttribution.GroupStatus.fromObject(object.groupStatus, long + 1);
             }
             if (object.rlAttribution != null) {
-                if (typeof object.rlAttribution !== "object")
+                if (!$util.isObject(object.rlAttribution))
                     throw TypeError(".StatusAttributions.StatusAttribution.rlAttribution: object expected");
                 message.rlAttribution = $root.StatusAttributions.StatusAttribution.RLAttribution.fromObject(object.rlAttribution, long + 1);
             }
             if (object.aiCreatedAttribution != null) {
-                if (typeof object.aiCreatedAttribution !== "object")
+                if (!$util.isObject(object.aiCreatedAttribution))
                     throw TypeError(".StatusAttributions.StatusAttribution.aiCreatedAttribution: object expected");
                 message.aiCreatedAttribution = $root.StatusAttributions.StatusAttribution.AiCreatedAttribution.fromObject(object.aiCreatedAttribution, long + 1);
             }
@@ -5780,7 +5814,7 @@ $root.StatusAttributions = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AiCreatedAttribution.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -5872,6 +5906,8 @@ $root.StatusAttributions = (function() {
             AiCreatedAttribution.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.AiCreatedAttribution)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".StatusAttributions.StatusAttribution.AiCreatedAttribution: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -6071,7 +6107,7 @@ $root.StatusAttributions = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ExternalShare.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -6195,6 +6231,8 @@ $root.StatusAttributions = (function() {
             ExternalShare.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.ExternalShare)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".StatusAttributions.StatusAttribution.ExternalShare: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -6443,7 +6481,7 @@ $root.StatusAttributions = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             GroupStatus.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -6530,6 +6568,8 @@ $root.StatusAttributions = (function() {
             GroupStatus.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.GroupStatus)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".StatusAttributions.StatusAttribution.GroupStatus: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -6723,7 +6763,7 @@ $root.StatusAttributions = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             Music.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -6845,6 +6885,8 @@ $root.StatusAttributions = (function() {
             Music.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.Music)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".StatusAttributions.StatusAttribution.Music: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -7009,7 +7051,7 @@ $root.StatusAttributions = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             RLAttribution.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -7103,6 +7145,8 @@ $root.StatusAttributions = (function() {
             RLAttribution.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.RLAttribution)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".StatusAttributions.StatusAttribution.RLAttribution: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -7292,7 +7336,7 @@ $root.StatusAttributions = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             StatusReshare.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -7396,6 +7440,8 @@ $root.StatusAttributions = (function() {
             StatusReshare.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.StatusReshare)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".StatusAttributions.StatusAttribution.StatusReshare: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -7430,7 +7476,7 @@ $root.StatusAttributions = (function() {
                     break;
                 }
                 if (object.metadata != null) {
-                    if (typeof object.metadata !== "object")
+                    if (!$util.isObject(object.metadata))
                         throw TypeError(".StatusAttributions.StatusAttribution.StatusReshare.metadata: object expected");
                     message.metadata = $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata.fromObject(object.metadata, long + 1);
                 }
@@ -7599,7 +7645,7 @@ $root.StatusAttributions = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 Metadata.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -7707,6 +7753,8 @@ $root.StatusAttributions = (function() {
                 Metadata.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".StatusAttributions.StatusAttribution.StatusReshare.Metadata: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)

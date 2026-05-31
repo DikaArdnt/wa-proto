@@ -104,7 +104,7 @@ $root.Ephemeral = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         EphemeralSetting.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -198,6 +198,8 @@ $root.Ephemeral = (function() {
         EphemeralSetting.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Ephemeral.EphemeralSetting)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".Ephemeral.EphemeralSetting: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)

@@ -184,7 +184,7 @@ $root.StatusAttributions = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         StatusAttribution.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -376,6 +376,8 @@ $root.StatusAttributions = (function() {
         StatusAttribution.fromObject = function fromObject(object, long) {
             if (object instanceof $root.StatusAttributions.StatusAttribution)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".StatusAttributions.StatusAttribution: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -440,32 +442,32 @@ $root.StatusAttributions = (function() {
             if (object.actionUrl != null)
                 message.actionUrl = String(object.actionUrl);
             if (object.statusReshare != null) {
-                if (typeof object.statusReshare !== "object")
+                if (!$util.isObject(object.statusReshare))
                     throw TypeError(".StatusAttributions.StatusAttribution.statusReshare: object expected");
                 message.statusReshare = $root.StatusAttributions.StatusAttribution.StatusReshare.fromObject(object.statusReshare, long + 1);
             }
             if (object.externalShare != null) {
-                if (typeof object.externalShare !== "object")
+                if (!$util.isObject(object.externalShare))
                     throw TypeError(".StatusAttributions.StatusAttribution.externalShare: object expected");
                 message.externalShare = $root.StatusAttributions.StatusAttribution.ExternalShare.fromObject(object.externalShare, long + 1);
             }
             if (object.music != null) {
-                if (typeof object.music !== "object")
+                if (!$util.isObject(object.music))
                     throw TypeError(".StatusAttributions.StatusAttribution.music: object expected");
                 message.music = $root.StatusAttributions.StatusAttribution.Music.fromObject(object.music, long + 1);
             }
             if (object.groupStatus != null) {
-                if (typeof object.groupStatus !== "object")
+                if (!$util.isObject(object.groupStatus))
                     throw TypeError(".StatusAttributions.StatusAttribution.groupStatus: object expected");
                 message.groupStatus = $root.StatusAttributions.StatusAttribution.GroupStatus.fromObject(object.groupStatus, long + 1);
             }
             if (object.rlAttribution != null) {
-                if (typeof object.rlAttribution !== "object")
+                if (!$util.isObject(object.rlAttribution))
                     throw TypeError(".StatusAttributions.StatusAttribution.rlAttribution: object expected");
                 message.rlAttribution = $root.StatusAttributions.StatusAttribution.RLAttribution.fromObject(object.rlAttribution, long + 1);
             }
             if (object.aiCreatedAttribution != null) {
-                if (typeof object.aiCreatedAttribution !== "object")
+                if (!$util.isObject(object.aiCreatedAttribution))
                     throw TypeError(".StatusAttributions.StatusAttribution.aiCreatedAttribution: object expected");
                 message.aiCreatedAttribution = $root.StatusAttributions.StatusAttribution.AiCreatedAttribution.fromObject(object.aiCreatedAttribution, long + 1);
             }
@@ -631,7 +633,7 @@ $root.StatusAttributions = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AiCreatedAttribution.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -723,6 +725,8 @@ $root.StatusAttributions = (function() {
             AiCreatedAttribution.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.AiCreatedAttribution)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".StatusAttributions.StatusAttribution.AiCreatedAttribution: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -922,7 +926,7 @@ $root.StatusAttributions = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ExternalShare.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -1046,6 +1050,8 @@ $root.StatusAttributions = (function() {
             ExternalShare.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.ExternalShare)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".StatusAttributions.StatusAttribution.ExternalShare: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -1294,7 +1300,7 @@ $root.StatusAttributions = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             GroupStatus.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -1381,6 +1387,8 @@ $root.StatusAttributions = (function() {
             GroupStatus.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.GroupStatus)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".StatusAttributions.StatusAttribution.GroupStatus: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -1574,7 +1582,7 @@ $root.StatusAttributions = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             Music.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -1696,6 +1704,8 @@ $root.StatusAttributions = (function() {
             Music.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.Music)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".StatusAttributions.StatusAttribution.Music: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -1860,7 +1870,7 @@ $root.StatusAttributions = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             RLAttribution.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -1954,6 +1964,8 @@ $root.StatusAttributions = (function() {
             RLAttribution.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.RLAttribution)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".StatusAttributions.StatusAttribution.RLAttribution: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -2143,7 +2155,7 @@ $root.StatusAttributions = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             StatusReshare.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -2247,6 +2259,8 @@ $root.StatusAttributions = (function() {
             StatusReshare.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.StatusAttributions.StatusAttribution.StatusReshare)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".StatusAttributions.StatusAttribution.StatusReshare: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -2281,7 +2295,7 @@ $root.StatusAttributions = (function() {
                     break;
                 }
                 if (object.metadata != null) {
-                    if (typeof object.metadata !== "object")
+                    if (!$util.isObject(object.metadata))
                         throw TypeError(".StatusAttributions.StatusAttribution.StatusReshare.metadata: object expected");
                     message.metadata = $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata.fromObject(object.metadata, long + 1);
                 }
@@ -2450,7 +2464,7 @@ $root.StatusAttributions = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 Metadata.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -2558,6 +2572,8 @@ $root.StatusAttributions = (function() {
                 Metadata.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.StatusAttributions.StatusAttribution.StatusReshare.Metadata)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".StatusAttributions.StatusAttribution.StatusReshare.Metadata: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)

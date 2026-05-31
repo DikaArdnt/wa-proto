@@ -115,7 +115,7 @@ $root.Adv = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         ADVSignedDeviceIdentityHMAC.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -222,6 +222,8 @@ $root.Adv = (function() {
         ADVSignedDeviceIdentityHMAC.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Adv.ADVSignedDeviceIdentityHMAC)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".Adv.ADVSignedDeviceIdentityHMAC: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -440,7 +442,7 @@ $root.Adv = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         ADVSignedDeviceIdentity.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -548,6 +550,8 @@ $root.Adv = (function() {
         ADVSignedDeviceIdentity.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Adv.ADVSignedDeviceIdentity)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".Adv.ADVSignedDeviceIdentity: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -782,7 +786,7 @@ $root.Adv = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         ADVDeviceIdentity.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -909,6 +913,8 @@ $root.Adv = (function() {
         ADVDeviceIdentity.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Adv.ADVDeviceIdentity)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".Adv.ADVDeviceIdentity: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -1142,7 +1148,7 @@ $root.Adv = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         ADVSignedKeyIndexList.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -1243,6 +1249,8 @@ $root.Adv = (function() {
         ADVSignedKeyIndexList.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Adv.ADVSignedKeyIndexList)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".Adv.ADVSignedKeyIndexList: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -1468,7 +1476,7 @@ $root.Adv = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         ADVKeyIndexList.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -1600,6 +1608,8 @@ $root.Adv = (function() {
         ADVKeyIndexList.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Adv.ADVKeyIndexList)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".Adv.ADVKeyIndexList: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)

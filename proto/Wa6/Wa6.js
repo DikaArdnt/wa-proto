@@ -482,7 +482,7 @@ $root.Wa6 = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         ClientPayload.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -893,6 +893,8 @@ $root.Wa6 = (function() {
         ClientPayload.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Wa6.ClientPayload)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".Wa6.ClientPayload: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -910,12 +912,12 @@ $root.Wa6 = (function() {
             if (object.passive != null)
                 message.passive = Boolean(object.passive);
             if (object.userAgent != null) {
-                if (typeof object.userAgent !== "object")
+                if (!$util.isObject(object.userAgent))
                     throw TypeError(".Wa6.ClientPayload.userAgent: object expected");
                 message.userAgent = $root.Wa6.ClientPayload.UserAgent.fromObject(object.userAgent, long + 1);
             }
             if (object.webInfo != null) {
-                if (typeof object.webInfo !== "object")
+                if (!$util.isObject(object.webInfo))
                     throw TypeError(".Wa6.ClientPayload.webInfo: object expected");
                 message.webInfo = $root.Wa6.ClientPayload.WebInfo.fromObject(object.webInfo, long + 1);
             }
@@ -1037,7 +1039,7 @@ $root.Wa6 = (function() {
                     message.shards[i] = object.shards[i] | 0;
             }
             if (object.dnsSource != null) {
-                if (typeof object.dnsSource !== "object")
+                if (!$util.isObject(object.dnsSource))
                     throw TypeError(".Wa6.ClientPayload.dnsSource: object expected");
                 message.dnsSource = $root.Wa6.ClientPayload.DNSSource.fromObject(object.dnsSource, long + 1);
             }
@@ -1046,7 +1048,7 @@ $root.Wa6 = (function() {
             if (object.device != null)
                 message.device = object.device >>> 0;
             if (object.devicePairingData != null) {
-                if (typeof object.devicePairingData !== "object")
+                if (!$util.isObject(object.devicePairingData))
                     throw TypeError(".Wa6.ClientPayload.devicePairingData: object expected");
                 message.devicePairingData = $root.Wa6.ClientPayload.DevicePairingRegistrationData.fromObject(object.devicePairingData, long + 1);
             }
@@ -1138,7 +1140,7 @@ $root.Wa6 = (function() {
             if (object.memClass != null)
                 message.memClass = object.memClass | 0;
             if (object.interopData != null) {
-                if (typeof object.interopData !== "object")
+                if (!$util.isObject(object.interopData))
                     throw TypeError(".Wa6.ClientPayload.interopData: object expected");
                 message.interopData = $root.Wa6.ClientPayload.InteropData.fromObject(object.interopData, long + 1);
             }
@@ -1575,7 +1577,7 @@ $root.Wa6 = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             DNSSource.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -1680,6 +1682,8 @@ $root.Wa6 = (function() {
             DNSSource.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.Wa6.ClientPayload.DNSSource)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".Wa6.ClientPayload.DNSSource: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -1965,7 +1969,7 @@ $root.Wa6 = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             DevicePairingRegistrationData.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -2101,6 +2105,8 @@ $root.Wa6 = (function() {
             DevicePairingRegistrationData.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.Wa6.ClientPayload.DevicePairingRegistrationData)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".Wa6.ClientPayload.DevicePairingRegistrationData: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -2385,7 +2391,7 @@ $root.Wa6 = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             InteropData.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -2486,6 +2492,8 @@ $root.Wa6 = (function() {
             InteropData.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.Wa6.ClientPayload.InteropData)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".Wa6.ClientPayload.InteropData: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -2870,7 +2878,7 @@ $root.Wa6 = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             UserAgent.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -3134,6 +3142,8 @@ $root.Wa6 = (function() {
             UserAgent.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.Wa6.ClientPayload.UserAgent)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".Wa6.ClientPayload.UserAgent: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -3300,7 +3310,7 @@ $root.Wa6 = (function() {
                     break;
                 }
                 if (object.appVersion != null) {
-                    if (typeof object.appVersion !== "object")
+                    if (!$util.isObject(object.appVersion))
                         throw TypeError(".Wa6.ClientPayload.UserAgent.appVersion: object expected");
                     message.appVersion = $root.Wa6.ClientPayload.UserAgent.AppVersion.fromObject(object.appVersion, long + 1);
                 }
@@ -3625,7 +3635,7 @@ $root.Wa6 = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 AppVersion.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -3740,6 +3750,8 @@ $root.Wa6 = (function() {
                 AppVersion.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.Wa6.ClientPayload.UserAgent.AppVersion)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".Wa6.ClientPayload.UserAgent.AppVersion: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -4099,7 +4111,7 @@ $root.Wa6 = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             WebInfo.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -4232,6 +4244,8 @@ $root.Wa6 = (function() {
             WebInfo.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.Wa6.ClientPayload.WebInfo)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".Wa6.ClientPayload.WebInfo: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -4242,7 +4256,7 @@ $root.Wa6 = (function() {
                 if (object.version != null)
                     message.version = String(object.version);
                 if (object.webdPayload != null) {
-                    if (typeof object.webdPayload !== "object")
+                    if (!$util.isObject(object.webdPayload))
                         throw TypeError(".Wa6.ClientPayload.WebInfo.webdPayload: object expected");
                     message.webdPayload = $root.Wa6.ClientPayload.WebInfo.WebdPayload.fromObject(object.webdPayload, long + 1);
                 }
@@ -4558,7 +4572,7 @@ $root.Wa6 = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 WebdPayload.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -4715,6 +4729,8 @@ $root.Wa6 = (function() {
                 WebdPayload.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.Wa6.ClientPayload.WebInfo.WebdPayload)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".Wa6.ClientPayload.WebInfo.WebdPayload: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -4941,7 +4957,7 @@ $root.Wa6 = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         HandshakeMessage.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -5048,23 +5064,25 @@ $root.Wa6 = (function() {
         HandshakeMessage.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Wa6.HandshakeMessage)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".Wa6.HandshakeMessage: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
             var message = new $root.Wa6.HandshakeMessage();
             if (object.clientHello != null) {
-                if (typeof object.clientHello !== "object")
+                if (!$util.isObject(object.clientHello))
                     throw TypeError(".Wa6.HandshakeMessage.clientHello: object expected");
                 message.clientHello = $root.Wa6.HandshakeMessage.ClientHello.fromObject(object.clientHello, long + 1);
             }
             if (object.serverHello != null) {
-                if (typeof object.serverHello !== "object")
+                if (!$util.isObject(object.serverHello))
                     throw TypeError(".Wa6.HandshakeMessage.serverHello: object expected");
                 message.serverHello = $root.Wa6.HandshakeMessage.ServerHello.fromObject(object.serverHello, long + 1);
             }
             if (object.clientFinish != null) {
-                if (typeof object.clientFinish !== "object")
+                if (!$util.isObject(object.clientFinish))
                     throw TypeError(".Wa6.HandshakeMessage.clientFinish: object expected");
                 message.clientFinish = $root.Wa6.HandshakeMessage.ClientFinish.fromObject(object.clientFinish, long + 1);
             }
@@ -5247,7 +5265,7 @@ $root.Wa6 = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ClientFinish.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -5362,6 +5380,8 @@ $root.Wa6 = (function() {
             ClientFinish.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.Wa6.HandshakeMessage.ClientFinish)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".Wa6.HandshakeMessage.ClientFinish: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -5656,7 +5676,7 @@ $root.Wa6 = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ClientHello.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -5818,6 +5838,8 @@ $root.Wa6 = (function() {
             ClientHello.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.Wa6.HandshakeMessage.ClientHello)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".Wa6.HandshakeMessage.ClientHello: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -6181,7 +6203,7 @@ $root.Wa6 = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             ServerHello.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -6303,6 +6325,8 @@ $root.Wa6 = (function() {
             ServerHello.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.Wa6.HandshakeMessage.ServerHello)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".Wa6.HandshakeMessage.ServerHello: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)

@@ -423,7 +423,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -768,91 +768,93 @@ $root.BotMetadata = (function() {
         BotMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotMetadata();
             if (object.avatarMetadata != null) {
-                if (typeof object.avatarMetadata !== "object")
+                if (!$util.isObject(object.avatarMetadata))
                     throw TypeError(".BotMetadata.BotMetadata.avatarMetadata: object expected");
                 message.avatarMetadata = $root.BotMetadata.BotAvatarMetadata.fromObject(object.avatarMetadata, long + 1);
             }
             if (object.personaId != null)
                 message.personaId = String(object.personaId);
             if (object.pluginMetadata != null) {
-                if (typeof object.pluginMetadata !== "object")
+                if (!$util.isObject(object.pluginMetadata))
                     throw TypeError(".BotMetadata.BotMetadata.pluginMetadata: object expected");
                 message.pluginMetadata = $root.BotMetadata.BotPluginMetadata.fromObject(object.pluginMetadata, long + 1);
             }
             if (object.suggestedPromptMetadata != null) {
-                if (typeof object.suggestedPromptMetadata !== "object")
+                if (!$util.isObject(object.suggestedPromptMetadata))
                     throw TypeError(".BotMetadata.BotMetadata.suggestedPromptMetadata: object expected");
                 message.suggestedPromptMetadata = $root.BotMetadata.BotSuggestedPromptMetadata.fromObject(object.suggestedPromptMetadata, long + 1);
             }
             if (object.invokerJid != null)
                 message.invokerJid = String(object.invokerJid);
             if (object.sessionMetadata != null) {
-                if (typeof object.sessionMetadata !== "object")
+                if (!$util.isObject(object.sessionMetadata))
                     throw TypeError(".BotMetadata.BotMetadata.sessionMetadata: object expected");
                 message.sessionMetadata = $root.BotMetadata.BotSessionMetadata.fromObject(object.sessionMetadata, long + 1);
             }
             if (object.memuMetadata != null) {
-                if (typeof object.memuMetadata !== "object")
+                if (!$util.isObject(object.memuMetadata))
                     throw TypeError(".BotMetadata.BotMetadata.memuMetadata: object expected");
                 message.memuMetadata = $root.BotMetadata.BotMemuMetadata.fromObject(object.memuMetadata, long + 1);
             }
             if (object.timezone != null)
                 message.timezone = String(object.timezone);
             if (object.reminderMetadata != null) {
-                if (typeof object.reminderMetadata !== "object")
+                if (!$util.isObject(object.reminderMetadata))
                     throw TypeError(".BotMetadata.BotMetadata.reminderMetadata: object expected");
                 message.reminderMetadata = $root.BotMetadata.BotReminderMetadata.fromObject(object.reminderMetadata, long + 1);
             }
             if (object.modelMetadata != null) {
-                if (typeof object.modelMetadata !== "object")
+                if (!$util.isObject(object.modelMetadata))
                     throw TypeError(".BotMetadata.BotMetadata.modelMetadata: object expected");
                 message.modelMetadata = $root.BotMetadata.BotModelMetadata.fromObject(object.modelMetadata, long + 1);
             }
             if (object.messageDisclaimerText != null)
                 message.messageDisclaimerText = String(object.messageDisclaimerText);
             if (object.progressIndicatorMetadata != null) {
-                if (typeof object.progressIndicatorMetadata !== "object")
+                if (!$util.isObject(object.progressIndicatorMetadata))
                     throw TypeError(".BotMetadata.BotMetadata.progressIndicatorMetadata: object expected");
                 message.progressIndicatorMetadata = $root.BotMetadata.BotProgressIndicatorMetadata.fromObject(object.progressIndicatorMetadata, long + 1);
             }
             if (object.capabilityMetadata != null) {
-                if (typeof object.capabilityMetadata !== "object")
+                if (!$util.isObject(object.capabilityMetadata))
                     throw TypeError(".BotMetadata.BotMetadata.capabilityMetadata: object expected");
                 message.capabilityMetadata = $root.BotMetadata.BotCapabilityMetadata.fromObject(object.capabilityMetadata, long + 1);
             }
             if (object.imagineMetadata != null) {
-                if (typeof object.imagineMetadata !== "object")
+                if (!$util.isObject(object.imagineMetadata))
                     throw TypeError(".BotMetadata.BotMetadata.imagineMetadata: object expected");
                 message.imagineMetadata = $root.BotMetadata.BotImagineMetadata.fromObject(object.imagineMetadata, long + 1);
             }
             if (object.memoryMetadata != null) {
-                if (typeof object.memoryMetadata !== "object")
+                if (!$util.isObject(object.memoryMetadata))
                     throw TypeError(".BotMetadata.BotMetadata.memoryMetadata: object expected");
                 message.memoryMetadata = $root.BotMetadata.BotMemoryMetadata.fromObject(object.memoryMetadata, long + 1);
             }
             if (object.renderingMetadata != null) {
-                if (typeof object.renderingMetadata !== "object")
+                if (!$util.isObject(object.renderingMetadata))
                     throw TypeError(".BotMetadata.BotMetadata.renderingMetadata: object expected");
                 message.renderingMetadata = $root.BotMetadata.BotRenderingMetadata.fromObject(object.renderingMetadata, long + 1);
             }
             if (object.botMetricsMetadata != null) {
-                if (typeof object.botMetricsMetadata !== "object")
+                if (!$util.isObject(object.botMetricsMetadata))
                     throw TypeError(".BotMetadata.BotMetadata.botMetricsMetadata: object expected");
                 message.botMetricsMetadata = $root.BotMetadata.BotMetricsMetadata.fromObject(object.botMetricsMetadata, long + 1);
             }
             if (object.botLinkedAccountsMetadata != null) {
-                if (typeof object.botLinkedAccountsMetadata !== "object")
+                if (!$util.isObject(object.botLinkedAccountsMetadata))
                     throw TypeError(".BotMetadata.BotMetadata.botLinkedAccountsMetadata: object expected");
                 message.botLinkedAccountsMetadata = $root.BotMetadata.BotLinkedAccountsMetadata.fromObject(object.botLinkedAccountsMetadata, long + 1);
             }
             if (object.richResponseSourcesMetadata != null) {
-                if (typeof object.richResponseSourcesMetadata !== "object")
+                if (!$util.isObject(object.richResponseSourcesMetadata))
                     throw TypeError(".BotMetadata.BotMetadata.richResponseSourcesMetadata: object expected");
                 message.richResponseSourcesMetadata = $root.BotMetadata.BotSourcesMetadata.fromObject(object.richResponseSourcesMetadata, long + 1);
             }
@@ -862,22 +864,22 @@ $root.BotMetadata = (function() {
                 else if (object.aiConversationContext.length >= 0)
                     message.aiConversationContext = object.aiConversationContext;
             if (object.botPromotionMessageMetadata != null) {
-                if (typeof object.botPromotionMessageMetadata !== "object")
+                if (!$util.isObject(object.botPromotionMessageMetadata))
                     throw TypeError(".BotMetadata.BotMetadata.botPromotionMessageMetadata: object expected");
                 message.botPromotionMessageMetadata = $root.BotMetadata.BotPromotionMessageMetadata.fromObject(object.botPromotionMessageMetadata, long + 1);
             }
             if (object.botModeSelectionMetadata != null) {
-                if (typeof object.botModeSelectionMetadata !== "object")
+                if (!$util.isObject(object.botModeSelectionMetadata))
                     throw TypeError(".BotMetadata.BotMetadata.botModeSelectionMetadata: object expected");
                 message.botModeSelectionMetadata = $root.BotMetadata.BotModeSelectionMetadata.fromObject(object.botModeSelectionMetadata, long + 1);
             }
             if (object.botQuotaMetadata != null) {
-                if (typeof object.botQuotaMetadata !== "object")
+                if (!$util.isObject(object.botQuotaMetadata))
                     throw TypeError(".BotMetadata.BotMetadata.botQuotaMetadata: object expected");
                 message.botQuotaMetadata = $root.BotMetadata.BotQuotaMetadata.fromObject(object.botQuotaMetadata, long + 1);
             }
             if (object.botAgeCollectionMetadata != null) {
-                if (typeof object.botAgeCollectionMetadata !== "object")
+                if (!$util.isObject(object.botAgeCollectionMetadata))
                     throw TypeError(".BotMetadata.BotMetadata.botAgeCollectionMetadata: object expected");
                 message.botAgeCollectionMetadata = $root.BotMetadata.BotAgeCollectionMetadata.fromObject(object.botAgeCollectionMetadata, long + 1);
             }
@@ -886,27 +888,27 @@ $root.BotMetadata = (function() {
             if (object.botResponseId != null)
                 message.botResponseId = String(object.botResponseId);
             if (object.verificationMetadata != null) {
-                if (typeof object.verificationMetadata !== "object")
+                if (!$util.isObject(object.verificationMetadata))
                     throw TypeError(".BotMetadata.BotMetadata.verificationMetadata: object expected");
                 message.verificationMetadata = $root.BotMetadata.BotSignatureVerificationMetadata.fromObject(object.verificationMetadata, long + 1);
             }
             if (object.unifiedResponseMutation != null) {
-                if (typeof object.unifiedResponseMutation !== "object")
+                if (!$util.isObject(object.unifiedResponseMutation))
                     throw TypeError(".BotMetadata.BotMetadata.unifiedResponseMutation: object expected");
                 message.unifiedResponseMutation = $root.BotMetadata.BotUnifiedResponseMutation.fromObject(object.unifiedResponseMutation, long + 1);
             }
             if (object.botMessageOriginMetadata != null) {
-                if (typeof object.botMessageOriginMetadata !== "object")
+                if (!$util.isObject(object.botMessageOriginMetadata))
                     throw TypeError(".BotMetadata.BotMetadata.botMessageOriginMetadata: object expected");
                 message.botMessageOriginMetadata = $root.BotMetadata.BotMessageOriginMetadata.fromObject(object.botMessageOriginMetadata, long + 1);
             }
             if (object.inThreadSurveyMetadata != null) {
-                if (typeof object.inThreadSurveyMetadata !== "object")
+                if (!$util.isObject(object.inThreadSurveyMetadata))
                     throw TypeError(".BotMetadata.BotMetadata.inThreadSurveyMetadata: object expected");
                 message.inThreadSurveyMetadata = $root.BotMetadata.InThreadSurveyMetadata.fromObject(object.inThreadSurveyMetadata, long + 1);
             }
             if (object.botThreadInfo != null) {
-                if (typeof object.botThreadInfo !== "object")
+                if (!$util.isObject(object.botThreadInfo))
                     throw TypeError(".BotMetadata.BotMetadata.botThreadInfo: object expected");
                 message.botThreadInfo = $root.BotMetadata.AIThreadInfo.fromObject(object.botThreadInfo, long + 1);
             }
@@ -1149,7 +1151,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         AIThreadInfo.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -1247,18 +1249,20 @@ $root.BotMetadata = (function() {
         AIThreadInfo.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.AIThreadInfo)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.AIThreadInfo: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.AIThreadInfo();
             if (object.serverInfo != null) {
-                if (typeof object.serverInfo !== "object")
+                if (!$util.isObject(object.serverInfo))
                     throw TypeError(".BotMetadata.AIThreadInfo.serverInfo: object expected");
                 message.serverInfo = $root.BotMetadata.AIThreadInfo.AIThreadServerInfo.fromObject(object.serverInfo, long + 1);
             }
             if (object.clientInfo != null) {
-                if (typeof object.clientInfo !== "object")
+                if (!$util.isObject(object.clientInfo))
                     throw TypeError(".BotMetadata.AIThreadInfo.clientInfo: object expected");
                 message.clientInfo = $root.BotMetadata.AIThreadInfo.AIThreadClientInfo.fromObject(object.clientInfo, long + 1);
             }
@@ -1394,7 +1398,7 @@ $root.BotMetadata = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AIThreadClientInfo.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -1487,6 +1491,8 @@ $root.BotMetadata = (function() {
             AIThreadClientInfo.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.BotMetadata.AIThreadInfo.AIThreadClientInfo)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".BotMetadata.AIThreadInfo.AIThreadClientInfo: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -1659,7 +1665,7 @@ $root.BotMetadata = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AIThreadServerInfo.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -1746,6 +1752,8 @@ $root.BotMetadata = (function() {
             AIThreadServerInfo.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.BotMetadata.AIThreadInfo.AIThreadServerInfo)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".BotMetadata.AIThreadInfo.AIThreadServerInfo: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -1887,7 +1895,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotUnifiedResponseMutation.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -1976,13 +1984,15 @@ $root.BotMetadata = (function() {
         BotUnifiedResponseMutation.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotUnifiedResponseMutation)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotUnifiedResponseMutation: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotUnifiedResponseMutation();
             if (object.sbsMetadata != null) {
-                if (typeof object.sbsMetadata !== "object")
+                if (!$util.isObject(object.sbsMetadata))
                     throw TypeError(".BotMetadata.BotUnifiedResponseMutation.sbsMetadata: object expected");
                 message.sbsMetadata = $root.BotMetadata.BotUnifiedResponseMutation.SideBySideMetadata.fromObject(object.sbsMetadata, long + 1);
             }
@@ -2114,7 +2124,7 @@ $root.BotMetadata = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             SideBySideMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -2201,6 +2211,8 @@ $root.BotMetadata = (function() {
             SideBySideMetadata.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.BotMetadata.BotUnifiedResponseMutation.SideBySideMetadata)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".BotMetadata.BotUnifiedResponseMutation.SideBySideMetadata: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -2342,7 +2354,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotMessageOrigin.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -2433,6 +2445,8 @@ $root.BotMetadata = (function() {
         BotMessageOrigin.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotMessageOrigin)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotMessageOrigin: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -2595,7 +2609,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotMessageOriginMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -2690,6 +2704,8 @@ $root.BotMetadata = (function() {
         BotMessageOriginMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotMessageOriginMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotMessageOriginMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -2700,7 +2716,7 @@ $root.BotMetadata = (function() {
                     throw TypeError(".BotMetadata.BotMessageOriginMetadata.origins: array expected");
                 message.origins = [];
                 for (var i = 0; i < object.origins.length; ++i) {
-                    if (typeof object.origins[i] !== "object")
+                    if (!$util.isObject(object.origins[i]))
                         throw TypeError(".BotMetadata.BotMessageOriginMetadata.origins: object expected");
                     message.origins[i] = $root.BotMetadata.BotMessageOrigin.fromObject(object.origins[i], long + 1);
                 }
@@ -3019,7 +3035,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         InThreadSurveyMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -3234,6 +3250,8 @@ $root.BotMetadata = (function() {
         InThreadSurveyMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.InThreadSurveyMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.InThreadSurveyMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -3266,7 +3284,7 @@ $root.BotMetadata = (function() {
                     throw TypeError(".BotMetadata.InThreadSurveyMetadata.questions: array expected");
                 message.questions = [];
                 for (var i = 0; i < object.questions.length; ++i) {
-                    if (typeof object.questions[i] !== "object")
+                    if (!$util.isObject(object.questions[i]))
                         throw TypeError(".BotMetadata.InThreadSurveyMetadata.questions: object expected");
                     message.questions[i] = $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion.fromObject(object.questions[i], long + 1);
                 }
@@ -3282,7 +3300,7 @@ $root.BotMetadata = (function() {
                     throw TypeError(".BotMetadata.InThreadSurveyMetadata.privacyStatementParts: array expected");
                 message.privacyStatementParts = [];
                 for (var i = 0; i < object.privacyStatementParts.length; ++i) {
-                    if (typeof object.privacyStatementParts[i] !== "object")
+                    if (!$util.isObject(object.privacyStatementParts[i]))
                         throw TypeError(".BotMetadata.InThreadSurveyMetadata.privacyStatementParts: object expected");
                     message.privacyStatementParts[i] = $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart.fromObject(object.privacyStatementParts[i], long + 1);
                 }
@@ -3496,7 +3514,7 @@ $root.BotMetadata = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             InThreadSurveyOption.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -3597,6 +3615,8 @@ $root.BotMetadata = (function() {
             InThreadSurveyOption.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -3757,7 +3777,7 @@ $root.BotMetadata = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             InThreadSurveyPrivacyStatementPart.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -3851,6 +3871,8 @@ $root.BotMetadata = (function() {
             InThreadSurveyPrivacyStatementPart.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".BotMetadata.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -4019,7 +4041,7 @@ $root.BotMetadata = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             InThreadSurveyQuestion.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -4128,6 +4150,8 @@ $root.BotMetadata = (function() {
             InThreadSurveyQuestion.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -4142,7 +4166,7 @@ $root.BotMetadata = (function() {
                         throw TypeError(".BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion.questionOptions: array expected");
                     message.questionOptions = [];
                     for (var i = 0; i < object.questionOptions.length; ++i) {
-                        if (typeof object.questionOptions[i] !== "object")
+                        if (!$util.isObject(object.questionOptions[i]))
                             throw TypeError(".BotMetadata.InThreadSurveyMetadata.InThreadSurveyQuestion.questionOptions: object expected");
                         message.questionOptions[i] = $root.BotMetadata.InThreadSurveyMetadata.InThreadSurveyOption.fromObject(object.questionOptions[i], long + 1);
                     }
@@ -4294,7 +4318,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotSourcesMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -4389,6 +4413,8 @@ $root.BotMetadata = (function() {
         BotSourcesMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotSourcesMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotSourcesMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -4399,7 +4425,7 @@ $root.BotMetadata = (function() {
                     throw TypeError(".BotMetadata.BotSourcesMetadata.sources: array expected");
                 message.sources = [];
                 for (var i = 0; i < object.sources.length; ++i) {
-                    if (typeof object.sources[i] !== "object")
+                    if (!$util.isObject(object.sources[i]))
                         throw TypeError(".BotMetadata.BotSourcesMetadata.sources: object expected");
                     message.sources[i] = $root.BotMetadata.BotSourcesMetadata.BotSourceItem.fromObject(object.sources[i], long + 1);
                 }
@@ -4601,7 +4627,7 @@ $root.BotMetadata = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             BotSourceItem.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -4738,6 +4764,8 @@ $root.BotMetadata = (function() {
             BotSourceItem.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.BotMetadata.BotSourcesMetadata.BotSourceItem)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".BotMetadata.BotSourcesMetadata.BotSourceItem: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -4967,7 +4995,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotAgeCollectionMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -5061,6 +5089,8 @@ $root.BotMetadata = (function() {
         BotAgeCollectionMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotAgeCollectionMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotAgeCollectionMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -5205,7 +5235,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotImagineMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -5300,6 +5330,8 @@ $root.BotMetadata = (function() {
         BotImagineMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotImagineMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotImagineMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -5486,7 +5518,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotQuotaMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -5581,6 +5613,8 @@ $root.BotMetadata = (function() {
         BotQuotaMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotQuotaMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotQuotaMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -5591,7 +5625,7 @@ $root.BotMetadata = (function() {
                     throw TypeError(".BotMetadata.BotQuotaMetadata.botFeatureQuotaMetadata: array expected");
                 message.botFeatureQuotaMetadata = [];
                 for (var i = 0; i < object.botFeatureQuotaMetadata.length; ++i) {
-                    if (typeof object.botFeatureQuotaMetadata[i] !== "object")
+                    if (!$util.isObject(object.botFeatureQuotaMetadata[i]))
                         throw TypeError(".BotMetadata.BotQuotaMetadata.botFeatureQuotaMetadata: object expected");
                     message.botFeatureQuotaMetadata[i] = $root.BotMetadata.BotQuotaMetadata.BotFeatureQuotaMetadata.fromObject(object.botFeatureQuotaMetadata[i], long + 1);
                 }
@@ -5749,7 +5783,7 @@ $root.BotMetadata = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             BotFeatureQuotaMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -5855,6 +5889,8 @@ $root.BotMetadata = (function() {
             BotFeatureQuotaMetadata.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.BotMetadata.BotQuotaMetadata.BotFeatureQuotaMetadata)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".BotMetadata.BotQuotaMetadata.BotFeatureQuotaMetadata: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -6053,7 +6089,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotModeSelectionMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -6156,6 +6192,8 @@ $root.BotMetadata = (function() {
         BotModeSelectionMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotModeSelectionMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotModeSelectionMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -6332,7 +6370,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotCapabilityMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -6476,6 +6514,8 @@ $root.BotMetadata = (function() {
         BotCapabilityMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotCapabilityMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotCapabilityMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -6909,7 +6949,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotProgressIndicatorMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -7011,6 +7051,8 @@ $root.BotMetadata = (function() {
         BotProgressIndicatorMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotProgressIndicatorMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotProgressIndicatorMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -7023,7 +7065,7 @@ $root.BotMetadata = (function() {
                     throw TypeError(".BotMetadata.BotProgressIndicatorMetadata.stepsMetadata: array expected");
                 message.stepsMetadata = [];
                 for (var i = 0; i < object.stepsMetadata.length; ++i) {
-                    if (typeof object.stepsMetadata[i] !== "object")
+                    if (!$util.isObject(object.stepsMetadata[i]))
                         throw TypeError(".BotMetadata.BotProgressIndicatorMetadata.stepsMetadata: object expected");
                     message.stepsMetadata[i] = $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.fromObject(object.stepsMetadata[i], long + 1);
                 }
@@ -7233,7 +7275,7 @@ $root.BotMetadata = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             BotPlanningStepMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -7385,6 +7427,8 @@ $root.BotMetadata = (function() {
             BotPlanningStepMetadata.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -7399,7 +7443,7 @@ $root.BotMetadata = (function() {
                         throw TypeError(".BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.sourcesMetadata: array expected");
                     message.sourcesMetadata = [];
                     for (var i = 0; i < object.sourcesMetadata.length; ++i) {
-                        if (typeof object.sourcesMetadata[i] !== "object")
+                        if (!$util.isObject(object.sourcesMetadata[i]))
                             throw TypeError(".BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.sourcesMetadata: object expected");
                         message.sourcesMetadata[i] = $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata.fromObject(object.sourcesMetadata[i], long + 1);
                     }
@@ -7437,7 +7481,7 @@ $root.BotMetadata = (function() {
                         throw TypeError(".BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.sections: array expected");
                     message.sections = [];
                     for (var i = 0; i < object.sections.length; ++i) {
-                        if (typeof object.sections[i] !== "object")
+                        if (!$util.isObject(object.sections[i]))
                             throw TypeError(".BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.sections: object expected");
                         message.sections[i] = $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata.fromObject(object.sections[i], long + 1);
                     }
@@ -7630,7 +7674,7 @@ $root.BotMetadata = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 BotPlanningSearchSourceMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -7745,6 +7789,8 @@ $root.BotMetadata = (function() {
                 BotPlanningSearchSourceMetadata.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -7943,7 +7989,7 @@ $root.BotMetadata = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 BotPlanningSearchSourcesMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -8051,6 +8097,8 @@ $root.BotMetadata = (function() {
                 BotPlanningSearchSourcesMetadata.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -8264,7 +8312,7 @@ $root.BotMetadata = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 BotPlanningStepSectionMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -8373,6 +8421,8 @@ $root.BotMetadata = (function() {
                 BotPlanningStepSectionMetadata.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -8387,7 +8437,7 @@ $root.BotMetadata = (function() {
                             throw TypeError(".BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata.sourcesMetadata: array expected");
                         message.sourcesMetadata = [];
                         for (var i = 0; i < object.sourcesMetadata.length; ++i) {
-                            if (typeof object.sourcesMetadata[i] !== "object")
+                            if (!$util.isObject(object.sourcesMetadata[i]))
                                 throw TypeError(".BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata.sourcesMetadata: object expected");
                             message.sourcesMetadata[i] = $root.BotMetadata.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata.fromObject(object.sourcesMetadata[i], long + 1);
                         }
@@ -8587,7 +8637,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotModelMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -8693,6 +8743,8 @@ $root.BotMetadata = (function() {
         BotModelMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotModelMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotModelMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -8949,7 +9001,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotReminderMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -9081,13 +9133,15 @@ $root.BotMetadata = (function() {
         BotReminderMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotReminderMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotReminderMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
             var message = new $root.BotMetadata.BotReminderMetadata();
             if (object.requestMessageKey != null) {
-                if (typeof object.requestMessageKey !== "object")
+                if (!$util.isObject(object.requestMessageKey))
                     throw TypeError(".BotMetadata.BotReminderMetadata.requestMessageKey: object expected");
                 message.requestMessageKey = $root.Protocol.MessageKey.fromObject(object.requestMessageKey, long + 1);
             }
@@ -9347,7 +9401,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotMemuMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -9442,6 +9496,8 @@ $root.BotMetadata = (function() {
         BotMemuMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotMemuMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotMemuMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -9452,7 +9508,7 @@ $root.BotMetadata = (function() {
                     throw TypeError(".BotMetadata.BotMemuMetadata.faceImages: array expected");
                 message.faceImages = [];
                 for (var i = 0; i < object.faceImages.length; ++i) {
-                    if (typeof object.faceImages[i] !== "object")
+                    if (!$util.isObject(object.faceImages[i]))
                         throw TypeError(".BotMetadata.BotMemuMetadata.faceImages: object expected");
                     message.faceImages[i] = $root.BotMetadata.BotMediaMetadata.fromObject(object.faceImages[i], long + 1);
                 }
@@ -9657,7 +9713,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotMediaMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -9792,6 +9848,8 @@ $root.BotMetadata = (function() {
         BotMediaMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotMediaMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotMediaMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -10022,7 +10080,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotSessionMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -10126,6 +10184,8 @@ $root.BotMetadata = (function() {
         BotSessionMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotSessionMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotSessionMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -10326,7 +10386,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotMetricsMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -10469,6 +10529,8 @@ $root.BotMetadata = (function() {
         BotMetricsMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotMetricsMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotMetricsMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -10776,7 +10838,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotRenderingMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -10871,6 +10933,8 @@ $root.BotMetadata = (function() {
         BotRenderingMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotRenderingMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotRenderingMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -10881,7 +10945,7 @@ $root.BotMetadata = (function() {
                     throw TypeError(".BotMetadata.BotRenderingMetadata.keywords: array expected");
                 message.keywords = [];
                 for (var i = 0; i < object.keywords.length; ++i) {
-                    if (typeof object.keywords[i] !== "object")
+                    if (!$util.isObject(object.keywords[i]))
                         throw TypeError(".BotMetadata.BotRenderingMetadata.keywords: object expected");
                     message.keywords[i] = $root.BotMetadata.BotRenderingMetadata.Keyword.fromObject(object.keywords[i], long + 1);
                 }
@@ -11030,7 +11094,7 @@ $root.BotMetadata = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             Keyword.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -11130,6 +11194,8 @@ $root.BotMetadata = (function() {
             Keyword.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.BotMetadata.BotRenderingMetadata.Keyword)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".BotMetadata.BotRenderingMetadata.Keyword: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -11296,7 +11362,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotPromotionMessageMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -11396,6 +11462,8 @@ $root.BotMetadata = (function() {
         BotPromotionMessageMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotPromotionMessageMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotPromotionMessageMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -11607,7 +11675,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotSignatureVerificationUseCaseProof.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -11719,6 +11787,8 @@ $root.BotMetadata = (function() {
         BotSignatureVerificationUseCaseProof.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotSignatureVerificationUseCaseProof)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotSignatureVerificationUseCaseProof: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -11915,7 +11985,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotSignatureVerificationMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -12010,6 +12080,8 @@ $root.BotMetadata = (function() {
         BotSignatureVerificationMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotSignatureVerificationMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotSignatureVerificationMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -12020,7 +12092,7 @@ $root.BotMetadata = (function() {
                     throw TypeError(".BotMetadata.BotSignatureVerificationMetadata.proofs: array expected");
                 message.proofs = [];
                 for (var i = 0; i < object.proofs.length; ++i) {
-                    if (typeof object.proofs[i] !== "object")
+                    if (!$util.isObject(object.proofs[i]))
                         throw TypeError(".BotMetadata.BotSignatureVerificationMetadata.proofs: object expected");
                     message.proofs[i] = $root.BotMetadata.BotSignatureVerificationUseCaseProof.fromObject(object.proofs[i], long + 1);
                 }
@@ -12170,7 +12242,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotMemoryFact.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -12264,6 +12336,8 @@ $root.BotMetadata = (function() {
         BotMemoryFact.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotMemoryFact)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotMemoryFact: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -12434,7 +12508,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotMemoryMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -12551,6 +12625,8 @@ $root.BotMetadata = (function() {
         BotMemoryMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotMemoryMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotMemoryMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -12561,7 +12637,7 @@ $root.BotMetadata = (function() {
                     throw TypeError(".BotMetadata.BotMemoryMetadata.addedFacts: array expected");
                 message.addedFacts = [];
                 for (var i = 0; i < object.addedFacts.length; ++i) {
-                    if (typeof object.addedFacts[i] !== "object")
+                    if (!$util.isObject(object.addedFacts[i]))
                         throw TypeError(".BotMetadata.BotMemoryMetadata.addedFacts: object expected");
                     message.addedFacts[i] = $root.BotMetadata.BotMemoryFact.fromObject(object.addedFacts[i], long + 1);
                 }
@@ -12571,7 +12647,7 @@ $root.BotMetadata = (function() {
                     throw TypeError(".BotMetadata.BotMemoryMetadata.removedFacts: array expected");
                 message.removedFacts = [];
                 for (var i = 0; i < object.removedFacts.length; ++i) {
-                    if (typeof object.removedFacts[i] !== "object")
+                    if (!$util.isObject(object.removedFacts[i]))
                         throw TypeError(".BotMetadata.BotMemoryMetadata.removedFacts: object expected");
                     message.removedFacts[i] = $root.BotMetadata.BotMemoryFact.fromObject(object.removedFacts[i], long + 1);
                 }
@@ -12723,7 +12799,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotLinkedAccount.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -12814,6 +12890,8 @@ $root.BotMetadata = (function() {
         BotLinkedAccount.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotLinkedAccount)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotLinkedAccount: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -12998,7 +13076,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotLinkedAccountsMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -13107,6 +13185,8 @@ $root.BotMetadata = (function() {
         BotLinkedAccountsMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotLinkedAccountsMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotLinkedAccountsMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -13117,7 +13197,7 @@ $root.BotMetadata = (function() {
                     throw TypeError(".BotMetadata.BotLinkedAccountsMetadata.accounts: array expected");
                 message.accounts = [];
                 for (var i = 0; i < object.accounts.length; ++i) {
-                    if (typeof object.accounts[i] !== "object")
+                    if (!$util.isObject(object.accounts[i]))
                         throw TypeError(".BotMetadata.BotLinkedAccountsMetadata.accounts: object expected");
                     message.accounts[i] = $root.BotMetadata.BotLinkedAccount.fromObject(object.accounts[i], long + 1);
                 }
@@ -13288,7 +13368,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotPromptSuggestion.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -13382,6 +13462,8 @@ $root.BotMetadata = (function() {
         BotPromptSuggestion.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotPromptSuggestion)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotPromptSuggestion: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -13528,7 +13610,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotPromptSuggestions.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -13623,6 +13705,8 @@ $root.BotMetadata = (function() {
         BotPromptSuggestions.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotPromptSuggestions)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotPromptSuggestions: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -13633,7 +13717,7 @@ $root.BotMetadata = (function() {
                     throw TypeError(".BotMetadata.BotPromptSuggestions.suggestions: array expected");
                 message.suggestions = [];
                 for (var i = 0; i < object.suggestions.length; ++i) {
-                    if (typeof object.suggestions[i] !== "object")
+                    if (!$util.isObject(object.suggestions[i]))
                         throw TypeError(".BotMetadata.BotPromptSuggestions.suggestions: object expected");
                     message.suggestions[i] = $root.BotMetadata.BotPromptSuggestion.fromObject(object.suggestions[i], long + 1);
                 }
@@ -13807,7 +13891,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotSuggestedPromptMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -13923,6 +14007,8 @@ $root.BotMetadata = (function() {
         BotSuggestedPromptMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotSuggestedPromptMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotSuggestedPromptMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -13938,7 +14024,7 @@ $root.BotMetadata = (function() {
             if (object.selectedPromptIndex != null)
                 message.selectedPromptIndex = object.selectedPromptIndex >>> 0;
             if (object.promptSuggestions != null) {
-                if (typeof object.promptSuggestions !== "object")
+                if (!$util.isObject(object.promptSuggestions))
                     throw TypeError(".BotMetadata.BotSuggestedPromptMetadata.promptSuggestions: object expected");
                 message.promptSuggestions = $root.BotMetadata.BotPromptSuggestions.fromObject(object.promptSuggestions, long + 1);
             }
@@ -14210,7 +14296,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotPluginMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -14401,6 +14487,8 @@ $root.BotMetadata = (function() {
         BotPluginMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotPluginMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotPluginMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -14463,7 +14551,7 @@ $root.BotMetadata = (function() {
             if (object.searchQuery != null)
                 message.searchQuery = String(object.searchQuery);
             if (object.parentPluginMessageKey != null) {
-                if (typeof object.parentPluginMessageKey !== "object")
+                if (!$util.isObject(object.parentPluginMessageKey))
                     throw TypeError(".BotMetadata.BotPluginMetadata.parentPluginMessageKey: object expected");
                 message.parentPluginMessageKey = $root.Protocol.MessageKey.fromObject(object.parentPluginMessageKey, long + 1);
             }
@@ -14752,7 +14840,7 @@ $root.BotMetadata = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         BotAvatarMetadata.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -14867,6 +14955,8 @@ $root.BotMetadata = (function() {
         BotAvatarMetadata.fromObject = function fromObject(object, long) {
             if (object instanceof $root.BotMetadata.BotAvatarMetadata)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".BotMetadata.BotAvatarMetadata: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -15187,7 +15277,7 @@ $root.Protocol = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         LimitSharing.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -15302,6 +15392,8 @@ $root.Protocol = (function() {
         LimitSharing.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Protocol.LimitSharing)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".Protocol.LimitSharing: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -15545,7 +15637,7 @@ $root.Protocol = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         MessageKey.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -15653,6 +15745,8 @@ $root.Protocol = (function() {
         MessageKey.fromObject = function fromObject(object, long) {
             if (object instanceof $root.Protocol.MessageKey)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".Protocol.MessageKey: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)

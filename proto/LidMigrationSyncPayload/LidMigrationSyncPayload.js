@@ -106,7 +106,7 @@ $root.LidMigrationSyncPayload = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         LIDMigrationMappingSyncPayload.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -208,6 +208,8 @@ $root.LidMigrationSyncPayload = (function() {
         LIDMigrationMappingSyncPayload.fromObject = function fromObject(object, long) {
             if (object instanceof $root.LidMigrationSyncPayload.LIDMigrationMappingSyncPayload)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".LidMigrationSyncPayload.LIDMigrationMappingSyncPayload: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -218,7 +220,7 @@ $root.LidMigrationSyncPayload = (function() {
                     throw TypeError(".LidMigrationSyncPayload.LIDMigrationMappingSyncPayload.pnToLidMappings: array expected");
                 message.pnToLidMappings = [];
                 for (var i = 0; i < object.pnToLidMappings.length; ++i) {
-                    if (typeof object.pnToLidMappings[i] !== "object")
+                    if (!$util.isObject(object.pnToLidMappings[i]))
                         throw TypeError(".LidMigrationSyncPayload.LIDMigrationMappingSyncPayload.pnToLidMappings: object expected");
                     message.pnToLidMappings[i] = $root.LidMigrationSyncPayload.LIDMigrationMapping.fromObject(object.pnToLidMappings[i], long + 1);
                 }
@@ -399,7 +401,7 @@ $root.LidMigrationSyncPayload = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         LIDMigrationMapping.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -502,6 +504,8 @@ $root.LidMigrationSyncPayload = (function() {
         LIDMigrationMapping.fromObject = function fromObject(object, long) {
             if (object instanceof $root.LidMigrationSyncPayload.LIDMigrationMapping)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".LidMigrationSyncPayload.LIDMigrationMapping: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)

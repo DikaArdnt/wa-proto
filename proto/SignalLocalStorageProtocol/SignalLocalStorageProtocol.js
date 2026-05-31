@@ -95,7 +95,7 @@ $root.SignalLocalStorageProtocol = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         SenderKeyRecordStructure.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -190,6 +190,8 @@ $root.SignalLocalStorageProtocol = (function() {
         SenderKeyRecordStructure.fromObject = function fromObject(object, long) {
             if (object instanceof $root.SignalLocalStorageProtocol.SenderKeyRecordStructure)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".SignalLocalStorageProtocol.SenderKeyRecordStructure: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -200,7 +202,7 @@ $root.SignalLocalStorageProtocol = (function() {
                     throw TypeError(".SignalLocalStorageProtocol.SenderKeyRecordStructure.senderKeyStates: array expected");
                 message.senderKeyStates = [];
                 for (var i = 0; i < object.senderKeyStates.length; ++i) {
-                    if (typeof object.senderKeyStates[i] !== "object")
+                    if (!$util.isObject(object.senderKeyStates[i]))
                         throw TypeError(".SignalLocalStorageProtocol.SenderKeyRecordStructure.senderKeyStates: object expected");
                     message.senderKeyStates[i] = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.fromObject(object.senderKeyStates[i], long + 1);
                 }
@@ -374,7 +376,7 @@ $root.SignalLocalStorageProtocol = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         SenderKeyStateStructure.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -494,6 +496,8 @@ $root.SignalLocalStorageProtocol = (function() {
         SenderKeyStateStructure.fromObject = function fromObject(object, long) {
             if (object instanceof $root.SignalLocalStorageProtocol.SenderKeyStateStructure)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".SignalLocalStorageProtocol.SenderKeyStateStructure: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -502,12 +506,12 @@ $root.SignalLocalStorageProtocol = (function() {
             if (object.senderKeyId != null)
                 message.senderKeyId = object.senderKeyId >>> 0;
             if (object.senderChainKey != null) {
-                if (typeof object.senderChainKey !== "object")
+                if (!$util.isObject(object.senderChainKey))
                     throw TypeError(".SignalLocalStorageProtocol.SenderKeyStateStructure.senderChainKey: object expected");
                 message.senderChainKey = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey.fromObject(object.senderChainKey, long + 1);
             }
             if (object.senderSigningKey != null) {
-                if (typeof object.senderSigningKey !== "object")
+                if (!$util.isObject(object.senderSigningKey))
                     throw TypeError(".SignalLocalStorageProtocol.SenderKeyStateStructure.senderSigningKey: object expected");
                 message.senderSigningKey = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey.fromObject(object.senderSigningKey, long + 1);
             }
@@ -516,7 +520,7 @@ $root.SignalLocalStorageProtocol = (function() {
                     throw TypeError(".SignalLocalStorageProtocol.SenderKeyStateStructure.senderMessageKeys: array expected");
                 message.senderMessageKeys = [];
                 for (var i = 0; i < object.senderMessageKeys.length; ++i) {
-                    if (typeof object.senderMessageKeys[i] !== "object")
+                    if (!$util.isObject(object.senderMessageKeys[i]))
                         throw TypeError(".SignalLocalStorageProtocol.SenderKeyStateStructure.senderMessageKeys: object expected");
                     message.senderMessageKeys[i] = $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey.fromObject(object.senderMessageKeys[i], long + 1);
                 }
@@ -674,7 +678,7 @@ $root.SignalLocalStorageProtocol = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             SenderChainKey.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -768,6 +772,8 @@ $root.SignalLocalStorageProtocol = (function() {
             SenderChainKey.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".SignalLocalStorageProtocol.SenderKeyStateStructure.SenderChainKey: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -932,7 +938,7 @@ $root.SignalLocalStorageProtocol = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             SenderMessageKey.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -1026,6 +1032,8 @@ $root.SignalLocalStorageProtocol = (function() {
             SenderMessageKey.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".SignalLocalStorageProtocol.SenderKeyStateStructure.SenderMessageKey: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -1190,7 +1198,7 @@ $root.SignalLocalStorageProtocol = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             SenderSigningKey.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -1284,6 +1292,8 @@ $root.SignalLocalStorageProtocol = (function() {
             SenderSigningKey.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".SignalLocalStorageProtocol.SenderKeyStateStructure.SenderSigningKey: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -1460,7 +1470,7 @@ $root.SignalLocalStorageProtocol = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         IdentityKeyPairStructure.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -1554,6 +1564,8 @@ $root.SignalLocalStorageProtocol = (function() {
         IdentityKeyPairStructure.fromObject = function fromObject(object, long) {
             if (object instanceof $root.SignalLocalStorageProtocol.IdentityKeyPairStructure)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".SignalLocalStorageProtocol.IdentityKeyPairStructure: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -1760,7 +1772,7 @@ $root.SignalLocalStorageProtocol = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         SignedPreKeyRecordStructure.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -1875,6 +1887,8 @@ $root.SignalLocalStorageProtocol = (function() {
         SignedPreKeyRecordStructure.fromObject = function fromObject(object, long) {
             if (object instanceof $root.SignalLocalStorageProtocol.SignedPreKeyRecordStructure)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".SignalLocalStorageProtocol.SignedPreKeyRecordStructure: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -2099,7 +2113,7 @@ $root.SignalLocalStorageProtocol = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         PreKeyRecordStructure.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -2200,6 +2214,8 @@ $root.SignalLocalStorageProtocol = (function() {
         PreKeyRecordStructure.fromObject = function fromObject(object, long) {
             if (object instanceof $root.SignalLocalStorageProtocol.PreKeyRecordStructure)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".SignalLocalStorageProtocol.PreKeyRecordStructure: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -2380,7 +2396,7 @@ $root.SignalLocalStorageProtocol = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         RecordStructure.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -2484,13 +2500,15 @@ $root.SignalLocalStorageProtocol = (function() {
         RecordStructure.fromObject = function fromObject(object, long) {
             if (object instanceof $root.SignalLocalStorageProtocol.RecordStructure)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".SignalLocalStorageProtocol.RecordStructure: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
                 throw Error("maximum nesting depth exceeded");
             var message = new $root.SignalLocalStorageProtocol.RecordStructure();
             if (object.currentSession != null) {
-                if (typeof object.currentSession !== "object")
+                if (!$util.isObject(object.currentSession))
                     throw TypeError(".SignalLocalStorageProtocol.RecordStructure.currentSession: object expected");
                 message.currentSession = $root.SignalLocalStorageProtocol.SessionStructure.fromObject(object.currentSession, long + 1);
             }
@@ -2499,7 +2517,7 @@ $root.SignalLocalStorageProtocol = (function() {
                     throw TypeError(".SignalLocalStorageProtocol.RecordStructure.previousSessions: array expected");
                 message.previousSessions = [];
                 for (var i = 0; i < object.previousSessions.length; ++i) {
-                    if (typeof object.previousSessions[i] !== "object")
+                    if (!$util.isObject(object.previousSessions[i]))
                         throw TypeError(".SignalLocalStorageProtocol.RecordStructure.previousSessions: object expected");
                     message.previousSessions[i] = $root.SignalLocalStorageProtocol.SessionStructure.fromObject(object.previousSessions[i], long + 1);
                 }
@@ -2776,7 +2794,7 @@ $root.SignalLocalStorageProtocol = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         SessionStructure.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -2961,6 +2979,8 @@ $root.SignalLocalStorageProtocol = (function() {
         SessionStructure.fromObject = function fromObject(object, long) {
             if (object instanceof $root.SignalLocalStorageProtocol.SessionStructure)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".SignalLocalStorageProtocol.SessionStructure: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -2986,7 +3006,7 @@ $root.SignalLocalStorageProtocol = (function() {
             if (object.previousCounter != null)
                 message.previousCounter = object.previousCounter >>> 0;
             if (object.senderChain != null) {
-                if (typeof object.senderChain !== "object")
+                if (!$util.isObject(object.senderChain))
                     throw TypeError(".SignalLocalStorageProtocol.SessionStructure.senderChain: object expected");
                 message.senderChain = $root.SignalLocalStorageProtocol.SessionStructure.Chain.fromObject(object.senderChain, long + 1);
             }
@@ -2995,18 +3015,18 @@ $root.SignalLocalStorageProtocol = (function() {
                     throw TypeError(".SignalLocalStorageProtocol.SessionStructure.receiverChains: array expected");
                 message.receiverChains = [];
                 for (var i = 0; i < object.receiverChains.length; ++i) {
-                    if (typeof object.receiverChains[i] !== "object")
+                    if (!$util.isObject(object.receiverChains[i]))
                         throw TypeError(".SignalLocalStorageProtocol.SessionStructure.receiverChains: object expected");
                     message.receiverChains[i] = $root.SignalLocalStorageProtocol.SessionStructure.Chain.fromObject(object.receiverChains[i], long + 1);
                 }
             }
             if (object.pendingKeyExchange != null) {
-                if (typeof object.pendingKeyExchange !== "object")
+                if (!$util.isObject(object.pendingKeyExchange))
                     throw TypeError(".SignalLocalStorageProtocol.SessionStructure.pendingKeyExchange: object expected");
                 message.pendingKeyExchange = $root.SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange.fromObject(object.pendingKeyExchange, long + 1);
             }
             if (object.pendingPreKey != null) {
-                if (typeof object.pendingPreKey !== "object")
+                if (!$util.isObject(object.pendingPreKey))
                     throw TypeError(".SignalLocalStorageProtocol.SessionStructure.pendingPreKey: object expected");
                 message.pendingPreKey = $root.SignalLocalStorageProtocol.SessionStructure.PendingPreKey.fromObject(object.pendingPreKey, long + 1);
             }
@@ -3249,7 +3269,7 @@ $root.SignalLocalStorageProtocol = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             Chain.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -3367,6 +3387,8 @@ $root.SignalLocalStorageProtocol = (function() {
             Chain.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SignalLocalStorageProtocol.SessionStructure.Chain)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".SignalLocalStorageProtocol.SessionStructure.Chain: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -3383,7 +3405,7 @@ $root.SignalLocalStorageProtocol = (function() {
                     else if (object.senderRatchetKeyPrivate.length >= 0)
                         message.senderRatchetKeyPrivate = object.senderRatchetKeyPrivate;
                 if (object.chainKey != null) {
-                    if (typeof object.chainKey !== "object")
+                    if (!$util.isObject(object.chainKey))
                         throw TypeError(".SignalLocalStorageProtocol.SessionStructure.Chain.chainKey: object expected");
                     message.chainKey = $root.SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey.fromObject(object.chainKey, long + 1);
                 }
@@ -3392,7 +3414,7 @@ $root.SignalLocalStorageProtocol = (function() {
                         throw TypeError(".SignalLocalStorageProtocol.SessionStructure.Chain.messageKeys: array expected");
                     message.messageKeys = [];
                     for (var i = 0; i < object.messageKeys.length; ++i) {
-                        if (typeof object.messageKeys[i] !== "object")
+                        if (!$util.isObject(object.messageKeys[i]))
                             throw TypeError(".SignalLocalStorageProtocol.SessionStructure.Chain.messageKeys: object expected");
                         message.messageKeys[i] = $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey.fromObject(object.messageKeys[i], long + 1);
                     }
@@ -3562,7 +3584,7 @@ $root.SignalLocalStorageProtocol = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 ChainKey.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -3656,6 +3678,8 @@ $root.SignalLocalStorageProtocol = (function() {
                 ChainKey.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".SignalLocalStorageProtocol.SessionStructure.Chain.ChainKey: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -3842,7 +3866,7 @@ $root.SignalLocalStorageProtocol = (function() {
                  * @returns {$protobuf.Writer} Writer
                  */
                 MessageKey.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
                 };
 
                 /**
@@ -3950,6 +3974,8 @@ $root.SignalLocalStorageProtocol = (function() {
                 MessageKey.fromObject = function fromObject(object, long) {
                     if (object instanceof $root.SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey)
                         return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".SignalLocalStorageProtocol.SessionStructure.Chain.MessageKey: object expected");
                     if (long === undefined)
                         long = 0;
                     if (long > $util.recursionLimit)
@@ -4200,7 +4226,7 @@ $root.SignalLocalStorageProtocol = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             PendingKeyExchange.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -4329,6 +4355,8 @@ $root.SignalLocalStorageProtocol = (function() {
             PendingKeyExchange.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".SignalLocalStorageProtocol.SessionStructure.PendingKeyExchange: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -4574,7 +4602,7 @@ $root.SignalLocalStorageProtocol = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             PendingPreKey.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -4675,6 +4703,8 @@ $root.SignalLocalStorageProtocol = (function() {
             PendingPreKey.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.SignalLocalStorageProtocol.SessionStructure.PendingPreKey)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".SignalLocalStorageProtocol.SessionStructure.PendingPreKey: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)

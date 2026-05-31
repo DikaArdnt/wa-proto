@@ -104,7 +104,7 @@ $root.SignalWhisperTextProtocol = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         DeviceConsistencyCodeMessage.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -198,6 +198,8 @@ $root.SignalWhisperTextProtocol = (function() {
         DeviceConsistencyCodeMessage.fromObject = function fromObject(object, long) {
             if (object instanceof $root.SignalWhisperTextProtocol.DeviceConsistencyCodeMessage)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".SignalWhisperTextProtocol.DeviceConsistencyCodeMessage: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -384,7 +386,7 @@ $root.SignalWhisperTextProtocol = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         SenderKeyDistributionMessage.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -492,6 +494,8 @@ $root.SignalWhisperTextProtocol = (function() {
         SenderKeyDistributionMessage.fromObject = function fromObject(object, long) {
             if (object instanceof $root.SignalWhisperTextProtocol.SenderKeyDistributionMessage)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".SignalWhisperTextProtocol.SenderKeyDistributionMessage: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -686,7 +690,7 @@ $root.SignalWhisperTextProtocol = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         SenderKeyMessage.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -787,6 +791,8 @@ $root.SignalWhisperTextProtocol = (function() {
         SenderKeyMessage.fromObject = function fromObject(object, long) {
             if (object instanceof $root.SignalWhisperTextProtocol.SenderKeyMessage)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".SignalWhisperTextProtocol.SenderKeyMessage: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -989,7 +995,7 @@ $root.SignalWhisperTextProtocol = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         KeyExchangeMessage.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -1104,6 +1110,8 @@ $root.SignalWhisperTextProtocol = (function() {
         KeyExchangeMessage.fromObject = function fromObject(object, long) {
             if (object instanceof $root.SignalWhisperTextProtocol.KeyExchangeMessage)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".SignalWhisperTextProtocol.KeyExchangeMessage: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -1354,7 +1362,7 @@ $root.SignalWhisperTextProtocol = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         PreKeySignalMessage.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -1476,6 +1484,8 @@ $root.SignalWhisperTextProtocol = (function() {
         PreKeySignalMessage.fromObject = function fromObject(object, long) {
             if (object instanceof $root.SignalWhisperTextProtocol.PreKeySignalMessage)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".SignalWhisperTextProtocol.PreKeySignalMessage: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -1700,7 +1710,7 @@ $root.SignalWhisperTextProtocol = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         SignalMessage.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -1808,6 +1818,8 @@ $root.SignalWhisperTextProtocol = (function() {
         SignalMessage.fromObject = function fromObject(object, long) {
             if (object instanceof $root.SignalWhisperTextProtocol.SignalMessage)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".SignalWhisperTextProtocol.SignalMessage: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)

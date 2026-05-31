@@ -148,7 +148,7 @@ $root.DeviceCapabilities = (function() {
          * @returns {$protobuf.Writer} Writer
          */
         DeviceCapabilities.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
+            return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
         };
 
         /**
@@ -290,6 +290,8 @@ $root.DeviceCapabilities = (function() {
         DeviceCapabilities.fromObject = function fromObject(object, long) {
             if (object instanceof $root.DeviceCapabilities.DeviceCapabilities)
                 return object;
+            if (!$util.isObject(object))
+                throw TypeError(".DeviceCapabilities.DeviceCapabilities: object expected");
             if (long === undefined)
                 long = 0;
             if (long > $util.recursionLimit)
@@ -316,17 +318,17 @@ $root.DeviceCapabilities = (function() {
                 break;
             }
             if (object.lidMigration != null) {
-                if (typeof object.lidMigration !== "object")
+                if (!$util.isObject(object.lidMigration))
                     throw TypeError(".DeviceCapabilities.DeviceCapabilities.lidMigration: object expected");
                 message.lidMigration = $root.DeviceCapabilities.DeviceCapabilities.LIDMigration.fromObject(object.lidMigration, long + 1);
             }
             if (object.businessBroadcast != null) {
-                if (typeof object.businessBroadcast !== "object")
+                if (!$util.isObject(object.businessBroadcast))
                     throw TypeError(".DeviceCapabilities.DeviceCapabilities.businessBroadcast: object expected");
                 message.businessBroadcast = $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast.fromObject(object.businessBroadcast, long + 1);
             }
             if (object.userHasAvatar != null) {
-                if (typeof object.userHasAvatar !== "object")
+                if (!$util.isObject(object.userHasAvatar))
                     throw TypeError(".DeviceCapabilities.DeviceCapabilities.userHasAvatar: object expected");
                 message.userHasAvatar = $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar.fromObject(object.userHasAvatar, long + 1);
             }
@@ -351,7 +353,7 @@ $root.DeviceCapabilities = (function() {
                 break;
             }
             if (object.aiThread != null) {
-                if (typeof object.aiThread !== "object")
+                if (!$util.isObject(object.aiThread))
                     throw TypeError(".DeviceCapabilities.DeviceCapabilities.aiThread: object expected");
                 message.aiThread = $root.DeviceCapabilities.DeviceCapabilities.AiThread.fromObject(object.aiThread, long + 1);
             }
@@ -499,7 +501,7 @@ $root.DeviceCapabilities = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             AiThread.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -592,6 +594,8 @@ $root.DeviceCapabilities = (function() {
             AiThread.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.DeviceCapabilities.DeviceCapabilities.AiThread)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".DeviceCapabilities.DeviceCapabilities.AiThread: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -808,7 +812,7 @@ $root.DeviceCapabilities = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             BusinessBroadcast.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -923,6 +927,8 @@ $root.DeviceCapabilities = (function() {
             BusinessBroadcast.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.DeviceCapabilities.DeviceCapabilities.BusinessBroadcast)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".DeviceCapabilities.DeviceCapabilities.BusinessBroadcast: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -1098,7 +1104,7 @@ $root.DeviceCapabilities = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             LIDMigration.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -1185,6 +1191,8 @@ $root.DeviceCapabilities = (function() {
             LIDMigration.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.DeviceCapabilities.DeviceCapabilities.LIDMigration)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".DeviceCapabilities.DeviceCapabilities.LIDMigration: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
@@ -1355,7 +1363,7 @@ $root.DeviceCapabilities = (function() {
              * @returns {$protobuf.Writer} Writer
              */
             UserHasAvatar.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -1442,6 +1450,8 @@ $root.DeviceCapabilities = (function() {
             UserHasAvatar.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.DeviceCapabilities.DeviceCapabilities.UserHasAvatar)
                     return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".DeviceCapabilities.DeviceCapabilities.UserHasAvatar: object expected");
                 if (long === undefined)
                     long = 0;
                 if (long > $util.recursionLimit)
