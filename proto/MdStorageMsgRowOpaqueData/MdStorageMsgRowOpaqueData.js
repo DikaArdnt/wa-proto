@@ -71,6 +71,14 @@ $root.MdStorageMsgRowOpaqueData = (function() {
          * @property {number|Long|null} [pollEndTime] MsgOpaqueData pollEndTime
          * @property {boolean|null} [pollHideVoterNames] MsgOpaqueData pollHideVoterNames
          * @property {boolean|null} [pollAllowAddOption] MsgOpaqueData pollAllowAddOption
+         * @property {string|null} [sharableEventInviteId] MsgOpaqueData sharableEventInviteId
+         * @property {string|null} [sharableEventInviteTitle] MsgOpaqueData sharableEventInviteTitle
+         * @property {number|Long|null} [sharableEventInviteStartTime] MsgOpaqueData sharableEventInviteStartTime
+         * @property {number|Long|null} [sharableEventInviteEndTime] MsgOpaqueData sharableEventInviteEndTime
+         * @property {string|null} [sharableEventInviteCaption] MsgOpaqueData sharableEventInviteCaption
+         * @property {boolean|null} [sharableEventInviteIsCanceled] MsgOpaqueData sharableEventInviteIsCanceled
+         * @property {Uint8Array|null} [sharableEventInviteJpegThumbnail] MsgOpaqueData sharableEventInviteJpegThumbnail
+         * @property {string|null} [sharableEventInviteCallLink] MsgOpaqueData sharableEventInviteCallLink
          */
 
         /**
@@ -466,6 +474,70 @@ $root.MdStorageMsgRowOpaqueData = (function() {
         MsgOpaqueData.prototype.pollAllowAddOption = false;
 
         /**
+         * MsgOpaqueData sharableEventInviteId.
+         * @member {string} sharableEventInviteId
+         * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData
+         * @instance
+         */
+        MsgOpaqueData.prototype.sharableEventInviteId = "";
+
+        /**
+         * MsgOpaqueData sharableEventInviteTitle.
+         * @member {string} sharableEventInviteTitle
+         * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData
+         * @instance
+         */
+        MsgOpaqueData.prototype.sharableEventInviteTitle = "";
+
+        /**
+         * MsgOpaqueData sharableEventInviteStartTime.
+         * @member {number|Long} sharableEventInviteStartTime
+         * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData
+         * @instance
+         */
+        MsgOpaqueData.prototype.sharableEventInviteStartTime = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * MsgOpaqueData sharableEventInviteEndTime.
+         * @member {number|Long} sharableEventInviteEndTime
+         * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData
+         * @instance
+         */
+        MsgOpaqueData.prototype.sharableEventInviteEndTime = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+        /**
+         * MsgOpaqueData sharableEventInviteCaption.
+         * @member {string} sharableEventInviteCaption
+         * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData
+         * @instance
+         */
+        MsgOpaqueData.prototype.sharableEventInviteCaption = "";
+
+        /**
+         * MsgOpaqueData sharableEventInviteIsCanceled.
+         * @member {boolean} sharableEventInviteIsCanceled
+         * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData
+         * @instance
+         */
+        MsgOpaqueData.prototype.sharableEventInviteIsCanceled = false;
+
+        /**
+         * MsgOpaqueData sharableEventInviteJpegThumbnail.
+         * @member {Uint8Array} sharableEventInviteJpegThumbnail
+         * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData
+         * @instance
+         */
+        MsgOpaqueData.prototype.sharableEventInviteJpegThumbnail = $util.newBuffer([]);
+
+        /**
+         * MsgOpaqueData sharableEventInviteCallLink.
+         * @member {string} sharableEventInviteCallLink
+         * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData
+         * @instance
+         */
+        MsgOpaqueData.prototype.sharableEventInviteCallLink = "";
+
+        /**
          * Creates a new MsgOpaqueData instance using the specified properties.
          * @function create
          * @memberof MdStorageMsgRowOpaqueData.MsgOpaqueData
@@ -588,6 +660,22 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 writer.uint32(/* id 51, wireType 2 =*/410).string(message.originalSelfAuthor);
             if (message.pollAllowAddOption != null && Object.hasOwnProperty.call(message, "pollAllowAddOption"))
                 writer.uint32(/* id 52, wireType 0 =*/416).bool(message.pollAllowAddOption);
+            if (message.sharableEventInviteId != null && Object.hasOwnProperty.call(message, "sharableEventInviteId"))
+                writer.uint32(/* id 53, wireType 2 =*/426).string(message.sharableEventInviteId);
+            if (message.sharableEventInviteTitle != null && Object.hasOwnProperty.call(message, "sharableEventInviteTitle"))
+                writer.uint32(/* id 54, wireType 2 =*/434).string(message.sharableEventInviteTitle);
+            if (message.sharableEventInviteStartTime != null && Object.hasOwnProperty.call(message, "sharableEventInviteStartTime"))
+                writer.uint32(/* id 55, wireType 0 =*/440).int64(message.sharableEventInviteStartTime);
+            if (message.sharableEventInviteEndTime != null && Object.hasOwnProperty.call(message, "sharableEventInviteEndTime"))
+                writer.uint32(/* id 56, wireType 0 =*/448).int64(message.sharableEventInviteEndTime);
+            if (message.sharableEventInviteCaption != null && Object.hasOwnProperty.call(message, "sharableEventInviteCaption"))
+                writer.uint32(/* id 57, wireType 2 =*/458).string(message.sharableEventInviteCaption);
+            if (message.sharableEventInviteIsCanceled != null && Object.hasOwnProperty.call(message, "sharableEventInviteIsCanceled"))
+                writer.uint32(/* id 58, wireType 0 =*/464).bool(message.sharableEventInviteIsCanceled);
+            if (message.sharableEventInviteJpegThumbnail != null && Object.hasOwnProperty.call(message, "sharableEventInviteJpegThumbnail"))
+                writer.uint32(/* id 59, wireType 2 =*/474).bytes(message.sharableEventInviteJpegThumbnail);
+            if (message.sharableEventInviteCallLink != null && Object.hasOwnProperty.call(message, "sharableEventInviteCallLink"))
+                writer.uint32(/* id 60, wireType 2 =*/482).string(message.sharableEventInviteCallLink);
             return writer;
         };
 
@@ -818,6 +906,38 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                         message.pollAllowAddOption = reader.bool();
                         break;
                     }
+                case 53: {
+                        message.sharableEventInviteId = reader.string();
+                        break;
+                    }
+                case 54: {
+                        message.sharableEventInviteTitle = reader.string();
+                        break;
+                    }
+                case 55: {
+                        message.sharableEventInviteStartTime = reader.int64();
+                        break;
+                    }
+                case 56: {
+                        message.sharableEventInviteEndTime = reader.int64();
+                        break;
+                    }
+                case 57: {
+                        message.sharableEventInviteCaption = reader.string();
+                        break;
+                    }
+                case 58: {
+                        message.sharableEventInviteIsCanceled = reader.bool();
+                        break;
+                    }
+                case 59: {
+                        message.sharableEventInviteJpegThumbnail = reader.bytes();
+                        break;
+                    }
+                case 60: {
+                        message.sharableEventInviteCallLink = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7, long);
                     break;
@@ -1021,6 +1141,30 @@ $root.MdStorageMsgRowOpaqueData = (function() {
             if (message.pollAllowAddOption != null && message.hasOwnProperty("pollAllowAddOption"))
                 if (typeof message.pollAllowAddOption !== "boolean")
                     return "pollAllowAddOption: boolean expected";
+            if (message.sharableEventInviteId != null && message.hasOwnProperty("sharableEventInviteId"))
+                if (!$util.isString(message.sharableEventInviteId))
+                    return "sharableEventInviteId: string expected";
+            if (message.sharableEventInviteTitle != null && message.hasOwnProperty("sharableEventInviteTitle"))
+                if (!$util.isString(message.sharableEventInviteTitle))
+                    return "sharableEventInviteTitle: string expected";
+            if (message.sharableEventInviteStartTime != null && message.hasOwnProperty("sharableEventInviteStartTime"))
+                if (!$util.isInteger(message.sharableEventInviteStartTime) && !(message.sharableEventInviteStartTime && $util.isInteger(message.sharableEventInviteStartTime.low) && $util.isInteger(message.sharableEventInviteStartTime.high)))
+                    return "sharableEventInviteStartTime: integer|Long expected";
+            if (message.sharableEventInviteEndTime != null && message.hasOwnProperty("sharableEventInviteEndTime"))
+                if (!$util.isInteger(message.sharableEventInviteEndTime) && !(message.sharableEventInviteEndTime && $util.isInteger(message.sharableEventInviteEndTime.low) && $util.isInteger(message.sharableEventInviteEndTime.high)))
+                    return "sharableEventInviteEndTime: integer|Long expected";
+            if (message.sharableEventInviteCaption != null && message.hasOwnProperty("sharableEventInviteCaption"))
+                if (!$util.isString(message.sharableEventInviteCaption))
+                    return "sharableEventInviteCaption: string expected";
+            if (message.sharableEventInviteIsCanceled != null && message.hasOwnProperty("sharableEventInviteIsCanceled"))
+                if (typeof message.sharableEventInviteIsCanceled !== "boolean")
+                    return "sharableEventInviteIsCanceled: boolean expected";
+            if (message.sharableEventInviteJpegThumbnail != null && message.hasOwnProperty("sharableEventInviteJpegThumbnail"))
+                if (!(message.sharableEventInviteJpegThumbnail && typeof message.sharableEventInviteJpegThumbnail.length === "number" || $util.isString(message.sharableEventInviteJpegThumbnail)))
+                    return "sharableEventInviteJpegThumbnail: buffer expected";
+            if (message.sharableEventInviteCallLink != null && message.hasOwnProperty("sharableEventInviteCallLink"))
+                if (!$util.isString(message.sharableEventInviteCallLink))
+                    return "sharableEventInviteCallLink: string expected";
             return null;
         };
 
@@ -1237,6 +1381,39 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 message.pollHideVoterNames = Boolean(object.pollHideVoterNames);
             if (object.pollAllowAddOption != null)
                 message.pollAllowAddOption = Boolean(object.pollAllowAddOption);
+            if (object.sharableEventInviteId != null)
+                message.sharableEventInviteId = String(object.sharableEventInviteId);
+            if (object.sharableEventInviteTitle != null)
+                message.sharableEventInviteTitle = String(object.sharableEventInviteTitle);
+            if (object.sharableEventInviteStartTime != null)
+                if ($util.Long)
+                    message.sharableEventInviteStartTime = $util.Long.fromValue(object.sharableEventInviteStartTime, false);
+                else if (typeof object.sharableEventInviteStartTime === "string")
+                    message.sharableEventInviteStartTime = parseInt(object.sharableEventInviteStartTime, 10);
+                else if (typeof object.sharableEventInviteStartTime === "number")
+                    message.sharableEventInviteStartTime = object.sharableEventInviteStartTime;
+                else if (typeof object.sharableEventInviteStartTime === "object")
+                    message.sharableEventInviteStartTime = new $util.LongBits(object.sharableEventInviteStartTime.low >>> 0, object.sharableEventInviteStartTime.high >>> 0).toNumber();
+            if (object.sharableEventInviteEndTime != null)
+                if ($util.Long)
+                    message.sharableEventInviteEndTime = $util.Long.fromValue(object.sharableEventInviteEndTime, false);
+                else if (typeof object.sharableEventInviteEndTime === "string")
+                    message.sharableEventInviteEndTime = parseInt(object.sharableEventInviteEndTime, 10);
+                else if (typeof object.sharableEventInviteEndTime === "number")
+                    message.sharableEventInviteEndTime = object.sharableEventInviteEndTime;
+                else if (typeof object.sharableEventInviteEndTime === "object")
+                    message.sharableEventInviteEndTime = new $util.LongBits(object.sharableEventInviteEndTime.low >>> 0, object.sharableEventInviteEndTime.high >>> 0).toNumber();
+            if (object.sharableEventInviteCaption != null)
+                message.sharableEventInviteCaption = String(object.sharableEventInviteCaption);
+            if (object.sharableEventInviteIsCanceled != null)
+                message.sharableEventInviteIsCanceled = Boolean(object.sharableEventInviteIsCanceled);
+            if (object.sharableEventInviteJpegThumbnail != null)
+                if (typeof object.sharableEventInviteJpegThumbnail === "string")
+                    $util.base64.decode(object.sharableEventInviteJpegThumbnail, message.sharableEventInviteJpegThumbnail = $util.newBuffer($util.base64.length(object.sharableEventInviteJpegThumbnail)), 0);
+                else if (object.sharableEventInviteJpegThumbnail.length >= 0)
+                    message.sharableEventInviteJpegThumbnail = object.sharableEventInviteJpegThumbnail;
+            if (object.sharableEventInviteCallLink != null)
+                message.sharableEventInviteCallLink = String(object.sharableEventInviteCallLink);
             return message;
         };
 
@@ -1370,6 +1547,28 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 object.pollHideVoterNames = false;
                 object.originalSelfAuthor = "";
                 object.pollAllowAddOption = false;
+                object.sharableEventInviteId = "";
+                object.sharableEventInviteTitle = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.sharableEventInviteStartTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
+                } else
+                    object.sharableEventInviteStartTime = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, false);
+                    object.sharableEventInviteEndTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
+                } else
+                    object.sharableEventInviteEndTime = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
+                object.sharableEventInviteCaption = "";
+                object.sharableEventInviteIsCanceled = false;
+                if (options.bytes === String)
+                    object.sharableEventInviteJpegThumbnail = "";
+                else {
+                    object.sharableEventInviteJpegThumbnail = [];
+                    if (options.bytes !== Array)
+                        object.sharableEventInviteJpegThumbnail = $util.newBuffer(object.sharableEventInviteJpegThumbnail);
+                }
+                object.sharableEventInviteCallLink = "";
             }
             if (message.body != null && message.hasOwnProperty("body"))
                 object.body = message.body;
@@ -1488,6 +1687,32 @@ $root.MdStorageMsgRowOpaqueData = (function() {
                 object.originalSelfAuthor = message.originalSelfAuthor;
             if (message.pollAllowAddOption != null && message.hasOwnProperty("pollAllowAddOption"))
                 object.pollAllowAddOption = message.pollAllowAddOption;
+            if (message.sharableEventInviteId != null && message.hasOwnProperty("sharableEventInviteId"))
+                object.sharableEventInviteId = message.sharableEventInviteId;
+            if (message.sharableEventInviteTitle != null && message.hasOwnProperty("sharableEventInviteTitle"))
+                object.sharableEventInviteTitle = message.sharableEventInviteTitle;
+            if (message.sharableEventInviteStartTime != null && message.hasOwnProperty("sharableEventInviteStartTime"))
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.sharableEventInviteStartTime = typeof message.sharableEventInviteStartTime === "number" ? BigInt(message.sharableEventInviteStartTime) : $util.Long.fromBits(message.sharableEventInviteStartTime.low >>> 0, message.sharableEventInviteStartTime.high >>> 0, false).toBigInt();
+                else if (typeof message.sharableEventInviteStartTime === "number")
+                    object.sharableEventInviteStartTime = options.longs === String ? String(message.sharableEventInviteStartTime) : message.sharableEventInviteStartTime;
+                else
+                    object.sharableEventInviteStartTime = options.longs === String ? $util.Long.prototype.toString.call(message.sharableEventInviteStartTime) : options.longs === Number ? new $util.LongBits(message.sharableEventInviteStartTime.low >>> 0, message.sharableEventInviteStartTime.high >>> 0).toNumber() : message.sharableEventInviteStartTime;
+            if (message.sharableEventInviteEndTime != null && message.hasOwnProperty("sharableEventInviteEndTime"))
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.sharableEventInviteEndTime = typeof message.sharableEventInviteEndTime === "number" ? BigInt(message.sharableEventInviteEndTime) : $util.Long.fromBits(message.sharableEventInviteEndTime.low >>> 0, message.sharableEventInviteEndTime.high >>> 0, false).toBigInt();
+                else if (typeof message.sharableEventInviteEndTime === "number")
+                    object.sharableEventInviteEndTime = options.longs === String ? String(message.sharableEventInviteEndTime) : message.sharableEventInviteEndTime;
+                else
+                    object.sharableEventInviteEndTime = options.longs === String ? $util.Long.prototype.toString.call(message.sharableEventInviteEndTime) : options.longs === Number ? new $util.LongBits(message.sharableEventInviteEndTime.low >>> 0, message.sharableEventInviteEndTime.high >>> 0).toNumber() : message.sharableEventInviteEndTime;
+            if (message.sharableEventInviteCaption != null && message.hasOwnProperty("sharableEventInviteCaption"))
+                object.sharableEventInviteCaption = message.sharableEventInviteCaption;
+            if (message.sharableEventInviteIsCanceled != null && message.hasOwnProperty("sharableEventInviteIsCanceled"))
+                object.sharableEventInviteIsCanceled = message.sharableEventInviteIsCanceled;
+            if (message.sharableEventInviteJpegThumbnail != null && message.hasOwnProperty("sharableEventInviteJpegThumbnail"))
+                object.sharableEventInviteJpegThumbnail = options.bytes === String ? $util.base64.encode(message.sharableEventInviteJpegThumbnail, 0, message.sharableEventInviteJpegThumbnail.length) : options.bytes === Array ? Array.prototype.slice.call(message.sharableEventInviteJpegThumbnail) : message.sharableEventInviteJpegThumbnail;
+            if (message.sharableEventInviteCallLink != null && message.hasOwnProperty("sharableEventInviteCallLink"))
+                object.sharableEventInviteCallLink = message.sharableEventInviteCallLink;
             return object;
         };
 

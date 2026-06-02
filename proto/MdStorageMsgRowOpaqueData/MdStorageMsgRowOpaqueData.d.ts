@@ -146,6 +146,30 @@ export namespace MdStorageMsgRowOpaqueData {
 
         /** MsgOpaqueData pollAllowAddOption */
         pollAllowAddOption?: (boolean|null);
+
+        /** MsgOpaqueData sharableEventInviteId */
+        sharableEventInviteId?: (string|null);
+
+        /** MsgOpaqueData sharableEventInviteTitle */
+        sharableEventInviteTitle?: (string|null);
+
+        /** MsgOpaqueData sharableEventInviteStartTime */
+        sharableEventInviteStartTime?: (number|Long|null);
+
+        /** MsgOpaqueData sharableEventInviteEndTime */
+        sharableEventInviteEndTime?: (number|Long|null);
+
+        /** MsgOpaqueData sharableEventInviteCaption */
+        sharableEventInviteCaption?: (string|null);
+
+        /** MsgOpaqueData sharableEventInviteIsCanceled */
+        sharableEventInviteIsCanceled?: (boolean|null);
+
+        /** MsgOpaqueData sharableEventInviteJpegThumbnail */
+        sharableEventInviteJpegThumbnail?: (Uint8Array|null);
+
+        /** MsgOpaqueData sharableEventInviteCallLink */
+        sharableEventInviteCallLink?: (string|null);
     }
 
     /** Represents a MsgOpaqueData. */
@@ -297,6 +321,30 @@ export namespace MdStorageMsgRowOpaqueData {
 
         /** MsgOpaqueData pollAllowAddOption. */
         public pollAllowAddOption: boolean;
+
+        /** MsgOpaqueData sharableEventInviteId. */
+        public sharableEventInviteId: string;
+
+        /** MsgOpaqueData sharableEventInviteTitle. */
+        public sharableEventInviteTitle: string;
+
+        /** MsgOpaqueData sharableEventInviteStartTime. */
+        public sharableEventInviteStartTime: (number|Long);
+
+        /** MsgOpaqueData sharableEventInviteEndTime. */
+        public sharableEventInviteEndTime: (number|Long);
+
+        /** MsgOpaqueData sharableEventInviteCaption. */
+        public sharableEventInviteCaption: string;
+
+        /** MsgOpaqueData sharableEventInviteIsCanceled. */
+        public sharableEventInviteIsCanceled: boolean;
+
+        /** MsgOpaqueData sharableEventInviteJpegThumbnail. */
+        public sharableEventInviteJpegThumbnail: Uint8Array;
+
+        /** MsgOpaqueData sharableEventInviteCallLink. */
+        public sharableEventInviteCallLink: string;
 
         /**
          * Creates a new MsgOpaqueData instance using the specified properties.
