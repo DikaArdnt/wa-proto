@@ -285,7 +285,7 @@ message SyncActionValue {
     }
     message LabelAssociationAction {
         optional bool labeled = 1;
-        repeated SyncActionValue.ModelMetadata modelMetaData = 2;
+        optional string modelMetaData = 2;
     }
     message LabelEditAction {
         optional string name = 1;
@@ -332,10 +332,16 @@ message SyncActionValue {
     }
     message MaibaAIFeaturesControlAction {
         optional MaibaAIFeatureStatus aiFeatureStatus = 1;
+        optional MaibaAIReplyMode aiReplyMode = 2;
         enum MaibaAIFeatureStatus {
             ENABLED = 0;
             ENABLED_HAS_LEARNING = 1;
             DISABLED = 2;
+        }
+        enum MaibaAIReplyMode {
+            MUTED = 0;
+            AI_AGENT = 1;
+            SUGGESTIONS = 2;
         }
     }
     message MarkChatAsReadAction {
@@ -366,11 +372,6 @@ message SyncActionValue {
             ACTIVE = 0;
             INACTIVE = 1;
         }
-    }
-    message ModelMetadata {
-        optional string modelName = 1;
-        optional bool isLatestModel = 2;
-        optional bool isDetected = 3;
     }
     message MusicUserIdAction {
         optional string musicUserId = 1;

@@ -7847,7 +7847,8 @@ export namespace AICommon {
         enum BotSignatureUseCase {
             UNSPECIFIED = 0,
             WA_BOT_MSG = 1,
-            WA_TEE_BOT_MSG = 2
+            WA_TEE_BOT_MSG = 2,
+            P2P_PILLS = 3
         }
     }
 

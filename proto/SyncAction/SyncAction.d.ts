@@ -4279,7 +4279,7 @@ export namespace SyncAction {
             labeled?: (boolean|null);
 
             /** LabelAssociationAction modelMetaData */
-            modelMetaData?: (SyncAction.SyncActionValue.IModelMetadata[]|null);
+            modelMetaData?: (string|null);
         }
 
         /** Represents a LabelAssociationAction. */
@@ -4295,7 +4295,7 @@ export namespace SyncAction {
             public labeled: boolean;
 
             /** LabelAssociationAction modelMetaData. */
-            public modelMetaData: SyncAction.SyncActionValue.IModelMetadata[];
+            public modelMetaData: string;
 
             /**
              * Creates a new LabelAssociationAction instance using the specified properties.
@@ -4948,6 +4948,9 @@ export namespace SyncAction {
 
             /** MaibaAIFeaturesControlAction aiFeatureStatus */
             aiFeatureStatus?: (SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.MaibaAIFeatureStatus|null);
+
+            /** MaibaAIFeaturesControlAction aiReplyMode */
+            aiReplyMode?: (SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.MaibaAIReplyMode|null);
         }
 
         /** Represents a MaibaAIFeaturesControlAction. */
@@ -4961,6 +4964,9 @@ export namespace SyncAction {
 
             /** MaibaAIFeaturesControlAction aiFeatureStatus. */
             public aiFeatureStatus: SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.MaibaAIFeatureStatus;
+
+            /** MaibaAIFeaturesControlAction aiReplyMode. */
+            public aiReplyMode: SyncAction.SyncActionValue.MaibaAIFeaturesControlAction.MaibaAIReplyMode;
 
             /**
              * Creates a new MaibaAIFeaturesControlAction instance using the specified properties.
@@ -5047,6 +5053,13 @@ export namespace SyncAction {
                 ENABLED = 0,
                 ENABLED_HAS_LEARNING = 1,
                 DISABLED = 2
+            }
+
+            /** MaibaAIReplyMode enum. */
+            enum MaibaAIReplyMode {
+                MUTED = 0,
+                AI_AGENT = 1,
+                SUGGESTIONS = 2
             }
         }
 
@@ -5513,115 +5526,6 @@ export namespace SyncAction {
                 ACTIVE = 0,
                 INACTIVE = 1
             }
-        }
-
-        /** Properties of a ModelMetadata. */
-        interface IModelMetadata {
-
-            /** ModelMetadata modelName */
-            modelName?: (string|null);
-
-            /** ModelMetadata isLatestModel */
-            isLatestModel?: (boolean|null);
-
-            /** ModelMetadata isDetected */
-            isDetected?: (boolean|null);
-        }
-
-        /** Represents a ModelMetadata. */
-        class ModelMetadata implements IModelMetadata {
-
-            /**
-             * Constructs a new ModelMetadata.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: SyncAction.SyncActionValue.IModelMetadata);
-
-            /** ModelMetadata modelName. */
-            public modelName: string;
-
-            /** ModelMetadata isLatestModel. */
-            public isLatestModel: boolean;
-
-            /** ModelMetadata isDetected. */
-            public isDetected: boolean;
-
-            /**
-             * Creates a new ModelMetadata instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns ModelMetadata instance
-             */
-            public static create(properties?: SyncAction.SyncActionValue.IModelMetadata): SyncAction.SyncActionValue.ModelMetadata;
-
-            /**
-             * Encodes the specified ModelMetadata message. Does not implicitly {@link SyncAction.SyncActionValue.ModelMetadata.verify|verify} messages.
-             * @param message ModelMetadata message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: SyncAction.SyncActionValue.IModelMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified ModelMetadata message, length delimited. Does not implicitly {@link SyncAction.SyncActionValue.ModelMetadata.verify|verify} messages.
-             * @param message ModelMetadata message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: SyncAction.SyncActionValue.IModelMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes a ModelMetadata message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns ModelMetadata
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): SyncAction.SyncActionValue.ModelMetadata;
-
-            /**
-             * Decodes a ModelMetadata message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns ModelMetadata
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): SyncAction.SyncActionValue.ModelMetadata;
-
-            /**
-             * Verifies a ModelMetadata message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates a ModelMetadata message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns ModelMetadata
-             */
-            public static fromObject(object: { [k: string]: any }): SyncAction.SyncActionValue.ModelMetadata;
-
-            /**
-             * Creates a plain object from a ModelMetadata message. Also converts values to other types if specified.
-             * @param message ModelMetadata
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: SyncAction.SyncActionValue.ModelMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this ModelMetadata to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-
-            /**
-             * Gets the default type url for ModelMetadata
-             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns The default type url
-             */
-            public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
         /** Properties of a MusicUserIdAction. */

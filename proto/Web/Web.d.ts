@@ -1672,6 +1672,9 @@ export namespace Web {
 
         /** PollAdditionalMetadata pollInvalidated */
         pollInvalidated?: (boolean|null);
+
+        /** PollAdditionalMetadata pollNameHashHistory */
+        pollNameHashHistory?: (Web.PollAdditionalMetadata.IPollNameHashHistoryEntry[]|null);
     }
 
     /** Represents a PollAdditionalMetadata. */
@@ -1685,6 +1688,9 @@ export namespace Web {
 
         /** PollAdditionalMetadata pollInvalidated. */
         public pollInvalidated: boolean;
+
+        /** PollAdditionalMetadata pollNameHashHistory. */
+        public pollNameHashHistory: Web.PollAdditionalMetadata.IPollNameHashHistoryEntry[];
 
         /**
          * Creates a new PollAdditionalMetadata instance using the specified properties.
@@ -1764,6 +1770,112 @@ export namespace Web {
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
+    namespace PollAdditionalMetadata {
+
+        /** Properties of a PollNameHashHistoryEntry. */
+        interface IPollNameHashHistoryEntry {
+
+            /** PollNameHashHistoryEntry editStanzaId */
+            editStanzaId?: (string|null);
+
+            /** PollNameHashHistoryEntry pollNameHash */
+            pollNameHash?: (Uint8Array|null);
+        }
+
+        /** Represents a PollNameHashHistoryEntry. */
+        class PollNameHashHistoryEntry implements IPollNameHashHistoryEntry {
+
+            /**
+             * Constructs a new PollNameHashHistoryEntry.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: Web.PollAdditionalMetadata.IPollNameHashHistoryEntry);
+
+            /** PollNameHashHistoryEntry editStanzaId. */
+            public editStanzaId: string;
+
+            /** PollNameHashHistoryEntry pollNameHash. */
+            public pollNameHash: Uint8Array;
+
+            /**
+             * Creates a new PollNameHashHistoryEntry instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns PollNameHashHistoryEntry instance
+             */
+            public static create(properties?: Web.PollAdditionalMetadata.IPollNameHashHistoryEntry): Web.PollAdditionalMetadata.PollNameHashHistoryEntry;
+
+            /**
+             * Encodes the specified PollNameHashHistoryEntry message. Does not implicitly {@link Web.PollAdditionalMetadata.PollNameHashHistoryEntry.verify|verify} messages.
+             * @param message PollNameHashHistoryEntry message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: Web.PollAdditionalMetadata.IPollNameHashHistoryEntry, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified PollNameHashHistoryEntry message, length delimited. Does not implicitly {@link Web.PollAdditionalMetadata.PollNameHashHistoryEntry.verify|verify} messages.
+             * @param message PollNameHashHistoryEntry message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: Web.PollAdditionalMetadata.IPollNameHashHistoryEntry, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a PollNameHashHistoryEntry message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns PollNameHashHistoryEntry
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Web.PollAdditionalMetadata.PollNameHashHistoryEntry;
+
+            /**
+             * Decodes a PollNameHashHistoryEntry message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns PollNameHashHistoryEntry
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Web.PollAdditionalMetadata.PollNameHashHistoryEntry;
+
+            /**
+             * Verifies a PollNameHashHistoryEntry message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a PollNameHashHistoryEntry message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns PollNameHashHistoryEntry
+             */
+            public static fromObject(object: { [k: string]: any }): Web.PollAdditionalMetadata.PollNameHashHistoryEntry;
+
+            /**
+             * Creates a plain object from a PollNameHashHistoryEntry message. Also converts values to other types if specified.
+             * @param message PollNameHashHistoryEntry
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: Web.PollAdditionalMetadata.PollNameHashHistoryEntry, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this PollNameHashHistoryEntry to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for PollNameHashHistoryEntry
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
+        }
+    }
+
     /** Properties of a PollUpdate. */
     interface IPollUpdate {
 
@@ -1781,6 +1893,9 @@ export namespace Web {
 
         /** PollUpdate unread */
         unread?: (boolean|null);
+
+        /** PollUpdate metadata */
+        metadata?: (E2E.Message.IPollUpdateMessageMetadata|null);
     }
 
     /** Represents a PollUpdate. */
@@ -1806,6 +1921,9 @@ export namespace Web {
 
         /** PollUpdate unread. */
         public unread: boolean;
+
+        /** PollUpdate metadata. */
+        public metadata?: (E2E.Message.IPollUpdateMessageMetadata|null);
 
         /**
          * Creates a new PollUpdate instance using the specified properties.
@@ -9140,6 +9258,12 @@ export namespace E2E {
 
             /** BusinessInteractionPills entryPoint */
             entryPoint?: (E2E.ContextInfo.BusinessInteractionPills.EntryPoint|null);
+
+            /** BusinessInteractionPills signedPayload */
+            signedPayload?: (Uint8Array|null);
+
+            /** BusinessInteractionPills signatureEnvelope */
+            signatureEnvelope?: (AICommon.IBotSignatureVerificationMetadata|null);
         }
 
         /** Represents a BusinessInteractionPills. */
@@ -9159,6 +9283,12 @@ export namespace E2E {
 
             /** BusinessInteractionPills entryPoint. */
             public entryPoint: E2E.ContextInfo.BusinessInteractionPills.EntryPoint;
+
+            /** BusinessInteractionPills signedPayload. */
+            public signedPayload: Uint8Array;
+
+            /** BusinessInteractionPills signatureEnvelope. */
+            public signatureEnvelope?: (AICommon.IBotSignatureVerificationMetadata|null);
 
             /**
              * Creates a new BusinessInteractionPills instance using the specified properties.
@@ -9368,6 +9498,109 @@ export namespace E2E {
                 ABOUT = 10,
                 SHOP = 11,
                 ORDER = 12
+            }
+
+            /** Properties of a SignedPayload. */
+            interface ISignedPayload {
+
+                /** SignedPayload verifiedName */
+                verifiedName?: (string|null);
+
+                /** SignedPayload pills */
+                pills?: (E2E.ContextInfo.BusinessInteractionPills.IPill[]|null);
+            }
+
+            /** Represents a SignedPayload. */
+            class SignedPayload implements ISignedPayload {
+
+                /**
+                 * Constructs a new SignedPayload.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: E2E.ContextInfo.BusinessInteractionPills.ISignedPayload);
+
+                /** SignedPayload verifiedName. */
+                public verifiedName: string;
+
+                /** SignedPayload pills. */
+                public pills: E2E.ContextInfo.BusinessInteractionPills.IPill[];
+
+                /**
+                 * Creates a new SignedPayload instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns SignedPayload instance
+                 */
+                public static create(properties?: E2E.ContextInfo.BusinessInteractionPills.ISignedPayload): E2E.ContextInfo.BusinessInteractionPills.SignedPayload;
+
+                /**
+                 * Encodes the specified SignedPayload message. Does not implicitly {@link E2E.ContextInfo.BusinessInteractionPills.SignedPayload.verify|verify} messages.
+                 * @param message SignedPayload message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: E2E.ContextInfo.BusinessInteractionPills.ISignedPayload, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified SignedPayload message, length delimited. Does not implicitly {@link E2E.ContextInfo.BusinessInteractionPills.SignedPayload.verify|verify} messages.
+                 * @param message SignedPayload message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: E2E.ContextInfo.BusinessInteractionPills.ISignedPayload, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a SignedPayload message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns SignedPayload
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.ContextInfo.BusinessInteractionPills.SignedPayload;
+
+                /**
+                 * Decodes a SignedPayload message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns SignedPayload
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.ContextInfo.BusinessInteractionPills.SignedPayload;
+
+                /**
+                 * Verifies a SignedPayload message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a SignedPayload message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns SignedPayload
+                 */
+                public static fromObject(object: { [k: string]: any }): E2E.ContextInfo.BusinessInteractionPills.SignedPayload;
+
+                /**
+                 * Creates a plain object from a SignedPayload message. Also converts values to other types if specified.
+                 * @param message SignedPayload
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: E2E.ContextInfo.BusinessInteractionPills.SignedPayload, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this SignedPayload to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for SignedPayload
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
             }
         }
 
@@ -11176,6 +11409,9 @@ export namespace E2E {
 
         /** Message newsletterAdminProfileStatusMessage */
         newsletterAdminProfileStatusMessage?: (E2E.Message.IFutureProofMessage|null);
+
+        /** Message rootSecretDistributeMessage */
+        rootSecretDistributeMessage?: (E2E.Message.IRootSecretDistributeMessage|null);
     }
 
     /** Represents a Message. */
@@ -11504,6 +11740,9 @@ export namespace E2E {
 
         /** Message newsletterAdminProfileStatusMessage. */
         public newsletterAdminProfileStatusMessage?: (E2E.Message.IFutureProofMessage|null);
+
+        /** Message rootSecretDistributeMessage. */
+        public rootSecretDistributeMessage?: (E2E.Message.IRootSecretDistributeMessage|null);
 
         /**
          * Creates a new Message instance using the specified properties.
@@ -26978,6 +27217,9 @@ export namespace E2E {
 
             /** PollAddOptionMessage addOption */
             addOption?: (E2E.Message.PollCreationMessage.IOption|null);
+
+            /** PollAddOptionMessage metadata */
+            metadata?: (E2E.Message.IPollUpdateMessageMetadata|null);
         }
 
         /** Represents a PollAddOptionMessage. */
@@ -26994,6 +27236,9 @@ export namespace E2E {
 
             /** PollAddOptionMessage addOption. */
             public addOption?: (E2E.Message.PollCreationMessage.IOption|null);
+
+            /** PollAddOptionMessage metadata. */
+            public metadata?: (E2E.Message.IPollUpdateMessageMetadata|null);
 
             /**
              * Creates a new PollAddOptionMessage instance using the specified properties.
@@ -27790,6 +28035,12 @@ export namespace E2E {
 
         /** Properties of a PollUpdateMessageMetadata. */
         interface IPollUpdateMessageMetadata {
+
+            /** PollUpdateMessageMetadata pollNameHash */
+            pollNameHash?: (Uint8Array|null);
+
+            /** PollUpdateMessageMetadata lastEditStanzaId */
+            lastEditStanzaId?: (string|null);
         }
 
         /** Represents a PollUpdateMessageMetadata. */
@@ -27800,6 +28051,12 @@ export namespace E2E {
              * @param [properties] Properties to set
              */
             constructor(properties?: E2E.Message.IPollUpdateMessageMetadata);
+
+            /** PollUpdateMessageMetadata pollNameHash. */
+            public pollNameHash: Uint8Array;
+
+            /** PollUpdateMessageMetadata lastEditStanzaId. */
+            public lastEditStanzaId: string;
 
             /**
              * Creates a new PollUpdateMessageMetadata instance using the specified properties.
@@ -29244,6 +29501,103 @@ export namespace E2E {
                 CHAT_OPEN = 0,
                 COMPANION_PAIRING = 1
             }
+        }
+
+        /** Properties of a RootSecretDistributeMessage. */
+        interface IRootSecretDistributeMessage {
+
+            /** RootSecretDistributeMessage chatJid */
+            chatJid?: (string|null);
+        }
+
+        /** Represents a RootSecretDistributeMessage. */
+        class RootSecretDistributeMessage implements IRootSecretDistributeMessage {
+
+            /**
+             * Constructs a new RootSecretDistributeMessage.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: E2E.Message.IRootSecretDistributeMessage);
+
+            /** RootSecretDistributeMessage chatJid. */
+            public chatJid: string;
+
+            /**
+             * Creates a new RootSecretDistributeMessage instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns RootSecretDistributeMessage instance
+             */
+            public static create(properties?: E2E.Message.IRootSecretDistributeMessage): E2E.Message.RootSecretDistributeMessage;
+
+            /**
+             * Encodes the specified RootSecretDistributeMessage message. Does not implicitly {@link E2E.Message.RootSecretDistributeMessage.verify|verify} messages.
+             * @param message RootSecretDistributeMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: E2E.Message.IRootSecretDistributeMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified RootSecretDistributeMessage message, length delimited. Does not implicitly {@link E2E.Message.RootSecretDistributeMessage.verify|verify} messages.
+             * @param message RootSecretDistributeMessage message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: E2E.Message.IRootSecretDistributeMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a RootSecretDistributeMessage message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns RootSecretDistributeMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): E2E.Message.RootSecretDistributeMessage;
+
+            /**
+             * Decodes a RootSecretDistributeMessage message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns RootSecretDistributeMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): E2E.Message.RootSecretDistributeMessage;
+
+            /**
+             * Verifies a RootSecretDistributeMessage message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a RootSecretDistributeMessage message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns RootSecretDistributeMessage
+             */
+            public static fromObject(object: { [k: string]: any }): E2E.Message.RootSecretDistributeMessage;
+
+            /**
+             * Creates a plain object from a RootSecretDistributeMessage message. Also converts values to other types if specified.
+             * @param message RootSecretDistributeMessage
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: E2E.Message.RootSecretDistributeMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this RootSecretDistributeMessage to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+
+            /**
+             * Gets the default type url for RootSecretDistributeMessage
+             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns The default type url
+             */
+            public static getTypeUrl(typeUrlPrefix?: string): string;
         }
 
         /** Properties of a ScheduledCallCreationMessage. */
@@ -43268,7 +43622,8 @@ export namespace AICommon {
         enum BotSignatureUseCase {
             UNSPECIFIED = 0,
             WA_BOT_MSG = 1,
-            WA_TEE_BOT_MSG = 2
+            WA_TEE_BOT_MSG = 2,
+            P2P_PILLS = 3
         }
     }
 

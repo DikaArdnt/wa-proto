@@ -4577,6 +4577,7 @@ $root.Web = (function() {
          * @memberof Web
          * @interface IPollAdditionalMetadata
          * @property {boolean|null} [pollInvalidated] PollAdditionalMetadata pollInvalidated
+         * @property {Array.<Web.PollAdditionalMetadata.IPollNameHashHistoryEntry>|null} [pollNameHashHistory] PollAdditionalMetadata pollNameHashHistory
          */
 
         /**
@@ -4588,6 +4589,7 @@ $root.Web = (function() {
          * @param {Web.IPollAdditionalMetadata=} [properties] Properties to set
          */
         function PollAdditionalMetadata(properties) {
+            this.pollNameHashHistory = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null && keys[i] !== "__proto__")
@@ -4601,6 +4603,14 @@ $root.Web = (function() {
          * @instance
          */
         PollAdditionalMetadata.prototype.pollInvalidated = false;
+
+        /**
+         * PollAdditionalMetadata pollNameHashHistory.
+         * @member {Array.<Web.PollAdditionalMetadata.IPollNameHashHistoryEntry>} pollNameHashHistory
+         * @memberof Web.PollAdditionalMetadata
+         * @instance
+         */
+        PollAdditionalMetadata.prototype.pollNameHashHistory = $util.emptyArray;
 
         /**
          * Creates a new PollAdditionalMetadata instance using the specified properties.
@@ -4632,6 +4642,9 @@ $root.Web = (function() {
                 throw Error("max depth exceeded");
             if (message.pollInvalidated != null && Object.hasOwnProperty.call(message, "pollInvalidated"))
                 writer.uint32(/* id 1, wireType 0 =*/8).bool(message.pollInvalidated);
+            if (message.pollNameHashHistory != null && message.pollNameHashHistory.length)
+                for (var i = 0; i < message.pollNameHashHistory.length; ++i)
+                    $root.Web.PollAdditionalMetadata.PollNameHashHistoryEntry.encode(message.pollNameHashHistory[i], writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -4676,6 +4689,12 @@ $root.Web = (function() {
                         message.pollInvalidated = reader.bool();
                         break;
                     }
+                case 2: {
+                        if (!(message.pollNameHashHistory && message.pollNameHashHistory.length))
+                            message.pollNameHashHistory = [];
+                        message.pollNameHashHistory.push($root.Web.PollAdditionalMetadata.PollNameHashHistoryEntry.decode(reader, reader.uint32(), undefined, long + 1));
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7, long);
                     break;
@@ -4718,6 +4737,15 @@ $root.Web = (function() {
             if (message.pollInvalidated != null && message.hasOwnProperty("pollInvalidated"))
                 if (typeof message.pollInvalidated !== "boolean")
                     return "pollInvalidated: boolean expected";
+            if (message.pollNameHashHistory != null && message.hasOwnProperty("pollNameHashHistory")) {
+                if (!Array.isArray(message.pollNameHashHistory))
+                    return "pollNameHashHistory: array expected";
+                for (var i = 0; i < message.pollNameHashHistory.length; ++i) {
+                    var error = $root.Web.PollAdditionalMetadata.PollNameHashHistoryEntry.verify(message.pollNameHashHistory[i], long + 1);
+                    if (error)
+                        return "pollNameHashHistory." + error;
+                }
+            }
             return null;
         };
 
@@ -4741,6 +4769,16 @@ $root.Web = (function() {
             var message = new $root.Web.PollAdditionalMetadata();
             if (object.pollInvalidated != null)
                 message.pollInvalidated = Boolean(object.pollInvalidated);
+            if (object.pollNameHashHistory) {
+                if (!Array.isArray(object.pollNameHashHistory))
+                    throw TypeError(".Web.PollAdditionalMetadata.pollNameHashHistory: array expected");
+                message.pollNameHashHistory = [];
+                for (var i = 0; i < object.pollNameHashHistory.length; ++i) {
+                    if (!$util.isObject(object.pollNameHashHistory[i]))
+                        throw TypeError(".Web.PollAdditionalMetadata.pollNameHashHistory: object expected");
+                    message.pollNameHashHistory[i] = $root.Web.PollAdditionalMetadata.PollNameHashHistoryEntry.fromObject(object.pollNameHashHistory[i], long + 1);
+                }
+            }
             return message;
         };
 
@@ -4761,10 +4799,17 @@ $root.Web = (function() {
             if (q > $util.recursionLimit)
                 throw Error("max depth exceeded");
             var object = {};
+            if (options.arrays || options.defaults)
+                object.pollNameHashHistory = [];
             if (options.defaults)
                 object.pollInvalidated = false;
             if (message.pollInvalidated != null && message.hasOwnProperty("pollInvalidated"))
                 object.pollInvalidated = message.pollInvalidated;
+            if (message.pollNameHashHistory && message.pollNameHashHistory.length) {
+                object.pollNameHashHistory = [];
+                for (var j = 0; j < message.pollNameHashHistory.length; ++j)
+                    object.pollNameHashHistory[j] = $root.Web.PollAdditionalMetadata.PollNameHashHistoryEntry.toObject(message.pollNameHashHistory[j], options, q + 1);
+            }
             return object;
         };
 
@@ -4794,6 +4839,266 @@ $root.Web = (function() {
             return typeUrlPrefix + "/Web.PollAdditionalMetadata";
         };
 
+        PollAdditionalMetadata.PollNameHashHistoryEntry = (function() {
+
+            /**
+             * Properties of a PollNameHashHistoryEntry.
+             * @memberof Web.PollAdditionalMetadata
+             * @interface IPollNameHashHistoryEntry
+             * @property {string|null} [editStanzaId] PollNameHashHistoryEntry editStanzaId
+             * @property {Uint8Array|null} [pollNameHash] PollNameHashHistoryEntry pollNameHash
+             */
+
+            /**
+             * Constructs a new PollNameHashHistoryEntry.
+             * @memberof Web.PollAdditionalMetadata
+             * @classdesc Represents a PollNameHashHistoryEntry.
+             * @implements IPollNameHashHistoryEntry
+             * @constructor
+             * @param {Web.PollAdditionalMetadata.IPollNameHashHistoryEntry=} [properties] Properties to set
+             */
+            function PollNameHashHistoryEntry(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * PollNameHashHistoryEntry editStanzaId.
+             * @member {string} editStanzaId
+             * @memberof Web.PollAdditionalMetadata.PollNameHashHistoryEntry
+             * @instance
+             */
+            PollNameHashHistoryEntry.prototype.editStanzaId = "";
+
+            /**
+             * PollNameHashHistoryEntry pollNameHash.
+             * @member {Uint8Array} pollNameHash
+             * @memberof Web.PollAdditionalMetadata.PollNameHashHistoryEntry
+             * @instance
+             */
+            PollNameHashHistoryEntry.prototype.pollNameHash = $util.newBuffer([]);
+
+            /**
+             * Creates a new PollNameHashHistoryEntry instance using the specified properties.
+             * @function create
+             * @memberof Web.PollAdditionalMetadata.PollNameHashHistoryEntry
+             * @static
+             * @param {Web.PollAdditionalMetadata.IPollNameHashHistoryEntry=} [properties] Properties to set
+             * @returns {Web.PollAdditionalMetadata.PollNameHashHistoryEntry} PollNameHashHistoryEntry instance
+             */
+            PollNameHashHistoryEntry.create = function create(properties) {
+                return new PollNameHashHistoryEntry(properties);
+            };
+
+            /**
+             * Encodes the specified PollNameHashHistoryEntry message. Does not implicitly {@link Web.PollAdditionalMetadata.PollNameHashHistoryEntry.verify|verify} messages.
+             * @function encode
+             * @memberof Web.PollAdditionalMetadata.PollNameHashHistoryEntry
+             * @static
+             * @param {Web.PollAdditionalMetadata.IPollNameHashHistoryEntry} message PollNameHashHistoryEntry message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PollNameHashHistoryEntry.encode = function encode(message, writer, q) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                if (message.editStanzaId != null && Object.hasOwnProperty.call(message, "editStanzaId"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.editStanzaId);
+                if (message.pollNameHash != null && Object.hasOwnProperty.call(message, "pollNameHash"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.pollNameHash);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified PollNameHashHistoryEntry message, length delimited. Does not implicitly {@link Web.PollAdditionalMetadata.PollNameHashHistoryEntry.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof Web.PollAdditionalMetadata.PollNameHashHistoryEntry
+             * @static
+             * @param {Web.PollAdditionalMetadata.IPollNameHashHistoryEntry} message PollNameHashHistoryEntry message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PollNameHashHistoryEntry.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+            };
+
+            /**
+             * Decodes a PollNameHashHistoryEntry message from the specified reader or buffer.
+             * @function decode
+             * @memberof Web.PollAdditionalMetadata.PollNameHashHistoryEntry
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {Web.PollAdditionalMetadata.PollNameHashHistoryEntry} PollNameHashHistoryEntry
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PollNameHashHistoryEntry.decode = function decode(reader, length, error, long) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Web.PollAdditionalMetadata.PollNameHashHistoryEntry();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.editStanzaId = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.pollNameHash = reader.bytes();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7, long);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a PollNameHashHistoryEntry message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof Web.PollAdditionalMetadata.PollNameHashHistoryEntry
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {Web.PollAdditionalMetadata.PollNameHashHistoryEntry} PollNameHashHistoryEntry
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PollNameHashHistoryEntry.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a PollNameHashHistoryEntry message.
+             * @function verify
+             * @memberof Web.PollAdditionalMetadata.PollNameHashHistoryEntry
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            PollNameHashHistoryEntry.verify = function verify(message, long) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
+                if (message.editStanzaId != null && message.hasOwnProperty("editStanzaId"))
+                    if (!$util.isString(message.editStanzaId))
+                        return "editStanzaId: string expected";
+                if (message.pollNameHash != null && message.hasOwnProperty("pollNameHash"))
+                    if (!(message.pollNameHash && typeof message.pollNameHash.length === "number" || $util.isString(message.pollNameHash)))
+                        return "pollNameHash: buffer expected";
+                return null;
+            };
+
+            /**
+             * Creates a PollNameHashHistoryEntry message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof Web.PollAdditionalMetadata.PollNameHashHistoryEntry
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {Web.PollAdditionalMetadata.PollNameHashHistoryEntry} PollNameHashHistoryEntry
+             */
+            PollNameHashHistoryEntry.fromObject = function fromObject(object, long) {
+                if (object instanceof $root.Web.PollAdditionalMetadata.PollNameHashHistoryEntry)
+                    return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".Web.PollAdditionalMetadata.PollNameHashHistoryEntry: object expected");
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var message = new $root.Web.PollAdditionalMetadata.PollNameHashHistoryEntry();
+                if (object.editStanzaId != null)
+                    message.editStanzaId = String(object.editStanzaId);
+                if (object.pollNameHash != null)
+                    if (typeof object.pollNameHash === "string")
+                        $util.base64.decode(object.pollNameHash, message.pollNameHash = $util.newBuffer($util.base64.length(object.pollNameHash)), 0);
+                    else if (object.pollNameHash.length >= 0)
+                        message.pollNameHash = object.pollNameHash;
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a PollNameHashHistoryEntry message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof Web.PollAdditionalMetadata.PollNameHashHistoryEntry
+             * @static
+             * @param {Web.PollAdditionalMetadata.PollNameHashHistoryEntry} message PollNameHashHistoryEntry
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            PollNameHashHistoryEntry.toObject = function toObject(message, options, q) {
+                if (!options)
+                    options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                var object = {};
+                if (options.defaults) {
+                    object.editStanzaId = "";
+                    if (options.bytes === String)
+                        object.pollNameHash = "";
+                    else {
+                        object.pollNameHash = [];
+                        if (options.bytes !== Array)
+                            object.pollNameHash = $util.newBuffer(object.pollNameHash);
+                    }
+                }
+                if (message.editStanzaId != null && message.hasOwnProperty("editStanzaId"))
+                    object.editStanzaId = message.editStanzaId;
+                if (message.pollNameHash != null && message.hasOwnProperty("pollNameHash"))
+                    object.pollNameHash = options.bytes === String ? $util.base64.encode(message.pollNameHash, 0, message.pollNameHash.length) : options.bytes === Array ? Array.prototype.slice.call(message.pollNameHash) : message.pollNameHash;
+                return object;
+            };
+
+            /**
+             * Converts this PollNameHashHistoryEntry to JSON.
+             * @function toJSON
+             * @memberof Web.PollAdditionalMetadata.PollNameHashHistoryEntry
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            PollNameHashHistoryEntry.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for PollNameHashHistoryEntry
+             * @function getTypeUrl
+             * @memberof Web.PollAdditionalMetadata.PollNameHashHistoryEntry
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            PollNameHashHistoryEntry.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/Web.PollAdditionalMetadata.PollNameHashHistoryEntry";
+            };
+
+            return PollNameHashHistoryEntry;
+        })();
+
         return PollAdditionalMetadata;
     })();
 
@@ -4808,6 +5113,7 @@ $root.Web = (function() {
          * @property {number|Long|null} [senderTimestampMs] PollUpdate senderTimestampMs
          * @property {number|Long|null} [serverTimestampMs] PollUpdate serverTimestampMs
          * @property {boolean|null} [unread] PollUpdate unread
+         * @property {E2E.Message.IPollUpdateMessageMetadata|null} [metadata] PollUpdate metadata
          */
 
         /**
@@ -4866,6 +5172,14 @@ $root.Web = (function() {
         PollUpdate.prototype.unread = false;
 
         /**
+         * PollUpdate metadata.
+         * @member {E2E.Message.IPollUpdateMessageMetadata|null|undefined} metadata
+         * @memberof Web.PollUpdate
+         * @instance
+         */
+        PollUpdate.prototype.metadata = null;
+
+        /**
          * Creates a new PollUpdate instance using the specified properties.
          * @function create
          * @memberof Web.PollUpdate
@@ -4903,6 +5217,8 @@ $root.Web = (function() {
                 writer.uint32(/* id 4, wireType 0 =*/32).int64(message.serverTimestampMs);
             if (message.unread != null && Object.hasOwnProperty.call(message, "unread"))
                 writer.uint32(/* id 5, wireType 0 =*/40).bool(message.unread);
+            if (message.metadata != null && Object.hasOwnProperty.call(message, "metadata"))
+                $root.E2E.Message.PollUpdateMessageMetadata.encode(message.metadata, writer.uint32(/* id 6, wireType 2 =*/50).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -4963,6 +5279,10 @@ $root.Web = (function() {
                         message.unread = reader.bool();
                         break;
                     }
+                case 6: {
+                        message.metadata = $root.E2E.Message.PollUpdateMessageMetadata.decode(reader, reader.uint32(), undefined, long + 1);
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7, long);
                     break;
@@ -5021,6 +5341,11 @@ $root.Web = (function() {
             if (message.unread != null && message.hasOwnProperty("unread"))
                 if (typeof message.unread !== "boolean")
                     return "unread: boolean expected";
+            if (message.metadata != null && message.hasOwnProperty("metadata")) {
+                var error = $root.E2E.Message.PollUpdateMessageMetadata.verify(message.metadata, long + 1);
+                if (error)
+                    return "metadata." + error;
+            }
             return null;
         };
 
@@ -5072,6 +5397,11 @@ $root.Web = (function() {
                     message.serverTimestampMs = new $util.LongBits(object.serverTimestampMs.low >>> 0, object.serverTimestampMs.high >>> 0).toNumber();
             if (object.unread != null)
                 message.unread = Boolean(object.unread);
+            if (object.metadata != null) {
+                if (!$util.isObject(object.metadata))
+                    throw TypeError(".Web.PollUpdate.metadata: object expected");
+                message.metadata = $root.E2E.Message.PollUpdateMessageMetadata.fromObject(object.metadata, long + 1);
+            }
             return message;
         };
 
@@ -5106,6 +5436,7 @@ $root.Web = (function() {
                 } else
                     object.serverTimestampMs = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                 object.unread = false;
+                object.metadata = null;
             }
             if (message.pollUpdateMessageKey != null && message.hasOwnProperty("pollUpdateMessageKey"))
                 object.pollUpdateMessageKey = $root.Protocol.MessageKey.toObject(message.pollUpdateMessageKey, options, q + 1);
@@ -5127,6 +5458,8 @@ $root.Web = (function() {
                     object.serverTimestampMs = options.longs === String ? $util.Long.prototype.toString.call(message.serverTimestampMs) : options.longs === Number ? new $util.LongBits(message.serverTimestampMs.low >>> 0, message.serverTimestampMs.high >>> 0).toNumber() : message.serverTimestampMs;
             if (message.unread != null && message.hasOwnProperty("unread"))
                 object.unread = message.unread;
+            if (message.metadata != null && message.hasOwnProperty("metadata"))
+                object.metadata = $root.E2E.Message.PollUpdateMessageMetadata.toObject(message.metadata, options, q + 1);
             return object;
         };
 
@@ -30012,6 +30345,8 @@ $root.E2E = (function() {
              * @property {string|null} [businessJid] BusinessInteractionPills businessJid
              * @property {Array.<E2E.ContextInfo.BusinessInteractionPills.IPill>|null} [pills] BusinessInteractionPills pills
              * @property {E2E.ContextInfo.BusinessInteractionPills.EntryPoint|null} [entryPoint] BusinessInteractionPills entryPoint
+             * @property {Uint8Array|null} [signedPayload] BusinessInteractionPills signedPayload
+             * @property {AICommon.IBotSignatureVerificationMetadata|null} [signatureEnvelope] BusinessInteractionPills signatureEnvelope
              */
 
             /**
@@ -30055,6 +30390,22 @@ $root.E2E = (function() {
             BusinessInteractionPills.prototype.entryPoint = 0;
 
             /**
+             * BusinessInteractionPills signedPayload.
+             * @member {Uint8Array} signedPayload
+             * @memberof E2E.ContextInfo.BusinessInteractionPills
+             * @instance
+             */
+            BusinessInteractionPills.prototype.signedPayload = $util.newBuffer([]);
+
+            /**
+             * BusinessInteractionPills signatureEnvelope.
+             * @member {AICommon.IBotSignatureVerificationMetadata|null|undefined} signatureEnvelope
+             * @memberof E2E.ContextInfo.BusinessInteractionPills
+             * @instance
+             */
+            BusinessInteractionPills.prototype.signatureEnvelope = null;
+
+            /**
              * Creates a new BusinessInteractionPills instance using the specified properties.
              * @function create
              * @memberof E2E.ContextInfo.BusinessInteractionPills
@@ -30089,6 +30440,10 @@ $root.E2E = (function() {
                         $root.E2E.ContextInfo.BusinessInteractionPills.Pill.encode(message.pills[i], writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
                 if (message.entryPoint != null && Object.hasOwnProperty.call(message, "entryPoint"))
                     writer.uint32(/* id 3, wireType 0 =*/24).int32(message.entryPoint);
+                if (message.signedPayload != null && Object.hasOwnProperty.call(message, "signedPayload"))
+                    writer.uint32(/* id 4, wireType 2 =*/34).bytes(message.signedPayload);
+                if (message.signatureEnvelope != null && Object.hasOwnProperty.call(message, "signatureEnvelope"))
+                    $root.AICommon.BotSignatureVerificationMetadata.encode(message.signatureEnvelope, writer.uint32(/* id 5, wireType 2 =*/42).fork(), q + 1).ldelim();
                 return writer;
             };
 
@@ -30141,6 +30496,14 @@ $root.E2E = (function() {
                         }
                     case 3: {
                             message.entryPoint = reader.int32();
+                            break;
+                        }
+                    case 4: {
+                            message.signedPayload = reader.bytes();
+                            break;
+                        }
+                    case 5: {
+                            message.signatureEnvelope = $root.AICommon.BotSignatureVerificationMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     default:
@@ -30206,6 +30569,14 @@ $root.E2E = (function() {
                     case 5:
                         break;
                     }
+                if (message.signedPayload != null && message.hasOwnProperty("signedPayload"))
+                    if (!(message.signedPayload && typeof message.signedPayload.length === "number" || $util.isString(message.signedPayload)))
+                        return "signedPayload: buffer expected";
+                if (message.signatureEnvelope != null && message.hasOwnProperty("signatureEnvelope")) {
+                    var error = $root.AICommon.BotSignatureVerificationMetadata.verify(message.signatureEnvelope, long + 1);
+                    if (error)
+                        return "signatureEnvelope." + error;
+                }
                 return null;
             };
 
@@ -30271,6 +30642,16 @@ $root.E2E = (function() {
                     message.entryPoint = 5;
                     break;
                 }
+                if (object.signedPayload != null)
+                    if (typeof object.signedPayload === "string")
+                        $util.base64.decode(object.signedPayload, message.signedPayload = $util.newBuffer($util.base64.length(object.signedPayload)), 0);
+                    else if (object.signedPayload.length >= 0)
+                        message.signedPayload = object.signedPayload;
+                if (object.signatureEnvelope != null) {
+                    if (!$util.isObject(object.signatureEnvelope))
+                        throw TypeError(".E2E.ContextInfo.BusinessInteractionPills.signatureEnvelope: object expected");
+                    message.signatureEnvelope = $root.AICommon.BotSignatureVerificationMetadata.fromObject(object.signatureEnvelope, long + 1);
+                }
                 return message;
             };
 
@@ -30296,6 +30677,14 @@ $root.E2E = (function() {
                 if (options.defaults) {
                     object.businessJid = "";
                     object.entryPoint = options.enums === String ? "ENTRY_POINT_UNKNOWN" : 0;
+                    if (options.bytes === String)
+                        object.signedPayload = "";
+                    else {
+                        object.signedPayload = [];
+                        if (options.bytes !== Array)
+                            object.signedPayload = $util.newBuffer(object.signedPayload);
+                    }
+                    object.signatureEnvelope = null;
                 }
                 if (message.businessJid != null && message.hasOwnProperty("businessJid"))
                     object.businessJid = message.businessJid;
@@ -30306,6 +30695,10 @@ $root.E2E = (function() {
                 }
                 if (message.entryPoint != null && message.hasOwnProperty("entryPoint"))
                     object.entryPoint = options.enums === String ? $root.E2E.ContextInfo.BusinessInteractionPills.EntryPoint[message.entryPoint] === undefined ? message.entryPoint : $root.E2E.ContextInfo.BusinessInteractionPills.EntryPoint[message.entryPoint] : message.entryPoint;
+                if (message.signedPayload != null && message.hasOwnProperty("signedPayload"))
+                    object.signedPayload = options.bytes === String ? $util.base64.encode(message.signedPayload, 0, message.signedPayload.length) : options.bytes === Array ? Array.prototype.slice.call(message.signedPayload) : message.signedPayload;
+                if (message.signatureEnvelope != null && message.hasOwnProperty("signatureEnvelope"))
+                    object.signatureEnvelope = $root.AICommon.BotSignatureVerificationMetadata.toObject(message.signatureEnvelope, options, q + 1);
                 return object;
             };
 
@@ -30716,6 +31109,278 @@ $root.E2E = (function() {
                 values[valuesById[11] = "SHOP"] = 11;
                 values[valuesById[12] = "ORDER"] = 12;
                 return values;
+            })();
+
+            BusinessInteractionPills.SignedPayload = (function() {
+
+                /**
+                 * Properties of a SignedPayload.
+                 * @memberof E2E.ContextInfo.BusinessInteractionPills
+                 * @interface ISignedPayload
+                 * @property {string|null} [verifiedName] SignedPayload verifiedName
+                 * @property {Array.<E2E.ContextInfo.BusinessInteractionPills.IPill>|null} [pills] SignedPayload pills
+                 */
+
+                /**
+                 * Constructs a new SignedPayload.
+                 * @memberof E2E.ContextInfo.BusinessInteractionPills
+                 * @classdesc Represents a SignedPayload.
+                 * @implements ISignedPayload
+                 * @constructor
+                 * @param {E2E.ContextInfo.BusinessInteractionPills.ISignedPayload=} [properties] Properties to set
+                 */
+                function SignedPayload(properties) {
+                    this.pills = [];
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * SignedPayload verifiedName.
+                 * @member {string} verifiedName
+                 * @memberof E2E.ContextInfo.BusinessInteractionPills.SignedPayload
+                 * @instance
+                 */
+                SignedPayload.prototype.verifiedName = "";
+
+                /**
+                 * SignedPayload pills.
+                 * @member {Array.<E2E.ContextInfo.BusinessInteractionPills.IPill>} pills
+                 * @memberof E2E.ContextInfo.BusinessInteractionPills.SignedPayload
+                 * @instance
+                 */
+                SignedPayload.prototype.pills = $util.emptyArray;
+
+                /**
+                 * Creates a new SignedPayload instance using the specified properties.
+                 * @function create
+                 * @memberof E2E.ContextInfo.BusinessInteractionPills.SignedPayload
+                 * @static
+                 * @param {E2E.ContextInfo.BusinessInteractionPills.ISignedPayload=} [properties] Properties to set
+                 * @returns {E2E.ContextInfo.BusinessInteractionPills.SignedPayload} SignedPayload instance
+                 */
+                SignedPayload.create = function create(properties) {
+                    return new SignedPayload(properties);
+                };
+
+                /**
+                 * Encodes the specified SignedPayload message. Does not implicitly {@link E2E.ContextInfo.BusinessInteractionPills.SignedPayload.verify|verify} messages.
+                 * @function encode
+                 * @memberof E2E.ContextInfo.BusinessInteractionPills.SignedPayload
+                 * @static
+                 * @param {E2E.ContextInfo.BusinessInteractionPills.ISignedPayload} message SignedPayload message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                SignedPayload.encode = function encode(message, writer, q) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
+                    if (message.verifiedName != null && Object.hasOwnProperty.call(message, "verifiedName"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.verifiedName);
+                    if (message.pills != null && message.pills.length)
+                        for (var i = 0; i < message.pills.length; ++i)
+                            $root.E2E.ContextInfo.BusinessInteractionPills.Pill.encode(message.pills[i], writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified SignedPayload message, length delimited. Does not implicitly {@link E2E.ContextInfo.BusinessInteractionPills.SignedPayload.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof E2E.ContextInfo.BusinessInteractionPills.SignedPayload
+                 * @static
+                 * @param {E2E.ContextInfo.BusinessInteractionPills.ISignedPayload} message SignedPayload message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                SignedPayload.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+                };
+
+                /**
+                 * Decodes a SignedPayload message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof E2E.ContextInfo.BusinessInteractionPills.SignedPayload
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {E2E.ContextInfo.BusinessInteractionPills.SignedPayload} SignedPayload
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                SignedPayload.decode = function decode(reader, length, error, long) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $Reader.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.ContextInfo.BusinessInteractionPills.SignedPayload();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        if (tag === error)
+                            break;
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.verifiedName = reader.string();
+                                break;
+                            }
+                        case 2: {
+                                if (!(message.pills && message.pills.length))
+                                    message.pills = [];
+                                message.pills.push($root.E2E.ContextInfo.BusinessInteractionPills.Pill.decode(reader, reader.uint32(), undefined, long + 1));
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7, long);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a SignedPayload message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof E2E.ContextInfo.BusinessInteractionPills.SignedPayload
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {E2E.ContextInfo.BusinessInteractionPills.SignedPayload} SignedPayload
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                SignedPayload.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a SignedPayload message.
+                 * @function verify
+                 * @memberof E2E.ContextInfo.BusinessInteractionPills.SignedPayload
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                SignedPayload.verify = function verify(message, long) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        return "maximum nesting depth exceeded";
+                    if (message.verifiedName != null && message.hasOwnProperty("verifiedName"))
+                        if (!$util.isString(message.verifiedName))
+                            return "verifiedName: string expected";
+                    if (message.pills != null && message.hasOwnProperty("pills")) {
+                        if (!Array.isArray(message.pills))
+                            return "pills: array expected";
+                        for (var i = 0; i < message.pills.length; ++i) {
+                            var error = $root.E2E.ContextInfo.BusinessInteractionPills.Pill.verify(message.pills[i], long + 1);
+                            if (error)
+                                return "pills." + error;
+                        }
+                    }
+                    return null;
+                };
+
+                /**
+                 * Creates a SignedPayload message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof E2E.ContextInfo.BusinessInteractionPills.SignedPayload
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {E2E.ContextInfo.BusinessInteractionPills.SignedPayload} SignedPayload
+                 */
+                SignedPayload.fromObject = function fromObject(object, long) {
+                    if (object instanceof $root.E2E.ContextInfo.BusinessInteractionPills.SignedPayload)
+                        return object;
+                    if (!$util.isObject(object))
+                        throw TypeError(".E2E.ContextInfo.BusinessInteractionPills.SignedPayload: object expected");
+                    if (long === undefined)
+                        long = 0;
+                    if (long > $util.recursionLimit)
+                        throw Error("maximum nesting depth exceeded");
+                    var message = new $root.E2E.ContextInfo.BusinessInteractionPills.SignedPayload();
+                    if (object.verifiedName != null)
+                        message.verifiedName = String(object.verifiedName);
+                    if (object.pills) {
+                        if (!Array.isArray(object.pills))
+                            throw TypeError(".E2E.ContextInfo.BusinessInteractionPills.SignedPayload.pills: array expected");
+                        message.pills = [];
+                        for (var i = 0; i < object.pills.length; ++i) {
+                            if (!$util.isObject(object.pills[i]))
+                                throw TypeError(".E2E.ContextInfo.BusinessInteractionPills.SignedPayload.pills: object expected");
+                            message.pills[i] = $root.E2E.ContextInfo.BusinessInteractionPills.Pill.fromObject(object.pills[i], long + 1);
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a SignedPayload message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof E2E.ContextInfo.BusinessInteractionPills.SignedPayload
+                 * @static
+                 * @param {E2E.ContextInfo.BusinessInteractionPills.SignedPayload} message SignedPayload
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                SignedPayload.toObject = function toObject(message, options, q) {
+                    if (!options)
+                        options = {};
+                    if (q === undefined)
+                        q = 0;
+                    if (q > $util.recursionLimit)
+                        throw Error("max depth exceeded");
+                    var object = {};
+                    if (options.arrays || options.defaults)
+                        object.pills = [];
+                    if (options.defaults)
+                        object.verifiedName = "";
+                    if (message.verifiedName != null && message.hasOwnProperty("verifiedName"))
+                        object.verifiedName = message.verifiedName;
+                    if (message.pills && message.pills.length) {
+                        object.pills = [];
+                        for (var j = 0; j < message.pills.length; ++j)
+                            object.pills[j] = $root.E2E.ContextInfo.BusinessInteractionPills.Pill.toObject(message.pills[j], options, q + 1);
+                    }
+                    return object;
+                };
+
+                /**
+                 * Converts this SignedPayload to JSON.
+                 * @function toJSON
+                 * @memberof E2E.ContextInfo.BusinessInteractionPills.SignedPayload
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                SignedPayload.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                /**
+                 * Gets the default type url for SignedPayload
+                 * @function getTypeUrl
+                 * @memberof E2E.ContextInfo.BusinessInteractionPills.SignedPayload
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                SignedPayload.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/E2E.ContextInfo.BusinessInteractionPills.SignedPayload";
+                };
+
+                return SignedPayload;
             })();
 
             return BusinessInteractionPills;
@@ -34938,6 +35603,7 @@ $root.E2E = (function() {
          * @property {E2E.Message.IPaymentReminderMessage|null} [paymentReminderMessage] Message paymentReminderMessage
          * @property {E2E.Message.ISplitPaymentMessage|null} [splitPaymentMessage] Message splitPaymentMessage
          * @property {E2E.Message.IFutureProofMessage|null} [newsletterAdminProfileStatusMessage] Message newsletterAdminProfileStatusMessage
+         * @property {E2E.Message.IRootSecretDistributeMessage|null} [rootSecretDistributeMessage] Message rootSecretDistributeMessage
          */
 
         /**
@@ -35804,6 +36470,14 @@ $root.E2E = (function() {
         Message.prototype.newsletterAdminProfileStatusMessage = null;
 
         /**
+         * Message rootSecretDistributeMessage.
+         * @member {E2E.Message.IRootSecretDistributeMessage|null|undefined} rootSecretDistributeMessage
+         * @memberof E2E.Message
+         * @instance
+         */
+        Message.prototype.rootSecretDistributeMessage = null;
+
+        /**
          * Creates a new Message instance using the specified properties.
          * @function create
          * @memberof E2E.Message
@@ -36043,6 +36717,8 @@ $root.E2E = (function() {
                 $root.E2E.Message.SplitPaymentMessage.encode(message.splitPaymentMessage, writer.uint32(/* id 125, wireType 2 =*/1002).fork(), q + 1).ldelim();
             if (message.newsletterAdminProfileStatusMessage != null && Object.hasOwnProperty.call(message, "newsletterAdminProfileStatusMessage"))
                 $root.E2E.Message.FutureProofMessage.encode(message.newsletterAdminProfileStatusMessage, writer.uint32(/* id 126, wireType 2 =*/1010).fork(), q + 1).ldelim();
+            if (message.rootSecretDistributeMessage != null && Object.hasOwnProperty.call(message, "rootSecretDistributeMessage"))
+                $root.E2E.Message.RootSecretDistributeMessage.encode(message.rootSecretDistributeMessage, writer.uint32(/* id 127, wireType 2 =*/1018).fork(), q + 1).ldelim();
             return writer;
         };
 
@@ -36505,6 +37181,10 @@ $root.E2E = (function() {
                     }
                 case 126: {
                         message.newsletterAdminProfileStatusMessage = $root.E2E.Message.FutureProofMessage.decode(reader, reader.uint32(), undefined, long + 1);
+                        break;
+                    }
+                case 127: {
+                        message.rootSecretDistributeMessage = $root.E2E.Message.RootSecretDistributeMessage.decode(reader, reader.uint32(), undefined, long + 1);
                         break;
                     }
                 default:
@@ -37074,6 +37754,11 @@ $root.E2E = (function() {
                 if (error)
                     return "newsletterAdminProfileStatusMessage." + error;
             }
+            if (message.rootSecretDistributeMessage != null && message.hasOwnProperty("rootSecretDistributeMessage")) {
+                var error = $root.E2E.Message.RootSecretDistributeMessage.verify(message.rootSecretDistributeMessage, long + 1);
+                if (error)
+                    return "rootSecretDistributeMessage." + error;
+            }
             return null;
         };
 
@@ -37622,6 +38307,11 @@ $root.E2E = (function() {
                     throw TypeError(".E2E.Message.newsletterAdminProfileStatusMessage: object expected");
                 message.newsletterAdminProfileStatusMessage = $root.E2E.Message.FutureProofMessage.fromObject(object.newsletterAdminProfileStatusMessage, long + 1);
             }
+            if (object.rootSecretDistributeMessage != null) {
+                if (!$util.isObject(object.rootSecretDistributeMessage))
+                    throw TypeError(".E2E.Message.rootSecretDistributeMessage: object expected");
+                message.rootSecretDistributeMessage = $root.E2E.Message.RootSecretDistributeMessage.fromObject(object.rootSecretDistributeMessage, long + 1);
+            }
             return message;
         };
 
@@ -37749,6 +38439,7 @@ $root.E2E = (function() {
                 object.paymentReminderMessage = null;
                 object.splitPaymentMessage = null;
                 object.newsletterAdminProfileStatusMessage = null;
+                object.rootSecretDistributeMessage = null;
             }
             if (message.conversation != null && message.hasOwnProperty("conversation"))
                 object.conversation = message.conversation;
@@ -37962,6 +38653,8 @@ $root.E2E = (function() {
                 object.splitPaymentMessage = $root.E2E.Message.SplitPaymentMessage.toObject(message.splitPaymentMessage, options, q + 1);
             if (message.newsletterAdminProfileStatusMessage != null && message.hasOwnProperty("newsletterAdminProfileStatusMessage"))
                 object.newsletterAdminProfileStatusMessage = $root.E2E.Message.FutureProofMessage.toObject(message.newsletterAdminProfileStatusMessage, options, q + 1);
+            if (message.rootSecretDistributeMessage != null && message.hasOwnProperty("rootSecretDistributeMessage"))
+                object.rootSecretDistributeMessage = $root.E2E.Message.RootSecretDistributeMessage.toObject(message.rootSecretDistributeMessage, options, q + 1);
             return object;
         };
 
@@ -82185,6 +82878,7 @@ $root.E2E = (function() {
              * @interface IPollAddOptionMessage
              * @property {Protocol.IMessageKey|null} [pollCreationMessageKey] PollAddOptionMessage pollCreationMessageKey
              * @property {E2E.Message.PollCreationMessage.IOption|null} [addOption] PollAddOptionMessage addOption
+             * @property {E2E.Message.IPollUpdateMessageMetadata|null} [metadata] PollAddOptionMessage metadata
              */
 
             /**
@@ -82219,6 +82913,14 @@ $root.E2E = (function() {
             PollAddOptionMessage.prototype.addOption = null;
 
             /**
+             * PollAddOptionMessage metadata.
+             * @member {E2E.Message.IPollUpdateMessageMetadata|null|undefined} metadata
+             * @memberof E2E.Message.PollAddOptionMessage
+             * @instance
+             */
+            PollAddOptionMessage.prototype.metadata = null;
+
+            /**
              * Creates a new PollAddOptionMessage instance using the specified properties.
              * @function create
              * @memberof E2E.Message.PollAddOptionMessage
@@ -82250,6 +82952,8 @@ $root.E2E = (function() {
                     $root.Protocol.MessageKey.encode(message.pollCreationMessageKey, writer.uint32(/* id 1, wireType 2 =*/10).fork(), q + 1).ldelim();
                 if (message.addOption != null && Object.hasOwnProperty.call(message, "addOption"))
                     $root.E2E.Message.PollCreationMessage.Option.encode(message.addOption, writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim();
+                if (message.metadata != null && Object.hasOwnProperty.call(message, "metadata"))
+                    $root.E2E.Message.PollUpdateMessageMetadata.encode(message.metadata, writer.uint32(/* id 3, wireType 2 =*/26).fork(), q + 1).ldelim();
                 return writer;
             };
 
@@ -82296,6 +83000,10 @@ $root.E2E = (function() {
                         }
                     case 2: {
                             message.addOption = $root.E2E.Message.PollCreationMessage.Option.decode(reader, reader.uint32(), undefined, long + 1);
+                            break;
+                        }
+                    case 3: {
+                            message.metadata = $root.E2E.Message.PollUpdateMessageMetadata.decode(reader, reader.uint32(), undefined, long + 1);
                             break;
                         }
                     default:
@@ -82347,6 +83055,11 @@ $root.E2E = (function() {
                     if (error)
                         return "addOption." + error;
                 }
+                if (message.metadata != null && message.hasOwnProperty("metadata")) {
+                    var error = $root.E2E.Message.PollUpdateMessageMetadata.verify(message.metadata, long + 1);
+                    if (error)
+                        return "metadata." + error;
+                }
                 return null;
             };
 
@@ -82378,6 +83091,11 @@ $root.E2E = (function() {
                         throw TypeError(".E2E.Message.PollAddOptionMessage.addOption: object expected");
                     message.addOption = $root.E2E.Message.PollCreationMessage.Option.fromObject(object.addOption, long + 1);
                 }
+                if (object.metadata != null) {
+                    if (!$util.isObject(object.metadata))
+                        throw TypeError(".E2E.Message.PollAddOptionMessage.metadata: object expected");
+                    message.metadata = $root.E2E.Message.PollUpdateMessageMetadata.fromObject(object.metadata, long + 1);
+                }
                 return message;
             };
 
@@ -82401,11 +83119,14 @@ $root.E2E = (function() {
                 if (options.defaults) {
                     object.pollCreationMessageKey = null;
                     object.addOption = null;
+                    object.metadata = null;
                 }
                 if (message.pollCreationMessageKey != null && message.hasOwnProperty("pollCreationMessageKey"))
                     object.pollCreationMessageKey = $root.Protocol.MessageKey.toObject(message.pollCreationMessageKey, options, q + 1);
                 if (message.addOption != null && message.hasOwnProperty("addOption"))
                     object.addOption = $root.E2E.Message.PollCreationMessage.Option.toObject(message.addOption, options, q + 1);
+                if (message.metadata != null && message.hasOwnProperty("metadata"))
+                    object.metadata = $root.E2E.Message.PollUpdateMessageMetadata.toObject(message.metadata, options, q + 1);
                 return object;
             };
 
@@ -84490,6 +85211,8 @@ $root.E2E = (function() {
              * Properties of a PollUpdateMessageMetadata.
              * @memberof E2E.Message
              * @interface IPollUpdateMessageMetadata
+             * @property {Uint8Array|null} [pollNameHash] PollUpdateMessageMetadata pollNameHash
+             * @property {string|null} [lastEditStanzaId] PollUpdateMessageMetadata lastEditStanzaId
              */
 
             /**
@@ -84506,6 +85229,22 @@ $root.E2E = (function() {
                         if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
             }
+
+            /**
+             * PollUpdateMessageMetadata pollNameHash.
+             * @member {Uint8Array} pollNameHash
+             * @memberof E2E.Message.PollUpdateMessageMetadata
+             * @instance
+             */
+            PollUpdateMessageMetadata.prototype.pollNameHash = $util.newBuffer([]);
+
+            /**
+             * PollUpdateMessageMetadata lastEditStanzaId.
+             * @member {string} lastEditStanzaId
+             * @memberof E2E.Message.PollUpdateMessageMetadata
+             * @instance
+             */
+            PollUpdateMessageMetadata.prototype.lastEditStanzaId = "";
 
             /**
              * Creates a new PollUpdateMessageMetadata instance using the specified properties.
@@ -84535,6 +85274,10 @@ $root.E2E = (function() {
                     q = 0;
                 if (q > $util.recursionLimit)
                     throw Error("max depth exceeded");
+                if (message.pollNameHash != null && Object.hasOwnProperty.call(message, "pollNameHash"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.pollNameHash);
+                if (message.lastEditStanzaId != null && Object.hasOwnProperty.call(message, "lastEditStanzaId"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.lastEditStanzaId);
                 return writer;
             };
 
@@ -84575,6 +85318,14 @@ $root.E2E = (function() {
                     if (tag === error)
                         break;
                     switch (tag >>> 3) {
+                    case 1: {
+                            message.pollNameHash = reader.bytes();
+                            break;
+                        }
+                    case 2: {
+                            message.lastEditStanzaId = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7, long);
                         break;
@@ -84614,6 +85365,12 @@ $root.E2E = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     return "maximum nesting depth exceeded";
+                if (message.pollNameHash != null && message.hasOwnProperty("pollNameHash"))
+                    if (!(message.pollNameHash && typeof message.pollNameHash.length === "number" || $util.isString(message.pollNameHash)))
+                        return "pollNameHash: buffer expected";
+                if (message.lastEditStanzaId != null && message.hasOwnProperty("lastEditStanzaId"))
+                    if (!$util.isString(message.lastEditStanzaId))
+                        return "lastEditStanzaId: string expected";
                 return null;
             };
 
@@ -84634,7 +85391,15 @@ $root.E2E = (function() {
                     long = 0;
                 if (long > $util.recursionLimit)
                     throw Error("maximum nesting depth exceeded");
-                return new $root.E2E.Message.PollUpdateMessageMetadata();
+                var message = new $root.E2E.Message.PollUpdateMessageMetadata();
+                if (object.pollNameHash != null)
+                    if (typeof object.pollNameHash === "string")
+                        $util.base64.decode(object.pollNameHash, message.pollNameHash = $util.newBuffer($util.base64.length(object.pollNameHash)), 0);
+                    else if (object.pollNameHash.length >= 0)
+                        message.pollNameHash = object.pollNameHash;
+                if (object.lastEditStanzaId != null)
+                    message.lastEditStanzaId = String(object.lastEditStanzaId);
+                return message;
             };
 
             /**
@@ -84646,8 +85411,29 @@ $root.E2E = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            PollUpdateMessageMetadata.toObject = function toObject() {
-                return {};
+            PollUpdateMessageMetadata.toObject = function toObject(message, options, q) {
+                if (!options)
+                    options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                var object = {};
+                if (options.defaults) {
+                    if (options.bytes === String)
+                        object.pollNameHash = "";
+                    else {
+                        object.pollNameHash = [];
+                        if (options.bytes !== Array)
+                            object.pollNameHash = $util.newBuffer(object.pollNameHash);
+                    }
+                    object.lastEditStanzaId = "";
+                }
+                if (message.pollNameHash != null && message.hasOwnProperty("pollNameHash"))
+                    object.pollNameHash = options.bytes === String ? $util.base64.encode(message.pollNameHash, 0, message.pollNameHash.length) : options.bytes === Array ? Array.prototype.slice.call(message.pollNameHash) : message.pollNameHash;
+                if (message.lastEditStanzaId != null && message.hasOwnProperty("lastEditStanzaId"))
+                    object.lastEditStanzaId = message.lastEditStanzaId;
+                return object;
             };
 
             /**
@@ -88866,6 +89652,233 @@ $root.E2E = (function() {
             })();
 
             return RequestWelcomeMessageMetadata;
+        })();
+
+        Message.RootSecretDistributeMessage = (function() {
+
+            /**
+             * Properties of a RootSecretDistributeMessage.
+             * @memberof E2E.Message
+             * @interface IRootSecretDistributeMessage
+             * @property {string|null} [chatJid] RootSecretDistributeMessage chatJid
+             */
+
+            /**
+             * Constructs a new RootSecretDistributeMessage.
+             * @memberof E2E.Message
+             * @classdesc Represents a RootSecretDistributeMessage.
+             * @implements IRootSecretDistributeMessage
+             * @constructor
+             * @param {E2E.Message.IRootSecretDistributeMessage=} [properties] Properties to set
+             */
+            function RootSecretDistributeMessage(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * RootSecretDistributeMessage chatJid.
+             * @member {string} chatJid
+             * @memberof E2E.Message.RootSecretDistributeMessage
+             * @instance
+             */
+            RootSecretDistributeMessage.prototype.chatJid = "";
+
+            /**
+             * Creates a new RootSecretDistributeMessage instance using the specified properties.
+             * @function create
+             * @memberof E2E.Message.RootSecretDistributeMessage
+             * @static
+             * @param {E2E.Message.IRootSecretDistributeMessage=} [properties] Properties to set
+             * @returns {E2E.Message.RootSecretDistributeMessage} RootSecretDistributeMessage instance
+             */
+            RootSecretDistributeMessage.create = function create(properties) {
+                return new RootSecretDistributeMessage(properties);
+            };
+
+            /**
+             * Encodes the specified RootSecretDistributeMessage message. Does not implicitly {@link E2E.Message.RootSecretDistributeMessage.verify|verify} messages.
+             * @function encode
+             * @memberof E2E.Message.RootSecretDistributeMessage
+             * @static
+             * @param {E2E.Message.IRootSecretDistributeMessage} message RootSecretDistributeMessage message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            RootSecretDistributeMessage.encode = function encode(message, writer, q) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                if (message.chatJid != null && Object.hasOwnProperty.call(message, "chatJid"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.chatJid);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified RootSecretDistributeMessage message, length delimited. Does not implicitly {@link E2E.Message.RootSecretDistributeMessage.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof E2E.Message.RootSecretDistributeMessage
+             * @static
+             * @param {E2E.Message.IRootSecretDistributeMessage} message RootSecretDistributeMessage message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            RootSecretDistributeMessage.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
+            };
+
+            /**
+             * Decodes a RootSecretDistributeMessage message from the specified reader or buffer.
+             * @function decode
+             * @memberof E2E.Message.RootSecretDistributeMessage
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {E2E.Message.RootSecretDistributeMessage} RootSecretDistributeMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            RootSecretDistributeMessage.decode = function decode(reader, length, error, long) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.E2E.Message.RootSecretDistributeMessage();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    if (tag === error)
+                        break;
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.chatJid = reader.string();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7, long);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a RootSecretDistributeMessage message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof E2E.Message.RootSecretDistributeMessage
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {E2E.Message.RootSecretDistributeMessage} RootSecretDistributeMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            RootSecretDistributeMessage.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a RootSecretDistributeMessage message.
+             * @function verify
+             * @memberof E2E.Message.RootSecretDistributeMessage
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            RootSecretDistributeMessage.verify = function verify(message, long) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
+                if (message.chatJid != null && message.hasOwnProperty("chatJid"))
+                    if (!$util.isString(message.chatJid))
+                        return "chatJid: string expected";
+                return null;
+            };
+
+            /**
+             * Creates a RootSecretDistributeMessage message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof E2E.Message.RootSecretDistributeMessage
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {E2E.Message.RootSecretDistributeMessage} RootSecretDistributeMessage
+             */
+            RootSecretDistributeMessage.fromObject = function fromObject(object, long) {
+                if (object instanceof $root.E2E.Message.RootSecretDistributeMessage)
+                    return object;
+                if (!$util.isObject(object))
+                    throw TypeError(".E2E.Message.RootSecretDistributeMessage: object expected");
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var message = new $root.E2E.Message.RootSecretDistributeMessage();
+                if (object.chatJid != null)
+                    message.chatJid = String(object.chatJid);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a RootSecretDistributeMessage message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof E2E.Message.RootSecretDistributeMessage
+             * @static
+             * @param {E2E.Message.RootSecretDistributeMessage} message RootSecretDistributeMessage
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            RootSecretDistributeMessage.toObject = function toObject(message, options, q) {
+                if (!options)
+                    options = {};
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                var object = {};
+                if (options.defaults)
+                    object.chatJid = "";
+                if (message.chatJid != null && message.hasOwnProperty("chatJid"))
+                    object.chatJid = message.chatJid;
+                return object;
+            };
+
+            /**
+             * Converts this RootSecretDistributeMessage to JSON.
+             * @function toJSON
+             * @memberof E2E.Message.RootSecretDistributeMessage
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            RootSecretDistributeMessage.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for RootSecretDistributeMessage
+             * @function getTypeUrl
+             * @memberof E2E.Message.RootSecretDistributeMessage
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            RootSecretDistributeMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/E2E.Message.RootSecretDistributeMessage";
+            };
+
+            return RootSecretDistributeMessage;
         })();
 
         Message.ScheduledCallCreationMessage = (function() {
@@ -128829,6 +129842,7 @@ $root.AICommon = (function() {
                 case 0:
                 case 1:
                 case 2:
+                case 3:
                     break;
                 }
             if (message.signature != null && message.hasOwnProperty("signature"))
@@ -128882,6 +129896,10 @@ $root.AICommon = (function() {
             case "WA_TEE_BOT_MSG":
             case 2:
                 message.useCase = 2;
+                break;
+            case "P2P_PILLS":
+            case 3:
+                message.useCase = 3;
                 break;
             }
             if (object.signature != null)
@@ -128979,12 +129997,14 @@ $root.AICommon = (function() {
          * @property {number} UNSPECIFIED=0 UNSPECIFIED value
          * @property {number} WA_BOT_MSG=1 WA_BOT_MSG value
          * @property {number} WA_TEE_BOT_MSG=2 WA_TEE_BOT_MSG value
+         * @property {number} P2P_PILLS=3 P2P_PILLS value
          */
         BotSignatureVerificationUseCaseProof.BotSignatureUseCase = (function() {
             var valuesById = {}, values = Object.create(valuesById);
             values[valuesById[0] = "UNSPECIFIED"] = 0;
             values[valuesById[1] = "WA_BOT_MSG"] = 1;
             values[valuesById[2] = "WA_TEE_BOT_MSG"] = 2;
+            values[valuesById[3] = "P2P_PILLS"] = 3;
             return values;
         })();
 

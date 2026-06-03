@@ -408,6 +408,8 @@ message ContextInfo {
         optional string businessJid = 1;
         repeated Pill pills = 2;
         optional EntryPoint entryPoint = 3;
+        optional bytes signedPayload = 4;
+        optional AICommon.BotSignatureVerificationMetadata signatureEnvelope = 5;
         enum EntryPoint {
             ENTRY_POINT_UNKNOWN = 0;
             P2P_LINK_SHARE = 1;
@@ -434,6 +436,10 @@ message ContextInfo {
             ABOUT = 10;
             SHOP = 11;
             ORDER = 12;
+        }
+        message SignedPayload {
+            optional string verifiedName = 1;
+            repeated ContextInfo.BusinessInteractionPills.Pill pills = 2;
         }
     }
     message BusinessMessageForwardInfo {
@@ -697,6 +703,7 @@ message Message {
     optional PaymentReminderMessage paymentReminderMessage = 124;
     optional SplitPaymentMessage splitPaymentMessage = 125;
     optional FutureProofMessage newsletterAdminProfileStatusMessage = 126;
+    optional RootSecretDistributeMessage rootSecretDistributeMessage = 127;
     message AlbumMessage {
         optional uint32 expectedImageCount = 2;
         optional uint32 expectedVideoCount = 3;
@@ -1799,6 +1806,7 @@ message Message {
     message PollAddOptionMessage {
         optional Protocol.MessageKey pollCreationMessageKey = 1;
         optional Message.PollCreationMessage.Option addOption = 2;
+        optional Message.PollUpdateMessageMetadata metadata = 3;
     }
     enum PollContentType {
         UNKNOWN = 0;
@@ -1847,6 +1855,8 @@ message Message {
         optional int64 senderTimestampMs = 4;
     }
     message PollUpdateMessageMetadata {
+        optional bytes pollNameHash = 1;
+        optional string lastEditStanzaId = 2;
     }
     message PollVoteMessage {
         repeated bytes selectedOptions = 1;
@@ -1974,6 +1984,9 @@ message Message {
             CHAT_OPEN = 0;
             COMPANION_PAIRING = 1;
         }
+    }
+    message RootSecretDistributeMessage {
+        optional string chatJid = 1;
     }
     message ScheduledCallCreationMessage {
         optional int64 scheduledTimestampMs = 1;

@@ -115,6 +115,11 @@ message InteractiveMessageAdditionalMetadata {
 
 message PollAdditionalMetadata {
     optional bool pollInvalidated = 1;
+    repeated PollNameHashHistoryEntry pollNameHashHistory = 2;
+    message PollNameHashHistoryEntry {
+        optional string editStanzaId = 1;
+        optional bytes pollNameHash = 2;
+    }
 }
 
 message PollUpdate {
@@ -123,6 +128,7 @@ message PollUpdate {
     optional int64 senderTimestampMs = 3;
     optional int64 serverTimestampMs = 4;
     optional bool unread = 5;
+    optional E2E.Message.PollUpdateMessageMetadata metadata = 6;
 }
 
 message Reaction {

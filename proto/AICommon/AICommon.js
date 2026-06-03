@@ -22009,6 +22009,7 @@ $root.AICommon = (function() {
                 case 0:
                 case 1:
                 case 2:
+                case 3:
                     break;
                 }
             if (message.signature != null && message.hasOwnProperty("signature"))
@@ -22062,6 +22063,10 @@ $root.AICommon = (function() {
             case "WA_TEE_BOT_MSG":
             case 2:
                 message.useCase = 2;
+                break;
+            case "P2P_PILLS":
+            case 3:
+                message.useCase = 3;
                 break;
             }
             if (object.signature != null)
@@ -22159,12 +22164,14 @@ $root.AICommon = (function() {
          * @property {number} UNSPECIFIED=0 UNSPECIFIED value
          * @property {number} WA_BOT_MSG=1 WA_BOT_MSG value
          * @property {number} WA_TEE_BOT_MSG=2 WA_TEE_BOT_MSG value
+         * @property {number} P2P_PILLS=3 P2P_PILLS value
          */
         BotSignatureVerificationUseCaseProof.BotSignatureUseCase = (function() {
             var valuesById = {}, values = Object.create(valuesById);
             values[valuesById[0] = "UNSPECIFIED"] = 0;
             values[valuesById[1] = "WA_BOT_MSG"] = 1;
             values[valuesById[2] = "WA_TEE_BOT_MSG"] = 2;
+            values[valuesById[3] = "P2P_PILLS"] = 3;
             return values;
         })();
 
